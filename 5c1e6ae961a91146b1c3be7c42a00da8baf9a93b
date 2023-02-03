@@ -68,6 +68,138 @@
       },
       "revId": "5c1e6ae961a91146b1c3be7c42a00da8baf9a93b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ce572fd5_68d1fbf1",
+        "filename": "system/rust/src/gatt/server/gatt_database.rs",
+        "patchSetId": 14
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-02-03T20:20:23Z",
+      "side": 1,
+      "message": "I would use declaration instead, descriptor has an associated meaning for characteristics.",
+      "range": {
+        "startLine": 31,
+        "startChar": 55,
+        "endLine": 31,
+        "endChar": 65
+      },
+      "revId": "5c1e6ae961a91146b1c3be7c42a00da8baf9a93b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "38c4b0c8_76935aaa",
+        "filename": "system/rust/src/gatt/server/gatt_database.rs",
+        "patchSetId": 14
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-02-03T20:20:23Z",
+      "side": 1,
+      "message": "nit: `pub type: Uuid`",
+      "range": {
+        "startLine": 37,
+        "startChar": 4,
+        "endLine": 37,
+        "endChar": 19
+      },
+      "revId": "5c1e6ae961a91146b1c3be7c42a00da8baf9a93b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3f164e70_d7d087d4",
+        "filename": "system/rust/src/gatt/server/gatt_database.rs",
+        "patchSetId": 14
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-02-03T20:20:23Z",
+      "side": 1,
+      "message": "declaration; descriptor is something else",
+      "range": {
+        "startLine": 49,
+        "startChar": 8,
+        "endLine": 49,
+        "endChar": 18
+      },
+      "revId": "5c1e6ae961a91146b1c3be7c42a00da8baf9a93b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8345a5b5_b3adb8d7",
+        "filename": "system/rust/src/gatt/server/gatt_database.rs",
+        "patchSetId": 14
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-02-03T20:20:23Z",
+      "side": 1,
+      "message": "nit: `pub type: Uuid`",
+      "range": {
+        "startLine": 52,
+        "startChar": 4,
+        "endLine": 52,
+        "endChar": 19
+      },
+      "revId": "5c1e6ae961a91146b1c3be7c42a00da8baf9a93b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0d2b4489_25a042b7",
+        "filename": "system/rust/src/gatt/server/gatt_database.rs",
+        "patchSetId": 14
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-02-03T20:20:23Z",
+      "side": 1,
+      "message": "Descriptors are not supported ?",
+      "revId": "5c1e6ae961a91146b1c3be7c42a00da8baf9a93b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ba1950ad_8e6d9074",
+        "filename": "system/rust/src/gatt/server/gatt_database.rs",
+        "patchSetId": 14
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-02-03T20:20:23Z",
+      "side": 1,
+      "message": "nit: formatting",
+      "range": {
+        "startLine": 79,
+        "startChar": 27,
+        "endLine": 79,
+        "endChar": 41
+      },
+      "revId": "5c1e6ae961a91146b1c3be7c42a00da8baf9a93b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
