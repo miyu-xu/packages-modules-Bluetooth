@@ -93,6 +93,54 @@
       },
       "revId": "0e8c9fc7de13b823a8893cdd778751fec1b6b22a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "534a4ec3_2cd7efcd",
+        "filename": "android/app/src/com/android/bluetooth/tbs/TbsGeneric.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-02-03T19:19:34Z",
+      "side": 1,
+      "message": "agreed on this one!\n\nFor mainline module purpose, we probably want to add a system level property. We can do it in the next CL. \n\nSee this topic as an example: https://android-review.git.corp.google.com/q/topic:%22le-audio-allow-list-mechanism%22\n\nthis will allow individual users of this mainline module to override it on each phone",
+      "parentUuid": "fa85458c_2eca58d4",
+      "range": {
+        "startLine": 59,
+        "startChar": 63,
+        "endLine": 59,
+        "endChar": 71
+      },
+      "revId": "0e8c9fc7de13b823a8893cdd778751fec1b6b22a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "af560990_f919bfde",
+        "filename": "android/app/src/com/android/bluetooth/tbs/TbsGeneric.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-02-03T19:19:34Z",
+      "side": 1,
+      "message": "I didn\u0027t find LeAudioService.INBAND_RINGTONE_PROPERTY_DISABLED on AOSP. Did I miss it somewhere?",
+      "parentUuid": "f5860261_06385b64",
+      "range": {
+        "startLine": 58,
+        "startChar": 3,
+        "endLine": 59,
+        "endChar": 73
+      },
+      "revId": "0e8c9fc7de13b823a8893cdd778751fec1b6b22a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

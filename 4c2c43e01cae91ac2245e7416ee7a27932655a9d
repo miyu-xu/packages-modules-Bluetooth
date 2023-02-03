@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1bf6f219_700d1bd8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-02-03T19:19:34Z",
+      "side": 1,
+      "message": "Should this be in the inband_prop topic? If not, please remove it from the topic so that we can merge the APIs first",
+      "revId": "4c2c43e01cae91ac2245e7416ee7a27932655a9d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
