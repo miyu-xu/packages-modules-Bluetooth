@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "127388bd_ec5a7ca0",
+        "filename": "android/app/jni/com_android_bluetooth_gatt.cpp",
+        "patchSetId": 17
+      },
+      "lineNbr": 650,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-02-03T19:58:18Z",
+      "side": 1,
+      "message": "// mirror the database in rust, now that it\u0027s created.",
+      "range": {
+        "startLine": 650,
+        "startChar": 3,
+        "endLine": 650,
+        "endChar": 40
+      },
+      "revId": "90ee447b4a67b93971ce8b28c543170b89fa09d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aaaa9af9_cd84818d",
+        "filename": "system/rust/src/core/mod.rs",
+        "patchSetId": 17
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-02-03T19:58:18Z",
+      "side": 1,
+      "message": "unused? remove.",
+      "range": {
+        "startLine": 28,
+        "startChar": 0,
+        "endLine": 30,
+        "endChar": 35
+      },
+      "revId": "90ee447b4a67b93971ce8b28c543170b89fa09d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
