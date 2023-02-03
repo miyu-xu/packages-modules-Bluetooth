@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "91a4608d_f7ade645",
+        "filename": "tools/rootcanal/model/setup/test_model.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-02-03T17:53:42Z",
+      "side": 1,
+      "message": "I think I would rather this try unused devices in order.  If you\u0027re only disconnecting and reconnecting a single device, the behavior is the same.  But if you\u0027re disconnecting and reconnecting 3 devices, no matter what order you disconnect them in, as long as the connection order is the same, I would want the same IDs.",
+      "range": {
+        "startLine": 100,
+        "startChar": 0,
+        "endLine": 109,
+        "endChar": 34
+      },
+      "revId": "33eb853ec227d0eef366a7a400abc0f1c48981e1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
