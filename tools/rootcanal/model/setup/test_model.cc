@@ -97,10 +97,21 @@ std::shared_ptr<PhyDevice> TestModel::CreatePhyDevice(
 
 // Add a device to the test model.
 PhyDevice::Identifier TestModel::AddDevice(std::shared_ptr<Device> device) {
-  static PhyDevice::Identifier next_id = 0;
+  // Find the first unused identifier.
+  // The identifier is used to generate the bluetooth address,
+  // and reusing the first unused identifier lets a re-connecting
+  // get the same identifier and address.
+  PhyDevice::Identifier device_id;
+  if (unused_device_ids_.empty()) {
+    device_id = next_device_id_++;
+  } else {
+    device_id = unused_device_ids_.back();
+    unused_device_ids_.pop_back();
+  }
+
   std::string device_type = device->GetTypeString();
   std::shared_ptr<PhyDevice> phy_device =
-      CreatePhyDevice(next_id++, device_type, std::move(device));
+      CreatePhyDevice(device_id, device_type, std::move(device));
   phy_devices_[phy_device->id] = phy_device;
   return phy_device->id;
 }
@@ -111,6 +122,7 @@ void TestModel::RemoveDevice(PhyDevice::Identifier device_id) {
     phy_layer->Unregister(device_id);
   }
   phy_devices_.erase(device_id);
+  unused_device_ids_.push_back(device_id);
 }
 
 // Add a phy to the test model.
@@ -260,6 +272,8 @@ void TestModel::Reset() {
       phy_layer->UnregisterAll();
     }
     phy_devices_.clear();
+    unused_device_ids_.clear();
+    next_device_id_ = 0;
   });
 }
 
