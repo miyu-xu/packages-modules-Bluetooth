@@ -625,7 +625,8 @@ public class BluetoothManagerService extends IBluetoothManager.Stub {
             systemUiUid = mContext.createContextAsUser(UserHandle.SYSTEM, 0)
                 .getPackageManager()
                 .getPackageUid("com.android.systemui",
-                        PackageManager.PackageInfoFlags.of(PackageManager.MATCH_SYSTEM_ONLY));
+                        PackageManager.PackageInfoFlags.of(
+                                (long) PackageManager.MATCH_SYSTEM_ONLY));
             Log.d(TAG, "Detected SystemUiUid: " + Integer.toString(systemUiUid));
         } catch (PackageManager.NameNotFoundException e) {
             Log.w(TAG, "Unable to resolve SystemUI's UID.");
@@ -3069,10 +3070,10 @@ public class BluetoothManagerService extends IBluetoothManager.Stub {
                     packageInfo = systemPackageManager.getPackageInfo(
                         candidatePackage,
                         PackageManager.PackageInfoFlags.of(
-                            PackageManager.GET_ACTIVITIES
+                            (long) (PackageManager.GET_ACTIVITIES
                             | PackageManager.MATCH_ANY_USER
                             | PackageManager.MATCH_UNINSTALLED_PACKAGES
-                            | PackageManager.MATCH_DISABLED_COMPONENTS));
+                            | PackageManager.MATCH_DISABLED_COMPONENTS)));
                 } catch (PackageManager.NameNotFoundException e) {
                     // ignore, try next package
                     Log.e(TAG, "Could not find package " + candidatePackage);

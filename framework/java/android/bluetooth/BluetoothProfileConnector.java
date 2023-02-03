@@ -73,7 +73,7 @@ public abstract class BluetoothProfileConnector<T> {
     private @Nullable ComponentName resolveSystemService(@NonNull Intent intent,
             @NonNull PackageManager pm) {
         List<ResolveInfo> results = pm.queryIntentServices(intent,
-                PackageManager.ResolveInfoFlags.of(0));
+                PackageManager.ResolveInfoFlags.of(0L));
         if (results == null) {
             return null;
         }

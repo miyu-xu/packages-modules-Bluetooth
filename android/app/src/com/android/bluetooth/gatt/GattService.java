@@ -4203,7 +4203,8 @@ public class GattService extends ProfileService {
         int applicationUid = -1;
 
         try {
-          applicationUid = this.getPackageManager().getPackageUid(app.name, PackageInfoFlags.of(0));
+          applicationUid = this.getPackageManager().getPackageUid(
+                app.name, PackageInfoFlags.of(0L));
 
         } catch (NameNotFoundException e) {
           Log.d(TAG, "onClientConnected() uid_not_found=" + app.name);
