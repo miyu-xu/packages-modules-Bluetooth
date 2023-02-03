@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "01fe190d_645740ae",
+        "filename": "system/rust/src/gatt/server/server_connection.rs",
+        "patchSetId": 12
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-02-03T19:09:40Z",
+      "side": 1,
+      "message": "server_bearer?",
+      "revId": "7463494e24e99459ef6066f1429a86b1ba08d79a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

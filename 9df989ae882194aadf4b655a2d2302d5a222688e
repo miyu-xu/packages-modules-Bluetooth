@@ -571,6 +571,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ba3c28f6_0015146b",
+        "filename": "system/rust/src/gatt/server/server_connection.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-02-03T19:09:40Z",
+      "side": 1,
+      "message": "I like dropping it better.",
+      "parentUuid": "61a21f8a_8e646c04",
+      "range": {
+        "startLine": 87,
+        "startChar": 16,
+        "endLine": 91,
+        "endChar": 18
+      },
+      "revId": "9df989ae882194aadf4b655a2d2302d5a222688e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "56634eaa_7a6787e6",
         "filename": "system/rust/src/gatt/server/transactions/read_request.rs",
         "patchSetId": 1
