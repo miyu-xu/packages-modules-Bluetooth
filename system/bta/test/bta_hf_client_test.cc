@@ -27,8 +27,6 @@ namespace base {
 class MessageLoop;
 }  // namespace base
 
-bluetooth::common::MessageLoopThread* get_main_thread() { return nullptr; }
-
 namespace {
 const RawAddress bdaddr1({0x11, 0x22, 0x33, 0x44, 0x55, 0x66});
 const RawAddress bdaddr2({0x66, 0x55, 0x44, 0x33, 0x22, 0x11});

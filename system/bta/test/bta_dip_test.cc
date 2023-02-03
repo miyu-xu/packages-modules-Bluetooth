@@ -20,7 +20,7 @@
 
 #include "bta/sdp/bta_sdp_act.cc"
 #include "main/shim/metrics_api.h"
-#include "stack/sdp/sdp_api.cc"
+#include "stack/include/sdp_api.h"
 #include "types/bluetooth/uuid.h"
 #include "types/raw_address.h"
 
@@ -41,17 +41,9 @@ static tSDP_DISC_ATTR g_attr_vendor_product_version;
 static tSDP_DISC_ATTR g_attr_vendor_product_primary_record;
 static tSDP_DISC_REC g_rec;
 
-bool sdpu_compare_uuid_with_attr(const Uuid& uuid, tSDP_DISC_ATTR* p_attr) {
-  return true;
-}
-
 static void sdp_dm_cback(tBTA_SDP_EVT event, tBTA_SDP* p_data,
                          void* user_data) {
   return;
-}
-
-bool bluetooth::shim::CountCounterMetrics(int32_t key, int64_t count) {
-  return true;
 }
 
 class BtaDipTest : public ::testing::Test {
@@ -129,4 +121,3 @@ TEST_F(BtaDipTest, test_bta_sdp_search_cback) {
   memcpy(userdata, &UUID_DIP, sizeof(UUID_DIP));
   bta_sdp_search_cback(SDP_SUCCESS, userdata);
 }
-
