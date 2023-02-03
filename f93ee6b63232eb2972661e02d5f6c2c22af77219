@@ -49,6 +49,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e243f710_6cfb1b1c",
+        "filename": "system/device/src/interop.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1666,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-02-03T18:38:55Z",
+      "side": 1,
+      "message": "Yes we need it.  I still like static_cast better.",
+      "parentUuid": "45951ae8_531f39aa",
+      "range": {
+        "startLine": 1666,
+        "startChar": 20,
+        "endLine": 1666,
+        "endChar": 35
+      },
+      "revId": "f93ee6b63232eb2972661e02d5f6c2c22af77219",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8dead524_2be5ca5f",
         "filename": "system/device/src/interop.cc",
         "patchSetId": 2
