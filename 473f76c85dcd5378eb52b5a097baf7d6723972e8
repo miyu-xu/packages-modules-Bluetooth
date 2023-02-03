@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5c8192d5_194d99ef",
+        "filename": "system/rust/src/gatt/server.rs",
+        "patchSetId": 12
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-02-03T02:12:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5d6ff45f_1f8038da",
+      "range": {
+        "startLine": 47,
+        "startChar": 0,
+        "endLine": 47,
+        "endChar": 42
+      },
+      "revId": "473f76c85dcd5378eb52b5a097baf7d6723972e8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e78f0fc8_6212e519",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-02-03T00:32:17Z",
       "side": 1,
       "message": "Any idea why the fmt didn\u0027t fix the length of the code here ?",
+      "range": {
+        "startLine": 56,
+        "startChar": 0,
+        "endLine": 56,
+        "endChar": 100
+      },
+      "revId": "473f76c85dcd5378eb52b5a097baf7d6723972e8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e51469fe_78df823a",
+        "filename": "system/rust/src/gatt/server.rs",
+        "patchSetId": 12
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-02-03T02:12:33Z",
+      "side": 1,
+      "message": "It\u0027s in a macro so the formatter doesn\u0027t run (or at least it isn\u0027t as aggressive). Fixing manually.",
+      "parentUuid": "e78f0fc8_6212e519",
       "range": {
         "startLine": 56,
         "startChar": 0,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "20c8172f_15709d1f",
+        "filename": "system/rust/src/gatt/server.rs",
+        "patchSetId": 12
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-02-03T02:12:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1ec3dcdd_68da9da6",
+      "range": {
+        "startLine": 79,
+        "startChar": 20,
+        "endLine": 79,
+        "endChar": 26
+      },
+      "revId": "473f76c85dcd5378eb52b5a097baf7d6723972e8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "21ed2b73_9e0b456e",
@@ -87,6 +159,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d67f5312_3b9830c2",
+        "filename": "system/rust/src/gatt/server.rs",
+        "patchSetId": 12
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-02-03T02:12:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "21ed2b73_9e0b456e",
+      "revId": "473f76c85dcd5378eb52b5a097baf7d6723972e8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b81643f3_14fe4213",
@@ -100,6 +190,30 @@
       "writtenOn": "2023-02-03T00:32:17Z",
       "side": 1,
       "message": "is there a way to make this panic in test but only an error in runtime ?\n...\n...\n...\nShould we do all error log to be panic in tests ? 🔥",
+      "range": {
+        "startLine": 102,
+        "startChar": 12,
+        "endLine": 102,
+        "endChar": 17
+      },
+      "revId": "473f76c85dcd5378eb52b5a097baf7d6723972e8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c0184ad4_d78ac739",
+        "filename": "system/rust/src/gatt/server.rs",
+        "patchSetId": 12
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-02-03T02:12:33Z",
+      "side": 1,
+      "message": "Made everything an error. So in prod we will log, in test we unwrap().",
+      "parentUuid": "b81643f3_14fe4213",
       "range": {
         "startLine": 102,
         "startChar": 12,
@@ -133,6 +247,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9e2aabef_2d9f39bc",
+        "filename": "system/rust/src/gatt/server/gatt_database.rs",
+        "patchSetId": 12
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-02-03T02:12:33Z",
+      "side": 1,
+      "message": "From the above comment:\n\u003e Assumes that the characteristic DECLARATION handles are one less than the characteristic handles\n\nLegacy does not give us the declaration handles, only the value handles.",
+      "parentUuid": "bd6f81d6_8e9ce240",
+      "range": {
+        "startLine": 106,
+        "startChar": 71,
+        "endLine": 106,
+        "endChar": 74
+      },
+      "revId": "473f76c85dcd5378eb52b5a097baf7d6723972e8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a607b6dd_59d9ebcb",
@@ -146,6 +284,30 @@
       "writtenOn": "2023-02-03T00:32:17Z",
       "side": 1,
       "message": "can we have `default` on pdl builder ?",
+      "range": {
+        "startLine": 110,
+        "startChar": 32,
+        "endLine": 110,
+        "endChar": 66
+      },
+      "revId": "473f76c85dcd5378eb52b5a097baf7d6723972e8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d37ee79d_f4a5f902",
+        "filename": "system/rust/src/gatt/server/gatt_database.rs",
+        "patchSetId": 12
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-02-03T02:12:33Z",
+      "side": 1,
+      "message": "Filed b/267695633 to track, since adding this does not belong in this CL",
+      "parentUuid": "a607b6dd_59d9ebcb",
       "range": {
         "startLine": 110,
         "startChar": 32,
@@ -179,6 +341,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "73c7b8ad_03d0a278",
+        "filename": "system/rust/src/gatt/server/gatt_database.rs",
+        "patchSetId": 12
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-02-03T02:12:33Z",
+      "side": 1,
+      "message": "We implement `AttDatabase`, and `AttDatabase#list_attributes()` is required to return the attributes in sorted order. So we just keep it stored in sorted order to avoid sorting on every read.\n\nAdded doc comments to this effect in the trait.",
+      "parentUuid": "0687d473_d2f6f078",
+      "range": {
+        "startLine": 162,
+        "startChar": 31,
+        "endLine": 162,
+        "endChar": 42
+      },
+      "revId": "473f76c85dcd5378eb52b5a097baf7d6723972e8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "44d9fc15_20f32afe",
@@ -192,6 +378,30 @@
       "writtenOn": "2023-02-03T00:32:17Z",
       "side": 1,
       "message": "fix or add bug",
+      "range": {
+        "startLine": 231,
+        "startChar": 11,
+        "endLine": 231,
+        "endChar": 15
+      },
+      "revId": "473f76c85dcd5378eb52b5a097baf7d6723972e8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8f023b64_dc328910",
+        "filename": "system/rust/src/gatt/server/gatt_database.rs",
+        "patchSetId": 12
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-02-03T02:12:33Z",
+      "side": 1,
+      "message": "fixed later in stack. Will add LDAP to track.",
+      "parentUuid": "44d9fc15_20f32afe",
       "range": {
         "startLine": 231,
         "startChar": 11,
