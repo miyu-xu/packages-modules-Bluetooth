@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bebeedb1_f5e3827b",
+        "filename": "system/device/src/interop.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1154,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-02-03T18:37:11Z",
+      "side": 1,
+      "message": "nit: even if it were light, it\u0027s good practice to free unused things :)",
+      "range": {
+        "startLine": 1154,
+        "startChar": 27,
+        "endLine": 1154,
+        "endChar": 32
+      },
+      "revId": "f93ee6b63232eb2972661e02d5f6c2c22af77219",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "45951ae8_531f39aa",
+        "filename": "system/device/src/interop.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1666,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-02-03T18:37:11Z",
+      "side": 1,
+      "message": "Do we need the cast?  If we do, can we use static_cast\u003cstd::string*\u003e instead?",
+      "range": {
+        "startLine": 1666,
+        "startChar": 20,
+        "endLine": 1666,
+        "endChar": 35
+      },
+      "revId": "f93ee6b63232eb2972661e02d5f6c2c22af77219",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8dead524_2be5ca5f",
+        "filename": "system/device/src/interop.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1685,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-02-03T18:37:11Z",
+      "side": 1,
+      "message": "Can we change this?  I don\u0027t really like the API.  It seems like a * should be sufficient.",
+      "range": {
+        "startLine": 1684,
+        "startChar": 0,
+        "endLine": 1685,
+        "endChar": 72
+      },
+      "revId": "f93ee6b63232eb2972661e02d5f6c2c22af77219",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
