@@ -3,6 +3,52 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0bdbd9b5_035d55c2",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudioCodecConfigMetadata.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-02-03T15:13:16Z",
+      "side": 1,
+      "message": "wondering, could we reuse somehow BluetoothLeAudioCodecConfig definition for SAMPLE_RATE(s)?\n\nThere we have bit numbers, and here it is value instead.\n\nSorry I don\u0027t have idea how, but  maybe something to consider.",
+      "range": {
+        "startLine": 76,
+        "startChar": 28,
+        "endLine": 76,
+        "endChar": 59
+      },
+      "revId": "d84b9d296c71b732afb317e8e23f64ac2bacb178",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "03c5aa6f_b30db194",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudioCodecConfigMetadata.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-02-03T15:13:16Z",
+      "side": 1,
+      "message": "same with frame duration. We have it already in BluetoothLeAudioCodecConfig.java",
+      "range": {
+        "startLine": 133,
+        "startChar": 22,
+        "endLine": 133,
+        "endChar": 44
+      },
+      "revId": "d84b9d296c71b732afb317e8e23f64ac2bacb178",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "563f28ce_00bb04a2",
         "filename": "framework/java/android/bluetooth/BluetoothLeAudioCodecConfigMetadata.java",
         "patchSetId": 5
