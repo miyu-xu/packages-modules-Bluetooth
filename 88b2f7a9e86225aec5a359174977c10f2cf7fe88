@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5c44943b_83f2712b",
+        "filename": "service/java/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 401,
+      "author": {
+        "id": 1904045
+      },
+      "writtenOn": "2023-02-03T07:14:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e62b5297_e4e4e937",
+      "range": {
+        "startLine": 401,
+        "startChar": 15,
+        "endLine": 401,
+        "endChar": 17
+      },
+      "revId": "88b2f7a9e86225aec5a359174977c10f2cf7fe88",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "80f66304_b0bb6afa",
@@ -54,6 +78,30 @@
       "writtenOn": "2023-02-02T19:59:19Z",
       "side": 1,
       "message": "typo",
+      "range": {
+        "startLine": 406,
+        "startChar": 35,
+        "endLine": 406,
+        "endChar": 42
+      },
+      "revId": "88b2f7a9e86225aec5a359174977c10f2cf7fe88",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "20e6ccb0_54f6210b",
+        "filename": "service/java/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 406,
+      "author": {
+        "id": 1904045
+      },
+      "writtenOn": "2023-02-03T07:14:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "80f66304_b0bb6afa",
       "range": {
         "startLine": 406,
         "startChar": 35,
@@ -87,6 +135,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d2d3ea53_10475649",
+        "filename": "service/java/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 427,
+      "author": {
+        "id": 1904045
+      },
+      "writtenOn": "2023-02-03T07:14:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e63425af_b3699eab",
+      "range": {
+        "startLine": 427,
+        "startChar": 17,
+        "endLine": 427,
+        "endChar": 42
+      },
+      "revId": "88b2f7a9e86225aec5a359174977c10f2cf7fe88",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7f582ce4_33ca8441",
@@ -100,6 +172,30 @@
       "writtenOn": "2023-02-02T19:59:19Z",
       "side": 1,
       "message": "I am curious why `mEnableExternal` is not sufficient ?",
+      "range": {
+        "startLine": 477,
+        "startChar": 42,
+        "endLine": 477,
+        "endChar": 78
+      },
+      "revId": "88b2f7a9e86225aec5a359174977c10f2cf7fe88",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1e6da3eb_8e019c5b",
+        "filename": "service/java/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 477,
+      "author": {
+        "id": 1904045
+      },
+      "writtenOn": "2023-02-03T07:14:22Z",
+      "side": 1,
+      "message": "The judgment of the Bluetooth persist state has been added to the judgment of the delay operation of the state of BLE_ON, and the interception of BLE_ON state in non only ble mode may cause the change of mEnableExternal. So mEnableExternal is sufficient.",
+      "parentUuid": "7f582ce4_33ca8441",
       "range": {
         "startLine": 477,
         "startChar": 42,
