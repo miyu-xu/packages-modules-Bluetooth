@@ -34,6 +34,24 @@
       "parentUuid": "112710c2_8ddf3c6a",
       "revId": "040d2887a5ef0c1820b50e3b1f9e0f7049a14aae",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "33adf5bd_06d73023",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-02-03T20:57:39Z",
+      "side": 1,
+      "message": "While writing test case I\u0027ve found another issue with this simple fix. Now full test that reproduces issue from bug case is implemented and patch adopts to it.\n\n\n```\n01-23 12:56:49.670557  4432  4589 I bluetooth: packages/modules/Bluetooth/system/bta/le_audio/devices.cc:252 Activate: Device 00:02:5b:00:eb:61 is activated\n01-23 12:56:49.670617  4432  4589 I bluetooth: packages/modules/Bluetooth/system/bta/le_audio/devices.cc:1023 CigAssignCisIds: device: 00:02:5b:00:eb:61\n01-23 12:56:49.670659  4432  4589 I bluetooth: packages/modules/Bluetooth/system/bta/le_audio/devices.cc:1037 CigAssignCisIds: ASE ID: 1, is already assigned CIS ID: 0, type 0\n01-23 12:56:49.670701  4432  4589 I bluetooth: packages/modules/Bluetooth/system/bta/le_audio/devices.cc:1062 CigAssignCisIds:  ASE ID: 1 and ASE ID: 5, assigned Bi-Directional CIS ID: 0\n01-23 12:56:49.670740  4432  4589 I bluetooth: packages/modules/Bluetooth/system/bta/le_audio/devices.cc:1037 CigAssignCisIds: ASE ID: 2, is already assigned CIS ID: 1, type 1\n01-23 12:56:49.670778  4432  4589 I bluetooth: packages/modules/Bluetooth/system/bta/le_audio/devices.cc:1062 CigAssignCisIds:  ASE ID: 2 and ASE ID: 5, assigned Bi-Directional CIS ID: 1\n01-23 12:56:49.670816  4432  4589 I bluetooth: packages/modules/Bluetooth/system/bta/le_audio/devices.cc:1037 CigAssignCisIds: ASE ID: 5, is already assigned CIS ID: 1, type 1\n```",
+      "parentUuid": "0bb63800_b1bd6649",
+      "revId": "040d2887a5ef0c1820b50e3b1f9e0f7049a14aae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
