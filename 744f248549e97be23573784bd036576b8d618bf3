@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d710b992_e7b4b8db",
+        "filename": "android/app/jni/com_android_bluetooth_gatt.cpp",
+        "patchSetId": 15
+      },
+      "lineNbr": 650,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-02-03T02:15:26Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "0eb4eba9_fd72d6c1",
+      "range": {
+        "startLine": 650,
+        "startChar": 4,
+        "endLine": 650,
+        "endChar": 40
+      },
+      "revId": "744f248549e97be23573784bd036576b8d618bf3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "dd6d28af_33d442c8",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-02-03T00:51:03Z",
       "side": 1,
       "message": "Why do we need to remove in stop and in delete ?\n\naren\u0027t we in control of the workflow ?",
+      "range": {
+        "startLine": 681,
+        "startChar": 19,
+        "endLine": 681,
+        "endChar": 33
+      },
+      "revId": "744f248549e97be23573784bd036576b8d618bf3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dbad0565_789f884a",
+        "filename": "android/app/jni/com_android_bluetooth_gatt.cpp",
+        "patchSetId": 15
+      },
+      "lineNbr": 681,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-02-03T02:15:26Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "dd6d28af_33d442c8",
       "range": {
         "startLine": 681,
         "startChar": 19,
