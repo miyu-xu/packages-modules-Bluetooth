@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "812820d2_272d3809",
+        "filename": "system/rust/src/gatt/server/att_database.rs",
+        "patchSetId": 19
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-02-03T18:53:55Z",
+      "side": 1,
+      "message": "I think this should succeed if the number of bytes is \u003e 16.",
+      "range": {
+        "startLine": 90,
+        "startChar": 13,
+        "endLine": 90,
+        "endChar": 14
+      },
+      "revId": "83e601e588678ee266f6887883381bb8220ad150",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
