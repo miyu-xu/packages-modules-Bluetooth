@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4bcec025_0f8a78b6",
+        "filename": "system/bta/hf_client/bta_hf_client_int.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-02-03T17:17:50Z",
+      "side": 1,
+      "message": "nit: This file shouldn\u0027t be executable.  Maybe that should be a different CL to fix all of them, though.",
+      "revId": "7caad52714c4e75bfc79393aade6739fe76bc20a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
