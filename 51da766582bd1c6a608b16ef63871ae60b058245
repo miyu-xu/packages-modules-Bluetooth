@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5236ae52_b2cab5c2",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 3741,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2023-02-03T13:28:01Z",
+      "side": 1,
+      "message": "Done, thanks!",
+      "parentUuid": "15db4d40_29b41225",
+      "revId": "51da766582bd1c6a608b16ef63871ae60b058245",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "071762d6_cca5dd3c",
@@ -31,6 +49,24 @@
       "writtenOn": "2023-02-02T19:33:12Z",
       "side": 1,
       "message": "Could we reuse ERROR_DEVICE_NOT_CONNECTED for this?",
+      "revId": "51da766582bd1c6a608b16ef63871ae60b058245",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c6bd9a50_2e255766",
+        "filename": "framework/java/android/bluetooth/BluetoothStatusCodes.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 516,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2023-02-03T13:28:01Z",
+      "side": 1,
+      "message": "The description of ERROR_DEVICE_NOT_CONNECTED is \"Error code indicating that the Bluetooth Device specified is not connected, but is bonded.\". The part \"but is bonded\" may not fit all of the error case.",
+      "parentUuid": "071762d6_cca5dd3c",
       "revId": "51da766582bd1c6a608b16ef63871ae60b058245",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -52,6 +88,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "081c95c9_8f31ff5f",
+        "filename": "framework/java/android/bluetooth/le/DistanceMeasurementParams.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 229,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2023-02-03T13:28:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d5eab581_acf84450",
+      "revId": "51da766582bd1c6a608b16ef63871ae60b058245",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9dc90814_34eb5e8a",
@@ -65,6 +119,24 @@
       "writtenOn": "2023-02-02T19:33:12Z",
       "side": 1,
       "message": "Please use the method here instead of the constant",
+      "revId": "51da766582bd1c6a608b16ef63871ae60b058245",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4745bad0_ab591215",
+        "filename": "framework/java/android/bluetooth/le/DistanceMeasurementParams.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 230,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2023-02-03T13:28:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9dc90814_34eb5e8a",
       "revId": "51da766582bd1c6a608b16ef63871ae60b058245",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
