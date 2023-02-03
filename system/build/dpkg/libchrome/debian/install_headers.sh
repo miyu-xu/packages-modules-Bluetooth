@@ -6,6 +6,8 @@ header_dirs=(
     base
     base/allocator
     base/allocator/partition_allocator
+    base/allocator/partition_allocator/partition_alloc_base
+    base/allocator/partition_allocator/partition_alloc_base/augmentations
     base/allocator/partition_allocator/starscan
     base/containers
     base/debug
@@ -20,6 +22,7 @@ header_dirs=(
     base/numerics
     base/posix
     base/process
+    base/profiler
     base/ranges
     base/strings
     base/synchronization
@@ -44,7 +47,12 @@ header_dirs=(
     testing/gmock/include/gmock
     testing/gtest/include/gtest
     dbus
+    third_party/abseil-cpp/absl/base
+    third_party/abseil-cpp/absl/functional
+    third_party/abseil-cpp/absl/synchronization
     third_party/abseil-cpp/absl/types
+    third_party/abseil-cpp/absl/utility
+    third_party/libevent/
     third_party/perfetto/include/perfetto/tracing/
     third_party/perfetto/include/perfetto/protozero/
     third_party/perfetto/protos/perfetto/trace/track_event/
@@ -54,4 +62,10 @@ header_dirs=(
 for d in "${header_dirs[@]}" ; do
   mkdir -p "${destdir}/usr/include/libchrome/${d}"
   cp libchrome/"${d}"/*.h "${destdir}/usr/include/libchrome/${d}"
+done
+
+# Install all buildflags.h.
+for f in $(cd out/Release/gen/libchrome && find -type f -name "*buildflags.h"); do
+  mkdir -p "${destdir}/usr/include/libchrome/$(dirname $f)"
+  cp out/Release/gen/libchrome/"${f}" "${destdir}/usr/include/libchrome/${f}"
 done
