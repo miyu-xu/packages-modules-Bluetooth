@@ -22,6 +22,30 @@
       },
       "revId": "33eb853ec227d0eef366a7a400abc0f1c48981e1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e851bf38_8420b287",
+        "filename": "tools/rootcanal/model/setup/test_model.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-02-03T17:58:33Z",
+      "side": 1,
+      "message": "At that point, you could limit this change to only touch AddDevice.",
+      "parentUuid": "91a4608d_f7ade645",
+      "range": {
+        "startLine": 100,
+        "startChar": 0,
+        "endLine": 109,
+        "endChar": 34
+      },
+      "revId": "33eb853ec227d0eef366a7a400abc0f1c48981e1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
