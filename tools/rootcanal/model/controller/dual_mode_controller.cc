@@ -67,15 +67,9 @@ void DualModeController::SendCommandCompleteUnknownOpCodeEvent(
                                            std::move(raw_builder_ptr)));
 }
 
-#ifdef ROOTCANAL_LMP
 DualModeController::DualModeController(const std::string& properties_filename,
                                        uint16_t /*num_keys*/)
     : properties_(properties_filename) {
-#else
-DualModeController::DualModeController(const std::string& properties_filename,
-                                       uint16_t num_keys)
-    : properties_(properties_filename), security_manager_(num_keys) {
-#endif
   loopback_mode_ = LoopbackMode::NO_LOOPBACK;
 
   Address public_address{};
@@ -1055,213 +1049,50 @@ void DualModeController::RejectSynchronousConnection(CommandView command) {
 }
 
 void DualModeController::IoCapabilityRequestReply(CommandView command) {
-#ifdef ROOTCANAL_LMP
   link_layer_controller_.ForwardToLm(command);
-#else
-  auto command_view = gd_hci::IoCapabilityRequestReplyView::Create(
-      gd_hci::SecurityCommandView::Create(command));
-  ASSERT(command_view.IsValid());
-
-  Address peer = command_view.GetBdAddr();
-  uint8_t io_capability = static_cast<uint8_t>(command_view.GetIoCapability());
-  uint8_t oob_data_present_flag =
-      static_cast<uint8_t>(command_view.GetOobPresent());
-  uint8_t authentication_requirements =
-      static_cast<uint8_t>(command_view.GetAuthenticationRequirements());
-
-  auto status = link_layer_controller_.IoCapabilityRequestReply(
-      peer, io_capability, oob_data_present_flag, authentication_requirements);
-  send_event_(bluetooth::hci::IoCapabilityRequestReplyCompleteBuilder::Create(
-      kNumCommandPackets, status, peer));
-#endif /* ROOTCANAL_LMP */
 }
 
 void DualModeController::UserConfirmationRequestReply(CommandView command) {
-#ifdef ROOTCANAL_LMP
   link_layer_controller_.ForwardToLm(command);
-#else
-  auto command_view = gd_hci::UserConfirmationRequestReplyView::Create(
-      gd_hci::SecurityCommandView::Create(command));
-  ASSERT(command_view.IsValid());
-
-  Address peer = command_view.GetBdAddr();
-
-  auto status = link_layer_controller_.UserConfirmationRequestReply(peer);
-  send_event_(
-      bluetooth::hci::UserConfirmationRequestReplyCompleteBuilder::Create(
-          kNumCommandPackets, status, peer));
-#endif /* ROOTCANAL_LMP */
 }
 
 void DualModeController::UserConfirmationRequestNegativeReply(
     CommandView command) {
-#ifdef ROOTCANAL_LMP
   link_layer_controller_.ForwardToLm(command);
-#else
-  auto command_view = gd_hci::UserConfirmationRequestNegativeReplyView::Create(
-      gd_hci::SecurityCommandView::Create(command));
-  ASSERT(command_view.IsValid());
-
-  Address peer = command_view.GetBdAddr();
-
-  auto status =
-      link_layer_controller_.UserConfirmationRequestNegativeReply(peer);
-  send_event_(
-      bluetooth::hci::UserConfirmationRequestNegativeReplyCompleteBuilder::
-          Create(kNumCommandPackets, status, peer));
-#endif /* ROOTCANAL_LMP */
 }
 
 void DualModeController::PinCodeRequestReply(CommandView command) {
-#ifdef ROOTCANAL_LMP
   link_layer_controller_.ForwardToLm(command);
-#else
-  auto command_view = gd_hci::PinCodeRequestReplyView::Create(
-      gd_hci::SecurityCommandView::Create(command));
-  ASSERT(command_view.IsValid());
-  LOG_INFO("%s", GetAddress().ToString().c_str());
-
-  Address peer = command_view.GetBdAddr();
-  uint8_t pin_length = command_view.GetPinCodeLength();
-  std::array<uint8_t, 16> pin = command_view.GetPinCode();
-  ErrorCode status = ErrorCode::INVALID_HCI_COMMAND_PARAMETERS;
-  if (pin_length >= 1 && pin_length <= 0x10) {
-    status = link_layer_controller_.PinCodeRequestReply(
-        peer, std::vector<uint8_t>(pin.begin(), pin.begin() + pin_length));
-  }
-
-  send_event_(bluetooth::hci::PinCodeRequestReplyCompleteBuilder::Create(
-      kNumCommandPackets, status, peer));
-#endif /* ROOTCANAL_LMP */
 }
 
 void DualModeController::PinCodeRequestNegativeReply(CommandView command) {
-#ifdef ROOTCANAL_LMP
   link_layer_controller_.ForwardToLm(command);
-#else
-  auto command_view = gd_hci::PinCodeRequestNegativeReplyView::Create(
-      gd_hci::SecurityCommandView::Create(command));
-  ASSERT(command_view.IsValid());
-  LOG_INFO("%s", GetAddress().ToString().c_str());
-
-  Address peer = command_view.GetBdAddr();
-
-  auto status = link_layer_controller_.PinCodeRequestNegativeReply(peer);
-  send_event_(
-      bluetooth::hci::PinCodeRequestNegativeReplyCompleteBuilder::Create(
-          kNumCommandPackets, status, peer));
-#endif /* ROOTCANAL_LMP */
 }
 
 void DualModeController::UserPasskeyRequestReply(CommandView command) {
-#ifdef ROOTCANAL_LMP
   link_layer_controller_.ForwardToLm(command);
-#else
-  auto command_view = gd_hci::UserPasskeyRequestReplyView::Create(
-      gd_hci::SecurityCommandView::Create(command));
-  ASSERT(command_view.IsValid());
-
-  Address peer = command_view.GetBdAddr();
-  uint32_t numeric_value = command_view.GetNumericValue();
-
-  auto status =
-      link_layer_controller_.UserPasskeyRequestReply(peer, numeric_value);
-  send_event_(bluetooth::hci::UserPasskeyRequestReplyCompleteBuilder::Create(
-      kNumCommandPackets, status, peer));
-#endif /* ROOTCANAL_LMP */
 }
 
 void DualModeController::UserPasskeyRequestNegativeReply(CommandView command) {
-#ifdef ROOTCANAL_LMP
   link_layer_controller_.ForwardToLm(command);
-#else
-  auto command_view = gd_hci::UserPasskeyRequestNegativeReplyView::Create(
-      gd_hci::SecurityCommandView::Create(command));
-  ASSERT(command_view.IsValid());
-
-  Address peer = command_view.GetBdAddr();
-
-  auto status = link_layer_controller_.UserPasskeyRequestNegativeReply(peer);
-  send_event_(
-      bluetooth::hci::UserPasskeyRequestNegativeReplyCompleteBuilder::Create(
-          kNumCommandPackets, status, peer));
-#endif /* ROOTCANAL_LMP */
 }
 
 void DualModeController::RemoteOobDataRequestReply(CommandView command) {
-#ifdef ROOTCANAL_LMP
   link_layer_controller_.ForwardToLm(command);
-#else
-  auto command_view = gd_hci::RemoteOobDataRequestReplyView::Create(
-      gd_hci::SecurityCommandView::Create(command));
-  ASSERT(command_view.IsValid());
-
-  Address peer = command_view.GetBdAddr();
-
-  auto status = link_layer_controller_.RemoteOobDataRequestReply(
-      peer, command_view.GetC(), command_view.GetR());
-
-  send_event_(bluetooth::hci::RemoteOobDataRequestReplyCompleteBuilder::Create(
-      kNumCommandPackets, status, peer));
-#endif /* ROOTCANAL_LMP */
 }
 
 void DualModeController::RemoteOobDataRequestNegativeReply(
     CommandView command) {
-#ifdef ROOTCANAL_LMP
   link_layer_controller_.ForwardToLm(command);
-#else
-  auto command_view = gd_hci::RemoteOobDataRequestNegativeReplyView::Create(
-      gd_hci::SecurityCommandView::Create(command));
-  ASSERT(command_view.IsValid());
-
-  Address peer = command_view.GetBdAddr();
-
-  auto status = link_layer_controller_.RemoteOobDataRequestNegativeReply(peer);
-  send_event_(
-      bluetooth::hci::RemoteOobDataRequestNegativeReplyCompleteBuilder::Create(
-          kNumCommandPackets, status, peer));
-#endif /* ROOTCANAL_LMP */
 }
 
 void DualModeController::IoCapabilityRequestNegativeReply(CommandView command) {
-#ifdef ROOTCANAL_LMP
   link_layer_controller_.ForwardToLm(command);
-#else
-  auto command_view = gd_hci::IoCapabilityRequestNegativeReplyView::Create(
-      gd_hci::SecurityCommandView::Create(command));
-  ASSERT(command_view.IsValid());
-
-  Address peer = command_view.GetBdAddr();
-  ErrorCode reason = command_view.GetReason();
-
-  auto status =
-      link_layer_controller_.IoCapabilityRequestNegativeReply(peer, reason);
-  send_event_(
-      bluetooth::hci::IoCapabilityRequestNegativeReplyCompleteBuilder::Create(
-          kNumCommandPackets, status, peer));
-#endif /* ROOTCANAL_LMP */
 }
 
 void DualModeController::RemoteOobExtendedDataRequestReply(
     CommandView command) {
-#ifdef ROOTCANAL_LMP
   link_layer_controller_.ForwardToLm(command);
-#else
-  auto command_view = gd_hci::RemoteOobExtendedDataRequestReplyView::Create(
-      gd_hci::SecurityCommandView::Create(command));
-  ASSERT(command_view.IsValid());
-
-  Address peer = command_view.GetBdAddr();
-
-  auto status = link_layer_controller_.RemoteOobExtendedDataRequestReply(
-      peer, command_view.GetC192(), command_view.GetR192(),
-      command_view.GetC256(), command_view.GetR256());
-
-  send_event_(
-      bluetooth::hci::RemoteOobExtendedDataRequestReplyCompleteBuilder::Create(
-          kNumCommandPackets, status, peer));
-#endif /* ROOTCANAL_LMP */
 }
 
 void DualModeController::ReadInquiryResponseTransmitPowerLevel(
@@ -1277,20 +1108,7 @@ void DualModeController::ReadInquiryResponseTransmitPowerLevel(
 }
 
 void DualModeController::SendKeypressNotification(CommandView command) {
-#ifdef ROOTCANAL_LMP
   link_layer_controller_.ForwardToLm(command);
-#else
-  auto command_view = gd_hci::SendKeypressNotificationView::Create(
-      gd_hci::SecurityCommandView::Create(command));
-  ASSERT(command_view.IsValid());
-
-  auto peer = command_view.GetBdAddr();
-
-  auto status = link_layer_controller_.SendKeypressNotification(
-      peer, command_view.GetNotificationType());
-  send_event_(bluetooth::hci::SendKeypressNotificationCompleteBuilder::Create(
-      kNumCommandPackets, status, peer));
-#endif /* ROOTCANAL_LMP */
 }
 
 void DualModeController::EnhancedFlush(CommandView command) {
@@ -1441,38 +1259,11 @@ void DualModeController::WriteInquiryScanType(CommandView command) {
 }
 
 void DualModeController::AuthenticationRequested(CommandView command) {
-#ifdef ROOTCANAL_LMP
   link_layer_controller_.ForwardToLm(command);
-#else
-  auto command_view = gd_hci::AuthenticationRequestedView::Create(
-      gd_hci::ConnectionManagementCommandView::Create(
-          gd_hci::AclCommandView::Create(command)));
-  ASSERT(command_view.IsValid());
-  uint16_t handle = command_view.GetConnectionHandle();
-  auto status = link_layer_controller_.AuthenticationRequested(handle);
-
-  send_event_(bluetooth::hci::AuthenticationRequestedStatusBuilder::Create(
-      status, kNumCommandPackets));
-#endif /* ROOTCANAL_LMP */
 }
 
 void DualModeController::SetConnectionEncryption(CommandView command) {
-#ifdef ROOTCANAL_LMP
   link_layer_controller_.ForwardToLm(command);
-#else
-  auto command_view = gd_hci::SetConnectionEncryptionView::Create(
-      gd_hci::ConnectionManagementCommandView::Create(
-          gd_hci::AclCommandView::Create(command)));
-  ASSERT(command_view.IsValid());
-  uint16_t handle = command_view.GetConnectionHandle();
-  uint8_t encryption_enable =
-      static_cast<uint8_t>(command_view.GetEncryptionEnable());
-  auto status =
-      link_layer_controller_.SetConnectionEncryption(handle, encryption_enable);
-
-  send_event_(bluetooth::hci::SetConnectionEncryptionStatusBuilder::Create(
-      status, kNumCommandPackets));
-#endif /* ROOTCANAL_LMP */
 }
 
 void DualModeController::ChangeConnectionLinkKey(CommandView command) {
@@ -1959,33 +1750,11 @@ void DualModeController::RejectConnectionRequest(CommandView command) {
 }
 
 void DualModeController::LinkKeyRequestReply(CommandView command) {
-#ifdef ROOTCANAL_LMP
   link_layer_controller_.ForwardToLm(command);
-#else
-  auto command_view = gd_hci::LinkKeyRequestReplyView::Create(
-      gd_hci::SecurityCommandView::Create(command));
-  ASSERT(command_view.IsValid());
-  Address addr = command_view.GetBdAddr();
-  auto key = command_view.GetLinkKey();
-  auto status = link_layer_controller_.LinkKeyRequestReply(addr, key);
-  send_event_(bluetooth::hci::LinkKeyRequestReplyCompleteBuilder::Create(
-      kNumCommandPackets, status, addr));
-#endif /* ROOTCANAL_LMP */
 }
 
 void DualModeController::LinkKeyRequestNegativeReply(CommandView command) {
-#ifdef ROOTCANAL_LMP
   link_layer_controller_.ForwardToLm(command);
-#else
-  auto command_view = gd_hci::LinkKeyRequestNegativeReplyView::Create(
-      gd_hci::SecurityCommandView::Create(command));
-  ASSERT(command_view.IsValid());
-  Address addr = command_view.GetBdAddr();
-  auto status = link_layer_controller_.LinkKeyRequestNegativeReply(addr);
-  send_event_(
-      bluetooth::hci::LinkKeyRequestNegativeReplyCompleteBuilder::Create(
-          kNumCommandPackets, status, addr));
-#endif /* ROOTCANAL_LMP */
 }
 
 void DualModeController::DeleteStoredLinkKey(CommandView command) {
@@ -1998,15 +1767,11 @@ void DualModeController::DeleteStoredLinkKey(CommandView command) {
   auto flag = command_view.GetDeleteAllFlag();
   if (flag == gd_hci::DeleteStoredLinkKeyDeleteAllFlag::SPECIFIED_BD_ADDR) {
     Address addr = command_view.GetBdAddr();
-#ifndef ROOTCANAL_LMP
-    deleted_keys = security_manager_.DeleteKey(addr);
-#endif /* !ROOTCANAL_LMP */
+    // TODO
   }
 
   if (flag == gd_hci::DeleteStoredLinkKeyDeleteAllFlag::ALL) {
-#ifndef ROOTCANAL_LMP
-    security_manager_.DeleteAllKeys();
-#endif /* !ROOTCANAL_LMP */
+    // TODO
   }
 
   send_event_(bluetooth::hci::DeleteStoredLinkKeyCompleteBuilder::Create(

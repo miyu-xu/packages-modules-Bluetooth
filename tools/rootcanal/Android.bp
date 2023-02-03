@@ -19,7 +19,7 @@ cc_defaults {
     tidy_checks: [
         "-*",
         "readability-*",
-	"-readability-function-size",
+        "-readability-function-size",
         "-readability-identifier-length",
         "-readability-implicit-bool-conversion",
         "-readability-magic-numbers",
@@ -37,7 +37,6 @@ cc_defaults {
     ],
     cflags: [
         "-fvisibility=hidden",
-        "-DROOTCANAL_LMP",
     ],
     local_include_dirs: [
         "include",
@@ -79,7 +78,6 @@ cc_library_static {
         "model/controller/le_advertiser.cc",
         "model/controller/link_layer_controller.cc",
         "model/controller/sco_connection.cc",
-        "model/controller/security_manager.cc",
         "model/devices/baseband_sniffer.cc",
         "model/devices/beacon.cc",
         "model/devices/beacon_swarm.cc",
@@ -145,7 +143,6 @@ cc_library_host_shared {
         "model/controller/le_advertiser.cc",
         "model/controller/link_layer_controller.cc",
         "model/controller/sco_connection.cc",
-        "model/controller/security_manager.cc",
         "model/devices/device.cc",
         "model/setup/async_manager.cc",
         ":lib_sources",
@@ -307,7 +304,6 @@ cc_test_host {
         "test/async_manager_unittest.cc",
         "test/h4_parser_unittest.cc",
         "test/posix_socket_unittest.cc",
-        "test/security_manager_unittest.cc",
     ],
     header_libs: [
         "libbluetooth_headers",

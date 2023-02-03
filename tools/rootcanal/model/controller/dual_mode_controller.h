@@ -31,9 +31,6 @@
 #include "model/controller/vendor/csr.h"
 #include "model/devices/device.h"
 #include "model/setup/async_manager.h"
-#ifndef ROOTCANAL_LMP
-#include "security_manager.h"
-#endif /* !ROOTCANAL_LMP */
 
 namespace rootcanal {
 
@@ -660,10 +657,6 @@ class DualModeController
   // The local loopback mode is used to pass the android Vendor Test Suite
   // with RootCanal.
   bluetooth::hci::LoopbackMode loopback_mode_;
-
-#ifndef ROOTCANAL_LMP
-  SecurityManager security_manager_;
-#endif /* ROOTCANAL_LMP */
 
   DualModeController(const DualModeController& other) = delete;
   DualModeController& operator=(const DualModeController& other) = delete;
