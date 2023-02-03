@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6e3f06d6_7e9e4f78",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-02-03T20:01:05Z",
+      "side": 1,
+      "message": "Thanks for the patch and resolving all the comment.\nThis change LGTM.\n\nI am waiting on resolving the discussion from the bug before merging the change",
+      "revId": "203a3ef873303a6d0ba83ddf3e567608208f5121",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
