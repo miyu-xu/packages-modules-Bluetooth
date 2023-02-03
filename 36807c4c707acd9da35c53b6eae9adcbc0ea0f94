@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a5e1fc81_d5b3ed8e",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudio.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 1274,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-02-03T13:51:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d8b2f3fe_0691e4df",
+      "revId": "36807c4c707acd9da35c53b6eae9adcbc0ea0f94",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c2f7b1c0_0f62dd5c",
@@ -31,6 +49,24 @@
       "writtenOn": "2023-02-03T01:00:39Z",
       "side": 1,
       "message": "Please rethrow RemoteExceptions (see line 1448 for a sample)",
+      "revId": "36807c4c707acd9da35c53b6eae9adcbc0ea0f94",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "abe6ad20_9c4cb222",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudio.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 1296,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-02-03T13:51:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c2f7b1c0_0f62dd5c",
       "revId": "36807c4c707acd9da35c53b6eae9adcbc0ea0f94",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
