@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8e5bb81b_c6907e4a",
+        "filename": "system/rust/src/gatt/ids.rs",
+        "patchSetId": 14
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-02-03T19:34:07Z",
+      "side": 1,
+      "message": "clean up derives :)",
+      "range": {
+        "startLine": 28,
+        "startChar": 29,
+        "endLine": 28,
+        "endChar": 38
+      },
+      "revId": "5c1e6ae961a91146b1c3be7c42a00da8baf9a93b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4bf5e745_dbd25114",
+        "filename": "system/rust/src/gatt/server.rs",
+        "patchSetId": 14
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-02-03T19:34:07Z",
+      "side": 1,
+      "message": "no go links in AOSP. You could move it to the Bluetooth web site.",
+      "range": {
+        "startLine": 2,
+        "startChar": 34,
+        "endLine": 2,
+        "endChar": 61
+      },
+      "revId": "5c1e6ae961a91146b1c3be7c42a00da8baf9a93b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5cccc308_79b441eb",
+        "filename": "system/rust/src/gatt/server.rs",
+        "patchSetId": 14
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-02-03T19:34:07Z",
+      "side": 1,
+      "message": "server_bearers?  bearers?",
+      "range": {
+        "startLine": 33,
+        "startChar": 4,
+        "endLine": 33,
+        "endChar": 11
+      },
+      "revId": "5c1e6ae961a91146b1c3be7c42a00da8baf9a93b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
