@@ -33,6 +33,24 @@
       "message": "This affects 2 callbacks `OnServiceAdded` and `OnGetGattDb`. Did you test that both are functioning as expected?",
       "revId": "22b00bd0a0230bb7e87aeae1056bffb27058ce75",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a6c35ea3_c003d7f4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2023-02-03T13:03:54Z",
+      "side": 1,
+      "message": "The only difference is that a service\u0027s instance_id will always be 0 when a client call OnGetGattDb, and all the others are the same. If we don\u0027t have any use case need a service\u0027s attribute handle, I think it\u0027s safe to change it.\n\nAccording to: https://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/system/bta/gatt/bta_gattc_cache.cc;l\u003d896?q\u003dbta_gattc_fill_gatt_db_el\u0026ss\u003dandroid%2Fplatform%2Fsuperproject",
+      "parentUuid": "e98e9cbd_5b565b4a",
+      "revId": "22b00bd0a0230bb7e87aeae1056bffb27058ce75",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
