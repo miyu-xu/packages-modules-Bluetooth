@@ -49,6 +49,46 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "bf0adb31_105574fb",
+        "filename": "system/rust/src/gatt/arbiter.rs",
+        "patchSetId": 18
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-02-03T20:15:26Z",
+      "side": 1,
+      "message": "server_closed",
+      "revId": "85e1ac8539fd71a73aae60c9e01543d9901517a2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9015b89e_7a79740f",
+        "filename": "system/stack/arbiter/acl_arbiter.cc",
+        "patchSetId": 18
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-02-03T20:15:26Z",
+      "side": 1,
+      "message": "DEBUG?",
+      "range": {
+        "startLine": 81,
+        "startChar": 4,
+        "endLine": 81,
+        "endChar": 12
+      },
+      "revId": "85e1ac8539fd71a73aae60c9e01543d9901517a2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e26f274c_146d2595",
         "filename": "system/stack/btm/btm_sec.h",
         "patchSetId": 18
