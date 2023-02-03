@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0b42b5a5_1cbf546f",
+        "filename": "system/rust/Cargo.toml",
+        "patchSetId": 14
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-02-03T23:29:06Z",
+      "side": 1,
+      "message": "nit: Put the same version as third_party",
+      "range": {
+        "startLine": 26,
+        "startChar": 10,
+        "endLine": 26,
+        "endChar": 11
+      },
+      "revId": "5c1e6ae961a91146b1c3be7c42a00da8baf9a93b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8e5bb81b_c6907e4a",
         "filename": "system/rust/src/gatt/ids.rs",
         "patchSetId": 14
@@ -65,6 +88,29 @@
         "startChar": 4,
         "endLine": 33,
         "endChar": 11
+      },
+      "revId": "5c1e6ae961a91146b1c3be7c42a00da8baf9a93b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e03d1cc6_82a0cfad",
+        "filename": "system/rust/src/gatt/server/att_database.rs",
+        "patchSetId": 14
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-02-03T23:29:06Z",
+      "side": 1,
+      "message": "Put a comment with a reference to the spec for this magic value",
+      "range": {
+        "startLine": 11,
+        "startChar": 61,
+        "endLine": 11,
+        "endChar": 85
       },
       "revId": "5c1e6ae961a91146b1c3be7c42a00da8baf9a93b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
@@ -181,6 +227,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c057bbaa_9b36bf76",
+        "filename": "system/rust/src/gatt/server/gatt_database.rs",
+        "patchSetId": 14
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-02-03T23:29:06Z",
+      "side": 1,
+      "message": "nit: Better name as it\u0027s not static ?",
+      "range": {
+        "startLine": 61,
+        "startChar": 4,
+        "endLine": 61,
+        "endChar": 15
+      },
+      "revId": "5c1e6ae961a91146b1c3be7c42a00da8baf9a93b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ba1950ad_8e6d9074",
         "filename": "system/rust/src/gatt/server/gatt_database.rs",
         "patchSetId": 14
@@ -198,6 +267,155 @@
         "endLine": 79,
         "endChar": 41
       },
+      "revId": "5c1e6ae961a91146b1c3be7c42a00da8baf9a93b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9225b69f_7d555e95",
+        "filename": "system/rust/src/gatt/server/gatt_database.rs",
+        "patchSetId": 14
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-02-03T23:29:06Z",
+      "side": 1,
+      "message": "Move the comment from the top of the function to here.",
+      "range": {
+        "startLine": 107,
+        "startChar": 71,
+        "endLine": 107,
+        "endChar": 74
+      },
+      "revId": "5c1e6ae961a91146b1c3be7c42a00da8baf9a93b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "60354a02_3f164fca",
+        "filename": "system/rust/src/gatt/server/gatt_database.rs",
+        "patchSetId": 14
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-02-03T23:29:06Z",
+      "side": 1,
+      "message": "nit: `old_service_index` or just `index`",
+      "range": {
+        "startLine": 174,
+        "startChar": 12,
+        "endLine": 174,
+        "endChar": 25
+      },
+      "revId": "5c1e6ae961a91146b1c3be7c42a00da8baf9a93b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bf319bef_fe7d97a5",
+        "filename": "system/rust/src/gatt/server/gatt_database.rs",
+        "patchSetId": 14
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-02-03T23:29:06Z",
+      "side": 1,
+      "message": "Use `position`",
+      "range": {
+        "startLine": 177,
+        "startChar": 12,
+        "endLine": 179,
+        "endChar": 29
+      },
+      "revId": "5c1e6ae961a91146b1c3be7c42a00da8baf9a93b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2d898e98_0e178b5c",
+        "filename": "system/rust/src/gatt/server/gatt_database.rs",
+        "patchSetId": 14
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-02-03T23:29:06Z",
+      "side": 1,
+      "message": "Use `attributes.iter().find()`",
+      "range": {
+        "startLine": 187,
+        "startChar": 7,
+        "endLine": 196,
+        "endChar": 9
+      },
+      "revId": "5c1e6ae961a91146b1c3be7c42a00da8baf9a93b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2b3bfd38_e9af77d7",
+        "filename": "system/rust/src/gatt/server/gatt_database.rs",
+        "patchSetId": 14
+      },
+      "lineNbr": 204,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-02-03T23:29:06Z",
+      "side": 1,
+      "message": "Add todo to send a `Service Changed Indication`",
+      "revId": "5c1e6ae961a91146b1c3be7c42a00da8baf9a93b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1c3f5835_6c43b306",
+        "filename": "system/rust/src/gatt/server/gatt_database.rs",
+        "patchSetId": 14
+      },
+      "lineNbr": 226,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-02-03T23:29:06Z",
+      "side": 1,
+      "message": "`borrow` ?",
+      "range": {
+        "startLine": 226,
+        "startChar": 52,
+        "endLine": 226,
+        "endChar": 62
+      },
+      "revId": "5c1e6ae961a91146b1c3be7c42a00da8baf9a93b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "01e9dbc9_18ca2181",
+        "filename": "system/rust/src/gatt/server/gatt_database.rs",
+        "patchSetId": 14
+      },
+      "lineNbr": 382,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-02-03T23:29:06Z",
+      "side": 1,
+      "message": "nit: Add debug representation of `attrs` in assert message",
       "revId": "5c1e6ae961a91146b1c3be7c42a00da8baf9a93b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
