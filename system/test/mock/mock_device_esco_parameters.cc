@@ -45,9 +45,10 @@ struct esco_parameters_for_codec esco_parameters_for_codec;
 }  // namespace test
 
 // Mocked functions, if any
-enh_esco_params_t esco_parameters_for_codec(esco_codec_t codec) {
+enh_esco_params_t esco_parameters_for_codec(esco_codec_t codec, bool offload) {
   mock_function_count_map[__func__]++;
-  return test::mock::device_esco_parameters::esco_parameters_for_codec(codec);
+  return test::mock::device_esco_parameters::esco_parameters_for_codec(codec,
+                                                                       offload);
 }
 // Mocked functions complete
 // END mockcify generation
