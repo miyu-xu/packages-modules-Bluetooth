@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1df95beb_d481c741",
+        "filename": "system/btif/src/btif_sock_l2cap.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 568,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-02-03T23:06:43Z",
+      "side": 1,
+      "message": "I understand `p_close` theoretically should be not null when this function is called, but it would be nice to check if it is not null",
+      "range": {
+        "startLine": 568,
+        "startChar": 31,
+        "endLine": 568,
+        "endChar": 43
+      },
+      "revId": "3f0bb522c147527b20511095d65d74525eba6471",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
