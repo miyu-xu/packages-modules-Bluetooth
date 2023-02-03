@@ -51,6 +51,24 @@
       "parentUuid": "6886cae5_fbb70bba",
       "revId": "67c5995d4760841726e42a32852556b8d644f148",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bef20c0f_11916ca9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1588128
+      },
+      "writtenOn": "2023-02-03T01:31:20Z",
+      "side": 1,
+      "message": "Yes, according to the failing build logs they are still using `Buildbot Version: androidbuild_buildbot_20230125.00_RC00` (aosp/2399915 was submitted Jan 27). Is it common to have such a delay in presubmit versions from ToT?",
+      "parentUuid": "03d222cb_8bd8fb27",
+      "revId": "67c5995d4760841726e42a32852556b8d644f148",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
