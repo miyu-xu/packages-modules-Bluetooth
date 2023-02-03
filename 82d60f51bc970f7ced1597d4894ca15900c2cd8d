@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2e0e8f7c_82c36f0d",
+        "filename": "android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 452,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-02-03T20:10:04Z",
+      "side": 1,
+      "message": "This modification change the SDP attributes visible for other devices.\nWe are now exposing the `0x1101: SerialPort`.\nThis doesn\u0027t look like something we want.",
+      "range": {
+        "startLine": 449,
+        "startChar": 54,
+        "endLine": 452,
+        "endChar": 55
+      },
+      "revId": "82d60f51bc970f7ced1597d4894ca15900c2cd8d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
