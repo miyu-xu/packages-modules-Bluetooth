@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d8b2f3fe_0691e4df",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudio.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 1274,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-02-03T00:59:58Z",
+      "side": 1,
+      "message": "nit: spacing on this is inconsistent",
+      "revId": "36807c4c707acd9da35c53b6eae9adcbc0ea0f94",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
