@@ -1,0 +1,210 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e75dc603_4eb729d5",
+        "filename": "system/rust/src/gatt/server/transactions/read_by_group_type_request.rs",
+        "patchSetId": 18
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-02-03T22:54:02Z",
+      "side": 1,
+      "message": "You are not validating the starting and ending handles:\n```\nThe starting handle shall be less than or equal to the ending handle. If a server\nreceives an ATT_READ_BY_GROUP_TYPE_REQ PDU with the Starting\nHandle parameter greater than the Ending Handle parameter or the Starting\nHandle parameter is 0x0000, an ATT_ERROR_RSP PDU shall be sent with\nthe Error Code parameter set to Invalid Handle (0x01). The Attribute Handle In\nError parameter shall be set to the Starting Handle parameter\n```",
+      "revId": "24d6ac9f78619cc2dbef4094a2d70e7f0f391621",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6de9c459_5a8a4e31",
+        "filename": "system/rust/src/gatt/server/transactions/read_by_group_type_request.rs",
+        "patchSetId": 18
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-02-03T22:54:02Z",
+      "side": 1,
+      "message": "Add sufficient requirements to list_attributes to ensure:\n```\nThe attributes returned shall be the attributes with the lowest handles within the\nhandle range. These are known as the requested attributes.\n```",
+      "revId": "24d6ac9f78619cc2dbef4094a2d70e7f0f391621",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "96fddd22_321def57",
+        "filename": "system/rust/src/gatt/server/transactions/read_by_group_type_request.rs",
+        "patchSetId": 18
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-02-03T22:54:02Z",
+      "side": 1,
+      "message": "nit: Its a bit annoying that you don\u0027t handle the results in the same order as READ_BY_TYPE_REQ",
+      "range": {
+        "startLine": 56,
+        "startChar": 16,
+        "endLine": 62,
+        "endChar": 17
+      },
+      "revId": "24d6ac9f78619cc2dbef4094a2d70e7f0f391621",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ec8f2dce_681673b7",
+        "filename": "system/rust/src/gatt/server/transactions/read_by_group_type_request.rs",
+        "patchSetId": 18
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-02-03T22:54:02Z",
+      "side": 1,
+      "message": "Magic number",
+      "range": {
+        "startLine": 64,
+        "startChar": 73,
+        "endLine": 64,
+        "endChar": 74
+      },
+      "revId": "24d6ac9f78619cc2dbef4094a2d70e7f0f391621",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aa945e24_d4cd3f3e",
+        "filename": "system/rust/src/gatt/server/transactions/read_by_group_type_request.rs",
+        "patchSetId": 18
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-02-03T22:54:02Z",
+      "side": 1,
+      "message": "Incorrect, the end group handle is the last attribute handle in the parent declaration.",
+      "range": {
+        "startLine": 88,
+        "startChar": 24,
+        "endLine": 88,
+        "endChar": 56
+      },
+      "revId": "24d6ac9f78619cc2dbef4094a2d70e7f0f391621",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a279d610_a6aa1306",
+        "filename": "system/rust/src/gatt/server/transactions/read_by_type_request.rs",
+        "patchSetId": 18
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-02-03T22:54:02Z",
+      "side": 1,
+      "message": "You are not validating the starting and ending handles:\n```\nThe starting handle shall be less than or equal to the ending handle. If a server\nreceives an ATT_READ_BY_GROUP_TYPE_REQ PDU with the Starting\nHandle parameter greater than the Ending Handle parameter or the Starting\nHandle parameter is 0x0000, an ATT_ERROR_RSP PDU shall be sent with\nthe Error Code parameter set to Invalid Handle (0x01). The Attribute Handle In\nError parameter shall be set to the Starting Handle parameter\n```",
+      "revId": "24d6ac9f78619cc2dbef4094a2d70e7f0f391621",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1e219f85_75847ff0",
+        "filename": "system/rust/src/gatt/server/transactions/read_by_type_request.rs",
+        "patchSetId": 18
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-02-03T22:54:02Z",
+      "side": 1,
+      "message": "Add sufficient requirements to list_attributes to ensure:\n```\nThe attributes returned shall be the attributes with the lowest handles within the\nhandle range. These are known as the requested attributes.\n```",
+      "revId": "24d6ac9f78619cc2dbef4094a2d70e7f0f391621",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "37e2c8ff_f9cde95a",
+        "filename": "system/rust/src/gatt/server/transactions/read_by_type_request.rs",
+        "patchSetId": 18
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-02-03T22:54:02Z",
+      "side": 1,
+      "message": "READ_BY_TYPE_REQUEST",
+      "range": {
+        "startLine": 44,
+        "startChar": 44,
+        "endLine": 44,
+        "endChar": 70
+      },
+      "revId": "24d6ac9f78619cc2dbef4094a2d70e7f0f391621",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a3f1e4b7_f74bf106",
+        "filename": "system/rust/src/gatt/server/transactions/read_by_type_request.rs",
+        "patchSetId": 18
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-02-03T22:54:02Z",
+      "side": 1,
+      "message": "The permissions must be checked after validating the attribute type, here the request fails if any attr in between is non readable.",
+      "range": {
+        "startLine": 42,
+        "startChar": 0,
+        "endLine": 50,
+        "endChar": 0
+      },
+      "revId": "24d6ac9f78619cc2dbef4094a2d70e7f0f391621",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "73f8072e_0b2d0420",
+        "filename": "system/rust/src/gatt/server/transactions/read_by_type_request.rs",
+        "patchSetId": 18
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-02-03T22:54:02Z",
+      "side": 1,
+      "message": "magic number",
+      "range": {
+        "startLine": 54,
+        "startChar": 63,
+        "endLine": 54,
+        "endChar": 64
+      },
+      "revId": "24d6ac9f78619cc2dbef4094a2d70e7f0f391621",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
