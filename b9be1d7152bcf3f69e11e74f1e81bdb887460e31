@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f4ef8b91_23c9bc34",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1970925
+      },
+      "writtenOn": "2023-02-03T05:07:54Z",
+      "side": 1,
+      "message": "Hi Charlie,\n\nI have updated the commit message. Kindly verify.\n\nThanks,\nDhananjaya",
+      "revId": "b9be1d7152bcf3f69e11e74f1e81bdb887460e31",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
