@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "470adb2e_7e823165",
+        "filename": "system/stack/l2cap/l2c_csm.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 713,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-02-03T21:36:12Z",
+      "side": 1,
+      "message": "I guess this tries to parse peer rejection reason, but just wondering, there is a `L2CEVT_L2CAP_CREDIT_BASED_CONNECT_RSP_NEG` above, so result code here would be non LE codes. Is there a case to receive LE code here?",
+      "range": {
+        "startLine": 713,
+        "startChar": 21,
+        "endLine": 713,
+        "endChar": 42
+      },
+      "revId": "eebb69fee28c645a0849aa8ed8e123378c099823",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
