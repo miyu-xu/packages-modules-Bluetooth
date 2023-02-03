@@ -1,6 +1,52 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bd47d158_c3f9dd43",
+        "filename": "android/app/src/com/android/bluetooth/a2dp/A2dpService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 509,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-02-03T05:30:45Z",
+      "side": 0,
+      "message": "FYI, LE audio can be a fallback device istead of HFP device. This will be decided by ActiveDeviceManager now.",
+      "range": {
+        "startLine": 509,
+        "startChar": 28,
+        "endLine": 509,
+        "endChar": 42
+      },
+      "revId": "5c7ddd476810b3204053ed0909cfa755633fb2b3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "caa6a18c_1f96fb1e",
+        "filename": "android/app/src/com/android/bluetooth/a2dp/A2dpService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 525,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-02-03T05:30:45Z",
+      "side": 0,
+      "message": "FYI, Audio should be paused to prevent the sounds go to phone speaker. So, we shouldn\u0027t stop audio when LE audio is going to be activated.",
+      "range": {
+        "startLine": 525,
+        "startChar": 20,
+        "endLine": 525,
+        "endChar": 29
+      },
+      "revId": "5c7ddd476810b3204053ed0909cfa755633fb2b3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d51a087b_80f010f4",
@@ -24,6 +70,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e25fd73b_5cd6c1ad",
+        "filename": "android/app/src/com/android/bluetooth/hearingaid/HearingAidService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 780,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-02-03T05:30:45Z",
+      "side": 0,
+      "message": "FYI, this was removed by aosp/2317084, and added back by mistake.",
+      "parentUuid": "d51a087b_80f010f4",
+      "range": {
+        "startLine": 780,
+        "startChar": 8,
+        "endLine": 780,
+        "endChar": 22
+      },
+      "revId": "5c7ddd476810b3204053ed0909cfa755633fb2b3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6209b65b_7ecb1acd",
@@ -37,6 +107,30 @@
       "writtenOn": "2023-02-02T14:21:17Z",
       "side": 0,
       "message": "What was the purpose of this code, and why is this removed now?",
+      "range": {
+        "startLine": 941,
+        "startChar": 12,
+        "endLine": 946,
+        "endChar": 13
+      },
+      "revId": "5c7ddd476810b3204053ed0909cfa755633fb2b3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e833a41d_a4c17a75",
+        "filename": "android/app/src/com/android/bluetooth/mcp/MediaControlGattService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 946,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-02-03T05:30:45Z",
+      "side": 0,
+      "message": "When LE audio is enabled, a2dp and hearing aid should be disabled.\nNow it is handled by ActiveDeviceManager.",
+      "parentUuid": "6209b65b_7ecb1acd",
       "range": {
         "startLine": 941,
         "startChar": 12,

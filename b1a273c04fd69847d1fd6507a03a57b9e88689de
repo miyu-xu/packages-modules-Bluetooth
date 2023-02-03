@@ -20,6 +20,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "3a871410_8d92bbaf",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-02-03T05:30:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "121b3f5b_95038f2b",
+      "revId": "b1a273c04fd69847d1fd6507a03a57b9e88689de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "b249b415_0318193c",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 1
@@ -31,6 +49,29 @@
       "writtenOn": "2023-02-02T14:21:17Z",
       "side": 1,
       "message": "Remaining things to read: LeAudioService + test codes",
+      "revId": "b1a273c04fd69847d1fd6507a03a57b9e88689de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5b0ff1b7_e056f047",
+        "filename": "android/app/src/com/android/bluetooth/a2dp/A2dpService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 568,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-02-03T05:30:45Z",
+      "side": 1,
+      "message": "FYI, Don\u0027t stop audio when there is a fallback device.",
+      "range": {
+        "startLine": 568,
+        "startChar": 36,
+        "endLine": 568,
+        "endChar": 53
+      },
       "revId": "b1a273c04fd69847d1fd6507a03a57b9e88689de",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -48,6 +89,30 @@
       "writtenOn": "2023-02-02T14:21:17Z",
       "side": 1,
       "message": "How about adding some logs (here and setCallProfileActive) to track the bug cases?\nIf some internal states go wrong, we can trace it.",
+      "range": {
+        "startLine": 696,
+        "startChar": 21,
+        "endLine": 696,
+        "endChar": 42
+      },
+      "revId": "b1a273c04fd69847d1fd6507a03a57b9e88689de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4b4a00ac_67abd6cc",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 696,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-02-03T05:30:45Z",
+      "side": 1,
+      "message": "Done in onModeChanged",
+      "parentUuid": "5ab676b8_b1cfe7fd",
       "range": {
         "startLine": 696,
         "startChar": 21,
@@ -81,6 +146,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "57c82aee_cb229fa3",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 729,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-02-03T05:30:45Z",
+      "side": 1,
+      "message": "I was asked to do so before since dup logic is not required.\nAnd for HA/LEAudio, getFallbackDevice() is not implemented there.",
+      "parentUuid": "78626ad7_e8b2ed0b",
+      "range": {
+        "startLine": 726,
+        "startChar": 24,
+        "endLine": 729,
+        "endChar": 25
+      },
+      "revId": "b1a273c04fd69847d1fd6507a03a57b9e88689de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9166c434_24e27211",
@@ -94,6 +183,30 @@
       "writtenOn": "2023-02-02T14:21:17Z",
       "side": 1,
       "message": "Let\u0027s just return `false` when device is null.\n\nAlso, would there be cleaner way to prevent using nested if statements?",
+      "range": {
+        "startLine": 1144,
+        "startChar": 8,
+        "endLine": 1145,
+        "endChar": 30
+      },
+      "revId": "b1a273c04fd69847d1fd6507a03a57b9e88689de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e6ad20f8_bdc2bcd6",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1145,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-02-03T05:30:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9166c434_24e27211",
       "range": {
         "startLine": 1144,
         "startChar": 8,
@@ -127,6 +240,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e736814a_aa5ad34a",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1239,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-02-03T05:30:45Z",
+      "side": 1,
+      "message": "I believe it should be hearing aid, but we haven\u0027t care about it in Android S and T.\nIt should be changed in Android U or later.\n\nThis CL is only targeting to make LE audio routing works like other classic BT devices.",
+      "parentUuid": "0ebb4ae5_32c42da5",
+      "range": {
+        "startLine": 1238,
+        "startChar": 8,
+        "endLine": 1239,
+        "endChar": 62
+      },
+      "revId": "b1a273c04fd69847d1fd6507a03a57b9e88689de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8ad4e225_6ba796b5",
@@ -140,6 +277,30 @@
       "writtenOn": "2023-02-02T14:21:17Z",
       "side": 1,
       "message": "Let\u0027s choose between \u003cUpdated and Changed\u003e. `Updated` seems more proper?",
+      "range": {
+        "startLine": 1063,
+        "startChar": 25,
+        "endLine": 1063,
+        "endChar": 79
+      },
+      "revId": "b1a273c04fd69847d1fd6507a03a57b9e88689de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2e196ad4_cc8917a9",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1063,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-02-03T05:30:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8ad4e225_6ba796b5",
       "range": {
         "startLine": 1063,
         "startChar": 25,
