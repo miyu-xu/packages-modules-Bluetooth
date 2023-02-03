@@ -172,39 +172,39 @@ mod test {
 
     #[test]
     fn test_uuid16_builder_successful() {
-        let val = Uuid::new([1, 2, 0, 0]);
-        let builder: Uuid16Builder = val.try_into().unwrap();
+        let uuid = Uuid::new([1, 2, 0, 0]);
+        let builder: Uuid16Builder = uuid.try_into().unwrap();
         assert_eq!(builder.data.into_vec(), vec![1, 2]);
     }
 
     #[test]
     fn test_uuid16_builder_fail_nonzero_trailing_bytes() {
-        let val = Uuid::new([1, 2, 0, 1]);
-        let res: Result<Uuid16Builder, _> = val.try_into();
+        let uuid = Uuid::new([1, 2, 0, 1]);
+        let res: Result<Uuid16Builder, _> = uuid.try_into();
         assert!(res.is_err());
     }
 
     #[test]
     fn test_uuid16_builder_fail_invalid_prefix() {
-        let mut val = Uuid::new([1, 2, 0, 0]);
-        val.0[0] = 1;
+        let mut uuid = Uuid::new([1, 2, 0, 0]);
+        uuid.0[0] = 1;
 
-        let res: Result<Uuid16Builder, _> = val.try_into();
+        let res: Result<Uuid16Builder, _> = uuid.try_into();
         assert!(res.is_err());
     }
 
     #[test]
     fn test_uuid128_builder() {
-        let val = Uuid::new([1, 2, 3, 4]);
-        let res: Uuid128Builder = val.into();
-        assert_eq!(res.data[..], val.0);
+        let uuid = Uuid::new([1, 2, 3, 4]);
+        let builder: Uuid128Builder = uuid.into();
+        assert_eq!(builder.data[..], uuid.0);
     }
 
     #[test]
     fn test_uuid_builder() {
-        let val = Uuid::new([1, 2, 3, 4]);
-        let res: UuidBuilder = val.into();
-        assert_eq!(res.data[..], val.0);
+        let uuid = Uuid::new([1, 2, 3, 4]);
+        let builder: UuidBuilder = uuid.into();
+        assert_eq!(builder.data[..], uuid.0);
     }
 
     #[test]
@@ -216,23 +216,23 @@ mod test {
 
     #[test]
     fn test_uuid_from_2_array() {
-        let x = Uuid::new([1, 2, 0, 0]);
-        let y = Uuid::from([1, 2]);
-        assert_eq!(x, y);
+        let expected = Uuid::new([1, 2, 0, 0]);
+        let actual = Uuid::from([1, 2]);
+        assert_eq!(expected, actual);
     }
 
     #[test]
     fn test_uuid_try_from_2_slice() {
-        let x = Uuid::new([1, 2, 0, 0]);
-        let y = Uuid::try_from(&vec![1, 2][..]).unwrap();
-        assert_eq!(x, y);
+        let expected = Uuid::new([1, 2, 0, 0]);
+        let actual = Uuid::try_from(&vec![1, 2][..]).unwrap();
+        assert_eq!(expected, actual);
     }
 
     #[test]
     fn test_uuid_try_from_4_slice() {
-        let x = Uuid::new([1, 2, 3, 4]);
-        let y = Uuid::try_from(&vec![1, 2, 3, 4][..]).unwrap();
-        assert_eq!(x, y);
+        let expected = Uuid::new([1, 2, 3, 4]);
+        let actual = Uuid::try_from(&vec![1, 2, 3, 4][..]).unwrap();
+        assert_eq!(expected, actual);
     }
 
     #[test]
