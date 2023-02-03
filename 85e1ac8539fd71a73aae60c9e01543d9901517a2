@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a911da2a_27ff9fec",
+        "filename": "system/gd/rust/common/src/init_flags.rs",
+        "patchSetId": 18
+      },
+      "lineNbr": 278,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-02-03T02:52:55Z",
+      "side": 1,
+      "message": "Two flags added, but not in other flags files",
+      "range": {
+        "startLine": 278,
+        "startChar": 8,
+        "endLine": 278,
+        "endChar": 45
+      },
+      "revId": "85e1ac8539fd71a73aae60c9e01543d9901517a2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "627571a1_2ab7a5bc",
+        "filename": "system/main/shim/acl.cc",
+        "patchSetId": 18
+      },
+      "lineNbr": 1494,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-02-03T02:52:55Z",
+      "side": 1,
+      "message": "not used",
+      "range": {
+        "startLine": 1494,
+        "startChar": 0,
+        "endLine": 1494,
+        "endChar": 52
+      },
+      "revId": "85e1ac8539fd71a73aae60c9e01543d9901517a2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e26f274c_146d2595",
+        "filename": "system/stack/btm/btm_sec.h",
+        "patchSetId": 18
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-02-03T02:52:55Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 28,
+        "startChar": 0,
+        "endLine": 28,
+        "endChar": 19
+      },
+      "revId": "85e1ac8539fd71a73aae60c9e01543d9901517a2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
