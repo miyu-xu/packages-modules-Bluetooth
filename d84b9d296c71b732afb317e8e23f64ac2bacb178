@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "563f28ce_00bb04a2",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudioCodecConfigMetadata.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 303,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-02-03T00:55:22Z",
+      "side": 1,
+      "message": "We don\u0027t need to annotate local variables with the IntDef annotation because they\u0027re an implementation detail :)",
+      "revId": "d84b9d296c71b732afb317e8e23f64ac2bacb178",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5dd0ae4a_70ef0eee",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudioCodecConfigMetadata.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 428,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-02-03T00:55:22Z",
+      "side": 1,
+      "message": "We should check that the param is a valid input in each of these setters",
+      "revId": "d84b9d296c71b732afb317e8e23f64ac2bacb178",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "36249cb5_a277998f",
+        "filename": "framework/java/android/bluetooth/BluetoothLeBroadcastMetadata.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 338,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-02-03T00:55:22Z",
+      "side": 1,
+      "message": "Use {@code null} as it\u0027s a java value",
+      "revId": "d84b9d296c71b732afb317e8e23f64ac2bacb178",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
