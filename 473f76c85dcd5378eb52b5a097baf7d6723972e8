@@ -1,0 +1,205 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5d6ff45f_1f8038da",
+        "filename": "system/rust/src/gatt/server.rs",
+        "patchSetId": 12
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-02-03T00:32:17Z",
+      "side": 1,
+      "message": "`let else` ?",
+      "range": {
+        "startLine": 47,
+        "startChar": 0,
+        "endLine": 47,
+        "endChar": 42
+      },
+      "revId": "473f76c85dcd5378eb52b5a097baf7d6723972e8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e78f0fc8_6212e519",
+        "filename": "system/rust/src/gatt/server.rs",
+        "patchSetId": 12
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-02-03T00:32:17Z",
+      "side": 1,
+      "message": "Any idea why the fmt didn\u0027t fix the length of the code here ?",
+      "range": {
+        "startLine": 56,
+        "startChar": 0,
+        "endLine": 56,
+        "endChar": 100
+      },
+      "revId": "473f76c85dcd5378eb52b5a097baf7d6723972e8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1ec3dcdd_68da9da6",
+        "filename": "system/rust/src/gatt/server.rs",
+        "patchSetId": 12
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-02-03T00:32:17Z",
+      "side": 1,
+      "message": "String as error is not really rusty",
+      "range": {
+        "startLine": 79,
+        "startChar": 20,
+        "endLine": 79,
+        "endChar": 26
+      },
+      "revId": "473f76c85dcd5378eb52b5a097baf7d6723972e8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "21ed2b73_9e0b456e",
+        "filename": "system/rust/src/gatt/server.rs",
+        "patchSetId": 12
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-02-03T00:32:17Z",
+      "side": 1,
+      "message": "in `handle_packet` you are doing a match.\nhere you are inlining the error.\nIs there a way to make it more homogeneous ?",
+      "revId": "473f76c85dcd5378eb52b5a097baf7d6723972e8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b81643f3_14fe4213",
+        "filename": "system/rust/src/gatt/server.rs",
+        "patchSetId": 12
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-02-03T00:32:17Z",
+      "side": 1,
+      "message": "is there a way to make this panic in test but only an error in runtime ?\n...\n...\n...\nShould we do all error log to be panic in tests ? 🔥",
+      "range": {
+        "startLine": 102,
+        "startChar": 12,
+        "endLine": 102,
+        "endChar": 17
+      },
+      "revId": "473f76c85dcd5378eb52b5a097baf7d6723972e8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bd6f81d6_8e9ce240",
+        "filename": "system/rust/src/gatt/server/gatt_database.rs",
+        "patchSetId": 12
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-02-03T00:32:17Z",
+      "side": 1,
+      "message": "why -1 ?",
+      "range": {
+        "startLine": 106,
+        "startChar": 71,
+        "endLine": 106,
+        "endChar": 74
+      },
+      "revId": "473f76c85dcd5378eb52b5a097baf7d6723972e8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a607b6dd_59d9ebcb",
+        "filename": "system/rust/src/gatt/server/gatt_database.rs",
+        "patchSetId": 12
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-02-03T00:32:17Z",
+      "side": 1,
+      "message": "can we have `default` on pdl builder ?",
+      "range": {
+        "startLine": 110,
+        "startChar": 32,
+        "endLine": 110,
+        "endChar": 66
+      },
+      "revId": "473f76c85dcd5378eb52b5a097baf7d6723972e8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0687d473_d2f6f078",
+        "filename": "system/rust/src/gatt/server/gatt_database.rs",
+        "patchSetId": 12
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-02-03T00:32:17Z",
+      "side": 1,
+      "message": "Why do we need to sort it ?",
+      "range": {
+        "startLine": 162,
+        "startChar": 31,
+        "endLine": 162,
+        "endChar": 42
+      },
+      "revId": "473f76c85dcd5378eb52b5a097baf7d6723972e8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "44d9fc15_20f32afe",
+        "filename": "system/rust/src/gatt/server/gatt_database.rs",
+        "patchSetId": 12
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-02-03T00:32:17Z",
+      "side": 1,
+      "message": "fix or add bug",
+      "range": {
+        "startLine": 231,
+        "startChar": 11,
+        "endLine": 231,
+        "endChar": 15
+      },
+      "revId": "473f76c85dcd5378eb52b5a097baf7d6723972e8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
