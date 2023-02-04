@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "22f139b3_1deadf41",
+        "filename": "system/stack/arbiter/acl_arbiter.cc",
+        "patchSetId": 15
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-02-04T01:10:05Z",
+      "side": 1,
+      "message": "L2CAP_ATT_CID",
+      "range": {
+        "startLine": 45,
+        "startChar": 29,
+        "endLine": 45,
+        "endChar": 30
+      },
+      "revId": "bad7ad9e43f16d83555aea733327a95b6ac0c1fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
