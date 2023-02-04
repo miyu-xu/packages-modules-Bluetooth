@@ -3,6 +3,75 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e14ace83_044be8df",
+        "filename": "system/rust/Android.bp",
+        "patchSetId": 15
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-02-04T01:52:21Z",
+      "side": 1,
+      "message": "Discussed offline, try to remove or move as static in test",
+      "range": {
+        "startLine": 102,
+        "startChar": 0,
+        "endLine": 104,
+        "endChar": 6
+      },
+      "revId": "bad7ad9e43f16d83555aea733327a95b6ac0c1fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f7638edb_2cc04062",
+        "filename": "system/rust/Android.bp",
+        "patchSetId": 15
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-02-04T01:52:21Z",
+      "side": 1,
+      "message": "nit: \"Tiramisu\"",
+      "range": {
+        "startLine": 119,
+        "startChar": 22,
+        "endLine": 119,
+        "endChar": 24
+      },
+      "revId": "bad7ad9e43f16d83555aea733327a95b6ac0c1fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "990682ea_4b6ca70e",
+        "filename": "system/rust/src/lib.rs",
+        "patchSetId": 15
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-02-04T01:52:21Z",
+      "side": 1,
+      "message": "nit: Move before the `GlobalModuleRegistry` impl",
+      "range": {
+        "startLine": 97,
+        "startChar": 0,
+        "endLine": 97,
+        "endChar": 86
+      },
+      "revId": "bad7ad9e43f16d83555aea733327a95b6ac0c1fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "22f139b3_1deadf41",
         "filename": "system/stack/arbiter/acl_arbiter.cc",
         "patchSetId": 15
