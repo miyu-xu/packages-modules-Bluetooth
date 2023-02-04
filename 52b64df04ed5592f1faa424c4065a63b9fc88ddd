@@ -83,6 +83,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1f4ea554_6464c9f9",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 662,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2023-02-04T08:01:47Z",
+      "side": 1,
+      "message": "At this point the lock to the tasks are gained, and with |is_profile_cleared| the next match-clause will clean (and abort if needed) the tasks.",
+      "parentUuid": "7f268ec3_398384ff",
+      "revId": "52b64df04ed5592f1faa424c4065a63b9fc88ddd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7bbef3e9_d58cd3d2",
         "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
         "patchSetId": 1
@@ -94,6 +112,30 @@
       "writtenOn": "2023-02-04T03:19:50Z",
       "side": 1,
       "message": "Can we handle this in the following match?",
+      "range": {
+        "startLine": 714,
+        "startChar": 8,
+        "endLine": 716,
+        "endChar": 9
+      },
+      "revId": "52b64df04ed5592f1faa424c4065a63b9fc88ddd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "53a6de6e_b281143b",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 716,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2023-02-04T08:01:47Z",
+      "side": 1,
+      "message": "None-\u003eConnectingBeforeRetry and ConnectingBeforeRetry-\u003eConnectingBeforeRetry needs the same treatment.\n\nPattern matching in Rust executes in parallel, and since we are only interested in the updated state to decide which task to put, I don\u0027t think we can put it into the match-clause without introducing more repeated code.",
+      "parentUuid": "7bbef3e9_d58cd3d2",
       "range": {
         "startLine": 714,
         "startChar": 8,
@@ -127,6 +169,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7e3c6b7c_40f2b8c7",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1066,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2023-02-04T08:01:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ffbf492b_464a81cd",
+      "range": {
+        "startLine": 1064,
+        "startChar": 20,
+        "endLine": 1066,
+        "endChar": 21
+      },
+      "revId": "52b64df04ed5592f1faa424c4065a63b9fc88ddd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "dab71df6_1bf0a4a3",
@@ -140,6 +206,30 @@
       "writtenOn": "2023-02-04T03:19:50Z",
       "side": 1,
       "message": "Please help check if adding this logic to skip disconnect while another profile is still connected may break the client of the `diconnect` interface.\n\nIn packages/modules/Bluetooth/system/gd/rust/linux/stack/src/bluetooth.rs, we inovlve the BluetoothMedia `disconnect` when we want to disconnect all profiles.\n\nRef: https://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/system/gd/rust/linux/stack/src/bluetooth.rs;drc\u003d04ba436f3335241e6467c5b4e0c7d449af7b3c06;l\u003d1944\n\nMaybe it\u0027s better to abstract the logic checking if we\u0027d like to trigger disconnect into a helper function and only call disconnect if needed if the profile callback.",
+      "range": {
+        "startLine": 1133,
+        "startChar": 20,
+        "endLine": 1135,
+        "endChar": 21
+      },
+      "revId": "52b64df04ed5592f1faa424c4065a63b9fc88ddd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "11bd9de8_1a0fdf3f",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1135,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2023-02-04T08:01:47Z",
+      "side": 1,
+      "message": "I agree this is the part where I think better design should exist. \n\nLogic-wise this is meant to disconnect profiles that are safe to disconnect, and once those are confirmed of disconnection, comes to this function again, until it\u0027s completely removed. What\u0027s concerning about this is that it is built on the assumption that by this order, disconnection of each profile must succeed and reply with the callback. However, we have yet to see a counter-example.\n\nIt\u0027s true that this function is a little overworking in the sense that it is the exact function called by clicking the UI (i.e., both `disconnect` that you mentioned), and also invoked as an artifact of each profile-disconnection-callback.",
+      "parentUuid": "dab71df6_1bf0a4a3",
       "range": {
         "startLine": 1133,
         "startChar": 20,
