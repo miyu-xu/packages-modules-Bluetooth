@@ -16,6 +16,46 @@
       "message": "Updated the script to reflect the new layer of indirection for inc func count",
       "revId": "f6bca31fc9daa7d560efb74ef855c295a396439b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e07c5edd_b424966f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-02-04T00:49:42Z",
+      "side": 1,
+      "message": "I would love if this was used as part of a genrule to generate the mock on the fly and burn them from being in the repository.\nJust to prevent myself from opening the mock everytime I am searching something 😂",
+      "revId": "f6bca31fc9daa7d560efb74ef855c295a396439b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0e7f6d67_c5ad4d61",
+        "filename": "system/test/tool/mockcify.pl",
+        "patchSetId": 4
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-02-04T00:49:42Z",
+      "side": 1,
+      "message": "I don\u0027t know a lot about perl, but I see ton of mock were generated with this file and are actively used.\nThis script should not lived on gerrit but be merged just for this reason.",
+      "range": {
+        "startLine": 1,
+        "startChar": 12,
+        "endLine": 1,
+        "endChar": 16
+      },
+      "revId": "f6bca31fc9daa7d560efb74ef855c295a396439b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
