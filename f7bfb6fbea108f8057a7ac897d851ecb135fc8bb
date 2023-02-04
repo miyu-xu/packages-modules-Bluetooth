@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7f8ef81a_6cc7a17a",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 367,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2023-02-04T03:19:50Z",
+      "side": 0,
+      "message": "Nit: Moving the uuid clean up to a separate follow-up CL if not relevant to this change. It\u0027s fine to clean up those need to be touched in the same CL..",
+      "range": {
+        "startLine": 367,
+        "startChar": 57,
+        "endLine": 367,
+        "endChar": 61
+      },
+      "revId": "f7bfb6fbea108f8057a7ac897d851ecb135fc8bb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
