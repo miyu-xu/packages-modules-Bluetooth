@@ -34,6 +34,41 @@
       "parentUuid": "41a4454e_274f473c",
       "revId": "cc9efc262bfa9532133313ae827139ea494f6f43",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "929da71c_eafb595c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1125918
+      },
+      "writtenOn": "2023-02-04T01:18:54Z",
+      "side": 1,
+      "message": "We don\u0027t have a rust toolchain for linux-arm so that will be tough to get to work right now.",
+      "revId": "cc9efc262bfa9532133313ae827139ea494f6f43",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c54b4055_fe7fa0b1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1125918
+      },
+      "writtenOn": "2023-02-04T01:18:54Z",
+      "side": 1,
+      "message": "Once we have resolved the google3 blockers we will switch to netsim. \nWe currently have no rust support for linux-arm so it is better to wait once we have transitioned to netsim. For linux-arm we do not build netsim, linux-arm will not have bluetooth support.",
+      "parentUuid": "2c482eb2_85d78806",
+      "revId": "cc9efc262bfa9532133313ae827139ea494f6f43",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
