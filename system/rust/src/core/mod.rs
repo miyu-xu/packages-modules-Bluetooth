@@ -18,10 +18,49 @@ mod ffi;
 
 use std::{rc::Rc, thread};
 
+#[cfg(not(test))]
+pub use ffi::CxxUuid;
+
 use crate::{gatt::ffi::AttTransportImpl, GlobalModuleRegistry};
 
 fn init() {
     thread::spawn(move || {
         GlobalModuleRegistry::start(Rc::new(AttTransportImpl()));
     });
+}
+
+/// Get the raw bytes (in big-endian order) for a C++ UUID
+#[cfg(not(test))]
+pub fn get_128_be_uuid_bytes(uuid: &CxxUuid) -> &[u8; 16] {
+    ffi::get_128_be_uuid_bytes(uuid).try_into().expect("ffi should give us exactly 16 bytes")
+}
+
+#[cfg(test)]
+pub use mock::*;
+
+/// Get the raw bytes (in big-endian order) for a C++ UUID
+#[cfg(test)]
+mod mock {
+    use cxx::{type_id, ExternType};
+
+    use crate::gatt::server::gatt_database::Uuid;
+
+    pub struct CxxUuid([u8; 16]);
+
+    unsafe impl ExternType for CxxUuid {
+        type Id = type_id!("bluetooth::Uuid");
+        type Kind = cxx::kind::Opaque;
+    }
+
+    impl CxxUuid {
+        pub fn new_mocked(uuid: Uuid) -> Box<Self> {
+            let mut data = uuid.0;
+            data.reverse();
+            Box::new(Self(data))
+        }
+    }
+
+    pub fn get_128_be_uuid_bytes(uuid: &CxxUuid) -> &[u8; 16] {
+        &uuid.0
+    }
 }
