@@ -60,6 +60,8 @@ import android.net.MacAddress;
 import android.os.Binder;
 import android.os.Build;
 import android.os.Handler;
+import android.os.HandlerThread;
+import android.os.Looper;
 import android.os.IBinder;
 import android.os.Message;
 import android.os.ParcelUuid;
@@ -89,6 +91,7 @@ import com.android.modules.utils.SynchronousResultReceiver;
 
 import libcore.util.HexEncoding;
 
+import java.time.Instant;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -143,6 +146,137 @@ public class GattService extends ProfileService {
 
         public MatchOrigin getMatchOrigin() {
             return mOrigin;
+        }
+    }
+
+    // Messages for handling connection parameter update request
+    static final int MSG_DEFAULT_CONN_PARAM = -1;
+    static final int MSG_MED_CONN_PARAM = 0;
+    static final int MSG_HIGH_CONN_PARAM = 1;
+    static final int MSG_LOW_CONN_PARAM = 2;
+    // TODO(@bidsharma): Move this to XML configuration file
+    static final long LOW_LATENCY_CONN_TIMEOUT_SEC = 5 * 60;
+
+    private static class ConnParamUpdateRequest {
+        private final int mClientIf;
+        private final String mAddress;
+        private final int mConnectionPriority;
+        private final AttributionSource mAttributionSource;
+        private final Instant mInstantCreated;
+
+        private ConnParamUpdateRequest(int clientIf, String address, int connectionPriority, 
+                    AttributionSource attributionSource) {
+            this.mClientIf = clientIf;
+            this.mAddress = address;
+            this.mConnectionPriority = connectionPriority;
+            this.mAttributionSource = attributionSource;
+            this.mInstantCreated = Instant.now();
+        }
+
+        public String getAddress() {
+            return mAddress;
+        }
+
+        public int getClientIf() {
+            return mClientIf;
+        }
+
+        public int getConnectionPriority() {
+            return mConnectionPriority;
+        }
+
+        public AttributionSource getAttributionSource() {
+            return mAttributionSource;
+        }
+
+        public Instant getTimeoutInstant() {
+            return mInstantCreated.plusSeconds(LOW_LATENCY_CONN_TIMEOUT_SEC);
+        }
+    }
+
+    private class ConnParamUpdateRequestHandler extends Handler {
+        private final Map<String, List<Integer>> mConnParamUpdateRequests = new HashMap<>();
+        ConnParamUpdateRequestHandler(Looper looper) {
+            super(looper);
+        }
+
+        @Override
+        public void handleMessage(Message msg) {
+            switch (msg.what) {
+                case MSG_DEFAULT_CONN_PARAM:
+                    handleDefaultConnParam(msg);
+                    break;
+                case MSG_MED_CONN_PARAM:
+                    handleMedConnParam(msg);
+                    break;
+                case MSG_HIGH_CONN_PARAM;
+                    handleHighConnParam();
+                    break;
+                case MSG_LOW_CONN_PARAM:
+                    handleLowConnParam();
+                    break;
+                default:
+                    Log.e(TAG, "received an unkown message : " + msg.what);
+            }
+        }
+
+        private boolean isDeviceOnHighConnParam(String address) {
+            if (mConnParamUpdateRequests.containsKey(address) && !mConnParamUpdateRequests[address].isEmpty()) {
+                return mConnParamUpdateRequests[address].getTimeoutInstant() > Instant.now();
+            }
+            return false;
+        }
+
+        private void handleDefaultConnParam(ConnParamUpdateRequest req) {
+        }
+
+        private void handleMedConnParam(ConnParamUpdateRequest req) {
+        }
+
+        private void handleHighConnParam(ConnParamUpdateRequest req) {
+        }
+
+        private void handleLowConnParam(ConnParamUpdateRequest req) {
+        }
+    }
+
+    private volatile ConnParamUpdateRequestHandler mHandler;
+
+    void HandleConnParamUpdateRequest(int clientIf, String address, int connectionPriority, 
+            AttributionSource attributionSource) {
+        Bluetoothdevice device = BluetoothAdapter.getDefaultAdapter().getRemoteDevice(address);
+        BluetoothClass deviceClass = device.getBluetoothClass();
+        // TODO(@bidsharma): Check for pixel watch
+        if (deviceClass != null
+                && deviceClass.getMajorDeviceClass()
+                == BluetoothClass.Device.WEARABLE_WRIST_WATCH) {
+            Log.d(TAG, "Managing connection parameter update request for wearable wrist watch");
+            ConnParamUpdateRequest req = new ConnParamUpdateRequest(clientIf, address, connectionPriority, attributionSource);
+            Message msg = new Message();
+            msg.object = req;
+            switch(connectionPriority) {
+                case BluetoothGatt.CONNECTION_PRIORITY_DEFAULT:
+                    msg.what = MSG_DEFAULT_CONN_PARAM;
+                    mHandler.sendMessage(msg)
+                    break;
+                case BluetoothGatt.CONNECTION_PRIORITY_BALANCED:
+                    msg.what = MSG_MED_CONN_PARAM;
+                    mHandler.sendMessage(msg)
+                    break;
+                case BluetoothGatt.CONNECTION_PRIORITY_HIGH:
+                    msg.what = MSG_HIGH_CONN_PARAM;
+                    mHandler.sendMessage(msg)
+                    break;
+                case BluetoothGatt.CONNECTION_PRIORITY_LOW_POWER:
+                    msg.what = MSG_LOW_CONN_PARAM;
+                    mHandler.sendMessage(msg)
+                    break
+                default:
+                    Log.e(TAG, "received an unknown connection priority: " + connectionPriority);
+            }
+        } else {
+            service.connectionParameterUpdate(
+                    clientIf, address, connectionPriority, attributionSource);
         }
     }
 
@@ -351,6 +485,10 @@ public class GattService extends ProfileService {
         mPeriodicScanManager = new PeriodicScanManager(mAdapterService);
         mPeriodicScanManager.start();
 
+        HandlerThread thread = new HandlerThread("BluetoothConnectionPriorityManager");
+        thread.start();
+        mHandler = new ConnParamUpdateRequestHandler(thread.getLooper());
+
         setGattService(this);
         return true;
     }
@@ -389,6 +527,15 @@ public class GattService extends ProfileService {
         }
         if (mPeriodicScanManager != null) {
             mPeriodicScanManager.cleanup();
+        }
+        if (mHandler != null) {
+            // Shut down the thread
+            mHandler.removeCallbacksAndMessages(null);
+            Looper looper = mHandler.getLooper();
+            if (looper != null) {
+                looper.quitSafely();
+            }
+            mHandler = null;
         }
     }
 
@@ -1145,8 +1292,7 @@ public class GattService extends ProfileService {
             if (service == null) {
                 return;
             }
-            service.connectionParameterUpdate(
-                    clientIf, address, connectionPriority, attributionSource);
+            HandleConnParamUpdateRequest(clientIf, address, connectionPriority, attributionSource);
         }
 
         @Override
