@@ -12,26 +12,23 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-use crate::core::init;
-pub use inner::*;
+#pragma once
 
-#[allow(dead_code, missing_docs)]
-#[cxx::bridge]
-mod inner {
-    #[namespace = "bluetooth"]
-    extern "C++" {
-        include!("bluetooth/uuid.h");
-        #[cxx_name = "Uuid"]
-        type CxxUuid;
-    }
+#include <array>
 
-    #[namespace = "bluetooth::hci::rust_shim"]
-    unsafe extern "C++" {
-        fn get_128_be_uuid_bytes(uuid: &CxxUuid) -> &[u8];
-    }
+#include "bluetooth/uuid.h"
+#include "gd/hci/address.h"
+#include "rust/cxx.h"
 
-    #[namespace = "bluetooth::rust_shim"]
-    extern "Rust" {
-        fn init();
-    }
+namespace bluetooth {
+namespace hci {
+namespace rust_shim {
+
+inline ::rust::Slice<const uint8_t> get_128_be_uuid_bytes(const Uuid& uuid) {
+  auto& data = uuid.To128BitBE();
+  return {data.data(), data.size()};
 }
+
+}  // namespace rust_shim
+}  // namespace hci
+}  // namespace bluetooth
