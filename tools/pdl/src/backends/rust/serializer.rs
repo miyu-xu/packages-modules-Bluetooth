@@ -1,6 +1,6 @@
 use crate::backends::rust::{mask_bits, types};
 use crate::parser::ast as parser_ast;
-use crate::{ast, lint};
+use crate::{analyzer, ast};
 use quote::{format_ident, quote};
 
 /// A single bit-field value.
@@ -10,7 +10,7 @@ struct BitField {
 }
 
 pub struct FieldSerializer<'a> {
-    scope: &'a lint::Scope<'a>,
+    scope: &'a analyzer::Scope<'a, parser_ast::Annotation>,
     endianness: ast::EndiannessValue,
     packet_name: &'a str,
     span: &'a proc_macro2::Ident,
@@ -21,7 +21,7 @@ pub struct FieldSerializer<'a> {
 
 impl<'a> FieldSerializer<'a> {
     pub fn new(
-        scope: &'a lint::Scope<'a>,
+        scope: &'a analyzer::Scope<'a, parser_ast::Annotation>,
         endianness: ast::EndiannessValue,
         packet_name: &'a str,
         span: &'a proc_macro2::Ident,

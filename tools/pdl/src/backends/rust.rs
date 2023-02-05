@@ -8,7 +8,7 @@
 // Remove this when we use Rust 1.63 or later.
 #![allow(clippy::format_push_string)]
 
-use crate::{ast, lint};
+use crate::{analyzer, ast};
 use quote::{format_ident, quote};
 use std::path::Path;
 
@@ -45,7 +45,7 @@ pub fn mask_bits(n: usize) -> syn::LitInt {
 /// Generate code for `ast::Decl::Packet` and `ast::Decl::Struct`
 /// values.
 fn generate_packet_decl(
-    scope: &lint::Scope<'_>,
+    scope: &analyzer::Scope<'_, parser_ast::Annotation>,
     //  File:
     endianness: ast::EndiannessValue,
     // Packet:
@@ -240,7 +240,7 @@ fn generate_enum_decl(id: &str, tags: &[ast::Tag]) -> proc_macro2::TokenStream {
 }
 
 fn generate_decl(
-    scope: &lint::Scope<'_>,
+    scope: &analyzer::Scope<'_, parser_ast::Annotation>,
     file: &parser_ast::File,
     decl: &parser_ast::Decl,
 ) -> String {
@@ -270,7 +270,7 @@ pub fn generate(sources: &ast::SourceDatabase, file: &parser_ast::File) -> Strin
     let source = sources.get(file.file).expect("could not read source");
     code.push_str(&preamble::generate(Path::new(source.name())));
 
-    let scope = lint::Scope::new(file).unwrap();
+    let scope = analyzer::Scope::new(file).unwrap();
     for decl in &file.declarations {
         code.push_str(&generate_decl(&scope, file, decl));
         code.push_str("\n\n");
