@@ -350,6 +350,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8b920b51_251ba8a7",
+        "filename": "system/rust/src/gatt/server/att_database.rs",
+        "patchSetId": 8
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-02-06T19:28:13Z",
+      "side": 1,
+      "message": "Move done in this CL after all.",
+      "parentUuid": "029764a4_4b3d9a2b",
+      "range": {
+        "startLine": 23,
+        "startChar": 11,
+        "endLine": 23,
+        "endChar": 18
+      },
+      "revId": "1688f96d9127e471ae171c031c8a58677567a6ac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b54cea2c_ea50c05b",

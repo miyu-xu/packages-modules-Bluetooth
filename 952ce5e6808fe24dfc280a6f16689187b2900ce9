@@ -92,6 +92,54 @@
       },
       "revId": "952ce5e6808fe24dfc280a6f16689187b2900ce9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ec007828_08f6439f",
+        "filename": "system/rust/src/core/uuid.rs",
+        "patchSetId": 23
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-02-06T19:28:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "eecd6dd3_7b8dc955",
+      "range": {
+        "startLine": 81,
+        "startChar": 0,
+        "endLine": 82,
+        "endChar": 47
+      },
+      "revId": "952ce5e6808fe24dfc280a6f16689187b2900ce9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f90ceafb_53abd12d",
+        "filename": "system/rust/src/core/uuid.rs",
+        "patchSetId": 23
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-02-06T19:28:13Z",
+      "side": 1,
+      "message": "I think I prefer your other suggestion/",
+      "parentUuid": "a765e379_55ba8b3c",
+      "range": {
+        "startLine": 82,
+        "startChar": 21,
+        "endLine": 82,
+        "endChar": 40
+      },
+      "revId": "952ce5e6808fe24dfc280a6f16689187b2900ce9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
