@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9751625c_1a4c32ba",
+        "filename": "tools/rootcanal/model/setup/test_model.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-02-06T19:29:16Z",
+      "side": 1,
+      "message": "Could we also add a flag to be able to keep the behavior of having unique address to enable it in CI to be sure that tests doesn\u0027t rely on fixed addresses ?",
+      "revId": "9617a7f8902bfb477af84369c40f6d2c139da19e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
