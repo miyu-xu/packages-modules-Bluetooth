@@ -22,6 +22,30 @@
       },
       "revId": "eebb69fee28c645a0849aa8ed8e123378c099823",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a7208a94_e7ec87ce",
+        "filename": "system/stack/l2cap/l2c_csm.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 713,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2023-02-06T19:03:22Z",
+      "side": 1,
+      "message": "As discussed, https://source.corp.google.com/android-internal/packages/modules/Bluetooth/system/stack/l2cap/l2c_ble.cc;rcl\u003d3445de905109cecfa5de4567ca058415bc31b4e5;l\u003d1040 uses to send LE codes here.\n\nChanged the code to only convert if LE transport is used.",
+      "parentUuid": "470adb2e_7e823165",
+      "range": {
+        "startLine": 713,
+        "startChar": 21,
+        "endLine": 713,
+        "endChar": 42
+      },
+      "revId": "eebb69fee28c645a0849aa8ed8e123378c099823",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
