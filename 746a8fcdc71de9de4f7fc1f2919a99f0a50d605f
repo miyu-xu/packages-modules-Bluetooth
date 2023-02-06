@@ -16,6 +16,23 @@
       "message": "this is from rebase, not my change :p",
       "revId": "746a8fcdc71de9de4f7fc1f2919a99f0a50d605f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8c99a2d2_87323da4",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudioCodecConfigMetadata.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 222,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-02-06T22:25:57Z",
+      "side": 1,
+      "message": "nit: use {@link} to reference constants and methods in framework code.",
+      "revId": "746a8fcdc71de9de4f7fc1f2919a99f0a50d605f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
