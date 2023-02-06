@@ -640,7 +640,7 @@ class DualModeController
  private:
   // Send a HCI_Command_Complete event for the specified op_code with
   // the error code UNKNOWN_OPCODE.
-  void SendCommandCompleteUnknownOpCodeEvent(uint16_t op_code) const;
+  void SendCommandStatusUnknownOpCodeEvent(uint16_t op_code) const;
 
   // Callbacks to send packets back to the HCI.
   std::function<void(std::shared_ptr<bluetooth::hci::AclBuilder>)> send_acl_;
