@@ -641,6 +641,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d8f869b1_81da511a",
+        "filename": "system/rust/src/gatt/server/utils.rs",
+        "patchSetId": 12
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-02-06T23:00:32Z",
+      "side": 1,
+      "message": "Ack, but I think I still prefer utils since the other top-level children are stateful modules, and so I want to keep the stateless helper functions somewhere else. I don\u0027t think this will lead to \"utils\" bloat since there is still another level of hierarchy below it",
+      "parentUuid": "e63cdaf5_b56cdf0a",
+      "revId": "7463494e24e99459ef6066f1429a86b1ba08d79a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "910644d1_dcedffa8",
@@ -701,6 +719,30 @@
       "writtenOn": "2023-02-03T23:01:24Z",
       "side": 1,
       "message": "I don\u0027t think you need a `utils` mod here, you should put the inner modules into the parent directly.",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 58
+      },
+      "revId": "7463494e24e99459ef6066f1429a86b1ba08d79a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e3654749_2b579ac3",
+        "filename": "system/rust/src/utils.rs",
+        "patchSetId": 12
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-02-06T23:00:32Z",
+      "side": 1,
+      "message": "see above",
+      "parentUuid": "ecbf7d4a_b4cba7a7",
       "range": {
         "startLine": 1,
         "startChar": 0,
