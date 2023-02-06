@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e84626e3_16d25e04",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-02-06T10:00:19Z",
+      "side": 1,
+      "message": "Any reason why 6 and 10 secs? Comments will be nice for future reference.",
+      "range": {
+        "startLine": 48,
+        "startChar": 50,
+        "endLine": 48,
+        "endChar": 51
+      },
+      "revId": "5daaa53b5c3ac892dde0e5d983509b8c7a9407a6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "75e0365c_c79d20ca",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 669,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-02-06T10:00:19Z",
+      "side": 1,
+      "message": "Unrelated to the change, but maybe we can simplify the `is_profile_cleared` check? Looks to me it boils down to \"remove |addr| from tasks and return early\".\n\nMaybe just let this block abort the task and set it to None, then below it we can process the `is_profile_cleared` checks?",
+      "revId": "5daaa53b5c3ac892dde0e5d983509b8c7a9407a6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "85e32088_cc6fa6f4",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 766,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-02-06T10:00:19Z",
+      "side": 1,
+      "message": "This arm and the latter half of ConnectingBeforeRetry are doing the same thing. Is it possible to extract the similarities into a function?",
+      "revId": "5daaa53b5c3ac892dde0e5d983509b8c7a9407a6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

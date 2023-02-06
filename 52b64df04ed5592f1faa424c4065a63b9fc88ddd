@@ -238,6 +238,30 @@
       },
       "revId": "52b64df04ed5592f1faa424c4065a63b9fc88ddd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8730aed8_5da4a7aa",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1135,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-02-06T10:00:19Z",
+      "side": 1,
+      "message": "I suppose there would be some other device that does the opposite: try reconnecting to HFP when A2DP is requested to be disconnected. Or perhaps it might do both ways. Probably we should block incoming connection in the lower level.\n\nHowever as we don\u0027t yet have it, this workaround might be ok for now. It\u0027s not obvious to me though that it is also called from profile disconnection callback, maybe a comment is in order?",
+      "parentUuid": "11bd9de8_1a0fdf3f",
+      "range": {
+        "startLine": 1133,
+        "startChar": 20,
+        "endLine": 1135,
+        "endChar": 21
+      },
+      "revId": "52b64df04ed5592f1faa424c4065a63b9fc88ddd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
