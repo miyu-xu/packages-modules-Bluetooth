@@ -9,7 +9,10 @@ use async_trait::async_trait;
 
 use crate::{
     core::uuid::Uuid,
-    gatt::ids::AttHandle,
+    gatt::{
+        callbacks::GattDatastore,
+        ids::{AttHandle, ConnectionId},
+    },
     packets::{
         AttAttributeDataChild, AttCharacteristicPropertiesBuilder, AttErrorCode,
         GattCharacteristicDeclarationValueBuilder, GattServiceDeclarationValueBuilder, UuidBuilder,
@@ -53,7 +56,8 @@ pub struct GattCharacteristicWithHandle {
 /// The GattDatabase implements AttDatabase, and converts attribute reads/writes
 /// into GATT operations to be sent to the upper layers
 #[derive(Default)]
-pub struct GattDatabase {
+pub struct GattDatabase<T: ?Sized> {
+    datastore: Rc<T>,
     schema: RefCell<GattDatabaseSchema>,
 }
 
@@ -73,10 +77,11 @@ struct AttAttributeWithBackingValue {
     value: AttAttributeBackingValue,
 }
 
-impl GattDatabase {
-    /// Constructor
-    pub fn new() -> Self {
-        Default::default()
+// TODO(aryarahul) - send srvc_chg indication when the schema is modified
+impl<T: GattDatastore + ?Sized> GattDatabase<T> {
+    /// Constructor, wrapping a GattDatastore
+    pub fn new(datastore: Rc<T>) -> Self {
+        Self { datastore, schema: Default::default() }
     }
 
     /// Add a service with pre-allocated handles (for co-existence with C++)
@@ -214,19 +219,24 @@ impl GattDatabase {
         *self.schema.borrow_mut() = Default::default();
     }
 
-    /// Generate an impl AttDatabase from a backing GattDatabase
-    pub fn get_att_database(self: &Rc<Self>) -> AttDatabaseImpl {
-        AttDatabaseImpl { gatt_db: self.clone() }
+    /// Generate an impl AttDatabase from a backing GattDatabase, associated
+    /// with a given connection.
+    pub fn get_att_database(self: &Rc<Self>, conn_id: ConnectionId) -> AttDatabaseImpl<T> {
+        AttDatabaseImpl { gatt_db: self.clone(), conn_id }
     }
 }
 
 /// An implementation of AttDatabase wrapping an underlying GattDatabase
-pub struct AttDatabaseImpl {
-    gatt_db: Rc<GattDatabase>,
+pub struct AttDatabaseImpl<T: ?Sized> {
+    gatt_db: Rc<GattDatabase<T>>,
+    conn_id: ConnectionId,
 }
 
 #[async_trait(?Send)]
-impl AttDatabase for AttDatabaseImpl {
+impl<T> AttDatabase for AttDatabaseImpl<T>
+where
+    T: GattDatastore + ?Sized,
+{
     async fn read_attribute(
         &self,
         handle: AttHandle,
@@ -245,8 +255,7 @@ impl AttDatabase for AttDatabaseImpl {
             };
         }
 
-        // TODO(aryarahul): read value from upper layers
-        Err(AttErrorCode::INVALID_HANDLE)
+        self.gatt_db.datastore.read_characteristic(self.conn_id, handle).await
     }
 
     fn list_attributes(&self) -> Vec<AttAttribute> {
@@ -256,6 +265,8 @@ impl AttDatabase for AttDatabaseImpl {
 
 #[cfg(test)]
 mod test {
+    use crate::gatt::mocks::mock_datastore::MockDatastore;
+
     use super::*;
 
     const SERVICE_HANDLE: AttHandle = AttHandle(1);
@@ -267,8 +278,9 @@ mod test {
 
     #[test]
     fn test_read_empty_db() {
-        let gatt_db = Rc::new(GattDatabase::new());
-        let att_db = gatt_db.get_att_database();
+        let (gatt_datastore, _) = MockDatastore::new();
+        let gatt_db = Rc::new(GattDatabase::new(gatt_datastore.into()));
+        let att_db = gatt_db.get_att_database(ConnectionId(1));
 
         let resp = tokio_test::block_on(att_db.read_attribute(AttHandle(1)));
 
@@ -277,7 +289,8 @@ mod test {
 
     #[test]
     fn test_single_service() {
-        let gatt_db = Rc::new(GattDatabase::new());
+        let (gatt_datastore, _) = MockDatastore::new();
+        let gatt_db = Rc::new(GattDatabase::new(gatt_datastore.into()));
         gatt_db
             .add_service_with_handles(GattServiceWithHandle {
                 handle: SERVICE_HANDLE,
@@ -285,7 +298,7 @@ mod test {
                 characteristics: vec![],
             })
             .unwrap();
-        let att_db = gatt_db.get_att_database();
+        let att_db = gatt_db.get_att_database(ConnectionId(1));
 
         let attrs = att_db.list_attributes();
         let service_value = tokio_test::block_on(att_db.read_attribute(SERVICE_HANDLE));
@@ -309,7 +322,8 @@ mod test {
     #[test]
     fn test_service_removal() {
         // arrange three services, each with a single characteristic
-        let gatt_db = Rc::new(GattDatabase::new());
+        let (gatt_datastore, _) = MockDatastore::new();
+        let gatt_db = Rc::new(GattDatabase::new(gatt_datastore.into()));
 
         gatt_db
             .add_service_with_handles(GattServiceWithHandle {
@@ -344,7 +358,7 @@ mod test {
                 }],
             })
             .unwrap();
-        let att_db = gatt_db.get_att_database();
+        let att_db = gatt_db.get_att_database(ConnectionId(1));
         assert_eq!(att_db.list_attributes().len(), 9);
 
         // act: remove the middle service
@@ -375,7 +389,8 @@ mod test {
 
     #[test]
     fn test_single_characteristic() {
-        let gatt_db = Rc::new(GattDatabase::new());
+        let (gatt_datastore, _) = MockDatastore::new();
+        let gatt_db = Rc::new(GattDatabase::new(gatt_datastore.into()));
         gatt_db
             .add_service_with_handles(GattServiceWithHandle {
                 handle: SERVICE_HANDLE,
@@ -387,7 +402,7 @@ mod test {
                 }],
             })
             .unwrap();
-        let att_db = gatt_db.get_att_database();
+        let att_db = gatt_db.get_att_database(ConnectionId(1));
 
         let attrs = att_db.list_attributes();
         let characteristic_decl =
@@ -461,7 +476,8 @@ mod test {
 
     #[test]
     fn test_handle_clash() {
-        let gatt_db = Rc::new(GattDatabase::new());
+        let (gatt_datastore, _) = MockDatastore::new();
+        let gatt_db = Rc::new(GattDatabase::new(gatt_datastore.into()));
 
         let result = gatt_db.add_service_with_handles(GattServiceWithHandle {
             handle: SERVICE_HANDLE,
@@ -478,7 +494,8 @@ mod test {
 
     #[test]
     fn test_handle_clash_with_existing() {
-        let gatt_db = Rc::new(GattDatabase::new());
+        let (gatt_datastore, _) = MockDatastore::new();
+        let gatt_db = Rc::new(GattDatabase::new(gatt_datastore.into()));
 
         gatt_db
             .add_service_with_handles(GattServiceWithHandle {
@@ -500,7 +517,8 @@ mod test {
     #[test]
     fn test_clear_all_services() {
         // arrange: db with some services
-        let gatt_db = Rc::new(GattDatabase::new());
+        let (gatt_datastore, _) = MockDatastore::new();
+        let gatt_db = Rc::new(GattDatabase::new(gatt_datastore.into()));
         gatt_db
             .add_service_with_handles(GattServiceWithHandle {
                 handle: SERVICE_HANDLE,
@@ -513,9 +531,9 @@ mod test {
         gatt_db.clear_all_services();
 
         // assert: no attributes left, nothing readable
-        assert!(gatt_db.get_att_database().list_attributes().is_empty());
-        let read_result =
-            tokio_test::block_on(gatt_db.get_att_database().read_attribute(SERVICE_HANDLE));
+        let att_db = gatt_db.get_att_database(ConnectionId(1));
+        assert!(att_db.list_attributes().is_empty());
+        let read_result = tokio_test::block_on(att_db.read_attribute(SERVICE_HANDLE));
         assert!(read_result.is_err());
     }
 }
