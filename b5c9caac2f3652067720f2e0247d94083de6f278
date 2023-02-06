@@ -1,0 +1,78 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cb6ba1a0_a81919e7",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 1172,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-02-06T13:52:42Z",
+      "side": 1,
+      "message": "I think we should only limit LE_AUDIO connection. Coordinated set and Volume control can exist without LE AUDIO.",
+      "revId": "b5c9caac2f3652067720f2e0247d94083de6f278",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ff65a45a_2df78b23",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 6334,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-02-06T13:52:42Z",
+      "side": 1,
+      "message": "are we sure that mode name will get updated earlier then the UUIDs which would trigger connection to services?",
+      "range": {
+        "startLine": 6334,
+        "startChar": 34,
+        "endLine": 6334,
+        "endChar": 44
+      },
+      "revId": "b5c9caac2f3652067720f2e0247d94083de6f278",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "05df9699_62090dac",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 6348,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-02-06T13:52:42Z",
+      "side": 1,
+      "message": "I think we should apply this policy only to LE_AUDIO",
+      "revId": "b5c9caac2f3652067720f2e0247d94083de6f278",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a3f4e596_f294325a",
+        "filename": "system/stack/eatt/eatt_impl.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 1050,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-02-06T13:52:42Z",
+      "side": 1,
+      "message": "is there a reason why this logic is in EATT?\n\nI think this should go maybe to gatt_attr.cc ?",
+      "revId": "b5c9caac2f3652067720f2e0247d94083de6f278",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
