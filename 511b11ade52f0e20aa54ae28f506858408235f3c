@@ -16,6 +16,24 @@
       "message": "I made a conflicting change aosp/2420202 and I rebased this CL to take it into consideration.\n\nThis allow to use the runtime config instead of realying on the define (build time config is not applied on prebuilts)",
       "revId": "511b11ade52f0e20aa54ae28f506858408235f3c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "11539c2d_d437570c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1628622
+      },
+      "writtenOn": "2023-02-06T17:53:41Z",
+      "side": 1,
+      "message": "Thank you!",
+      "parentUuid": "94ed0acb_3606a025",
+      "revId": "511b11ade52f0e20aa54ae28f506858408235f3c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
