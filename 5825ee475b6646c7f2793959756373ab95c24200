@@ -97,6 +97,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "094e302f_a0ad888a",
+        "filename": "framework/java/android/bluetooth/BluetoothQualityReport.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 285,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-02-06T21:34:31Z",
+      "side": 1,
+      "message": "Yes, I can confirm that enumerating the possible values is no longer necessary with the annotation.",
+      "parentUuid": "93d904be_1d0d5a42",
+      "range": {
+        "startLine": 283,
+        "startChar": 7,
+        "endLine": 285,
+        "endChar": 80
+      },
+      "revId": "5825ee475b6646c7f2793959756373ab95c24200",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0e8e4576_a50069e8",
         "filename": "framework/java/android/bluetooth/BluetoothQualityReport.java",
         "patchSetId": 15
