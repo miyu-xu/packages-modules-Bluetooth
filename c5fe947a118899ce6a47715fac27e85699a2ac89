@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ddb050ed_87068197",
+        "filename": "framework/java/android/bluetooth/le/ScanFilter.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-02-06T22:40:45Z",
+      "side": 1,
+      "message": "This is written in both the `if` and the `else`. Consider moving it out of the if, or see other comment",
+      "range": {
+        "startLine": 232,
+        "startChar": 0,
+        "endLine": 232,
+        "endChar": 70
+      },
+      "revId": "c5fe947a118899ce6a47715fac27e85699a2ac89",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "91bf3632_da259abb",
+        "filename": "framework/java/android/bluetooth/le/ScanFilter.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 238,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-02-06T22:40:45Z",
+      "side": 1,
+      "message": "Does that mean you can write 1 without writing the dataMask length and the associated array ?\nif so, it will crash in the CREATOR\n\n\ndon\u0027t you mean:\n```java\n  final boolean writeDataMask \u003d mOrgId !\u003d WIFI_ALLIANCE_NAN_ORG_ID \u0026\u0026 mTransportDataMask !\u003d null;\n  dest.writeInt(writeDataMask ? 1 : 0);\n  if (writeDataMask) {\n    dest.writeInt(mTransportDataMask.length);\n    dest.writeByteArray(mTransportDataMask);\n  }\n```",
+      "range": {
+        "startLine": 238,
+        "startChar": 34,
+        "endLine": 238,
+        "endChar": 69
+      },
+      "revId": "c5fe947a118899ce6a47715fac27e85699a2ac89",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c5655278_54fa50cc",
+        "filename": "framework/java/android/bluetooth/le/ScanFilter.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 362,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-02-06T22:40:45Z",
+      "side": 1,
+      "message": "Parcel is not guarantee to contain data when previous item was writting 1",
+      "range": {
+        "startLine": 362,
+        "startChar": 0,
+        "endLine": 362,
+        "endChar": 67
+      },
+      "revId": "c5fe947a118899ce6a47715fac27e85699a2ac89",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "84355d1c_8af42a14",
+        "filename": "framework/java/android/bluetooth/le/ScanFilter.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 1173,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-02-06T22:40:45Z",
+      "side": 1,
+      "message": "typo `Supported` not `Suppported`",
+      "range": {
+        "startLine": 1173,
+        "startChar": 40,
+        "endLine": 1173,
+        "endChar": 43
+      },
+      "revId": "c5fe947a118899ce6a47715fac27e85699a2ac89",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "238f88a1_81cea17c",
+        "filename": "system/gd/hci/le_scanning_manager.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 1076,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-02-06T22:40:45Z",
+      "side": 1,
+      "message": "I don\u0027t know the specificity of this spec, but why do we need to reverse it ?",
+      "range": {
+        "startLine": 1076,
+        "startChar": 53,
+        "endLine": 1076,
+        "endChar": 89
+      },
+      "revId": "c5fe947a118899ce6a47715fac27e85699a2ac89",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
