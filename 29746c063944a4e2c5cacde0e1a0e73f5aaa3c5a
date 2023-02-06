@@ -22,6 +22,30 @@
       },
       "revId": "29746c063944a4e2c5cacde0e1a0e73f5aaa3c5a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cae73caf_d14eaa25",
+        "filename": "system/stack/gap/gap_conn.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 695,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2023-02-06T10:33:52Z",
+      "side": 1,
+      "message": "Thanks for pointing it out. I forgot to paas it in the next line. Made required changes in the latest patchset.",
+      "parentUuid": "72e35c83_df9f7bb8",
+      "range": {
+        "startLine": 695,
+        "startChar": 15,
+        "endLine": 695,
+        "endChar": 22
+      },
+      "revId": "29746c063944a4e2c5cacde0e1a0e73f5aaa3c5a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
