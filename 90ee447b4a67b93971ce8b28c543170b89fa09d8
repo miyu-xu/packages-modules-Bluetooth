@@ -71,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ad36508f_e1910208",
+        "filename": "system/rust/src/core/hci_shim.h",
+        "patchSetId": 17
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-02-06T19:31:44Z",
+      "side": 1,
+      "message": "irrelevant now that this file is gone",
+      "parentUuid": "0f1da231_f7e1b54c",
+      "range": {
+        "startLine": 31,
+        "startChar": 20,
+        "endLine": 31,
+        "endChar": 30
+      },
+      "revId": "90ee447b4a67b93971ce8b28c543170b89fa09d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "aaaa9af9_cd84818d",
@@ -155,6 +179,30 @@
       "writtenOn": "2023-02-06T18:44:32Z",
       "side": 1,
       "message": "Could we not take a reference here ?",
+      "range": {
+        "startLine": 47,
+        "startChar": 14,
+        "endLine": 47,
+        "endChar": 18
+      },
+      "revId": "90ee447b4a67b93971ce8b28c543170b89fa09d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3bedd303_1a94fc5d",
+        "filename": "system/rust/src/gatt/ffi.rs",
+        "patchSetId": 17
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-02-06T19:31:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9376e30f_2d1d881f",
       "range": {
         "startLine": 47,
         "startChar": 14,
