@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bf1e71e5_5e325b41",
+        "filename": "tools/rootcanal/model/controller/controller_properties.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 537,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-02-06T18:34:18Z",
+      "side": 1,
+      "message": "nit: formatting is odd.",
+      "range": {
+        "startLine": 534,
+        "startChar": 0,
+        "endLine": 537,
+        "endChar": 65
+      },
+      "revId": "578e7c581349860cfa795c67356b3704744800ac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d4fa1f20_8e37816a",
+        "filename": "tools/rootcanal/model/controller/dual_mode_controller.h",
+        "patchSetId": 9
+      },
+      "lineNbr": 438,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-02-06T18:34:18Z",
+      "side": 1,
+      "message": "nit: and",
+      "range": {
+        "startLine": 438,
+        "startChar": 11,
+        "endLine": 438,
+        "endChar": 12
+      },
+      "revId": "578e7c581349860cfa795c67356b3704744800ac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
