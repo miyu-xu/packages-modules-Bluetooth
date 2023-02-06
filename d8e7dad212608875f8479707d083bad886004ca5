@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "666214dd_706b929c",
+        "filename": "system/gd/rust/common/src/init_flags.rs",
+        "patchSetId": 27
+      },
+      "lineNbr": 278,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-02-06T18:43:38Z",
+      "side": 1,
+      "message": "can you sort it by alphabetical order  ?\n\nAlso when does these flags will be set to true ?",
+      "range": {
+        "startLine": 278,
+        "startChar": 8,
+        "endLine": 278,
+        "endChar": 45
+      },
+      "revId": "d8e7dad212608875f8479707d083bad886004ca5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
