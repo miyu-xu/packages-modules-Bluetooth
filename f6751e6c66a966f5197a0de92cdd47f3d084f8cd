@@ -52,6 +52,24 @@
       "parentUuid": "9072249e_e6bdde7a",
       "revId": "f6751e6c66a966f5197a0de92cdd47f3d084f8cd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ac5a801f_d567e0b7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 18
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-02-06T00:00:53Z",
+      "side": 1,
+      "message": "Unit tests for Uuid type converters are now added.",
+      "parentUuid": "f69e9b61_0ae0ccfc",
+      "revId": "f6751e6c66a966f5197a0de92cdd47f3d084f8cd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

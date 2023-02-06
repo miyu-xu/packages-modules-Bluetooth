@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "04303dd3_853c5400",
+        "filename": "system/rust/src/gatt/server/att_database.rs",
+        "patchSetId": 19
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-02-06T00:00:53Z",
+      "side": 1,
+      "message": "Tracking with b/267341136 to avoid merge conflict, will fix.",
+      "parentUuid": "adcc1bed_a2f12c11",
+      "range": {
+        "startLine": 23,
+        "startChar": 16,
+        "endLine": 23,
+        "endChar": 24
+      },
+      "revId": "83e601e588678ee266f6887883381bb8220ad150",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "29611a47_e27b9f9d",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3ed55309_780086ab",
+        "filename": "system/rust/src/gatt/server/att_database.rs",
+        "patchSetId": 19
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-02-06T00:00:53Z",
+      "side": 1,
+      "message": "Tracking with b/267341136 to avoid merge conflict, will fix.",
+      "parentUuid": "29611a47_e27b9f9d",
+      "range": {
+        "startLine": 30,
+        "startChar": 28,
+        "endLine": 30,
+        "endChar": 35
+      },
+      "revId": "83e601e588678ee266f6887883381bb8220ad150",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c0d66cc6_fdc5825b",
@@ -60,6 +108,30 @@
       "writtenOn": "2023-02-03T22:05:13Z",
       "side": 1,
       "message": "Add a comment explaining where this magic sequence comes from (Bluetooth Base UUID-128 cf. Core Specification 5.3 Vol.3 B.2.5.1)\n\nnit: We could maybe as well use a u128 literal to make it more readable\n\n```rust\nlet base_uuid: u128 \u003d 0x00000000_0000_1000_8000_00805F9B34FB;\n```",
+      "range": {
+        "startLine": 32,
+        "startChar": 12,
+        "endLine": 32,
+        "endChar": 83
+      },
+      "revId": "83e601e588678ee266f6887883381bb8220ad150",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7c5b8432_aba23790",
+        "filename": "system/rust/src/gatt/server/att_database.rs",
+        "patchSetId": 19
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-02-06T00:00:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c0d66cc6_fdc5825b",
       "range": {
         "startLine": 32,
         "startChar": 12,
@@ -116,6 +188,54 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c52ef2fe_1d40978f",
+        "filename": "system/rust/src/gatt/server/att_database.rs",
+        "patchSetId": 19
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-02-06T00:00:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6487c0ac_c781265a",
+      "range": {
+        "startLine": 38,
+        "startChar": 13,
+        "endLine": 38,
+        "endChar": 21
+      },
+      "revId": "83e601e588678ee266f6887883381bb8220ad150",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "771c34d1_1bd896d7",
+        "filename": "system/rust/src/gatt/server/att_database.rs",
+        "patchSetId": 19
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-02-06T00:00:53Z",
+      "side": 1,
+      "message": "Discussed offline, wontfix since this needs more discussion and dedicated support in PDL. The only solution with existing PDL is closed packet inheritance, which is messy and not supported by any backend at the moment.",
+      "parentUuid": "50a3039a_16a8371b",
+      "range": {
+        "startLine": 38,
+        "startChar": 5,
+        "endLine": 38,
+        "endChar": 12
+      },
+      "revId": "83e601e588678ee266f6887883381bb8220ad150",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7456dca9_e92e81c0",
@@ -129,6 +249,30 @@
       "writtenOn": "2023-02-03T22:05:13Z",
       "side": 1,
       "message": "What type is `x` here ? Is it not already a `u8` ?\n\nMaybe use `.copied` ?",
+      "range": {
+        "startLine": 51,
+        "startChar": 12,
+        "endLine": 51,
+        "endChar": 29
+      },
+      "revId": "83e601e588678ee266f6887883381bb8220ad150",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6d2e1e42_84d0b85e",
+        "filename": "system/rust/src/gatt/server/att_database.rs",
+        "patchSetId": 19
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-02-06T00:00:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7456dca9_e92e81c0",
       "range": {
         "startLine": 51,
         "startChar": 12,
@@ -162,6 +306,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "de3896c8_3a4a7b53",
+        "filename": "system/rust/src/gatt/server/att_database.rs",
+        "patchSetId": 19
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-02-06T00:00:53Z",
+      "side": 1,
+      "message": "wontfix, but agreed",
+      "parentUuid": "e0f664f5_defa09fd",
+      "range": {
+        "startLine": 54,
+        "startChar": 12,
+        "endLine": 54,
+        "endChar": 60
+      },
+      "revId": "83e601e588678ee266f6887883381bb8220ad150",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "88b00f52_8741c899",
@@ -185,6 +353,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c8ad9c1a_0df47f41",
+        "filename": "system/rust/src/gatt/server/att_database.rs",
+        "patchSetId": 19
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-02-06T00:00:53Z",
+      "side": 1,
+      "message": "Tracking with b/267341136 to avoid merge conflict, will fix.",
+      "parentUuid": "88b00f52_8741c899",
+      "range": {
+        "startLine": 71,
+        "startChar": 10,
+        "endLine": 71,
+        "endChar": 17
+      },
+      "revId": "83e601e588678ee266f6887883381bb8220ad150",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f2ff4ac9_cd8002b1",
@@ -198,6 +390,30 @@
       "writtenOn": "2023-02-03T22:05:13Z",
       "side": 1,
       "message": "nit: u32 ?\nThis seems weird for it to be an array",
+      "range": {
+        "startLine": 77,
+        "startChar": 10,
+        "endLine": 77,
+        "endChar": 17
+      },
+      "revId": "83e601e588678ee266f6887883381bb8220ad150",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "75e1eb07_fdb6309a",
+        "filename": "system/rust/src/gatt/server/att_database.rs",
+        "patchSetId": 19
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-02-06T00:00:53Z",
+      "side": 1,
+      "message": "Tracking with b/267341136 to avoid merge conflict, will fix.",
+      "parentUuid": "f2ff4ac9_cd8002b1",
       "range": {
         "startLine": 77,
         "startChar": 10,
@@ -255,6 +471,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "df90c871_cd4dc00a",
+        "filename": "system/rust/src/gatt/server/att_database.rs",
+        "patchSetId": 19
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-02-06T00:00:53Z",
+      "side": 1,
+      "message": "Leaving a TODO to track.",
+      "parentUuid": "56128111_68098c79",
+      "range": {
+        "startLine": 90,
+        "startChar": 13,
+        "endLine": 90,
+        "endChar": 14
+      },
+      "revId": "83e601e588678ee266f6887883381bb8220ad150",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "36748499_45796711",
@@ -268,6 +508,30 @@
       "writtenOn": "2023-02-03T22:05:13Z",
       "side": 1,
       "message": "nit: Characteristic is a GATT concept, not an ATT one",
+      "range": {
+        "startLine": 110,
+        "startChar": 7,
+        "endLine": 110,
+        "endChar": 40
+      },
+      "revId": "83e601e588678ee266f6887883381bb8220ad150",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a748d915_05104ac6",
+        "filename": "system/rust/src/packets.pdl",
+        "patchSetId": 19
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-02-06T00:00:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "36748499_45796711",
       "range": {
         "startLine": 110,
         "startChar": 7,
@@ -301,6 +565,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "934e5900_bca0f9b8",
+        "filename": "system/rust/src/packets.pdl",
+        "patchSetId": 19
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-02-06T00:00:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e80fb2b2_3ec638df",
+      "range": {
+        "startLine": 116,
+        "startChar": 7,
+        "endLine": 116,
+        "endChar": 33
+      },
+      "revId": "83e601e588678ee266f6887883381bb8220ad150",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c22bd605_0193b86c",
@@ -324,6 +612,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0f1ab8b8_6fe30eab",
+        "filename": "system/rust/src/packets.pdl",
+        "patchSetId": 19
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-02-06T00:00:53Z",
+      "side": 1,
+      "message": "PDL needs more extension to support this.",
+      "parentUuid": "c22bd605_0193b86c",
+      "range": {
+        "startLine": 143,
+        "startChar": 25,
+        "endLine": 143,
+        "endChar": 29
+      },
+      "revId": "83e601e588678ee266f6887883381bb8220ad150",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "342b3cb7_2dd4e33a",
@@ -337,6 +649,30 @@
       "writtenOn": "2023-02-03T22:05:13Z",
       "side": 1,
       "message": "ATT specifies that this can be a 2 or 16 octet UUID, could we capture that with PDL instead of saying that it\u0027s unsized ?",
+      "range": {
+        "startLine": 160,
+        "startChar": 19,
+        "endLine": 160,
+        "endChar": 23
+      },
+      "revId": "83e601e588678ee266f6887883381bb8220ad150",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "37d70f61_ba6bfacf",
+        "filename": "system/rust/src/packets.pdl",
+        "patchSetId": 19
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-02-06T00:00:53Z",
+      "side": 1,
+      "message": "PDL needs more extension to support this.",
+      "parentUuid": "342b3cb7_2dd4e33a",
       "range": {
         "startLine": 160,
         "startChar": 19,
