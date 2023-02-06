@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4c4e016b_f385fbe6",
+        "filename": "tools/rootcanal/model/controller/dual_mode_controller.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-02-06T23:24:13Z",
+      "side": 1,
+      "message": "I\u0027m sorry I didn\u0027t see this before.  Can we remove the casting for OpCode?\n\nI\u0027m starting to question whether this utility function should exist if it\u0027s a single call, but I\u0027ll leave that up to you.",
+      "range": {
+        "startLine": 58,
+        "startChar": 4,
+        "endLine": 58,
+        "endChar": 12
+      },
+      "revId": "5b73f63ece12341dc5dfcc9d54886ce9cd352e74",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
