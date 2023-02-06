@@ -16,6 +16,24 @@
       "message": "I understand that you care mostly about features for private gatt, but this code is to become ATT implementation for the whole stack. I think you should write it in a way where you can run ATT Test Suite on this layer.\n\nCurrent architecture of this code is enough to do Private GATT, but if you want to do whole ATT in future, I think it might be beneficial to look few steps into the future and plan for architecture that can suit whole ATT implementation.\n\nWhen I commented about handling transactional or non-transactional operations, or about lack of timers, I think this things are quite important for core of ATT, and shouldn\u0027t be spread across the layers. Same for error handling - please plan so that you can pass the Test Suite in future.",
       "revId": "c2bf9d3c324fd22fab32e25d02aadc774a868207",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c654184b_294b799f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 21
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-02-06T22:48:00Z",
+      "side": 1,
+      "message": "As discussed in https://docs.google.com/document/d/1jB8bFmveVX3KCHhJvwojkFkCcrNZgIId5menRfIuvJU/edit?resourcekey\u003d0-liWSXra6n1pGy8Cz4gri1Q#, we will run the ATT TS using pts-bot on the Java API.\n\nRegarding non-transactional operations, they are planned for this implementation, and will be added in a future CL (roughly speaking, the `AttServerBearer#handle_packet` implementation will switch on the command bit to decide whether to use the `AttTransactionHandler` or a separate to-be-written `AttCommandHandler` that does not enforce the transactional semantics).\n\nRegarding timers, I don\u0027t see how client transaction timeouts belong here - since the server will never timeout during normal operation. Timeouts exist in the CallbackTransactionManager and will be added to support indications, but are not (IMO) necessary elsewhere.",
+      "parentUuid": "4fd7fe65_e0ebf26c",
+      "revId": "c2bf9d3c324fd22fab32e25d02aadc774a868207",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
