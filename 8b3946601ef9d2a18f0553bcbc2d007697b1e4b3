@@ -22,6 +22,30 @@
       },
       "revId": "8b3946601ef9d2a18f0553bcbc2d007697b1e4b3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b6022fa5_a38cdc11",
+        "filename": "system/bta/include/bta_jv_api.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 229,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2023-02-06T19:06:27Z",
+      "side": 1,
+      "message": "Changed err codes used to start from 1 to 12 instead of 0. 0 is the default value and if there is no error value explicitly set it would be 0 hence in a way indicating no err.",
+      "parentUuid": "824a5ce0_db18a844",
+      "range": {
+        "startLine": 229,
+        "startChar": 2,
+        "endLine": 229,
+        "endChar": 25
+      },
+      "revId": "8b3946601ef9d2a18f0553bcbc2d007697b1e4b3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
