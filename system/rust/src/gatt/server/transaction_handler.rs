@@ -3,12 +3,21 @@ use log::warn;
 use crate::{
     gatt::ids::AttHandle,
     packets::{
-        AttChild, AttErrorCode, AttErrorResponseBuilder, AttOpcode, AttReadRequestView, AttView,
-        Packet, ParseError,
+        AttChild, AttErrorCode, AttErrorResponseBuilder, AttFindByTypeValueRequestView,
+        AttFindInformationRequestView, AttOpcode, AttReadByGroupTypeRequestView,
+        AttReadByTypeRequestView, AttReadRequestView, AttView, Packet, ParseError,
     },
 };
 
-use super::{att_database::AttDatabase, transactions::read_request::handle_read_request};
+use super::{
+    att_database::AttDatabase,
+    transactions::{
+        find_by_type_value::handle_find_by_type_value_request,
+        find_information_request::handle_find_information_request,
+        read_by_group_type_request::handle_read_by_group_type_request,
+        read_by_type_request::handle_read_by_type_request, read_request::handle_read_request,
+    },
+};
 
 /// This struct handles all requests needing ACKs. Only ONE should exist per
 /// bearer per database, to ensure serialization.
@@ -48,6 +57,33 @@ impl<Db: AttDatabase> AttTransactionHandler<Db> {
             AttOpcode::READ_REQUEST => {
                 Ok(handle_read_request(AttReadRequestView::try_parse(packet)?, mtu, &self.db).await)
             }
+            AttOpcode::READ_BY_GROUP_TYPE_REQUEST => {
+                handle_read_by_group_type_request(
+                    AttReadByGroupTypeRequestView::try_parse(packet)?,
+                    mtu,
+                    &self.db,
+                )
+                .await
+            }
+            AttOpcode::READ_BY_TYPE_REQUEST => {
+                handle_read_by_type_request(
+                    AttReadByTypeRequestView::try_parse(packet)?,
+                    mtu,
+                    &self.db,
+                )
+                .await
+            }
+            AttOpcode::FIND_INFORMATION_REQUEST => Ok(handle_find_information_request(
+                AttFindInformationRequestView::try_parse(packet)?,
+                mtu,
+                &self.db,
+            )),
+            AttOpcode::FIND_BY_TYPE_VALUE_REQUEST => Ok(handle_find_by_type_value_request(
+                AttFindByTypeValueRequestView::try_parse(packet)?,
+                mtu,
+                &self.db,
+            )
+            .await),
             _ => {
                 warn!("Dropping unsupported opcode {:?}", packet.get_opcode());
                 Err(ParseError::InvalidEnumValue)
