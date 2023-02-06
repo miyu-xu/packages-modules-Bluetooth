@@ -98,6 +98,8 @@ class PhonePolicy {
 
     private static final String PREFER_LE_AUDIO_ONLY_MODE =
             "persist.bluetooth.prefer_le_audio_only_mode";
+    private static final String sAutoConnectProfilesProperty =
+            "persist.bluetooth.auto_connect_profiles";
 
     // Timeouts
     @VisibleForTesting static int sConnectOtherProfilesTimeoutMillis = 6000; // 6s
@@ -111,6 +113,7 @@ class PhonePolicy {
     private final HashSet<BluetoothDevice> mConnectOtherProfilesDeviceSet = new HashSet<>();
 
     private Boolean mPreferLeAudioOnlyMode = false;
+    private final boolean mAutoConnectProfilesSupported;
 
     // Broadcast receiver for all changes to states of various profiles
     private final BroadcastReceiver mReceiver = new BroadcastReceiver() {
@@ -291,6 +294,8 @@ class PhonePolicy {
         mFactory = factory;
         mHandler = new PhonePolicyHandler(service.getMainLooper());
         mPreferLeAudioOnlyMode = SystemProperties.getBoolean(PREFER_LE_AUDIO_ONLY_MODE, true);
+        mAutoConnectProfilesSupported = SystemProperties.getBoolean(
+                sAutoConnectProfilesProperty, false);
     }
 
     // Policy implementation, all functions MUST be private
@@ -317,42 +322,12 @@ class PhonePolicy {
                 || Utils.arrayContains(uuids, BluetoothUuid.HOGP)) && (
                 hidService.getConnectionPolicy(device)
                         == BluetoothProfile.CONNECTION_POLICY_UNKNOWN)) {
-            mAdapterService.getDatabase().setProfileConnectionPolicy(device,
-                    BluetoothProfile.HID_HOST, BluetoothProfile.CONNECTION_POLICY_ALLOWED);
-        }
-
-        // If we do not have a stored priority for HFP/A2DP (all roles) then default to on.
-        if ((headsetService != null) && ((Utils.arrayContains(uuids, BluetoothUuid.HSP)
-                || Utils.arrayContains(uuids, BluetoothUuid.HFP)) && (
-                headsetService.getConnectionPolicy(device)
-                        == BluetoothProfile.CONNECTION_POLICY_UNKNOWN))) {
-            mAdapterService.getDatabase().setProfileConnectionPolicy(device,
-                    BluetoothProfile.HEADSET, BluetoothProfile.CONNECTION_POLICY_ALLOWED);
-        }
-
-        if ((a2dpService != null) && (Utils.arrayContains(uuids, BluetoothUuid.A2DP_SINK)
-                || Utils.arrayContains(uuids, BluetoothUuid.ADV_AUDIO_DIST)) && (
-                a2dpService.getConnectionPolicy(device)
-                        == BluetoothProfile.CONNECTION_POLICY_UNKNOWN)) {
-            mAdapterService.getDatabase().setProfileConnectionPolicy(device,
-                    BluetoothProfile.A2DP, BluetoothProfile.CONNECTION_POLICY_ALLOWED);
-        }
-
-        if ((csipSetCooridnatorService != null)
-                && (Utils.arrayContains(uuids, BluetoothUuid.COORDINATED_SET))
-                && (csipSetCooridnatorService.getConnectionPolicy(device)
-                        == BluetoothProfile.CONNECTION_POLICY_UNKNOWN)) {
-            mAdapterService.getDatabase().setProfileConnectionPolicy(device,
-                    BluetoothProfile.CSIP_SET_COORDINATOR, BluetoothProfile.CONNECTION_POLICY_ALLOWED);
-        }
-
-        if ((panService != null) && (Utils.arrayContains(uuids, BluetoothUuid.PANU) && (
-                panService.getConnectionPolicy(device)
-                        == BluetoothProfile.CONNECTION_POLICY_UNKNOWN)
-                && mAdapterService.getResources()
-                .getBoolean(R.bool.config_bluetooth_pan_enable_autoconnect))) {
-            mAdapterService.getDatabase().setProfileConnectionPolicy(device,
-                    BluetoothProfile.PAN, BluetoothProfile.CONNECTION_POLICY_ALLOWED);
+            if (mAutoConnectProfilesSupported) {
+                hidService.setConnectionPolicy(device, BluetoothProfile.CONNECTION_POLICY_ALLOWED);
+            } else {
+                mAdapterService.getDatabase().setProfileConnectionPolicy(device,
+                        BluetoothProfile.HID_HOST, BluetoothProfile.CONNECTION_POLICY_ALLOWED);
+            }
         }
 
         boolean isLeAudioProfileAllowed = false;
@@ -361,25 +336,81 @@ class PhonePolicy {
                 == BluetoothProfile.CONNECTION_POLICY_UNKNOWN)) {
             debugLog("setting le audio profile priority for device " + device);
             isLeAudioProfileAllowed = true;
-            mAdapterService.getDatabase().setProfileConnectionPolicy(device,
-                    BluetoothProfile.LE_AUDIO, BluetoothProfile.CONNECTION_POLICY_ALLOWED);
+            if (mAutoConnectProfilesSupported) {
+                leAudioService.setConnectionPolicy(device,
+                        BluetoothProfile.CONNECTION_POLICY_ALLOWED);
+            } else {
+                mAdapterService.getDatabase().setProfileConnectionPolicy(device,
+                        BluetoothProfile.LE_AUDIO, BluetoothProfile.CONNECTION_POLICY_ALLOWED);
+            }
+        }
+
+        // If we do not have a stored priority for HFP/A2DP (all roles) then default to on.
+        if ((headsetService != null) && ((Utils.arrayContains(uuids, BluetoothUuid.HSP)
+                || Utils.arrayContains(uuids, BluetoothUuid.HFP)) && (
+                headsetService.getConnectionPolicy(device)
+                        == BluetoothProfile.CONNECTION_POLICY_UNKNOWN))) {
+            if (mPreferLeAudioOnlyMode && isLeAudioProfileAllowed) {
+                debugLog("clear hfp profile priority for the le audio dual mode device "
+                        + device);
+                headsetService.setConnectionPolicy(device,
+                        BluetoothProfile.CONNECTION_POLICY_FORBIDDEN);
+            } else {
+                if (mAutoConnectProfilesSupported) {
+                    headsetService.setConnectionPolicy(device,
+                            BluetoothProfile.CONNECTION_POLICY_ALLOWED);
+                } else {
+                    mAdapterService.getDatabase().setProfileConnectionPolicy(device,
+                            BluetoothProfile.HEADSET, BluetoothProfile.CONNECTION_POLICY_ALLOWED);
+                }
+            }
+        }
+
+        if ((a2dpService != null) && (Utils.arrayContains(uuids, BluetoothUuid.A2DP_SINK)
+                || Utils.arrayContains(uuids, BluetoothUuid.ADV_AUDIO_DIST)) && (
+                a2dpService.getConnectionPolicy(device)
+                        == BluetoothProfile.CONNECTION_POLICY_UNKNOWN)) {
             if (mPreferLeAudioOnlyMode) {
-                if (mAdapterService.getDatabase()
-                        .getProfileConnectionPolicy(device, BluetoothProfile.A2DP)
-                        >  BluetoothProfile.CONNECTION_POLICY_FORBIDDEN) {
-                    debugLog("clear a2dp profile priority for the le audio dual mode device "
-                            + device);
+                debugLog("clear a2dp profile priority for the le audio dual mode device "
+                        + device);
+                a2dpService.setConnectionPolicy(device,
+                        BluetoothProfile.CONNECTION_POLICY_FORBIDDEN);
+            } else {
+                // Auto connect A2DP if the feature flag is enabled and LE audio is not allowed.
+                if (mAutoConnectProfilesSupported && isLeAudioProfileAllowed) {
+                    a2dpService.setConnectionPolicy(device,
+                            BluetoothProfile.CONNECTION_POLICY_ALLOWED);
+                } else {
                     mAdapterService.getDatabase().setProfileConnectionPolicy(device,
-                            BluetoothProfile.A2DP, BluetoothProfile.CONNECTION_POLICY_FORBIDDEN);
+                            BluetoothProfile.A2DP, BluetoothProfile.CONNECTION_POLICY_ALLOWED);
                 }
-                if (mAdapterService.getDatabase()
-                        .getProfileConnectionPolicy(device, BluetoothProfile.HEADSET)
-                        >  BluetoothProfile.CONNECTION_POLICY_FORBIDDEN) {
-                    debugLog("clear hfp profile priority for the le audio dual mode device "
-                            + device);
-                    mAdapterService.getDatabase().setProfileConnectionPolicy(device,
-                            BluetoothProfile.HEADSET, BluetoothProfile.CONNECTION_POLICY_FORBIDDEN);
-                }
+            }
+        }
+
+        if ((csipSetCooridnatorService != null)
+                && (Utils.arrayContains(uuids, BluetoothUuid.COORDINATED_SET))
+                && (csipSetCooridnatorService.getConnectionPolicy(device)
+                        == BluetoothProfile.CONNECTION_POLICY_UNKNOWN)) {
+            if (mAutoConnectProfilesSupported) {
+                csipSetCooridnatorService.setConnectionPolicy(device,
+                        BluetoothProfile.CONNECTION_POLICY_ALLOWED);
+            } else {
+                mAdapterService.getDatabase().setProfileConnectionPolicy(device,
+                        BluetoothProfile.CSIP_SET_COORDINATOR,
+                        BluetoothProfile.CONNECTION_POLICY_ALLOWED);
+            }
+        }
+
+        if ((panService != null) && (Utils.arrayContains(uuids, BluetoothUuid.PANU) && (
+                panService.getConnectionPolicy(device)
+                        == BluetoothProfile.CONNECTION_POLICY_UNKNOWN)
+                && mAdapterService.getResources()
+                .getBoolean(R.bool.config_bluetooth_pan_enable_autoconnect))) {
+            if (mAutoConnectProfilesSupported) {
+                panService.setConnectionPolicy(device, BluetoothProfile.CONNECTION_POLICY_ALLOWED);
+            } else {
+                mAdapterService.getDatabase().setProfileConnectionPolicy(device,
+                        BluetoothProfile.PAN, BluetoothProfile.CONNECTION_POLICY_ALLOWED);
             }
         }
 
@@ -390,8 +421,14 @@ class PhonePolicy {
                 debugLog("LE Audio preferred over ASHA for device " + device);
             } else {
                 debugLog("setting hearing aid profile priority for device " + device);
-                mAdapterService.getDatabase().setProfileConnectionPolicy(device,
-                        BluetoothProfile.HEARING_AID, BluetoothProfile.CONNECTION_POLICY_ALLOWED);
+                if (mAutoConnectProfilesSupported) {
+                    hearingAidService.setConnectionPolicy(device,
+                            BluetoothProfile.CONNECTION_POLICY_ALLOWED);
+                } else {
+                    mAdapterService.getDatabase().setProfileConnectionPolicy(device,
+                            BluetoothProfile.HEARING_AID,
+                            BluetoothProfile.CONNECTION_POLICY_ALLOWED);
+                }
             }
         }
 
@@ -399,32 +436,52 @@ class PhonePolicy {
                 BluetoothUuid.VOLUME_CONTROL) && (volumeControlService.getConnectionPolicy(device)
                 == BluetoothProfile.CONNECTION_POLICY_UNKNOWN)) {
             debugLog("setting volume control profile priority for device " + device);
-            mAdapterService.getDatabase().setProfileConnectionPolicy(device,
-                    BluetoothProfile.VOLUME_CONTROL, BluetoothProfile.CONNECTION_POLICY_ALLOWED);
+            if (mAutoConnectProfilesSupported) {
+                volumeControlService.setConnectionPolicy(device,
+                        BluetoothProfile.CONNECTION_POLICY_ALLOWED);
+            } else {
+                mAdapterService.getDatabase().setProfileConnectionPolicy(device,
+                        BluetoothProfile.VOLUME_CONTROL,
+                        BluetoothProfile.CONNECTION_POLICY_ALLOWED);
+            }
         }
 
         if ((hapClientService != null) && Utils.arrayContains(uuids,
                 BluetoothUuid.HAS) && (hapClientService.getConnectionPolicy(device)
                 == BluetoothProfile.CONNECTION_POLICY_UNKNOWN)) {
             debugLog("setting hearing access profile priority for device " + device);
-            mAdapterService.getDatabase().setProfileConnectionPolicy(device,
-                    BluetoothProfile.HAP_CLIENT, BluetoothProfile.CONNECTION_POLICY_ALLOWED);
+            if (mAutoConnectProfilesSupported) {
+                hapClientService.setConnectionPolicy(device,
+                        BluetoothProfile.CONNECTION_POLICY_ALLOWED);
+            } else {
+                mAdapterService.getDatabase().setProfileConnectionPolicy(device,
+                        BluetoothProfile.HAP_CLIENT, BluetoothProfile.CONNECTION_POLICY_ALLOWED);
+            }
         }
 
         if ((bcService != null) && Utils.arrayContains(uuids,
                 BluetoothUuid.BASS) && (bcService.getConnectionPolicy(device)
                 == BluetoothProfile.CONNECTION_POLICY_UNKNOWN)) {
             debugLog("setting broadcast assistant profile priority for device " + device);
-            mAdapterService.getDatabase().setProfileConnectionPolicy(device,
-                    BluetoothProfile.LE_AUDIO_BROADCAST_ASSISTANT,
-                    BluetoothProfile.CONNECTION_POLICY_ALLOWED);
+            if (mAutoConnectProfilesSupported) {
+                bcService.setConnectionPolicy(device, BluetoothProfile.CONNECTION_POLICY_ALLOWED);
+            } else {
+                mAdapterService.getDatabase().setProfileConnectionPolicy(device,
+                        BluetoothProfile.LE_AUDIO_BROADCAST_ASSISTANT,
+                        BluetoothProfile.CONNECTION_POLICY_ALLOWED);
+            }
         }
         if ((batteryService != null) && Utils.arrayContains(uuids,
                 BluetoothUuid.BATTERY) && (batteryService.getConnectionPolicy(device)
                     == BluetoothProfile.CONNECTION_POLICY_UNKNOWN)) {
             debugLog("setting battery profile priority for device " + device);
-            mAdapterService.getDatabase().setProfileConnectionPolicy(device,
-                    BluetoothProfile.BATTERY, BluetoothProfile.CONNECTION_POLICY_ALLOWED);
+            if (mAutoConnectProfilesSupported) {
+                batteryService.setConnectionPolicy(device,
+                        BluetoothProfile.CONNECTION_POLICY_ALLOWED);
+            } else {
+                mAdapterService.getDatabase().setProfileConnectionPolicy(device,
+                        BluetoothProfile.BATTERY, BluetoothProfile.CONNECTION_POLICY_ALLOWED);
+            }
         }
     }
 
