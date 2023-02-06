@@ -280,6 +280,9 @@ public class LeAudioService extends ProfileService {
         mTmapGattServer = LeAudioObjectsFactory.getInstance().getTmapGattServer(this);
         mTmapGattServer.start(tmapRoleMask);
 
+        mLeAudioInbandRingtoneSupportedByPlatform =
+                        BluetoothProperties.isLeAudioInbandRingtoneSupported().orElse(true);
+
         mAudioManager.registerAudioDeviceCallback(mAudioManagerAudioDeviceCallback,
                        mHandler);
 
@@ -3224,6 +3227,8 @@ public class LeAudioService extends ProfileService {
         ProfileService.println(sb, "  mActiveAudioOutDevice: " + mActiveAudioOutDevice);
         ProfileService.println(sb, "  mActiveAudioInDevice: " + mActiveAudioInDevice);
         ProfileService.println(sb, "  mHfpHandoverDevice:" + mHfpHandoverDevice);
+        ProfileService.println(sb, "  mLeAudioIsInbandRingtoneSupported:"
+                                + mLeAudioInbandRingtoneSupportedByPlatform);
 
         for (Map.Entry<BluetoothDevice, LeAudioDeviceDescriptor> entry
                 : mDeviceDescriptors.entrySet()) {
