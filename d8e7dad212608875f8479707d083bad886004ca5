@@ -22,6 +22,30 @@
       },
       "revId": "d8e7dad212608875f8479707d083bad886004ca5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b95318df_4826d59b",
+        "filename": "system/gd/rust/common/src/init_flags.rs",
+        "patchSetId": 27
+      },
+      "lineNbr": 278,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-02-06T19:32:32Z",
+      "side": 1,
+      "message": "The production flags will be set to true closer to U release, either in source or via a flag push.\n\nThe always_use_private_gatt_for_debugging will never be set to true except for manual testing, and will be removed at some future point",
+      "parentUuid": "666214dd_706b929c",
+      "range": {
+        "startLine": 278,
+        "startChar": 8,
+        "endLine": 278,
+        "endChar": 45
+      },
+      "revId": "d8e7dad212608875f8479707d083bad886004ca5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
