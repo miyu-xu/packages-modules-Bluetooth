@@ -1,5 +1,91 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8a1b2df3_5af834e8",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1015,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-02-06T12:34:47Z",
+      "side": 1,
+      "message": "what is that check for ? Audio Manager have devices with bad address of LE Audio types ? This is definitely a bug of Audio Manager or of LeAudioService that exposes invalid address to AudioManager.",
+      "revId": "747c9699c8ba2fe985817d239ccf5e9074dda4be",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "54934ce0_28d08a8b",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1028,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-02-06T12:34:47Z",
+      "side": 1,
+      "message": "This logic seems to be doing the same thing as previous implementation but in more lines if I read it correctly.\n\nActive device will be `mActiveAudioOutDevice !\u003d null ? mActiveAudioOutDevice : mActiveAudioInDevice`",
+      "revId": "747c9699c8ba2fe985817d239ccf5e9074dda4be",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d380d8a5_5d6771e0",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1041,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-02-06T12:34:47Z",
+      "side": 1,
+      "message": "If callbacks will be registered for whole lifetime of LeAudioService it means that AudioManager will call it every time any other device will change even not expecting any change for LE Audio. What I see here more is that remove device callback does nothing - it\u0027ll only print debug data.",
+      "revId": "747c9699c8ba2fe985817d239ccf5e9074dda4be",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "67796816_eaad0ef4",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1098,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-02-06T12:34:47Z",
+      "side": 1,
+      "message": "I think the major problem here is not being synchronized with Audio Manager. I\u0027ve faced this issue while investigating https://buganizer.corp.google.com/issues/261362580\n\nLeAudioService is blindly informing AudioManager about changes, not waiting for it\u0027s reaction \u003d\u003d add/remove.\n\nAfter analyzing this bug genesis I came to conclusion that some synchronizing mechanism should fix all those problems. e.g. in case of no response from Audio Manager a watchdog implementation needs to be add also.",
+      "revId": "747c9699c8ba2fe985817d239ccf5e9074dda4be",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c6c30d1d_0fabf68c",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1125,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-02-06T12:34:47Z",
+      "side": 1,
+      "message": "So it means now we\u0027ll be notifying by broadcast intent that LE Audio device is not active, but in fact device will be still active device in Audio Manager.",
+      "revId": "747c9699c8ba2fe985817d239ccf5e9074dda4be",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
