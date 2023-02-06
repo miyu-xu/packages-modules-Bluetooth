@@ -22,6 +22,30 @@
       },
       "revId": "e539eca38ff0eb3c30249c10f4156331c8d0dca4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b8c22412_9752b964",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-02-06T22:16:14Z",
+      "side": 1,
+      "message": "Changing the name of the project one char at a time 😄",
+      "parentUuid": "34e04a4f_1ae277bb",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 10
+      },
+      "revId": "e539eca38ff0eb3c30249c10f4156331c8d0dca4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
