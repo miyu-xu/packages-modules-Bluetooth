@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0c143152_2b162937",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1970930
+      },
+      "writtenOn": "2023-02-06T12:43:43Z",
+      "side": 1,
+      "message": "Hi Thomas,\n\nResolved merge conflict.\n\nUpdated json file and resubmitted.\n\nRequest you to provide your inputs.\n\nRegards,\nFahad",
+      "revId": "e6c974acdca1f1a28d2f5dabb9f07fa6ac2b3ace",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
