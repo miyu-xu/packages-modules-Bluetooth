@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "331889c4_71dd99f7",
+        "filename": "framework/java/android/bluetooth/le/AdvertiseSettings.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1963611
+      },
+      "writtenOn": "2023-02-06T05:39:34Z",
+      "side": 1,
+      "message": "Done, explicitly add a verbose comment and reference to the specification",
+      "parentUuid": "a899cf3c_af270004",
+      "revId": "4d6bb82a0235b030c0ceb6a4dda694c044812e6c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bb9f4a07_ffd3e4bf",
@@ -31,6 +49,24 @@
       "writtenOn": "2022-12-13T20:06:32Z",
       "side": 1,
       "message": "typo: NO_PREFERENCE",
+      "revId": "4d6bb82a0235b030c0ceb6a4dda694c044812e6c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d2c64442_3d5593c7",
+        "filename": "framework/java/android/bluetooth/le/AdvertiseSettings.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 216,
+      "author": {
+        "id": 1963611
+      },
+      "writtenOn": "2023-02-06T05:39:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bb9f4a07_ffd3e4bf",
       "revId": "4d6bb82a0235b030c0ceb6a4dda694c044812e6c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -52,6 +88,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b04f9274_215ec307",
+        "filename": "framework/java/android/bluetooth/le/AdvertiseSettings.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 1963611
+      },
+      "writtenOn": "2023-02-06T05:39:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d41a27b8_d12d1400",
+      "revId": "4d6bb82a0235b030c0ceb6a4dda694c044812e6c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "33e532d2_623c82db",
@@ -69,6 +123,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "28fd5f98_f8c7feec",
+        "filename": "framework/java/android/bluetooth/le/AdvertisingSetParameters.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1963611
+      },
+      "writtenOn": "2023-02-06T05:39:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "33e532d2_623c82db",
+      "revId": "4d6bb82a0235b030c0ceb6a4dda694c044812e6c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bbe06421_1540b01a",
@@ -82,6 +154,24 @@
       "writtenOn": "2022-12-13T20:06:32Z",
       "side": 1,
       "message": "Same here, TX_POWER_MAX is TX_POWER_NO_PREFERENCE",
+      "revId": "4d6bb82a0235b030c0ceb6a4dda694c044812e6c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e10c9dd4_0328817f",
+        "filename": "framework/java/android/bluetooth/le/AdvertisingSetParameters.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 456,
+      "author": {
+        "id": 1963611
+      },
+      "writtenOn": "2023-02-06T05:39:34Z",
+      "side": 1,
+      "message": "This is directly in dBm, so I would like to keep the value condition here in case someone input value in range [2, 126]",
+      "parentUuid": "bbe06421_1540b01a",
       "revId": "4d6bb82a0235b030c0ceb6a4dda694c044812e6c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
