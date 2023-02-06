@@ -116,6 +116,30 @@
       },
       "revId": "744f248549e97be23573784bd036576b8d618bf3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2fa12d4f_a4c597b8",
+        "filename": "system/rust/src/gatt/ffi.rs",
+        "patchSetId": 15
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-02-06T00:45:09Z",
+      "side": 1,
+      "message": "cxx nonsense (GattRecord has a lifetime, therefore it is unsafe to call _from C++_ (?)). It isn\u0027t actually any more unsafe than other FFI, to my knowledge",
+      "parentUuid": "d2be6f37_9bc049c1",
+      "range": {
+        "startLine": 68,
+        "startChar": 8,
+        "endLine": 68,
+        "endChar": 14
+      },
+      "revId": "744f248549e97be23573784bd036576b8d618bf3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

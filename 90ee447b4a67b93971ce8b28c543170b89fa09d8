@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1f369a2e_c581ee60",
+        "filename": "android/app/jni/com_android_bluetooth_gatt.cpp",
+        "patchSetId": 17
+      },
+      "lineNbr": 650,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-02-06T00:45:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "127388bd_ec5a7ca0",
+      "range": {
+        "startLine": 650,
+        "startChar": 3,
+        "endLine": 650,
+        "endChar": 40
+      },
+      "revId": "90ee447b4a67b93971ce8b28c543170b89fa09d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "aaaa9af9_cd84818d",
@@ -61,6 +85,30 @@
       "side": 1,
       "message": "+1",
       "parentUuid": "aaaa9af9_cd84818d",
+      "range": {
+        "startLine": 28,
+        "startChar": 0,
+        "endLine": 30,
+        "endChar": 35
+      },
+      "revId": "90ee447b4a67b93971ce8b28c543170b89fa09d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8d161d99_eca1233c",
+        "filename": "system/rust/src/core/mod.rs",
+        "patchSetId": 17
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-02-06T00:45:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "73366860_4a3ae40a",
       "range": {
         "startLine": 28,
         "startChar": 0,
