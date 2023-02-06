@@ -22,6 +22,52 @@
       },
       "revId": "952ce5e6808fe24dfc280a6f16689187b2900ce9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a765e379_55ba8b3c",
+        "filename": "system/rust/src/core/uuid.rs",
+        "patchSetId": 23
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-02-06T19:06:10Z",
+      "side": 1,
+      "message": "nit: Add a `BASE_UUID_MASK` constant for `((1u128 \u003c\u003c 96) - 1)` with ```\nconst BASE_UUID_MASK: u128 \u003d 0x00000000_FFFF_FFFF_FFFF_FFFF_FFFF_FFFF;\n``` under the `BASE_UUID` constant",
+      "range": {
+        "startLine": 82,
+        "startChar": 21,
+        "endLine": 82,
+        "endChar": 40
+      },
+      "revId": "952ce5e6808fe24dfc280a6f16689187b2900ce9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eecd6dd3_7b8dc955",
+        "filename": "system/rust/src/core/uuid.rs",
+        "patchSetId": 23
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-02-06T19:06:10Z",
+      "side": 1,
+      "message": "```\nif backing \u0026 ((1u128 \u003c\u003c 96) - 1) \u003d\u003d BASE_UUID\n```",
+      "range": {
+        "startLine": 81,
+        "startChar": 0,
+        "endLine": 82,
+        "endChar": 47
+      },
+      "revId": "952ce5e6808fe24dfc280a6f16689187b2900ce9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
