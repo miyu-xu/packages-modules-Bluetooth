@@ -22,6 +22,30 @@
       },
       "revId": "2a32db780fb5c03da2dd9040065e09b82df871c2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8a55039a_a2748256",
+        "filename": "framework/java/android/bluetooth/BluetoothSocket.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 443,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2023-02-06T19:09:50Z",
+      "side": 1,
+      "message": "I don\u0027t have a special preference either. Unless 0 is already used to denote a special meaning here or incase of sockets I think it should be okay. Regarding API guidelines if @rahulsabnis has any feedback, I am all ears.",
+      "parentUuid": "ff0baf37_164af9b0",
+      "range": {
+        "startLine": 443,
+        "startChar": 16,
+        "endLine": 443,
+        "endChar": 28
+      },
+      "revId": "2a32db780fb5c03da2dd9040065e09b82df871c2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
