@@ -16,6 +16,24 @@
       "message": "Could we move the declaration after `BT_PROPERTY_WL_MEDIA_PLAYERS_LIST`? Otherwise, other properties value will be changed, and may mismatch with the property value in java layer.",
       "revId": "10fb9add7fe9396534b3a90b1fcb24d0c74ff48a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7384dc7e_db16b5a1",
+        "filename": "system/include/hardware/bluetooth.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 366,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-02-06T21:12:35Z",
+      "side": 1,
+      "message": "Sure, I will move it, and actually this API may change to a new one",
+      "parentUuid": "ffae5dcc_abe89dd5",
+      "revId": "10fb9add7fe9396534b3a90b1fcb24d0c74ff48a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
