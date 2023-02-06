@@ -68,6 +68,30 @@
       },
       "revId": "952ce5e6808fe24dfc280a6f16689187b2900ce9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c5322c91_61b29f01",
+        "filename": "system/rust/src/core/uuid.rs",
+        "patchSetId": 23
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-02-06T19:07:45Z",
+      "side": 1,
+      "message": "Superseded by another comment",
+      "parentUuid": "d25eea73_94281af1",
+      "range": {
+        "startLine": 82,
+        "startChar": 19,
+        "endLine": 82,
+        "endChar": 40
+      },
+      "revId": "952ce5e6808fe24dfc280a6f16689187b2900ce9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
