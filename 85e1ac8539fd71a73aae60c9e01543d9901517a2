@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1a6868cc_4e0723aa",
+        "filename": "system/gd/rust/common/src/init_flags.rs",
+        "patchSetId": 18
+      },
+      "lineNbr": 278,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-02-06T00:47:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a911da2a_27ff9fec",
+      "range": {
+        "startLine": 278,
+        "startChar": 8,
+        "endLine": 278,
+        "endChar": 45
+      },
+      "revId": "85e1ac8539fd71a73aae60c9e01543d9901517a2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "627571a1_2ab7a5bc",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-02-03T02:52:55Z",
       "side": 1,
       "message": "not used",
+      "range": {
+        "startLine": 1494,
+        "startChar": 0,
+        "endLine": 1494,
+        "endChar": 52
+      },
+      "revId": "85e1ac8539fd71a73aae60c9e01543d9901517a2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e27effe2_a5c16abf",
+        "filename": "system/main/shim/acl.cc",
+        "patchSetId": 18
+      },
+      "lineNbr": 1494,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-02-06T00:47:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "627571a1_2ab7a5bc",
       "range": {
         "startLine": 1494,
         "startChar": 0,
@@ -64,6 +112,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b128e3a7_b673bcef",
+        "filename": "system/rust/src/gatt/arbiter.rs",
+        "patchSetId": 18
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-02-06T00:47:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bf0adb31_105574fb",
+      "revId": "85e1ac8539fd71a73aae60c9e01543d9901517a2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9015b89e_7a79740f",
@@ -87,6 +153,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a7a06c50_84f51605",
+        "filename": "system/stack/arbiter/acl_arbiter.cc",
+        "patchSetId": 18
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-02-06T00:47:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9015b89e_7a79740f",
+      "range": {
+        "startLine": 81,
+        "startChar": 4,
+        "endLine": 81,
+        "endChar": 12
+      },
+      "revId": "85e1ac8539fd71a73aae60c9e01543d9901517a2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e26f274c_146d2595",
@@ -100,6 +190,30 @@
       "writtenOn": "2023-02-03T02:52:55Z",
       "side": 1,
       "message": "remove",
+      "range": {
+        "startLine": 28,
+        "startChar": 0,
+        "endLine": 28,
+        "endChar": 19
+      },
+      "revId": "85e1ac8539fd71a73aae60c9e01543d9901517a2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ef110454_a2d39c72",
+        "filename": "system/stack/btm/btm_sec.h",
+        "patchSetId": 18
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-02-06T00:47:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e26f274c_146d2595",
       "range": {
         "startLine": 28,
         "startChar": 0,
