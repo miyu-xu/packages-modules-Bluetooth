@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fc8d01ae_2da084bd",
+        "filename": "system/rust/src/gatt/channel.rs",
+        "patchSetId": 12
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-02-06T00:18:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4ff58224_e4a378f9",
+      "range": {
+        "startLine": 16,
+        "startChar": 8,
+        "endLine": 16,
+        "endChar": 15
+      },
+      "revId": "473f76c85dcd5378eb52b5a097baf7d6723972e8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5d6ff45f_1f8038da",
