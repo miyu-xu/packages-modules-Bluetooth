@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3cdcc96d_d5b8a8e3",
+        "filename": "tools/rootcanal/model/controller/controller_properties.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-02-06T18:43:13Z",
+      "side": 1,
+      "message": "coincidence?\n\nassertion \u0027delete_stored_link_key_complete_view.IsValid()\u0027 failed",
+      "revId": "a22b65d3d875c2eb04dd25419ad3089abc7387b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
