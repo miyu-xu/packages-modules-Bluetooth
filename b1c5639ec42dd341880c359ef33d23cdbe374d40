@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9e00f4cd_ab37fe4b",
+        "filename": "android/app/src/com/android/bluetooth/btservice/PhonePolicy.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 404,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-02-07T23:13:02Z",
+      "side": 1,
+      "message": "Can we keep the same order as before to limit the diff ?\n\nOr is there a reason for connecting in a different order ?",
+      "range": {
+        "startLine": 369,
+        "startChar": 7,
+        "endLine": 404,
+        "endChar": 88
+      },
+      "revId": "b1c5639ec42dd341880c359ef33d23cdbe374d40",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
