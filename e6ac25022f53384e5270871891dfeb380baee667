@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6eade515_7546f2e6",
+        "filename": "framework/java/android/bluetooth/le/DistanceMeasurementManager.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-02-07T18:42:00Z",
+      "side": 1,
+      "message": "What happen when this method is called while bluetooth is off ? (really off not in BLE_ON)\n\nI expect getBluetoothGatt to return null and this to crash 2 line below.\n\nCan you double check ?\n\nIs there is a case to handle, we can either put a early return or maybe assert the non null with requireNonNull ?",
+      "range": {
+        "startLine": 97,
+        "startChar": 52,
+        "endLine": 97,
+        "endChar": 68
+      },
+      "revId": "e6ac25022f53384e5270871891dfeb380baee667",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "13fcf7ba_e8df6a53",
+        "filename": "framework/java/android/bluetooth/le/DistanceMeasurementMethod.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-02-07T18:42:00Z",
+      "side": 1,
+      "message": "Should we add a check on the ID to ensure its one of `DistanceMeasurementMethodId` ?",
+      "range": {
+        "startLine": 197,
+        "startChar": 0,
+        "endLine": 197,
+        "endChar": 21
+      },
+      "revId": "e6ac25022f53384e5270871891dfeb380baee667",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "44eafc8e_7b519509",
+        "filename": "framework/java/android/bluetooth/le/DistanceMeasurementSession.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-02-07T18:42:00Z",
+      "side": 1,
+      "message": "FYI you can also write these:\n`mGatt \u003d Objects.requireNonNull(gatt, \"gatt is null\");`",
+      "range": {
+        "startLine": 84,
+        "startChar": 0,
+        "endLine": 84,
+        "endChar": 53
+      },
+      "revId": "e6ac25022f53384e5270871891dfeb380baee667",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
