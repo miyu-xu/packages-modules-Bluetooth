@@ -142,6 +142,30 @@
       },
       "revId": "d5e3e7a98c3fd1920973cd8787ad0448a207e51a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "76ec37d8_85ee0d50",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1995,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2023-02-07T07:10:26Z",
+      "side": 1,
+      "message": "Right, `mInbandRingingRuntimeDisable` should be updated, and the section\n```\n                if (!mInbandRingingRuntimeDisable) {\n                    Log.i(TAG, \"updateInbandRinging(): already enabled\");\n                    return;\n                }\n```\nmay prevent sending `+BSIR` to new connected devices.\n\nAnd, of course, sending repeated `+BSIR` can be considered a bug, and it\u0027s fine to prevent repeated commands, but we also need to make sure commands can be sent on connected. We allow repeated commands in Wear OS just because it\u0027s easier to implement and doesn\u0027t cause any issue.",
+      "parentUuid": "ff3527c0_ea4d264a",
+      "range": {
+        "startLine": 1995,
+        "startChar": 16,
+        "endLine": 1995,
+        "endChar": 44
+      },
+      "revId": "d5e3e7a98c3fd1920973cd8787ad0448a207e51a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
