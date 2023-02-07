@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bc7188ab_ab2ccaba",
+        "filename": "system/stack/gap/gap_conn.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 700,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-02-07T05:08:55Z",
+      "side": 1,
+      "message": "I think this won\u0027t have issue, but it would be nice to get confirmation from others that whether this callback take a pointer to local variable is proper",
+      "range": {
+        "startLine": 700,
+        "startChar": 66,
+        "endLine": 700,
+        "endChar": 73
+      },
+      "revId": "806ed0c67b28712822e42d1a391fb091364af0c6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
