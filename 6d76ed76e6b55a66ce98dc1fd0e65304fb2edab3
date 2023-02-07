@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c2be4c10_275025e6",
+        "filename": "framework/java/android/bluetooth/le/AdvertisingSetParameters.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-02-07T20:46:31Z",
+      "side": 1,
+      "message": "Formatting is inconsistent with the others.",
+      "range": {
+        "startLine": 137,
+        "startChar": 0,
+        "endLine": 137,
+        "endChar": 63
+      },
+      "revId": "6d76ed76e6b55a66ce98dc1fd0e65304fb2edab3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "44d9844a_aa8af0bf",
         "filename": "system/gd/hci/le_address_manager.h",
         "patchSetId": 5
