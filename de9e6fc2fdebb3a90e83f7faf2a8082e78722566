@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b98e2b57_4e3e36a2",
+        "filename": "system/stack/include/l2cdefs.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-02-07T23:26:57Z",
+      "side": 1,
+      "message": "Why not use the ones below?\n\nAs long as we can do it, it would be nice to have\n\nL2CAP_CONN_INSUFFICIENT_AUTHENTICATION \u003d\u003d L2CAP_LE_RESULT_INSUFFICIENT_AUTHENTICATION",
+      "range": {
+        "startLine": 115,
+        "startChar": 2,
+        "endLine": 115,
+        "endChar": 34
+      },
+      "revId": "de9e6fc2fdebb3a90e83f7faf2a8082e78722566",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
