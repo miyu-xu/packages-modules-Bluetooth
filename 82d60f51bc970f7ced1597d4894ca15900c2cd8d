@@ -22,6 +22,30 @@
       },
       "revId": "82d60f51bc970f7ced1597d4894ca15900c2cd8d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3168c3c5_959bc34d",
+        "filename": "android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 452,
+      "author": {
+        "id": 1470368
+      },
+      "writtenOn": "2023-02-07T15:07:03Z",
+      "side": 1,
+      "message": "PTS is expecting 1.2, but we were providing 1.1 version to PTS without Setting PTS property. Hence PTS is failing SDP/SR/BRW/BV-02-C case .  In google existing implementation also, both OBEX OVER RFCOMM \u0026 OBEX OVER l2cap is exposed  https://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/system/btif/src/btif_sdp_server.cc;l\u003d637?q\u003dadd_pbaps_sdp \n\nThis is not  related to exposing OBEX Over RFCOMM, It\u0027s already there.  but it\u0027s to ensure that to keep same PBAP l2cap PSM \u0026 RFCOMM server channel number after BT ON/OFF. Assume that if l2cap PSM get changes after pairing due to BT OFF/on. Some carkit does not  query again for l2cap PSM. it directly makes connection on pld l2cap PSM, which would be failed",
+      "parentUuid": "2e0e8f7c_82c36f0d",
+      "range": {
+        "startLine": 449,
+        "startChar": 54,
+        "endLine": 452,
+        "endChar": 55
+      },
+      "revId": "82d60f51bc970f7ced1597d4894ca15900c2cd8d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
