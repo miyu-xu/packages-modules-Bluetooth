@@ -46,6 +46,30 @@
       },
       "revId": "82d60f51bc970f7ced1597d4894ca15900c2cd8d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4ab07d98_1a86d958",
+        "filename": "android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 452,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-02-07T18:11:58Z",
+      "side": 1,
+      "message": "Answered on the bug for PTS.\n\nCould you as well provide us more detail about which device need this interop and put a comment with this information ?\n\n```\nUse a fixed RFCOMM and L2CAP channel because carkit XXX, YYY, ZZZ does not query again for L2CAP PSM and RFCOMM channel and do a direct connection on the old ones\n```",
+      "parentUuid": "3168c3c5_959bc34d",
+      "range": {
+        "startLine": 449,
+        "startChar": 54,
+        "endLine": 452,
+        "endChar": 55
+      },
+      "revId": "82d60f51bc970f7ced1597d4894ca15900c2cd8d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
