@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "469a1345_932b4c8f",
+        "filename": "system/gd/hci/le_advertising_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 423,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-02-07T18:39:47Z",
+      "side": 1,
+      "message": "This could no longer be true here with this change, right?\n\nOr is there some way advertiser could be resolvable random but address policy set to non resolvable?",
+      "range": {
+        "startLine": 423,
+        "startChar": 12,
+        "endLine": 423,
+        "endChar": 89
+      },
+      "revId": "54c19a485b6d890514e85ef2824e3bae64e37fec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "482fac08_bf6f7a87",
         "filename": "system/main/shim/le_advertising_manager.cc",
         "patchSetId": 1
