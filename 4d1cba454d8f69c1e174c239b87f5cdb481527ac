@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7ad8576d_b370a818",
+        "filename": "system/stack/l2cap/l2c_ble.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1012,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-02-07T22:27:09Z",
+      "side": 1,
+      "message": "Should this read `initial_credit` instead? (see line 1016)",
+      "revId": "4d1cba454d8f69c1e174c239b87f5cdb481527ac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
