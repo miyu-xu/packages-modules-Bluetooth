@@ -1257,6 +1257,35 @@ TEST_F(LeExtendedAdvertisingAPITest, no_callbacks_on_resume) {
   sync_client_handler();
 }
 
+TEST_F(LeExtendedAdvertisingManagerTest, use_non_resolvable_address) {
+  // start advertising set with NRPA
+  le_advertising_manager_->ExtendedCreateAdvertiser(
+      0x00,
+      AdvertisingConfig{
+          .requested_advertiser_address_type = AdvertiserAddressType::NONRESOLVABLE_RANDOM,
+          .channel_map = 1,
+      },
+      scan_callback,
+      set_terminated_callback,
+      0,
+      0,
+      client_handler_);
+
+  ASSERT_EQ(
+      test_hci_layer_->GetCommand().GetOpCode(), OpCode::LE_SET_EXTENDED_ADVERTISING_PARAMETERS);
+  test_hci_layer_->IncomingEvent(LeSetExtendedAdvertisingParametersCompleteBuilder::Create(
+      uint8_t{1}, ErrorCode::SUCCESS, static_cast<uint8_t>(-23)));
+
+  auto set_address_command = LeSetAdvertisingSetRandomAddressView::Create(
+      LeAdvertisingCommandView::Create(test_hci_layer_->GetCommand()));
+  ASSERT_TRUE(set_address_command.IsValid());
+  EXPECT_EQ(set_address_command.GetOpCode(), OpCode::LE_SET_ADVERTISING_SET_RANDOM_ADDRESS);
+  Address address = set_address_command.GetRandomAddress();
+
+  // checking that it is an NRPA (first two bits = 0b00)
+  EXPECT_EQ(address.data()[0] & 0b11, 0b00);
+}
+
 }  // namespace
 }  // namespace hci
 }  // namespace bluetooth
