@@ -106,6 +106,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3609f35f_c754b029",
+        "filename": "framework/api/current.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 1274,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-02-07T23:03:56Z",
+      "side": 1,
+      "message": "It can be added later.\nYou will need to create a bug for that and add\n```\nAPI-Coverage-Bug: \u003cbug id\u003e\n```\nin the commit message. (CF the please-fix comment I raise on this change)\n\nFYI without api coverage this will block the U release since we are a mainline module and we must have 100% api coverage.",
+      "parentUuid": "60df486b_7f76fa5b",
+      "revId": "fd0296ab4f4068227f5964208ed71b19eec4ca0e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "204d45c0_2e145600",

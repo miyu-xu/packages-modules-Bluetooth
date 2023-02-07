@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "796cd557_219ef141",
+        "filename": "framework/api/current.txt",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-02-07T23:03:56Z",
+      "side": 1,
+      "message": "Please fix this ERROR reported by API Test Coverage: This CL adds new API(s), but it doesn\u0027t include any CTS/GTS test to test them. Please add CTS/GTS test(s) in a change and include the change in the same topic. After adding that change, you may need to upload a new patchset such as updating...\n\nAnalyzer Description: Validates new APIs are tested by CTS/GTS.\nOwner: android-tooltopia@google.com\n\nThis CL adds new API(s), but it doesn\u0027t include any CTS/GTS test to test them. Please add CTS/GTS test(s) in a change and include the change in the same topic. After adding that change, you may need to upload a new patchset such as updating commit message to rerun this presubmit test. If you are unable to add CTS/GTS test(s) now, please file a tracking bug via go/new-api-coverage-bug and add \"API-Coverage-Bug: \u003cbug id\u003e\" in this CL\u0027s commit message to pass this presubmit. For more information, please refer to go/api-test-coverage.",
+      "range": {
+        "startLine": 0,
+        "startChar": 0,
+        "endLine": 0,
+        "endChar": 0
+      },
+      "revId": "fd73af5e5c73585cdae3278a53b595b51cbcd8ea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

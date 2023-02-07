@@ -95,6 +95,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bf37d114_ccbb822c",
+        "filename": "framework/java/android/bluetooth/le/ScanFilter.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 238,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-02-07T23:03:56Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "afc66263_bd80dda3",
+      "range": {
+        "startLine": 238,
+        "startChar": 34,
+        "endLine": 238,
+        "endChar": 69
+      },
+      "revId": "c5fe947a118899ce6a47715fac27e85699a2ac89",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c5655278_54fa50cc",
@@ -132,6 +156,30 @@
       "side": 1,
       "message": "I could not understand this comment, Could you please clarify in details. we followed similar implementation(eg. advertisingData) for TDS.\n\n           // Advertising data type\n            int advertisingDataType \u003d in.readInt();\n            if (in.readInt() \u003d\u003d 1) {\n                byte[] advertisingData \u003d null;\n                byte[] advertisingDataMask \u003d null;\n                int advertisingDataLength \u003d in.readInt();\n                advertisingData \u003d new byte[advertisingDataLength];\n                in.readByteArray(advertisingData);\n                if (in.readInt() \u003d\u003d 1) {\n                    int advertisingDataMaskLength \u003d in.readInt();\n                    advertisingDataMask \u003d new byte[advertisingDataMaskLength];\n                    in.readByteArray(advertisingDataMask);\n                }\n                builder.setAdvertisingDataTypeWithData(advertisingDataType, advertisingData,\n                        advertisingDataMask);\n            }",
       "parentUuid": "c5655278_54fa50cc",
+      "range": {
+        "startLine": 362,
+        "startChar": 0,
+        "endLine": 362,
+        "endChar": 67
+      },
+      "revId": "c5fe947a118899ce6a47715fac27e85699a2ac89",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bc2756ef_2f3f5463",
+        "filename": "framework/java/android/bluetooth/le/ScanFilter.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 362,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-02-07T23:03:56Z",
+      "side": 1,
+      "message": "Ack - My comment is no longer applicable since you fixed the writeToParcel",
+      "parentUuid": "a27b778c_e6be8a00",
       "range": {
         "startLine": 362,
         "startChar": 0,
@@ -226,6 +274,30 @@
       "side": 1,
       "message": "WIFI NAN hash is 64bit long value \"uint64_t inHash\" , NAN application generate hash code using some hash api as long value \u0026 finally It gets converted to byte array by NAN APP. \nBy default Byte buffer(ByteBuffer buffer \u003d ByteBuffer.allocate(Long.BYTES);buffer.putLong(x);) keeps data in BIG endian format(eg. aa, bb, .., hh), But controller generally expects  Little endian format(eg. hh,.. aa) for uint64_t  hash.\n\nI think, if we need to remove this code from stack, we can  add comment in SDK API eg, WIFI NAN HASH byte array data must be little endian  format? So application must pass WIFI NAN HASH byte array in little endian, what is your view on this?",
       "parentUuid": "238f88a1_81cea17c",
+      "range": {
+        "startLine": 1076,
+        "startChar": 53,
+        "endLine": 1076,
+        "endChar": 89
+      },
+      "revId": "c5fe947a118899ce6a47715fac27e85699a2ac89",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4853802f_d40d98ca",
+        "filename": "system/gd/hci/le_scanning_manager.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 1076,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-02-07T23:03:56Z",
+      "side": 1,
+      "message": "I do not have preferrence.\n@hallstrom@google.com since you are DRI on LE scanning any feedback around this and this change ?",
+      "parentUuid": "c91e15c6_a8afe42e",
       "range": {
         "startLine": 1076,
         "startChar": 53,
