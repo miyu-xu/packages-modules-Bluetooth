@@ -523,7 +523,7 @@ class LeAudioLtvMap {
   const std::map<uint8_t, std::vector<uint8_t>>& Values() const {
     return values;
   }
-  std::string ToString() const;
+  std::string ToString(const std::string& indent_string) const;
   size_t RawPacketSize() const;
   uint8_t* RawPacket(uint8_t* p_buf) const;
   std::vector<uint8_t> RawPacket() const;
