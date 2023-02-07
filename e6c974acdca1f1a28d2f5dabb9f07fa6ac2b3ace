@@ -16,6 +16,23 @@
       "message": "Hi Thomas,\n\nResolved merge conflict.\n\nUpdated json file and resubmitted.\n\nRequest you to provide your inputs.\n\nRegards,\nFahad",
       "revId": "e6c974acdca1f1a28d2f5dabb9f07fa6ac2b3ace",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "abe6fcb9_13e6aad2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2023-02-07T02:22:44Z",
+      "side": 1,
+      "message": "Test case PAN/NAP/MISC/UUID/BV-02-C is currently failing in presubmit.",
+      "revId": "e6c974acdca1f1a28d2f5dabb9f07fa6ac2b3ace",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
