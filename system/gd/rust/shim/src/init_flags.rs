@@ -25,6 +25,7 @@ mod ffi {
         fn get_hci_adapter() -> i32;
         fn hfp_dynamic_version_is_enabled() -> bool;
         fn irk_rotation_is_enabled() -> bool;
+<<<<<<< HEAD   (ea9760 Merge changes Ia62aacb0,If14d1a97,Ibc470d3f,I94fafe8a,I4868d)
         fn is_debug_logging_enabled_for_tag(tag: &str) -> bool;
         fn leaudio_targeted_announcement_reconnection_mode_is_enabled() -> bool;
         fn logging_debug_enabled_for_all_is_enabled() -> bool;
@@ -39,6 +40,9 @@ mod ffi {
         fn set_min_encryption_is_enabled() -> bool;
         fn subrating_is_enabled() -> bool;
         fn trigger_advertising_callbacks_on_first_resume_after_pause_is_enabled() -> bool;
+=======
+        fn pass_phy_update_callback_is_enabled() -> bool;
+>>>>>>> BRANCH (88ba81 Merge cherrypicks of ['ag/20918628'] into tm-qpr1-release.)
     }
 }
 
