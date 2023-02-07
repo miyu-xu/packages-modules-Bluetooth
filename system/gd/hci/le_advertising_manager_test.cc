@@ -94,7 +94,10 @@ class TestLeAddressManager : public LeAddressManager {
       Address public_address,
       uint8_t connect_list_size,
       uint8_t resolving_list_size)
-      : LeAddressManager(enqueue_command, handler, public_address, connect_list_size, resolving_list_size) {}
+      : LeAddressManager(
+            enqueue_command, handler, public_address, connect_list_size, resolving_list_size) {
+    address_policy_ = AddressPolicy::USE_STATIC_ADDRESS;
+  }
 
   AddressPolicy Register(LeAddressManagerCallback* callback) override {
     client_ = callback;
@@ -117,10 +120,6 @@ class TestLeAddressManager : public LeAddressManager {
     test_client_state_ = RESUMED;
   }
 
-  AddressPolicy GetAddressPolicy() override {
-    return address_policy_;
-  }
-
   void SetAddressPolicy(AddressPolicy address_policy) {
     address_policy_ = address_policy;
   }
@@ -139,7 +138,6 @@ class TestLeAddressManager : public LeAddressManager {
     return random_address;
   }
 
-  AddressPolicy address_policy_ = AddressPolicy::USE_STATIC_ADDRESS;
   LeAddressManagerCallback* client_;
   bool ignore_unregister_for_testing = false;
   enum TestClientState {
@@ -306,6 +304,7 @@ class LeAndroidHciAdvertisingManagerTest : public LeAdvertisingManagerTest {
   void SetUp() override {
     param_opcode_ = OpCode::LE_MULTI_ADVT;
     LeAdvertisingManagerTest::SetUp();
+    test_acl_manager_->SetAddressPolicy(LeAddressManager::AddressPolicy::USE_RESOLVABLE_ADDRESS);
   }
 };
 
