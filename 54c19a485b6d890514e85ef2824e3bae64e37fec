@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c4fac554_d01ef832",
+        "filename": "system/gd/hci/le_advertising_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 423,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-02-07T20:56:44Z",
+      "side": 1,
+      "message": "It is still possible. The requested_advertiser_address_type is specified by the advertiser, while the address_policy is set by the device.\n\nThus, the advertiser may request a resolvable address, while the device elects to use only a NRPA.",
+      "parentUuid": "469a1345_932b4c8f",
+      "range": {
+        "startLine": 423,
+        "startChar": 12,
+        "endLine": 423,
+        "endChar": 89
+      },
+      "revId": "54c19a485b6d890514e85ef2824e3bae64e37fec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "482fac08_bf6f7a87",
