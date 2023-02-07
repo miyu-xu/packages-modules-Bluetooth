@@ -126,9 +126,7 @@ class TestLeAddressManager : public LeAddressManager {
     address_policy_ = address_policy;
   }
 
-  LeAddressManagerCallback* client_;
-  bool ignore_unregister_for_testing = false;
-  enum TestClientState {
+  AddressWithType GetAnotherAddress() override {
     UNREGISTERED,
     PAUSED,
     RESUMED,
@@ -292,6 +290,7 @@ class LeAndroidHciAdvertisingManagerTest : public LeAdvertisingManagerTest {
   void SetUp() override {
     param_opcode_ = OpCode::LE_MULTI_ADVT;
     LeAdvertisingManagerTest::SetUp();
+    test_acl_manager_->SetAddressPolicy(LeAddressManager::AddressPolicy::USE_RESOLVABLE_ADDRESS);
   }
 };
 
