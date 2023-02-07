@@ -44,7 +44,7 @@ static_library("btif") {
     "src/btif_a2dp_source.cc",
     "src/btif_activity_attribution.cc",
     "src/btif_av.cc",
-
+    "src/btif_api_access_metric.cc",
     # TODO(abps) - Move this abstraction elsewhere
     # "src/btif_avrcp_audio_track.cc",
     "src/btif_avrcp_audio_track_linux.cc",
