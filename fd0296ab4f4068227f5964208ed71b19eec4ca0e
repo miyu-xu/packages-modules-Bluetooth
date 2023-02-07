@@ -90,6 +90,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "60df486b_7f76fa5b",
+        "filename": "framework/api/current.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 1274,
+      "author": {
+        "id": 1470368
+      },
+      "writtenOn": "2023-02-07T14:07:26Z",
+      "side": 1,
+      "message": "can we resolve this comment, CTS Testcases need to be added later",
+      "parentUuid": "ef834ca5_3c971e9a",
+      "revId": "fd0296ab4f4068227f5964208ed71b19eec4ca0e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "204d45c0_2e145600",
         "filename": "framework/java/android/bluetooth/le/ScanFilter.java",
         "patchSetId": 2

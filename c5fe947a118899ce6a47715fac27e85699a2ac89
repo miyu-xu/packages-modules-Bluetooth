@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ca41cfc2_86f1779a",
+        "filename": "framework/java/android/bluetooth/le/ScanFilter.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 1470368
+      },
+      "writtenOn": "2023-02-07T14:07:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ddb050ed_87068197",
+      "range": {
+        "startLine": 232,
+        "startChar": 0,
+        "endLine": 232,
+        "endChar": 70
+      },
+      "revId": "c5fe947a118899ce6a47715fac27e85699a2ac89",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "91bf3632_da259abb",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-02-06T22:40:45Z",
       "side": 1,
       "message": "Does that mean you can write 1 without writing the dataMask length and the associated array ?\nif so, it will crash in the CREATOR\n\n\ndon\u0027t you mean:\n```java\n  final boolean writeDataMask \u003d mOrgId !\u003d WIFI_ALLIANCE_NAN_ORG_ID \u0026\u0026 mTransportDataMask !\u003d null;\n  dest.writeInt(writeDataMask ? 1 : 0);\n  if (writeDataMask) {\n    dest.writeInt(mTransportDataMask.length);\n    dest.writeByteArray(mTransportDataMask);\n  }\n```",
+      "range": {
+        "startLine": 238,
+        "startChar": 34,
+        "endLine": 238,
+        "endChar": 69
+      },
+      "revId": "c5fe947a118899ce6a47715fac27e85699a2ac89",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "afc66263_bd80dda3",
+        "filename": "framework/java/android/bluetooth/le/ScanFilter.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 238,
+      "author": {
+        "id": 1470368
+      },
+      "writtenOn": "2023-02-07T14:07:26Z",
+      "side": 1,
+      "message": "I have removed non WIFI_ALLIANCE_NAN_ORG_ID check, It\u0027s not required.\nfor NAN org ID, WIFI NAN Data mask must be NULL, Which we are already  throwing exception  https://android-review.googlesource.com/c/platform/packages/modules/Bluetooth/+/2358184/8/framework/java/android/bluetooth/le/ScanFilter.java#11937 \n\nIf TdsDataMask Is NULL, then 0 would be written\nIt is similar to  AdvertisingDataMask implementation(  dest.writeInt(mAdvertisingDataMask \u003d\u003d null ? 0 : 1);), So it should not crash in creator",
+      "parentUuid": "91bf3632_da259abb",
       "range": {
         "startLine": 238,
         "startChar": 34,
@@ -72,6 +120,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a27b778c_e6be8a00",
+        "filename": "framework/java/android/bluetooth/le/ScanFilter.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 362,
+      "author": {
+        "id": 1470368
+      },
+      "writtenOn": "2023-02-07T14:07:26Z",
+      "side": 1,
+      "message": "I could not understand this comment, Could you please clarify in details. we followed similar implementation(eg. advertisingData) for TDS.\n\n           // Advertising data type\n            int advertisingDataType \u003d in.readInt();\n            if (in.readInt() \u003d\u003d 1) {\n                byte[] advertisingData \u003d null;\n                byte[] advertisingDataMask \u003d null;\n                int advertisingDataLength \u003d in.readInt();\n                advertisingData \u003d new byte[advertisingDataLength];\n                in.readByteArray(advertisingData);\n                if (in.readInt() \u003d\u003d 1) {\n                    int advertisingDataMaskLength \u003d in.readInt();\n                    advertisingDataMask \u003d new byte[advertisingDataMaskLength];\n                    in.readByteArray(advertisingDataMask);\n                }\n                builder.setAdvertisingDataTypeWithData(advertisingDataType, advertisingData,\n                        advertisingDataMask);\n            }",
+      "parentUuid": "c5655278_54fa50cc",
+      "range": {
+        "startLine": 362,
+        "startChar": 0,
+        "endLine": 362,
+        "endChar": 67
+      },
+      "revId": "c5fe947a118899ce6a47715fac27e85699a2ac89",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "84355d1c_8af42a14",
         "filename": "framework/java/android/bluetooth/le/ScanFilter.java",
         "patchSetId": 7
@@ -83,6 +155,30 @@
       "writtenOn": "2023-02-06T22:40:45Z",
       "side": 1,
       "message": "typo `Supported` not `Suppported`",
+      "range": {
+        "startLine": 1173,
+        "startChar": 40,
+        "endLine": 1173,
+        "endChar": 43
+      },
+      "revId": "c5fe947a118899ce6a47715fac27e85699a2ac89",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3da1123f_8d1d73bc",
+        "filename": "framework/java/android/bluetooth/le/ScanFilter.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 1173,
+      "author": {
+        "id": 1470368
+      },
+      "writtenOn": "2023-02-07T14:07:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "84355d1c_8af42a14",
       "range": {
         "startLine": 1173,
         "startChar": 40,
@@ -106,6 +202,30 @@
       "writtenOn": "2023-02-06T22:40:45Z",
       "side": 1,
       "message": "I don\u0027t know the specificity of this spec, but why do we need to reverse it ?",
+      "range": {
+        "startLine": 1076,
+        "startChar": 53,
+        "endLine": 1076,
+        "endChar": 89
+      },
+      "revId": "c5fe947a118899ce6a47715fac27e85699a2ac89",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c91e15c6_a8afe42e",
+        "filename": "system/gd/hci/le_scanning_manager.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 1076,
+      "author": {
+        "id": 1470368
+      },
+      "writtenOn": "2023-02-07T14:07:26Z",
+      "side": 1,
+      "message": "WIFI NAN hash is 64bit long value \"uint64_t inHash\" , NAN application generate hash code using some hash api as long value \u0026 finally It gets converted to byte array by NAN APP. \nBy default Byte buffer(ByteBuffer buffer \u003d ByteBuffer.allocate(Long.BYTES);buffer.putLong(x);) keeps data in BIG endian format(eg. aa, bb, .., hh), But controller generally expects  Little endian format(eg. hh,.. aa) for uint64_t  hash.\n\nI think, if we need to remove this code from stack, we can  add comment in SDK API eg, WIFI NAN HASH byte array data must be little endian  format? So application must pass WIFI NAN HASH byte array in little endian, what is your view on this?",
+      "parentUuid": "238f88a1_81cea17c",
       "range": {
         "startLine": 1076,
         "startChar": 53,
