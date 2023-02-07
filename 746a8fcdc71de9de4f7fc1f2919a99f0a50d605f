@@ -33,6 +33,24 @@
       "message": "nit: use {@link} to reference constants and methods in framework code.",
       "revId": "746a8fcdc71de9de4f7fc1f2919a99f0a50d605f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "03258d79_0b70fcbe",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudioCodecConfigMetadata.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 222,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-02-07T03:34:02Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "8c99a2d2_87323da4",
+      "revId": "746a8fcdc71de9de4f7fc1f2919a99f0a50d605f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
