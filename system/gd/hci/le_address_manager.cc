@@ -228,6 +228,13 @@ AddressWithType LeAddressManager::GetAnotherAddress() {
   return random_address;
 }
 
+AddressWithType LeAddressManager::GetNonResolvableAddress() {
+  ASSERT(SupportsPrivacy());
+  hci::Address address = generate_nrpa();
+  auto random_address = AddressWithType(address, AddressType::RANDOM_DEVICE_ADDRESS);
+  return random_address;
+}
+
 void LeAddressManager::pause_registered_clients() {
   for (auto& client : registered_clients_) {
     switch (client.second) {
