@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5925e61a_d44471b9",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-02-07T18:37:49Z",
+      "side": 1,
+      "message": "It\u0027s better to have CL descriptions that say what you are doing instead of what your goal is.",
+      "range": {
+        "startLine": 6,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 37
+      },
+      "revId": "16cf2368bea50b8cf23796358cc145f9f9333264",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e3e4d437_e83df7f7",
+        "filename": "system/gd/hci/le_address_manager.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-02-07T18:37:49Z",
+      "side": 1,
+      "message": "This seems more like uses privacy than supports privacy in this layer.\n\nShould it be RotatingAddress() or something like that?\n\nShould we invert it and say UsePublicAddress()?",
+      "range": {
+        "startLine": 155,
+        "startChar": 23,
+        "endLine": 155,
+        "endChar": 38
+      },
+      "revId": "16cf2368bea50b8cf23796358cc145f9f9333264",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
