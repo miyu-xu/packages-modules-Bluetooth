@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f1771960_2ce4d612",
+        "filename": "system/bta/include/bta_jv_api.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 229,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-02-07T04:44:08Z",
+      "side": 1,
+      "message": "I just have a naming idea, `tBTA_JV_L2CAP_REASON` might be better, then its default value can be `#define BTA_JV_L2CAP_REASON_EMPTY 0`",
+      "range": {
+        "startLine": 229,
+        "startChar": 16,
+        "endLine": 229,
+        "endChar": 21
+      },
+      "revId": "bb75f21df2731832e40308ffbd55446dbf163219",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
