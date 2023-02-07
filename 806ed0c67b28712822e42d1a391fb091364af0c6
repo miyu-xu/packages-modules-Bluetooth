@@ -46,6 +46,30 @@
       },
       "revId": "806ed0c67b28712822e42d1a391fb091364af0c6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3a1a6d7a_4cbe0a60",
+        "filename": "system/stack/gap/gap_conn.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 700,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-02-07T23:43:44Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "ab93f190_3c2dd4fb",
+      "range": {
+        "startLine": 700,
+        "startChar": 66,
+        "endLine": 700,
+        "endChar": 73
+      },
+      "revId": "806ed0c67b28712822e42d1a391fb091364af0c6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
