@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7d0a8292_e61e233a",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-02-07T18:58:16Z",
+      "side": 1,
+      "message": "I know we only support RSSI, but why `on_read_remote_transmit_power_level_status` should always use METHOD_RSSI in the OnDistanceMeasurementStartFail ?\n\nSame question for all callback",
+      "range": {
+        "startLine": 141,
+        "startChar": 42,
+        "endLine": 141,
+        "endChar": 53
+      },
+      "revId": "a86d4053eef15b90ca86607abec00747ca86b133",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
