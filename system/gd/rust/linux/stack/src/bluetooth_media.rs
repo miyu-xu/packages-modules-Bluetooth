@@ -157,6 +157,11 @@ pub trait IBluetoothTelephony {
     fn answer_call(&mut self) -> bool;
     /// Acts like hanging up an active/incoming/dialing call from the AG.
     fn hangup_call(&mut self) -> bool;
+    /// Sets/unsets the memory slot. Note that we store at most one memory
+    /// number and return it regardless of which slot is specified by HF.
+    fn set_memory_call(&mut self, number: Option<String>) -> bool;
+    /// Sets/unsets the last call.
+    fn set_last_call(&mut self, number: Option<String>) -> bool;
 }
 
 /// Serializable device used in.
@@ -222,6 +227,8 @@ pub struct BluetoothMedia {
     phone_state: PhoneState,
     call_list: Vec<CallInfo>,
     phone_ops_enabled: bool,
+    memory_dialing_number: Option<String>,
+    last_dialing_number: Option<String>,
 }
 
 impl BluetoothMedia {
@@ -265,6 +272,8 @@ impl BluetoothMedia {
             phone_state: PhoneState { num_active: 0, num_held: 0, state: CallState::Idle },
             call_list: vec![],
             phone_ops_enabled: false,
+            memory_dialing_number: None,
+            last_dialing_number: None,
         }
     }
 
@@ -726,6 +735,26 @@ impl BluetoothMedia {
                 }
                 self.phone_state_change("".into());
             }
+            HfpCallbacks::DialCall(number, addr) => {
+                let number = if number == "" {
+                    self.last_dialing_number.clone()
+                } else if number.starts_with(">") {
+                    self.memory_dialing_number.clone()
+                } else {
+                    Some(number)
+                };
+
+                if number.is_none() || !self.dialing_call_impl(number.unwrap()) {
+                    warn!("[{}]: Unexpected dialing command from HF", addr.to_string());
+                    self.simple_at_response(false, addr.clone());
+                    return;
+                }
+
+                // Respond OK to HF before notifying phone state change.
+                self.simple_at_response(true, addr.clone());
+                // Always notify the change to LibBluetooth regardless of the status above.
+                self.phone_state_change("".into());
+            }
         }
     }
 
@@ -1088,6 +1117,18 @@ impl BluetoothMedia {
         index
     }
 
+    fn simple_at_response(&mut self, ok: bool, addr: RawAddress) {
+        match self.hfp.as_mut() {
+            Some(hfp) => {
+                let status = hfp.simple_at_response(ok, addr.clone());
+                if status != BtStatus::Success {
+                    warn!("[{}]: AT response failed, status={:?}", addr.to_string(), status);
+                }
+            }
+            None => warn!("Uninitialized HFP to send AT response"),
+        }
+    }
+
     fn answer_call_impl(&mut self) -> bool {
         if !self.phone_ops_enabled || self.phone_state.state == CallState::Idle {
             return false;
@@ -1129,6 +1170,23 @@ impl BluetoothMedia {
             })
             .cloned()
             .collect();
+        true
+    }
+
+    fn dialing_call_impl(&mut self, number: String) -> bool {
+        if !self.phone_ops_enabled
+            || self.phone_state.state != CallState::Idle
+            || self.phone_state.num_active > 0
+        {
+            return false;
+        }
+        self.call_list.push(CallInfo {
+            index: self.select_call_index(),
+            dir_incoming: false,
+            state: CallState::Dialing,
+            number: number.clone(),
+        });
+        self.phone_state.state = CallState::Dialing;
         true
     }
 }
@@ -1775,6 +1833,8 @@ impl IBluetoothTelephony for BluetoothMedia {
         self.phone_state.num_active = 0;
         self.phone_state.num_held = 0;
         self.phone_state.state = CallState::Idle;
+        self.memory_dialing_number = None;
+        self.last_dialing_number = None;
 
         if !enable {
             if self.hfp_states.values().any(|x| x == &BthfConnectionState::SlcConnected) {
@@ -1809,19 +1869,9 @@ impl IBluetoothTelephony for BluetoothMedia {
         true
     }
     fn dialing_call(&mut self, number: String) -> bool {
-        if !self.phone_ops_enabled
-            || self.phone_state.state != CallState::Idle
-            || self.phone_state.num_active > 0
-        {
+        if !self.dialing_call_impl(number) {
             return false;
         }
-        self.call_list.push(CallInfo {
-            index: self.select_call_index(),
-            dir_incoming: false,
-            state: CallState::Dialing,
-            number: number.clone(),
-        });
-        self.phone_state.state = CallState::Dialing;
         self.phone_state_change("".into());
         true
     }
@@ -1837,6 +1887,20 @@ impl IBluetoothTelephony for BluetoothMedia {
             return false;
         }
         self.phone_state_change("".into());
+        true
+    }
+    fn set_memory_call(&mut self, number: Option<String>) -> bool {
+        if !self.phone_ops_enabled {
+            return false;
+        }
+        self.memory_dialing_number = number;
+        true
+    }
+    fn set_last_call(&mut self, number: Option<String>) -> bool {
+        if !self.phone_ops_enabled {
+            return false;
+        }
+        self.last_dialing_number = number;
         true
     }
 }
