@@ -320,9 +320,7 @@ struct LeAdvertisingManager::impl : public bluetooth::hci::LeAddressManagerCallb
           set_data(id, true, config.scan_response);
         }
         set_data(id, false, config.advertisement);
-        auto address_policy = le_address_manager_->GetAddressPolicy();
-        if (address_policy == LeAddressManager::AddressPolicy::USE_NON_RESOLVABLE_ADDRESS ||
-            address_policy == LeAddressManager::AddressPolicy::USE_RESOLVABLE_ADDRESS) {
+        if (le_address_manager_->SupportsPrivacy()) {
           advertising_sets_[id].current_address = le_address_manager_->GetAnotherAddress();
         } else {
           advertising_sets_[id].current_address = le_address_manager_->GetCurrentAddress();
@@ -334,9 +332,7 @@ struct LeAdvertisingManager::impl : public bluetooth::hci::LeAddressManagerCallb
         }
       } break;
       case (AdvertisingApiType::ANDROID_HCI): {
-        auto address_policy = le_address_manager_->GetAddressPolicy();
-        if (address_policy == LeAddressManager::AddressPolicy::USE_NON_RESOLVABLE_ADDRESS ||
-            address_policy == LeAddressManager::AddressPolicy::USE_RESOLVABLE_ADDRESS) {
+        if (le_address_manager_->SupportsPrivacy()) {
           advertising_sets_[id].current_address = le_address_manager_->GetAnotherAddress();
         } else {
           advertising_sets_[id].current_address = le_address_manager_->GetCurrentAddress();
@@ -417,11 +413,9 @@ struct LeAdvertisingManager::impl : public bluetooth::hci::LeAddressManagerCallb
 
     set_parameters(id, config);
 
-    auto address_policy = le_address_manager_->GetAddressPolicy();
     switch (config.requested_advertiser_address_type) {
       case AdvertiserAddressType::RESOLVABLE_RANDOM:
-        if (address_policy == LeAddressManager::AddressPolicy::USE_NON_RESOLVABLE_ADDRESS ||
-            address_policy == LeAddressManager::AddressPolicy::USE_RESOLVABLE_ADDRESS) {
+        if (le_address_manager_->SupportsPrivacy()) {
           AddressWithType address_with_type = le_address_manager_->GetAnotherAddress();
           le_advertising_interface_->EnqueueCommand(
               hci::LeSetAdvertisingSetRandomAddressBuilder::Create(id, address_with_type.GetAddress()),
