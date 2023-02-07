@@ -802,9 +802,21 @@ class LeShimAclConnection
           static_cast<tGATT_STATUS>(ToLegacyHciErrorCode(hci_status)), handle_,
           tx_phy, rx_phy);
     } else {
+<<<<<<< HEAD   (ea9760 Merge changes Ia62aacb0,If14d1a97,Ibc470d3f,I94fafe8a,I4868d)
       LOG_WARN("Not posting OnPhyUpdate callback since it is disabled: (tx:%x, rx:%x, status:%s)",
                tx_phy, rx_phy, hci::ErrorCodeText(hci_status).c_str());
     }
+=======
+      LOG_WARN(
+          "Not posting OnPhyUpdate callback since it is disabled: (tx:%x, "
+          "rx:%x, status:%s)",
+          tx_phy, rx_phy, hci::ErrorCodeText(hci_status).c_str());
+    }
+  }
+
+  void OnLocalAddressUpdate(hci::AddressWithType address_with_type) override {
+    connection_->UpdateLocalAddress(address_with_type);
+>>>>>>> BRANCH (88ba81 Merge cherrypicks of ['ag/20918628'] into tm-qpr1-release.)
   }
 
   void OnDisconnection(hci::ErrorCode reason) {
