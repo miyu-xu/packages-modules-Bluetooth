@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fcd4467a_3af37bfa",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2023-02-07T03:04:41Z",
+      "side": 1,
+      "message": "6s is from Android\u0027s default. 10s is worthy of discussion, but shouldn\u0027t happen in normal cases.",
+      "parentUuid": "e84626e3_16d25e04",
+      "range": {
+        "startLine": 48,
+        "startChar": 50,
+        "endLine": 48,
+        "endChar": 51
+      },
+      "revId": "5daaa53b5c3ac892dde0e5d983509b8c7a9407a6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "75e0365c_c79d20ca",
@@ -59,6 +83,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fce6f430_9140e798",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 669,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2023-02-07T03:04:41Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "31476f93_e31c86c0",
+      "revId": "5daaa53b5c3ac892dde0e5d983509b8c7a9407a6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "85e32088_cc6fa6f4",
@@ -72,6 +114,24 @@
       "writtenOn": "2023-02-06T10:00:19Z",
       "side": 1,
       "message": "This arm and the latter half of ConnectingBeforeRetry are doing the same thing. Is it possible to extract the similarities into a function?",
+      "revId": "5daaa53b5c3ac892dde0e5d983509b8c7a9407a6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fa011102_bc255575",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 766,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2023-02-07T03:04:41Z",
+      "side": 1,
+      "message": "I\u0027ve yet to find an elegant way to pass the `MutexGuard` around that does the same effect. Considering this part is still likely subject to changes, I think we can do more refactoring once this is verified to be what we want.",
+      "parentUuid": "85e32088_cc6fa6f4",
       "revId": "5daaa53b5c3ac892dde0e5d983509b8c7a9407a6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }

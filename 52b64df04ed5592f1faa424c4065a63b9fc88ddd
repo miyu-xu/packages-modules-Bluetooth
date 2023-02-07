@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d10bbf4b_b79f298a",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2023-02-07T03:04:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "21a55198_ab77aa9b",
+      "range": {
+        "startLine": 170,
+        "startChar": 0,
+        "endLine": 170,
+        "endChar": 29
+      },
+      "revId": "52b64df04ed5592f1faa424c4065a63b9fc88ddd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7fab8a2a_cbd0beae",
@@ -99,6 +123,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f547622a_af374460",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 662,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2023-02-07T03:04:41Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "1f4ea554_6464c9f9",
+      "revId": "52b64df04ed5592f1faa424c4065a63b9fc88ddd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7bbef3e9_d58cd3d2",
@@ -136,6 +178,30 @@
       "side": 1,
       "message": "None-\u003eConnectingBeforeRetry and ConnectingBeforeRetry-\u003eConnectingBeforeRetry needs the same treatment.\n\nPattern matching in Rust executes in parallel, and since we are only interested in the updated state to decide which task to put, I don\u0027t think we can put it into the match-clause without introducing more repeated code.",
       "parentUuid": "7bbef3e9_d58cd3d2",
+      "range": {
+        "startLine": 714,
+        "startChar": 8,
+        "endLine": 716,
+        "endChar": 9
+      },
+      "revId": "52b64df04ed5592f1faa424c4065a63b9fc88ddd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "125de701_aaa9735e",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 716,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2023-02-07T03:04:41Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "53a6de6e_b281143b",
       "range": {
         "startLine": 714,
         "startChar": 8,
@@ -254,6 +320,30 @@
       "side": 1,
       "message": "I suppose there would be some other device that does the opposite: try reconnecting to HFP when A2DP is requested to be disconnected. Or perhaps it might do both ways. Probably we should block incoming connection in the lower level.\n\nHowever as we don\u0027t yet have it, this workaround might be ok for now. It\u0027s not obvious to me though that it is also called from profile disconnection callback, maybe a comment is in order?",
       "parentUuid": "11bd9de8_1a0fdf3f",
+      "range": {
+        "startLine": 1133,
+        "startChar": 20,
+        "endLine": 1135,
+        "endChar": 21
+      },
+      "revId": "52b64df04ed5592f1faa424c4065a63b9fc88ddd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "93d73e90_92d151d2",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1135,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2023-02-07T03:04:41Z",
+      "side": 1,
+      "message": "I agree the proper fix should be the stack blocking the requests. Left a TODO comment referring to the bug.",
+      "parentUuid": "8730aed8_5da4a7aa",
       "range": {
         "startLine": 1133,
         "startChar": 20,
