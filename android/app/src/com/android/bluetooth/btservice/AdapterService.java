@@ -32,6 +32,7 @@ import static com.android.bluetooth.Utils.hasBluetoothPrivilegedPermission;
 import static com.android.bluetooth.Utils.isPackageNameAccurate;
 
 import android.annotation.NonNull;
+import android.annotation.Nullable;
 import android.annotation.RequiresPermission;
 import android.annotation.SuppressLint;
 import android.app.AlarmManager;
@@ -2591,6 +2592,28 @@ public class AdapterService extends Service {
         }
 
         @Override
+        public void getBondCreateCaller(BluetoothDevice device,
+                SynchronousResultReceiver receiver) {
+            try {
+                receiver.send(getBondCreateCaller(device));
+            } catch (RuntimeException e) {
+                receiver.propagateException(e);
+            }
+        }
+
+        public String getBondCreateCaller(BluetoothDevice device)  {
+            AdapterService service = getService();
+
+            if (service == null) {
+                return null;
+            }
+
+            enforceBluetoothPrivilegedPermission(service);
+
+            return service.getBondCreateCaller(device);
+        }
+
+        @Override
         public void removeActiveDevice(@ActiveDeviceUse int profiles,
                 AttributionSource source, SynchronousResultReceiver receiver) {
             try {
@@ -4823,6 +4846,20 @@ public class AdapterService extends Service {
                     device.getAddress(), bondCallerInfo.user);
         }
         return false;
+    }
+
+    /**
+     * Return the most recent caller that called {@link BluetoothDevice#createBond} recently.
+     *
+     * @return the most recent caller that initiate pairing with this device
+     */
+    @Nullable
+    public String getBondCreateCaller(BluetoothDevice device) {
+        CallerInfo info = mBondAttemptCallerInfo.get(device.getAddress());
+        if (info == null) {
+            return null;
+        }
+        return info.callerPackageName;
     }
 
     /**
