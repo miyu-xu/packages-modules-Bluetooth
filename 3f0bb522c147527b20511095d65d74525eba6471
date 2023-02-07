@@ -22,6 +22,30 @@
       },
       "revId": "3f0bb522c147527b20511095d65d74525eba6471",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c1a4b673_a435c044",
+        "filename": "system/btif/src/btif_sock_l2cap.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 568,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2023-02-07T09:21:25Z",
+      "side": 1,
+      "message": "p_close-\u003e err is an int so can\u0027t be null (even theoretically). It would be 0 here if it isn\u0027t set explicitly and that should indicate it wasn\u0027t an error at all.",
+      "parentUuid": "1df95beb_d481c741",
+      "range": {
+        "startLine": 568,
+        "startChar": 31,
+        "endLine": 568,
+        "endChar": 43
+      },
+      "revId": "3f0bb522c147527b20511095d65d74525eba6471",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
