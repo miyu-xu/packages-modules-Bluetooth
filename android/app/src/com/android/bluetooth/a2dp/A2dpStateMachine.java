@@ -701,7 +701,12 @@ final class A2dpStateMachine extends StateMachine {
         intent.putExtra(BluetoothDevice.EXTRA_DEVICE, mDevice);
         intent.addFlags(Intent.FLAG_RECEIVER_REGISTERED_ONLY_BEFORE_BOOT
                         | Intent.FLAG_RECEIVER_INCLUDE_BACKGROUND);
+<<<<<<< PATCH SET (c24e95 A2DP: Stop using intent from StateMachine to Service)
+        mA2dpService.connectionStateChanged(mDevice, prevState, newState);
+        mA2dpService.sendBroadcast(intent, BLUETOOTH_CONNECT,
+=======
         Utils.sendBroadcast(mA2dpService, intent, BLUETOOTH_CONNECT,
+>>>>>>> BASE      (c8013e Merge "Suppress lint for methods using APIs promoted from sy)
                 Utils.getTempAllowlistBroadcastOptions());
     }
 
