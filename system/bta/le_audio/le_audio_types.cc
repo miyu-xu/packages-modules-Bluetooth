@@ -531,13 +531,13 @@ size_t LeAudioLtvMap::RawPacketSize() const {
   return bytes;
 }
 
-std::string LeAudioLtvMap::ToString() const {
+std::string LeAudioLtvMap::ToString(const std::string& indent_string) const {
   std::string debug_str;
 
   for (const auto& value : values) {
     std::stringstream sstream;
 
-    sstream << "\ttype: " << std::to_string(value.first)
+    sstream << indent_string + "type: " << std::to_string(value.first)
             << "\tlen: " << std::to_string(value.second.size()) << "\tdata: "
             << base::HexEncode(value.second.data(), value.second.size()) + "\n";
 
