@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c2b84563_04efcd49",
+        "filename": "tools/pdl/src/ast.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 264,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-02-07T19:32:01Z",
+      "side": 1,
+      "message": "Could we not add a `new` function to decl and do\n```\nDecl::new(loc, DeclDesc::Checksum { id, function, width })\n```\n?",
+      "range": {
+        "startLine": 264,
+        "startChar": 53,
+        "endLine": 264,
+        "endChar": 61
+      },
+      "revId": "ecb025ca7144635dfb581aa8eaba223ad2a24911",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "40bbc116_1ff3284f",
+        "filename": "tools/pdl/src/backends/intermediate.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-02-07T19:32:01Z",
+      "side": 1,
+      "message": "nit: remove, we are using all the fields now",
+      "range": {
+        "startLine": 102,
+        "startChar": 45,
+        "endLine": 102,
+        "endChar": 49
+      },
+      "revId": "ecb025ca7144635dfb581aa8eaba223ad2a24911",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
