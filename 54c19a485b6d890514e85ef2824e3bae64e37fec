@@ -45,6 +45,30 @@
       },
       "revId": "54c19a485b6d890514e85ef2824e3bae64e37fec",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5ba778f1_2172deb5",
+        "filename": "system/main/shim/le_advertising_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 402,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-02-07T18:41:29Z",
+      "side": 1,
+      "message": "It\u0027s not, I think. This is just matching the Java enum values here: https://source.corp.google.com/h/googleplex-android/platform/superproject/+/master:packages/modules/Bluetooth/framework/java/android/bluetooth/le/AdvertisingSetParameters.java;l\u003d121?q\u003dADDRESS_TYPE_DEFAULT\u0026sq\u003drepo:googleplex-android%2Fplatform%2Fsuperproject%20branch:master%20file:packages%2Fmodules%2FBluetooth",
+      "parentUuid": "482fac08_bf6f7a87",
+      "range": {
+        "startLine": 402,
+        "startChar": 10,
+        "endLine": 402,
+        "endChar": 13
+      },
+      "revId": "54c19a485b6d890514e85ef2824e3bae64e37fec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
