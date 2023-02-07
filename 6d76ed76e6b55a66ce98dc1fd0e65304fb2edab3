@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "44d9844a_aa8af0bf",
+        "filename": "system/gd/hci/le_address_manager.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-02-07T18:47:38Z",
+      "side": 1,
+      "message": "Should these method names be clarified now that there\u0027s differentiation between resolvable and non resolvable? Or do you think it\u0027s clear enough as is? (Same q for SetRandomAddress)",
+      "range": {
+        "startLine": 82,
+        "startChar": 26,
+        "endLine": 83,
+        "endChar": 45
+      },
+      "revId": "6d76ed76e6b55a66ce98dc1fd0e65304fb2edab3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "06d017f4_9e21002b",
+        "filename": "system/gd/hci/le_address_manager.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-02-07T18:47:38Z",
+      "side": 1,
+      "message": "Please fix this WARNING reported by Check Contents: Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.\n\nAnalyzer Description: Validates that changes do not have prohibited expressions in them.\nOwner: ayeaye-team@google.com\n\nLines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.",
+      "range": {
+        "startLine": 84,
+        "startChar": 0,
+        "endLine": 84,
+        "endChar": 108
+      },
+      "revId": "6d76ed76e6b55a66ce98dc1fd0e65304fb2edab3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "117ff14a_013b0d3e",
+        "filename": "system/gd/hci/le_advertising_manager.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 294,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-02-07T18:47:38Z",
+      "side": 1,
+      "message": "Is this something we should be checking? \n\nFrom the comment it sounds like a bug.",
+      "range": {
+        "startLine": 292,
+        "startChar": 6,
+        "endLine": 294,
+        "endChar": 52
+      },
+      "revId": "6d76ed76e6b55a66ce98dc1fd0e65304fb2edab3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
