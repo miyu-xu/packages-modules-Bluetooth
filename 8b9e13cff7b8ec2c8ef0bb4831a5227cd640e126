@@ -22,6 +22,30 @@
       },
       "revId": "8b9e13cff7b8ec2c8ef0bb4831a5227cd640e126",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "387021de_7117a1a0",
+        "filename": "system/gd/hci/le_address_manager.h",
+        "patchSetId": 7
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-02-07T22:48:58Z",
+      "side": 1,
+      "message": "I prefer to use `Get` to indicate a getter-like call, not something that generates a new value every time. Renamed the other similar calls in the followup CL",
+      "parentUuid": "30734550_fa99cc67",
+      "range": {
+        "startLine": 84,
+        "startChar": 26,
+        "endLine": 84,
+        "endChar": 29
+      },
+      "revId": "8b9e13cff7b8ec2c8ef0bb4831a5227cd640e126",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

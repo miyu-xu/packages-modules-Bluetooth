@@ -187,6 +187,30 @@
       },
       "revId": "6d76ed76e6b55a66ce98dc1fd0e65304fb2edab3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b1181070_1168070d",
+        "filename": "system/gd/hci/le_advertising_manager.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 294,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-02-07T22:48:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8a0b1665_48904096",
+      "range": {
+        "startLine": 292,
+        "startChar": 6,
+        "endLine": 294,
+        "endChar": 52
+      },
+      "revId": "6d76ed76e6b55a66ce98dc1fd0e65304fb2edab3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
