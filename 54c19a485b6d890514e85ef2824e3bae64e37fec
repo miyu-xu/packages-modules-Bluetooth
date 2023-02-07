@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "482fac08_bf6f7a87",
+        "filename": "system/main/shim/le_advertising_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 402,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-02-07T18:26:55Z",
+      "side": 1,
+      "message": "I don\u0027t like using -1 here, but I guess it\u0027s int8_t\n\nCan you add a comment that it\u0027s 0xFF (unless it\u0027s not) :)",
+      "range": {
+        "startLine": 402,
+        "startChar": 10,
+        "endLine": 402,
+        "endChar": 13
+      },
+      "revId": "54c19a485b6d890514e85ef2824e3bae64e37fec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
