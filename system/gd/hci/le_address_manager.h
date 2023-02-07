@@ -71,7 +71,8 @@ class LeAddressManager {
       crypto_toolbox::Octet16 rotation_irk,
       std::chrono::milliseconds minimum_rotation_time,
       std::chrono::milliseconds maximum_rotation_time);
-  virtual AddressPolicy GetAddressPolicy();
+  AddressPolicy GetAddressPolicy();
+  bool SupportsPrivacy();
   virtual void AckPause(LeAddressManagerCallback* callback);
   virtual void AckResume(LeAddressManagerCallback* callback);
   virtual AddressPolicy Register(LeAddressManagerCallback* callback);
@@ -100,6 +101,9 @@ class LeAddressManager {
   size_t NumberCachedCommands() const {
     return cached_commands_.size();
   }
+
+ protected:
+  AddressPolicy address_policy_ = AddressPolicy::POLICY_NOT_SET;
 
  private:
   enum ClientState {
@@ -163,7 +167,6 @@ class LeAddressManager {
   os::Handler* handler_;
   std::map<LeAddressManagerCallback*, ClientState> registered_clients_;
 
-  AddressPolicy address_policy_ = AddressPolicy::POLICY_NOT_SET;
   AddressWithType le_address_;
   AddressWithType cached_address_;
   Address public_address_;
