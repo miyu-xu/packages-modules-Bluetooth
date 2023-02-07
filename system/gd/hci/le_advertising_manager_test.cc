@@ -124,14 +124,14 @@ class TestLeAddressManager : public LeAddressManager {
     address_policy_ = address_policy;
   }
 
-  AddressWithType GetAnotherAddress() override {
+  AddressWithType NewResolvableAddress() override {
     hci::Address address;
     Address::FromString("05:04:03:02:01:00", address);
     auto random_address = AddressWithType(address, AddressType::RANDOM_DEVICE_ADDRESS);
     return random_address;
   }
 
-  AddressWithType GetCurrentAddress() override {
+  AddressWithType GetInitiatorAddress() override {
     hci::Address address;
     Address::FromString("05:04:03:02:01:00", address);
     auto random_address = AddressWithType(address, AddressType::RANDOM_DEVICE_ADDRESS);
