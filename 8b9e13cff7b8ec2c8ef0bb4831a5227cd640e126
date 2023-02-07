@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "30734550_fa99cc67",
+        "filename": "system/gd/hci/le_address_manager.h",
+        "patchSetId": 7
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-02-07T22:36:28Z",
+      "side": 1,
+      "message": "Why not Get?",
+      "range": {
+        "startLine": 84,
+        "startChar": 26,
+        "endLine": 84,
+        "endChar": 29
+      },
+      "revId": "8b9e13cff7b8ec2c8ef0bb4831a5227cd640e126",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
