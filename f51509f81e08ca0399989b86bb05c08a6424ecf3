@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "83c1ccf5_54740d44",
+        "filename": "tools/pdl/src/parser.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-02-07T22:39:33Z",
+      "side": 1,
+      "message": "nit: Remove `()`",
+      "range": {
+        "startLine": 11,
+        "startChar": 25,
+        "endLine": 11,
+        "endChar": 27
+      },
+      "revId": "f51509f81e08ca0399989b86bb05c08a6424ecf3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
