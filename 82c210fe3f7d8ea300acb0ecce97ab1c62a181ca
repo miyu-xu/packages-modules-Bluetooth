@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2c0649ea_580275bd",
+        "filename": "system/stack/avdt/avdt_scb_act.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 266,
+      "author": {
+        "id": 1086523
+      },
+      "writtenOn": "2023-02-07T07:05:16Z",
+      "side": 1,
+      "message": "ag/20674268",
+      "range": {
+        "startLine": 266,
+        "startChar": 0,
+        "endLine": 266,
+        "endChar": 51
+      },
+      "revId": "82c210fe3f7d8ea300acb0ecce97ab1c62a181ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
