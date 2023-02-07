@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "afb7433d_5990a3ab",
+        "filename": "system/gd/os/linux_generic/queue_unittest.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-02-07T02:38:14Z",
+      "side": 1,
+      "message": "after setting this promise and before returning, the test can end and the destructor of TestEnqueueEnd is called.\n\nWe return in an invalid context and the mutex has been destroyed",
+      "range": {
+        "startLine": 110,
+        "startChar": 4,
+        "endLine": 110,
+        "endChar": 35
+      },
+      "revId": "60ca3cfd07780f08fde26630de729e25a601a5c9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
