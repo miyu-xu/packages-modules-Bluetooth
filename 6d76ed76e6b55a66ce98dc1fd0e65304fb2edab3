@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c559a843_9079ea6f",
+        "filename": "framework/java/android/bluetooth/le/AdvertisingSetParameters.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-02-07T21:16:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c2be4c10_275025e6",
+      "range": {
+        "startLine": 137,
+        "startChar": 0,
+        "endLine": 137,
+        "endChar": 63
+      },
+      "revId": "6d76ed76e6b55a66ce98dc1fd0e65304fb2edab3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "44d9844a_aa8af0bf",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-02-07T18:47:38Z",
       "side": 1,
       "message": "Should these method names be clarified now that there\u0027s differentiation between resolvable and non resolvable? Or do you think it\u0027s clear enough as is? (Same q for SetRandomAddress)",
+      "range": {
+        "startLine": 82,
+        "startChar": 26,
+        "endLine": 83,
+        "endChar": 45
+      },
+      "revId": "6d76ed76e6b55a66ce98dc1fd0e65304fb2edab3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c038abfd_6f734c61",
+        "filename": "system/gd/hci/le_address_manager.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-02-07T21:16:48Z",
+      "side": 1,
+      "message": "Renamed in a followup, to keep the diff small. SetRandomAddress()  is the name of the HCI command so it should not be renamed.",
+      "parentUuid": "44d9844a_aa8af0bf",
       "range": {
         "startLine": 82,
         "startChar": 26,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e86b80bb_7b2f816f",
+        "filename": "system/gd/hci/le_address_manager.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-02-07T21:16:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "06d017f4_9e21002b",
+      "range": {
+        "startLine": 84,
+        "startChar": 0,
+        "endLine": 84,
+        "endChar": 108
+      },
+      "revId": "6d76ed76e6b55a66ce98dc1fd0e65304fb2edab3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "117ff14a_013b0d3e",
@@ -83,6 +155,30 @@
       "writtenOn": "2023-02-07T18:47:38Z",
       "side": 1,
       "message": "Is this something we should be checking? \n\nFrom the comment it sounds like a bug.",
+      "range": {
+        "startLine": 292,
+        "startChar": 6,
+        "endLine": 294,
+        "endChar": 52
+      },
+      "revId": "6d76ed76e6b55a66ce98dc1fd0e65304fb2edab3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8a0b1665_48904096",
+        "filename": "system/gd/hci/le_advertising_manager.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 294,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-02-07T21:16:48Z",
+      "side": 1,
+      "message": "The scenario is if a client requests a PUBLIC advertiser, on a device that (a) supports privacy, and (b) only uses multi-advertising.\n\nCurrently, we will use RPA. But I can imagine the correct behavior being to use the identity address.\n\nWill fix in a followup since it is a separate behavioral change. (will resolve once I have the CL up)",
+      "parentUuid": "117ff14a_013b0d3e",
       "range": {
         "startLine": 292,
         "startChar": 6,

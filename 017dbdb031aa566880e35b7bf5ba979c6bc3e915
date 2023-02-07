@@ -16,6 +16,24 @@
       "message": "packages/modules/Bluetooth/system/gd/hci/facade/le_advertising_manager_facade.cc:83:11: error: no member named \u0027own_address_type\u0027 in \u0027bluetooth::hci::AdvertisingConfig\u0027\n  config-\u003eown_address_type \u003d static_cast\u003c::bluetooth::hci::OwnAddressType\u003e(config_proto.own_address_type());\n  ~~~~~~  ^",
       "revId": "017dbdb031aa566880e35b7bf5ba979c6bc3e915",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a9770e74_a1c24129",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-02-07T21:16:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da44e7c5_386156e9",
+      "revId": "017dbdb031aa566880e35b7bf5ba979c6bc3e915",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
