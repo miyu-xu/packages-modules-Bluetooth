@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c1537a73_cd6f81a1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1970930
+      },
+      "writtenOn": "2023-02-07T13:42:44Z",
+      "side": 1,
+      "message": "Hi Thomas,\n\nRemoved 2 PAN test cases(PAN/NAP/MISC/UUID/BV-01-C and PAN/NAP/MISC/UUID/BV-02-C) and added them to flaky list.\n\nRequest you to provide your inputs.\n\nRegards,\nFahad",
+      "revId": "83c5af6cb86a85c94dbacceb564426e93e7e9ac9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
