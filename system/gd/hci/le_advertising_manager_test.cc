@@ -37,6 +37,7 @@ namespace hci {
 namespace {
 
 using namespace std::literals;
+using namespace std::literals::chrono_literals;
 
 using packet::RawBuilder;
 
@@ -97,6 +98,8 @@ class TestLeAddressManager : public LeAddressManager {
       : LeAddressManager(
             enqueue_command, handler, public_address, connect_list_size, resolving_list_size) {
     address_policy_ = AddressPolicy::USE_STATIC_ADDRESS;
+    minimum_rotation_time_ = 0ms;
+    maximum_rotation_time_ = 100ms;
   }
 
   AddressPolicy Register(LeAddressManagerCallback* callback) override {
@@ -122,20 +125,6 @@ class TestLeAddressManager : public LeAddressManager {
 
   void SetAddressPolicy(AddressPolicy address_policy) {
     address_policy_ = address_policy;
-  }
-
-  AddressWithType GetAnotherAddress() override {
-    hci::Address address;
-    Address::FromString("05:04:03:02:01:00", address);
-    auto random_address = AddressWithType(address, AddressType::RANDOM_DEVICE_ADDRESS);
-    return random_address;
-  }
-
-  AddressWithType GetCurrentAddress() override {
-    hci::Address address;
-    Address::FromString("05:04:03:02:01:00", address);
-    auto random_address = AddressWithType(address, AddressType::RANDOM_DEVICE_ADDRESS);
-    return random_address;
   }
 
   LeAddressManagerCallback* client_;
@@ -315,7 +304,7 @@ class LeAndroidHciAdvertisingAPITest : public LeAndroidHciAdvertisingManagerTest
 
     AdvertisingConfig advertising_config{};
     advertising_config.advertising_type = AdvertisingType::ADV_IND;
-    advertising_config.requested_advertiser_address_type = AdvertiserAddressType::PUBLIC;
+    advertising_config.requested_advertiser_address_type = AdvertiserAddressType::RESOLVABLE_RANDOM;
     std::vector<GapData> gap_data{};
     GapData data_item{};
     data_item.data_type_ = GapDataType::FLAGS;
@@ -537,19 +526,52 @@ TEST_F(LeAndroidHciAdvertisingManagerTest, create_advertiser_test) {
       SubOcf::SET_ENABLE,
   };
   EXPECT_CALL(
-      mock_advertising_callback_, OnAdvertisingSetStarted(0, id, 0, AdvertisingCallback::AdvertisingStatus::SUCCESS));
+      mock_advertising_callback_,
+      OnAdvertisingSetStarted(0, id, 0, AdvertisingCallback::AdvertisingStatus::SUCCESS));
   for (size_t i = 0; i < sub_ocf.size(); i++) {
     auto packet = test_hci_layer_->GetCommand();
     auto sub_packet = LeMultiAdvtView::Create(LeAdvertisingCommandView::Create(packet));
     ASSERT_TRUE(sub_packet.IsValid());
     ASSERT_EQ(sub_packet.GetSubCmd(), sub_ocf[i]);
-    test_hci_layer_->IncomingEvent(LeMultiAdvtCompleteBuilder::Create(uint8_t{1}, ErrorCode::SUCCESS, sub_ocf[i]));
+    test_hci_layer_->IncomingEvent(
+        LeMultiAdvtCompleteBuilder::Create(uint8_t{1}, ErrorCode::SUCCESS, sub_ocf[i]));
   }
 
   // Disable the advertiser
   le_advertising_manager_->RemoveAdvertiser(id);
   ASSERT_EQ(OpCode::LE_MULTI_ADVT, test_hci_layer_->GetCommand().GetOpCode());
-  test_hci_layer_->IncomingEvent(LeMultiAdvtSetEnableCompleteBuilder::Create(uint8_t{1}, ErrorCode::SUCCESS));
+  test_hci_layer_->IncomingEvent(
+      LeMultiAdvtSetEnableCompleteBuilder::Create(uint8_t{1}, ErrorCode::SUCCESS));
+}
+
+TEST_F(LeAndroidHciAdvertisingManagerTest, create_advertiser_with_rpa_test) {
+  AdvertisingConfig advertising_config{};
+  advertising_config.advertising_type = AdvertisingType::ADV_IND;
+  advertising_config.requested_advertiser_address_type = AdvertiserAddressType::RESOLVABLE_RANDOM;
+  advertising_config.channel_map = 1;
+
+  auto id = le_advertising_manager_->ExtendedCreateAdvertiser(
+      0x00, advertising_config, scan_callback, set_terminated_callback, 0, 0, client_handler_);
+  ASSERT_NE(LeAdvertisingManager::kInvalidId, id);
+  std::vector<SubOcf> sub_ocf = {
+      SubOcf::SET_PARAM,
+      SubOcf::SET_SCAN_RESP,
+      SubOcf::SET_DATA,
+      SubOcf::SET_RANDOM_ADDR,
+      SubOcf::SET_ENABLE,
+  };
+  EXPECT_CALL(
+      mock_advertising_callback_,
+      OnAdvertisingSetStarted(0, id, 0, AdvertisingCallback::AdvertisingStatus::SUCCESS));
+  for (size_t i = 0; i < sub_ocf.size(); i++) {
+    auto packet = test_hci_layer_->GetCommand();
+    auto sub_packet = LeMultiAdvtView::Create(LeAdvertisingCommandView::Create(packet));
+    ASSERT_TRUE(sub_packet.IsValid());
+    ASSERT_EQ(sub_packet.GetSubCmd(), sub_ocf[i]);
+    test_hci_layer_->IncomingEvent(
+        LeMultiAdvtCompleteBuilder::Create(uint8_t{1}, ErrorCode::SUCCESS, sub_ocf[i]));
+  }
+  sync_client_handler();
 }
 
 TEST_F(LeExtendedAdvertisingManagerTest, create_advertiser_test) {
@@ -1255,6 +1277,41 @@ TEST_F(LeExtendedAdvertisingAPITest, no_callbacks_on_resume) {
       LeSetExtendedAdvertisingEnableCompleteBuilder::Create(1, ErrorCode::SUCCESS));
 
   sync_client_handler();
+}
+
+TEST_F(LeExtendedAdvertisingManagerTest, use_non_resolvable_address) {
+  test_acl_manager_->SetAddressPolicy(LeAddressManager::AddressPolicy::USE_RESOLVABLE_ADDRESS);
+
+  // start advertising set with NRPA
+  le_advertising_manager_->ExtendedCreateAdvertiser(
+      0x00,
+      AdvertisingConfig{
+          .requested_advertiser_address_type = AdvertiserAddressType::NONRESOLVABLE_RANDOM,
+          .channel_map = 1,
+      },
+      scan_callback,
+      set_terminated_callback,
+      0,
+      0,
+      client_handler_);
+
+  ASSERT_EQ(
+      test_hci_layer_->GetCommand().GetOpCode(), OpCode::LE_SET_EXTENDED_ADVERTISING_PARAMETERS);
+  test_hci_layer_->IncomingEvent(LeSetExtendedAdvertisingParametersCompleteBuilder::Create(
+      uint8_t{1}, ErrorCode::SUCCESS, static_cast<uint8_t>(-23)));
+
+  auto command = LeAdvertisingCommandView::Create(test_hci_layer_->GetCommand());
+  ASSERT_TRUE(command.IsValid());
+  ASSERT_EQ(command.GetOpCode(), OpCode::LE_SET_ADVERTISING_SET_RANDOM_ADDRESS);
+
+  auto set_address_command =
+      LeSetAdvertisingSetRandomAddressView::Create(LeAdvertisingCommandView::Create(command));
+  ASSERT_TRUE(set_address_command.IsValid());
+  EXPECT_EQ(set_address_command.GetOpCode(), OpCode::LE_SET_ADVERTISING_SET_RANDOM_ADDRESS);
+
+  // checking that it is an NRPA (first two bits = 0b00)
+  Address address = set_address_command.GetRandomAddress();
+  EXPECT_EQ(address.data()[5] >> 6, 0b00);
 }
 
 }  // namespace

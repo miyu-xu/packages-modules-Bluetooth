@@ -81,6 +81,7 @@ class LeAddressManager {
       LeAddressManagerCallback* callback, std::chrono::milliseconds timeout = kUnregisterSyncTimeoutInMs);
   virtual AddressWithType GetCurrentAddress();  // What was set in SetRandomAddress()
   virtual AddressWithType GetAnotherAddress();  // A new random address without rotating.
+  virtual AddressWithType NewNonResolvableAddress();  // A new non-resolvable address
 
   uint8_t GetFilterAcceptListSize();
   uint8_t GetResolvingListSize();
@@ -104,6 +105,8 @@ class LeAddressManager {
 
  protected:
   AddressPolicy address_policy_ = AddressPolicy::POLICY_NOT_SET;
+  std::chrono::milliseconds minimum_rotation_time_;
+  std::chrono::milliseconds maximum_rotation_time_;
 
  private:
   enum ClientState {
@@ -172,8 +175,6 @@ class LeAddressManager {
   Address public_address_;
   std::unique_ptr<os::Alarm> address_rotation_alarm_;
   crypto_toolbox::Octet16 rotation_irk_;
-  std::chrono::milliseconds minimum_rotation_time_;
-  std::chrono::milliseconds maximum_rotation_time_;
   uint8_t connect_list_size_;
   uint8_t resolving_list_size_;
   std::queue<Command> cached_commands_;
