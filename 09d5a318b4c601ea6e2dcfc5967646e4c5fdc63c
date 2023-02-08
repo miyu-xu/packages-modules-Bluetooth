@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7978f7e9_2b14476f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 15
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-02-08T23:09:47Z",
+      "side": 1,
+      "message": "gdcert tests should be resolved before +2 is given",
+      "revId": "09d5a318b4c601ea6e2dcfc5967646e4c5fdc63c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
