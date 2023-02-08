@@ -22,6 +22,30 @@
       },
       "revId": "fd3d27c50765ea59d845ff8e56dcc4e3e495934d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9850c647_30f00291",
+        "filename": "system/bta/jv/bta_jv_act.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 932,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2023-02-08T18:46:16Z",
+      "side": 1,
+      "message": "Yep I noticed. Thanks.",
+      "parentUuid": "a0e30138_721fb5e4",
+      "range": {
+        "startLine": 932,
+        "startChar": 25,
+        "endLine": 932,
+        "endChar": 28
+      },
+      "revId": "fd3d27c50765ea59d845ff8e56dcc4e3e495934d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
