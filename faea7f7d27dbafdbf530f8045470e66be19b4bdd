@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "20e06234_4a298f19",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 23
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-02-08T20:02:41Z",
+      "side": 1,
+      "message": "Just logging questions",
+      "revId": "faea7f7d27dbafdbf530f8045470e66be19b4bdd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9b7d5883_7dca6159",
+        "filename": "system/stack/btm/btm_inq.cc",
+        "patchSetId": 23
+      },
+      "lineNbr": 1467,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-02-08T20:02:41Z",
+      "side": 1,
+      "message": "Do we need to log the address here?",
+      "range": {
+        "startLine": 1467,
+        "startChar": 50,
+        "endLine": 1467,
+        "endChar": 51
+      },
+      "revId": "faea7f7d27dbafdbf530f8045470e66be19b4bdd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d4926b8b_4b6b083e",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 23
+      },
+      "lineNbr": 2250,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-02-08T20:02:41Z",
+      "side": 1,
+      "message": "INFO?",
+      "range": {
+        "startLine": 2250,
+        "startChar": 2,
+        "endLine": 2250,
+        "endChar": 10
+      },
+      "revId": "faea7f7d27dbafdbf530f8045470e66be19b4bdd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
