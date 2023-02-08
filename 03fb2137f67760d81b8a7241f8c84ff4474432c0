@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e11d8cc6_5c05a03a",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 6325,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-02-08T22:42:12Z",
+      "side": 1,
+      "message": "when user enables LE audio in development settings, should we just allow ALL le audio devices to connect?\n\nalso for the method name:\n\nnit: isLeAudioAllowed(BluetoothDevice device)\n\nshould be fine",
+      "range": {
+        "startLine": 6325,
+        "startChar": 0,
+        "endLine": 6325,
+        "endChar": 65
+      },
+      "revId": "03fb2137f67760d81b8a7241f8c84ff4474432c0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
