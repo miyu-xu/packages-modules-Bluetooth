@@ -78,14 +78,15 @@ class LeAddressManager {
   virtual AddressPolicy Register(LeAddressManagerCallback* callback);
   virtual void Unregister(LeAddressManagerCallback* callback);
   virtual bool UnregisterSync(
-      LeAddressManagerCallback* callback, std::chrono::milliseconds timeout = kUnregisterSyncTimeoutInMs);
-  AddressWithType GetCurrentAddress();  // What was set in SetRandomAddress()
-  AddressWithType GetAnotherAddress();  // A new random address without rotating.
+      LeAddressManagerCallback* callback,
+      std::chrono::milliseconds timeout = kUnregisterSyncTimeoutInMs);
+  AddressWithType GetCurrentAddress();        // What was set in SetRandomAddress()
+  AddressWithType GetAnotherAddress();        // A new random address without rotating.
+  AddressWithType NewNonResolvableAddress();  // A new non-resolvable address
 
   uint8_t GetFilterAcceptListSize();
   uint8_t GetResolvingListSize();
-  void AddDeviceToFilterAcceptList(FilterAcceptListAddressType connect_list_address_type, Address address);
-  void AddDeviceToResolvingList(
+  void AddDeviceToFilterAcceptList(FilterAcceptListAddressType connect_list_address_type, Address address);  void AddDeviceToResolvingList(
       PeerAddressType peer_identity_address_type,
       Address peer_identity_address,
       const std::array<uint8_t, 16>& peer_irk,
