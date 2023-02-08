@@ -85,6 +85,29 @@
       },
       "revId": "afba4a5456236cafd6226f06bc0f271bb14eb3a2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "67d985a3_1b7f78a5",
+        "filename": "system/stack/l2cap/l2c_utils.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 3473,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-02-08T22:03:18Z",
+      "side": 1,
+      "message": "should it be `|` ? I guess we are trying to keep the code information",
+      "range": {
+        "startLine": 3473,
+        "startChar": 32,
+        "endLine": 3473,
+        "endChar": 33
+      },
+      "revId": "afba4a5456236cafd6226f06bc0f271bb14eb3a2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
