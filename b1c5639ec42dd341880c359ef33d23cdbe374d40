@@ -22,6 +22,30 @@
       },
       "revId": "b1c5639ec42dd341880c359ef33d23cdbe374d40",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2ee20762_e261303f",
+        "filename": "android/app/src/com/android/bluetooth/btservice/PhonePolicy.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 404,
+      "author": {
+        "id": 1306903
+      },
+      "writtenOn": "2023-02-08T05:20:51Z",
+      "side": 1,
+      "message": "Before the change the order doesn\u0027t impact too much as it only set a value to the database.\n\nSince now we are going to create profile connection to a remote device, the information of isLeAudioProfileAllowed is required in A2DP and HFP parts so the Bluetooth service doesn\u0027t connect to classic profiles in LE only mode (mPreferLeAudioOnlyMode \u0026\u0026 isLeAudioProfileAllowed).\n\nI think I should have unit tests here to make it easier to understand with actually use cases. Please hold the review for now.\n\nThanks.",
+      "parentUuid": "9e00f4cd_ab37fe4b",
+      "range": {
+        "startLine": 369,
+        "startChar": 7,
+        "endLine": 404,
+        "endChar": 88
+      },
+      "revId": "b1c5639ec42dd341880c359ef33d23cdbe374d40",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
