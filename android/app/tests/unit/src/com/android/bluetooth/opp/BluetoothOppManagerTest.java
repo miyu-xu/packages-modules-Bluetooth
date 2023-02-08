@@ -16,19 +16,19 @@
 
 package com.android.bluetooth.opp;
 
-import static androidx.test.espresso.intent.Intents.intended;
 import static androidx.test.espresso.intent.Intents.intending;
 import static androidx.test.espresso.intent.matcher.IntentMatchers.anyIntent;
-import static androidx.test.espresso.intent.matcher.IntentMatchers.hasComponent;
 
 import static com.android.bluetooth.opp.BluetoothOppManager.ALLOWED_INSERT_SHARE_THREAD_NUMBER;
 import static com.android.bluetooth.opp.BluetoothOppManager.OPP_PREFERENCE_FILE;
 
 import static com.google.common.truth.Truth.assertThat;
 
+import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.any;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.eq;
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.nullable;
 import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.timeout;
@@ -39,8 +39,8 @@ import android.bluetooth.BluetoothManager;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.ContextWrapper;
+import android.content.res.AssetFileDescriptor;
 import android.net.Uri;
-import android.util.Log;
 
 import androidx.test.espresso.intent.Intents;
 import androidx.test.platform.app.InstrumentationRegistry;
@@ -54,6 +54,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.MockitoAnnotations;
 
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -65,17 +67,25 @@ public class BluetoothOppManagerTest {
     BluetoothMethodProxy mCallProxy;
 
     @Before
-    public void setUp() {
+    public void setUp() throws IOException {
         MockitoAnnotations.initMocks(this);
         mContext = spy(new ContextWrapper(
                 InstrumentationRegistry.getInstrumentation().getTargetContext()));
 
-        mCallProxy = spy(BluetoothMethodProxy.getInstance());
+        mCallProxy = mock(BluetoothMethodProxy.class);
         BluetoothMethodProxy.setInstanceForTesting(mCallProxy);
 
         doReturn(null).when(mCallProxy).contentResolverInsert(
                 any(), eq(BluetoothShare.CONTENT_URI), any());
 
+        AssetFileDescriptor fd = mock(AssetFileDescriptor.class);
+        FileInputStream fs = mock(FileInputStream.class);
+        doReturn(fs).when(fd).createInputStream();
+        doReturn(100, -1).when(fs).read(any(), anyInt(), anyInt());
+        doReturn(fd).when(mCallProxy)
+                .contentResolverOpenAssetFileDescriptor(any(), any(), any());
+
+        BluetoothOppTestUtils.enableOppActivities(true, mContext);
         Intents.init();
     }
 
@@ -86,6 +96,7 @@ public class BluetoothOppManagerTest {
         mContext.getSharedPreferences(OPP_PREFERENCE_FILE, 0).edit().clear().apply();
         BluetoothOppManager.sInstance = null;
 
+        BluetoothOppTestUtils.enableOppActivities(false, mContext);
         Intents.release();
     }
 
@@ -196,7 +207,7 @@ public class BluetoothOppManagerTest {
 
     @Test
     public void startTransferMoreThanAllowedInsertShareThreadNumberTimes_blockExceedingTransfer()
-            throws InterruptedException {
+            throws Exception {
         BluetoothOppManager bluetoothOppManager = BluetoothOppManager.getInstance(mContext);
         String address = "AA:BB:CC:DD:EE:FF";
         bluetoothOppManager.saveSendingFileInfo("text/plain", "content:///abc/xyz.txt",
