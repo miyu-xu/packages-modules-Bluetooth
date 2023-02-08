@@ -22,6 +22,30 @@
       },
       "revId": "bb75f21df2731832e40308ffbd55446dbf163219",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cf3218e5_03ce9142",
+        "filename": "system/bta/include/bta_jv_api.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 229,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2023-02-08T02:05:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f1771960_2ce4d612",
+      "range": {
+        "startLine": 229,
+        "startChar": 16,
+        "endLine": 229,
+        "endChar": 21
+      },
+      "revId": "bb75f21df2731832e40308ffbd55446dbf163219",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
