@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6e3ca5b1_52cb26ee",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-02-08T21:38:01Z",
+      "side": 1,
+      "message": "The first line should be shorter, the rest looks like an explanation.\n\nMaybe:\n\"Replace L2CAP_CONN_OTHER_ERROR with specific errors\"",
+      "revId": "afba4a5456236cafd6226f06bc0f271bb14eb3a2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "221cc8ff_55ac526e",
+        "filename": "system/stack/include/l2cdefs.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-02-08T21:38:01Z",
+      "side": 1,
+      "message": "What\u0027s the difference between NO_LINK and ACL_CONNECTION_FAILED?",
+      "range": {
+        "startLine": 151,
+        "startChar": 2,
+        "endLine": 151,
+        "endChar": 20
+      },
+      "revId": "afba4a5456236cafd6226f06bc0f271bb14eb3a2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "57d63876_9c7b0e96",
+        "filename": "system/stack/l2cap/l2c_utils.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 3471,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-02-08T21:38:01Z",
+      "side": 1,
+      "message": "Why not treat this as the default below?",
+      "range": {
+        "startLine": 3469,
+        "startChar": 0,
+        "endLine": 3471,
+        "endChar": 36
+      },
+      "revId": "afba4a5456236cafd6226f06bc0f271bb14eb3a2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7239771a_c139afed",
+        "filename": "system/stack/l2cap/l2c_utils.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 3473,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-02-08T21:38:01Z",
+      "side": 1,
+      "message": "| ?",
+      "range": {
+        "startLine": 3473,
+        "startChar": 32,
+        "endLine": 3473,
+        "endChar": 33
+      },
+      "revId": "afba4a5456236cafd6226f06bc0f271bb14eb3a2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
