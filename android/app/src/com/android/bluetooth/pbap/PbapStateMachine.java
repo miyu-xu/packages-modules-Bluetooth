@@ -288,6 +288,7 @@ public class PbapStateMachine extends StateMachine {
 
             mServiceHandler.obtainMessage(BluetoothPbapService.MSG_STATE_MACHINE_DONE,
                     PbapStateMachine.this).sendToTarget();
+            mService.stopListen();
             broadcastStateTransitions();
         }
     }
@@ -309,6 +310,7 @@ public class PbapStateMachine extends StateMachine {
             MetricsLogger.logProfileConnectionEvent(BluetoothMetricsProto.ProfileId.PBAP);
             mService.setConnectionPolicy(
                     mRemoteDevice, BluetoothProfile.CONNECTION_POLICY_ALLOWED);
+            mService.startListen();
         }
 
         @Override
