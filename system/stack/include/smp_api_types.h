@@ -136,6 +136,7 @@ typedef enum : uint8_t {
   SMP_FAIL = (SMP_MAX_FAIL_RSN_PER_SPEC + 0x0A), /* 0x18 */
 
   SMP_CONN_TOUT = (SMP_MAX_FAIL_RSN_PER_SPEC + 0x0B), /* 0x19 */
+  SMP_PAIR_FAIL_CTKD_CLASSIC_LE = (SMP_MAX_FAIL_RSN_PER_SPEC + 0x0C), /* 0x20 */
 } tSMP_STATUS;
 
 #define CASE_RETURN_TEXT(code) \

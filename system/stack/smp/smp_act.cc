@@ -2147,7 +2147,7 @@ void smp_derive_link_key_from_long_term_key(tSMP_CB* p_cb,
  *
  ******************************************************************************/
 void smp_br_process_link_key(tSMP_CB* p_cb, tSMP_INT_DATA* p_data) {
-  tSMP_STATUS status = SMP_PAIR_FAIL_UNKNOWN;
+  tSMP_STATUS status = SMP_PAIR_FAIL_CTKD_CLASSIC_LE;
 
   SMP_TRACE_DEBUG("%s", __func__);
   if (!smp_calculate_long_term_key_from_link_key(p_cb)) {
