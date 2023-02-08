@@ -340,6 +340,13 @@ void smp_log_metrics(const RawAddress& bd_addr, bool is_outgoing,
     STREAM_TO_UINT8(io_capability, p_buf);
   }
 
+  // check for the method is_secure or legacy 
+  uint8_t is_oob_flag = 0;
+  if (raw_cmd == SMP_OPCODE_PAIRING_REQ || raw_cmd == SMP_OPCODE_PAIRING_RSP) {
+    STREAM_TO_UINT8(is_oob_flag, p_buf);
+  }
+
+  bool is_oob = is_oob_flag == 1;
   uint16_t metric_cmd =
       is_over_br ? SMP_METRIC_COMMAND_BR_FLAG : SMP_METRIC_COMMAND_LE_FLAG;
   metric_cmd |= static_cast<uint16_t>(raw_cmd);
@@ -348,7 +355,7 @@ void smp_log_metrics(const RawAddress& bd_addr, bool is_outgoing,
                   : android::bluetooth::DirectionEnum::DIRECTION_INCOMING;
 
   log_smp_pairing_event(bd_addr, metric_cmd, direction,
-                        static_cast<uint16_t>(failure_reason), io_capability);
+                        static_cast<uint16_t>(failure_reason), io_capability, is_oob);
 }
 
 /*******************************************************************************
@@ -1013,7 +1020,7 @@ void smp_proc_pairing_cmpl(tSMP_CB* p_cb) {
       metric_status |= SMP_METRIC_STATUS_INTERNAL_FLAG;
     }
     log_smp_pairing_event(p_cb->pairing_bda, metric_cmd, direction,
-                          metric_status, /* empty IO Capability */ 0);
+                          metric_status, /* empty IO Capability */ 0, p_cb->is_oob);
   }
 
   if (p_cb->status == SMP_SUCCESS && p_cb->smp_over_br) {
