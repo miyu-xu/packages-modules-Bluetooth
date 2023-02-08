@@ -22,6 +22,30 @@
       },
       "revId": "a86d4053eef15b90ca86607abec00747ca86b133",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7d7268de_6e617b7a",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2023-02-08T11:24:34Z",
+      "side": 1,
+      "message": "For current, only RSSI read remote tx power to calculate distance. We can handle this if other method required tx power as well.\nThanks!",
+      "parentUuid": "7d0a8292_e61e233a",
+      "range": {
+        "startLine": 141,
+        "startChar": 42,
+        "endLine": 141,
+        "endChar": 53
+      },
+      "revId": "a86d4053eef15b90ca86607abec00747ca86b133",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
