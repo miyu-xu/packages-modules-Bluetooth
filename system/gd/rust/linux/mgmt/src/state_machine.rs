@@ -31,6 +31,8 @@ pub const RESET_ON_RESTART_COUNT: i32 = 2;
 /// the socket.
 pub const INDEX_REMOVED_DEBOUNCE_TIME: Duration = Duration::from_millis(150);
 
+pub const INDEX_ADDED_DEBOUNCE_TIME: Duration = Duration::from_millis(500);
+
 #[derive(Debug, PartialEq, Copy, Clone)]
 #[repr(u32)]
 pub enum ProcessState {
@@ -456,19 +458,23 @@ fn configure_hci(hci_tx: mpsc::Sender<Message>, floss_enabled: bool) {
                             MgmtEvent::IndexAdded(hci) => {
                                 let devpath = config_util::get_devpath_for_hci(hci.into());
                                 if let Some(d) = devpath {
-                                    let _ = hci_tx
-                                        .send_timeout(
-                                            Message::AdapterStateChange(
-                                                AdapterStateActions::HciDevicePresence(
-                                                    d,
-                                                    RealHciIndex(hci.into()),
-                                                    true,
+                                    let txl = hci_tx.clone();
+                                    tokio::spawn(async move {
+                                        tokio::time::sleep(INDEX_ADDED_DEBOUNCE_TIME).await;
+                                        let _ = txl
+                                            .send_timeout(
+                                                Message::AdapterStateChange(
+                                                    AdapterStateActions::HciDevicePresence(
+                                                        d,
+                                                        RealHciIndex(hci.into()),
+                                                        true,
+                                                    ),
                                                 ),
-                                            ),
-                                            TX_SEND_TIMEOUT_DURATION,
-                                        )
-                                        .await
-                                        .unwrap();
+                                                TX_SEND_TIMEOUT_DURATION,
+                                            )
+                                            .await
+                                            .unwrap();
+                                    });
                                 }
                             }
                             MgmtEvent::IndexRemoved(hci) => {
