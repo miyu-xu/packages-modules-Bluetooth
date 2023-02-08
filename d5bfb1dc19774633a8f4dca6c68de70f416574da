@@ -97,6 +97,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "cf73384f_241b994f",
+        "filename": "floss/hcidoc/src/parser.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-02-08T03:50:37Z",
+      "side": 1,
+      "message": "Hmm, I don\u0027t quite get why we need two constants. We just want to translate unix timestamp to btsnoop timestamp, which is the conversion from year 0 to year 1970.",
+      "parentUuid": "1823ae23_c8fa7ef2",
+      "range": {
+        "startLine": 121,
+        "startChar": 6,
+        "endLine": 121,
+        "endChar": 31
+      },
+      "revId": "d5bfb1dc19774633a8f4dca6c68de70f416574da",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "78b5ba44_0027af34",
         "filename": "floss/hcidoc/src/parser.rs",
         "patchSetId": 1
