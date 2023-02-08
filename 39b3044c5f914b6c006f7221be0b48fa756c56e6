@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1c2ead36_3a790c3d",
+        "filename": "system/gd/hci/le_address_manager.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 225,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-02-08T01:33:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0bed8300_3716f1d9",
+      "range": {
+        "startLine": 224,
+        "startChar": 6,
+        "endLine": 225,
+        "endChar": 62
+      },
+      "revId": "39b3044c5f914b6c006f7221be0b48fa756c56e6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5f3fe405_b165253f",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-02-07T22:38:40Z",
       "side": 1,
       "message": "packages/modules/Bluetooth/system/gd/hci/le_address_manager.cc:232:10: error: use of undeclared identifier \u0027SupportsPrivacy\u0027\n  ASSERT(SupportsPrivacy());",
+      "range": {
+        "startLine": 232,
+        "startChar": 9,
+        "endLine": 232,
+        "endChar": 24
+      },
+      "revId": "39b3044c5f914b6c006f7221be0b48fa756c56e6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "99bf3ca1_c7234146",
+        "filename": "system/gd/hci/le_address_manager.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-02-08T01:33:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5f3fe405_b165253f",
       "range": {
         "startLine": 232,
         "startChar": 9,
