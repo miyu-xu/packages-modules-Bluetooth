@@ -240,7 +240,8 @@ void LogMetricSmpPairingEvent(
     uint16_t smp_cmd,
     android::bluetooth::DirectionEnum direction,
     uint16_t smp_fail_reason,
-    uint8_t io_capability) {
+    uint8_t io_capability,
+    bool is_oob) {
   int metric_id = 0;
   if (!address.IsEmpty()) {
     metric_id = MetricIdManager::GetInstance().AllocateId(address);
@@ -252,7 +253,8 @@ void LogMetricSmpPairingEvent(
       direction,
       smp_fail_reason,
       metric_id,
-      io_capability);
+      io_capability,
+      is_oob);
   if (ret < 0) {
     LOG_WARN(
         "Failed for %s, smp_cmd %s, direction %d, smp_fail_reason %s, error %d",

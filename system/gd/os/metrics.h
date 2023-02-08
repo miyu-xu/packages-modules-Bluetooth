@@ -170,7 +170,8 @@ void LogMetricSmpPairingEvent(
     uint16_t smp_cmd,
     android::bluetooth::DirectionEnum direction,
     uint16_t smp_fail_reason,
-    uint8_t io_capability);
+    uint8_t io_capability,
+    bool is_oob);
 
 /**
  * Logs there is an event related Bluetooth classic pairing

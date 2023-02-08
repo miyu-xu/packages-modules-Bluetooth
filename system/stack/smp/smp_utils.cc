@@ -348,7 +348,7 @@ void smp_log_metrics(const RawAddress& bd_addr, bool is_outgoing,
                   : android::bluetooth::DirectionEnum::DIRECTION_INCOMING;
 
   log_smp_pairing_event(bd_addr, metric_cmd, direction,
-                        static_cast<uint16_t>(failure_reason), io_capability);
+                        static_cast<uint16_t>(failure_reason), io_capability, p_cb->is_oob);
 }
 
 /*******************************************************************************
@@ -1013,7 +1013,7 @@ void smp_proc_pairing_cmpl(tSMP_CB* p_cb) {
       metric_status |= SMP_METRIC_STATUS_INTERNAL_FLAG;
     }
     log_smp_pairing_event(p_cb->pairing_bda, metric_cmd, direction,
-                          metric_status, /* empty IO Capability */ 0);
+                          metric_status, /* empty IO Capability */ 0, p_cb->is_oob);
   }
 
   if (p_cb->status == SMP_SUCCESS && p_cb->smp_over_br) {
