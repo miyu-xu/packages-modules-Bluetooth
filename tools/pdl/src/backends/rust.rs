@@ -115,6 +115,7 @@ fn generate_packet_decl(
     id: &str,
     _constraints: &[ast::Constraint],
     fields: &[ast::Field],
+    parent_id: Option<&str>,
 ) -> proc_macro2::TokenStream {
     // TODO(mgeisler): use the convert_case crate to convert between
     // `FooBar` and `foo_bar` in the code below.
@@ -206,6 +207,15 @@ fn generate_packet_decl(
         }
     });
 
+    let top_field = parent_id.map(|parent_id| {
+        let parent_id_lower = format_ident!("{}", parent_id.to_lowercase());
+        let parent_data = format_ident!("{parent_id}Data");
+        quote! {
+            #[cfg_attr(feature = "serde", serde(flatten))]
+            #parent_id_lower: Arc<#parent_data>,
+        }
+    });
+
     let (constant_width, packet_size) = generate_packet_size_getter(scope, fields);
     let conforms = if constant_width == 0 {
         quote! { true }
@@ -226,6 +236,8 @@ fn generate_packet_decl(
         #[derive(Debug, Clone)]
         #[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
         pub struct #id_packet {
+            #top_field
+
             #[cfg_attr(feature = "serde", serde(flatten))]
             #id_lower: Arc<#id_data>,
         }
@@ -395,10 +407,16 @@ fn generate_enum_decl(id: &str, tags: &[ast::Tag]) -> proc_macro2::TokenStream {
 
 fn generate_decl(scope: &lint::Scope<'_>, file: &ast::File, decl: &ast::Decl) -> String {
     match decl {
-        ast::Decl::Packet { id, constraints, fields, .. }
-        | ast::Decl::Struct { id, constraints, fields, .. } => {
-            generate_packet_decl(scope, file.endianness.value, id, constraints, fields).to_string()
-        }
+        ast::Decl::Packet { id, constraints, fields, parent_id, .. }
+        | ast::Decl::Struct { id, constraints, fields, parent_id, .. } => generate_packet_decl(
+            scope,
+            file.endianness.value,
+            id,
+            constraints,
+            fields,
+            parent_id.as_deref(),
+        )
+        .to_string(),
         ast::Decl::Enum { id, tags, .. } => generate_enum_decl(id, tags).to_string(),
         _ => todo!("unsupported Decl::{:?}", decl),
     }

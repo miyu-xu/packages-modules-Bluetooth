@@ -269,11 +269,19 @@ impl<'a> FieldSerializer<'a> {
             panic!("Payload field does not start on an octet boundary");
         }
 
+        let children =
+            self.scope.children.get(self.packet_name).map(Vec::as_slice).unwrap_or_default();
+        let child_ids = children
+            .iter()
+            .map(|child| format_ident!("{}", child.id().unwrap()))
+            .collect::<Vec<_>>();
+
         if self.shift == 0 {
             let span = format_ident!("{}", self.span);
             let packet_data_child = format_ident!("{}DataChild", self.packet_name);
             self.code.push(quote! {
                 match &self.child {
+                    #(#packet_data_child::#child_ids(child) => child.write_to(#span),)*
                     #packet_data_child::Payload(payload) => #span.put_slice(payload),
                     #packet_data_child::None => {},
                 }

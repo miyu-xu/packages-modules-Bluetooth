@@ -160,6 +160,7 @@ fn main() {
             "Packet_Payload_Field_VariableSize",
             "Packet_Payload_Field_UnknownSize",
             "Packet_Payload_Field_UnknownSize_Terminal",
+            "ScalarChild_A",
         ],
         &module_name,
     );
