@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2d77c5bb_3f9250e5",
+        "filename": "system/stack/test/sdp/stack_sdp_utils_test.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 1902235
+      },
+      "writtenOn": "2023-02-08T16:39:50Z",
+      "side": 1,
+      "message": "make it to 0 instead of 0x0 to be consistent with other values",
+      "range": {
+        "startLine": 189,
+        "startChar": 51,
+        "endLine": 189,
+        "endChar": 55
+      },
+      "revId": "b1541939783739d0a3a393b12980e4391e5286a9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b3e5fcf2_c62fecab",
+        "filename": "system/stack/test/sdp/stack_sdp_utils_test.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 558,
+      "author": {
+        "id": 1902235
+      },
+      "writtenOn": "2023-02-08T16:39:50Z",
+      "side": 1,
+      "message": "add new line after every test case",
+      "range": {
+        "startLine": 558,
+        "startChar": 0,
+        "endLine": 558,
+        "endChar": 6
+      },
+      "revId": "b1541939783739d0a3a393b12980e4391e5286a9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
