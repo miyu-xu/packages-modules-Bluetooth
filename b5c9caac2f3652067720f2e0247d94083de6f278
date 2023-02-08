@@ -59,6 +59,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9819b5b2_2bc19bb5",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 6334,
+      "author": {
+        "id": 1875587
+      },
+      "writtenOn": "2023-02-08T15:09:21Z",
+      "side": 1,
+      "message": "The model name was read prior than the encryption which should be got before the service connection",
+      "parentUuid": "ff65a45a_2df78b23",
+      "range": {
+        "startLine": 6334,
+        "startChar": 34,
+        "endLine": 6334,
+        "endChar": 44
+      },
+      "revId": "b5c9caac2f3652067720f2e0247d94083de6f278",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "05df9699_62090dac",
@@ -107,6 +131,24 @@
       "writtenOn": "2023-02-06T13:52:42Z",
       "side": 1,
       "message": "is there a reason why this logic is in EATT?\n\nI think this should go maybe to gatt_attr.cc ?",
+      "revId": "b5c9caac2f3652067720f2e0247d94083de6f278",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "daceae9c_7f2732de",
+        "filename": "system/stack/eatt/eatt_impl.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 1050,
+      "author": {
+        "id": 1875587
+      },
+      "writtenOn": "2023-02-08T15:09:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a3f4e596_f294325a",
       "revId": "b5c9caac2f3652067720f2e0247d94083de6f278",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }

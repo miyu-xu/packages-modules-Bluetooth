@@ -16,6 +16,24 @@
       "message": "why this is a part of this CL?",
       "revId": "5c7ddd476810b3204053ed0909cfa755633fb2b3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "59adc193_9ba60df7",
+        "filename": "system/stack/test/common/mock_btif_storage.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1875587
+      },
+      "writtenOn": "2023-02-08T15:09:21Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "5d195893_1968061d",
+      "revId": "5c7ddd476810b3204053ed0909cfa755633fb2b3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

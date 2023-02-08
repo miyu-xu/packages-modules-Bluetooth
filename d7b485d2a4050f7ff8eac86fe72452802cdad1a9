@@ -63,6 +63,24 @@
       "message": "this connect is done after encryption is completed. Should\u0027t we do it after connection is established?",
       "revId": "d7b485d2a4050f7ff8eac86fe72452802cdad1a9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2c143451_76e953e0",
+        "filename": "system/stack/eatt/eatt_impl.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 999,
+      "author": {
+        "id": 1875587
+      },
+      "writtenOn": "2023-02-08T15:09:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "774c1a57_b7cfd37f",
+      "revId": "d7b485d2a4050f7ff8eac86fe72452802cdad1a9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
