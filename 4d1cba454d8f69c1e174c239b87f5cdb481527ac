@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "acef9bcb_2a314d99",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1628622
+      },
+      "writtenOn": "2023-02-08T12:06:26Z",
+      "side": 1,
+      "message": "Thanks for the review!",
+      "revId": "4d1cba454d8f69c1e174c239b87f5cdb481527ac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7ad8576d_b370a818",
@@ -14,6 +31,24 @@
       "writtenOn": "2023-02-07T22:27:09Z",
       "side": 1,
       "message": "Should this read `initial_credit` instead? (see line 1016)",
+      "revId": "4d1cba454d8f69c1e174c239b87f5cdb481527ac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "de4f7081_68543219",
+        "filename": "system/stack/l2cap/l2c_ble.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1012,
+      "author": {
+        "id": 1628622
+      },
+      "writtenOn": "2023-02-08T12:06:26Z",
+      "side": 1,
+      "message": "initial_credit is the initial credits the peer device sent to the local device.\n\nL2CA_LeCreditDefault() is the initial credits the local device sends to the peer.\n\nSo they are not always the same value.",
+      "parentUuid": "7ad8576d_b370a818",
       "revId": "4d1cba454d8f69c1e174c239b87f5cdb481527ac",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
