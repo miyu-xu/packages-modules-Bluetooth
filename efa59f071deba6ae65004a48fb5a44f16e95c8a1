@@ -16,6 +16,24 @@
       "message": "Use this to ensure default values.\n\n```\ntBTA_UTL_COD cod {}\n```",
       "revId": "efa59f071deba6ae65004a48fb5a44f16e95c8a1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c8f31cf2_873f744f",
+        "filename": "system/bta/av/bta_av_act.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 2298,
+      "author": {
+        "id": 1965943
+      },
+      "writtenOn": "2023-02-08T06:48:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6fd2dffe_5497615b",
+      "revId": "efa59f071deba6ae65004a48fb5a44f16e95c8a1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
