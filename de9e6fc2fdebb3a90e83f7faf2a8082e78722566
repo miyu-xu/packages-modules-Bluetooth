@@ -94,6 +94,30 @@
       },
       "revId": "de9e6fc2fdebb3a90e83f7faf2a8082e78722566",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "554fb181_0d1ead33",
+        "filename": "system/stack/include/l2cdefs.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-02-08T17:47:19Z",
+      "side": 1,
+      "message": "I only see a few usages, and I feel like it\u0027s adding to the mess instead of making things clearer.\n\nMaybe a compromise would be to make the error codes maskable, so that these error codes are 512 + the existing ones.\n\nL2CAP_CONN_INSUFFICIENT_AUTHENTICATION \u003d 512 + L2CAP_LE_RESULT_INSUFFICIENT_AUTHENTICATION\n\nOr something like that.  Then it would be easy to convert back and forth.",
+      "parentUuid": "9dc4c36c_fa5d5b2e",
+      "range": {
+        "startLine": 115,
+        "startChar": 2,
+        "endLine": 115,
+        "endChar": 34
+      },
+      "revId": "de9e6fc2fdebb3a90e83f7faf2a8082e78722566",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
