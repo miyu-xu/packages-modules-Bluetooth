@@ -196,6 +196,7 @@ using ::blueberry::facade::hci::AddressMsg;
 using ::blueberry::facade::hci::AdvertisingCallbackMsg;
 using ::blueberry::facade::hci::AdvertisingCallbackMsgType;
 using ::blueberry::facade::hci::AdvertisingStatus;
+using ::blueberry::facade::hci::BluetoothOwnAddressTypeEnum;
 using ::blueberry::facade::hci::CreateAdvertiserRequest;
 using ::blueberry::facade::hci::CreateAdvertiserResponse;
 using ::blueberry::facade::hci::EnableAdvertiserRequest;
