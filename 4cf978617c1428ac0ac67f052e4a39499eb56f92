@@ -22,6 +22,30 @@
       },
       "revId": "4cf978617c1428ac0ac67f052e4a39499eb56f92",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6b505188_292c0273",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 2105,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2023-02-08T06:31:47Z",
+      "side": 1,
+      "message": "getBondRequestPackageName doesn\u0027t sound like what this function would do (should be getBondRequester\u0027sPackageName) I think getBondCreateCaller sounds better, or something like getCreateBondRequesterName.\n\nWhat do you think?",
+      "parentUuid": "06b3ce8d_d1989966",
+      "range": {
+        "startLine": 2105,
+        "startChar": 18,
+        "endLine": 2105,
+        "endChar": 37
+      },
+      "revId": "4cf978617c1428ac0ac67f052e4a39499eb56f92",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
