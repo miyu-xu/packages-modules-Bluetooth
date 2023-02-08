@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bc4b611d_154d51d6",
+        "filename": "framework/java/android/bluetooth/le/DistanceMeasurementManager.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2023-02-08T09:13:57Z",
+      "side": 1,
+      "message": "Done, thanks!",
+      "parentUuid": "6eade515_7546f2e6",
+      "range": {
+        "startLine": 97,
+        "startChar": 52,
+        "endLine": 97,
+        "endChar": 68
+      },
+      "revId": "e6ac25022f53384e5270871891dfeb380baee667",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "13fcf7ba_e8df6a53",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-02-07T18:42:00Z",
       "side": 1,
       "message": "Should we add a check on the ID to ensure its one of `DistanceMeasurementMethodId` ?",
+      "range": {
+        "startLine": 197,
+        "startChar": 0,
+        "endLine": 197,
+        "endChar": 21
+      },
+      "revId": "e6ac25022f53384e5270871891dfeb380baee667",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a3c2656c_165352fd",
+        "filename": "framework/java/android/bluetooth/le/DistanceMeasurementMethod.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2023-02-08T09:13:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "13fcf7ba_e8df6a53",
       "range": {
         "startLine": 197,
         "startChar": 0,
