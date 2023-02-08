@@ -328,6 +328,9 @@ void smp_log_metrics(const RawAddress& bd_addr, bool is_outgoing,
   if (raw_cmd == SMP_OPCODE_PAIRING_FAILED && buf_len >= 1) {
     STREAM_TO_UINT8(failure_reason, p_buf);
   }
+  if (p_cb->is_pair_cancel) {
+    failure_reason = 0x0120;  // Tracking pairing cancellations
+  }
   uint16_t metric_cmd =
       is_over_br ? SMP_METRIC_COMMAND_BR_FLAG : SMP_METRIC_COMMAND_LE_FLAG;
   metric_cmd |= static_cast<uint16_t>(raw_cmd);
