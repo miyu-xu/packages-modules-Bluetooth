@@ -118,6 +118,30 @@
       },
       "revId": "de9e6fc2fdebb3a90e83f7faf2a8082e78722566",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7aa66332_8b2adc96",
+        "filename": "system/stack/include/l2cdefs.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2023-02-08T19:36:01Z",
+      "side": 1,
+      "message": "I can agree that it isn\u0027t the cleanest solution. Infact using a mask might actually be a much cleaner way to go about it and add sense to the conversion logic as well. Thanks for the idea.\n\nDid an implementation. Can you take a look?",
+      "parentUuid": "554fb181_0d1ead33",
+      "range": {
+        "startLine": 115,
+        "startChar": 2,
+        "endLine": 115,
+        "endChar": 34
+      },
+      "revId": "de9e6fc2fdebb3a90e83f7faf2a8082e78722566",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
