@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1eae8b13_bce72d09",
+        "filename": "framework/java/android/bluetooth/BluetoothQualityReport.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 1374,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-02-08T02:01:05Z",
+      "side": 1,
+      "message": "You added it back in last patchset, is it on purpose ?",
+      "range": {
+        "startLine": 1374,
+        "startChar": 0,
+        "endLine": 1374,
+        "endChar": 58
+      },
+      "revId": "203baa96b3a1dfb13d098b0570507dd801c13f90",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
