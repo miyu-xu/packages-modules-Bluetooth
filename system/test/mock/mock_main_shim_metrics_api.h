@@ -177,14 +177,14 @@ extern struct LogMetricReadTxPowerLevelResult LogMetricReadTxPowerLevelResult;
 struct LogMetricSmpPairingEvent {
   std::function<void(const RawAddress& raw_address, uint16_t smp_cmd,
                      android::bluetooth::DirectionEnum direction,
-                     uint16_t smp_fail_reason, uint8_t io_capability)>
+                     uint16_t smp_fail_reason, uint8_t io_capability, bool is_oob)>
       body{[](const RawAddress& raw_address, uint16_t smp_cmd,
               android::bluetooth::DirectionEnum direction,
-              uint16_t smp_fail_reason, uint8_t io_capability) {}};
+              uint16_t smp_fail_reason, uint8_t io_capability, bool is_oob) {}};
   void operator()(const RawAddress& raw_address, uint16_t smp_cmd,
                   android::bluetooth::DirectionEnum direction,
-                  uint16_t smp_fail_reason, uint8_t io_capability) {
-    body(raw_address, smp_cmd, direction, smp_fail_reason, io_capability);
+                  uint16_t smp_fail_reason, uint8_t io_capability, bool is_oob) {
+    body(raw_address, smp_cmd, direction, smp_fail_reason, io_capability, is_oob);
   };
 };
 extern struct LogMetricSmpPairingEvent LogMetricSmpPairingEvent;
