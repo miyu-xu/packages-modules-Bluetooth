@@ -22,6 +22,29 @@
       },
       "revId": "fd73af5e5c73585cdae3278a53b595b51cbcd8ea",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f32ae6bd_d1087d48",
+        "filename": "system/stack/include/hcidefs.h",
+        "patchSetId": 8
+      },
+      "lineNbr": 909,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-02-08T17:20:19Z",
+      "side": 1,
+      "message": "nit: is there a bug tracking this?",
+      "range": {
+        "startLine": 909,
+        "startChar": 7,
+        "endLine": 909,
+        "endChar": 8
+      },
+      "revId": "fd73af5e5c73585cdae3278a53b595b51cbcd8ea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
