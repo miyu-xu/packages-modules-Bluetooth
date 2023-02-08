@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3d0838fb_4c0d89d9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-02-08T19:39:14Z",
+      "side": 1,
+      "message": "We need to change RFCOMM here too: https://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/system/stack/rfcomm/rfc_mx_fsm.cc;l\u003d574;drc\u003da04fe6afd7436798064d3a0b21a5c7d973295d22;bpv\u003d1;bpt\u003d1\n\nSince it uses L2CAP_CONN_OTHER_ERROR explicitly.\n\nIt might be nice to do something like what Myles suggested, to distinguish between L2CAP errors, and other errors  (maybe with a std::variant?).",
+      "revId": "de9e6fc2fdebb3a90e83f7faf2a8082e78722566",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b98e2b57_4e3e36a2",
