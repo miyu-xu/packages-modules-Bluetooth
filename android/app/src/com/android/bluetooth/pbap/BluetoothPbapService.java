@@ -187,7 +187,7 @@ public class BluetoothPbapService extends ProfileService implements IObexConnect
 
     private Thread mThreadUpdateSecVersionCounter;
 
-    private static BluetoothPbapService sBluetoothPbapService;
+    private static BluetoothPbapService sBluetoothPbapService = null;
 
     private static final String PBAP_NOTIFICATION_ID = "pbap_notification";
     private static final String PBAP_NOTIFICATION_NAME = "BT_PBAP_ADVANCE_SUPPORT";
@@ -662,7 +662,6 @@ public class BluetoothPbapService extends ProfileService implements IObexConnect
         setComponentAvailable(PBAP_ACTIVITY, true);
 
         mContext = this;
-        mContactsLoaded = false;
         mHandlerThread = new HandlerThread("PbapHandlerThread");
         mHandlerThread.start();
         mSessionStatusHandler = new PbapHandler(mHandlerThread.getLooper());
@@ -673,22 +672,11 @@ public class BluetoothPbapService extends ProfileService implements IObexConnect
         filter.addAction(BluetoothDevice.ACTION_BOND_STATE_CHANGED);
         BluetoothPbapConfig.init(this);
         registerReceiver(mPbapReceiver, filter);
-        try {
-            mContactChangeObserver = new BluetoothPbapContentObserver();
-            getContentResolver().registerContentObserver(
-                    DevicePolicyUtils.getEnterprisePhoneUri(this), false,
-                    mContactChangeObserver);
-        } catch (SQLiteException e) {
-            Log.e(TAG, "SQLite exception: " + e);
-        } catch (IllegalStateException e) {
-            Log.e(TAG, "Illegal state exception, content observer is already registered");
-        }
 
         setBluetoothPbapService(this);
 
         mSessionStatusHandler.sendMessage(
                 mSessionStatusHandler.obtainMessage(GET_LOCAL_TELEPHONY_DETAILS));
-        mSessionStatusHandler.sendMessage(mSessionStatusHandler.obtainMessage(LOAD_CONTACTS));
         mSessionStatusHandler.sendMessage(mSessionStatusHandler.obtainMessage(START_LISTENER));
 
         AdapterService adapterService = AdapterService.getAdapterService();
@@ -705,6 +693,10 @@ public class BluetoothPbapService extends ProfileService implements IObexConnect
         if (VERBOSE) {
             Log.v(TAG, "stop()");
         }
+        if (sBluetoothPbapService == null) {
+            Log.w(TAG, "stop() called before start()");
+            return true;
+        }
         setBluetoothPbapService(null);
         if (mSessionStatusHandler != null) {
             mSessionStatusHandler.obtainMessage(SHUTDOWN).sendToTarget();
@@ -712,17 +704,38 @@ public class BluetoothPbapService extends ProfileService implements IObexConnect
         if (mHandlerThread != null) {
             mHandlerThread.quitSafely();
         }
-        mContactsLoaded = false;
-        if (mContactChangeObserver == null) {
-            Log.i(TAG, "Avoid unregister when receiver it is not registered");
-            return true;
-        }
         unregisterReceiver(mPbapReceiver);
-        getContentResolver().unregisterContentObserver(mContactChangeObserver);
-        mContactChangeObserver = null;
         setComponentAvailable(PBAP_ACTIVITY, false);
         mPbapStateMachineMap.clear();
         return true;
+    }
+
+    public void startListen(){
+        Log.v(TAG, "startListen()");
+        mContactsLoaded = false;
+        try {
+            mContactChangeObserver = new BluetoothPbapContentObserver();
+            getContentResolver().registerContentObserver(
+                    DevicePolicyUtils.getEnterprisePhoneUri(this), false,
+                    mContactChangeObserver);
+        } catch (SQLiteException e) {
+            Log.e(TAG, "SQLite exception: " + e);
+        } catch (IllegalStateException e) {
+            Log.e(TAG, "Illegal state exception, content observer is already registered");
+        }
+
+        mSessionStatusHandler.sendMessage(mSessionStatusHandler.obtainMessage(LOAD_CONTACTS));
+    }
+
+    public void stopListen(){
+        if (mContactChangeObserver == null) {
+            Log.i(TAG, "Avoid unregister when receiver it is not registered");
+            return;
+        }
+        Log.v(TAG, "stopListen()");
+        mContactsLoaded = false;
+        getContentResolver().unregisterContentObserver(mContactChangeObserver);
+        mContactChangeObserver = null;
     }
 
     /**
