@@ -180,7 +180,7 @@ public class BluetoothPbapService extends ProfileService implements IObexConnect
 
     private Thread mThreadUpdateSecVersionCounter;
 
-    private static BluetoothPbapService sBluetoothPbapService;
+    private static BluetoothPbapService sBluetoothPbapService = null;
 
     public static boolean isEnabled() {
         return BluetoothProperties.isProfilePbapServerEnabled().orElse(false);
@@ -575,7 +575,6 @@ public class BluetoothPbapService extends ProfileService implements IObexConnect
         setComponentAvailable(PBAP_ACTIVITY, true);
 
         mContext = this;
-        mContactsLoaded = false;
         mHandlerThread = new HandlerThread("PbapHandlerThread");
         mHandlerThread.start();
         mSessionStatusHandler = new PbapHandler(mHandlerThread.getLooper());
@@ -585,6 +584,40 @@ public class BluetoothPbapService extends ProfileService implements IObexConnect
         filter.addAction(AUTH_CANCELLED_ACTION);
         BluetoothPbapConfig.init(this);
         registerReceiver(mPbapReceiver, filter);
+
+        setBluetoothPbapService(this);
+
+        mSessionStatusHandler.sendMessage(
+                mSessionStatusHandler.obtainMessage(GET_LOCAL_TELEPHONY_DETAILS));
+        mSessionStatusHandler.sendMessage(mSessionStatusHandler.obtainMessage(START_LISTENER));
+        return true;
+    }
+
+    @Override
+    protected boolean stop() {
+        if (VERBOSE) {
+            Log.v(TAG, "stop()");
+        }
+	if (sBluetoothPbapService == null) {
+	    Log.w(TAG, "stop() called before start()");
+	    return true;
+        }
+        setBluetoothPbapService(null);
+        if (mSessionStatusHandler != null) {
+            mSessionStatusHandler.obtainMessage(SHUTDOWN).sendToTarget();
+        }
+        if (mHandlerThread != null) {
+            mHandlerThread.quitSafely();
+        }
+        unregisterReceiver(mPbapReceiver);
+        setComponentAvailable(PBAP_ACTIVITY, false);
+        mPbapStateMachineMap.clear();
+        return true;
+    }
+
+    public void startListen(){
+        Log.v(TAG, "startListen()");
+        mContactsLoaded = false;
         try {
             mContactChangeObserver = new BluetoothPbapContentObserver();
             getContentResolver().registerContentObserver(
@@ -596,38 +629,18 @@ public class BluetoothPbapService extends ProfileService implements IObexConnect
             Log.e(TAG, "Illegal state exception, content observer is already registered");
         }
 
-        setBluetoothPbapService(this);
-
-        mSessionStatusHandler.sendMessage(
-                mSessionStatusHandler.obtainMessage(GET_LOCAL_TELEPHONY_DETAILS));
         mSessionStatusHandler.sendMessage(mSessionStatusHandler.obtainMessage(LOAD_CONTACTS));
-        mSessionStatusHandler.sendMessage(mSessionStatusHandler.obtainMessage(START_LISTENER));
-        return true;
     }
 
-    @Override
-    protected boolean stop() {
-        if (VERBOSE) {
-            Log.v(TAG, "stop()");
-        }
-        setBluetoothPbapService(null);
-        if (mSessionStatusHandler != null) {
-            mSessionStatusHandler.obtainMessage(SHUTDOWN).sendToTarget();
-        }
-        if (mHandlerThread != null) {
-            mHandlerThread.quitSafely();
-        }
-        mContactsLoaded = false;
+    public void stopListen(){
         if (mContactChangeObserver == null) {
             Log.i(TAG, "Avoid unregister when receiver it is not registered");
-            return true;
+            return;
         }
-        unregisterReceiver(mPbapReceiver);
+        Log.v(TAG, "stopListen()");
+        mContactsLoaded = false;
         getContentResolver().unregisterContentObserver(mContactChangeObserver);
         mContactChangeObserver = null;
-        setComponentAvailable(PBAP_ACTIVITY, false);
-        mPbapStateMachineMap.clear();
-        return true;
     }
 
     /**
