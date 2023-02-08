@@ -536,7 +536,6 @@ TEST_F(LeAndroidHciAdvertisingManagerTest, create_advertiser_test) {
       SubOcf::SET_PARAM,
       SubOcf::SET_SCAN_RESP,
       SubOcf::SET_DATA,
-      SubOcf::SET_RANDOM_ADDR,
       SubOcf::SET_ENABLE,
   };
   EXPECT_CALL(
