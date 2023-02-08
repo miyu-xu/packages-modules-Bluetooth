@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1ca4a345_9d118268",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AbstractionLayer.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1875587
+      },
+      "writtenOn": "2023-02-08T07:16:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a90dac0_a92f744c",
+      "range": {
+        "startLine": 53,
+        "startChar": 40,
+        "endLine": 53,
+        "endChar": 45
+      },
+      "revId": "d7b485d2a4050f7ff8eac86fe72452802cdad1a9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "774c1a57_b7cfd37f",

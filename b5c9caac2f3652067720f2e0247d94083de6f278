@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e3dea1a1_bdf7f74a",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 1172,
+      "author": {
+        "id": 1875587
+      },
+      "writtenOn": "2023-02-08T07:16:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cb6ba1a0_a81919e7",
+      "revId": "b5c9caac2f3652067720f2e0247d94083de6f278",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ff65a45a_2df78b23",
@@ -54,6 +72,24 @@
       "writtenOn": "2023-02-06T13:52:42Z",
       "side": 1,
       "message": "I think we should apply this policy only to LE_AUDIO",
+      "revId": "b5c9caac2f3652067720f2e0247d94083de6f278",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6d9222e0_29bdde90",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 6348,
+      "author": {
+        "id": 1875587
+      },
+      "writtenOn": "2023-02-08T07:16:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "05df9699_62090dac",
       "revId": "b5c9caac2f3652067720f2e0247d94083de6f278",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
