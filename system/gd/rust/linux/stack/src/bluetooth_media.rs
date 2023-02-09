@@ -172,6 +172,10 @@ pub trait IBluetoothTelephony {
     fn release_active_accept_held(&mut self) -> bool;
     /// Holds the active call and accepts a held call.
     fn hold_active_accept_held(&mut self) -> bool;
+    /// Establishes an audio connection to <address>.
+    fn audio_connect(&mut self, address: String) -> bool;
+    /// Stops the audio connection to <address>.
+    fn audio_disconnect(&mut self, address: String);
 }
 
 /// Serializable device used in.
@@ -585,6 +589,13 @@ impl BluetoothMedia {
                             self.hfp_cap.insert(addr, HfpCodecCapability::CVSD);
                         }
                         self.add_connected_profile(addr, uuid::Profile::Hfp);
+
+                        // Connect SCO if phone operations are enabled and an active call exists.
+                        // This is only used for Bluetooth HFP qualification.
+                        if self.phone_ops_enabled && self.phone_state.num_active > 0 {
+                            debug!("[{}]: Connect SCO due to active call.", addr.to_string());
+                            self.start_sco_call_impl(addr.to_string(), false, false);
+                        }
                     }
                     BthfConnectionState::Disconnected => {
                         info!("[{}]: hfp disconnected.", addr.to_string());
@@ -737,6 +748,9 @@ impl BluetoothMedia {
                     return;
                 }
                 self.phone_state_change("".into());
+
+                debug!("[{}]: Start SCO call due to ATA", addr.to_string());
+                self.start_sco_call_impl(addr.to_string(), false, false);
             }
             HfpCallbacks::HangupCall(addr) => {
                 if !self.hangup_call_impl() {
@@ -1086,6 +1100,46 @@ impl BluetoothMedia {
             }
 
             winning_state
+        }
+    }
+
+    fn start_sco_call_impl(
+        &mut self,
+        address: String,
+        sco_offload: bool,
+        force_cvsd: bool,
+    ) -> bool {
+        match (|| -> Result<(), &str> {
+            let addr = RawAddress::from_string(address.clone())
+                .ok_or("Can't start sco call with bad address")?;
+            info!("Start sco call for {}", address);
+
+            let hfp = self.hfp.as_mut().ok_or("Uninitialized HFP to start the sco call")?;
+            if hfp.connect_audio(addr, sco_offload, force_cvsd) != 0 {
+                return Err("SCO connect_audio status failed");
+            }
+            info!("SCO connect_audio status success");
+            Ok(())
+        })() {
+            Ok(_) => true,
+            Err(msg) => {
+                warn!("{}", msg);
+                false
+            }
+        }
+    }
+
+    fn stop_sco_call_impl(&mut self, address: String) {
+        match (|| -> Result<(), &str> {
+            let addr = RawAddress::from_string(address.clone())
+                .ok_or("Can't stop sco call with bad address")?;
+            info!("Stop sco call for {}", address);
+            let hfp = self.hfp.as_mut().ok_or("Uninitialized HFP to stop the sco call")?;
+            hfp.disconnect_audio(addr);
+            Ok(())
+        })() {
+            Ok(_) => {}
+            Err(msg) => warn!("{}", msg),
         }
     }
 
@@ -1737,52 +1791,11 @@ impl IBluetoothMedia for BluetoothMedia {
     }
 
     fn start_sco_call(&mut self, address: String, sco_offload: bool, force_cvsd: bool) -> bool {
-        let addr = match RawAddress::from_string(address.clone()) {
-            None => {
-                warn!("Can't start sco call with: {}", address);
-                return false;
-            }
-            Some(addr) => addr,
-        };
-
-        info!("Start sco call for {}", address);
-        let hfp = match self.hfp.as_mut() {
-            None => {
-                warn!("Uninitialized HFP to start the sco call");
-                return false;
-            }
-            Some(hfp) => hfp,
-        };
-
-        match hfp.connect_audio(addr, sco_offload, force_cvsd) {
-            0 => {
-                info!("SCO connect_audio status success.");
-                true
-            }
-            x => {
-                warn!("SCO connect_audio status failed: {}", x);
-                false
-            }
-        }
+        self.start_sco_call_impl(address, sco_offload, force_cvsd)
     }
 
     fn stop_sco_call(&mut self, address: String) {
-        let addr = match RawAddress::from_string(address.clone()) {
-            None => {
-                warn!("Can't stop sco call with: {}", address);
-                return;
-            }
-            Some(addr) => addr,
-        };
-
-        info!("Stop sco call for {}", address);
-
-        match self.hfp.as_mut() {
-            Some(hfp) => {
-                hfp.disconnect_audio(addr);
-            }
-            None => warn!("Uninitialized HFP to stop the sco call"),
-        };
+        self.stop_sco_call_impl(address)
     }
 
     fn get_a2dp_audio_started(&mut self, address: String) -> bool {
@@ -1967,6 +1980,19 @@ impl IBluetoothTelephony for BluetoothMedia {
             return false;
         }
         self.phone_state_change("".into());
+
+        // Find a connected HFP and try to establish an SCO.
+        if let Some(addr) = self.hfp_states.iter().find_map(|(addr, state)| {
+            if *state == BthfConnectionState::SlcConnected {
+                Some(addr.clone())
+            } else {
+                None
+            }
+        }) {
+            info!("Start SCO call due to call answered");
+            self.start_sco_call_impl(addr.to_string(), false, false);
+        }
+
         true
     }
 
@@ -2016,6 +2042,14 @@ impl IBluetoothTelephony for BluetoothMedia {
         }
         self.phone_state_change("".into());
         true
+    }
+
+    fn audio_connect(&mut self, address: String) -> bool {
+        self.start_sco_call_impl(address, false, false)
+    }
+
+    fn audio_disconnect(&mut self, address: String) {
+        self.stop_sco_call_impl(address)
     }
 }
 
