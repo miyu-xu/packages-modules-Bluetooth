@@ -3,7 +3,9 @@ use async_trait::async_trait;
 use crate::{
     core::uuid::Uuid,
     gatt::ids::AttHandle,
-    packets::{AttAttributeDataChild, AttErrorCode, AttHandleBuilder, AttHandleView},
+    packets::{
+        AttAttributeDataChild, AttAttributeDataView, AttErrorCode, AttHandleBuilder, AttHandleView,
+    },
 };
 
 // UUIDs from Bluetooth Assigned Numbers Sec 3.6
@@ -52,6 +54,13 @@ pub trait AttDatabase {
         &self,
         handle: AttHandle,
     ) -> Result<AttAttributeDataChild, AttErrorCode>;
+
+    /// Write to an attribute by handle
+    async fn write_attribute(
+        &self,
+        handle: AttHandle,
+        data: AttAttributeDataView<'_>,
+    ) -> Result<(), AttErrorCode>;
 
     /// List all the attributes in this database.
     ///
