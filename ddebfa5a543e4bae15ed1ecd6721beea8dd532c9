@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1bb63634_4af57779",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/gatt/AdvertiseHelperTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1470368
+      },
+      "writtenOn": "2023-02-09T17:25:07Z",
+      "side": 1,
+      "message": "This also got changed with my latest patchset, it need to be fixed it",
+      "range": {
+        "startLine": 79,
+        "startChar": 12,
+        "endLine": 79,
+        "endChar": 47
+      },
+      "revId": "ddebfa5a543e4bae15ed1ecd6721beea8dd532c9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
