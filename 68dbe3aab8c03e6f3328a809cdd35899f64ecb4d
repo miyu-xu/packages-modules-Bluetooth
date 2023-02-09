@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c7837190_d61e9c18",
+        "filename": "system/stack/btm/btm_inq.cc",
+        "patchSetId": 24
+      },
+      "lineNbr": 1467,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-02-09T22:32:19Z",
+      "side": 1,
+      "message": "Miss a `*` there (or you can use `rem_name.bd_addr`\n\nActually... you can move the log after the if/else to have it only once",
+      "range": {
+        "startLine": 1467,
+        "startChar": 72,
+        "endLine": 1467,
+        "endChar": 73
+      },
+      "revId": "68dbe3aab8c03e6f3328a809cdd35899f64ecb4d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
