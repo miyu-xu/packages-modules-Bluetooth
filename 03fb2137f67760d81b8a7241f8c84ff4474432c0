@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0b6d0cba_9dc41666",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 6107,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-02-09T01:44:56Z",
+      "side": 1,
+      "message": "this API should be automatically generated\n\nhttps://source.android.com/docs/core/architecture/configuration/add-system-properties",
+      "range": {
+        "startLine": 6107,
+        "startChar": 0,
+        "endLine": 6107,
+        "endChar": 82
+      },
+      "revId": "03fb2137f67760d81b8a7241f8c84ff4474432c0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e11d8cc6_5c05a03a",
         "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
         "patchSetId": 9
