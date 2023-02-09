@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3e27e719_fc49f95d",
+        "filename": "system/stack/btm/btm_inq.cc",
+        "patchSetId": 23
+      },
+      "lineNbr": 1467,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-02-09T20:57:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9b7d5883_7dca6159",
+      "range": {
+        "startLine": 1467,
+        "startChar": 50,
+        "endLine": 1467,
+        "endChar": 51
+      },
+      "revId": "faea7f7d27dbafdbf530f8045470e66be19b4bdd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d4926b8b_4b6b083e",
@@ -54,6 +78,30 @@
       "writtenOn": "2023-02-08T20:02:41Z",
       "side": 1,
       "message": "INFO?",
+      "range": {
+        "startLine": 2250,
+        "startChar": 2,
+        "endLine": 2250,
+        "endChar": 10
+      },
+      "revId": "faea7f7d27dbafdbf530f8045470e66be19b4bdd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4823fdad_f6a55f6a",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 23
+      },
+      "lineNbr": 2250,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-02-09T20:57:14Z",
+      "side": 1,
+      "message": "I think INFO is fine since this is a low frequency event.",
+      "parentUuid": "d4926b8b_4b6b083e",
       "range": {
         "startLine": 2250,
         "startChar": 2,
