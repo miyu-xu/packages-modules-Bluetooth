@@ -16,6 +16,24 @@
       "message": "I found some difference in this file between the code in aosp-master and internal T QPR branches. Seems I need to double check the conflicts between T QPR to and here.\n\nFYI, I tested on T QPR branches.",
       "revId": "d6792eaa5f453e8564c242aed8c91f5b391912ed",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4cfcf5e6_449d2531",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-02-09T02:26:22Z",
+      "side": 0,
+      "message": "aosp/2419284 is not cherry-picked into T QPR.",
+      "parentUuid": "fa82b13e_8aea731f",
+      "revId": "d6792eaa5f453e8564c242aed8c91f5b391912ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
