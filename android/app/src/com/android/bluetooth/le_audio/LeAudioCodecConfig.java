@@ -30,6 +30,8 @@ class LeAudioCodecConfig {
     private Context mContext;
     private BluetoothLeAudioCodecConfig[] mCodecConfigOffloading =
             new BluetoothLeAudioCodecConfig[0];
+    private BluetoothLeAudioCodecConfig[] mBroadcastCodecConfigOffloading =
+            new BluetoothLeAudioCodecConfig[0];
 
     LeAudioCodecConfig(Context context) {
         Log.i(TAG, "LeAudioCodecConfig init");
@@ -44,6 +46,9 @@ class LeAudioCodecConfig {
         mCodecConfigOffloading = audioManager.getHwOffloadFormatsSupportedForLeAudio()
                                              .toArray(mCodecConfigOffloading);
 
+        mBroadcastCodecConfigOffloading = audioManager.getHwOffloadFormatsSupportedForLeBroadcast()
+                                             .toArray(mBroadcastCodecConfigOffloading);
+
         if (DBG) {
             Log.i(TAG, "mCodecConfigOffloading size for le -> " + mCodecConfigOffloading.length);
 
@@ -51,11 +56,23 @@ class LeAudioCodecConfig {
                 Log.i(TAG, String.format("mCodecConfigOffloading[%d] -> %s",
                         idx, mCodecConfigOffloading[idx].toString()));
             }
+
+            Log.i(TAG, "mBroadcastCodecConfigOffloading size for le -> "
+                    + mBroadcastCodecConfigOffloading.length);
+
+            for (int idx = 0; idx < mBroadcastCodecConfigOffloading.length; idx++) {
+                Log.i(TAG, String.format("mBroadcastCodecConfigOffloading[%d] -> %s",
+                        idx, mBroadcastCodecConfigOffloading[idx].toString()));
+            }
         }
     }
 
     BluetoothLeAudioCodecConfig[] getCodecConfigOffloading() {
         return mCodecConfigOffloading;
+    }
+
+    BluetoothLeAudioCodecConfig[] getBroadcastCodecConfigOffloading() {
+        return mBroadcastCodecConfigOffloading;
     }
 }
 
