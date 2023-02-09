@@ -6,7 +6,7 @@ use crate::{
             gatt_database::AttPermissions,
         },
     },
-    packets::{AttAttributeDataChild, AttErrorCode},
+    packets::{AttAttributeDataChild, AttAttributeDataView, AttErrorCode},
 };
 
 use async_trait::async_trait;
@@ -43,6 +43,13 @@ impl AttDatabase for TestAttDatabase {
             Some((_, data)) => Ok(AttAttributeDataChild::RawData(data.clone().into_boxed_slice())),
             None => Err(AttErrorCode::INVALID_HANDLE),
         }
+    }
+    async fn write_attribute(
+        &self,
+        _handle: AttHandle,
+        _data: AttAttributeDataView<'_>,
+    ) -> Result<(), AttErrorCode> {
+        Err(AttErrorCode::WRITE_NOT_PERMITTED)
     }
     fn list_attributes(&self) -> Vec<AttAttribute> {
         self.attributes.values().map(|(att, _)| att.clone()).collect()
