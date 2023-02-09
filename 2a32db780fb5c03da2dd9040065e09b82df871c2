@@ -46,6 +46,30 @@
       },
       "revId": "2a32db780fb5c03da2dd9040065e09b82df871c2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "88c962e9_7d32e5b5",
+        "filename": "framework/java/android/bluetooth/BluetoothSocket.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 443,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-02-09T01:57:13Z",
+      "side": 1,
+      "message": "This is an implementation detail, so there is no API guidance for it. We can do whatever we want under the hood as long as it functionally makes sense.",
+      "parentUuid": "8a55039a_a2748256",
+      "range": {
+        "startLine": 443,
+        "startChar": 16,
+        "endLine": 443,
+        "endChar": 28
+      },
+      "revId": "2a32db780fb5c03da2dd9040065e09b82df871c2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
