@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2ba9efe1_118ca3d9",
+        "filename": "framework/java/android/bluetooth/le/PeriodicAdvertisingCallback.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2023-02-09T02:59:59Z",
+      "side": 1,
+      "message": "We modified API, should we update framework/api/system-current.txt?",
+      "range": {
+        "startLine": 91,
+        "startChar": 3,
+        "endLine": 98,
+        "endChar": 5
+      },
+      "revId": "a2b3e02c8fc1c5317c0a1f468461b6f2524c7029",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
