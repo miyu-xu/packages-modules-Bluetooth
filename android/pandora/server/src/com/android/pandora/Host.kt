@@ -217,18 +217,12 @@ class Host(
       .first()
   }
 
-  suspend fun waitAclIntent(bluetoothDevice: BluetoothDevice?): Intent {
-    for (intent in intentQueue) {
-      if (
-        intent.getAction() == BluetoothDevice.ACTION_ACL_CONNECTED &&
-          (bluetoothDevice == null || intent.getBluetoothDeviceExtra() == bluetoothDevice)
-      ) {
-        intentQueue.remove(intent)
-        return intent
-      }
-    }
+  suspend fun waitAclIntent(bluetoothDevice: BluetoothDevice?, transport: Int): Intent {
     return flow
       .filter { it.action == BluetoothDevice.ACTION_ACL_CONNECTED }
+      .filter {
+        it.getIntExtra(BluetoothDevice.EXTRA_TRANSPORT, BluetoothDevice.ERROR) == transport
+      }
       .filter { bluetoothDevice == null || it.getBluetoothDeviceExtra() == bluetoothDevice }
       .first()
   }
@@ -253,18 +247,32 @@ class Host(
           null
         }
 
-      Log.i(TAG, "waitConnection: device=$bluetoothDevice")
+      if (
+        bluetoothDevice != null &&
+          bluetoothDevice.isConnected() &&
+          bluetoothDevice.type != BluetoothDevice.DEVICE_TYPE_LE
+      ) {
+        Log.i(TAG, "waitConnection: already connected: device=$bluetoothDevice")
 
-      if (!bluetoothAdapter.isEnabled) {
-        Log.e(TAG, "Bluetooth is not enabled, cannot waitConnection")
-        throw Status.UNKNOWN.asException()
+        WaitConnectionResponse.newBuilder()
+          .setConnection(bluetoothDevice.toConnection(TRANSPORT_BREDR))
+          .build()
+      } else {
+        Log.i(TAG, "waitConnection: device=$bluetoothDevice")
+
+        if (!bluetoothAdapter.isEnabled) {
+          Log.e(TAG, "Bluetooth is not enabled, cannot waitConnection")
+          throw Status.UNKNOWN.asException()
+        }
+
+        val intent = waitAclIntent(bluetoothDevice, TRANSPORT_BREDR)
+
+        Log.i(TAG, "waitConnection: done: device=${intent.getBluetoothDeviceExtra()}")
+
+        WaitConnectionResponse.newBuilder()
+          .setConnection(intent.getBluetoothDeviceExtra().toConnection(TRANSPORT_BREDR))
+          .build()
       }
-
-      val intent = waitAclIntent(bluetoothDevice)
-
-      WaitConnectionResponse.newBuilder()
-        .setConnection(intent.getBluetoothDeviceExtra().toConnection(TRANSPORT_BREDR))
-        .build()
     }
   }
 
@@ -294,33 +302,49 @@ class Host(
     responseObserver: StreamObserver<WaitLEConnectionResponse>
   ) {
     grpcUnary(scope, responseObserver) {
-      val (address, type) =
-        when (request.getAddressCase()!!) {
-          WaitLEConnectionRequest.AddressCase.PUBLIC ->
-            Pair(request.public, BluetoothDevice.ADDRESS_TYPE_PUBLIC)
-          WaitLEConnectionRequest.AddressCase.RANDOM ->
-            Pair(request.random, BluetoothDevice.ADDRESS_TYPE_RANDOM)
-          WaitLEConnectionRequest.AddressCase.PUBLIC_IDENTITY ->
-            Pair(request.publicIdentity, BluetoothDevice.ADDRESS_TYPE_PUBLIC)
-          WaitLEConnectionRequest.AddressCase.RANDOM_STATIC_IDENTITY ->
-            Pair(request.randomStaticIdentity, BluetoothDevice.ADDRESS_TYPE_RANDOM)
-          WaitLEConnectionRequest.AddressCase.ADDRESS_NOT_SET -> throw Status.UNKNOWN.asException()
+      val address_case = request.getAddressCase()!!
+      val bluetoothDevice: BluetoothDevice? =
+        if (address_case != WaitLEConnectionRequest.AddressCase.ADDRESS_NOT_SET) {
+          val (address, type) =
+            when (address_case) {
+              WaitLEConnectionRequest.AddressCase.PUBLIC ->
+                Pair(request.public, BluetoothDevice.ADDRESS_TYPE_PUBLIC)
+              WaitLEConnectionRequest.AddressCase.RANDOM ->
+                Pair(request.random, BluetoothDevice.ADDRESS_TYPE_RANDOM)
+              WaitLEConnectionRequest.AddressCase.PUBLIC_IDENTITY ->
+                Pair(request.publicIdentity, BluetoothDevice.ADDRESS_TYPE_PUBLIC)
+              WaitLEConnectionRequest.AddressCase.RANDOM_STATIC_IDENTITY ->
+                Pair(request.randomStaticIdentity, BluetoothDevice.ADDRESS_TYPE_RANDOM)
+              WaitLEConnectionRequest.AddressCase.ADDRESS_NOT_SET ->
+                throw Status.UNKNOWN.asException()
+            }
+          bluetoothAdapter.getRemoteLeDevice(address.decodeAsMacAddressToString(), type)
+        } else {
+          null
         }
-      val bluetoothDevice =
-        bluetoothAdapter.getRemoteLeDevice(address.decodeAsMacAddressToString(), type)
 
-      Log.i(TAG, "waitLEConnection: device=$bluetoothDevice")
+      if (bluetoothDevice != null && bluetoothDevice.isConnected()) {
+        Log.i(TAG, "waitLEConnection: already connected: device=$bluetoothDevice")
 
-      if (!bluetoothAdapter.isEnabled) {
-        Log.e(TAG, "Bluetooth is not enabled, cannot waitConnection")
-        throw Status.UNKNOWN.asException()
+        WaitLEConnectionResponse.newBuilder()
+          .setConnection(bluetoothDevice.toConnection(TRANSPORT_LE))
+          .build()
+      } else {
+        Log.i(TAG, "waitLEConnection: device=$bluetoothDevice")
+
+        if (!bluetoothAdapter.isEnabled) {
+          Log.e(TAG, "Bluetooth is not enabled, cannot waitConnection")
+          throw Status.UNKNOWN.asException()
+        }
+
+        val intent = waitAclIntent(bluetoothDevice, TRANSPORT_LE)
+
+        Log.i(TAG, "waitLeConnection: done: device=${intent.getBluetoothDeviceExtra()}")
+
+        WaitLEConnectionResponse.newBuilder()
+          .setConnection(intent.getBluetoothDeviceExtra().toConnection(TRANSPORT_LE))
+          .build()
       }
-
-      val intent = waitAclIntent(bluetoothDevice)
-
-      WaitLEConnectionResponse.newBuilder()
-        .setConnection(intent.getBluetoothDeviceExtra().toConnection(TRANSPORT_LE))
-        .build()
     }
   }
 
