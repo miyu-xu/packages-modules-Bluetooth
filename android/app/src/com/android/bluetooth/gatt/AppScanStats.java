@@ -15,6 +15,7 @@
  */
 package com.android.bluetooth.gatt;
 
+import android.bluetooth.BluetoothProtoEnums;
 import android.bluetooth.le.ScanFilter;
 import android.bluetooth.le.ScanSettings;
 import android.os.BatteryStatsManager;
@@ -25,6 +26,7 @@ import android.os.WorkSource;
 import com.android.bluetooth.BluetoothMetricsProto;
 import com.android.bluetooth.BluetoothStatsLog;
 import com.android.bluetooth.btservice.AdapterService;
+import com.android.bluetooth.btservice.MetricsLogger;
 import com.android.bluetooth.util.WorkSourceUtil;
 
 import java.text.DateFormat;
@@ -49,8 +51,9 @@ import java.util.Objects;
 
     // Weight is the duty cycle of the scan mode
     static final int OPPORTUNISTIC_WEIGHT = 0;
+    static final int SCREEN_OFF_LOW_POWER_WEIGHT = 5;
     static final int LOW_POWER_WEIGHT = 10;
-    static final int AMBIENT_DISCOVERY_WEIGHT = 20;
+    static final int AMBIENT_DISCOVERY_WEIGHT = 25;
     static final int BALANCED_WEIGHT = 25;
     static final int LOW_LATENCY_WEIGHT = 100;
 
@@ -66,6 +69,11 @@ import java.util.Objects;
     BatteryStatsManager mBatteryStatsManager;
 
     private final AdapterService mAdapterService;
+
+    // Scan radio stats
+    static long sRadioStartTime = 0;
+    static int sRadioScanMode;
+    static boolean sIsRadioStarted = false;
 
     class LastScan {
         public long duration;
@@ -327,6 +335,53 @@ import java.util.Objects;
                 mWorkSourceUtil.getUids(), mWorkSourceUtil.getTags(),
                 BluetoothStatsLog.BLE_SCAN_STATE_CHANGED__STATE__OFF,
                 scan.isFilterScan, scan.isBackgroundScan, scan.isOpportunisticScan);
+    }
+
+    synchronized boolean recordScanRadioStart(int scanMode) {
+        if (sIsRadioStarted) {
+            return false;
+        }
+        sRadioStartTime = SystemClock.elapsedRealtime();
+        sRadioScanMode = scanMode;
+        sIsRadioStarted = true;
+        return true;
+    }
+
+    synchronized boolean recordScanRadioStop() {
+        if (!sIsRadioStarted) {
+            return false;
+        }
+        long radioStopTime = SystemClock.elapsedRealtime();
+        long radioScanDuration = radioStopTime - sRadioStartTime;
+        double scanWeight = getScanWeight(sRadioScanMode) * 0.01;
+        long weightedDuration = (long) (radioScanDuration * scanWeight);
+
+        if (weightedDuration > 0) {
+            MetricsLogger.getInstance().cacheCount(
+                    BluetoothProtoEnums.LE_SCAN_RADIO_DURATION_REGULAR, weightedDuration);
+        }
+        sRadioStartTime = 0;
+        sIsRadioStarted = false;
+        return true;
+    }
+
+    int getScanWeight(int scanMode) {
+        switch (scanMode) {
+            case ScanSettings.SCAN_MODE_OPPORTUNISTIC:
+                return OPPORTUNISTIC_WEIGHT;
+            case ScanSettings.SCAN_MODE_SCREEN_OFF:
+                return SCREEN_OFF_LOW_POWER_WEIGHT;
+            case ScanSettings.SCAN_MODE_LOW_POWER:
+                return LOW_POWER_WEIGHT;
+            case ScanSettings.SCAN_MODE_BALANCED:
+            case ScanSettings.SCAN_MODE_AMBIENT_DISCOVERY:
+            case ScanSettings.SCAN_MODE_SCREEN_OFF_BALANCED:
+                return BALANCED_WEIGHT;
+            case ScanSettings.SCAN_MODE_LOW_LATENCY:
+                return LOW_LATENCY_WEIGHT;
+            default:
+                return LOW_POWER_WEIGHT;
+        }
     }
 
     synchronized void recordScanSuspend(int scannerId) {
