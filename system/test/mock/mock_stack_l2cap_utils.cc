@@ -72,7 +72,7 @@ bool l2cu_start_post_bond_timer(uint16_t handle) {
   mock_function_count_map[__func__]++;
   return false;
 }
-tL2C_CCB* l2cu_allocate_ccb(tL2C_LCB* p_lcb, uint16_t cid) {
+tL2C_CCB* l2cu_allocate_ccb(tL2C_LCB* p_lcb, uint16_t cid, bool is_eatt) {
   mock_function_count_map[__func__]++;
   return nullptr;
 }
