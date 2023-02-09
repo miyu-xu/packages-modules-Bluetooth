@@ -16,6 +16,24 @@
       "message": "We did a push in the same time and patchset 13 is erasing the patchset 12\n\nI\u0027ll will re-upload patchset 12 in top of it and fix Cts accordingly to patchset 13 changes",
       "revId": "2cd6189d0e3d51b0158e5d1956b7915035357ca9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fe598990_eee334e7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 13
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1470368
+      },
+      "writtenOn": "2023-02-09T17:22:44Z",
+      "side": 1,
+      "message": "sure",
+      "parentUuid": "fef0353d_e1928857",
+      "revId": "2cd6189d0e3d51b0158e5d1956b7915035357ca9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
