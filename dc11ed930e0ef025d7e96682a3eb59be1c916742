@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3c99c090_15305cac",
+        "filename": "framework/java/android/bluetooth/le/BluetoothLeAdvertiser.java",
+        "patchSetId": 34
+      },
+      "lineNbr": 389,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-02-09T01:09:03Z",
+      "side": 1,
+      "message": "Can you clearly indicate the difference of this overload in the method summary. Namely, how this is tied to the passed in gattServer",
+      "revId": "dc11ed930e0ef025d7e96682a3eb59be1c916742",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
