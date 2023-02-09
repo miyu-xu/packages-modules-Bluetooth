@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "13f28b7a_a81e01f3",
+        "filename": "android/app/src/com/android/bluetooth/gatt/AppScanStats.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 362,
+      "author": {
+        "id": 1567049
+      },
+      "writtenOn": "2023-02-09T21:23:19Z",
+      "side": 1,
+      "message": "Can we have the separated buckets for the screen on/off cases?",
+      "range": {
+        "startLine": 359,
+        "startChar": 0,
+        "endLine": 362,
+        "endChar": 9
+      },
+      "revId": "8498d5317d554f8c875fe01556ab6706f9454e84",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4d3fdbdd_d427668c",
+        "filename": "android/app/src/com/android/bluetooth/gatt/ScanManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1061,
+      "author": {
+        "id": 1567049
+      },
+      "writtenOn": "2023-02-09T21:23:19Z",
+      "side": 1,
+      "message": "AppScanStats run per app but here we really collect the overall scan duration.\n\nIf scanSetting changes from one client to another client, does your CL still work? It looks like client.starts.xxxStart/xxxStop() are not always paired together.   I suspect you have to move recordScanRadioStop()/recordScanRadioStop() back to ScanManager so that recording is independent to clients.",
+      "range": {
+        "startLine": 1059,
+        "startChar": 0,
+        "endLine": 1061,
+        "endChar": 21
+      },
+      "revId": "8498d5317d554f8c875fe01556ab6706f9454e84",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
