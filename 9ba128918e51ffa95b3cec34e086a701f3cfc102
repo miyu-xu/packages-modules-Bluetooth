@@ -46,6 +46,30 @@
       },
       "revId": "9ba128918e51ffa95b3cec34e086a701f3cfc102",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a03f50ad_b9b0b534",
+        "filename": "android/pandora/server/src/com/android/pandora/GattServerManager.kt",
+        "patchSetId": 3
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-02-09T00:07:36Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "b2b9d230_1a3ac834",
+      "range": {
+        "startLine": 46,
+        "startChar": 8,
+        "endLine": 46,
+        "endChar": 51
+      },
+      "revId": "9ba128918e51ffa95b3cec34e086a701f3cfc102",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
