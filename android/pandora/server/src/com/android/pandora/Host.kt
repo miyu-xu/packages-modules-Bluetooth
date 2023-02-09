@@ -217,10 +217,11 @@ class Host(
       .first()
   }
 
-  suspend fun waitAclIntent(bluetoothDevice: BluetoothDevice?): Intent {
+  suspend fun waitAclIntent(bluetoothDevice: BluetoothDevice?, transport: Int): Intent {
     for (intent in intentQueue) {
       if (
         intent.getAction() == BluetoothDevice.ACTION_ACL_CONNECTED &&
+          intent.getIntExtra(BluetoothDevice.EXTRA_TRANSPORT, BluetoothDevice.ERROR) == transport &&
           (bluetoothDevice == null || intent.getBluetoothDeviceExtra() == bluetoothDevice)
       ) {
         intentQueue.remove(intent)
@@ -229,6 +230,9 @@ class Host(
     }
     return flow
       .filter { it.action == BluetoothDevice.ACTION_ACL_CONNECTED }
+      .filter {
+        it.getIntExtra(BluetoothDevice.EXTRA_TRANSPORT, BluetoothDevice.ERROR) == transport
+      }
       .filter { bluetoothDevice == null || it.getBluetoothDeviceExtra() == bluetoothDevice }
       .first()
   }
@@ -260,7 +264,7 @@ class Host(
         throw Status.UNKNOWN.asException()
       }
 
-      val intent = waitAclIntent(bluetoothDevice)
+      val intent = waitAclIntent(bluetoothDevice, TRANSPORT_BREDR)
 
       WaitConnectionResponse.newBuilder()
         .setConnection(intent.getBluetoothDeviceExtra().toConnection(TRANSPORT_BREDR))
@@ -294,20 +298,26 @@ class Host(
     responseObserver: StreamObserver<WaitLEConnectionResponse>
   ) {
     grpcUnary(scope, responseObserver) {
-      val (address, type) =
-        when (request.getAddressCase()!!) {
-          WaitLEConnectionRequest.AddressCase.PUBLIC ->
-            Pair(request.public, BluetoothDevice.ADDRESS_TYPE_PUBLIC)
-          WaitLEConnectionRequest.AddressCase.RANDOM ->
-            Pair(request.random, BluetoothDevice.ADDRESS_TYPE_RANDOM)
-          WaitLEConnectionRequest.AddressCase.PUBLIC_IDENTITY ->
-            Pair(request.publicIdentity, BluetoothDevice.ADDRESS_TYPE_PUBLIC)
-          WaitLEConnectionRequest.AddressCase.RANDOM_STATIC_IDENTITY ->
-            Pair(request.randomStaticIdentity, BluetoothDevice.ADDRESS_TYPE_RANDOM)
-          WaitLEConnectionRequest.AddressCase.ADDRESS_NOT_SET -> throw Status.UNKNOWN.asException()
+      val address_case = request.getAddressCase()!!
+      val bluetoothDevice: BluetoothDevice? =
+        if (address_case != WaitLEConnectionRequest.AddressCase.ADDRESS_NOT_SET) {
+          val (address, type) =
+            when (address_case) {
+              WaitLEConnectionRequest.AddressCase.PUBLIC ->
+                Pair(request.public, BluetoothDevice.ADDRESS_TYPE_PUBLIC)
+              WaitLEConnectionRequest.AddressCase.RANDOM ->
+                Pair(request.random, BluetoothDevice.ADDRESS_TYPE_RANDOM)
+              WaitLEConnectionRequest.AddressCase.PUBLIC_IDENTITY ->
+                Pair(request.publicIdentity, BluetoothDevice.ADDRESS_TYPE_PUBLIC)
+              WaitLEConnectionRequest.AddressCase.RANDOM_STATIC_IDENTITY ->
+                Pair(request.randomStaticIdentity, BluetoothDevice.ADDRESS_TYPE_RANDOM)
+              WaitLEConnectionRequest.AddressCase.ADDRESS_NOT_SET ->
+                throw Status.UNKNOWN.asException()
+            }
+          bluetoothAdapter.getRemoteLeDevice(address.decodeAsMacAddressToString(), type)
+        } else {
+          null
         }
-      val bluetoothDevice =
-        bluetoothAdapter.getRemoteLeDevice(address.decodeAsMacAddressToString(), type)
 
       Log.i(TAG, "waitLEConnection: device=$bluetoothDevice")
 
@@ -316,7 +326,7 @@ class Host(
         throw Status.UNKNOWN.asException()
       }
 
-      val intent = waitAclIntent(bluetoothDevice)
+      val intent = waitAclIntent(bluetoothDevice, TRANSPORT_LE)
 
       WaitLEConnectionResponse.newBuilder()
         .setConnection(intent.getBluetoothDeviceExtra().toConnection(TRANSPORT_LE))
