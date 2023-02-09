@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6bf6729c_340d497c",
+        "filename": "system/stack/btm/btm_ble.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 670,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-02-09T19:57:24Z",
+      "side": 1,
+      "message": "This code is inside the gd_l2cap check, and so is never executed. Is this intentional? Or did you mean to put it near line 687?",
+      "revId": "78fcc4b12458fb3afee878cfe47b27876a44ce88",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
