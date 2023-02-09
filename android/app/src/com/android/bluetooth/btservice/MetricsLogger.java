@@ -101,6 +101,9 @@ public class MetricsLogger {
                 return false;
             }
             mCounters.put(key, total + count);
+            if (DBG) {
+                Log.d(TAG, "key: " + key + " count: " + count + " total_count: " + (total + count));
+            }
         }
         return true;
     }
