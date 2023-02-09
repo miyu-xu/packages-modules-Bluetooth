@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "29534abf_44c9c991",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-02-09T07:16:23Z",
+      "side": 1,
+      "message": "There are lots of attempt on presubmit on this CL but the presubmit is way more stable these last day.\nAfter investigation it looks like the failure are linked to this change\n\n\n### [floss build](https://android-build.googleplex.com/builds/tests/view?invocationId\u003dI88400010130480172\u0026testResultId\u003dTR38728495287469232\u0026tab\u003dartifacts):\n```\n../../../staging/bt/system/gd/hci/distance_measurement_manager.cc:247:23: error: use of undeclared identifier \u0027pow\u0027\n    double distance \u003d pow(10.0, pow_value);\n                      ^\n1 error generated.\n```\n\n### [net_test_main_shim.MainShimTest](https://android-build.googleplex.com/builds/tests/view?invocationId\u003dI80900010130217213\u0026testResultId\u003dTR31328494547833142)\n```\nAddressSanitizer:DEADLYSIGNAL\n\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\n\u003d\u003d2655626\u003d\u003dERROR: AddressSanitizer: SEGV on unknown address 0x000000000008 (pc 0x561c48f112c3 bp 0x7fff2d3aada0 sp 0x7fff2d3aad70 T0)\n\u003d\u003d2655626\u003d\u003dThe signal is caused by a READ memory access.\n```",
+      "revId": "7d1ca1a9cbc02f44f171ae6fe5e1966fdf984635",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
