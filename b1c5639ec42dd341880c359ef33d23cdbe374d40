@@ -3,6 +3,52 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "078fb203_ea0818d8",
+        "filename": "android/app/src/com/android/bluetooth/btservice/PhonePolicy.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 346,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-02-09T01:20:21Z",
+      "side": 1,
+      "message": "Do we need to have the call to setConnectionPolicy separated in the if ? Don\u0027t we want to achieve the following:\n```\n  mAdapterService.getDatabase().setProfileConnectionPolicy(device, PROFILE, BluetoothProfile.CONNECTION_POLICY_ALLOWED);\n  if (mAutoConnectProfilesSupported) {\n    profileService.connect(device);\n  }\n```\nIf you think it works for you i have the feeling it will be more explicit for re-reader\n\n(this comment applies for all the different profiles)",
+      "range": {
+        "startLine": 339,
+        "startChar": 12,
+        "endLine": 346,
+        "endChar": 9
+      },
+      "revId": "b1c5639ec42dd341880c359ef33d23cdbe374d40",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ca50aca4_1a55cadb",
+        "filename": "android/app/src/com/android/bluetooth/btservice/PhonePolicy.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 380,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-02-09T01:20:21Z",
+      "side": 1,
+      "message": "the comment let think we want `!isLeAudioProfileAllowed` instead",
+      "range": {
+        "startLine": 380,
+        "startChar": 53,
+        "endLine": 380,
+        "endChar": 76
+      },
+      "revId": "b1c5639ec42dd341880c359ef33d23cdbe374d40",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9e00f4cd_ab37fe4b",
         "filename": "android/app/src/com/android/bluetooth/btservice/PhonePolicy.java",
         "patchSetId": 1
@@ -38,6 +84,30 @@
       "side": 1,
       "message": "Before the change the order doesn\u0027t impact too much as it only set a value to the database.\n\nSince now we are going to create profile connection to a remote device, the information of isLeAudioProfileAllowed is required in A2DP and HFP parts so the Bluetooth service doesn\u0027t connect to classic profiles in LE only mode (mPreferLeAudioOnlyMode \u0026\u0026 isLeAudioProfileAllowed).\n\nI think I should have unit tests here to make it easier to understand with actually use cases. Please hold the review for now.\n\nThanks.",
       "parentUuid": "9e00f4cd_ab37fe4b",
+      "range": {
+        "startLine": 369,
+        "startChar": 7,
+        "endLine": 404,
+        "endChar": 88
+      },
+      "revId": "b1c5639ec42dd341880c359ef33d23cdbe374d40",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7e107faa_d5d12918",
+        "filename": "android/app/src/com/android/bluetooth/btservice/PhonePolicy.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 404,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-02-09T01:20:21Z",
+      "side": 1,
+      "message": "I understand. I didn\u0027t see the a2dp was looking on isLeAudioProfileAllowed.\n\nCan we split this CL into 3 changes to make this obvious ?\n1st change is re-ordering the profiles ( it should be a no-op cl )\n2nd change is adding the mAutoConnectProfilesSupported and all the if else\n3rd change add the logic between a2dp and le-audio",
+      "parentUuid": "2ee20762_e261303f",
       "range": {
         "startLine": 369,
         "startChar": 7,
