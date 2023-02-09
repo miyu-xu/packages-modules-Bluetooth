@@ -82,6 +82,9 @@ void BTM_SecAddBleDevice(const RawAddress& bd_addr, tBT_DEVICE_TYPE dev_type,
     p_dev_rec->hci_handle = BTM_GetHCIConnHandle(bd_addr, BT_TRANSPORT_BR_EDR);
     p_dev_rec->ble_hci_handle = BTM_GetHCIConnHandle(bd_addr, BT_TRANSPORT_LE);
 
+    /* Just reset the suggested tx octects whe device is added. */
+    p_dev_rec->suggested_tx_octets = 0;
+
     /* update conn params, use default value for background connection params */
     p_dev_rec->conn_params.min_conn_int = BTM_BLE_CONN_PARAM_UNDEF;
     p_dev_rec->conn_params.max_conn_int = BTM_BLE_CONN_PARAM_UNDEF;
@@ -630,10 +633,24 @@ tBTM_STATUS BTM_SetBleDataLength(const RawAddress& bd_addr,
     return BTM_ILLEGAL_VALUE;
   }
 
+  LOG_INFO("%s, %d", ADDRESS_TO_LOGGABLE_CSTR(bd_addr), tx_pdu_length);
+
+  auto p_dev_rec = btm_find_dev(bd_addr);
+  if (p_dev_rec == NULL) {
+    LOG_ERROR("Device %s not found", ADDRESS_TO_LOGGABLE_CSTR(bd_addr));
+    return BTM_UNKNOWN_ADDR;
+  }
+
   if (tx_pdu_length > BTM_BLE_DATA_SIZE_MAX)
     tx_pdu_length = BTM_BLE_DATA_SIZE_MAX;
   else if (tx_pdu_length < BTM_BLE_DATA_SIZE_MIN)
     tx_pdu_length = BTM_BLE_DATA_SIZE_MIN;
+
+  if (p_dev_rec->get_suggested_tx_octets() >= tx_pdu_length) {
+    LOG_INFO(" Suggested TX octect already set to controller %d >= %d",
+             p_dev_rec->get_suggested_tx_octets(), tx_pdu_length);
+    return BTM_SUCCESS;
+  }
 
   uint16_t tx_time = BTM_BLE_DATA_TX_TIME_MAX_LEGACY;
 
@@ -650,6 +667,7 @@ tBTM_STATUS BTM_SetBleDataLength(const RawAddress& bd_addr,
   if (bluetooth::shim::is_gd_l2cap_enabled()) {
     uint16_t handle = bluetooth::shim::L2CA_GetLeHandle(bd_addr);
     btsnd_hcic_ble_set_data_length(handle, tx_pdu_length, tx_time);
+    p_dev_rec->set_suggested_tx_octect(tx_pdu_length);
     return BTM_SUCCESS;
   }
 
@@ -667,6 +685,7 @@ tBTM_STATUS BTM_SetBleDataLength(const RawAddress& bd_addr,
       tx_time, controller_get_interface()->get_ble_maximum_tx_time());
 
   btsnd_hcic_ble_set_data_length(hci_handle, tx_pdu_length, tx_time);
+  p_dev_rec->set_suggested_tx_octect(tx_pdu_length);
 
   return BTM_SUCCESS;
 }
@@ -2036,7 +2055,7 @@ static void btm_ble_reset_id_impl(const Octet16& rand1, const Octet16& rand2) {
   /* proceed generate ER */
   btm_cb.devcb.ble_encryption_key_value = rand2;
   btm_notify_new_key(BTM_BLE_KEY_TYPE_ER);
-  
+
   /* if privacy is enabled, update the irk and RPA in the LE address manager */
   if (btm_cb.ble_ctr_cb.privacy_mode != BTM_PRIVACY_NONE) {
     BTM_BleConfigPrivacy(true);
