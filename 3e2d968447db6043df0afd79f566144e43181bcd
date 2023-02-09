@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3cc44919_b31457e8",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 1071,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2023-02-09T07:12:21Z",
+      "side": 1,
+      "message": "Why don\u0027t we fall back into device speaker inside this function instead of return false?\n\ni.e. instead of return false, do \n```\nif (mActiveCallProfile \u003d\u003d PROFILE_NOT_DECIDED_YET) {\n                        mActiveCallProfile \u003d PROFILE_USE_BUILTIN_AUDIO_DEVICE;\n                    }\nif (mActiveCallProfile \u003d\u003d PROFILE_NOT_DECIDED_YET) {\n                        mActiveCallProfile \u003d PROFILE_USE_BUILTIN_AUDIO_DEVICE;\n                    }\n```",
+      "range": {
+        "startLine": 1071,
+        "startChar": 20,
+        "endLine": 1071,
+        "endChar": 43
+      },
+      "revId": "3e2d968447db6043df0afd79f566144e43181bcd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
