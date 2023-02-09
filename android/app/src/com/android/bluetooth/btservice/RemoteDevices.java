@@ -251,12 +251,12 @@ final class RemoteDevices {
 
     DeviceProperties getDeviceProperties(BluetoothDevice device) {
         synchronized (mDevices) {
-            DeviceProperties prop = mDevices.get(device.getAddress());
-            if (prop == null) {
-                String mainAddress = mDualDevicesMap.get(device.getAddress());
-                if (mainAddress != null && mDevices.get(mainAddress) != null) {
-                    prop = mDevices.get(mainAddress);
-                }
+            DeviceProperties prop = null;
+            String mainAddress = mDualDevicesMap.get(device.getAddress());
+            if (mainAddress != null && mDevices.get(mainAddress) != null) {
+                prop = mDevices.get(mainAddress);
+            } else {
+                prop = mDevices.get(device.getAddress());
             }
             return prop;
         }
@@ -264,16 +264,17 @@ final class RemoteDevices {
 
     BluetoothDevice getDevice(byte[] address) {
         String addressString = Utils.getAddressStringFromByte(address);
-        DeviceProperties prop = mDevices.get(addressString);
-        if (prop == null) {
-            String mainAddress = mDualDevicesMap.get(addressString);
-            if (mainAddress != null && mDevices.get(mainAddress) != null) {
-                prop = mDevices.get(mainAddress);
+        String mainAddress = mDualDevicesMap.get(addressString);
+        if (mainAddress != null && mDevices.get(mainAddress) != null) {
+            DeviceProperties prop = mDevices.get(mainAddress);
+            return prop.getDevice();
+        } else {
+            DeviceProperties prop = mDevices.get(addressString);
+            if (prop != null) {
                 return prop.getDevice();
             }
-            return null;
         }
-        return prop.getDevice();
+        return null;
     }
 
     @VisibleForTesting
