@@ -22,6 +22,30 @@
       },
       "revId": "3642212c14efb6ca15bdf8be9225092d37d13dc9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1b8ca414_57791797",
+        "filename": "system/stack/l2cap/l2c_utils.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 3479,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2023-02-09T03:56:07Z",
+      "side": 1,
+      "message": "Thanks for noticing this. Done.",
+      "parentUuid": "aad398e7_1b722c40",
+      "range": {
+        "startLine": 3479,
+        "startChar": 19,
+        "endLine": 3479,
+        "endChar": 23
+      },
+      "revId": "3642212c14efb6ca15bdf8be9225092d37d13dc9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
