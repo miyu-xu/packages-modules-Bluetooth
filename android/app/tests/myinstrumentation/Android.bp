@@ -1,0 +1,45 @@
+java_defaults {
+    name: "PandoraInstrumentationTestsDefaults",
+    defaults: ["framework-bluetooth-tests-defaults"],
+
+    min_sdk_version: "current",
+    target_sdk_version: "current",
+    libs: [
+        "android.test.base",
+        "android.test.runner",
+        "libprotobuf-java-micro",
+    ],
+
+    static_libs: [
+        "PlatformProperties",
+        "androidx.room_room-migration",
+        "androidx.room_room-runtime",
+        "androidx.room_room-testing",
+        "androidx.test.espresso.intents",
+        "androidx.test.rules",
+        "framework-bluetooth-pre-jarjar",
+        "grpc-java-lite",
+        "grpc-java-okhttp-client-lite",
+        "gson",
+        "opencensus-java-api",
+        "opencensus-java-contrib-grpc-metrics",
+        "pandora_experimental-grpc-java",
+        "pandora_experimental-proto-java",
+    ],
+
+    // Include all test java files.
+    srcs: ["src/**/*.java"],
+
+    // TODO: the binary target is not compiling with test
+    required:["bumble_pandora_server_bin"],
+
+    platform_apis: true,
+    test_suites: [
+        "device-tests",
+    ],
+}
+
+android_test {
+    name: "PandoraInstrumentationTests",
+    defaults: ["PandoraInstrumentationTestsDefaults"],
+}
