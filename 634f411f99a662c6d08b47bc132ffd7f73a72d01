@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "364e10cc_459245f3",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-02-09T08:38:40Z",
+      "side": 1,
+      "message": "Could you add explanation what is the issue to fix?",
+      "revId": "634f411f99a662c6d08b47bc132ffd7f73a72d01",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "762a9b6f_dce0033d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-02-09T08:38:40Z",
+      "side": 1,
+      "message": "Please make them dup if they are the same issue.",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 14
+      },
+      "revId": "634f411f99a662c6d08b47bc132ffd7f73a72d01",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
