@@ -119,6 +119,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d425c05b_5b647893",
+        "filename": "floss/hcidoc/src/parser.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-02-09T19:24:46Z",
+      "side": 1,
+      "message": "Because you need the given timestamp to convert. You can have a constant function but not a constant value to do the translation.\n```\nTS_IN_MS \u003d ((given_ts - Y2K_EPOCH_CONST) / 1000) + Y2K_OFFSET_MS \n```",
+      "parentUuid": "cf73384f_241b994f",
+      "range": {
+        "startLine": 121,
+        "startChar": 6,
+        "endLine": 121,
+        "endChar": 31
+      },
+      "revId": "d5bfb1dc19774633a8f4dca6c68de70f416574da",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "78b5ba44_0027af34",
