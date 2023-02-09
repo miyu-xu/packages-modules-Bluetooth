@@ -1,0 +1,242 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a6c354fb_7209cf92",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-02-09T19:50:03Z",
+      "side": 1,
+      "message": "You mean EXTRA_BQR?",
+      "revId": "5c1b807a38a57640d12034b01b44e9d27f37ac36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9c814314_e4e54d1d",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 233,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-02-09T19:50:03Z",
+      "side": 1,
+      "message": "We no longer use the BLUETOOTH permission, so this should be removed",
+      "revId": "5c1b807a38a57640d12034b01b44e9d27f37ac36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a0a0c8cc_dca29b41",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-02-09T19:50:03Z",
+      "side": 1,
+      "message": "We don\u0027t need this annotation because this is a new API and that annotation inserts into the docs that we use older permissions for apps targeting R or below.",
+      "revId": "5c1b807a38a57640d12034b01b44e9d27f37ac36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "50ce4e48_a05c053d",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-02-09T19:50:03Z",
+      "side": 1,
+      "message": "We should uncomment this",
+      "revId": "5c1b807a38a57640d12034b01b44e9d27f37ac36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ed8bbe37_58a55bfc",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 239,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-02-09T19:50:03Z",
+      "side": 1,
+      "message": "Please rename this to be more descriptive. \"ISSUE\"OCCURRED\" is too generic.",
+      "revId": "5c1b807a38a57640d12034b01b44e9d27f37ac36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d97da68c_a24f4bb0",
+        "filename": "framework/java/android/bluetooth/BluetoothQualityReport.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-02-09T19:50:03Z",
+      "side": 1,
+      "message": "nit: change all of these from \"public APIs\" --\u003e \"System APIs\"",
+      "revId": "5c1b807a38a57640d12034b01b44e9d27f37ac36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9613c3dd_8349e8b8",
+        "filename": "framework/java/android/bluetooth/BluetoothQualityReport.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-02-09T19:50:03Z",
+      "side": 1,
+      "message": "We need docs for all API constants and methods. Please make sure to add them.",
+      "revId": "5c1b807a38a57640d12034b01b44e9d27f37ac36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eb0fa631_59fb3cd5",
+        "filename": "framework/java/android/bluetooth/BluetoothQualityReport.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-02-09T19:50:03Z",
+      "side": 1,
+      "message": "nit: please keep the annotation on its own line and define the constant on the following line to be consistent with other files.",
+      "revId": "5c1b807a38a57640d12034b01b44e9d27f37ac36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f5dbd836_268da77a",
+        "filename": "framework/java/android/bluetooth/BluetoothQualityReport.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-02-09T19:50:03Z",
+      "side": 1,
+      "message": "Can we map this to a BluetoothClass object instead? We should be able to directly call the constructor with this integer value. It would make it easier to parse.",
+      "revId": "5c1b807a38a57640d12034b01b44e9d27f37ac36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "36285dd7_d75bb6f8",
+        "filename": "framework/java/android/bluetooth/BluetoothQualityReport.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-02-09T19:50:03Z",
+      "side": 1,
+      "message": "Please use a Builder for all of these classes so that we can expand the params if necessary without adding a new constructor to the API surface. We tend not to recommend exposing constructors directly to the API surface for this reason.",
+      "revId": "5c1b807a38a57640d12034b01b44e9d27f37ac36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "327c9b65_34827288",
+        "filename": "framework/java/android/bluetooth/BluetoothQualityReport.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 307,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-02-09T19:50:03Z",
+      "side": 1,
+      "message": "nit: Write out the full name \"String\"",
+      "revId": "5c1b807a38a57640d12034b01b44e9d27f37ac36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "32366a98_1614688d",
+        "filename": "framework/java/android/bluetooth/BluetoothQualityReport.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 421,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-02-09T19:50:03Z",
+      "side": 1,
+      "message": "Can we have a common base class for all of these events and expose a single API to get the report that corresponds to the report id? This design does not scale and requires new APIs for each report type.\n\nSomething along the lines of:\n\nBqrCommon implements Parcelable\nBqrVsCommon extends BqrCommon\nBqrVsA2dpChoppy extends BqrVsCommon\nBqrVsScoChoppy extends BqrVsCommon\nBqrConnectFail extends BqrVsCommon\n\nAfter this, you can store a single BqrCommon object and have an API that returns it. You can check what type it is by doing an instanceof check / checking the report id type.",
+      "revId": "5c1b807a38a57640d12034b01b44e9d27f37ac36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "54992865_184c0fa0",
+        "filename": "framework/java/android/bluetooth/BluetoothQualityReport.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 480,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-02-09T19:50:03Z",
+      "side": 1,
+      "message": "Don\u0027t put this in the API surface, doesn\u0027t do anything",
+      "revId": "5c1b807a38a57640d12034b01b44e9d27f37ac36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4c72565f_3fb18583",
+        "filename": "framework/java/android/bluetooth/BluetoothQualityReport.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 485,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-02-09T19:50:03Z",
+      "side": 1,
+      "message": "Please add docs \u0026 @hide + @SystemApi to this and toString",
+      "revId": "5c1b807a38a57640d12034b01b44e9d27f37ac36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

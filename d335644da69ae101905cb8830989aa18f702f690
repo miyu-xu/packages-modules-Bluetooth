@@ -52,6 +52,24 @@
       "parentUuid": "280bf7e5_ef4c8d90",
       "revId": "d335644da69ae101905cb8830989aa18f702f690",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "61f830a2_dffb0141",
+        "filename": "framework/java/android/bluetooth/BluetoothQualityReport.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-02-09T19:50:03Z",
+      "side": 1,
+      "message": "Resolving this",
+      "parentUuid": "459428c4_deb7e27b",
+      "revId": "d335644da69ae101905cb8830989aa18f702f690",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
