@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b46c9707_526f9d1e",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudioCodecConfigMetadata.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-02-09T22:19:31Z",
+      "side": 1,
+      "message": "checked with Lukasz offline, this is the only concern about this commit. I\u0027ve addressed in a separate cl: https://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/2427901/1\n\nmark this as resolved.",
+      "parentUuid": "a404dc19_7bb1d516",
+      "range": {
+        "startLine": 76,
+        "startChar": 28,
+        "endLine": 76,
+        "endChar": 59
+      },
+      "revId": "d84b9d296c71b732afb317e8e23f64ac2bacb178",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "03c5aa6f_b30db194",
@@ -85,6 +109,30 @@
       "side": 1,
       "message": "explained above",
       "parentUuid": "03c5aa6f_b30db194",
+      "range": {
+        "startLine": 133,
+        "startChar": 22,
+        "endLine": 133,
+        "endChar": 44
+      },
+      "revId": "d84b9d296c71b732afb317e8e23f64ac2bacb178",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "54100f6e_0119ffdc",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudioCodecConfigMetadata.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-02-09T22:19:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fef80e68_e330eb04",
       "range": {
         "startLine": 133,
         "startChar": 22,
