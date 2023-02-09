@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dfccc833_22a1d1e2",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 333,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-02-09T07:52:15Z",
+      "side": 1,
+      "message": "instead of using EXTRA, could we add SystemApis in BluetoothHearingAid \n\ne.g. \n\nBluetoothHearingAid#getAshaCapability(BluetoothDevice device)\nBluetoothHearingAid#getTruncatedHiSyncId(BluetoothDevice device)\n\nThis has two benefits:\n1. Only apps with permission can access these information, avoiding potential leak of info like high sync id\n2. If app needs to learn about hearing aid\u0027s capability after pairing, they can still call this api to get it.",
+      "range": {
+        "startLine": 333,
+        "startChar": 31,
+        "endLine": 333,
+        "endChar": 54
+      },
+      "revId": "44ec883f8244dbab6cfdeac73ecdb5b332c4f960",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
