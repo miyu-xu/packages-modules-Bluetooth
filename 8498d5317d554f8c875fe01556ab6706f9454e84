@@ -98,6 +98,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c39dc911_bad08646",
+        "filename": "android/app/src/com/android/bluetooth/gatt/AppScanStats.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 362,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2023-02-09T22:17:54Z",
+      "side": 1,
+      "message": "\u003e we can collect the number of ScanResult callbacks when the screen is on/off.\nYes, ScanResult per screen status is a part of plan. I think scan radio duration per screen status is also good suggestion. We can have both.",
+      "parentUuid": "93da388c_5e971c0d",
+      "range": {
+        "startLine": 359,
+        "startChar": 0,
+        "endLine": 362,
+        "endChar": 9
+      },
+      "revId": "8498d5317d554f8c875fe01556ab6706f9454e84",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4d3fdbdd_d427668c",
         "filename": "android/app/src/com/android/bluetooth/gatt/ScanManager.java",
         "patchSetId": 2
