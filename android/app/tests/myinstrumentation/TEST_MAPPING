@@ -1,0 +1,19 @@
+{
+  "presubmit": [
+    {
+      "name": "PandoraInstrumentationTests",
+      "options": [
+        {
+          // Only run the tests which defines SmallTest annotation, in
+          // this example will only run testMyTest1.
+          "include-annotation": "androidx.test.filters.SmallTest"
+        }
+      ]
+    }
+  ],
+  "postsubmit": [
+    {
+      "name": "PandoraInstrumentationTests"
+    }
+  ]
+}
