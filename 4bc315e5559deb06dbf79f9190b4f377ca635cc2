@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5540589b_30b5be82",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-02-09T19:23:35Z",
+      "side": 1,
+      "message": "It\u0027s better to keep this in OddDisconnectionsRule because we can re-use open handles that we already use for tracking.\n\nNOCP manifests in two ways: a long time to return NOCP and unacked ACL packets before disconnect. I\u0027ll reword the commit.",
+      "parentUuid": "ad2cc1e8_40c6e831",
+      "range": {
+        "startLine": 12,
+        "startChar": 2,
+        "endLine": 12,
+        "endChar": 10
+      },
+      "revId": "4bc315e5559deb06dbf79f9190b4f377ca635cc2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "574a8f26_fb5d5c3f",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-02-08T05:56:11Z",
       "side": 1,
       "message": "maybe just `pop_front()` here?",
+      "range": {
+        "startLine": 413,
+        "startChar": 76,
+        "endLine": 413,
+        "endChar": 81
+      },
+      "revId": "4bc315e5559deb06dbf79f9190b4f377ca635cc2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c58144de_ae463658",
+        "filename": "floss/hcidoc/src/groups/connections.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 413,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-02-09T19:23:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "574a8f26_fb5d5c3f",
       "range": {
         "startLine": 413,
         "startChar": 76,
