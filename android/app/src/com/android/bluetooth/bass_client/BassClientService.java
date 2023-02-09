@@ -1012,8 +1012,7 @@ public class BassClientService extends ProfileService {
 
     void selectSource(BluetoothDevice sink, ScanResult result, boolean autoTrigger) {
         if (!hasRoomForBroadcastSourceAddition(sink)) {
-            log("selectSource: No more slot");
-            return;
+            log("selectSource: No more slot but this is OK :) ");
         }
 
         synchronized (mStateMachines) {
