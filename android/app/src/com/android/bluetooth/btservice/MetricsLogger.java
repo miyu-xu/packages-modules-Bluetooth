@@ -24,6 +24,8 @@ import com.android.bluetooth.BluetoothMetricsProto.BluetoothLog;
 import com.android.bluetooth.BluetoothMetricsProto.ProfileConnectionStats;
 import com.android.bluetooth.BluetoothMetricsProto.ProfileId;
 import com.android.bluetooth.BluetoothStatsLog;
+import com.android.bluetooth.Utils;
+import com.android.internal.annotations.VisibleForTesting;
 
 import java.util.HashMap;
 
@@ -56,14 +58,26 @@ public class MetricsLogger {
     };
 
     public static MetricsLogger getInstance() {
-        if (sInstance == null) {
-            synchronized (mLock) {
-                if (sInstance == null) {
-                    sInstance = new MetricsLogger();
-                }
+        synchronized (mLock) {
+            if (sInstance == null) {
+                sInstance = new MetricsLogger();
             }
         }
         return sInstance;
+    }
+
+    /**
+     * Allow unit tests to substitute MetricsLogger with a test instance
+     *
+     * @param instance a test instance of the MetricsLogger
+     */
+    @VisibleForTesting
+    public static void setInstanceForTesting(MetricsLogger instance) {
+        Utils.enforceInstrumentationTestMode();
+        synchronized (mLock) {
+            Log.d(TAG, "setInstanceForTesting(), set to " + instance);
+            sInstance = instance;
+        }
     }
 
     public boolean isInitialized() {
