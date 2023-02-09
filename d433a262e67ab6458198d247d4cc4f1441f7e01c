@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4787a912_3f0be992",
+        "filename": "system/gd/hci/le_scanning_manager.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 1096,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-02-09T16:41:17Z",
+      "side": 1,
+      "message": "There is a format complain there for `transport_data.size()` `transport_data_mask.size()`\n```\npackages/modules/Bluetooth/system/gd/hci/le_scanning_manager.cc:1095:9: error: format specifies type \u0027unsigned long\u0027 but the argument has type \u0027size_type\u0027 (aka \u0027unsigned int\u0027) [-Werror,-Wformat]\n        transport_data.size(),\n        ^~~~~~~~~~~~~~~~~~~~~\n        \n...\n        \npackages/modules/Bluetooth/system/gd/hci/le_scanning_manager.cc:1096:9: error: format specifies type \u0027unsigned long\u0027 but the argument has type \u0027size_type\u0027 (aka \u0027unsigned int\u0027) [-Werror,-Wformat]\n        transport_data_mask.size());\n        ^~~~~~~~~~~~~~~~~~~~~~~~~~\n```",
+      "range": {
+        "startLine": 1089,
+        "startChar": 3,
+        "endLine": 1096,
+        "endChar": 36
+      },
+      "revId": "d433a262e67ab6458198d247d4cc4f1441f7e01c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "40adfa90_0457230e",
+        "filename": "system/gd/hci/le_scanning_manager_test.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 325,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-02-09T16:41:17Z",
+      "side": 1,
+      "message": "This is failing with this change:\n\n```\npackages/modules/Bluetooth/system/gd/hci/le_scanning_manager_test.cc:325:118: error: too few arguments to function call, expected 4, have 3\n    test_hci_layer_-\u003eIncomingEvent(LeAdvFilterReadExtendedFeaturesCompleteBuilder::Create(1, ErrorCode::SUCCESS, 0x01));\n                                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~                            ^\n```",
+      "range": {
+        "startLine": 325,
+        "startChar": 0,
+        "endLine": 325,
+        "endChar": 120
+      },
+      "revId": "d433a262e67ab6458198d247d4cc4f1441f7e01c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9e9da49a_a470b4f8",
+        "filename": "system/gd/hci/le_scanning_manager_test.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 512,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-02-09T16:41:17Z",
+      "side": 1,
+      "message": "Not needed with the current `test_hci_layer` (actually it create a build error):\n```\npackages/modules/Bluetooth/system/gd/hci/le_scanning_manager_test.cc:512:20: error: no member named \u0027SetCommandFuture\u0027 in \u0027bluetooth::hci::TestHciLayer\u0027\n  test_hci_layer_-\u003eSetCommandFuture();\n  ~~~~~~~~~~~~~~~  ^\n2 errors generated.\n```",
+      "range": {
+        "startLine": 512,
+        "startChar": 0,
+        "endLine": 512,
+        "endChar": 38
+      },
+      "revId": "d433a262e67ab6458198d247d4cc4f1441f7e01c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

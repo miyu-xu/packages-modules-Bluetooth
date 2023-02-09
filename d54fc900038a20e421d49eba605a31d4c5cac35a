@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a74055df_4f5ab219",
+        "filename": "framework/api/current.txt",
+        "patchSetId": 10
+      },
+      "lineNbr": 1291,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-02-09T16:41:17Z",
+      "side": 1,
+      "message": "@rahulsabnis@google.com Can you help API review this change.\n\nI am wondering if we should change the naming to keep consistency of if we are fine like this.",
+      "range": {
+        "startLine": 1291,
+        "startChar": 22,
+        "endLine": 1291,
+        "endChar": 33
+      },
+      "revId": "d54fc900038a20e421d49eba605a31d4c5cac35a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
