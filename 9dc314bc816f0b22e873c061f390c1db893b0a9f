@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2cf4a48f_a380a74a",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudioCodecConfigMetadata.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-02-09T23:46:17Z",
+      "side": 1,
+      "message": "Could we do a static import of these?",
+      "revId": "9dc314bc816f0b22e873c061f390c1db893b0a9f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3b5853ed_dc7f7201",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudioCodecConfigMetadata.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 332,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-02-09T23:46:17Z",
+      "side": 1,
+      "message": "Clarify that this is the bitfields, not the constants defined in the assigned numbers doc.",
+      "revId": "9dc314bc816f0b22e873c061f390c1db893b0a9f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
