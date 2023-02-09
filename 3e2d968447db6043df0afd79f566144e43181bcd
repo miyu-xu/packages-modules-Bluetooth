@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7e8ce0bb_2922cfe0",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2023-02-09T08:05:49Z",
+      "side": 1,
+      "message": "Why the audio should be paused?\n\nDoes the fallback from wired headset to BT headset case also pauses the music?",
+      "range": {
+        "startLine": 11,
+        "startChar": 63,
+        "endLine": 12,
+        "endChar": 26
+      },
+      "revId": "3e2d968447db6043df0afd79f566144e43181bcd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "861bde00_9142e326",
         "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
         "patchSetId": 6
@@ -19,6 +42,98 @@
         "startChar": 47,
         "endLine": 268,
         "endChar": 66
+      },
+      "revId": "3e2d968447db6043df0afd79f566144e43181bcd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "92f8d063_8b7a541c",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 269,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2023-02-09T08:05:49Z",
+      "side": 1,
+      "message": "Why these checks are necessary? Is `isMediaMode` not enough?\n\nAlso, how can this state be achieved (`isMediaMode \u003d\u003d false \u0026\u0026 mActiveMediaProfile \u003d\u003d BluetoothProfile.A2DP`)?",
+      "range": {
+        "startLine": 268,
+        "startChar": 43,
+        "endLine": 269,
+        "endChar": 85
+      },
+      "revId": "3e2d968447db6043df0afd79f566144e43181bcd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4bf1356b_561a3a06",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2023-02-09T08:05:49Z",
+      "side": 1,
+      "message": "deactivate currently active BT device for call?",
+      "range": {
+        "startLine": 275,
+        "startChar": 35,
+        "endLine": 275,
+        "endChar": 93
+      },
+      "revId": "3e2d968447db6043df0afd79f566144e43181bcd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "75bd2091_e601eb12",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 292,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2023-02-09T08:05:49Z",
+      "side": 1,
+      "message": "How about renaming this into `activateFallbackDevice`?",
+      "range": {
+        "startLine": 292,
+        "startChar": 37,
+        "endLine": 292,
+        "endChar": 60
+      },
+      "revId": "3e2d968447db6043df0afd79f566144e43181bcd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "941c825e_efc18a66",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 319,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2023-02-09T08:05:49Z",
+      "side": 1,
+      "message": "Could you add comment in the code why mA2dpActiveDevice is not changed to null? Thanks.",
+      "range": {
+        "startLine": 319,
+        "startChar": 24,
+        "endLine": 319,
+        "endChar": 51
       },
       "revId": "3e2d968447db6043df0afd79f566144e43181bcd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
@@ -49,6 +164,121 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "459b368d_f45e6ba0",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 360,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2023-02-09T08:05:49Z",
+      "side": 1,
+      "message": "ditto (L275)",
+      "range": {
+        "startLine": 360,
+        "startChar": 35,
+        "endLine": 360,
+        "endChar": 94
+      },
+      "revId": "3e2d968447db6043df0afd79f566144e43181bcd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "884b7849_506e93e5",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 485,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2023-02-09T08:05:49Z",
+      "side": 1,
+      "message": "Should this also go inside above if statement? (like L319)",
+      "range": {
+        "startLine": 484,
+        "startChar": 20,
+        "endLine": 485,
+        "endChar": 53
+      },
+      "revId": "3e2d968447db6043df0afd79f566144e43181bcd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "535830ee_ea45a04b",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 603,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2023-02-09T08:05:49Z",
+      "side": 1,
+      "message": "Ditto (L485)",
+      "range": {
+        "startLine": 602,
+        "startChar": 20,
+        "endLine": 603,
+        "endChar": 50
+      },
+      "revId": "3e2d968447db6043df0afd79f566144e43181bcd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "94a09bf8_6b97f23c",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 701,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2023-02-09T08:05:49Z",
+      "side": 1,
+      "message": "Let\u0027s log the previous `mActiveMediaProfile` and new `mActiveMediaProfile`.",
+      "range": {
+        "startLine": 701,
+        "startChar": 12,
+        "endLine": 701,
+        "endChar": 42
+      },
+      "revId": "3e2d968447db6043df0afd79f566144e43181bcd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3d3909d2_65fb1fce",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 787,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2023-02-09T08:05:49Z",
+      "side": 1,
+      "message": "ditto (adding log)",
+      "range": {
+        "startLine": 787,
+        "startChar": 20,
+        "endLine": 787,
+        "endChar": 41
+      },
+      "revId": "3e2d968447db6043df0afd79f566144e43181bcd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3cc44919_b31457e8",
         "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
         "patchSetId": 6
@@ -65,6 +295,144 @@
         "startChar": 20,
         "endLine": 1071,
         "endChar": 43
+      },
+      "revId": "3e2d968447db6043df0afd79f566144e43181bcd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cc56b395_11c8074c",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/ActiveDeviceManagerTest.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 381,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2023-02-09T08:05:49Z",
+      "side": 1,
+      "message": "hearingAidConnected?",
+      "range": {
+        "startLine": 381,
+        "startChar": 8,
+        "endLine": 381,
+        "endChar": 37
+      },
+      "revId": "3e2d968447db6043df0afd79f566144e43181bcd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "724a59c7_8f58b15d",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/ActiveDeviceManagerTest.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 394,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2023-02-09T08:05:49Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 394,
+        "startChar": 8,
+        "endLine": 394,
+        "endChar": 37
+      },
+      "revId": "3e2d968447db6043df0afd79f566144e43181bcd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "32af8b94_7d973d96",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/ActiveDeviceManagerTest.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 411,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2023-02-09T08:05:49Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 411,
+        "startChar": 8,
+        "endLine": 411,
+        "endChar": 37
+      },
+      "revId": "3e2d968447db6043df0afd79f566144e43181bcd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "396b606c_689ea5ef",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/ActiveDeviceManagerTest.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 740,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2023-02-09T08:05:49Z",
+      "side": 1,
+      "message": "How about also checking LE audio / LE hearing aids?",
+      "range": {
+        "startLine": 740,
+        "startChar": 8,
+        "endLine": 740,
+        "endChar": 85
+      },
+      "revId": "3e2d968447db6043df0afd79f566144e43181bcd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d204592b_15593bbc",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/ActiveDeviceManagerTest.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 765,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2023-02-09T08:05:49Z",
+      "side": 1,
+      "message": "A2dpForMedia? (since it is mA2dpDevice that is used for media in L783)",
+      "range": {
+        "startLine": 765,
+        "startChar": 62,
+        "endLine": 765,
+        "endChar": 69
+      },
+      "revId": "3e2d968447db6043df0afd79f566144e43181bcd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a040b9c2_b819aa0f",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/ActiveDeviceManagerTest.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 766,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2023-02-09T08:05:49Z",
+      "side": 1,
+      "message": "Can this go to L775?",
+      "range": {
+        "startLine": 766,
+        "startChar": 8,
+        "endLine": 766,
+        "endChar": 76
       },
       "revId": "3e2d968447db6043df0afd79f566144e43181bcd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
