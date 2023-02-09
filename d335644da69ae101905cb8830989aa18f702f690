@@ -34,6 +34,24 @@
       "parentUuid": "f42f7d51_4c33c78b",
       "revId": "d335644da69ae101905cb8830989aa18f702f690",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "459428c4_deb7e27b",
+        "filename": "framework/java/android/bluetooth/BluetoothQualityReport.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1888950
+      },
+      "writtenOn": "2023-02-09T15:50:14Z",
+      "side": 1,
+      "message": "Changed to SystemAPI.",
+      "parentUuid": "280bf7e5_ef4c8d90",
+      "revId": "d335644da69ae101905cb8830989aa18f702f690",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
