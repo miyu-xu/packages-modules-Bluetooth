@@ -34,6 +34,24 @@
       "parentUuid": "8ea646a1_7fc41c2d",
       "revId": "863e89d7793704259d29790c2d4e61ede901ca16",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1de9fe00_9d9990e2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-02-09T13:27:25Z",
+      "side": 1,
+      "message": "Handle DLE has been fix with the patch beeing added as a first in this Chain, plus this patch has been extend with handling DLE in the way at it was before.",
+      "parentUuid": "2b38bf8b_fc70ddcd",
+      "revId": "863e89d7793704259d29790c2d4e61ede901ca16",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

@@ -109,6 +109,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "b04282b8_c9da78a0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-02-09T13:27:25Z",
+      "side": 1,
+      "message": "Bluetooth SIG qualification process contains test cases which test MAX and MIN MTU requests - we should be good then.",
+      "parentUuid": "3b27ae27_2f46946f",
+      "revId": "e4dbc443c8d963e813ee04129b1242f7fa4e60cd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "59dbbd0f_a814503f",
         "filename": "system/bta/gatt/bta_gattc_act.cc",
         "patchSetId": 5
