@@ -3,6 +3,52 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "861bde00_9142e326",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 268,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2023-02-09T08:03:17Z",
+      "side": 1,
+      "message": "Talk offline, this was to prevent disconnecting LE device\nWhat about the case mActiveMediaProfile \u003d\u003d PROFILE_BUILTIN_DEVICE \u0026\u0026 mActiveCallProfile \u003d\u003d PROFILE_BUILTIN_DEVICE?",
+      "range": {
+        "startLine": 268,
+        "startChar": 47,
+        "endLine": 268,
+        "endChar": 66
+      },
+      "revId": "3e2d968447db6043df0afd79f566144e43181bcd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ce76e526_7c0bd858",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 354,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2023-02-09T08:03:17Z",
+      "side": 1,
+      "message": "This one too",
+      "range": {
+        "startLine": 353,
+        "startChar": 32,
+        "endLine": 354,
+        "endChar": 83
+      },
+      "revId": "3e2d968447db6043df0afd79f566144e43181bcd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3cc44919_b31457e8",
         "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
         "patchSetId": 6
