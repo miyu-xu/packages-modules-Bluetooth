@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "80384d1e_862d14f3",
+        "filename": "android/app/src/com/android/bluetooth/gatt/AppScanStats.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 362,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2023-02-09T22:06:40Z",
+      "side": 1,
+      "message": "That is good suggestion. \n\nWe\u0027re recording scan radio duration time when scan radio stops.\nScan radio can be stopped if there is no regular scan client anymore or if we need to change scan duty cycle (stop -\u003e change duty cycle -\u003e start).\n\nScreen on/off may change the scan duty cycle so that screen event may call scan radio stop API but there are some cases that screen on/off event doesn\u0027t change scan duty cycle (i.e., foreground service app\u0027s low latency scan doesn\u0027t get impact by screen on/off). I will add the new buckets in enum and logic.\n        LE_SCAN_RADIO_DURATION_REGULAR_SCREEN_ON \u003d 120203;\n        LE_SCAN_RADIO_DURATION_REGULAR_SCREEN_OFF \u003d 120204;\n        LE_SCAN_RADIO_DURATION_BATCH_SCREEN_ON \u003d 120205;\n        LE_SCAN_RADIO_DURATION_BATCH_SCREEN_OFF \u003d 120206",
+      "parentUuid": "13f28b7a_a81e01f3",
+      "range": {
+        "startLine": 359,
+        "startChar": 0,
+        "endLine": 362,
+        "endChar": 9
+      },
+      "revId": "8498d5317d554f8c875fe01556ab6706f9454e84",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4d3fdbdd_d427668c",
         "filename": "android/app/src/com/android/bluetooth/gatt/ScanManager.java",
         "patchSetId": 2
@@ -37,6 +61,30 @@
       "writtenOn": "2023-02-09T21:23:19Z",
       "side": 1,
       "message": "AppScanStats run per app but here we really collect the overall scan duration.\n\nIf scanSetting changes from one client to another client, does your CL still work? It looks like client.starts.xxxStart/xxxStop() are not always paired together.   I suspect you have to move recordScanRadioStop()/recordScanRadioStop() back to ScanManager so that recording is independent to clients.",
+      "range": {
+        "startLine": 1059,
+        "startChar": 0,
+        "endLine": 1061,
+        "endChar": 21
+      },
+      "revId": "8498d5317d554f8c875fe01556ab6706f9454e84",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "420ed1d8_a5f64998",
+        "filename": "android/app/src/com/android/bluetooth/gatt/ScanManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1061,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2023-02-09T22:06:40Z",
+      "side": 1,
+      "message": "Even through we\u0027re calling recordScanRadioStart() in one client, actually the API changes static variables shared with all clients. To avoid the confusion, I can change the API as static with lock object.",
+      "parentUuid": "4d3fdbdd_d427668c",
       "range": {
         "startLine": 1059,
         "startChar": 0,
