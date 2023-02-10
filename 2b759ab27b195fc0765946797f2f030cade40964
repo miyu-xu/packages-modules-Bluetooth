@@ -16,6 +16,24 @@
       "message": "Note to reviewers - may need a more generic value for the API.\n\nWill mark this resolved once discussion with Jacky closed.",
       "revId": "2b759ab27b195fc0765946797f2f030cade40964",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "45221c38_7f009d9b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-02-10T23:18:41Z",
+      "side": 1,
+      "message": "Resolving - agreed on referencing DCK.",
+      "parentUuid": "5de73077_d9dbbf45",
+      "revId": "2b759ab27b195fc0765946797f2f030cade40964",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
