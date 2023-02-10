@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a3b5dee6_951bb2a7",
+        "filename": "system/stack/avrc/avrc_api.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 208,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-02-10T23:32:10Z",
+      "side": 1,
+      "message": "This should never be possible.  I\u0027d rather assert and fail here if the timer is null.  We only start the command timer after successfully sending a command, and we only set the timer to NULL when we disconnect.",
+      "range": {
+        "startLine": 208,
+        "startChar": 0,
+        "endLine": 208,
+        "endChar": 44
+      },
+      "revId": "615150f7a56b3b49f489ecbeb93ed6eb743f812c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "73074934_ee18d337",
+        "filename": "system/stack/avrc/avrc_api.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1307,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-02-10T23:32:10Z",
+      "side": 1,
+      "message": "Same thing here.  This should never happen, and it should crash if it ever happens.",
+      "range": {
+        "startLine": 1303,
+        "startChar": 0,
+        "endLine": 1307,
+        "endChar": 8
+      },
+      "revId": "615150f7a56b3b49f489ecbeb93ed6eb743f812c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
