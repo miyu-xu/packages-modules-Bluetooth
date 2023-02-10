@@ -4488,6 +4488,12 @@ tBTM_STATUS btm_sec_execute_procedure(tBTM_SEC_DEV_REC* p_dev_rec) {
       (p_dev_rec->hci_handle != HCI_INVALID_HANDLE)) {
     BTM_TRACE_EVENT("Security Manager: Start encryption");
 
+    if (p_dev_rec->enc_delay_count == 0) {
+      p_dev_rec->enc_delay_count++;
+      return (BTM_CMD_STARTED);
+    }
+
+    p_dev_rec->enc_delay_count = 0;
     btsnd_hcic_set_conn_encrypt(p_dev_rec->hci_handle, true);
     p_dev_rec->sec_state = BTM_SEC_STATE_ENCRYPTING;
     return (BTM_CMD_STARTED);
