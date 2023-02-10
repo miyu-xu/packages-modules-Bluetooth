@@ -18,6 +18,9 @@ package com.android.bluetooth.hearingaid;
 
 import static android.Manifest.permission.BLUETOOTH_CONNECT;
 
+import static com.android.bluetooth.Utils.callerIsSystemOrActiveOrManagedUser;
+import static com.android.bluetooth.Utils.enforceBluetoothPrivilegedPermission;
+
 import android.annotation.RequiresPermission;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothHearingAid;
@@ -578,6 +581,39 @@ public class HearingAidService extends ProfileService {
 
     int getCapabilities(BluetoothDevice device) {
         return mDeviceCapabilitiesMap.getOrDefault(device, -1);
+    }
+
+    @RequiresPermission(
+            allOf = {
+                android.Manifest.permission.BLUETOOTH_SCAN,
+                android.Manifest.permission.BLUETOOTH_PRIVILEGED,
+            })
+    private int getAshaCapability(BluetoothDevice device, AttributionSource attributionSource) {
+        AdapterService service = mAdapterService;
+        if (service == null
+                || !callerIsSystemOrActiveOrManagedUser(service, TAG, "getAshaCapability")
+                || !Utils.checkScanPermissionForDataDelivery(service, attributionSource, TAG)) {
+            return BluetoothDevice.ERROR;
+        }
+        enforceBluetoothPrivilegedPermission(service);
+        return service.getAshaCapability(device);
+    }
+
+    @RequiresPermission(
+            allOf = {
+                android.Manifest.permission.BLUETOOTH_SCAN,
+                android.Manifest.permission.BLUETOOTH_PRIVILEGED,
+            })
+    private int getAshaTruncatedHiSyncId(
+            BluetoothDevice device, AttributionSource attributionSource) {
+        AdapterService service = mAdapterService;
+        if (service == null
+                || !callerIsSystemOrActiveOrManagedUser(service, TAG, "getAshaTruncatedHiSyncId")
+                || !Utils.checkScanPermissionForDataDelivery(service, attributionSource, TAG)) {
+            return BluetoothDevice.ERROR;
+        }
+        enforceBluetoothPrivilegedPermission(service);
+        return service.getAshaTruncatedHiSyncId(device);
     }
 
     /**
@@ -1152,6 +1188,38 @@ public class HearingAidService extends ProfileService {
                     }
                 }
                 receiver.send(mode);
+            } catch (RuntimeException e) {
+                receiver.propagateException(e);
+            }
+        }
+
+        @Override
+        public void getAshaCapability(
+                BluetoothDevice device,
+                AttributionSource source,
+                SynchronousResultReceiver receiver) {
+            try {
+                int capability = BluetoothDevice.ERROR;
+                if (mService != null) {
+                    capability = mService.getAshaCapability(device, source);
+                }
+                receiver.send(capability);
+            } catch (RuntimeException e) {
+                receiver.propagateException(e);
+            }
+        }
+
+        @Override
+        public void getAshaTruncatedHiSyncId(
+                BluetoothDevice device,
+                AttributionSource source,
+                SynchronousResultReceiver receiver) {
+            try {
+                int id = BluetoothDevice.ERROR;
+                if (mService != null) {
+                    id = mService.getAshaTruncatedHiSyncId(device, source);
+                }
+                receiver.send(id);
             } catch (RuntimeException e) {
                 receiver.propagateException(e);
             }

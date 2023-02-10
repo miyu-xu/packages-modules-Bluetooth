@@ -725,6 +725,80 @@ public final class BluetoothHearingAid implements BluetoothProfile {
     }
 
     /**
+     * Get ASHA device's capability from its advertisement service data. Negative value means there
+     * is no valid capability data.
+     *
+     * @param device discovered Bluetooth device
+     * @return ASHA device's capability
+     * @hide
+     */
+    @SystemApi
+    @RequiresPermission(
+            allOf = {
+                android.Manifest.permission.BLUETOOTH_SCAN,
+                android.Manifest.permission.BLUETOOTH_PRIVILEGED,
+            })
+    public int getAshaCapability(@NonNull BluetoothDevice device) {
+        if (DBG) {
+            log("getAshaCapability()");
+        }
+        final IBluetoothHearingAid service = getService();
+        if (service == null || !isEnabled() || isValidDevice(device)) {
+            Log.w(TAG, "Proxy not attached to service");
+            if (DBG) {
+                log(Log.getStackTraceString(new Throwable()));
+            }
+        } else {
+            try {
+                final SynchronousResultReceiver<Integer> recv = SynchronousResultReceiver.get();
+                service.getAshaCapability(device, mAttributionSource, recv);
+                return recv.awaitResultNoInterrupt(getSyncTimeout()).getValue(-1);
+            } catch (RemoteException | TimeoutException e) {
+                Log.e(TAG, e.toString() + "\n" + Log.getStackTraceString(new Throwable()));
+            }
+        }
+        // no ASHA capability data.
+        return BluetoothDevice.ERROR;
+    }
+
+    /**
+     * Get ASHA device's truncated HiSyncId from its advertisement service data if {@link
+     * #getAshaCapability} is non-negative.
+     *
+     * @param device discovered Bluetooth device
+     * @return truncated HiSyncId
+     * @hide
+     */
+    @SystemApi
+    @RequiresPermission(
+            allOf = {
+                android.Manifest.permission.BLUETOOTH_SCAN,
+                android.Manifest.permission.BLUETOOTH_PRIVILEGED,
+            })
+    public int getAshaTruncatedHiSyncId(@NonNull BluetoothDevice device) {
+        if (DBG) {
+            log("getAshaTruncatedHiSyncId()");
+        }
+        final IBluetoothHearingAid service = getService();
+        if (service == null || !isEnabled() || isValidDevice(device)) {
+            Log.w(TAG, "Proxy not attached to service");
+            if (DBG) {
+                log(Log.getStackTraceString(new Throwable()));
+            }
+        } else {
+            try {
+                final SynchronousResultReceiver<Integer> recv = SynchronousResultReceiver.get();
+                service.getAshaTruncatedHiSyncId(device, mAttributionSource, recv);
+                return recv.awaitResultNoInterrupt(getSyncTimeout()).getValue(-1);
+            } catch (RemoteException | TimeoutException e) {
+                Log.e(TAG, e.toString() + "\n" + Log.getStackTraceString(new Throwable()));
+            }
+        }
+        // BT is not enabled, we cannot be connected.
+        return BluetoothDevice.ERROR;
+    }
+
+    /**
      * Get the side of the device.
      *
      * TODO(b/231901542): Used by internal only to improve hearing aids experience in short-term.
