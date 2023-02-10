@@ -1,5 +1,29 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8b7b3d75_def4954d",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 627,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-02-10T23:03:16Z",
+      "side": 1,
+      "message": "when this happens too often, the lower layer would receive a change in HFP active device while the previous HFP active device is still making a connection\n\nand this causes audio routing bugs",
+      "range": {
+        "startLine": 627,
+        "startChar": 0,
+        "endLine": 627,
+        "endChar": 68
+      },
+      "revId": "f1fb822c84a19b97b244e9d5b560e9583b511b6f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
