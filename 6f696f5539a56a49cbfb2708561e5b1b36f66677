@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "880f718d_3f06792c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-02-10T17:57:49Z",
+      "side": 1,
+      "message": "+eruffieux for OWNERS stamp on HFP related change.\n\nEtienne - this change is limited to ChromeOS / Linux and just changes the opcode we use to talk to the kernel. The necessary opcode is already available on ChromeOS at the right location.",
+      "revId": "6f696f5539a56a49cbfb2708561e5b1b36f66677",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
