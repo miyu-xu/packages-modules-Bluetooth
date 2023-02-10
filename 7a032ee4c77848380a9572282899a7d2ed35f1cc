@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "da80ac23_eebfa075",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-02-10T18:35:34Z",
+      "side": 1,
+      "message": "nit: first",
+      "range": {
+        "startLine": 7,
+        "startChar": 38,
+        "endLine": 7,
+        "endChar": 43
+      },
+      "revId": "7a032ee4c77848380a9572282899a7d2ed35f1cc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9e8a48a9_9a2ef382",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 261,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-02-10T18:35:34Z",
+      "side": 1,
+      "message": "What about:\n\nString address \u003d mDualDevicesMap.get(device.getAddress());\n\n// If the device is not in the dual map, use its original address\nif (address \u003d\u003d null || mDevices.get(address) \u003d\u003d null) {\n    address \u003d device.getAddress();\n}\nreturn mDevices.get(address);",
+      "range": {
+        "startLine": 254,
+        "startChar": 0,
+        "endLine": 261,
+        "endChar": 24
+      },
+      "revId": "7a032ee4c77848380a9572282899a7d2ed35f1cc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "381ed160_bab1a0e6",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 276,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-02-10T18:35:34Z",
+      "side": 1,
+      "message": "Same thing here:\n\nString address \u003d mDualDevicesMap.get(addressString);\n\n// If the device is not in the dual map, use its original address\nif (address \u003d\u003d null || mDevices.get(address) \u003d\u003d null) {\n    address \u003d addressString;\n}\n\nDeviceProperties prop \u003d mDevices.get(address);\nif (prop !\u003d null) {\n    return prop.getDevice();\n}\nreturn null;",
+      "range": {
+        "startLine": 268,
+        "startChar": 0,
+        "endLine": 276,
+        "endChar": 9
+      },
+      "revId": "7a032ee4c77848380a9572282899a7d2ed35f1cc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
