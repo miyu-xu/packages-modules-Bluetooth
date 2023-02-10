@@ -150,6 +150,11 @@ public final class BluetoothGatt implements BluetoothProfile {
     public static final int CONNECTION_PRIORITY_LOW_POWER = 2;
 
     /**
+     * Connection parameter update - Request the priority preferred for Digital Car Key.
+     */
+    public static final int CONNECTION_PRIORITY_DCK = 3;
+
+    /**
      * Connection subrate request - Balanced.
      *
      * @hide
