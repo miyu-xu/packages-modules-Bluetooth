@@ -105,6 +105,17 @@ fn generate_packet_size_getter(
     )
 }
 
+fn top_level_packet<'a>(scope: &lint::Scope<'a>, packet_name: &'a str) -> &'a ast::Decl {
+    let mut decl = scope.typedef[packet_name];
+    while let ast::Decl::Packet { parent_id: Some(parent_id), .. }
+    | ast::Decl::Struct { parent_id: Some(parent_id), .. } = decl
+    {
+        decl = scope.typedef[parent_id];
+    }
+
+    return decl;
+}
+
 /// Generate code for `ast::Decl::Packet` and `ast::Decl::Struct`
 /// values.
 fn generate_packet_decl(
@@ -115,8 +126,15 @@ fn generate_packet_decl(
     id: &str,
     _constraints: &[ast::Constraint],
     fields: &[ast::Field],
-    parent_id: Option<&str>,
 ) -> proc_macro2::TokenStream {
+    let packet_scope = &scope.scopes[&scope.typedef[id]];
+    //    dbg!(id, &packet_scope);
+
+    let top_level = top_level_packet(scope, id);
+    let top_level_id = top_level.id().unwrap();
+    let top_level_id_lower = format_ident!("{}", top_level_id.to_lowercase());
+    let top_level_data = format_ident!("{top_level_id}Data");
+
     // TODO(mgeisler): use the convert_case crate to convert between
     // `FooBar` and `foo_bar` in the code below.
     let span = format_ident!("bytes");
@@ -142,9 +160,123 @@ fn generate_packet_decl(
     let fields_with_ids = fields.iter().filter(|f| f.id().is_some()).collect::<Vec<_>>();
     let field_names =
         fields_with_ids.iter().map(|f| format_ident!("{}", f.id().unwrap())).collect::<Vec<_>>();
-    let field_types = fields_with_ids.iter().map(|f| types::rust_type(f)).collect::<Vec<_>>();
-    let field_borrows = fields_with_ids.iter().map(|f| types::rust_borrow(f)).collect::<Vec<_>>();
-    let getter_names = field_names.iter().map(|id| format_ident!("get_{id}"));
+
+    let mut decl = scope.typedef[id];
+    let mut parents = vec![decl];
+    while let ast::Decl::Packet { parent_id: Some(parent_id), .. }
+    | ast::Decl::Struct { parent_id: Some(parent_id), .. } = decl
+    {
+        decl = scope.typedef[parent_id];
+        parents.push(decl);
+    }
+    parents.reverse();
+
+    let parent_ids = parents.iter().map(|p| p.id().unwrap()).collect::<Vec<_>>();
+    let parent_shifted_ids = parent_ids.iter().skip(1).map(|id| format_ident!("{id}"));
+    let parent_lower_ids =
+        parent_ids.iter().map(|id| format_ident!("{}", id.to_lowercase())).collect::<Vec<_>>();
+    let parent_shifted_lower_ids = parent_lower_ids.iter().skip(1).collect::<Vec<_>>();
+    let parent_data = parent_ids.iter().map(|id| format_ident!("{id}Data"));
+    let parent_data_child = parent_ids.iter().map(|id| format_ident!("{id}DataChild"));
+
+    let all_fields = {
+        let mut fields = packet_scope.all_fields.values().collect::<Vec<_>>();
+        fields.sort_by_key(|f| f.id());
+        fields
+    };
+    let all_field_names =
+        all_fields.iter().map(|f| format_ident!("{}", f.id().unwrap())).collect::<Vec<_>>();
+    let all_field_types = all_fields.iter().map(|f| types::rust_type(f)).collect::<Vec<_>>();
+    let all_field_borrows = all_fields.iter().map(|f| types::rust_borrow(f)).collect::<Vec<_>>();
+    let all_field_getter_names = all_field_names.iter().map(|id| format_ident!("get_{id}"));
+    let all_field_self_field = all_fields.iter().map(|f| {
+        for (parent, parent_id) in parents.iter().zip(parent_lower_ids.iter()) {
+            if scope.scopes[parent].fields.contains(&f) {
+                return quote!(self.#parent_id);
+            }
+        }
+        unreachable!("Could not find {f:?} in parent chain");
+    });
+
+    let unconstrained_fields = all_fields
+        .iter()
+        .filter(|f| !packet_scope.all_constraints.contains_key(f.id().unwrap()))
+        .collect::<Vec<_>>();
+    let unconstrained_field_names = unconstrained_fields
+        .iter()
+        .map(|f| format_ident!("{}", f.id().unwrap()))
+        .collect::<Vec<_>>();
+    let unconstrained_field_types = unconstrained_fields.iter().map(|f| types::rust_type(f));
+
+    let rev_parents = parents.iter().rev().collect::<Vec<_>>();
+    let builder_assignments = rev_parents.iter().enumerate().map(|(idx, parent)| {
+        let parent_id = parent.id().unwrap();
+        let parent_id_lower = format_ident!("{}", parent_id.to_lowercase());
+        let parent_data = format_ident!("{parent_id}Data");
+        let parent_data_child = format_ident!("{parent_id}DataChild");
+        let parent_packet_scope = &scope.scopes[&scope.typedef[parent_id]];
+
+        dbg!(idx, parent_id, &packet_scope.all_constraints);
+
+        let named_fields = {
+            let mut names = parent_packet_scope.named.keys().collect::<Vec<_>>();
+            names.sort();
+            names
+        };
+        dbg!(&named_fields);
+
+        let mut field = named_fields.iter().map(|id| format_ident!("{id}")).collect::<Vec<_>>();
+        let mut value = named_fields
+            .iter()
+            .map(|&id| match packet_scope.all_constraints.get(id) {
+                Some(constraint) => {
+                    let value = match constraint {
+                        ast::Constraint { value: Some(value), .. } => {
+                            let value = proc_macro2::Literal::usize_unsuffixed(*value);
+                            quote!(#value)
+                        }
+                        ast::Constraint { tag_id: Some(tag_id), .. } => {
+                            quote!(TodoWhichEnumNameHere::#tag_id)
+                        }
+                        _ => unreachable!("Invalid constraint: {constraint:?}"),
+                    };
+                    quote!(#value)
+                }
+                None => {
+                    let id = format_ident!("{id}");
+                    quote!(self.#id)
+                }
+            })
+            .collect::<Vec<_>>();
+
+        if parent_packet_scope.payload.is_some() {
+            field.push(format_ident!("child"));
+            if idx == 0 {
+                // Top-most parent, the child is simply created from
+                // our payload.
+                value.push(quote! {
+                    match self.payload {
+                        None => #parent_data_child::None,
+                        Some(bytes) => #parent_data_child::Payload(bytes),
+                    }
+                });
+            } else {
+                // Child is created from the previous parent.
+                let prev_parent_id = rev_parents[idx - 1].id().unwrap();
+                let prev_parent_id_lower = format_ident!("{}", prev_parent_id.to_lowercase());
+                let prev_parent_id = format_ident!("{prev_parent_id}");
+                value.push(quote! {
+                    #parent_data_child::#prev_parent_id(#prev_parent_id_lower)
+                });
+            }
+        }
+
+        quote! {
+            let #parent_id_lower = Arc::new(#parent_data {
+                #(#field: #value,)*
+            });
+        }
+    });
 
     let empty = Vec::new();
     let children = scope.children.get(id).unwrap_or(&empty);
@@ -198,23 +330,6 @@ fn generate_packet_decl(
             pub payload: Option<Bytes>
         }
     });
-    let builder_read_payload_field = has_children.then(|| {
-        quote! {
-            child: match self.payload {
-                None => #id_data_child::None,
-                Some(bytes) => #id_data_child::Payload(bytes),
-            }
-        }
-    });
-
-    let top_field = parent_id.map(|parent_id| {
-        let parent_id_lower = format_ident!("{}", parent_id.to_lowercase());
-        let parent_data = format_ident!("{parent_id}Data");
-        quote! {
-            #[cfg_attr(feature = "serde", serde(flatten))]
-            #parent_id_lower: Arc<#parent_data>,
-        }
-    });
 
     let (constant_width, packet_size) = generate_packet_size_getter(scope, fields);
     let conforms = if constant_width == 0 {
@@ -236,16 +351,16 @@ fn generate_packet_decl(
         #[derive(Debug, Clone)]
         #[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
         pub struct #id_packet {
-            #top_field
-
-            #[cfg_attr(feature = "serde", serde(flatten))]
-            #id_lower: Arc<#id_data>,
+            #(
+                #[cfg_attr(feature = "serde", serde(flatten))]
+                #parent_lower_ids: Arc<#parent_data>,
+            )*
         }
 
         #[derive(Debug)]
         #[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
         pub struct #id_builder {
-            #(pub #field_names: #field_types,)*
+            #(pub #unconstrained_field_names: #unconstrained_field_types,)*
             #builder_payload_field
         }
 
@@ -277,8 +392,8 @@ fn generate_packet_decl(
 
         impl Packet for #id_packet {
             fn to_bytes(self) -> Bytes {
-                let mut buffer = BytesMut::with_capacity(self.#id_lower.get_total_size());
-                self.#id_lower.write_to(&mut buffer);
+                let mut buffer = BytesMut::with_capacity(self.#top_level_id_lower.get_size());
+                self.#top_level_id_lower.write_to(&mut buffer);
                 buffer.freeze()
             }
 
@@ -310,16 +425,22 @@ fn generate_packet_decl(
             }
 
             fn parse_inner(mut bytes: &mut Cell<&[u8]>) -> Result<Self> {
-                let packet = #id_data::parse(&mut bytes)?;
-                Ok(Self::new(Arc::new(packet)).unwrap())
+                let data = #top_level_data::parse(&mut bytes)?;
+                Ok(Self::new(Arc::new(data)).unwrap())
             }
-            fn new(root: Arc<#id_data>) -> std::result::Result<Self, &'static str> {
-                let #id_lower = root;
-                Ok(Self { #id_lower })
+            fn new(#top_level_id_lower: Arc<#top_level_data>)
+                   -> std::result::Result<Self, &'static str> {
+                #(
+                    let #parent_shifted_lower_ids = match &#parent_lower_ids.child {
+                        #parent_data_child::#parent_shifted_ids(value) => value.clone(),
+                        _ => return Err("Could not parse data, wrong child type"),
+                    };
+                )*
+                Ok(Self { #(#parent_lower_ids),* })
             }
 
-            #(pub fn #getter_names(&self) -> #field_borrows #field_types {
-                #field_borrows self.#id_lower.as_ref().#field_names
+            #(pub fn #all_field_getter_names(&self) -> #all_field_borrows #all_field_types {
+                #all_field_borrows #all_field_self_field.as_ref().#all_field_names
             })*
 
             #get_payload
@@ -329,17 +450,14 @@ fn generate_packet_decl(
             }
 
             pub fn get_size(&self) -> usize {
-                self.#id_lower.get_size()
+                self.#top_level_id_lower.get_size()
             }
         }
 
         impl #id_builder {
             pub fn build(self) -> #id_packet {
-                let #id_lower = Arc::new(#id_data {
-                    #(#field_names: self.#field_names,)*
-                    #builder_read_payload_field
-                });
-                #id_packet::new(#id_lower).unwrap()
+                #(#builder_assignments;)*
+                #id_packet::new(#top_level_id_lower).unwrap()
             }
         }
     }
@@ -407,16 +525,10 @@ fn generate_enum_decl(id: &str, tags: &[ast::Tag]) -> proc_macro2::TokenStream {
 
 fn generate_decl(scope: &lint::Scope<'_>, file: &ast::File, decl: &ast::Decl) -> String {
     match decl {
-        ast::Decl::Packet { id, constraints, fields, parent_id, .. }
-        | ast::Decl::Struct { id, constraints, fields, parent_id, .. } => generate_packet_decl(
-            scope,
-            file.endianness.value,
-            id,
-            constraints,
-            fields,
-            parent_id.as_deref(),
-        )
-        .to_string(),
+        ast::Decl::Packet { id, constraints, fields, .. }
+        | ast::Decl::Struct { id, constraints, fields, .. } => {
+            generate_packet_decl(scope, file.endianness.value, id, constraints, fields).to_string()
+        }
         ast::Decl::Enum { id, tags, .. } => generate_enum_decl(id, tags).to_string(),
         _ => todo!("unsupported Decl::{:?}", decl),
     }

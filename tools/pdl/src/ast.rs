@@ -59,7 +59,7 @@ pub struct Tag {
     pub value: usize,
 }
 
-#[derive(Debug, Serialize, Clone)]
+#[derive(Debug, Serialize, Clone, PartialEq, Eq)]
 #[serde(tag = "kind", rename = "constraint")]
 pub struct Constraint {
     pub id: String,
@@ -68,7 +68,7 @@ pub struct Constraint {
     pub tag_id: Option<String>,
 }
 
-#[derive(Debug, Serialize, Clone)]
+#[derive(Debug, Serialize, Clone, PartialEq, Eq)]
 #[serde(tag = "kind")]
 pub enum Field {
     #[serde(rename = "checksum_field")]

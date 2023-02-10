@@ -63,11 +63,11 @@ pub struct PacketScope<'d> {
 
     // Local and inherited field declarations. Only named fields are preserved.
     // Saved here for reference for parent constraint resolving.
-    all_fields: HashMap<String, &'d Field>,
+    pub all_fields: HashMap<String, &'d Field>,
 
     // Local and inherited constraint declarations.
     // Saved here for constraint conflict checks.
-    all_constraints: HashMap<String, &'d Constraint>,
+    pub all_constraints: HashMap<String, &'d Constraint>,
 }
 
 impl std::cmp::Eq for &Decl {}
