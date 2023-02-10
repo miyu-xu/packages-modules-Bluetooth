@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "09ac9f5b_2d4df2e8",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 747,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2023-02-10T15:07:50Z",
+      "side": 1,
+      "message": "Can you avoid the unwrap here? e.g. map_or",
+      "range": {
+        "startLine": 747,
+        "startChar": 16,
+        "endLine": 747,
+        "endChar": 79
+      },
+      "revId": "dce63aca055fe41092990ffe9fb2b0b336fea4d6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "46c679ef_aebd9f84",
+        "filename": "system/gd/rust/topshim/hfp/hfp_shim.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 299,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2023-02-10T15:07:50Z",
+      "side": 1,
+      "message": "nit: enclose the ternary operator with parentheses make it easier to read",
+      "range": {
+        "startLine": 299,
+        "startChar": 6,
+        "endLine": 299,
+        "endChar": 73
+      },
+      "revId": "dce63aca055fe41092990ffe9fb2b0b336fea4d6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
