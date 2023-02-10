@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "970fcc9a_0dc961f8",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-02-10T19:18:59Z",
+      "side": 1,
+      "message": "nit: length",
+      "range": {
+        "startLine": 7,
+        "startChar": 22,
+        "endLine": 7,
+        "endChar": 28
+      },
+      "revId": "705c929543f2b2e71feba7e8b871bc796f2f170e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aa3e5769_cd0bca83",
+        "filename": "system/stack/btm/btm_ble.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-02-10T19:18:59Z",
+      "side": 1,
+      "message": "not needed, since it was initialized in btm_sec_allocate_dev_rec();",
+      "range": {
+        "startLine": 85,
+        "startChar": 0,
+        "endLine": 87,
+        "endChar": 0
+      },
+      "revId": "705c929543f2b2e71feba7e8b871bc796f2f170e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fb798175_910b734c",
+        "filename": "system/stack/btm/security_device_record.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 228,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-02-10T19:18:59Z",
+      "side": 1,
+      "message": "nit: for",
+      "range": {
+        "startLine": 228,
+        "startChar": 65,
+        "endLine": 228,
+        "endChar": 67
+      },
+      "revId": "705c929543f2b2e71feba7e8b871bc796f2f170e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
