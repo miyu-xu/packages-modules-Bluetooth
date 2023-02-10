@@ -43,6 +43,7 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.TimeoutException;
 
 /**
@@ -59,6 +60,160 @@ public final class BluetoothHearingAid implements BluetoothProfile {
     private static final String TAG = "BluetoothHearingAid";
     private static final boolean DBG = true;
     private static final boolean VDBG = false;
+
+    /**
+     * This class provides the APIs to get Audio Streaming for Hearing Aid (ASHA) device's
+     * advertisement data. The advertisement data might be incomplete or not available.
+     *
+     * <p><a
+     * href=https://source.android.com/docs/core/connect/bluetooth/asha#advertisements-for-asha-gatt-service>
+     * documentation can be found here</a>
+     *
+     * @hide
+     */
+    @SystemApi
+    public static class BluetoothHearingAidAdvertisementData {
+        private static final String TAG = "BluetoothHearingAidAdvertisementData";
+
+        private final int mCapability;
+        private final int mTruncatedHiSyncId;
+
+        BluetoothHearingAidAdvertisementData(int capability, int truncatedHiSyncId) {
+            mCapability = capability;
+            mTruncatedHiSyncId = truncatedHiSyncId;
+        }
+
+        /**
+         * Check if {@link BluetoothHearingAidAdvertisementData} is valid.
+         *
+         * @return true or false
+         * @hide
+         */
+        @RequiresPermission(
+                allOf = {
+                    android.Manifest.permission.BLUETOOTH_SCAN,
+                    android.Manifest.permission.BLUETOOTH_PRIVILEGED,
+                })
+        @SystemApi
+        public boolean isAdvertisementDataValid() {
+            if (VDBG) log("isAdvertisementDataValid()");
+            return mCapability != BluetoothDevice.ERROR;
+        }
+
+        /**
+         * Get the mode of the device based on its advertisement data.
+         *
+         * @return the {@code MODE_MONAURAL}, {@code MODE_BINAURAL} of the device, or {@code
+         *     MODE_UNKNOWN} if one is not available.
+         * @hide
+         */
+        @RequiresPermission(
+                allOf = {
+                    android.Manifest.permission.BLUETOOTH_SCAN,
+                    android.Manifest.permission.BLUETOOTH_PRIVILEGED,
+                })
+        @SystemApi
+        public int getDeviceMode() {
+            if (VDBG) log("getDeviceMode()");
+            if (mCapability == BluetoothDevice.ERROR) {
+                return SIDE_UNKNOWN;
+            }
+            return mCapability & 1;
+        }
+
+        /**
+         * Get the side of the device based on its advertisement data.
+         *
+         * @return the {@code SIDE_LEFT}, {@code SIDE_RIGHT} of the device, or {@code SIDE_UNKNOWN}
+         *     if one is not available.
+         * @hide
+         */
+        @RequiresPermission(
+                allOf = {
+                    android.Manifest.permission.BLUETOOTH_SCAN,
+                    android.Manifest.permission.BLUETOOTH_PRIVILEGED,
+                })
+        @SystemApi
+        public int getDeviceSide() {
+            if (VDBG) log("getDeviceSide()");
+            if (mCapability == BluetoothDevice.ERROR) {
+                return MODE_UNKNOWN;
+            }
+            return (mCapability >> 1) & 1;
+        }
+
+        /**
+         * Check if {@link BluetoothHearingAid} marks itself as CSIP supported based on its
+         * advertisement data.
+         *
+         * @return true or false
+         * @hide
+         */
+        @RequiresPermission(
+                allOf = {
+                    android.Manifest.permission.BLUETOOTH_SCAN,
+                    android.Manifest.permission.BLUETOOTH_PRIVILEGED,
+                })
+        @SystemApi
+        public boolean isCsipSupported() {
+            if (VDBG) log("isCsipSupported()");
+            if (mCapability == BluetoothDevice.ERROR) {
+                return false;
+            }
+            return ((mCapability >> 2) & 1) != 0;
+        }
+
+        /**
+         * Get the truncated HiSyncId of the device based on its advertisement data.
+         *
+         * @return truncated HiSyncId.
+         * @hide
+         */
+        @RequiresPermission(
+                allOf = {
+                    android.Manifest.permission.BLUETOOTH_SCAN,
+                    android.Manifest.permission.BLUETOOTH_PRIVILEGED,
+                })
+        @SystemApi
+        public int getTruncatedHiSyncId() {
+            if (VDBG) log("getTruncatedHiSyncId()");
+            if (mCapability == BluetoothDevice.ERROR) {
+                return BluetoothDevice.ERROR;
+            }
+            return mTruncatedHiSyncId;
+        }
+
+        /**
+         * Check if another {@link BluetoothHearingAidAdvertisementData} is likely a pair with
+         * current one.
+         *
+         * @param data another device's {@link BluetoothHearingAidAdvertisementData} .
+         * @return true of false
+         * @hide
+         */
+        @RequiresPermission(
+                allOf = {
+                    android.Manifest.permission.BLUETOOTH_SCAN,
+                    android.Manifest.permission.BLUETOOTH_PRIVILEGED,
+                })
+        @SystemApi
+        public boolean isLikelyPairOfBluetoothHearingAid(
+                @Nullable BluetoothHearingAidAdvertisementData data) {
+            if (VDBG) log("isLikelyPairOfBluetoothHearingAid()");
+            if (data == null) {
+                return false;
+            }
+            if (!isAdvertisementDataValid() || !data.isAdvertisementDataValid()) {
+                return false;
+            }
+            boolean bothSupportCsip = isCsipSupported() && data.isCsipSupported();
+            boolean isDifferentSide =
+                    (getDeviceSide() != SIDE_UNKNOWN && data.getDeviceSide() != SIDE_UNKNOWN)
+                            && (getDeviceSide() != data.getDeviceSide());
+            boolean isSameTruncatedHiSyncId = mTruncatedHiSyncId == data.mTruncatedHiSyncId;
+            return bothSupportCsip && isDifferentSide && isSameTruncatedHiSyncId;
+        }
+    }
 
     /**
      * Intent used to broadcast the change in connection state of the Hearing Aid
@@ -722,6 +877,51 @@ public final class BluetoothHearingAid implements BluetoothProfile {
             }
         }
         return defaultValue;
+    }
+
+    /**
+     * Get ASHA device's advertisement service data.
+     *
+     * @param device discovered Bluetooth device
+     * @return {@link BluetoothHearingAidAdvertisementData}
+     * @hide
+     */
+    @SystemApi
+    @RequiresPermission(
+            allOf = {
+                android.Manifest.permission.BLUETOOTH_SCAN,
+                android.Manifest.permission.BLUETOOTH_PRIVILEGED,
+            })
+    public @Nullable BluetoothHearingAidAdvertisementData getAshaAdvertisementServiceData(
+            @NonNull BluetoothDevice device) {
+        if (DBG) {
+            log("getAshaAdvertisementServiceData()");
+        }
+        final IBluetoothHearingAid service = getService();
+        Map<String, Integer> result = null;
+        if (service == null || !isEnabled() || isValidDevice(device)) {
+            Log.w(TAG, "Proxy not attached to service");
+            if (DBG) {
+                log(Log.getStackTraceString(new Throwable()));
+            }
+        } else {
+            try {
+                final SynchronousResultReceiver<Map<String, Integer>> recv =
+                        SynchronousResultReceiver.get();
+                service.getAshaAdvertisementServiceData(device, mAttributionSource, recv);
+                result = recv.awaitResultNoInterrupt(getSyncTimeout()).getValue(null);
+            } catch (RemoteException | TimeoutException e) {
+                Log.e(TAG, e.toString() + "\n" + Log.getStackTraceString(new Throwable()));
+            }
+        }
+        if (result != null) {
+            int capability = result.getOrDefault("ashaCapability", BluetoothDevice.ERROR);
+            int truncatedHiSyncId =
+                    result.getOrDefault("ashaTruncatedHiSyncId", BluetoothDevice.ERROR);
+            return new BluetoothHearingAidAdvertisementData(capability, truncatedHiSyncId);
+        }
+        // no advertisement data.
+        return null;
     }
 
     /**
