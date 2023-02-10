@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "284f46a4_73779174",
+        "filename": "system/btif/src/btif_sock.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-02-10T22:29:25Z",
+      "side": 1,
+      "message": "Reduced the size from 20 to 16 to not have any index issue when the atomic counter will jump from 255 to 0",
+      "range": {
+        "startLine": 67,
+        "startChar": 29,
+        "endLine": 67,
+        "endChar": 31
+      },
+      "revId": "b6dc15a708a03a5095523161911fc6a4f68772d9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
