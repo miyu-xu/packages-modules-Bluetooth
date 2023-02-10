@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f116bd4e_cd7362cd",
+        "filename": "system/test/headless/tamper.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-02-10T02:12:13Z",
+      "side": 1,
+      "message": "`this would be added as an API` ⇒ you mean the signal to the stack ?\n\nI would prefer removing the sleep and add an event/callback instead. Instead this make me feel like we are trying to copy our runtime android pb to headless.\nLet me know if I am understanding it wrong",
+      "parentUuid": "39b09315_71dd9fa4",
+      "range": {
+        "startLine": 34,
+        "startChar": 0,
+        "endLine": 34,
+        "endChar": 11
+      },
+      "revId": "6c945aa09c1e9cf0cb27ef2ddd2e3d8658967898",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8043e573_9ecd8750",
         "filename": "system/test/headless/tamper.h",
         "patchSetId": 6
