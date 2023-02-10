@@ -33,6 +33,24 @@
       "message": "Is this only used for Bluetooth stack qualification? If yes, please help add comments to prevent potential future confusion.",
       "revId": "d7ae301eb2b8395a71fa71598461610700652b93",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "424a71ad_733ebe6f",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 584,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-02-10T06:22:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "37087fdc_9f465aa0",
+      "revId": "d7ae301eb2b8395a71fa71598461610700652b93",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
