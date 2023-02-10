@@ -34,6 +34,24 @@
       "parentUuid": "9ccc5adc_d9a35821",
       "revId": "d7a51fb6ca7c19b0064e0a631c5e9382f6ccbb5b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "16d98585_aeecb786",
+        "filename": "system/test/headless/handler.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-02-10T02:13:14Z",
+      "side": 1,
+      "message": "Still missing in the cc file",
+      "parentUuid": "1e6cbff3_8e80f5e3",
+      "revId": "d7a51fb6ca7c19b0064e0a631c5e9382f6ccbb5b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
