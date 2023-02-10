@@ -16,6 +16,24 @@
       "message": "Heads up you\u0027ll need to update the current.txt :)",
       "revId": "9e4dec0f8a603f47cb2360f35faa9e3dbfcced86",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "226a3544_df380460",
+        "filename": "framework/java/android/bluetooth/BluetoothGatt.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-02-10T19:03:28Z",
+      "side": 1,
+      "message": "Thanks for the guidance here! Done.",
+      "parentUuid": "19d9a1a8_6aba4026",
+      "revId": "9e4dec0f8a603f47cb2360f35faa9e3dbfcced86",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
