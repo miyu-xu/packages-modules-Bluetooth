@@ -16,6 +16,24 @@
       "message": "It should be fine to log it now but it could potentially spam the logcat when we have more keys.",
       "revId": "5ffec36c33748fed75c3912a798143485b870126",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c3e00f56_c2e110a4",
+        "filename": "android/app/src/com/android/bluetooth/btservice/MetricsLogger.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2023-02-10T19:57:05Z",
+      "side": 1,
+      "message": "Thanks. Removed the debug log.",
+      "parentUuid": "f59898c7_009d608d",
+      "revId": "5ffec36c33748fed75c3912a798143485b870126",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
