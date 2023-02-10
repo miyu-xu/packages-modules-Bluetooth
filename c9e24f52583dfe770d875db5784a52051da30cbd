@@ -1,0 +1,124 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fad901ee_6d8a77c7",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 4815,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-02-10T05:39:42Z",
+      "side": 1,
+      "message": "nit: pls remove empty line",
+      "revId": "c9e24f52583dfe770d875db5784a52051da30cbd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eec2458a_9ebf01d0",
+        "filename": "android/app/src/com/android/bluetooth/hearingaid/HearingAidService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 602,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-02-10T05:39:42Z",
+      "side": 1,
+      "message": "should enforceBluetoothPrivilegedPermission be called as well?",
+      "revId": "c9e24f52583dfe770d875db5784a52051da30cbd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "df9c7fb7_09b81cf9",
+        "filename": "android/app/src/com/android/bluetooth/hearingaid/HearingAidService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 629,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-02-10T05:39:42Z",
+      "side": 1,
+      "message": "should enforceBluetoothPrivilegedPermission() be called as well?",
+      "revId": "c9e24f52583dfe770d875db5784a52051da30cbd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2081074e_31e2aa13",
+        "filename": "framework/java/android/bluetooth/BluetoothHearingAid.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 743,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-02-10T05:39:42Z",
+      "side": 1,
+      "message": "why do we need this API? could app just call getAshaCapability(device) !\u003d 0?\n\ntrying to reduce API surface",
+      "range": {
+        "startLine": 743,
+        "startChar": 19,
+        "endLine": 743,
+        "endChar": 50
+      },
+      "revId": "c9e24f52583dfe770d875db5784a52051da30cbd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "854d8581_84ca6664",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1385,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-02-10T05:39:42Z",
+      "side": 1,
+      "message": "nit: asha_capability",
+      "range": {
+        "startLine": 1385,
+        "startChar": 17,
+        "endLine": 1385,
+        "endChar": 32
+      },
+      "revId": "c9e24f52583dfe770d875db5784a52051da30cbd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fcc3c1ef_601ea09b",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1392,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-02-10T05:39:42Z",
+      "side": 1,
+      "message": "nit: asha_truncated_HiSyncID",
+      "range": {
+        "startLine": 1392,
+        "startChar": 0,
+        "endLine": 1392,
+        "endChar": 45
+      },
+      "revId": "c9e24f52583dfe770d875db5784a52051da30cbd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
