@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c4dd3d20_e4500bb5",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudioCodecConfig.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-02-10T00:43:42Z",
+      "side": 1,
+      "message": "Could this API remain hidden before the implementation is done?",
+      "parentUuid": "fc0eed06_a4818891",
+      "range": {
+        "startLine": 49,
+        "startChar": 0,
+        "endLine": 53,
+        "endChar": 67
+      },
+      "revId": "79ebfacfa66528929e02e9c33dea4b699120bd7f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b2841170_ab0291b2",
         "filename": "framework/java/android/bluetooth/BluetoothLeAudioCodecConfig.java",
         "patchSetId": 11

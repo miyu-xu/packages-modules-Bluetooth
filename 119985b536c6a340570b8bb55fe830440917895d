@@ -226,6 +226,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "133ebb89_f015ffb3",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudioCodecConfig.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-02-10T00:43:42Z",
+      "side": 1,
+      "message": "We should not align with A2DP for this one. For LE audio, we want something more specific or use a PersistableBundle\n\nhttps://developer.android.com/reference/android/os/PersistableBundle\n\ne.g. \n\nPersistableBundle getCodecSpecificMetadata()",
+      "parentUuid": "a5b80312_6630ea7c",
+      "revId": "119985b536c6a340570b8bb55fe830440917895d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "78d3e85a_3b03a29b",
         "filename": "framework/java/android/bluetooth/BluetoothLeAudioCodecConfig.java",
         "patchSetId": 17
