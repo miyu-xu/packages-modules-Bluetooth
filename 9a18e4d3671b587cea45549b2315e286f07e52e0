@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "61dd06bb_309ac929",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1960961
+      },
+      "writtenOn": "2023-02-10T14:23:02Z",
+      "side": 1,
+      "message": "Hi Thomas/Charlie,\n\nWe have added 10 GAP test cases, request you to provide your inputs.\n\nThanks and Regards,\nSnehal",
+      "revId": "9a18e4d3671b587cea45549b2315e286f07e52e0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
