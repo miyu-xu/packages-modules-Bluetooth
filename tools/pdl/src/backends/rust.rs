@@ -112,8 +112,7 @@ fn top_level_packet<'a>(scope: &lint::Scope<'a>, packet_name: &'a str) -> &'a as
     {
         decl = scope.typedef[parent_id];
     }
-
-    return decl;
+    decl
 }
 
 /// Generate code for `ast::Decl::Packet` and `ast::Decl::Struct`
@@ -128,12 +127,12 @@ fn generate_packet_decl(
     fields: &[ast::Field],
 ) -> proc_macro2::TokenStream {
     let packet_scope = &scope.scopes[&scope.typedef[id]];
-    //    dbg!(id, &packet_scope);
 
     let top_level = top_level_packet(scope, id);
     let top_level_id = top_level.id().unwrap();
-    let top_level_id_lower = format_ident!("{}", top_level_id.to_lowercase());
+    let top_level_packet = format_ident!("{top_level_id}");
     let top_level_data = format_ident!("{top_level_id}Data");
+    let top_level_id_lower = format_ident!("{}", top_level_id.to_lowercase());
 
     // TODO(mgeisler): use the convert_case crate to convert between
     // `FooBar` and `foo_bar` in the code below.
@@ -176,6 +175,7 @@ fn generate_packet_decl(
     let parent_lower_ids =
         parent_ids.iter().map(|id| format_ident!("{}", id.to_lowercase())).collect::<Vec<_>>();
     let parent_shifted_lower_ids = parent_lower_ids.iter().skip(1).collect::<Vec<_>>();
+    let parent_packet = parent_ids.iter().map(|id| format_ident!("{id}"));
     let parent_data = parent_ids.iter().map(|id| format_ident!("{id}Data"));
     let parent_data_child = parent_ids.iter().map(|id| format_ident!("{id}DataChild"));
 
@@ -191,7 +191,7 @@ fn generate_packet_decl(
     let all_field_getter_names = all_field_names.iter().map(|id| format_ident!("get_{id}"));
     let all_field_self_field = all_fields.iter().map(|f| {
         for (parent, parent_id) in parents.iter().zip(parent_lower_ids.iter()) {
-            if scope.scopes[parent].fields.contains(&f) {
+            if scope.scopes[parent].fields.contains(f) {
                 return quote!(self.#parent_id);
             }
         }
@@ -216,14 +216,11 @@ fn generate_packet_decl(
         let parent_data_child = format_ident!("{parent_id}DataChild");
         let parent_packet_scope = &scope.scopes[&scope.typedef[parent_id]];
 
-        dbg!(idx, parent_id, &packet_scope.all_constraints);
-
         let named_fields = {
             let mut names = parent_packet_scope.named.keys().collect::<Vec<_>>();
             names.sort();
             names
         };
-        dbg!(&named_fields);
 
         let mut field = named_fields.iter().map(|id| format_ident!("{id}")).collect::<Vec<_>>();
         let mut value = named_fields
@@ -236,7 +233,14 @@ fn generate_packet_decl(
                             quote!(#value)
                         }
                         ast::Constraint { tag_id: Some(tag_id), .. } => {
-                            quote!(TodoWhichEnumNameHere::#tag_id)
+                            let type_id = match packet_scope.all_fields.get(id) {
+                                Some(ast::Field::Typedef { type_id, .. }) => {
+                                    format_ident!("{type_id}")
+                                }
+                                _ => unreachable!("Invalid constraint: {constraint:?}"),
+                            };
+                            let tag_id = format_ident!("{tag_id}");
+                            quote!(#type_id::#tag_id)
                         }
                         _ => unreachable!("Invalid constraint: {constraint:?}"),
                     };
@@ -331,6 +335,27 @@ fn generate_packet_decl(
         }
     });
 
+    let ancestor_packets =
+        parent_ids[..parent_ids.len() - 1].iter().map(|id| format_ident!("{id}"));
+    let impl_from_and_try_from = (top_level_id != id).then(|| {
+        quote! {
+            #(
+                impl From<#id_packet> for #ancestor_packets {
+                    fn from(packet: #id_packet) -> #ancestor_packets {
+                        #ancestor_packets::new(packet.#top_level_id_lower).unwrap()
+                    }
+                }
+            )*
+
+            impl TryFrom<#top_level_packet> for #id_packet {
+                type Error = TryFromError;
+                fn try_from(packet: #top_level_packet) -> std::result::Result<#id_packet, TryFromError> {
+                    #id_packet::new(packet.#top_level_id_lower).map_err(TryFromError)
+                }
+            }
+        }
+    });
+
     let (constant_width, packet_size) = generate_packet_size_getter(scope, fields);
     let conforms = if constant_width == 0 {
         quote! { true }
@@ -414,6 +439,8 @@ fn generate_packet_decl(
             }
         }
 
+        #impl_from_and_try_from
+
         impl #id_packet {
             pub fn parse(#span: &[u8]) -> Result<Self> {
                 let mut cell = Cell::new(#span);
@@ -460,6 +487,14 @@ fn generate_packet_decl(
                 #id_packet::new(#top_level_id_lower).unwrap()
             }
         }
+
+        #(
+            impl From<#id_builder> for #parent_packet {
+                fn from(builder: #id_builder) -> #parent_packet {
+                    builder.build().into()
+                }
+            }
+        )*
     }
 }
 

@@ -161,6 +161,9 @@ fn main() {
             "Packet_Payload_Field_UnknownSize",
             "Packet_Payload_Field_UnknownSize_Terminal",
             "ScalarChild_A",
+            "ScalarChild_B",
+            "EnumChild_A",
+            "EnumChild_B",
         ],
         &module_name,
     );
