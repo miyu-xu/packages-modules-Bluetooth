@@ -145,6 +145,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5c937f94_b96e11fa",
+        "filename": "floss/hcidoc/src/parser.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-02-10T03:57:50Z",
+      "side": 1,
+      "message": "```\nTS_IN_MS \u003d ((given_ts - Y2K_EPOCH_CONST) / 1000) + Y2K_OFFSET_MS \n         \u003d (given_ts/1000) - (Y2K_EPOCH_CONST/1000) + Y2K_OFFSET_MS\n```\n\nNow we can define the single constant YEAR_0_TO_1970 as follows\n```\nYEAR_0_TO_1970 \u003d Y2K_OFFSET_MS - (Y2K_EPOCH_CONST/1000)\n```\n\nEffectively having only one constant instead of two, we can formulate\n```\nTS_IN_MS \u003d given_ts/1000 + YEAR_0_TO_1970\n```",
+      "parentUuid": "d425c05b_5b647893",
+      "range": {
+        "startLine": 121,
+        "startChar": 6,
+        "endLine": 121,
+        "endChar": 31
+      },
+      "revId": "d5bfb1dc19774633a8f4dca6c68de70f416574da",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "78b5ba44_0027af34",
         "filename": "floss/hcidoc/src/parser.rs",
         "patchSetId": 1
