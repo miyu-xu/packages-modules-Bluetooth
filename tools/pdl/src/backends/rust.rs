@@ -112,8 +112,7 @@ fn top_level_packet<'a>(scope: &lint::Scope<'a>, packet_name: &'a str) -> &'a as
     {
         decl = scope.typedef[parent_id];
     }
-
-    return decl;
+    decl
 }
 
 /// Generate code for `ast::Decl::Packet` and `ast::Decl::Struct`
@@ -128,7 +127,6 @@ fn generate_packet_decl(
     fields: &[ast::Field],
 ) -> proc_macro2::TokenStream {
     let packet_scope = &scope.scopes[&scope.typedef[id]];
-    //    dbg!(id, &packet_scope);
 
     let top_level = top_level_packet(scope, id);
     let top_level_id = top_level.id().unwrap();
@@ -191,7 +189,7 @@ fn generate_packet_decl(
     let all_field_getter_names = all_field_names.iter().map(|id| format_ident!("get_{id}"));
     let all_field_self_field = all_fields.iter().map(|f| {
         for (parent, parent_id) in parents.iter().zip(parent_lower_ids.iter()) {
-            if scope.scopes[parent].fields.contains(&f) {
+            if scope.scopes[parent].fields.contains(f) {
                 return quote!(self.#parent_id);
             }
         }
@@ -216,14 +214,11 @@ fn generate_packet_decl(
         let parent_data_child = format_ident!("{parent_id}DataChild");
         let parent_packet_scope = &scope.scopes[&scope.typedef[parent_id]];
 
-        dbg!(idx, parent_id, &packet_scope.all_constraints);
-
         let named_fields = {
             let mut names = parent_packet_scope.named.keys().collect::<Vec<_>>();
             names.sort();
             names
         };
-        dbg!(&named_fields);
 
         let mut field = named_fields.iter().map(|id| format_ident!("{id}")).collect::<Vec<_>>();
         let mut value = named_fields
@@ -236,7 +231,14 @@ fn generate_packet_decl(
                             quote!(#value)
                         }
                         ast::Constraint { tag_id: Some(tag_id), .. } => {
-                            quote!(TodoWhichEnumNameHere::#tag_id)
+                            let type_id = match packet_scope.all_fields.get(id) {
+                                Some(ast::Field::Typedef { type_id, .. }) => {
+                                    format_ident!("{type_id}")
+                                }
+                                _ => unreachable!("Invalid constraint: {constraint:?}"),
+                            };
+                            let tag_id = format_ident!("{tag_id}");
+                            quote!(#type_id::#tag_id)
                         }
                         _ => unreachable!("Invalid constraint: {constraint:?}"),
                     };

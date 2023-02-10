@@ -138,6 +138,12 @@ packet ScalarParent {
     _payload_
 }
 
+packet EnumParent {
+    a: Enum16,
+    _size_(_payload_): 8,
+    _payload_
+}
+
 // Packet inheritance
 
 // The parser must handle specialization into
@@ -151,6 +157,19 @@ packet ScalarChild_A : ScalarParent (a = 0) {
 packet ScalarChild_B : ScalarParent (a = 1) {
     c: 16,
 }
+
+// The parser must handle specialization into
+// any child packet of a parent packet with enum constraints.
+packet EnumChild_A : EnumParent (a = A) {
+    b: 8,
+}
+
+// The parser must handle specialization into
+// any child packet of a parent packet with enum constraints.
+packet EnumChild_B : EnumParent (a = B) {
+    c: 16,
+}
+
 
 // Packet payload fields
 

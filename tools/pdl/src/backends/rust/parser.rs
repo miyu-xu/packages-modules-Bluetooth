@@ -208,12 +208,7 @@ impl<'a> FieldParser<'a> {
     fn payload_field_offset_from_end(&self) -> Option<usize> {
         let packet_scope = self.packet_scope().unwrap();
         let mut fields = packet_scope.fields.iter();
-        if fields
-            .find(|f| matches!(f, ast::Field::Body { .. } | ast::Field::Payload { .. }))
-            .is_none()
-        {
-            return None;
-        }
+        fields.find(|f| matches!(f, ast::Field::Body { .. } | ast::Field::Payload { .. }))?;
 
         let mut offset = 0;
         for field in fields {
@@ -413,7 +408,7 @@ impl<'a> FieldParser<'a> {
     }
 
     /// Parse body and payload fields.
-    fn add_payload_field(&mut self, size_modifier: Option<&str>) {
+    fn add_payload_field(&mut self, _size_modifier: Option<&str>) {
         let span = self.span;
         let packet_scope = self.packet_scope().unwrap();
         let payload_size_field = packet_scope.get_payload_size_field();
@@ -424,10 +419,11 @@ impl<'a> FieldParser<'a> {
                 panic!("Unexpected payload size for non byte aligned payload");
             }
 
-            let rounded_size = self.shift / 8 + if self.shift % 8 == 0 { 0 } else { 1 };
-            let padding_bits = 8 * rounded_size - self.shift;
-            let reserved_field =
-                ast::Field::Reserved { loc: ast::SourceRange::default(), width: padding_bits };
+            //let rounded_size = self.shift / 8 + if self.shift % 8 == 0 { 0 } else { 1 };
+            //let padding_bits = 8 * rounded_size - self.shift;
+            //let reserved_field =
+            //    ast::Field::Reserved { loc: ast::SourceRange::default(), width: padding_bits };
+
             //TODO: self.add_bit_field(&reserved_field); --
             // reserved_field does not live long enough.
 
@@ -510,7 +506,7 @@ impl<'a> FieldParser<'a> {
 
     pub fn done(&mut self) {
         let packet_data_child = format_ident!("{}DataChild", self.packet_name);
-
+        let packet_scope = &self.scope.scopes[&self.scope.typedef[self.packet_name]];
         if let Some(children) = self.scope.children.get(self.packet_name) {
             let child_ids = children
                 .iter()
@@ -519,7 +515,7 @@ impl<'a> FieldParser<'a> {
             let child_ids_data =
                 child_ids.iter().map(|ident| format_ident!("{ident}Data")).collect::<Vec<_>>();
 
-            // Set of fields.
+            // Set of fields, sorted by name.
             let mut constrained_fields = BTreeSet::new();
             // Maps (child, field) -> value.
             let mut constraint_values = HashMap::new();
@@ -534,8 +530,16 @@ impl<'a> FieldParser<'a> {
                                     let value = proc_macro2::Literal::usize_unsuffixed(*value);
                                     quote!(#value)
                                 }
-                                ast::Constraint { tag_id: Some(tag_id), .. } => {
-                                    quote!(TodoWhichEnumNameHere::#tag_id)
+                                ast::Constraint { id, tag_id: Some(tag_id), .. } => {
+                                    // TODO: add `type_id` to `Constraint`.
+                                    let type_id = match packet_scope.named.get(id) {
+                                        Some(ast::Field::Typedef { type_id, .. }) => {
+                                            format_ident!("{type_id}")
+                                        }
+                                        _ => unreachable!("Invalid constraint: {constraint:?}"),
+                                    };
+                                    let tag_id = format_ident!("{tag_id}");
+                                    quote!(#type_id::#tag_id)
                                 }
                                 _ => unreachable!("Invalid constraint: {constraint:?}"),
                             };
