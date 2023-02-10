@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fbc6e7d0_789841b7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-02-10T21:24:49Z",
+      "side": 1,
+      "message": "Could Qualcomm help +1 the CL?",
+      "revId": "7615c0d79ff0bff3f88c64fea3b85e03383f1c7f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
