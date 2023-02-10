@@ -95,6 +95,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1398bb29_fa94be40",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2023-02-10T04:14:20Z",
+      "side": 1,
+      "message": "Should we use \"LE audio device\" instead of \"BT device\"?",
+      "parentUuid": "4bf1356b_561a3a06",
+      "range": {
+        "startLine": 275,
+        "startChar": 35,
+        "endLine": 275,
+        "endChar": 93
+      },
+      "revId": "3e2d968447db6043df0afd79f566144e43181bcd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "75bd2091_e601eb12",
         "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
         "patchSetId": 6
