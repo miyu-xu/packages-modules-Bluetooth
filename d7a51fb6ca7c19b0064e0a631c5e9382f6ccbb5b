@@ -16,6 +16,24 @@
       "message": "Add missing header (same for cc file)",
       "revId": "d7a51fb6ca7c19b0064e0a631c5e9382f6ccbb5b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1e6cbff3_8e80f5e3",
+        "filename": "system/test/headless/handler.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-02-10T02:07:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9ccc5adc_d9a35821",
+      "revId": "d7a51fb6ca7c19b0064e0a631c5e9382f6ccbb5b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
