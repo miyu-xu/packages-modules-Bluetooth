@@ -16,6 +16,23 @@
       "message": "Add Jack for owner-review.",
       "revId": "dff59dd2be1554fa493142e8935e0db446421184",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "49ed3641_033cd098",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2023-02-10T05:40:03Z",
+      "side": 1,
+      "message": "I should\u0027ve added DRI as a reviewer.\nYuyang, if you have any concern, please revert the CL.",
+      "revId": "dff59dd2be1554fa493142e8935e0db446421184",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
