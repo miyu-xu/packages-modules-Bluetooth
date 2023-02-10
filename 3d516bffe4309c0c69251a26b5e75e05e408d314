@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "25feac8b_9b4b5240",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-02-10T18:57:11Z",
+      "side": 1,
+      "message": "nit: The call state is fully reset whenever this is called.",
+      "revId": "3d516bffe4309c0c69251a26b5e75e05e408d314",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "86e4de2b_c2ceb9a0",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 1083,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-02-10T18:57:11Z",
+      "side": 1,
+      "message": "This needs to be commented to describe the logic here.\n\nThis seems to select the highest call index but ONLY if a lower call index exists in the call list. Is that the right logic here?\n\nIf you\u0027re just looking for max index (with min \u003d 1):\n```\nstd::cmp::max(1, self.call_list.iter().max_by_key(|x| x.index).unwrap_or(1))\n```",
+      "revId": "3d516bffe4309c0c69251a26b5e75e05e408d314",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fb3a59e4_73fc95b9",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 1123,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-02-10T18:57:11Z",
+      "side": 1,
+      "message": "```\nself.call_list.retain(|x| match x.state{...})\n```",
+      "revId": "3d516bffe4309c0c69251a26b5e75e05e408d314",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ab9cb0af_9d00a337",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 1769,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-02-10T18:57:11Z",
+      "side": 1,
+      "message": "nit: One line space between functions please. Didn\u0027t notice it before.",
+      "revId": "3d516bffe4309c0c69251a26b5e75e05e408d314",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
