@@ -1,5 +1,5 @@
 /*
- * Copyright 2021 The Android Open Source Project
+ * Copyright 2022 The Android Open Source Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,12 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 /*
  * Generated mock file from original source file
  *   Functions generated:6
  *
- *  mockcify.pl ver 0.3.0
+ *  mockcify.pl ver 0.4.0
  */
 
 #include <cstdint>
@@ -28,6 +27,8 @@
 
 // Mock include file to share data between tests and mock
 #include "test/mock/mock_osi_allocator.h"
+
+// Original usings
 
 // Mocked internal structures, if any
 
@@ -42,6 +43,20 @@ struct osi_free_and_reset osi_free_and_reset;
 struct osi_malloc osi_malloc;
 struct osi_strdup osi_strdup;
 struct osi_strndup osi_strndup;
+
+}  // namespace osi_allocator
+}  // namespace mock
+}  // namespace test
+
+// Mocked function return values, if any
+namespace test {
+namespace mock {
+namespace osi_allocator {
+
+void* osi_calloc::return_value = nullptr;
+void* osi_malloc::return_value = nullptr;
+char* osi_strdup::return_value = nullptr;
+char* osi_strndup::return_value = nullptr;
 
 }  // namespace osi_allocator
 }  // namespace mock

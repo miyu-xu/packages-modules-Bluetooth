@@ -1,5 +1,5 @@
 /*
- * Copyright 2021 The Android Open Source Project
+ * Copyright 2022 The Android Open Source Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,12 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+#pragma once
 
 /*
  * Generated mock file from original source file
  *   Functions generated:6
  *
- *  mockcify.pl ver 0.3.0
+ *  mockcify.pl ver 0.4.0
  */
 
 #include <cstdint>
@@ -38,7 +39,6 @@
 
 #include "check.h"
 #include "osi/include/allocator.h"
-#include "test/common/mock_functions.h"
 
 // Mocked compile conditionals, if any
 
@@ -51,9 +51,9 @@ namespace osi_allocator {
 // Params: size_t size
 // Return: void*
 struct osi_calloc {
-  void* return_value{};
+  static void* return_value;
   std::function<void*(size_t size)> body{
-      [this](size_t size) { return return_value; }};
+      [](size_t size) { return return_value; }};
   void* operator()(size_t size) { return body(size); };
 };
 extern struct osi_calloc osi_calloc;
@@ -80,9 +80,9 @@ extern struct osi_free_and_reset osi_free_and_reset;
 // Params: size_t size
 // Return: void*
 struct osi_malloc {
-  void* return_value{};
+  static void* return_value;
   std::function<void*(size_t size)> body{
-      [this](size_t size) { return return_value; }};
+      [](size_t size) { return return_value; }};
   void* operator()(size_t size) { return body(size); };
 };
 extern struct osi_malloc osi_malloc;
@@ -91,9 +91,9 @@ extern struct osi_malloc osi_malloc;
 // Params: const char* str
 // Return: char*
 struct osi_strdup {
-  char* return_value{0};
+  static char* return_value;
   std::function<char*(const char* str)> body{
-      [this](const char* str) { return return_value; }};
+      [](const char* str) { return return_value; }};
   char* operator()(const char* str) { return body(str); };
 };
 extern struct osi_strdup osi_strdup;
@@ -102,9 +102,9 @@ extern struct osi_strdup osi_strdup;
 // Params: const char* str, size_t len
 // Return: char*
 struct osi_strndup {
-  char* return_value{0};
+  static char* return_value;
   std::function<char*(const char* str, size_t len)> body{
-      [this](const char* str, size_t len) { return return_value; }};
+      [](const char* str, size_t len) { return return_value; }};
   char* operator()(const char* str, size_t len) { return body(str, len); };
 };
 extern struct osi_strndup osi_strndup;
