@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1c1b3b26_261abb99",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 20
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-02-10T19:34:12Z",
+      "side": 1,
+      "message": "nit: easily",
+      "range": {
+        "startLine": 11,
+        "startChar": 34,
+        "endLine": 11,
+        "endChar": 39
+      },
+      "revId": "d191199302c06e75c744c9960cf569f05b2d6c3c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e6efbc04_4d644eae",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 20
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-02-10T19:34:12Z",
+      "side": 1,
+      "message": "nit: formatting looks odd.",
+      "range": {
+        "startLine": 22,
+        "startChar": 72,
+        "endLine": 23,
+        "endChar": 75
+      },
+      "revId": "d191199302c06e75c744c9960cf569f05b2d6c3c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2547dc0d_648e3cb5",
+        "filename": "system/bta/gatt/bta_gattc_utils.cc",
+        "patchSetId": 20
+      },
+      "lineNbr": 435,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-02-10T19:34:12Z",
+      "side": 1,
+      "message": "bta_gattc_handle_queued_multiple_mtu_requests and bta_gattc_continue call each other, which looks odd.",
+      "range": {
+        "startLine": 435,
+        "startChar": 6,
+        "endLine": 435,
+        "endChar": 51
+      },
+      "revId": "d191199302c06e75c744c9960cf569f05b2d6c3c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9db45787_feb4aeab",
+        "filename": "system/stack/gatt/gatt_api.cc",
+        "patchSetId": 20
+      },
+      "lineNbr": 731,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-02-10T19:34:12Z",
+      "side": 1,
+      "message": "Why is this necessary?\n\nCan we copy the formatting from GATTC_ConfigureMTU to avoid this?",
+      "range": {
+        "startLine": 731,
+        "startChar": 0,
+        "endLine": 731,
+        "endChar": 19
+      },
+      "revId": "d191199302c06e75c744c9960cf569f05b2d6c3c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e63105ad_42570831",
+        "filename": "system/stack/gatt/gatt_api.cc",
+        "patchSetId": 20
+      },
+      "lineNbr": 772,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-02-10T19:34:12Z",
+      "side": 1,
+      "message": "NOT_ALLOWED and disconnected seem very different to me.",
+      "range": {
+        "startLine": 771,
+        "startChar": 0,
+        "endLine": 772,
+        "endChar": 36
+      },
+      "revId": "d191199302c06e75c744c9960cf569f05b2d6c3c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ca888fff_442b4a84",
+        "filename": "system/stack/gatt/gatt_api.cc",
+        "patchSetId": 20
+      },
+      "lineNbr": 785,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-02-10T19:34:12Z",
+      "side": 1,
+      "message": "Same thing.",
+      "range": {
+        "startLine": 785,
+        "startChar": 0,
+        "endLine": 785,
+        "endChar": 19
+      },
+      "revId": "d191199302c06e75c744c9960cf569f05b2d6c3c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6fd24155_b4158a6e",
+        "filename": "system/stack/include/gatt_api.h",
+        "patchSetId": 20
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-02-10T19:34:12Z",
+      "side": 1,
+      "message": "Can we add\nMTU_EXCHANGE_DEVICE_DISCONNECTED to separate the case from NOT_ALLOWED?",
+      "range": {
+        "startLine": 133,
+        "startChar": 0,
+        "endLine": 133,
+        "endChar": 27
+      },
+      "revId": "d191199302c06e75c744c9960cf569f05b2d6c3c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

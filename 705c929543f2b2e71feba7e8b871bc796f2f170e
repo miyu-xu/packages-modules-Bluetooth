@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a8021234_d00162eb",
+        "filename": "system/bta/gatt/bta_gattc_act.cc",
+        "patchSetId": 20
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-02-10T19:34:12Z",
+      "side": 0,
+      "message": "I feel like this change would be smaller and simpler if we left this as static and moved the retry code into bta_gattc_act instead of having it in utils.",
+      "range": {
+        "startLine": 65,
+        "startChar": 0,
+        "endLine": 68,
+        "endChar": 0
+      },
+      "revId": "705c929543f2b2e71feba7e8b871bc796f2f170e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
