@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c6afb388_a5e5c3ac",
+        "filename": "framework/java/android/bluetooth/BluetoothHearingAid.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 729,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-02-10T22:45:55Z",
+      "side": 1,
+      "message": "What are the expected possible return values here? If these are known, wrap",
+      "revId": "944d65ea0267225e398dfa33cc93b1f565ecb82d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
