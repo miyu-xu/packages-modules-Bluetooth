@@ -1,0 +1,159 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "13aa1ada_e7aed691",
+        "filename": "framework/api/system-current.txt",
+        "patchSetId": 9
+      },
+      "lineNbr": 472,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-02-10T00:22:09Z",
+      "side": 1,
+      "message": "I thought we are going re-use these values from existing APIs?",
+      "range": {
+        "startLine": 463,
+        "startChar": 2,
+        "endLine": 472,
+        "endChar": 79
+      },
+      "revId": "e976d35e3ccea5a1173dd5b02819799e7b6c97bd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6600f65a_14e38960",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudioCodecConfigMetadata.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 536,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-02-10T00:22:09Z",
+      "side": 1,
+      "message": "code format, indentation required here",
+      "revId": "e976d35e3ccea5a1173dd5b02819799e7b6c97bd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "573667d1_aef06e2b",
+        "filename": "framework/java/android/bluetooth/BluetoothLeBroadcastMetadata.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-02-10T00:22:09Z",
+      "side": 1,
+      "message": "Please use Objects.equals(o1, o2) from Java 8",
+      "range": {
+        "startLine": 159,
+        "startChar": 19,
+        "endLine": 159,
+        "endChar": 31
+      },
+      "revId": "e976d35e3ccea5a1173dd5b02819799e7b6c97bd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b6b30bd0_ac6aeea8",
+        "filename": "framework/java/android/bluetooth/BluetoothLeBroadcastMetadata.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-02-10T00:22:09Z",
+      "side": 1,
+      "message": "Please use Objects.equals(o1, o2) from Java 8",
+      "range": {
+        "startLine": 170,
+        "startChar": 0,
+        "endLine": 170,
+        "endChar": 85
+      },
+      "revId": "e976d35e3ccea5a1173dd5b02819799e7b6c97bd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c0a5d1c9_7d622994",
+        "filename": "framework/java/android/bluetooth/BluetoothLeBroadcastMetadata.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 638,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-02-10T00:22:09Z",
+      "side": 1,
+      "message": "formatting",
+      "range": {
+        "startLine": 638,
+        "startChar": 25,
+        "endLine": 638,
+        "endChar": 40
+      },
+      "revId": "e976d35e3ccea5a1173dd5b02819799e7b6c97bd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "647b6695_2e0ac31e",
+        "filename": "framework/java/android/bluetooth/BluetoothLeBroadcastSettings.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-02-10T00:22:09Z",
+      "side": 1,
+      "message": "Please use Objects.equals(o1, o2) from Java 8\n\nhttps://developer.android.com/reference/java/util/Objects#equals(java.lang.Object,%20java.lang.Object)",
+      "range": {
+        "startLine": 65,
+        "startChar": 19,
+        "endLine": 65,
+        "endChar": 31
+      },
+      "revId": "e976d35e3ccea5a1173dd5b02819799e7b6c97bd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d344d9ed_6f54ad21",
+        "filename": "framework/java/android/bluetooth/BluetoothLeBroadcastSettings.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-02-10T00:22:09Z",
+      "side": 1,
+      "message": "Please use Objects.equals(o1, o2) from Java 8",
+      "range": {
+        "startLine": 76,
+        "startChar": 27,
+        "endLine": 76,
+        "endChar": 39
+      },
+      "revId": "e976d35e3ccea5a1173dd5b02819799e7b6c97bd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
