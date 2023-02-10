@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f12f303b_aa04c3de",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 773,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2023-02-10T19:30:16Z",
+      "side": 1,
+      "message": "I think this should be restructured to look more like:\n```\nlet success \u003d match command {\n  ... \n  _ \u003d\u003e {\n    warn!(...);\n    false\n  }\n}\nself.simple_at_response(success, addr.clone());\n```\nBecause how it currently is implemented you\u0027ll send the warn for unexpected command if one of the actual commands fail, which is not what you intend. Is `simple_as_response` supposed to return false if one of the commands fails?",
+      "revId": "883f73b33942ed757c6e8b5b605133f4dc4b6c12",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8ea58a60_1e7d75b5",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 779,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2023-02-10T19:30:16Z",
+      "side": 1,
+      "message": "This comment implies that you want to send on failure case too. Do you want to send for unexpected command too?",
+      "revId": "883f73b33942ed757c6e8b5b605133f4dc4b6c12",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fe412042_c4f55f21",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 1267,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2023-02-10T19:30:16Z",
+      "side": 1,
+      "message": "nit: you can move both these lines before the for loop, then do the below lines when you do the actual acceptance. Then instead of keeping track of an `accepted` bool, you can just check if `self.phone_state.num_active \u003d\u003d 0`",
+      "revId": "883f73b33942ed757c6e8b5b605133f4dc4b6c12",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d5244872_2694adbf",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 1992,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2023-02-10T19:30:16Z",
+      "side": 1,
+      "message": "Just curious why we only send on success case here but send on success and failure case above.",
+      "revId": "883f73b33942ed757c6e8b5b605133f4dc4b6c12",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ed9d09f5_5810a5c6",
+        "filename": "system/gd/rust/topshim/src/profiles/hfp.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2023-02-10T19:30:16Z",
+      "side": 1,
+      "message": "What is this command supposed to do?",
+      "revId": "883f73b33942ed757c6e8b5b605133f4dc4b6c12",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
