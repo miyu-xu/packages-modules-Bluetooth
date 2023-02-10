@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9a50e2dc_2ad6f508",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 4815,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-02-10T18:19:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fad901ee_6d8a77c7",
+      "revId": "c9e24f52583dfe770d875db5784a52051da30cbd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "eec2458a_9ebf01d0",
@@ -98,6 +116,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1092f624_1b136781",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1385,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-02-10T18:19:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "854d8581_84ca6664",
+      "range": {
+        "startLine": 1385,
+        "startChar": 17,
+        "endLine": 1385,
+        "endChar": 32
+      },
+      "revId": "c9e24f52583dfe770d875db5784a52051da30cbd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fcc3c1ef_601ea09b",
@@ -111,6 +153,30 @@
       "writtenOn": "2023-02-10T05:39:42Z",
       "side": 1,
       "message": "nit: asha_truncated_HiSyncID",
+      "range": {
+        "startLine": 1392,
+        "startChar": 0,
+        "endLine": 1392,
+        "endChar": 45
+      },
+      "revId": "c9e24f52583dfe770d875db5784a52051da30cbd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0a7f82a4_544ad2ce",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1392,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-02-10T18:19:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fcc3c1ef_601ea09b",
       "range": {
         "startLine": 1392,
         "startChar": 0,
