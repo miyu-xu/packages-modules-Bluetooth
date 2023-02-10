@@ -244,6 +244,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c4d44995_aed49ebd",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudioCodecConfig.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 1312909
+      },
+      "writtenOn": "2023-02-10T14:02:31Z",
+      "side": 1,
+      "message": "If I get it correct is below existing file already meant for that can be extended for codec specific vendor metadata as well in future?\nhttps://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/framework/java/android/bluetooth/BluetoothLeAudioCodecConfigMetadata.java\n\nOR we need to add more code in existing file\npackages/modules/Bluetooth/framework/java/android/bluetooth/BluetoothLeAudioCodecConfig.java?",
+      "parentUuid": "133ebb89_f015ffb3",
+      "revId": "119985b536c6a340570b8bb55fe830440917895d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "78d3e85a_3b03a29b",
         "filename": "framework/java/android/bluetooth/BluetoothLeAudioCodecConfig.java",
         "patchSetId": 17

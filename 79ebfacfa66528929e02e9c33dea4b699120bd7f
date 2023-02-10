@@ -74,6 +74,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9630b738_35b48402",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudioCodecConfig.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1312909
+      },
+      "writtenOn": "2023-02-10T14:02:31Z",
+      "side": 1,
+      "message": "Should I hide it and merge in AOSP for time being?",
+      "parentUuid": "c4dd3d20_e4500bb5",
+      "range": {
+        "startLine": 49,
+        "startChar": 0,
+        "endLine": 53,
+        "endChar": 67
+      },
+      "revId": "79ebfacfa66528929e02e9c33dea4b699120bd7f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b2841170_ab0291b2",
         "filename": "framework/java/android/bluetooth/BluetoothLeAudioCodecConfig.java",
         "patchSetId": 11
