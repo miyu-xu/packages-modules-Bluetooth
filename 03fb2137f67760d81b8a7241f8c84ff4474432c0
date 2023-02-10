@@ -69,6 +69,30 @@
       },
       "revId": "03fb2137f67760d81b8a7241f8c84ff4474432c0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bda8335e_3abe80d7",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 6325,
+      "author": {
+        "id": 1875587
+      },
+      "writtenOn": "2023-02-10T15:39:43Z",
+      "side": 1,
+      "message": "This mechanism is separated from the enable LE audio setting.\nRename function to `isLeAudioAllowed(BluetoothDevice device)`",
+      "parentUuid": "e11d8cc6_5c05a03a",
+      "range": {
+        "startLine": 6325,
+        "startChar": 0,
+        "endLine": 6325,
+        "endChar": 65
+      },
+      "revId": "03fb2137f67760d81b8a7241f8c84ff4474432c0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
