@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2fcaddce_107b6e1b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2023-02-10T15:27:28Z",
+      "side": 1,
+      "message": "nit: reformat these lines",
+      "range": {
+        "startLine": 9,
+        "startChar": 67,
+        "endLine": 11,
+        "endChar": 18
+      },
+      "revId": "7a7e51215fd5109b31ca640742df5922f45a722a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
