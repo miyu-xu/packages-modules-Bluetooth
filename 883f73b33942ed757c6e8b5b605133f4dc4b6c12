@@ -3,6 +3,40 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "861a8644_b1818363",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-02-10T19:37:20Z",
+      "side": 1,
+      "message": "Note: I noticed that we\u0027re printing addresses directly in a lot of places in this file. We should convert these into `topshim::btif::DisplayAddress` for display instead of using `{:?}` or addr.to_string() to display them. For privacy reasons, we don\u0027t want to display an addr directly in syslog.\n\nCan you send up a patch at the top of this list doing that refactor?",
+      "revId": "883f73b33942ed757c6e8b5b605133f4dc4b6c12",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ef6b5131_2ee081a4",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-02-10T19:37:20Z",
+      "side": 1,
+      "message": "missing docstrings",
+      "revId": "883f73b33942ed757c6e8b5b605133f4dc4b6c12",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f12f303b_aa04c3de",
         "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
         "patchSetId": 3
