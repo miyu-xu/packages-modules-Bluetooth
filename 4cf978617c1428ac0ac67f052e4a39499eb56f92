@@ -70,6 +70,30 @@
       },
       "revId": "4cf978617c1428ac0ac67f052e4a39499eb56f92",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "62f5cf3c_31f56f41",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 2105,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2023-02-10T03:57:47Z",
+      "side": 1,
+      "message": "BondAttempt may sound confusing to developer because they may not know what is Bond Attempt. Let\u0027s talk offline about this\n\nEdit: After thinking again, I think getBondAttemptCaller has no advantage compared to getBondCreateCaller",
+      "parentUuid": "d251f5a3_a9d934e2",
+      "range": {
+        "startLine": 2105,
+        "startChar": 18,
+        "endLine": 2105,
+        "endChar": 37
+      },
+      "revId": "4cf978617c1428ac0ac67f052e4a39499eb56f92",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
