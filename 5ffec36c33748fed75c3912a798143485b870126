@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f59898c7_009d608d",
+        "filename": "android/app/src/com/android/bluetooth/btservice/MetricsLogger.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1581454
+      },
+      "writtenOn": "2023-02-10T19:37:05Z",
+      "side": 1,
+      "message": "It should be fine to log it now but it could potentially spam the logcat when we have more keys.",
+      "revId": "5ffec36c33748fed75c3912a798143485b870126",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
