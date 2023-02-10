@@ -120,6 +120,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1b03732c_bbaa81f8",
+        "filename": "android/app/src/com/android/bluetooth/gatt/AppScanStats.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 362,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2023-02-10T18:00:10Z",
+      "side": 1,
+      "message": "Updated to record scan radio duration for total/screen_on/screen_off.",
+      "parentUuid": "c39dc911_bad08646",
+      "range": {
+        "startLine": 359,
+        "startChar": 0,
+        "endLine": 362,
+        "endChar": 9
+      },
+      "revId": "8498d5317d554f8c875fe01556ab6706f9454e84",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4d3fdbdd_d427668c",
