@@ -40,7 +40,7 @@ class GAPProxy(ProfileProxy):
         if test in {"GAP/SEC/AUT/BV-02-C", "GAP/SEC/SEM/BV-05-C", "GAP/SEC/SEM/BV-08-C"}:
             # we connect then pair, so we have to pair directly in this MMI
             self.pairing_events = self.security.OnPairing()
-            self.connection = self.host.Connect(address=pts_addr, manually_confirm=True).connection
+            self.connection = self.host.Connect(address=pts_addr).connection
         else:
             self.connection = self.host.Connect(address=pts_addr).connection
 
@@ -95,17 +95,16 @@ class GAPProxy(ProfileProxy):
         database where Insufficient Authentication error will be returned :
         """
 
-        response = self.gatt.RegisterService(
-            service=GattServiceParams(
-                uuid="955798ce-3022-455c-b759-ee8edcd73d1a",
-                characteristics=[
-                    GattCharacteristicParams(
-                        uuid="cf99ed9b-3c43-4343-b8a7-8afa513752ce",
-                        properties=0x02,  # PROPERTY_READ,
-                        permissions=0x04,  # PERMISSION_READ_ENCRYPTED_MITM
-                    ),
-                ],
-            ))
+        response = self.gatt.RegisterService(service=GattServiceParams(
+            uuid="955798ce-3022-455c-b759-ee8edcd73d1a",
+            characteristics=[
+                GattCharacteristicParams(
+                    uuid="cf99ed9b-3c43-4343-b8a7-8afa513752ce",
+                    properties=0x02,  # PROPERTY_READ,
+                    permissions=0x04,  # PERMISSION_READ_ENCRYPTED_MITM
+                ),
+            ],
+        ))
 
         self.pairing_events = self.security.OnPairing()
 
@@ -114,7 +113,7 @@ class GAPProxy(ProfileProxy):
     @match_description
     def TSC_MMI_the_security_id_is(self, pts_addr: bytes, passkey: str, **kwargs):
         """
-        The Secure ID is (?P<passkey>[0-9]*)
+        The Secure ID is (?P<passkey>[0-9]*). Press OK to continue.
         """
 
         for event in self.pairing_events:
@@ -135,7 +134,8 @@ class GAPProxy(ProfileProxy):
             if self.counter == 0:
                 self.counter += 1
                 self.security_storage.DeleteBond(public=pts_addr)
-                self.connection = self.host.ConnectLE(own_address_type=OwnAddressType.RANDOM, public=pts_addr).connection
+                self.connection = self.host.ConnectLE(own_address_type=OwnAddressType.RANDOM,
+                                                      public=pts_addr).connection
                 self.security.Secure(connection=self.connection, le=LESecurityLevel.LE_LEVEL3)
                 return "OK"
 
@@ -205,9 +205,9 @@ class GAPProxy(ProfileProxy):
         Please prepare IUT to send an advertising report with Service UUID.
         """
 
-        self.host.StartAdvertising(
-            own_address_type=OwnAddressType.PUBLIC,
-            data=DataTypes(complete_service_class_uuids128=["955798ce-3022-455c-b759-ee8edcd73d1a"],))
+        self.host.StartAdvertising(own_address_type=OwnAddressType.PUBLIC,
+                                   data=DataTypes(
+                                       complete_service_class_uuids128=["955798ce-3022-455c-b759-ee8edcd73d1a"],))
         return "OK"
 
     @assert_description
@@ -216,9 +216,11 @@ class GAPProxy(ProfileProxy):
         Please prepare IUT to send an advertising report with Local Name.
         """
 
-        self.host.StartAdvertising(
-            own_address_type=OwnAddressType.PUBLIC,
-            data=DataTypes(include_complete_local_name=True, include_shortened_local_name=True,))
+        self.host.StartAdvertising(own_address_type=OwnAddressType.PUBLIC,
+                                   data=DataTypes(
+                                       include_complete_local_name=True,
+                                       include_shortened_local_name=True,
+                                   ))
 
         return "OK"
 
@@ -244,9 +246,8 @@ class GAPProxy(ProfileProxy):
         Specific Data.
         """
 
-        self.host.StartAdvertising(
-            own_address_type=OwnAddressType.PUBLIC,
-            data=DataTypes(manufacturer_specific_data=b"d0n't b3 3v1l!",))
+        self.host.StartAdvertising(own_address_type=OwnAddressType.PUBLIC,
+                                   data=DataTypes(manufacturer_specific_data=b"d0n't b3 3v1l!",))
 
         return "OK"
 
@@ -256,9 +257,7 @@ class GAPProxy(ProfileProxy):
         Please prepare IUT to send an advertising report with TX Power Level.
         """
 
-        self.host.StartAdvertising(
-            own_address_type=OwnAddressType.PUBLIC,
-            data=DataTypes(include_tx_power_level=True,))
+        self.host.StartAdvertising(own_address_type=OwnAddressType.PUBLIC, data=DataTypes(include_tx_power_level=True,))
 
         return "OK"
 
@@ -329,15 +328,15 @@ class GAPProxy(ProfileProxy):
         return "OK"
 
     @match_description
-    def TSC_MMI_iut_confirm_device_discovery(self, name: str, pts_addr: bytes, **kwargs):
+    def TSC_MMI_iut_confirm_device_discovery(self, test: str, name: str, pts_addr: bytes, **kwargs):
         """
         Please confirm that IUT has discovered PTS and retrieved its name (?P<name>[a-zA-Z\-0-9]*)
         """
-
-        connection = self.host.GetConnection(address=pts_addr).connection
-        device = self.host.GetDevice(connection=connection)
+        if test in "GAP/IDLE/DED/BV-02-C":
+            self.connection = self.host.Connect(address=pts_addr).connection
+            sleep(2)
+        device = self.host.GetRemoteName(address=pts_addr)
         assert name == device.name, (name, device.name)
-
         return "OK"
 
     @assert_description
@@ -456,7 +455,7 @@ class GAPProxy(ProfileProxy):
         for response in self.scan_responses:
             assert response.HasField("public")
             if (response.public == pts_addr and
-                response.data.le_discoverability_mode == DiscoverabilityMode.DISCOVERABLE_LIMITED):
+                    response.data.le_discoverability_mode == DiscoverabilityMode.DISCOVERABLE_LIMITED):
                 self.scan_responses.cancel()
                 return "OK"
 
@@ -475,7 +474,7 @@ class GAPProxy(ProfileProxy):
             for response in self.scan_responses:
                 assert response.HasField("public")
                 if (response.public == pts_addr and
-                    response.data.le_discoverability_mode == DiscoverabilityMode.DISCOVERABLE_GENERAL):
+                        response.data.le_discoverability_mode == DiscoverabilityMode.DISCOVERABLE_GENERAL):
                     self.scan_responses.cancel()
                     discovered = True
                     return
@@ -502,7 +501,7 @@ class GAPProxy(ProfileProxy):
             for response in self.scan_responses:
                 assert response.HasField("public")
                 if (response.public == pts_addr and
-                    response.data.le_discoverability_mode == DiscoverabilityMode.DISCOVERABLE_LIMITED):
+                        response.data.le_discoverability_mode == DiscoverabilityMode.DISCOVERABLE_LIMITED):
                     self.inquiry_responses.cancel()
                     discovered = True
                     return
@@ -542,7 +541,7 @@ class GAPProxy(ProfileProxy):
         """
 
         try:
-            self.host.Disconnect(connection=self.host.GetLEConnection(address=pts_addr).connection)
+            self.host.Disconnect(connection=self.host.GetLEConnection(public=pts_addr).connection)
         except Exception:
             pass
 
@@ -563,7 +562,7 @@ class GAPProxy(ProfileProxy):
         if test not in {"GAP/SEC/AUT/BV-21-C"}:
             self.security_storage.DeleteBond(public=pts_addr)
 
-        connection = self.host.GetLEConnection(address=pts_addr).connection
+        connection = self.host.GetLEConnection(public=pts_addr).connection
         self.security.Secure(connection=connection, le=LESecurityLevel.LE_LEVEL3)
 
         return "OK"
@@ -604,8 +603,7 @@ class GAPProxy(ProfileProxy):
             scan_responses = self.host.Scan()
             for event in scan_responses:
                 address = event.public if event.HasField("public") else event.random
-                if (address == pts_addr and
-                    event.data.le_discoverability_mode):
+                if (address == pts_addr and event.data.le_discoverability_mode):
                     scan_responses.cancel()
                     discovered_le = True
                     return
@@ -621,14 +619,12 @@ class GAPProxy(ProfileProxy):
 
         return "OK"
 
-    @assert_description
     def TSC_MMI_make_iut_general_discoverable(self, **kwargs):
         """
-        Please make IUT general discoverable. Press OK to continue.
+        Please make IUT general discoverable.
         """
 
-        self.host.SetDiscoverabilityMode(
-            mode=DiscoverabilityMode.DISCOVERABLE_GENERAL)
+        self.host.SetDiscoverabilityMode(mode=DiscoverabilityMode.DISCOVERABLE_GENERAL)
 
         self.host.StartAdvertising(
             data=DataTypes(le_discoverability_mode=DiscoverabilityMode.DISCOVERABLE_GENERAL),
@@ -659,8 +655,7 @@ class GAPProxy(ProfileProxy):
         Please make IUT not connectable. Press OK to continue.
         """
 
-        self.host.SetDiscoverabilityMode(
-            mode=DiscoverabilityMode.NOT_DISCOVERABLE)
+        self.host.SetDiscoverabilityMode(mode=DiscoverabilityMode.NOT_DISCOVERABLE)
 
         self.host.SetConnectabilityMode(mode=ConnectabilityMode.NOT_CONNECTABLE)
 
@@ -672,8 +667,7 @@ class GAPProxy(ProfileProxy):
         Please make IUT not discoverable. Press OK to continue.
         """
 
-        self.host.SetDiscoverabilityMode(
-            mode=DiscoverabilityMode.NOT_DISCOVERABLE)
+        self.host.SetDiscoverabilityMode(mode=DiscoverabilityMode.NOT_DISCOVERABLE)
         self.host.SetConnectabilityMode(mode=ConnectabilityMode.NOT_CONNECTABLE)
 
         return "OK"
@@ -755,8 +749,7 @@ class GAPProxy(ProfileProxy):
         Please enter General Discoverable and Non-Connectable mode.
         """
 
-        self.host.SetDiscoverabilityMode(
-            mode=DiscoverabilityMode.DISCOVERABLE_GENERAL)
+        self.host.SetDiscoverabilityMode(mode=DiscoverabilityMode.DISCOVERABLE_GENERAL)
         self.host.SetConnectabilityMode(mode=ConnectabilityMode.NOT_CONNECTABLE)
 
         return "OK"
@@ -880,6 +873,24 @@ class GAPProxy(ProfileProxy):
         return "OK"
 
     @assert_description
+    def TSC_MMI_iut_send_att_connect_request(self, test: str, pts_addr: bytes, **kwargs):
+        """
+        Please send an ATT connect request to establish an L2CAP channel.
+        """
+        self.connection = self.host.ConnectLE(own_address_type=OwnAddressType.RANDOM, public=pts_addr).connection
+
+        return "OK"
+
+    @assert_description
+    def TSC_MMI_iut_send_ll_connection_update_request(self, **kwargs):
+        """
+        Please send a LL Connection Parameter Update request using valid
+        parameters.
+        """
+
+        return "OK"
+
+    @assert_description
     def _mmi_231(self, test: str, pts_addr: bytes, **kwargs):
         """
         Please start the Bonding Procedure in bondable mode.
@@ -916,6 +927,7 @@ class GAPProxy(ProfileProxy):
                         pairing_events.send(event=event, confirm=True)
 
         Thread(target=task).start()
+
 
 def handle_format(handle):
     return hex(handle)[2:].zfill(4)
