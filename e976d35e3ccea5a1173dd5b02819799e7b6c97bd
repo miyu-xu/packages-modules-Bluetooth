@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "19527214_aaf9ae7c",
+        "filename": "framework/api/system-current.txt",
+        "patchSetId": 9
+      },
+      "lineNbr": 472,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-02-10T00:52:15Z",
+      "side": 1,
+      "message": "yes, i separate that out as a separate commit.",
+      "parentUuid": "13aa1ada_e7aed691",
+      "range": {
+        "startLine": 463,
+        "startChar": 2,
+        "endLine": 472,
+        "endChar": 79
+      },
+      "revId": "e976d35e3ccea5a1173dd5b02819799e7b6c97bd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6600f65a_14e38960",
@@ -41,6 +65,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "23156f70_f2d6502e",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudioCodecConfigMetadata.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 536,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-02-10T00:52:15Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "6600f65a_14e38960",
+      "revId": "e976d35e3ccea5a1173dd5b02819799e7b6c97bd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "573667d1_aef06e2b",
@@ -54,6 +96,30 @@
       "writtenOn": "2023-02-10T00:22:09Z",
       "side": 1,
       "message": "Please use Objects.equals(o1, o2) from Java 8",
+      "range": {
+        "startLine": 159,
+        "startChar": 19,
+        "endLine": 159,
+        "endChar": 31
+      },
+      "revId": "e976d35e3ccea5a1173dd5b02819799e7b6c97bd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0174792c_8c8b4d62",
+        "filename": "framework/java/android/bluetooth/BluetoothLeBroadcastMetadata.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-02-10T00:52:15Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "573667d1_aef06e2b",
       "range": {
         "startLine": 159,
         "startChar": 19,
@@ -87,6 +153,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e3769a2c_7dff57bf",
+        "filename": "framework/java/android/bluetooth/BluetoothLeBroadcastMetadata.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-02-10T00:52:15Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "b6b30bd0_ac6aeea8",
+      "range": {
+        "startLine": 170,
+        "startChar": 0,
+        "endLine": 170,
+        "endChar": 85
+      },
+      "revId": "e976d35e3ccea5a1173dd5b02819799e7b6c97bd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c0a5d1c9_7d622994",
@@ -100,6 +190,30 @@
       "writtenOn": "2023-02-10T00:22:09Z",
       "side": 1,
       "message": "formatting",
+      "range": {
+        "startLine": 638,
+        "startChar": 25,
+        "endLine": 638,
+        "endChar": 40
+      },
+      "revId": "e976d35e3ccea5a1173dd5b02819799e7b6c97bd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "269e5e73_974d0867",
+        "filename": "framework/java/android/bluetooth/BluetoothLeBroadcastMetadata.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 638,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-02-10T00:52:15Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "c0a5d1c9_7d622994",
       "range": {
         "startLine": 638,
         "startChar": 25,
@@ -133,6 +247,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a28bebf6_b28e257d",
+        "filename": "framework/java/android/bluetooth/BluetoothLeBroadcastSettings.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-02-10T00:52:15Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "647b6695_2e0ac31e",
+      "range": {
+        "startLine": 65,
+        "startChar": 19,
+        "endLine": 65,
+        "endChar": 31
+      },
+      "revId": "e976d35e3ccea5a1173dd5b02819799e7b6c97bd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d344d9ed_6f54ad21",
@@ -146,6 +284,30 @@
       "writtenOn": "2023-02-10T00:22:09Z",
       "side": 1,
       "message": "Please use Objects.equals(o1, o2) from Java 8",
+      "range": {
+        "startLine": 76,
+        "startChar": 27,
+        "endLine": 76,
+        "endChar": 39
+      },
+      "revId": "e976d35e3ccea5a1173dd5b02819799e7b6c97bd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "433a9c22_74e0d276",
+        "filename": "framework/java/android/bluetooth/BluetoothLeBroadcastSettings.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-02-10T00:52:15Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "d344d9ed_6f54ad21",
       "range": {
         "startLine": 76,
         "startChar": 27,
