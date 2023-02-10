@@ -135,6 +135,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6fb7790a_96caaabe",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 23
+      },
+      "lineNbr": 2251,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-02-10T19:35:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "388176ea_af8d305b",
+      "range": {
+        "startLine": 2251,
+        "startChar": 23,
+        "endLine": 2251,
+        "endChar": 52
+      },
+      "revId": "faea7f7d27dbafdbf530f8045470e66be19b4bdd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9d17b698_417311b2",
@@ -148,6 +172,30 @@
       "writtenOn": "2023-02-09T22:28:23Z",
       "side": 1,
       "message": "ADDRESS_TO_LOGGABLE_CSTR",
+      "range": {
+        "startLine": 2488,
+        "startChar": 11,
+        "endLine": 2488,
+        "endChar": 37
+      },
+      "revId": "faea7f7d27dbafdbf530f8045470e66be19b4bdd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c8652dcb_7084f21c",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 23
+      },
+      "lineNbr": 2488,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-02-10T19:35:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9d17b698_417311b2",
       "range": {
         "startLine": 2488,
         "startChar": 11,
