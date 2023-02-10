@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8b5d9a6b_a2440820",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-02-10T18:57:42Z",
+      "side": 1,
+      "message": "Docstring for anything that is `pub` please.",
+      "revId": "16247f943aa8ec5f854ada8f1a14420a7ec4029a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "70f3f90c_f2dee9f7",
         "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
         "patchSetId": 2
