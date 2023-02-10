@@ -65,6 +65,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "62fb0284_55d698bb",
+        "filename": "system/gd/hci/le_periodic_sync_manager.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 422,
+      "author": {
+        "id": 1882545
+      },
+      "writtenOn": "2023-02-10T02:27:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a3583a5_7fa0d638",
+      "revId": "a2b3e02c8fc1c5317c0a1f468461b6f2524c7029",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "83718ec6_473ef7da",
@@ -78,6 +96,24 @@
       "writtenOn": "2023-02-09T03:57:44Z",
       "side": 1,
       "message": "Please align the naming with others `onBigInfoReport` -\u003e `OnBigInfoReport`",
+      "revId": "a2b3e02c8fc1c5317c0a1f468461b6f2524c7029",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5ca0b7f2_627def07",
+        "filename": "system/include/hardware/ble_scanner.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1882545
+      },
+      "writtenOn": "2023-02-10T02:27:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "83718ec6_473ef7da",
       "revId": "a2b3e02c8fc1c5317c0a1f468461b6f2524c7029",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
