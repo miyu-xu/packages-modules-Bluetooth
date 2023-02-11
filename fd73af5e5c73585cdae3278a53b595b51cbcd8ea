@@ -93,6 +93,30 @@
       },
       "revId": "fd73af5e5c73585cdae3278a53b595b51cbcd8ea",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "de78f1af_1338a68b",
+        "filename": "system/stack/include/hcidefs.h",
+        "patchSetId": 8
+      },
+      "lineNbr": 909,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-02-11T00:49:32Z",
+      "side": 1,
+      "message": "Ok as long as there is some plan to resolve this at some point.",
+      "parentUuid": "56d156c6_fa47df49",
+      "range": {
+        "startLine": 909,
+        "startChar": 7,
+        "endLine": 909,
+        "endChar": 8
+      },
+      "revId": "fd73af5e5c73585cdae3278a53b595b51cbcd8ea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
