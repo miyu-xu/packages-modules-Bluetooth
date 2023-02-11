@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "14e6cb5b_0960edb2",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/hfp/HeadsetServiceAndStateMachineTest.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 668,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-02-11T00:41:33Z",
+      "side": 1,
+      "message": "I am actually surprised that I needed to add this check, this should have been always the case.\n\nI don\u0027t see what part of the logic make this call now but not before",
+      "range": {
+        "startLine": 668,
+        "startChar": 0,
+        "endLine": 668,
+        "endChar": 64
+      },
+      "revId": "632cac52184621ba2f1816f924a227eae2030061",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
