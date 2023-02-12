@@ -233,10 +233,15 @@ impl AttDatabase for AttDatabaseImpl {
     ) -> Result<AttAttributeDataChild, AttErrorCode> {
         {
             let services = self.gatt_db.schema.borrow();
-            match services.attributes.get(&handle).map(|attr| &attr.value) {
-                Some(AttAttributeBackingValue::Static(val)) => return Ok(val.clone()),
-                None => return Err(AttErrorCode::INVALID_HANDLE),
-                Some(AttAttributeBackingValue::Dynamic) => { /* fallthrough */ }
+            let Some(attr) = services.attributes.get(&handle) else {
+                return Err(AttErrorCode::INVALID_HANDLE);
+            };
+            if !attr.attribute.permissions.readable {
+                return Err(AttErrorCode::READ_NOT_PERMITTED);
+            }
+            match &attr.value {
+                AttAttributeBackingValue::Static(val) => return Ok(val.clone()),
+                AttAttributeBackingValue::Dynamic => { /* fallthrough */ }
             };
         }
 
@@ -384,7 +389,7 @@ mod test {
                 characteristics: vec![GattCharacteristicWithHandle {
                     handle: CHARACTERISTIC_VALUE_HANDLE,
                     type_: CHARACTERISTIC_TYPE,
-                    permissions: AttPermissions { readable: false, writable: true },
+                    permissions: AttPermissions { readable: true, writable: true },
                 }],
             })
             .unwrap();
@@ -411,7 +416,7 @@ mod test {
             AttAttribute {
                 handle: CHARACTERISTIC_VALUE_HANDLE,
                 type_: CHARACTERISTIC_TYPE,
-                permissions: AttPermissions { readable: false, writable: true }
+                permissions: AttPermissions { readable: true, writable: true }
             }
         );
 
@@ -420,7 +425,7 @@ mod test {
             Ok(AttAttributeDataChild::GattCharacteristicDeclarationValue(
                 GattCharacteristicDeclarationValueBuilder {
                     properties: AttCharacteristicPropertiesBuilder {
-                        read: 0,
+                        read: 1,
                         broadcast: 0,
                         write_without_response: 0,
                         write: 1,
@@ -436,6 +441,28 @@ mod test {
         );
         // TODO(aryarahul): fix this once attribute value reading works
         assert_eq!(characteristic_value, Err(AttErrorCode::INVALID_HANDLE));
+    }
+
+    #[test]
+    fn test_unreadable_characteristic() {
+        let gatt_db = Rc::new(GattDatabase::new());
+        gatt_db
+            .add_service_with_handles(GattServiceWithHandle {
+                handle: SERVICE_HANDLE,
+                type_: SERVICE_TYPE,
+                characteristics: vec![GattCharacteristicWithHandle {
+                    handle: CHARACTERISTIC_VALUE_HANDLE,
+                    type_: CHARACTERISTIC_TYPE,
+                    permissions: AttPermissions { readable: false, writable: false },
+                }],
+            })
+            .unwrap();
+
+        let characteristic_value = tokio_test::block_on(
+            gatt_db.get_att_database().read_attribute(CHARACTERISTIC_VALUE_HANDLE),
+        );
+
+        assert_eq!(characteristic_value, Err(AttErrorCode::READ_NOT_PERMITTED));
     }
 
     #[test]

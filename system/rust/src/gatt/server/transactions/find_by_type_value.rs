@@ -1,0 +1,148 @@
+use log::warn;
+
+use crate::{
+    core::uuid::Uuid,
+    gatt::{
+        ids::AttHandle,
+        server::{
+            att_database::{AttAttribute, AttDatabase},
+            transactions::att_grouping::find_group_end,
+            utils::PayloadAccumulator,
+        },
+    },
+    packets::{
+        AttChild, AttErrorCode, AttErrorResponseBuilder, AttFindByTypeValueRequestView,
+        AttFindByTypeValueResponseBuilder, AttOpcode, AttributeHandleRangeBuilder, Serializable,
+    },
+};
+
+use super::att_range_filter::filter_to_range;
+
+pub async fn handle_find_by_type_value_request<T: AttDatabase>(
+    request: AttFindByTypeValueRequestView<'_>,
+    mtu: usize,
+    db: &T,
+) -> AttChild {
+    let all_attrs = db.list_attributes();
+
+    let Some(attrs) = filter_to_range(
+        request.get_starting_handle().into(),
+        request.get_ending_handle().into(),
+        all_attrs.iter().cloned(),
+    ) else {
+        return AttErrorResponseBuilder {
+            opcode_in_error: AttOpcode::FIND_BY_TYPE_VALUE_REQUEST,
+            handle_in_error: AttHandle::from(request.get_starting_handle()).into(),
+            error_code: AttErrorCode::INVALID_HANDLE,
+        }
+        .into();
+    };
+
+    // ATT_MTU-1 limit comes from Spec 5.3 Vol 3F Sec 3.4.3.4
+    let mut matches = PayloadAccumulator::new(mtu - 1);
+
+    for attr @ AttAttribute { handle, type_, permissions } in attrs {
+        if Uuid::from(request.get_attribute_type()) != type_ || !permissions.readable {
+            continue;
+        }
+        if let Ok(value) = db.read_attribute(handle).await {
+            if let Ok(data) = value.to_vec() {
+                if data == request.get_attribute_value().get_raw_payload().collect::<Vec<_>>() {
+                    // match found
+                    if !matches.push(AttributeHandleRangeBuilder {
+                        found_attribute_handle: handle.into(),
+                        group_end_handle: find_group_end(all_attrs.iter().cloned(), attr)
+                            .map(|attr| attr.handle)
+                            .unwrap_or(handle)
+                            .into(),
+                    }) {
+                        break;
+                    }
+                }
+            }
+        } else {
+            warn!("skipping {handle:?} in FindByTypeRequest since read failed")
+        }
+    }
+
+    if matches.is_empty() {
+        AttErrorResponseBuilder {
+            opcode_in_error: AttOpcode::FIND_BY_TYPE_VALUE_REQUEST,
+            handle_in_error: AttHandle::from(request.get_starting_handle()).into(),
+            error_code: AttErrorCode::ATTRIBUTE_NOT_FOUND,
+        }
+        .into()
+    } else {
+        AttFindByTypeValueResponseBuilder { handles_info: matches.into_boxed_slice() }.into()
+    }
+}
+
+#[cfg(test)]
+mod test {
+    use crate::{
+        gatt::{
+            ffi::Uuid,
+            server::{gatt_database::AttPermissions, test::test_att_db::TestAttDatabase},
+        },
+        packets::{
+            AttAttributeDataBuilder, AttAttributeDataChild, AttFindByTypeValueRequestBuilder,
+        },
+        utils::packet::build_view_or_crash,
+    };
+
+    use super::*;
+
+    #[test]
+    fn test_basic() {
+        // arrange
+        let db = TestAttDatabase::new(vec![
+            (
+                AttAttribute {
+                    handle: AttHandle(3),
+                    type_: Uuid::new(0x0102),
+                    permissions: AttPermissions { readable: true, writable: false },
+                },
+                vec![3, 4],
+            ),
+            (
+                AttAttribute {
+                    handle: AttHandle(4),
+                    type_: Uuid::new(0x0103),
+                    permissions: AttPermissions { readable: true, writable: false },
+                },
+                vec![4, 5],
+            ),
+            (
+                AttAttribute {
+                    handle: AttHandle(5),
+                    type_: Uuid::new(0x0102),
+                    permissions: AttPermissions { readable: true, writable: false },
+                },
+                vec![3, 4],
+            ),
+        ]);
+        let att_view = build_view_or_crash(AttFindByTypeValueRequestBuilder {
+            starting_handle: AttHandle(3).into(),
+            ending_handle: AttHandle(5).into(),
+            attribute_type: Uuid::new(0x0102).try_into().unwrap(),
+            attribute_value: AttAttributeDataBuilder {
+                _child_: AttAttributeDataChild::RawData([3, 4].into()),
+            },
+        });
+
+        // act
+        let response =
+            tokio_test::block_on(handle_find_by_type_value_request((&att_view).into(), 128, &db));
+
+        // assert
+        if let AttChild::AttFindByTypeValueResponse(response) = response {
+            assert_eq!(response.handles_info.len(), 2);
+            assert_eq!(response.handles_info[0].found_attribute_handle.handle, 3);
+            assert_eq!(response.handles_info[0].group_end_handle.handle, 3);
+            assert_eq!(response.handles_info[1].found_attribute_handle.handle, 5);
+            assert_eq!(response.handles_info[1].group_end_handle.handle, 5);
+        } else {
+            unreachable!("{response:?}")
+        }
+    }
+}

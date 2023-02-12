@@ -1,8 +1,8 @@
 use crate::{
     gatt::server::{att_database::AttDatabase, utils::truncate_att_data},
     packets::{
-        AttAttributeDataBuilder, AttChild, AttErrorCode, AttErrorResponseBuilder, AttOpcode,
-        AttReadRequestView, AttReadResponseBuilder,
+        AttAttributeDataBuilder, AttChild, AttErrorResponseBuilder, AttOpcode, AttReadRequestView,
+        AttReadResponseBuilder,
     },
 };
 
@@ -12,24 +12,6 @@ pub async fn handle_read_request<T: AttDatabase>(
     db: &T,
 ) -> AttChild {
     let handle = request.get_attribute_handle().into();
-
-    let Some(attr) = db.find_attribute(handle) else {
-        return AttErrorResponseBuilder {
-            opcode_in_error: AttOpcode::READ_REQUEST,
-            handle_in_error: handle.into(),
-            error_code: AttErrorCode::INVALID_HANDLE,
-        }
-        .into();
-    };
-
-    if !attr.permissions.readable {
-        return AttErrorResponseBuilder {
-            opcode_in_error: AttOpcode::READ_REQUEST,
-            handle_in_error: handle.into(),
-            error_code: AttErrorCode::READ_NOT_PERMITTED,
-        }
-        .into();
-    }
 
     match db.read_attribute(handle).await {
         Ok(data) => AttReadResponseBuilder {

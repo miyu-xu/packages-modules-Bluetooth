@@ -1,7 +1,10 @@
 use crate::{
     gatt::{
         ids::AttHandle,
-        server::att_database::{AttAttribute, AttDatabase},
+        server::{
+            att_database::{AttAttribute, AttDatabase},
+            gatt_database::AttPermissions,
+        },
     },
     packets::{AttAttributeDataChild, AttErrorCode},
 };
@@ -34,6 +37,9 @@ impl AttDatabase for TestAttDatabase {
     ) -> Result<AttAttributeDataChild, AttErrorCode> {
         info!("reading {handle:?}");
         match self.attributes.get(&handle) {
+            Some((AttAttribute { permissions: AttPermissions { readable: false, .. }, .. }, _)) => {
+                Err(AttErrorCode::READ_NOT_PERMITTED)
+            }
             Some((_, data)) => Ok(AttAttributeDataChild::RawData(data.clone().into_boxed_slice())),
             None => Err(AttErrorCode::INVALID_HANDLE),
         }
