@@ -94,6 +94,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0f921d89_2442346a",
+        "filename": "system/rust/src/gatt/server/transactions/read_by_group_type_request.rs",
+        "patchSetId": 18
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-02-12T07:13:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "96fddd22_321def57",
+      "range": {
+        "startLine": 56,
+        "startChar": 16,
+        "endLine": 62,
+        "endChar": 17
+      },
+      "revId": "24d6ac9f78619cc2dbef4094a2d70e7f0f391621",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ec8f2dce_681673b7",
@@ -201,6 +225,24 @@
       "writtenOn": "2023-02-03T22:54:02Z",
       "side": 1,
       "message": "You are not validating the starting and ending handles:\n```\nThe starting handle shall be less than or equal to the ending handle. If a server\nreceives an ATT_READ_BY_GROUP_TYPE_REQ PDU with the Starting\nHandle parameter greater than the Ending Handle parameter or the Starting\nHandle parameter is 0x0000, an ATT_ERROR_RSP PDU shall be sent with\nthe Error Code parameter set to Invalid Handle (0x01). The Attribute Handle In\nError parameter shall be set to the Starting Handle parameter\n```",
+      "revId": "24d6ac9f78619cc2dbef4094a2d70e7f0f391621",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f8854a09_5d1893f4",
+        "filename": "system/rust/src/gatt/server/transactions/read_by_type_request.rs",
+        "patchSetId": 18
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-02-12T07:13:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a279d610_a6aa1306",
       "revId": "24d6ac9f78619cc2dbef4094a2d70e7f0f391621",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
