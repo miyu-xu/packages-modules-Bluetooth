@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0ae6fbde_7c6b8cdc",
+        "filename": "system/rust/src/gatt/server/transactions/read_by_group_type_request.rs",
+        "patchSetId": 18
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-02-12T07:12:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e75dc603_4eb729d5",
+      "revId": "24d6ac9f78619cc2dbef4094a2d70e7f0f391621",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6de9c459_5a8a4e31",
@@ -31,6 +49,24 @@
       "writtenOn": "2023-02-03T22:54:02Z",
       "side": 1,
       "message": "Add sufficient requirements to list_attributes to ensure:\n```\nThe attributes returned shall be the attributes with the lowest handles within the\nhandle range. These are known as the requested attributes.\n```",
+      "revId": "24d6ac9f78619cc2dbef4094a2d70e7f0f391621",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9b217746_b5817483",
+        "filename": "system/rust/src/gatt/server/transactions/read_by_group_type_request.rs",
+        "patchSetId": 18
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-02-12T07:12:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6de9c459_5a8a4e31",
       "revId": "24d6ac9f78619cc2dbef4094a2d70e7f0f391621",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -81,6 +117,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "75662081_ffc62a81",
+        "filename": "system/rust/src/gatt/server/transactions/read_by_group_type_request.rs",
+        "patchSetId": 18
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-02-12T07:12:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ec8f2dce_681673b7",
+      "range": {
+        "startLine": 64,
+        "startChar": 73,
+        "endLine": 64,
+        "endChar": 74
+      },
+      "revId": "24d6ac9f78619cc2dbef4094a2d70e7f0f391621",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "aa945e24_d4cd3f3e",
@@ -94,6 +154,30 @@
       "writtenOn": "2023-02-03T22:54:02Z",
       "side": 1,
       "message": "Incorrect, the end group handle is the last attribute handle in the parent declaration.",
+      "range": {
+        "startLine": 88,
+        "startChar": 24,
+        "endLine": 88,
+        "endChar": 56
+      },
+      "revId": "24d6ac9f78619cc2dbef4094a2d70e7f0f391621",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8d01d776_d80d7d17",
+        "filename": "system/rust/src/gatt/server/transactions/read_by_group_type_request.rs",
+        "patchSetId": 18
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-02-12T07:12:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "aa945e24_d4cd3f3e",
       "range": {
         "startLine": 88,
         "startChar": 24,
@@ -138,6 +222,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d79b14cd_9a03ca60",
+        "filename": "system/rust/src/gatt/server/transactions/read_by_type_request.rs",
+        "patchSetId": 18
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-02-12T07:12:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1e219f85_75847ff0",
+      "revId": "24d6ac9f78619cc2dbef4094a2d70e7f0f391621",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "37e2c8ff_f9cde95a",
@@ -151,6 +253,30 @@
       "writtenOn": "2023-02-03T22:54:02Z",
       "side": 1,
       "message": "READ_BY_TYPE_REQUEST",
+      "range": {
+        "startLine": 44,
+        "startChar": 44,
+        "endLine": 44,
+        "endChar": 70
+      },
+      "revId": "24d6ac9f78619cc2dbef4094a2d70e7f0f391621",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "35676772_e77ee4cb",
+        "filename": "system/rust/src/gatt/server/transactions/read_by_type_request.rs",
+        "patchSetId": 18
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-02-12T07:12:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "37e2c8ff_f9cde95a",
       "range": {
         "startLine": 44,
         "startChar": 44,
@@ -184,6 +310,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d2eea4b0_5a48a231",
+        "filename": "system/rust/src/gatt/server/transactions/read_by_type_request.rs",
+        "patchSetId": 18
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-02-12T07:12:51Z",
+      "side": 1,
+      "message": "Fixed and added a test to validate",
+      "parentUuid": "a3f1e4b7_f74bf106",
+      "range": {
+        "startLine": 42,
+        "startChar": 0,
+        "endLine": 50,
+        "endChar": 0
+      },
+      "revId": "24d6ac9f78619cc2dbef4094a2d70e7f0f391621",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "73f8072e_0b2d0420",
@@ -197,6 +347,30 @@
       "writtenOn": "2023-02-03T22:54:02Z",
       "side": 1,
       "message": "magic number",
+      "range": {
+        "startLine": 54,
+        "startChar": 63,
+        "endLine": 54,
+        "endChar": 64
+      },
+      "revId": "24d6ac9f78619cc2dbef4094a2d70e7f0f391621",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4aec8737_0c51cf0b",
+        "filename": "system/rust/src/gatt/server/transactions/read_by_type_request.rs",
+        "patchSetId": 18
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-02-12T07:12:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "73f8072e_0b2d0420",
       "range": {
         "startLine": 54,
         "startChar": 63,
