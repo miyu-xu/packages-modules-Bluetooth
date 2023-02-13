@@ -176,6 +176,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0acf96d9_21e49c0d",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 239,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-02-13T22:56:49Z",
+      "side": 1,
+      "message": "Yeah that\u0027s fair. Let\u0027s keep it as-is then.",
+      "parentUuid": "1fbc02b4_a4ba80a0",
+      "revId": "5c1b807a38a57640d12034b01b44e9d27f37ac36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d97da68c_a24f4bb0",
