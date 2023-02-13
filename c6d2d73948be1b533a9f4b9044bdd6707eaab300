@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ce84a58c_267a21b7",
+        "filename": "android/app/src/com/android/bluetooth/hearingaid/HearingAidService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 1220,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-02-13T20:07:27Z",
+      "side": 1,
+      "message": "Add parcelable to `BluetoothHearingAidAdvertisementData` and then do:\n```\nBluetoothHearingAidAdvertisementData foo \u003d new BluetoothHearingAidAdvertisementData(capability, truncatedHiSyncId)\nresult.send(foo)\n```",
+      "range": {
+        "startLine": 1215,
+        "startChar": 16,
+        "endLine": 1220,
+        "endChar": 38
+      },
+      "revId": "c6d2d73948be1b533a9f4b9044bdd6707eaab300",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8e0b5d99_1eee7ccd",
+        "filename": "android/app/src/com/android/bluetooth/hearingaid/HearingAidService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 1224,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-02-13T20:07:27Z",
+      "side": 1,
+      "message": "You can have an easier life by using the 2 method pattern:\n```\n@Override\npublic void getAshaAdvertisementServiceData(\n                BluetoothDevice device,\n                AttributionSource source,\n                SynchronousResultReceiver receiver) {\n try {\n   receiver.send(getAshaAdvertisementServiceData(device, source));\n } catch (RuntimeException e) {\n   receiver.propagateException(e);\n }\n}\nprivate BluetoothHearingAidAdvertisementData getAshaAdvertisementServiceData(\n                BluetoothDevice device,\n                AttributionSource source) {\n[ ... ]\nreturn xxx;\n}\n```",
+      "range": {
+        "startLine": 1190,
+        "startChar": 8,
+        "endLine": 1224,
+        "endChar": 9
+      },
+      "revId": "c6d2d73948be1b533a9f4b9044bdd6707eaab300",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
