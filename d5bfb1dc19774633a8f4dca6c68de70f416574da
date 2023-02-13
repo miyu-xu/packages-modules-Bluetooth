@@ -167,6 +167,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8df502fc_7c1bc28c",
+        "filename": "floss/hcidoc/src/parser.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-02-13T18:13:37Z",
+      "side": 1,
+      "message": "Refactored to clarify the `try_from` implementation. Reducing it to once constant made it less readable so I just have 3 consts now.",
+      "parentUuid": "5c937f94_b96e11fa",
+      "range": {
+        "startLine": 121,
+        "startChar": 6,
+        "endLine": 121,
+        "endChar": 31
+      },
+      "revId": "d5bfb1dc19774633a8f4dca6c68de70f416574da",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "78b5ba44_0027af34",
