@@ -33,6 +33,24 @@
       "message": "Mentioned this on chat, but we don\u0027t enforce BLUETOOTH_PRIVILEGED despite the docs saying we do. We should have consistency between the two.",
       "revId": "1ba2c48cd59d93888776f91538f9251efb318660",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "973d5d0a_87c849e5",
+        "filename": "android/app/src/com/android/bluetooth/a2dp/A2dpService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1482,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-02-13T21:37:04Z",
+      "side": 1,
+      "message": "Yes, we should include a follow-up CL to enforce this permission, but this change is just to revert it back to prior condition.",
+      "parentUuid": "bc1e1ad9_c207b86c",
+      "revId": "1ba2c48cd59d93888776f91538f9251efb318660",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
