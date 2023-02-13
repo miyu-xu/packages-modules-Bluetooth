@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8d4caf38_1644f65f",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/a2dp.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-02-13T22:51:01Z",
+      "side": 1,
+      "message": "Remove or replace with an assert, we want to always disconnect here",
+      "revId": "050adc8d48d2ca5ad8459ebb9c024644a9d7b876",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
