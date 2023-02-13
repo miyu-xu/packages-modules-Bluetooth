@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "107e36ae_a52f652f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2023-02-13T17:39:16Z",
+      "side": 1,
+      "message": "Done. Added unit test case of screen on/off and multi scan.",
+      "parentUuid": "88ded6a7_0563a04b",
+      "revId": "56c8c81090158f6407dd9dd07b8047a275a22366",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "74bbf344_a5ec5616",
