@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cdf900a5_5ca20847",
+        "filename": "android/app/tests/myinstrumentation/src/com/android/bluetooth/PairingTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 1986325
+      },
+      "writtenOn": "2023-02-13T16:55:58Z",
+      "side": 1,
+      "message": "@licorne@google.com @charliebout@google.com, when I call `getAddress` on bluetooth adapter, I got \"02:00:00:00:00:00\", looks like kind of security protection from app to retrieve local address, have you encountered this?",
+      "revId": "4f24f828f41262f84cf0545eea17937ff1e38483",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
