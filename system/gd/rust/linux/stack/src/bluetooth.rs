@@ -23,6 +23,7 @@ use btif_macros::{btif_callback, btif_callbacks_dispatcher};
 use log::{debug, warn};
 use num_traits::cast::ToPrimitive;
 use std::collections::HashMap;
+use std::convert::TryInto;
 use std::hash::Hash;
 use std::sync::{Arc, Condvar, Mutex};
 use std::time::Duration;
@@ -1558,7 +1559,18 @@ impl IBluetooth for Bluetooth {
         }
 
         let mut btpin: BtPinCode = BtPinCode { pin: [0; 16] };
-        btpin.pin.copy_from_slice(pin_code.as_slice());
+
+        btpin.pin = match pin_code
+            .iter()
+            .chain(std::iter::repeat(&0))
+            .take(16)
+            .cloned()
+            .collect::<Vec<u8>>()
+            .try_into()
+        {
+            Ok(pin) => pin,
+            Err(_) => return false,
+        };
 
         self.intf.lock().unwrap().pin_reply(
             &addr.unwrap(),
