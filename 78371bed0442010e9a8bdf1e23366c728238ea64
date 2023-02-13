@@ -16,6 +16,24 @@
       "message": "nit: Please update to reference the section of Core 5.4",
       "revId": "78371bed0442010e9a8bdf1e23366c728238ea64",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b817fb30_7e1956e5",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2230,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-02-13T23:46:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "008965ed_f7db35df",
+      "revId": "78371bed0442010e9a8bdf1e23366c728238ea64",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
