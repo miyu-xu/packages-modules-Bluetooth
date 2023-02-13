@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0d4defdc_606f8824",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 1140,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2023-02-13T20:41:20Z",
+      "side": 1,
+      "message": "nit: Some part of the code makes use of the `?` operator to simplify early return pattern which contains repetitive `match` and `Some(x) \u003d\u003e x`. I find using `?` is more concise and readable:\n```\n        match (|| {\n            let addr \u003d RawAddress::from_string(address.clone()).ok_or(\"Can\u0027t start SCO\")?;\n            info!(\"Start sco call for {}\", address);\n            let hfp \u003d self.hfp.as_mut().ok_or(\"Uninitialized HFP\")?;\n\n            if hfp.connect_audio(addr, sco_offload, force_cvsd) !\u003d 0 {\n                return Err(\"SCO connect_audio status failed.\");\n            }\n\n            info!(\"SCO connect_audio status success.\");\n            Ok(())\n        })() {\n            Ok(_) \u003d\u003e true,\n            Err(msg) \u003d\u003e {\n                warn!(\"{}\", msg);\n                false\n            }\n        }\n```",
+      "range": {
+        "startLine": 1114,
+        "startChar": 0,
+        "endLine": 1140,
+        "endChar": 9
+      },
+      "revId": "be6f8537e622e8589560aec7f50095f31be400fd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
