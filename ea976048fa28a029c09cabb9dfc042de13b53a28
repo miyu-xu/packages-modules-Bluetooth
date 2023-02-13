@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1ee32f65_7413268f",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 757,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-02-13T18:31:20Z",
+      "side": 0,
+      "message": "This used to parse the string into a number.  It seems like you\u0027ll still want to do that.  Otherwise, you\u0027ll get the ascii codes for the numbers instead of the numbers themselves.\n\n0x31 \u003d\u003d \u00271\u0027",
+      "range": {
+        "startLine": 757,
+        "startChar": 0,
+        "endLine": 757,
+        "endChar": 88
+      },
+      "revId": "ea976048fa28a029c09cabb9dfc042de13b53a28",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

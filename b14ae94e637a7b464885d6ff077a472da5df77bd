@@ -50,6 +50,23 @@
       "message": "The original code\nbtpin.pin.copy_from_slice(pin_code.as_slice());\nwill panic if the input pin_code length is not 16 digits,\nadd padding 0s to make it compatible with the libbluetooth packet\nformat.",
       "revId": "b14ae94e637a7b464885d6ff077a472da5df77bd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "df7f1fdc_206740ef",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1562,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-02-13T18:31:20Z",
+      "side": 1,
+      "message": "Could you do something like this:\n\n// Take as many PIN digits as are available and put them in a zeroed array.\npin_code.take(16).enumerate().for_each(|(i, b)| btpin.pin[i] \u003d b);",
+      "revId": "b14ae94e637a7b464885d6ff077a472da5df77bd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
