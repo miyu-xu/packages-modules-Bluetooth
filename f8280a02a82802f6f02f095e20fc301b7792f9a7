@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bc04601c_d1f44a0f",
+        "filename": "system/rust/src/gatt/server/att_database.rs",
+        "patchSetId": 42
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-02-13T21:58:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0f4c65a8_1011eb69",
+      "range": {
+        "startLine": 61,
+        "startChar": 19,
+        "endLine": 61,
+        "endChar": 33
+      },
+      "revId": "f8280a02a82802f6f02f095e20fc301b7792f9a7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "390cfebb_12ccb538",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-02-13T19:23:45Z",
       "side": 1,
       "message": "repeated?",
+      "range": {
+        "startLine": 346,
+        "startChar": 7,
+        "endLine": 346,
+        "endChar": 25
+      },
+      "revId": "f8280a02a82802f6f02f095e20fc301b7792f9a7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b0f4e130_69b9886d",
+        "filename": "system/rust/src/gatt/server/transactions/find_by_type_value.rs",
+        "patchSetId": 42
+      },
+      "lineNbr": 346,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-02-13T21:58:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "390cfebb_12ccb538",
       "range": {
         "startLine": 346,
         "startChar": 7,
@@ -64,6 +112,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3d111c15_fe8bcd19",
+        "filename": "system/rust/src/gatt/server/transactions/helpers/att_filter_by_size_type.rs",
+        "patchSetId": 42
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-02-13T21:58:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cbd3129f_e3a2cbb4",
+      "revId": "f8280a02a82802f6f02f095e20fc301b7792f9a7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "500d0fd6_9130a228",
@@ -77,6 +143,30 @@
       "writtenOn": "2023-02-13T19:23:45Z",
       "side": 1,
       "message": "Should we break here?  It looks like we keep going after an error.",
+      "range": {
+        "startLine": 56,
+        "startChar": 23,
+        "endLine": 56,
+        "endChar": 31
+      },
+      "revId": "f8280a02a82802f6f02f095e20fc301b7792f9a7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b22f03e0_70905cdc",
+        "filename": "system/rust/src/gatt/server/transactions/helpers/att_filter_by_size_type.rs",
+        "patchSetId": 42
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-02-13T21:58:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "500d0fd6_9130a228",
       "range": {
         "startLine": 56,
         "startChar": 23,
@@ -110,6 +200,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0a33a8c8_c0037ea5",
+        "filename": "system/rust/src/gatt/server/transactions/helpers/att_filter_by_size_type.rs",
+        "patchSetId": 42
+      },
+      "lineNbr": 376,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-02-13T21:58:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5c5ad695_8e915696",
+      "range": {
+        "startLine": 376,
+        "startChar": 37,
+        "endLine": 376,
+        "endChar": 42
+      },
+      "revId": "f8280a02a82802f6f02f095e20fc301b7792f9a7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8841c0b5_e542e64c",
@@ -133,6 +247,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e21642d5_6ef809cc",
+        "filename": "system/rust/src/gatt/server/transactions/read_by_group_type_request.rs",
+        "patchSetId": 42
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-02-13T21:58:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8841c0b5_e542e64c",
+      "range": {
+        "startLine": 34,
+        "startChar": 8,
+        "endLine": 35,
+        "endChar": 23
+      },
+      "revId": "f8280a02a82802f6f02f095e20fc301b7792f9a7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "51524670_fecb0475",
@@ -146,6 +284,30 @@
       "writtenOn": "2023-02-13T19:23:45Z",
       "side": 1,
       "message": "nit",
+      "range": {
+        "startLine": 28,
+        "startChar": 3,
+        "endLine": 28,
+        "endChar": 16
+      },
+      "revId": "f8280a02a82802f6f02f095e20fc301b7792f9a7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a8126879_a1b42e81",
+        "filename": "system/rust/src/gatt/server/transactions/read_by_type_request.rs",
+        "patchSetId": 42
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-02-13T21:58:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "51524670_fecb0475",
       "range": {
         "startLine": 28,
         "startChar": 3,
