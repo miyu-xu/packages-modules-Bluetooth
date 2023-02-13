@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0fe0839e_d83c865c",
+        "filename": "android/pandora/server/src/com/android/pandora/Host.kt",
+        "patchSetId": 4
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-02-13T22:58:40Z",
+      "side": 1,
+      "message": "Make a HashSet of `BluetoothDevice (prefered)` or `String (BD_ADDRESS)` (It\u0027s equivalent as BluetoothDevice equals and hashCode are hashing/comparing the address only https://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/framework/java/android/bluetooth/BluetoothDevice.java;l\u003d1411;drc\u003dbcf51872e04186502eb7bbb52e78e23ffc523d42)\n\nYou don\u0027t want to do an `HashSet` of hashCode here because you don\u0027t handle properly collisions, which the HashSet do.",
+      "range": {
+        "startLine": 87,
+        "startChar": 44,
+        "endLine": 87,
+        "endChar": 47
+      },
+      "revId": "9ae0f01d7bdb403e04897944fcc3e6cfb925c3b8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2b259bdf_d510d684",
+        "filename": "android/pandora/server/src/com/android/pandora/Host.kt",
+        "patchSetId": 4
+      },
+      "lineNbr": 352,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-02-13T22:58:40Z",
+      "side": 1,
+      "message": "We should remove the device from the initiatedConnection here.",
+      "revId": "9ae0f01d7bdb403e04897944fcc3e6cfb925c3b8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "67f62542_1e3c0d97",
+        "filename": "android/pandora/server/src/com/android/pandora/Host.kt",
+        "patchSetId": 4
+      },
+      "lineNbr": 453,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-02-13T22:58:40Z",
+      "side": 1,
+      "message": "We should remove from initiatedConnection here.",
+      "revId": "9ae0f01d7bdb403e04897944fcc3e6cfb925c3b8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
