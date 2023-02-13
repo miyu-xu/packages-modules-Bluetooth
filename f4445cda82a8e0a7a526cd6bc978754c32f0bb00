@@ -16,6 +16,24 @@
       "message": "this can be nullptr, I think",
       "revId": "f4445cda82a8e0a7a526cd6bc978754c32f0bb00",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "db23d61a_22e6c244",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 14
+      },
+      "lineNbr": 1349,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-02-13T18:06:46Z",
+      "side": 1,
+      "message": "Thanks, fixed in new CL",
+      "parentUuid": "d25c18ae_7c64bc09",
+      "revId": "f4445cda82a8e0a7a526cd6bc978754c32f0bb00",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
