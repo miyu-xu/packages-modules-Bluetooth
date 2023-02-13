@@ -16,6 +16,24 @@
       "message": "@licorne@google.com @charliebout@google.com, when I call `getAddress` on bluetooth adapter, I got \"02:00:00:00:00:00\", looks like kind of security protection from app to retrieve local address, have you encountered this?",
       "revId": "4f24f828f41262f84cf0545eea17937ff1e38483",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ffbbe7df_587ee651",
+        "filename": "android/app/tests/myinstrumentation/src/com/android/bluetooth/PairingTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-02-13T17:15:46Z",
+      "side": 1,
+      "message": "It\u0027s because you don\u0027t have `android.Manifest.permission#LOCAL_MAC_ADDRESS` permission\n\nhttps://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/framework/java/android/bluetooth/BluetoothAdapter.java;l\u003d141;drc\u003d6cc61409fc8ec66c1ed5389e890dc8af9f20a37c\n\nYou might want to call `InstrumentationRegistry.getInstrumentation().getUiAutomation().adoptShellPermissionIdentity()` in your setup to adopt all the permission of the shell.",
+      "parentUuid": "cdf900a5_5ca20847",
+      "revId": "4f24f828f41262f84cf0545eea17937ff1e38483",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
