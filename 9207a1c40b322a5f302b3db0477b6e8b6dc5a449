@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "446a3a5f_eaca29b1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-02-13T19:19:27Z",
+      "side": 1,
+      "message": "You can add\n`NO_IFTTT\u003dTurning an already existing flag. No need to add ffi / dumpsys`\n\nTo remove the lint warning",
+      "revId": "9207a1c40b322a5f302b3db0477b6e8b6dc5a449",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
