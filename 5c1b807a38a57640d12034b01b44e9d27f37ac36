@@ -301,6 +301,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "aa5a6d3c_5669da09",
+        "filename": "framework/java/android/bluetooth/BluetoothQualityReport.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-02-13T20:15:18Z",
+      "side": 1,
+      "message": "Autoformatter betrayed me",
+      "parentUuid": "3ed0ce28_42271b52",
+      "revId": "5c1b807a38a57640d12034b01b44e9d27f37ac36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f5dbd836_268da77a",
         "filename": "framework/java/android/bluetooth/BluetoothQualityReport.java",
         "patchSetId": 20
