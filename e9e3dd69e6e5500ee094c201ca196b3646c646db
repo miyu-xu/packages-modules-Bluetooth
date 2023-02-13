@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "de7938f9_8b100587",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 425,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-02-13T01:56:25Z",
+      "side": 1,
+      "message": "Yes",
+      "parentUuid": "588dbff9_5392077d",
+      "range": {
+        "startLine": 425,
+        "startChar": 27,
+        "endLine": 425,
+        "endChar": 65
+      },
+      "revId": "e9e3dd69e6e5500ee094c201ca196b3646c646db",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9f6b02d6_ef5c1a59",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-02-10T06:54:54Z",
       "side": 1,
       "message": "This value is stored both in ActiveDeviceManager and HearingAidService. Is it intended?",
+      "range": {
+        "startLine": 92,
+        "startChar": 17,
+        "endLine": 92,
+        "endChar": 38
+      },
+      "revId": "e9e3dd69e6e5500ee094c201ca196b3646c646db",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "236ff971_f194fa71",
+        "filename": "android/app/src/com/android/bluetooth/hearingaid/HearingAidService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-02-13T01:56:25Z",
+      "side": 1,
+      "message": "We\u0027d better to maintain in one place.",
+      "parentUuid": "9f6b02d6_ef5c1a59",
       "range": {
         "startLine": 92,
         "startChar": 17,
