@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "01516c1a_b8737d57",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-02-13T17:26:02Z",
+      "side": 1,
+      "message": "Any idea why there are redundant security requests? This code seems to be correct in that, on connection to a bonded device, we will attempt to establish encryption.\n\nBut where else does that happen?",
+      "revId": "1514f4b9b81acb99f2903d0e18d6d9764f058e7d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
