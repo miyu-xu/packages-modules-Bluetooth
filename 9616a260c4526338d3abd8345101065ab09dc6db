@@ -52,6 +52,24 @@
       "parentUuid": "37c2332b_14ca063c",
       "revId": "9616a260c4526338d3abd8345101065ab09dc6db",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9e25bc7b_739c577c",
+        "filename": "system/btif/include/btif_hh.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1659435
+      },
+      "writtenOn": "2023-02-13T10:54:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ff0b3122_99dcd92d",
+      "revId": "9616a260c4526338d3abd8345101065ab09dc6db",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
