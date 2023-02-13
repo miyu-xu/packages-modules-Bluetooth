@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ef117c4e_3b14c86f",
+        "filename": "android/app/src/com/android/bluetooth/hearingaid/HearingAidService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 1195,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-02-13T17:56:50Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "308f16af_f3fae89c",
+      "revId": "6a0e2a29e6bcab787de5a7e384ecd29cab840ea0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f42505a2_2409faed",
@@ -31,6 +49,24 @@
       "writtenOn": "2023-02-10T22:45:55Z",
       "side": 1,
       "message": "Spoke offline, but we\u0027ll wrap these two into a single API that returns a new object containing the service data from the advertisements. The service data class will have an inner class for Capabilities that parses the byte and it\u0027ll have the truncated HiSyncId. We will also include in the docs that this info may be incomplete if the hearing aid does not supply this in its advertising data.",
+      "revId": "6a0e2a29e6bcab787de5a7e384ecd29cab840ea0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "22709618_fa78f094",
+        "filename": "framework/java/android/bluetooth/BluetoothHearingAid.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 741,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-02-13T17:56:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f42505a2_2409faed",
       "revId": "6a0e2a29e6bcab787de5a7e384ecd29cab840ea0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }

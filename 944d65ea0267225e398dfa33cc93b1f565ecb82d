@@ -16,6 +16,24 @@
       "message": "What are the expected possible return values here? If these are known, wrap",
       "revId": "944d65ea0267225e398dfa33cc93b1f565ecb82d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "547273b2_5b5495a6",
+        "filename": "framework/java/android/bluetooth/BluetoothHearingAid.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 729,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-02-13T17:56:50Z",
+      "side": 1,
+      "message": "changed to a class with methods",
+      "parentUuid": "c6afb388_a5e5c3ac",
+      "revId": "944d65ea0267225e398dfa33cc93b1f565ecb82d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
