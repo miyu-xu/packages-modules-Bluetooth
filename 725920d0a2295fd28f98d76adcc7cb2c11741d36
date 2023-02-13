@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f1055390_c3b763ed",
+        "filename": "framework/java/android/bluetooth/BluetoothQualityReport.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 572,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-02-13T19:38:15Z",
+      "side": 1,
+      "message": "`Objects.requireNonNull` to enfore the rawData being non null ?",
+      "range": {
+        "startLine": 572,
+        "startChar": 27,
+        "endLine": 572,
+        "endChar": 34
+      },
+      "revId": "725920d0a2295fd28f98d76adcc7cb2c11741d36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "32c12fad_ff991e99",
+        "filename": "framework/java/android/bluetooth/BluetoothQualityReport.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 675,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-02-13T19:38:15Z",
+      "side": 1,
+      "message": "Should we really try catch when we are rethrowing anyway ?",
+      "range": {
+        "startLine": 671,
+        "startChar": 11,
+        "endLine": 675,
+        "endChar": 13
+      },
+      "revId": "725920d0a2295fd28f98d76adcc7cb2c11741d36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

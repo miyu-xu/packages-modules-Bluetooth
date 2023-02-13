@@ -283,6 +283,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3ed0ce28_42271b52",
+        "filename": "framework/java/android/bluetooth/BluetoothQualityReport.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-02-13T19:38:15Z",
+      "side": 1,
+      "message": "I think Rahul was meaning to do:\n```java\n    @SystemApi\n    public static final int QUALITY_REPORT_ID_MONITOR \u003d 0x01;\n```",
+      "parentUuid": "e56744d0_2aae8f87",
+      "revId": "5c1b807a38a57640d12034b01b44e9d27f37ac36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f5dbd836_268da77a",
         "filename": "framework/java/android/bluetooth/BluetoothQualityReport.java",
         "patchSetId": 20
@@ -347,6 +365,24 @@
       "side": 1,
       "message": "The only constructor in the API surface is this one, I\u0027ve changed it to builder as you requested.",
       "parentUuid": "36285dd7_d75bb6f8",
+      "revId": "5c1b807a38a57640d12034b01b44e9d27f37ac36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a66b679d_6f7bf349",
+        "filename": "framework/java/android/bluetooth/BluetoothQualityReport.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-02-13T19:38:15Z",
+      "side": 1,
+      "message": "If you are private you  can keep the parameter. I am not sure about passing the builder directly",
+      "parentUuid": "14c8f67b_61290b84",
       "revId": "5c1b807a38a57640d12034b01b44e9d27f37ac36",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
