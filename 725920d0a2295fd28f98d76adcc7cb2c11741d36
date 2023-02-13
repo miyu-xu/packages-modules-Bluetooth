@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6d11d3c7_86024eca",
+        "filename": "framework/api/system-current.txt",
+        "patchSetId": 21
+      },
+      "lineNbr": 706,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-02-13T20:25:00Z",
+      "side": 1,
+      "message": "The monitoring event yes, but it is not enabled by default. The rest not so often - will it be a problem ?",
+      "parentUuid": "e4adfc9d_c2bed34c",
+      "range": {
+        "startLine": 706,
+        "startChar": 21,
+        "endLine": 706,
+        "endChar": 43
+      },
+      "revId": "725920d0a2295fd28f98d76adcc7cb2c11741d36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f1055390_c3b763ed",
         "filename": "framework/java/android/bluetooth/BluetoothQualityReport.java",
         "patchSetId": 21
