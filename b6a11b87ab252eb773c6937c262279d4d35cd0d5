@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "72ba5394_a65428d2",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 1096,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2023-02-13T20:01:09Z",
+      "side": 1,
+      "message": "nit: You can use `(1..)` to generate iteration from 1 to infinity:\n```\n        (1..)\n            .find(|index| self.call_list.iter().all(|x| x.index !\u003d *index))\n            .expect(\"There must be an unoccupied index\")\n\n```",
+      "range": {
+        "startLine": 1089,
+        "startChar": 0,
+        "endLine": 1096,
+        "endChar": 54
+      },
+      "revId": "b6a11b87ab252eb773c6937c262279d4d35cd0d5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
