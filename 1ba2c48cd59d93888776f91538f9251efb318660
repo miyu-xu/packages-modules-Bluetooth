@@ -16,6 +16,23 @@
       "message": "- Adding the bug comment here for visibility -\n\nI have a small concern about the revert, which is that reverting these changes won\u0027t prevent 3rd party apps to set the codecs, only not showing the APIs as public APIs. That, plus the fact that we won\u0027t check for CDM association makes the revert less secure IMHO.\n\nWe can either enforce the `BLUETOOTH_PRIVILEGED` permission again (that would be reverted here) and find a suitable solution for Sony to let user switch codecs, or ensure that the codec switch does not happen when audio is playing.\n\nThe first solution would be best, but I don\u0027t think it\u0027s doable in U timeframe. If we decide to go with it we indeed should revert the API before it has usages as we wouldn\u0027t be able to remove it for V, but we should keep in mind that we won\u0027t be enforcing the permission on U.",
       "revId": "1ba2c48cd59d93888776f91538f9251efb318660",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bc1e1ad9_c207b86c",
+        "filename": "android/app/src/com/android/bluetooth/a2dp/A2dpService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1482,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-02-13T19:52:20Z",
+      "side": 1,
+      "message": "Mentioned this on chat, but we don\u0027t enforce BLUETOOTH_PRIVILEGED despite the docs saying we do. We should have consistency between the two.",
+      "revId": "1ba2c48cd59d93888776f91538f9251efb318660",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
