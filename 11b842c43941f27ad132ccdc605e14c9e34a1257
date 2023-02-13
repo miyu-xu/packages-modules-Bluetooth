@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "570df65d_f728d08a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 30
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-02-13T20:38:31Z",
+      "side": 1,
+      "message": "Noted: `Test: None `",
+      "parentUuid": "09afa362_c0b45514",
+      "revId": "11b842c43941f27ad132ccdc605e14c9e34a1257",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fc510a3b_b235222d",
@@ -31,6 +49,24 @@
       "writtenOn": "2023-02-13T18:21:50Z",
       "side": 1,
       "message": "Could we implement that in a non-intrusive way using instrumentation of our compiler ?\n\nUsing something like `-finstrument-functions`\n\n```\n#define _GNU_SOURCE\n#include \u003cstdio.h\u003e\n#include \u003clink.h\u003e\n#include \u003cdlfcn.h\u003e\n\n\n__attribute__((no_instrument_function))\nvoid __cyg_profile_func_enter(void *this_fn, void *call_site) {\n  Dl_info info \u003d {0,};\n\n  dladdr(this_fn, \u0026info);\n\n  printf(\"enter: %s(%p), from %p\\n\", info.dli_sname, this_fn, call_site);\n}\n\n__attribute__((no_instrument_function))\nvoid __cyg_profile_func_exit(void *this_fn, void *call_site) {\n}\n\nvoid hello() {\n}\n\nint main(int argc, char** argv) {\n  hello();\n  return 0;\n}\n```\n\n```\n$ gcc -finstrument-functions test.c -ldl -rdynamic\n$ ./a.out\nenter: main(0x55cef307a1e0), from 0x7fded8efe18a\nenter: hello(0x55cef307a1ad), from 0x55cef307a210\n```",
+      "revId": "11b842c43941f27ad132ccdc605e14c9e34a1257",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7a18ee67_b34f65a5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 30
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-02-13T20:38:31Z",
+      "side": 1,
+      "message": "It\u0027s certainly possible there are many other implementations to accomplish this metric.\n\nIt\u0027s likely some experimentation would be required to identify the various options available and select the best one.",
+      "parentUuid": "fc510a3b_b235222d",
       "revId": "11b842c43941f27ad132ccdc605e14c9e34a1257",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
