@@ -67,6 +67,24 @@
       "message": "Could you do something like this:\n\n// Take as many PIN digits as are available and put them in a zeroed array.\npin_code.take(16).enumerate().for_each(|(i, b)| btpin.pin[i] \u003d b);",
       "revId": "b14ae94e637a7b464885d6ff077a472da5df77bd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ee2a2adb_2bd09ba1",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1562,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-02-13T18:32:02Z",
+      "side": 1,
+      "message": "I\u0027m not doubting that what you have here will work, I\u0027m just new to Rust and curious how simply it could be done.",
+      "parentUuid": "df7f1fdc_206740ef",
+      "revId": "b14ae94e637a7b464885d6ff077a472da5df77bd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
