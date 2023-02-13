@@ -33,6 +33,24 @@
       "message": "Another solution is calling add_request in the execute_write_cb with the handle \u003d 0.",
       "revId": "f6e6ed7ee28e8c68b69ddc005c3db5a2f4864f7f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4fb796ef_77498c2f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2023-02-13T16:00:38Z",
+      "side": 1,
+      "message": "I think this solution seems better since we don\u0027t want to send a success reply if we truly fail to lookup the correct handle. It also mirrors the other requests better. Thanks!",
+      "parentUuid": "31032053_b8222725",
+      "revId": "f6e6ed7ee28e8c68b69ddc005c3db5a2f4864f7f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
