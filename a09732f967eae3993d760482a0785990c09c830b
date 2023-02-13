@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d1689708_1c5b2082",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 419,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-02-13T18:36:00Z",
+      "side": 1,
+      "message": "please place this at above `bonded_devices` -- let\u0027s try to keep this alphabetical",
+      "revId": "a09732f967eae3993d760482a0785990c09c830b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dfeae5c3_c580ed25",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 886,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-02-13T18:36:00Z",
+      "side": 1,
+      "message": "You should do this before notifying the signal notifier.",
+      "revId": "a09732f967eae3993d760482a0785990c09c830b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
