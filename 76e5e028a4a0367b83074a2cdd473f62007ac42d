@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7adda8df_c8fe07d9",
+        "filename": "android/app/tests/myinstrumentation/Android.bp",
+        "patchSetId": 3
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1986325
+      },
+      "writtenOn": "2023-02-13T16:53:16Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "69c7b030_a7f12a28",
+      "revId": "76e5e028a4a0367b83074a2cdd473f62007ac42d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1a770e38_aa5bdbf6",
@@ -31,6 +49,24 @@
       "writtenOn": "2023-02-12T21:34:19Z",
       "side": 1,
       "message": "Here you want `com.android.bluetooth.myinstrumentation`\n\n`com.android.bluetooth` instrument the Bluetooth service and put you inside the same process.\n\nBy putting `com.android.bluetooth.myinstrumentation` (your test app package) we basically ask to instrument our own package and so it do nothing",
+      "revId": "76e5e028a4a0367b83074a2cdd473f62007ac42d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "24abc4cc_1922ce91",
+        "filename": "android/app/tests/myinstrumentation/AndroidManifest.xml",
+        "patchSetId": 3
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1986325
+      },
+      "writtenOn": "2023-02-13T16:53:16Z",
+      "side": 1,
+      "message": "If I change it, I\u0027ll have Need BLUETOOTH PRIVILEGED permission error even though I added it to the Manifest.xml. Any suggestion?",
+      "parentUuid": "1a770e38_aa5bdbf6",
       "revId": "76e5e028a4a0367b83074a2cdd473f62007ac42d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
