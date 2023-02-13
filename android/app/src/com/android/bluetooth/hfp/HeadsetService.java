@@ -1329,6 +1329,12 @@ public class HeadsetService extends ProfileService {
                         + " does not have a state machine");
                 return null;
             }
+            if (!stateMachine.isAudioPolicySupported()) {
+                Log.w(TAG, "getHfpCallAudioPolicy(), " + device
+                        + " audio policy feature is not supported.");
+                return null;
+            }
+
             return stateMachine.getHfpCallAudioPolicy();
         }
     }
@@ -1865,7 +1871,7 @@ public class HeadsetService extends ProfileService {
             final HeadsetStateMachine stateMachine = mStateMachines.get(mActiveDevice);
             if (stateMachine == null) {
                 Log.d(TAG, "phoneStateChanged: CALL_STATE_IDLE, mActiveDevice is Null");
-            } else {
+            } else if (stateMachine.isAudioPolicySupported()) {
                 BluetoothAudioPolicy currentPolicy = stateMachine.getHfpCallAudioPolicy();
                 if (currentPolicy != null && currentPolicy.getConnectingTimePolicy()
                         == BluetoothAudioPolicy.POLICY_NOT_ALLOWED) {

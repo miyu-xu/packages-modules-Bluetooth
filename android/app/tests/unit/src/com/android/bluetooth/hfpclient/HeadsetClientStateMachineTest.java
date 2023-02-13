@@ -139,6 +139,8 @@ public class HeadsetClientStateMachineTest {
         // Manage looper execution in main test thread explicitly to guarantee timing consistency
         mHeadsetClientStateMachine = new TestHeadsetClientStateMachine(mHeadsetClientService,
                 mHandlerThread.getLooper(), mNativeInterface);
+        // Setup remote device is supported audio policy
+        mHeadsetClientStateMachine.setAudioPolicyRemoteSupported(true);
         mHeadsetClientStateMachine.start();
         TestUtils.waitForLooperToFinishScheduledTask(mHandlerThread.getLooper());
     }
@@ -472,8 +474,8 @@ public class HeadsetClientStateMachineTest {
             unknownEvt.device = mTestDevice;
             mHeadsetClientStateMachine.sendMessage(StackEvent.STACK_EVENT, unknownEvt);
             TestUtils.waitForLooperToFinishScheduledTask(mHandlerThread.getLooper());
-            verify(mHeadsetClientService).setAudioPolicyRemoteSupported(mTestDevice, true);
             mHeadsetClientStateMachine.setAudioPolicyRemoteSupported(true);
+            verify(mHeadsetClientService).setAudioPolicyRemoteSupported(mTestDevice, true);
         } else {
             // receive CMD_RESULT CME_ERROR due to remote not supporting Android AT
             StackEvent cmdResEvt = new StackEvent(StackEvent.EVENT_TYPE_CMD_RESULT);

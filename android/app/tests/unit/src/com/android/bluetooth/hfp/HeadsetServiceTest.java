@@ -140,6 +140,7 @@ public class HeadsetServiceTest {
             final HeadsetStateMachine stateMachine = mock(HeadsetStateMachine.class);
             doReturn(BluetoothProfile.STATE_DISCONNECTED).when(stateMachine).getConnectionState();
             doReturn(BluetoothHeadset.STATE_AUDIO_DISCONNECTED).when(stateMachine).getAudioState();
+            doReturn(true).when(stateMachine).isAudioPolicySupported();
             mStateMachines.put(mCurrentDevice, stateMachine);
             return stateMachine;
         }).when(mObjectsFactory).makeStateMachine(any(), any(), any(), any(), any(), any());
@@ -1082,6 +1083,26 @@ public class HeadsetServiceTest {
                         .build()
         );
         Assert.assertEquals(false, mHeadsetService.isInbandRingingEnabled());
+    }
+
+    @Test
+    public void testGetHfpCallAudioPolicy() {
+        // Add mock device
+        when(mDatabaseManager.getProfileConnectionPolicy(any(BluetoothDevice.class),
+                eq(BluetoothProfile.HEADSET)))
+                .thenReturn(BluetoothProfile.CONNECTION_POLICY_UNKNOWN);
+        mCurrentDevice = TestUtils.getTestDevice(mAdapter, 0);
+        Assert.assertTrue(mHeadsetService.connect(mCurrentDevice));
+
+        doReturn(new BluetoothAudioPolicy.Builder().build()).when(mStateMachines.get(mCurrentDevice)).getHfpCallAudioPolicy();
+
+        // if audio policy is supported, should get current policy.
+        doReturn(true).when(mStateMachines.get(mCurrentDevice)).isAudioPolicySupported();
+        Assert.assertNotNull(mHeadsetService.getHfpCallAudioPolicy(mCurrentDevice));
+
+        // if audio policy is not supported, should not get current policy.
+        doReturn(false).when(mStateMachines.get(mCurrentDevice)).isAudioPolicySupported();
+        Assert.assertNull(mHeadsetService.getHfpCallAudioPolicy(mCurrentDevice));
     }
 
     private void addConnectedDeviceHelper(BluetoothDevice device) {
