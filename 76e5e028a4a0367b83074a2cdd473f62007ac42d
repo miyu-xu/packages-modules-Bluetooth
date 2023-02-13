@@ -69,6 +69,24 @@
       "parentUuid": "1a770e38_aa5bdbf6",
       "revId": "76e5e028a4a0367b83074a2cdd473f62007ac42d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ed127b47_521466b7",
+        "filename": "android/app/tests/myinstrumentation/AndroidManifest.xml",
+        "patchSetId": 3
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-02-13T17:16:43Z",
+      "side": 1,
+      "message": "Add `InstrumentationRegistry.getInstrumentation().getUiAutomation().adoptShellPermissionIdentity()` in your setup to adopt the shell permissions it will give you `BLUETOOTH_PRIVILEDGED`",
+      "parentUuid": "24abc4cc_1922ce91",
+      "revId": "76e5e028a4a0367b83074a2cdd473f62007ac42d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
