@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "826987c2_20aeae71",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-02-13T09:43:52Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "861a8644_b1818363",
+      "revId": "883f73b33942ed757c6e8b5b605133f4dc4b6c12",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ef6b5131_2ee081a4",
@@ -31,6 +49,24 @@
       "writtenOn": "2023-02-10T19:37:20Z",
       "side": 1,
       "message": "missing docstrings",
+      "revId": "883f73b33942ed757c6e8b5b605133f4dc4b6c12",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e39802f2_79b56e92",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-02-13T09:43:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ef6b5131_2ee081a4",
       "revId": "883f73b33942ed757c6e8b5b605133f4dc4b6c12",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -52,6 +88,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d8172976_aa1263f4",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 773,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-02-13T09:43:52Z",
+      "side": 1,
+      "message": "The \"unexpected\" here actually means any of the four commands is sent when we are not expecting (in this case the _impl functions return false).\n\nRevised and added more comments.",
+      "parentUuid": "f12f303b_aa04c3de",
+      "revId": "883f73b33942ed757c6e8b5b605133f4dc4b6c12",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8ea58a60_1e7d75b5",
@@ -69,6 +123,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e3448c54_6740be88",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 779,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-02-13T09:43:52Z",
+      "side": 1,
+      "message": "Indeed this comment is confusing. I actually mean that phone_state_change should be called regardless of the status of hfp.simple_at_response (while it\u0027s already discarded by self.simple_at_response).",
+      "parentUuid": "8ea58a60_1e7d75b5",
+      "revId": "883f73b33942ed757c6e8b5b605133f4dc4b6c12",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fe412042_c4f55f21",
@@ -82,6 +154,24 @@
       "writtenOn": "2023-02-10T19:30:16Z",
       "side": 1,
       "message": "nit: you can move both these lines before the for loop, then do the below lines when you do the actual acceptance. Then instead of keeping track of an `accepted` bool, you can just check if `self.phone_state.num_active \u003d\u003d 0`",
+      "revId": "883f73b33942ed757c6e8b5b605133f4dc4b6c12",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9e5c1c04_4f4a83a3",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 1267,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-02-13T09:43:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fe412042_c4f55f21",
       "revId": "883f73b33942ed757c6e8b5b605133f4dc4b6c12",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -105,6 +195,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "10104f30_ddbd0546",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 1992,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-02-13T09:43:52Z",
+      "side": 1,
+      "message": "The above (HfpCallbacks::CallHold) only calls phone_state_change on success, so it behaves the same as this function.\n\nThe only difference is that for the callback case we should always call simple_at_response to the HF; while here the command is triggered by DBus so just return true/false.",
+      "parentUuid": "d5244872_2694adbf",
+      "revId": "883f73b33942ed757c6e8b5b605133f4dc4b6c12",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ed9d09f5_5810a5c6",
         "filename": "system/gd/rust/topshim/src/profiles/hfp.rs",
         "patchSetId": 3
@@ -116,6 +224,24 @@
       "writtenOn": "2023-02-10T19:30:16Z",
       "side": 1,
       "message": "What is this command supposed to do?",
+      "revId": "883f73b33942ed757c6e8b5b605133f4dc4b6c12",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2582a9c6_8861cc8d",
+        "filename": "system/gd/rust/topshim/src/profiles/hfp.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-02-13T09:43:52Z",
+      "side": 1,
+      "message": "The command adds all of the held calls into a conference. I didn\u0027t implement it because it\u0027s not included in the qualification test sequence.\n\nAdded comments.",
+      "parentUuid": "ed9d09f5_5810a5c6",
       "revId": "883f73b33942ed757c6e8b5b605133f4dc4b6c12",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
