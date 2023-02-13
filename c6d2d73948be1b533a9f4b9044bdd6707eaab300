@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "165290f2_c7cff33d",
+        "filename": "android/app/src/com/android/bluetooth/hearingaid/HearingAidService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 1204,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-02-13T23:14:56Z",
+      "side": 1,
+      "message": "We should be checking for BLUETOOTH_SCAN, not BLUETOOTH_CONNECT per the docs",
+      "revId": "c6d2d73948be1b533a9f4b9044bdd6707eaab300",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ce84a58c_267a21b7",
         "filename": "android/app/src/com/android/bluetooth/hearingaid/HearingAidService.java",
         "patchSetId": 8
@@ -43,6 +60,131 @@
         "endLine": 1224,
         "endChar": 9
       },
+      "revId": "c6d2d73948be1b533a9f4b9044bdd6707eaab300",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ba2b59aa_ec75cb37",
+        "filename": "framework/java/android/bluetooth/BluetoothHearingAid.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-02-13T23:14:56Z",
+      "side": 1,
+      "message": "nit: I assume you didn\u0027t mean to say \"Audio Streaming\" here :)",
+      "revId": "c6d2d73948be1b533a9f4b9044bdd6707eaab300",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ee5f8b10_044206f1",
+        "filename": "framework/java/android/bluetooth/BluetoothHearingAid.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-02-13T23:14:56Z",
+      "side": 1,
+      "message": "We can just call the class AdvertisementData or AshaAdvertisementData. It\u0027s an inner class of BluetoothHearingAid, so that prefix is unnecessary.",
+      "range": {
+        "startLine": 75,
+        "startChar": 24,
+        "endLine": 75,
+        "endChar": 60
+      },
+      "revId": "c6d2d73948be1b533a9f4b9044bdd6707eaab300",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "14282cf9_6ebb7434",
+        "filename": "framework/java/android/bluetooth/BluetoothHearingAid.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-02-13T23:14:56Z",
+      "side": 1,
+      "message": "I would recommend checking for this in the constructor and throwing an Exception if it isn\u0027t. Ideally, you shouldn\u0027t be able to construct an object that is invalid.",
+      "revId": "c6d2d73948be1b533a9f4b9044bdd6707eaab300",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4b9ce504_3070544b",
+        "filename": "framework/java/android/bluetooth/BluetoothHearingAid.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-02-13T23:14:56Z",
+      "side": 1,
+      "message": "Please wrap the MODE and SIDE constants in IntDefs so it\u0027s clear what the possible return values are without needing to explicitly enumerate them in the docs",
+      "revId": "c6d2d73948be1b533a9f4b9044bdd6707eaab300",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f2823faa_a93d7281",
+        "filename": "framework/java/android/bluetooth/BluetoothHearingAid.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-02-13T23:14:56Z",
+      "side": 1,
+      "message": "I would explain in the docs why we say \"likely\" (e.g. note the possibility of a collision on hisyncid)",
+      "revId": "c6d2d73948be1b533a9f4b9044bdd6707eaab300",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f284bcc4_f3f4a7ba",
+        "filename": "framework/java/android/bluetooth/BluetoothHearingAid.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-02-13T23:14:56Z",
+      "side": 1,
+      "message": "I would rename this to \"isLikelyPairWith\" to simplify it.",
+      "revId": "c6d2d73948be1b533a9f4b9044bdd6707eaab300",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8860db52_a2f8f1c4",
+        "filename": "framework/java/android/bluetooth/BluetoothHearingAid.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 918,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-02-13T23:14:56Z",
+      "side": 1,
+      "message": "I would redesign such that we return null \u0026 don\u0027t construct the object if the data doesn\u0027t exist at all.",
       "revId": "c6d2d73948be1b533a9f4b9044bdd6707eaab300",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
