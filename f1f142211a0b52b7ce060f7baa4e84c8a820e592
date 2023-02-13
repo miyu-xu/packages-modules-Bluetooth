@@ -34,6 +34,24 @@
       "parentUuid": "c9270add_df96ae13",
       "revId": "f1f142211a0b52b7ce060f7baa4e84c8a820e592",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "810e0b49_aa44afc2",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 639,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2023-02-13T22:37:24Z",
+      "side": 1,
+      "message": "Sorry, forgot that `DisplayAddress` existed, agree please use `DisplayAddress(\u0026addr)` instead of `addr.to_string()`. And same gist, I recommend we change it a little bit to borrow ref instead of moving/copying the address so that we don\u0027t unnecessarily allocate memory just for printing:\n```\npub struct DisplayAddress\u003c\u0027a\u003e(pub \u0026\u0027a RawAddress);\nimpl\u003c\u0027a\u003e Display for DisplayAddress\u003c\u0027a\u003e {\n...\n```",
+      "parentUuid": "82867ae4_37e3592d",
+      "revId": "f1f142211a0b52b7ce060f7baa4e84c8a820e592",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
