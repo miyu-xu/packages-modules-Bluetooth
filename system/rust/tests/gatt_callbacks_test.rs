@@ -32,9 +32,10 @@ fn initialize_manager_with_connection(
 }
 
 async fn pull_trans_id(events_rx: &mut UnboundedReceiver<MockCallbackEvents>) -> TransactionId {
-    let MockCallbackEvents::OnServerReadCharacteristic(_, trans_id, _, _, _) =
-        events_rx.recv().await.unwrap();
-    trans_id
+    match events_rx.recv().await.unwrap() {
+        MockCallbackEvents::OnServerReadCharacteristic(_, trans_id, _, _, _) => trans_id,
+        MockCallbackEvents::OnServerWriteCharacteristic(_, trans_id, _, _, _, _, _) => trans_id,
+    }
 }
 
 #[test]

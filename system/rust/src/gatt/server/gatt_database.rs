@@ -14,8 +14,9 @@ use crate::{
         ids::{AttHandle, ConnectionId},
     },
     packets::{
-        AttAttributeDataChild, AttCharacteristicPropertiesBuilder, AttErrorCode,
-        GattCharacteristicDeclarationValueBuilder, GattServiceDeclarationValueBuilder, UuidBuilder,
+        AttAttributeDataChild, AttAttributeDataView, AttCharacteristicPropertiesBuilder,
+        AttErrorCode, GattCharacteristicDeclarationValueBuilder,
+        GattServiceDeclarationValueBuilder, UuidBuilder,
     },
 };
 
@@ -256,6 +257,14 @@ where
         }
 
         self.gatt_db.datastore.read_characteristic(self.conn_id, handle).await
+    }
+
+    async fn write_attribute(
+        &self,
+        handle: AttHandle,
+        data: AttAttributeDataView<'_>,
+    ) -> Result<(), AttErrorCode> {
+        self.gatt_db.datastore.write_characteristic(self.conn_id, handle, data).await
     }
 
     fn list_attributes(&self) -> Vec<AttAttribute> {
