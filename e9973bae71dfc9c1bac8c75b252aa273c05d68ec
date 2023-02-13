@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "94809651_32cd1ad0",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppManagerTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2023-02-13T02:50:20Z",
+      "side": 1,
+      "message": "I explained it earlier in the chat. So I summarized it here in the commit message",
+      "parentUuid": "075190a6_a5459739",
+      "range": {
+        "startLine": 75,
+        "startChar": 21,
+        "endLine": 75,
+        "endChar": 25
+      },
+      "revId": "e9973bae71dfc9c1bac8c75b252aa273c05d68ec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4e1bff93_ba3510d4",
@@ -41,6 +65,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4b190db5_a2cbca77",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppManagerTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2023-02-13T02:50:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4e1bff93_ba3510d4",
+      "revId": "e9973bae71dfc9c1bac8c75b252aa273c05d68ec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "49de0c31_a15f5877",
@@ -54,6 +96,30 @@
       "writtenOn": "2023-02-13T01:05:27Z",
       "side": 1,
       "message": "What is this for?",
+      "range": {
+        "startLine": 82,
+        "startChar": 0,
+        "endLine": 87,
+        "endChar": 77
+      },
+      "revId": "e9973bae71dfc9c1bac8c75b252aa273c05d68ec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "09fa3649_b1efb27a",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppManagerTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2023-02-13T02:50:20Z",
+      "side": 1,
+      "message": "This is for controlling the logic in BluetoothOppManager#saveSendingFileInfo",
+      "parentUuid": "49de0c31_a15f5877",
       "range": {
         "startLine": 82,
         "startChar": 0,
