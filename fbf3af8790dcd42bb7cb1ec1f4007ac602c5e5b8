@@ -69,6 +69,24 @@
       "message": "Last presubmit is flaky on testObfuscateBluetoothAddress_PersistentBetweenToggle.\ncf https://android-build.googleplex.com/builds/tests/view?invocationId\u003dI63700010127272477\u0026testResultId\u003dTR52628478588784539",
       "revId": "fbf3af8790dcd42bb7cb1ec1f4007ac602c5e5b8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "50a8c409_427b5044",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-02-13T19:16:59Z",
+      "side": 1,
+      "message": "I merged aosp/2431044 We should be able to land this now",
+      "parentUuid": "07c2e24c_494191eb",
+      "revId": "fbf3af8790dcd42bb7cb1ec1f4007ac602c5e5b8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
