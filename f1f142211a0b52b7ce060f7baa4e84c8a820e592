@@ -16,6 +16,24 @@
       "message": "nit: If you have `impl Display for RawAddress` you can avoid `to_string` wihch allocates temporary `String` unnecessarily.\n\nin `system/gd/rust/topshim/src/btif.rs`:\n```\nimpl Display for RawAddress {\n    fn fmt(\u0026self, f: \u0026mut Formatter) -\u003e std::fmt::Result {\n        write!(\n            f,\n            \"{:02X}:{:02X}:{:02X}:{:02X}:{:02X}:{:02X}\",\n            self.address[0],\n            self.address[1],\n            self.address[2],\n            self.address[3],\n            self.address[4],\n            self.address[5]\n        )\n    }\n}\n```\nAnd the `to_string()` implementation can be removed since it can be inferred from Display.",
       "revId": "f1f142211a0b52b7ce060f7baa4e84c8a820e592",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "82867ae4_37e3592d",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 639,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-02-13T22:18:28Z",
+      "side": 1,
+      "message": "-1 -- use btif::DisplayAddress instead. We don\u0027t want to print the full address via Display.",
+      "parentUuid": "c9270add_df96ae13",
+      "revId": "f1f142211a0b52b7ce060f7baa4e84c8a820e592",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
