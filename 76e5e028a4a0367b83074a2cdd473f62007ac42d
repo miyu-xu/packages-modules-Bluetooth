@@ -87,6 +87,24 @@
       "parentUuid": "24abc4cc_1922ce91",
       "revId": "76e5e028a4a0367b83074a2cdd473f62007ac42d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "70590c4f_b211e0b2",
+        "filename": "android/app/tests/myinstrumentation/AndroidManifest.xml",
+        "patchSetId": 3
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1986325
+      },
+      "writtenOn": "2023-02-13T17:33:33Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "ed127b47_521466b7",
+      "revId": "76e5e028a4a0367b83074a2cdd473f62007ac42d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
