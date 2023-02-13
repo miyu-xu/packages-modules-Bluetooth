@@ -319,6 +319,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4d614f57_b852804f",
+        "filename": "framework/java/android/bluetooth/BluetoothQualityReport.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-02-13T22:53:51Z",
+      "side": 1,
+      "message": "Yup, what William said :)",
+      "parentUuid": "aa5a6d3c_5669da09",
+      "revId": "5c1b807a38a57640d12034b01b44e9d27f37ac36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f5dbd836_268da77a",
         "filename": "framework/java/android/bluetooth/BluetoothQualityReport.java",
         "patchSetId": 20
@@ -407,6 +425,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c18c0e81_842b9bed",
+        "filename": "framework/java/android/bluetooth/BluetoothQualityReport.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-02-13T22:53:51Z",
+      "side": 1,
+      "message": "Yeah, we shouldn\u0027t have a constructor that takes the Builder. The Builder should have a build method that extracts the individual params and calls a private constructor.",
+      "parentUuid": "a66b679d_6f7bf349",
+      "revId": "5c1b807a38a57640d12034b01b44e9d27f37ac36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "327c9b65_34827288",
         "filename": "framework/java/android/bluetooth/BluetoothQualityReport.java",
         "patchSetId": 20
@@ -471,6 +507,24 @@
       "side": 1,
       "message": "Unfortunately parcelable classes must be final. So it\u0027s impossible to extend as you suggested.",
       "parentUuid": "32366a98_1614688d",
+      "revId": "5c1b807a38a57640d12034b01b44e9d27f37ac36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5048242c_cec1ff4f",
+        "filename": "framework/java/android/bluetooth/BluetoothQualityReport.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 421,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-02-13T22:53:51Z",
+      "side": 1,
+      "message": "Ah shoot right, that makes sense. In that case, can we still have a single method to get the report that returns a Parcelable? That would clean up having all of these individual methods to get the object based on report id type.\n\nAlso, is there any reason why we need a separate BqrCommon and BqrVsCommon? Can\u0027t we fold their fields into the other objects?",
+      "parentUuid": "356d8fe1_a9f530eb",
       "revId": "5c1b807a38a57640d12034b01b44e9d27f37ac36",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },

@@ -50,6 +50,166 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c83a13d8_67d02cc6",
+        "filename": "framework/api/system-current.txt",
+        "patchSetId": 21
+      },
+      "lineNbr": 706,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-02-13T22:53:51Z",
+      "side": 1,
+      "message": "I agree with Jack: if these are sent frequently, broadcasts or callbacks are not the right way to handle them. Also, can we document how these are enabled/disabled? I didn\u0027t know monitoring events are disabled by default.",
+      "parentUuid": "6d11d3c7_86024eca",
+      "range": {
+        "startLine": 706,
+        "startChar": 21,
+        "endLine": 706,
+        "endChar": 43
+      },
+      "revId": "725920d0a2295fd28f98d76adcc7cb2c11741d36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "04a867f2_3d186c19",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 233,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-02-13T22:53:51Z",
+      "side": 1,
+      "message": "Why are these @hide? This would prevent it being used outside the BT codebase. Should these be @SystemApi to allow system apps to access it?",
+      "revId": "725920d0a2295fd28f98d76adcc7cb2c11741d36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "82bcf1b6_27e53b87",
+        "filename": "framework/java/android/bluetooth/BluetoothQualityReport.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-02-13T22:53:51Z",
+      "side": 1,
+      "message": "Can we update the year and change the copyright to be by \"The Android Open Source Project\" instead of \"The Linux Foundation\" as we have in our other files?",
+      "revId": "725920d0a2295fd28f98d76adcc7cb2c11741d36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c68c12d8_71b5b256",
+        "filename": "framework/java/android/bluetooth/BluetoothQualityReport.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-02-13T22:53:51Z",
+      "side": 1,
+      "message": "nit: end first sentence of method/field summaries in a period",
+      "revId": "725920d0a2295fd28f98d76adcc7cb2c11741d36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "35ea7e72_f9f11c53",
+        "filename": "framework/java/android/bluetooth/BluetoothQualityReport.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 239,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-02-13T22:53:51Z",
+      "side": 1,
+      "message": "Mentioned in a different comment, but we shouldn\u0027t have a constructor that takes a Builder. The Builder should have a \"build()\" method that extracts params and calls \na private constructor.",
+      "revId": "725920d0a2295fd28f98d76adcc7cb2c11741d36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1f12ebfe_9d017a38",
+        "filename": "framework/java/android/bluetooth/BluetoothQualityReport.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 302,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-02-13T22:53:51Z",
+      "side": 1,
+      "message": "nit: do not end @param or @return summaries in a period",
+      "revId": "725920d0a2295fd28f98d76adcc7cb2c11741d36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3d17ea4c_2fc2f9a5",
+        "filename": "framework/java/android/bluetooth/BluetoothQualityReport.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 383,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-02-13T22:53:51Z",
+      "side": 1,
+      "message": "Why do we still need this if getBluetoothClass() exists?",
+      "revId": "725920d0a2295fd28f98d76adcc7cb2c11741d36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9fd127b9_542c6d09",
+        "filename": "framework/java/android/bluetooth/BluetoothQualityReport.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 554,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-02-13T22:53:51Z",
+      "side": 1,
+      "message": "nit: add the @hide and @SystemApi here too.",
+      "revId": "725920d0a2295fd28f98d76adcc7cb2c11741d36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ccd20bd9_86998573",
+        "filename": "framework/java/android/bluetooth/BluetoothQualityReport.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 554,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-02-13T22:53:51Z",
+      "side": 1,
+      "message": "nit: We don\u0027t use the @summary tag, so we can omit that and just have the method description directly.",
+      "revId": "725920d0a2295fd28f98d76adcc7cb2c11741d36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f1055390_c3b763ed",
         "filename": "framework/java/android/bluetooth/BluetoothQualityReport.java",
         "patchSetId": 21
@@ -85,6 +245,30 @@
       "side": 1,
       "message": "Done",
       "parentUuid": "f1055390_c3b763ed",
+      "range": {
+        "startLine": 572,
+        "startChar": 27,
+        "endLine": 572,
+        "endChar": 34
+      },
+      "revId": "725920d0a2295fd28f98d76adcc7cb2c11741d36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c4585f14_7e004f37",
+        "filename": "framework/java/android/bluetooth/BluetoothQualityReport.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 572,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-02-13T22:53:51Z",
+      "side": 1,
+      "message": "Not sure if there\u0027s a patchset that wasn\u0027t uploaded, but this is missing on patchset 21",
+      "parentUuid": "9b5757a7_738b1631",
       "range": {
         "startLine": 572,
         "startChar": 27,
@@ -138,6 +322,47 @@
         "endLine": 675,
         "endChar": 13
       },
+      "revId": "725920d0a2295fd28f98d76adcc7cb2c11741d36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "89a3619d_49d553be",
+        "filename": "framework/java/android/bluetooth/BluetoothQualityReport.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 675,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-02-13T22:53:51Z",
+      "side": 1,
+      "message": "Same thing here, looks like we are still catching",
+      "parentUuid": "b9c21ff6_b935cf8c",
+      "range": {
+        "startLine": 671,
+        "startChar": 11,
+        "endLine": 675,
+        "endChar": 13
+      },
+      "revId": "725920d0a2295fd28f98d76adcc7cb2c11741d36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d8d83d24_ab15c2e3",
+        "filename": "framework/java/android/bluetooth/BluetoothQualityReport.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 830,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-02-13T22:53:51Z",
+      "side": 1,
+      "message": "Can we have these be int constants instead? We can wrap them in an IntDef so it\u0027s clear what the values represent. The internal data is stored as an int anyways.",
       "revId": "725920d0a2295fd28f98d76adcc7cb2c11741d36",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
