@@ -16,6 +16,23 @@
       "message": "Hi please help to review this, thanks!",
       "revId": "b14ae94e637a7b464885d6ff077a472da5df77bd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f0c84181_6576d641",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2023-02-13T10:54:59Z",
+      "side": 1,
+      "message": "The original code\nbtpin.pin.copy_from_slice(pin_code.as_slice());\nwill panic if the input pin_code length is not 16 digits,\nadd padding 0s to make it compatible with the libbluetooth packet\nformat.",
+      "revId": "b14ae94e637a7b464885d6ff077a472da5df77bd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
