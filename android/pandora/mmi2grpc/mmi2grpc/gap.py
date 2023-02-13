@@ -895,7 +895,7 @@ class GAPProxy(ProfileProxy):
 
         connection = self.host.GetConnection(address=pts_addr).connection
 
-        def after_that():
+        def after_that(): # TODO: Change to waitSecurity
             self.host.WaitConnection()  # this really waits for bonding
             sleep(1)
             self.host.Disconnect(connection=connection)
