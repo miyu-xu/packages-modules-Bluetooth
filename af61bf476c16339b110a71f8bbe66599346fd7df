@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2367ac42_fe2d6ac1",
+        "filename": "system/test/Android.bp",
+        "patchSetId": 21
+      },
+      "lineNbr": 534,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-02-13T21:22:28Z",
+      "side": 1,
+      "message": "I wonder if this would be a good time to clean this up per test that we add...",
+      "range": {
+        "startLine": 533,
+        "startChar": 0,
+        "endLine": 534,
+        "endChar": 32
+      },
+      "revId": "af61bf476c16339b110a71f8bbe66599346fd7df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
