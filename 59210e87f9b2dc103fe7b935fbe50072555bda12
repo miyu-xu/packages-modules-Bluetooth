@@ -33,6 +33,29 @@
       "message": "Can we add how we tested this and bug id in the CL.",
       "revId": "59210e87f9b2dc103fe7b935fbe50072555bda12",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f82c6562_bcffdb3c",
+        "filename": "framework/api/current.txt",
+        "patchSetId": 10
+      },
+      "lineNbr": 329,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-02-13T20:14:06Z",
+      "side": 1,
+      "message": "these settings should be exposed via the MediaSession and MediaController API instead of Bluetooth. \n\nIn all cases, Apps should be configured over Bluetooth via Media framework\n\nhttps://developer.android.com/reference/android/media/session/MediaController",
+      "range": {
+        "startLine": 329,
+        "startChar": 21,
+        "endLine": 329,
+        "endChar": 49
+      },
+      "revId": "59210e87f9b2dc103fe7b935fbe50072555bda12",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
