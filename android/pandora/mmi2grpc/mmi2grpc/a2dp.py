@@ -163,9 +163,8 @@ class A2DPProxy(ProfileProxy):
         can be also be done by placing the IUT or PTS in an RF shielded box.
          """
 
-        if self.connection is None:
-            self.connection = self.host.GetConnection(address=pts_addr).connection
-        self.host.Disconnect(connection=self.connection)
+        if self.connection is not None:
+            self.host.Disconnect(connection=self.connection)
         self.connection = None
         self.sink = None
         self.source = None
