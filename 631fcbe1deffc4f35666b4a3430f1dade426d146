@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ea55ac01_03493d98",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 4860,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-02-13T00:55:56Z",
+      "side": 1,
+      "message": "What happens if two different apps call createBond at the same time?",
+      "range": {
+        "startLine": 4860,
+        "startChar": 18,
+        "endLine": 4860,
+        "endChar": 37
+      },
+      "revId": "631fcbe1deffc4f35666b4a3430f1dade426d146",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
