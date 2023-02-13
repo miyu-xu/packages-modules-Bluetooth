@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "79ec587c_29afc950",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-02-13T12:59:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a6c354fb_7209cf92",
+      "revId": "5c1b807a38a57640d12034b01b44e9d27f37ac36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9c814314_e4e54d1d",
@@ -31,6 +49,24 @@
       "writtenOn": "2023-02-09T19:50:03Z",
       "side": 1,
       "message": "We no longer use the BLUETOOTH permission, so this should be removed",
+      "revId": "5c1b807a38a57640d12034b01b44e9d27f37ac36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3e4c4e39_3af0cc79",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 233,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-02-13T12:59:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9c814314_e4e54d1d",
       "revId": "5c1b807a38a57640d12034b01b44e9d27f37ac36",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -52,6 +88,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9e748b41_85c6dbde",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-02-13T12:59:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a0a0c8cc_dca29b41",
+      "revId": "5c1b807a38a57640d12034b01b44e9d27f37ac36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "50ce4e48_a05c053d",
@@ -65,6 +119,24 @@
       "writtenOn": "2023-02-09T19:50:03Z",
       "side": 1,
       "message": "We should uncomment this",
+      "revId": "5c1b807a38a57640d12034b01b44e9d27f37ac36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0917a2a6_87f1e0d5",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-02-13T12:59:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "50ce4e48_a05c053d",
       "revId": "5c1b807a38a57640d12034b01b44e9d27f37ac36",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -88,6 +160,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1fbc02b4_a4ba80a0",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 239,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-02-13T12:59:14Z",
+      "side": 1,
+      "message": "BQR covers many different problems that may occur in remote device so the name will be generic any other way. Also while using it: BluetoothDevice.ACTION_REMOTE_ISSUE_OCCURRED, it looks fair enough to me - you know that something bad happened in remote device 😊. What other name would you propose?",
+      "parentUuid": "ed8bbe37_58a55bfc",
+      "revId": "5c1b807a38a57640d12034b01b44e9d27f37ac36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d97da68c_a24f4bb0",
         "filename": "framework/java/android/bluetooth/BluetoothQualityReport.java",
         "patchSetId": 20
@@ -99,6 +189,24 @@
       "writtenOn": "2023-02-09T19:50:03Z",
       "side": 1,
       "message": "nit: change all of these from \"public APIs\" --\u003e \"System APIs\"",
+      "revId": "5c1b807a38a57640d12034b01b44e9d27f37ac36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "db11f327_5f6fb264",
+        "filename": "framework/java/android/bluetooth/BluetoothQualityReport.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-02-13T12:59:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d97da68c_a24f4bb0",
       "revId": "5c1b807a38a57640d12034b01b44e9d27f37ac36",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -120,6 +228,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3de539bb_74d10cd6",
+        "filename": "framework/java/android/bluetooth/BluetoothQualityReport.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-02-13T12:59:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9613c3dd_8349e8b8",
+      "revId": "5c1b807a38a57640d12034b01b44e9d27f37ac36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "eb0fa631_59fb3cd5",
@@ -137,6 +263,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e56744d0_2aae8f87",
+        "filename": "framework/java/android/bluetooth/BluetoothQualityReport.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-02-13T12:59:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "eb0fa631_59fb3cd5",
+      "revId": "5c1b807a38a57640d12034b01b44e9d27f37ac36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f5dbd836_268da77a",
@@ -150,6 +294,24 @@
       "writtenOn": "2023-02-09T19:50:03Z",
       "side": 1,
       "message": "Can we map this to a BluetoothClass object instead? We should be able to directly call the constructor with this integer value. It would make it easier to parse.",
+      "revId": "5c1b807a38a57640d12034b01b44e9d27f37ac36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f60c3e48_bfa5909c",
+        "filename": "framework/java/android/bluetooth/BluetoothQualityReport.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-02-13T12:59:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f5dbd836_268da77a",
       "revId": "5c1b807a38a57640d12034b01b44e9d27f37ac36",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -173,6 +335,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "14c8f67b_61290b84",
+        "filename": "framework/java/android/bluetooth/BluetoothQualityReport.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-02-13T12:59:14Z",
+      "side": 1,
+      "message": "The only constructor in the API surface is this one, I\u0027ve changed it to builder as you requested.",
+      "parentUuid": "36285dd7_d75bb6f8",
+      "revId": "5c1b807a38a57640d12034b01b44e9d27f37ac36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "327c9b65_34827288",
         "filename": "framework/java/android/bluetooth/BluetoothQualityReport.java",
         "patchSetId": 20
@@ -184,6 +364,24 @@
       "writtenOn": "2023-02-09T19:50:03Z",
       "side": 1,
       "message": "nit: Write out the full name \"String\"",
+      "revId": "5c1b807a38a57640d12034b01b44e9d27f37ac36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "61987473_88c816a6",
+        "filename": "framework/java/android/bluetooth/BluetoothQualityReport.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 307,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-02-13T12:59:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "327c9b65_34827288",
       "revId": "5c1b807a38a57640d12034b01b44e9d27f37ac36",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -207,6 +405,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "356d8fe1_a9f530eb",
+        "filename": "framework/java/android/bluetooth/BluetoothQualityReport.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 421,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-02-13T12:59:14Z",
+      "side": 1,
+      "message": "Unfortunately parcelable classes must be final. So it\u0027s impossible to extend as you suggested.",
+      "parentUuid": "32366a98_1614688d",
+      "revId": "5c1b807a38a57640d12034b01b44e9d27f37ac36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "54992865_184c0fa0",
         "filename": "framework/java/android/bluetooth/BluetoothQualityReport.java",
         "patchSetId": 20
@@ -218,6 +434,24 @@
       "writtenOn": "2023-02-09T19:50:03Z",
       "side": 1,
       "message": "Don\u0027t put this in the API surface, doesn\u0027t do anything",
+      "revId": "5c1b807a38a57640d12034b01b44e9d27f37ac36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "04562a44_6cc49d4a",
+        "filename": "framework/java/android/bluetooth/BluetoothQualityReport.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 480,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-02-13T12:59:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "54992865_184c0fa0",
       "revId": "5c1b807a38a57640d12034b01b44e9d27f37ac36",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -235,6 +469,24 @@
       "writtenOn": "2023-02-09T19:50:03Z",
       "side": 1,
       "message": "Please add docs \u0026 @hide + @SystemApi to this and toString",
+      "revId": "5c1b807a38a57640d12034b01b44e9d27f37ac36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7700d994_566a21dd",
+        "filename": "framework/java/android/bluetooth/BluetoothQualityReport.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 485,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-02-13T12:59:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4c72565f_3fb18583",
       "revId": "5c1b807a38a57640d12034b01b44e9d27f37ac36",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
