@@ -46,6 +46,30 @@
       },
       "revId": "d54fc900038a20e421d49eba605a31d4c5cac35a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b07963fc_4ab17b62",
+        "filename": "framework/api/current.txt",
+        "patchSetId": 10
+      },
+      "lineNbr": 1291,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-02-13T23:42:28Z",
+      "side": 1,
+      "message": "Please make these System APIs unless we have a reason to make them part of the API surface. I don\u0027t think we intend to be exposing Wi-Fi device discovery information directly to any application.",
+      "parentUuid": "0e60d55c_96150f25",
+      "range": {
+        "startLine": 1291,
+        "startChar": 22,
+        "endLine": 1291,
+        "endChar": 33
+      },
+      "revId": "d54fc900038a20e421d49eba605a31d4c5cac35a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "613accfb_fb96bc19",
+        "filename": "framework/java/android/bluetooth/le/ScanFilter.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-02-13T23:42:28Z",
+      "side": 1,
+      "message": "I think we need a more descriptive summary for this. What does this ORG_ID represent? Can we put it in an IntDef on methods that use it?",
+      "revId": "aa954caed5b375103e073f1cec2018afa6641ded",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f6c143ba_9a186e56",
+        "filename": "framework/java/android/bluetooth/le/ScanFilter.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 485,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-02-13T23:42:28Z",
+      "side": 1,
+      "message": "Use \"{@code null}\" for all of these per API guidelines",
+      "revId": "aa954caed5b375103e073f1cec2018afa6641ded",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4b43ec0d_5b809847",
+        "filename": "framework/java/android/bluetooth/le/ScanFilter.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 501,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-02-13T23:42:28Z",
+      "side": 1,
+      "message": "What\u0027s the purpose of this? It just returns the transport data if the orgId is the WIFI_ALLIANCE_NAN_ORG_ID. This can already be checked for with the other APIs.",
+      "revId": "aa954caed5b375103e073f1cec2018afa6641ded",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "852a0661_60449068",
+        "filename": "framework/java/android/bluetooth/le/ScanFilter.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 1194,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-02-13T23:42:28Z",
+      "side": 1,
+      "message": "Given we don\u0027t support any other orgId, we should always throw if anything else is passed here. We can expand this implementation in the future if we support new orgId values.",
+      "revId": "aa954caed5b375103e073f1cec2018afa6641ded",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
