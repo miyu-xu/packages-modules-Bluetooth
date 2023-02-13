@@ -1397,6 +1397,48 @@ static void btif_dm_search_devices_evt(tBTA_DM_SEARCH_EVT event,
                                    &asha_truncated_hi_sync_id);
         num_properties++;
 
+        if (p_search_data->inq_res.p_eir) {
+          // iterate through advertisement service data
+          tBTA_DM_INQ_RES inq_res = p_search_data->inq_res;
+          const uint8_t* p_service_data = inq_res.p_eir;
+          uint8_t service_data_len = 0;
+          while ((p_service_data = AdvertiseDataParser::GetFieldByType(
+                      p_service_data + service_data_len,
+                      inq_res.eir_len - (p_service_data - inq_res.p_eir) -
+                          service_data_len,
+                      BTM_BLE_AD_TYPE_SERVICE_DATA_TYPE, &service_data_len))) {
+            uint16_t uuid;
+            const uint8_t* p_uuid = p_service_data;
+            STREAM_TO_UINT16(uuid, p_uuid);
+
+            if (uuid == 0xfdf0 /* ASHA service*/) {
+              LOG_INFO("ASHA found in %s", ADDRESS_TO_LOGGABLE_CSTR(bdaddr));
+
+              // ASHA advertisement service data length should be at least 8
+              if (service_data_len < 8) {
+                LOG_WARN("ASHA device service_data_len too short");
+              } else {
+                // Get ASHA capability byte
+                asha_capability = p_service_data[3];
+                LOG_INFO("asha_capability: %d", asha_capability);
+
+                BTIF_STORAGE_FILL_PROPERTY(&properties[num_properties],
+                                           BT_PROPERTY_REMOTE_ASHA_CAPABILITY,
+                                           sizeof(int16_t), &asha_capability);
+
+                const uint8_t* p_truncated_hisyncid = &(p_service_data[4]);
+                STREAM_TO_UINT32(asha_truncated_hi_sync_id,
+                                 p_truncated_hisyncid);
+                BTIF_STORAGE_FILL_PROPERTY(
+                    &properties[num_properties],
+                    BT_PROPERTY_REMOTE_ASHA_TRUNCATED_HISYNCID,
+                    sizeof(uint32_t), &asha_truncated_hi_sync_id);
+              }
+              break;
+            }
+          }
+        }
+
         // Floss expects that EIR uuids are immediately reported when the
         // device is found and doesn't wait for the pairing intent.
         //
