@@ -1,0 +1,107 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dc8cf7a8_41625085",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 934,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2023-02-13T23:07:41Z",
+      "side": 1,
+      "message": "nit: `\u0026d.address` to minimize cloning.",
+      "range": {
+        "startLine": 934,
+        "startChar": 57,
+        "endLine": 934,
+        "endChar": 74
+      },
+      "revId": "d05042b53b1d8c9c34387fb174e6853fd21285ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2d0881ad_ea0bd51b",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 935,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2023-02-13T23:07:41Z",
+      "side": 1,
+      "message": "nit: `{` is unnecessary for single-line, can be removed for brevity.",
+      "revId": "d05042b53b1d8c9c34387fb174e6853fd21285ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ff4ab641_52c618ba",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 943,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2023-02-13T23:07:41Z",
+      "side": 1,
+      "message": "nit: use `.cloned`",
+      "revId": "d05042b53b1d8c9c34387fb174e6853fd21285ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9e0c3c06_d980207d",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 944,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2023-02-13T23:07:41Z",
+      "side": 1,
+      "message": "nit: type can be inferred from function return type so can be omitted.",
+      "range": {
+        "startLine": 944,
+        "startChar": 20,
+        "endLine": 944,
+        "endChar": 44
+      },
+      "revId": "d05042b53b1d8c9c34387fb174e6853fd21285ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6762796d_25e2d0f0",
+        "filename": "system/gd/rust/linux/stack/src/suspend.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 270,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2023-02-13T23:07:41Z",
+      "side": 1,
+      "message": "Since you already have `ok()` below `let _unused` is not necessary. Or if `let _unused` is preferred then the `ok()` below is not needed.\n\nI prefer `ok()` without `let _unused`.",
+      "range": {
+        "startLine": 270,
+        "startChar": 20,
+        "endLine": 270,
+        "endChar": 32
+      },
+      "revId": "d05042b53b1d8c9c34387fb174e6853fd21285ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
