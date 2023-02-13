@@ -85,6 +85,24 @@
       "parentUuid": "df7f1fdc_206740ef",
       "revId": "b14ae94e637a7b464885d6ff077a472da5df77bd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2a544ad9_31f29d9c",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1562,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2023-02-13T21:21:11Z",
+      "side": 1,
+      "message": "John\u0027s is already idiomatic in Rust. Its function style allows us to avoid intermediate mutables which is preferred. It\u0027s a bit verbose because Rust currently does not have a way to collect from iterator directly to sized array, hence the `collect::Vec`, `try_into`, and `match` steps.\n\nSince we find using this very often, I recommend we generalize this into a function:\n\n```\nfn to_sized_array\u003cconst S: usize\u003e(v: \u0026Vec\u003cu8\u003e) -\u003e [u8; S] {\n    v.iter().chain(std::iter::repeat(\u00260)).take(S).cloned().collect::\u003cVec\u003cu8\u003e\u003e().try_into().unwrap()\n}\n```\nAnd the usage can be simply:\n```\nbtpin.pin \u003d to_sized_array::\u003c16\u003e(\u0026pin_code);\n```\n\nUsing the `S` const generic guarantees at compile time that the size in `take` matches the array size, so that we can use naked `unwrap()` after `try_into()` safely.",
+      "parentUuid": "ee2a2adb_2bd09ba1",
+      "revId": "b14ae94e637a7b464885d6ff077a472da5df77bd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
