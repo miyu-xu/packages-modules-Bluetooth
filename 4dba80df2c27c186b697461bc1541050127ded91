@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5e716113_1e697c0e",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 1641,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-02-14T04:46:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "117ed492_df92cb8b",
+      "range": {
+        "startLine": 1638,
+        "startChar": 0,
+        "endLine": 1641,
+        "endChar": 26
+      },
+      "revId": "4dba80df2c27c186b697461bc1541050127ded91",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fb8a95b8_5a90dac9",
@@ -54,6 +78,30 @@
       "writtenOn": "2023-02-13T20:14:58Z",
       "side": 1,
       "message": "Also a common pattern where `Option::map` is useful:\n```\nlet success \u003d number.map_or(false, |num| self.dialing_call_impl(num));\n```",
+      "range": {
+        "startLine": 751,
+        "startChar": 0,
+        "endLine": 754,
+        "endChar": 18
+      },
+      "revId": "4dba80df2c27c186b697461bc1541050127ded91",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8c5aa21b_9e60189e",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 754,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-02-14T04:46:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fb8a95b8_5a90dac9",
       "range": {
         "startLine": 751,
         "startChar": 0,
