@@ -45,6 +45,54 @@
       },
       "revId": "ed38ed2390ca0208b54c827f44ebeae09eca065d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "49602dc1_2a4153ac",
+        "filename": "android/app/src/com/android/bluetooth/btservice/MetricsLogger.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2023-02-14T23:00:11Z",
+      "side": 1,
+      "message": "Done. This was fixed from last snapshot.",
+      "parentUuid": "846e63ff_050ba571",
+      "range": {
+        "startLine": 76,
+        "startChar": 0,
+        "endLine": 76,
+        "endChar": 22
+      },
+      "revId": "ed38ed2390ca0208b54c827f44ebeae09eca065d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "372c41a1_ab892253",
+        "filename": "android/app/src/com/android/bluetooth/btservice/MetricsLogger.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2023-02-14T23:00:11Z",
+      "side": 1,
+      "message": "Done. This was fixed from last snapshot.",
+      "parentUuid": "f215a500_7251168d",
+      "range": {
+        "startLine": 76,
+        "startChar": 0,
+        "endLine": 76,
+        "endChar": 22
+      },
+      "revId": "ed38ed2390ca0208b54c827f44ebeae09eca065d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
