@@ -151,8 +151,7 @@ class AVRCPProxy(ProfileProxy):
         Take action to disconnect all A2DP and/or AVRCP connections.
 
         """
-        if self.connection is None:
-            self.connection = self.host.GetConnection(address=pts_addr).connection
+        assert self.connection is not None
         self.host.Disconnect(connection=self.connection)
 
         return "OK"
@@ -913,8 +912,6 @@ class AVRCPProxy(ProfileProxy):
         """
         # Currently disconnect is required in TG role
         if "TG" in test:
-            if self.connection is None:
-                self.connection = self.host.GetConnection(address=pts_addr).connection
             time.sleep(3)
             self.host.Disconnect(connection=self.connection)
             self.connection = None
