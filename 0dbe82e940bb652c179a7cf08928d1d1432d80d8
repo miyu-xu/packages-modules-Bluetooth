@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ba1bd3ab_76199085",
+        "filename": "system/rust/src/gatt/server/gatt_database.rs",
+        "patchSetId": 44
+      },
+      "lineNbr": 267,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-02-14T01:12:05Z",
+      "side": 1,
+      "message": "Do we need this block?  It looks extra to me.",
+      "range": {
+        "startLine": 267,
+        "startChar": 8,
+        "endLine": 267,
+        "endChar": 9
+      },
+      "revId": "0dbe82e940bb652c179a7cf08928d1d1432d80d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "624e50ea_0f8abd65",
+        "filename": "system/rust/src/gatt/server/gatt_database.rs",
+        "patchSetId": 44
+      },
+      "lineNbr": 706,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-02-14T01:12:05Z",
+      "side": 1,
+      "message": "nit^2: It could be readable.",
+      "range": {
+        "startLine": 706,
+        "startChar": 60,
+        "endLine": 706,
+        "endChar": 65
+      },
+      "revId": "0dbe82e940bb652c179a7cf08928d1d1432d80d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
