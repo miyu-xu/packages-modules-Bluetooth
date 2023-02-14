@@ -22,6 +22,30 @@
       },
       "revId": "15c341b2a4c3ff8bd551153d22989361d20effde",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "39075ef7_f8ed4378",
+        "filename": "system/stack/btm/btm_inq.cc",
+        "patchSetId": 19
+      },
+      "lineNbr": 1177,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-02-14T02:28:16Z",
+      "side": 1,
+      "message": "True, either would work but I had to pick one.\n\nI chose in-loop as I would expect the next refactor to pull this out and as part of the API provide an actual number of valid responses, versus the arbitrary number or responses claimed.\n\nEither way works for me.",
+      "parentUuid": "7611fdc7_b3daafd2",
+      "range": {
+        "startLine": 1177,
+        "startChar": 0,
+        "endLine": 1177,
+        "endChar": 46
+      },
+      "revId": "15c341b2a4c3ff8bd551153d22989361d20effde",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
