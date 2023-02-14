@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "269eb0df_f88018dd",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 795,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-02-14T17:47:58Z",
+      "side": 1,
+      "message": "Please fix this WARNING reported by Build Warnings: the parameter \u0027metadata_context_types\u0027 is copied for each invocation but only used as a const reference; consider making it a const reference [performance-unnecessary-value-param]\n\nAnalyzer Description: Reports warnings that originate from build.log in the build artifacts.\nOwner: farivar@google.com\n\n    the parameter \u0027metadata_context_types\u0027 is copied for each invocation but only used as a const reference; consider making it a const reference [performance-unnecessary-value-param]\n                       BidirectionalPair\u003cAudioContexts\u003e metadata_context_types) {\n                                                        ^\n                       const                           \u0026\n\nThis finding was found on https://android-build.googleplex.com/builds/build-details/P49685128/targets/aosp_arm64-userdebug_tidy, but may also be present on other builds.",
+      "range": {
+        "startLine": 795,
+        "startChar": 53,
+        "endLine": 795,
+        "endChar": 77
+      },
+      "revId": "d769076c21cfc4af186309983e7bf97e5c0b34aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "df1fb7f0_c8bb8227",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 795,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-02-14T17:47:58Z",
+      "side": 1,
+      "message": "Please fix this WARNING reported by Build Warnings: the parameter \u0027metadata_context_types\u0027 is copied for each invocation but only used as a const reference; consider making it a const reference [performance-unnecessary-value-param]\n\nAnalyzer Description: Reports warnings that originate from build.log in the build artifacts.\nOwner: farivar@google.com\n\n    the parameter \u0027metadata_context_types\u0027 is copied for each invocation but only used as a const reference; consider making it a const reference [performance-unnecessary-value-param]\n                       BidirectionalPair\u003cAudioContexts\u003e metadata_context_types) {\n                                                        ^\n                       const                           \u0026\n\nThis finding was found on https://android-build.googleplex.com/builds/build-details/P49685128/targets/aosp_arm64-userdebug_tidy, but may also be present on other builds.",
+      "range": {
+        "startLine": 795,
+        "startChar": 53,
+        "endLine": 795,
+        "endChar": 77
+      },
+      "revId": "d769076c21cfc4af186309983e7bf97e5c0b34aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
