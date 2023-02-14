@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8523a0dc_0cfac93d",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 934,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-02-14T05:15:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dc8cf7a8_41625085",
+      "range": {
+        "startLine": 934,
+        "startChar": 57,
+        "endLine": 934,
+        "endChar": 74
+      },
+      "revId": "d05042b53b1d8c9c34387fb174e6853fd21285ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2d0881ad_ea0bd51b",
@@ -41,6 +65,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1a8355f1_23b12cb8",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 935,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-02-14T05:15:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2d0881ad_ea0bd51b",
+      "revId": "d05042b53b1d8c9c34387fb174e6853fd21285ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ff4ab641_52c618ba",
@@ -54,6 +96,24 @@
       "writtenOn": "2023-02-13T23:07:41Z",
       "side": 1,
       "message": "nit: use `.cloned`",
+      "revId": "d05042b53b1d8c9c34387fb174e6853fd21285ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "17dfc836_c26c9975",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 943,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-02-14T05:15:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ff4ab641_52c618ba",
       "revId": "d05042b53b1d8c9c34387fb174e6853fd21285ca",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -81,6 +141,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ad3d14a9_e490477a",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 944,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-02-14T05:15:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9e0c3c06_d980207d",
+      "range": {
+        "startLine": 944,
+        "startChar": 20,
+        "endLine": 944,
+        "endChar": 44
+      },
+      "revId": "d05042b53b1d8c9c34387fb174e6853fd21285ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6762796d_25e2d0f0",
@@ -94,6 +178,30 @@
       "writtenOn": "2023-02-13T23:07:41Z",
       "side": 1,
       "message": "Since you already have `ok()` below `let _unused` is not necessary. Or if `let _unused` is preferred then the `ok()` below is not needed.\n\nI prefer `ok()` without `let _unused`.",
+      "range": {
+        "startLine": 270,
+        "startChar": 20,
+        "endLine": 270,
+        "endChar": 32
+      },
+      "revId": "d05042b53b1d8c9c34387fb174e6853fd21285ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "11546d61_3d073cad",
+        "filename": "system/gd/rust/linux/stack/src/suspend.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 270,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-02-14T05:15:35Z",
+      "side": 1,
+      "message": "So a while ago, I introduced a bug because I forgot to call .await. The previous pattern was:\n```\nlet _ \u003d txl.send(...).await;\n```\n\nThis doesn\u0027t protect you from failing to call await. The new pattern (requiring an Option\u003c()\u003e type) will protect you from failure to call `.await` and also not add the `unused result` warning.",
+      "parentUuid": "6762796d_25e2d0f0",
       "range": {
         "startLine": 270,
         "startChar": 20,
