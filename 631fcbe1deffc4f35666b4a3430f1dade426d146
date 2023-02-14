@@ -46,6 +46,54 @@
       },
       "revId": "631fcbe1deffc4f35666b4a3430f1dade426d146",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aa670b5c_c2ed949f",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 4860,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2023-02-14T01:48:14Z",
+      "side": 1,
+      "message": "filed a bug for createBond.",
+      "parentUuid": "8b2b1a10_6c6b5df5",
+      "range": {
+        "startLine": 4860,
+        "startChar": 18,
+        "endLine": 4860,
+        "endChar": 37
+      },
+      "revId": "631fcbe1deffc4f35666b4a3430f1dade426d146",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9d53cc8d_f6e27f66",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 4860,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2023-02-14T01:48:14Z",
+      "side": 1,
+      "message": "filed a bug for createBond. b/269056263",
+      "parentUuid": "8b2b1a10_6c6b5df5",
+      "range": {
+        "startLine": 4860,
+        "startChar": 18,
+        "endLine": 4860,
+        "endChar": 37
+      },
+      "revId": "631fcbe1deffc4f35666b4a3430f1dade426d146",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
