@@ -15,6 +15,9 @@ const BTMANAGERD_CONF: &str = "/var/lib/bluetooth/btmanagerd.json";
 /// Folder to keep files which override floss configuration
 const FLOSS_SYSPROPS_OVERRIDE_DIR: &str = "/var/lib/bluetooth/sysprops.conf.d";
 
+/// File to store bluetooth devcoredump configuration
+const FLOSS_COREDUMP_CONF_PATH: &str = "/var/run/bluetooth/coredump_disabled";
+
 /// Key used for default adapter entry.
 const DEFAULT_ADAPTER_KEY: &str = "default_adapter";
 
@@ -218,6 +221,30 @@ pub fn write_floss_ll_privacy_enabled(enabled: bool) -> std::io::Result<()> {
     );
 
     std::fs::write(format!("{}/{}", FLOSS_SYSPROPS_OVERRIDE_DIR, "privacy_override.conf"), data)
+}
+
+pub fn set_adapter_coredump_state(enabled: bool) -> std::io::Result<()> {
+    let data = format!("{}\n", if enabled { "0" } else { "1" });
+
+    for hci in list_hci_devices_string() {
+        let path = format!("{}/{}/device/coredump_disabled", HCI_DEVICES_DIR, hci);
+
+        std::fs::write(path, &data)?;
+    }
+
+    Ok(())
+}
+
+pub fn write_coredump_state_to_file(enabled: bool) {
+    let data = format!("{}\n", if enabled { "0" } else { "1" });
+
+    if let Err(e) = std::fs::write(FLOSS_COREDUMP_CONF_PATH, data) {
+        log::error!("Failed to write devcoredump state (error: {})", e);
+    }
+
+    if let Err(e) = set_adapter_coredump_state(enabled) {
+        log::error!("Failed to set devcoredump state (error: {})", e);
+    }
 }
 
 #[cfg(test)]
