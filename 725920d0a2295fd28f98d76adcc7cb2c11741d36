@@ -89,6 +89,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dfd9c003_3f8fd6ed",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 233,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-02-14T17:16:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "04a867f2_3d186c19",
+      "revId": "725920d0a2295fd28f98d76adcc7cb2c11741d36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "82bcf1b6_27e53b87",
@@ -124,6 +142,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "02ce8de0_93c54279",
+        "filename": "framework/java/android/bluetooth/BluetoothQualityReport.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-02-14T17:16:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "54ce86a8_cc8ffc85",
+      "revId": "725920d0a2295fd28f98d76adcc7cb2c11741d36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c68c12d8_71b5b256",
@@ -137,6 +173,24 @@
       "writtenOn": "2023-02-13T22:53:51Z",
       "side": 1,
       "message": "nit: end first sentence of method/field summaries in a period",
+      "revId": "725920d0a2295fd28f98d76adcc7cb2c11741d36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ef53f3a0_2559bdaa",
+        "filename": "framework/java/android/bluetooth/BluetoothQualityReport.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-02-14T17:16:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c68c12d8_71b5b256",
       "revId": "725920d0a2295fd28f98d76adcc7cb2c11741d36",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -158,6 +212,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8de76e91_2cdce72d",
+        "filename": "framework/java/android/bluetooth/BluetoothQualityReport.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 239,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-02-14T17:16:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "35ea7e72_f9f11c53",
+      "revId": "725920d0a2295fd28f98d76adcc7cb2c11741d36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1f12ebfe_9d017a38",
@@ -175,6 +247,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e6088242_030fda80",
+        "filename": "framework/java/android/bluetooth/BluetoothQualityReport.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 302,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-02-14T17:16:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1f12ebfe_9d017a38",
+      "revId": "725920d0a2295fd28f98d76adcc7cb2c11741d36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3d17ea4c_2fc2f9a5",
@@ -188,6 +278,24 @@
       "writtenOn": "2023-02-13T22:53:51Z",
       "side": 1,
       "message": "Why do we still need this if getBluetoothClass() exists?",
+      "revId": "725920d0a2295fd28f98d76adcc7cb2c11741d36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "642a25c2_a803acb1",
+        "filename": "framework/java/android/bluetooth/BluetoothQualityReport.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 383,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-02-14T17:16:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3d17ea4c_2fc2f9a5",
       "revId": "725920d0a2295fd28f98d76adcc7cb2c11741d36",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -222,6 +330,42 @@
       "writtenOn": "2023-02-13T22:53:51Z",
       "side": 1,
       "message": "nit: We don\u0027t use the @summary tag, so we can omit that and just have the method description directly.",
+      "revId": "725920d0a2295fd28f98d76adcc7cb2c11741d36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ce2c3298_4d426b1c",
+        "filename": "framework/java/android/bluetooth/BluetoothQualityReport.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 554,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-02-14T17:16:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9fd127b9_542c6d09",
+      "revId": "725920d0a2295fd28f98d76adcc7cb2c11741d36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8e56e216_919abef7",
+        "filename": "framework/java/android/bluetooth/BluetoothQualityReport.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 554,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-02-14T17:16:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ccd20bd9_86998573",
       "revId": "725920d0a2295fd28f98d76adcc7cb2c11741d36",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -287,6 +431,30 @@
       "side": 1,
       "message": "Not sure if there\u0027s a patchset that wasn\u0027t uploaded, but this is missing on patchset 21",
       "parentUuid": "9b5757a7_738b1631",
+      "range": {
+        "startLine": 572,
+        "startChar": 27,
+        "endLine": 572,
+        "endChar": 34
+      },
+      "revId": "725920d0a2295fd28f98d76adcc7cb2c11741d36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5fe6c83f_d35a023c",
+        "filename": "framework/java/android/bluetooth/BluetoothQualityReport.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 572,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-02-14T17:16:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c4585f14_7e004f37",
       "range": {
         "startLine": 572,
         "startChar": 27,
@@ -368,6 +536,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "28e66b60_e5b4e101",
+        "filename": "framework/java/android/bluetooth/BluetoothQualityReport.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 675,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-02-14T17:16:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "89a3619d_49d553be",
+      "range": {
+        "startLine": 671,
+        "startChar": 11,
+        "endLine": 675,
+        "endChar": 13
+      },
+      "revId": "725920d0a2295fd28f98d76adcc7cb2c11741d36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d8d83d24_ab15c2e3",
@@ -381,6 +573,24 @@
       "writtenOn": "2023-02-13T22:53:51Z",
       "side": 1,
       "message": "Can we have these be int constants instead? We can wrap them in an IntDef so it\u0027s clear what the values represent. The internal data is stored as an int anyways.",
+      "revId": "725920d0a2295fd28f98d76adcc7cb2c11741d36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "52968a41_b69af242",
+        "filename": "framework/java/android/bluetooth/BluetoothQualityReport.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 830,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-02-14T17:16:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d8d83d24_ab15c2e3",
       "revId": "725920d0a2295fd28f98d76adcc7cb2c11741d36",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }

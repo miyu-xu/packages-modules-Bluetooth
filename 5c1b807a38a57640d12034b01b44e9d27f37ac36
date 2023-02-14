@@ -353,6 +353,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "893ea62d_c3866e90",
+        "filename": "framework/java/android/bluetooth/BluetoothQualityReport.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-02-14T17:16:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4d614f57_b852804f",
+      "revId": "5c1b807a38a57640d12034b01b44e9d27f37ac36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f5dbd836_268da77a",
@@ -455,6 +473,24 @@
       "side": 1,
       "message": "Yeah, we shouldn\u0027t have a constructor that takes the Builder. The Builder should have a build method that extracts the individual params and calls a private constructor.",
       "parentUuid": "a66b679d_6f7bf349",
+      "revId": "5c1b807a38a57640d12034b01b44e9d27f37ac36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5d6126f8_01a567ff",
+        "filename": "framework/java/android/bluetooth/BluetoothQualityReport.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-02-14T17:16:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c18c0e81_842b9bed",
       "revId": "5c1b807a38a57640d12034b01b44e9d27f37ac36",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
