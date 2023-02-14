@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "397c4526_f392a290",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1960961
+      },
+      "writtenOn": "2023-02-14T04:02:39Z",
+      "side": 1,
+      "message": "Hi Thomas, Charlie,\n\nHave fixed Pre-submit failure. Request you to provide inputs.\n\nThanks and Regards,\nSnehal",
+      "revId": "7f682a91349bc48f6282a600e03fb9dc789109e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
