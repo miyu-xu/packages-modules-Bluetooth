@@ -811,6 +811,11 @@ public final class BluetoothA2dp implements BluetoothProfile {
     /**
      * Sets the codec configuration preference.
      *
+     * The {@link android.Manifest.permission.BLUETOOTH_PRIVILEGED} permission is required starting
+     * {@link android.os.Build.VERSION_CODES.UPSIDE_DOWN_CAKE}. For apps targeting lower SDK
+     * versions without the {@link android.Manifest.permission.BLUETOOTH_PRIVILEGED} permission,
+     * a {@link android.companion.CompanionDeviceManager} association is required.
+     *
      * @param device the remote Bluetooth device.
      * @param codecConfig the codec configuration preference
      * @hide

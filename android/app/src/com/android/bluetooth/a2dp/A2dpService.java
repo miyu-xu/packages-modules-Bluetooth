@@ -1491,6 +1491,15 @@ public class A2dpService extends ProfileService {
             if (service == null) {
                 return;
             }
+            if (getPackageManager().getApplicationInfo(source.getPackageName(), 0)
+                    .targetSdkVersion > Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
+                enforceBluetoothPrivilegedPermission(service);
+            } else {
+                if (!hasBluetoothPrivilegedPermission(service)) {
+                    enforceCdmAssociation(service.mCompanionDeviceManager, service,
+                            source.getPackageName(), Binder.getCallingUid(), device);
+                }
+            }
             service.setCodecConfigPreference(device, codecConfig);
         }
 
