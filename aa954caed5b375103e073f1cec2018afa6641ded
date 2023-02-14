@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f95afdbe_7ae279bf",
+        "filename": "framework/java/android/bluetooth/le/ScanFilter.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1470368
+      },
+      "writtenOn": "2023-02-14T19:19:00Z",
+      "side": 1,
+      "message": "Added more descriptions",
+      "parentUuid": "613accfb_fb96bc19",
+      "revId": "aa954caed5b375103e073f1cec2018afa6641ded",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f6c143ba_9a186e56",
         "filename": "framework/java/android/bluetooth/le/ScanFilter.java",
         "patchSetId": 17
@@ -31,6 +49,24 @@
       "writtenOn": "2023-02-13T23:42:28Z",
       "side": 1,
       "message": "Use \"{@code null}\" for all of these per API guidelines",
+      "revId": "aa954caed5b375103e073f1cec2018afa6641ded",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "67e2d03a_db91c718",
+        "filename": "framework/java/android/bluetooth/le/ScanFilter.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 485,
+      "author": {
+        "id": 1470368
+      },
+      "writtenOn": "2023-02-14T19:19:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f6c143ba_9a186e56",
       "revId": "aa954caed5b375103e073f1cec2018afa6641ded",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -52,6 +88,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "077bd9c8_d9ccd268",
+        "filename": "framework/java/android/bluetooth/le/ScanFilter.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 501,
+      "author": {
+        "id": 1470368
+      },
+      "writtenOn": "2023-02-14T19:19:00Z",
+      "side": 1,
+      "message": "removed, Done",
+      "parentUuid": "4b43ec0d_5b809847",
+      "revId": "aa954caed5b375103e073f1cec2018afa6641ded",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "852a0661_60449068",
@@ -65,6 +119,24 @@
       "writtenOn": "2023-02-13T23:42:28Z",
       "side": 1,
       "message": "Given we don\u0027t support any other orgId, we should always throw if anything else is passed here. We can expand this implementation in the future if we support new orgId values.",
+      "revId": "aa954caed5b375103e073f1cec2018afa6641ded",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6b8047a7_8bf6489f",
+        "filename": "framework/java/android/bluetooth/le/ScanFilter.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 1194,
+      "author": {
+        "id": 1470368
+      },
+      "writtenOn": "2023-02-14T19:19:00Z",
+      "side": 1,
+      "message": "I don\u0027t  know exact usecase for other org ID. but TDS scan filter can be used for Other Bluetooth Usecases \u0026 other WIFI usecases.\n0x01 Bluetooth SIG\n0x02 Wi­Fi Alliance Neighbor Awareness Networking\n0x03 Wi­Fi Alliance Service Advertisement",
+      "parentUuid": "852a0661_60449068",
       "revId": "aa954caed5b375103e073f1cec2018afa6641ded",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }

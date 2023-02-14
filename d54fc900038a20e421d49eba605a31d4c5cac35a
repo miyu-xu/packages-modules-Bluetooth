@@ -70,6 +70,30 @@
       },
       "revId": "d54fc900038a20e421d49eba605a31d4c5cac35a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e0e643fe_e23d7474",
+        "filename": "framework/api/current.txt",
+        "patchSetId": 10
+      },
+      "lineNbr": 1291,
+      "author": {
+        "id": 1470368
+      },
+      "writtenOn": "2023-02-14T19:19:00Z",
+      "side": 1,
+      "message": "@Rahul I have changed TDS Scan filter API to system api. \n\nI have query. can TDS Scan filter system api be changed to public in future?\n \nTDS advertisement APIs  are already public. https://android-review.googlesource.com/c/platform/frameworks/base/+/1454977/7/core/api/current.txt, Application can still  advertise WIFI NAN\n \n WIFI Aware(NAN discovery) is one part of TDS scan filter. but TDS scan filter can be used for Other Bluetooth Usecase \u0026 other WIFI usecase, 3rd pary app can use TDS scan filter for some other purpose.\n0x01 Bluetooth SIG\n0x02 Wi­Fi Alliance Neighbor Awareness Networking\n0x03 Wi­Fi Alliance Service Advertisement",
+      "parentUuid": "b07963fc_4ab17b62",
+      "range": {
+        "startLine": 1291,
+        "startChar": 22,
+        "endLine": 1291,
+        "endChar": 33
+      },
+      "revId": "d54fc900038a20e421d49eba605a31d4c5cac35a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
