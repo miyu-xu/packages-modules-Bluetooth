@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7611fdc7_b3daafd2",
+        "filename": "system/stack/btm/btm_inq.cc",
+        "patchSetId": 19
+      },
+      "lineNbr": 1177,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-02-14T00:31:43Z",
+      "side": 1,
+      "message": "We could do :\nbtm_cb.neighbor.classic_inquiry.results +\u003d num_resp; // (On line 1175)\n\nOr update it when we call the callback.  Does it make a difference?",
+      "range": {
+        "startLine": 1177,
+        "startChar": 0,
+        "endLine": 1177,
+        "endChar": 46
+      },
+      "revId": "15c341b2a4c3ff8bd551153d22989361d20effde",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
