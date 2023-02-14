@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c9f0b05a_30144f7c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-02-14T18:44:20Z",
+      "side": 1,
+      "message": "bta_sdp_test ? :)",
+      "revId": "4fb57240197b74ebec7a53e1272a3a8f62068464",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d2028fe8_34832d9f",
+        "filename": "system/bta/test/bta_sdp_test.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-02-14T18:44:20Z",
+      "side": 1,
+      "message": "Could we start an SDP search instead of just putting this in the control block?\n\nIs that the next test?",
+      "range": {
+        "startLine": 98,
+        "startChar": 1,
+        "endLine": 98,
+        "endChar": 53
+      },
+      "revId": "4fb57240197b74ebec7a53e1272a3a8f62068464",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "649cf011_43e223d1",
+        "filename": "system/test/mock/mock_stack_btm.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-02-14T18:44:20Z",
+      "side": 1,
+      "message": "Can we initialize this to something, so we don\u0027t have run-to-run variability?",
+      "range": {
+        "startLine": 28,
+        "startChar": 8,
+        "endLine": 28,
+        "endChar": 34
+      },
+      "revId": "4fb57240197b74ebec7a53e1272a3a8f62068464",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6cb2fa45_7c5d34b6",
+        "filename": "system/test/mock/mock_stack_btm.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-02-14T18:44:20Z",
+      "side": 1,
+      "message": "I\u0027m wondering if the default should be that the ACL connection is up for tests.",
+      "range": {
+        "startLine": 119,
+        "startChar": 10,
+        "endLine": 119,
+        "endChar": 23
+      },
+      "revId": "4fb57240197b74ebec7a53e1272a3a8f62068464",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
