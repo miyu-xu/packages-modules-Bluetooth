@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2851f5d2_229fe5a7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-02-14T23:28:36Z",
+      "side": 1,
+      "message": "OWNERS only change shouldn\u0027t need presubmit",
+      "revId": "69e8f55a39fc05c02edc6c12fa22a92a95e2cd4a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
