@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "757e9bc5_8f43ebc5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2023-02-14T08:42:09Z",
+      "side": 1,
+      "message": "Could there be any way to ensure the thread is finished after each test?",
+      "revId": "fc33d0c8d35e78675560a890a100ff4268359f40",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0b25675e_b5ae8332",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppManagerTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2023-02-14T08:42:09Z",
+      "side": 1,
+      "message": "Let\u0027s use variable names for explaining these values",
+      "range": {
+        "startLine": 84,
+        "startChar": 17,
+        "endLine": 84,
+        "endChar": 24
+      },
+      "revId": "fc33d0c8d35e78675560a890a100ff4268359f40",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
