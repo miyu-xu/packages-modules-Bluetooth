@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "19ddcbca_c41cf3e5",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 18
+      },
+      "lineNbr": 329,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2023-02-14T23:57:13Z",
+      "side": 1,
+      "message": "We just need to pass inq_res, not the whole p_search_data. It should also be declared const argument since we are not going to modify it.",
+      "revId": "1eb03e41539f9c78dac93946006e5fb0996e00b4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
