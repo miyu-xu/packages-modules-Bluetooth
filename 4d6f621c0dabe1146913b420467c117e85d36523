@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "57a86d4c_a320dc01",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 15
+      },
+      "lineNbr": 1387,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-02-14T23:16:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "71c6b6ef_074cfbb3",
+      "revId": "4d6f621c0dabe1146913b420467c117e85d36523",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5a1a2efc_29cabe1d",
@@ -31,6 +49,24 @@
       "writtenOn": "2023-02-14T21:49:58Z",
       "side": 1,
       "message": "Shouldn\u0027t this be done only if we don\u0027t find the ASHA service data?",
+      "revId": "4d6f621c0dabe1146913b420467c117e85d36523",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8625fc4f_2fc51d02",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 15
+      },
+      "lineNbr": 1394,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-02-14T23:16:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5a1a2efc_29cabe1d",
       "revId": "4d6f621c0dabe1146913b420467c117e85d36523",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -69,6 +105,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8f901e7c_bcb0040f",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 15
+      },
+      "lineNbr": 1405,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-02-14T23:16:03Z",
+      "side": 1,
+      "message": "talked offline, right now keeps the same format as other code",
+      "parentUuid": "af8b41f5_0dc01b5f",
+      "revId": "4d6f621c0dabe1146913b420467c117e85d36523",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1e804703_025c6863",
@@ -86,6 +140,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5e10bb93_500a3c4d",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 15
+      },
+      "lineNbr": 1418,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-02-14T23:16:03Z",
+      "side": 1,
+      "message": "Talked offline, the parser would ensure the length check",
+      "parentUuid": "1e804703_025c6863",
+      "revId": "4d6f621c0dabe1146913b420467c117e85d36523",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cdb5c7c1_4d4eebb3",
@@ -99,6 +171,24 @@
       "writtenOn": "2023-02-14T21:49:58Z",
       "side": 1,
       "message": "asha_capability is a 16-bit signed integer while p_service_data is 8-bit unsigned integer. We should ensure that readers know that we are reading an 8-bit value, and that it is not a mistake.",
+      "revId": "4d6f621c0dabe1146913b420467c117e85d36523",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8e7d4961_1d0680a3",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 15
+      },
+      "lineNbr": 1422,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-02-14T23:16:03Z",
+      "side": 1,
+      "message": "added in comments",
+      "parentUuid": "cdb5c7c1_4d4eebb3",
       "revId": "4d6f621c0dabe1146913b420467c117e85d36523",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },

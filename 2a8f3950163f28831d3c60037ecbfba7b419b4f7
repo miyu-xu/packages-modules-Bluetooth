@@ -16,6 +16,24 @@
       "message": "Add a check on `service_data_len` like this to avoid potential OOB:\n\n```\nif (service_data_len \u003c 2) \n   continue;\n```\n\nOr move the check on the `service_data_len` before the first read.",
       "revId": "2a8f3950163f28831d3c60037ecbfba7b419b4f7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0736fd11_033a3585",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 1403,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-02-14T23:16:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dd2f2935_2fd15109",
+      "revId": "2a8f3950163f28831d3c60037ecbfba7b419b4f7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
