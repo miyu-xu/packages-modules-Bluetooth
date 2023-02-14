@@ -67,6 +67,23 @@
       "message": "Gentle ping again 🙏🙏\n\nOr do you know who can also review this?",
       "revId": "7185b3b0cfebaf00308068ad727ed74c98de89f5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "41d8a680_b96ac590",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-02-14T21:23:51Z",
+      "side": 1,
+      "message": "Shouldn\u0027t this live further up the stack, near where bta_hh_api_enable exists / is invoked by Floss?\n\nSo pass some parameters down indicating whether HID/HOGP/both are required, and use that to decide what callbacks to be initially registered.",
+      "revId": "7185b3b0cfebaf00308068ad727ed74c98de89f5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
