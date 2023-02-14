@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b4ae9f21_954399e5",
+        "filename": "android/app/src/com/android/bluetooth/gatt/AppScanStats.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 396,
+      "author": {
+        "id": 1567049
+      },
+      "writtenOn": "2023-02-14T22:57:30Z",
+      "side": 1,
+      "message": "How about unit tests for this function? The changes here are non-trivial.",
+      "range": {
+        "startLine": 373,
+        "startChar": 0,
+        "endLine": 396,
+        "endChar": 0
+      },
+      "revId": "95b4fbb3ad6b2863ccf15e80a1fd5e5a2ac88eca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
