@@ -27,6 +27,7 @@ using ::aidl::android::hardware::audio::common::SinkMetadata;
 using ::aidl::android::hardware::audio::common::SourceMetadata;
 using ::aidl::android::hardware::bluetooth::audio::BnBluetoothAudioPort;
 using ::aidl::android::hardware::bluetooth::audio::CodecType;
+using ::aidl::android::hardware::bluetooth::audio::DynamicLowLatencyScenario;
 using ::aidl::android::hardware::bluetooth::audio::IBluetoothAudioProvider;
 using ::aidl::android::hardware::bluetooth::audio::LatencyMode;
 using ::aidl::android::hardware::bluetooth::audio::PresentationPosition;
@@ -52,7 +53,9 @@ class BluetoothAudioPortImpl : public BnBluetoothAudioPort {
   ndk::ScopedAStatus updateSinkMetadata(
       const SinkMetadata& sink_metadata) override;
 
-  ndk::ScopedAStatus setLatencyMode(LatencyMode latency_mode) override;
+  ndk::ScopedAStatus setLatencyMode(
+      LatencyMode latency_mode,
+      std::vector<DynamicLowLatencyScenario> allowedScenarios) override;
 
  protected:
   virtual ~BluetoothAudioPortImpl();

@@ -134,7 +134,8 @@ ndk::ScopedAStatus BluetoothAudioPortImpl::updateSinkMetadata(
 }
 
 ndk::ScopedAStatus BluetoothAudioPortImpl::setLatencyMode(
-    LatencyMode latency_mode) {
+    LatencyMode latency_mode,
+    const std::vector<DynamicLowLatencyScenario> allowedScenarios) {
   bool is_low_latency = latency_mode == LatencyMode::LOW_LATENCY ? true : false;
   invoke_switch_buffer_size_cb(is_low_latency);
   transport_instance_->SetLowLatency(is_low_latency);
