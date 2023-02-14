@@ -191,10 +191,10 @@ void TestEnvironment::SetUpTestChannel() {
   });
   test_channel_.AddPhy({"BR_EDR"});
   test_channel_.AddPhy({"LOW_ENERGY"});
+  test_channel_.AddDevice({"beacon", "be:ac:01:55:00:01", "1000"});
+  test_channel_.AddDeviceToPhy({"0", "1"});
   test_channel_.SetTimerPeriod({"5"});
   test_channel_.StartTimer({});
-
-  test_channel_.FromFile(default_commands_file_);
 
   if (!transport_configured) {
     LOG_ERROR("Test channel SetUp failed.");
