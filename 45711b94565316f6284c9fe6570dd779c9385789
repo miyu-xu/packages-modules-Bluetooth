@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b8ff71b3_1f758e1b",
+        "filename": "android/app/src/com/android/bluetooth/a2dp/A2dpService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1501,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-02-14T19:55:06Z",
+      "side": 1,
+      "message": "Let\u0027s use the ChangeIds mechanism that wescande@ used here: ag/21127512",
+      "revId": "45711b94565316f6284c9fe6570dd779c9385789",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "14bb3eef_60bdb413",
+        "filename": "framework/java/android/bluetooth/BluetoothA2dp.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 814,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-02-14T19:55:06Z",
+      "side": 1,
+      "message": "nit: \"required for apps targeting {@link android.os.Build.VERSION_CODES.UPSIDE_DOWN_CAKE} or higher.\"",
+      "revId": "45711b94565316f6284c9fe6570dd779c9385789",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
