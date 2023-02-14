@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "099cfb8f_ed57eb9b",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 1091,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-02-14T18:48:36Z",
+      "side": 1,
+      "message": "Do we need this cast?  I think disc_res is already a DISC_RES",
+      "range": {
+        "startLine": 1091,
+        "startChar": 5,
+        "endLine": 1091,
+        "endChar": 37
+      },
+      "revId": "85f126032fd8cda72d7eb49a9d20854a3bf40814",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5445fd0d_38c5550c",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 1656,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-02-14T18:48:36Z",
+      "side": 1,
+      "message": "I don\u0027t think this cast is needed.  result is already a tBTA_STATUS",
+      "range": {
+        "startLine": 1656,
+        "startChar": 10,
+        "endLine": 1656,
+        "endChar": 35
+      },
+      "revId": "85f126032fd8cda72d7eb49a9d20854a3bf40814",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
