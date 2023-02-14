@@ -11,16 +11,11 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-
 syntax = "proto3";
-
 option java_outer_classname = "HostProto";
-
 package pandora;
-
 import "google/protobuf/empty.proto";
 import "google/protobuf/any.proto";
-
 // Service to trigger Bluetooth Host procedures
 //
 // At startup, the Host must be in BR/EDR connectable mode
@@ -51,42 +46,37 @@ service Host {
   // has been opened prior to this call, otherwise, they shall be automatically
   // confirmed by the host before this method returns.
   rpc Connect(ConnectRequest) returns (ConnectResponse);
-  // Get an active ACL BR/EDR connection to a peer.
-  rpc GetConnection(GetConnectionRequest) returns (GetConnectionResponse);
-  // Wait for an ACL BR/EDR connection from a peer.
+  // Wait for an active ACL BR/EDR connection from a peer.
+  // If the peer has been connected prior to this call, the server will
+  // return it. This shall return the same connection only once.
   rpc WaitConnection(WaitConnectionRequest) returns (WaitConnectionResponse);
   // Create an ACL LE connection.
   // Unlike BR/EDR `Connect`, this must not trigger or wait any
   // pairing/encryption and return as soon as the connection is complete.
   rpc ConnectLE(ConnectLERequest) returns (ConnectLEResponse);
-  // Get an active ACL LE connection to a peer.
-  rpc GetLEConnection(GetLEConnectionRequest) returns (GetLEConnectionResponse);
-  // Wait for an ACL LE connection from a peer.
-  rpc WaitLEConnection(WaitLEConnectionRequest) returns (WaitLEConnectionResponse);
   // Disconnect an ACL connection.
   // The related Connection must not be reused afterwards.
   rpc Disconnect(DisconnectRequest) returns (google.protobuf.Empty);
-  // Wait for disconnection of an ACL connection.
+  // Wait for the disconnection of an ACL connection.
   rpc WaitDisconnection(WaitDisconnectionRequest) returns (google.protobuf.Empty);
-  // Create and enable an advertising set using legacy or extended advertising,
+  // Start an advertising set using legacy or extended advertising,
   // except periodic advertising.
-  rpc StartAdvertising(StartAdvertisingRequest) returns (StartAdvertisingResponse);
-  // Remove an advertising set.
-  rpc StopAdvertising(StopAdvertisingRequest) returns (google.protobuf.Empty);
+  // If it is set as connectable, the advertisement may lead to a connection,
+  // the server shall restart advertising again after any incoming connection has
+  // been established.
+  // Canceling the `Advertise` call shall stop advertising.
+  rpc Advertise(AdvertiseRequest) returns (stream AdvertiseResponse);
   // Run LE scanning and return each device found.
-  // Canceling the `Scan` stream shall stop scanning.
+  // Canceling the `Scan` call shall stop scanning.
   rpc Scan(ScanRequest) returns (stream ScanningResponse);
   // Start BR/EDR inquiry and returns each device found.
-  // Canceling the `Inquiry` stream shall stop inquiry.
+  // Canceling the `Inquiry` call shall stop inquiry.
   rpc Inquiry(google.protobuf.Empty) returns (stream InquiryResponse);
   // Set BR/EDR discoverability mode.
   rpc SetDiscoverabilityMode(SetDiscoverabilityModeRequest) returns (google.protobuf.Empty);
   // Set BR/EDR connectability mode.
   rpc SetConnectabilityMode(SetConnectabilityModeRequest) returns (google.protobuf.Empty);
-  // Get remote device name from connection.
-  rpc GetRemoteName(GetRemoteNameRequest) returns (GetRemoteNameResponse);
 }
-
 // Bluetooth device own address type.
 enum OwnAddressType {
   PUBLIC = 0x0;
@@ -94,47 +84,35 @@ enum OwnAddressType {
   RESOLVABLE_OR_PUBLIC = 0x2;
   RESOLVABLE_OR_RANDOM = 0x3;
 }
-
 // Advertisement primary PHY types.
 enum PrimaryPhy {
   PRIMARY_1M = 0;
   PRIMARY_CODED = 2;
 }
-
 // Advertisement secondary PHY types.
 enum SecondaryPhy {
-  SECONDARY_1M = 0;
-  SECONDARY_2M = 1;
-  SECONDARY_CODED = 2;
+  SECONDARY_NONE = 0;
+  SECONDARY_1M = 1;
+  SECONDARY_2M = 2;
+  SECONDARY_CODED = 3;
 }
-
 // Discoverability modes.
 enum DiscoverabilityMode {
   NOT_DISCOVERABLE = 0;
   DISCOVERABLE_LIMITED = 1;
   DISCOVERABLE_GENERAL = 2;
 }
-
 // Connectability modes (BR/EDR only).
 enum ConnectabilityMode {
   NOT_CONNECTABLE = 0;
   CONNECTABLE = 1;
 }
-
 // A Token representing an ACL connection.
 // It's acquired via a `Connect` or `ConnectLE`.
 message Connection {
   // Opaque value filled by the gRPC server, must not be modified nor crafted.
   google.protobuf.Any cookie = 1;
 }
-
-// A Token representing an Advertising set.
-// It's acquired via a `StartAdvertising` on the Host service.
-message AdvertisingSet {
-  // Opaque value filled by the gRPC server, must not be modified nor crafted.
-  google.protobuf.Any cookie = 1;
-}
-
 // Data types notably used for Extended Inquiry Response and Advertising Data.
 // The Flags data type is mandatory must be automatically set by the IUT and is
 // not exposed here.
@@ -190,19 +168,16 @@ message DataTypes {
   bytes manufacturer_specific_data = 30; // Manufacturer Specific Data
   DiscoverabilityMode le_discoverability_mode = 31; // Flags LE Discoverability Mode
 }
-
 // Response of the `ReadLocalAddress` method.
 message ReadLocalAddressResponse {
   // Local Bluetooth device address as array of 6 bytes.
   bytes address = 1;
 }
-
 // Request of the `Connect` method.
 message ConnectRequest {
   // Peer Bluetooth device address as array of 6 bytes.
   bytes address = 1;
 }
-
 // Response of the `Connect` method.
 message ConnectResponse {
   // Response result.
@@ -221,30 +196,11 @@ message ConnectResponse {
     google.protobuf.Empty encryption_failure = 6;
   }
 }
-
-// Request of the `GetConnection` method.
-message GetConnectionRequest {
-  // Peer Bluetooth device address as array of 6 bytes.
-  bytes address = 1;
-}
-
-// Response of the `GetConnection` method.
-message GetConnectionResponse {
-  // Response result.
-  oneof result {
-    // Connection on `GetConnection` success
-    Connection connection = 1;
-    // Peer not found error.
-    google.protobuf.Empty peer_not_found = 2;
-  }
-}
-
 // Request of the `WaitConnection` method.
 message WaitConnectionRequest {
   // Peer Bluetooth device address as array of 6 bytes.
   bytes address = 1;
 }
-
 // Response of the `WaitConnection` method.
 message WaitConnectionResponse {
   // Response result.
@@ -253,7 +209,6 @@ message WaitConnectionResponse {
     Connection connection = 1;
   }
 }
-
 // Request of the `ConnectLE` method.
 message ConnectLERequest {
   // Own address type.
@@ -270,7 +225,6 @@ message ConnectLERequest {
     bytes random_static_identity = 5;
   }
 }
-
 // Response of the `ConnectLE` method.
 message ConnectLEResponse {
   // Response result.
@@ -283,71 +237,18 @@ message ConnectLEResponse {
     google.protobuf.Empty connection_already_exists = 3;
   }
 }
-
-// Request of the `GetLEConnection` method.
-message GetLEConnectionRequest {
-  // Peer Bluetooth device address as array of 6 bytes.
-  oneof address {
-    // Public device address.
-    bytes public = 1;
-    // Random device address.
-    bytes random = 2;
-    // Public identity device address.
-    bytes public_identity = 3;
-    // Random (static) identity device address.
-    bytes random_static_identity = 4;
-  }
-}
-
-// Response of the `GetLEConnection` method.
-message GetLEConnectionResponse {
-  // Response result.
-  oneof result {
-    // Connection on `GetLEConnection` success
-    Connection connection = 1;
-    // Peer not found error.
-    google.protobuf.Empty peer_not_found = 2;
-  }
-}
-
-// Request of the `WaitLEConnection` method.
-message WaitLEConnectionRequest {
-  // Peer Bluetooth device address as array of 6 bytes.
-  oneof address {
-    // Public device address.
-    bytes public = 1;
-    // Random device address.
-    bytes random = 2;
-    // Public identity device address.
-    bytes public_identity = 3;
-    // Random (static) identity device address.
-    bytes random_static_identity = 4;
-  }
-}
-
-// Response of the `WaitLEConnection` method.
-message WaitLEConnectionResponse {
-  // Response result.
-  oneof result {
-    // Connection on `WaitLEConnection` success
-    Connection connection = 1;
-  }
-}
-
 // Request of the `Disconnect` method.
 message DisconnectRequest {
   // Connection that should be disconnected.
   Connection connection = 1;
 }
-
 // Request of the `WaitDisconnection` method.
 message WaitDisconnectionRequest {
   // Connection to wait disconnection from.
   Connection connection = 1;
 }
-
-// Request of the `StartAdvertising` method.
-message StartAdvertisingRequest {
+// Request of the `Advertise` method.
+message AdvertiseRequest {
   // `true` to use legacy advertising.
   // The implementation shall fail when set to `false` and
   // extended advertising is not supported.
@@ -378,18 +279,11 @@ message StartAdvertisingRequest {
   // Extended only: secondary PHYs.
   SecondaryPhy secondary_phy = 11;
 }
-
-// Response of the `StartAdvertising` method.
-message StartAdvertisingResponse {
-  AdvertisingSet set = 1;
+// Response of the `Advertise` method.
+message AdvertiseResponse {
+  // Connection of a connectable `Advertise`.
+  Connection connection = 1;
 }
-
-// Request of the `StopAdvertising` method.
-message StopAdvertisingRequest {
-  // AdvertisingSet that should be stopped.
-  AdvertisingSet set = 1;
-}
-
 // Request of the `Scan` method.
 message ScanRequest {
   // `true` the use legacy scanning.
@@ -406,7 +300,6 @@ message ScanRequest {
   // Scanning PHYs.
   repeated PrimaryPhy phys = 6;
 }
-
 // Response of the `Scan` method.
 message ScanningResponse {
   // `true` if the response is legacy.
@@ -450,7 +343,7 @@ message ScanningResponse {
   SecondaryPhy secondary_phy = 16;
   // TX power in dBm, range: -127 to +20.
   int32 tx_power = 17;
-  // Received Signal Strenght Indication in dBm, range: -127 to +20.
+  // Received Signal Strength Indication in dBm, range: -127 to +20.
   int32 rssi = 18;
   // Interval of the periodic advertising, 0 if not periodic
   // or within 7.5 ms to 81,918.75 ms range.
@@ -458,7 +351,6 @@ message ScanningResponse {
   // Scan response data.
   DataTypes data = 20;
 }
-
 // Response of the `Inquiry` method.
 message InquiryResponse {
   bytes address = 1;
@@ -468,34 +360,11 @@ message InquiryResponse {
   int32 rssi = 5;
   DataTypes data = 6;
 }
-
 // Request of the `SetDiscoverabilityMode` method.
 message SetDiscoverabilityModeRequest {
   DiscoverabilityMode mode = 1;
 }
-
 // Request of the `SetConnectabilityMode` method.
 message SetConnectabilityModeRequest {
   ConnectabilityMode mode = 1;
-}
-
-// Request of the `GetRemoteName` method.
-message GetRemoteNameRequest {
-  oneof remote {
-    // ACL connection with remote device.
-    Connection connection = 1;
-    // Remote Bluetooth device address as array of 6 bytes.
-    bytes address = 2;
-  }
-}
-
-// Response of the `GetRemoteName` method.
-message GetRemoteNameResponse {
-  // Response result.
-  oneof result {
-    // Remote name on `GetRemoteName` success.
-    string name = 1;
-    // Remote not found error.
-    google.protobuf.Empty remote_not_found = 2;
-  }
 }
