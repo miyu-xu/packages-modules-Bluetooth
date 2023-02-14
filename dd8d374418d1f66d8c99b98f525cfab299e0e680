@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bee6e1f8_10a684fd",
+        "filename": "system/bta/hf_client/bta_hf_client_main.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 443,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-02-14T02:21:49Z",
+      "side": 1,
+      "message": "Should\u0027t this be\n.service \u003d BTM_COD_SERVICE_AUDIO",
+      "revId": "dd8d374418d1f66d8c99b98f525cfab299e0e680",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
