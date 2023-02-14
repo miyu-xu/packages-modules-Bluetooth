@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b13be31d_8c4be566",
+        "filename": "system/stack/btm/btm_dev.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 667,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2023-02-14T10:09:43Z",
+      "side": 1,
+      "message": "Not very important but we can replace `btm_cb.sec_dev_rec` with STL list, then this method can simply return a copy of `btm_cb.sec_dev_rec`.\n\nMy attempt: https://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/2316660",
+      "range": {
+        "startLine": 667,
+        "startChar": 30,
+        "endLine": 667,
+        "endChar": 48
+      },
+      "revId": "aaaebcd38f9cb7dfd1cbc769b131f2c3d90c4a55",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
