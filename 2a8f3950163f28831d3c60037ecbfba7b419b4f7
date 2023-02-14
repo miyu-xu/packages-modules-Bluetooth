@@ -34,6 +34,24 @@
       "parentUuid": "dd2f2935_2fd15109",
       "revId": "2a8f3950163f28831d3c60037ecbfba7b419b4f7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ecb13c64_2a4de1fd",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 1403,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2023-02-14T23:18:35Z",
+      "side": 1,
+      "message": "You need to make sure that  `service_data_len \u003e\u003d2 ` before `STREAM_TO_UINT16(uuid, p_uuid);`",
+      "parentUuid": "0736fd11_033a3585",
+      "revId": "2a8f3950163f28831d3c60037ecbfba7b419b4f7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
