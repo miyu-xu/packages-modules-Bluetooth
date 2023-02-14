@@ -70,6 +70,30 @@
       },
       "revId": "ea976048fa28a029c09cabb9dfc042de13b53a28",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "80cea495_c23c9c63",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 757,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2023-02-14T13:36:42Z",
+      "side": 0,
+      "message": "I have used btif_dm_pin_reply to process le legacy pairing successfully, I guess this is how this API works.",
+      "parentUuid": "5e19c3fb_dc95fbd4",
+      "range": {
+        "startLine": 757,
+        "startChar": 0,
+        "endLine": 757,
+        "endChar": 88
+      },
+      "revId": "ea976048fa28a029c09cabb9dfc042de13b53a28",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

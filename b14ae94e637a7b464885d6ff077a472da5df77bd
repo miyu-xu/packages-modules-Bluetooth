@@ -20,6 +20,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "b529b078_3ab86bb4",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2023-02-14T13:36:42Z",
+      "side": 1,
+      "message": "Thanks! Done.",
+      "parentUuid": "6c05010b_0a2820d5",
+      "revId": "b14ae94e637a7b464885d6ff077a472da5df77bd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "be5c25b6_0f23920b",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 1
@@ -101,6 +119,24 @@
       "side": 1,
       "message": "John\u0027s is already idiomatic in Rust. Its function style allows us to avoid intermediate mutables which is preferred. It\u0027s a bit verbose because Rust currently does not have a way to collect from iterator directly to sized array, hence the `collect::Vec`, `try_into`, and `match` steps.\n\nSince we find using this very often, I recommend we generalize this into a function:\n\n```\nfn to_sized_array\u003cconst S: usize\u003e(v: \u0026Vec\u003cu8\u003e) -\u003e [u8; S] {\n    v.iter().chain(std::iter::repeat(\u00260)).take(S).cloned().collect::\u003cVec\u003cu8\u003e\u003e().try_into().unwrap()\n}\n```\nAnd the usage can be simply:\n```\nbtpin.pin \u003d to_sized_array::\u003c16\u003e(\u0026pin_code);\n```\n\nUsing the `S` const generic guarantees at compile time that the size in `take` matches the array size, so that we can use naked `unwrap()` after `try_into()` safely.",
       "parentUuid": "ee2a2adb_2bd09ba1",
+      "revId": "b14ae94e637a7b464885d6ff077a472da5df77bd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "522e1f8f_5faa9187",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1562,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2023-02-14T13:36:42Z",
+      "side": 1,
+      "message": "Thanks Sonny\u0027s explanation. I have created a new file for this kinds of utilities.",
+      "parentUuid": "2a544ad9_31f29d9c",
       "revId": "b14ae94e637a7b464885d6ff077a472da5df77bd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
