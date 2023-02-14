@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d3300aff_dd9a550f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-02-14T19:05:02Z",
+      "side": 1,
+      "message": "It seems that there is some overlap between this CL and https://r.android.com/2434075. What do we want to do here ?\n\nSome of my comments put on the other CL applies to this one as well.",
+      "revId": "8240be68bef55c72b8475e9960c3e825f18d8629",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
