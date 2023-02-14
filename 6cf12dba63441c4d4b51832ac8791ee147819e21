@@ -3,6 +3,40 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "07d693cb_59181845",
+        "filename": "framework/java/android/bluetooth/BluetoothHearingAid.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-02-14T02:03:10Z",
+      "side": 1,
+      "message": "Don\u0027t need to enumerate return values because the IntDef provides for that. Just state what the return value represents. In this case, you can omit the @return tag per go/android-api-guidelines#methods_2",
+      "revId": "6cf12dba63441c4d4b51832ac8791ee147819e21",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9a7ecc39_f68ae79b",
+        "filename": "framework/java/android/bluetooth/BluetoothHearingAid.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-02-14T02:03:10Z",
+      "side": 1,
+      "message": "Remove period and space here",
+      "revId": "6cf12dba63441c4d4b51832ac8791ee147819e21",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "15963789_6ff991db",
         "filename": "framework/java/android/bluetooth/BluetoothHearingAid.java",
         "patchSetId": 9
@@ -14,6 +48,24 @@
       "writtenOn": "2023-02-14T01:48:22Z",
       "side": 1,
       "message": "nit: remove \"Same\"",
+      "revId": "6cf12dba63441c4d4b51832ac8791ee147819e21",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "48714d32_adbd3d4c",
+        "filename": "framework/java/android/bluetooth/BluetoothHearingAid.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-02-14T02:03:10Z",
+      "side": 1,
+      "message": "Rename to \"isInPairWith\"",
+      "parentUuid": "15963789_6ff991db",
       "revId": "6cf12dba63441c4d4b51832ac8791ee147819e21",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
