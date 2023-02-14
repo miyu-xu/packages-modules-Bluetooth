@@ -66,7 +66,6 @@ class L2CAPProxy(ProfileProxy):
         assert self.connection is None, f"the connection should be None for the first call"
 
         time.sleep(2)  # avoid timing issue
-        self.connection = self.host.GetLEConnection(public=pts_addr).connection
 
         psm = 0x25  # default TSPX_spsm value
         if test == 'L2CAP/LE/CFC/BV-04-C':

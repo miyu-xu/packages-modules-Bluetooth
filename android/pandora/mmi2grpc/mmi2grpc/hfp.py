@@ -146,8 +146,6 @@ class HFPProxy(ProfileProxy):
         Implementation Under Test (IUT).
         """
 
-        self.connection = self.host.GetConnection(address=pts_addr).connection
-
         def disable_slc():
             time.sleep(2)
             if "HFP/HF" in test:
@@ -238,8 +236,6 @@ class HFPProxy(ProfileProxy):
         level connection (SLC) or power-off the IUT.
         """
 
-        self.connection = self.host.GetConnection(address=pts_addr).connection
-
         def disable_audio():
             time.sleep(2)
             if "HFP/HF" in test:
@@ -266,8 +262,6 @@ class HFPProxy(ProfileProxy):
         Implementation Under Test (IUT) to the PTS.
         """
 
-        self.connection = self.host.GetConnection(address=pts_addr).connection
-
         def enable_audio():
             time.sleep(2)
             if "HFP/HF" in test:
@@ -286,8 +280,6 @@ class HFPProxy(ProfileProxy):
         Implementation Under Test (IUT) and the PTS.  If necessary, it is OK to
         close the service level connection. Do not power-off the IUT.
         """
-
-        self.connection = self.host.GetConnection(address=pts_addr).connection
 
         def disable_slc():
             time.sleep(2)
@@ -408,8 +400,6 @@ class HFPProxy(ProfileProxy):
         Click OK. Then, disable the control channel, such that the AG is de-
         registered.
         """
-
-        self.connection = self.host.GetConnection(address=pts_addr).connection
 
         def disable_slc():
             time.sleep(2)
@@ -604,7 +594,7 @@ class HFPProxy(ProfileProxy):
         if "HFP/HF" not in test:
             self.hfp.SetVoiceRecognition(
                 enabled=True,
-                connection=self.host.GetConnection(address=pts_addr).connection,
+                connection=self.connection,
             )
 
         return "OK"
@@ -636,8 +626,6 @@ class HFPProxy(ProfileProxy):
         Test (IUT).
         """
 
-        self.connection = self.host.GetConnection(address=pts_addr).connection
-
         def reject_call():
             time.sleep(2)
             if "HFP/HF" in test:
@@ -655,8 +643,6 @@ class HFPProxy(ProfileProxy):
         Click Ok, then answer the incoming call using the Implementation Under
         Test (IUT).
         """
-
-        self.connection = self.host.GetConnection(address=pts_addr).connection
 
         def answer_call():
             time.sleep(2)
@@ -704,8 +690,6 @@ class HFPProxy(ProfileProxy):
         (IUT).
         """
 
-        self.connection = self.host.GetConnection(address=pts_addr).connection
-
         def disable_call():
             time.sleep(2)
             self.hfp.EndCallAsHandsfree(connection=self.connection)
@@ -748,8 +732,6 @@ class HFPProxy(ProfileProxy):
         (IUT) using an enterted phone number.
         """
 
-        self.connection = self.host.GetConnection(address=pts_addr).connection
-
         def disable_call():
             time.sleep(2)
             self.hfp.MakeCallAsHandsfree(connection=self.connection, number="42")
@@ -779,8 +761,6 @@ class HFPProxy(ProfileProxy):
         2. Click OK, make the held/waiting call active, placing
         the active call on hold.
         """
-
-        self.connection = self.host.GetConnection(address=pts_addr).connection
 
         def call_swap_then_disable_held_alternative():
             time.sleep(2)
@@ -818,7 +798,7 @@ class HFPProxy(ProfileProxy):
 
         self.hfp.SetVoiceRecognitionAsHandsfree(
             enabled=True,
-            connection=self.host.GetConnection(address=pts_addr).connection,
+            connection=self.connection,
         )
 
         return "OK"
@@ -831,7 +811,7 @@ class HFPProxy(ProfileProxy):
 
         self.hfp.SetVoiceRecognitionAsHandsfree(
             enabled=False,
-            connection=self.host.GetConnection(address=pts_addr).connection,
+            connection=self.connection,
         )
 
         return "OK"
@@ -843,7 +823,7 @@ class HFPProxy(ProfileProxy):
         """
 
         self.hfp.SendDtmfFromHandsfree(
-            connection=self.host.GetConnection(address=pts_addr).connection,
+            connection=self.connection,
             code=dtmf[0].encode("ascii")[0],
         )
 
