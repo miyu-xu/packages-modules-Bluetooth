@@ -16,6 +16,24 @@
       "message": "We should be more descriptive about what this priority means in terms of connection interval, power, etc.",
       "revId": "35e1b034e61af152a3688dbb190a1e8c7881e0b1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "286e88a9_ce1d8cf9",
+        "filename": "framework/java/android/bluetooth/BluetoothGatt.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-02-14T21:17:58Z",
+      "side": 1,
+      "message": "Thanks for the call out - done, PTAL.",
+      "parentUuid": "4a8f6529_c0aa8b8e",
+      "revId": "35e1b034e61af152a3688dbb190a1e8c7881e0b1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
