@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c02a7d76_5cc1d882",
+        "filename": "android/pandora/server/src/com/android/pandora/Host.kt",
+        "patchSetId": 4
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1937985
+      },
+      "writtenOn": "2023-02-14T21:33:55Z",
+      "side": 1,
+      "message": "It\u0027s definitely possible but will not work the intended way, in this case we want to save which \"exact\" instances has already been returned from the `WaitConnections`. Matching on the address instead will result on the impossibility on waiting twice a connection with the same address (including a disconnection btw them)",
+      "parentUuid": "0fe0839e_d83c865c",
+      "range": {
+        "startLine": 87,
+        "startChar": 44,
+        "endLine": 87,
+        "endChar": 47
+      },
+      "revId": "9ae0f01d7bdb403e04897944fcc3e6cfb925c3b8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2b259bdf_d510d684",
         "filename": "android/pandora/server/src/com/android/pandora/Host.kt",
         "patchSetId": 4
@@ -43,6 +67,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "44bad9a5_05df6818",
+        "filename": "android/pandora/server/src/com/android/pandora/Host.kt",
+        "patchSetId": 4
+      },
+      "lineNbr": 352,
+      "author": {
+        "id": 1937985
+      },
+      "writtenOn": "2023-02-14T21:33:55Z",
+      "side": 1,
+      "message": "We are removing from the set on device disconnection, if think it\u0027s the intended way, what do you think ?",
+      "parentUuid": "2b259bdf_d510d684",
+      "revId": "9ae0f01d7bdb403e04897944fcc3e6cfb925c3b8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "67f62542_1e3c0d97",
         "filename": "android/pandora/server/src/com/android/pandora/Host.kt",
         "patchSetId": 4
@@ -54,6 +96,24 @@
       "writtenOn": "2023-02-13T22:58:40Z",
       "side": 1,
       "message": "We should remove from initiatedConnection here.",
+      "revId": "9ae0f01d7bdb403e04897944fcc3e6cfb925c3b8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cb35b0f6_b25ca879",
+        "filename": "android/pandora/server/src/com/android/pandora/Host.kt",
+        "patchSetId": 4
+      },
+      "lineNbr": 453,
+      "author": {
+        "id": 1937985
+      },
+      "writtenOn": "2023-02-14T21:33:55Z",
+      "side": 1,
+      "message": "Same as above",
+      "parentUuid": "67f62542_1e3c0d97",
       "revId": "9ae0f01d7bdb403e04897944fcc3e6cfb925c3b8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
