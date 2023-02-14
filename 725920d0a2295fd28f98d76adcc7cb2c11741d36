@@ -108,6 +108,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "54ce86a8_cc8ffc85",
+        "filename": "framework/java/android/bluetooth/BluetoothQualityReport.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-02-14T01:02:48Z",
+      "side": 1,
+      "message": "This is actually coming from Qualcomm and with a Linux Foundation header.\n\nOr we can put 2 lines, one with linux foundation in 2019 and 2023 android OSP",
+      "parentUuid": "82bcf1b6_27e53b87",
+      "revId": "725920d0a2295fd28f98d76adcc7cb2c11741d36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c68c12d8_71b5b256",
         "filename": "framework/java/android/bluetooth/BluetoothQualityReport.java",
         "patchSetId": 21
