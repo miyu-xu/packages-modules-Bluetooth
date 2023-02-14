@@ -70,6 +70,30 @@
       },
       "revId": "82d60f51bc970f7ced1597d4894ca15900c2cd8d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b47679a7_34935128",
+        "filename": "android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 452,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-02-14T22:46:40Z",
+      "side": 1,
+      "message": "I revert this in last change to be able to merge the CL.\nLet\u0027s look in a second step how we can resolve this",
+      "parentUuid": "4ab07d98_1a86d958",
+      "range": {
+        "startLine": 449,
+        "startChar": 54,
+        "endLine": 452,
+        "endChar": 55
+      },
+      "revId": "82d60f51bc970f7ced1597d4894ca15900c2cd8d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
