@@ -194,8 +194,6 @@ void TestEnvironment::SetUpTestChannel() {
   test_channel_.SetTimerPeriod({"5"});
   test_channel_.StartTimer({});
 
-  test_channel_.FromFile(default_commands_file_);
-
   if (!transport_configured) {
     LOG_ERROR("Test channel SetUp failed.");
     return;
