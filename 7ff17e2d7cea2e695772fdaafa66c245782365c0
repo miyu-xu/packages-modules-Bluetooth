@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "18fd9184_cff2f757",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 1562,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2023-02-14T18:56:33Z",
+      "side": 1,
+      "message": "You can immediately initialize the `btpin` with the value:\n```\nlet mut btpin \u003d BtPinCode { pin: array_utils::... };\n```\n\nUnfortunately the C interface is not `const` so this has to be mutable. Optional thing that you can follow up separately is to get rid of this mut by changing the C interface in here http://osscs/android/platform/superproject/+/master:packages/modules/Bluetooth/system/include/hardware/bluetooth.h;drc\u003d9b25969d7bf3e31c5b7fec5b34c37a304b6a7fa7;bpv\u003d1;bpt\u003d1;l\u003d700:\n```\n  int (*pin_reply)(const RawAddress* bd_addr, uint8_t accept, uint8_t pin_len,\n                   const bt_pin_code_t* pin_code);\n```",
+      "range": {
+        "startLine": 1562,
+        "startChar": 12,
+        "endLine": 1562,
+        "endChar": 15
+      },
+      "revId": "7ff17e2d7cea2e695772fdaafa66c245782365c0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8808d698_68054b15",
+        "filename": "system/gd/rust/linux/utils/src/array_utils.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2023-02-14T18:56:33Z",
+      "side": 1,
+      "message": "Add a doc comment (`///`) explaining what this does. I would say:\n```\n/// Converts a vector of bytes to a fixed sized array. If the vector is longer it will be truncated and if shorter zero padding will be added at the end.\n```",
+      "revId": "7ff17e2d7cea2e695772fdaafa66c245782365c0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3004c552_2cf4423f",
+        "filename": "system/gd/rust/linux/utils/src/array_utils.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2023-02-14T18:56:33Z",
+      "side": 1,
+      "message": "Add a comment why it\u0027s safe to call naked unwrap here. I would say:\n```\n// Okay to do naked unwrap since we enforce at compile time that the iter length is the same as the destination array length.\n```",
+      "revId": "7ff17e2d7cea2e695772fdaafa66c245782365c0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
