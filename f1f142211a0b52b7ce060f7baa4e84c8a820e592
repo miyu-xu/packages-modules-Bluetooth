@@ -52,6 +52,24 @@
       "parentUuid": "82867ae4_37e3592d",
       "revId": "f1f142211a0b52b7ce060f7baa4e84c8a820e592",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f91753e4_a24fe725",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 639,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-02-14T02:35:22Z",
+      "side": 1,
+      "message": "Acknowledged. Abhishek suggested this in another CL as well. Since there are already tons of `addr.to_string()`/`{:?}` use cases in this file I will upload a refactor CL after my changes land.",
+      "parentUuid": "810e0b49_aa44afc2",
+      "revId": "f1f142211a0b52b7ce060f7baa4e84c8a820e592",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
