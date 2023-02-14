@@ -22,6 +22,30 @@
       },
       "revId": "ea976048fa28a029c09cabb9dfc042de13b53a28",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "22178e8c_bf15bc09",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 757,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2023-02-14T03:07:19Z",
+      "side": 0,
+      "message": "I\u0027m little bit confused by ours API.\nThis function will call btif_dm_pin_reply.\nIn btif_dm_pin_reply, I saw it convert them from ascii uint_8* array back to u32:\n\nhttps://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/system/btif/src/btif_dm.cc;l\u003d2525?q\u003dbtif_dm_pin_reply",
+      "parentUuid": "1ee32f65_7413268f",
+      "range": {
+        "startLine": 757,
+        "startChar": 0,
+        "endLine": 757,
+        "endChar": 88
+      },
+      "revId": "ea976048fa28a029c09cabb9dfc042de13b53a28",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
