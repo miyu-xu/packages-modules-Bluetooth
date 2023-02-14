@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "15963789_6ff991db",
+        "filename": "framework/java/android/bluetooth/BluetoothHearingAid.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-02-14T01:48:22Z",
+      "side": 1,
+      "message": "nit: remove \"Same\"",
+      "revId": "6cf12dba63441c4d4b51832ac8791ee147819e21",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0fd64376_0d891377",
+        "filename": "framework/java/android/bluetooth/BluetoothHearingAid.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-02-14T01:48:22Z",
+      "side": 1,
+      "message": "nit: Make this @hide",
+      "revId": "6cf12dba63441c4d4b51832ac8791ee147819e21",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "60e87c71_47b8c86b",
+        "filename": "framework/java/android/bluetooth/BluetoothHearingAid.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-02-14T01:48:22Z",
+      "side": 1,
+      "message": "Position this below the other constructor (easier to identify when all constructors are at the top of the class)",
+      "revId": "6cf12dba63441c4d4b51832ac8791ee147819e21",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
