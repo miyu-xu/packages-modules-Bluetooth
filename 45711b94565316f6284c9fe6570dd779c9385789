@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "12b0d792_4a6c8546",
+        "filename": "android/app/src/com/android/bluetooth/a2dp/A2dpService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1501,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2023-02-14T21:21:44Z",
+      "side": 1,
+      "message": "William will have to cherry-pick it first as this is part of a security fix",
+      "parentUuid": "b8ff71b3_1f758e1b",
+      "revId": "45711b94565316f6284c9fe6570dd779c9385789",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9307b300_c40cf01f",
         "filename": "android/app/src/com/android/bluetooth/a2dp/A2dpService.java",
         "patchSetId": 2
