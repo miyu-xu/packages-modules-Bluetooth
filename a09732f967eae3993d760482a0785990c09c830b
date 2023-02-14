@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ab00a731_cc5de194",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 419,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2023-02-14T01:22:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d1689708_1c5b2082",
+      "revId": "a09732f967eae3993d760482a0785990c09c830b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "dfeae5c3_c580ed25",
@@ -31,6 +49,24 @@
       "writtenOn": "2023-02-13T18:36:00Z",
       "side": 1,
       "message": "You should do this before notifying the signal notifier.",
+      "revId": "a09732f967eae3993d760482a0785990c09c830b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "32d29b34_a6d14c49",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 886,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2023-02-14T01:22:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dfeae5c3_c580ed25",
       "revId": "a09732f967eae3993d760482a0785990c09c830b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
