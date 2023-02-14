@@ -932,6 +932,7 @@ public class AvrcpControllerService extends ProfileService {
             setActiveDevice(null);
         }
         mDeviceStateMap.remove(stateMachine.getDevice());
+        stateMachine.quit();
     }
 
     public List<BluetoothDevice> getConnectedDevices() {

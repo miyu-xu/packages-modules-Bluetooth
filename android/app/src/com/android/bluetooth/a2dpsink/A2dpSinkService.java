@@ -434,6 +434,7 @@ public class A2dpSinkService extends ProfileService {
     @VisibleForTesting
     public void removeStateMachine(A2dpSinkStateMachine stateMachine) {
         mDeviceStateMap.remove(stateMachine.getDevice());
+        stateMachine.quit();
     }
 
     public List<BluetoothDevice> getConnectedDevices() {
@@ -441,17 +442,13 @@ public class A2dpSinkService extends ProfileService {
     }
 
     protected A2dpSinkStateMachine getOrCreateStateMachine(BluetoothDevice device) {
-        A2dpSinkStateMachine newStateMachine =
-                new A2dpSinkStateMachine(device, this, mNativeInterface);
-        A2dpSinkStateMachine existingStateMachine =
-                mDeviceStateMap.putIfAbsent(device, newStateMachine);
-        // Given null is not a valid value in our map, ConcurrentHashMap will return null if the
-        // key was absent and our new value was added. We should then start and return it.
-        if (existingStateMachine == null) {
-            newStateMachine.start();
-            return newStateMachine;
+        A2dpSinkStateMachine stateMachine = mDeviceStateMap.get(device);
+        if (stateMachine == null) {
+            stateMachine = new A2dpSinkStateMachine(device, this, mNativeInterface);
+            mDeviceStateMap.put(device, stateMachine);
+            stateMachine.start();
         }
-        return existingStateMachine;
+        return stateMachine;
     }
 
     @VisibleForTesting
