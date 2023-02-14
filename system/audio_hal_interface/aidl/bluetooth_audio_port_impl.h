@@ -30,6 +30,7 @@ using ::aidl::android::hardware::bluetooth::audio::CodecType;
 using ::aidl::android::hardware::bluetooth::audio::IBluetoothAudioProvider;
 using ::aidl::android::hardware::bluetooth::audio::LatencyMode;
 using ::aidl::android::hardware::bluetooth::audio::PresentationPosition;
+using ::aidl::android::hardware::bluetooth::audio::StreamingParameters;
 
 class BluetoothAudioPortImpl : public BnBluetoothAudioPort {
  public:
@@ -53,6 +54,9 @@ class BluetoothAudioPortImpl : public BnBluetoothAudioPort {
       const SinkMetadata& sink_metadata) override;
 
   ndk::ScopedAStatus setLatencyMode(LatencyMode latency_mode) override;
+
+  ndk::ScopedAStatus setStreamingParameters(
+      StreamingParameters streamingParameters) override;
 
  protected:
   virtual ~BluetoothAudioPortImpl();
