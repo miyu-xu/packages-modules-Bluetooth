@@ -3,6 +3,108 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "71c6b6ef_074cfbb3",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 15
+      },
+      "lineNbr": 1387,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2023-02-14T21:49:58Z",
+      "side": 1,
+      "message": "Shouldn\u0027t this be done only if we don\u0027t find the ASHA service data?",
+      "revId": "4d6f621c0dabe1146913b420467c117e85d36523",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5a1a2efc_29cabe1d",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 15
+      },
+      "lineNbr": 1394,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2023-02-14T21:49:58Z",
+      "side": 1,
+      "message": "Shouldn\u0027t this be done only if we don\u0027t find the ASHA service data?",
+      "revId": "4d6f621c0dabe1146913b420467c117e85d36523",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a2e9f75b_0b9600b9",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 15
+      },
+      "lineNbr": 1400,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2023-02-14T21:49:58Z",
+      "side": 1,
+      "message": "Can we move ASHA related code to a separate function? This is already a too big of a function.",
+      "revId": "4d6f621c0dabe1146913b420467c117e85d36523",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "af8b41f5_0dc01b5f",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 15
+      },
+      "lineNbr": 1405,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2023-02-14T21:49:58Z",
+      "side": 1,
+      "message": "This is not very easy to read. Can we simplify this? Something like:\nwhile (p_service_data \u003d Get(ptr, len, type, \u0026service_data_len)) {\n...\n\n// calculate next ptr\n// calculate next len\n}",
+      "revId": "4d6f621c0dabe1146913b420467c117e85d36523",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1e804703_025c6863",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 15
+      },
+      "lineNbr": 1418,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2023-02-14T21:49:58Z",
+      "side": 1,
+      "message": "We must ensure that the service data length is valid to prevent OOB access.",
+      "revId": "4d6f621c0dabe1146913b420467c117e85d36523",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cdb5c7c1_4d4eebb3",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 15
+      },
+      "lineNbr": 1422,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2023-02-14T21:49:58Z",
+      "side": 1,
+      "message": "asha_capability is a 16-bit signed integer while p_service_data is 8-bit unsigned integer. We should ensure that readers know that we are reading an 8-bit value, and that it is not a mistake.",
+      "revId": "4d6f621c0dabe1146913b420467c117e85d36523",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e063487b_da82708a",
         "filename": "system/btif/src/btif_dm.cc",
         "patchSetId": 15
