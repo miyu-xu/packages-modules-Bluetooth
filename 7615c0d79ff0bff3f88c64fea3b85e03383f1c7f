@@ -34,6 +34,23 @@
       "parentUuid": "fbc6e7d0_789841b7",
       "revId": "7615c0d79ff0bff3f88c64fea3b85e03383f1c7f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2cf875cb_8495d386",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1882545
+      },
+      "writtenOn": "2023-02-14T02:52:21Z",
+      "side": 1,
+      "message": "I am unable to access above failure link.\nI didn\u0027t see any issue in local build.\nCould you please check what caused the failure?",
+      "revId": "7615c0d79ff0bff3f88c64fea3b85e03383f1c7f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
