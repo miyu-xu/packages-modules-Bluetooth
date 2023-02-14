@@ -585,6 +585,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ecf18c2a_1b380659",
+        "filename": "framework/java/android/bluetooth/BluetoothQualityReport.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 421,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-02-14T22:08:22Z",
+      "side": 1,
+      "message": "Friendly ping here",
+      "parentUuid": "5048242c_cec1ff4f",
+      "revId": "5c1b807a38a57640d12034b01b44e9d27f37ac36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "54992865_184c0fa0",
         "filename": "framework/java/android/bluetooth/BluetoothQualityReport.java",
         "patchSetId": 20

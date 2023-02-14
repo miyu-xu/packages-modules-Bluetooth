@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "166b4698_9891c06f",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 22
+      },
+      "lineNbr": 238,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-02-14T22:08:22Z",
+      "side": 1,
+      "message": "We\u0027ve decided to use callbacks, so we should remove this",
+      "revId": "5dd1129248072ce658ad1d18187f29cd66f92e20",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
