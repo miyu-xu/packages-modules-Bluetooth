@@ -22,6 +22,30 @@
       },
       "revId": "632cac52184621ba2f1816f924a227eae2030061",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3322399f_a4beeb3b",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/hfp/HeadsetServiceAndStateMachineTest.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 668,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2023-02-14T08:20:58Z",
+      "side": 1,
+      "message": "I also observed this situation when developing the original CL.\nThe condition to send BSIR is `when device connects and \u003e1 devices connected` or `when device disconnects and \u003c\u003d1 devices connected`.\nThus, in this case, there is only 1 device connected though it\u0027s new but it still doesn\u0027t trigger BSIR.\nIt\u0027s not widely reported probably because most users don\u0027t connect so many HS and some HS models don\u0027t suffer from this bug.",
+      "parentUuid": "14e6cb5b_0960edb2",
+      "range": {
+        "startLine": 668,
+        "startChar": 0,
+        "endLine": 668,
+        "endChar": 64
+      },
+      "revId": "632cac52184621ba2f1816f924a227eae2030061",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
