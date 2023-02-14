@@ -72,6 +72,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8ccbc57a_38a53e49",
+        "filename": "framework/api/system-current.txt",
+        "patchSetId": 21
+      },
+      "lineNbr": 706,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-02-14T21:25:59Z",
+      "side": 1,
+      "message": "Going with a callback to minimize straining the broadcast queue.",
+      "parentUuid": "c83a13d8_67d02cc6",
+      "range": {
+        "startLine": 706,
+        "startChar": 21,
+        "endLine": 706,
+        "endChar": 43
+      },
+      "revId": "725920d0a2295fd28f98d76adcc7cb2c11741d36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "04a867f2_3d186c19",
@@ -296,6 +320,24 @@
       "side": 1,
       "message": "Done",
       "parentUuid": "3d17ea4c_2fc2f9a5",
+      "revId": "725920d0a2295fd28f98d76adcc7cb2c11741d36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e255e9c9_6ff745a3",
+        "filename": "framework/java/android/bluetooth/BluetoothQualityReport.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 383,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-02-14T21:25:59Z",
+      "side": 1,
+      "message": "Still seeing this in patchset 22",
+      "parentUuid": "642a25c2_a803acb1",
       "revId": "725920d0a2295fd28f98d76adcc7cb2c11741d36",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -591,6 +633,24 @@
       "side": 1,
       "message": "Done",
       "parentUuid": "d8d83d24_ab15c2e3",
+      "revId": "725920d0a2295fd28f98d76adcc7cb2c11741d36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b8fa3667_eb6b2e2e",
+        "filename": "framework/java/android/bluetooth/BluetoothQualityReport.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 830,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-02-14T21:25:59Z",
+      "side": 1,
+      "message": "I meant can the API also return an int that maps to those constants?",
+      "parentUuid": "52968a41_b69af242",
       "revId": "725920d0a2295fd28f98d76adcc7cb2c11741d36",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
