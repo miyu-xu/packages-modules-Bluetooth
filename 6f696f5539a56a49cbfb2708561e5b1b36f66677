@@ -16,6 +16,23 @@
       "message": "+eruffieux for OWNERS stamp on HFP related change.\n\nEtienne - this change is limited to ChromeOS / Linux and just changes the opcode we use to talk to the kernel. The necessary opcode is already available on ChromeOS at the right location.",
       "revId": "6f696f5539a56a49cbfb2708561e5b1b36f66677",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "28d3a410_c99aedbb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1963846
+      },
+      "writtenOn": "2023-02-14T03:37:24Z",
+      "side": 1,
+      "message": "Hi Myles, we need an owner for approval. This is a simple patch that changes the MGMT opcode values. Would you please take a look? Thanks!",
+      "revId": "6f696f5539a56a49cbfb2708561e5b1b36f66677",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
