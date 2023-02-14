@@ -72,6 +72,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "10593545_76a6b372",
+        "filename": "system/test/headless/tamper.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-02-14T23:20:00Z",
+      "side": 1,
+      "message": "API meaning it would be threaded through for the headless test to use, configure and process as needed.",
+      "parentUuid": "f116bd4e_cd7362cd",
+      "range": {
+        "startLine": 34,
+        "startChar": 0,
+        "endLine": 34,
+        "endChar": 11
+      },
+      "revId": "6c945aa09c1e9cf0cb27ef2ddd2e3d8658967898",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8043e573_9ecd8750",
