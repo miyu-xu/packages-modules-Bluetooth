@@ -102,6 +102,24 @@
       "parentUuid": "41d8a680_b96ac590",
       "revId": "7185b3b0cfebaf00308068ad727ed74c98de89f5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fec0df95_fd097c72",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2023-02-15T15:14:16Z",
+      "side": 1,
+      "message": "The reason why I did this way is because I tried to avoid ruining any internal state and modifying existing APIs.\n\nAlso Floss needs the APIs to enable/disable HID and/or HOGP dynamically.\n\nSo which one do you prefer?\n1) as your suggestion, pass parameters to bta_hh_api_enable() to allow desired profiles and disabling undesired ones.\n2) add another apis to register and unregistered callbacks for HID and HOGP.",
+      "parentUuid": "d4790807_0bce655b",
+      "revId": "7185b3b0cfebaf00308068ad727ed74c98de89f5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
