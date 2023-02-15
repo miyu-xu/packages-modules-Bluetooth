@@ -33,6 +33,29 @@
       "message": "Please return an int status code from BluetoothStatusCodes.java. This allows developers to be more aware if an error occurs. We have FEATURE_SUPPORTED and FEATURE_NOT_SUPPORTED codes for the cases where we do get this info, but we can also return error codes if BT is off for example.\n\nAlso please wrap the possible status codes in an IntDef",
       "revId": "8039a177cdad09e5591652b299588a52f056f9fa",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1c0a5a27_c1f5285c",
+        "filename": "system/gd/hci/hci_packets.pdl",
+        "patchSetId": 20
+      },
+      "lineNbr": 5202,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2023-02-15T01:50:04Z",
+      "side": 1,
+      "message": "I think this should be x03 for hci::le_adv_filter_read_extended_features_complete_builder_test",
+      "range": {
+        "startLine": 5202,
+        "startChar": 32,
+        "endLine": 5202,
+        "endChar": 35
+      },
+      "revId": "8039a177cdad09e5591652b299588a52f056f9fa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
