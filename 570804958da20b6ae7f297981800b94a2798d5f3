@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4169f0af_45730715",
+        "filename": "android/app/src/com/android/bluetooth/btservice/storage/DatabaseManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 395,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2023-02-15T22:54:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "220ec32a_9847c2de",
+      "range": {
+        "startLine": 395,
+        "startChar": 28,
+        "endLine": 395,
+        "endChar": 34
+      },
+      "revId": "570804958da20b6ae7f297981800b94a2798d5f3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "27820885_a88bf7f8",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-02-15T21:53:16Z",
       "side": 1,
       "message": "Can we keep this on 2 lines:\n```\nLog.d(TAG, \"getBondedDevicesOrdered: Invalid address for device \"\n + metadata.getAnonymizedAddress());\n```\n\nSame below",
+      "range": {
+        "startLine": 696,
+        "startChar": 20,
+        "endLine": 701,
+        "endChar": 0
+      },
+      "revId": "570804958da20b6ae7f297981800b94a2798d5f3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5974a9a9_6de54c43",
+        "filename": "android/app/src/com/android/bluetooth/btservice/storage/DatabaseManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 701,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2023-02-15T22:54:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "27820885_a88bf7f8",
       "range": {
         "startLine": 696,
         "startChar": 20,
