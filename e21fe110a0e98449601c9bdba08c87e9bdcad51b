@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d8b8d318_22492cc1",
+        "filename": "framework/java/android/bluetooth/BluetoothSocket.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-02-15T22:44:49Z",
+      "side": 1,
+      "message": "Explicitly mention it\u0027s a code for the connect method",
+      "revId": "e21fe110a0e98449601c9bdba08c87e9bdcad51b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c8196942_b4781d8c",
+        "filename": "framework/java/android/bluetooth/BluetoothSocket.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 238,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-02-15T22:44:49Z",
+      "side": 1,
+      "message": "Please make sure we\u0027re consistent with the style on the Javadocs",
+      "revId": "e21fe110a0e98449601c9bdba08c87e9bdcad51b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
