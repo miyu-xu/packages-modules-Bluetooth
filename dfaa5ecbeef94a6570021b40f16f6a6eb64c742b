@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b8dffa58_0583dbfc",
+        "filename": "framework/java/android/bluetooth/BluetoothSocket.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2023-02-15T22:18:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b423cd58_f6204337",
+      "revId": "dfaa5ecbeef94a6570021b40f16f6a6eb64c742b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8d26e591_ac71190d",
@@ -52,6 +70,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "242ebc35_7b86f842",
+        "filename": "framework/java/android/bluetooth/BluetoothSocket.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 484,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2023-02-15T22:18:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2d6d3069_4826afe8",
+      "revId": "dfaa5ecbeef94a6570021b40f16f6a6eb64c742b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4c4b3ffa_3759764e",
@@ -65,6 +101,42 @@
       "writtenOn": "2023-02-15T21:01:01Z",
       "side": 1,
       "message": "Can we also have constants for all of these messages?",
+      "revId": "dfaa5ecbeef94a6570021b40f16f6a6eb64c742b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8ae1c9e4_2d49d03b",
+        "filename": "framework/java/android/bluetooth/BluetoothSocket.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 517,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2023-02-15T22:18:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4c4b3ffa_3759764e",
+      "revId": "dfaa5ecbeef94a6570021b40f16f6a6eb64c742b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f7dae41b_fccad1b4",
+        "filename": "framework/java/android/bluetooth/BluetoothSocket.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 517,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2023-02-15T22:18:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4c4b3ffa_3759764e",
       "revId": "dfaa5ecbeef94a6570021b40f16f6a6eb64c742b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
