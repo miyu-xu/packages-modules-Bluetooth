@@ -94,6 +94,30 @@
       },
       "revId": "d54fc900038a20e421d49eba605a31d4c5cac35a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d5002fe9_eb4ed700",
+        "filename": "framework/api/current.txt",
+        "patchSetId": 10
+      },
+      "lineNbr": 1291,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-02-15T19:13:24Z",
+      "side": 1,
+      "message": "Hi Nitin,\n\nYes, we can change any System API to public API in the future. We just cannot do it the other way around (public --\u003e system).",
+      "parentUuid": "e0e643fe_e23d7474",
+      "range": {
+        "startLine": 1291,
+        "startChar": 22,
+        "endLine": 1291,
+        "endChar": 33
+      },
+      "revId": "d54fc900038a20e421d49eba605a31d4c5cac35a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8e9bba59_52db8f3b",
+        "filename": "framework/java/android/bluetooth/le/ScanRecord.java",
+        "patchSetId": 22
+      },
+      "lineNbr": 440,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-02-15T19:13:24Z",
+      "side": 1,
+      "message": "Can we also keep this as a System API? I worry about the ramifications of allowing for Wifi device discovery to 3p apps outside of Wifi codebase or permissions. We\u0027d need to consult with the Wifi team if we want to make this public, so I would keep this system for now.",
+      "revId": "a9e8d334b215a0c46c510de3e6ddfa9f001ff3cb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
