@@ -33,6 +33,46 @@
       "message": "You don\u0027t ever read this file again -- do you need to save to this?",
       "revId": "0661039ee8e85004321c3d9ab7c128535f37fe1d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "daca958f_3fd640ed",
+        "filename": "system/gd/rust/linux/mgmt/src/config_util.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 239,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2023-02-15T18:29:11Z",
+      "side": 1,
+      "message": "nit: You can write `enabled as i32` (from https://doc.rust-lang.org/std/primitive.bool.html)",
+      "range": {
+        "startLine": 239,
+        "startChar": 31,
+        "endLine": 239,
+        "endChar": 62
+      },
+      "revId": "0661039ee8e85004321c3d9ab7c128535f37fe1d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "efc30f63_9552e4ef",
+        "filename": "system/gd/rust/linux/mgmt/src/iface_bluetooth_experimental.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2023-02-15T18:29:11Z",
+      "side": 1,
+      "message": "Since the internal can fail, it\u0027s better for this API to also signal the success of this call. I suggest this returns a bool.",
+      "revId": "0661039ee8e85004321c3d9ab7c128535f37fe1d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
