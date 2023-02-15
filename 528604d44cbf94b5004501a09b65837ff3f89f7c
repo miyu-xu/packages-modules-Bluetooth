@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8b91e84b_3fad0f5e",
+        "filename": "android/app/src/com/android/bluetooth/btservice/MetricsLogger.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1581454
+      },
+      "writtenOn": "2023-02-15T22:39:05Z",
+      "side": 1,
+      "message": "2 checks reduce the chance of race condition.\nhttps://www.digitalocean.com/community/tutorials/thread-safety-in-java-singleton-classes",
+      "revId": "528604d44cbf94b5004501a09b65837ff3f89f7c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "dae4e455_9b838629",
         "filename": "android/app/src/com/android/bluetooth/gatt/AppScanStats.java",
         "patchSetId": 10
