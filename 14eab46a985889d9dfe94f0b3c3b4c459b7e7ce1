@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "de28f7c5_6efdb8a3",
+        "filename": "system/stack/btm/btm_dev.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 663,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-02-15T00:33:34Z",
+      "side": 1,
+      "message": "Is the filter ever used?",
+      "revId": "14eab46a985889d9dfe94f0b3c3b4c459b7e7ce1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
