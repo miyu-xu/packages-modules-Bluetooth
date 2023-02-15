@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "58e4b03d_249cb978",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 3444,
+      "author": {
+        "id": 1306903
+      },
+      "writtenOn": "2023-02-15T10:07:07Z",
+      "side": 1,
+      "message": "Please add the description of - only return FEATURE_SUPPORTED if local and remote device both support audio policy",
+      "range": {
+        "startLine": 3444,
+        "startChar": 0,
+        "endLine": 3444,
+        "endChar": 6
+      },
+      "revId": "8b5564b939f85c5c3b45200189355baab6047630",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f4765790_64bb0087",
+        "filename": "framework/java/android/bluetooth/BluetoothSinkAudioPolicy.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 267,
+      "author": {
+        "id": 1306903
+      },
+      "writtenOn": "2023-02-15T10:07:07Z",
+      "side": 1,
+      "message": "setActiveDevicePolicyAfterConnection",
+      "range": {
+        "startLine": 267,
+        "startChar": 32,
+        "endLine": 267,
+        "endChar": 55
+      },
+      "revId": "8b5564b939f85c5c3b45200189355baab6047630",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a71d4634_6e63df3c",
+        "filename": "framework/java/android/bluetooth/BluetoothStatusCodes.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 590,
+      "author": {
+        "id": 1306903
+      },
+      "writtenOn": "2023-02-15T10:07:07Z",
+      "side": 1,
+      "message": "Can we remove _YET?",
+      "range": {
+        "startLine": 590,
+        "startChar": 50,
+        "endLine": 590,
+        "endChar": 54
+      },
+      "revId": "8b5564b939f85c5c3b45200189355baab6047630",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
