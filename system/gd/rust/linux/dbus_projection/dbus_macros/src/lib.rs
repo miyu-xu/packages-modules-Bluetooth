@@ -578,7 +578,7 @@ pub fn dbus_propmap(attr: TokenStream, item: TokenStream) -> TokenStream {
 
     let mut insert_map_fields = quote! {};
     for field in ast.fields {
-        let field_ident = field.ident;
+        let field_ident = field.ident.clone();
 
         if field_ident.is_none() {
             continue;
