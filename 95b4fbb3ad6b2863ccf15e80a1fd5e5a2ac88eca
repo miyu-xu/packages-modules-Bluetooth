@@ -22,6 +22,30 @@
       },
       "revId": "95b4fbb3ad6b2863ccf15e80a1fd5e5a2ac88eca",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ca7aae40_c3a729f0",
+        "filename": "android/app/src/com/android/bluetooth/gatt/AppScanStats.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 396,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2023-02-15T04:39:55Z",
+      "side": 1,
+      "message": "Do we want to check \"weightedDuration\" which is written to MetricsLogger API?\nIf so, weightedDuration would not be a determined value because it depends on System Clock. Do we want to check the value?",
+      "parentUuid": "b4ae9f21_954399e5",
+      "range": {
+        "startLine": 373,
+        "startChar": 0,
+        "endLine": 396,
+        "endChar": 0
+      },
+      "revId": "95b4fbb3ad6b2863ccf15e80a1fd5e5a2ac88eca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
