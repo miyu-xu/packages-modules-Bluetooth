@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ba6a992c_b675f937",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 1562,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2023-02-15T13:20:42Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "18fd9184_cff2f757",
+      "range": {
+        "startLine": 1562,
+        "startChar": 12,
+        "endLine": 1562,
+        "endChar": 15
+      },
+      "revId": "7ff17e2d7cea2e695772fdaafa66c245782365c0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8808d698_68054b15",
@@ -41,6 +65,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ef943716_78c3863a",
+        "filename": "system/gd/rust/linux/utils/src/array_utils.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2023-02-15T13:20:42Z",
+      "side": 1,
+      "message": "Thanks for making our code more readable!",
+      "parentUuid": "8808d698_68054b15",
+      "revId": "7ff17e2d7cea2e695772fdaafa66c245782365c0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3004c552_2cf4423f",
@@ -54,6 +96,24 @@
       "writtenOn": "2023-02-14T18:56:33Z",
       "side": 1,
       "message": "Add a comment why it\u0027s safe to call naked unwrap here. I would say:\n```\n// Okay to do naked unwrap since we enforce at compile time that the iter length is the same as the destination array length.\n```",
+      "revId": "7ff17e2d7cea2e695772fdaafa66c245782365c0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f8fb6cf4_19cd6cf3",
+        "filename": "system/gd/rust/linux/utils/src/array_utils.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2023-02-15T13:20:42Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "3004c552_2cf4423f",
       "revId": "7ff17e2d7cea2e695772fdaafa66c245782365c0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
