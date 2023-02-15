@@ -60,6 +60,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e9738e07_1e13684e",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 817,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-02-15T22:20:05Z",
+      "side": 1,
+      "message": "`The If cascade is very verbose` it\u0027s java...\n\nPersonally I would refactor all of this but for now just getting this issue taken care of.\n\nI will examine your solution.",
+      "parentUuid": "3a6d1cd5_0f8b1187",
+      "range": {
+        "startLine": 817,
+        "startChar": 0,
+        "endLine": 817,
+        "endChar": 3
+      },
+      "revId": "32102c6312fd434be67181d8aba0f620f36834fe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "92798bbb_eb17039c",
         "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
         "patchSetId": 20
@@ -83,6 +107,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "649191f1_5331b853",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 834,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-02-15T22:20:05Z",
+      "side": 1,
+      "message": "Yes...the original logic was already obfuscated by not grouping the like-with-like logic.",
+      "parentUuid": "92798bbb_eb17039c",
+      "range": {
+        "startLine": 834,
+        "startChar": 0,
+        "endLine": 834,
+        "endChar": 67
+      },
+      "revId": "32102c6312fd434be67181d8aba0f620f36834fe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6d3c1df2_d96fe981",
         "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
         "patchSetId": 20
@@ -94,6 +142,30 @@
       "writtenOn": "2022-12-09T00:28:33Z",
       "side": 1,
       "message": "Why all your logs are formatted this way ?\nI Never encountered this before\n( cf [code search](https://source.corp.google.com/search?q\u003df:packages%2Fmodules%2FBluetooth%20f:java$%20AND%20(%20errorLog%5C(%20OR%20warnLog%5C(%20%20OR%20%20infoLog%5C(%20)\u0026sq\u003drepo:googleplex-android%2Fplatform%2Fsuperproject%20branch:master ) )",
+      "range": {
+        "startLine": 1130,
+        "startChar": 19,
+        "endLine": 1131,
+        "endChar": 22
+      },
+      "revId": "32102c6312fd434be67181d8aba0f620f36834fe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "499140a1_357a8407",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 1131,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-02-15T22:20:05Z",
+      "side": 1,
+      "message": "I have no idea...I use an arbitrary java formatting utility that successfully passed the presubmit.\n\nI will see what others use.",
+      "parentUuid": "6d3c1df2_d96fe981",
       "range": {
         "startLine": 1130,
         "startChar": 19,
