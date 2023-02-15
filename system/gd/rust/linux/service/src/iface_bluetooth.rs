@@ -7,6 +7,12 @@ use bt_topshim::profiles::ProfileConnectionState;
 
 use bt_topshim::profiles::hid_host::BthhReportType;
 
+use bt_topshim::profiles::sdp::{
+    BtSdpDipRecord, BtSdpHeader, BtSdpHeaderOverlay, BtSdpMasRecord, BtSdpMnsRecord,
+    BtSdpOpsRecord, BtSdpPceRecord, BtSdpPseRecord, BtSdpRecord, BtSdpSapRecord, BtSdpType,
+    SupportedFormatsList,
+};
+
 use btstack::bluetooth::{
     Bluetooth, BluetoothDevice, IBluetooth, IBluetoothCallback, IBluetoothConnectionCallback,
     IBluetoothQA,
@@ -111,6 +117,19 @@ impl IBluetoothCallback for BluetoothCallbackDBus {
     fn on_bond_state_changed(&self, status: u32, address: String, state: u32) {
         dbus_generated!()
     }
+    #[dbus_method("OnSdpSearchComplete")]
+    fn on_sdp_search_complete(
+        &self,
+        remote_device: BluetoothDevice,
+        searched_uuid: Uuid128Bit,
+        sdp_records: Vec<BtSdpRecord>,
+    ) {
+        dbus_generated!()
+    }
+    #[dbus_method("OnSdpRecordCreated")]
+    fn on_sdp_record_created(&self, record: BtSdpRecord, handle: i32) {
+        dbus_generated!()
+    }
 }
 
 impl_dbus_arg_enum!(BtBondState);
@@ -134,6 +153,262 @@ impl IBluetoothConnectionCallback for BluetoothConnectionCallbackDBus {
     #[dbus_method("OnDeviceDisconnected")]
     fn on_device_disconnected(&self, remote_device: BluetoothDevice) {
         dbus_generated!()
+    }
+}
+
+impl_dbus_arg_enum!(BtSdpType);
+
+#[dbus_propmap(BtSdpHeader)]
+pub struct BtSdpHeaderDBus {
+    sdp_type: BtSdpType,
+    uuid: Uuid,
+    service_name_length: u32,
+    service_name: String,
+    rfcomm_channel_number: i32,
+    l2cap_psm: i32,
+    profile_version: i32,
+}
+
+#[dbus_propmap(BtSdpHeaderOverlay)]
+struct BtSdpHeaderOverlayDBus {
+    hdr: BtSdpHeader,
+    user1_len: i32,
+    user1_data: Vec<u8>,
+    user2_len: i32,
+    user2_data: Vec<u8>,
+}
+
+#[dbus_propmap(BtSdpMasRecord)]
+struct BtSdpMasRecordDBus {
+    hdr: BtSdpHeaderOverlay,
+    mas_instance_id: u32,
+    supported_features: u32,
+    supported_message_types: u32,
+}
+
+#[dbus_propmap(BtSdpMnsRecord)]
+struct BtSdpMnsRecordDBus {
+    hdr: BtSdpHeaderOverlay,
+    supported_features: u32,
+}
+
+#[dbus_propmap(BtSdpPseRecord)]
+struct BtSdpPseRecordDBus {
+    hdr: BtSdpHeaderOverlay,
+    supported_features: u32,
+    supported_repositories: u32,
+}
+
+#[dbus_propmap(BtSdpPceRecord)]
+struct BtSdpPceRecordDBus {
+    hdr: BtSdpHeaderOverlay,
+}
+
+impl DBusArg for SupportedFormatsList {
+    type DBusType = Vec<u8>;
+
+    fn from_dbus(
+        data: Vec<u8>,
+        _conn: Option<Arc<SyncConnection>>,
+        _remote: Option<dbus::strings::BusName<'static>>,
+        _disconnect_watcher: Option<Arc<std::sync::Mutex<DisconnectWatcher>>>,
+    ) -> Result<SupportedFormatsList, Box<dyn std::error::Error>> {
+        return Ok(data.try_into().unwrap());
+    }
+
+    fn to_dbus(data: SupportedFormatsList) -> Result<Vec<u8>, Box<dyn std::error::Error>> {
+        return Ok(data.to_vec());
+    }
+}
+
+#[dbus_propmap(BtSdpOpsRecord)]
+struct BtSdpOpsRecordDBus {
+    hdr: BtSdpHeaderOverlay,
+    supported_formats_list_len: i32,
+    supported_formats_list: SupportedFormatsList,
+}
+
+#[dbus_propmap(BtSdpSapRecord)]
+struct BtSdpSapRecordDBus {
+    hdr: BtSdpHeaderOverlay,
+}
+
+#[dbus_propmap(BtSdpDipRecord)]
+struct BtSdpDipRecordDBus {
+    hdr: BtSdpHeaderOverlay,
+    spec_id: u16,
+    vendor: u16,
+    vendor_id_source: u16,
+    product: u16,
+    version: u16,
+    primary_record: bool,
+}
+
+macro_rules! parse_dbus_arg_or_fail {
+    ( $data:ident, $index:expr, $rust_type:ty ) => {{
+        let output = match $data.get($index) {
+            Some(arg) => arg,
+            None => {
+                return Err(Box::new(DBusArgError::new(String::from(format!(
+                    "Missing argument {}",
+                    $index
+                )))));
+            }
+        };
+
+        match output.arg_type() {
+            dbus::arg::ArgType::Variant => {}
+            _ => {
+                return Err(Box::new(DBusArgError::new(String::from(format!(
+                    "Argument {} must be a variant",
+                    $index
+                )))));
+            }
+        };
+
+        let output = <<$rust_type as DBusArg>::DBusType as RefArgToRust>::ref_arg_to_rust(
+            output.as_static_inner(0).unwrap(),
+            format!("{}", stringify!($rust_type)),
+        )?;
+
+        let output = <$rust_type>::from_dbus(output, None, None, None)?;
+        output
+    }};
+}
+
+impl DBusArg for BtSdpRecord {
+    type DBusType = dbus::arg::PropMap;
+    fn from_dbus(
+        data: dbus::arg::PropMap,
+        _conn: Option<std::sync::Arc<dbus::nonblock::SyncConnection>>,
+        _remote: Option<dbus::strings::BusName<'static>>,
+        _disconnect_watcher: Option<
+            std::sync::Arc<std::sync::Mutex<dbus_projection::DisconnectWatcher>>,
+        >,
+    ) -> Result<BtSdpRecord, Box<dyn std::error::Error>> {
+        let sdp_type = match data.get("type") {
+            Some(variant_type) => variant_type,
+            None => {
+                return Err(Box::new(DBusArgError::new(String::from(format!(
+                    "BtSdpRecord does not contain a valid variant type.",
+                )))));
+            }
+        };
+
+        match sdp_type.arg_type() {
+            dbus::arg::ArgType::UInt32 => {}
+            _ => {
+                return Err(Box::new(DBusArgError::new(String::from(format!(
+                    "BtSdpRecord type must be a u32",
+                )))));
+            }
+        };
+
+        let sdp_type = <u32 as RefArgToRust>::ref_arg_to_rust(
+            sdp_type.as_static_inner(0).unwrap(),
+            format!("u32"),
+        )?;
+        let sdp_type = BtSdpType::from(sdp_type);
+        let record = match sdp_type {
+            BtSdpType::Raw => {
+                let arg_0 = parse_dbus_arg_or_fail!(data, "0", BtSdpHeaderOverlay);
+                BtSdpRecord::HeaderOverlay(arg_0)
+            }
+            BtSdpType::MapMas => {
+                let arg_0 = parse_dbus_arg_or_fail!(data, "0", BtSdpMasRecord);
+                BtSdpRecord::MapMas(arg_0)
+            }
+            BtSdpType::MapMns => {
+                let arg_0 = parse_dbus_arg_or_fail!(data, "0", BtSdpMnsRecord);
+                BtSdpRecord::MapMns(arg_0)
+            }
+            BtSdpType::PbapPse => {
+                let arg_0 = parse_dbus_arg_or_fail!(data, "0", BtSdpPseRecord);
+                BtSdpRecord::PbapPse(arg_0)
+            }
+            BtSdpType::PbapPce => {
+                let arg_0 = parse_dbus_arg_or_fail!(data, "0", BtSdpPceRecord);
+                BtSdpRecord::PbapPce(arg_0)
+            }
+            BtSdpType::OppServer => {
+                let arg_0 = parse_dbus_arg_or_fail!(data, "0", BtSdpOpsRecord);
+                BtSdpRecord::OppServer(arg_0)
+            }
+            BtSdpType::SapServer => {
+                let arg_0 = parse_dbus_arg_or_fail!(data, "0", BtSdpSapRecord);
+                BtSdpRecord::SapServer(arg_0)
+            }
+            BtSdpType::Dip => {
+                let arg_0 = parse_dbus_arg_or_fail!(data, "0", BtSdpDipRecord);
+                BtSdpRecord::Dip(arg_0)
+            }
+            _ => {
+                return Err(Box::new(DBusArgError::new(String::from(format!(
+                    "BtSdpRecord type not found: {}",
+                    sdp_type as u32,
+                )))));
+            }
+        };
+        Ok(record)
+    }
+
+    fn to_dbus(record: BtSdpRecord) -> Result<dbus::arg::PropMap, Box<dyn std::error::Error>> {
+        let mut map: dbus::arg::PropMap = std::collections::HashMap::new();
+        map.insert(
+            String::from("type"),
+            dbus::arg::Variant(Box::new(DBusArg::to_dbus(BtSdpType::from(record.clone()) as u32)?)),
+        );
+        match record {
+            BtSdpRecord::HeaderOverlay(header) => {
+                map.insert(
+                    String::from("0"),
+                    dbus::arg::Variant(Box::new(DBusArg::to_dbus(header)?)),
+                );
+            }
+            BtSdpRecord::MapMas(mas_record) => {
+                map.insert(
+                    String::from("0"),
+                    dbus::arg::Variant(Box::new(DBusArg::to_dbus(mas_record)?)),
+                );
+            }
+            BtSdpRecord::MapMns(mns_record) => {
+                map.insert(
+                    String::from("0"),
+                    dbus::arg::Variant(Box::new(DBusArg::to_dbus(mns_record)?)),
+                );
+            }
+            BtSdpRecord::PbapPse(pse_record) => {
+                map.insert(
+                    String::from("0"),
+                    dbus::arg::Variant(Box::new(DBusArg::to_dbus(pse_record)?)),
+                );
+            }
+            BtSdpRecord::PbapPce(pce_record) => {
+                map.insert(
+                    String::from("0"),
+                    dbus::arg::Variant(Box::new(DBusArg::to_dbus(pce_record)?)),
+                );
+            }
+            BtSdpRecord::OppServer(ops_record) => {
+                map.insert(
+                    String::from("0"),
+                    dbus::arg::Variant(Box::new(DBusArg::to_dbus(ops_record)?)),
+                );
+            }
+            BtSdpRecord::SapServer(sap_record) => {
+                map.insert(
+                    String::from("0"),
+                    dbus::arg::Variant(Box::new(DBusArg::to_dbus(sap_record)?)),
+                );
+            }
+            BtSdpRecord::Dip(dip_record) => {
+                map.insert(
+                    String::from("0"),
+                    dbus::arg::Variant(Box::new(DBusArg::to_dbus(dip_record)?)),
+                );
+            }
+        }
+        Ok(map)
     }
 }
 
@@ -358,6 +633,16 @@ impl IBluetooth for IBluetoothDBus {
 
     #[dbus_method("SdpSearch")]
     fn sdp_search(&self, device: BluetoothDevice, uuid: Uuid128Bit) -> bool {
+        dbus_generated!()
+    }
+
+    #[dbus_method("CreateSdpRecord")]
+    fn create_sdp_record(&self, sdp_record: BtSdpRecord) -> bool {
+        dbus_generated!()
+    }
+
+    #[dbus_method("RemoveSdpRecord")]
+    fn remove_sdp_record(&self, handle: i32) -> bool {
         dbus_generated!()
     }
 
