@@ -16,6 +16,24 @@
       "message": "BTW, How do you tell that no asha data was found in p_search_data?",
       "revId": "f392dd91cc1147846b9fd89c108846121b89066f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4bfce276_ea87dcf5",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 17
+      },
+      "lineNbr": 329,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-02-15T00:09:47Z",
+      "side": 1,
+      "message": "updated with return -1 for capability when no data was found",
+      "parentUuid": "5efade11_6b92260b",
+      "revId": "f392dd91cc1147846b9fd89c108846121b89066f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
