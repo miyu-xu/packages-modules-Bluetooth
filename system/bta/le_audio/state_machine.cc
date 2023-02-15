@@ -177,6 +177,13 @@ class LeAudioGroupStateMachineImpl : public LeAudioGroupStateMachine {
             }
           }
           LOG_INFO("Could not activate device, try to configure it again");
+        } else {
+          /* Deactivate previousely activated ASEs in case if there were just a
+           * reconfiguration (group target state as CODEC CONFIGURED) and no
+           * deactivation. Currently activated ASEs cannot be used for different
+           * context.
+           */
+          group->Deactivate();
         }
 
         /* We are going to reconfigure whole group. Clear Cises.*/
