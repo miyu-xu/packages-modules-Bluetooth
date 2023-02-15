@@ -3887,7 +3887,6 @@ TEST_F(StateMachineTest, StreamReconfigureAfterCisLostTwoDevices) {
     leAudioDevice = group->GetNextDevice(leAudioDevice);
   }
 
-  LOG(INFO) << "GK A1";
   group->ReloadAudioLocations();
   group->ReloadAudioDirections();
   group->UpdateAudioContextTypeAvailability();
@@ -3896,13 +3895,11 @@ TEST_F(StateMachineTest, StreamReconfigureAfterCisLostTwoDevices) {
   leAudioDevice = group->GetFirstDevice();
   int device_cnt = num_devices;
   while (leAudioDevice) {
-    LOG(INFO) << "GK A11";
     leAudioDevice->conn_id_ = device_cnt--;
     leAudioDevice->SetConnectionState(DeviceConnectState::CONNECTED);
     leAudioDevice = group->GetNextDevice(leAudioDevice);
   }
 
-  LOG(INFO) << "GK A2";
   InjectInitialIdleNotification(group);
 
   group->ReloadAudioLocations();
