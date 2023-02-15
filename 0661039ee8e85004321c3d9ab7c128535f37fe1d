@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "708e0939_0d80765f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-02-15T17:58:35Z",
+      "side": 1,
+      "message": "No need to mention chrome feature flag since platform is generic",
+      "revId": "0661039ee8e85004321c3d9ab7c128535f37fe1d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8141354f_daed02a8",
+        "filename": "system/gd/rust/linux/mgmt/src/config_util.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-02-15T17:58:35Z",
+      "side": 1,
+      "message": "You don\u0027t ever read this file again -- do you need to save to this?",
+      "revId": "0661039ee8e85004321c3d9ab7c128535f37fe1d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
