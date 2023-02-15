@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "346b6377_2bdd34f5",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 5578,
+      "author": {
+        "id": 1470368
+      },
+      "writtenOn": "2023-02-15T17:41:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "32dc4f5f_e3a488fd",
+      "revId": "8039a177cdad09e5591652b299588a52f056f9fa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "feb760ea_2573d093",
@@ -37,6 +55,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "389af29a_f52dfd58",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 5579,
+      "author": {
+        "id": 1470368
+      },
+      "writtenOn": "2023-02-15T17:41:54Z",
+      "side": 1,
+      "message": "@Rahul I have added status code \u0026 permission on Method Added more description. Please review",
+      "parentUuid": "feb760ea_2573d093",
+      "revId": "8039a177cdad09e5591652b299588a52f056f9fa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1c0a5a27_c1f5285c",
         "filename": "system/gd/hci/hci_packets.pdl",
         "patchSetId": 20
@@ -48,6 +84,30 @@
       "writtenOn": "2023-02-15T01:50:04Z",
       "side": 1,
       "message": "I think this should be x03 for hci::le_adv_filter_read_extended_features_complete_builder_test",
+      "range": {
+        "startLine": 5202,
+        "startChar": 32,
+        "endLine": 5202,
+        "endChar": 35
+      },
+      "revId": "8039a177cdad09e5591652b299588a52f056f9fa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c10a4d4e_15a99844",
+        "filename": "system/gd/hci/hci_packets.pdl",
+        "patchSetId": 20
+      },
+      "lineNbr": 5202,
+      "author": {
+        "id": 1470368
+      },
+      "writtenOn": "2023-02-15T17:41:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1c0a5a27_c1f5285c",
       "range": {
         "startLine": 5202,
         "startChar": 32,

@@ -167,6 +167,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "622e689c_3d11884c",
+        "filename": "system/gd/hci/le_scanning_manager_test.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 325,
+      "author": {
+        "id": 1470368
+      },
+      "writtenOn": "2023-02-15T17:41:54Z",
+      "side": 1,
+      "message": "got it  static std::unique_ptr\u003cLeAdvFilterReadExtendedFeaturesCompleteBuilder\u003e FromView(LeAdvFilterReadExtendedFeaturesCompleteView view) {return LeAdvFilterReadExtendedFeaturesCompleteBuilder::Create(view.GetNumHciCommandPackets(), view.GetStatus(), view.GetTransportDiscoveryDataFilter(), view.GetAdTypeFilter());}\n\nWilliam, your fix seems to be perfect.",
+      "parentUuid": "fd0b761b_4ac38931",
+      "range": {
+        "startLine": 325,
+        "startChar": 0,
+        "endLine": 325,
+        "endChar": 120
+      },
+      "revId": "d433a262e67ab6458198d247d4cc4f1441f7e01c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9e9da49a_a470b4f8",

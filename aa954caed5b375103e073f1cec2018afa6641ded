@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6643c340_e2cca189",
+        "filename": "framework/java/android/bluetooth/le/ScanFilter.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1470368
+      },
+      "writtenOn": "2023-02-15T17:41:54Z",
+      "side": 1,
+      "message": "@Rahul I have added IntDef on Method \u0026 Added more description. Please review",
+      "parentUuid": "f95afdbe_7ae279bf",
+      "revId": "aa954caed5b375103e073f1cec2018afa6641ded",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f6c143ba_9a186e56",
         "filename": "framework/java/android/bluetooth/le/ScanFilter.java",
         "patchSetId": 17
