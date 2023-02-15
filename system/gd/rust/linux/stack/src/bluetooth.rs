@@ -370,6 +370,14 @@ pub trait IBluetoothCallback: RPCProxy {
 
     /// When a bonding attempt has completed.
     fn on_bond_state_changed(&self, status: u32, device_address: String, state: u32);
+
+    /// When an SDP search has completed.
+    fn on_sdp_search_complete(
+        &self,
+        remote_device: BluetoothDevice,
+        searched_uuid: Uuid128Bit,
+        sdp_records: Vec<BtSdpRecord>,
+    );
 }
 
 /// An interface for other modules to track found remote devices.
@@ -2022,8 +2030,19 @@ impl BtifSdpCallbacks for Bluetooth {
         address: RawAddress,
         uuid: Uuid,
         _count: i32,
-        _records: Vec<BtSdpRecord>,
+        records: Vec<BtSdpRecord>,
     ) {
+        let uuid = match UuidHelper::from_string(uuid.to_string()) {
+            Some(uu) => uu,
+            None => return,
+        };
+        self.callbacks.for_all_callbacks(|callback| {
+            callback.on_sdp_search_complete(
+                BluetoothDevice::new(address.to_string(), "".to_string()),
+                uuid,
+                records.clone(),
+            );
+        });
         debug!(
             "Sdp search result found: Status({:?}) Address({:?}) Uuid({:?})",
             status, address, uuid
