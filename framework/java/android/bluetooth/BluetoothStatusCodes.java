@@ -585,6 +585,11 @@ public final class BluetoothStatusCodes {
     public static final int ERROR_NOT_DUAL_MODE_AUDIO_DEVICE = 3000;
 
     /**
+     * Indicates that the feature status is not configured yet.
+     */
+    public static final int FEATURE_NOT_CONFIGURED_YET = 4000;
+
+    /**
      * Indicates that an unknown error has occurred.
      */
     public static final int ERROR_UNKNOWN = Integer.MAX_VALUE;

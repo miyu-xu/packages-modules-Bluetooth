@@ -129,27 +129,24 @@ package android.bluetooth {
     method public void onPreferredAudioProfilesChanged(@NonNull android.bluetooth.BluetoothDevice, @NonNull android.os.Bundle, int);
   }
 
-  public final class BluetoothAudioPolicy implements android.os.Parcelable {
+  public final class BluetoothSinkAudioPolicy implements android.os.Parcelable {
     method public int getCallEstablishPolicy();
     method public int getConnectingTimePolicy();
     method public int getInBandRingtonePolicy();
     method public void writeToParcel(@NonNull android.os.Parcel, int);
-    field @NonNull public static final android.os.Parcelable.Creator<android.bluetooth.BluetoothAudioPolicy> CREATOR;
-    field public static final int FEATURE_NOT_SUPPORTED_BY_REMOTE = 2; // 0x2
-    field public static final int FEATURE_SUPPORTED_BY_REMOTE = 1; // 0x1
-    field public static final int FEATURE_UNCONFIGURED_BY_REMOTE = 0; // 0x0
+    field @NonNull public static final android.os.Parcelable.Creator<android.bluetooth.BluetoothSinkAudioPolicy> CREATOR;
     field public static final int POLICY_ALLOWED = 1; // 0x1
     field public static final int POLICY_NOT_ALLOWED = 2; // 0x2
     field public static final int POLICY_UNCONFIGURED = 0; // 0x0
   }
 
-  public static final class BluetoothAudioPolicy.Builder {
-    ctor public BluetoothAudioPolicy.Builder();
-    ctor public BluetoothAudioPolicy.Builder(@NonNull android.bluetooth.BluetoothAudioPolicy);
-    method @NonNull public android.bluetooth.BluetoothAudioPolicy build();
-    method @NonNull public android.bluetooth.BluetoothAudioPolicy.Builder setCallEstablishPolicy(int);
-    method @NonNull public android.bluetooth.BluetoothAudioPolicy.Builder setConnectingTimePolicy(int);
-    method @NonNull public android.bluetooth.BluetoothAudioPolicy.Builder setInBandRingtonePolicy(int);
+  public static final class BluetoothSinkAudioPolicy.Builder {
+    ctor public BluetoothSinkAudioPolicy.Builder();
+    ctor public BluetoothSinkAudioPolicy.Builder(@NonNull android.bluetooth.BluetoothSinkAudioPolicy);
+    method @NonNull public android.bluetooth.BluetoothSinkAudioPolicy build();
+    method @NonNull public android.bluetooth.BluetoothSinkAudioPolicy.Builder setCallEstablishPolicy(int);
+    method @NonNull public android.bluetooth.BluetoothSinkAudioPolicy.Builder setConnectingTimePolicy(int);
+    method @NonNull public android.bluetooth.BluetoothSinkAudioPolicy.Builder setInBandRingtonePolicy(int);
   }
 
   public final class BluetoothClass implements android.os.Parcelable {
@@ -185,8 +182,8 @@ package android.bluetooth {
     method @RequiresPermission(allOf={android.Manifest.permission.BLUETOOTH_CONNECT, android.Manifest.permission.BLUETOOTH_PRIVILEGED}) public int disconnect();
     method @RequiresPermission(allOf={android.Manifest.permission.BLUETOOTH_CONNECT, android.Manifest.permission.BLUETOOTH_PRIVILEGED}) public boolean fetchUuidsWithSdp(int);
     method @NonNull @RequiresPermission(android.Manifest.permission.BLUETOOTH_PRIVILEGED) public String getAnonymizedAddress();
-    method @Nullable @RequiresPermission(allOf={android.Manifest.permission.BLUETOOTH_CONNECT, android.Manifest.permission.BLUETOOTH_PRIVILEGED}) public android.bluetooth.BluetoothAudioPolicy getAudioPolicy();
-    method @RequiresPermission(allOf={android.Manifest.permission.BLUETOOTH_CONNECT, android.Manifest.permission.BLUETOOTH_PRIVILEGED}) public int getAudioPolicyRemoteSupported();
+    method @Nullable @RequiresPermission(allOf={android.Manifest.permission.BLUETOOTH_CONNECT, android.Manifest.permission.BLUETOOTH_PRIVILEGED}) public android.bluetooth.BluetoothSinkAudioPolicy getRequestedAudioPolicyAsSink();
+    method @RequiresPermission(allOf={android.Manifest.permission.BLUETOOTH_CONNECT, android.Manifest.permission.BLUETOOTH_PRIVILEGED}) public int isRequestAudioPolicyAsSinkSupported();
     method @IntRange(from=0xffffff9c, to=100) @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT) public int getBatteryLevel();
     method @RequiresPermission(allOf={android.Manifest.permission.BLUETOOTH_CONNECT, android.Manifest.permission.BLUETOOTH_PRIVILEGED}) public int getConnectionHandle(int);
     method @Nullable @RequiresPermission(allOf={android.Manifest.permission.BLUETOOTH_CONNECT, android.Manifest.permission.BLUETOOTH_PRIVILEGED}) public String getCreateBondCaller();
@@ -201,7 +198,7 @@ package android.bluetooth {
     method @RequiresPermission(allOf={android.Manifest.permission.BLUETOOTH_CONNECT, android.Manifest.permission.BLUETOOTH_PRIVILEGED}) public boolean isInSilenceMode();
     method @RequiresPermission(android.Manifest.permission.BLUETOOTH_PRIVILEGED) public void prepareToEnterProcess(@NonNull android.content.AttributionSource);
     method @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT) public boolean removeBond();
-    method @RequiresPermission(allOf={android.Manifest.permission.BLUETOOTH_CONNECT, android.Manifest.permission.BLUETOOTH_PRIVILEGED}) public int setAudioPolicy(@NonNull android.bluetooth.BluetoothAudioPolicy);
+    method @RequiresPermission(allOf={android.Manifest.permission.BLUETOOTH_CONNECT, android.Manifest.permission.BLUETOOTH_PRIVILEGED}) public int requestAudioPolicyAsSink(@NonNull android.bluetooth.BluetoothSinkAudioPolicy);
     method @RequiresPermission(allOf={android.Manifest.permission.BLUETOOTH_CONNECT, android.Manifest.permission.BLUETOOTH_PRIVILEGED}) public boolean setLowLatencyAudioAllowed(boolean);
     method @RequiresPermission(allOf={android.Manifest.permission.BLUETOOTH_CONNECT, android.Manifest.permission.BLUETOOTH_PRIVILEGED}) public boolean setMessageAccessPermission(int);
     method @RequiresPermission(allOf={android.Manifest.permission.BLUETOOTH_CONNECT, android.Manifest.permission.BLUETOOTH_PRIVILEGED}) public boolean setMetadata(int, @NonNull byte[]);
