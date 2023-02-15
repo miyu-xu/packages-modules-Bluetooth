@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "37f67546_fbbacf10",
+        "filename": "android/app/src/com/android/bluetooth/a2dp/A2dpService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1501,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2023-02-15T01:20:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "12b0d792_4a6c8546",
+      "revId": "45711b94565316f6284c9fe6570dd779c9385789",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9307b300_c40cf01f",
@@ -49,6 +67,30 @@
       "writtenOn": "2023-02-14T19:55:47Z",
       "side": 1,
       "message": "nit: \"else if\" in one line?\n\nOR we can reduce nesting by doing\n\n```\nif (callerSdk \u003e Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {\n    enforceBluetoothPrivilegedPermission(service);\n    return;\n} \nif (!hasBluetoothPrivilegedPermission(service)) {\n    enforceCdmAssociation(service.mCompanionDeviceManager, service,\n           source.getPackageName(), Binder.getCallingUid(), device);\n    return;\n}\n```",
+      "range": {
+        "startLine": 1511,
+        "startChar": 14,
+        "endLine": 1512,
+        "endChar": 18
+      },
+      "revId": "45711b94565316f6284c9fe6570dd779c9385789",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2989a593_29f3e72b",
+        "filename": "android/app/src/com/android/bluetooth/a2dp/A2dpService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1512,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2023-02-15T01:20:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9307b300_c40cf01f",
       "range": {
         "startLine": 1511,
         "startChar": 14,
@@ -76,6 +118,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d76a5dc4_bf13273b",
+        "filename": "framework/java/android/bluetooth/BluetoothA2dp.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 814,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2023-02-15T01:20:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "14bb3eef_60bdb413",
+      "revId": "45711b94565316f6284c9fe6570dd779c9385789",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "01009aab_bb9d7465",
@@ -89,6 +149,30 @@
       "writtenOn": "2023-02-14T19:55:47Z",
       "side": 1,
       "message": "Do we want this for Android T instead?",
+      "range": {
+        "startLine": 815,
+        "startChar": 45,
+        "endLine": 815,
+        "endChar": 61
+      },
+      "revId": "45711b94565316f6284c9fe6570dd779c9385789",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e65e2f1a_bb1d13e4",
+        "filename": "framework/java/android/bluetooth/BluetoothA2dp.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 815,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2023-02-15T01:20:59Z",
+      "side": 1,
+      "message": "As discussed, we\u0027re limiting to U+",
+      "parentUuid": "01009aab_bb9d7465",
       "range": {
         "startLine": 815,
         "startChar": 45,
