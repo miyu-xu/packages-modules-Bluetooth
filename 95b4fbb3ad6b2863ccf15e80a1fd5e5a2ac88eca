@@ -46,6 +46,30 @@
       },
       "revId": "95b4fbb3ad6b2863ccf15e80a1fd5e5a2ac88eca",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "16e36de0_0b62af06",
+        "filename": "android/app/src/com/android/bluetooth/gatt/AppScanStats.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 396,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2023-02-15T06:58:01Z",
+      "side": 1,
+      "message": "Added test case - testMetricsScanRadioWeightedDuration() which compares the captured weighted duration with the expected weighted duration.\n\nDebug log output:\n\n02-14 22:42:20.624  3512  3528 I TestRunner: started: testMetricsScanRadioWeightedDuration(com.android.bluetooth.gatt.ScanManagerTest)\n02-14 22:42:20.914  3512  3535 D ScanManagerTest: ScanMode: 0 weightedScanDuration: 10\n02-14 22:42:21.063  3512  3535 D ScanManagerTest: capturedDuration: 10\n02-14 22:42:21.063  3512  3535 D ScanManagerTest: ScanMode: 1 weightedScanDuration: 25\n02-14 22:42:21.186  3512  3535 D ScanManagerTest: capturedDuration: 26\n02-14 22:42:21.187  3512  3535 D ScanManagerTest: ScanMode: 2 weightedScanDuration: 100\n02-14 22:42:21.313  3512  3535 D ScanManagerTest: capturedDuration: 103\n02-14 22:42:21.313  3512  3535 D ScanManagerTest: ScanMode: 3 weightedScanDuration: 25\n02-14 22:42:21.434  3512  3535 D ScanManagerTest: capturedDuration: 26\n02-14 22:42:21.434  3512  3535 D ScanManagerTest: ScanMode: 4 weightedScanDuration: 5\n02-14 22:42:21.562  3512  3535 D ScanManagerTest: capturedDuration: 5\n02-14 22:42:21.576  3512  3528 I TestRunner: finished: testMetricsScanRadioWeightedDuration(com.android.bluetooth.gatt.ScanManagerTest)",
+      "parentUuid": "ca7aae40_c3a729f0",
+      "range": {
+        "startLine": 373,
+        "startChar": 0,
+        "endLine": 396,
+        "endChar": 0
+      },
+      "revId": "95b4fbb3ad6b2863ccf15e80a1fd5e5a2ac88eca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
