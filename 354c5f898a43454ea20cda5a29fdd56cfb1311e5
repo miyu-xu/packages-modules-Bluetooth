@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "53c0d8eb_9688daf5",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 801,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2023-02-15T00:56:08Z",
+      "side": 1,
+      "message": "Looks like we instantiated `BluetoothDevice` unnecessarily. Would be good to have `fn get_bond_state_by_addr(\u0026self, addr: \u0026String)` to bypass it.",
+      "revId": "354c5f898a43454ea20cda5a29fdd56cfb1311e5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5461bfe5_1a3b5b5f",
         "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
         "patchSetId": 1
@@ -14,6 +31,46 @@
       "writtenOn": "2023-02-15T00:32:29Z",
       "side": 1,
       "message": "The following logic is almost identical to the logic in `ConnectingAfterRetry`. Is it possible to abstract them into a helper?",
+      "revId": "354c5f898a43454ea20cda5a29fdd56cfb1311e5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e73922d9_1f4909e2",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 811,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2023-02-15T00:56:08Z",
+      "side": 1,
+      "message": "Is this mutable variable needed? If not prefer to not have mut var:\n```\ndevice_states.lock().unwrap().insert(addr, DeviceConnectionStates::Disconnecting);\nfallback_tasks.lock().unwrap().insert(addr, None);\n```",
+      "revId": "354c5f898a43454ea20cda5a29fdd56cfb1311e5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1ce368b6_1ee6c2b3",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 819,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2023-02-15T00:56:08Z",
+      "side": 1,
+      "message": "Use `DisplayAddress(addr)` when logging addresses, which will handle obfuscation",
+      "range": {
+        "startLine": 819,
+        "startChar": 32,
+        "endLine": 819,
+        "endChar": 48
+      },
       "revId": "354c5f898a43454ea20cda5a29fdd56cfb1311e5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
