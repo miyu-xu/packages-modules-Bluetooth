@@ -209,6 +209,24 @@
       "parentUuid": "af5f2d3f_618cb90f",
       "revId": "fee10c148ef666e11043a8eba16f7ad149b0955a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0efde511_4533c4d4",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 1094,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-02-15T04:59:42Z",
+      "side": 1,
+      "message": "I don\u0027t think you want per stream control of sco offload. It\u0027s usually something you decide on a per platform level so it belongs as a getter/setter api you call during setup.",
+      "parentUuid": "77d52cc6_75db734a",
+      "revId": "fee10c148ef666e11043a8eba16f7ad149b0955a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
