@@ -39,6 +39,24 @@
       "message": "Missing CHARACTERISTIC_UUID",
       "revId": "5b7ec2956b0511ad027d5fd54a709f468a70d887",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "58d00410_a665115f",
+        "filename": "system/rust/src/gatt/server/transactions/read_by_group_type_request.rs",
+        "patchSetId": 45
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-02-15T02:21:00Z",
+      "side": 1,
+      "message": "As per spec, we don\u0027t allow grouping by this. Only service declaration. See above comment.",
+      "parentUuid": "f2d0ee60_9a15ebdd",
+      "revId": "5b7ec2956b0511ad027d5fd54a709f468a70d887",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
