@@ -3,6 +3,40 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5a99c555_ff966bba",
+        "filename": "android/app/tests/myinstrumentation/Android.bp",
+        "patchSetId": 9
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1986325
+      },
+      "writtenOn": "2023-02-15T22:02:07Z",
+      "side": 1,
+      "message": "@licorne@google.com , this should not be used right? But I cannot see if the xml was effective.",
+      "revId": "0acfdfe8946e397e5709b3fb552f3b49b2c588ce",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "df6a02c4_9f7e1416",
+        "filename": "android/app/tests/myinstrumentation/AndroidTest.xml",
+        "patchSetId": 9
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1986325
+      },
+      "writtenOn": "2023-02-15T22:02:07Z",
+      "side": 1,
+      "message": "I didn\u0027t really find a target preparer that allowed me to run a binary on host while running the test on cuttlefish.\n\nShould I create a new testtype as you did for pts-bot, to setup the port reverse, and lunch bumble binary before the tests?\n\nOr maybe to create a new target preparer that start the bumble server.",
+      "revId": "0acfdfe8946e397e5709b3fb552f3b49b2c588ce",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "27affee8_be93b1d4",
         "filename": "android/app/tests/myinstrumentation/AndroidTest.xml",
         "patchSetId": 9
