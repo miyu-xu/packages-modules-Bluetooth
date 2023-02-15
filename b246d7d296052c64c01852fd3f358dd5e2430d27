@@ -22,6 +22,30 @@
       },
       "revId": "b246d7d296052c64c01852fd3f358dd5e2430d27",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "60da795e_744da744",
+        "filename": "system/test/headless/discovery/discovery.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-02-15T03:19:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a844f1b7_fb6d8caa",
+      "range": {
+        "startLine": 27,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 41
+      },
+      "revId": "b246d7d296052c64c01852fd3f358dd5e2430d27",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
