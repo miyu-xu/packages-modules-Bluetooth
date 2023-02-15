@@ -17,6 +17,10 @@
  ******************************************************************************/
 
 #include "os/metrics.h"
+
+#include <metrics/structured_events.h>
+
+#include "gd/metrics/utils.h"
 #include "os/log.h"
 
 namespace bluetooth {
@@ -54,7 +58,32 @@ void LogMetricA2dpAudioOverrunEvent(
     uint64_t encoding_interval_millis,
     int num_dropped_buffers,
     int num_dropped_encoded_frames,
-    int num_dropped_encoded_bytes) {}
+    int num_dropped_encoded_bytes) {
+  std::string boot_id;
+  std::string addr_string;
+
+  if (!metrics::GetBootId(&boot_id)) return;
+
+  addr_string = address.ToString();
+
+  LOG_DEBUG(
+      "A2dpAudioOverrun: %s, %s, %llu, %d, %d, %d",
+      boot_id.c_str(),
+      addr_string.c_str(),
+      (long long unsigned)encoding_interval_millis,
+      num_dropped_buffers,
+      num_dropped_encoded_bytes,
+      num_dropped_encoded_bytes);
+
+  ::metrics::structured::events::bluetooth::BluetoothA2dpAudioOverrun()
+      .SetBootId(boot_id)
+      .SetDeviceId(addr_string)
+      .SetEncodingInterval(encoding_interval_millis)
+      .SetDroppedBuffers(num_dropped_buffers)
+      .SetDroppedFrames(num_dropped_encoded_frames)
+      .SetDroppedBytes(num_dropped_encoded_bytes)
+      .Record();
+}
 
 void LogMetricReadRssiResult(const Address& address, uint16_t handle, uint32_t cmd_status, int8_t rssi) {}
 
