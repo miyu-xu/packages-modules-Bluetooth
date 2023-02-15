@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ec7883d6_09edf7bb",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 869,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2023-02-15T19:41:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b1c75e37_562a2318",
+      "revId": "aeb47ea46860148bf1b0e0459684cf19ad373063",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "98405255_beca057d",
@@ -31,6 +49,24 @@
       "writtenOn": "2023-02-15T19:23:20Z",
       "side": 1,
       "message": "Given we\u0027re making a pass on this, mention that this address is in Big Endian byte order.",
+      "revId": "aeb47ea46860148bf1b0e0459684cf19ad373063",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "beea403e_05ab95de",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 1436,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2023-02-15T19:41:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "98405255_beca057d",
       "revId": "aeb47ea46860148bf1b0e0459684cf19ad373063",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -52,6 +88,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "148d0871_20ec2c86",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 1437,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2023-02-15T19:41:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c038d404_bcba8aac",
+      "revId": "aeb47ea46860148bf1b0e0459684cf19ad373063",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e84b69c8_0b598c4d",
@@ -65,6 +119,24 @@
       "writtenOn": "2023-02-15T19:23:20Z",
       "side": 1,
       "message": "nit: replace \"returned as it is (without redaction)\" with \"return without redaction\"",
+      "revId": "aeb47ea46860148bf1b0e0459684cf19ad373063",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "683d4cc7_d9f6c755",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 1441,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2023-02-15T19:41:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e84b69c8_0b598c4d",
       "revId": "aeb47ea46860148bf1b0e0459684cf19ad373063",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -99,6 +171,42 @@
       "writtenOn": "2023-02-15T19:23:20Z",
       "side": 1,
       "message": "nit: \"in their logic, always use\" --\u003e \"in their logic. Always use\"",
+      "revId": "aeb47ea46860148bf1b0e0459684cf19ad373063",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a4bc54e9_f12f5fd1",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 1446,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2023-02-15T19:41:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e74ca2d1_c244fc84",
+      "revId": "aeb47ea46860148bf1b0e0459684cf19ad373063",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "04b001f9_4a99d955",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 1446,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2023-02-15T19:41:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1793906c_528d3c28",
       "revId": "aeb47ea46860148bf1b0e0459684cf19ad373063",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
