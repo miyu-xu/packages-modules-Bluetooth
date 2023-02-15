@@ -22,6 +22,30 @@
       },
       "revId": "c16344b3756650dd0399a7648f48a5e5de74d4ec",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8c50673b_ccf433e5",
+        "filename": "tools/pdl/src/bin/generate-canonical-tests.rs",
+        "patchSetId": 26
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2023-02-15T17:51:33Z",
+      "side": 1,
+      "message": "No, not yet as fields — but we parse them fine (as a packet). I\u0027ll work on this next.",
+      "parentUuid": "6aa78912_c117509f",
+      "range": {
+        "startLine": 150,
+        "startChar": 0,
+        "endLine": 156,
+        "endChar": 0
+      },
+      "revId": "c16344b3756650dd0399a7648f48a5e5de74d4ec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
