@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "be4070d4_80c92996",
+        "filename": "system/rust/src/gatt/server/transactions/helpers/att_filter_by_size_type.rs",
+        "patchSetId": 45
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-02-15T02:18:17Z",
+      "side": 1,
+      "message": "The name is a bit misleading since you read the attribute values as your are applying the filter. The name does not even match the name of the module. Maybe `filter_read_attributes_by_type` and rename the module since it does not contain anything else ?",
+      "range": {
+        "startLine": 29,
+        "startChar": 13,
+        "endLine": 29,
+        "endChar": 38
+      },
+      "revId": "5b7ec2956b0511ad027d5fd54a709f468a70d887",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f2d0ee60_9a15ebdd",
+        "filename": "system/rust/src/gatt/server/transactions/read_by_group_type_request.rs",
+        "patchSetId": 45
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-02-15T02:18:17Z",
+      "side": 1,
+      "message": "Missing CHARACTERISTIC_UUID",
+      "revId": "5b7ec2956b0511ad027d5fd54a709f468a70d887",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
