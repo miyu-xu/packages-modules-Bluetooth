@@ -1,7 +1,8 @@
 //! Anything related to audio and media API.
 
 use bt_topshim::btif::{
-    BluetoothInterface, BtConnectionDirection, BtStatus, RawAddress, ToggleableProfile,
+    BluetoothInterface, BtBondState, BtConnectionDirection, BtStatus, DisplayAddress, RawAddress,
+    ToggleableProfile,
 };
 use bt_topshim::profiles::a2dp::{
     A2dp, A2dpCallbacks, A2dpCallbacksDispatcher, A2dpCodecBitsPerSample, A2dpCodecChannelMode,
@@ -800,6 +801,42 @@ impl BluetoothMedia {
                 guard.insert(addr, Some((task, first_conn_ts)));
             }
             DeviceConnectionStates::FullyConnected => {
+                // Rejecting the unbonded connection after we finished our profile
+                // reconnectinglogic to avoid a collision.
+                if let Some(adapter) = &self.adapter {
+                    if BtBondState::Bonded
+                        != adapter.lock().unwrap().get_bond_state_by_addr(&addr.to_string())
+                    {
+                        warn!(
+                            "[{}]: Rejecting a unbonded device's attempt to connect to media profiles",
+                            addr.to_string());
+                        let fallback_tasks = self.fallback_tasks.clone();
+                        let device_states = self.device_states.clone();
+                        let txl = self.tx.clone();
+                        let task = topstack::get_runtime().spawn(async move {
+                            {
+                                device_states
+                                    .lock()
+                                    .unwrap()
+                                    .insert(addr, DeviceConnectionStates::Disconnecting);
+                                fallback_tasks.lock().unwrap().insert(addr, None);
+                            }
+
+                            info!(
+                                "[{}]: Device connection state: {:?}.",
+                                addr.to_string(),
+                                DeviceConnectionStates::Disconnecting
+                            );
+
+                            let _ = txl
+                                .send(Message::Media(MediaActions::Disconnect(addr.to_string())))
+                                .await;
+                        });
+                        guard.insert(addr, Some((task, first_conn_ts)));
+                        return;
+                    }
+                }
+
                 let cur_a2dp_caps = self.a2dp_caps.get(&addr);
                 let cur_hfp_cap = self.hfp_cap.get(&addr);
                 let name = self.adapter_get_remote_name(addr);
