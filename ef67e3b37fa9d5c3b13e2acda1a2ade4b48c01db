@@ -22,6 +22,30 @@
       },
       "revId": "ef67e3b37fa9d5c3b13e2acda1a2ade4b48c01db",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "57f234b4_08aec39f",
+        "filename": "framework/Android.bp",
+        "patchSetId": 7
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2023-02-15T17:53:08Z",
+      "side": 1,
+      "message": "1. there is no clear documentation regarding whether `framework-bluetooth-compat-config` should be used anywhere or not, but I am following similar changes in Wifi and added it to the `compat_configs` peroperty of apex module\n\n2. Regarding permission,  `android.permission.LOG_COMPAT_CHANGE` and `android.permission.READ_COMPAT_CHANGE_CONFIG` is needed when https://source.corp.google.com/android-internal/frameworks/base/core/java/android/app/compat/CompatChanges.java;rcl\u003d3aa2031cbc590dac166ba44fad8ad31637ebb921;l\u003d99 is used, which used used for changes to API which will be run in non-APP processes. the affected API in this case is for app usage, so we are using this https://source.corp.google.com/android-internal/frameworks/base/core/java/android/app/compat/CompatChanges.java;l\u003d58;rcl\u003d3aa2031cbc590dac166ba44fad8ad31637ebb921 to determine whether this API change is enabled or not, which does not require these permissions.",
+      "parentUuid": "fc0150fe_a6048540",
+      "range": {
+        "startLine": 127,
+        "startChar": 11,
+        "endLine": 127,
+        "endChar": 44
+      },
+      "revId": "ef67e3b37fa9d5c3b13e2acda1a2ade4b48c01db",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
