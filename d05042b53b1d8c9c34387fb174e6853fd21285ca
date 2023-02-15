@@ -210,6 +210,30 @@
       },
       "revId": "d05042b53b1d8c9c34387fb174e6853fd21285ca",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "99333ba4_e2bdad74",
+        "filename": "system/gd/rust/linux/stack/src/suspend.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 270,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2023-02-15T00:18:19Z",
+      "side": 1,
+      "message": "If we forget to call await, there should be:\n```\nwarning: unused implementer of `Future` that must be used\n   --\u003e system/gd/rust/linux/stack/src/suspend.rs:270:21\n    |\n270 | /                     txl\n271 | |                         .send(Message::DelayedAdapterActions(DelayedActions::ConnectAllProfiles(\n272 | |                             device,\n273 | |                         )));\n    | |____________________________^\n    |\n    \u003d note: `#[warn(unused_must_use)]` on by default\n    \u003d note: futures do nothing unless you `.await` or poll them\n```\n\nAdding the `let _unused: Option\u003c()\u003e` doesn\u0027t really protect this bug since the writer can forget to add `let _unused...` too.\n\nTo actually protect us from bugs, maybe we should start using `--deny warnings` in our ebuild, since we have accumulated quite a few warnings already (and may want to add `-A improper_ctypes_definitions -A improper_ctypes -A unknown_lints` to allowlist warnings from generated code). Maybe we can have a use flags like USE\u003dfloss-nostrict to disable the `--deny warnings` for easier development but eventually production code will be free from warnings. How about that?",
+      "parentUuid": "11546d61_3d073cad",
+      "range": {
+        "startLine": 270,
+        "startChar": 20,
+        "endLine": 270,
+        "endChar": 32
+      },
+      "revId": "d05042b53b1d8c9c34387fb174e6853fd21285ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
