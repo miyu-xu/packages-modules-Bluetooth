@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b423cd58_f6204337",
+        "filename": "framework/java/android/bluetooth/BluetoothSocket.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-02-15T21:01:01Z",
+      "side": 1,
+      "message": "Note in the docs that these are messages for IOException thrown by connect()",
+      "revId": "dfaa5ecbeef94a6570021b40f16f6a6eb64c742b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8d26e591_ac71190d",
+        "filename": "framework/java/android/bluetooth/BluetoothSocket.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-02-15T21:01:01Z",
+      "side": 1,
+      "message": "You will need to update current.txt. Try building locally for a command to automatically update it. If you don\u0027t update it, the build will fail.",
+      "revId": "dfaa5ecbeef94a6570021b40f16f6a6eb64c742b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2d6d3069_4826afe8",
+        "filename": "framework/java/android/bluetooth/BluetoothSocket.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 484,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-02-15T21:01:01Z",
+      "side": 1,
+      "message": "Mention the message constants in the docs here",
+      "revId": "dfaa5ecbeef94a6570021b40f16f6a6eb64c742b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4c4b3ffa_3759764e",
+        "filename": "framework/java/android/bluetooth/BluetoothSocket.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 517,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-02-15T21:01:01Z",
+      "side": 1,
+      "message": "Can we also have constants for all of these messages?",
+      "revId": "dfaa5ecbeef94a6570021b40f16f6a6eb64c742b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
