@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a75fc4bb_527aa3c3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2023-02-15T13:28:52Z",
+      "side": 1,
+      "message": "Hi this is a found bug on bluez but also happen on the libblutooth, please help to take a look, thanks.",
+      "revId": "aa28997bc8b20e823f30ff2c04eb4981ede4ebf7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
