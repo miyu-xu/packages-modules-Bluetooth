@@ -1,0 +1,208 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1056fc1d_e608b166",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 6332,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-02-15T19:04:41Z",
+      "side": 1,
+      "message": "This should throw an Exception because we explicitly ask the caller to check if it\u0027s supported before calling this API. Therefore, doing so while the feature isn\u0027t supported is considered developer error.",
+      "revId": "6dd37d0150be10b9a909495bcd1aa67586ff5404",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9860cdd4_4837fd19",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 3407,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-02-15T19:04:41Z",
+      "side": 1,
+      "message": "Prefix doesn\u0027t seem right here",
+      "revId": "6dd37d0150be10b9a909495bcd1aa67586ff5404",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "97118953_70776207",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 3434,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-02-15T19:04:41Z",
+      "side": 1,
+      "message": "Please explicitly note in all of these methods that this API is intended to be used by a client device to send these requests to the server represented by this BluetoothDevice object",
+      "revId": "6dd37d0150be10b9a909495bcd1aa67586ff5404",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "30c307c3_cfc0d171",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 3438,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-02-15T19:04:41Z",
+      "side": 1,
+      "message": "How does the internal configuration happen? Is it possible for the remote device to never relay the information?",
+      "revId": "6dd37d0150be10b9a909495bcd1aa67586ff5404",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "83c09ab9_1ca0ef4b",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 3480,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-02-15T19:04:41Z",
+      "side": 1,
+      "message": "Please expand on these docs. You should note that developers should verify the return value of {@link BluetoothDevice#isRequestAudioPolicyAsSinkSupported} before calling this.",
+      "revId": "6dd37d0150be10b9a909495bcd1aa67586ff5404",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b9875583_a91ebe67",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 3483,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-02-15T19:04:41Z",
+      "side": 1,
+      "message": "nit: requested successfully",
+      "revId": "6dd37d0150be10b9a909495bcd1aa67586ff5404",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "46b077ff_b3ab3891",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 3516,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-02-15T19:04:41Z",
+      "side": 1,
+      "message": "Please throw an exception if this is not supported.",
+      "revId": "6dd37d0150be10b9a909495bcd1aa67586ff5404",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e814d53f_8ff4d8e8",
+        "filename": "framework/java/android/bluetooth/BluetoothSinkAudioPolicy.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-02-15T19:04:41Z",
+      "side": 1,
+      "message": "Update the docs here to be more descriptive about each of these policies and give examples.",
+      "revId": "6dd37d0150be10b9a909495bcd1aa67586ff5404",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d1fbe6a1_4137af25",
+        "filename": "framework/java/android/bluetooth/BluetoothSinkAudioPolicy.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-02-15T19:04:41Z",
+      "side": 1,
+      "message": "nit: Add @hide and @SystemApi to each method or field we intend to make a System API to prevent class level visibility changes from having a downstream effect on every API.",
+      "revId": "6dd37d0150be10b9a909495bcd1aa67586ff5404",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aa4f3065_ce296f76",
+        "filename": "framework/java/android/bluetooth/BluetoothSinkAudioPolicy.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 243,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-02-15T19:04:41Z",
+      "side": 1,
+      "message": "All of these feel a bit unclear. Can you explicitly call out what happens when the policy is allowed and what happens when it is not allowed?\n\ne.g. for setCallEstablishPolicy:\n\u003cp\u003eThis policy is used to determine the audio preference when the HF device makes or answers a call. If set to {@link #POLICY_ALLOWED}, ... If set to {@link #POLICY_NOT_ALLOWED}, ...",
+      "revId": "6dd37d0150be10b9a909495bcd1aa67586ff5404",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "79792372_c4833d27",
+        "filename": "framework/java/android/bluetooth/BluetoothSinkAudioPolicy.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 245,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-02-15T19:04:41Z",
+      "side": 1,
+      "message": "Remove \"should be decided by this policy\" in all of these docs. It makes the wording more confusing.",
+      "revId": "6dd37d0150be10b9a909495bcd1aa67586ff5404",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "40b991d0_641196b6",
+        "filename": "framework/java/android/bluetooth/BluetoothStatusCodes.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 590,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-02-15T19:04:41Z",
+      "side": 1,
+      "message": "Please put this in the 0-199 range (read the class docs for how the numeric values are assigned) because this is a generic constant.",
+      "revId": "6dd37d0150be10b9a909495bcd1aa67586ff5404",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
