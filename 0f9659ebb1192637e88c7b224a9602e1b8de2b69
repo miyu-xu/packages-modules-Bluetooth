@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4cd417dc_e04c555f",
+        "filename": "framework/java/android/bluetooth/BluetoothHearingAid.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 893,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-02-15T05:46:01Z",
+      "side": 1,
+      "message": "When would this data exist? Does it exist for a paired hearing aid device? Does it exist with a paired but disconnected hearing aid device?",
+      "range": {
+        "startLine": 893,
+        "startChar": 7,
+        "endLine": 893,
+        "endChar": 52
+      },
+      "revId": "0f9659ebb1192637e88c7b224a9602e1b8de2b69",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
