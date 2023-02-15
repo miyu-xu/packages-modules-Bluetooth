@@ -23,7 +23,7 @@ import android.annotation.RequiresPermission;
 import android.app.admin.SecurityLog;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothAssignedNumbers;
-import android.bluetooth.BluetoothAudioPolicy;
+import android.bluetooth.BluetoothSinkAudioPolicy;
 import android.bluetooth.BluetoothClass;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothHeadset;
@@ -319,7 +319,7 @@ final class RemoteDevices {
         @VisibleForTesting int mBondState;
         @VisibleForTesting int mDeviceType;
         @VisibleForTesting ParcelUuid[] mUuids;
-        private BluetoothAudioPolicy mAudioPolicy;
+        private BluetoothSinkAudioPolicy mAudioPolicy;
 
         DeviceProperties() {
             mBondState = BluetoothDevice.BOND_NONE;
@@ -634,11 +634,11 @@ final class RemoteDevices {
             }
         }
 
-        public void setHfAudioPolicyForRemoteAg(BluetoothAudioPolicy policies) {
+        public void setHfAudioPolicyForRemoteAg(BluetoothSinkAudioPolicy policies) {
             mAudioPolicy = policies;
         }
 
-        public BluetoothAudioPolicy getHfAudioPolicyForRemoteAg() {
+        public BluetoothSinkAudioPolicy getHfAudioPolicyForRemoteAg() {
             return mAudioPolicy;
         }
     }

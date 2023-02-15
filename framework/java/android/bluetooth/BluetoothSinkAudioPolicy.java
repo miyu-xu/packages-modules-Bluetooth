@@ -35,7 +35,7 @@ import java.util.Objects;
  * devices.
  *
  * <p>HF/CT side applications on can use {@link BluetoothDevice#setAudioPolicy}
- * API to set and send a {@link BluetoothAudioPolicy} object containing the
+ * API to set and send a {@link BluetoothSinkAudioPolicy} object containing the
  * preference/policy values. This object will be stored in the memory of HF/CT
  * side, will be send to the AG/CG side using Android Specific AT Commands and will
  * be stored in the AG side memory and database.
@@ -45,19 +45,19 @@ import java.util.Objects;
  *
  * <p>Note that the setter APIs of this class will only set the values of the
  * object. To actually set the policies, API {@link BluetoothDevice#setAudioPolicy}
- * must need to be invoked with the {@link BluetoothAudioPolicy} object.
+ * must need to be invoked with the {@link BluetoothSinkAudioPolicy} object.
  *
  * <p>Note that any API related to this feature should be used after configuring
  * the support of the AG device and after checking whether the AG device supports
  * this feature or not by invoking {@link BluetoothDevice#getAudioPolicyRemoteSupported}.
- * Only after getting a {@link BluetoothAudioPolicy#FEATURE_SUPPORTED_BY_REMOTE} response
+ * Only after getting a {@link BluetoothSinkAudioPolicy#FEATURE_SUPPORTED_BY_REMOTE} response
  * from the API should the APIs related to this feature be used.
  *
  *
  * @hide
  */
 @SystemApi
-public final class BluetoothAudioPolicy implements Parcelable {
+public final class BluetoothSinkAudioPolicy implements Parcelable {
 
     /**
      * @hide
@@ -139,7 +139,7 @@ public final class BluetoothAudioPolicy implements Parcelable {
     /**
      * @hide
      */
-    public BluetoothAudioPolicy(int callEstablishPolicy,
+    public BluetoothSinkAudioPolicy(int callEstablishPolicy,
             int connectingTimePolicy, int inBandRingtonePolicy) {
         mCallEstablishPolicy = callEstablishPolicy;
         mConnectingTimePolicy = connectingTimePolicy;
@@ -178,7 +178,7 @@ public final class BluetoothAudioPolicy implements Parcelable {
 
     @Override
     public String toString() {
-        StringBuilder builder = new StringBuilder("BluetoothAudioPolicy{");
+        StringBuilder builder = new StringBuilder("BluetoothSinkAudioPolicy{");
         builder.append("mCallEstablishPolicy: ");
         builder.append(mCallEstablishPolicy);
         builder.append(", mConnectingTimePolicy: ");
@@ -192,17 +192,17 @@ public final class BluetoothAudioPolicy implements Parcelable {
     /**
      * {@link Parcelable.Creator} interface implementation.
      */
-    public static final @android.annotation.NonNull Parcelable.Creator<BluetoothAudioPolicy>
-            CREATOR = new Parcelable.Creator<BluetoothAudioPolicy>() {
+    public static final @android.annotation.NonNull Parcelable.Creator<BluetoothSinkAudioPolicy>
+            CREATOR = new Parcelable.Creator<BluetoothSinkAudioPolicy>() {
                 @Override
-                public BluetoothAudioPolicy createFromParcel(@NonNull Parcel in) {
-                    return new BluetoothAudioPolicy(
+                public BluetoothSinkAudioPolicy createFromParcel(@NonNull Parcel in) {
+                    return new BluetoothSinkAudioPolicy(
                             in.readInt(), in.readInt(), in.readInt());
                 }
 
                 @Override
-                public BluetoothAudioPolicy[] newArray(int size) {
-                    return new BluetoothAudioPolicy[size];
+                public BluetoothSinkAudioPolicy[] newArray(int size) {
+                    return new BluetoothSinkAudioPolicy[size];
                 }
             };
 
@@ -223,8 +223,8 @@ public final class BluetoothAudioPolicy implements Parcelable {
 
     @Override
     public boolean equals(@Nullable Object o) {
-        if (o instanceof BluetoothAudioPolicy) {
-            BluetoothAudioPolicy other = (BluetoothAudioPolicy) o;
+        if (o instanceof BluetoothSinkAudioPolicy) {
+            BluetoothSinkAudioPolicy other = (BluetoothSinkAudioPolicy) o;
             return (other.mCallEstablishPolicy == mCallEstablishPolicy
                     && other.mConnectingTimePolicy == mConnectingTimePolicy
                     && other.mInBandRingtonePolicy == mInBandRingtonePolicy);
@@ -244,9 +244,9 @@ public final class BluetoothAudioPolicy implements Parcelable {
     }
 
     /**
-     * Builder for {@link BluetoothAudioPolicy}.
+     * Builder for {@link BluetoothSinkAudioPolicy}.
      * <p> By default, the audio policy values will be set to
-     * {@link BluetoothAudioPolicy#POLICY_UNCONFIGURED}.
+     * {@link BluetoothSinkAudioPolicy#POLICY_UNCONFIGURED}.
      */
     public static final class Builder {
         private int mCallEstablishPolicy = POLICY_UNCONFIGURED;
@@ -257,7 +257,7 @@ public final class BluetoothAudioPolicy implements Parcelable {
 
         }
 
-        public Builder(@NonNull BluetoothAudioPolicy policies) {
+        public Builder(@NonNull BluetoothSinkAudioPolicy policies) {
             mCallEstablishPolicy = policies.mCallEstablishPolicy;
             mConnectingTimePolicy = policies.mConnectingTimePolicy;
             mInBandRingtonePolicy = policies.mInBandRingtonePolicy;
@@ -311,11 +311,11 @@ public final class BluetoothAudioPolicy implements Parcelable {
         }
 
         /**
-         * Build {@link BluetoothAudioPolicy}.
-         * @return new BluetoothAudioPolicy object
+         * Build {@link BluetoothSinkAudioPolicy}.
+         * @return new BluetoothSinkAudioPolicy object
          */
-        public @NonNull BluetoothAudioPolicy build() {
-            return new BluetoothAudioPolicy(
+        public @NonNull BluetoothSinkAudioPolicy build() {
+            return new BluetoothSinkAudioPolicy(
                     mCallEstablishPolicy, mConnectingTimePolicy, mInBandRingtonePolicy);
         }
     }

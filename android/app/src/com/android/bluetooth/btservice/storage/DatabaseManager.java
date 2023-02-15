@@ -20,7 +20,7 @@ import android.bluetooth.BluetoothA2dp;
 import android.bluetooth.BluetoothA2dp.OptionalCodecsPreferenceStatus;
 import android.bluetooth.BluetoothA2dp.OptionalCodecsSupportStatus;
 import android.bluetooth.BluetoothAdapter;
-import android.bluetooth.BluetoothAudioPolicy;
+import android.bluetooth.BluetoothSinkAudioPolicy;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothProfile;
 import android.bluetooth.BluetoothProtoEnums;
@@ -290,7 +290,7 @@ public class DatabaseManager {
      * Set audio policy metadata to database with requested key
      */
     @VisibleForTesting
-    public boolean setAudioPolicyMetadata(BluetoothDevice device, BluetoothAudioPolicy policies) {
+    public boolean setAudioPolicyMetadata(BluetoothDevice device, BluetoothSinkAudioPolicy policies) {
         synchronized (mMetadataCache) {
             if (device == null) {
                 Log.e(TAG, "setAudioPolicyMetadata: device is null");
@@ -316,7 +316,7 @@ public class DatabaseManager {
      * Get audio policy metadata from database with requested key
      */
     @VisibleForTesting
-    public BluetoothAudioPolicy getAudioPolicyMetadata(BluetoothDevice device) {
+    public BluetoothSinkAudioPolicy getAudioPolicyMetadata(BluetoothDevice device) {
         synchronized (mMetadataCache) {
             if (device == null) {
                 Log.e(TAG, "getAudioPolicyMetadata: device is null");
@@ -331,7 +331,7 @@ public class DatabaseManager {
             }
 
             AudioPolicyEntity entity = mMetadataCache.get(address).audioPolicyMetadata;
-            return new BluetoothAudioPolicy.Builder()
+            return new BluetoothSinkAudioPolicy.Builder()
                     .setCallEstablishPolicy(entity.callEstablishAudioPolicy)
                     .setConnectingTimePolicy(entity.connectingTimeAudioPolicy)
                     .setInBandRingtonePolicy(entity.inBandRingtoneAudioPolicy)

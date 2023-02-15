@@ -3407,11 +3407,11 @@ public final class BluetoothDevice implements Parcelable, Attributable {
         prefix = { "REMOTE_STATUS_" },
         value = {
             /** Remote support status of audio policy feature is unknown/unconfigured **/
-            BluetoothAudioPolicy.FEATURE_UNCONFIGURED_BY_REMOTE,
+            BluetoothSinkAudioPolicy.FEATURE_UNCONFIGURED_BY_REMOTE,
             /** Remote support status of audio policy feature is supported **/
-            BluetoothAudioPolicy.FEATURE_SUPPORTED_BY_REMOTE,
+            BluetoothSinkAudioPolicy.FEATURE_SUPPORTED_BY_REMOTE,
             /** Remote support status of audio policy feature is not supported **/
-            BluetoothAudioPolicy.FEATURE_NOT_SUPPORTED_BY_REMOTE,
+            BluetoothSinkAudioPolicy.FEATURE_NOT_SUPPORTED_BY_REMOTE,
         }
     )
 
@@ -3433,14 +3433,14 @@ public final class BluetoothDevice implements Parcelable, Attributable {
     /**
      * Returns whether the audio policy feature is supported by the remote.
      * This requires a vendor specific command, so the API returns
-     * {@link BluetoothAudioPolicy#FEATURE_UNCONFIGURED_BY_REMOTE} to indicate the remote
+     * {@link BluetoothSinkAudioPolicy#FEATURE_UNCONFIGURED_BY_REMOTE} to indicate the remote
      * device has not yet relayed this information. After the internal configuration,
      * the support status will be set to either
-     * {@link BluetoothAudioPolicy#FEATURE_NOT_SUPPORTED_BY_REMOTE} or
-     * {@link BluetoothAudioPolicy#FEATURE_SUPPORTED_BY_REMOTE}.
+     * {@link BluetoothSinkAudioPolicy#FEATURE_NOT_SUPPORTED_BY_REMOTE} or
+     * {@link BluetoothSinkAudioPolicy#FEATURE_SUPPORTED_BY_REMOTE}.
      * The rest of the APIs related to this feature in both {@link BluetoothDevice}
-     * and {@link BluetoothAudioPolicy} should be invoked  only after getting a
-     * {@link BluetoothAudioPolicy#FEATURE_SUPPORTED_BY_REMOTE} response from this API.
+     * and {@link BluetoothSinkAudioPolicy} should be invoked  only after getting a
+     * {@link BluetoothSinkAudioPolicy#FEATURE_SUPPORTED_BY_REMOTE} response from this API.
      *
      * @return if call audio policy feature is supported or not
      *
@@ -3455,7 +3455,7 @@ public final class BluetoothDevice implements Parcelable, Attributable {
     public @AudioPolicyRemoteSupport int getAudioPolicyRemoteSupported() {
         if (DBG) log("getAudioPolicyRemoteSupported()");
         final IBluetooth service = getService();
-        final int defaultValue = BluetoothAudioPolicy.FEATURE_UNCONFIGURED_BY_REMOTE;
+        final int defaultValue = BluetoothSinkAudioPolicy.FEATURE_UNCONFIGURED_BY_REMOTE;
         if (service == null || !isBluetoothEnabled()) {
             Log.e(TAG, "BT not enabled. Cannot retrieve audio policy support status.");
             if (DBG) log(Log.getStackTraceString(new Throwable()));
@@ -3488,7 +3488,7 @@ public final class BluetoothDevice implements Parcelable, Attributable {
             android.Manifest.permission.BLUETOOTH_CONNECT,
             android.Manifest.permission.BLUETOOTH_PRIVILEGED,
     })
-    public @AudioPolicyReturnValues int setAudioPolicy(@NonNull BluetoothAudioPolicy policies) {
+    public @AudioPolicyReturnValues int setAudioPolicy(@NonNull BluetoothSinkAudioPolicy policies) {
         if (DBG) log("setAudioPolicy");
         final IBluetooth service = getService();
         final int defaultValue = BluetoothStatusCodes.ERROR_BLUETOOTH_NOT_ENABLED;
@@ -3517,7 +3517,7 @@ public final class BluetoothDevice implements Parcelable, Attributable {
      * 3. The used transport, for example, HFP Client profile is not enabled or
      * connected yet.
      *
-     * @return call audio policy as {@link BluetoothAudioPolicy} object
+     * @return call audio policy as {@link BluetoothSinkAudioPolicy} object
      *
      * @hide
      */
@@ -3527,7 +3527,7 @@ public final class BluetoothDevice implements Parcelable, Attributable {
             android.Manifest.permission.BLUETOOTH_CONNECT,
             android.Manifest.permission.BLUETOOTH_PRIVILEGED,
     })
-    public @Nullable BluetoothAudioPolicy getAudioPolicy() {
+    public @Nullable BluetoothSinkAudioPolicy getAudioPolicy() {
         if (DBG) log("getAudioPolicy");
         final IBluetooth service = getService();
         if (service == null || !isBluetoothEnabled()) {
@@ -3535,7 +3535,7 @@ public final class BluetoothDevice implements Parcelable, Attributable {
             if (DBG) log(Log.getStackTraceString(new Throwable()));
         } else {
             try {
-                final SynchronousResultReceiver<BluetoothAudioPolicy>
+                final SynchronousResultReceiver<BluetoothSinkAudioPolicy>
                         recv = SynchronousResultReceiver.get();
                 service.getAudioPolicy(this, mAttributionSource, recv);
                 return recv.awaitResultNoInterrupt(getSyncTimeout()).getValue(null);
