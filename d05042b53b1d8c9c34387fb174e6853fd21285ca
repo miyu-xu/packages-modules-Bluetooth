@@ -258,6 +258,30 @@
       },
       "revId": "d05042b53b1d8c9c34387fb174e6853fd21285ca",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1e02eb51_7ed7be27",
+        "filename": "system/gd/rust/linux/stack/src/suspend.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 270,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2023-02-15T01:37:37Z",
+      "side": 1,
+      "message": "In that article, what\u0027s to be avoided is the `#[deny(warnings)[` embedded in code. But it says in Alternative section that `--deny warnings` as RUSTFLAGS is a better solution, which is what I was suggesting.\n\nStill I am okay with not `--deny warnings` by default until we are sure.",
+      "parentUuid": "41c00ec5_4d91f353",
+      "range": {
+        "startLine": 270,
+        "startChar": 20,
+        "endLine": 270,
+        "endChar": 32
+      },
+      "revId": "d05042b53b1d8c9c34387fb174e6853fd21285ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
