@@ -16,6 +16,24 @@
       "message": "Just a follow-up suggestion, you can resolve it if you don\u0027t like it.\n\nDoes it look better to convert `service_data_len \u003c 8` here and remove the following check in line 357?",
       "revId": "556668ebd0384a43e27b513a3d46cb56c963645a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1e3c5e9a_e74e8761",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 19
+      },
+      "lineNbr": 346,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-02-15T02:43:55Z",
+      "side": 1,
+      "message": "Because some hearing aid companies have ASHA UUID, but does not have service data, so I make it separate",
+      "parentUuid": "f3d85ee2_7476b760",
+      "revId": "556668ebd0384a43e27b513a3d46cb56c963645a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
