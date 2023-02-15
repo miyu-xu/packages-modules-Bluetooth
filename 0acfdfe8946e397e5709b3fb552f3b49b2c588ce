@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "27affee8_be93b1d4",
+        "filename": "android/app/tests/myinstrumentation/AndroidTest.xml",
+        "patchSetId": 9
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1986325
+      },
+      "writtenOn": "2023-02-15T21:58:40Z",
+      "side": 1,
+      "message": "@licorne@google.com  , the command was never ran, I\u0027m not sure if this xml has been used.",
+      "revId": "0acfdfe8946e397e5709b3fb552f3b49b2c588ce",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
