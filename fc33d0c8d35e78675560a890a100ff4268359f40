@@ -87,6 +87,30 @@
       },
       "revId": "fc33d0c8d35e78675560a890a100ff4268359f40",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4e9cca60_e2e0319b",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppManagerTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2023-02-15T02:57:21Z",
+      "side": 1,
+      "message": "Talked offline",
+      "parentUuid": "53118e49_11a09e3b",
+      "range": {
+        "startLine": 84,
+        "startChar": 17,
+        "endLine": 84,
+        "endChar": 24
+      },
+      "revId": "fc33d0c8d35e78675560a890a100ff4268359f40",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
