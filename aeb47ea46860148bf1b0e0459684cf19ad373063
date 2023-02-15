@@ -1,0 +1,106 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b1c75e37_562a2318",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 869,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-02-15T19:23:20Z",
+      "side": 1,
+      "message": "Please make this private, it shouldn\u0027t need to be accessed outside of the BluetoothDevice class",
+      "revId": "aeb47ea46860148bf1b0e0459684cf19ad373063",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "98405255_beca057d",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 1436,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-02-15T19:23:20Z",
+      "side": 1,
+      "message": "Given we\u0027re making a pass on this, mention that this address is in Big Endian byte order.",
+      "revId": "aeb47ea46860148bf1b0e0459684cf19ad373063",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c038d404_bcba8aac",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 1437,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-02-15T19:23:20Z",
+      "side": 1,
+      "message": "Note that this is for apps targeting UDC or higher. An app can target Android T, but run on a UDC device.",
+      "revId": "aeb47ea46860148bf1b0e0459684cf19ad373063",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e84b69c8_0b598c4d",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 1441,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-02-15T19:23:20Z",
+      "side": 1,
+      "message": "nit: replace \"returned as it is (without redaction)\" with \"return without redaction\"",
+      "revId": "aeb47ea46860148bf1b0e0459684cf19ad373063",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e74ca2d1_c244fc84",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 1446,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-02-15T19:23:20Z",
+      "side": 1,
+      "message": "nit: \"instead (e.g. by using {@link #getAddress()} to fetch the MAC address)\"",
+      "revId": "aeb47ea46860148bf1b0e0459684cf19ad373063",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1793906c_528d3c28",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 1446,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-02-15T19:23:20Z",
+      "side": 1,
+      "message": "nit: \"in their logic, always use\" --\u003e \"in their logic. Always use\"",
+      "revId": "aeb47ea46860148bf1b0e0459684cf19ad373063",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
