@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b1cbfa74_d784f3a2",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 1091,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-02-15T01:03:09Z",
+      "side": 1,
+      "message": "No, and it is...I think I had a few incantations to parse out the actionable const-ified data set.",
+      "parentUuid": "099cfb8f_ed57eb9b",
+      "range": {
+        "startLine": 1091,
+        "startChar": 5,
+        "endLine": 1091,
+        "endChar": 37
+      },
+      "revId": "85f126032fd8cda72d7eb49a9d20854a3bf40814",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5445fd0d_38c5550c",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-02-14T18:48:36Z",
       "side": 1,
       "message": "I don\u0027t think this cast is needed.  result is already a tBTA_STATUS",
+      "range": {
+        "startLine": 1656,
+        "startChar": 10,
+        "endLine": 1656,
+        "endChar": 35
+      },
+      "revId": "85f126032fd8cda72d7eb49a9d20854a3bf40814",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "eb06000b_f2c18efc",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 1656,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-02-15T01:03:09Z",
+      "side": 1,
+      "message": "This is another one the jumps between a primitive int and typed value depending on where in the stack it\u0027s parsed.  But in the union/struct it\u0027s updated to proper type.",
+      "parentUuid": "5445fd0d_38c5550c",
       "range": {
         "startLine": 1656,
         "startChar": 10,
