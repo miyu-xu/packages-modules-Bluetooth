@@ -169,6 +169,11 @@ class LeAudioGroupStateMachineImpl : public LeAudioGroupStateMachine {
 
     switch (group->GetState()) {
       case AseState::BTA_LE_AUDIO_ASE_STATE_CODEC_CONFIGURED:
+        /* Deactivate previousely activated ASEs in case if there were just a
+         * reconfiguration (group target state as CODEC CONFIGURED) and no
+         * deactivation. Currently activated ASEs cannot be used for different
+         * context.
+         */
         if (group->GetConfigurationContextType() == context_type) {
           if (group->Activate(context_type)) {
             SetTargetState(group, AseState::BTA_LE_AUDIO_ASE_STATE_STREAMING);
@@ -177,6 +182,8 @@ class LeAudioGroupStateMachineImpl : public LeAudioGroupStateMachine {
             }
           }
           LOG_INFO("Could not activate device, try to configure it again");
+        } else {
+          group->Deactivate();
         }
 
         /* We are going to reconfigure whole group. Clear Cises.*/
