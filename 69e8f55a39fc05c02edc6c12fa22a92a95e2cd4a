@@ -16,6 +16,23 @@
       "message": "OWNERS only change shouldn\u0027t need presubmit",
       "revId": "69e8f55a39fc05c02edc6c12fa22a92a95e2cd4a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f776b5d0_381b9e33",
+        "filename": "OWNERS",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-02-15T06:23:29Z",
+      "side": 1,
+      "message": "Could we only do that for system/ ?\n\nI would like the `Cargo.toml` files in `tools` to not be affected by this and still require review from the respective owners",
+      "revId": "69e8f55a39fc05c02edc6c12fa22a92a95e2cd4a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
