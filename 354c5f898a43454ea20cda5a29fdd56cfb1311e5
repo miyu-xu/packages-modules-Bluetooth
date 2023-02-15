@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5461bfe5_1a3b5b5f",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 802,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2023-02-15T00:32:29Z",
+      "side": 1,
+      "message": "The following logic is almost identical to the logic in `ConnectingAfterRetry`. Is it possible to abstract them into a helper?",
+      "revId": "354c5f898a43454ea20cda5a29fdd56cfb1311e5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
