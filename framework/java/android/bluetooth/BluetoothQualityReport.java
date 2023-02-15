@@ -244,19 +244,19 @@ public final class BluetoothQualityReport implements Parcelable {
     }
 
     private BluetoothQualityReport(
-            @Nullable String remoteAddr,
+            String remoteAddr,
             int lmpVer,
             int lmpSubVer,
             int manufacturerId,
-            @Nullable String remoteName,
-            int remoteCoD,
-            @Nullable byte[] rawData) {
+            String remoteName,
+            BluetoothClass bluetoothClass,
+            byte[] rawData) {
         mAddr = remoteAddr;
         mLmpVer = lmpVer;
         mLmpSubVer = lmpSubVer;
         mManufacturerId = manufacturerId;
         mName = remoteName;
-        mBluetoothClass = new BluetoothClass(remoteCoD);
+        mBluetoothClass = bluetoothClass;
 
         mBqrCommon = new BqrCommon(rawData, 0);
         mBqrVsCommon = new BqrVsCommon(rawData, BqrCommon.BQR_COMMON_LEN);
@@ -566,7 +566,7 @@ public final class BluetoothQualityReport implements Parcelable {
         private int lmpSubVer;
         private int manufacturerId;
         private String remoteName;
-        private int remoteCoD;
+        private @NonNull BluetoothClass bluetoothClass;
         private @NonNull byte[] rawData;
 
         /**
@@ -652,16 +652,16 @@ public final class BluetoothQualityReport implements Parcelable {
         }
 
         /**
-         * Sets the Remote Class of Device attribute for the new instance of {@link
+         * Sets the Bluetooth Class of Remote Device attribute for the new instance of {@link
          * BluetoothQualityReport}.
          *
-         * @param remoteCoD The Remote Class of Device attribute
+         * @param bluetoothClass The Remote Class of Device attribute
          * @hide
          */
         @NonNull
         @SystemApi
-        public Builder setRemoteCoD(int remoteCoD) {
-            this.remoteCoD = remoteCoD;
+        public Builder setBluetoothClass(@Nullable BluetoothClass bluetoothClass) {
+            this.bluetoothClass = bluetoothClass;
             return this;
         }
 
@@ -677,7 +677,7 @@ public final class BluetoothQualityReport implements Parcelable {
         public BluetoothQualityReport build() {
             validateBluetoothQualityReport();
             return new BluetoothQualityReport(
-                    remoteAddr, lmpVer, lmpSubVer, manufacturerId, remoteName, remoteCoD, rawData);
+                    remoteAddr, lmpVer, lmpSubVer, manufacturerId, remoteName, bluetoothClass, rawData);
         }
 
         private void validateBluetoothQualityReport() {

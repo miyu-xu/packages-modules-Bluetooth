@@ -71,7 +71,9 @@ package android.bluetooth {
     method public boolean isLeEnabled();
     method @NonNull public static String nameForState(int);
     method @RequiresPermission(allOf={android.Manifest.permission.BLUETOOTH_CONNECT, android.Manifest.permission.BLUETOOTH_PRIVILEGED}) public int notifyActiveDeviceChangeApplied(@NonNull android.bluetooth.BluetoothDevice);
+    method @RequiresPermission(allOf={android.Manifest.permission.BLUETOOTH_CONNECT, android.Manifest.permission.BLUETOOTH_PRIVILEGED}) public int notifyBluetoothQualityReportReady(@NonNull android.bluetooth.BluetoothDevice, @NonNull android.bluetooth.BluetoothQualityReport);
     method @RequiresPermission(allOf={android.Manifest.permission.BLUETOOTH_CONNECT, android.Manifest.permission.BLUETOOTH_PRIVILEGED}) public boolean registerBluetoothConnectionCallback(@NonNull java.util.concurrent.Executor, @NonNull android.bluetooth.BluetoothAdapter.BluetoothConnectionCallback);
+    method @RequiresPermission(allOf={android.Manifest.permission.BLUETOOTH_CONNECT, android.Manifest.permission.BLUETOOTH_PRIVILEGED}) public int registerBluetoothQualityReportReadyCallback(@NonNull java.util.concurrent.Executor, @NonNull android.bluetooth.BluetoothAdapter.BluetoothQualityReportReadyCallback);
     method @RequiresPermission(allOf={android.Manifest.permission.BLUETOOTH_CONNECT, android.Manifest.permission.BLUETOOTH_PRIVILEGED}) public int registerPreferredAudioProfilesChangedCallback(@NonNull java.util.concurrent.Executor, @NonNull android.bluetooth.BluetoothAdapter.PreferredAudioProfilesChangedCallback);
     method @RequiresPermission(allOf={android.Manifest.permission.BLUETOOTH_CONNECT, android.Manifest.permission.BLUETOOTH_PRIVILEGED, android.Manifest.permission.MODIFY_PHONE_STATE}) public boolean removeActiveDevice(int);
     method @RequiresPermission(allOf={android.Manifest.permission.BLUETOOTH_CONNECT, android.Manifest.permission.BLUETOOTH_PRIVILEGED}) public boolean removeOnMetadataChangedListener(@NonNull android.bluetooth.BluetoothDevice, @NonNull android.bluetooth.BluetoothAdapter.OnMetadataChangedListener);
@@ -85,6 +87,7 @@ package android.bluetooth {
     method @RequiresPermission(allOf={android.Manifest.permission.BLUETOOTH_CONNECT, android.Manifest.permission.BLUETOOTH_PRIVILEGED}) public int startRfcommServer(@NonNull String, @NonNull java.util.UUID, @NonNull android.app.PendingIntent);
     method @RequiresPermission(allOf={android.Manifest.permission.BLUETOOTH_CONNECT, android.Manifest.permission.BLUETOOTH_PRIVILEGED}) public int stopRfcommServer(@NonNull java.util.UUID);
     method @RequiresPermission(allOf={android.Manifest.permission.BLUETOOTH_CONNECT, android.Manifest.permission.BLUETOOTH_PRIVILEGED}) public boolean unregisterBluetoothConnectionCallback(@NonNull android.bluetooth.BluetoothAdapter.BluetoothConnectionCallback);
+    method @RequiresPermission(allOf={android.Manifest.permission.BLUETOOTH_CONNECT, android.Manifest.permission.BLUETOOTH_PRIVILEGED}) public int unregisterBluetoothQualityReportReadyCallback(@NonNull android.bluetooth.BluetoothAdapter.BluetoothQualityReportReadyCallback);
     method @RequiresPermission(allOf={android.Manifest.permission.BLUETOOTH_CONNECT, android.Manifest.permission.BLUETOOTH_PRIVILEGED}) public int unregisterPreferredAudioProfilesChangedCallback(@NonNull android.bluetooth.BluetoothAdapter.PreferredAudioProfilesChangedCallback);
     field public static final String ACTION_BLE_STATE_CHANGED = "android.bluetooth.adapter.action.BLE_STATE_CHANGED";
     field public static final String ACTION_REQUEST_BLE_SCAN_ALWAYS_AVAILABLE = "android.bluetooth.adapter.action.REQUEST_BLE_SCAN_ALWAYS_AVAILABLE";
@@ -106,6 +109,10 @@ package android.bluetooth {
     method @NonNull public static String disconnectReasonToString(int);
     method public void onDeviceConnected(@NonNull android.bluetooth.BluetoothDevice);
     method public void onDeviceDisconnected(@NonNull android.bluetooth.BluetoothDevice, int);
+  }
+
+  public static interface BluetoothAdapter.BluetoothQualityReportReadyCallback {
+    method public void onBluetoothQualityReportReady(@NonNull android.bluetooth.BluetoothDevice, @NonNull android.bluetooth.BluetoothQualityReport, int);
   }
 
   public static interface BluetoothAdapter.OnBluetoothActivityEnergyInfoCallback {
@@ -777,7 +784,6 @@ package android.bluetooth {
     method public int getQualityReportId();
     method @NonNull public String getQualityReportIdString();
     method @Nullable public String getRemoteAddress();
-    method public int getRemoteCoD();
     method @Nullable public String getRemoteName();
     method public void writeToParcel(@NonNull android.os.Parcel, int);
     field @NonNull public static final android.os.Parcelable.Creator<android.bluetooth.BluetoothQualityReport> CREATOR;
@@ -791,7 +797,8 @@ package android.bluetooth {
   public static final class BluetoothQualityReport.BqrCommon implements android.os.Parcelable {
     method public int getAfhSelectUnidealChannelCount();
     method public int getConnectionHandle();
-    method @NonNull public String getConnectionRole();
+    method public int getConnectionRole();
+    method @NonNull public String getConnectionRoleString();
     method public long getFlowOffCount();
     method public long getLastFlowOnTimestamp();
     method public long getLastTxAckTimestamp();
@@ -809,6 +816,8 @@ package android.bluetooth {
     method public long getUnderflowCount();
     method public int getUnusedAfhChannelCount();
     method public void writeToParcel(@NonNull android.os.Parcel, int);
+    field public static final int CONNECTION_ROLE_CENTRAL = 0; // 0x0
+    field public static final int CONNECTION_ROLE_PERIPHERAL = 1; // 0x1
     field @NonNull public static final android.os.Parcelable.Creator<android.bluetooth.BluetoothQualityReport.BqrCommon> CREATOR;
   }
 
@@ -884,11 +893,11 @@ package android.bluetooth {
   public static final class BluetoothQualityReport.Builder {
     ctor public BluetoothQualityReport.Builder(@NonNull byte[]);
     method @NonNull public android.bluetooth.BluetoothQualityReport build();
+    method @NonNull public android.bluetooth.BluetoothQualityReport.Builder setBluetoothClass(@Nullable android.bluetooth.BluetoothClass);
     method @NonNull public android.bluetooth.BluetoothQualityReport.Builder setLmpSubVersion(int);
     method @NonNull public android.bluetooth.BluetoothQualityReport.Builder setLmpVersion(int);
     method @NonNull public android.bluetooth.BluetoothQualityReport.Builder setManufacturerId(int);
     method @NonNull public android.bluetooth.BluetoothQualityReport.Builder setRemoteAddress(@Nullable String);
-    method @NonNull public android.bluetooth.BluetoothQualityReport.Builder setRemoteCoD(int);
     method @NonNull public android.bluetooth.BluetoothQualityReport.Builder setRemoteName(@Nullable String);
   }
 

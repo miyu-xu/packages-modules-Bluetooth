@@ -51,6 +51,7 @@ import android.bluetooth.BluetoothFrameworkInitializer;
 import android.bluetooth.BluetoothMap;
 import android.bluetooth.BluetoothProfile;
 import android.bluetooth.BluetoothProtoEnums;
+import android.bluetooth.BluetoothQualityReport;
 import android.bluetooth.BluetoothSap;
 import android.bluetooth.BluetoothServerSocket;
 import android.bluetooth.BluetoothSocket;
@@ -64,6 +65,7 @@ import android.bluetooth.IBluetoothConnectionCallback;
 import android.bluetooth.IBluetoothMetadataListener;
 import android.bluetooth.IBluetoothOobDataCallback;
 import android.bluetooth.IBluetoothPreferredAudioProfilesCallback;
+import android.bluetooth.IBluetoothQualityReportReadyCallback;
 import android.bluetooth.IBluetoothSocketManager;
 import android.bluetooth.IncomingRfcommSocketInfo;
 import android.bluetooth.OobData;
@@ -292,6 +294,8 @@ public class AdapterService extends Service {
     private Set<IBluetoothConnectionCallback> mBluetoothConnectionCallbacks = new HashSet<>();
     private RemoteCallbackList<IBluetoothPreferredAudioProfilesCallback>
             mPreferredAudioProfilesCallbacks;
+    private RemoteCallbackList<IBluetoothQualityReportReadyCallback>
+            mBluetoothQualityReportReadyCallbacks;
     private Set<BluetoothDevice> mDevicesPendingAudioProfileChanges = new HashSet<>();
     //Only BluetoothManagerService should be registered
     private RemoteCallbackList<IBluetoothCallback> mCallbacks;
@@ -530,6 +534,8 @@ public class AdapterService extends Service {
         mNativeAvailable = true;
         mPreferredAudioProfilesCallbacks =
                 new RemoteCallbackList<IBluetoothPreferredAudioProfilesCallback>();
+        mBluetoothQualityReportReadyCallbacks =
+                new RemoteCallbackList<IBluetoothQualityReportReadyCallback>();
         mCallbacks = new RemoteCallbackList<IBluetoothCallback>();
         mAppOps = getSystemService(AppOpsManager.class);
         //Load the name and address
@@ -1065,6 +1071,10 @@ public class AdapterService extends Service {
 
         if (mPreferredAudioProfilesCallbacks != null) {
             mPreferredAudioProfilesCallbacks.kill();
+        }
+
+        if (mBluetoothQualityReportReadyCallbacks != null) {
+            mBluetoothQualityReportReadyCallbacks.kill();
         }
 
         if (mCallbacks != null) {
@@ -4439,6 +4449,114 @@ public class AdapterService extends Service {
             }
             return BluetoothStatusCodes.SUCCESS;
         }
+
+        @Override
+        public void notifyBluetoothQualityReportReady(BluetoothDevice device,
+                BluetoothQualityReport bluetoothQualityReport, AttributionSource source,
+                SynchronousResultReceiver receiver) {
+            try {
+                receiver.send(notifyBluetoothQualityReportReady(device,
+                        bluetoothQualityReport, source));
+            } catch (RuntimeException e) {
+                receiver.propagateException(e);
+            }
+        }
+
+        private int notifyBluetoothQualityReportReady(BluetoothDevice device,
+                BluetoothQualityReport bluetoothQualityReport, AttributionSource source) {
+            AdapterService service = getService();
+            if (service == null) {
+                return BluetoothStatusCodes.ERROR_BLUETOOTH_NOT_ENABLED;
+            }
+            if (!callerIsSystem(TAG, "notifyBluetoothQualityReportReady")) {
+                return BluetoothStatusCodes.ERROR_BLUETOOTH_NOT_ALLOWED;
+            }
+            Objects.requireNonNull(device);
+            Objects.requireNonNull(bluetoothQualityReport);
+            if (!BluetoothAdapter.checkBluetoothAddress(device.getAddress())) {
+                throw new IllegalArgumentException("device cannot have an invalid address");
+            }
+            if (!Utils.checkConnectPermissionForDataDelivery(service, source, TAG)) {
+                return BluetoothStatusCodes.ERROR_MISSING_BLUETOOTH_CONNECT_PERMISSION;
+            }
+            enforceBluetoothPrivilegedPermission(service);
+
+            return service.notifyBluetoothQualityReportReady(device, bluetoothQualityReport);
+        }
+
+        @Override
+        public void registerBluetoothQualityReportReadyCallback(
+                IBluetoothQualityReportReadyCallback callback,
+                AttributionSource attributionSource, SynchronousResultReceiver receiver) {
+            try {
+                receiver.send(registerBluetoothQualityReportReadyCallback(callback,
+                        attributionSource));
+            } catch (RuntimeException e) {
+                receiver.propagateException(e);
+            }
+        }
+        @RequiresPermission(allOf = {
+                android.Manifest.permission.BLUETOOTH_CONNECT,
+                android.Manifest.permission.BLUETOOTH_PRIVILEGED,
+        })
+        private int registerBluetoothQualityReportReadyCallback(
+                IBluetoothQualityReportReadyCallback callback, AttributionSource source) {
+            AdapterService service = getService();
+            if (service == null) {
+                return BluetoothStatusCodes.ERROR_BLUETOOTH_NOT_ENABLED;
+            }
+            if (!callerIsSystemOrActiveOrManagedUser(service, TAG,
+                    "registerBluetoothQualityReportReadyCallback")) {
+                return BluetoothStatusCodes.ERROR_BLUETOOTH_NOT_ALLOWED;
+            }
+            Objects.requireNonNull(callback);
+            if (!Utils.checkConnectPermissionForDataDelivery(service, source, TAG)) {
+                return BluetoothStatusCodes.ERROR_MISSING_BLUETOOTH_CONNECT_PERMISSION;
+            }
+            enforceBluetoothPrivilegedPermission(service);
+
+            service.mBluetoothQualityReportReadyCallbacks.register(callback);
+            return BluetoothStatusCodes.SUCCESS;
+        }
+
+        @Override
+        public void unregisterBluetoothQualityReportReadyCallback(
+                IBluetoothQualityReportReadyCallback callback,
+                AttributionSource attributionSource, SynchronousResultReceiver receiver) {
+            try {
+                receiver.send(unregisterBluetoothQualityReportReadyCallback(callback,
+                        attributionSource));
+            } catch (RuntimeException e) {
+                receiver.propagateException(e);
+            }
+        }
+        @RequiresPermission(allOf = {
+                android.Manifest.permission.BLUETOOTH_CONNECT,
+                android.Manifest.permission.BLUETOOTH_PRIVILEGED,
+        })
+        private int unregisterBluetoothQualityReportReadyCallback(
+                IBluetoothQualityReportReadyCallback callback, AttributionSource source) {
+            AdapterService service = getService();
+            if (service == null) {
+                return BluetoothStatusCodes.ERROR_BLUETOOTH_NOT_ENABLED;
+            }
+            if (!callerIsSystemOrActiveOrManagedUser(service, TAG,
+                    "unregisterBluetoothQualityReportReadyCallback")) {
+                return BluetoothStatusCodes.ERROR_BLUETOOTH_NOT_ALLOWED;
+            }
+            Objects.requireNonNull(callback);
+            if (!Utils.checkConnectPermissionForDataDelivery(service, source, TAG)) {
+                return BluetoothStatusCodes.ERROR_MISSING_BLUETOOTH_CONNECT_PERMISSION;
+            }
+            enforceBluetoothPrivilegedPermission(service);
+
+            if (!service.mBluetoothQualityReportReadyCallbacks.unregister(callback)) {
+                Log.e(TAG, "unregisterBluetoothQualityReportReadyCallback: callback was never "
+                        + "registered");
+                return BluetoothStatusCodes.ERROR_CALLBACK_NOT_REGISTERED;
+            }
+            return BluetoothStatusCodes.SUCCESS;
+        }
     }
 
     /**
@@ -4572,6 +4690,41 @@ public class AdapterService extends Service {
                 mPreferredAudioProfilesCallbacks.finishBroadcast();
             }
             mDevicesPendingAudioProfileChanges.remove(groupLead);
+        }
+
+        return BluetoothStatusCodes.SUCCESS;
+    }
+
+    /**
+     * Notification from Bluetooth Quality Report Native Interface to inform the listeners about
+     * Bluetooth Quality.
+     * See {@link BluetoothAdapter#notifyBluetoothQualityReportReady(BluetoothDevice, Parcel)}
+     * for more details.
+     *
+     * @param device is the BluetoothDevice which connection quality is being reported
+     * @param bluetoothQualityReport a Parcel that contains information about Bluetooth Quality
+     * @return whether the Bluetooth stack acknowledged the change successfully
+     */
+    private int notifyBluetoothQualityReportReady(BluetoothDevice device,
+            BluetoothQualityReport bluetoothQualityReport) {
+        synchronized (mBluetoothQualityReportReadyCallbacks) {
+            if (mBluetoothQualityReportReadyCallbacks != null) {
+                int n = mBluetoothQualityReportReadyCallbacks.beginBroadcast();
+                debugLog("notifyBluetoothQualityReportReady() - "
+                        + "Broadcasting Bluetooth Quality Report to " + n + " receivers.");
+                for (int i = 0; i < n; i++) {
+                    try {
+                        mBluetoothQualityReportReadyCallbacks.getBroadcastItem(i)
+                                .onBluetoothQualityReportReady(device,
+                                        bluetoothQualityReport,
+                                        BluetoothStatusCodes.SUCCESS);
+                    } catch (RemoteException e) {
+                        debugLog("notifyBluetoothQualityReportReady() - Callback #" + i
+                                + " failed (" + e + ")");
+                    }
+                }
+                mBluetoothQualityReportReadyCallbacks.finishBroadcast();
+            }
         }
 
         return BluetoothStatusCodes.SUCCESS;
