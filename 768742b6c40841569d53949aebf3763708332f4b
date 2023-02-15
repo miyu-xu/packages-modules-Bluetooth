@@ -1,0 +1,84 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dae18d11_29c60664",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2023-02-15T18:50:21Z",
+      "side": 1,
+      "message": "LGTM.",
+      "revId": "768742b6c40841569d53949aebf3763708332f4b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "528eb0ae_2b817eda",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 1571,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2023-02-15T18:50:21Z",
+      "side": 1,
+      "message": "nit: You can omit the explicit size since BtPinCode::pin is well defined.\n\nYou can also omit specifying the data type:\n```\nlet mut btpin \u003d BtPinCode { pin: array_utils::to_sized_array(\u0026pin_code) };\n```",
+      "range": {
+        "startLine": 1571,
+        "startChar": 79,
+        "endLine": 1571,
+        "endChar": 85
+      },
+      "revId": "768742b6c40841569d53949aebf3763708332f4b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5919ce92_58ec92da",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 2489,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2023-02-15T18:50:21Z",
+      "side": 1,
+      "message": "nit: Since you already define the data type of `data` to be `[u8; 600]`, you can omit the size here to let the compiler decide the right size:\n```\nlet data: [u8; 600] \u003d array_utils::to_sized_array(\u0026value);\n```\n\n(You only need to specify the size explicitly if you don\u0027t define the data type)",
+      "range": {
+        "startLine": 2489,
+        "startChar": 61,
+        "endLine": 2489,
+        "endChar": 68
+      },
+      "revId": "768742b6c40841569d53949aebf3763708332f4b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cab4f803_83566da5",
+        "filename": "system/gd/rust/linux/utils/src/array_utils.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2023-02-15T18:50:21Z",
+      "side": 1,
+      "message": "nit: This shouldn\u0027t be doc comment, use double slash not triple (`//`).",
+      "revId": "768742b6c40841569d53949aebf3763708332f4b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
