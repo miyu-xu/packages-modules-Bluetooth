@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "56d828b6_c592ae2a",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 530,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-02-15T01:34:23Z",
+      "side": 1,
+      "message": "change this to \n\n```\nLOG_WARN(\"Ignoring bond state changed for unexpected device:%s pairing:%s\", ADDRESS_TO_LOGGABLE_CSTR(bd_addr), ADDRESS_TO_LOGGABLE_CSTR(pairing_cb.bd_addr));\n\n```",
+      "revId": "8433c35383185fae60116a1f03441ac56f76e55c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
