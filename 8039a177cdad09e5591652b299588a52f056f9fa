@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "32dc4f5f_e3a488fd",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 5578,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-02-15T01:37:01Z",
+      "side": 1,
+      "message": "These two annotations conflict with each other. We shouldn\u0027t add \"@RequiresLegacyBluetoothPermission\" to new APIs. Given this is a system API and it makes a binder call, this should require BLUETOOTH_SCAN and BLUETOOTH_PRIVILEGED permissions. These permissions should be enforced on the service side.",
+      "revId": "8039a177cdad09e5591652b299588a52f056f9fa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "feb760ea_2573d093",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 5579,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-02-15T01:37:01Z",
+      "side": 1,
+      "message": "Please return an int status code from BluetoothStatusCodes.java. This allows developers to be more aware if an error occurs. We have FEATURE_SUPPORTED and FEATURE_NOT_SUPPORTED codes for the cases where we do get this info, but we can also return error codes if BT is off for example.\n\nAlso please wrap the possible status codes in an IntDef",
+      "revId": "8039a177cdad09e5591652b299588a52f056f9fa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

@@ -139,6 +139,24 @@
       "parentUuid": "852a0661_60449068",
       "revId": "aa954caed5b375103e073f1cec2018afa6641ded",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5b216103_fb56053a",
+        "filename": "framework/java/android/bluetooth/le/ScanFilter.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 1194,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-02-15T01:37:01Z",
+      "side": 1,
+      "message": "Ok fair, we can keep this open",
+      "parentUuid": "6b8047a7_8bf6489f",
+      "revId": "aa954caed5b375103e073f1cec2018afa6641ded",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
