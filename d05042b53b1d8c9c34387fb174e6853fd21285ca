@@ -234,6 +234,30 @@
       },
       "revId": "d05042b53b1d8c9c34387fb174e6853fd21285ca",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "41c00ec5_4d91f353",
+        "filename": "system/gd/rust/linux/stack/src/suspend.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 270,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-02-15T01:32:10Z",
+      "side": 1,
+      "message": "https://github.com/rust-unofficial/patterns/blob/main/anti_patterns/deny-warnings.md\n\nBecause code and dependencies are split between AOSP and Chromium with third-party dependencies, this is going to be hard to do and enforce unilaterally.\n\nThe old pattern around awaits was to use `let _ \u003d txl.send(...).await` which was problematic. This can be used in conjunction with denying warnings locally but I don\u0027t think we can unilaterally enable it (even in CI).",
+      "parentUuid": "99333ba4_e2bdad74",
+      "range": {
+        "startLine": 270,
+        "startChar": 20,
+        "endLine": 270,
+        "endChar": 32
+      },
+      "revId": "d05042b53b1d8c9c34387fb174e6853fd21285ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
