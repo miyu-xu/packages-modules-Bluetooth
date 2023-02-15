@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "faa4ba6c_594538c5",
+        "filename": "android/app/src/com/android/bluetooth/gatt/AppScanStats.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 344,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2023-02-15T18:39:33Z",
+      "side": 1,
+      "message": "\"static synchronized\" will have class-level lock. If we have multiple static variables guarded by different locks in the future, I preferred to use object lock.",
+      "parentUuid": "dae4e455_9b838629",
+      "range": {
+        "startLine": 344,
+        "startChar": 8,
+        "endLine": 344,
+        "endChar": 28
+      },
+      "revId": "528604d44cbf94b5004501a09b65837ff3f89f7c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b7af3b98_7f3453d9",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-02-15T18:04:47Z",
       "side": 1,
       "message": "To make the unit test easier to write and faster to run, you can generate a wrapper class for all clock related static functions and use it here and then mock the class in the unit test. By doing that, you don\u0027t have to do testSleep() in the unit test. \n\nPlease refer to\npackages/modules/Wifi/service/java/com/android/server/wifi/Clock.java.\n\nOK to defer this to future CLs.",
+      "range": {
+        "startLine": 353,
+        "startChar": 30,
+        "endLine": 353,
+        "endChar": 60
+      },
+      "revId": "528604d44cbf94b5004501a09b65837ff3f89f7c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e6212355_9208cc16",
+        "filename": "android/app/src/com/android/bluetooth/gatt/AppScanStats.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 353,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2023-02-15T18:39:33Z",
+      "side": 1,
+      "message": "Thanks for the information. I will consider to add a wrapper clock class when adding more counter metrics in another CLs.",
+      "parentUuid": "b7af3b98_7f3453d9",
       "range": {
         "startLine": 353,
         "startChar": 30,
