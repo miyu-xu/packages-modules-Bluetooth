@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c5a7c82f_373a58ad",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1520081
+      },
+      "writtenOn": "2023-02-16T18:04:29Z",
+      "side": 1,
+      "message": "Clean revert to fix a DM P0",
+      "revId": "a321d6b5a45de0b2624dff6ee66c408e4ea37a57",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
