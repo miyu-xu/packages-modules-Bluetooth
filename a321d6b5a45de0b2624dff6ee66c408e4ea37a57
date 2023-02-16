@@ -33,6 +33,24 @@
       "message": "Failure in the P0 bug is in nearby test.\nit looks like they are wrongly relying on the [toString()](https://source.corp.google.com/h/googleplex-android/platform/superproject/+/master:packages/modules/Connectivity/nearby/tests/unit/src/com/android/server/nearby/common/bluetooth/fastpair/EventTest.java;l\u003d64?q\u003dnearby%20eventtest%20createandread\u0026sq\u003drepo:googleplex-android%2Fplatform%2Fsuperproject%20branch:master)\n\nWe can revert to quickly fix the presubmit/postsubmit, but there is no issue to re-land the CL with modified test next",
       "revId": "a321d6b5a45de0b2624dff6ee66c408e4ea37a57",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5ad13ff8_6c695fef",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2023-02-16T18:51:09Z",
+      "side": 1,
+      "message": "I have created a CL for them:\n\nhttps://googleplex-android-review.git.corp.google.com/c/platform/packages/modules/Connectivity/+/21466726",
+      "parentUuid": "3183d8f0_1db9d52d",
+      "revId": "a321d6b5a45de0b2624dff6ee66c408e4ea37a57",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
