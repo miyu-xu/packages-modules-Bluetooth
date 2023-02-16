@@ -3,6 +3,52 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1e94ceff_f0f0a9fa",
+        "filename": "framework/api/system-current.txt",
+        "patchSetId": 22
+      },
+      "lineNbr": 1089,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-02-16T07:11:56Z",
+      "side": 1,
+      "message": "could these be made into its own class and have a single getter for them. \n\nSince all data needs to be set at the same time, having separate getters is not symmetric.",
+      "range": {
+        "startLine": 1082,
+        "startChar": 4,
+        "endLine": 1089,
+        "endChar": 12
+      },
+      "revId": "a9e8d334b215a0c46c510de3e6ddfa9f001ff3cb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aad2affc_e2e97293",
+        "filename": "framework/api/system-current.txt",
+        "patchSetId": 22
+      },
+      "lineNbr": 1095,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-02-16T07:11:56Z",
+      "side": 1,
+      "message": "use the TransportDiscoveryData class instead",
+      "range": {
+        "startLine": 1095,
+        "startChar": 92,
+        "endLine": 1095,
+        "endChar": 142
+      },
+      "revId": "a9e8d334b215a0c46c510de3e6ddfa9f001ff3cb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8e9bba59_52db8f3b",
         "filename": "framework/java/android/bluetooth/le/ScanRecord.java",
         "patchSetId": 22
