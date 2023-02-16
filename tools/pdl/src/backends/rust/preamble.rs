@@ -9,7 +9,7 @@ pub fn generate(path: &Path) -> String {
     code.push_str(&format!("// @generated rust packets from {filename}\n\n"));
 
     // TODO(mgeisler): make the generated code clean from warnings.
-    code.push_str("#![allow(warnings, missing_docs)]\n\n");
+    //    code.push_str("#![allow(warnings, missing_docs)]\n\n");
 
     code.push_str(&quote_block! {
         use bytes::{Buf, BufMut, Bytes, BytesMut};
