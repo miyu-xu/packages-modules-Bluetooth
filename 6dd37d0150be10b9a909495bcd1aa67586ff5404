@@ -88,6 +88,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ba498520_5ed1160e",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 3434,
+      "author": {
+        "id": 1869660
+      },
+      "writtenOn": "2023-02-16T02:57:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "97118953_70776207",
+      "revId": "6dd37d0150be10b9a909495bcd1aa67586ff5404",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "30c307c3_cfc0d171",
@@ -105,6 +123,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6d988dd9_d3c901d9",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 3438,
+      "author": {
+        "id": 1869660
+      },
+      "writtenOn": "2023-02-16T02:57:52Z",
+      "side": 1,
+      "message": "It is possible that the remote device does not recognize the protocol and will reply with ERROR event in that case. If that is the case, then FEATURE_NOT_SUPPORTED will be set as the status.",
+      "parentUuid": "30c307c3_cfc0d171",
+      "revId": "6dd37d0150be10b9a909495bcd1aa67586ff5404",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "83c09ab9_1ca0ef4b",
@@ -118,6 +154,24 @@
       "writtenOn": "2023-02-15T19:04:41Z",
       "side": 1,
       "message": "Please expand on these docs. You should note that developers should verify the return value of {@link BluetoothDevice#isRequestAudioPolicyAsSinkSupported} before calling this.",
+      "revId": "6dd37d0150be10b9a909495bcd1aa67586ff5404",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4b077f1a_534f9653",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 3480,
+      "author": {
+        "id": 1869660
+      },
+      "writtenOn": "2023-02-16T02:57:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "83c09ab9_1ca0ef4b",
       "revId": "6dd37d0150be10b9a909495bcd1aa67586ff5404",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
