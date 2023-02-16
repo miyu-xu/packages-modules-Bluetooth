@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a3e08842_2ecb2aa5",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 1571,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2023-02-16T03:12:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "528eb0ae_2b817eda",
+      "range": {
+        "startLine": 1571,
+        "startChar": 79,
+        "endLine": 1571,
+        "endChar": 85
+      },
+      "revId": "768742b6c40841569d53949aebf3763708332f4b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5919ce92_58ec92da",
@@ -64,6 +88,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1f487a70_d84e3065",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 2489,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2023-02-16T03:12:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5919ce92_58ec92da",
+      "range": {
+        "startLine": 2489,
+        "startChar": 61,
+        "endLine": 2489,
+        "endChar": 68
+      },
+      "revId": "768742b6c40841569d53949aebf3763708332f4b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cab4f803_83566da5",
@@ -77,6 +125,24 @@
       "writtenOn": "2023-02-15T18:50:21Z",
       "side": 1,
       "message": "nit: This shouldn\u0027t be doc comment, use double slash not triple (`//`).",
+      "revId": "768742b6c40841569d53949aebf3763708332f4b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "57d8e34c_3cd78623",
+        "filename": "system/gd/rust/linux/utils/src/array_utils.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2023-02-16T03:12:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cab4f803_83566da5",
       "revId": "768742b6c40841569d53949aebf3763708332f4b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
