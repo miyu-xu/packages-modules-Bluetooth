@@ -69,6 +69,24 @@
       "parentUuid": "416633c6_77603731",
       "revId": "69e8f55a39fc05c02edc6c12fa22a92a95e2cd4a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0f1ad2da_41d905ef",
+        "filename": "OWNERS",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-02-16T04:55:48Z",
+      "side": 1,
+      "message": "Ack.\n\nGood news - I misread the code-owners doc and it turns out I only have access to the root Cargo.toml file with this change.\n\nI would want to do `*Cargo.toml` if I wanted it everywhere. I just need to update the comment now.\n\nhttps://android-review.googlesource.com/plugins/code-owners/Documentation/backend-find-owners.html#perFile",
+      "parentUuid": "98c7c53f_1f6c787d",
+      "revId": "69e8f55a39fc05c02edc6c12fa22a92a95e2cd4a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
