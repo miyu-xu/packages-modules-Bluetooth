@@ -279,6 +279,7 @@ init_flags!(
         private_gatt,
         queue_l2cap_coc_while_encrypting = true,
         redact_log = true,
+        delay_hidh_cleanup_until_hidh_ready_start = true,
         rust_event_loop,
         sdp_serialization = true,
         sdp_skip_rnr_if_known = true,
