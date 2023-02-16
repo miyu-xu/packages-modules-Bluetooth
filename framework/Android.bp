@@ -30,7 +30,6 @@ java_defaults {
     libs: [
         "framework-tethering.stubs.module_lib",
         "unsupportedappusage", // for android.compat.annotation.UnsupportedAppUsage
-        "app-compat-annotations",
     ],
     stub_only_libs: ["framework-tethering.stubs.module_lib"],
     srcs: [
@@ -103,7 +102,6 @@ java_defaults {
 
         // if sdk_version="" this gets automatically included, but here we need to add manually.
         "framework-res",
-        "app-compat-annotations",
     ],
     defaults_visibility: ["//visibility:public"],
 }
@@ -120,10 +118,4 @@ java_api_contribution {
     visibility: [
         "//build/orchestrator/apis",
     ],
-}
-
-platform_compat_config
-{
-    name: "framework-bluetooth-compat-config",
-    src: ":framework-bluetooth",
 }
