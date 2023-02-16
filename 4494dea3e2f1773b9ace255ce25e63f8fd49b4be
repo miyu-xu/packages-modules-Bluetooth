@@ -49,6 +49,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7fb21e9a_90689e46",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 1985260
+      },
+      "writtenOn": "2023-02-16T02:42:38Z",
+      "side": 1,
+      "message": "I will change the value in Line 230. I don\u0027t recommend adding final here.\n\nOtherwise, I\u0027m able to make the following change. But I\u0027m not sure if this is a good practice.\n\n```\nprivate final boolean mBtAudioPolicyAgSupported \n \u003d DeviceConfig.getBoolean(DeviceConfig.NAMESPACE_BLUETOOTH,sBtAudioPolicyAgFlag, true);\n ```",
+      "parentUuid": "cf4dbae4_ff6b86a6",
+      "range": {
+        "startLine": 167,
+        "startChar": 11,
+        "endLine": 167,
+        "endChar": 12
+      },
+      "revId": "4494dea3e2f1773b9ace255ce25e63f8fd49b4be",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6090f607_6c26e15a",
         "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
         "patchSetId": 1
