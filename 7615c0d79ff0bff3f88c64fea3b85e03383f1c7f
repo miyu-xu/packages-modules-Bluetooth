@@ -76,6 +76,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0c4a5742_70049ee2",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 1610,
+      "author": {
+        "id": 1882545
+      },
+      "writtenOn": "2023-02-16T04:24:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a31ed4b_7888a1c6",
+      "range": {
+        "startLine": 1610,
+        "startChar": 0,
+        "endLine": 1610,
+        "endChar": 84
+      },
+      "revId": "7615c0d79ff0bff3f88c64fea3b85e03383f1c7f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9e5d1029_e7465451",
@@ -89,6 +113,30 @@
       "writtenOn": "2023-02-15T19:30:32Z",
       "side": 1,
       "message": "Since you added it here, you need to remove it from le_iso_interface.h",
+      "range": {
+        "startLine": 34,
+        "startChar": 23,
+        "endLine": 34,
+        "endChar": 50
+      },
+      "revId": "7615c0d79ff0bff3f88c64fea3b85e03383f1c7f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f0cd7d77_1a27a8d6",
+        "filename": "system/gd/hci/le_scanning_interface.h",
+        "patchSetId": 7
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1882545
+      },
+      "writtenOn": "2023-02-16T04:24:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9e5d1029_e7465451",
       "range": {
         "startLine": 34,
         "startChar": 23,
