@@ -1,0 +1,10 @@
+import("//bt/sysprop/sysprop.gni")
+
+sysprop("com.android.sysprop.bluetooth") {
+  sources = [ "device_id.sysprop" ]
+  deps = [ "//bt/floss/android-base:android-base" ]
+}
+
+static_library("libcom.android.sysprop.bluetooth") {
+  deps = [ ":com.android.sysprop.bluetooth" ]
+}
