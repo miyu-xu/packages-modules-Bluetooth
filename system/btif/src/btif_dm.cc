@@ -1866,6 +1866,8 @@ static void btif_dm_search_services_evt(tBTA_DM_SEARCH_EVT event,
         // to clear the service discovery part of CB.
         LOG_INFO("clearing pairing_cb");
         pairing_cb = {};
+      } else {
+          LOG_INFO("SDP state: %d, GATT SD state: %d", pairing_cb.sdp_over_classic, pairing_cb.gatt_over_le);
       }
     } break;
 
