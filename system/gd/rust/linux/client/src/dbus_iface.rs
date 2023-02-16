@@ -298,7 +298,8 @@ impl IBluetoothCallback for IBluetoothCallbackDBus {
         passkey: u32,
     ) {
     }
-
+    #[dbus_method("OnPinRequest")]
+    fn on_pin_request(&self, remote_device: BluetoothDevice, cod: u32, min_16_digit: bool) {}
     #[dbus_method("OnBondStateChanged")]
     fn on_bond_state_changed(&self, status: u32, address: String, state: u32) {}
 }
