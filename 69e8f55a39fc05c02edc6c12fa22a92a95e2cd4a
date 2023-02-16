@@ -33,6 +33,24 @@
       "message": "Could we only do that for system/ ?\n\nI would like the `Cargo.toml` files in `tools` to not be affected by this and still require review from the respective owners",
       "revId": "69e8f55a39fc05c02edc6c12fa22a92a95e2cd4a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "416633c6_77603731",
+        "filename": "OWNERS",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-02-16T00:56:08Z",
+      "side": 1,
+      "message": "I actually need OWNERS to the root level `Cargo.toml` since it describes the workspace.\n\nUnder tools, the LMP portion actually also uses the Floss pre-submit to make sure nothing is broken. Given that, the Floss team wants permission on Cargo.toml to maintain it.\n\nIf you still want separate OWNERS, we can change this rule to:\n`./Cargo.toml,system/**/Cargo.toml`\n\nAnd add ourselves to the per-file owners in `tools/lmp`.",
+      "parentUuid": "f776b5d0_381b9e33",
+      "revId": "69e8f55a39fc05c02edc6c12fa22a92a95e2cd4a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
