@@ -44,6 +44,7 @@ import android.os.Bundle;
 import android.os.HandlerThread;
 import android.os.Looper;
 import android.os.Message;
+import android.os.SystemProperties;
 import android.util.Pair;
 
 import androidx.test.InstrumentationRegistry;
@@ -122,6 +123,8 @@ public class HeadsetClientStateMachineTest {
                 mAudioManager);
         when(mHeadsetClientService.getResources()).thenReturn(mMockHfpResources);
         when(mMockHfpResources.getBoolean(R.bool.hfp_clcc_poll_during_call)).thenReturn(true);
+        when(SystemProperties.getBoolean(eq("ro.bluetooth.hfp_clcc_poll_during_call"),
+                anyBoolean())).thenReturn(false);
         when(mMockHfpResources.getInteger(R.integer.hfp_clcc_poll_interval_during_call))
                 .thenReturn(2000);
 
