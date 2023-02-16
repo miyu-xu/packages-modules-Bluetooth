@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "10b882c1_710fd192",
+        "filename": "system/gd/hal/hci_hal_fake.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-02-16T19:54:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4c2abba9_32f13aaf",
+      "range": {
+        "startLine": 2,
+        "startChar": 13,
+        "endLine": 2,
+        "endChar": 17
+      },
+      "revId": "d86806bda8f3503a3ab74f4318428d1eda3c93db",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e51ccea3_a9b3437b",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-02-16T19:45:44Z",
       "side": 1,
       "message": "2023 ?",
+      "range": {
+        "startLine": 2,
+        "startChar": 13,
+        "endLine": 2,
+        "endChar": 17
+      },
+      "revId": "d86806bda8f3503a3ab74f4318428d1eda3c93db",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7dabb65e_41b72ff8",
+        "filename": "system/gd/hal/hci_hal_fake.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-02-16T19:54:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e51ccea3_a9b3437b",
       "range": {
         "startLine": 2,
         "startChar": 13,
