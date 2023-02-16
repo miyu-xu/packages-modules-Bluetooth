@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1ad52bb4_5ee0e03c",
+        "filename": "system/btif/src/btif_gatt_client.cc",
+        "patchSetId": 14
+      },
+      "lineNbr": 281,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-02-16T18:24:51Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "e4bb5184_06ca452b",
+      "range": {
+        "startLine": 281,
+        "startChar": 20,
+        "endLine": 281,
+        "endChar": 22
+      },
+      "revId": "69b0bcd4bc6bc76a010f50750f535a2bef6fb6ab",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "deabdf98_4a352645",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "aae4fcfe_6d4402aa",
+        "filename": "system/btif/src/btif_gatt_client.cc",
+        "patchSetId": 14
+      },
+      "lineNbr": 285,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-02-16T18:24:51Z",
+      "side": 1,
+      "message": "for dual mode device, the below code line#329 will always set the transport to BLE, so we\u0027re doing the similar thing here. also i did some manual test with dualmode headphones, it looks good since actually the upper caller will use Public type.",
+      "parentUuid": "deabdf98_4a352645",
+      "range": {
+        "startLine": 285,
+        "startChar": 4,
+        "endLine": 285,
+        "endChar": 37
+      },
+      "revId": "69b0bcd4bc6bc76a010f50750f535a2bef6fb6ab",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2b4cc863_3a313803",
@@ -60,6 +108,30 @@
       "writtenOn": "2023-02-16T00:22:47Z",
       "side": 1,
       "message": "Can we add a comment that says this is address type?",
+      "range": {
+        "startLine": 2094,
+        "startChar": 12,
+        "endLine": 2094,
+        "endChar": 13
+      },
+      "revId": "69b0bcd4bc6bc76a010f50750f535a2bef6fb6ab",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bc405fb0_a198def6",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 14
+      },
+      "lineNbr": 2094,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-02-16T18:24:51Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "2b4cc863_3a313803",
       "range": {
         "startLine": 2094,
         "startChar": 12,
