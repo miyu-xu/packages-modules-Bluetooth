@@ -51,6 +51,24 @@
       "parentUuid": "f776b5d0_381b9e33",
       "revId": "69e8f55a39fc05c02edc6c12fa22a92a95e2cd4a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "98c7c53f_1f6c787d",
+        "filename": "OWNERS",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-02-16T01:39:52Z",
+      "side": 1,
+      "message": "I\u0027m not sure to understand why you \"need\" OWNERS, I still would like to be included (or other RootCanal maintainer) as reviewer for the LMP portion as it\u0027s used by Goldfish as well and we might at some point what to use it as well to use cargo instead of soong for local development.",
+      "parentUuid": "416633c6_77603731",
+      "revId": "69e8f55a39fc05c02edc6c12fa22a92a95e2cd4a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
