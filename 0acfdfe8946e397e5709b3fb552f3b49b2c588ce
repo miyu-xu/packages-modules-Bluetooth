@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "674db208_67d8297d",
+        "filename": "android/app/tests/myinstrumentation/Android.bp",
+        "patchSetId": 9
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1986325
+      },
+      "writtenOn": "2023-02-16T21:04:12Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "5080626b_affa93ea",
+      "revId": "0acfdfe8946e397e5709b3fb552f3b49b2c588ce",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "df6a02c4_9f7e1416",
@@ -71,6 +89,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a58a79c7_8655a0be",
+        "filename": "android/app/tests/myinstrumentation/AndroidTest.xml",
+        "patchSetId": 9
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1986325
+      },
+      "writtenOn": "2023-02-16T21:04:12Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "b1b20f29_b9cba018",
+      "revId": "0acfdfe8946e397e5709b3fb552f3b49b2c588ce",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "27affee8_be93b1d4",
@@ -102,6 +138,24 @@
       "side": 1,
       "message": "`RunCommandTargetPreparer` runs an `adb shell` command which mean that here you are running `adb shell adb reverse tcp:7999 tcp:7999`, if you look at the logs you should see this command and that it fails. However by default tradefed don\u0027t report a command error as an error, to do that you need to add `\u003coption name\u003d\"throw-if-cmd-fail\" value\u003d\"true\" /\u003e`\n\nBut anyway, I think here you want to use `RunHostCommandTargetPreparer`",
       "parentUuid": "27affee8_be93b1d4",
+      "revId": "0acfdfe8946e397e5709b3fb552f3b49b2c588ce",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8f922916_1200c849",
+        "filename": "android/app/tests/myinstrumentation/AndroidTest.xml",
+        "patchSetId": 9
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1986325
+      },
+      "writtenOn": "2023-02-16T21:04:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9206a24d_c799fb34",
       "revId": "0acfdfe8946e397e5709b3fb552f3b49b2c588ce",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
