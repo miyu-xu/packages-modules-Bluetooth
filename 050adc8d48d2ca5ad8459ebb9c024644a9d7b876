@@ -34,6 +34,24 @@
       "parentUuid": "8d4caf38_1644f65f",
       "revId": "050adc8d48d2ca5ad8459ebb9c024644a9d7b876",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f9d5ec75_26b9159b",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/a2dp.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 1937985
+      },
+      "writtenOn": "2023-02-16T20:57:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dd189d57_c31bff02",
+      "revId": "050adc8d48d2ca5ad8459ebb9c024644a9d7b876",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
