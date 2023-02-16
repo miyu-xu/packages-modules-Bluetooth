@@ -69,10 +69,11 @@ void cleanup();
  *    data - Pointer to received packet data bytes.
  *    pkt_size - Length of input packet. Passing packet with inconsistent size
  *        from the pkt_size set in init() will fail the call.
+ *    corrupted - If the current mSBC packet read is corrupted.
  * Returns:
  *    The length of enqueued bytes. 0 if failed.
  */
-size_t enqueue_packet(const uint8_t* data, size_t pkt_size);
+size_t enqueue_packet(const uint8_t* data, size_t pkt_size, bool corrupted);
 
 /* Try to decode mSBC frames from the packets in the buffer.
  * Args:
