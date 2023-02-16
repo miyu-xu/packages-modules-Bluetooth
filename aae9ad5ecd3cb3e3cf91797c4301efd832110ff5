@@ -22,6 +22,30 @@
       },
       "revId": "aae9ad5ecd3cb3e3cf91797c4301efd832110ff5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8b06d265_59166c14",
+        "filename": "android/pandora/test/gatt_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1937985
+      },
+      "writtenOn": "2023-02-16T22:38:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8194eae4_459cf800",
+      "range": {
+        "startLine": 64,
+        "startChar": 0,
+        "endLine": 64,
+        "endChar": 8
+      },
+      "revId": "aae9ad5ecd3cb3e3cf91797c4301efd832110ff5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
