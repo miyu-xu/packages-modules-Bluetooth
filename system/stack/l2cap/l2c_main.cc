@@ -952,6 +952,7 @@ void l2c_free(void) {
 
   list_free(l2cb.rcv_pending_q);
   l2cb.rcv_pending_q = NULL;
+  alarm_free(l2cb.receive_hold_timer);
 }
 
 void l2c_receive_hold_timer_timeout(UNUSED_ATTR void* data) {
