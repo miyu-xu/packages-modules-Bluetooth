@@ -229,6 +229,7 @@ cc_library_static {
         "libbt-audio-hal-interface",
         "libbt-stack-core",
         "libaudio-a2dp-hw-utils",
+        "libcom.android.sysprop.bluetooth",
     ],
     cflags: [
         /* we export all classes, so change default visibility, instead of having EXPORT_SYMBOL on each class*/
