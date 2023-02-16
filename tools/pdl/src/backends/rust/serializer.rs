@@ -1,4 +1,4 @@
-use crate::backends::rust::{mask_bits, types};
+use crate::backends::rust::{convert_to_pascal_case, mask_bits, types};
 use crate::parser::ast as parser_ast;
 use crate::{ast, lint};
 use quote::{format_ident, quote};
@@ -76,7 +76,7 @@ impl<'a> FieldSerializer<'a> {
             ast::FieldDesc::FixedEnum { enum_id, tag_id, .. } => {
                 let field_type = types::Integer::new(width);
                 let enum_id = format_ident!("{enum_id}");
-                let tag_id = format_ident!("{tag_id}");
+                let tag_id = format_ident!("{}", convert_to_pascal_case(tag_id));
                 self.chunk.push(BitField { value: quote!(#enum_id::#tag_id), field_type, shift });
             }
             ast::FieldDesc::FixedScalar { value, .. } => {

@@ -1,4 +1,4 @@
-use crate::backends::rust::{mask_bits, types};
+use crate::backends::rust::{convert_to_pascal_case, mask_bits, types};
 use crate::parser::ast as parser_ast;
 use crate::{ast, lint};
 use quote::{format_ident, quote};
@@ -128,7 +128,7 @@ impl<'a> FieldParser<'a> {
                 }
                 ast::FieldDesc::FixedEnum { enum_id, tag_id, .. } => {
                     let enum_id = format_ident!("{enum_id}");
-                    let tag_id = format_ident!("{tag_id}");
+                    let tag_id = format_ident!("{}", convert_to_pascal_case(tag_id));
                     quote! {
                         if #v != #enum_id::#tag_id as #value_type {
                             return Err(Error::InvalidFixedValue {
@@ -540,7 +540,8 @@ impl<'a> FieldParser<'a> {
                                         }
                                         _ => unreachable!("Invalid constraint: {constraint:?}"),
                                     };
-                                    let tag_id = format_ident!("{tag_id}");
+                                    let tag_id =
+                                        format_ident!("{}", convert_to_pascal_case(tag_id));
                                     quote!(#type_id::#tag_id)
                                 }
                                 _ => unreachable!("Invalid constraint: {constraint:?}"),
