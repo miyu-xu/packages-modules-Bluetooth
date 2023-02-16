@@ -85,6 +85,24 @@
       "message": "@farivar@google.com\n\nIt looks like the analyzer meant to put the comment here.",
       "revId": "69b0bcd4bc6bc76a010f50750f535a2bef6fb6ab",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dca3ce14_c5f2a6d0",
+        "filename": "system/stack/acl/btm_acl.cc",
+        "patchSetId": 14
+      },
+      "lineNbr": 2728,
+      "author": {
+        "id": 1600736
+      },
+      "writtenOn": "2023-02-16T17:37:12Z",
+      "side": 1,
+      "message": "this normally happens when your code is not synced recently. \n\ncould you sync again and let presubmit finish again. if it line wasn\u0027t matching I can take a look.",
+      "parentUuid": "5dd39119_64795cc6",
+      "revId": "69b0bcd4bc6bc76a010f50750f535a2bef6fb6ab",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
