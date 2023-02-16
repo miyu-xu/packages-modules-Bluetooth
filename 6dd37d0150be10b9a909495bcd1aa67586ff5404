@@ -192,6 +192,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7551d646_2e4641d8",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 3516,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-02-16T02:35:29Z",
+      "side": 1,
+      "message": "In a follow-up CL, please document the exception thrown in the docs with @throws",
+      "parentUuid": "7d523ca5_d3fb9ba8",
+      "revId": "6dd37d0150be10b9a909495bcd1aa67586ff5404",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e814d53f_8ff4d8e8",
