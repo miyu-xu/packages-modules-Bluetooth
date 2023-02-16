@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9d9cd86a_e088e1c6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2023-02-16T03:41:25Z",
+      "side": 1,
+      "message": "presubmit failure caused by known flaky test",
+      "revId": "07df0b0d0f35b9012148d8021fe1ae760f9ade13",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
