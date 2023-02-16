@@ -227,6 +227,24 @@
       "parentUuid": "77d52cc6_75db734a",
       "revId": "fee10c148ef666e11043a8eba16f7ad149b0955a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5721b98f_cd4169e8",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 1094,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2023-02-16T02:04:04Z",
+      "side": 1,
+      "message": "No, we don\u0027t.\n\nI didn\u0027t get the point why we want to add the getter/setter interface. Is this to prevent caller calling `start_sco_call` with different `sco_offload` arugment? If yes, we\u0027ll still need to cover the ambiguous case even with the `getter/setter` interface when the setter is called with an active sco call started.\n\nAlso, with the interface changes, It\u0027s not clear to the client that when should it calls the setter, and we\u0027ll need extra effort to deal with the sychronization of `sco_offload` between two stacks.\n\nI\u0027d suggest to merge this first to unblock the qualification and refine the implementation if needed.",
+      "parentUuid": "0efde511_4533c4d4",
+      "revId": "fee10c148ef666e11043a8eba16f7ad149b0955a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
