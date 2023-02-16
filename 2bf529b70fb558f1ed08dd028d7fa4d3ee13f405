@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "15683f23_0c899fac",
+        "filename": "framework/api/system-current.txt",
+        "patchSetId": 14
+      },
+      "lineNbr": 772,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-02-16T06:47:54Z",
+      "side": 1,
+      "message": "Why are these still needed now that we defined the BluetoothStatusCode?",
+      "range": {
+        "startLine": 770,
+        "startChar": 0,
+        "endLine": 772,
+        "endChar": 65
+      },
+      "revId": "2bf529b70fb558f1ed08dd028d7fa4d3ee13f405",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
