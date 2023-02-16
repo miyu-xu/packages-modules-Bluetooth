@@ -36,6 +36,7 @@
 #include "btif/include/btif_common.h"
 #include "btif/include/btif_profile_storage.h"
 #include "btif/include/btif_util.h"
+#include "gd/common/init_flags.h"
 #include "include/hardware/bt_hd.h"
 #include "osi/include/allocator.h"
 #include "osi/include/compat.h"
@@ -181,6 +182,7 @@ static void btif_hd_upstreams_evt(uint16_t event, char* p_param) {
         addr = NULL;
       }
 
+      LOG_INFO("Registering HID device app");
       btif_hd_cb.app_registered = TRUE;
       HAL_CBACK(bt_hd_callbacks, application_state_cb, addr,
                 BTHD_APP_STATE_REGISTERED);
@@ -194,6 +196,11 @@ static void btif_hd_upstreams_evt(uint16_t event, char* p_param) {
         BTIF_TRACE_WARNING("disabling hid device service now");
         btif_hd_free_buf();
         BTA_HdDisable();
+        if (bluetooth::common::init_flags::
+                restart_hidh_on_hidd_shutdown_is_enabled()) {
+          // bring HID host service back
+          btif_hh_service_registration(TRUE);
+        }
       }
       break;
 

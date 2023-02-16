@@ -34,6 +34,7 @@ mod ffi {
         fn private_gatt_is_enabled() -> bool;
         fn queue_l2cap_coc_while_encrypting_is_enabled() -> bool;
         fn redact_log_is_enabled() -> bool;
+        fn restart_hidh_on_hidd_shutdown_is_enabled() -> bool;
         fn rust_event_loop_is_enabled() -> bool;
         fn sdp_serialization_is_enabled() -> bool;
         fn sdp_skip_rnr_if_known_is_enabled() -> bool;
