@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e4bb5184_06ca452b",
+        "filename": "system/btif/src/btif_gatt_client.cc",
+        "patchSetId": 14
+      },
+      "lineNbr": 281,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-02-16T00:22:47Z",
+      "side": 1,
+      "message": "While we\u0027re here, can we make this more obvious?  What does 0 mean?",
+      "range": {
+        "startLine": 281,
+        "startChar": 20,
+        "endLine": 281,
+        "endChar": 22
+      },
+      "revId": "69b0bcd4bc6bc76a010f50750f535a2bef6fb6ab",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "deabdf98_4a352645",
+        "filename": "system/btif/src/btif_gatt_client.cc",
+        "patchSetId": 14
+      },
+      "lineNbr": 285,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-02-16T00:22:47Z",
+      "side": 1,
+      "message": "Have you tested what happens when it\u0027s actually a dual-mode device?",
+      "range": {
+        "startLine": 285,
+        "startChar": 4,
+        "endLine": 285,
+        "endChar": 37
+      },
+      "revId": "69b0bcd4bc6bc76a010f50750f535a2bef6fb6ab",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2b4cc863_3a313803",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 14
+      },
+      "lineNbr": 2094,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-02-16T00:22:47Z",
+      "side": 1,
+      "message": "Can we add a comment that says this is address type?",
+      "range": {
+        "startLine": 2094,
+        "startChar": 12,
+        "endLine": 2094,
+        "endChar": 13
+      },
+      "revId": "69b0bcd4bc6bc76a010f50750f535a2bef6fb6ab",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5dd39119_64795cc6",
+        "filename": "system/stack/acl/btm_acl.cc",
+        "patchSetId": 14
+      },
+      "lineNbr": 2728,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-02-16T00:22:47Z",
+      "side": 1,
+      "message": "@farivar@google.com\n\nIt looks like the analyzer meant to put the comment here.",
+      "revId": "69b0bcd4bc6bc76a010f50750f535a2bef6fb6ab",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
