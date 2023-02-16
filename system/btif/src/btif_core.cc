@@ -61,6 +61,7 @@
 #include "types/bluetooth/uuid.h"
 #include "types/raw_address.h"
 
+using android::sysprop::bluetooth::DeviceIDProperties;
 using base::PlatformThread;
 using bluetooth::Uuid;
 using bluetooth::common::MessageLoopThread;
@@ -70,18 +71,6 @@ static void bt_jni_msg_ready(void* context);
 /*******************************************************************************
  *  Constants & Macros
  ******************************************************************************/
-
-#ifndef BTE_DID_CONF_FILE
-// TODO(armansito): Find a better way than searching by a hardcoded path.
-#if defined(TARGET_FLOSS)
-#define BTE_DID_CONF_FILE "/var/lib/bluetooth/bt_did.conf"
-#elif defined(OS_GENERIC)
-#define BTE_DID_CONF_FILE "bt_did.conf"
-#else  // !defined(OS_GENERIC)
-#define BTE_DID_CONF_FILE \
-  "/apex/com.android.btservices/etc/bluetooth/bt_did.conf"
-#endif  // defined(OS_GENERIC)
-#endif  // BTE_DID_CONF_FILE
 
 #define CODEC_TYPE_NUMBER 32
 #define DEFAULT_BUFFER_TIME (MAX_PCM_FRAME_NUM_PER_TICK * 2)
@@ -285,8 +274,20 @@ void btif_enable_bluetooth_evt() {
 
   GetInterfaceToProfiles()->onBluetoothEnabled();
 
-  /* load did configuration */
-  bte_load_did_conf(BTE_DID_CONF_FILE);
+  tSDP_DI_RECORD record = {
+      .vendor = DeviceIDProperties::vendor_id().value_or(LMP_COMPID_GOOGLE),
+      .vendor_id_source = DeviceIDProperties::vendor_id_source().value_or(
+          DI_VENDOR_ID_SOURCE_BTSIG),
+      .product = DeviceIDProperties::product_id().value_or(0),
+      .primary_record = true,
+  };
+
+  uint32_t record_handle;
+  tBTA_STATUS status = BTA_DmSetLocalDiRecord(&record, &record_handle);
+  if (status != BTA_SUCCESS) {
+    LOG_ERROR("%s unable to set device ID record %d: error %d.", __func__, i,
+              status);
+  }
 
 #ifdef BTIF_DM_OOB_TEST
   btif_dm_load_local_oob();

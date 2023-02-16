@@ -11,7 +11,6 @@ package {
 filegroup {
     name: "LibBluetoothSources",
     srcs: [
-        "bte_conf.cc",
         "bte_init_cpp_logging.cc",
         "bte_logmsg.cc",
         "bte_main.cc",
@@ -54,6 +53,7 @@ cc_library_static {
         "BluetoothGeneratedDumpsysDataSchema_h",
         "BluetoothGeneratedPackets_h",
     ],
+    static_libs: ["libcom.android.sysprop.bluetooth"],
     header_libs: ["libbt_callbacks_cxx_headers"],
     host_supported: true,
     min_sdk_version: "Tiramisu"

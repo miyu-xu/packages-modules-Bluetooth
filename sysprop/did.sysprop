@@ -1,0 +1,26 @@
+module: "android.sysprop.bluetooth.DeviceIDProperties"
+owner: Platform
+
+prop {
+    api_name: "vendor_id"
+    type: Integer
+    scope: Public
+    access: Readonly
+    prop_name: "bluetooth.did.vendor_id"
+}
+
+prop {
+    api_name: "vendor_id_source"
+    type: Integer
+    scope: Public
+    access: Readonly
+    prop_name: "bluetooth.did.vendor_id_source"
+}
+
+prop {
+    api_name: "product_id"
+    type: Integer
+    scope: Public
+    access: Readonly
+    prop_name: "bluetooth.did.product_id"
+}
