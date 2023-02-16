@@ -42,6 +42,23 @@ pub fn mask_bits(n: usize) -> syn::LitInt {
     syn::parse_str::<syn::LitInt>(&format!("{:#x}{suffix}", (1u64 << n) - 1)).unwrap()
 }
 
+/// Convert UPPER_CASE to PascalCase.
+/// TODO use convert_case crate when available.
+pub fn convert_to_pascal_case(id: &str) -> String {
+    let mut capitalize = true;
+    let mut out = "".to_owned();
+    for c in id.chars() {
+        capitalize = match c {
+            '_' => true,
+            _ => {
+                out.push(if capitalize { c.to_ascii_uppercase() } else { c.to_ascii_lowercase() });
+                false
+            }
+        }
+    }
+    out
+}
+
 fn generate_packet_size_getter(
     scope: &lint::Scope<'_>,
     fields: &[parser_ast::Field],
@@ -246,7 +263,7 @@ fn generate_packet_decl(
                                 }
                                 _ => unreachable!("Invalid constraint: {constraint:?}"),
                             };
-                            let tag_id = format_ident!("{tag_id}");
+                            let tag_id = format_ident!("{}", convert_to_pascal_case(tag_id));
                             quote!(#type_id::#tag_id)
                         }
                         _ => unreachable!("Invalid constraint: {constraint:?}"),
@@ -507,7 +524,8 @@ fn generate_packet_decl(
 
 fn generate_enum_decl(id: &str, tags: &[ast::Tag]) -> proc_macro2::TokenStream {
     let name = format_ident!("{id}");
-    let variants = tags.iter().map(|t| format_ident!("{}", t.id)).collect::<Vec<_>>();
+    let variants =
+        tags.iter().map(|t| format_ident!("{}", convert_to_pascal_case(&t.id))).collect::<Vec<_>>();
     let values = tags
         .iter()
         .map(|t| syn::parse_str::<syn::LitInt>(&format!("{:#x}", t.value)).unwrap())
