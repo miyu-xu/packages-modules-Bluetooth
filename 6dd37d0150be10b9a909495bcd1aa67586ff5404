@@ -281,6 +281,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cf910ef7_4f711cfc",
+        "filename": "framework/java/android/bluetooth/BluetoothSinkAudioPolicy.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1869660
+      },
+      "writtenOn": "2023-02-16T05:24:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e814d53f_8ff4d8e8",
+      "revId": "6dd37d0150be10b9a909495bcd1aa67586ff5404",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d1fbe6a1_4137af25",
@@ -329,6 +347,24 @@
       "writtenOn": "2023-02-15T19:04:41Z",
       "side": 1,
       "message": "All of these feel a bit unclear. Can you explicitly call out what happens when the policy is allowed and what happens when it is not allowed?\n\ne.g. for setCallEstablishPolicy:\n\u003cp\u003eThis policy is used to determine the audio preference when the HF device makes or answers a call. If set to {@link #POLICY_ALLOWED}, ... If set to {@link #POLICY_NOT_ALLOWED}, ...",
+      "revId": "6dd37d0150be10b9a909495bcd1aa67586ff5404",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "094d35e9_93c65e98",
+        "filename": "framework/java/android/bluetooth/BluetoothSinkAudioPolicy.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 243,
+      "author": {
+        "id": 1869660
+      },
+      "writtenOn": "2023-02-16T05:24:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "aa4f3065_ce296f76",
       "revId": "6dd37d0150be10b9a909495bcd1aa67586ff5404",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
