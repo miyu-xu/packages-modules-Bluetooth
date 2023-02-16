@@ -53,6 +53,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7532eb3d_4ecbf55a",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 3407,
+      "author": {
+        "id": 1869660
+      },
+      "writtenOn": "2023-02-16T02:10:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9860cdd4_4837fd19",
+      "revId": "6dd37d0150be10b9a909495bcd1aa67586ff5404",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "97118953_70776207",
@@ -121,6 +139,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b0f8e370_447e5305",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 3483,
+      "author": {
+        "id": 1869660
+      },
+      "writtenOn": "2023-02-16T02:10:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b9875583_a91ebe67",
+      "revId": "6dd37d0150be10b9a909495bcd1aa67586ff5404",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "46b077ff_b3ab3891",
@@ -134,6 +170,24 @@
       "writtenOn": "2023-02-15T19:04:41Z",
       "side": 1,
       "message": "Please throw an exception if this is not supported.",
+      "revId": "6dd37d0150be10b9a909495bcd1aa67586ff5404",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7d523ca5_d3fb9ba8",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 3516,
+      "author": {
+        "id": 1869660
+      },
+      "writtenOn": "2023-02-16T02:10:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "46b077ff_b3ab3891",
       "revId": "6dd37d0150be10b9a909495bcd1aa67586ff5404",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -168,6 +222,24 @@
       "writtenOn": "2023-02-15T19:04:41Z",
       "side": 1,
       "message": "nit: Add @hide and @SystemApi to each method or field we intend to make a System API to prevent class level visibility changes from having a downstream effect on every API.",
+      "revId": "6dd37d0150be10b9a909495bcd1aa67586ff5404",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4cbd045a_393cfc63",
+        "filename": "framework/java/android/bluetooth/BluetoothSinkAudioPolicy.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1869660
+      },
+      "writtenOn": "2023-02-16T02:10:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d1fbe6a1_4137af25",
       "revId": "6dd37d0150be10b9a909495bcd1aa67586ff5404",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -219,6 +291,24 @@
       "writtenOn": "2023-02-15T19:04:41Z",
       "side": 1,
       "message": "Please put this in the 0-199 range (read the class docs for how the numeric values are assigned) because this is a generic constant.",
+      "revId": "6dd37d0150be10b9a909495bcd1aa67586ff5404",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b3f30099_460ec522",
+        "filename": "framework/java/android/bluetooth/BluetoothStatusCodes.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 590,
+      "author": {
+        "id": 1869660
+      },
+      "writtenOn": "2023-02-16T02:10:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "40b991d0_641196b6",
       "revId": "6dd37d0150be10b9a909495bcd1aa67586ff5404",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
