@@ -342,6 +342,42 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "747e5dbc_1ddf0793",
+        "filename": "framework/java/android/bluetooth/BluetoothQualityReport.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 383,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-02-16T15:09:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e255e9c9_6ff745a3",
+      "revId": "725920d0a2295fd28f98d76adcc7cb2c11741d36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dfb1d62c_75be2856",
+        "filename": "framework/java/android/bluetooth/BluetoothQualityReport.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 383,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-02-16T15:09:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e255e9c9_6ff745a3",
+      "revId": "725920d0a2295fd28f98d76adcc7cb2c11741d36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9fd127b9_542c6d09",
@@ -651,6 +687,24 @@
       "side": 1,
       "message": "I meant can the API also return an int that maps to those constants?",
       "parentUuid": "52968a41_b69af242",
+      "revId": "725920d0a2295fd28f98d76adcc7cb2c11741d36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c32cba3e_8f42a356",
+        "filename": "framework/java/android/bluetooth/BluetoothQualityReport.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 830,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-02-16T15:09:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b8fa3667_eb6b2e2e",
       "revId": "725920d0a2295fd28f98d76adcc7cb2c11741d36",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }

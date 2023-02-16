@@ -16,6 +16,42 @@
       "message": "We\u0027ve decided to use callbacks, so we should remove this",
       "revId": "5dd1129248072ce658ad1d18187f29cd66f92e20",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8cfa2ff6_6c125a2e",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 22
+      },
+      "lineNbr": 238,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-02-16T15:09:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "166b4698_9891c06f",
+      "revId": "5dd1129248072ce658ad1d18187f29cd66f92e20",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0c2e0593_218449f4",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 22
+      },
+      "lineNbr": 238,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-02-16T15:09:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "166b4698_9891c06f",
+      "revId": "5dd1129248072ce658ad1d18187f29cd66f92e20",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
