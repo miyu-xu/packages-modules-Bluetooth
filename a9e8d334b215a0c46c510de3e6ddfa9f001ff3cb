@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d4d7438d_56f4a44e",
+        "filename": "framework/api/system-current.txt",
+        "patchSetId": 22
+      },
+      "lineNbr": 1089,
+      "author": {
+        "id": 1470368
+      },
+      "writtenOn": "2023-02-16T16:02:02Z",
+      "side": 1,
+      "message": "@Jack ORG_ID declarations can move as public to TransportBlock https://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/framework/java/android/bluetooth/le/TransportBlock.java;l\u003d38, \nneed your confirmation to make this change\n\nRegarding other 5 TDS  apis, we are trying to follow similar implementation,which was done for other scan filters getter method. all other method  https://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/framework/api/current.txt;l\u003d1284;bpv\u003d1;bpt\u003d0\n    method public int describeContents();\n    method @Nullable public byte[] getAdvertisingData();\n    method @Nullable public byte[] getAdvertisingDataMask();\n    method public int getAdvertisingDataType();\n    method @Nullable public String getDeviceAddress();\n    method @Nullable public String getDeviceName();\n    method @Nullable public byte[] getManufacturerData();\n    method @Nullable public byte[] getManufacturerDataMask();\n    method public int getManufacturerId();\n    method @Nullable public byte[] getServiceData();\n    method @Nullable public byte[] getServiceDataMask();\n    method @Nullable public android.os.ParcelUuid getServiceDataUuid();\n    method @Nullable public android.os.ParcelUuid getServiceSolicitationUuid();\n    method @Nullable public android.os.ParcelUuid getServiceSolicitationUuidMask();\n    method @Nullable public android.os.ParcelUuid getServiceUuid();\n    method @Nullable public android.os.ParcelUuid getServiceUuidMask();",
+      "parentUuid": "1e94ceff_f0f0a9fa",
+      "range": {
+        "startLine": 1082,
+        "startChar": 4,
+        "endLine": 1089,
+        "endChar": 12
+      },
+      "revId": "a9e8d334b215a0c46c510de3e6ddfa9f001ff3cb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "aad2affc_e2e97293",
         "filename": "framework/api/system-current.txt",
         "patchSetId": 22
@@ -49,6 +73,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "dd697d5e_5a831c27",
+        "filename": "framework/api/system-current.txt",
+        "patchSetId": 22
+      },
+      "lineNbr": 1095,
+      "author": {
+        "id": 1470368
+      },
+      "writtenOn": "2023-02-16T16:02:02Z",
+      "side": 1,
+      "message": "we can not use TransportDiscoveryData Class, there are 2 reason.\n1. TransportDiscoveryData or Transport block class does not TdsFlagMask \u0026 TransportDataMask,these 2 parameters are only use for filtering purpose. \n\n2. As per spec TransportDiscoveryData can contains multiple Transport block, but Transport discovery data scan filtering can be added for one particular service or Transport block from a application. Same application or other app may add another TDD filter for another service.   \n Note: multiple service filtering for same TransportDiscoveryData will add implicit filter \"\u0026\u0026\"  conditions for multiple services, which  is not supported in controller \u0026  is not useful or good usecase. \nmultiple services filtering should be done with \"OR\" condition(one filter for one service), so whenever a service is found, it would be reported to application layer from BT controller \n\nspec: The structure of the Transport Block may be repeated in case there are multiple services (on the same or  different transports) to advertise simultaneously. The structure may repeat as long as there is space \navailable. These Transport Blocks may be from the same organization or from different organizations",
+      "parentUuid": "aad2affc_e2e97293",
+      "range": {
+        "startLine": 1095,
+        "startChar": 92,
+        "endLine": 1095,
+        "endChar": 142
+      },
+      "revId": "a9e8d334b215a0c46c510de3e6ddfa9f001ff3cb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8e9bba59_52db8f3b",
         "filename": "framework/java/android/bluetooth/le/ScanRecord.java",
         "patchSetId": 22
@@ -60,6 +108,24 @@
       "writtenOn": "2023-02-15T19:13:24Z",
       "side": 1,
       "message": "Can we also keep this as a System API? I worry about the ramifications of allowing for Wifi device discovery to 3p apps outside of Wifi codebase or permissions. We\u0027d need to consult with the Wifi team if we want to make this public, so I would keep this system for now.",
+      "revId": "a9e8d334b215a0c46c510de3e6ddfa9f001ff3cb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "df86de91_8e4bdea2",
+        "filename": "framework/java/android/bluetooth/le/ScanRecord.java",
+        "patchSetId": 22
+      },
+      "lineNbr": 440,
+      "author": {
+        "id": 1470368
+      },
+      "writtenOn": "2023-02-16T16:02:02Z",
+      "side": 1,
+      "message": "@Rahul, I understand your concern,I provided more details on bugnizer. Please check once",
+      "parentUuid": "8e9bba59_52db8f3b",
       "revId": "a9e8d334b215a0c46c510de3e6ddfa9f001ff3cb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
