@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5080626b_affa93ea",
+        "filename": "android/app/tests/myinstrumentation/Android.bp",
+        "patchSetId": 9
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-02-16T17:08:55Z",
+      "side": 1,
+      "message": "Yes, you don\u0027t need it, you can remove it",
+      "parentUuid": "5a99c555_ff966bba",
+      "revId": "0acfdfe8946e397e5709b3fb552f3b49b2c588ce",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "df6a02c4_9f7e1416",
         "filename": "android/app/tests/myinstrumentation/AndroidTest.xml",
         "patchSetId": 9
@@ -66,6 +84,24 @@
       "writtenOn": "2023-02-15T21:58:40Z",
       "side": 1,
       "message": "@licorne@google.com  , the command was never ran, I\u0027m not sure if this xml has been used.",
+      "revId": "0acfdfe8946e397e5709b3fb552f3b49b2c588ce",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9206a24d_c799fb34",
+        "filename": "android/app/tests/myinstrumentation/AndroidTest.xml",
+        "patchSetId": 9
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-02-16T17:08:55Z",
+      "side": 1,
+      "message": "`RunCommandTargetPreparer` runs an `adb shell` command which mean that here you are running `adb shell adb reverse tcp:7999 tcp:7999`, if you look at the logs you should see this command and that it fails. However by default tradefed don\u0027t report a command error as an error, to do that you need to add `\u003coption name\u003d\"throw-if-cmd-fail\" value\u003d\"true\" /\u003e`\n\nBut anyway, I think here you want to use `RunHostCommandTargetPreparer`",
+      "parentUuid": "27affee8_be93b1d4",
       "revId": "0acfdfe8946e397e5709b3fb552f3b49b2c588ce",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
