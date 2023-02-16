@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ab16b901_8ea4752a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1962420
+      },
+      "writtenOn": "2023-02-16T19:32:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "708e0939_0d80765f",
+      "revId": "0661039ee8e85004321c3d9ab7c128535f37fe1d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8141354f_daed02a8",
@@ -31,6 +49,24 @@
       "writtenOn": "2023-02-15T17:58:35Z",
       "side": 1,
       "message": "You don\u0027t ever read this file again -- do you need to save to this?",
+      "revId": "0661039ee8e85004321c3d9ab7c128535f37fe1d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9205e38b_3533ba8d",
+        "filename": "system/gd/rust/linux/mgmt/src/config_util.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1962420
+      },
+      "writtenOn": "2023-02-16T19:32:48Z",
+      "side": 1,
+      "message": "Yes, this file is used by the udev rule to copy the devcoredump state to .../device/coredump_enabled sysfs entry. It is also used by the user-space crash reporter to enable/disable parsing of the devcoredump.",
+      "parentUuid": "8141354f_daed02a8",
       "revId": "0661039ee8e85004321c3d9ab7c128535f37fe1d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -58,6 +94,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "83e72f0a_4e22c479",
+        "filename": "system/gd/rust/linux/mgmt/src/config_util.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 239,
+      "author": {
+        "id": 1962420
+      },
+      "writtenOn": "2023-02-16T19:32:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "daca958f_3fd640ed",
+      "range": {
+        "startLine": 239,
+        "startChar": 31,
+        "endLine": 239,
+        "endChar": 62
+      },
+      "revId": "0661039ee8e85004321c3d9ab7c128535f37fe1d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "efc30f63_9552e4ef",
@@ -71,6 +131,24 @@
       "writtenOn": "2023-02-15T18:29:11Z",
       "side": 1,
       "message": "Since the internal can fail, it\u0027s better for this API to also signal the success of this call. I suggest this returns a bool.",
+      "revId": "0661039ee8e85004321c3d9ab7c128535f37fe1d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "391f5314_47f0351e",
+        "filename": "system/gd/rust/linux/mgmt/src/iface_bluetooth_experimental.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1962420
+      },
+      "writtenOn": "2023-02-16T19:32:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "efc30f63_9552e4ef",
       "revId": "0661039ee8e85004321c3d9ab7c128535f37fe1d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
