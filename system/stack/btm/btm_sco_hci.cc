@@ -380,6 +380,7 @@ struct tBTM_MSBC_INFO {
   uint8_t* msbc_decode_buf; /* Buffer to store mSBC packets to decode */
   size_t decode_buf_wo;     /* Write offset of the decode buffer */
   size_t decode_buf_ro;     /* Read offset of the decode buffer */
+  bool read_corrupted;      /* If the current mSBC packet read is corrupted */
 
   uint8_t* msbc_encode_buf; /* Buffer to store the encoded SCO packets */
   size_t encode_buf_wo;     /* Write offset of the encode buffer */
@@ -480,6 +481,12 @@ struct tBTM_MSBC_INFO {
   }
 
   const uint8_t* find_msbc_pkt_head() {
+    if (read_corrupted) {
+      LOG_DEBUG("Skip corrupted mSBC packets");
+      read_corrupted = false;
+      return nullptr;
+    }
+
     size_t rp = 0;
     while (rp < BTM_MSBC_PKT_LEN &&
            decode_buf_wo - (decode_buf_ro + rp) >= BTM_MSBC_PKT_LEN) {
@@ -573,7 +580,7 @@ void cleanup() {
   msbc_info = nullptr;
 }
 
-size_t enqueue_packet(const uint8_t* data, size_t pkt_size) {
+size_t enqueue_packet(const uint8_t* data, size_t pkt_size, bool corrupted) {
   if (msbc_info == nullptr) {
     LOG_WARN("mSBC buffer uninitialized or cleaned");
     return 0;
@@ -592,6 +599,7 @@ size_t enqueue_packet(const uint8_t* data, size_t pkt_size) {
     return 0;
   }
 
+  msbc_info->read_corrupted |= corrupted;
   if (msbc_info->write(data, pkt_size) != pkt_size) {
     LOG_DEBUG("Fail to write packet with size %lu to buffer",
               (unsigned long)pkt_size);
