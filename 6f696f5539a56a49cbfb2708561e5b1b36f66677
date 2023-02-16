@@ -33,6 +33,23 @@
       "message": "Hi Myles, we need an owner for approval. This is a simple patch that changes the MGMT opcode values. Would you please take a look? Thanks!",
       "revId": "6f696f5539a56a49cbfb2708561e5b1b36f66677",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ef4164b1_ea9b4eec",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1963846
+      },
+      "writtenOn": "2023-02-16T00:41:04Z",
+      "side": 1,
+      "message": "Thanks Myles for very quick review!",
+      "revId": "6f696f5539a56a49cbfb2708561e5b1b36f66677",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
