@@ -33,6 +33,24 @@
       "message": "This is transforming the Result into an option discarding the error, I don\u0027t think this is a good idea to do that as this is not obvious here that the error is discarded, you might want to prefer\n\n```\nfd.write_all(SOCKET_TEST_WRITE).expect(\"write failed\"); // Or unwrap\n```\n\nIf you want to handle the error, or\n\n```\nlet _ \u003d fd.write_all(SOCKET_TEST_WRITE);\n```\n\nIf you want to ignore it",
       "revId": "98729b3898f81b9f107b1a17be77b4e9ed455501",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e0b8a302_4a4a6657",
+        "filename": "system/gd/rust/linux/client/src/callbacks.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1001,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2023-02-17T18:41:14Z",
+      "side": 1,
+      "message": "```\nlet _ \u003d fd.write_all(SOCKET_TEST_WRITE);\n```\nDoesn\u0027t this also discard the error?\n\nMy preference is to ignore `Result` with `ok()` instead of with `let _` because using `let _` we made a bug where we actually ignore a `Future` and and a `Result`. I think that using `ok()` it\u0027s more obvious that we are ignoring a `Result` and we can\u0027t make the same mistake of ignoring a `Future`.",
+      "parentUuid": "4dc11790_253132ae",
+      "revId": "98729b3898f81b9f107b1a17be77b4e9ed455501",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
