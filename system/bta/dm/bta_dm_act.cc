@@ -2892,8 +2892,10 @@ static void bta_dm_delay_role_switch_cback(UNUSED_ATTR void* data) {
  *
  ******************************************************************************/
 static void bta_dm_reset_sec_dev_pending(const RawAddress& remote_bd_addr) {
+  LOG_INFO("invoked with addr %s", remote_bd_addr.ToString().c_str());
   for (size_t i = 0; i < bta_dm_cb.device_list.count; i++) {
     if (bta_dm_cb.device_list.peer_device[i].peer_bdaddr == remote_bd_addr) {
+      LOG_INFO("setting addr %s", remote_bd_addr.ToString().c_str());
       bta_dm_cb.device_list.peer_device[i].remove_dev_pending = false;
       return;
     }
@@ -2926,6 +2928,7 @@ static void bta_dm_remove_sec_dev_entry(const RawAddress& remote_bd_addr) {
     }
     for (int i = 0; i < bta_dm_cb.device_list.count; i++) {
       if (bta_dm_cb.device_list.peer_device[i].peer_bdaddr == remote_bd_addr) {
+        LOG_INFO("setting with addr %s", remote_bd_addr.ToString().c_str());
         bta_dm_cb.device_list.peer_device[i].remove_dev_pending = TRUE;
         break;
       }
