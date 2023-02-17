@@ -729,6 +729,31 @@ public class LeAudioService extends ProfileService {
     }
 
     /**
+     * Helper func to convert subgroup setting to raw byte array
+     * @param setting subgroup setting
+     * @param dataOnly flag to indicate if the byte array only includes metadata, otherwise it
+     *                 might include other field like quality
+     * @return raw byte array
+     */
+    private byte[] convertSubgroupSettingToRawBytes(BluetoothLeBroadcastSubgroupSettings setting,
+            boolean dataOnly) {
+        BluetoothLeAudioContentMetadata metadata = setting.getContentMetadata();
+        if (metadata == null) {
+            Log.d(TAG, "metadata cannot be null");
+            return null;
+        }
+        byte[] metaBytes = metadata.getRawMetadata();
+        if (dataOnly) {
+            return metaBytes;
+        }
+        // convert quality and data fields to raw bytes
+        byte[] dataBytes = new byte[metaBytes.length + 1];
+        dataBytes[0] = (byte) setting.getPreferredQuality();
+        System.arraycopy(metaBytes, 0, dataBytes, 1, metaBytes.length);
+        return dataBytes;
+    }
+
+    /**
      * Creates LeAudio Broadcast instance with BluetoothLeBroadcastSettings.
      *
      * @param broadcastSettings broadcast settings for this broadcast source
@@ -749,22 +774,26 @@ public class LeAudioService extends ProfileService {
         }
         Log.i(TAG, "createBroadcast: isEncrypted=" + (isEncrypted ? "true" : "false"));
 
-        List<BluetoothLeBroadcastSubgroupSettings> settings =
+        List<BluetoothLeBroadcastSubgroupSettings> settingsList =
                 broadcastSettings.getSubgroupSettings();
-        if (settings == null || settings.size() < 1) {
+        int subgroupSize = settingsList.size();
+        if (settingsList == null || subgroupSize < 1) {
             Log.d(TAG, "subgroup settings is not valid value");
             return;
         }
-        // only one subgroup is supported now
-        // TODO(b/267783231): Extend LE broadcast support for multi subgroup
-        BluetoothLeAudioContentMetadata contentMetadata = settings.get(0).getContentMetadata();
-        if (contentMetadata == null) {
-            Log.d(TAG, "contentMetadata cannot be null");
-            return;
-        }
 
-        mLeAudioBroadcasterNativeInterface.createBroadcast(
-                contentMetadata.getRawMetadata(), broadcastCode);
+        byte[][] settingArray = new byte[subgroupSize][];
+        for (int i = 0; i < subgroupSize; ++i) {
+            // convert setting to raw bytes including all fields
+            settingArray[i] = convertSubgroupSettingToRawBytes(settingsList.get(i), false);
+        }
+        BluetoothLeAudioContentMetadata publicMetadata =
+                broadcastSettings.getPublicBroadcastMetadata();
+
+        mLeAudioBroadcasterNativeInterface.createBroadcast(broadcastSettings.isPublicBroadcast(),
+                broadcastSettings.getBroadcastName(), broadcastCode,
+                publicMetadata == null ? null : publicMetadata.getRawMetadata(),
+                settingArray);
     }
 
     /**
@@ -797,23 +826,28 @@ public class LeAudioService extends ProfileService {
             return;
         }
 
-        List<BluetoothLeBroadcastSubgroupSettings> settings =
+        if (DBG) Log.d(TAG, "updateBroadcast");
+
+        List<BluetoothLeBroadcastSubgroupSettings> settingsList =
                 broadcastSettings.getSubgroupSettings();
-        if (settings == null || settings.size() < 1) {
+        int subgroupSize = settingsList.size();
+        if (settingsList == null || subgroupSize < 1) {
             Log.d(TAG, "subgroup settings is not valid value");
             return;
         }
-        // only one subgroup is supported now
-        // TODO(b/267783231): Extend LE broadcast support for multi subgroup
-        BluetoothLeAudioContentMetadata contentMetadata = settings.get(0).getContentMetadata();
-        if (contentMetadata == null) {
-            Log.d(TAG, "contentMetadata cannot be null");
-            return;
-        }
 
-        if (DBG) Log.d(TAG, "updateBroadcast");
-        mLeAudioBroadcasterNativeInterface.updateMetadata(
-                broadcastId, contentMetadata.getRawMetadata());
+        byte[][] metadataArray = new byte[subgroupSize][];
+        for (int i = 0; i < subgroupSize; ++i) {
+            // convert setting to raw bytes including metadata only
+            metadataArray[i] = convertSubgroupSettingToRawBytes(settingsList.get(i), true);
+        }
+        BluetoothLeAudioContentMetadata publicMetadata =
+                broadcastSettings.getPublicBroadcastMetadata();
+
+        mLeAudioBroadcasterNativeInterface.updateMetadata(broadcastId,
+                broadcastSettings.getBroadcastName(),
+                publicMetadata == null ? null : publicMetadata.getRawMetadata(),
+                metadataArray);
     }
 
     /**

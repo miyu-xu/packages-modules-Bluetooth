@@ -242,12 +242,10 @@ public class LeAudioBroadcastServiceTest {
         });
     }
 
-    void verifyBroadcastStarted(int broadcastId, byte[] code,
-            BluetoothLeAudioContentMetadata meta) {
-        mService.createBroadcast(buildBroadcastSettingsFromMetadata(meta, code));
+    void verifyBroadcastStarted(int broadcastId, BluetoothLeBroadcastSettings settings) {
+        mService.createBroadcast(settings);
 
-        verify(mNativeInterface, times(1)).createBroadcast(eq(meta.getRawMetadata()),
-                eq(code));
+        verify(mNativeInterface, times(1)).createBroadcast(eq(settings));
 
         // Check if broadcast is started automatically when created
         LeAudioStackEvent create_event =
@@ -309,9 +307,10 @@ public class LeAudioBroadcastServiceTest {
         BluetoothLeAudioContentMetadata.Builder meta_builder =
                 new BluetoothLeAudioContentMetadata.Builder();
         meta_builder.setLanguage("deu");
-        meta_builder.setProgramInfo("Public broadcast info");
+        meta_builder.setProgramInfo("Subgroup broadcast info");
+        BluetoothLeAudioContentMetadata meta = meta_builder.build();
 
-        verifyBroadcastStarted(broadcastId, code, meta_builder.build());
+        verifyBroadcastStarted(broadcastId, buildBroadcastSettingsFromMetadata(meta, code));
     }
 
     @Test
@@ -326,9 +325,10 @@ public class LeAudioBroadcastServiceTest {
         meta_builder.setLanguage("deu");
         meta_builder.setProgramInfo("Public broadcast info");
         BluetoothLeAudioContentMetadata meta = meta_builder.build();
-        mService.createBroadcast(buildBroadcastSettingsFromMetadata(meta, code));
+        BluetoothLeBroadcastSettings settings = buildBroadcastSettingsFromMetadata(meta, code);
+        mService.createBroadcast(settings);
 
-        verify(mNativeInterface, times(1)).createBroadcast(eq(meta.getRawMetadata()), eq(code));
+        verify(mNativeInterface, times(1)).createBroadcast(eq(settings));
 
         LeAudioStackEvent create_event =
                 new LeAudioStackEvent(LeAudioStackEvent.EVENT_TYPE_BROADCAST_CREATED);
@@ -348,11 +348,12 @@ public class LeAudioBroadcastServiceTest {
         mService.mBroadcastCallbacks.register(mCallbacks);
 
         BluetoothLeAudioContentMetadata.Builder meta_builder =
-        new BluetoothLeAudioContentMetadata.Builder();
-        meta_builder.setLanguage("eng");
-        meta_builder.setProgramInfo("Public broadcast info");
+                new BluetoothLeAudioContentMetadata.Builder();
+        meta_builder.setLanguage("deu");
+        meta_builder.setProgramInfo("Subgroup broadcast info");
+        BluetoothLeAudioContentMetadata meta = meta_builder.build();
 
-        verifyBroadcastStarted(broadcastId, code, meta_builder.build());
+        verifyBroadcastStarted(broadcastId, buildBroadcastSettingsFromMetadata(meta, code));
         verifyBroadcastStopped(broadcastId);
     }
 
@@ -461,17 +462,18 @@ public class LeAudioBroadcastServiceTest {
     private BluetoothLeBroadcastSettings buildBroadcastSettingsFromMetadata(
             BluetoothLeAudioContentMetadata contentMetadata,
             @Nullable byte[] broadcastCode) {
-        BluetoothLeAudioContentMetadata publicBroadcastMetadata =
-                new BluetoothLeAudioContentMetadata.Builder().build();
+        BluetoothLeAudioContentMetadata.Builder publicMetaBuilder =
+                new BluetoothLeAudioContentMetadata.Builder();
+        publicMetaBuilder.setProgramInfo("Public broadcast info");
 
         BluetoothLeBroadcastSubgroupSettings.Builder subgroupBuilder =
                 new BluetoothLeBroadcastSubgroupSettings.Builder()
                 .setContentMetadata(contentMetadata);
 
         BluetoothLeBroadcastSettings.Builder builder = new BluetoothLeBroadcastSettings.Builder()
-                        .setPublicBroadcast(false)
+                        .setPublicBroadcast(true)
                         .setBroadcastCode(broadcastCode)
-                        .setPublicBroadcastMetadata(publicBroadcastMetadata);
+                        .setPublicBroadcastMetadata(publicMetaBuilder.build());
         // builder expect at least one subgroup setting
         builder.addSubgroupSettings(subgroupBuilder.build());
         return builder.build();

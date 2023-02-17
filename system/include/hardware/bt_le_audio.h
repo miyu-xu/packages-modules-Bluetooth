@@ -168,8 +168,8 @@ enum class BroadcastState {
 };
 
 using BroadcastId = uint32_t;
-static constexpr BroadcastId kBroadcastIdInvalid = 0x00000000;
 using BroadcastCode = std::array<uint8_t, 16>;
+static constexpr BroadcastId kBroadcastIdInvalid = 0x00000000;
 
 /* Content Metadata LTV Types */
 constexpr uint8_t kLeAudioMetadataTypePreferredAudioContext = 0x01;
@@ -217,6 +217,13 @@ struct BasicAudioAnnouncementData {
   std::vector<BasicAudioAnnouncementSubgroup> subgroup_configs;
 };
 
+struct PublicBroadcastAnnouncementData {
+  // Public Broadcast Announcement features bitmap
+  uint8_t features;
+  // Metadata
+  std::map<uint8_t, std::vector<uint8_t>> metadata;
+};
+
 struct BroadcastMetadata {
   uint16_t pa_interval;
   RawAddress addr;
@@ -256,11 +263,16 @@ class LeAudioBroadcasterInterface {
   /* Cleanup the LeAudio Broadcaster */
   virtual void Cleanup(void) = 0;
   /* Create Broadcast instance */
-  virtual void CreateBroadcast(std::vector<uint8_t> metadata,
-                               std::optional<BroadcastCode> broadcast_code) = 0;
+  virtual void CreateBroadcast(
+      bool is_public, std::string broadcast_name,
+      std::optional<BroadcastCode> broadcast_code,
+      std::vector<uint8_t> public_metadata,
+      std::vector<std::vector<uint8_t>> subgroup_settings) = 0;
   /* Update the ongoing Broadcast metadata */
-  virtual void UpdateMetadata(uint32_t broadcast_id,
-                              std::vector<uint8_t> metadata) = 0;
+  virtual void UpdateMetadata(
+      uint32_t broadcast_id, std::string broadcast_name,
+      std::vector<uint8_t> public_metadata,
+      std::vector<std::vector<uint8_t>> subgroup_metadata) = 0;
 
   /* Start the existing Broadcast stream */
   virtual void StartBroadcast(uint32_t broadcast_id) = 0;
