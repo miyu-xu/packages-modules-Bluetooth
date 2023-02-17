@@ -69,6 +69,24 @@
       "parentUuid": "e0b8a302_4a4a6657",
       "revId": "98729b3898f81b9f107b1a17be77b4e9ed455501",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b9f3cb3c_17a23df1",
+        "filename": "system/gd/rust/linux/client/src/callbacks.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1001,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2023-02-17T18:49:27Z",
+      "side": 1,
+      "message": "Maybe we should develop a best practice that to ignore with `let _` we should always type the `_`, e.g.:\n```\nlet _: Result\u003c_, _\u003e \u003d fd.write_all(...);\n```\n\nSo that it\u0027s always explicit what we are ignoring.\n\nAnd if we forget to `await` this will lead to compile error, like:\n```\n   --\u003e system/gd/rust/linux/stack/src/suspend.rs:270:43\n    |\n270 |                       let _: Result\u003c_, _\u003e \u003d txl\n    |  ____________________________------------___^\n    | |                            |\n    | |                            expected due to this\n271 | |                         .send(Message::DelayedAdapterActions(DelayedActions::ConnectAllProfiles(\n272 | |                             device,\n273 | |                         )));\n    | |___________________________^ expected enum `Result`, found opaque type\n```\n\nWhat do you think?",
+      "parentUuid": "e0b8a302_4a4a6657",
+      "revId": "98729b3898f81b9f107b1a17be77b4e9ed455501",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
