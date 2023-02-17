@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "24f36e77_71e5ff23",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 812,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-02-17T19:10:11Z",
+      "side": 1,
+      "message": "DisplayAddress(addr) please",
+      "revId": "2f5a1f6024153d90b86e0c2b8e7950e9d74b8db0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bc580ba9_09edac07",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 825,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-02-17T19:10:11Z",
+      "side": 1,
+      "message": "This should be a `debug!` -- we want to avoid `info!` spam in logs.",
+      "revId": "2f5a1f6024153d90b86e0c2b8e7950e9d74b8db0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
