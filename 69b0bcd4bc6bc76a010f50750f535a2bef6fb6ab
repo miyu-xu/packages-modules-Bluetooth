@@ -193,6 +193,24 @@
       "parentUuid": "dca3ce14_c5f2a6d0",
       "revId": "69b0bcd4bc6bc76a010f50750f535a2bef6fb6ab",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bd2bca98_d1a5db18",
+        "filename": "system/stack/acl/btm_acl.cc",
+        "patchSetId": 14
+      },
+      "lineNbr": 2728,
+      "author": {
+        "id": 1600736
+      },
+      "writtenOn": "2023-02-17T17:19:30Z",
+      "side": 1,
+      "message": "could you file an internal bug and assign it to me so I can investigate. please add this cl# to the bug too.",
+      "parentUuid": "0954ed21_bc81c73b",
+      "revId": "69b0bcd4bc6bc76a010f50750f535a2bef6fb6ab",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
