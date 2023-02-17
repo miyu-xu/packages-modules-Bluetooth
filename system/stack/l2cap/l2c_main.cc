@@ -867,6 +867,7 @@ void l2c_free(void) {
     // L2CAP cleanup should be handled by GD stack manager
     return;
   }
+  alarm_free(l2cb.receive_hold_timer);
 }
 
 void l2c_ccb_timer_timeout(void* data) {
