@@ -102,8 +102,6 @@ public class ScanManagerTest {
     @Before
     public void setUp() throws Exception {
         mTargetContext = InstrumentationRegistry.getTargetContext();
-        Assume.assumeTrue("Ignore test when GattService is not enabled"
-                , GattService.isEnabled());
         MockitoAnnotations.initMocks(this);
 
         TestUtils.setAdapterService(mAdapterService);
@@ -148,9 +146,6 @@ public class ScanManagerTest {
 
     @After
     public void tearDown() throws Exception {
-        if (!GattService.isEnabled()) {
-            return;
-        }
         doReturn(false).when(mAdapterService).isStartedProfile(anyString());
         TestUtils.stopService(mServiceRule, GattService.class);
         mService = GattService.getGattService();
