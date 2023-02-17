@@ -32,6 +32,7 @@
 #include "bta/include/bta_gatt_queue.h"
 #include "bta/include/bta_hearing_aid_api.h"
 #include "bta_le_audio_api.h"
+#include "btm_iso_api.h"
 #include "device/include/controller.h"
 #include "embdrv/g722/g722_enc_dec.h"
 #include "osi/include/compat.h"
@@ -49,6 +50,9 @@
 
 using base::Closure;
 using bluetooth::Uuid;
+using bluetooth::hci::IsoManager;
+using bluetooth::hci::iso_manager::cig_create_cmpl_evt;
+using bluetooth::hci::iso_manager::cig_remove_cmpl_evt;
 using bluetooth::hearing_aid::ConnectionState;
 
 // The MIN_CE_LEN parameter for Connection Parameters based on the current
@@ -126,6 +130,7 @@ inline uint8_t* get_l2cap_sdu_start_ptr(BT_HDR* msg) {
 class HearingAidImpl;
 HearingAidImpl* instance;
 HearingAidAudioReceiver* audioReceiver;
+HearingAidCigCallbacks* cigCallbacks;
 
 class HearingDevices {
  public:
@@ -290,6 +295,9 @@ class HearingAidImpl : public HearingAid {
       LOG_INFO("Overwrites MAX_CE_LEN=%d", overwrite_max_ce_len);
     }
 
+    IsoManager::GetInstance()->Start();
+    IsoManager::GetInstance()->RegisterCigCallbacks(cigCallbacks);
+
     BTA_GATTC_AppRegister(
         hearingaid_gattc_callback,
         base::Bind(
@@ -304,6 +312,19 @@ class HearingAidImpl : public HearingAid {
             },
             initCb),
         false);
+  }
+
+  void IsoCigEventsCb(uint16_t event_type, void* data) {
+    switch (event_type) {
+      case bluetooth::hci::iso_manager::kIsoEventCigOnCreateCmpl: {
+        LOG_INFO("kIsoEventCigOnCreateCmpl");
+      } break;
+      case bluetooth::hci::iso_manager::kIsoEventCigOnRemoveCmpl: {
+        LOG_INFO("kIsoEventCigOnRemoveCmpl");
+      } break;
+      default:
+        LOG_ERROR("Invalid event %d", +event_type);
+    }
   }
 
   uint16_t UpdateBleConnParams(const RawAddress& address) {
@@ -1991,6 +2012,14 @@ class HearingAidAudioReceiverImpl : public HearingAidAudioReceiver {
 
 HearingAidAudioReceiverImpl audioReceiverImpl;
 
+class HearingAidCigCallbacksImpl : public HearingAidCigCallbacks {
+  void OnCigEvent(uint8_t event, void* data) {
+    if (instance) instance->IsoCigEventsCb(event, data);
+  };
+};
+
+HearingAidCigCallbacksImpl cigCallbacksImpl;
+
 }  // namespace
 
 void HearingAid::Initialize(
@@ -2001,6 +2030,7 @@ void HearingAid::Initialize(
   }
 
   audioReceiver = &audioReceiverImpl;
+  cigCallbacks = &cigCallbacksImpl;
   instance = new HearingAidImpl(callbacks, initCb);
   HearingAidAudioSource::Initialize();
 }
