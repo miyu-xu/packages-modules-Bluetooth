@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "272637e9_79009c30",
+        "filename": "tools/pdl/src/backends/rust/parser.rs",
+        "patchSetId": 11
+      },
+      "lineNbr": 573,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2023-02-17T17:00:59Z",
+      "side": 1,
+      "message": "There is a small problem here: if I add the `EmptyParent : ScalarParent` to the PDL file, the `EmptyParent` is unconstrained and will be parsed first. This means that we never parse the other children.",
+      "revId": "cebbc7fcc0f535708838f1beef7ffdb7945bbfa5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
