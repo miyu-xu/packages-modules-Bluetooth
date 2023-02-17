@@ -248,7 +248,19 @@ class BroadcasterTest : public Test {
     uint32_t broadcast_id = LeAudioBroadcaster::kInstanceIdUndefined;
     EXPECT_CALL(mock_broadcaster_callbacks_, OnBroadcastCreated(_, true))
         .WillOnce(SaveArg<0>(&broadcast_id));
-    LeAudioBroadcaster::Get()->CreateAudioBroadcast(metadata, code);
+
+    bluetooth::le_audio::btle_audio_broadcast_settings_t broadcast_settings = {
+        .is_public = true,
+        .broadcast_name = "test",
+        .broadcast_code = std::move(code),
+        .public_metadata = std::move(metadata),
+        .subgroup_settings = {},
+    };
+    broadcast_settings.subgroup_settings.push_back({
+        .quality = QUALITY_STANDARD,
+        .metadata = std::move(metadata),
+    });
+    LeAudioBroadcaster::Get()->CreateAudioBroadcast(broadcast_settings);
 
     return broadcast_id;
   }
@@ -436,9 +448,19 @@ TEST_F(BroadcasterTest, UpdateMetadata) {
 
   ContentControlIdKeeper::GetInstance()->SetCcid(LeAudioContextType::ALERTS,
                                                  default_ccid);
-  LeAudioBroadcaster::Get()->UpdateMetadata(
-      broadcast_id,
-      std::vector<uint8_t>({0x02, 0x01, 0x02, 0x03, 0x02, 0x04, 0x04}));
+  bluetooth::le_audio::btle_audio_broadcast_settings_t broadcast_settings = {
+      .is_public = true,
+      .broadcast_name = "test",
+      .broadcast_code = std::move(default_code),
+      .public_metadata = std::move(default_metadata),
+      .subgroup_settings = {},
+  };
+  broadcast_settings.subgroup_settings.push_back({
+      .quality = QUALITY_STANDARD,
+      .metadata =
+          std::vector<uint8_t>({0x02, 0x01, 0x02, 0x03, 0x02, 0x04, 0x04}),
+  });
+  LeAudioBroadcaster::Get()->UpdateMetadata(broadcast_id, broadcast_settings);
 
   ASSERT_EQ(2u, ccid_list.size());
   ASSERT_NE(0, std::count(ccid_list.begin(), ccid_list.end(), media_ccid));

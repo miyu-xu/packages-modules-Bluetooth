@@ -25,6 +25,7 @@ package com.android.bluetooth.le_audio;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothLeBroadcastMetadata;
+import android.bluetooth.BluetoothLeBroadcastSettings;
 import android.util.Log;
 
 import com.android.bluetooth.Utils;
@@ -168,23 +169,22 @@ public class LeAudioBroadcasterNativeInterface {
     /**
      * Creates LeAudio Broadcast instance.
      *
-     * @param metadata metadata buffer with TLVs
-     * @param broadcastCode optional code if broadcast should be encrypted
+     * @param broadcastSettings broadcast settings for this broadcast source
      */
     @VisibleForTesting(visibility = VisibleForTesting.Visibility.PACKAGE)
-    public void createBroadcast(byte[] metadata, byte[] broadcastCode) {
-        createBroadcastNative(metadata, broadcastCode);
+    public void createBroadcast(BluetoothLeBroadcastSettings broadcastSettings) {
+        createBroadcastNative(broadcastSettings);
     }
 
     /**
      * Update LeAudio Broadcast instance metadata.
      *
      * @param broadcastId broadcast instance identifier
-     * @param metadata metadata buffer with TLVs
+     * @param broadcastSettings broadcast settings for this broadcast source
      */
     @VisibleForTesting(visibility = VisibleForTesting.Visibility.PACKAGE)
-    public void updateMetadata(int broadcastId, byte[] metadata) {
-        updateMetadataNative(broadcastId, metadata);
+    public void updateMetadata(int broadcastId, BluetoothLeBroadcastSettings broadcastSettings) {
+        updateMetadataNative(broadcastId, broadcastSettings);
     }
 
     /**
@@ -240,8 +240,9 @@ public class LeAudioBroadcasterNativeInterface {
     private native void initNative();
     private native void stopNative();
     private native void cleanupNative();
-    private native void createBroadcastNative(byte[] metadata, byte[] broadcastCode);
-    private native void updateMetadataNative(int broadcastId, byte[] metadata);
+    private native void createBroadcastNative(BluetoothLeBroadcastSettings broadcastSettings);
+    private native void updateMetadataNative(int broadcastId,
+                                            BluetoothLeBroadcastSettings broadcastSettings);
     private native void startBroadcastNative(int broadcastId);
     private native void stopBroadcastNative(int broadcastId);
     private native void pauseBroadcastNative(int broadcastId);
