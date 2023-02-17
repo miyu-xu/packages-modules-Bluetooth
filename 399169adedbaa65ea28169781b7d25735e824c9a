@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e30dc482_25e5c8e0",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1869,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-02-17T19:47:44Z",
+      "side": 1,
+      "message": "Is this change related to the flag ?",
+      "revId": "399169adedbaa65ea28169781b7d25735e824c9a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "da3b123d_0dd04c4d",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-02-17T19:47:44Z",
+      "side": 1,
+      "message": "Did you tested locally with the flag set to false ?",
+      "range": {
+        "startLine": 231,
+        "startChar": 36,
+        "endLine": 232,
+        "endChar": 76
+      },
+      "revId": "399169adedbaa65ea28169781b7d25735e824c9a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
