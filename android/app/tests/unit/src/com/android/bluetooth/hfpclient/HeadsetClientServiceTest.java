@@ -144,10 +144,38 @@ public class HeadsetClientServiceTest {
                 BluetoothAdapter.getDefaultAdapter().getRemoteDevice("00:01:02:03:04:05");
         mService.getStateMachineMap().put(device, mStateMachine);
 
+        // if audio policy is supported, should be able to setAudioPolicy
+        doReturn(true).when(mStateMachine).isAudioPolicySupported();
         mService.setAudioPolicy(device, new BluetoothSinkAudioPolicy.Builder().build());
-
         verify(mStateMachine, timeout(STANDARD_WAIT_MILLIS).times(1))
                 .setAudioPolicy(any(BluetoothSinkAudioPolicy.class));
+
+        // if audio policy is not supported, should not be able to setAudioPolicy
+        doReturn(false).when(mStateMachine).isAudioPolicySupported();
+        mService.setAudioPolicy(device, new BluetoothSinkAudioPolicy.Builder().build());
+        verify(mStateMachine, timeout(STANDARD_WAIT_MILLIS).times(1))
+                .setAudioPolicy(any(BluetoothSinkAudioPolicy.class));
+    }
+
+    @Test
+    public void testGetAudioPolicyRemoteSupported() {
+        // Put mock state machine
+        BluetoothDevice device =
+                BluetoothAdapter.getDefaultAdapter().getRemoteDevice("00:01:02:03:04:05");
+        mService.getStateMachineMap().put(device, mStateMachine);
+
+
+        // if audio policy is supported, should call getAudioPolicyRemoteSupported
+        doReturn(true).when(mStateMachine).isAudioPolicySupported();
+        mService.getAudioPolicyRemoteSupported(device);
+        verify(mStateMachine, timeout(STANDARD_WAIT_MILLIS).times(1))
+            .getAudioPolicyRemoteSupported();
+
+        // if audio policy is not supported, should not call getAudioPolicyRemoteSupported
+        doReturn(false).when(mStateMachine).isAudioPolicySupported();
+        mService.getAudioPolicyRemoteSupported(device);
+        verify(mStateMachine, timeout(STANDARD_WAIT_MILLIS).times(1))
+            .getAudioPolicyRemoteSupported();
     }
 
     @Test

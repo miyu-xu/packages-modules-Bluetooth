@@ -940,7 +940,7 @@ public class HeadsetClientService extends ProfileService {
         Log.i(TAG, "setAudioPolicy: device=" + device + ", " + policies.toString() + ", "
                 + Utils.getUidPidString());
         HeadsetClientStateMachine sm = getStateMachine(device);
-        if (sm != null) {
+        if (sm != null && sm.isAudioPolicySupported()) {
             sm.setAudioPolicy(policies);
         }
     }
@@ -955,7 +955,7 @@ public class HeadsetClientService extends ProfileService {
         enforceCallingOrSelfPermission(BLUETOOTH_PERM, "Need BLUETOOTH permission");
         Log.i(TAG, "setAudioPolicyRemoteSupported: " + supported);
         HeadsetClientStateMachine sm = getStateMachine(device);
-        if (sm != null) {
+        if (sm != null && sm.isAudioPolicySupported()) {
             sm.setAudioPolicyRemoteSupported(supported);
         }
     }
@@ -969,7 +969,7 @@ public class HeadsetClientService extends ProfileService {
     public int getAudioPolicyRemoteSupported(BluetoothDevice device) {
         enforceCallingOrSelfPermission(BLUETOOTH_PERM, "Need BLUETOOTH permission");
         HeadsetClientStateMachine sm = getStateMachine(device);
-        if (sm != null) {
+        if (sm != null && sm.isAudioPolicySupported()) {
             return sm.getAudioPolicyRemoteSupported();
         }
         return BluetoothStatusCodes.FEATURE_NOT_CONFIGURED;

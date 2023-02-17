@@ -1329,6 +1329,11 @@ public class HeadsetService extends ProfileService {
                         + " does not have a state machine");
                 return null;
             }
+            if (!stateMachine.isAudioPolicySupported()) {
+                Log.w(TAG, "getHfpCallAudioPolicy(), " + device
+                        + " audio policy feature is not supported.");
+                return null;
+            }
             return stateMachine.getHfpCallAudioPolicy();
         }
     }
@@ -1861,22 +1866,22 @@ public class HeadsetService extends ProfileService {
                 mSystemInterface.getAudioManager().setA2dpSuspended(false);
             }
         });
-        if (callState == HeadsetHalConstants.CALL_STATE_IDLE) {
-            final HeadsetStateMachine stateMachine = mStateMachines.get(mActiveDevice);
-            if (stateMachine == null) {
-                Log.d(TAG, "phoneStateChanged: CALL_STATE_IDLE, mActiveDevice is Null");
-            } else {
-                BluetoothSinkAudioPolicy currentPolicy = stateMachine.getHfpCallAudioPolicy();
-                if (currentPolicy != null && currentPolicy.getActiveDevicePolicyAfterConnection()
-                        == BluetoothSinkAudioPolicy.POLICY_NOT_ALLOWED) {
-                    /**
-                     * If the active device was set because of the pick up audio policy
-                     * and the connecting policy is NOT_ALLOWED, then after the call is
-                     * terminated, we must de-activate this device.
-                     * If there is a fallback mechanism, we should follow it.
-                     */
-                    removeActiveDevice();
-                }
+        final HeadsetStateMachine stateMachine = mStateMachines.get(mActiveDevice);
+        if (stateMachine == null) {
+            Log.d(TAG, "mActiveDevice is Null");
+        } else if (callState == HeadsetHalConstants.CALL_STATE_IDLE
+                    && stateMachine.isAudioPolicySupported()) {
+            Log.d(TAG, "phoneStateChanged: CALL_STATE_IDLE, AudioPolicy is Supported");
+            BluetoothSinkAudioPolicy currentPolicy = stateMachine.getHfpCallAudioPolicy();
+            if (currentPolicy != null && currentPolicy.getActiveDevicePolicyAfterConnection()
+                    == BluetoothSinkAudioPolicy.POLICY_NOT_ALLOWED) {
+                /**
+                 * If the active device was set because of the pick up audio policy
+                 * and the connecting policy is NOT_ALLOWED, then after the call is
+                 * terminated, we must de-activate this device.
+                 * If there is a fallback mechanism, we should follow it.
+                 */
+                removeActiveDevice();
             }
         }
     }
