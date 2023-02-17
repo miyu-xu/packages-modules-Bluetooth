@@ -54,6 +54,7 @@ import android.os.Message;
 import android.os.ParcelUuid;
 import android.os.SystemClock;
 import android.os.SystemProperties;
+import android.provider.DeviceConfig;
 import android.util.Log;
 import android.util.Pair;
 
@@ -187,6 +188,10 @@ public class HeadsetClientStateMachine extends StateMachine {
 
     private static final int CALL_AUDIO_POLICY_FEATURE_ID = 1;
 
+    // Feature flag
+    private boolean mBtAudioPolicyHfSupported;
+    private static final String BT_AUDIO_POLICY_HF_FLAG = "bt_audio_policy_hf";
+
     public int mAudioPolicyRemoteSupported;
     private BluetoothAudioPolicy mHsClientAudioPolicy;
 
@@ -239,6 +244,7 @@ public class HeadsetClientStateMachine extends StateMachine {
         ProfileService.println(sb, "  mAudioRouteAllowed: " + mAudioRouteAllowed);
         ProfileService.println(sb, "  mAudioPolicyRemoteSupported: " + mAudioPolicyRemoteSupported);
         ProfileService.println(sb, "  mHsClientAudioPolicy: " + mHsClientAudioPolicy);
+        ProfileService.println(sb, "  mBtAudioPolicyHfSupported: " + mBtAudioPolicyHfSupported);
 
         ProfileService.println(sb, "  mCalls:");
         if (mCalls != null) {
@@ -911,6 +917,10 @@ public class HeadsetClientStateMachine extends StateMachine {
         addState(mAudioOn, mConnected);
 
         setInitialState(mDisconnected);
+
+        // Get Mendel flag
+        mBtAudioPolicyHfSupported = DeviceConfig.getBoolean(
+            DeviceConfig.NAMESPACE_BLUETOOTH, BT_AUDIO_POLICY_HF_FLAG, true);
     }
 
     static HeadsetClientStateMachine make(HeadsetClientService context,
@@ -1267,8 +1277,9 @@ public class HeadsetClientStateMachine extends StateMachine {
                     // query subscriber info
                     deferMessage(obtainMessage(HeadsetClientStateMachine.SUBSCRIBER_INFO));
 
-                    if (!queryRemoteSupportedFeatures()) {
-                        Log.w(TAG, "Couldn't query Android AT remote supported!");
+                    if (!queryRemoteSupportedFeatures() || !isAudioPolicySupported()) {
+                        Log.w(TAG, "Couldn't query Android AT remote supported!"
+                                    + " or Audio Policy is not supported");
                         transitionTo(mConnected);
                     }
                     break;
@@ -2162,15 +2173,17 @@ public class HeadsetClientStateMachine extends StateMachine {
     public void setAudioRouteAllowed(boolean allowed) {
         mAudioRouteAllowed = allowed;
 
-        int establishPolicy = allowed
-                ? BluetoothAudioPolicy.POLICY_ALLOWED :
-                BluetoothAudioPolicy.POLICY_NOT_ALLOWED;
+        if (isAudioPolicySupported()) {
+            int establishPolicy = allowed
+                    ? BluetoothAudioPolicy.POLICY_ALLOWED :
+                    BluetoothAudioPolicy.POLICY_NOT_ALLOWED;
 
-        /*
-         * Backward compatibility for mAudioRouteAllowed
-         */
-        setAudioPolicy(new BluetoothAudioPolicy.Builder(mHsClientAudioPolicy)
-                .setCallEstablishPolicy(establishPolicy).build());
+            /*
+            * Backward compatibility for mAudioRouteAllowed
+            */
+            setAudioPolicy(new BluetoothAudioPolicy.Builder(mHsClientAudioPolicy)
+                    .setCallEstablishPolicy(establishPolicy).build());
+        }
     }
 
     public boolean getAudioRouteAllowed() {
@@ -2237,5 +2250,13 @@ public class HeadsetClientStateMachine extends StateMachine {
      */
     public int getAudioPolicyRemoteSupported() {
         return mAudioPolicyRemoteSupported;
+    }
+
+    /**
+     * Supported if AG and HF both support auido policy
+     */
+    public boolean isAudioPolicySupported() {
+        return getAudioPolicyRemoteSupported() == BluetoothStatusCodes.FEATURE_SUPPORTED
+            && mBtAudioPolicyHfSupported;
     }
 }

@@ -143,6 +143,8 @@ public class HeadsetClientStateMachineTest {
         mHeadsetClientStateMachine = new TestHeadsetClientStateMachine(mHeadsetClientService,
                 mHeadsetService, mHandlerThread.getLooper(), mNativeInterface);
         mHeadsetClientStateMachine.start();
+        // Setup remote device is supported audio policy
+        mHeadsetClientStateMachine.setAudioPolicyRemoteSupported(true);
         TestUtils.waitForLooperToFinishScheduledTask(mHandlerThread.getLooper());
     }
 
