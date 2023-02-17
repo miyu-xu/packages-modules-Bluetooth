@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "920ab272_29d129a1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1963846
+      },
+      "writtenOn": "2023-02-17T14:32:05Z",
+      "side": 1,
+      "message": "This suspend/resume patch is for LE scanning and offload only. There will be a separate patch for handling discovery later. Thanks.",
+      "revId": "db1e4892d64b9377d5110440c1cf3303767439d6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
