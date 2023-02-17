@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3c4ee06e_272b04a3",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 812,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2023-02-17T19:26:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "24f36e77_71e5ff23",
+      "revId": "2f5a1f6024153d90b86e0c2b8e7950e9d74b8db0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bc580ba9_09edac07",
@@ -31,6 +49,24 @@
       "writtenOn": "2023-02-17T19:10:11Z",
       "side": 1,
       "message": "This should be a `debug!` -- we want to avoid `info!` spam in logs.",
+      "revId": "2f5a1f6024153d90b86e0c2b8e7950e9d74b8db0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d34f7d11_2cf6b1a8",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 825,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2023-02-17T19:26:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bc580ba9_09edac07",
       "revId": "2f5a1f6024153d90b86e0c2b8e7950e9d74b8db0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
