@@ -213,6 +213,24 @@
       "parentUuid": "058ec608_0690fa2a",
       "revId": "98729b3898f81b9f107b1a17be77b4e9ed455501",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f5fbd435_cfc2c016",
+        "filename": "system/gd/rust/linux/client/src/callbacks.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1001,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-02-17T19:12:40Z",
+      "side": 1,
+      "message": "And looking at the code base it seems that there is some other occurences of that that we should remove https://cs.android.com/search?q\u003d%22.ok();%22\u0026sq\u003d\u0026ss\u003dandroid%2Fplatform%2Fsuperproject:packages%2Fmodules%2FBluetooth%2F\n\nCreated b/269768077 to track that",
+      "parentUuid": "cc526369_1dbd3646",
+      "revId": "98729b3898f81b9f107b1a17be77b4e9ed455501",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
