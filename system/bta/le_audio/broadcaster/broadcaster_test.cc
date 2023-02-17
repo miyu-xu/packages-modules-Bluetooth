@@ -141,6 +141,8 @@ static const std::vector<uint8_t> default_metadata = {
     le_audio::types::kLeAudioMetadataStreamingAudioContextLen + 1,
     le_audio::types::kLeAudioMetadataTypeStreamingAudioContext,
     default_context & 0x00FF, (default_context & 0xFF00) >> 8};
+static const std::vector<uint8_t> default_public_metadata = {
+    5, le_audio::types::kLeAudioMetadataTypeProgramInfo, 0x1, 0x2, 0x3, 0x4};
 
 static constexpr uint8_t media_ccid = 0xC0;
 static constexpr auto media_context =
@@ -150,6 +152,7 @@ static const std::vector<uint8_t> media_metadata = {
     le_audio::types::kLeAudioMetadataStreamingAudioContextLen + 1,
     le_audio::types::kLeAudioMetadataTypeStreamingAudioContext,
     media_context & 0x00FF, (media_context & 0xFF00) >> 8};
+static const std::string test_broadcast_name = "Test";
 
 class MockLeAudioBroadcasterCallbacks
     : public bluetooth::le_audio::LeAudioBroadcasterCallbacks {
@@ -248,7 +251,15 @@ class BroadcasterTest : public Test {
     uint32_t broadcast_id = LeAudioBroadcaster::kInstanceIdUndefined;
     EXPECT_CALL(mock_broadcaster_callbacks_, OnBroadcastCreated(_, true))
         .WillOnce(SaveArg<0>(&broadcast_id));
-    LeAudioBroadcaster::Get()->CreateAudioBroadcast(metadata, code);
+
+    std::vector<uint8_t> settings_data(metadata.size() + 1);
+    settings_data[0] = 0;
+    settings_data.insert(std::next(settings_data.begin()), metadata.begin(),
+                         metadata.end());
+
+    LeAudioBroadcaster::Get()->CreateAudioBroadcast(
+        true, test_broadcast_name, code, default_public_metadata,
+        {settings_data});
 
     return broadcast_id;
   }
@@ -436,9 +447,10 @@ TEST_F(BroadcasterTest, UpdateMetadata) {
 
   ContentControlIdKeeper::GetInstance()->SetCcid(LeAudioContextType::ALERTS,
                                                  default_ccid);
+
   LeAudioBroadcaster::Get()->UpdateMetadata(
-      broadcast_id,
-      std::vector<uint8_t>({0x02, 0x01, 0x02, 0x03, 0x02, 0x04, 0x04}));
+      broadcast_id, test_broadcast_name, default_public_metadata,
+      {std::vector<uint8_t>({0x02, 0x01, 0x02, 0x03, 0x02, 0x04, 0x04})});
 
   ASSERT_EQ(2u, ccid_list.size());
   ASSERT_NE(0, std::count(ccid_list.begin(), ccid_list.end(), media_ccid));

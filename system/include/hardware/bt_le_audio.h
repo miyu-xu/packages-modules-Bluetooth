@@ -256,11 +256,16 @@ class LeAudioBroadcasterInterface {
   /* Cleanup the LeAudio Broadcaster */
   virtual void Cleanup(void) = 0;
   /* Create Broadcast instance */
-  virtual void CreateBroadcast(std::vector<uint8_t> metadata,
-                               std::optional<BroadcastCode> broadcast_code) = 0;
+  virtual void CreateBroadcast(
+      bool is_public, std::string broadcast_name,
+      std::optional<BroadcastCode> broadcast_code,
+      std::vector<uint8_t> public_metadata,
+      std::vector<std::vector<uint8_t>> subgroup_settings) = 0;
   /* Update the ongoing Broadcast metadata */
-  virtual void UpdateMetadata(uint32_t broadcast_id,
-                              std::vector<uint8_t> metadata) = 0;
+  virtual void UpdateMetadata(
+      uint32_t broadcast_id, std::string broadcast_name,
+      std::vector<uint8_t> public_metadata,
+      std::vector<std::vector<uint8_t>> subgroup_metadata) = 0;
 
   /* Start the existing Broadcast stream */
   virtual void StartBroadcast(uint32_t broadcast_id) = 0;
