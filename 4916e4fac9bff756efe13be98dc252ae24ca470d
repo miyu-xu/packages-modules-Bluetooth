@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "78d2e8ba_9aa4bec1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-02-17T00:03:35Z",
+      "side": 1,
+      "message": "Hey Rahul, this CL is using your implementation of fake hci.\nCan you double check it ? \nI thought we didn\u0027t need sync_handler with the fake hci but Myles tested and needed it",
+      "revId": "4916e4fac9bff756efe13be98dc252ae24ca470d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
