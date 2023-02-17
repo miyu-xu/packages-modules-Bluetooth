@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "325743b8_ca93c851",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 801,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2023-02-17T19:00:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "53c0d8eb_9688daf5",
+      "revId": "354c5f898a43454ea20cda5a29fdd56cfb1311e5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5461bfe5_1a3b5b5f",
@@ -35,6 +53,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e92baad9_beebde76",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 802,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2023-02-17T19:00:56Z",
+      "side": 1,
+      "message": "Tried, but not too much value. `ConnectingAfterRetry` contains timeout logic. So the only part can be abstract is the state/guard insertions.",
+      "parentUuid": "5461bfe5_1a3b5b5f",
+      "revId": "354c5f898a43454ea20cda5a29fdd56cfb1311e5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e73922d9_1f4909e2",
@@ -48,6 +84,24 @@
       "writtenOn": "2023-02-15T00:56:08Z",
       "side": 1,
       "message": "Is this mutable variable needed? If not prefer to not have mut var:\n```\ndevice_states.lock().unwrap().insert(addr, DeviceConnectionStates::Disconnecting);\nfallback_tasks.lock().unwrap().insert(addr, None);\n```",
+      "revId": "354c5f898a43454ea20cda5a29fdd56cfb1311e5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "16745ac6_45057268",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 811,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2023-02-17T19:00:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e73922d9_1f4909e2",
       "revId": "354c5f898a43454ea20cda5a29fdd56cfb1311e5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
