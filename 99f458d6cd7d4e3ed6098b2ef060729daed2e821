@@ -16,6 +16,24 @@
       "message": "Cleaning out old CLs and I found this minor cleanup where useless redefinitions are used locally only for a single purpose.",
       "revId": "99f458d6cd7d4e3ed6098b2ef060729daed2e821",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0ef0abe5_a556d673",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-02-17T03:11:24Z",
+      "side": 1,
+      "message": "Nice cleanup! This was definitely unnecessary.",
+      "parentUuid": "29f39f08_55346f1e",
+      "revId": "99f458d6cd7d4e3ed6098b2ef060729daed2e821",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
