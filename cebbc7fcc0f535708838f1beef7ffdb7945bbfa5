@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "666be566_0ab8ecbc",
+        "filename": "tools/pdl/src/backends/rust.rs",
+        "patchSetId": 11
+      },
+      "lineNbr": 343,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-02-17T19:17:49Z",
+      "side": 1,
+      "message": "A builder can have a payload without having children.",
+      "range": {
+        "startLine": 339,
+        "startChar": 4,
+        "endLine": 343,
+        "endChar": 7
+      },
+      "revId": "cebbc7fcc0f535708838f1beef7ffdb7945bbfa5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "272637e9_79009c30",
         "filename": "tools/pdl/src/backends/rust/parser.rs",
         "patchSetId": 11
