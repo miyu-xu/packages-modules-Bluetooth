@@ -141,6 +141,24 @@
       "parentUuid": "b9f3cb3c_17a23df1",
       "revId": "98729b3898f81b9f107b1a17be77b4e9ed455501",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "327a1463_94f46b80",
+        "filename": "system/gd/rust/linux/client/src/callbacks.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1001,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2023-02-17T18:57:59Z",
+      "side": 1,
+      "message": "Great that clippy lint has it. Is clippy lint run on Gerrit? If not Chrome OS should add this somewhere to be run.",
+      "parentUuid": "b9cad198_775f5153",
+      "revId": "98729b3898f81b9f107b1a17be77b4e9ed455501",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
