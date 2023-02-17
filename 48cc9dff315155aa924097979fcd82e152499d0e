@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "733a49e9_54861da0",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 3311,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2023-02-17T22:49:58Z",
+      "side": 1,
+      "message": "Rather than 2 ifs, this can better chain into:\n```\n        if let Some(cb) \u003d context_map\n            .get_by_server_id(server_id)\n            .and_then(|server| context_map.get_callback_from_callback_id(server.cbid))\n        {\n            cb.on_service_removed(status, handle);\n        }\n```\nI experimented this locally and it doesn\u0027t currently work.\n\nThe problem is that `get_callback_from_callback_id()` is `\u0026mut self` and returns `Option\u003c\u0026mut\u003e`. Let\u0027s also change this to be `\u0026self` and return `Option\u003c\u0026\u003e`.\n\nBut `Callbacks::get_by_id` is also unnecessarily mut, so let\u0027s also refactor this to provide both `get_by_id` and `get_by_id_mut` so the caller can choose to not use mut when not needed.\n\nMy local experiment shows that the refactor is not that large so let\u0027s do the refactor too (maybe in a separate preceding patch).",
+      "range": {
+        "startLine": 3305,
+        "startChar": 0,
+        "endLine": 3311,
+        "endChar": 9
+      },
+      "revId": "48cc9dff315155aa924097979fcd82e152499d0e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
