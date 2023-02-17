@@ -177,6 +177,24 @@
       "parentUuid": "b2e276a7_dbbc2584",
       "revId": "98729b3898f81b9f107b1a17be77b4e9ed455501",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "058ec608_0690fa2a",
+        "filename": "system/gd/rust/linux/client/src/callbacks.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1001,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2023-02-17T18:59:34Z",
+      "side": 1,
+      "message": "With all these great suggestiions, I vote for letting clippy do the job since the resulting code with `let _ \u003d` is very clean.",
+      "parentUuid": "327a1463_94f46b80",
+      "revId": "98729b3898f81b9f107b1a17be77b4e9ed455501",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
