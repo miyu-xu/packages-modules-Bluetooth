@@ -50,7 +50,6 @@ import com.android.bluetooth.le_audio.LeAudioService;
 
 import org.junit.After;
 import org.junit.Assert;
-import org.junit.Assume;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -93,10 +92,6 @@ public class ActiveDeviceManagerTest {
     @Before
     public void setUp() throws Exception {
         mContext = InstrumentationRegistry.getTargetContext();
-        Assume.assumeTrue("Ignore test when A2dpService is not enabled", A2dpService.isEnabled());
-        Assume.assumeTrue("Ignore test when HeadsetService is not enabled",
-                HeadsetService.isEnabled());
-
         // Set up mocks and test assets
         MockitoAnnotations.initMocks(this);
         TestUtils.setAdapterService(mAdapterService);
@@ -172,9 +167,6 @@ public class ActiveDeviceManagerTest {
 
     @After
     public void tearDown() throws Exception {
-        if (!HeadsetService.isEnabled() || !A2dpService.isEnabled()) {
-            return;
-        }
         mActiveDeviceManager.cleanup();
         TestUtils.clearAdapterService(mAdapterService);
     }
@@ -362,9 +354,6 @@ public class ActiveDeviceManagerTest {
      */
     @Test
     public void hearingAidActive_clearA2dpAndHeadsetActive() {
-        Assume.assumeTrue("Ignore test when HearingAidService is not enabled",
-                HearingAidService.isEnabled());
-
         a2dpConnected(mA2dpHeadsetDevice);
         headsetConnected(mA2dpHeadsetDevice);
         verify(mA2dpService, timeout(TIMEOUT_MS)).setActiveDevice(mA2dpHeadsetDevice);
@@ -380,9 +369,6 @@ public class ActiveDeviceManagerTest {
      */
     @Test
     public void hearingAidActive_dontSetA2dpAndHeadsetActive() {
-        Assume.assumeTrue("Ignore test when HearingAidService is not enabled",
-                HearingAidService.isEnabled());
-
         hearingAidActiveDeviceChanged(mHearingAidDevice);
         a2dpConnected(mA2dpHeadsetDevice);
         headsetConnected(mA2dpHeadsetDevice);
@@ -397,9 +383,6 @@ public class ActiveDeviceManagerTest {
      */
     @Test
     public void hearingAidActive_setA2dpActiveExplicitly() {
-        Assume.assumeTrue("Ignore test when HearingAidService is not enabled",
-                HearingAidService.isEnabled());
-
         hearingAidActiveDeviceChanged(mHearingAidDevice);
         a2dpConnected(mA2dpHeadsetDevice);
         a2dpActiveDeviceChanged(mA2dpHeadsetDevice);
@@ -417,9 +400,6 @@ public class ActiveDeviceManagerTest {
      */
     @Test
     public void hearingAidActive_setHeadsetActiveExplicitly() {
-        Assume.assumeTrue("Ignore test when HearingAidService is not enabled",
-                HearingAidService.isEnabled());
-
         hearingAidActiveDeviceChanged(mHearingAidDevice);
         headsetConnected(mA2dpHeadsetDevice);
         headsetActiveDeviceChanged(mA2dpHeadsetDevice);
@@ -505,9 +485,6 @@ public class ActiveDeviceManagerTest {
      */
     @Test
     public void leAudioActive_clearA2dpAndHeadsetActive() {
-        Assume.assumeTrue("Ignore test when LeAudioService is not enabled",
-                LeAudioService.isEnabled());
-
         a2dpConnected(mA2dpHeadsetDevice);
         headsetConnected(mA2dpHeadsetDevice);
         verify(mA2dpService, timeout(TIMEOUT_MS)).setActiveDevice(mA2dpHeadsetDevice);
@@ -523,9 +500,6 @@ public class ActiveDeviceManagerTest {
      */
     @Test
     public void leAudioActive_dontSetA2dpAndHeadsetActive() {
-        Assume.assumeTrue("Ignore test when LeAudioService is not enabled",
-                LeAudioService.isEnabled());
-
         leAudioActiveDeviceChanged(mLeAudioDevice);
         a2dpConnected(mA2dpHeadsetDevice);
         headsetConnected(mA2dpHeadsetDevice);
@@ -540,9 +514,6 @@ public class ActiveDeviceManagerTest {
      */
     @Test
     public void leAudioActive_setA2dpActiveExplicitly() {
-        Assume.assumeTrue("Ignore test when LeAudioService is not enabled",
-                LeAudioService.isEnabled());
-
         leAudioActiveDeviceChanged(mLeAudioDevice);
         a2dpConnected(mA2dpHeadsetDevice);
         a2dpActiveDeviceChanged(mA2dpHeadsetDevice);
@@ -559,9 +530,6 @@ public class ActiveDeviceManagerTest {
      */
     @Test
     public void leAudioActive_setHeadsetActiveExplicitly() {
-        Assume.assumeTrue("Ignore test when LeAudioService is not enabled",
-                LeAudioService.isEnabled());
-
         leAudioActiveDeviceChanged(mLeAudioDevice);
         headsetConnected(mA2dpHeadsetDevice);
         headsetActiveDeviceChanged(mA2dpHeadsetDevice);
