@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "57f372e0_e5ce0c31",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2023-02-17T00:12:46Z",
+      "side": 1,
+      "message": "This doesn\u0027t have to be the final patch, but it will enable the Fast Pair team to test in the interim.",
+      "revId": "a5415e6786520bebfee6b1cfbaa91208ead0ca7b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
