@@ -1824,8 +1824,7 @@ tBTM_STATUS btm_proc_smp_cback(tSMP_EVT event, const RawAddress& bd_addr,
           }
 #else
           if (res != BTM_SUCCESS && p_data->cmplt.reason != SMP_CONN_TOUT) {
-            BTM_TRACE_DEBUG("Pairing failed - prepare to remove ACL");
-            l2cu_start_post_bond_timer(p_dev_rec->ble_hci_handle);
+            BTM_TRACE_DEBUG("Pairing failed - Not Removing ACL");
           }
 #endif
 
