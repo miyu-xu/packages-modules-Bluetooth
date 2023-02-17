@@ -159,6 +159,24 @@
       "parentUuid": "b9cad198_775f5153",
       "revId": "98729b3898f81b9f107b1a17be77b4e9ed455501",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "71abe6d4_a7134deb",
+        "filename": "system/gd/rust/linux/client/src/callbacks.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1001,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-02-17T18:58:54Z",
+      "side": 1,
+      "message": "Some other discussion on the topic: https://users.rust-lang.org/t/what-is-the-best-way-to-ignore-a-result/55187/2",
+      "parentUuid": "b2e276a7_dbbc2584",
+      "revId": "98729b3898f81b9f107b1a17be77b4e9ed455501",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
