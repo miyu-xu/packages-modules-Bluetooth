@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4206c669_2fa11e60",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-02-17T21:42:34Z",
+      "side": 1,
+      "message": "Required for proper logging on SDP for l2cap issues",
+      "revId": "80b7009cc2d77b91fe5bc71f5c82a091a4b09cc8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
