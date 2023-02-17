@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2011f3a1_24d39aa2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1986325
+      },
+      "writtenOn": "2023-02-17T23:13:53Z",
+      "side": 1,
+      "message": "`atest MultiDeviceBluetoothTests` ? Do I need special setup? two cuttlefish devices for example.",
+      "revId": "df7e7f116f6415940e5391d5327178d53c147fea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
