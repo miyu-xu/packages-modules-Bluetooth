@@ -56,6 +56,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d1921a83_13a9f920",
+        "filename": "framework/java/android/bluetooth/le/ScanFilter.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-02-17T02:34:04Z",
+      "side": 1,
+      "message": "Could you add this as a subclass, OrganizationId, of \n\nhttps://developer.android.com/reference/android/bluetooth/BluetoothAssignedNumbers\n\ni.e. https://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/framework/java/android/bluetooth/BluetoothAssignedNumbers.java?q\u003dBluetoothAssignedNumbers\n\nAnd add these assigned numbers there. \n\ne.g. \n\n* BluetoothAssignedNumbers.OrganizationId.BLUETOOTH_SIG\n* BluetoothAssignedNumbers.OrganizationId.WIFI_ALLIANCE_NEIGHBOR_AWARENESS_NETWORKING\n* BluetoothAssignedNumbers.OrganizationId.ORG_ID_WIFI_ALLIANCE_SERVICE_ADVERTISEMENT\n\nSo that the values can be re-used in scanner and advertiser\n\nThe subclass can be a system API to begin with",
+      "parentUuid": "6643c340_e2cca189",
+      "revId": "aa954caed5b375103e073f1cec2018afa6641ded",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f6c143ba_9a186e56",
         "filename": "framework/java/android/bluetooth/le/ScanFilter.java",
         "patchSetId": 17

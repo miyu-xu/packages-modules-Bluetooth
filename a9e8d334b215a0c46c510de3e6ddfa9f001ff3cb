@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d34b2f9b_16a340d0",
+        "filename": "framework/api/system-current.txt",
+        "patchSetId": 22
+      },
+      "lineNbr": 1089,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-02-17T02:34:04Z",
+      "side": 1,
+      "message": "See my comments in ScanFilter.java",
+      "parentUuid": "d4d7438d_56f4a44e",
+      "range": {
+        "startLine": 1082,
+        "startChar": 4,
+        "endLine": 1089,
+        "endChar": 12
+      },
+      "revId": "a9e8d334b215a0c46c510de3e6ddfa9f001ff3cb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "aad2affc_e2e97293",
@@ -90,6 +114,76 @@
         "startChar": 92,
         "endLine": 1095,
         "endChar": 142
+      },
+      "revId": "a9e8d334b215a0c46c510de3e6ddfa9f001ff3cb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e78d4db8_ec035fc8",
+        "filename": "framework/api/system-current.txt",
+        "patchSetId": 22
+      },
+      "lineNbr": 1095,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-02-17T02:34:04Z",
+      "side": 1,
+      "message": "In `AdvertiseData#Builder` we already have a similar method\n\nhttps://developer.android.com/reference/android/bluetooth/le/AdvertiseData.Builder#addTransportDiscoveryData(android.bluetooth.le.TransportDiscoveryData)\n\nThe scanner part should be symmetric to the advertiser part so that we can reuse the existing data structure as much as possible\n\nSee my comments in the code for more details",
+      "parentUuid": "dd697d5e_5a831c27",
+      "range": {
+        "startLine": 1095,
+        "startChar": 92,
+        "endLine": 1095,
+        "endChar": 142
+      },
+      "revId": "a9e8d334b215a0c46c510de3e6ddfa9f001ff3cb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cab09e6e_280f24be",
+        "filename": "framework/java/android/bluetooth/le/ScanFilter.java",
+        "patchSetId": 22
+      },
+      "lineNbr": 554,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-02-17T02:34:04Z",
+      "side": 1,
+      "message": "Similar, I am hoping this can be similar to `AdvertiseData#getTransportDiscoveryData() -\u003e List\u003cTransportDiscoveryData\u003e`\n\nwith exception of having `mTdsFlagsMask` and `mTransportDataMask` in the `TransportBlock` when it is used for filtering purpose. \n\nThis should significantly reduce your API size",
+      "range": {
+        "startLine": 504,
+        "startChar": 3,
+        "endLine": 554,
+        "endChar": 5
+      },
+      "revId": "a9e8d334b215a0c46c510de3e6ddfa9f001ff3cb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0a67edef_1e86ed3a",
+        "filename": "framework/java/android/bluetooth/le/ScanFilter.java",
+        "patchSetId": 22
+      },
+      "lineNbr": 1226,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-02-17T02:34:04Z",
+      "side": 1,
+      "message": "In `AdvertiseData#Builder` we already have a similar method\n\nhttps://developer.android.com/reference/android/bluetooth/le/AdvertiseData.Builder#addTransportDiscoveryData(android.bluetooth.le.TransportDiscoveryData)\n\nThe scanner part should be symmetric to the advertiser part so that we can reuse the existing data structure as much as possible\n\nI do understand from the other comment thread that the controller currently could not filter for more than one TransportDiscoveryData and more than one TransportBlock. However, as an API design, we should think about how this allows for future expansion. \n\nCould we modify TransportBlock to add `tdsFlagsMask` and `transportDataMask` as System APIs?\n\nAnd modify this API to be\n\naddTransportDiscoveryData(TransportDiscoveryData transportDiscoveryData)\n\nand we can check that only one block is included in the `TransportDiscoveryData` class. If more than one block is supplied, this API can throw error when adding data or building the filter. \n\nIn the future, if a platform wants to support more than one block or more than one transport data, they can make a runtime change on the Bluetooth stack.",
+      "range": {
+        "startLine": 1224,
+        "startChar": 58,
+        "endLine": 1226,
+        "endChar": 50
       },
       "revId": "a9e8d334b215a0c46c510de3e6ddfa9f001ff3cb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
