@@ -109,8 +109,6 @@ public class HeadsetClientStateMachineTest {
     @Before
     public void setUp() throws Exception {
         mTargetContext = InstrumentationRegistry.getTargetContext();
-        Assume.assumeTrue("Ignore test when HeadsetClientService is not enabled",
-                HeadsetClientService.isEnabled());
         // Setup mocks and test assets
         MockitoAnnotations.initMocks(this);
         // Set a valid volume
@@ -145,9 +143,6 @@ public class HeadsetClientStateMachineTest {
 
     @After
     public void tearDown() throws Exception {
-        if (!HeadsetClientService.isEnabled()) {
-            return;
-        }
         TestUtils.waitForLooperToFinishScheduledTask(mHandlerThread.getLooper());
         TestUtils.clearAdapterService(mAdapterService);
         mHeadsetClientStateMachine.allowConnect = null;
