@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "42b19e72_3526e09e",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/l2cap.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1937985
+      },
+      "writtenOn": "2023-02-17T01:32:27Z",
+      "side": 0,
+      "message": "this need to be re-worked, because of the previous assert. The connection is None, but still used line 81",
+      "range": {
+        "startLine": 69,
+        "startChar": 8,
+        "endLine": 69,
+        "endChar": 79
+      },
+      "revId": "c801b71768346dbbd71a4565fafeb8fcdcf9e24a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
