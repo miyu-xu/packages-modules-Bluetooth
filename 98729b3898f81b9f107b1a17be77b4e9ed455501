@@ -51,6 +51,24 @@
       "parentUuid": "4dc11790_253132ae",
       "revId": "98729b3898f81b9f107b1a17be77b4e9ed455501",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "155ddb1a_7e8c9463",
+        "filename": "system/gd/rust/linux/client/src/callbacks.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1001,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-02-17T18:49:10Z",
+      "side": 1,
+      "message": "Yes this also discard the error, it\u0027s just that I think this is a more common pattern to ignore failures than `ok()`.\n\nThis `Future` cases is interesting, calling `ok` indeed helps in this case 🤔, we could maybe do both to make it more obvious\n\n```\nlet _ \u003d fd.write_all(SOCKET_TEST_WRITE).ok();\n// Or (Personally I prefer this one as it\u0027s more explicit that we discard the error)\nlet _ \u003d fd.write_all(SOCKET_TEST_WRITE).err();\n```",
+      "parentUuid": "e0b8a302_4a4a6657",
+      "revId": "98729b3898f81b9f107b1a17be77b4e9ed455501",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
