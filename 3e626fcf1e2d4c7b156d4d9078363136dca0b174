@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2211022a_15251ea8",
+        "filename": "system/gd/rust/linux/mgmt/src/config_util.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2023-02-17T19:09:59Z",
+      "side": 1,
+      "message": "nit: Avoid mut var if possible. You can `return false` immediately if failure occurs.",
+      "revId": "3e626fcf1e2d4c7b156d4d9078363136dca0b174",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9a735ef6_20ef158e",
+        "filename": "system/gd/rust/linux/mgmt/src/config_util.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 247,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2023-02-17T19:09:59Z",
+      "side": 1,
+      "message": "if this succeeds but the fs::write fails, the final status is false which is a bit misleading. Prefer to return false if any of these fails.",
+      "revId": "3e626fcf1e2d4c7b156d4d9078363136dca0b174",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
