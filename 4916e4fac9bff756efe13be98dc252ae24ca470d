@@ -34,6 +34,24 @@
       "parentUuid": "78d2e8ba_9aa4bec1",
       "revId": "4916e4fac9bff756efe13be98dc252ae24ca470d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5dc0db98_62ced1c4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-02-17T00:11:26Z",
+      "side": 1,
+      "message": "Oh right. I saw hci_xxx_fake and I assume you should be involved.\n\nMake perfect sense then",
+      "parentUuid": "7d316b96_051f042d",
+      "revId": "4916e4fac9bff756efe13be98dc252ae24ca470d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
