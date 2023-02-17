@@ -175,6 +175,24 @@
       "parentUuid": "5dd39119_64795cc6",
       "revId": "69b0bcd4bc6bc76a010f50750f535a2bef6fb6ab",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0954ed21_bc81c73b",
+        "filename": "system/stack/acl/btm_acl.cc",
+        "patchSetId": 14
+      },
+      "lineNbr": 2728,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-02-17T17:17:29Z",
+      "side": 1,
+      "message": "It still looks broken after a rebase.",
+      "parentUuid": "dca3ce14_c5f2a6d0",
+      "revId": "69b0bcd4bc6bc76a010f50750f535a2bef6fb6ab",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
