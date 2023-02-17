@@ -413,5 +413,13 @@
     {
       "name": "net_test_types"
     }
+  ],
+  "audio-policy-atp-postsubmit": [
+    {
+      "name": "GoogleBluetoothInstrumentationTests"
+    },
+    {
+      "name": "BluetoothInstrumentationTests"
+    }
   ]
 }

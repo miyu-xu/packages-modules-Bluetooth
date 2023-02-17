@@ -34,6 +34,7 @@ import android.os.Looper;
 import android.os.Message;
 import android.os.SystemClock;
 import android.os.UserHandle;
+import android.provider.DeviceConfig;
 import android.telephony.PhoneNumberUtils;
 import android.telephony.PhoneStateListener;
 import android.telephony.ServiceState;
@@ -162,6 +163,10 @@ public class HeadsetStateMachine extends StateMachine {
 
     private BluetoothSinkAudioPolicy mHsClientAudioPolicy;
 
+    // Feature flags
+    private boolean mBtAudioPolicyAgSupported;
+    private static final String BT_AUDIO_POLICY_AG_FLAG = "audio_policy_ag_enabled";
+
     // Keys are AT commands, and values are the company IDs.
     private static final Map<String, Integer> VENDOR_SPECIFIC_AT_COMMAND_COMPANY_ID;
 
@@ -221,6 +226,10 @@ public class HeadsetStateMachine extends StateMachine {
         addState(mAudioConnecting);
         addState(mAudioDisconnecting);
         setInitialState(mDisconnected);
+
+        // Get Mendel flag
+        mBtAudioPolicyAgSupported = DeviceConfig.getBoolean(
+            DeviceConfig.NAMESPACE_BLUETOOTH, BT_AUDIO_POLICY_AG_FLAG, true);
     }
 
     static HeadsetStateMachine make(BluetoothDevice device, Looper looper,
@@ -264,6 +273,7 @@ public class HeadsetStateMachine extends StateMachine {
         ProfileService.println(sb,
                 "  mConnectingTimestampMs(uptimeMillis): " + mConnectingTimestampMs);
         ProfileService.println(sb, "  mHsClientAudioPolicy: " + mHsClientAudioPolicy.toString());
+        ProfileService.println(sb, "  mBtAudioPolicyAgSupported: " + mBtAudioPolicyAgSupported);
 
         ProfileService.println(sb, "  StateMachine: " + this);
         // Dump the state machine logs
@@ -1965,7 +1975,7 @@ public class HeadsetStateMachine extends StateMachine {
 
             int type = (Integer) args[0];
 
-            if (type == HFP_SET_AUDIO_POLICY) {
+            if (type == HFP_SET_AUDIO_POLICY && isAudioPolicySupported()) {
                 processAndroidAtSetAudioPolicy(args, device);
             } else {
                 Log.w(TAG, "Undefined AT+ANDROID command");
@@ -1985,11 +1995,15 @@ public class HeadsetStateMachine extends StateMachine {
             replying with +ANDROID=1
             here, 1 is the feature id for audio policy
 
+            replying +ANDROID=1 only if audio policy feature is enabled by Mendel flag.
+
             currently we only support one type of feature
         */
-        mNativeInterface.atResponseString(device,
-                BluetoothHeadset.VENDOR_RESULT_CODE_COMMAND_ANDROID
-                + ": " + HFP_SET_AUDIO_POLICY);
+        if (isAudioPolicySupported()) {
+            mNativeInterface.atResponseString(device,
+                    BluetoothHeadset.VENDOR_RESULT_CODE_COMMAND_ANDROID
+                    + ": " + HFP_SET_AUDIO_POLICY);
+        }
     }
 
     /**
@@ -2353,5 +2367,12 @@ public class HeadsetStateMachine extends StateMachine {
             default:
                 return "UNKNOWN(" + what + ")";
         }
+    }
+
+    /**
+     * Supported if AG supports auido policy
+     */
+    public boolean isAudioPolicySupported() {
+        return mBtAudioPolicyAgSupported;
     }
 }
