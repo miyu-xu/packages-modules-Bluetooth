@@ -195,6 +195,24 @@
       "parentUuid": "327a1463_94f46b80",
       "revId": "98729b3898f81b9f107b1a17be77b4e9ed455501",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cc526369_1dbd3646",
+        "filename": "system/gd/rust/linux/client/src/callbacks.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1001,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-02-17T19:08:59Z",
+      "side": 1,
+      "message": "Clippy also have https://rust-lang.github.io/rust-clippy/master/index.html#let_underscore_untyped as lint.\n\nDiscussing with @aryarahul@google.com we think that `ok` should be `must_use` https://github.com/rust-lang/rust/issues/66116\n\n\u003e Maybe we should just create a templated function to discard errors so that it\u0027s more clear.\n\nI don\u0027t think we should bring our own solution here, this seems even less idiomatic.\n\n\u003e With all these great suggestiions, I vote for letting clippy do the job since the resulting code with let _ \u003d is very clean.\n\n👍 for me and 👍 for @aryarahul@google.com as well.",
+      "parentUuid": "058ec608_0690fa2a",
+      "revId": "98729b3898f81b9f107b1a17be77b4e9ed455501",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
