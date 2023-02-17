@@ -123,6 +123,24 @@
       "parentUuid": "5149726f_25c7a02a",
       "revId": "98729b3898f81b9f107b1a17be77b4e9ed455501",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b2e276a7_dbbc2584",
+        "filename": "system/gd/rust/linux/client/src/callbacks.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1001,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-02-17T18:57:21Z",
+      "side": 1,
+      "message": "Maybe we should just create a templated function to discard errors so that it\u0027s more clear. \n\ni.e.\n```\ndiscard_result::\u003c(), Error\u003e(fd.write_all(...));\ndiscard_option::\u003c()\u003e(fd.write_all(...).ok());\n\nfn discard_option\u003cT\u003e(_opt: Option\u003cT\u003e) {}\nfn discard_result\u003cT, E\u003e(_result: Result\u003cT, E\u003e) {}\n```",
+      "parentUuid": "b9f3cb3c_17a23df1",
+      "revId": "98729b3898f81b9f107b1a17be77b4e9ed455501",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
