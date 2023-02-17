@@ -38,18 +38,18 @@ class L2CAPProxy(ProfileProxy):
         credit based channel.
         """
 
-        tests_target_to_fail = [
-            'L2CAP/LE/CFC/BV-01-C',
-            'L2CAP/LE/CFC/BV-04-C',
-            'L2CAP/LE/CFC/BV-10-C',
-            'L2CAP/LE/CFC/BV-11-C',
-            'L2CAP/LE/CFC/BV-12-C',
-            'L2CAP/LE/CFC/BV-14-C',
-            'L2CAP/LE/CFC/BV-16-C',
-            'L2CAP/LE/CFC/BV-18-C',
-            'L2CAP/LE/CFC/BV-19-C',
-            "L2CAP/LE/CFC/BV-21-C",
-        ]
+        # tests_target_to_fail = [
+        #     'L2CAP/LE/CFC/BV-01-C',
+        #     'L2CAP/LE/CFC/BV-04-C',
+        #     'L2CAP/LE/CFC/BV-10-C',
+        #     'L2CAP/LE/CFC/BV-11-C',
+        #     'L2CAP/LE/CFC/BV-12-C',
+        #     'L2CAP/LE/CFC/BV-14-C',
+        #     'L2CAP/LE/CFC/BV-16-C',
+        #     'L2CAP/LE/CFC/BV-18-C',
+        #     'L2CAP/LE/CFC/BV-19-C',
+        #     "L2CAP/LE/CFC/BV-21-C",
+        # ]
         tests_require_secure_connection = []
 
         # This MMI is called twice in 'L2CAP/LE/CFC/BV-04-C'
@@ -60,12 +60,12 @@ class L2CAPProxy(ProfileProxy):
         # In PTS real world test, the system asks the human tester
         # whether it is connected. The human tester will press “Yes” twice.
         # So we use a counter to return “OK” for the 2nd call.
-        if self.connection and test == 'L2CAP/LE/CFC/BV-02-C':
-            return "OK"
+        # if self.connection and test == 'L2CAP/LE/CFC/BV-02-C':
+        #     return "OK"
 
-        assert self.connection is None, f"the connection should be None for the first call"
+        # assert self.connection is None, f"the connection should be None for the first call"
 
-        time.sleep(2)  # avoid timing issue
+        # time.sleep(2)  # avoid timing issue
 
         psm = 0x25  # default TSPX_spsm value
         if test == 'L2CAP/LE/CFC/BV-04-C':
@@ -76,17 +76,20 @@ class L2CAPProxy(ProfileProxy):
             psm = 0xF3  # default TSPX_psm_authorization_required value
 
         secure_connection = test in tests_require_secure_connection
+        
+        # TODO: Refine l2cap interface. CreateLECreditBasedChannel should 
+        self.result = self.l2cap.CreateLECreditBasedChannel(connection=self.connection, psm=psm, secure=secure_connection)
 
-        try:
-            self.l2cap.CreateLECreditBasedChannel(connection=self.connection, psm=psm, secure=secure_connection)
-        except Exception as e:
-            if test in tests_target_to_fail:
-                self.test_status_map[test] = 'OK'
-                print(test, 'target to fail', file=sys.stderr)
-                return "OK"
-            else:
-                print(test, 'CreateLECreditBasedChannel failed', e, file=sys.stderr)
-                raise e
+        # try:
+        #     self.l2cap.CreateLECreditBasedChannel(connection=self.connection, psm=psm, secure=secure_connection)
+        # except Exception as e:
+        #     if test in tests_target_to_fail:
+        #         self.test_status_map[test] = 'OK'
+        #         print(test, 'target to fail', file=sys.stderr)
+        #         return "OK"
+        #     else:
+        #         print(test, 'CreateLECreditBasedChannel failed', e, file=sys.stderr)
+        #         raise e
 
         return "OK"
 
@@ -95,7 +98,7 @@ class L2CAPProxy(ProfileProxy):
         """
         Place the IUT into LE connectable mode.
         """
-        self.host.StartAdvertising(
+        advertise = self.host.Advertise(
             connectable=True,
             own_address_type=OwnAddressType.PUBLIC,
         )
@@ -119,8 +122,12 @@ class L2CAPProxy(ProfileProxy):
 
         if test in tests_to_open_bluetooth_server_socket:
             secure_connection = test in tests_require_secure_connection
-            self.l2cap.ListenL2CAPChannel(connection=self.connection, secure=secure_connection)
-            self.l2cap.AcceptL2CAPChannel(connection=self.connection)
+            self.l2cap.ListenL2CAPChannel(secure=secure_connection)
+            self.l2cap.AcceptL2CAPChannel()
+
+        # FIXME: Rework Listen and Accept interfaces.
+        self.connection = next(advertise).connection
+        advertise.cancel()
         return "OK"
 
     @assert_description
@@ -189,10 +196,8 @@ class L2CAPProxy(ProfileProxy):
         Description : Verify that after receiving the Command Reject from the
         Lower Tester, the IUT inform the Upper Tester.
         """
-        if self.test_status_map[test] != "OK":
-            print('error in MI_UPPER_TESTER_CONFIRM_RECEIVE_COMMAND_NOT_UNDERSTAOOD', file=sys.stderr)
-            raise Exception("Unexpected RECEIVE_COMMAND")
-        return "OK"
+        # We don't have the ability to check this value from the current interfaces
+        return "Yes" if self.result.error else "No"
 
     @assert_description
     def MMI_UPPER_TESTER_CONFIRM_DATA_RECEIVE(self, **kwargs):

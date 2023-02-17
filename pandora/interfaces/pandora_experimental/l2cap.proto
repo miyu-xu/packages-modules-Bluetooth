@@ -29,7 +29,12 @@ message CreateLECreditBasedChannelRequest {
 }
 
 // Request for the `OpenSource` method.
-message CreateLECreditBasedChannelResponse {}
+message CreateLECreditBasedChannelResponse {
+  oneof result {
+    google.protobuf.Empty success = 1;
+    google.protobuf.Empty error = 2;
+  }
+}
 
 message SendDataRequest {
   // The connection that will open the stream.

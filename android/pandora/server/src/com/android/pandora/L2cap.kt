@@ -26,6 +26,7 @@ import pandora.L2capProto.ReceiveDataRequest
 import pandora.L2capProto.ReceiveDataResponse
 import pandora.L2capProto.SendDataRequest
 import pandora.L2capProto.SendDataResponse
+import com.google.protobuf.Empty
 
 @kotlinx.coroutines.ExperimentalCoroutinesApi
 class L2cap(val context: Context) : L2CAPImplBase(), Closeable {
@@ -124,13 +125,11 @@ class L2cap(val context: Context) : L2CAPImplBase(), Closeable {
         bluetoothSocket.connect()
         connectionInStreamMap[connection] = bluetoothSocket.getInputStream()!!
         connectionOutStreamMap[connection] = bluetoothSocket.getOutputStream()!!
+        CreateLECreditBasedChannelResponse.newBuilder().setSuccess(Empty.getDefaultInstance()).build()
       } catch (e: IOException) {
         Log.d(TAG, "bluetoothSocket not connected: $e")
-        throw e
+        CreateLECreditBasedChannelResponse.newBuilder().setError(Empty.getDefaultInstance()).build()
       }
-
-      // Response sent to client
-      CreateLECreditBasedChannelResponse.newBuilder().build()
     }
   }
 
