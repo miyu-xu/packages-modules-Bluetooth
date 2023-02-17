@@ -105,6 +105,24 @@
       "parentUuid": "b9f3cb3c_17a23df1",
       "revId": "98729b3898f81b9f107b1a17be77b4e9ed455501",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b9cad198_775f5153",
+        "filename": "system/gd/rust/linux/client/src/callbacks.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1001,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-02-17T18:55:08Z",
+      "side": 1,
+      "message": "Looking at clippy we might not need all of that at all. I think to cover your case we should enable this lint instead https://rust-lang.github.io/rust-clippy/master/index.html#let_underscore_future",
+      "parentUuid": "5149726f_25c7a02a",
+      "revId": "98729b3898f81b9f107b1a17be77b4e9ed455501",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
