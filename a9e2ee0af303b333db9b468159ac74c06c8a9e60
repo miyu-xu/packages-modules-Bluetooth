@@ -16,6 +16,24 @@
       "message": "Find a way to build and run the server binary.",
       "revId": "a9e2ee0af303b333db9b468159ac74c06c8a9e60",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7e010189_b1201ebd",
+        "filename": "android/app/tests/myinstrumentation/AndroidTest.xml",
+        "patchSetId": 10
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1986325
+      },
+      "writtenOn": "2023-02-17T22:09:15Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "0cc58ea2_59c23d16",
+      "revId": "a9e2ee0af303b333db9b468159ac74c06c8a9e60",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
