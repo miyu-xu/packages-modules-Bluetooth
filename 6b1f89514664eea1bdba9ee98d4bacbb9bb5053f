@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b2233a47_9e5d1964",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/avrcp.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 915,
+      "author": {
+        "id": 1937985
+      },
+      "writtenOn": "2023-02-17T23:00:52Z",
+      "side": 1,
+      "message": "is this still required ?",
+      "range": {
+        "startLine": 915,
+        "startChar": 12,
+        "endLine": 915,
+        "endChar": 25
+      },
+      "revId": "6b1f89514664eea1bdba9ee98d4bacbb9bb5053f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
