@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3d46a567_7d5777b5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-02-17T16:51:39Z",
+      "side": 1,
+      "message": "hi Xiaoyang, the latest presubmit result looks good now. could you get QC review vote then this cl should be ready to merge.",
+      "revId": "72216eb0ed6607884a61e38613965743f34662fe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
