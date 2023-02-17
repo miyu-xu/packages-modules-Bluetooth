@@ -118,6 +118,30 @@
       },
       "revId": "d54fc900038a20e421d49eba605a31d4c5cac35a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bf3d2337_62800c8d",
+        "filename": "framework/api/current.txt",
+        "patchSetId": 10
+      },
+      "lineNbr": 1291,
+      "author": {
+        "id": 1470368
+      },
+      "writtenOn": "2023-02-17T17:02:26Z",
+      "side": 1,
+      "message": "Thanks for confirmation.  all apis has been converted to system api",
+      "parentUuid": "d5002fe9_eb4ed700",
+      "range": {
+        "startLine": 1291,
+        "startChar": 22,
+        "endLine": 1291,
+        "endChar": 33
+      },
+      "revId": "d54fc900038a20e421d49eba605a31d4c5cac35a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

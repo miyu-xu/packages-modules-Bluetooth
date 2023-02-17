@@ -222,6 +222,24 @@
       "parentUuid": "8e9bba59_52db8f3b",
       "revId": "a9e8d334b215a0c46c510de3e6ddfa9f001ff3cb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d9b916f4_89d8cbe2",
+        "filename": "framework/java/android/bluetooth/le/ScanRecord.java",
+        "patchSetId": 22
+      },
+      "lineNbr": 440,
+      "author": {
+        "id": 1470368
+      },
+      "writtenOn": "2023-02-17T17:02:26Z",
+      "side": 1,
+      "message": "Converted to systemAPI",
+      "parentUuid": "df86de91_8e4bdea2",
+      "revId": "a9e8d334b215a0c46c510de3e6ddfa9f001ff3cb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

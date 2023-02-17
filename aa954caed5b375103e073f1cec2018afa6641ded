@@ -72,6 +72,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "178bbc2d_0f987f23",
+        "filename": "framework/java/android/bluetooth/le/ScanFilter.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1470368
+      },
+      "writtenOn": "2023-02-17T17:02:26Z",
+      "side": 1,
+      "message": "BluetoothAssignedNumbers.OrganizationId has been converted to system api",
+      "parentUuid": "d1921a83_13a9f920",
+      "revId": "aa954caed5b375103e073f1cec2018afa6641ded",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f6c143ba_9a186e56",
