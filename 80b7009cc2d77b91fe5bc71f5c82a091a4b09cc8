@@ -16,6 +16,29 @@
       "message": "Required for proper logging on SDP for l2cap issues",
       "revId": "80b7009cc2d77b91fe5bc71f5c82a091a4b09cc8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "87ea9f9a_42cb414e",
+        "filename": "system/stack/l2cap/l2c_main.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 955,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-02-17T22:01:04Z",
+      "side": 1,
+      "message": "Can we put this in a separate CL?",
+      "range": {
+        "startLine": 955,
+        "startChar": 0,
+        "endLine": 955,
+        "endChar": 38
+      },
+      "revId": "80b7009cc2d77b91fe5bc71f5c82a091a4b09cc8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
