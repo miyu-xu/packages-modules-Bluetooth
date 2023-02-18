@@ -38,6 +38,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7abc2111_54587dc5",
+        "filename": "system/gd/rust/linux/mgmt/src/config_util.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-02-18T00:14:20Z",
+      "side": 1,
+      "message": "nit: `let mut ret \u003d true`",
+      "revId": "3e626fcf1e2d4c7b156d4d9078363136dca0b174",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9a735ef6_20ef158e",
         "filename": "system/gd/rust/linux/mgmt/src/config_util.rs",
         "patchSetId": 3
@@ -67,6 +84,23 @@
       "side": 1,
       "message": "Done",
       "parentUuid": "9a735ef6_20ef158e",
+      "revId": "3e626fcf1e2d4c7b156d4d9078363136dca0b174",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ce56a2ad_a8663340",
+        "filename": "system/gd/rust/linux/mgmt/src/config_util.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-02-18T00:14:20Z",
+      "side": 1,
+      "message": "nit: We prefer to leave out the `return` and just place the expression on the last line.\n\n```\nret\n```",
       "revId": "3e626fcf1e2d4c7b156d4d9078363136dca0b174",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
