@@ -16,6 +16,52 @@
       "message": "This suspend/resume patch is for LE scanning and offload only. There will be a separate patch for handling discovery later. Thanks.",
       "revId": "db1e4892d64b9377d5110440c1cf3303767439d6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "492374ed_bb653d44",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1494,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2023-02-18T03:30:42Z",
+      "side": 1,
+      "message": "The clone() can be avoided. Ex: `for \u0026scanner_id in \u0026self.paused_scanner_ids`",
+      "range": {
+        "startLine": 1494,
+        "startChar": 8,
+        "endLine": 1494,
+        "endChar": 57
+      },
+      "revId": "db1e4892d64b9377d5110440c1cf3303767439d6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0a70c2b2_7816ddfe",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1522,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2023-02-18T03:30:42Z",
+      "side": 1,
+      "message": "You may use `ScanSettings::default()` instead.",
+      "range": {
+        "startLine": 1522,
+        "startChar": 16,
+        "endLine": 1522,
+        "endChar": 84
+      },
+      "revId": "db1e4892d64b9377d5110440c1cf3303767439d6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
