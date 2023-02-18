@@ -53,6 +53,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "012f61fd_af5ff7b9",
+        "filename": "system/gd/rust/linux/mgmt/src/config_util.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-02-18T00:16:30Z",
+      "side": 1,
+      "message": "This is gone in patchset 4.",
+      "parentUuid": "7abc2111_54587dc5",
+      "revId": "3e626fcf1e2d4c7b156d4d9078363136dca0b174",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9a735ef6_20ef158e",
@@ -101,6 +119,24 @@
       "writtenOn": "2023-02-18T00:14:20Z",
       "side": 1,
       "message": "nit: We prefer to leave out the `return` and just place the expression on the last line.\n\n```\nret\n```",
+      "revId": "3e626fcf1e2d4c7b156d4d9078363136dca0b174",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "62bafdc9_8dbc95d6",
+        "filename": "system/gd/rust/linux/mgmt/src/config_util.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-02-18T00:16:30Z",
+      "side": 1,
+      "message": "line 251",
+      "parentUuid": "ce56a2ad_a8663340",
       "revId": "3e626fcf1e2d4c7b156d4d9078363136dca0b174",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
