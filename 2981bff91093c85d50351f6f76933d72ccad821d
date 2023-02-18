@@ -16,6 +16,46 @@
       "message": "Hi this patch is to fix the callback use by btm_find_dev_with_lenc, please take a look, thanks!",
       "revId": "2981bff91093c85d50351f6f76933d72ccad821d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1fe60db3_6352a764",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-02-18T17:42:00Z",
+      "side": 1,
+      "message": "Thanks for finding this!",
+      "revId": "2981bff91093c85d50351f6f76933d72ccad821d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1a9cf058_0e7c7090",
+        "filename": "system/stack/btm/btm_dev.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 397,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-02-18T17:42:00Z",
+      "side": 1,
+      "message": "At this point, I\u0027d rather just open-code the function.  It seems too complex for what it does.  I haven\u0027t compiled this, but it seems like it should be something like this:\n\n  for (list_node_t* node \u003d list-\u003ehead; node; node \u003d node-\u003enext) {\n    if (is_address_equal(node, bd_addr) \u0026\u0026 node-\u003eble.key_type \u0026 BTM_LE_KEY_LENC) {\n      return node;\n    }\n  }",
+      "range": {
+        "startLine": 396,
+        "startChar": 0,
+        "endLine": 397,
+        "endChar": 79
+      },
+      "revId": "2981bff91093c85d50351f6f76933d72ccad821d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
