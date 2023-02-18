@@ -27,6 +27,8 @@
 
 using bluetooth::le_audio::BroadcastId;
 using bluetooth::le_audio::BroadcastState;
+using bluetooth::le_audio::btle_audio_broadcast_settings_t;
+using bluetooth::le_audio::btle_audio_broadcast_subgroup_settings_t;
 using bluetooth::le_audio::btle_audio_codec_config_t;
 using bluetooth::le_audio::btle_audio_codec_index_t;
 using bluetooth::le_audio::ConnectionState;
@@ -88,6 +90,16 @@ static struct {
   jclass clazz;
   jmethodID constructor;
 } android_bluetooth_BluetoothDevice;
+
+static struct {
+  jclass clazz;
+  jmethodID constructor;
+} android_bluetooth_BluetoothLeBroadcastSettings;
+
+static struct {
+  jclass clazz;
+  jmethodID constructor;
+} android_bluetooth_BluetoothLeBroadcastSubgroupSettings;
 
 static LeAudioClientInterface* sLeAudioClientInterface = nullptr;
 static std::shared_timed_mutex interface_mutex;
@@ -663,6 +675,148 @@ static jint getOctetsPerFrameOrDefault(
   return VEC_UINT8_TO_UINT16(vec);
 }
 
+static jboolean setBroadcastMetadata(JNIEnv* env,
+                                     std::vector<uint8_t>& broadcast_metadata,
+                                     jobject metadata) {
+  ScopedLocalRef<jclass> clazz(env, env->GetObjectClass(metadata));
+  jmethodID methodId = env->GetMethodID(clazz.get(), "getRawMetadata", "()[B");
+
+  jbyteArray rawMetadata =
+      (jbyteArray)env->CallObjectMethod(metadata, methodId);
+
+  jbyte* meta = env->GetByteArrayElements(rawMetadata, nullptr);
+  jsize size = env->GetArrayLength(rawMetadata);
+  broadcast_metadata.assign(reinterpret_cast<uint8_t*>(meta),
+                            reinterpret_cast<uint8_t*>(meta + size));
+  env->ReleaseByteArrayElements(rawMetadata, meta, JNI_ABORT);
+  return JNI_TRUE;
+}
+
+static jboolean setBroadcastSubgroupSettings(
+    JNIEnv* env, btle_audio_broadcast_settings_t& broadcast_settings,
+    jobject subgroupSettingsList) {
+  ScopedLocalRef<jclass> clazz(env, env->GetObjectClass(subgroupSettingsList));
+  jmethodID method_get =
+      env->GetMethodID(clazz.get(), "get", "(I)Ljava/lang/Object;");
+  jmethodID method_size = env->GetMethodID(clazz.get(), "size", "()I");
+
+  auto size = env->CallIntMethod(subgroupSettingsList, method_size);
+  if (size == 0) {
+    return JNI_FALSE;
+  }
+
+  for (int i = 0; i < size; i++) {
+    btle_audio_broadcast_subgroup_settings_t native_setting;
+
+    jobject setting =
+        env->CallObjectMethod(subgroupSettingsList, method_get, i);
+    ScopedLocalRef<jclass> clazz_setting(env, env->GetObjectClass(setting));
+    jmethodID methodId = 0;
+    // Get preferred quality
+    methodId =
+        env->GetMethodID(clazz_setting.get(), "getPreferredQuality", "()I");
+    jint preferred_quality = env->CallIntMethod(setting, methodId);
+    native_setting.quality =
+        static_cast<bluetooth::le_audio::btle_audio_quality_t>(
+            preferred_quality);
+
+    // Get content metadata
+    methodId = env->GetMethodID(
+        clazz_setting.get(), "getContentMetadata",
+        "()Landroid/bluetooth/BluetoothLeAudioContentMetadata;");
+    jobject metadata = env->CallObjectMethod(setting, methodId);
+    setBroadcastMetadata(env, native_setting.metadata, metadata);
+
+    broadcast_settings.subgroup_settings.push_back(native_setting);
+    env->DeleteLocalRef(metadata);
+    env->DeleteLocalRef(setting);
+  }
+  return JNI_TRUE;
+}
+
+static jboolean setBroadcastSettings(
+    JNIEnv* env, btle_audio_broadcast_settings_t& broadcast_settings,
+    jobject broadcastSettings) {
+  if (broadcastSettings == nullptr) {
+    LOG(ERROR) << "Broadcast Settings is null!";
+    return JNI_FALSE;
+  }
+
+  memset(&broadcast_settings, 0, sizeof(broadcast_settings));
+
+  jmethodID methodId = 0;
+  ScopedLocalRef<jclass> clazz(env, env->GetObjectClass(broadcastSettings));
+
+  // Parse isPublicBroadcast flag
+  methodId = env->GetMethodID(clazz.get(), "isPublicBroadcast", "()Z");
+  jboolean isPublic = env->CallBooleanMethod(broadcastSettings, methodId);
+  broadcast_settings.is_public = isPublic;
+
+  // Parse broadcast name
+  methodId =
+      env->GetMethodID(clazz.get(), "getBroadcastName", "()Ljava/lang/String;");
+  jstring broadcastName =
+      (jstring)env->CallObjectMethod(broadcastSettings, methodId);
+  if (broadcastName != nullptr) {
+    const char* value = env->GetStringUTFChars(broadcastName, nullptr);
+    broadcast_settings.broadcast_name = std::string(value);
+    env->ReleaseStringUTFChars(broadcastName, value);
+    env->DeleteLocalRef(broadcastName);
+  }
+
+  // Parse broadcast code
+  methodId = env->GetMethodID(clazz.get(), "getBroadcastCode", "()[B");
+  jbyteArray broadcastCode =
+      (jbyteArray)env->CallObjectMethod(broadcastSettings, methodId);
+  std::array<uint8_t, 16> code_array{0};
+  if (broadcastCode) {
+    jsize size = env->GetArrayLength(broadcastCode);
+    if (size > 16) {
+      LOG(ERROR) << "Broadcast code is too long";
+      return JNI_FALSE;
+    }
+    // Padding with zeros on MSB positions if code is shorter than 16 octets
+    env->GetByteArrayRegion(broadcastCode, 0, size, (jbyte*)code_array.data());
+    // Copy to the native struct
+    broadcast_settings.broadcast_code = code_array;
+  } else {
+    broadcast_settings.broadcast_code = std::nullopt;
+  }
+
+  // Parse public broadcast meta data
+  methodId =
+      env->GetMethodID(clazz.get(), "getPublicBroadcastMetadata",
+                       "()Landroid/bluetooth/BluetoothLeAudioContentMetadata;");
+  jobject publicMetadata = env->CallObjectMethod(broadcastSettings, methodId);
+  if (publicMetadata != nullptr) {
+    if (setBroadcastMetadata(env, broadcast_settings.public_metadata,
+                             publicMetadata) == JNI_FALSE) {
+      LOG(ERROR) << "Set broadcast metadata error";
+      env->DeleteLocalRef(publicMetadata);
+      return JNI_FALSE;
+    }
+    env->DeleteLocalRef(publicMetadata);
+  }
+
+  // Parse subgroup settings
+  methodId = env->GetMethodID(clazz.get(), "getSubgroupSettings",
+                              "()Ljava/util/List;");
+  jobject settingsList = env->CallObjectMethod(broadcastSettings, methodId);
+  if (settingsList == nullptr) {
+    LOG(ERROR) << "Got a null subgroup settings list";
+    return JNI_FALSE;
+  }
+  if (setBroadcastSubgroupSettings(env, broadcast_settings, settingsList) ==
+      JNI_FALSE) {
+    LOG(ERROR) << "Set subgroup settings error";
+    env->DeleteLocalRef(settingsList);
+    return JNI_FALSE;
+  }
+  env->DeleteLocalRef(settingsList);
+
+  return JNI_TRUE;
+}
+
 jobject prepareLeAudioCodecConfigMetadataObject(
     JNIEnv* env, const std::map<uint8_t, std::vector<uint8_t>>& metadata) {
   jlong audio_location = getAudioLocationOrDefault(metadata, -1);
@@ -1038,6 +1192,21 @@ static void BroadcasterClassInitNative(JNIEnv* env, jclass clazz) {
       "(ILandroid/bluetooth/BluetoothDevice;IIIZZLjava/lang/String;"
       "[BIILandroid/bluetooth/BluetoothLeAudioContentMetadata;"
       "Ljava/util/List;)V");
+
+  jclass jniBluetoothLeBroadcastSettingsClass =
+      env->FindClass("android/bluetooth/BluetoothLeBroadcastSettings");
+  android_bluetooth_BluetoothLeBroadcastSettings.constructor =
+      env->GetMethodID(jniBluetoothLeBroadcastSettingsClass, "<init>",
+                       "(ZLjava/lang/String;[B"
+                       "Landroid/bluetooth/BluetoothLeAudioContentMetadata;"
+                       "Ljava/util/List;)V");
+
+  jclass jniBluetoothLeBroadcastSubgroupSettingsClass =
+      env->FindClass("android/bluetooth/BluetoothLeBroadcastSubgroupSettings");
+  android_bluetooth_BluetoothLeBroadcastSubgroupSettings.constructor =
+      env->GetMethodID(
+          jniBluetoothLeBroadcastSubgroupSettingsClass, "<init>",
+          "(ILandroid/bluetooth/BluetoothLeAudioContentMetadata;)V");
 }
 
 static void BroadcasterInitNative(JNIEnv* env, jobject object) {
@@ -1108,6 +1277,24 @@ static void BroadcasterInitNative(JNIEnv* env, jobject object) {
   if (android_bluetooth_BluetoothLeBroadcastMetadata.clazz == nullptr) {
     LOG(ERROR) << "Failed to allocate Global Ref for "
                   "BluetoothLeBroadcastMetadata class";
+    return;
+  }
+
+  android_bluetooth_BluetoothLeBroadcastSettings.clazz =
+      (jclass)env->NewGlobalRef(
+          env->FindClass("android/bluetooth/BluetoothLeBroadcastSettings"));
+  if (android_bluetooth_BluetoothLeBroadcastSettings.clazz == nullptr) {
+    LOG(ERROR) << "Failed to allocate Global Ref for "
+                  "BluetoothLeBroadcastSettings class";
+    return;
+  }
+
+  android_bluetooth_BluetoothLeBroadcastSubgroupSettings.clazz =
+      (jclass)env->NewGlobalRef(env->FindClass(
+          "android/bluetooth/BluetoothLeBroadcastSubgroupSettings"));
+  if (android_bluetooth_BluetoothLeBroadcastSubgroupSettings.clazz == nullptr) {
+    LOG(ERROR) << "Failed to allocate Global Ref for "
+                  "BluetoothLeBroadcastSubgroupSettings class";
     return;
   }
 
@@ -1182,6 +1369,13 @@ static void BroadcasterCleanupNative(JNIEnv* env, jobject object) {
   env->DeleteGlobalRef(android_bluetooth_BluetoothLeBroadcastMetadata.clazz);
   android_bluetooth_BluetoothLeBroadcastMetadata.clazz = nullptr;
 
+  env->DeleteGlobalRef(android_bluetooth_BluetoothLeBroadcastSettings.clazz);
+  android_bluetooth_BluetoothLeBroadcastSettings.clazz = nullptr;
+
+  env->DeleteGlobalRef(
+      android_bluetooth_BluetoothLeBroadcastSubgroupSettings.clazz);
+  android_bluetooth_BluetoothLeBroadcastSubgroupSettings.clazz = nullptr;
+
   if (sLeAudioBroadcasterInterface != nullptr) {
     sLeAudioBroadcasterInterface->Cleanup();
     sLeAudioBroadcasterInterface = nullptr;
@@ -1194,39 +1388,44 @@ static void BroadcasterCleanupNative(JNIEnv* env, jobject object) {
 }
 
 static void CreateBroadcastNative(JNIEnv* env, jobject object,
-                                  jbyteArray metadata,
-                                  jbyteArray broadcast_code) {
+                                  jobject broadcastSettings) {
   LOG(INFO) << __func__;
   std::shared_lock<std::shared_timed_mutex> lock(sBroadcasterInterfaceMutex);
   if (!sLeAudioBroadcasterInterface) return;
 
-  std::array<uint8_t, 16> code_array{0};
-  if (broadcast_code) {
-    jsize size = env->GetArrayLength(broadcast_code);
-    if (size > 16) {
-      ALOGE("%s: broadcast code to long", __func__);
-      return;
-    }
-
-    // Padding with zeros on MSB positions if code is shorter than 16 octets
-    env->GetByteArrayRegion(broadcast_code, 0, size, (jbyte*)code_array.data());
+  if (broadcastSettings == nullptr) {
+    LOG(ERROR) << "Broadcast Settings is null!";
+    jniThrowIOException(env, EINVAL);
+    return;
   }
 
-  jbyte* meta = env->GetByteArrayElements(metadata, nullptr);
-  sLeAudioBroadcasterInterface->CreateBroadcast(
-      std::vector<uint8_t>(meta, meta + env->GetArrayLength(metadata)),
-      broadcast_code ? std::optional<std::array<uint8_t, 16>>(code_array)
-                     : std::nullopt);
-  env->ReleaseByteArrayElements(metadata, meta, 0);
+  // Convert broadcastSettings from Java to native struct
+  btle_audio_broadcast_settings_t broadcast_settings;
+  if (setBroadcastSettings(env, broadcast_settings, broadcastSettings) ==
+      JNI_FALSE) {
+    jniThrowIOException(env, EINVAL);
+    return;
+  }
+  sLeAudioBroadcasterInterface->CreateBroadcast(&broadcast_settings);
 }
 
 static void UpdateMetadataNative(JNIEnv* env, jobject object, jint broadcast_id,
-                                 jbyteArray metadata) {
-  jbyte* meta = env->GetByteArrayElements(metadata, nullptr);
-  sLeAudioBroadcasterInterface->UpdateMetadata(
-      broadcast_id,
-      std::vector<uint8_t>(meta, meta + env->GetArrayLength(metadata)));
-  env->ReleaseByteArrayElements(metadata, meta, 0);
+                                 jobject broadcastSettings) {
+  if (broadcastSettings == nullptr) {
+    LOG(ERROR) << "Broadcast Settings is null!";
+    jniThrowIOException(env, EINVAL);
+    return;
+  }
+
+  // Convert broadcastSettings from Java to native struct
+  btle_audio_broadcast_settings_t broadcast_settings;
+  if (setBroadcastSettings(env, broadcast_settings, broadcastSettings) ==
+      JNI_FALSE) {
+    jniThrowIOException(env, EINVAL);
+    return;
+  }
+  sLeAudioBroadcasterInterface->UpdateMetadata(broadcast_id,
+                                               &broadcast_settings);
 }
 
 static void StartBroadcastNative(JNIEnv* env, jobject object,
@@ -1274,8 +1473,12 @@ static JNINativeMethod sBroadcasterMethods[] = {
     {"initNative", "()V", (void*)BroadcasterInitNative},
     {"stopNative", "()V", (void*)BroadcasterStopNative},
     {"cleanupNative", "()V", (void*)BroadcasterCleanupNative},
-    {"createBroadcastNative", "([B[B)V", (void*)CreateBroadcastNative},
-    {"updateMetadataNative", "(I[B)V", (void*)UpdateMetadataNative},
+    {"createBroadcastNative",
+     "(Landroid/bluetooth/BluetoothLeBroadcastSettings;)V",
+     (void*)CreateBroadcastNative},
+    {"updateMetadataNative",
+     "(ILandroid/bluetooth/BluetoothLeBroadcastSettings;)V",
+     (void*)UpdateMetadataNative},
     {"startBroadcastNative", "(I)V", (void*)StartBroadcastNative},
     {"stopBroadcastNative", "(I)V", (void*)StopBroadcastNative},
     {"pauseBroadcastNative", "(I)V", (void*)PauseBroadcastNative},

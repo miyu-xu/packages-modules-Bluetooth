@@ -30,6 +30,8 @@ using base::Bind;
 using base::Unretained;
 using bluetooth::le_audio::BroadcastId;
 using bluetooth::le_audio::BroadcastState;
+using bluetooth::le_audio::btle_audio_broadcast_settings_t;
+using bluetooth::le_audio::btle_audio_broadcast_subgroup_settings_t;
 using bluetooth::le_audio::LeAudioBroadcasterCallbacks;
 using bluetooth::le_audio::LeAudioBroadcasterInterface;
 
@@ -51,20 +53,20 @@ class LeAudioBroadcasterInterfaceImpl : public LeAudioBroadcasterInterface,
   }
 
   void CreateBroadcast(
-      std::vector<uint8_t> metadata,
-      std::optional<std::array<uint8_t, 16>> broadcast_code) override {
+      const btle_audio_broadcast_settings_t* broadcast_settings) override {
     DVLOG(2) << __func__;
     do_in_main_thread(FROM_HERE, Bind(&LeAudioBroadcaster::CreateAudioBroadcast,
                                       Unretained(LeAudioBroadcaster::Get()),
-                                      std::move(metadata), broadcast_code));
+                                      *broadcast_settings));
   }
 
-  void UpdateMetadata(uint32_t broadcast_id,
-                      std::vector<uint8_t> metadata) override {
+  void UpdateMetadata(
+      uint32_t broadcast_id,
+      const btle_audio_broadcast_settings_t* broadcast_settings) override {
     DVLOG(2) << __func__;
     do_in_main_thread(FROM_HERE, Bind(&LeAudioBroadcaster::UpdateMetadata,
                                       Unretained(LeAudioBroadcaster::Get()),
-                                      broadcast_id, std::move(metadata)));
+                                      broadcast_id, *broadcast_settings));
   }
 
   void StartBroadcast(uint32_t broadcast_id) override {

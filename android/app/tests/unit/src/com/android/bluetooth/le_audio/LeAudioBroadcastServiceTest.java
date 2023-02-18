@@ -306,12 +306,27 @@ public class LeAudioBroadcastServiceTest {
 
         mService.mBroadcastCallbacks.register(mCallbacks);
 
-        BluetoothLeAudioContentMetadata.Builder meta_builder =
+        BluetoothLeAudioContentMetadata.Builder subgroupMetaBuilder =
                 new BluetoothLeAudioContentMetadata.Builder();
-        meta_builder.setLanguage("deu");
-        meta_builder.setProgramInfo("Public broadcast info");
+        subgroupMetaBuilder.setLanguage("deu");
+        subgroupMetaBuilder.setProgramInfo("Subgroup broadcast info");
 
-        verifyBroadcastStarted(broadcastId, code, meta_builder.build());
+        BluetoothLeAudioContentMetadata.Builder publicMetaBuilder =
+                new BluetoothLeAudioContentMetadata.Builder();
+        publicMetaBuilder.setProgramInfo("Public broadcast info");
+
+        BluetoothLeBroadcastSubgroupSettings.Builder subgroupBuilder =
+                new BluetoothLeBroadcastSubgroupSettings.Builder()
+                .setContentMetadata(subgroupMetaBuilder.build());
+
+        BluetoothLeBroadcastSettings.Builder settingsBuilder =
+                new BluetoothLeBroadcastSettings.Builder()
+                        .setPublicBroadcast(true)
+                        .setBroadcastCode(code)
+                        .setPublicBroadcastMetadata(publicMetaBuilder.build());
+        settingsBuilder.addSubgroupSettings(subgroupBuilder.build());
+
+        verifyBroadcastStarted(broadcastId, settingsBuilder.build());
     }
 
     @Test

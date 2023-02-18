@@ -28,10 +28,8 @@ import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothLeAudio;
 import android.bluetooth.BluetoothLeAudioCodecConfig;
 import android.bluetooth.BluetoothLeAudioCodecStatus;
-import android.bluetooth.BluetoothLeAudioContentMetadata;
 import android.bluetooth.BluetoothLeBroadcastMetadata;
 import android.bluetooth.BluetoothLeBroadcastSettings;
-import android.bluetooth.BluetoothLeBroadcastSubgroupSettings;
 import android.bluetooth.BluetoothProfile;
 import android.bluetooth.BluetoothStatusCodes;
 import android.bluetooth.BluetoothUuid;
@@ -749,22 +747,7 @@ public class LeAudioService extends ProfileService {
         }
         Log.i(TAG, "createBroadcast: isEncrypted=" + (isEncrypted ? "true" : "false"));
 
-        List<BluetoothLeBroadcastSubgroupSettings> settings =
-                broadcastSettings.getSubgroupSettings();
-        if (settings == null || settings.size() < 1) {
-            Log.d(TAG, "subgroup settings is not valid value");
-            return;
-        }
-        // only one subgroup is supported now
-        // TODO(b/267783231): Extend LE broadcast support for multi subgroup
-        BluetoothLeAudioContentMetadata contentMetadata = settings.get(0).getContentMetadata();
-        if (contentMetadata == null) {
-            Log.d(TAG, "contentMetadata cannot be null");
-            return;
-        }
-
-        mLeAudioBroadcasterNativeInterface.createBroadcast(
-                contentMetadata.getRawMetadata(), broadcastCode);
+        mLeAudioBroadcasterNativeInterface.createBroadcast(broadcastSettings);
     }
 
     /**
@@ -797,23 +780,9 @@ public class LeAudioService extends ProfileService {
             return;
         }
 
-        List<BluetoothLeBroadcastSubgroupSettings> settings =
-                broadcastSettings.getSubgroupSettings();
-        if (settings == null || settings.size() < 1) {
-            Log.d(TAG, "subgroup settings is not valid value");
-            return;
-        }
-        // only one subgroup is supported now
-        // TODO(b/267783231): Extend LE broadcast support for multi subgroup
-        BluetoothLeAudioContentMetadata contentMetadata = settings.get(0).getContentMetadata();
-        if (contentMetadata == null) {
-            Log.d(TAG, "contentMetadata cannot be null");
-            return;
-        }
-
         if (DBG) Log.d(TAG, "updateBroadcast");
         mLeAudioBroadcasterNativeInterface.updateMetadata(
-                broadcastId, contentMetadata.getRawMetadata());
+                broadcastId, broadcastSettings);
     }
 
     /**

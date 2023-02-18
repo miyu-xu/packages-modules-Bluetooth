@@ -26,6 +26,9 @@
 
 namespace bluetooth {
 namespace le_audio {
+using BroadcastId = uint32_t;
+static constexpr BroadcastId kBroadcastIdInvalid = 0x00000000;
+using BroadcastCode = std::array<uint8_t, 16>;
 
 enum class ConnectionState {
   DISCONNECTED = 0,
@@ -61,6 +64,8 @@ typedef enum {
   LE_AUDIO_CODEC_INDEX_SOURCE_MAX
 } btle_audio_codec_index_t;
 
+typedef enum { QUALITY_STANDARD = 0, QUALITY_HIGH } btle_audio_quality_t;
+
 typedef struct {
   btle_audio_codec_index_t codec_type;
 
@@ -78,6 +83,19 @@ typedef struct {
     return "codec: " + codec_name_str;
   }
 } btle_audio_codec_config_t;
+
+typedef struct {
+  btle_audio_quality_t quality;
+  std::vector<uint8_t> metadata;
+} btle_audio_broadcast_subgroup_settings_t;
+
+typedef struct {
+  bool is_public = false;
+  std::string broadcast_name;
+  std::optional<BroadcastCode> broadcast_code;
+  std::vector<uint8_t> public_metadata;
+  std::vector<btle_audio_broadcast_subgroup_settings_t> subgroup_settings;
+} btle_audio_broadcast_settings_t;
 
 class LeAudioClientCallbacks {
  public:
@@ -167,10 +185,6 @@ enum class BroadcastState {
   STREAMING,
 };
 
-using BroadcastId = uint32_t;
-static constexpr BroadcastId kBroadcastIdInvalid = 0x00000000;
-using BroadcastCode = std::array<uint8_t, 16>;
-
 /* Content Metadata LTV Types */
 constexpr uint8_t kLeAudioMetadataTypePreferredAudioContext = 0x01;
 constexpr uint8_t kLeAudioMetadataTypeStreamingAudioContext = 0x02;
@@ -217,6 +231,13 @@ struct BasicAudioAnnouncementData {
   std::vector<BasicAudioAnnouncementSubgroup> subgroup_configs;
 };
 
+struct PublicBroadcastAnnouncementData {
+  // Public Broadcast Announcement features bitmap
+  uint8_t features;
+  // Metadata
+  std::map<uint8_t, std::vector<uint8_t>> metadata;
+};
+
 struct BroadcastMetadata {
   uint16_t pa_interval;
   RawAddress addr;
@@ -256,11 +277,12 @@ class LeAudioBroadcasterInterface {
   /* Cleanup the LeAudio Broadcaster */
   virtual void Cleanup(void) = 0;
   /* Create Broadcast instance */
-  virtual void CreateBroadcast(std::vector<uint8_t> metadata,
-                               std::optional<BroadcastCode> broadcast_code) = 0;
+  virtual void CreateBroadcast(
+      const btle_audio_broadcast_settings_t* broadcast_settings) = 0;
   /* Update the ongoing Broadcast metadata */
-  virtual void UpdateMetadata(uint32_t broadcast_id,
-                              std::vector<uint8_t> metadata) = 0;
+  virtual void UpdateMetadata(
+      uint32_t broadcast_id,
+      const btle_audio_broadcast_settings_t* broadcast_settings) = 0;
 
   /* Start the existing Broadcast stream */
   virtual void StartBroadcast(uint32_t broadcast_id) = 0;
