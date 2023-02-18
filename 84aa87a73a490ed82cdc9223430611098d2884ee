@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "05f0060a_086de1d7",
+        "filename": "framework/java/android/bluetooth/BluetoothQualityReport.java",
+        "patchSetId": 26
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-02-18T00:13:06Z",
+      "side": 1,
+      "message": "Please update the docs as the getters for specific quality report types no longer exist",
+      "revId": "84aa87a73a490ed82cdc9223430611098d2884ee",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b5d5a4ca_232b23a7",
+        "filename": "framework/java/android/bluetooth/BluetoothQualityReport.java",
+        "patchSetId": 26
+      },
+      "lineNbr": 396,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-02-18T00:13:06Z",
+      "side": 1,
+      "message": "We should move this to the method summary. The @return tag should be a simple statement like \"@return the event data object based on the quality report id\". Also, we should reword the description slightly.\n\nRight now it\u0027s saying \"{@link BluetoothQualityReport.BqrCommon} object or null if report id is not {@link #QUALITY_REPORT_ID_MONITOR}\". We should instead say something like:\n\n\"If the report id is {@link #QUALITY_REPORT_ID_MONITOR}, this returns a {@link BluetoothQualityReport.BqrCommon} object.\n\u003cp\u003e\nIf the report id is {@link #QUALITY_REPORT_ID_APPROACH_LSTO}, this returns a {@link BluetoothQualityReport.BqrVsLsto} object\n\u003cp\u003e\n...\nIf the report id is none of the above, this returns {@code null}\"",
+      "revId": "84aa87a73a490ed82cdc9223430611098d2884ee",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ffaf725f_67fe509b",
+        "filename": "framework/java/android/bluetooth/BluetoothQualityReport.java",
+        "patchSetId": 26
+      },
+      "lineNbr": 552,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-02-18T00:13:06Z",
+      "side": 1,
+      "message": "Can we explicitly call out the byte order for the address? Usually, we use big endian byte order to represent addresses in our codebase, but everything over the air is little endian.",
+      "revId": "84aa87a73a490ed82cdc9223430611098d2884ee",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
