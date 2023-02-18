@@ -373,13 +373,6 @@ tBTM_SEC_DEV_REC* btm_find_dev(const RawAddress& bd_addr) {
   return NULL;
 }
 
-static bool has_lenc_and_address_is_equal(void* data, void* context) {
-  tBTM_SEC_DEV_REC* p_dev_rec = static_cast<tBTM_SEC_DEV_REC*>(data);
-  if (!(p_dev_rec->ble.key_type & BTM_LE_KEY_LENC)) return false;
-
-  return is_address_equal(data, context);
-}
-
 /*******************************************************************************
  *
  * Function         btm_find_dev_with_lenc
@@ -387,18 +380,26 @@ static bool has_lenc_and_address_is_equal(void* data, void* context) {
  * Description      Look for the record in the device database with LTK and
  *                  specified BD address
  *
- * Returns          Pointer to the record or NULL
+ * Returns          Pointer to the record or nullptr
  *
  ******************************************************************************/
 tBTM_SEC_DEV_REC* btm_find_dev_with_lenc(const RawAddress& bd_addr) {
   if (btm_cb.sec_dev_rec == nullptr) return nullptr;
 
-  list_node_t* n = list_foreach(btm_cb.sec_dev_rec, has_lenc_and_address_is_equal,
-                                (void*)&bd_addr);
-  if (n) return static_cast<tBTM_SEC_DEV_REC*>(list_node(n));
+  for (list_node_t* node = list_begin(btm_cb.sec_dev_rec); node;
+       node = list_next(node)) {
+    tBTM_SEC_DEV_REC* p_dev_rec =
+        static_cast<tBTM_SEC_DEV_REC*>(list_node(node));
 
-  return NULL;
+    // is_address_equal will return false if address is equal.
+    if (!is_address_equal(list_node(node), (void*)&bd_addr) &&
+        (p_dev_rec->ble.key_type & BTM_LE_KEY_LENC)) {
+      return p_dev_rec;
+    }
+  }
+  return nullptr;
 }
+
 /*******************************************************************************
  *
  * Function         btm_consolidate_dev
