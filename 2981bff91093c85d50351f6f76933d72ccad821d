@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "13a29a12_db908038",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2023-02-18T12:55:08Z",
+      "side": 1,
+      "message": "Hi this patch is to fix the callback use by btm_find_dev_with_lenc, please take a look, thanks!",
+      "revId": "2981bff91093c85d50351f6f76933d72ccad821d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
