@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "282e36a4_321aa9bf",
+        "filename": "system/btif/src/btif_ble_scanner.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1965943
+      },
+      "writtenOn": "2023-02-18T06:43:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5c6b92b1_14f9fdaf",
+      "revId": "76db0f9c5c3f090e5f20a7c47b049e2dfe181d29",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "976c37d3_6be674df",
@@ -31,6 +49,24 @@
       "writtenOn": "2023-01-19T16:32:56Z",
       "side": 1,
       "message": "shouldn\u0027t log bt addresses unless it is obfuscated/truncated",
+      "revId": "76db0f9c5c3f090e5f20a7c47b049e2dfe181d29",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3798bc5d_3dbb0689",
+        "filename": "system/btif/src/btif_ble_scanner.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1965943
+      },
+      "writtenOn": "2023-02-18T06:43:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "976c37d3_6be674df",
       "revId": "76db0f9c5c3f090e5f20a7c47b049e2dfe181d29",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -58,6 +94,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e2cca2ea_66aed579",
+        "filename": "system/btif/src/btif_ble_scanner.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1965943
+      },
+      "writtenOn": "2023-02-18T06:43:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "91d3736a_3b264c9b",
+      "range": {
+        "startLine": 99,
+        "startChar": 0,
+        "endLine": 102,
+        "endChar": 9
+      },
+      "revId": "76db0f9c5c3f090e5f20a7c47b049e2dfe181d29",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fb877383_d6e06d6a",
@@ -71,6 +131,24 @@
       "writtenOn": "2023-01-19T16:32:56Z",
       "side": 1,
       "message": "```\nif (cd \u003d\u003d 0 || cod \u003d\u003d 0x1f00 ) {\n  cod \u003d (old_cod \u003d\u003d 0) ? 0x1f00 : old_cod;\n}\n```",
+      "revId": "76db0f9c5c3f090e5f20a7c47b049e2dfe181d29",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "66aa2fe8_3f4525be",
+        "filename": "system/btif/src/btif_ble_scanner.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1965943
+      },
+      "writtenOn": "2023-02-18T06:43:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fb877383_d6e06d6a",
       "revId": "76db0f9c5c3f090e5f20a7c47b049e2dfe181d29",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -98,6 +176,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "36c6ba33_05811376",
+        "filename": "system/btif/src/btif_ble_scanner.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 1965943
+      },
+      "writtenOn": "2023-02-18T06:43:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6e7b586b_2618c551",
+      "range": {
+        "startLine": 231,
+        "startChar": 52,
+        "endLine": 231,
+        "endChar": 54
+      },
+      "revId": "76db0f9c5c3f090e5f20a7c47b049e2dfe181d29",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4278bca3_e2320a0c",
@@ -111,6 +213,30 @@
       "writtenOn": "2023-01-19T16:32:56Z",
       "side": 1,
       "message": "please remove these",
+      "range": {
+        "startLine": 233,
+        "startChar": 2,
+        "endLine": 233,
+        "endChar": 11
+      },
+      "revId": "76db0f9c5c3f090e5f20a7c47b049e2dfe181d29",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0ecf5be7_54f3145f",
+        "filename": "system/btif/src/btif_ble_scanner.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 233,
+      "author": {
+        "id": 1965943
+      },
+      "writtenOn": "2023-02-18T06:43:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4278bca3_e2320a0c",
       "range": {
         "startLine": 233,
         "startChar": 2,
