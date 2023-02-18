@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "16188372_a2583c4f",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachineTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-02-18T03:35:14Z",
+      "side": 1,
+      "message": "Whoa... I didn\u0027t knew this was possible. SystemProperties is acting like a mock ??? \nO_o",
+      "range": {
+        "startLine": 128,
+        "startChar": 13,
+        "endLine": 128,
+        "endChar": 29
+      },
+      "revId": "6c29538e9b0cef19e0c36a32400e698e41d3bccc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
