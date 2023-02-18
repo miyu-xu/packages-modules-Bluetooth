@@ -61,6 +61,8 @@ typedef enum {
   LE_AUDIO_CODEC_INDEX_SOURCE_MAX
 } btle_audio_codec_index_t;
 
+typedef enum { QUALITY_STANDARD = 0, QUALITY_HIGH } btle_audio_quality_t;
+
 typedef struct {
   btle_audio_codec_index_t codec_type;
 
@@ -215,6 +217,13 @@ struct BasicAudioAnnouncementData {
 
   /* Subgroup specific configurations */
   std::vector<BasicAudioAnnouncementSubgroup> subgroup_configs;
+};
+
+struct PublicBroadcastAnnouncementData {
+  // Public Broadcast Announcement features bitmap
+  uint8_t features;
+  // Metadata
+  std::map<uint8_t, std::vector<uint8_t>> metadata;
 };
 
 struct BroadcastMetadata {
