@@ -94,10 +94,13 @@ struct BigConfig {
 };
 
 struct BroadcastStateMachineConfig {
+  bool is_public;
   bluetooth::le_audio::BroadcastId broadcast_id;
+  std::string broadcast_name;
   uint8_t streaming_phy;
   BroadcastCodecWrapper codec_wrapper;
   BroadcastQosConfig qos_config;
+  bluetooth::le_audio::PublicBroadcastAnnouncementData public_announcement;
   bluetooth::le_audio::BasicAudioAnnouncementData announcement;
   std::optional<bluetooth::le_audio::BroadcastCode> broadcast_code;
 };

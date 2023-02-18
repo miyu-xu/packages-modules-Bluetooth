@@ -78,9 +78,10 @@ class BroadcastStateMachineImpl : public BroadcastStateMachine {
       return false;
     }
 
-    CreateBroadcastAnnouncement(sm_config_.broadcast_id,
-                                sm_config_.announcement,
-                                sm_config_.streaming_phy);
+    CreateBroadcastAnnouncement(
+        sm_config_.is_public, sm_config_.broadcast_name,
+        sm_config_.broadcast_id, sm_config_.public_announcement,
+        sm_config_.announcement, sm_config_.streaming_phy);
     return true;
   }
 
@@ -282,17 +283,23 @@ class BroadcastStateMachineImpl : public BroadcastStateMachine {
   }
 
   void CreateBroadcastAnnouncement(
+      bool is_public, std::string broadcast_name,
       bluetooth::le_audio::BroadcastId& broadcast_id,
+      const bluetooth::le_audio::PublicBroadcastAnnouncementData&
+          public_announcement,
       const bluetooth::le_audio::BasicAudioAnnouncementData& announcement,
       uint8_t streaming_phy) {
-    LOG_INFO();
+    LOG_INFO("is_public=%s, broadcast_name=%s, public_features=%d",
+             (is_public ? "public" : "non-public"), broadcast_name.c_str(),
+             public_announcement.features);
     if (advertiser_if_ != nullptr) {
       tBTM_BLE_ADV_PARAMS adv_params;
       tBLE_PERIODIC_ADV_PARAMS periodic_params;
       std::vector<uint8_t> adv_data;
       std::vector<uint8_t> periodic_data;
 
-      PrepareAdvertisingData(broadcast_id, adv_data);
+      PrepareAdvertisingData(is_public, broadcast_name, broadcast_id,
+                             public_announcement, adv_data);
       PreparePeriodicData(announcement, periodic_data);
 
       adv_params.adv_int_min = 0x00A0; /* 160 * 0,625 = 100ms */
