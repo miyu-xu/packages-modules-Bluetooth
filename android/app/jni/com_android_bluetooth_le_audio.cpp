@@ -907,6 +907,33 @@ jobject prepareBluetoothLeBroadcastMetadataObject(
     CHECK(!env->ExceptionCheck());
   }
 
+  ScopedLocalRef<jstring> broadcast_name(
+      env, env->NewStringUTF(broadcast_metadata.broadcast_name.c_str()));
+  if (!broadcast_name.get()) {
+    LOG(ERROR) << "Failed to create new broadcast name String";
+    return nullptr;
+  }
+
+  jint audio_cfg_quality = 0;
+  if (broadcast_metadata.public_announcement.features &
+      bluetooth::le_audio::kLeAudioQualityStandard) {
+    // Set bit 0 for AUDIO_CONFIG_QUALITY_STANDARD
+    audio_cfg_quality |= 0x1 << bluetooth::le_audio::QUALITY_STANDARD;
+  }
+  if (broadcast_metadata.public_announcement.features &
+      bluetooth::le_audio::kLeAudioQualityHigh) {
+    // Set bit 1 for AUDIO_CONFIG_QUALITY_HIGH
+    audio_cfg_quality |= 0x1 << bluetooth::le_audio::QUALITY_HIGH;
+  }
+
+  ScopedLocalRef<jobject> public_meta_obj(
+      env, prepareLeAudioContentMetadataObject(
+               env, broadcast_metadata.public_announcement.metadata));
+  if (!public_meta_obj.get()) {
+    LOG(ERROR) << "Failed to create new public metadata obj";
+    return nullptr;
+  }
+
   return env->NewObject(
       android_bluetooth_BluetoothLeBroadcastMetadata.clazz,
       android_bluetooth_BluetoothLeBroadcastMetadata.constructor,
@@ -914,10 +941,10 @@ jobject prepareBluetoothLeBroadcastMetadataObject(
       (jint)broadcast_metadata.adv_sid, (jint)broadcast_metadata.broadcast_id,
       (jint)broadcast_metadata.pa_interval,
       broadcast_metadata.broadcast_code ? true : false,
-      false, nullptr,
+      broadcast_metadata.is_public, broadcast_name.get(),
       broadcast_metadata.broadcast_code ? code.get() : nullptr,
       (jint)broadcast_metadata.basic_audio_announcement.presentation_delay,
-      (jint)0, nullptr, subgroup_list_obj.get());
+      audio_cfg_quality, public_meta_obj.get(), subgroup_list_obj.get());
 }
 
 class LeAudioBroadcasterCallbacksImpl : public LeAudioBroadcasterCallbacks {
