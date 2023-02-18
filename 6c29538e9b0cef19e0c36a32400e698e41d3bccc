@@ -22,6 +22,30 @@
       },
       "revId": "6c29538e9b0cef19e0c36a32400e698e41d3bccc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dcdef7a8_1f7d2999",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachineTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-02-18T20:07:57Z",
+      "side": 1,
+      "message": "Looks like this doesn\u0027t work. Cf the [test error](https://paste.googleplex.com/5642106054901760)\n\nMaybe what we need is:\n```\nwhen(SystemProperties.getBoolean(eq(\"ro.bluetooth.hfp_clcc_poll_during_call\"), anyBoolean())).thenReturn(false);\n```",
+      "parentUuid": "16188372_a2583c4f",
+      "range": {
+        "startLine": 128,
+        "startChar": 13,
+        "endLine": 128,
+        "endChar": 29
+      },
+      "revId": "6c29538e9b0cef19e0c36a32400e698e41d3bccc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
