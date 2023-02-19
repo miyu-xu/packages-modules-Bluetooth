@@ -8,6 +8,7 @@ use bt_common::init_flags::{
 use cxx::UniquePtr;
 pub use inner::*;
 use log::{error, info, warn};
+use tokio::task::spawn_local;
 
 use crate::{
     do_in_rust_thread,
@@ -21,7 +22,10 @@ use super::{
     arbiter::{self, with_arbiter},
     channel::AttTransport,
     ids::{AdvertiserId, AttHandle, ConnectionId, ServerId, TransactionId, TransportIndex},
-    server::gatt_database::{AttPermissions, GattCharacteristicWithHandle, GattServiceWithHandle},
+    server::{
+        att_server_bearer::AttServerBearer,
+        gatt_database::{AttPermissions, GattCharacteristicWithHandle, GattServiceWithHandle},
+    },
     GattCallbacks,
 };
 
@@ -132,7 +136,10 @@ mod inner {
         fn close_server(server_id: u8);
         fn add_service(server_id: u8, service_records: Vec<GattRecord>);
         fn remove_service(server_id: u8, service_handle: u16);
+
+        // att operations
         fn send_response(server_id: u8, conn_id: u16, trans_id: u32, status: u8, value: &[u8]);
+        fn send_indication(_server_id: u8, handle: u16, conn_id: u16, value: &[u8]);
 
         // connection
         fn is_connection_isolated(conn_id: u16) -> bool;
@@ -346,6 +353,24 @@ fn send_response(_server_id: u8, conn_id: u16, trans_id: u32, status: u8, value:
             Ok(()) => { /* no-op */ }
             Err(err) => warn!("{err:?}"),
         }
+    })
+}
+
+fn send_indication(_server_id: u8, handle: u16, conn_id: u16, value: &[u8]) {
+    if !rust_event_loop_is_enabled() {
+        return;
+    }
+
+    let handle = AttHandle(handle);
+    let conn_id = ConnectionId(conn_id);
+    let value = AttAttributeDataChild::RawData(value.into());
+
+    do_in_rust_thread(move |modules| {
+        let Some(bearer) = modules.gatt_module.get_bearer(conn_id) else {
+            error!("connection {conn_id:?} does not exist");
+            return;
+        };
+        spawn_local(AttServerBearer::send_indication(&bearer, handle, value));
     })
 }
 

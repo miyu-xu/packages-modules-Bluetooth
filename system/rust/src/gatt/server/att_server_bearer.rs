@@ -2,27 +2,33 @@
 //! It handles ATT transactions and unacknowledged operations, backed by an
 //! AttDatabase (that may in turn be backed by an upper-layer protocol)
 
-use std::cell::Cell;
+use std::{cell::Cell, future::Future, rc::Rc};
 
 use log::{error, trace, warn};
-use tokio::task::spawn_local;
+use tokio::{
+    sync::{
+        mpsc::{self, error::TrySendError},
+        Mutex,
+    },
+    task::spawn_local,
+};
 
 use crate::{
-    core::shared_box::WeakBoxRef,
+    core::shared_box::{WeakBox, WeakBoxRef},
     gatt::{
         ids::AttHandle,
         opcode_types::{classify_opcode, OperationType},
     },
     packets::{
-        AttBuilder, AttChild, AttErrorCode, AttErrorResponseBuilder, AttView, Packet,
-        SerializeError,
+        AttAttributeDataChild, AttBuilder, AttChild, AttErrorCode, AttErrorResponseBuilder,
+        AttView, Packet, SerializeError,
     },
     utils::{owned_handle::OwnedHandle, packet::HACK_child_to_opcode},
 };
 
 use super::{
     att_database::AttDatabase,
-    // indication_handler::{IndicationError, IndicationHandler},
+    indication_handler::{ConfirmationWatcher, IndicationHandler},
     request_handler::AttRequestHandler,
 };
 
@@ -46,9 +52,16 @@ pub enum SendError {
 /// channel on LE) The AttRequestState ensures that only one transaction can
 /// take place at a time
 pub struct AttServerBearer<T: AttDatabase> {
-    curr_request: Cell<AttRequestState<T>>,
+    // general
     send_packet: Box<dyn Fn(AttBuilder) -> Result<(), SerializeError>>,
     mtu: Cell<usize>,
+
+    // request state
+    curr_request: Cell<AttRequestState<T>>,
+
+    // indication state
+    indication_handler: Rc<Mutex<IndicationHandler>>,
+    pending_confirmation: ConfirmationWatcher,
 }
 
 impl<T: AttDatabase + 'static> AttServerBearer<T> {
@@ -58,10 +71,37 @@ impl<T: AttDatabase + 'static> AttServerBearer<T> {
         db: T,
         send_packet: impl Fn(AttBuilder) -> Result<(), SerializeError> + 'static,
     ) -> Self {
+        let (indication_handler, pending_confirmation) = IndicationHandler::new();
         Self {
-            curr_request: AttRequestState::Idle(AttRequestHandler::new(db)).into(),
             send_packet: Box::new(send_packet),
             mtu: Cell::new(DEFAULT_ATT_MTU),
+
+            curr_request: AttRequestState::Idle(AttRequestHandler::new(db)).into(),
+
+            indication_handler: Mutex::new(indication_handler).into(),
+            pending_confirmation,
+        }
+    }
+
+    /// Send an indication, wait for the peer confirmation, and return the
+    /// appropriate status If multiple calls are outstanding, they are
+    /// executed in FIFO order.
+    pub fn send_indication(
+        this: &WeakBoxRef<'_, Self>,
+        handle: AttHandle,
+        data: AttAttributeDataChild,
+    ) -> impl Future<Output = Result<(), SendError>> {
+        trace!("sending indication for handle {handle:?}");
+
+        let indication_handler = this.indication_handler.clone();
+        let this = this.downgrade();
+
+        async move {
+            indication_handler
+                .lock()
+                .await
+                .send(handle, data, |packet| Self::try_send_packet(&this, packet))
+                .await
         }
     }
 
@@ -75,9 +115,17 @@ impl<T: AttDatabase + 'static> AttServerBearer<T> {
             OperationType::Request => {
                 Self::handle_request(this, packet);
             }
-            OperationType::Confirmation => {
-                error!("ignoring handle value confirmation (currently unsupported)");
-            }
+            OperationType::Confirmation => match this.pending_confirmation.try_send(()) {
+                Ok(_) => {
+                    trace!("Got AttHandleValueConfirmation")
+                }
+                Err(TrySendError::Full(_)) => {
+                    warn!("Got a second AttHandleValueConfirmation before the first was processed, dropping it")
+                }
+                Err(TrySendError::Closed(_)) => {
+                    warn!("Got an AttHandleValueConfirmation while no indications are outstanding, dropping it")
+                }
+            },
             OperationType::Response | OperationType::Notification | OperationType::Indication => {
                 unreachable!("the arbiter should not let us receive these packet types")
             }
@@ -97,25 +145,30 @@ impl<T: AttDatabase + 'static> AttServerBearer<T> {
                     trace!("starting ATT transaction");
                     let reply = request_handler.process_packet(packet.view(), mtu).await;
                     this.with(|this| {
-                    match this {
-                        None => {
-                            warn!("callback returned after disconnect");
-                        }
-                        Some(this) => {
-                            trace!("sending reply packet");
-                            if let Err(err) = this.send_packet(reply) {
-                                error!("serializer failure {err:?}, dropping packet and sending failed reply");
-                                this.send_packet(AttErrorResponseBuilder {
-                                    opcode_in_error: packet.view().get_opcode(),
-                                    handle_in_error: AttHandle(0).into(),
-                                    error_code: AttErrorCode::UNLIKELY_ERROR,
-                                }).expect("packet should never fail to serialize");
-                            }
+                        this.map(|this| {
+                            match this.send_packet(reply) {
+                                Ok(_) => {
+                                    trace!("reply packet sent")
+                                }
+                                Err(SendError::ConnectionDropped) => {
+                                    warn!("callback returned after disconnect");
+                                }
+                                Err(SendError::SerializeError(err)) => {
+                                    error!("serializer failure {err:?}, dropping packet and sending failed reply");
+                                    // if this also fails, we're stuck
+                                    if let Err(SendError::SerializeError(err)) = this.send_packet(AttErrorResponseBuilder {
+                                        opcode_in_error: packet.view().get_opcode(),
+                                        handle_in_error: AttHandle(0).into(),
+                                        error_code: AttErrorCode::UNLIKELY_ERROR,
+                                    }) {
+                                        panic!("unexpected serialize error for known-good packet {err:?}")
+                                    }
+                                }
+                            };
                             // ready for next transaction
                             this.curr_request.replace(AttRequestState::Idle(request_handler));
-                        }
-                    }
-                    })
+                        })
+                    });
                 });
                 AttRequestState::Pending(Some(task.into()))
             }
@@ -125,6 +178,10 @@ impl<T: AttDatabase + 'static> AttServerBearer<T> {
                 curr_request
             }
         });
+    }
+
+    fn try_send_packet(this: &WeakBox<Self>, packet: impl Into<AttChild>) -> Result<(), SendError> {
+        this.with(|this| this.ok_or(SendError::ConnectionDropped)?.send_packet(packet))
     }
 
     fn send_packet(&self, packet: impl Into<AttChild>) -> Result<(), SendError> {
