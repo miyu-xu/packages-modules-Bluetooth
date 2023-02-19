@@ -208,3 +208,10 @@ packet AttErrorResponse : Att(opcode = ERROR_RESPONSE) {
   handle_in_error: AttHandle,
   error_code: AttErrorCode,
 }
+
+packet AttHandleValueIndication : Att(opcode = HANDLE_VALUE_INDICATION) {
+  handle: AttHandle,
+  value: AttAttributeData,
+}
+
+packet AttHandleValueConfirmation : Att(opcode = HANDLE_VALUE_CONFIRMATION) {}

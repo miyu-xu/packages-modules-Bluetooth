@@ -47,6 +47,7 @@ pub enum SendError {
 /// take place at a time
 pub struct AttServerBearer<T: AttDatabase> {
     curr_request: Cell<AttRequestState<T>>,
+    // indication_handler: IndicationHandler,
     send_packet: Box<dyn Fn(AttBuilder) -> Result<(), SerializeError>>,
     mtu: Cell<usize>,
 }
@@ -60,10 +61,29 @@ impl<T: AttDatabase + 'static> AttServerBearer<T> {
     ) -> Self {
         Self {
             curr_request: AttRequestState::Idle(AttRequestHandler::new(db)).into(),
+            // indication_handler: IndicationHandler::new(),
             send_packet: Box::new(send_packet),
             mtu: Cell::new(DEFAULT_ATT_MTU),
         }
     }
+
+    /// Send an indication, wait for the peer confirmation, and return the
+    /// appropriate status If multiple calls are outstanding, they are
+    /// executed in FIFO order.
+    // pub async fn send_indication(
+    //     self: Rc<Self>,
+    //     handle: AttHandle,
+    //     data: AttAttributeDataChild,
+    // ) -> Result<(), IndicationError> {
+    //     let this = Rc::downgrade(&self);
+    //     drop(self);
+
+    //     self.indication_handler
+    //         .send_indication(handle, data, |packet| {
+    //             let this = Weak::upgrade(&this)?;
+    //             Some(this.send_packet(packet))
+    //         }).await
+    // }
 
     /// Handle an incoming packet, and send outgoing packets as appropriate
     /// using the owned ATT channel.
@@ -76,7 +96,8 @@ impl<T: AttDatabase + 'static> AttServerBearer<T> {
                 Self::handle_request(this, packet);
             }
             OperationType::Confirmation => {
-                error!("ignoring handle value confirmation (currently unsupported)");
+                todo!()
+                // self.indication_handler.handle_confirmation();
             }
             OperationType::Response | OperationType::Notification | OperationType::Indication => {
                 unreachable!("the arbiter should not let us receive these packet types")
