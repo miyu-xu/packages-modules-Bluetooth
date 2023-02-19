@@ -8,12 +8,13 @@ use log::{error, info, trace};
 use crate::{
     do_in_rust_thread,
     gatt::server::att_server_bearer::AttServerBearer,
-    packets::{AttOpcode, OwnedAttView, OwnedPacket},
+    packets::{OwnedAttView, OwnedPacket},
 };
 
 use super::{
     ffi::{InterceptAction, StoreCallbacksFromRust},
     ids::{AdvertiserId, ConnectionId, ServerId, TransportIndex},
+    opcode_types::{classify_opcode, OperationType},
 };
 
 static ARBITER: Mutex<Option<Arbiter>> = Mutex::new(None);
@@ -92,15 +93,10 @@ impl Arbiter {
 
         let att = OwnedAttView::try_parse(packet).ok()?;
 
-        match att.view().get_opcode() {
-            AttOpcode::FIND_INFORMATION_REQUEST
-            | AttOpcode::FIND_BY_TYPE_VALUE_REQUEST
-            | AttOpcode::READ_BY_TYPE_REQUEST
-            | AttOpcode::READ_REQUEST
-            | AttOpcode::READ_BLOB_REQUEST
-            | AttOpcode::READ_MULTIPLE_REQUEST
-            | AttOpcode::READ_BY_GROUP_TYPE_REQUEST
-            | AttOpcode::WRITE_REQUEST => Some((att, conn_id)),
+        match classify_opcode(att.view().get_opcode()) {
+            OperationType::Command | OperationType::Request | OperationType::Confirmation => {
+                Some((att, conn_id))
+            }
             _ => None,
         }
     }
@@ -178,7 +174,7 @@ mod test {
 
     use crate::{
         gatt::ids::AttHandle,
-        packets::{AttBuilder, AttReadRequestBuilder, Serializable},
+        packets::{AttBuilder, AttOpcode, AttReadRequestBuilder, Serializable},
     };
 
     const TCB_IDX: TransportIndex = TransportIndex(1);
