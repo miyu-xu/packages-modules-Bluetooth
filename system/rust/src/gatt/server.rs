@@ -8,6 +8,7 @@ mod request_handler;
 mod transactions;
 
 // mod indication_handler;
+mod indication_handler;
 #[cfg(test)]
 mod test;
 

@@ -10,20 +10,21 @@ use bluetooth_core::{
             mock_transport::MockAttTransport,
         },
         server::{
-            att_server_bearer::AttServerBearer,
+            att_server_bearer::{AttServerBearer, SendError},
             gatt_database::{AttPermissions, GattCharacteristicWithHandle, GattServiceWithHandle},
             GattModule,
         },
     },
     packets::{
-        AttAttributeDataChild, AttBuilder, AttErrorCode, AttErrorResponseBuilder, AttOpcode,
+        AttAttributeDataChild, AttBuilder, AttErrorCode, AttErrorResponseBuilder,
+        AttHandleValueConfirmationBuilder, AttHandleValueIndicationBuilder, AttOpcode,
         AttReadRequestBuilder, AttReadResponseBuilder, AttWriteRequestBuilder,
         AttWriteResponseBuilder, GattServiceDeclarationValueBuilder, Serializable,
     },
     utils::packet::{build_att_data, build_att_view_or_crash},
 };
 
-use tokio::sync::mpsc::UnboundedReceiver;
+use tokio::{sync::mpsc::UnboundedReceiver, task::spawn_local};
 use utils::start_test;
 
 mod utils;
@@ -35,6 +36,7 @@ const HANDLE_1: AttHandle = AttHandle(3);
 const HANDLE_2: AttHandle = AttHandle(5);
 const UUID_1: Uuid = Uuid::new(0x0102);
 const UUID_2: Uuid = Uuid::new(0x0103);
+const DATA: [u8; 4] = [1, 2, 3, 4];
 
 fn start_gatt_module() -> (
     gatt::server::GattModule,
@@ -189,7 +191,7 @@ fn test_characteristic_read() {
         // arrange
         let (mut gatt, mut data_rx, mut transport_rx) = start_gatt_module();
 
-        let data = AttAttributeDataChild::RawData([5, 6, 7, 8].into());
+        let data = AttAttributeDataChild::RawData(DATA.into());
 
         create_server_and_open_connection(&mut gatt);
         data_rx.recv().await.unwrap();
@@ -228,7 +230,7 @@ fn test_characteristic_write() {
         // arrange
         let (mut gatt, mut data_rx, mut transport_rx) = start_gatt_module();
 
-        let data = AttAttributeDataChild::RawData([5, 6, 7, 8].into());
+        let data = AttAttributeDataChild::RawData(DATA.into());
 
         create_server_and_open_connection(&mut gatt);
         data_rx.recv().await.unwrap();
@@ -266,5 +268,69 @@ fn test_characteristic_write() {
             data.to_vec().unwrap(),
             written_data.view().get_raw_payload().collect::<Vec<_>>()
         )
+    })
+}
+
+#[test]
+fn test_send_indication() {
+    start_test(async move {
+        // arrange
+        let (mut gatt, mut data_rx, mut transport_rx) = start_gatt_module();
+
+        let data = AttAttributeDataChild::RawData(DATA.into());
+
+        create_server_and_open_connection(&mut gatt);
+        data_rx.recv().await.unwrap();
+
+        // act
+        let pending_indication = spawn_local(AttServerBearer::send_indication(
+            &gatt.get_bearer(CONN_ID).unwrap(),
+            HANDLE_1,
+            data.clone(),
+        ));
+
+        let (tcb_idx, resp) = transport_rx.recv().await.unwrap();
+
+        AttServerBearer::handle_packet(
+            &gatt.get_bearer(CONN_ID).unwrap(),
+            build_att_view_or_crash(AttHandleValueConfirmationBuilder {}).view(),
+        );
+
+        // assert
+        assert!(matches!(pending_indication.await.unwrap(), Ok(())));
+        assert_eq!(tcb_idx, TCB_IDX);
+        assert_eq!(
+            resp,
+            AttBuilder {
+                opcode: AttOpcode::HANDLE_VALUE_INDICATION,
+                _child_: AttHandleValueIndicationBuilder {
+                    handle: HANDLE_1.into(),
+                    value: build_att_data(data),
+                }
+                .into()
+            }
+        );
+    })
+}
+
+#[test]
+fn test_send_indication_and_disconnnect() {
+    start_test(async move {
+        // arrange
+        let (mut gatt, mut data_rx, _) = start_gatt_module();
+
+        create_server_and_open_connection(&mut gatt);
+        data_rx.recv().await.unwrap();
+
+        // act: send an indication, then disconnect
+        let pending_indication = spawn_local(AttServerBearer::send_indication(
+            &gatt.get_bearer(CONN_ID).unwrap(),
+            HANDLE_1,
+            AttAttributeDataChild::RawData([1, 2, 3, 4].into()),
+        ));
+        gatt.on_le_disconnect(CONN_ID);
+
+        // assert: the pending indication resolves appropriately
+        assert!(matches!(pending_indication.await.unwrap(), Err(SendError::ConnectionDropped)));
     })
 }
