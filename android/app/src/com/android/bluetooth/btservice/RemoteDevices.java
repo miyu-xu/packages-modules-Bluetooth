@@ -98,6 +98,8 @@ final class RemoteDevices {
     private static final int HFP_BATTERY_CHARGE_INDICATOR_4 = 88;
     private static final int HFP_BATTERY_CHARGE_INDICATOR_5 = 100;
 
+    private static final String PROPERTY_PAIRING_UI = "bluetooth.pairing_ui_package.name";
+
     private final Handler mHandler;
     private class RemoteDevicesHandler extends Handler {
 
@@ -1088,8 +1090,7 @@ final class RemoteDevices {
                 // Send PAIRING_CANCEL intent to dismiss any dialog requesting bonding.
                 intent = new Intent(BluetoothDevice.ACTION_PAIRING_CANCEL);
                 intent.putExtra(BluetoothDevice.EXTRA_DEVICE, device);
-                intent.setPackage(SystemProperties.get(
-                        "bluetooth.pairing_ui_package.name",
+                intent.setPackage(SystemProperties.get(PROPERTY_PAIRING_UI,
                         mAdapterService.getString(R.string.pairing_ui_package)));
 
                 mAdapterService.sendBroadcast(intent, BLUETOOTH_CONNECT,
