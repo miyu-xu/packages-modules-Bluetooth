@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2ef50a32_12bb1a79",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1864,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-02-20T01:08:19Z",
+      "side": 0,
+      "message": "Should we still be checking pairing_cb.gat_over_le !\u003d SCHEDULED in the updated change, or is there a reason for removing this logic?",
+      "range": {
+        "startLine": 1863,
+        "startChar": 10,
+        "endLine": 1864,
+        "endChar": 68
+      },
+      "revId": "f657aa62416b89d4e81eea7c5aebcc04d2012c8c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
