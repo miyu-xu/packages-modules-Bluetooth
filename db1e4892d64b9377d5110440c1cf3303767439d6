@@ -67,6 +67,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "302be0d5_49354477",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1494,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2023-02-20T02:19:22Z",
+      "side": 1,
+      "message": "I didn\u0027t notice there\u0027s a mutable borrow, in that case, if we can update self.scanner_ids later, the clone can be avoided.\n\n```\n        let ids \u003d self \n            ...\n            .collect();\n\n        for \u0026scanner_id in \u0026ids {\n            ...\n        }\n        self.paused_scanner_ids \u003d ids;\n```",
+      "parentUuid": "9d14bca5_27cb5798",
+      "range": {
+        "startLine": 1494,
+        "startChar": 8,
+        "endLine": 1494,
+        "endChar": 57
+      },
+      "revId": "db1e4892d64b9377d5110440c1cf3303767439d6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0a70c2b2_7816ddfe",
         "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
         "patchSetId": 1
