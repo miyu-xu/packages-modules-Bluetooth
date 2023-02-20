@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "510100e2_b9a525a2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-02-20T03:52:45Z",
+      "side": 1,
+      "message": "FYI, I have a CL that is doing exactly the same thing and will be merged soon: https://r.android.com/2428599",
+      "revId": "66420f2ed0f9b4260a650400c6c75956c3820295",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
