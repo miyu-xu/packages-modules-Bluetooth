@@ -16,6 +16,24 @@
       "message": "I might get other area owners to peak at their tests as well, but I took a good pass at it looks good to me.",
       "revId": "a0af5152b694ba0070ec6835951e4723e3c426ff",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3b8c1a76_424bc0e8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2023-02-20T02:27:09Z",
+      "side": 1,
+      "message": "Thanks for your comment.\n\nSungsoo, could you give code review? Thanks.",
+      "parentUuid": "a49e8bd2_da44833e",
+      "revId": "a0af5152b694ba0070ec6835951e4723e3c426ff",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
