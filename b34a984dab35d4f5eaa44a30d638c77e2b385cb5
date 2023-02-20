@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4f3d18c5_2f9068f4",
+        "filename": "system/gd/rust/linux/mgmt/src/config_util.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2023-02-20T18:23:53Z",
+      "side": 1,
+      "message": "not a wrong logic, but usually we prefer to store boolean as enabled rather than disabled. Is there a reason why we store the negation?",
+      "range": {
+        "startLine": 22,
+        "startChar": 59,
+        "endLine": 22,
+        "endChar": 76
+      },
+      "revId": "b34a984dab35d4f5eaa44a30d638c77e2b385cb5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
