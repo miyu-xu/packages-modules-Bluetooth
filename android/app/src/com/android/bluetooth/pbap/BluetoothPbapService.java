@@ -193,10 +193,11 @@ public class BluetoothPbapService extends ProfileService implements IObexConnect
     private static final String PBAP_NOTIFICATION_ID = "pbap_notification";
     private static final String PBAP_NOTIFICATION_NAME = "BT_PBAP_ADVANCE_SUPPORT";
     private static final int PBAP_ADV_VERSION = 0x0102;
+    private static final String PROPERTY_PAIRING_UI = "bluetooth.pairing_ui_package.name";
+
     private static NotificationManager sNotificationManager;
 
     private static boolean sIsPseDynamicVersionUpgradeEnabled;
-
     public static boolean isEnabled() {
         return BluetoothProperties.isProfilePbapServerEnabled().orElse(false);
     }
@@ -458,8 +459,7 @@ public class BluetoothPbapService extends ProfileService implements IObexConnect
                     break;
                 case USER_TIMEOUT:
                     Intent intent = new Intent(BluetoothDevice.ACTION_CONNECTION_ACCESS_CANCEL);
-                    intent.setPackage(SystemProperties.get(
-                            "bluetooth.pairing_ui_package.name",
+                    intent.setPackage(SystemProperties.get(PROPERTY_PAIRING_UI,
                             getString(R.string.pairing_ui_package)));
                     PbapStateMachine stateMachine = (PbapStateMachine) msg.obj;
                     intent.putExtra(BluetoothDevice.EXTRA_DEVICE, stateMachine.getRemoteDevice());

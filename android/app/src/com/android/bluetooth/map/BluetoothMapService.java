@@ -164,14 +164,15 @@ public class BluetoothMapService extends ProfileService {
             BluetoothUuid.MAP, BluetoothUuid.MNS,
     };
 
+    private static final String PROPERTY_PAIRING_UI = "bluetooth.pairing_ui_package.name";
+
     public static boolean isEnabled() {
         return BluetoothProperties.isProfileMapServerEnabled().orElse(false);
     }
 
     public BluetoothMapService() {
         mState = BluetoothMap.STATE_DISCONNECTED;
-        mPairingUiPackage = SystemProperties.get(
-            "bluetooth.pairing_ui_package.name",
+        mPairingUiPackage = SystemProperties.get(PROPERTY_PAIRING_UI,
             getString(R.string.pairing_ui_package));
         BluetoothMap.invalidateBluetoothGetConnectionStateCache();
     }

@@ -72,7 +72,7 @@ public class AtPhonebook {
     private static final String OUTGOING_CALL_WHERE = Calls.TYPE + "=" + Calls.OUTGOING_TYPE;
     private static final String INCOMING_CALL_WHERE = Calls.TYPE + "=" + Calls.INCOMING_TYPE;
     private static final String MISSED_CALL_WHERE = Calls.TYPE + "=" + Calls.MISSED_TYPE;
-
+    private static final String PROPERTY_PAIRING_UI = "bluetooth.pairing_ui_package.name";
     @VisibleForTesting
     class PhonebookResult {
         public Cursor cursor; // result set of last query
@@ -108,8 +108,7 @@ public class AtPhonebook {
 
     public AtPhonebook(Context context, HeadsetNativeInterface nativeInterface) {
         mContext = context;
-        mPairingPackage = SystemProperties.get(
-            "bluetooth.pairing_ui_package.name",
+        mPairingPackage = SystemProperties.get(PROPERTY_PAIRING_UI,
             context.getString(R.string.pairing_ui_package));
         mContentResolver = context.getContentResolver();
         mNativeInterface = nativeInterface;
