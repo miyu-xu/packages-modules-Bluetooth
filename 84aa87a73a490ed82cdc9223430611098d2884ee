@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e1372038_7eefb93e",
+        "filename": "framework/java/android/bluetooth/BluetoothQualityReport.java",
+        "patchSetId": 26
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-02-20T11:20:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "05f0060a_086de1d7",
+      "revId": "84aa87a73a490ed82cdc9223430611098d2884ee",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b5d5a4ca_232b23a7",
@@ -35,6 +53,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2a31decc_f8784b10",
+        "filename": "framework/java/android/bluetooth/BluetoothQualityReport.java",
+        "patchSetId": 26
+      },
+      "lineNbr": 396,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-02-20T11:20:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b5d5a4ca_232b23a7",
+      "revId": "84aa87a73a490ed82cdc9223430611098d2884ee",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ffaf725f_67fe509b",
@@ -48,6 +84,24 @@
       "writtenOn": "2023-02-18T00:13:06Z",
       "side": 1,
       "message": "Can we explicitly call out the byte order for the address? Usually, we use big endian byte order to represent addresses in our codebase, but everything over the air is little endian.",
+      "revId": "84aa87a73a490ed82cdc9223430611098d2884ee",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5182387b_5cc650ea",
+        "filename": "framework/java/android/bluetooth/BluetoothQualityReport.java",
+        "patchSetId": 26
+      },
+      "lineNbr": 552,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-02-20T11:20:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ffaf725f_67fe509b",
       "revId": "84aa87a73a490ed82cdc9223430611098d2884ee",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
