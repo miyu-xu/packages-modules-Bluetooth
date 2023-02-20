@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ea323b31_420f67e5",
+        "filename": "system/stack/sdp/sdp_server.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1075,
+      "author": {
+        "id": 1470368
+      },
+      "writtenOn": "2023-02-20T18:26:24Z",
+      "side": 1,
+      "message": "For some of the PBAP testcases, PTS will  directly look 1.2 info(eg l2cappsm \u0026 supported features) without pairing, \u0026 remote name is not available in btif_storage. remote name should be available in BTM device record.  Need to check further",
+      "range": {
+        "startLine": 1075,
+        "startChar": 0,
+        "endLine": 1075,
+        "endChar": 6
+      },
+      "revId": "19fa209674220a32546bd4252d9aa142ddf45c6d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
