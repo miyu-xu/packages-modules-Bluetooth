@@ -32,7 +32,9 @@
 #include "hci/hci_layer.h"
 #include "hci/remote_name_request.h"
 #include "hci_acl_manager_generated.h"
+#include "main/shim/helpers.h"
 #include "security/security_module.h"
+#include "stack/include/acl_hci_link_interface.h"
 #include "storage/storage_module.h"
 
 namespace bluetooth {
@@ -127,6 +129,9 @@ struct AclManager::impl {
             handle, [&packet](struct acl_manager::assembler* assembler) { assembler->on_incoming_packet(*packet); }))
       return;
     LOG_INFO("Dropping packet of size %zu to unknown connection 0x%0hx", packet->size(), packet->GetHandle());
+
+    BT_HDR* p_buf = MakeLegacyBtHdrPacket(std::move(packet), std::vector<uint8_t>());
+    acl_rcv_acl_data(p_buf);
   }
 
   void Dump(
