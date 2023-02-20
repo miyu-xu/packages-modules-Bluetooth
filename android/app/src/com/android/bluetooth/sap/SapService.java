@@ -99,6 +99,7 @@ public class SapService extends ProfileService {
     private boolean mIsRegistered = false;
 
     private final String mPairingUiPackage;
+    private static final String PROPERTY_PAIRING_UI = "bluetooth.pairing_ui_package.name";
 
     private static SapService sSapService;
 
@@ -112,8 +113,7 @@ public class SapService extends ProfileService {
 
     public SapService() {
         mState = BluetoothSap.STATE_DISCONNECTED;
-        mPairingUiPackage = SystemProperties.get(
-            "bluetooth.pairing_ui_package.name",
+        mPairingUiPackage = SystemProperties.get(PROPERTY_PAIRING_UI,
             getString(R.string.pairing_ui_package));
         BluetoothSap.invalidateBluetoothGetConnectionStateCache();
     }
