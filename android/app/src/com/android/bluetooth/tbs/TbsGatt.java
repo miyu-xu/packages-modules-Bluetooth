@@ -764,7 +764,9 @@ public class TbsGatt {
                 }
 
                 descriptor.setValue(BluetoothGattDescriptor.ENABLE_NOTIFICATION_VALUE);
-                mSubscribers.add(device);
+                if (!mSubscribers.contains(device)) {
+                    mSubscribers.add(device);
+                }
             }
         }
     }
