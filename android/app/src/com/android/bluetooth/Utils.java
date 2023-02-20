@@ -96,6 +96,7 @@ public final class Utils {
     private static final String PTS_TEST_MODE_PROPERTY = "persist.bluetooth.pts";
     private static final String KEY_TEMP_ALLOW_LIST_DURATION_MS = "temp_allow_list_duration_ms";
     private static final long DEFAULT_TEMP_ALLOW_LIST_DURATION_MS = 20_000;
+    private static final String PAIRING_UI_PROPERTY = "bluetooth.pairing_ui_package.name";
 
     static final int BD_ADDR_LEN = 6; // bytes
     static final int BD_UUID_LEN = 16; // bytes
@@ -968,6 +969,15 @@ public final class Utils {
      */
     public static boolean isPtsTestMode() {
         return SystemProperties.getBoolean(PTS_TEST_MODE_PROPERTY, false);
+    }
+
+/**
+     * Get a name of pairing UI perperty
+     *
+     * @return "bluetooth.xxx.yyy"
+     */
+    public static String getParingUiProperty() {
+        return PAIRING_UI_PROPERTY;
     }
 
     /**
