@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9f722823_64d74f76",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1943896
+      },
+      "writtenOn": "2023-02-20T03:33:43Z",
+      "side": 1,
+      "message": "I had removed your mentioned position. please check this flag.\n\nbecause once peer\u0027s device doesn\u0027t response, this will result that \nDUT can\u0027t send command because of this flag",
+      "revId": "0c88386a843d64f2fb931609fd5b186bc492167a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
