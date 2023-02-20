@@ -168,6 +168,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1501e7f0_4b951ff0",
+        "filename": "framework/java/android/bluetooth/le/ScanFilter.java",
+        "patchSetId": 22
+      },
+      "lineNbr": 554,
+      "author": {
+        "id": 1470368
+      },
+      "writtenOn": "2023-02-20T18:12:10Z",
+      "side": 1,
+      "message": "Sometimes  We have to consider different aspect while exposing apis.\n\nI prefer to keep advertiser \u0026 scan filter implementation separately, because scan filter part were never symmetric with advertiser for other scan filters also. I have explained in details in other comments     \n \nAs per my opinion,  Multiple TransportDiscoveryData list should not be exposed to app for advertiser side or scanner side, beacuse TransportDiscoveryData can consist of multiple transportBlock, which is already solving same purpose. \n\none transport block represent one service, if particular app needs multiple services, which need to be advertised, the it should add those service as multiple Transport Block.\n\nSo one particular 3rd party APP/System APP should add one TransportDiscoveryData(it may have multiple block)  while starting advertisement for particular advertiser set, \n \nTDS spec: The structure of the Transport Block may be repeated in case there are multiple services (on the same or different transports) to advertise simultaneously. The structure may repeat as long as there is space available. These Transport Blocks may be from the same organization or from different organizations. As per spec,  transportData length in one Transportblock can be upto  239 bytes.\n0x00 Transport Data field not present (i.e., 0 octets in length)\n0x01 – 0xEF\n(Note 1) Number of Octets in Transport Data field",
+      "parentUuid": "cab09e6e_280f24be",
+      "range": {
+        "startLine": 504,
+        "startChar": 3,
+        "endLine": 554,
+        "endChar": 5
+      },
+      "revId": "a9e8d334b215a0c46c510de3e6ddfa9f001ff3cb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0a67edef_1e86ed3a",
         "filename": "framework/java/android/bluetooth/le/ScanFilter.java",
         "patchSetId": 22
@@ -179,6 +203,30 @@
       "writtenOn": "2023-02-17T02:34:04Z",
       "side": 1,
       "message": "In `AdvertiseData#Builder` we already have a similar method\n\nhttps://developer.android.com/reference/android/bluetooth/le/AdvertiseData.Builder#addTransportDiscoveryData(android.bluetooth.le.TransportDiscoveryData)\n\nThe scanner part should be symmetric to the advertiser part so that we can reuse the existing data structure as much as possible\n\nI do understand from the other comment thread that the controller currently could not filter for more than one TransportDiscoveryData and more than one TransportBlock. However, as an API design, we should think about how this allows for future expansion. \n\nCould we modify TransportBlock to add `tdsFlagsMask` and `transportDataMask` as System APIs?\n\nAnd modify this API to be\n\naddTransportDiscoveryData(TransportDiscoveryData transportDiscoveryData)\n\nand we can check that only one block is included in the `TransportDiscoveryData` class. If more than one block is supplied, this API can throw error when adding data or building the filter. \n\nIn the future, if a platform wants to support more than one block or more than one transport data, they can make a runtime change on the Bluetooth stack.",
+      "range": {
+        "startLine": 1224,
+        "startChar": 58,
+        "endLine": 1226,
+        "endChar": 50
+      },
+      "revId": "a9e8d334b215a0c46c510de3e6ddfa9f001ff3cb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6f6d3565_6fe95ed0",
+        "filename": "framework/java/android/bluetooth/le/ScanFilter.java",
+        "patchSetId": 22
+      },
+      "lineNbr": 1226,
+      "author": {
+        "id": 1470368
+      },
+      "writtenOn": "2023-02-20T18:12:10Z",
+      "side": 1,
+      "message": "@Jack I completely agree with you, our API design should be futuristic \u0026 it should incorporate all aspect of BT specification.\n\nSo we tried to changed WIFI NAN  filtering to generic Transport discovery data with Transport data mask filter for other org id(0x01 , 03, any future org id) while up streaming this feature.   newer version controller may support Transport data mask \u0026 Transport data based filter for other org id, which is not currently present.\n\nBut Sometimes We have to also consider other aspects  .\n\n1. scan filters requirements are not symmetric with advertiser for any scan filters \nhttps://source.android.com/static/docs/core/connect/bluetooth/Android-5.0-Bluetooth-HCI-Reqs.pdf, because scan filter has introduced additional masks parameter  for eg service_uuid, service_data_uuid, Manufacturer data, etc.\n\nSimilar API can be found on both advertiser  \u0026 scan filter for similar features, It was never grouped into one class to keep it symmetric   between advertiser/scanner \nhttps://developer.android.com/reference/android/bluetooth/le/AdvertiseData#getManufacturerSpecificData()\nhttps://developer.android.com/reference/android/bluetooth/le/AdvertiseData#getServiceSolicitationUuids()\nhttps://developer.android.com/reference/android/bluetooth/le/AdvertiseData#getServiceUuids()\nhttps://developer.android.com/reference/android/bluetooth/le/AdvertiseData#getServiceData()\n\nhttps://developer.android.com/reference/android/bluetooth/le/ScanFilter#getManufacturerData()\nhttps://developer.android.com/reference/android/bluetooth/le/ScanFilter#getManufacturerDataMask()\nhttps://developer.android.com/reference/android/bluetooth/le/ScanFilter#getManufacturerId()\nhttps://developer.android.com/reference/android/bluetooth/le/ScanFilter#getServiceData()\nhttps://developer.android.com/reference/android/bluetooth/le/ScanFilter#getServiceDataMask()\nhttps://developer.android.com/reference/android/bluetooth/le/ScanFilter#getServiceDataUuid()\nhttps://developer.android.com/reference/android/bluetooth/le/ScanFilter#getServiceSolicitationUuid()\nhttps://developer.android.com/reference/android/bluetooth/le/ScanFilter#getServiceSolicitationUuidMask()\nhttps://developer.android.com/reference/android/bluetooth/le/ScanFilter#getServiceUuid()\nhttps://developer.android.com/reference/android/bluetooth/le/ScanFilter#getServiceUuidMask()\n\nOur TDD implementation is also similar to other google APCF . I think their were some reasons to keep it separate.\na. To reduce code complexity \nb.  Max Data lengths(eg. manufacturer data, service, TransportData) threshold may be  different for scan filter \u0026 advertiser . \neg. example of existing  scan filter.\nAssume that Manufacturer data/Service Data is around 240~ bytes as long as it fits into one advertisement packet.   \n\nSo on advertiser side max Data len for Manufacturer data/Service data can be consider as 240~ bytes.\nBut on scanner side, if we are keeping scan filter, then this length need to be divided by 2, 120~ byte should be manufacturer data \u0026 another 120~ bytes manufacturer data for manufacturer masks, because Controllers shall be able to accept HCI Command packets with up to 255 bytes of data excluding the HCI Command packet header.\n\n2.  Multiple transport discovery data should never be usecase from API perspective  , because multiple transport block within transport discovery data is already there.  other APCF APIs also  support filter for only single service data uuid or single serviceSolicitationUuid or single  service uuid or single AD type.   Even though multiple service data uuid/serviceSolicitationUuid/Manufactuerer data/etc are supported on advertiser side \n\nFor TDD filtering ,  Scanner APP never know that , how many Transport blocks are included by advertisers,So i think  Single Transport Blocks specific scan filtering is more aligned with google APCF spec perspective.  controller will still parse TDD adv packet with multiple block to find, if particular service is present  or not in any blocks.\n\n\n3. TDD Scan filter(In Transport transportdata max length 119 bytes along with transportdatamask length 119 bytes  \u0026 advertiser(transportdata max length 239 bytes) requirement can be different.\nBTW, I tried to understand the purpose  of setter/getter api for transport data length of https://developer.android.com/reference/android/bluetooth/le/TransportBlock#getTransportDataLength(), but i could not understand, why it was introduced, can we not get this length using https://developer.android.com/reference/android/bluetooth/le/TransportBlock#getTransportData() byte array length\n\n\nI made all api to system api, i still prefer to keep current set api in scan filter  to align with google scan filter implementation .",
+      "parentUuid": "0a67edef_1e86ed3a",
       "range": {
         "startLine": 1224,
         "startChar": 58,
