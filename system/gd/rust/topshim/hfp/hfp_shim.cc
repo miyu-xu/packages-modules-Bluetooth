@@ -108,7 +108,9 @@ class DBusHeadsetCallbacks : public headset::Callbacks {
 
   void AtChldCallback([[maybe_unused]] headset::bthf_chld_type_t chld, [[maybe_unused]] RawAddress* bd_addr) override {}
 
-  void AtCnumCallback([[maybe_unused]] RawAddress* bd_addr) override {}
+  void AtCnumCallback([[maybe_unused]] RawAddress* bd_addr) override {
+    headset_->AtResponse(headset::BTHF_AT_RESPONSE_OK, 0, bd_addr);
+  }
 
   void AtCindCallback(RawAddress* bd_addr) override {
     // This is required to setup the SLC, the format of the response should be
