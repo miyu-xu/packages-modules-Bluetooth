@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "24b46b06_cd6e1e22",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-02-20T17:17:53Z",
+      "side": 1,
+      "message": "How about simpler fix, just fixing the bad comparison? https://android-review.googlesource.com/c/platform/packages/modules/Bluetooth/+/2447042",
+      "revId": "051f7367835c7995dbc335413740261d8426010f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
