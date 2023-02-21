@@ -1,0 +1,101 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b7aa6d74_00624868",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-02-21T20:33:27Z",
+      "side": 1,
+      "message": "This change looks too big.\nIf I understand the problem correctly, then this fix aosp/2449102 should be a solution. Could you please have a look?\n\nIf you agree that it is fine, could you please deliver the test case in this patch?",
+      "revId": "94d1271c03173c4309446a9f0863873976e20209",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a728c083_ffc4ad15",
+        "filename": "system/bta/le_audio/devices_test.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 449,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-02-21T20:33:27Z",
+      "side": 1,
+      "message": "If we need to change ASE order to trigger the error state, can we add some parameter to this function and make it configurable for the test ?",
+      "revId": "94d1271c03173c4309446a9f0863873976e20209",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "967f173b_45f4f048",
+        "filename": "system/bta/le_audio/devices_test.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 783,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-02-21T20:33:27Z",
+      "side": 1,
+      "message": "typo",
+      "range": {
+        "startLine": 783,
+        "startChar": 16,
+        "endLine": 783,
+        "endChar": 22
+      },
+      "revId": "94d1271c03173c4309446a9f0863873976e20209",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7c62d142_786a9ab6",
+        "filename": "system/bta/le_audio/devices_test.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1222,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-02-21T20:33:27Z",
+      "side": 1,
+      "message": "nit: tws_headset ?",
+      "range": {
+        "startLine": 1222,
+        "startChar": 17,
+        "endLine": 1222,
+        "endChar": 24
+      },
+      "revId": "94d1271c03173c4309446a9f0863873976e20209",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "565f1de2_5780f69f",
+        "filename": "system/bta/le_audio/devices_test.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1224,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-02-21T20:33:27Z",
+      "side": 1,
+      "message": "could you please add some high level scenario description to this test case?",
+      "revId": "94d1271c03173c4309446a9f0863873976e20209",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
