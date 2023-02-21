@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4b7811b3_1e07427e",
+        "filename": "tools/pdl/src/backends/rust.rs",
+        "patchSetId": 11
+      },
+      "lineNbr": 343,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-02-21T18:03:06Z",
+      "side": 1,
+      "message": "\u003e The has_children Boolean is true if the packet has a _payload_ field or if the packet has child packets\n\nThat is a bit subtle ^^ Might be better to use `has_children_or_payload`",
+      "parentUuid": "9ee92d7e_6cfc2bcd",
+      "range": {
+        "startLine": 339,
+        "startChar": 4,
+        "endLine": 343,
+        "endChar": 7
+      },
+      "revId": "cebbc7fcc0f535708838f1beef7ffdb7945bbfa5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "272637e9_79009c30",
         "filename": "tools/pdl/src/backends/rust/parser.rs",
         "patchSetId": 11
