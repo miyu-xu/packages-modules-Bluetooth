@@ -16,6 +16,24 @@
       "message": "I don\u0027t know if this is a proper default value.\n\nCould this also be used ?\n\n```\nout-\u003echannel_mask_ \u003d {};\n```",
       "revId": "51af473455960613e764d80eefc1b5ceeb599967",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "adc6b5b0_ecb7f880",
+        "filename": "system/audio_bluetooth_hw/stream_apis.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 742,
+      "author": {
+        "id": 1984885
+      },
+      "writtenOn": "2023-02-21T02:38:54Z",
+      "side": 1,
+      "message": "the type of out-\u003echannel_mask_ is actually uint32_t, i think there is no need to use \u0027{}\u0027 initialize it, just assign it directly",
+      "parentUuid": "a126bdb8_8f3e2af9",
+      "revId": "51af473455960613e764d80eefc1b5ceeb599967",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
