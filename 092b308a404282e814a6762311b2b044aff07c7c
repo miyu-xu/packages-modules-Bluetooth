@@ -78,6 +78,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "49439eea_ef729134",
+        "filename": "system/profile/avrcp/device.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 543,
+      "author": {
+        "id": 1965943
+      },
+      "writtenOn": "2023-02-21T09:22:57Z",
+      "side": 1,
+      "message": "yes",
+      "parentUuid": "c3e3b0c4_aaa93837",
+      "range": {
+        "startLine": 543,
+        "startChar": 4,
+        "endLine": 543,
+        "endChar": 37
+      },
+      "revId": "092b308a404282e814a6762311b2b044aff07c7c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4df52901_93f8e804",
         "filename": "system/profile/avrcp/device.h",
         "patchSetId": 2
@@ -89,6 +113,30 @@
       "writtenOn": "2022-12-06T17:36:23Z",
       "side": 1,
       "message": "i would prefer calling it something like \"play_status_registered\". Naming it pending is somewhat ambiguous",
+      "range": {
+        "startLine": 348,
+        "startChar": 7,
+        "endLine": 348,
+        "endChar": 31
+      },
+      "revId": "092b308a404282e814a6762311b2b044aff07c7c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "636f1ed9_6bdd8f63",
+        "filename": "system/profile/avrcp/device.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 348,
+      "author": {
+        "id": 1965943
+      },
+      "writtenOn": "2023-02-21T09:22:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4df52901_93f8e804",
       "range": {
         "startLine": 348,
         "startChar": 7,
