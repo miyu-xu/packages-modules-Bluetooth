@@ -22,6 +22,30 @@
       },
       "revId": "b34a984dab35d4f5eaa44a30d638c77e2b385cb5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9bb9ef5e_13419b5b",
+        "filename": "system/gd/rust/linux/mgmt/src/config_util.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1962420
+      },
+      "writtenOn": "2023-02-21T18:36:27Z",
+      "side": 1,
+      "message": "Yeah, this is a bit confusing, but we decided to follow what native linux devcoredump implementation uses - `/sys/class/devcoredump/disabled`",
+      "parentUuid": "4f3d18c5_2f9068f4",
+      "range": {
+        "startLine": 22,
+        "startChar": 59,
+        "endLine": 22,
+        "endChar": 76
+      },
+      "revId": "b34a984dab35d4f5eaa44a30d638c77e2b385cb5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
