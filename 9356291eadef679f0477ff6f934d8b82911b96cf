@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "21cc7c67_fa5e1588",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2023-02-21T19:38:10Z",
+      "side": 1,
+      "message": "Thanks, yay for clean warnings!",
+      "revId": "9356291eadef679f0477ff6f934d8b82911b96cf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
