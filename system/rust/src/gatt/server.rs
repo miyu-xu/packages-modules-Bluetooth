@@ -7,7 +7,7 @@ pub mod gatt_database;
 mod request_handler;
 mod transactions;
 
-// mod indication_handler;
+mod indication_handler;
 #[cfg(test)]
 mod test;
 
@@ -27,6 +27,8 @@ use self::{
 use super::{callbacks::GattDatastore, channel::AttTransport, ids::AttHandle};
 use anyhow::{anyhow, bail, Result};
 use log::info;
+
+pub use indication_handler::IndicationError;
 
 #[allow(missing_docs)]
 pub struct GattModule {

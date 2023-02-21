@@ -10,18 +10,23 @@ use std::{
     rc::{Rc, Weak},
 };
 
+/// A Box<> where static "weak" references to the contents can be taken,
+/// and fallibly upgraded at a later point.
 #[derive(Debug)]
 pub struct SharedBox<T: ?Sized>(Rc<T>);
 
 impl<T> SharedBox<T> {
+    /// Constructor
     pub fn new(t: T) -> Self {
         Self(t.into())
     }
 
+    /// Produce a weak reference to the contents
     pub fn downgrade(&self) -> WeakBox<T> {
         WeakBox(Rc::downgrade(&self.0))
     }
 
+    /// Produce an upgraded weak reference to the contents
     pub fn as_ref(&self) -> WeakBoxRef<T> {
         WeakBoxRef(self.0.deref(), Rc::downgrade(&self.0))
     }
@@ -41,17 +46,31 @@ impl<T> Deref for SharedBox<T> {
     }
 }
 
+/// A weak reference to the contents within a SharedBox<>
 pub struct WeakBox<T>(Weak<T>);
 
 impl<T> WeakBox<T> {
+    /// Fallibly upgrade to a strong reference, passed into the supplied closure
+    ///
+    /// Note: reference-counting is used so that, if the passed-in closure drops the
+    /// SharedBox<>, the strong reference remains safe. But please don't do that!
     pub fn with<U>(&self, f: impl FnOnce(Option<WeakBoxRef<T>>) -> U) -> U {
         f(self.0.upgrade().as_deref().map(|x| WeakBoxRef(x, self.0.clone())))
     }
 }
 
+impl<T> Clone for WeakBox<T> {
+    fn clone(&self) -> Self {
+        Self(self.0.clone())
+    }
+}
+
+/// A strong reference to the contents within a SharedBox<>.
 pub struct WeakBoxRef<'a, T>(&'a T, Weak<T>);
 
 impl<'a, T> WeakBoxRef<'a, T> {
+    /// Downgrade to a weak reference (with static lifetime) to the contents
+    /// within the underlying SharedBox<>
     pub fn downgrade(&self) -> WeakBox<T> {
         WeakBox(self.1.clone())
     }

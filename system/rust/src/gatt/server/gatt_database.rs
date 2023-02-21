@@ -17,8 +17,8 @@ use crate::{
         ids::{AttHandle, ConnectionId},
     },
     packets::{
-        AttAttributeDataChild, AttAttributeDataView, AttCharacteristicPropertiesBuilder,
-        AttErrorCode, GattCharacteristicDeclarationValueBuilder,
+        AttAttributeDataChild, AttAttributeDataView, AttErrorCode,
+        GattCharacteristicDeclarationValueBuilder, GattCharacteristicPropertiesBuilder,
         GattServiceDeclarationValueBuilder, UuidBuilder,
     },
 };
@@ -139,7 +139,7 @@ impl<T: GattDatastore + ?Sized> GattDatabase<T> {
                 },
                 AttAttributeBackingValue::Static(
                     GattCharacteristicDeclarationValueBuilder {
-                        properties: AttCharacteristicPropertiesBuilder {
+                        properties: GattCharacteristicPropertiesBuilder {
                             broadcast: 0,
                             read: characteristic
                                 .permissions
@@ -310,6 +310,12 @@ where
             db.map(|db| db.schema.borrow().attributes.values().map(|attr| attr.attribute).collect())
                 .unwrap_or(vec![])
         })
+    }
+}
+
+impl<T: ?Sized> Clone for AttDatabaseImpl<T> {
+    fn clone(&self) -> Self {
+        Self { gatt_db: self.gatt_db.clone(), conn_id: self.conn_id }
     }
 }
 
@@ -492,7 +498,7 @@ mod test {
             characteristic_decl,
             Ok(AttAttributeDataChild::GattCharacteristicDeclarationValue(
                 GattCharacteristicDeclarationValueBuilder {
-                    properties: AttCharacteristicPropertiesBuilder {
+                    properties: GattCharacteristicPropertiesBuilder {
                         read: 1,
                         broadcast: 0,
                         write_without_response: 0,
