@@ -20,6 +20,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1138d688_1dc40195",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1059,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-02-21T22:02:32Z",
+      "side": 1,
+      "message": "since this is while loop - GetNextActiveAseWithDifferentDirection will end up with switching between SINK/SOURCE every iteration.",
+      "range": {
+        "startLine": 1059,
+        "startChar": 40,
+        "endLine": 1059,
+        "endChar": 77
+      },
+      "revId": "94d1271c03173c4309446a9f0863873976e20209",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a728c083_ffc4ad15",
         "filename": "system/bta/le_audio/devices_test.cc",
         "patchSetId": 2
