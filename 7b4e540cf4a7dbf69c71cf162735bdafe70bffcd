@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fa006532_af027030",
+        "filename": "system/gd/rust/topshim/src/profiles/a2dp.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 286,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2023-02-21T19:45:13Z",
+      "side": 1,
+      "message": "nit: prefer `clone()` to be more explicit that there is no conversion needed, just cloning.",
+      "range": {
+        "startLine": 286,
+        "startChar": 38,
+        "endLine": 286,
+        "endChar": 46
+      },
+      "revId": "7b4e540cf4a7dbf69c71cf162735bdafe70bffcd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
