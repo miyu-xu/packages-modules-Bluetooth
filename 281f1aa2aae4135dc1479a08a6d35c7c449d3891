@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d1ada052_43f782a1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 15
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-02-21T00:08:09Z",
+      "side": 1,
+      "message": "Do we ever distinguish between BLE_ADDR_PUBLIC and an unspecified address type?",
+      "revId": "281f1aa2aae4135dc1479a08a6d35c7c449d3891",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
