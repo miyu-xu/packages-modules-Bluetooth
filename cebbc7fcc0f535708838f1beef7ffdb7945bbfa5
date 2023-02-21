@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9ee92d7e_6cfc2bcd",
+        "filename": "tools/pdl/src/backends/rust.rs",
+        "patchSetId": 11
+      },
+      "lineNbr": 343,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2023-02-21T14:40:04Z",
+      "side": 1,
+      "message": "The `has_children` Boolean is `true` if the packet has a `_payload_` field _or_ if the packet has child packets.\n\nThat is definitely subtle, but I think that should give the behavior you expect?\n\nThis is handled in `lint.rs` where we have\n\n```rust\n                // Handle packets with a payload field (but without any child packets).\n                for field in fields {\n                    if let FieldDesc::Payload { .. } | FieldDesc::Body { .. } \u003d \u0026field.desc {\n                        scope.children.entry(id.to_string()).or_default();\n                        break;\n                    }\n                }\n\n                // Handle child packets.\n                if let Some(parent_id) \u003d parent_id {\n                    scope.children.entry(parent_id.to_string()).or_default().push(decl);\n                }\n```\n\nand then in `rust.rs` where we have\n\n```rust\n    let has_children \u003d scope.children.contains_key(id);\n```\n\nWould it be easier to read if I rename it to `has_payload`?",
+      "parentUuid": "666be566_0ab8ecbc",
+      "range": {
+        "startLine": 339,
+        "startChar": 4,
+        "endLine": 343,
+        "endChar": 7
+      },
+      "revId": "cebbc7fcc0f535708838f1beef7ffdb7945bbfa5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "272637e9_79009c30",
         "filename": "tools/pdl/src/backends/rust/parser.rs",
         "patchSetId": 11
@@ -37,6 +61,24 @@
       "writtenOn": "2023-02-17T17:00:59Z",
       "side": 1,
       "message": "There is a small problem here: if I add the `EmptyParent : ScalarParent` to the PDL file, the `EmptyParent` is unconstrained and will be parsed first. This means that we never parse the other children.",
+      "revId": "cebbc7fcc0f535708838f1beef7ffdb7945bbfa5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3abd80f9_56000139",
+        "filename": "tools/pdl/src/backends/rust/parser.rs",
+        "patchSetId": 11
+      },
+      "lineNbr": 573,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2023-02-21T14:40:04Z",
+      "side": 1,
+      "message": "Will solve this in a followup commit. The plan is to sort the constraints from most-specific to least-specific and thus emit a match statement where `EmptyParent` will be the last match arm.",
+      "parentUuid": "272637e9_79009c30",
       "revId": "cebbc7fcc0f535708838f1beef7ffdb7945bbfa5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
