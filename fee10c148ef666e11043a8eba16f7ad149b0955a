@@ -245,6 +245,24 @@
       "parentUuid": "0efde511_4533c4d4",
       "revId": "fee10c148ef666e11043a8eba16f7ad149b0955a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "34ba92b7_bfae8454",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 1094,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-02-21T02:59:55Z",
+      "side": 1,
+      "message": "Per offline chat, let\u0027s land the CLs for now and discuss it in the future if needed.",
+      "parentUuid": "5721b98f_cd4169e8",
+      "revId": "fee10c148ef666e11043a8eba16f7ad149b0955a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
