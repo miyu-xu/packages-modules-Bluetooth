@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1a658556_3a58bfb1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1882545
+      },
+      "writtenOn": "2023-02-21T02:33:59Z",
+      "side": 1,
+      "message": "Updated new patch set due to merge conflict. Could you pls approve it again.",
+      "revId": "e51953b5d2900898e4f30f4ba9e24aea9bdc6313",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
