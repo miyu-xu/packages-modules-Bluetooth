@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "394e6837_a684bbcd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2023-02-21T18:46:38Z",
+      "side": 1,
+      "message": "Thanks! Could you also follow up with changing to borrowing `\u0026RawAddress` instead of copying the whole `RawAddress`?",
+      "revId": "5bc13a062a6258ab21452104ddc0d6db8c50bfc4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
