@@ -16,6 +16,155 @@
       "message": "Hi, please review this CL, thanks!",
       "revId": "d790a7c2de4d441dc2197bd797ed78ce4a1aa315",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "950e22cb_b2c4c8a8",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 683,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2023-02-21T18:31:26Z",
+      "side": 1,
+      "message": "unused? prefix with `_` to suppress warning if intentionally unused.",
+      "revId": "d790a7c2de4d441dc2197bd797ed78ce4a1aa315",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c1709aae_8e59de05",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 686,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2023-02-21T18:31:26Z",
+      "side": 1,
+      "message": "Can this pass by ref `\u0026RawAddress`? This will make sure we defer cloning until actually needed.",
+      "range": {
+        "startLine": 686,
+        "startChar": 14,
+        "endLine": 686,
+        "endChar": 24
+      },
+      "revId": "d790a7c2de4d441dc2197bd797ed78ce4a1aa315",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eba723a2_fde175d8",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 696,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2023-02-21T18:31:26Z",
+      "side": 1,
+      "message": "nit: can this be:\n```\ndevice_states.lock().unwrap().insert(...);\n```",
+      "range": {
+        "startLine": 695,
+        "startChar": 0,
+        "endLine": 696,
+        "endChar": 78
+      },
+      "revId": "d790a7c2de4d441dc2197bd797ed78ce4a1aa315",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6cb4c050_7b723d67",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 701,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2023-02-21T18:31:26Z",
+      "side": 1,
+      "message": "use `DisplayAddress(addr)` to make use of redacted address in log.",
+      "revId": "d790a7c2de4d441dc2197bd797ed78ce4a1aa315",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eb78e3d4_da4b58a4",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 725,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2023-02-21T18:31:26Z",
+      "side": 1,
+      "message": "Why does this need to be contained in a block? Can this be simply:\n```\ndevice_states.lock().unwrap().insert(addr, DeviceConnectionStates::Disconnecting);\nfallback_tasks.lock().unwrap().insert(addr, None);\n```",
+      "range": {
+        "startLine": 719,
+        "startChar": 0,
+        "endLine": 725,
+        "endChar": 9
+      },
+      "revId": "d790a7c2de4d441dc2197bd797ed78ce4a1aa315",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "183a2887_5e1180ec",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1048,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2023-02-21T18:31:26Z",
+      "side": 1,
+      "message": "nit: `use itertools::Itertools;` so that this can just be:\n\n```\nlet sorted_missing_profiles \u003d available_profiles.difference(\u0026connected_profiles).sorted().collect::\u003cVec\u003c_\u003e\u003e();\n```",
+      "range": {
+        "startLine": 1043,
+        "startChar": 0,
+        "endLine": 1048,
+        "endChar": 39
+      },
+      "revId": "d790a7c2de4d441dc2197bd797ed78ce4a1aa315",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f776813e_342d8c09",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1171,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2023-02-21T18:31:26Z",
+      "side": 1,
+      "message": "nit: can this be named `fallback_tasks`? It\u0027s a bit hard to remember what this means when reading the code below using `guard`.",
+      "range": {
+        "startLine": 1171,
+        "startChar": 20,
+        "endLine": 1171,
+        "endChar": 25
+      },
+      "revId": "d790a7c2de4d441dc2197bd797ed78ce4a1aa315",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
