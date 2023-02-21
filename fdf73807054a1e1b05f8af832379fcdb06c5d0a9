@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f2b7aeab_d695d0f3",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2023-02-21T12:53:36Z",
+      "side": 1,
+      "message": "Removed",
+      "parentUuid": "f80985c8_4f3b9c49",
+      "range": {
+        "startLine": 145,
+        "startChar": 0,
+        "endLine": 146,
+        "endChar": 71
+      },
+      "revId": "fdf73807054a1e1b05f8af832379fcdb06c5d0a9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fbb606bd_da3bc54d",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-02-21T08:04:16Z",
       "side": 1,
       "message": "action",
+      "range": {
+        "startLine": 147,
+        "startChar": 61,
+        "endLine": 147,
+        "endChar": 79
+      },
+      "revId": "fdf73807054a1e1b05f8af832379fcdb06c5d0a9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "feff76e3_b21dc268",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2023-02-21T12:53:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fbb606bd_da3bc54d",
       "range": {
         "startLine": 147,
         "startChar": 61,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1f73d7b0_5fb5d1e3",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2023-02-21T12:53:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "39be7ab2_9a3033a9",
+      "range": {
+        "startLine": 148,
+        "startChar": 20,
+        "endLine": 148,
+        "endChar": 35
+      },
+      "revId": "fdf73807054a1e1b05f8af832379fcdb06c5d0a9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9e9335fd_236c007c",
@@ -83,6 +155,30 @@
       "writtenOn": "2023-02-21T08:04:16Z",
       "side": 1,
       "message": "Can\u0027t we merge handling the connection state change event for profiles?\n\ne.g. handleConnectionStateChanged(int profile, BluetoothDevice device, ...)",
+      "range": {
+        "startLine": 160,
+        "startChar": 40,
+        "endLine": 160,
+        "endChar": 71
+      },
+      "revId": "fdf73807054a1e1b05f8af832379fcdb06c5d0a9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7648c98e_91b272e0",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2023-02-21T12:53:36Z",
+      "side": 1,
+      "message": "I think we need to consider that will improve readability.\nFor this CL, I\u0027m not considering merging them.",
+      "parentUuid": "9e9335fd_236c007c",
       "range": {
         "startLine": 160,
         "startChar": 40,
@@ -116,6 +212,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "99595540_cff16fa9",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2023-02-21T12:53:36Z",
+      "side": 1,
+      "message": "ditto",
+      "parentUuid": "e17ea3a7_69e05a07",
+      "range": {
+        "startLine": 163,
+        "startChar": 35,
+        "endLine": 163,
+        "endChar": 63
+      },
+      "revId": "fdf73807054a1e1b05f8af832379fcdb06c5d0a9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7455a531_d7c4146c",
@@ -139,6 +259,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "84322fae_4ec65146",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 212,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2023-02-21T12:53:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7455a531_d7c4146c",
+      "range": {
+        "startLine": 212,
+        "startChar": 8,
+        "endLine": 212,
+        "endChar": 44
+      },
+      "revId": "fdf73807054a1e1b05f8af832379fcdb06c5d0a9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ecdd99ae_2912d334",
@@ -152,6 +296,30 @@
       "writtenOn": "2023-02-21T08:04:16Z",
       "side": 1,
       "message": "I think handleDeviceConnected and handleDeviceDisconnected also be a good way to refactor.",
+      "range": {
+        "startLine": 216,
+        "startChar": 8,
+        "endLine": 216,
+        "endChar": 63
+      },
+      "revId": "fdf73807054a1e1b05f8af832379fcdb06c5d0a9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "53e772ad_b49ad5d2",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 216,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2023-02-21T12:53:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ecdd99ae_2912d334",
       "range": {
         "startLine": 216,
         "startChar": 8,
