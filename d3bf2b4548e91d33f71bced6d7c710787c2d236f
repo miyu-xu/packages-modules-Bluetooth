@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dece406b_e67edd3b",
+        "filename": "system/stack/test/btm/sco_hci_test.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-02-21T22:45:36Z",
+      "side": 1,
+      "message": "Can you add a test?  I see you updated the tests, but I don\u0027t see any with true.",
+      "range": {
+        "startLine": 195,
+        "startChar": 55,
+        "endLine": 195,
+        "endChar": 60
+      },
+      "revId": "d3bf2b4548e91d33f71bced6d7c710787c2d236f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
