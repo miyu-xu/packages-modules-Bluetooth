@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f7147c82_d19b41e7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-02-21T07:14:00Z",
+      "side": 1,
+      "message": "I agree on that this will mitigate the situation, but as I told you, we don\u0027t know the the root cause of this issue yet.\nSo it would be nice if you spend more time to find out the root cause, and if you failed, it is the time to think about merging this workaround.",
+      "revId": "3f031a3f7acbc78b72aaa0df24dad930ff9dde69",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
