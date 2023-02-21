@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a0b025c2_5d7a1ef6",
+        "filename": "system/gd/rust/common/src/init_flags.rs",
+        "patchSetId": 23
+      },
+      "lineNbr": 286,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-02-21T18:59:28Z",
+      "side": 1,
+      "message": "`\u003d true` ?\nBut we can do that in follow-up.",
+      "range": {
+        "startLine": 286,
+        "startChar": 8,
+        "endLine": 286,
+        "endChar": 47
+      },
+      "revId": "d73f9555f01dbcaf6cfd4605afdee992d3a40a73",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
