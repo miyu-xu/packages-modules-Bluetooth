@@ -34,6 +34,24 @@
       "parentUuid": "7be16fdf_189f9713",
       "revId": "2c9dc286732500d3c63e41e7150a7f1fecdb0442",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "44205939_ad12d074",
+        "filename": "system/btif/src/btif_hf_client.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1097,
+      "author": {
+        "id": 1984885
+      },
+      "writtenOn": "2023-02-21T02:38:35Z",
+      "side": 1,
+      "message": "In some situation，such as no sim card，the pts can not pass， so we add the api to realize the pts follow。So do you have any other good suggestions？",
+      "parentUuid": "9384b5eb_2ef78431",
+      "revId": "2c9dc286732500d3c63e41e7150a7f1fecdb0442",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
