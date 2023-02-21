@@ -22,6 +22,30 @@
       },
       "revId": "48cc9dff315155aa924097979fcd82e152499d0e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ed07a4de_bf224934",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 3311,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2023-02-21T19:52:53Z",
+      "side": 1,
+      "message": "Done. Added a preceding patch that adds `get_by_id_mut`. I left all the ones that were already using mut as is.",
+      "parentUuid": "733a49e9_54861da0",
+      "range": {
+        "startLine": 3305,
+        "startChar": 0,
+        "endLine": 3311,
+        "endChar": 9
+      },
+      "revId": "48cc9dff315155aa924097979fcd82e152499d0e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
