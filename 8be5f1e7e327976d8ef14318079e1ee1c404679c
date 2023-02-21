@@ -1,0 +1,222 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "846d3128_0053eb7a",
+        "filename": "system/gd/rust/linux/client/src/dbus_iface.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2023-02-21T23:05:22Z",
+      "side": 1,
+      "message": "If this is just from and to `Vec\u003cu8\u003e` a way to reduce code duplication is to implement `TryFrom` for `SupportedFormatsList` once, and use `impl_dbus_arg_from_into!` macro in here. Example is http://osscs/android/platform/superproject/+/master:packages/modules/Bluetooth/system/gd/rust/linux/client/src/dbus_iface.rs;l\u003d79.",
+      "range": {
+        "startLine": 164,
+        "startChar": 0,
+        "endLine": 179,
+        "endChar": 1
+      },
+      "revId": "8be5f1e7e327976d8ef14318079e1ee1c404679c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b0cb4a34_6e228134",
+        "filename": "system/gd/rust/linux/service/src/iface_bluetooth.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 296,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2023-02-21T23:05:22Z",
+      "side": 1,
+      "message": "nit: shorten this into:\n```\nlet sdp_type \u003d data.get(\"type\").ok_or(Box::new(DBusArgError::new(String::from(\"...\"))))?;\n```",
+      "range": {
+        "startLine": 289,
+        "startChar": 0,
+        "endLine": 296,
+        "endChar": 10
+      },
+      "revId": "8be5f1e7e327976d8ef14318079e1ee1c404679c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "94dd28bf_70c91ada",
+        "filename": "system/gd/rust/linux/service/src/iface_bluetooth.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 299,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2023-02-21T23:05:22Z",
+      "side": 1,
+      "message": "nit: since this is a no-op, prefer this style:\n```\nif sdp_type.arg_type() !\u003d dbus::arg::ArgType::UInt32 {\n  return Err...\n```",
+      "revId": "8be5f1e7e327976d8ef14318079e1ee1c404679c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7acd0ac8_8b1d47f3",
+        "filename": "system/gd/rust/linux/service/src/iface_bluetooth.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 308,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2023-02-21T23:05:22Z",
+      "side": 1,
+      "message": "nit: a bit safer to handle edge case:\n```\nsdp_type.as_static_inner(0).ok_or(Box::new(DBusArgError::new(String::from(\"...\"))))?\n```",
+      "range": {
+        "startLine": 308,
+        "startChar": 12,
+        "endLine": 308,
+        "endChar": 48
+      },
+      "revId": "8be5f1e7e327976d8ef14318079e1ee1c404679c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "651d3aac_e14e9888",
+        "filename": "system/gd/rust/linux/service/src/iface_bluetooth.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 309,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2023-02-21T23:05:22Z",
+      "side": 1,
+      "message": "nit: no need to `format!`, but just `String::from()` or `to_string()`",
+      "range": {
+        "startLine": 309,
+        "startChar": 12,
+        "endLine": 309,
+        "endChar": 26
+      },
+      "revId": "8be5f1e7e327976d8ef14318079e1ee1c404679c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f3a3f4ab_3296958d",
+        "filename": "system/gd/rust/linux/service/src/iface_bluetooth.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 314,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2023-02-21T23:05:22Z",
+      "side": 1,
+      "message": "This can be a function instead of a macro, and it\u0027s preferred to not use macro if possible:\n```\nlet arg_0 \u003d parse_map_arg::\u003cBtSdpHeaderOverlay\u003e(\u0026data, \"0\")?\n```\n\nHint: the function signature can be:\n```\nfn parse_map_arg\u003cT: DBusArg\u003e(\n    data: \u0026dbus::arg::PropMap,\n    key: \u0026str,\n) -\u003e Result\u003cT, Box\u003cdyn std::error::Error\u003e\u003e\nwhere\n    \u003cT as DBusArg\u003e::DBusType: RefArgToRust\u003cRustType \u003d \u003cT as DBusArg\u003e::DBusType\u003e,\n{\n  ...\n}\n```\n\nAnd this function may be able to be added to our dbus_projection library.",
+      "range": {
+        "startLine": 314,
+        "startChar": 28,
+        "endLine": 314,
+        "endChar": 82
+      },
+      "revId": "8be5f1e7e327976d8ef14318079e1ee1c404679c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bb1f9dd2_8e35c4ff",
+        "filename": "system/gd/rust/linux/service/src/iface_bluetooth.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 358,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2023-02-21T23:05:22Z",
+      "side": 1,
+      "message": "Why is the key `\"0\"`? Should this be like `\"value\"` maybe?",
+      "range": {
+        "startLine": 358,
+        "startChar": 20,
+        "endLine": 358,
+        "endChar": 38
+      },
+      "revId": "8be5f1e7e327976d8ef14318079e1ee1c404679c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d5e85d42_168421a4",
+        "filename": "system/gd/rust/linux/service/src/iface_bluetooth.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 366,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2023-02-21T23:05:22Z",
+      "side": 1,
+      "message": "Before we have a complete generator, maybe for now we can still try to reduce duplicated code by factoring out this common part into like:\n```\n        match record {\n            BtSdpRecord::HeaderOverlay(header) \u003d\u003e write_enum_value(\u0026mut map, header)?,\n            BtSdpRecord::MapMas(mas_record) \u003d\u003e write_enum_value(\u0026mut map, mas_record)?,\n            ...\n```\n\nAnd have a common function like:\n```\nfn write_enum_value\u003cT: DBusArg\u003e(\n    map: \u0026mut dbus::arg::PropMap,\n    val: T,\n) -\u003e Result\u003c(), Box\u003cdyn std::error::Error\u003e\u003e\nwhere\n    T::DBusType: \u0027static + dbus::arg::RefArg,\n{\n    map.insert(String::from(\"0\"), dbus::arg::Variant(Box::new(DBusArg::to_dbus(val)?)));\n    Ok(())\n}\n```",
+      "range": {
+        "startLine": 363,
+        "startChar": 0,
+        "endLine": 366,
+        "endChar": 18
+      },
+      "revId": "8be5f1e7e327976d8ef14318079e1ee1c404679c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "77d5e9af_7f62c7a2",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 2069,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2023-02-21T23:05:22Z",
+      "side": 1,
+      "message": "rather than constructing a new `BluetoothDevice`, wouldn\u0027t it be good if we could instead get an existing info about this device?\n\n```\nself.get_remote_device_if_found(\u0026address.to_string())\n    .map(|context| context.info.clone())\n    .unwrap_or_else(|| BluetoothDevice::new(address.to_string(), \"\".to_string())),\n```\n\nmaybe we also should make this a common function in `Bluetooth`, like `get_device_info_if_found(addr: \u0026str)`",
+      "revId": "8be5f1e7e327976d8ef14318079e1ee1c404679c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c254856f_dc082138",
+        "filename": "system/gd/rust/topshim/src/profiles/sdp.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2023-02-21T23:05:22Z",
+      "side": 1,
+      "message": "nit: this can be `\u0026BtSdpRecord` so we don\u0027t need to clone just for conversion.",
+      "range": {
+        "startLine": 36,
+        "startChar": 20,
+        "endLine": 36,
+        "endChar": 31
+      },
+      "revId": "8be5f1e7e327976d8ef14318079e1ee1c404679c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
