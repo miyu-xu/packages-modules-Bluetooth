@@ -16,6 +16,24 @@
       "message": "Do we ever distinguish between BLE_ADDR_PUBLIC and an unspecified address type?",
       "revId": "281f1aa2aae4135dc1479a08a6d35c7c449d3891",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "667d5c96_3add09ef",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 15
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-02-21T17:28:48Z",
+      "side": 1,
+      "message": "afaik the current usage will always assume Public type if no type specified (actually we don\u0027t have a way to specify the type)",
+      "parentUuid": "d1ada052_43f782a1",
+      "revId": "281f1aa2aae4135dc1479a08a6d35c7c449d3891",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
