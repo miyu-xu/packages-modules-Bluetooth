@@ -1049,6 +1049,18 @@ bool LeAudioDeviceGroup::CigAssignCisIds(LeAudioDevice* leAudioDevice) {
     struct ase* matching_bidir_ase =
         leAudioDevice->GetNextActiveAseWithDifferentDirection(ase);
 
+    for (; matching_bidir_ase != nullptr;
+         matching_bidir_ase = leAudioDevice->GetNextActiveAseWithSameDirection(
+             matching_bidir_ase)) {
+      if ((matching_bidir_ase->cis_id != kInvalidCisId) &&
+          (matching_bidir_ase->cis_id != cis_id)) {
+        LOG_INFO("bidirectional ase does not match. ASE Id: %d cis_id=%d",
+                 matching_bidir_ase->id, matching_bidir_ase->cis_id);
+        continue;
+      }
+      break;
+    }
+
     if (matching_bidir_ase) {
       if (cis_id == kInvalidCisId) {
         cis_id = GetFirstFreeCisId(CisType::CIS_TYPE_BIDIRECTIONAL);
