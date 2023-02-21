@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "966d3799_e2a6eb32",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2023-02-21T19:50:34Z",
+      "side": 1,
+      "message": "Good catch! Just have one nit.",
+      "revId": "b7f3459e44923c2c61ef8c8f01b16b588bdfd312",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b864c5d8_36b7e4e9",
+        "filename": "system/gd/rust/linux/mgmt/src/powerd_suspend_manager.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2023-02-21T19:50:34Z",
+      "side": 1,
+      "message": "nit: can we rename this to POWERD_DBUS_TIMEOUT? So that we can be explicit that it\u0027s powerd that needs longer timeout and for other Floss APIs the timeout should be 2s since they are designed to return immediately.",
+      "range": {
+        "startLine": 30,
+        "startChar": 6,
+        "endLine": 30,
+        "endChar": 18
+      },
+      "revId": "b7f3459e44923c2c61ef8c8f01b16b588bdfd312",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
