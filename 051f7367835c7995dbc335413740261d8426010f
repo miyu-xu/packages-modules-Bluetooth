@@ -16,6 +16,24 @@
       "message": "How about simpler fix, just fixing the bad comparison? https://android-review.googlesource.com/c/platform/packages/modules/Bluetooth/+/2447042",
       "revId": "051f7367835c7995dbc335413740261d8426010f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d58fd8a6_de4b654c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2023-02-21T06:39:14Z",
+      "side": 1,
+      "message": "Great!",
+      "parentUuid": "24b46b06_cd6e1e22",
+      "revId": "051f7367835c7995dbc335413740261d8426010f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
