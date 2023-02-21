@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "300ec97a_92982f6b",
+        "filename": "android/app/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachine.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 888,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-02-21T19:26:42Z",
+      "side": 1,
+      "message": "I don\u0027t think we want this property to be `ro.` as per https://source.android.com/docs/core/architecture/configuration/add-system-properties#caveats",
+      "range": {
+        "startLine": 888,
+        "startChar": 13,
+        "endLine": 888,
+        "endChar": 16
+      },
+      "revId": "5d0b7e72c37d46c04287933c45b9aad0577d1f4f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
