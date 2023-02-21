@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2fa8ac12_0915acaa",
+        "filename": "system/gd/rust/linux/stack/src/socket_manager.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1051,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2023-02-21T23:16:48Z",
+      "side": 1,
+      "message": "Yes these should still be mut since callback is used which is mut operations",
+      "revId": "3778766cca0fb45a4452dc594c6c81d8799d9b9a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a8cf1d36_75d473f3",
+        "filename": "system/gd/rust/linux/stack/src/socket_manager.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1107,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2023-02-21T23:16:48Z",
+      "side": 1,
+      "message": "but in this file looks like no mutable operation is done so these are fine to be `get_by_id`?",
+      "revId": "3778766cca0fb45a4452dc594c6c81d8799d9b9a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
