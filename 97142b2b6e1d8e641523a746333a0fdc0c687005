@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "891fbb1f_cb2823c2",
+        "filename": "framework/api/system-current.txt",
+        "patchSetId": 28
+      },
+      "lineNbr": 884,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-02-21T18:33:03Z",
+      "side": 1,
+      "message": "does this need to be a system API? since the receiver side never need to build it",
+      "range": {
+        "startLine": 875,
+        "startChar": 2,
+        "endLine": 884,
+        "endChar": 3
+      },
+      "revId": "97142b2b6e1d8e641523a746333a0fdc0c687005",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
