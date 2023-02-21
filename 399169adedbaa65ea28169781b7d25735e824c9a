@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c2040606_a3b2a786",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1869,
+      "author": {
+        "id": 1985260
+      },
+      "writtenOn": "2023-02-21T02:31:16Z",
+      "side": 1,
+      "message": "This whole section is only for audio policy feature. So I change the order for it. If Audio policy feature is not supported, on line 1873, we don\u0027t need to do the following thing.",
+      "parentUuid": "e30dc482_25e5c8e0",
+      "revId": "399169adedbaa65ea28169781b7d25735e824c9a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "da3b123d_0dd04c4d",
         "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
         "patchSetId": 2
@@ -31,6 +49,30 @@
       "writtenOn": "2023-02-17T19:47:44Z",
       "side": 1,
       "message": "Did you tested locally with the flag set to false ?",
+      "range": {
+        "startLine": 231,
+        "startChar": 36,
+        "endLine": 232,
+        "endChar": 76
+      },
+      "revId": "399169adedbaa65ea28169781b7d25735e824c9a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "67fe8c60_f59db047",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 1985260
+      },
+      "writtenOn": "2023-02-21T02:31:16Z",
+      "side": 1,
+      "message": "Yes. I\u0027ve added the relative unit test for this.\n\n1. android/app/tests/unit/src/com/android/bluetooth/hfp/HeadsetServiceTest.java#1107\n2. android/app/tests/unit/src/com/android/bluetooth/hfpclient/HeadsetClientServiceTest.java#159\n3. android/app/tests/unit/src/com/android/bluetooth/hfpclient/HeadsetClientServiceTest.java#180",
+      "parentUuid": "da3b123d_0dd04c4d",
       "range": {
         "startLine": 231,
         "startChar": 36,
