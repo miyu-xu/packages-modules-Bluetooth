@@ -22,6 +22,30 @@
       },
       "revId": "97142b2b6e1d8e641523a746333a0fdc0c687005",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5e2c609a_7a1e074e",
+        "filename": "framework/api/system-current.txt",
+        "patchSetId": 28
+      },
+      "lineNbr": 884,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-02-21T18:34:22Z",
+      "side": 1,
+      "message": "We should keep it for testing. Otherwise, we won\u0027t be able to easily build the object.",
+      "parentUuid": "891fbb1f_cb2823c2",
+      "range": {
+        "startLine": 875,
+        "startChar": 2,
+        "endLine": 884,
+        "endChar": 3
+      },
+      "revId": "97142b2b6e1d8e641523a746333a0fdc0c687005",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
