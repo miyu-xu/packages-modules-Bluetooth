@@ -34,6 +34,24 @@
       "parentUuid": "3d46a567_7d5777b5",
       "revId": "72216eb0ed6607884a61e38613965743f34662fe",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ae172178_adcdbb2d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-02-21T17:18:54Z",
+      "side": 1,
+      "message": "cool, this cl also requires QC review.",
+      "parentUuid": "71cf88f2_330a6e53",
+      "revId": "72216eb0ed6607884a61e38613965743f34662fe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
