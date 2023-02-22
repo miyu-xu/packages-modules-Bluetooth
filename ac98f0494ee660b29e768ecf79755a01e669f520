@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d5436028_3ec944bc",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1246,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-02-22T12:32:30Z",
+      "side": 1,
+      "message": "Every time we call GetGroupStrategy, we get logs printed from it.\nThis way it\u0027s not printed in a loop for each configuration, just once.",
+      "parentUuid": "e7b4a3a3_91be8468",
+      "range": {
+        "startLine": 1246,
+        "startChar": 4,
+        "endLine": 1246,
+        "endChar": 62
+      },
+      "revId": "ac98f0494ee660b29e768ecf79755a01e669f520",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "76b4bf89_92ce8707",
         "filename": "system/bta/le_audio/devices.cc",
         "patchSetId": 1
@@ -37,6 +61,30 @@
       "writtenOn": "2023-02-22T10:57:27Z",
       "side": 1,
       "message": "since this is not used in other way then providing it to IsConfigurationSupported(), why we are doing this?",
+      "range": {
+        "startLine": 1932,
+        "startChar": 2,
+        "endLine": 1932,
+        "endChar": 50
+      },
+      "revId": "ac98f0494ee660b29e768ecf79755a01e669f520",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "185a55a9_d6a1653b",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1932,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-02-22T12:32:30Z",
+      "side": 1,
+      "message": "To not compute it inside loop for each configuration - it was causing log spam",
+      "parentUuid": "76b4bf89_92ce8707",
       "range": {
         "startLine": 1932,
         "startChar": 2,
