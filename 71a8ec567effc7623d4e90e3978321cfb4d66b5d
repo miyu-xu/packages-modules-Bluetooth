@@ -16,6 +16,40 @@
       "message": "a",
       "revId": "71a8ec567effc7623d4e90e3978321cfb4d66b5d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "82a33ad6_c75c0f22",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-02-22T05:08:00Z",
+      "side": 1,
+      "message": "LGTM, thanks! I will try it tomorrow.",
+      "revId": "71a8ec567effc7623d4e90e3978321cfb4d66b5d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "086274ad_8ffe6523",
+        "filename": "system/gd/hci/acl_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-02-22T05:08:00Z",
+      "side": 1,
+      "message": "should we empty the `waiting_packets_` here?",
+      "revId": "71a8ec567effc7623d4e90e3978321cfb4d66b5d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
