@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5f7274d8_a77df006",
+        "filename": "framework/java/android/bluetooth/le/ScanFilter.java",
+        "patchSetId": 25
+      },
+      "lineNbr": 1182,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-02-22T18:24:56Z",
+      "side": 1,
+      "message": "Discussed on call today. Here\u0027s the summary:\n\n1. Rename this method to setTransportBlockFilter. Replace all individual field getters with a getTransportBlockFilter method.\n\n2. Wrap all these fields (orgId, tdsFlags, tdsFlagsMask, transportData, and transportDataMask) in a new class TransportBlockFilter which implements the Parcelable interface. This allows us to expand the filters in the future without modifying the ScanFilter API.\n\n3. Add a Builder to the TransportBlockFilter. In this Builder, make sure all required fields (e.g. orgId) are part of the Builder constructor and don\u0027t have explicit setters for them. Keep the TransportBlockFilter class constructors private to make sure callers use the Builder.\n\n4. Add a setter in the Builder (setWifiNanHash) to only work when the orgId is the Wifi NAN orgId (throws an IllegalStateException otherwise). Also if a field is generally defined, we shouldn\u0027t have the docs be specific to a single orgId.",
+      "revId": "15fdf76d20d5c67080972c49400bdfda761990e2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
