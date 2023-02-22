@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c881e080_99b74225",
+        "filename": "tools/pdl/src/backends/rust/parser.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 407,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2023-02-22T09:59:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1f2db83a_82fee516",
+      "revId": "23f0404b485b1ffd3c7c9d86cc609d5496cecf32",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "28f8730a_90f8bdda",
@@ -31,6 +49,30 @@
       "writtenOn": "2023-02-21T18:21:01Z",
       "side": 1,
       "message": "Can you add a TODO for checksum support here ?",
+      "range": {
+        "startLine": 430,
+        "startChar": 24,
+        "endLine": 430,
+        "endChar": 56
+      },
+      "revId": "23f0404b485b1ffd3c7c9d86cc609d5496cecf32",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f9c08c43_875efe9c",
+        "filename": "tools/pdl/src/backends/rust/parser.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 430,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2023-02-22T09:59:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "28f8730a_90f8bdda",
       "range": {
         "startLine": 430,
         "startChar": 24,
