@@ -80,6 +80,30 @@
       },
       "revId": "2981bff91093c85d50351f6f76933d72ccad821d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "58875ed3_03ac87fd",
+        "filename": "system/stack/btm/btm_dev.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 397,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-02-22T14:16:54Z",
+      "side": 1,
+      "message": "I agree that needs to be done.  It\u0027s too easy to get these wrong.",
+      "parentUuid": "154a6140_514a8161",
+      "range": {
+        "startLine": 396,
+        "startChar": 0,
+        "endLine": 397,
+        "endChar": 79
+      },
+      "revId": "2981bff91093c85d50351f6f76933d72ccad821d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
