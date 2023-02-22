@@ -50,6 +50,24 @@
       "message": "should we empty the `waiting_packets_` here?",
       "revId": "71a8ec567effc7623d4e90e3978321cfb4d66b5d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7d530bda_272ed35a",
+        "filename": "system/gd/hci/acl_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-02-22T14:23:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "086274ad_8ffe6523",
+      "revId": "71a8ec567effc7623d4e90e3978321cfb4d66b5d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
