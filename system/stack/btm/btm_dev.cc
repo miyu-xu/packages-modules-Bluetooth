@@ -524,6 +524,39 @@ void btm_dev_consolidate_existing_connections(const RawAddress& bd_addr) {
   }
 }
 
+RawAddress btm_get_old_device_with_matching_id_addr(
+    const RawAddress& pairing_bd_addr, const RawAddress& identity_bd_addr) {
+  LOG_DEBUG("%s=> pairing_bd_addr: %s and identity_bd_addr: %s", __func__,
+            ADDRESS_TO_LOGGABLE_CSTR(pairing_bd_addr),
+            ADDRESS_TO_LOGGABLE_CSTR(identity_bd_addr));
+  if (btm_cb.sec_dev_rec == nullptr) return RawAddress::kEmpty;
+
+  list_node_t* end = list_end(btm_cb.sec_dev_rec);
+  for (list_node_t* node = list_begin(btm_cb.sec_dev_rec); node != end;
+       node = list_next(node)) {
+    tBTM_SEC_DEV_REC* p_dev_rec =
+        static_cast<tBTM_SEC_DEV_REC*>(list_node(node));
+
+    LOG_DEBUG(
+        "Found device record with bd_addr:%s and "
+        "identity_bd_addr:%s",
+        ADDRESS_TO_LOGGABLE_CSTR(p_dev_rec->ble.pseudo_addr),
+        ADDRESS_TO_LOGGABLE_CSTR(
+            p_dev_rec->ble.identity_address_with_type.bda));
+
+    if (p_dev_rec->ble.identity_address_with_type.bda == identity_bd_addr &&
+        p_dev_rec->ble.pseudo_addr != pairing_bd_addr) {
+      LOG_DEBUG(
+          "Found matching duplicate device record with bd_addr:%s and "
+          "identity_bd_addr:%s",
+          ADDRESS_TO_LOGGABLE_CSTR(p_dev_rec->ble.pseudo_addr),
+          ADDRESS_TO_LOGGABLE_CSTR(identity_bd_addr));
+      return p_dev_rec->ble.pseudo_addr;
+    }
+  }
+  return RawAddress::kEmpty;
+}
+
 /*******************************************************************************
  *
  * Function         btm_find_or_alloc_dev
