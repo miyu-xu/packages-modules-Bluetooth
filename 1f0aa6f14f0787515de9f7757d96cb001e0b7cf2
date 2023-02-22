@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5f7cfe7c_7e8ff16b",
+        "filename": "system/gd/hci/acl_manager.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-02-22T22:05:24Z",
+      "side": 1,
+      "message": "Done except for the rename.  I feel like the main functionality is retrying the packets.",
+      "parentUuid": "aab776c8_dbce87f9",
+      "range": {
+        "startLine": 116,
+        "startChar": 30,
+        "endLine": 116,
+        "endChar": 39
+      },
+      "revId": "1f0aa6f14f0787515de9f7757d96cb001e0b7cf2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d5c98e45_de038d2e",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-02-22T19:32:54Z",
       "side": 1,
       "message": "std::vector?",
+      "range": {
+        "startLine": 117,
+        "startChar": 9,
+        "endLine": 117,
+        "endChar": 13
+      },
+      "revId": "1f0aa6f14f0787515de9f7757d96cb001e0b7cf2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7e8f6bd3_4fe04064",
+        "filename": "system/gd/hci/acl_manager.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-02-22T22:05:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d5c98e45_de038d2e",
       "range": {
         "startLine": 117,
         "startChar": 9,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "40bc76d8_e8a3ebbb",
+        "filename": "system/gd/hci/acl_manager.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-02-22T22:05:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "656f7783_cc41912e",
+      "range": {
+        "startLine": 125,
+        "startChar": 50,
+        "endLine": 125,
+        "endChar": 53
+      },
+      "revId": "1f0aa6f14f0787515de9f7757d96cb001e0b7cf2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "147d1bde_e275e909",
@@ -83,6 +155,24 @@
       "writtenOn": "2023-02-22T19:32:54Z",
       "side": 1,
       "message": "Should this be a LOG_ERROR (or even LOG_ALWAYS_FATAL?). As we are dropping data.\n\nThis is assuming it\u0027s not possible for ACL data to arrive after a disconnect, only before a connection.",
+      "revId": "1f0aa6f14f0787515de9f7757d96cb001e0b7cf2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0ba10098_1946a56e",
+        "filename": "system/gd/hci/acl_manager.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-02-22T22:05:24Z",
+      "side": 1,
+      "message": "Done (ERROR)",
+      "parentUuid": "147d1bde_e275e909",
       "revId": "1f0aa6f14f0787515de9f7757d96cb001e0b7cf2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -104,6 +194,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5a105764_3e388abc",
+        "filename": "system/gd/hci/acl_manager.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-02-22T22:05:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f6a56bb2_412eb4fe",
+      "revId": "1f0aa6f14f0787515de9f7757d96cb001e0b7cf2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "dfe59698_5e7697c6",
@@ -117,6 +225,30 @@
       "writtenOn": "2023-02-22T19:32:54Z",
       "side": 1,
       "message": "nit: maybe `retry_unknown_acl(/*timed_out\u003d*/ true)`?",
+      "range": {
+        "startLine": 147,
+        "startChar": 28,
+        "endLine": 147,
+        "endChar": 32
+      },
+      "revId": "1f0aa6f14f0787515de9f7757d96cb001e0b7cf2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1a86e9af_287153cc",
+        "filename": "system/gd/hci/acl_manager.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-02-22T22:05:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dfe59698_5e7697c6",
       "range": {
         "startLine": 147,
         "startChar": 28,
