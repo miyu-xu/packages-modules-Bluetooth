@@ -150,6 +150,20 @@ void btm_dev_consolidate_existing_connections(const RawAddress& bd_addr);
 
 /*******************************************************************************
  *
+ * Function         btm_sec_delete_duplicate_device
+ *
+ * Description      Delete old device record when pairing with already
+ *                  paired ble device using new random address and IRK but
+ *                  same old static address.
+ *
+ * Returns          true if a duplicate device was found and deleted
+ *
+ ******************************************************************************/
+bool btm_sec_delete_duplicate_device(const RawAddress& pairing_bd_addr,
+                                     const RawAddress& identity_bd_addr);
+
+/*******************************************************************************
+ *
  * Function         btm_find_or_alloc_dev
  *
  * Description      Look for the record in the device database for the record
