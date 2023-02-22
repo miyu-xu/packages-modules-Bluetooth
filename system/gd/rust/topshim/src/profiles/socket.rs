@@ -23,6 +23,17 @@ pub enum SocketType {
     L2capLe = 4,
 }
 
+#[derive(Clone, Debug, FromPrimitive, ToPrimitive)]
+#[repr(u32)]
+pub enum L2CAPEtmMode {
+    Basic = 0,
+    RTM = 1,  // Retransmission
+    FC = 2,   // Flow Control
+    ERTM = 3, // Enhanced Retransmission
+    Streaming = 4,
+    LECOC = 5,
+}
+
 impl From<bindings::btsock_type_t> for SocketType {
     fn from(item: bindings::btsock_type_t) -> Self {
         SocketType::from_u32(item).unwrap_or(SocketType::Unknown)
@@ -221,6 +232,10 @@ impl BtSocket {
 
     pub fn request_max_tx_data_length(&self, addr: RawAddress) {
         ccall!(self, request_max_tx_data_length, &addr);
+    }
+
+    pub fn set_l2cap_mode(&self, mode: L2CAPEtmMode, mandatory: bool) -> BtStatus {
+        ccall!(self, set_l2cap_mode, mode as u32, mandatory).into()
     }
 }
 

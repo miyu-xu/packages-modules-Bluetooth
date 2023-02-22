@@ -2,7 +2,7 @@ use bt_topshim::btif::{
     BtBondState, BtConnectionState, BtDeviceType, BtPropertyType, BtSspVariant, BtStatus,
     BtTransport, Uuid, Uuid128Bit,
 };
-use bt_topshim::profiles::socket::SocketType;
+use bt_topshim::profiles::socket::{L2CAPEtmMode, SocketType};
 use bt_topshim::profiles::ProfileConnectionState;
 
 use bt_topshim::profiles::hid_host::BthhReportType;
@@ -120,6 +120,7 @@ impl_dbus_arg_enum!(BtPropertyType);
 impl_dbus_arg_enum!(BtSspVariant);
 impl_dbus_arg_enum!(BtTransport);
 impl_dbus_arg_enum!(ProfileConnectionState);
+impl_dbus_arg_enum!(L2CAPEtmMode);
 
 #[allow(dead_code)]
 struct BluetoothConnectionCallbackDBus {}
@@ -537,6 +538,11 @@ impl IBluetoothSocketManager for IBluetoothSocketManagerDBus {
 
     #[dbus_method("Close")]
     fn close(&mut self, callback: CallbackId, id: SocketId) -> BtStatus {
+        dbus_generated!()
+    }
+
+    #[dbus_method("SetL2CAPMode")]
+    fn set_l2cap_mode(&mut self, mode: L2CAPEtmMode, mandatory: bool) -> BtStatus {
         dbus_generated!()
     }
 }
