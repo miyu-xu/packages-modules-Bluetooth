@@ -22,6 +22,30 @@
       },
       "revId": "7b4e540cf4a7dbf69c71cf162735bdafe70bffcd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c23b3943_c68a6d56",
+        "filename": "system/gd/rust/topshim/src/profiles/a2dp.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 286,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2023-02-22T04:37:27Z",
+      "side": 1,
+      "message": "Here\u0027re the reasons I choose to_vec() in this case:\n\n1. It\u0027s easier for me to tell the destination type by using to_string() and to_vec() like methods to convert values from CXX to Rust.\n\n2. clone() is actually heavier than to_vec() in this case, based on amd64 assembly [1]:\n  + \u003calloc::vec::Vec\u003cT,A\u003e as core::clone::Clone\u003e::clone: takes 91 instructions (13 branches)\n  + alloc::slice::\u003cimpl [T]\u003e::to_vec: takes 51 instructions (6 branches)\n\n[1] https://paste.googleplex.com/4525251777003520?raw",
+      "parentUuid": "fa006532_af027030",
+      "range": {
+        "startLine": 286,
+        "startChar": 38,
+        "endLine": 286,
+        "endChar": 46
+      },
+      "revId": "7b4e540cf4a7dbf69c71cf162735bdafe70bffcd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
