@@ -3915,6 +3915,11 @@ static uint8_t bta_dm_ble_smp_cback(tBTM_LE_EVT event, const RawAddress& bda,
     case BTM_LE_ADDR_ASSOC_EVT:
       sec_event.proc_id_addr.pairing_bda = bda;
       sec_event.proc_id_addr.id_addr = p_data->id_addr;
+      sec_event.del_unused_addr.bd_addr =
+          btm_get_old_device_with_matching_id_addr(bda, p_data->id_addr);
+      LOG_INFO("BTM_LE_ADDR_ASSOC_EVT Got matchin device to delete: %s",
+               ADDRESS_TO_LOGGABLE_CSTR(sec_event.del_unused_addr.bd_addr));
+      bta_dm_cb.p_sec_cback(BTA_DM_LE_DEL_UNUSED_ADDR_EVT, &sec_event);
       bta_dm_cb.p_sec_cback(BTA_DM_LE_ADDR_ASSOC_EVT, &sec_event);
       break;
 
