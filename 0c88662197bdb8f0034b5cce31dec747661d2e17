@@ -22,6 +22,30 @@
       },
       "revId": "0c88662197bdb8f0034b5cce31dec747661d2e17",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bcde632b_ed0306c4",
+        "filename": "android/app/src/com/android/bluetooth/gatt/AppScanStats.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 429,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2023-02-22T05:15:32Z",
+      "side": 1,
+      "message": "Thanks for the comments. If we decide to add scan setting to scan result count, I think we also need to record scan_radio_duration per scan settings. I though we can add scan settings in WW counter metrics but we can try to add it in BT counter metrics now. Does it make sense?\n\n@regular scan radio result \n+ screen on\n--- scan mode (screen off, low power, balanced, low latency) \n+ screen off\n--- scan mode (screen off, low power, balanced, low latency) \n\n@regular scan radio duration\n+ screen on\n--- scan mode (screen off, low power, balanced, low latency) \n+ screen off\n--- scan mode (screen off, low power, balanced, low latency)",
+      "parentUuid": "20afe566_5665740a",
+      "range": {
+        "startLine": 421,
+        "startChar": 0,
+        "endLine": 429,
+        "endChar": 13
+      },
+      "revId": "0c88662197bdb8f0034b5cce31dec747661d2e17",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
