@@ -4,8 +4,8 @@ use bt_topshim::btif::{
     BaseCallbacks, BaseCallbacksDispatcher, BluetoothInterface, BluetoothProperty, BtAclState,
     BtBondState, BtConnectionDirection, BtConnectionState, BtDeviceType, BtDiscoveryState,
     BtHciErrorCode, BtPinCode, BtPropertyType, BtScanMode, BtSspVariant, BtState, BtStatus,
-    BtTransport, BtVendorProductInfo, DisplayAddress, RawAddress, ToggleableProfile, Uuid,
-    Uuid128Bit,
+    BtTransport, BtVendorProductInfo, DisplayAddress, RawAddress, SupportedInteropFeatures,
+    ToggleableProfile, Uuid, Uuid128Bit,
 };
 use bt_topshim::{
     metrics,
@@ -752,6 +752,20 @@ impl Bluetooth {
         let file_name = format!("{}/bluetooth{}.pid", PID_DIR, self.adapter_index);
         std::fs::remove_file(&file_name)?;
         Ok(())
+    }
+
+    pub fn set_interop_features(&self) {
+        // Enable auto-pair for all address
+        // This feature is a workaround for remote devices whose address matches some prefixes.
+        // Add all possible prefixes to enable it for all devices.
+        for b in 0u8..255u8 {
+            let addr = RawAddress::from_bytes(&[b, 0, 0, 0, 0, 0]).unwrap();
+            self.intf.lock().unwrap().interop_database_add(
+                SupportedInteropFeatures::InteropKeyboardRequiresFixedPin,
+                &addr,
+                1,
+            );
+        }
     }
 }
 
