@@ -39,6 +39,30 @@
       },
       "revId": "b7f3459e44923c2c61ef8c8f01b16b588bdfd312",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b6723360_9b4aecce",
+        "filename": "system/gd/rust/linux/mgmt/src/powerd_suspend_manager.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2023-02-22T05:21:57Z",
+      "side": 1,
+      "message": "Good idea. Done.",
+      "parentUuid": "b864c5d8_36b7e4e9",
+      "range": {
+        "startLine": 30,
+        "startChar": 6,
+        "endLine": 30,
+        "endChar": 18
+      },
+      "revId": "b7f3459e44923c2c61ef8c8f01b16b588bdfd312",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
