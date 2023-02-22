@@ -69,6 +69,23 @@
       "parentUuid": "2c482eb2_85d78806",
       "revId": "cc9efc262bfa9532133313ae827139ea494f6f43",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "97f65a8d_1bbea6b2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1892435
+      },
+      "writtenOn": "2023-02-22T16:24:31Z",
+      "side": 1,
+      "message": "Resolve the presubmit then ping me for approvals",
+      "revId": "cc9efc262bfa9532133313ae827139ea494f6f43",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
