@@ -16,6 +16,24 @@
       "message": "should we fatal here?\n\nSince the lower layer should guarantee that this won\u0027t happen, even if the controller is poorly behaved.",
       "revId": "73447770059a9c02549aef72aa63e9fbefaf32e1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6a71f751_8cf6a076",
+        "filename": "system/stack/l2cap/l2c_main.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-02-22T21:03:41Z",
+      "side": 1,
+      "message": "I\u0027m worried that there might be a race with a disconnection and a packet in a queue.",
+      "parentUuid": "41317d91_77644fa7",
+      "revId": "73447770059a9c02549aef72aa63e9fbefaf32e1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
