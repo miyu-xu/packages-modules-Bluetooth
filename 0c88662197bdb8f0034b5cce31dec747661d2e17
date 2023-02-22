@@ -46,6 +46,30 @@
       },
       "revId": "0c88662197bdb8f0034b5cce31dec747661d2e17",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "14326779_08ca80f4",
+        "filename": "android/app/src/com/android/bluetooth/gatt/AppScanStats.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 429,
+      "author": {
+        "id": 1567049
+      },
+      "writtenOn": "2023-02-22T05:59:42Z",
+      "side": 1,
+      "message": "You probably now partially realize the limitation of using the hard coded counter.   \n\nHighly recommend to use WW atom with optional fields and deprecate the hard coded counters. Everything becomes easier with optional fields. The opposite is true for the hard coded counters.",
+      "parentUuid": "bcde632b_ed0306c4",
+      "range": {
+        "startLine": 421,
+        "startChar": 0,
+        "endLine": 429,
+        "endChar": 13
+      },
+      "revId": "0c88662197bdb8f0034b5cce31dec747661d2e17",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
