@@ -616,6 +616,13 @@ class LeAudioGroupStateMachineImpl : public LeAudioGroupStateMachine {
       LOG_INFO("group: %d is in IDLE", group->group_id_);
       group->UpdateAudioContextTypeAvailability();
 
+      /* Transition may time out on early stage - group in IDLE state. Timeout
+       * (OnLeAudioDeviceSetStateTimeout) will set group target state to IDLE.
+       */
+      if (!group->IsAnyDeviceConnected()) {
+        ReleaseCisIds(group);
+      }
+
       /* When OnLeAudioDeviceSetStateTimeout happens, group will transition
        * to IDLE, and after that an ACL disconnect will be triggered. We need
        * to check if CIG is created and if it is, remove it so it can be created
