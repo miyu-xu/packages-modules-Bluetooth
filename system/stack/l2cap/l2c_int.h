@@ -620,9 +620,6 @@ typedef struct {
   uint16_t num_lm_acl_bufs; /* # of ACL buffers on controller */
   uint16_t idle_timeout;    /* Idle timeout */
 
-  list_t* rcv_pending_q;       /* Recv pending queue */
-  alarm_t* receive_hold_timer; /* Timer entry for rcv hold */
-
   tL2C_LCB* p_cur_hcit_lcb;  /* Current HCI Transport buffer */
   uint16_t num_used_lcbs;    /* Number of active link control blocks */
 
