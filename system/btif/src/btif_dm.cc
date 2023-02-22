@@ -217,6 +217,10 @@ typedef struct {
   struct timespec timestamp;
 } btif_bond_event_t;
 
+typedef struct {
+  RawAddress bd_addr;
+} bt_dup_dev_entry_t;
+
 #define BTA_SERVICE_ID_TO_SERVICE_MASK(id) (1 << (id))
 
 #define MAX_BTIF_BOND_EVENT_ENTRIES 15
@@ -258,6 +262,7 @@ static void btif_dm_save_ble_bonding_keys(RawAddress& bd_addr);
 static btif_dm_pairing_cb_t pairing_cb;
 static btif_dm_oob_cb_t oob_cb;
 static btif_dm_metadata_cb_t metadata_cb{.le_audio_cache{40}};
+static bt_dup_dev_entry_t dup_dev_cb;
 static void btif_dm_cb_create_bond(const RawAddress bd_addr,
                                    tBT_TRANSPORT transport);
 static void btif_dm_cb_create_bond_le(const RawAddress bd_addr,
@@ -268,6 +273,7 @@ static void btif_update_remote_properties(const RawAddress& bd_addr,
 static btif_dm_local_key_cb_t ble_local_key_cb;
 static void btif_dm_ble_key_notif_evt(tBTA_DM_SP_KEY_NOTIF* p_ssp_key_notif);
 static void btif_dm_ble_auth_cmpl_evt(tBTA_DM_AUTH_CMPL* p_auth_cmpl);
+static void btif_dm_ble_del_unused_dev();
 static void btif_dm_ble_passkey_req_evt(tBTA_DM_PIN_REQ* p_pin_req);
 static void btif_dm_ble_key_nc_req_evt(tBTA_DM_SP_KEY_NOTIF* p_notif_req);
 static void btif_dm_ble_oob_req_evt(tBTA_DM_SP_RMT_OOB* req_oob_type);
@@ -2159,6 +2165,9 @@ static void btif_dm_upstreams_evt(uint16_t event, char* p_param) {
 
         case BTM_LE_KEY_PID:
           BTIF_TRACE_DEBUG("Rcv BTM_LE_KEY_PID");
+          LOG_INFO("%s static addr: %s and pairing addr: %s", __func__,
+                   ADDRESS_TO_LOGGABLE_CSTR(pairing_cb.static_bdaddr),
+                   ADDRESS_TO_LOGGABLE_CSTR(pairing_cb.bd_addr));
           pairing_cb.ble.is_pid_key_rcvd = true;
           pairing_cb.ble.pid_key = p_data->ble_key.p_key_value->pid_key;
           break;
@@ -2250,7 +2259,11 @@ static void btif_dm_upstreams_evt(uint16_t event, char* p_param) {
 
     case BTA_DM_BLE_AUTH_CMPL_EVT:
       BTIF_TRACE_DEBUG("BTA_DM_BLE_AUTH_CMPL_EVT. ");
+      LOG_INFO("%s static addr: %s and pairing addr: %s", __func__,
+               ADDRESS_TO_LOGGABLE_CSTR(pairing_cb.static_bdaddr),
+               ADDRESS_TO_LOGGABLE_CSTR(pairing_cb.bd_addr));
       btif_dm_ble_auth_cmpl_evt(&p_data->auth_cmpl);
+      btif_dm_ble_del_unused_dev();
       break;
 
     case BTA_DM_LE_FEATURES_READ:
@@ -2267,10 +2280,17 @@ static void btif_dm_upstreams_evt(uint16_t event, char* p_param) {
       break;
 
     case BTA_DM_LE_ADDR_ASSOC_EVT:
+      LOG_INFO("BTA_DM_LE_ADDR_ASSOC_EVT static addr: %s and pairing addr: %s",
+               ADDRESS_TO_LOGGABLE_CSTR(p_data->proc_id_addr.id_addr),
+               ADDRESS_TO_LOGGABLE_CSTR(p_data->proc_id_addr.pairing_bda));
       GetInterfaceToProfiles()->events->invoke_le_address_associate_cb(
           p_data->proc_id_addr.pairing_bda, p_data->proc_id_addr.id_addr);
       break;
-
+    case BTA_DM_LE_DEL_UNUSED_ADDR_EVT:
+      dup_dev_cb.bd_addr = p_data->del_unused_addr.bd_addr;
+      LOG_INFO("BTA_DM_LE_DEL_UNUSED_ADDR_EVT bd_addr: %s",
+               ADDRESS_TO_LOGGABLE_CSTR(dup_dev_cb.bd_addr));
+      break;
     default:
       BTIF_TRACE_WARNING("%s: unhandled event (%d)", __func__, event);
       break;
@@ -3290,6 +3310,16 @@ static void btif_dm_ble_key_notif_evt(tBTA_DM_SP_KEY_NOTIF* p_ssp_key_notif) {
   GetInterfaceToProfiles()->events->invoke_ssp_request_cb(
       bd_addr, bd_name, cod, BT_SSP_VARIANT_PASSKEY_NOTIFICATION,
       p_ssp_key_notif->passkey);
+}
+
+static void btif_dm_ble_del_unused_dev() {
+  LOG_INFO("%s", __func__);
+  if (dup_dev_cb.bd_addr != RawAddress::kEmpty) {
+    btif_dm_remove_bond(dup_dev_cb.bd_addr);
+    LOG_INFO("%s Removed bond for: %s", __func__,
+             ADDRESS_TO_LOGGABLE_CSTR(dup_dev_cb.bd_addr));
+    dup_dev_cb.bd_addr = RawAddress::kEmpty;
+  }
 }
 
 /*******************************************************************************

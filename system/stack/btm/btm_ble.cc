@@ -1137,6 +1137,10 @@ void btm_sec_save_le_key(const RawAddress& bd_addr, tBTM_LE_KEY_TYPE key_type,
             ADDRESS_TO_LOGGABLE_CSTR(p_rec->bd_addr),
             ADDRESS_TO_LOGGABLE_CSTR(p_keys->pid_key.identity_addr),
             p_keys->pid_key.identity_addr_type);
+        BTM_TRACE_DEBUG("Int BTM_LE_KEY_PID star");
+        btm_get_old_device_with_matching_id_addr(p_rec->bd_addr,
+                                                 p_keys->pid_key.identity_addr);
+        BTM_TRACE_DEBUG("In BTM_LE_KEY_PID end");
         /* update device record address as identity address */
         p_rec->bd_addr = p_keys->pid_key.identity_addr;
         /* combine DUMO device security record if needed */
