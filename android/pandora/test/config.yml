@@ -7,3 +7,11 @@ TestBeds:
     BumbleDevice:
     - transport: 'tcp-client:127.0.0.1:7300'
       classic_enabled: true
+- Name: SMPTest
+  Controllers:
+      AndroidDevice: '*'
+      BumbleDevice:
+      - transport: 'tcp-client:127.0.0.1:7300'
+        classic_enabled: true
+        random_identity_address: 'F6:F7:F8:F9:FA:FB'
+
