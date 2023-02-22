@@ -513,6 +513,30 @@ void btm_dev_consolidate_existing_connections(const RawAddress& bd_addr) {
   }
 }
 
+bool btm_sec_delete_duplicate_device(const RawAddress& pairing_bd_addr,
+                                     const RawAddress& identity_bd_addr) {
+  BTM_TRACE_EVENT("btm_sec_delete_duplicate_device");
+  if (btm_cb.sec_dev_rec == nullptr) return false;
+
+  list_node_t* end = list_end(btm_cb.sec_dev_rec);
+  for (list_node_t* node = list_begin(btm_cb.sec_dev_rec); node != end;
+       node = list_next(node)) {
+    tBTM_SEC_DEV_REC* p_dev_rec =
+        static_cast<tBTM_SEC_DEV_REC*>(list_node(node));
+    if (p_dev_rec->ble.identity_address_with_type.bda == identity_bd_addr &&
+        p_dev_rec->bd_addr != pairing_bd_addr) {
+      LOG_DEBUG(
+          "Removing duplicate device record with bd_addr:%s and "
+          "identity_bd_addr:%s",
+          ADDRESS_TO_LOGGABLE_CSTR(p_dev_rec->bd_addr),
+          ADDRESS_TO_LOGGABLE_CSTR(identity_bd_addr));
+      BTM_SecDeleteDevice(p_dev_rec->bd_addr);
+      return true;
+    }
+  }
+  return false;
+}
+
 /*******************************************************************************
  *
  * Function         btm_find_or_alloc_dev
