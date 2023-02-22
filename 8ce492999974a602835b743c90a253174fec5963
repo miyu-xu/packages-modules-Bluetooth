@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a6ab14be_7494e0dd",
+        "filename": "android/app/src/com/android/bluetooth/map/BluetoothMapContentObserver.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1465,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-02-22T04:48:21Z",
+      "side": 1,
+      "message": "We can move this in L1519 and revmoe L1474 (\"listChanged \u003d false\")",
+      "range": {
+        "startLine": 1465,
+        "startChar": 27,
+        "endLine": 1465,
+        "endChar": 47
+      },
+      "revId": "8ce492999974a602835b743c90a253174fec5963",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "770eb059_14a740e1",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapContentObserverTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-02-22T04:48:21Z",
+      "side": 1,
+      "message": "Is it possible to add a test with more than one years old new message?",
+      "range": {
+        "startLine": 75,
+        "startChar": 13,
+        "endLine": 75,
+        "endChar": 44
+      },
+      "revId": "8ce492999974a602835b743c90a253174fec5963",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "50d84127_eaa672ca",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapContentObserverTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-02-22T04:48:21Z",
+      "side": 1,
+      "message": "nit. SEC looks more consistant with MS",
+      "range": {
+        "startLine": 95,
+        "startChar": 32,
+        "endLine": 95,
+        "endChar": 40
+      },
+      "revId": "8ce492999974a602835b743c90a253174fec5963",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
