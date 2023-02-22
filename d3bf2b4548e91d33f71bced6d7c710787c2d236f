@@ -22,6 +22,30 @@
       },
       "revId": "d3bf2b4548e91d33f71bced6d7c710787c2d236f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "252f5949_0a172f01",
+        "filename": "system/stack/test/btm/sco_hci_test.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2023-02-22T02:03:48Z",
+      "side": 1,
+      "message": "Sure. Added in WbsPlc and added logics to verify it is triggered correctly.",
+      "parentUuid": "dece406b_e67edd3b",
+      "range": {
+        "startLine": 195,
+        "startChar": 55,
+        "endLine": 195,
+        "endChar": 60
+      },
+      "revId": "d3bf2b4548e91d33f71bced6d7c710787c2d236f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
