@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "41317d91_77644fa7",
+        "filename": "system/stack/l2cap/l2c_main.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-02-22T19:48:03Z",
+      "side": 1,
+      "message": "should we fatal here?\n\nSince the lower layer should guarantee that this won\u0027t happen, even if the controller is poorly behaved.",
+      "revId": "73447770059a9c02549aef72aa63e9fbefaf32e1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
