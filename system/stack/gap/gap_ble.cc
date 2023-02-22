@@ -23,6 +23,7 @@
 #include <array>
 #include <list>
 #include <queue>
+#include <queue>
 
 #include "gap_api.h"
 #include "gatt_api.h"
