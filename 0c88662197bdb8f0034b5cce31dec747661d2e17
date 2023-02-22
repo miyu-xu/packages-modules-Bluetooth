@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c4d6685f_12ae0887",
+        "filename": "android/app/src/com/android/bluetooth/gatt/AppScanStats.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 420,
+      "author": {
+        "id": 1567049
+      },
+      "writtenOn": "2023-02-22T18:09:34Z",
+      "side": 1,
+      "message": "Is it possible to get scan results from the driver/FW layer without triggering the scan in the upper layer?",
+      "range": {
+        "startLine": 418,
+        "startChar": 3,
+        "endLine": 420,
+        "endChar": 13
+      },
+      "revId": "0c88662197bdb8f0034b5cce31dec747661d2e17",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "20afe566_5665740a",
         "filename": "android/app/src/com/android/bluetooth/gatt/AppScanStats.java",
         "patchSetId": 1
