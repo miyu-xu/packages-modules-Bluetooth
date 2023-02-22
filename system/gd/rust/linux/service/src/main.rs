@@ -337,6 +337,7 @@ fn main() -> Result<(), Box<dyn Error>> {
 
             let mut bluetooth = bluetooth.lock().unwrap();
             bluetooth.init_profiles();
+            bluetooth.set_interop_features();
             bluetooth.enable();
 
             bluetooth_gatt.lock().unwrap().init_profiles(tx.clone(), adapter.clone());

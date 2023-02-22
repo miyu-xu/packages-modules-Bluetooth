@@ -724,6 +724,74 @@ impl From<SupportedProfiles> for Vec<u8> {
     }
 }
 
+#[derive(ToPrimitive)]
+#[repr(u16)]
+pub enum SupportedInteropFeatures {
+    InteropAutoRetryPairing = 1,
+    InteropDisableAbsoluteVolume,
+    InteropDisableAutoPairing,
+    InteropKeyboardRequiresFixedPin,
+    Interop2mbpsLinkOnly,
+    InteropDisableSdpAfterPairing,
+    InteropRemoveHidDigDescriptor,
+    InteropDisableSniffDuringSco,
+    InteropHidPrefConnSupTimeout3s,
+    InteropGattcNoServiceChangedInd,
+    InteropIncreaseAgConnTimeout,
+    InteropDisableLeConnPreferredParams,
+    InteropDisableAacCodec,
+    InteropDisableAacVbrCodec,
+    InteropEnableAacCodec,
+    InteropDisableRoleSwitchPolicy,
+    InteropHfp17Denylist,
+    InteropHfp18Denylist,
+    InteropAdvPbapVer11,
+    InteropUpdateHidSsrMaxLat,
+    InteropDisableAuthForHidPointing,
+    InteropDisableAvdtpReconfigure,
+    InteropDynamicRoleSwitch,
+    InteropDisableHfIndicator,
+    InteropDisableRoleSwitch,
+    InteropDelayScoForMtCall,
+    InteropDisableCodecNegotiation,
+    InteropDisablePlayerApplicationSettingCmds,
+    InteropDisableConnectionAfterCollision,
+    InteropDisableLeConnUpdates,
+    InteropAdvPbapVer12,
+    InteropDisablePceSdpAfterPairing,
+    InteropAvrcpBrowseOpenChannelCollision,
+    InteropDisableSniffLinkDuringSco,
+    InteropDisableSniffDuringCall,
+    InteropHidHostLimitSniffInterval,
+    InteropDisableRefreshAcceptSigTimer,
+    InteropBrowsePlayerAllowList,
+    InteropSkipIncomingState,
+    InteropNotUpdateAvrcpPausedToRemote,
+    InteropPhonePolicyIncreasedDelayConnectOtherProfiles,
+    InteropDisableNameRequest,
+    InteropAvrcp14Only,
+    InteropDisableSniff,
+    InteropDisableAvdtpSuspend,
+    InteropSlcSkipBindCommand,
+    InteropAvrcp13Only,
+    InteropPhonePolicyReducedDelayConnectOtherProfiles,
+    InteropHfpFakeIncomingCallIndicator,
+    InteropHfpSendCallIndicatorsBackToBack,
+    InteropSetupScoWithNoDelayAfterSlcDuringCall,
+    InteropEnablePreferredConnParameter,
+    InteropRetryScoAfterRemoteRejectSco,
+    InteropDelayScoForMoCall,
+    InteropChangeHidVidPid,
+    InteropDisableRoleSwitchDuringConnection,
+    InteropDisableRobustCaching,
+    InteropHfp17Allowlist,
+}
+impl From<SupportedInteropFeatures> for u16 {
+    fn from(item: SupportedInteropFeatures) -> Self {
+        ToPrimitive::to_u16(&item).unwrap()
+    }
+}
+
 #[cxx::bridge(namespace = bluetooth::topshim::rust)]
 mod ffi {
     unsafe extern "C++" {
@@ -1216,6 +1284,17 @@ impl BluetoothInterface {
 
     pub fn set_event_filter_connection_setup_all_devices(&self) -> i32 {
         ccall!(self, set_event_filter_connection_setup_all_devices)
+    }
+
+    pub fn interop_database_add(
+        &self,
+        feature: SupportedInteropFeatures,
+        addr: &RawAddress,
+        len: usize,
+    ) {
+        let addr_ptr = LTCheckedPtr::from_ref(addr);
+
+        ccall!(self, interop_database_add, feature.into(), addr_ptr.into(), len);
     }
 
     pub(crate) fn get_profile_interface(
