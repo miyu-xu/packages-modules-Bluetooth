@@ -184,6 +184,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "97195ae3_00ae35a3",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 701,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2023-02-22T06:13:38Z",
+      "side": 1,
+      "message": "Might want to coordinate with https://r.android.com/2450184 too.",
+      "parentUuid": "2415e000_828f4fa5",
+      "revId": "d790a7c2de4d441dc2197bd797ed78ce4a1aa315",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "eb78e3d4_da4b58a4",
         "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
         "patchSetId": 1
