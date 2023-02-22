@@ -631,6 +631,14 @@ class LeAudioGroupStateMachineImpl : public LeAudioGroupStateMachine {
         !group->IsInTransition()) {
       LOG(INFO) << __func__ << " group: " << group->group_id_ << " is in IDLE";
       group->UpdateAudioContextTypeAvailability();
+
+      /* Transition may time out on early stage - group in IDLE state. Timeout
+       * (OnLeAudioDeviceSetStateTimeout) will set group target state to IDLE.
+       */
+      if (!group->IsAnyDeviceConnected()) {
+        ReleaseCisIds(group);
+      }
+
       return;
     }
 
