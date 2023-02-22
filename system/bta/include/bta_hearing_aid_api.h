@@ -26,6 +26,7 @@
 #include <functional>
 #include <vector>
 
+#include "btm_iso_api.h"
 #include "stack/include/gap_api.h"
 #include "types/raw_address.h"
 
@@ -273,4 +274,29 @@ class HearingAidAudioSource {
   static void Initialize();
   static void CleanUp();
   static void DebugDump(int fd);
+};
+
+class HearingAidCigCallbacks
+    : public bluetooth::hci::iso_manager::CigCallbacks {
+ public:
+  HearingAidCigCallbacks() = default;
+  HearingAidCigCallbacks(const HearingAidCigCallbacks&) = delete;
+  HearingAidCigCallbacks& operator=(const HearingAidCigCallbacks&) = delete;
+  ~HearingAidCigCallbacks() = default;
+
+  void OnCisEvent(uint8_t event, void* data){};
+
+  void OnSetupIsoDataPath(uint8_t status, uint16_t conn_handle,
+                          uint8_t cig_id){};
+
+  void OnRemoveIsoDataPath(uint8_t status, uint16_t conn_handle,
+                           uint8_t cig_id){};
+
+  void OnIsoLinkQualityRead(
+      uint8_t conn_handle, uint8_t cig_id, uint32_t txUnackedPackets,
+      uint32_t txFlushedPackets, uint32_t txLastSubeventPackets,
+      uint32_t retransmittedPackets, uint32_t crcErrorPackets,
+      uint32_t rxUnreceivedPackets, uint32_t duplicatePackets){};
+
+  void OnCigEvent(uint8_t event, void* data) = 0;
 };
