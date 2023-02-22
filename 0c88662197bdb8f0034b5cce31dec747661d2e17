@@ -70,6 +70,30 @@
       },
       "revId": "0c88662197bdb8f0034b5cce31dec747661d2e17",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dffe70f7_050cb889",
+        "filename": "android/app/src/com/android/bluetooth/gatt/AppScanStats.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 429,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2023-02-22T06:06:03Z",
+      "side": 1,
+      "message": "Right. I\u0027m realizing the limitation of the hard coded counter :) Then, I will add scan mode when WW counter metrics is ready from BT Metrics team.",
+      "parentUuid": "14326779_08ca80f4",
+      "range": {
+        "startLine": 421,
+        "startChar": 0,
+        "endLine": 429,
+        "endChar": 13
+      },
+      "revId": "0c88662197bdb8f0034b5cce31dec747661d2e17",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
