@@ -2954,7 +2954,7 @@ TEST_F(StateMachineTest, testAseAutonomousRelease2Devices) {
   }
 }
 
-TEST_F(StateMachineTest, testStateTransitionTimeoutOnIdleState) {
+TEST_F(StateMachineTest, testStateConnectionTimeoutOnIdleState) {
   const auto context_type = kContextTypeRingtone;
   const int leaudio_group_id = 4;
   channel_count_ = kLeAudioCodecLC3ChannelCountSingleChannel |
@@ -2981,6 +2981,49 @@ TEST_F(StateMachineTest, testStateTransitionTimeoutOnIdleState) {
 
   // Make sure timeout is cleared
   ASSERT_TRUE(fake_osi_alarm_set_on_mloop_.cb == nullptr);
+}
+
+TEST_F(StateMachineTest, testStateTransitionTimeoutOnIdleState) {
+  const auto context_type = kContextTypeRingtone;
+  const int leaudio_group_id = 4;
+  channel_count_ = kLeAudioCodecLC3ChannelCountSingleChannel |
+                   kLeAudioCodecLC3ChannelCountTwoChannel;
+
+  // Prepare fake connected device group
+  auto* group = PrepareSingleTestDeviceGroup(leaudio_group_id, context_type);
+
+  auto* leAudioDevice = group->GetFirstDevice();
+  EXPECT_CALL(gatt_queue,
+              WriteCharacteristic(1, leAudioDevice->ctp_hdls_.val_hdl, _,
+                                  GATT_WRITE_NO_RSP, _, _))
+      .Times(1);
+
+  // Start the configuration and stream Media content
+  ASSERT_TRUE(LeAudioGroupStateMachine::Get()->StartStream(
+      group, static_cast<LeAudioContextType>(context_type),
+      {.sink = types::AudioContexts(context_type),
+       .source = types::AudioContexts(context_type)}));
+
+  // Check if timeout is fired
+  EXPECT_CALL(mock_callbacks_, OnStateTransitionTimeout(leaudio_group_id));
+
+  // simulate timeout seconds passed, alarm executing
+  fake_osi_alarm_set_on_mloop_.cb(fake_osi_alarm_set_on_mloop_.data);
+  ASSERT_EQ(1, mock_function_count_map["alarm_set_on_mloop"]);
+
+  ASSERT_EQ(group->GetState(), types::AseState::BTA_LE_AUDIO_ASE_STATE_IDLE);
+
+  testing::Mock::VerifyAndClearExpectations(&mock_callbacks_);
+
+  /* This state is set in "OnLeAudioDeviceSetStateTimeout" */
+  group->SetTargetState(types::AseState::BTA_LE_AUDIO_ASE_STATE_IDLE);
+
+  // Disconnect device
+  LeAudioGroupStateMachine::Get()->ProcessHciNotifAclDisconnected(
+      group, leAudioDevice);
+
+  /* No assigned cises should remain when transition remains in IDLE state */
+  ASSERT_EQ(0, static_cast<int>(group->cises_.size()));
 }
 
 TEST_F(StateMachineTest, testStateIdleNotifyAclDisconnectedRemoveCig) {
