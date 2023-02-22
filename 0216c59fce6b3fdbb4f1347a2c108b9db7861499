@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5b7e432f_492823a3",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 418,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-02-22T05:01:21Z",
+      "side": 1,
+      "message": "nit: Not sure whether it is better or not, but what do you think reorder the methods by grouping connected/changed/disconnected, not by grouping profiles?",
+      "range": {
+        "startLine": 418,
+        "startChar": 17,
+        "endLine": 418,
+        "endChar": 35
+      },
+      "revId": "0216c59fce6b3fdbb4f1347a2c108b9db7861499",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
