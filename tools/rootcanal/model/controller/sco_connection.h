@@ -20,11 +20,11 @@
 #include <optional>
 
 #include "hci/address.h"
-#include "model/setup/async_manager.h"
 
 namespace rootcanal {
 
 using ::bluetooth::hci::Address;
+using TaskId = uint32_t;
 
 /*
  * Notes about SCO / eSCO connection establishment:
@@ -98,8 +98,8 @@ class ScoConnection {
   ScoState GetState() const { return state_; }
   void SetState(ScoState state) { state_ = state; }
 
-  void StartStream(std::function<AsyncTaskId()> startStream);
-  void StopStream(std::function<void(AsyncTaskId)> stopStream);
+  void StartStream(std::function<TaskId()> startStream);
+  void StopStream(std::function<void(TaskId)> stopStream);
 
   ScoConnectionParameters GetConnectionParameters() const {
     return parameters_;
@@ -127,7 +127,7 @@ class ScoConnection {
 
   // The handle of the async task managing the SCO stream, used to simulate
   // offloaded input. None if HCI is used for input packets.
-  std::optional<AsyncTaskId> stream_handle_{};
+  std::optional<TaskId> stream_handle_{};
 
   // Mark connections opened with the HCI command Add SCO Connection.
   // The connection status is reported with HCI Connection Complete event
