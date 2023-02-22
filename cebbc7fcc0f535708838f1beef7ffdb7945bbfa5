@@ -72,6 +72,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8b677b57_fdcee1ba",
+        "filename": "tools/pdl/src/backends/rust.rs",
+        "patchSetId": 11
+      },
+      "lineNbr": 343,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2023-02-22T09:55:49Z",
+      "side": 1,
+      "message": "Yeah, I was never super happy with this...\n\nSo, I\u0027ve now refactored it. The children hashmap now only contain packets with actual children. If a packet only has a payload/body field, it won\u0027t show up there. The code was then adjusted to take this into account and I think it\u0027s better overall.",
+      "parentUuid": "4b7811b3_1e07427e",
+      "range": {
+        "startLine": 339,
+        "startChar": 4,
+        "endLine": 343,
+        "endChar": 7
+      },
+      "revId": "cebbc7fcc0f535708838f1beef7ffdb7945bbfa5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "272637e9_79009c30",
