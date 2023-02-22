@@ -190,6 +190,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7214835a_32edaf9c",
+        "filename": "framework/java/android/bluetooth/le/ScanFilter.java",
+        "patchSetId": 22
+      },
+      "lineNbr": 554,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-02-22T21:33:25Z",
+      "side": 1,
+      "message": "Discussed on call, we can make multiple scan filters.",
+      "parentUuid": "1501e7f0_4b951ff0",
+      "range": {
+        "startLine": 504,
+        "startChar": 3,
+        "endLine": 554,
+        "endChar": 5
+      },
+      "revId": "a9e8d334b215a0c46c510de3e6ddfa9f001ff3cb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0a67edef_1e86ed3a",
@@ -251,6 +275,30 @@
       "side": 1,
       "message": "1. Scan filter vs. Advertisement Data\n\n```\nBut on scanner side, if we are keeping scan filter, then this length need to be divided by 2, 120~ byte should be manufacturer data \u0026 another 120~ bytes manufacturer data for manufacturer masks, because Controllers shall be able to accept HCI Command packets with up to 255 bytes of data excluding the HCI Command packet header.\n```\n\nFor the above, limitation, could we re-use the same class and limit the data length at runtime? For example, if the API caller gives a TDS data above your platform\u0027s limit (e.g. 120 bytes), you can return error when they try to start scanning. \n\nThe same issue would also occur when you use separate APIs to set the TDS data and mask.\n\nHence, even though there are differences in terms of scanner and advertiser\u0027s capability, the API data structure can remain the same. \n\n2. Multiple TDS data with multiple blocks\n\n```\nFor TDD filtering , Scanner APP never know that , how many Transport blocks are included by advertisers,So i think Single Transport Blocks specific scan filtering is more aligned with google APCF spec perspective. controller will still parse TDD adv packet with multiple block to find, if particular service is present or not in any blocks.\n```\n\nI think if the API takes only one TDS data with one block, it should match any advertisement that contains such TDS data OR blocks that match the data mask supplied. \n\nThe Bluetooth stack can impose a limitation based on controller capability on the scanner side so that the ScanFilter size does not exceed the controller\u0027s capability. \n\n3. Align with existing scan filter implementation\n\n```\nI made all api to system api, i still prefer to keep current set api in scan filter to align with google scan filter implementation.\n```\n\nTDS is a special case for BLE since we defined a standalone structure for it already on the advertising side. For other scan filters, there were no pre-existing advertiser side data structure. \n\nMoreover, this is just the packaging on the API side and we want to unify it among the scanner and advertiser side to make sure we don\u0027t create duplicate APIs for the same data field. \n\nWithin the implementation, you can always flatten the data. Hence, I don\u0027t think this API change would affect the scan filter implementation.",
       "parentUuid": "6f6d3565_6fe95ed0",
+      "range": {
+        "startLine": 1224,
+        "startChar": 58,
+        "endLine": 1226,
+        "endChar": 50
+      },
+      "revId": "a9e8d334b215a0c46c510de3e6ddfa9f001ff3cb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cb3261c4_3f6dba5e",
+        "filename": "framework/java/android/bluetooth/le/ScanFilter.java",
+        "patchSetId": 22
+      },
+      "lineNbr": 1226,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-02-22T21:33:25Z",
+      "side": 1,
+      "message": "Discussed on call, see my new comment.",
+      "parentUuid": "ccf5d28d_415da69c",
       "range": {
         "startLine": 1224,
         "startChar": 58,
