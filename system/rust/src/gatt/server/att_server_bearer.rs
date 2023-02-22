@@ -190,6 +190,7 @@ mod test {
         core::{shared_box::SharedBox, uuid::Uuid},
         gatt::{
             callbacks::GattDatastore,
+            ffi::AttributeBackingType,
             ids::ConnectionId,
             mocks::mock_datastore::{MockDatastore, MockDatastoreEvents},
             server::{
@@ -304,11 +305,13 @@ mod test {
                     handle: VALID_HANDLE,
                     type_: Uuid::new(2),
                     permissions: AttPermissions::READABLE,
+                    descriptors: vec![],
                 },
                 GattCharacteristicWithHandle {
                     handle: ANOTHER_VALID_HANDLE,
                     type_: Uuid::new(2),
                     permissions: AttPermissions::READABLE,
+                    descriptors: vec![],
                 },
             ],
         })
@@ -337,7 +340,7 @@ mod test {
             });
             AttServerBearer::handle_packet(&conn.as_ref(), req2.view());
             // handle first reply
-            let MockDatastoreEvents::ReadCharacteristic(CONN_ID, VALID_HANDLE, data_resp) =
+            let MockDatastoreEvents::Read(CONN_ID, VALID_HANDLE, AttributeBackingType::Characteristic, data_resp) =
                 data_rx.recv().await.unwrap() else {
                     unreachable!();
             };
