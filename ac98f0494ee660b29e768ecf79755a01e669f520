@@ -1,5 +1,52 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e7b4a3a3_91be8468",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1246,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-02-22T10:57:27Z",
+      "side": 1,
+      "message": "what is a value for doing this since this information inside the group?",
+      "range": {
+        "startLine": 1246,
+        "startChar": 4,
+        "endLine": 1246,
+        "endChar": 62
+      },
+      "revId": "ac98f0494ee660b29e768ecf79755a01e669f520",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "76b4bf89_92ce8707",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1932,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-02-22T10:57:27Z",
+      "side": 1,
+      "message": "since this is not used in other way then providing it to IsConfigurationSupported(), why we are doing this?",
+      "range": {
+        "startLine": 1932,
+        "startChar": 2,
+        "endLine": 1932,
+        "endChar": 50
+      },
+      "revId": "ac98f0494ee660b29e768ecf79755a01e669f520",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
