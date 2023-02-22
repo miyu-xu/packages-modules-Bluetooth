@@ -37,6 +37,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "713acaad_f38c8d8d",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 683,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-02-22T04:44:07Z",
+      "side": 1,
+      "message": "Intentional, to make it symmetric with the other async function. Will do.",
+      "parentUuid": "950e22cb_b2c4c8a8",
+      "revId": "d790a7c2de4d441dc2197bd797ed78ce4a1aa315",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c1709aae_8e59de05",
         "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
         "patchSetId": 1
@@ -48,6 +66,30 @@
       "writtenOn": "2023-02-21T18:31:26Z",
       "side": 1,
       "message": "Can this pass by ref `\u0026RawAddress`? This will make sure we defer cloning until actually needed.",
+      "range": {
+        "startLine": 686,
+        "startChar": 14,
+        "endLine": 686,
+        "endChar": 24
+      },
+      "revId": "d790a7c2de4d441dc2197bd797ed78ce4a1aa315",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "917e1388_58c2cf38",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 686,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-02-22T04:44:07Z",
+      "side": 1,
+      "message": "Sure, thanks for the tips",
+      "parentUuid": "c1709aae_8e59de05",
       "range": {
         "startLine": 686,
         "startChar": 14,
@@ -83,6 +125,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "34fd9eca_3cdc723c",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 696,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-02-22T04:44:07Z",
+      "side": 1,
+      "message": "Probably? I copy-pasted codes",
+      "parentUuid": "eba723a2_fde175d8",
+      "range": {
+        "startLine": 695,
+        "startChar": 0,
+        "endLine": 696,
+        "endChar": 78
+      },
+      "revId": "d790a7c2de4d441dc2197bd797ed78ce4a1aa315",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6cb4c050_7b723d67",
         "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
         "patchSetId": 1
@@ -100,6 +166,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2415e000_828f4fa5",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 701,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-02-22T04:44:07Z",
+      "side": 1,
+      "message": "Sure, thanks for the tips",
+      "parentUuid": "6cb4c050_7b723d67",
+      "revId": "d790a7c2de4d441dc2197bd797ed78ce4a1aa315",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "eb78e3d4_da4b58a4",
         "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
         "patchSetId": 1
@@ -111,6 +195,30 @@
       "writtenOn": "2023-02-21T18:31:26Z",
       "side": 1,
       "message": "Why does this need to be contained in a block? Can this be simply:\n```\ndevice_states.lock().unwrap().insert(addr, DeviceConnectionStates::Disconnecting);\nfallback_tasks.lock().unwrap().insert(addr, None);\n```",
+      "range": {
+        "startLine": 719,
+        "startChar": 0,
+        "endLine": 725,
+        "endChar": 9
+      },
+      "revId": "d790a7c2de4d441dc2197bd797ed78ce4a1aa315",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "98df7cfa_3f17a980",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 725,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-02-22T04:44:07Z",
+      "side": 1,
+      "message": "Probably? I copy-pasted codes.",
+      "parentUuid": "eb78e3d4_da4b58a4",
       "range": {
         "startLine": 719,
         "startChar": 0,
@@ -146,6 +254,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9f5fae37_5eac340f",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1048,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-02-22T04:44:07Z",
+      "side": 1,
+      "message": "thanks, let me try",
+      "parentUuid": "183a2887_5e1180ec",
+      "range": {
+        "startLine": 1043,
+        "startChar": 0,
+        "endLine": 1048,
+        "endChar": 39
+      },
+      "revId": "d790a7c2de4d441dc2197bd797ed78ce4a1aa315",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f776813e_342d8c09",
         "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
         "patchSetId": 1
@@ -157,6 +289,54 @@
       "writtenOn": "2023-02-21T18:31:26Z",
       "side": 1,
       "message": "nit: can this be named `fallback_tasks`? It\u0027s a bit hard to remember what this means when reading the code below using `guard`.",
+      "range": {
+        "startLine": 1171,
+        "startChar": 20,
+        "endLine": 1171,
+        "endChar": 25
+      },
+      "revId": "d790a7c2de4d441dc2197bd797ed78ce4a1aa315",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "de787d24_2e267414",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1171,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-02-22T04:44:07Z",
+      "side": 1,
+      "message": "Sure, I copy-pasted codes.",
+      "parentUuid": "f776813e_342d8c09",
+      "range": {
+        "startLine": 1171,
+        "startChar": 20,
+        "endLine": 1171,
+        "endChar": 25
+      },
+      "revId": "d790a7c2de4d441dc2197bd797ed78ce4a1aa315",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "254d29bb_3130626d",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1171,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-02-22T04:44:07Z",
+      "side": 1,
+      "message": "Sure, I copy-pasted codes.",
+      "parentUuid": "f776813e_342d8c09",
       "range": {
         "startLine": 1171,
         "startChar": 20,
