@@ -23,8 +23,8 @@ from concurrent import futures
 from contextlib import suppress
 from mobly import base_test, test_runner
 from mobly.asserts import assert_equal  # type: ignore
-from pandora.host_grpc import DataTypes, OwnAddressType
-from pandora.security_grpc import LESecurityLevel, PairingEventAnswer
+from pandora.host_pb2 import DataTypes, OwnAddressType, RANDOM
+from pandora.security_pb2 import LE_LEVEL3, PairingEventAnswer
 from typing import NoReturn, Optional, Any
 
 
@@ -111,11 +111,10 @@ class SMPTest(base_test.BaseTestClass):  # type: ignore[misc]
                 delegate=PairingDelegate(io_capability=PairingDelegate.NO_OUTPUT_NO_INPUT),
             ))
 
-        le_pairing = asyncio.create_task(
-            self.handle_le_pairing(
-                dut_address_type=OwnAddressType.RANDOM,
-                ref_address_type=OwnAddressType.RANDOM,
-            ))
+        le_pairing = asyncio.create_task(self.handle_le_pairing(
+            dut_address_type=RANDOM,
+            ref_address_type=RANDOM,
+        ))
         ref = await le_pairing
         is_bonded = self.dut.security_storage.IsBonded(**ref.address_asdict())
         assert is_bonded
@@ -123,23 +122,21 @@ class SMPTest(base_test.BaseTestClass):  # type: ignore[misc]
     @asynchronous
     async def test_le_pairing__twice_with_same_device(self) -> None:
         # Pair with same device 2 times.
-        # Ref device advertises with different random address but uses same identity address
-        le_pairing = asyncio.create_task(
-            self.handle_le_pairing(
-                dut_address_type=OwnAddressType.RANDOM,
-                ref_address_type=OwnAddressType.RANDOM,
-            ))
+        # Ref device advertises with different RANDOM address but uses same identity address
+        le_pairing = asyncio.create_task(self.handle_le_pairing(
+            dut_address_type=RANDOM,
+            ref_address_type=RANDOM,
+        ))
         ref1 = await le_pairing
         is_bonded = self.dut.security_storage.IsBonded(**ref1.address_asdict())
         assert is_bonded
 
         await self.ref.reset()
 
-        le_pairing = asyncio.create_task(
-            self.handle_le_pairing(
-                dut_address_type=OwnAddressType.RANDOM,
-                ref_address_type=OwnAddressType.RANDOM,
-            ))
+        le_pairing = asyncio.create_task(self.handle_le_pairing(
+            dut_address_type=RANDOM,
+            ref_address_type=RANDOM,
+        ))
         ref2 = await le_pairing
         is_bonded = self.dut.security_storage.IsBonded(**ref2.address_asdict())
         assert is_bonded
