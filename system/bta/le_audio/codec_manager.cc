@@ -19,9 +19,9 @@
 #include "audio_hal_client/audio_hal_client.h"
 #include "broadcaster/broadcaster_types.h"
 #include "device/include/controller.h"
+#include "gd/os/system_properties.h"
 #include "le_audio_set_configuration_provider.h"
 #include "osi/include/log.h"
-#include "osi/include/properties.h"
 #include "stack/acl/acl.h"
 #include "stack/include/acl_api.h"
 
@@ -71,9 +71,9 @@ struct codec_manager_impl {
  public:
   codec_manager_impl(
       const std::vector<btle_audio_codec_config_t>& offloading_preference) {
-    offload_enable_ = osi_property_get_bool(
+    offload_enable_ = bluetooth::os::GetSystemPropertyBool(
                           "ro.bluetooth.leaudio_offload.supported", false) &&
-                      !osi_property_get_bool(
+                      !bluetooth::os::GetSystemPropertyBool(
                           "persist.bluetooth.leaudio_offload.disabled", true);
     if (offload_enable_ == false) {
       LOG_INFO("offload disabled");

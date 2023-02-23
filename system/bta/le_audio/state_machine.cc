@@ -31,12 +31,12 @@
 #include "content_control_id_keeper.h"
 #include "devices.h"
 #include "gd/common/strings.h"
+#include "gd/os/system_properties.h"
 #include "hcimsgs.h"
 #include "le_audio_types.h"
 #include "osi/include/alarm.h"
 #include "osi/include/log.h"
 #include "osi/include/osi.h"
-#include "osi/include/properties.h"
 
 // clang-format off
 /* ASCS state machine 1.0
@@ -717,8 +717,8 @@ class LeAudioGroupStateMachineImpl : public LeAudioGroupStateMachine {
       ases_pair.source->data_path_state =
           AudioStreamDataPathState::CIS_ESTABLISHED;
 
-    if (osi_property_get_bool("persist.bluetooth.iso_link_quality_report",
-                              false)) {
+    if (bluetooth::os::GetSystemPropertyBool(
+            "persist.bluetooth.iso_link_quality_report", false)) {
       leAudioDevice->link_quality_timer =
           alarm_new_periodic("le_audio_cis_link_quality");
       leAudioDevice->link_quality_timer_data = event->cis_conn_hdl;

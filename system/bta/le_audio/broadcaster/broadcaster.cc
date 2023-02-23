@@ -27,9 +27,9 @@
 #include "device/include/controller.h"
 #include "embdrv/lc3/include/lc3.h"
 #include "gd/common/strings.h"
+#include "gd/os/system_properties.h"
 #include "internal_include/stack_config.h"
 #include "osi/include/log.h"
-#include "osi/include/properties.h"
 #include "stack/include/btm_api_types.h"
 #include "stack/include/btm_iso_api.h"
 
@@ -927,7 +927,8 @@ void LeAudioBroadcaster::Initialize(
   }
 
   if (!controller_get_interface()->supports_ble_isochronous_broadcaster() &&
-      !osi_property_get_bool("persist.bluetooth.fake_iso_support", false)) {
+      !bluetooth::os::GetSystemPropertyBool(
+          "persist.bluetooth.fake_iso_support", false)) {
     LOG_WARN("Isochronous Broadcast not supported by the controller!");
     return;
   }

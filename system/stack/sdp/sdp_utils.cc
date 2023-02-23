@@ -39,9 +39,9 @@
 #include "btif/include/stack_manager.h"
 #include "common/init_flags.h"
 #include "device/include/interop.h"
+#include "gd/os/system_properties.h"
 #include "osi/include/allocator.h"
 #include "osi/include/log.h"
-#include "osi/include/properties.h"
 #include "stack/include/avrc_api.h"
 #include "stack/include/avrc_defs.h"
 #include "stack/include/bt_hdr.h"
@@ -1463,7 +1463,8 @@ void sdpu_set_avrc_target_version(const tSDP_ATTRIBUTE* p_attr,
 
   // Dynamic AVRCP version. If our version high than remote device's version,
   // reply version same as its. Otherwise, reply default version.
-  if (!osi_property_get_bool(AVRC_DYNAMIC_AVRCP_ENABLE_PROPERTY, true)) {
+  if (!bluetooth::os::GetSystemPropertyBool(AVRC_DYNAMIC_AVRCP_ENABLE_PROPERTY,
+                                            true)) {
     LOG_INFO(
         "Dynamic AVRCP version feature is not enabled, skipping this method");
     return;
@@ -1549,7 +1550,8 @@ void sdpu_set_avrc_target_features(const tSDP_ATTRIBUTE* p_attr,
 
   // Dynamic AVRCP version. If our version high than remote device's version,
   // reply version same as its. Otherwise, reply default version.
-  if (!osi_property_get_bool(AVRC_DYNAMIC_AVRCP_ENABLE_PROPERTY, false)) {
+  if (!bluetooth::os::GetSystemPropertyBool(AVRC_DYNAMIC_AVRCP_ENABLE_PROPERTY,
+                                            false)) {
     LOG_INFO(
         "Dynamic AVRCP version feature is not enabled, skipping this method");
     return;

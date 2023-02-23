@@ -38,8 +38,8 @@
 #include "btif/include/btif_config.h"
 #include "common/init_flags.h"
 #include "device/include/interop.h"
+#include "gd/os/system_properties.h"
 #include "osi/include/allocator.h"
-#include "osi/include/properties.h"
 #include "stack/include/avrc_api.h"
 #include "stack/include/avrc_defs.h"
 #include "stack/include/bt_hdr.h"
@@ -136,8 +136,8 @@ bool sdp_dynamic_change_hfp_version(const tSDP_ATTRIBUTE* p_attr,
       interop_match_addr_or_name(INTEROP_HFP_1_7_ALLOWLIST, &remote_address,
                                  &btif_storage_get_remote_device_property);
   /* For PTS we should update AG's HFP version as 1.7 */
-  if (!(is_allowlisted_1_7) &&
-      !(osi_property_get_bool("vendor.bt.pts.certification", false))) {
+  if (!(is_allowlisted_1_7) && !(bluetooth::os::GetSystemPropertyBool(
+                                   "vendor.bt.pts.certification", false))) {
     return false;
   }
   p_attr->value_ptr[PROFILE_VERSION_POSITION] = HFP_PROFILE_MINOR_VERSION_7;

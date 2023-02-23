@@ -31,9 +31,9 @@
 #include "a2dp_aac_decoder.h"
 #include "a2dp_aac_encoder.h"
 #include "bt_utils.h"
+#include "gd/os/system_properties.h"
 #include "osi/include/log.h"
 #include "osi/include/osi.h"
-#include "osi/include/properties.h"
 #include "stack/include/bt_hdr.h"
 
 #define A2DP_AAC_DEFAULT_BITRATE 320000  // 320 kbps
@@ -719,10 +719,10 @@ void aac_source_caps_initialize() {
   if (aac_source_caps_configured) {
     return;
   }
-  a2dp_aac_source_caps =
-      osi_property_get_bool("persist.bluetooth.a2dp_aac.vbr_supported", false)
-          ? a2dp_aac_vbr_source_caps
-          : a2dp_aac_cbr_source_caps;
+  a2dp_aac_source_caps = bluetooth::os::GetSystemPropertyBool(
+                             "persist.bluetooth.a2dp_aac.vbr_supported", false)
+                             ? a2dp_aac_vbr_source_caps
+                             : a2dp_aac_cbr_source_caps;
   aac_source_caps_configured = true;
 }
 
