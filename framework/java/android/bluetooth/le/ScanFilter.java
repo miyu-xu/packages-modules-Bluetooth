@@ -22,9 +22,9 @@ import android.annotation.NonNull;
 import android.annotation.Nullable;
 import android.annotation.SystemApi;
 import android.bluetooth.BluetoothAdapter;
-import android.bluetooth.BluetoothAssignedNumbers;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothDevice.AddressType;
+import android.bluetooth.BluetoothManager;
 import android.bluetooth.BluetoothStatusCodes;
 import android.bluetooth.le.ScanRecord.AdvertisingDataType;
 import android.os.Parcel;
@@ -93,13 +93,9 @@ public final class ScanFilter implements Parcelable {
     @Nullable
     private final byte[] mAdvertisingDataMask;
 
-    private final int mOrgId;
-    private final int mTdsFlags;
-    private final int mTdsFlagsMask;
     @Nullable
-    private final byte[] mTransportData;
-    @Nullable
-    private final byte[] mTransportDataMask;
+    private final TransportBlockFilter mTransportBlockFilter;
+
     /** @hide */
     public static final ScanFilter EMPTY = new ScanFilter.Builder().build();
 
@@ -109,8 +105,7 @@ public final class ScanFilter implements Parcelable {
             int manufacturerId, byte[] manufacturerData, byte[] manufacturerDataMask,
             @AddressType int addressType, @Nullable byte[] irk, int advertisingDataType,
             @Nullable byte[] advertisingData, @Nullable byte[] advertisingDataMask,
-            int orgId, int tdsFlags, int tdsFlagsMask, @Nullable byte[] transportData,
-            @Nullable byte[] transportDataMask) {
+            @Nullable TransportBlockFilter transportBlockFilter) {
         mDeviceName = name;
         mServiceUuid = uuid;
         mServiceUuidMask = uuidMask;
@@ -128,11 +123,7 @@ public final class ScanFilter implements Parcelable {
         mAdvertisingDataType = advertisingDataType;
         mAdvertisingData = advertisingData;
         mAdvertisingDataMask = advertisingDataMask;
-        mOrgId = orgId;
-        mTdsFlags = tdsFlags;
-        mTdsFlagsMask = tdsFlagsMask;
-        mTransportData = transportData;
-        mTransportDataMask = transportDataMask;
+        mTransportBlockFilter = transportBlockFilter;
     }
 
     @Override
@@ -217,20 +208,9 @@ public final class ScanFilter implements Parcelable {
             }
         }
 
-        dest.writeInt(mOrgId);
-        if (mOrgId >= 0) {
-            dest.writeInt(mTdsFlags);
-            dest.writeInt(mTdsFlagsMask);
-            dest.writeInt(mTransportData == null ? 0 : 1);
-            if (mTransportData != null) {
-                dest.writeInt(mTransportData.length);
-                dest.writeByteArray(mTransportData);
-                dest.writeInt(mTransportDataMask == null ? 0 : 1);
-                if (mTransportDataMask != null) {
-                    dest.writeInt(mTransportDataMask.length);
-                    dest.writeByteArray(mTransportDataMask);
-                }
-            }
+        dest.writeInt(mTransportBlockFilter == null ? 0 : 1);
+        if (mTransportBlockFilter != null) {
+            dest.writeTypedObject(mTransportBlockFilter, 0);
         }
     }
 
@@ -341,25 +321,8 @@ public final class ScanFilter implements Parcelable {
                         advertisingDataMask);
             }
 
-            int orgId = in.readInt();
-            if (orgId >= 0) {
-                byte[] transportData = null;
-                byte[] transportDataMask = null;
-                int tdsFlags = in.readInt();
-                int tdsFlagsMask = in.readInt();
-                if (in.readInt() == 1) {
-                    int transportDataLength = in.readInt();
-                    transportData = new byte[transportDataLength];
-                    in.readByteArray(transportData);
-                    if (in.readInt() == 1) {
-                        int transportDataMaskLength = in.readInt();
-                        transportDataMask = new byte[transportDataMaskLength];
-                        in.readByteArray(transportDataMask);
-                    }
-                }
-
-                builder.setTransportDiscoveryData(
-                        orgId, tdsFlags, tdsFlagsMask, transportData, transportDataMask);
+            if (in.readInt() == 1) {
+                builder.setTransportBlockFilter(in.readTypedObject(TransportBlockFilter.CREATOR));
             }
 
             return builder.build();
@@ -458,55 +421,14 @@ public final class ScanFilter implements Parcelable {
     }
 
     /**
-     * Returns the organization id. -1 if the organization id is not set.
+     * Return filter information for a transport block in Transport Discovery Service advertisement
      *
+     * @return filter information for a transport block in Transport Discovery Service advertisement
      * @hide
      */
     @SystemApi
-    public int getOrgId() {
-        return mOrgId;
-    }
-
-    /**
-     * Returns the TDS flags. -1 if TDS flags is not set.
-     *
-     * @hide
-     */
-    @SystemApi
-    public int getTdsFlags() {
-        return mTdsFlags;
-    }
-
-    /**
-     * Returns the TDS flags mask. -1 if TDS flags mask is not set.
-     *
-     * @hide
-     */
-    @SystemApi
-    public int getTdsFlagsMask() {
-        return mTdsFlagsMask;
-    }
-
-    /**
-     * Returns the transport data Or {@code null} if transport data is not set.
-     *
-     * @hide
-     */
-    @SystemApi
-    @Nullable
-    public byte[] getTransportData() {
-        return mTransportData;
-    }
-
-    /**
-     * Returns the transport data mask Or{@code null} if transport data mask is not set.
-     *
-     * @hide
-     */
-    @SystemApi
-    @Nullable
-    public byte[] getTransportDataMask() {
-        return mTransportDataMask;
+    @Nullable TransportBlockFilter getTransportBlockFilter() {
+        return mTransportBlockFilter;
     }
 
     /**
@@ -603,41 +525,8 @@ public final class ScanFilter implements Parcelable {
         }
 
         // Transport Discovery data match
-        if (mOrgId >= 0) {
-            TransportDiscoveryData transportDiscoveryData = scanRecord.getTransportDiscoveryData();
-            boolean matchfound = false;
-
-            if ((transportDiscoveryData != null)) {
-                for (TransportBlock transportBlock : transportDiscoveryData.getTransportBlocks()) {
-                    int orgId = transportBlock.getOrgId();
-                    int tdsFlags =  transportBlock.getTdsFlags();
-                    int transportDataLength = transportBlock.getTransportDataLength();
-                    byte[] transportData = transportBlock.getTransportData();
-
-                    if ((mOrgId != orgId)
-                            || ((mTdsFlags & mTdsFlagsMask) != (tdsFlags & mTdsFlagsMask))) {
-                        continue;
-                    }
-                    if ((mOrgId != BluetoothAssignedNumbers.OrganizationId
-                            .WIFI_ALLIANCE_NEIGHBOR_AWARENESS_NETWORKING)
-                            && (mTransportData != null) && (mTransportDataMask != null)) {
-                        if (transportDataLength != 0) {
-                            if (!matchesPartialData(
-                                        mTransportData, mTransportDataMask, transportData)) {
-                                continue;
-                            }
-                        } else {
-                            continue;
-                        }
-                    }
-                    matchfound = true;
-                    break;
-                }
-            }
-
-            if (!matchfound) {
-                return false;
-            }
+        if (mTransportBlockFilter != null && !mTransportBlockFilter.matches(scanResult)) {
+            return false;
         }
 
         // All filters match.
@@ -703,7 +592,7 @@ public final class ScanFilter implements Parcelable {
     }
 
     // Check whether the data pattern matches the parsed data.
-    private boolean matchesPartialData(byte[] data, byte[] dataMask, byte[] parsedData) {
+    static boolean matchesPartialData(byte[] data, byte[] dataMask, byte[] parsedData) {
         if (parsedData == null || parsedData.length < data.length) {
             return false;
         }
@@ -737,10 +626,7 @@ public final class ScanFilter implements Parcelable {
                 + ", mAdvertisingDataType=" + mAdvertisingDataType + ", mAdvertisingData="
                 + Arrays.toString(mAdvertisingData) + ", mAdvertisingDataMask="
                 + Arrays.toString(mAdvertisingDataMask)
-                + ", mOrganizationId=" + mOrgId + ", mTdsFlags=" + mTdsFlags
-                + ", mTdsFlagsMask=" + mTdsFlagsMask
-                + ", mTransportData=" + Arrays.toString(mTransportData)
-                + ", mTransportDataMask=" + Arrays.toString(mTransportDataMask) + "]";
+                + ", mTransportBlockFilter=" + mTransportBlockFilter + "]";
     }
 
     @Override
@@ -756,9 +642,7 @@ public final class ScanFilter implements Parcelable {
                 mAdvertisingDataType,
                 Arrays.hashCode(mAdvertisingData),
                 Arrays.hashCode(mAdvertisingDataMask),
-                mOrgId, mTdsFlags, mTdsFlagsMask,
-                Arrays.hashCode(mTransportData),
-                Arrays.hashCode(mTransportDataMask));
+                mTransportBlockFilter);
     }
 
     @Override
@@ -786,11 +670,7 @@ public final class ScanFilter implements Parcelable {
                 && mAdvertisingDataType == other.mAdvertisingDataType
                 && Objects.deepEquals(mAdvertisingData, other.mAdvertisingData)
                 && Objects.deepEquals(mAdvertisingDataMask, other.mAdvertisingDataMask)
-                && mOrgId == other.mOrgId
-                && mTdsFlags == other.mTdsFlags
-                && mTdsFlagsMask == other.mTdsFlagsMask
-                && Objects.deepEquals(mTransportData, other.mTransportData)
-                && Objects.deepEquals(mTransportDataMask, other.mTransportDataMask);
+                && Objects.equals(mTransportBlockFilter, other.getTransportBlockFilter());
     }
 
     /**
@@ -836,11 +716,7 @@ public final class ScanFilter implements Parcelable {
         private byte[] mAdvertisingData;
         private byte[] mAdvertisingDataMask;
 
-        private int mOrgId = -1;
-        private int mTdsFlags = -1;
-        private int mTdsFlagsMask = -1;
-        private byte[] mTransportData;
-        private byte[] mTransportDataMask;
+        private TransportBlockFilter mTransportBlockFilter = null;
         /**
          * Set filter on device name.
          */
@@ -1148,90 +1024,33 @@ public final class ScanFilter implements Parcelable {
         }
 
         /**
-         * Set filter on transport discovery data.
-         * <p>
-         * The values of {@code orgId} are assigned by Bluetooth SIG. For more
-         * details refer to Transport Discovery Service Organization IDs.
-         * (https://www.bluetooth.com/specifications/assigned-numbers/)
+         * Set filter information for a transport block in Transport Discovery Service advertisement
+         *
          * Use {@link BluetoothAdapter#isOffloadedTransportDiscoveryDataScanSupported()} to check
          * whether transport discovery data filtering is supported on this device before calling
          * this method.
-         * @param tdsFlags can shall contain a 1 octet value that represents the role of
-         * the device and information about its state and supported features.
-         * @param tdsFlagsMask can be 0 or a mask with no restriction.
-         * @param transportData must be 8 Octets wifiNanHash or {@code null} for {@link
-         * BluetoothAssignedNumbers#OrganizationId#WIFI_ALLIANCE_NEIGHBOR_AWARENESS_NETWORKING}.
-         * {@code transportData} can be valid value OR {@code null} for other Organization Id.
-         * @param transportDataMask must be {@code null} for {@link
-         * BluetoothAssignedNumbers#OrganizationId#WIFI_ALLIANCE_NEIGHBOR_AWARENESS_NETWORKING}.
-         * {@code transportDataMask} must be {@code null}, if {@code transportData} is {@code null}
-         * for other Organization Id.
-         * @throws IllegalArgumentException If the {@code orgId} is invalid
-         * @throws.IllegalArgumentException if Transport Discovery Data Scan is not supported.
-         * @throws IllegalArgumentException, if {@code transportDataMask} is not {@code null}
-         * Or transportData(wifiNanHash) length is not 8 octets  for {@link
-         * BluetoothAssignedNumbers#OrganizationId#WIFI_ALLIANCE_NEIGHBOR_AWARENESS_NETWORKING}.
-         * @throws.IllegalArgumentException if {@code transportData} is {@code null},
-         * but {@code transportDataMask} is not {@code null} OR {@code transportData} length is
-         * not equal to {@code transportDataMask} length for other Organization Id.
          *
+         * @param transportBlockFilter filter data for a transport block in Transport Discovery
+         * Service advertisement
+         * @throws IllegalArgumentException if Transport Discovery Data filter is not supported.
+         * @return this builder
          * @hide
          */
         @SystemApi
         @NonNull
-        public Builder setTransportDiscoveryData(int orgId, int tdsFlags,
-                int tdsFlagsMask, @Nullable byte[] transportData,
-                @Nullable byte[] transportDataMask) {
-            BluetoothAdapter btAdapter = BluetoothAdapter.getDefaultAdapter();
+        public Builder setTransportBlockFilter(@NonNull TransportBlockFilter transportBlockFilter) {
+            BluetoothAdapter bluetoothAdapter = BluetoothManager.getAdapter();
 
-            if (btAdapter == null) {
+            if (bluetoothAdapter == null) {
                 throw new IllegalArgumentException("BluetoothAdapter is null");
             }
-
-            int isOffloadedTransportDiscoveryDataScanSupportedStatusCode =
-                    btAdapter.isOffloadedTransportDiscoveryDataScanSupported();
-
-            if (isOffloadedTransportDiscoveryDataScanSupportedStatusCode
+            if (bluetoothAdapter.isOffloadedTransportDiscoveryDataScanSupported()
                     != BluetoothStatusCodes.FEATURE_SUPPORTED) {
                 throw new IllegalArgumentException(
-                        "Offloaded Transport Discovery Data Scan is not supported");
+                        "Transport Discovery Data filter is not supported");
             }
 
-            if (orgId < 1) {
-                throw new IllegalArgumentException("invalid organization id");
-            }
-
-            if (orgId != BluetoothAssignedNumbers.OrganizationId
-                    .WIFI_ALLIANCE_NEIGHBOR_AWARENESS_NETWORKING) {
-                if ((transportData == null) && (transportDataMask != null)) {
-                    throw new IllegalArgumentException(
-                            "transportData is null & data mask is not null for non WIFI NAN orgId");
-                }
-
-                if ((transportData != null) && (transportDataMask != null)
-                        && (transportData.length != transportDataMask.length)) {
-                    throw new IllegalArgumentException(
-                            "transportData & data mask length is not equal for non Wifi NAN orgId");
-                }
-            }
-
-            if (orgId == BluetoothAssignedNumbers.OrganizationId
-                    .WIFI_ALLIANCE_NEIGHBOR_AWARENESS_NETWORKING) {
-                if (transportDataMask != null) {
-                    throw new IllegalArgumentException("WIFI NAN hash mask is not null");
-                }
-
-                if ((transportData != null) && (transportData.length != 8)) {
-                    throw new IllegalArgumentException(
-                            "WIFI NAN hash length is not 8 octets for Wifi NAN Org Id");
-                }
-            }
-
-            mOrgId = orgId;
-            mTdsFlags = tdsFlags;
-            mTdsFlagsMask = tdsFlagsMask;
-            mTransportData = transportData;
-            mTransportDataMask = transportDataMask;
+            mTransportBlockFilter = transportBlockFilter;
             return this;
         }
 
@@ -1301,8 +1120,7 @@ public final class ScanFilter implements Parcelable {
                     mServiceSolicitationUuid, mServiceSolicitationUuidMask, mServiceDataUuid,
                     mServiceData, mServiceDataMask, mManufacturerId, mManufacturerData,
                     mManufacturerDataMask, mAddressType, mIrk, mAdvertisingDataType,
-                    mAdvertisingData, mAdvertisingDataMask, mOrgId, mTdsFlags, mTdsFlagsMask,
-                    mTransportData, mTransportDataMask);
+                    mAdvertisingData, mAdvertisingDataMask, mTransportBlockFilter);
         }
     }
 }

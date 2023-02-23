@@ -80,7 +80,7 @@ public final class BluetoothManager {
      * @return the BLUETOOTH Adapter
      */
     @RequiresNoPermission
-    public BluetoothAdapter getAdapter() {
+    public static BluetoothAdapter getAdapter() {
         return mAdapter;
     }
 
