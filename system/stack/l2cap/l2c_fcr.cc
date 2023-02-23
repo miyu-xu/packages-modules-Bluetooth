@@ -1803,7 +1803,7 @@ uint8_t l2c_fcr_process_peer_cfg_req(tL2C_CCB* p_ccb, tL2CAP_CFG_INFO* p_cfg) {
   /* If Peer wants basic, we are done (accept it or disconnect) */
   if (p_cfg->fcr.mode == L2CAP_FCR_BASIC_MODE) {
     /* If we do not allow basic, disconnect */
-    if (p_ccb->p_rcb->ertm_info.preferred_mode != L2CAP_FCR_BASIC_MODE)
+    if (!(L2CAP_FCR_CHAN_OPT_ALL_MASK & L2CAP_FCR_CHAN_OPT_BASIC))
       fcr_ok = L2CAP_PEER_CFG_DISCONNECT;
   }
 
