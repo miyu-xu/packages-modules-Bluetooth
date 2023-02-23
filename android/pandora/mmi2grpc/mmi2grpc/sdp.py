@@ -16,10 +16,12 @@
 from mmi2grpc._helpers import assert_description
 from mmi2grpc._proxy import ProfileProxy
 
+import os
+import unittest
+import re
+import socket
 import sys
 import threading
-import os
-import socket
 
 
 class SDPProxy(ProfileProxy):
@@ -61,8 +63,8 @@ class SDPProxy(ProfileProxy):
 
         return "OK"
 
-    @assert_description
-    def TSC_SDP_mmi_verify_browsable_services(self, **kwargs):
+    # Do not assert description but extract the service and compare then against a pre validated list of services
+    def TSC_SDP_mmi_verify_browsable_services(self, description: str, **kwargs):
         """
         Are all browsable service classes listed below?
 
@@ -70,6 +72,11 @@ class SDPProxy(ProfileProxy):
         0x110E, 0x1112, 0x1203, 0x111F, 0x1203, 0x1132, 0x1116, 0x1115, 0x112F,
         0x1105
         """
+        validated_services = [
+            0x1800, 0x110A, 0x110C, 0x110E, 0x1112, 0x1203, 0x111F, 0x1203, 0x1132, 0x1116, 0x1115, 0x112F, 0x1105
+        ]
+        validated_services.sort()
+        validated_services = ', '.join(hex(e) for e in validated_services)
         """
         This is the decoded list of UUIDs:
             Service Classes and Profiles 0x1105 OBEXObjectPush
@@ -102,4 +109,22 @@ class SDPProxy(ProfileProxy):
         to BluetoothAdapter.getUuidsList and match the returned UUIDs to the
         list given by PTS.
         """
+
+        pts_services = re.findall("0x([0-9A-F]*)", description)
+
+        pts_services = [int(hex_str, 16) for hex_str in pts_services]
+        pts_services.sort()
+        pts_services = ', '.join(hex(e) for e in pts_services)
+
+        if validated_services != pts_services:
+            print(f'Expected service for TSC_SDP_mmi_verify_browsable_services:')
+            print(validated_services)
+
+            test = unittest.TestCase()
+            test.maxDiff = None
+            test.assertMultiLineEqual(
+                validated_services, pts_services,
+                f'services discoverd by pts does not match the pre-validated list of services for TSC_SDP_mmi_verify_browsable_services'
+            )
+
         return "OK"
