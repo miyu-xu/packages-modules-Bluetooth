@@ -51,6 +51,24 @@
       "parentUuid": "e6659fb4_81e36242",
       "revId": "3a4181b31a33784af7feefb986547af8f83c5d13",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3cae88a3_9e2bd13f",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 279,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2023-02-23T04:19:17Z",
+      "side": 1,
+      "message": "Opps sorry I was looking at patchset 5 an comment on a line of code relating to hearing aid. But btw now I realized that the change is not from not your cl but another cl by Sungsoo. Sorry for the confusion",
+      "parentUuid": "9d6b03ee_a9f520c3",
+      "revId": "3a4181b31a33784af7feefb986547af8f83c5d13",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
