@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4ddeabb6_966c4c6e",
+        "filename": "framework/java/android/bluetooth/le/TransportBlockFilter.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-02-23T06:20:39Z",
+      "side": 1,
+      "message": "This should be @SystemApi",
+      "revId": "6a207a7c56fdbb69df537cea07291801a10c6cd0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

@@ -397,6 +397,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c8d8d62d_5ff30f83",
+        "filename": "framework/java/android/bluetooth/le/TransportBlockFilter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-02-23T06:20:39Z",
+      "side": 1,
+      "message": "Ok sounds good",
+      "parentUuid": "0d034aa1_2b8ff427",
+      "revId": "774c3f3129a5cf1dfe5395e2f76284f8e37e331a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3f6ea58e_42efbd5a",
@@ -428,6 +446,24 @@
       "side": 1,
       "message": "Either way works, but that method doesn\u0027t use any class private variable, hence, why not just make it static to reduce the scope?",
       "parentUuid": "3f6ea58e_42efbd5a",
+      "revId": "774c3f3129a5cf1dfe5395e2f76284f8e37e331a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b1678684_bc2914fd",
+        "filename": "framework/java/android/bluetooth/le/TransportBlockFilter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-02-23T06:20:39Z",
+      "side": 1,
+      "message": "Sure that\u0027s fine",
+      "parentUuid": "ab6a3842_ad3e7168",
       "revId": "774c3f3129a5cf1dfe5395e2f76284f8e37e331a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
