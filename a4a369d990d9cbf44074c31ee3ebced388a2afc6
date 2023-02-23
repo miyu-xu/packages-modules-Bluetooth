@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0b61db0b_3f189491",
+        "filename": "system/bta/hearing_aid/hearing_aid.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 257,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-02-23T07:38:35Z",
+      "side": 1,
+      "message": "hearing_aid_min_ce_len ?",
+      "range": {
+        "startLine": 257,
+        "startChar": 25,
+        "endLine": 257,
+        "endChar": 43
+      },
+      "revId": "a4a369d990d9cbf44074c31ee3ebced388a2afc6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4eedc78a_4d4e0ca6",
+        "filename": "system/bta/hearing_aid/hearing_aid.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 259,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-02-23T07:38:35Z",
+      "side": 1,
+      "message": "hearing_aid_max_ce_len ?\n\nWith \"_\" it becomes easier to read, looks like other properties use it too, i.e. ``persist.device_config.connectivity.data_stall_consecutive_dns_timeout_threshold``",
+      "range": {
+        "startLine": 259,
+        "startChar": 25,
+        "endLine": 259,
+        "endChar": 43
+      },
+      "revId": "a4a369d990d9cbf44074c31ee3ebced388a2afc6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eed15276_a6f46651",
+        "filename": "system/bta/hearing_aid/hearing_aid.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 319,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-02-23T07:38:35Z",
+      "side": 1,
+      "message": "Should you be calling UpdateBleConnParams here ?",
+      "revId": "a4a369d990d9cbf44074c31ee3ebced388a2afc6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7365413d_a63e60d4",
+        "filename": "system/bta/hearing_aid/hearing_aid.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 325,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-02-23T07:38:35Z",
+      "side": 1,
+      "message": "This should cause log spam when you receive microphone data with HW offload disabled.",
+      "range": {
+        "startLine": 325,
+        "startChar": 8,
+        "endLine": 325,
+        "endChar": 51
+      },
+      "revId": "a4a369d990d9cbf44074c31ee3ebced388a2afc6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
