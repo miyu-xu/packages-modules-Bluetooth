@@ -35,6 +35,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2f16fef8_0d45d882",
+        "filename": "framework/java/android/bluetooth/le/ScanFilter.java",
+        "patchSetId": 25
+      },
+      "lineNbr": 1182,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-02-23T07:09:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5f7274d8_a77df006",
+      "revId": "15fdf76d20d5c67080972c49400bdfda761990e2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4be7b7ef_92dec85c",
@@ -58,6 +76,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3903a83e_d7494753",
+        "filename": "system/gd/hci/hci_packets.pdl",
+        "patchSetId": 25
+      },
+      "lineNbr": 5170,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-02-23T07:09:41Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "4be7b7ef_92dec85c",
+      "range": {
+        "startLine": 5170,
+        "startChar": 0,
+        "endLine": 5170,
+        "endChar": 38
+      },
+      "revId": "15fdf76d20d5c67080972c49400bdfda761990e2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "aeff1334_ba477d4c",
@@ -71,6 +113,30 @@
       "writtenOn": "2023-02-22T22:18:26Z",
       "side": 1,
       "message": "this should be LOG_INFO",
+      "range": {
+        "startLine": 1089,
+        "startChar": 4,
+        "endLine": 1089,
+        "endChar": 12
+      },
+      "revId": "15fdf76d20d5c67080972c49400bdfda761990e2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "685a91e5_f4af5e93",
+        "filename": "system/gd/hci/le_scanning_manager.cc",
+        "patchSetId": 25
+      },
+      "lineNbr": 1089,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-02-23T07:09:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "aeff1334_ba477d4c",
       "range": {
         "startLine": 1089,
         "startChar": 4,
