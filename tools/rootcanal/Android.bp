@@ -19,7 +19,7 @@ cc_defaults {
     tidy_checks: [
         "-*",
         "readability-*",
-	"-readability-function-size",
+        "-readability-function-size",
         "-readability-identifier-length",
         "-readability-implicit-bool-conversion",
         "-readability-magic-numbers",
@@ -114,7 +114,7 @@ cc_library_static {
         "BluetoothGeneratedPackets_h"
     ],
     whole_static_libs: [
-        "liblmp",
+        "librootcanal_rust",
     ],
     shared_libs: [
         "libbase",
@@ -160,7 +160,7 @@ cc_library_host_shared {
     ],
     whole_static_libs: [
         "libbase",
-        "liblmp",
+        "librootcanal_rust",
     ],
     header_libs: [
         "pybind11_headers",
