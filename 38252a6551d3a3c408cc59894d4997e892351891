@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2a1f3203_9902b322",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 29
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-02-23T07:12:30Z",
+      "side": 1,
+      "message": "current cts test are out-of-date.\nDo we want to delete the topic and fix them later ?",
+      "revId": "38252a6551d3a3c408cc59894d4997e892351891",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
