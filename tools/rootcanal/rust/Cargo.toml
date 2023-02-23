@@ -14,7 +14,7 @@
 #  limitations under the License.
 
 [package]
-name = "lmp"
+name = "rootcanal"
 version = "0.1.0"
 edition = "2018"
 build="build.rs"
