@@ -37,6 +37,41 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5395fbe7_20946db5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-02-23T22:32:15Z",
+      "side": 1,
+      "message": "It may not be as simple as this, since you would also need to implement the pts-bot interfaces in PandoraServer and mmi2grpc. So this is optional only I think as it is a nontrivial amount of work.",
+      "parentUuid": "4f05f9f8_3baf0e45",
+      "revId": "a67ef83da1a53cb50c84a633631fe0601e26c9a4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0ff511ce_3f7e8648",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-02-23T22:32:15Z",
+      "side": 1,
+      "message": "Can you explain, in these PTS tests, what mode we initially tried, and what the peer replied with? If we initially tried with FCR_ERTM mode, I agree with Myles that we shouldn\u0027t be trying if the peer rejects but is OK with the same mode",
+      "revId": "a67ef83da1a53cb50c84a633631fe0601e26c9a4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2a534ca9_befcdcbe",
         "filename": "system/stack/l2cap/l2c_fcr.cc",
         "patchSetId": 1
