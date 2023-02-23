@@ -16,6 +16,29 @@
       "message": "Please help review this, thanks!",
       "revId": "a67ef83da1a53cb50c84a633631fe0601e26c9a4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2a534ca9_befcdcbe",
+        "filename": "system/stack/l2cap/l2c_fcr.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1726,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-02-23T19:49:33Z",
+      "side": 1,
+      "message": "This totally changes what was happening here.\n\nIf we are renegotiating, that means that we already tried our fcr mode, and it was rejected.  We shouldn\u0027t be trying it again.\n\nMaybe I\u0027m misunderstanding the code here.",
+      "range": {
+        "startLine": 1726,
+        "startChar": 18,
+        "endLine": 1726,
+        "endChar": 27
+      },
+      "revId": "a67ef83da1a53cb50c84a633631fe0601e26c9a4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
