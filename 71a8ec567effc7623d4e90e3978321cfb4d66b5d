@@ -35,6 +35,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9c51482e_9bc7e1c0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-02-23T09:44:37Z",
+      "side": 1,
+      "message": "I verified this works with a problematic XM5 device I have.",
+      "parentUuid": "82a33ad6_c75c0f22",
+      "revId": "71a8ec567effc7623d4e90e3978321cfb4d66b5d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "086274ad_8ffe6523",
