@@ -42,6 +42,7 @@
 #include "embdrv/lc3/include/lc3.h"
 #include "gatt/bta_gattc_int.h"
 #include "gd/common/strings.h"
+#include "gd/os/system_properties.h"
 #include "internal_include/stack_config.h"
 #include "le_audio_set_configuration_provider.h"
 #include "le_audio_types.h"
@@ -49,7 +50,6 @@
 #include "metrics_collector.h"
 #include "osi/include/log.h"
 #include "osi/include/osi.h"
-#include "osi/include/properties.h"
 #include "stack/btm/btm_sec.h"
 #include "stack/include/btu.h"  // do_in_main_thread
 #include "state_machine.h"
@@ -756,7 +756,8 @@ class LeAudioClientImpl : public LeAudioClient {
      * Ideally, we should send all the bits we have, but not all headsets like
      * it.
      */
-    if (osi_property_get_bool(kAllowMultipleContextsInMetadata, true)) {
+    if (bluetooth::os::GetSystemPropertyBool(kAllowMultipleContextsInMetadata,
+                                             true)) {
       return metadata_context_type;
     }
 
@@ -4098,7 +4099,8 @@ class LeAudioClientImpl : public LeAudioClient {
                           LeAudioContextType::CONVERSATIONAL |
                           LeAudioContextType::VOICEASSISTANTS;
     if (metadata_context_types_.sink.test_any(bidir_contexts)) {
-      if (osi_property_get_bool(kAllowMultipleContextsInMetadata, true)) {
+      if (bluetooth::os::GetSystemPropertyBool(kAllowMultipleContextsInMetadata,
+                                               true)) {
         LOG_DEBUG("Aligning remote source metadata to add the sink context");
         metadata_context_types_.source =
             metadata_context_types_.source | metadata_context_types_.sink;
@@ -4129,7 +4131,8 @@ class LeAudioClientImpl : public LeAudioClient {
       if ((metadata_context_types_.sink.none() &&
            metadata_context_types_.source.any()) ||
           metadata_context_types_.source.test_any(bidir_contexts)) {
-        if (osi_property_get_bool(kAllowMultipleContextsInMetadata, true)) {
+        if (bluetooth::os::GetSystemPropertyBool(
+                kAllowMultipleContextsInMetadata, true)) {
           LOG_DEBUG("Aligning remote sink metadata to add the source context");
           metadata_context_types_.sink =
               metadata_context_types_.sink | metadata_context_types_.source;
@@ -4351,7 +4354,8 @@ class LeAudioClientImpl : public LeAudioClient {
                           LeAudioContextType::CONVERSATIONAL |
                           LeAudioContextType::VOICEASSISTANTS;
     if (metadata_context_types_.source.test_any(bidir_contexts)) {
-      if (osi_property_get_bool(kAllowMultipleContextsInMetadata, true)) {
+      if (bluetooth::os::GetSystemPropertyBool(kAllowMultipleContextsInMetadata,
+                                               true)) {
         LOG_DEBUG("Aligning remote sink metadata to add the source context");
         metadata_context_types_.sink =
             metadata_context_types_.sink | metadata_context_types_.source;
@@ -4719,8 +4723,8 @@ class LeAudioClientImpl : public LeAudioClient {
   }
 
   void NotifyUpperLayerGroupTurnedIdleDuringCall(int group_id) {
-    if (!osi_property_get_bool(kNotifyUpperLayerAboutGroupBeingInIdleDuringCall,
-                               false)) {
+    if (!bluetooth::os::GetSystemPropertyBool(
+            kNotifyUpperLayerAboutGroupBeingInIdleDuringCall, false)) {
       return;
     }
     /* If group is inactive, phone is in call and Group is not having CIS

@@ -60,19 +60,6 @@ struct osi_property_get {
 };
 extern struct osi_property_get osi_property_get;
 
-// Name: osi_property_get_bool
-// Params: const char* key, bool default_value
-// Return: bool
-struct osi_property_get_bool {
-  bool return_value{false};
-  std::function<bool(const char* key, bool default_value)> body{
-      [this](const char* key, bool default_value) { return return_value; }};
-  bool operator()(const char* key, bool default_value) {
-    return body(key, default_value);
-  };
-};
-extern struct osi_property_get_bool osi_property_get_bool;
-
 // Name: osi_property_get_int32
 // Params: const char* key, int32_t default_value
 // Return: int32_t
