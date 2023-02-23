@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9e520eec_fef99420",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1869,
+      "author": {
+        "id": 1985260
+      },
+      "writtenOn": "2023-02-23T08:05:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c2040606_a3b2a786",
+      "revId": "399169adedbaa65ea28169781b7d25735e824c9a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "da3b123d_0dd04c4d",
@@ -73,6 +91,30 @@
       "side": 1,
       "message": "Yes. I\u0027ve added the relative unit test for this.\n\n1. android/app/tests/unit/src/com/android/bluetooth/hfp/HeadsetServiceTest.java#1107\n2. android/app/tests/unit/src/com/android/bluetooth/hfpclient/HeadsetClientServiceTest.java#159\n3. android/app/tests/unit/src/com/android/bluetooth/hfpclient/HeadsetClientServiceTest.java#180",
       "parentUuid": "da3b123d_0dd04c4d",
+      "range": {
+        "startLine": 231,
+        "startChar": 36,
+        "endLine": 232,
+        "endChar": 76
+      },
+      "revId": "399169adedbaa65ea28169781b7d25735e824c9a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e5a72231_fe79abb9",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 1985260
+      },
+      "writtenOn": "2023-02-23T08:05:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "67fe8c60_f59db047",
       "range": {
         "startLine": 231,
         "startChar": 36,
