@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "55646556_d05b693e",
+        "filename": "android/app/tests/myinstrumentation/Android.bp",
+        "patchSetId": 11
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1986325
+      },
+      "writtenOn": "2023-02-23T08:33:08Z",
+      "side": 1,
+      "message": "I was tring to add the `required` here. hoping when the test was built, the bumble server binary will be built too. but actually nothing was built in `out/host/...`",
+      "revId": "9b943cbd2e969f70ad23ce1d2458099ec383d74f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "901b51b0_58ba7e9e",
         "filename": "android/app/tests/myinstrumentation/AndroidTest.xml",
         "patchSetId": 11
@@ -14,6 +31,24 @@
       "writtenOn": "2023-02-17T22:09:15Z",
       "side": 1,
       "message": "temporary work, we can go directly to \u0027external/pandora/avatar\u0027, build and run the server binary.\n\nHaven\u0027t found a way to build the \u0027bumble_pandora_server_bin\u0027 target and run the binary.",
+      "revId": "9b943cbd2e969f70ad23ce1d2458099ec383d74f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3ed8446d_c5b13a97",
+        "filename": "android/app/tests/myinstrumentation/AndroidTest.xml",
+        "patchSetId": 11
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1986325
+      },
+      "writtenOn": "2023-02-23T08:33:08Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "901b51b0_58ba7e9e",
       "revId": "9b943cbd2e969f70ad23ce1d2458099ec383d74f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
