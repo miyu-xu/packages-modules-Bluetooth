@@ -145,16 +145,15 @@ public class CompanionManager {
             for (BluetoothDevice device : mAdapter.getBondedDevices()) {
                 byte[] metadata = mAdapterService.getMetadata(device,
                         BluetoothDevice.METADATA_SOFTWARE_VERSION);
-                if (metadata == null) {
-                    continue;
-                }
-                String valueStr = new String(metadata);
-                if ((valueStr.equals(BluetoothDevice.COMPANION_TYPE_PRIMARY)
-                        || valueStr.equals(BluetoothDevice.COMPANION_TYPE_SECONDARY))) {
-                    // found the companion device, store and unregister all listeners
-                    Log.i(TAG, "Found companion device from the database!");
-                    setCompanionDevice(device, valueStr);
-                    break;
+                if (metadata != null) {
+                    String valueStr = new String(metadata);
+                    if ((valueStr.equals(BluetoothDevice.COMPANION_TYPE_PRIMARY)
+                            || valueStr.equals(BluetoothDevice.COMPANION_TYPE_SECONDARY))) {
+                        // found the companion device, store and unregister all listeners
+                        Log.i(TAG, "Found companion device from the database!");
+                        setCompanionDevice(device, valueStr);
+                        break;
+                    }
                 }
                 registerMetadataListener(device);
             }
