@@ -8,10 +8,10 @@ package {
 }
 
 rust_ffi {
-    name: "liblmp",
+    name: "librootcanal_rust",
     host_supported: true,
     vendor_available : true,
-    crate_name: "lmp",
+    crate_name: "rootcanal",
     srcs: [
         "src/lib.rs",
         ":LmpGeneratedPackets_rust",
@@ -36,7 +36,7 @@ genrule {
     tools: [
         "bluetooth_packetgen",
     ],
-    cmd: "$(location bluetooth_packetgen) --include=packages/modules/Bluetooth/tools/rootcanal/lmp  --out=$(genDir) $(in) --rust",
+    cmd: "$(location bluetooth_packetgen) --include=packages/modules/Bluetooth/tools/rootcanal/rust  --out=$(genDir) $(in) --rust",
     srcs: [
         "lmp_packets.pdl",
     ],
@@ -46,8 +46,8 @@ genrule {
 }
 
 rust_test_host {
-    name: "liblmp_tests",
-    crate_name: "lmp",
+    name: "librootcanal_rust_test",
+    crate_name: "rootcanal",
     srcs: [
         "src/lib.rs",
         ":LmpGeneratedPackets_rust",
