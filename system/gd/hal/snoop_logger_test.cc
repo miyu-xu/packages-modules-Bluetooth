@@ -418,6 +418,8 @@ TEST_F(SnoopLoggerModuleTest, snoop_log_persists) {
 
   test_registry->StopAll();
   ASSERT_TRUE(std::filesystem::exists(temp_snooz_log_));
+  ASSERT_TRUE(std::filesystem::remove(temp_snooz_log_));
+  ASSERT_FALSE(std::filesystem::exists(temp_snooz_log_));
 }
 
 TEST_F(SnoopLoggerModuleTest, delete_old_snooz_log_files) {
