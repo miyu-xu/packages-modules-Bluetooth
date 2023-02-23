@@ -5837,6 +5837,10 @@ public class AdapterService extends Service {
         return mAdapterProperties.getTotalNumOfTrackableAdvertisements();
     }
 
+    /**
+     * Return if offloaded TDS filter is supported.
+     * @return true if supported
+     */
     public int isOffloadedTransportDiscoveryDataScanSupported() {
         if (mAdapterProperties.isOffloadedTransportDiscoveryDataScanSupported()) {
             return BluetoothStatusCodes.FEATURE_SUPPORTED;

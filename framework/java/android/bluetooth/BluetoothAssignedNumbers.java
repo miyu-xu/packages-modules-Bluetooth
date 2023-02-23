@@ -1180,17 +1180,17 @@ public class BluetoothAssignedNumbers {
     @SystemApi
     public class OrganizationId {
         /*
-         * This is for Bluetooth SIG Organization Id .
+         * This is for Bluetooth SIG Organization ID .
          */
         public static final int BLUETOOTH_SIG = 0x01;
 
         /*
-         * This is for WiFi Alliance Neighbor Awareness Networking Organization Id.
+         * This is for Wi-Fi Alliance Neighbor Awareness Networking Organization ID.
          */
         public static final int WIFI_ALLIANCE_NEIGHBOR_AWARENESS_NETWORKING = 0x02;
 
         /**
-         * This is for WiFi Alliance Service Advertisement Organization Id.
+         * This is for WiFi Alliance Service Advertisement Organization ID.
          */
         public static final int WIFI_ALLIANCE_SERVICE_ADVERTISEMENT = 0x03;
 
