@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2d487b8b_5fa5d5f9",
+        "filename": "system/stack/btm/btm_iso_impl.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 884,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-02-23T07:37:56Z",
+      "side": 1,
+      "message": "Hearing Aids code is related on just CIG create/teardown, here you will also call the callback for each data packet.\nYou can receive data twice every 10ms, i.e. from microphones when HW offload is disabled.\nMaybe having separate callback for just start/stop would be better for Hearing Aids, i.e. AdCisStartStopCallback(...)",
+      "range": {
+        "startLine": 882,
+        "startChar": 1,
+        "endLine": 884,
+        "endChar": 5
+      },
+      "revId": "7037bc0bb3f933eef5bd704d6196482a6ec0f370",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b25b70cf_2ca4a5d2",
+        "filename": "system/stack/btm/btm_iso_impl.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 993,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-02-23T07:37:56Z",
+      "side": 1,
+      "message": "I think you should be interested in BIG events too, as they will cause similar high bandwidth usage. So maybe \"OnIsoTrafficActive\" callback would be more appropriate ?\nI think in future, other pieces of stack will also care about that.",
+      "range": {
+        "startLine": 993,
+        "startChar": 16,
+        "endLine": 993,
+        "endChar": 30
+      },
+      "revId": "7037bc0bb3f933eef5bd704d6196482a6ec0f370",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
