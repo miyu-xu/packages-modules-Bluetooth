@@ -77,13 +77,13 @@
 #include "device/include/device_iot_config.h"
 #include "device/include/interop.h"
 #include "gd/common/lru_cache.h"
+#include "gd/os/system_properties.h"
 #include "internal_include/stack_config.h"
 #include "main/shim/dumpsys.h"
 #include "main/shim/shim.h"
 #include "osi/include/allocator.h"
 #include "osi/include/log.h"
 #include "osi/include/osi.h"
-#include "osi/include/properties.h"
 #include "stack/btm/btm_dev.h"
 #include "stack/btm/btm_sec.h"
 #include "stack/include/bt_octets.h"
@@ -1523,7 +1523,7 @@ static void btif_dm_search_devices_evt(tBTA_DM_SEARCH_EVT event,
         ASSERTC(status == BT_STATUS_SUCCESS,
                 "failed to save remote addr type (inquiry)", status);
 
-        bool restrict_report = osi_property_get_bool(
+        bool restrict_report = bluetooth::os::GetSystemPropertyBool(
             "bluetooth.restrict_discovered_device.enabled", false);
         if (restrict_report &&
             p_search_data->inq_res.device_type == BT_DEVICE_TYPE_BLE &&
@@ -1980,8 +1980,8 @@ void BTIF_dm_enable() {
   }
 
   /* Enable or disable local privacy */
-  bool ble_privacy_enabled =
-      osi_property_get_bool(PROPERTY_BLE_PRIVACY_ENABLED, /*default=*/true);
+  bool ble_privacy_enabled = bluetooth::os::GetSystemPropertyBool(
+      PROPERTY_BLE_PRIVACY_ENABLED, /*default=*/true);
 
   LOG_INFO("%s BLE Privacy: %d", __func__, ble_privacy_enabled);
   BTA_DmBleConfigLocalPrivacy(ble_privacy_enabled);

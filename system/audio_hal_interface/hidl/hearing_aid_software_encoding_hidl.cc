@@ -20,8 +20,8 @@
 
 #include "audio_hearing_aid_hw/include/audio_hearing_aid_hw.h"
 #include "client_interface_hidl.h"
+#include "gd/os/system_properties.h"
 #include "osi/include/log.h"
-#include "osi/include/properties.h"
 
 namespace {
 
@@ -155,8 +155,8 @@ uint16_t remote_delay_ms = 0;
 
 bool is_hal_2_0_force_disabled() {
   if (!is_configured) {
-    btaudio_hearing_aid_disabled =
-        osi_property_get_bool(BLUETOOTH_AUDIO_HAL_PROP_DISABLED, false);
+    btaudio_hearing_aid_disabled = bluetooth::os::GetSystemPropertyBool(
+        BLUETOOTH_AUDIO_HAL_PROP_DISABLED, false);
     is_configured = true;
   }
   return btaudio_hearing_aid_disabled;

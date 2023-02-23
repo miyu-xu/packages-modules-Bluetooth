@@ -28,6 +28,7 @@
 // handling.
 #include "bta/include/bta_av_api.h"
 #include "device/include/interop.h"
+#include "gd/os/system_properties.h"
 #include "osi/include/allocator.h"
 #include "osi/include/properties.h"
 #include "stack/include/bt_hdr.h"
@@ -494,7 +495,8 @@ void ConnectionHandler::SdpCb(RawAddress bdaddr, SdpCallback cb,
         }
       }
 
-      if (osi_property_get_bool(AVRC_DYNAMIC_AVRCP_ENABLE_PROPERTY, true)) {
+      if (bluetooth::os::GetSystemPropertyBool(
+              AVRC_DYNAMIC_AVRCP_ENABLE_PROPERTY, true)) {
         avrc_->SaveControllerVersion(bdaddr, peer_avrcp_version);
       }
     }
