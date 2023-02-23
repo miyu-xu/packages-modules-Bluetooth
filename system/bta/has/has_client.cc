@@ -38,10 +38,10 @@
 #include "device/include/controller.h"
 #include "gap_api.h"
 #include "gatt_api.h"
+#include "gd/os/system_properties.h"
 #include "has_types.h"
 #include "osi/include/log.h"
 #include "osi/include/osi.h"
-#include "osi/include/properties.h"
 
 using base::Closure;
 using bluetooth::Uuid;
@@ -861,8 +861,8 @@ class HasClientImpl : public HasClient {
      * details are always up to date. However we have to be able to do the
      * READ_PRESET_BY_INDEX, to pass the test specification requirements.
      */
-    if (osi_property_get_bool("persist.bluetooth.has.always_use_preset_cache",
-                              true)) {
+    if (bluetooth::os::GetSystemPropertyBool(
+            "persist.bluetooth.has.always_use_preset_cache", true)) {
       auto* preset = device->GetPreset(preset_index);
       if (preset == nullptr) {
         LOG(ERROR) << __func__ << "Invalid preset request"
@@ -955,8 +955,8 @@ class HasClientImpl : public HasClient {
                                 device.active_preset_ccc_handle);
     }
 
-    if (osi_property_get_bool("persist.bluetooth.has.always_use_preset_cache",
-                              true) == false) {
+    if (bluetooth::os::GetSystemPropertyBool(
+            "persist.bluetooth.has.always_use_preset_cache", true) == false) {
       CpReadAllPresetsOperation(HasCtpOp(
           device.addr, PresetCtpOpcode::READ_PRESETS,
           le_audio::has::kStartPresetIndex, le_audio::has::kMaxNumOfPresets));

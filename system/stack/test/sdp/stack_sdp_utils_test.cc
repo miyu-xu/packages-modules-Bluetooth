@@ -23,6 +23,7 @@
 #include "btif/include/stack_manager.h"
 #include "common/init_flags.h"
 #include "device/include/interop.h"
+#include "gd/os/system_properties.h"
 #include "mock_btif_config.h"
 #include "profile/avrcp/avrcp_config.h"
 #include "stack/include/avrc_api.h"
@@ -30,7 +31,6 @@
 #include "stack/include/sdp_api.h"
 #include "stack/sdp/sdpint.h"
 #include "test/mock/mock_btif_config.h"
-#include "test/mock/mock_osi_properties.h"
 
 #define INVALID_LENGTH 5
 #define INVALID_UUID 0X1F
@@ -239,6 +239,8 @@ uint16_t get_avrc_target_feature(tSDP_ATTRIBUTE* p_attr) {
 class StackSdpUtilsTest : public ::testing::Test {
  protected:
   void SetUp() override {
+    bluetooth::os::SetSystemProperty(AVRC_DYNAMIC_AVRCP_ENABLE_PROPERTY,
+                                     "true");
     bluetooth::common::InitFlags::Load(hfp_test_flags_feature_disabled);
     bluetooth::common::InitFlags::Load(test_flags_feature_disabled);
     GetInterfaceToProfiles()->profileSpecific_HACK->AVRC_GetProfileVersion =
@@ -252,8 +254,6 @@ class StackSdpUtilsTest : public ::testing::Test {
         [this](const std::string& section, const std::string& key) {
           return btif_config_interface_.GetBinLength(section, key);
         };
-    test::mock::osi_properties::osi_property_get_bool.body =
-        [](const char* key, bool default_value) { return true; };
 
     localIopMock = std::make_unique<IopMock>();
     localAvrcpVersionMock = std::make_unique<AvrcpVersionMock>();
@@ -269,7 +269,6 @@ class StackSdpUtilsTest : public ::testing::Test {
         nullptr;
     test::mock::btif_config::btif_config_get_bin_length = {};
     test::mock::btif_config::btif_config_get_bin = {};
-    test::mock::osi_properties::osi_property_get_bool = {};
 
     localIopMock.reset();
     localAvrcpVersionMock.reset();
@@ -583,8 +582,6 @@ TEST_F(StackSdpUtilsTest, check_HFP_version_change_fail) {
   RawAddress bdaddr(RawAddress::kEmpty);
   set_hfp_attr(SDP_PROFILE_DESC_LENGTH, ATTR_ID_BT_PROFILE_DESC_LIST,
                UUID_HF_LSB);
-  test::mock::osi_properties::osi_property_get_bool.body =
-      [](const char* key, bool default_value) { return false; };
   EXPECT_CALL(*localIopMock,
               InteropMatchAddrOrName(INTEROP_HFP_1_7_ALLOWLIST, &bdaddr,
                                      &btif_storage_get_remote_device_property))

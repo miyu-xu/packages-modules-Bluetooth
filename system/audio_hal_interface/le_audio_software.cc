@@ -24,10 +24,10 @@
 
 #include "aidl/le_audio_software_aidl.h"
 #include "bta/le_audio/codec_manager.h"
+#include "gd/os/system_properties.h"
 #include "hal_version_manager.h"
 #include "hidl/le_audio_software_hidl.h"
 #include "osi/include/log.h"
-#include "osi/include/properties.h"
 
 namespace bluetooth {
 namespace audio {
@@ -85,7 +85,8 @@ bool is_aidl_offload_encoding_session(bool is_broadcaster) {
 
 LeAudioClientInterface* LeAudioClientInterface::interface = nullptr;
 LeAudioClientInterface* LeAudioClientInterface::Get() {
-  if (osi_property_get_bool(BLUETOOTH_AUDIO_HAL_PROP_DISABLED, false)) {
+  if (bluetooth::os::GetSystemPropertyBool(BLUETOOTH_AUDIO_HAL_PROP_DISABLED,
+                                           false)) {
     LOG(ERROR) << __func__ << ": BluetoothAudio HAL is disabled";
     return nullptr;
   }

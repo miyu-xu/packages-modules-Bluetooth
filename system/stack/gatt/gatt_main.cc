@@ -32,6 +32,7 @@
 #include "connection_manager.h"
 #include "device/include/interop.h"
 #include "gd/common/init_flags.h"
+#include "gd/os/system_properties.h"
 #include "internal_include/stack_config.h"
 #include "l2c_api.h"
 #include "main/shim/acl_api.h"
@@ -130,8 +131,8 @@ void gatt_init(void) {
 
   L2CA_RegisterFixedChannel(L2CAP_ATT_CID, &fixed_reg);
 
-  gatt_cb.over_br_enabled =
-      osi_property_get_bool("bluetooth.gatt.over_bredr.enabled", true);
+  gatt_cb.over_br_enabled = bluetooth::os::GetSystemPropertyBool(
+      "bluetooth.gatt.over_bredr.enabled", true);
   /* Now, register with L2CAP for ATT PSM over BR/EDR */
   if (gatt_cb.over_br_enabled &&
       !L2CA_Register2(BT_PSM_ATT, dyn_info, false /* enable_snoop */, nullptr,

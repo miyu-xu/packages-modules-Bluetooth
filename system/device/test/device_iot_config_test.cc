@@ -26,6 +26,7 @@
 #include "btif/include/btif_common.h"
 #include "common/init_flags.h"
 #include "device/src/device_iot_config_int.h"
+#include "gd/os/system_properties.h"
 #include "test/mock/mock_osi_alarm.h"
 #include "test/mock/mock_osi_allocator.h"
 #include "test/mock/mock_osi_config.h"
@@ -78,8 +79,7 @@ class DeviceIotConfigModuleTest : public testing::Test {
       return &placeholder_alarm;
     };
 
-    test::mock::osi_properties::osi_property_get_bool.body =
-        [&](const char* key, bool default_value) -> int { return false; };
+    bluetooth::os::SetSystemProperty(PROPERTY_FACTORY_RESET, "false");
 
     test::mock::osi_alarm::alarm_set.body =
         [&](alarm_t* alarm, uint64_t interval_ms, alarm_callback_t cb,
@@ -144,14 +144,8 @@ class DeviceIotConfigModuleTest : public testing::Test {
 
 TEST_F(DeviceIotConfigModuleTest,
        test_device_iot_config_module_init_is_factory_reset) {
-  bool is_factory_reset = false;
   config_t* config_new_return_value = NULL;
   config_t* config_new_empty_return_value = NULL;
-
-  test::mock::osi_properties::osi_property_get_bool.body =
-      [&](const char* key, bool default_value) -> int {
-    return is_factory_reset;
-  };
 
   test::mock::osi_config::config_new.body = [&](const char* filename) {
     return std::unique_ptr<config_t>(config_new_return_value);
@@ -164,7 +158,7 @@ TEST_F(DeviceIotConfigModuleTest,
   {
     reset_mock_function_count_map();
 
-    is_factory_reset = true;
+    bluetooth::os::SetSystemProperty(PROPERTY_FACTORY_RESET, "true");
     config_new_return_value = NULL;
     config_new_empty_return_value = NULL;
 
@@ -819,9 +813,6 @@ class DeviceIotConfigTest : public testing::Test {
     test::mock::osi_alarm::alarm_new.body = [&](const char* name) -> alarm_t* {
       return &placeholder_alarm;
     };
-
-    test::mock::osi_properties::osi_property_get_bool.body =
-        [&](const char* key, bool default_value) -> int { return false; };
 
     test::mock::osi_alarm::alarm_set.body =
         [&](alarm_t* alarm, uint64_t interval_ms, alarm_callback_t cb,
@@ -3248,17 +3239,13 @@ TEST_F(DeviceIotConfigTest, test_device_debug_iot_config_dump) {
 }
 
 TEST_F(DeviceIotConfigTest, test_device_iot_config_is_factory_reset) {
-  bool return_value;
-  test::mock::osi_properties::osi_property_get_bool.body =
-      [&](const char* key, bool default_value) -> bool { return return_value; };
-
   {
-    return_value = false;
+    bluetooth::os::SetSystemProperty(PROPERTY_FACTORY_RESET, "false");
     EXPECT_FALSE(device_iot_config_is_factory_reset());
   }
 
   {
-    return_value = true;
+    bluetooth::os::SetSystemProperty(PROPERTY_FACTORY_RESET, "true");
     EXPECT_TRUE(device_iot_config_is_factory_reset());
   }
 }

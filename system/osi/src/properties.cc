@@ -64,15 +64,6 @@ int32_t osi_property_get_int32(const char* key, int32_t default_value) {
   }
 }
 
-bool osi_property_get_bool(const char* key, bool default_value) {
-  std::optional<std::string> result = bluetooth::os::GetSystemProperty(key);
-  if (result) {
-    return *result == std::string("true");
-  } else {
-    return default_value;
-  }
-}
-
 std::vector<uint32_t> osi_property_get_uintlist(
     const char* key, const std::vector<uint32_t> default_value) {
   std::optional<std::string> result = bluetooth::os::GetSystemProperty(key);

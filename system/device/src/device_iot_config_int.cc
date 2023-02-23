@@ -36,13 +36,13 @@
 #include "btif/include/btif_util.h"
 #include "common/init_flags.h"
 #include "device/include/device_iot_config.h"
+#include "gd/os/system_properties.h"
 #include "osi/include/alarm.h"
 #include "osi/include/allocator.h"
 #include "osi/include/compat.h"
 #include "osi/include/config.h"
 #include "osi/include/log.h"
 #include "osi/include/osi.h"
-#include "osi/include/properties.h"
 
 extern enum ConfigSource device_iot_config_source;
 
@@ -323,7 +323,7 @@ void device_iot_config_set_modified_time() {
 }
 
 bool device_iot_config_is_factory_reset(void) {
-  return osi_property_get_bool(PROPERTY_FACTORY_RESET, false);
+  return bluetooth::os::GetSystemPropertyBool(PROPERTY_FACTORY_RESET, false);
 }
 
 void device_iot_config_delete_files(void) {

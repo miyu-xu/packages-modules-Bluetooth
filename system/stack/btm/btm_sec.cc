@@ -37,6 +37,7 @@
 #include "common/time_util.h"
 #include "device/include/controller.h"
 #include "device/include/device_iot_config.h"
+#include "gd/os/system_properties.h"
 #include "l2c_api.h"
 #include "main/shim/btm_api.h"
 #include "main/shim/dumpsys.h"
@@ -159,8 +160,9 @@ static void NotifyBondingChange(tBTM_SEC_DEV_REC& p_dev_rec,
 static bool concurrentPeerAuthIsEnabled() {
   // Was previously named BTM_DISABLE_CONCURRENT_PEER_AUTH.
   // Renamed to ENABLED for homogeneity with system properties
-  static const bool sCONCURRENT_PEER_AUTH_IS_ENABLED = osi_property_get_bool(
-      "bluetooth.btm.sec.concurrent_peer_auth.enabled", true);
+  static const bool sCONCURRENT_PEER_AUTH_IS_ENABLED =
+      bluetooth::os::GetSystemPropertyBool(
+          "bluetooth.btm.sec.concurrent_peer_auth.enabled", true);
   return sCONCURRENT_PEER_AUTH_IS_ENABLED;
 }
 

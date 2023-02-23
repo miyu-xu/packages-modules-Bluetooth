@@ -34,10 +34,10 @@
 #include "device/include/device_iot_config.h"
 #include "embdrv/sbc/decoder/include/oi_codec_sbc.h"
 #include "embdrv/sbc/decoder/include/oi_status.h"
+#include "gd/os/system_properties.h"
 #include "osi/include/allocator.h"
 #include "osi/include/log.h"
 #include "osi/include/osi.h"
-#include "osi/include/properties.h"
 #include "stack/btm/btm_sco_hfp_hal.h"
 #include "stack/btm/btm_sec.h"
 #include "stack/btm/security_device_record.h"
@@ -160,8 +160,9 @@ static void btm_esco_conn_rsp(uint16_t sco_inx, uint8_t hci_status,
     /* Use Enhanced Synchronous commands if supported */
     if (controller_get_interface()
             ->supports_enhanced_setup_synchronous_connection() &&
-        !osi_property_get_bool(kPropertyDisableEnhancedConnection,
-                               kDefaultDisableEnhancedConnection)) {
+        !bluetooth::os::GetSystemPropertyBool(
+            kPropertyDisableEnhancedConnection,
+            kDefaultDisableEnhancedConnection)) {
       BTM_TRACE_DEBUG(
           "%s: txbw 0x%x, rxbw 0x%x, lat 0x%x, retrans 0x%02x, "
           "pkt 0x%04x, path %u",
@@ -498,8 +499,9 @@ static tBTM_STATUS btm_send_connect_request(uint16_t acl_handle,
     /* Use Enhanced Synchronous commands if supported */
     if (controller_get_interface()
             ->supports_enhanced_setup_synchronous_connection() &&
-        !osi_property_get_bool(kPropertyDisableEnhancedConnection,
-                               kDefaultDisableEnhancedConnection)) {
+        !bluetooth::os::GetSystemPropertyBool(
+            kPropertyDisableEnhancedConnection,
+            kDefaultDisableEnhancedConnection)) {
       LOG_INFO("Sending enhanced SCO connect request over handle:0x%04x",
                acl_handle);
       LOG(INFO) << __func__ << std::hex << ": enhanced parameter list"
@@ -1382,8 +1384,9 @@ static tBTM_STATUS BTM_ChangeEScoLinkParms(uint16_t sco_inx,
     /* Use Enhanced Synchronous commands if supported */
     if (controller_get_interface()
             ->supports_enhanced_setup_synchronous_connection() &&
-        !osi_property_get_bool(kPropertyDisableEnhancedConnection,
-                               kDefaultDisableEnhancedConnection)) {
+        !bluetooth::os::GetSystemPropertyBool(
+            kPropertyDisableEnhancedConnection,
+            kDefaultDisableEnhancedConnection)) {
       btsnd_hcic_enhanced_set_up_synchronous_connection(p_sco->hci_handle,
                                                         p_setup);
       p_setup->packet_types = saved_packet_types;

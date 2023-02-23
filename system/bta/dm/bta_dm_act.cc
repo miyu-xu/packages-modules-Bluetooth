@@ -43,6 +43,7 @@
 #include "device/include/controller.h"
 #include "device/include/interop.h"
 #include "gd/common/init_flags.h"
+#include "gd/os/system_properties.h"
 #include "main/shim/acl_api.h"
 #include "main/shim/btm_api.h"
 #include "main/shim/dumpsys.h"
@@ -378,8 +379,8 @@ void BTA_dm_on_hw_on() {
    * graceful shutdown.
    */
   bta_dm_search_cb.search_timer = alarm_new("bta_dm_search.search_timer");
-  bool delay_close_gatt =
-      osi_property_get_bool("bluetooth.gatt.delay_close.enabled", true);
+  bool delay_close_gatt = bluetooth::os::GetSystemPropertyBool(
+      "bluetooth.gatt.delay_close.enabled", true);
   bta_dm_search_cb.gatt_close_timer =
       delay_close_gatt ? alarm_new("bta_dm_search.gatt_close_timer") : nullptr;
   bta_dm_search_cb.pending_discovery_queue = fixed_queue_new(SIZE_MAX);

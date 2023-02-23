@@ -97,6 +97,7 @@
 #include "osi/include/allocator.h"
 #include "osi/include/log.h"
 #include "osi/include/osi.h"
+#include "osi/include/properties.h"
 #include "osi/include/wakelock.h"
 #include "profile_log_levels.h"
 #include "stack/btm/btm_sco_hfp_hal.h"

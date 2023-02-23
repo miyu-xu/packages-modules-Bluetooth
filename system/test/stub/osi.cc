@@ -604,13 +604,6 @@ size_t ringbuffer_size(const ringbuffer_t* rb) {
 }
 void ringbuffer_free(ringbuffer_t* rb) { mock_function_count_map[__func__]++; }
 
-bool osi_property_get_bool(const char* key, bool default_value) {
-  mock_function_count_map[__func__]++;
-  if (fake_osi_bool_props_map.count(key))
-    return fake_osi_bool_props_map.at(key);
-  return default_value;
-}
-
 void osi_property_set_bool(const char* key, bool value) {
   fake_osi_bool_props_map.insert_or_assign(key, value);
 }

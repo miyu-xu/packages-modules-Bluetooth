@@ -41,8 +41,8 @@
 #include "common/init_flags.h"
 #include "device/include/interop.h"
 #include "device/include/interop_config.h"
+#include "gd/os/system_properties.h"
 #include "osi/include/allocator.h"
-#include "osi/include/properties.h"
 #include "stack/include/avrc_api.h"
 #include "stack/include/avrc_defs.h"
 #include "stack/include/bt_hdr.h"
@@ -158,8 +158,8 @@ bool sdp_dynamic_change_hfp_version(const tSDP_ATTRIBUTE* p_attr,
       interop_match_addr_or_name(INTEROP_HFP_1_7_ALLOWLIST, &remote_address,
                                  &btif_storage_get_remote_device_property);
   /* For PTS we should update AG's HFP version as 1.7 */
-  if (!(is_allowlisted_1_7) &&
-      !(osi_property_get_bool("vendor.bt.pts.certification", false))) {
+  if (!(is_allowlisted_1_7) && !(bluetooth::os::GetSystemPropertyBool(
+                                   "vendor.bt.pts.certification", false))) {
     return false;
   }
   p_attr->value_ptr[PROFILE_VERSION_POSITION] = HFP_PROFILE_MINOR_VERSION_7;
@@ -1093,7 +1093,8 @@ static uint16_t sdp_pbap_pse_dynamic_attributes_len_update(
       is_device_in_allowlist_for_pbap(p_ccb->device_address, false);
   bool is_pbap_102_allowlisted =
       is_device_in_allowlist_for_pbap(p_ccb->device_address, true);
-  bool running_pts = osi_property_get_bool(SDP_ENABLE_PTS_PBAP, false);
+  bool running_pts =
+      bluetooth::os::GetSystemPropertyBool(SDP_ENABLE_PTS_PBAP, false);
 
   SDP_TRACE_DEBUG(
       "remote BD Addr : %s is_pbap_102_supported = %d "
@@ -1192,7 +1193,8 @@ static const tSDP_RECORD* sdp_upgrade_pse_record(const tSDP_RECORD* p_rec,
       is_device_in_allowlist_for_pbap(remote_address, false);
   bool is_pbap_102_allowlisted =
       is_device_in_allowlist_for_pbap(remote_address, true);
-  bool running_pts = osi_property_get_bool(SDP_ENABLE_PTS_PBAP, false);
+  bool running_pts =
+      bluetooth::os::GetSystemPropertyBool(SDP_ENABLE_PTS_PBAP, false);
 
   SDP_TRACE_DEBUG(
       "%s remote BD Addr : %s is_pbap_102_supported : %d "
