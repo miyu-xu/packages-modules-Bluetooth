@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4aa90c43_7769cb76",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-02-23T23:14:40Z",
+      "side": 1,
+      "message": "Please fix the \"slave\" terminology - the new term is \"peripheral\". Also, you will need to update the interop config after rebasing, since it has changed to a config file, rather than a .h file.\n\nAside from that LGTM",
+      "revId": "088c4f0475869185ff3e6abfc20f980fa378617e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
