@@ -37,7 +37,6 @@ namespace osi_properties {
 
 // Function state capture and return values, if needed
 struct osi_property_get osi_property_get;
-struct osi_property_get_bool osi_property_get_bool;
 struct osi_property_get_int32 osi_property_get_int32;
 struct osi_property_set osi_property_set;
 
@@ -50,10 +49,6 @@ int osi_property_get(const char* key, char* value, const char* default_value) {
   inc_func_call_count(__func__);
   return test::mock::osi_properties::osi_property_get(key, value,
                                                       default_value);
-}
-bool osi_property_get_bool(const char* key, bool default_value) {
-  inc_func_call_count(__func__);
-  return test::mock::osi_properties::osi_property_get_bool(key, default_value);
 }
 int32_t osi_property_get_int32(const char* key, int32_t default_value) {
   inc_func_call_count(__func__);

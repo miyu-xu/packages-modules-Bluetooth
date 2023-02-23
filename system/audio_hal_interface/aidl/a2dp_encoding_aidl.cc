@@ -21,6 +21,7 @@
 #include "audio_aidl_interfaces.h"
 #include "btif/include/btif_common.h"
 #include "codec_status_aidl.h"
+#include "gd/os/system_properties.h"
 #include "transport_instance.h"
 
 namespace bluetooth {
@@ -330,8 +331,8 @@ bool a2dp_get_selected_hal_pcm_config(PcmConfiguration* pcm_config) {
 // Checking if new bluetooth_audio is supported
 bool is_hal_force_disabled() {
   if (!is_configured) {
-    btaudio_a2dp_disabled =
-        osi_property_get_bool(BLUETOOTH_AUDIO_HAL_PROP_DISABLED, false);
+    btaudio_a2dp_disabled = bluetooth::os::GetSystemPropertyBool(
+        BLUETOOTH_AUDIO_HAL_PROP_DISABLED, false);
     is_configured = true;
   }
   return btaudio_a2dp_disabled;

@@ -20,8 +20,8 @@
 #include <memory>
 #include <mutex>
 
+#include "gd/os/system_properties.h"
 #include "hardware/avrcp/avrcp.h"
-#include "osi/include/properties.h"
 #include "profile/avrcp/connection_handler.h"
 #include "raw_address.h"
 
@@ -111,5 +111,6 @@ class AvrcpService : public MediaCallbacks {
 }  // namespace bluetooth
 
 inline bool is_new_avrcp_enabled() {
-  return osi_property_get_bool("bluetooth.profile.avrcp.target.enabled", false);
+  return bluetooth::os::GetSystemPropertyBool(
+      "bluetooth.profile.avrcp.target.enabled", false);
 }

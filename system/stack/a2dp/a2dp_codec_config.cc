@@ -38,8 +38,8 @@
 
 #include "bta/av/bta_av_int.h"
 #include "device/include/device_iot_config.h"
+#include "gd/os/system_properties.h"
 #include "osi/include/log.h"
-#include "osi/include/properties.h"
 #include "stack/include/bt_hdr.h"
 
 /* The Media Type offset within the codec info byte array */
@@ -598,8 +598,8 @@ bool A2dpCodecs::init() {
   LOG_INFO("%s", __func__);
   std::lock_guard<std::recursive_mutex> lock(codec_mutex_);
 
-  bool opus_enabled =
-      osi_property_get_bool("persist.bluetooth.opus.enabled", false);
+  bool opus_enabled = bluetooth::os::GetSystemPropertyBool(
+      "persist.bluetooth.opus.enabled", false);
 
   for (int i = BTAV_A2DP_CODEC_INDEX_MIN; i < BTAV_A2DP_CODEC_INDEX_MAX; i++) {
     btav_a2dp_codec_index_t codec_index =
