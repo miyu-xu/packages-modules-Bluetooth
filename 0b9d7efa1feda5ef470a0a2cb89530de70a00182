@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "95f69e4f_143ea9da",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-02-23T17:43:30Z",
+      "side": 1,
+      "message": "I think we should care about the order, ordering of SDP records should be something stable unless we modify it ourselves. The test failing gives you a heads up that you are changing the order, to aknowledge for it we should update the test (or later the test configuration).\n\nFYI I\u0027m currently refactoring this test to make it work with git_master as the SDP records are a bit different on non aosp targets.",
+      "revId": "0b9d7efa1feda5ef470a0a2cb89530de70a00182",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
