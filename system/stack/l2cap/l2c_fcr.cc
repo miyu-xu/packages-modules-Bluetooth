@@ -1723,20 +1723,19 @@ bool l2c_fcr_renegotiate_chan(tL2C_CCB* p_ccb, tL2CAP_CFG_INFO* p_cfg) {
 
       can_renegotiate = false;
 
-      /* Try another supported mode if available based on our last attempted
-       * channel */
-      switch (p_ccb->our_cfg.fcr.mode) {
+      /* Try peer requested mode if available */
+      switch (peer_mode) {
         case L2CAP_FCR_ERTM_MODE:
-          /* We can try basic for any other peer mode if we support it */
-          if (p_ccb->p_rcb->ertm_info.preferred_mode & L2CAP_FCR_BASIC_MODE) {
-            L2CAP_TRACE_DEBUG("%s(Trying Basic)", __func__);
-            can_renegotiate = true;
-            p_ccb->our_cfg.fcr.mode = L2CAP_FCR_BASIC_MODE;
-          }
+          L2CAP_TRACE_DEBUG("%s(Trying ERTM)", __func__);
+          can_renegotiate = true;
+          /* Use peers config */
+          p_ccb->our_cfg.fcr = p_cfg->fcr;
+          p_ccb->our_cfg.fcr.mode = L2CAP_FCR_ERTM_MODE;
           break;
-
-        default:
-          /* All other scenarios cannot be renegotiated */
+        case L2CAP_FCR_BASIC_MODE:
+          L2CAP_TRACE_DEBUG("%s(Trying Basic)", __func__);
+          can_renegotiate = true;
+          p_ccb->our_cfg.fcr.mode = L2CAP_FCR_BASIC_MODE;
           break;
       }
 
