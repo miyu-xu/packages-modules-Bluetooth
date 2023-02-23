@@ -20,6 +20,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4f05f9f8_3baf0e45",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-02-23T22:23:11Z",
+      "side": 1,
+      "message": "Can you update `packages/modules/Bluetooth/android/pandora/server/configs/pts_bot_tests_config.json` to move the \n```\n \"L2CAP/CMC/BV-14-C\",\n \"L2CAP/CMC/BV-15-C\",\n```\noutside of `skip` and put them in `pass`\nIt will run the pts test in pre-submit",
+      "revId": "a67ef83da1a53cb50c84a633631fe0601e26c9a4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2a534ca9_befcdcbe",
         "filename": "system/stack/l2cap/l2c_fcr.cc",
         "patchSetId": 1
