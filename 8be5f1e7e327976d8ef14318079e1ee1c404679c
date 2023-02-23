@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "09fa404a_1672f7cd",
+        "filename": "system/gd/rust/linux/client/src/dbus_iface.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2023-02-23T20:27:30Z",
+      "side": 1,
+      "message": "`SupportedFormatsList` is really just an array so we actually can\u0027t implement `TryFrom` on it. However, there\u0027s really no logic here so I just tried using `impl_dbus_arg_from_into!` and it works so it helped anyway.",
+      "parentUuid": "846d3128_0053eb7a",
+      "range": {
+        "startLine": 164,
+        "startChar": 0,
+        "endLine": 179,
+        "endChar": 1
+      },
+      "revId": "8be5f1e7e327976d8ef14318079e1ee1c404679c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b0cb4a34_6e228134",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-02-21T23:05:22Z",
       "side": 1,
       "message": "nit: shorten this into:\n```\nlet sdp_type \u003d data.get(\"type\").ok_or(Box::new(DBusArgError::new(String::from(\"...\"))))?;\n```",
+      "range": {
+        "startLine": 289,
+        "startChar": 0,
+        "endLine": 296,
+        "endChar": 10
+      },
+      "revId": "8be5f1e7e327976d8ef14318079e1ee1c404679c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "91f37639_69e41988",
+        "filename": "system/gd/rust/linux/service/src/iface_bluetooth.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 296,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2023-02-23T20:27:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b0cb4a34_6e228134",
       "range": {
         "startLine": 289,
         "startChar": 0,
@@ -64,6 +112,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "284f7a8f_cca7a7d2",
+        "filename": "system/gd/rust/linux/service/src/iface_bluetooth.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 299,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2023-02-23T20:27:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "94dd28bf_70c91ada",
+      "revId": "8be5f1e7e327976d8ef14318079e1ee1c404679c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7acd0ac8_8b1d47f3",
@@ -77,6 +143,30 @@
       "writtenOn": "2023-02-21T23:05:22Z",
       "side": 1,
       "message": "nit: a bit safer to handle edge case:\n```\nsdp_type.as_static_inner(0).ok_or(Box::new(DBusArgError::new(String::from(\"...\"))))?\n```",
+      "range": {
+        "startLine": 308,
+        "startChar": 12,
+        "endLine": 308,
+        "endChar": 48
+      },
+      "revId": "8be5f1e7e327976d8ef14318079e1ee1c404679c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b39984fb_9f2239fa",
+        "filename": "system/gd/rust/linux/service/src/iface_bluetooth.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 308,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2023-02-23T20:27:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7acd0ac8_8b1d47f3",
       "range": {
         "startLine": 308,
         "startChar": 12,
@@ -110,6 +200,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "80df5850_e5981962",
+        "filename": "system/gd/rust/linux/service/src/iface_bluetooth.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 309,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2023-02-23T20:27:30Z",
+      "side": 1,
+      "message": "Good catch. Left over from a copy-paste.",
+      "parentUuid": "651d3aac_e14e9888",
+      "range": {
+        "startLine": 309,
+        "startChar": 12,
+        "endLine": 309,
+        "endChar": 26
+      },
+      "revId": "8be5f1e7e327976d8ef14318079e1ee1c404679c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f3a3f4ab_3296958d",
@@ -123,6 +237,30 @@
       "writtenOn": "2023-02-21T23:05:22Z",
       "side": 1,
       "message": "This can be a function instead of a macro, and it\u0027s preferred to not use macro if possible:\n```\nlet arg_0 \u003d parse_map_arg::\u003cBtSdpHeaderOverlay\u003e(\u0026data, \"0\")?\n```\n\nHint: the function signature can be:\n```\nfn parse_map_arg\u003cT: DBusArg\u003e(\n    data: \u0026dbus::arg::PropMap,\n    key: \u0026str,\n) -\u003e Result\u003cT, Box\u003cdyn std::error::Error\u003e\u003e\nwhere\n    \u003cT as DBusArg\u003e::DBusType: RefArgToRust\u003cRustType \u003d \u003cT as DBusArg\u003e::DBusType\u003e,\n{\n  ...\n}\n```\n\nAnd this function may be able to be added to our dbus_projection library.",
+      "range": {
+        "startLine": 314,
+        "startChar": 28,
+        "endLine": 314,
+        "endChar": 82
+      },
+      "revId": "8be5f1e7e327976d8ef14318079e1ee1c404679c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "92b36f5c_46017b88",
+        "filename": "system/gd/rust/linux/service/src/iface_bluetooth.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 314,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2023-02-23T20:27:30Z",
+      "side": 1,
+      "message": "Extracted to function but not putting into `dbus_projection` yet as `dbus::arg::` is generated.",
+      "parentUuid": "f3a3f4ab_3296958d",
       "range": {
         "startLine": 314,
         "startChar": 28,
@@ -158,6 +296,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5c46e897_326ecd08",
+        "filename": "system/gd/rust/linux/service/src/iface_bluetooth.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 358,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2023-02-23T20:27:30Z",
+      "side": 1,
+      "message": "In this particular case there is only ever one argument. However, I wanted to keep this general enough to eventually be converted to support any enum, which may have multiple arguments. We can try a different pattern if you\u0027d prefer, but I figured this was the easiest translation (type names won\u0027t work as they can be repeated).",
+      "parentUuid": "bb1f9dd2_8e35c4ff",
+      "range": {
+        "startLine": 358,
+        "startChar": 20,
+        "endLine": 358,
+        "endChar": 38
+      },
+      "revId": "8be5f1e7e327976d8ef14318079e1ee1c404679c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d5e85d42_168421a4",
         "filename": "system/gd/rust/linux/service/src/iface_bluetooth.rs",
         "patchSetId": 4
@@ -169,6 +331,30 @@
       "writtenOn": "2023-02-21T23:05:22Z",
       "side": 1,
       "message": "Before we have a complete generator, maybe for now we can still try to reduce duplicated code by factoring out this common part into like:\n```\n        match record {\n            BtSdpRecord::HeaderOverlay(header) \u003d\u003e write_enum_value(\u0026mut map, header)?,\n            BtSdpRecord::MapMas(mas_record) \u003d\u003e write_enum_value(\u0026mut map, mas_record)?,\n            ...\n```\n\nAnd have a common function like:\n```\nfn write_enum_value\u003cT: DBusArg\u003e(\n    map: \u0026mut dbus::arg::PropMap,\n    val: T,\n) -\u003e Result\u003c(), Box\u003cdyn std::error::Error\u003e\u003e\nwhere\n    T::DBusType: \u0027static + dbus::arg::RefArg,\n{\n    map.insert(String::from(\"0\"), dbus::arg::Variant(Box::new(DBusArg::to_dbus(val)?)));\n    Ok(())\n}\n```",
+      "range": {
+        "startLine": 363,
+        "startChar": 0,
+        "endLine": 366,
+        "endChar": 18
+      },
+      "revId": "8be5f1e7e327976d8ef14318079e1ee1c404679c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "38dbe488_88ec8bc3",
+        "filename": "system/gd/rust/linux/service/src/iface_bluetooth.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 366,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2023-02-23T20:27:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d5e85d42_168421a4",
       "range": {
         "startLine": 363,
         "startChar": 0,
@@ -196,6 +382,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "02d858cf_f0452e87",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 2069,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2023-02-23T20:27:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "77d5e9af_7f62c7a2",
+      "revId": "8be5f1e7e327976d8ef14318079e1ee1c404679c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c254856f_dc082138",
@@ -209,6 +413,30 @@
       "writtenOn": "2023-02-21T23:05:22Z",
       "side": 1,
       "message": "nit: this can be `\u0026BtSdpRecord` so we don\u0027t need to clone just for conversion.",
+      "range": {
+        "startLine": 36,
+        "startChar": 20,
+        "endLine": 36,
+        "endChar": 31
+      },
+      "revId": "8be5f1e7e327976d8ef14318079e1ee1c404679c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ddc616bb_39a33070",
+        "filename": "system/gd/rust/topshim/src/profiles/sdp.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2023-02-23T20:27:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c254856f_dc082138",
       "range": {
         "startLine": 36,
         "startChar": 20,
