@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "05c357ee_fa44e792",
+        "filename": "framework/java/android/bluetooth/BluetoothManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-02-23T05:55:10Z",
+      "side": 1,
+      "message": "Sorry, unintentionally.",
+      "parentUuid": "b08cda90_115fa343",
+      "revId": "774c3f3129a5cf1dfe5395e2f76284f8e37e331a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "04a83433_2cb35289",
@@ -31,6 +49,24 @@
       "writtenOn": "2023-02-23T01:35:06Z",
       "side": 1,
       "message": "nit: end sentence in period",
+      "revId": "774c3f3129a5cf1dfe5395e2f76284f8e37e331a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "84369fc8_8af52ae2",
+        "filename": "framework/java/android/bluetooth/le/ScanFilter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 424,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-02-23T05:55:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "04a83433_2cb35289",
       "revId": "774c3f3129a5cf1dfe5395e2f76284f8e37e331a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -52,6 +88,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c1621f75_9a72209c",
+        "filename": "framework/java/android/bluetooth/le/ScanFilter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 426,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-02-23T05:55:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3ccc555f_db0f930d",
+      "revId": "774c3f3129a5cf1dfe5395e2f76284f8e37e331a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "88abca5a_27eac10e",
@@ -65,6 +119,24 @@
       "writtenOn": "2023-02-23T01:35:06Z",
       "side": 1,
       "message": "Method should be public, put @Nullable on the previous line",
+      "revId": "774c3f3129a5cf1dfe5395e2f76284f8e37e331a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f9a9800f_106a1418",
+        "filename": "framework/java/android/bluetooth/le/ScanFilter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 430,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-02-23T05:55:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "88abca5a_27eac10e",
       "revId": "774c3f3129a5cf1dfe5395e2f76284f8e37e331a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -86,6 +158,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "62306e01_9dba9d8c",
+        "filename": "framework/java/android/bluetooth/le/ScanFilter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 595,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-02-23T05:55:10Z",
+      "side": 1,
+      "message": "I need to call this from TransportBlockeFilter class. Moreover, the scope of this method should be static since it doesn\u0027t use any class private variables.",
+      "parentUuid": "0bf8f061_a2570d9a",
+      "revId": "774c3f3129a5cf1dfe5395e2f76284f8e37e331a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f8b51422_458020ab",
@@ -99,6 +189,24 @@
       "writtenOn": "2023-02-23T01:35:06Z",
       "side": 1,
       "message": "Add SystemApi annotation",
+      "revId": "774c3f3129a5cf1dfe5395e2f76284f8e37e331a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "53967367_6bfb9128",
+        "filename": "framework/java/android/bluetooth/le/TransportBlockFilter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-02-23T05:55:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f8b51422_458020ab",
       "revId": "774c3f3129a5cf1dfe5395e2f76284f8e37e331a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -120,6 +228,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3e8a7bb1_5ece2416",
+        "filename": "framework/java/android/bluetooth/le/TransportBlockFilter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-02-23T05:55:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ce42623b_0cbd35e6",
+      "revId": "774c3f3129a5cf1dfe5395e2f76284f8e37e331a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5b6f1b33_c19bd79c",
@@ -137,6 +263,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2adee0ac_a285daca",
+        "filename": "framework/java/android/bluetooth/le/TransportBlockFilter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-02-23T05:55:10Z",
+      "side": 1,
+      "message": "Done\n\nKeeping some of them when the return has some special meaning",
+      "parentUuid": "5b6f1b33_c19bd79c",
+      "revId": "774c3f3129a5cf1dfe5395e2f76284f8e37e331a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "25434af1_c6cac280",
@@ -150,6 +294,70 @@
       "writtenOn": "2023-02-23T01:35:06Z",
       "side": 1,
       "message": "nit: end every first sentence with a period",
+      "revId": "774c3f3129a5cf1dfe5395e2f76284f8e37e331a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d354b995_592aa7bf",
+        "filename": "framework/java/android/bluetooth/le/TransportBlockFilter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-02-23T05:55:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "25434af1_c6cac280",
+      "revId": "774c3f3129a5cf1dfe5395e2f76284f8e37e331a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fda0c20a_1613bf81",
+        "filename": "framework/java/android/bluetooth/le/TransportBlockFilter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-02-23T05:55:10Z",
+      "side": 1,
+      "message": "keeping this one to say null if not used",
+      "range": {
+        "startLine": 101,
+        "startChar": 0,
+        "endLine": 101,
+        "endChar": 74
+      },
+      "revId": "774c3f3129a5cf1dfe5395e2f76284f8e37e331a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e2359235_2d9deae7",
+        "filename": "framework/java/android/bluetooth/le/TransportBlockFilter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-02-23T05:55:10Z",
+      "side": 1,
+      "message": "keeping this one to say null if not used",
+      "range": {
+        "startLine": 117,
+        "startChar": 0,
+        "endLine": 117,
+        "endChar": 58
+      },
       "revId": "774c3f3129a5cf1dfe5395e2f76284f8e37e331a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -173,6 +381,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0d034aa1_2b8ff427",
+        "filename": "framework/java/android/bluetooth/le/TransportBlockFilter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-02-23T05:55:10Z",
+      "side": 1,
+      "message": "From the QC implementation, it doesn\u0027t seem to be required. Looks like on can just filter for the organization ID and flags without filtering the payload.",
+      "parentUuid": "4814bc60_18ada0eb",
+      "revId": "774c3f3129a5cf1dfe5395e2f76284f8e37e331a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3f6ea58e_42efbd5a",
         "filename": "framework/java/android/bluetooth/le/TransportBlockFilter.java",
         "patchSetId": 1
@@ -184,6 +410,24 @@
       "writtenOn": "2023-02-23T01:35:06Z",
       "side": 1,
       "message": "We should take an instance of the ScanFilter so we don\u0027t need to make the methods static",
+      "revId": "774c3f3129a5cf1dfe5395e2f76284f8e37e331a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ab6a3842_ad3e7168",
+        "filename": "framework/java/android/bluetooth/le/TransportBlockFilter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-02-23T05:55:10Z",
+      "side": 1,
+      "message": "Either way works, but that method doesn\u0027t use any class private variable, hence, why not just make it static to reduce the scope?",
+      "parentUuid": "3f6ea58e_42efbd5a",
       "revId": "774c3f3129a5cf1dfe5395e2f76284f8e37e331a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -205,6 +449,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "72daeea5_a75b8f14",
+        "filename": "framework/java/android/bluetooth/le/TransportBlockFilter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-02-23T05:55:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c4b4ea57_ef29c24b",
+      "revId": "774c3f3129a5cf1dfe5395e2f76284f8e37e331a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c4989208_e19f35b1",
@@ -218,6 +480,24 @@
       "writtenOn": "2023-02-23T01:35:06Z",
       "side": 1,
       "message": "Keep this and equals SystemApi for testing",
+      "revId": "774c3f3129a5cf1dfe5395e2f76284f8e37e331a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c54ea039_3e2a203c",
+        "filename": "framework/java/android/bluetooth/le/TransportBlockFilter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 214,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-02-23T05:55:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c4989208_e19f35b1",
       "revId": "774c3f3129a5cf1dfe5395e2f76284f8e37e331a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -239,6 +519,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a6507d00_c4bae7c0",
+        "filename": "framework/java/android/bluetooth/le/TransportBlockFilter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 256,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-02-23T05:55:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "260d8c8a_1a5a60d8",
+      "revId": "774c3f3129a5cf1dfe5395e2f76284f8e37e331a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "72b94834_ce37fbd2",
@@ -252,6 +550,24 @@
       "writtenOn": "2023-02-23T01:35:06Z",
       "side": 1,
       "message": "nit: \"-1 is invalid for this argument.\" --\u003e \"Negative values are invalid for this argument.\"",
+      "revId": "774c3f3129a5cf1dfe5395e2f76284f8e37e331a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d401a220_91d367e0",
+        "filename": "framework/java/android/bluetooth/le/TransportBlockFilter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 324,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-02-23T05:55:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "72b94834_ce37fbd2",
       "revId": "774c3f3129a5cf1dfe5395e2f76284f8e37e331a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -273,6 +589,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b13b5f17_6fb8ebd7",
+        "filename": "framework/java/android/bluetooth/le/TransportBlockFilter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 327,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-02-23T05:55:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "21d523dc_41591efd",
+      "revId": "774c3f3129a5cf1dfe5395e2f76284f8e37e331a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cfd17e57_0012db98",
@@ -290,6 +624,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "80d4c999_d2137b7e",
+        "filename": "framework/java/android/bluetooth/le/TransportBlockFilter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 335,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-02-23T05:55:10Z",
+      "side": 1,
+      "message": "Sure, the flag is only 8 bit, hence we can say all negative ones are invalid.",
+      "parentUuid": "cfd17e57_0012db98",
+      "revId": "774c3f3129a5cf1dfe5395e2f76284f8e37e331a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3ecc65cb_1efe83bd",
@@ -303,6 +655,24 @@
       "writtenOn": "2023-02-23T01:35:06Z",
       "side": 1,
       "message": "nit: define a constant for this value",
+      "revId": "774c3f3129a5cf1dfe5395e2f76284f8e37e331a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "73f61e4e_78f8d3ec",
+        "filename": "framework/java/android/bluetooth/le/TransportBlockFilter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 417,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-02-23T05:55:10Z",
+      "side": 1,
+      "message": "Defined a system API for it.\n\nWIFI_NAN_HASH_LENGTH_BYTES",
+      "parentUuid": "3ecc65cb_1efe83bd",
       "revId": "774c3f3129a5cf1dfe5395e2f76284f8e37e331a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
