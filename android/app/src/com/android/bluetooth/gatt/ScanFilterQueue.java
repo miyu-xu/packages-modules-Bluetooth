@@ -257,10 +257,18 @@ import java.util.UUID;
             addAdvertisingDataType(filter.getAdvertisingDataType(),
                     filter.getAdvertisingData(), filter.getAdvertisingDataMask());
         }
-        if (filter.getOrgId() >= 0) {
-            addTransportDiscoveryData(filter.getOrgId(), filter.getTdsFlags(),
-                    filter.getTdsFlagsMask(), filter.getTransportData(),
-                    filter.getTransportDataMask());
+        final TransportBlockFilter transportBlockFilter = filter.getTransportBlockFilter();
+        if (transportBlockFilter != null) {
+            if (transportBlockFilter.getWifiNanHash() == null) {
+                addTransportDiscoveryData(filter.getOrgId(), filter.getTdsFlags(),
+                        filter.getTdsFlagsMask(), filter.getTransportData(),
+                        filter.getTransportDataMask());
+            } else {
+                addTransportDiscoveryData(filter.getOrgId(), filter.getTdsFlags(),
+                        filter.getTdsFlagsMask(), filter.getWifiNanHash(),
+                        null);
+            }
+
         }
     }
 

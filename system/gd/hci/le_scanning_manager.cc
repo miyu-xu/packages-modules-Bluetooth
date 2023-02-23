@@ -1071,7 +1071,7 @@ struct LeScanningManager::impl : public LeAddressManagerCallback {
       combined_data.push_back((uint8_t)tds_flags);
       combined_data.push_back((uint8_t)tds_flags_mask);
       if (transport_data.size() != 0) {
-        // 0x02 Wi­Fi Alliance Neighbor Awareness Networking
+        // 0x02 Wiï¿½Fi Alliance Neighbor Awareness Networking
         if (org_id == 0x02) {
           // Transport data contains WIFI NAN hash, reverse it before sending controller.
           std::reverse(transport_data.begin(), transport_data.end());
@@ -1086,7 +1086,7 @@ struct LeScanningManager::impl : public LeAddressManagerCallback {
       }
     }
 
-    LOG_WARN(
+    LOG_INFO(
         "org id: %d, tds_flags: %d, tds_flags_mask = %d,"
         "transport_data size: %zu, transport_data_mask size: %zu",
         org_id,
