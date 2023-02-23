@@ -61,7 +61,7 @@ public class MetricsLoggerTest {
         @Override
         public boolean count(int key, long count) {
             mTestableCounters.put(key, count);
-          return true;
+            return true;
         }
 
         @Override
