@@ -160,6 +160,8 @@ public class CompanionManager {
     }
 
     void loadCompanionInfo() {
+        if (mCompanionDevice != null) return;
+
         synchronized (mMetadataListeningDevices) {
             String address = getCompanionPreferences().getString(COMPANION_DEVICE_KEY, "");
 
@@ -175,19 +177,18 @@ public class CompanionManager {
 
         if (mCompanionDevice == null) {
             // We don't have any companion phone registered, try look from the bonded devices
-            for (BluetoothDevice device : mAdapter.getBondedDevices()) {
+            for (BluetoothDevice device : mAdapterService.getBondedDevices()) {
                 byte[] metadata = mAdapterService.getMetadata(device,
                         BluetoothDevice.METADATA_SOFTWARE_VERSION);
-                if (metadata == null) {
-                    continue;
-                }
-                String valueStr = new String(metadata);
-                if ((valueStr.equals(BluetoothDevice.COMPANION_TYPE_PRIMARY)
-                        || valueStr.equals(BluetoothDevice.COMPANION_TYPE_SECONDARY))) {
-                    // found the companion device, store and unregister all listeners
-                    Log.i(TAG, "Found companion device from the database!");
-                    setCompanionDevice(device, valueStr);
-                    break;
+                if (metadata != null) {
+                    String valueStr = new String(metadata);
+                    if ((valueStr.equals(BluetoothDevice.COMPANION_TYPE_PRIMARY)
+                            || valueStr.equals(BluetoothDevice.COMPANION_TYPE_SECONDARY))) {
+                        // found the companion device, store and unregister all listeners
+                        Log.i(TAG, "Found companion device from the database!");
+                        setCompanionDevice(device, valueStr);
+                        break;
+                    }
                 }
                 registerMetadataListener(device);
             }
@@ -325,6 +326,10 @@ public class CompanionManager {
      */
     public boolean isCompanionDevice(BluetoothDevice device) {
         if (device == null) return false;
+        if (mCompanionDevice == null) {
+            // Try to load companion info if companion device does not exist.
+            loadCompanionInfo();
+        }
         return device.equals(mCompanionDevice);
     }
 
@@ -399,5 +404,12 @@ public class CompanionManager {
                 return mGattConnLowDefault[type];
         }
         return mGattConnBalanceDefault[type];
+    }
+
+    @VisibleForTesting
+    int getMetadataListenerSize() {
+        synchronized (mMetadataListeningDevices) {
+            return mMetadataListeningDevices.size();
+        }
     }
 }

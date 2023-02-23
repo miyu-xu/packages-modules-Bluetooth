@@ -17,6 +17,7 @@ package com.android.bluetooth.btservice;
 
 import static org.mockito.Mockito.*;
 
+import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothGatt;
 import android.content.Context;
@@ -43,6 +44,7 @@ public class CompanionManagerTest {
 
     private static final String TEST_DEVICE = "11:22:33:44:55:66";
 
+    private BluetoothAdapter mAdapter;
     private AdapterProperties mAdapterProperties;
     private Context mTargetContext;
     private CompanionManager mCompanionManager;
@@ -76,6 +78,8 @@ public class CompanionManagerTest {
         // Use the resources in the instrumentation instead of the mocked AdapterService
         when(mAdapterService.getResources()).thenReturn(mTargetContext.getResources());
 
+        mAdapter = BluetoothAdapter.getDefaultAdapter();
+
         // Must be called to initialize services
         mCompanionManager = new CompanionManager(mAdapterService, null);
     }
@@ -92,13 +96,22 @@ public class CompanionManagerTest {
     }
 
     @Test
-    public void testLoadCompanionInfo_noCompanionDeviceSetButHaveBondedDevices_shouldNotCrash() {
-        BluetoothDevice[] devices = new BluetoothDevice[2];
+    public void testLoadCompanionInfo_noCompanionDeviceSetButHaveBondedDevices() {
+        final int bondedDeviceCount = 2;
+
+        BluetoothDevice[] devices = new BluetoothDevice[bondedDeviceCount];
+        devices[0] = TestUtils.getTestDevice(mAdapter, 0);
+        devices[1] = TestUtils.getTestDevice(mAdapter, 1);
         doReturn(devices).when(mAdapterService).getBondedDevices();
+        doReturn(null).when(mAdapterService).getMetadata(any(), anyInt());
+
         doThrow(new IllegalArgumentException())
                 .when(mSharedPreferences)
                 .getInt(eq(CompanionManager.COMPANION_TYPE_KEY), anyInt());
-        mCompanionManager.loadCompanionInfo();
+        loadCompanionInfoHelper(null, CompanionManager.COMPANION_TYPE_NONE);
+        Assert.assertFalse(mCompanionManager.isCompanionDevice(devices[0]));
+        Assert.assertFalse(mCompanionManager.isCompanionDevice(devices[1]));
+        Assert.assertEquals(bondedDeviceCount, mCompanionManager.getMetadataListenerSize());
     }
 
     @Test
@@ -111,6 +124,37 @@ public class CompanionManagerTest {
 
         loadCompanionInfoHelper(TEST_DEVICE, CompanionManager.COMPANION_TYPE_SECONDARY);
         Assert.assertTrue(mCompanionManager.isCompanionDevice(TEST_DEVICE));
+    }
+
+    @Test
+    public void testIsCompanionDevice_nullCompanionDevice_noMetadata() {
+        final int bondedDeviceCount = 1;
+
+        BluetoothDevice[] devices = new BluetoothDevice[bondedDeviceCount];
+        devices[0] = TestUtils.getTestDevice(mAdapter, 0);
+        doReturn(devices).when(mAdapterService).getBondedDevices();
+        doReturn(null).when(mAdapterService).getMetadata(any(), anyInt());
+
+        doThrow(new IllegalArgumentException())
+                .when(mSharedPreferences)
+                .getInt(eq(CompanionManager.COMPANION_TYPE_KEY), anyInt());
+        Assert.assertFalse(mCompanionManager.isCompanionDevice(devices[0]));
+        Assert.assertEquals(bondedDeviceCount, mCompanionManager.getMetadataListenerSize());
+    }
+
+    @Test
+    public void testIsCompanionDevice_nullCompanionDevice_hasMetadata() {
+        BluetoothDevice[] devices = new BluetoothDevice[1];
+        devices[0] = TestUtils.getTestDevice(mAdapter, 0);
+        doReturn(devices).when(mAdapterService).getBondedDevices();
+        doReturn(BluetoothDevice.COMPANION_TYPE_PRIMARY.getBytes()).when(mAdapterService)
+                .getMetadata(any(), anyInt());
+
+        doThrow(new IllegalArgumentException())
+                .when(mSharedPreferences)
+                .getInt(eq(CompanionManager.COMPANION_TYPE_KEY), anyInt());
+        Assert.assertTrue(mCompanionManager.isCompanionDevice(devices[0]));
+        Assert.assertEquals(0, mCompanionManager.getMetadataListenerSize());
     }
 
     @Test
