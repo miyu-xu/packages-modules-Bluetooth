@@ -16,6 +16,24 @@
       "message": "LMP pairing procedure concluded albeit with a failure. SMP tells L2CAP that it is done with the link and is no longer holding it alive.\nL2CAP checks if anyone else (GATT/CoC, etc) is interested in the link. If not, it would disconnect the link after some time.\n\nIMO it should not be removed, otherwise after a SMP procedure failure the link would not get removed autonomously even if no one else is interested in it anymore.",
       "revId": "8084c34f7502348536f43dcffc864ed5ddadd473",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "98825777_a00ba980",
+        "filename": "system/stack/btm/btm_ble.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1828,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-02-23T19:54:15Z",
+      "side": 0,
+      "message": "Then, within `l2cu_start_post_bond_timer`, should we call into `l2cu_no_dynamic_ccbs()` after the `p_first_cbb \u003d\u003d nullptr` check? Otherwise we unconditionally tear down the link ignoring the logic for ATT / server connections / etc.",
+      "parentUuid": "baa5a056_d5af18e2",
+      "revId": "8084c34f7502348536f43dcffc864ed5ddadd473",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
