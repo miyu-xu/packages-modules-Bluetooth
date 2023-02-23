@@ -41,6 +41,7 @@
 #include "stack/include/bt_hdr.h"
 #include "stack/include/l2c_api.h"
 #include "types/raw_address.h"
+#include "device/include/interop.h"
 
 /*****************************************************************************
  *  Constants
@@ -1506,6 +1507,13 @@ void bta_av_sig_chg(tBTA_AV_DATA* p_data) {
         p_scb->coll_mask = BTA_AV_COLL_INC_TMR;
         if (!p_scb->accept_signalling_timer) {
           p_scb->accept_signalling_timer = alarm_new("accept_signalling_timer");
+        }
+        if (interop_match_addr(INTEROP_DUT_QUICK_SIGNALLING,
+            &(p_scb->PeerAddress()))) {
+          bta_av_accept_signalling_timer_cback(UINT_TO_PTR(xx));
+          APPL_TRACE_DEBUG("%s: iot device source signalling,sig_chg conn_lcb: 0x%x",
+                           __func__, p_cb->conn_lcb);
+          return;
         }
         alarm_set_on_mloop(
             p_scb->accept_signalling_timer, BTA_AV_ACCEPT_SIGNALLING_TIMEOUT_MS,
