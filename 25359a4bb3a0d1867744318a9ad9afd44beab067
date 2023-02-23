@@ -16,6 +16,29 @@
       "message": "Please help review this, Thanks!",
       "revId": "25359a4bb3a0d1867744318a9ad9afd44beab067",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1f0cb7e3_e44a4b00",
+        "filename": "system/stack/l2cap/l2c_fcr.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1808,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-02-23T19:30:07Z",
+      "side": 1,
+      "message": "Remove?  This check will always be true.\n\nI think we\u0027ll always support BASIC rather than disconnect.",
+      "range": {
+        "startLine": 1803,
+        "startChar": 0,
+        "endLine": 1808,
+        "endChar": 3
+      },
+      "revId": "25359a4bb3a0d1867744318a9ad9afd44beab067",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
