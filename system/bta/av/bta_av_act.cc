@@ -41,6 +41,7 @@
 #include "stack/include/bt_hdr.h"
 #include "stack/include/l2c_api.h"
 #include "types/raw_address.h"
+#include "device/include/interop.h"
 
 /*****************************************************************************
  *  Constants
@@ -1529,6 +1530,12 @@ void bta_av_sig_chg(tBTA_AV_DATA* p_data) {
       for (xx = 0; xx < BTA_AV_NUM_STRS; xx++) {
         if (p_cb->p_scb[xx] &&
             p_cb->p_scb[xx]->PeerAddress() == p_data->str_msg.bd_addr) {
+          if ((p_cb->p_scb[xx]->state == 1) &&
+              alarm_is_scheduled(p_cb->p_scb[xx]->accept_signalling_timer) &&
+              interop_match_addr(INTEROP_IGNORE_DISC_BEFORE_SIGNALLING_TIMEOUT,
+                &(p_data->str_msg.bd_addr))) {
+            continue;
+          }
           APPL_TRACE_DEBUG("%s: Closing timer for AVDTP service", __func__);
           bta_sys_conn_close(BTA_ID_AV, p_cb->p_scb[xx]->app_id,
                              p_cb->p_scb[xx]->PeerAddress());
