@@ -1,6 +1,29 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "45a894a5_c3cb61ce",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-02-23T19:45:14Z",
+      "side": 1,
+      "message": "nit:\nFloss: Allow falling back to basic L2CAP mode\n\nThe top line should say what the CL does, not what the problem was.",
+      "range": {
+        "startLine": 7,
+        "startChar": 7,
+        "endLine": 7,
+        "endChar": 57
+      },
+      "revId": "25359a4bb3a0d1867744318a9ad9afd44beab067",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "aaf434a2_19c7d628",
@@ -14,6 +37,23 @@
       "writtenOn": "2023-02-23T11:52:38Z",
       "side": 1,
       "message": "Please help review this, Thanks!",
+      "revId": "25359a4bb3a0d1867744318a9ad9afd44beab067",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "59724bd0_fd23e49e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-02-23T19:45:14Z",
+      "side": 1,
+      "message": "Adding the DRI for L2CAP",
       "revId": "25359a4bb3a0d1867744318a9ad9afd44beab067",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
