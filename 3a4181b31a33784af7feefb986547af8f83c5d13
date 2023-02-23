@@ -33,6 +33,24 @@
       "message": "Why do you change from mHearingAidActiveDevice \u003d\u003d null to mHearingAidActiveDevices.isEmpty() ?",
       "revId": "3a4181b31a33784af7feefb986547af8f83c5d13",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9d6b03ee_a9f520c3",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 279,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2023-02-23T03:58:35Z",
+      "side": 1,
+      "message": "Could not get your point. Could you explain with the line numbers and patchset number?",
+      "parentUuid": "e6659fb4_81e36242",
+      "revId": "3a4181b31a33784af7feefb986547af8f83c5d13",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
