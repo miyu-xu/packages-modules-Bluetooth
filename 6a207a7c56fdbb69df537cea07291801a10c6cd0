@@ -16,6 +16,24 @@
       "message": "This should be @SystemApi",
       "revId": "6a207a7c56fdbb69df537cea07291801a10c6cd0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6e6da0d6_47b4e727",
+        "filename": "framework/java/android/bluetooth/le/TransportBlockFilter.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-02-23T06:45:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4ddeabb6_966c4c6e",
+      "revId": "6a207a7c56fdbb69df537cea07291801a10c6cd0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
