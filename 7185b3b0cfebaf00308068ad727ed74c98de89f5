@@ -120,6 +120,23 @@
       "parentUuid": "d4790807_0bce655b",
       "revId": "7185b3b0cfebaf00308068ad727ed74c98de89f5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "52155ed1_cc48cd23",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1993150
+      },
+      "writtenOn": "2023-02-23T07:29:23Z",
+      "side": 1,
+      "message": "Rahul, ping for the comment. \n\nThe CL is here for review more than a month and a couple of tasks depend on the fix. Please help accelerate the review.",
+      "revId": "7185b3b0cfebaf00308068ad727ed74c98de89f5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
