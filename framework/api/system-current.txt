@@ -1221,17 +1221,13 @@ package android.bluetooth.le {
   public final class ScanFilter implements android.os.Parcelable {
     method public int getAddressType();
     method @Nullable public byte[] getIrk();
-    method public int getOrgId();
-    method public int getTdsFlags();
-    method public int getTdsFlagsMask();
-    method @Nullable public byte[] getTransportData();
-    method @Nullable public byte[] getTransportDataMask();
+    method @Nullable public android.bluetooth.le.TransportBlockFilter getTransportBlockFilter();
   }
 
   public static final class ScanFilter.Builder {
     method @NonNull public android.bluetooth.le.ScanFilter.Builder setDeviceAddress(@NonNull String, int);
     method @NonNull public android.bluetooth.le.ScanFilter.Builder setDeviceAddress(@NonNull String, int, @NonNull byte[]);
-    method @NonNull public android.bluetooth.le.ScanFilter.Builder setTransportDiscoveryData(int, int, int, @Nullable byte[], @Nullable byte[]);
+    method @NonNull public android.bluetooth.le.ScanFilter.Builder setTransportBlockFilter(@NonNull android.bluetooth.le.TransportBlockFilter);
     field public static final int LEN_IRK_OCTETS = 16; // 0x10
   }
 
@@ -1247,6 +1243,25 @@ package android.bluetooth.le {
 
   public static final class ScanSettings.Builder {
     method public android.bluetooth.le.ScanSettings.Builder setScanResultType(int);
+  }
+
+  public final class TransportBlockFilter implements android.os.Parcelable {
+    method public int getOrgId();
+    method public int getTdsFlags();
+    method public int getTdsFlagsMask();
+    method @Nullable public byte[] getTransportData();
+    method @Nullable public byte[] getTransportDataMask();
+    method @Nullable public byte[] getWifiNanHash();
+    method public void writeToParcel(@NonNull android.os.Parcel, int);
+    field @NonNull public static final android.os.Parcelable.Creator<android.bluetooth.le.TransportBlockFilter> CREATOR;
+    field public static final int WIFI_NAN_HASH_LENGTH_BYTES = 8; // 0x8
+  }
+
+  public static final class TransportBlockFilter.Builder {
+    ctor public TransportBlockFilter.Builder(int);
+    method @NonNull public android.bluetooth.le.TransportBlockFilter build();
+    method @NonNull public android.bluetooth.le.TransportBlockFilter.Builder setTdsFlags(int, int);
+    method @NonNull public android.bluetooth.le.TransportBlockFilter.Builder setTransportData(@NonNull byte[], @NonNull byte[]);
   }
 
   @Deprecated public final class TruncatedFilter {

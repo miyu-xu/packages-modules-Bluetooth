@@ -16,8 +16,10 @@
 
 package com.android.bluetooth.gatt;
 
+import android.bluetooth.BluetoothAssignedNumbers.OrganizationId;
 import android.bluetooth.BluetoothUuid;
 import android.bluetooth.le.ScanFilter;
+import android.bluetooth.le.TransportBlockFilter;
 import android.os.ParcelUuid;
 
 import java.util.Arrays;
@@ -257,10 +259,20 @@ import java.util.UUID;
             addAdvertisingDataType(filter.getAdvertisingDataType(),
                     filter.getAdvertisingData(), filter.getAdvertisingDataMask());
         }
-        if (filter.getOrgId() >= 0) {
-            addTransportDiscoveryData(filter.getOrgId(), filter.getTdsFlags(),
-                    filter.getTdsFlagsMask(), filter.getTransportData(),
-                    filter.getTransportDataMask());
+        final TransportBlockFilter transportBlockFilter = filter.getTransportBlockFilter();
+        if (transportBlockFilter != null) {
+            if (transportBlockFilter.getOrgId()
+                    == OrganizationId.WIFI_ALLIANCE_NEIGHBOR_AWARENESS_NETWORKING) {
+                addTransportDiscoveryData(transportBlockFilter.getOrgId(),
+                        transportBlockFilter.getTdsFlags(), transportBlockFilter.getTdsFlagsMask(),
+                        transportBlockFilter.getWifiNanHash(), null);
+            } else {
+                addTransportDiscoveryData(transportBlockFilter.getOrgId(),
+                        transportBlockFilter.getTdsFlags(), transportBlockFilter.getTdsFlagsMask(),
+                        transportBlockFilter.getTransportData(),
+                        transportBlockFilter.getTransportDataMask());
+            }
+
         }
     }
 
