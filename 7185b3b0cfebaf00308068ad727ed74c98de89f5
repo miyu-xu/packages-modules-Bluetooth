@@ -137,6 +137,24 @@
       "message": "Rahul, ping for the comment. \n\nThe CL is here for review more than a month and a couple of tasks depend on the fix. Please help accelerate the review.",
       "revId": "7185b3b0cfebaf00308068ad727ed74c98de89f5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "916aa04b_bf08a108",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-02-23T22:40:31Z",
+      "side": 1,
+      "message": "Probably I think (1) is safe enough. Basically, in bta_hh_api_enable, you\u0027ll want to conditionally call HID_HostRegister (for HID) and bta_hh_le_enable (for HOGP).",
+      "parentUuid": "fec0df95_fd097c72",
+      "revId": "7185b3b0cfebaf00308068ad727ed74c98de89f5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
