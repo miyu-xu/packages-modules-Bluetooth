@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "51a4af58_f0656403",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2023-02-23T11:51:10Z",
+      "side": 1,
+      "message": "I split the code into rust and libbluetooth parts.\n\nPlease help review. Thanks!",
+      "revId": "33eafa3c495dffd6957e29658f81722c99f95d83",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
