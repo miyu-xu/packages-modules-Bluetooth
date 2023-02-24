@@ -2374,6 +2374,25 @@ BidirectAsesPair LeAudioDevice::GetAsesByCisId(uint8_t cis_id) {
   return ases;
 }
 
+BidirectAsesPair LeAudioDevice::GetFirstActiveAsesByDataPathState(
+    types::AudioStreamDataPathState state) {
+  BidirectAsesPair ases = {nullptr, nullptr};
+
+  struct ase* reference_ase = GetFirstActiveAseByDataPathState(state);
+
+  for (auto& ase : ases_) {
+    if (ase.active && (ase.cis_id == reference_ase->cis_id)) {
+      if (ase.direction == types::kLeAudioDirectionSink) {
+        ases.sink = &ase;
+      } else {
+        ases.source = &ase;
+      }
+    }
+  }
+
+  return ases;
+}
+
 bool LeAudioDevice::HaveActiveAse(void) {
   auto iter = std::find_if(ases_.begin(), ases_.end(),
                            [](const auto& ase) { return ase.active; });
