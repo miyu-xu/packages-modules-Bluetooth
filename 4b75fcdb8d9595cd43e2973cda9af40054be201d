@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4022d957_20fd0a26",
+        "filename": "tools/rootcanal/model/controller/link_layer_controller.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 6391,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-02-24T04:38:48Z",
+      "side": 1,
+      "message": "The specification ensures that iterators remain valid except the one being erased. I don\u0027t want to make a copy of the set if I can mutate it while iterating.\nThis is also the way AsyncManager works, nothing original here.",
+      "parentUuid": "1733bd20_7788ce6e",
+      "range": {
+        "startLine": 6391,
+        "startChar": 0,
+        "endLine": 6391,
+        "endChar": 46
+      },
+      "revId": "4b75fcdb8d9595cd43e2973cda9af40054be201d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e91c60df_716d673d",
         "filename": "tools/rootcanal/model/controller/link_layer_controller.cc",
         "patchSetId": 2
@@ -37,6 +61,30 @@
       "writtenOn": "2023-02-24T00:47:02Z",
       "side": 1,
       "message": "This is unexpected behavior to me.  I\u0027d prefer it to just run once.\n\nDo you have a use case in mind?",
+      "range": {
+        "startLine": 6397,
+        "startChar": 0,
+        "endLine": 6407,
+        "endChar": 5
+      },
+      "revId": "4b75fcdb8d9595cd43e2973cda9af40054be201d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e476cd88_7c434507",
+        "filename": "tools/rootcanal/model/controller/link_layer_controller.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 6407,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-02-24T04:38:48Z",
+      "side": 1,
+      "message": "Nothing specific in mind but usually the caller would expect tasks run periodically to be called an exact number of times between time A and B, depending only on the period and not the specifics of the scheduler.\nThis is also the way that AsyncManager works fyi.",
+      "parentUuid": "e91c60df_716d673d",
       "range": {
         "startLine": 6397,
         "startChar": 0,
@@ -72,6 +120,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "226db4f3_bbba3b8a",
+        "filename": "tools/rootcanal/model/controller/link_layer_controller.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 1044,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-02-24T04:38:48Z",
+      "side": 1,
+      "message": "I don\u0027t want the tasks to be used anywhere else, so it makes more sense to me to define it inside LinkLayerController",
+      "parentUuid": "e6e444ea_88c49b55",
+      "range": {
+        "startLine": 1044,
+        "startChar": 8,
+        "endLine": 1044,
+        "endChar": 12
+      },
+      "revId": "4b75fcdb8d9595cd43e2973cda9af40054be201d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e560cfe3_d9660ae7",
         "filename": "tools/rootcanal/model/controller/link_layer_controller.h",
         "patchSetId": 2
@@ -83,6 +155,30 @@
       "writtenOn": "2023-02-24T00:47:02Z",
       "side": 1,
       "message": "Why have a set named queue?\n\nCan it be a queue?",
+      "range": {
+        "startLine": 1079,
+        "startChar": 7,
+        "endLine": 1079,
+        "endChar": 10
+      },
+      "revId": "4b75fcdb8d9595cd43e2973cda9af40054be201d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ec15ddbe_b132c4b9",
+        "filename": "tools/rootcanal/model/controller/link_layer_controller.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 1079,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-02-24T04:38:48Z",
+      "side": 1,
+      "message": "The queue name stems for the fact that we iterate over tasks ordered by time + id.\nIn practice the set is used like a heap.",
+      "parentUuid": "e560cfe3_d9660ae7",
       "range": {
         "startLine": 1079,
         "startChar": 7,
