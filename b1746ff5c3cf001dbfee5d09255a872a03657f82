@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "99647db5_3bb1b106",
+        "filename": "system/gd/hal/snoop_logger_test.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 441,
+      "author": {
+        "id": 1973670
+      },
+      "writtenOn": "2023-02-24T08:36:07Z",
+      "side": 1,
+      "message": "I think this is testing different behavior. The previous version attempted to test delete functionality in alarm callback. And this new version tests delete in Stop() method.",
+      "revId": "b1746ff5c3cf001dbfee5d09255a872a03657f82",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
