@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c54b853a_1f251cae",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1970925
+      },
+      "writtenOn": "2023-02-24T07:12:09Z",
+      "side": 1,
+      "message": "Hi Charlie,\n\nWe are submitting 16 HFP test cases and also missed HF test cases from pts-bot-tracker. Request to review the changes and provide your updates.\n\nThanks \u0026 Regards,\nDhananjaya",
+      "revId": "5ccaef58d78e872edea0c1702ddc2cedbaaddb87",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
