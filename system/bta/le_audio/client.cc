@@ -462,6 +462,8 @@ class LeAudioClientImpl : public LeAudioClient {
 
     group->PrintDebugState();
 
+    group->CleanupCises();
+
     /* There is an issue with a setting up stream or any other operation which
      * are gatt operations. It means peer is not responsable. Lets close ACL
      */

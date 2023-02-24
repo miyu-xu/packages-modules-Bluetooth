@@ -223,6 +223,37 @@ void LeAudioDeviceGroup::Cleanup(void) {
   this->CigClearCis();
 }
 
+void LeAudioDeviceGroup::CleanupCises(void) {
+  auto* leAudioDevice = GetFirstActiveDeviceByDataPathState(
+      AudioStreamDataPathState::DATA_PATH_ESTABLISHED);
+
+  /* Device which will be "Disconnected" while in transition may have
+   * established CISes, e.g. group will stop in ENABLING state.
+   */
+  while (leAudioDevice) {
+    auto ases_pair = leAudioDevice->GetFirstActiveAsesByDataPathState(
+        AudioStreamDataPathState::DATA_PATH_ESTABLISHED);
+    while (ases_pair.sink || ases_pair.source) {
+      if (ases_pair.sink)
+        ases_pair.sink->data_path_state =
+            AudioStreamDataPathState::CIS_DISCONNECTING;
+      if (ases_pair.source)
+        ases_pair.source->data_path_state =
+            AudioStreamDataPathState::CIS_DISCONNECTING;
+
+      bluetooth::hci::IsoManager::GetInstance()->DisconnectCis(
+          ases_pair.sink ? ases_pair.sink->cis_conn_hdl
+                         : ases_pair.source->cis_conn_hdl,
+          HCI_ERR_PEER_USER);
+
+      ases_pair = leAudioDevice->GetFirstActiveAsesByDataPathState(
+          AudioStreamDataPathState::DATA_PATH_ESTABLISHED);
+    }
+    leAudioDevice = GetNextActiveDeviceByDataPathState(
+        leAudioDevice, AudioStreamDataPathState::DATA_PATH_ESTABLISHED);
+  }
+}
+
 void LeAudioDeviceGroup::Deactivate(void) {
   for (auto* leAudioDevice = GetFirstActiveDevice(); leAudioDevice;
        leAudioDevice = GetNextActiveDevice(leAudioDevice)) {
@@ -2364,6 +2395,29 @@ BidirectAsesPair LeAudioDevice::GetAsesByCisId(uint8_t cis_id) {
 
   for (auto& ase : ases_) {
     if (ase.cis_id == cis_id) {
+      if (ase.direction == types::kLeAudioDirectionSink) {
+        ases.sink = &ase;
+      } else {
+        ases.source = &ase;
+      }
+    }
+  }
+
+  return ases;
+}
+
+BidirectAsesPair LeAudioDevice::GetFirstActiveAsesByDataPathState(
+    types::AudioStreamDataPathState state) {
+  BidirectAsesPair ases = {nullptr, nullptr};
+
+  struct ase* reference_ase = GetFirstActiveAseByDataPathState(state);
+
+  if (reference_ase == nullptr) {
+    return ases;
+  }
+
+  for (auto& ase : ases_) {
+    if (ase.active && (ase.cis_id == reference_ase->cis_id)) {
       if (ase.direction == types::kLeAudioDirectionSink) {
         ases.sink = &ase;
       } else {

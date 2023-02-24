@@ -149,6 +149,8 @@ class LeAudioDevice {
   struct types::ase* GetAseToMatchBidirectionCis(struct types::ase* ase);
   types::BidirectAsesPair GetAsesByCisConnHdl(uint16_t conn_hdl);
   types::BidirectAsesPair GetAsesByCisId(uint8_t cis_id);
+  types::BidirectAsesPair GetFirstActiveAsesByDataPathState(
+      types::AudioStreamDataPathState state);
   bool HaveActiveAse(void);
   bool HaveAllActiveAsesSameState(types::AseState state);
   bool HaveAnyUnconfiguredAses(void);
@@ -277,6 +279,7 @@ class LeAudioDeviceGroup {
   void ClearSinksFromConfiguration(void);
   void ClearSourcesFromConfiguration(void);
   void Cleanup(void);
+  void CleanupCises(void);
   LeAudioDevice* GetFirstDevice(void);
   LeAudioDevice* GetFirstDeviceWithActiveContext(
       types::LeAudioContextType context_type);
