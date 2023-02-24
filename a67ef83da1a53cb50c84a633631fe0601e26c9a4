@@ -70,6 +70,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "79395b75_4b0f514f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2023-02-24T06:40:43Z",
+      "side": 1,
+      "message": "For these tests, spec requires IUT to start with Stream mode. Test will verify if IUT is able to fall back to ERTM when peer rejects Stream and proposes ERTM .\n\nI didn\u0027t find any way in upper layer to adjust the default fcr mode, so I implemented an API in [1].\n\nThe original code here was very confusing to me because `L2CAP_FCR_BASIC_MODE` is defined as 0 so the condition is never satisfied.\n\nWhile reading the code, I believe that l2cap implementation was mostly based on an assumption that we only support basic and ertm, which makes it hard to pass some PTS tests.\n\n[1]https://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/2319752",
+      "parentUuid": "0ff511ce_3f7e8648",
+      "revId": "a67ef83da1a53cb50c84a633631fe0601e26c9a4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2a534ca9_befcdcbe",
@@ -83,6 +101,30 @@
       "writtenOn": "2023-02-23T19:49:33Z",
       "side": 1,
       "message": "This totally changes what was happening here.\n\nIf we are renegotiating, that means that we already tried our fcr mode, and it was rejected.  We shouldn\u0027t be trying it again.\n\nMaybe I\u0027m misunderstanding the code here.",
+      "range": {
+        "startLine": 1726,
+        "startChar": 18,
+        "endLine": 1726,
+        "endChar": 27
+      },
+      "revId": "a67ef83da1a53cb50c84a633631fe0601e26c9a4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e9693db4_04af790d",
+        "filename": "system/stack/l2cap/l2c_fcr.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1726,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2023-02-24T06:40:43Z",
+      "side": 1,
+      "message": "My understanding is\n`p_ccb-\u003eour_cfg.fcr.mode` is the mode we tried last time\n`peer_mode` is what peer wants (which means our mode was rejected)\n\nBecause our mode is rejected, try peer\u0027s mode if available.",
+      "parentUuid": "2a534ca9_befcdcbe",
       "range": {
         "startLine": 1726,
         "startChar": 18,
