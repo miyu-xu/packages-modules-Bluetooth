@@ -1,0 +1,176 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "597e1c26_60c9fa9f",
+        "filename": "system/stack/btm/btm_iso_impl.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-02-24T19:26:18Z",
+      "side": 1,
+      "message": "You should care just when CIG is created/tear down, this is not interesting for active/inactive event. I would delete that.",
+      "range": {
+        "startLine": 174,
+        "startChar": 0,
+        "endLine": 181,
+        "endChar": 5
+      },
+      "revId": "cbf11d7d2646bd2295e83ad03246912bd6a55726",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2fed4c3b_d728db77",
+        "filename": "system/stack/btm/btm_iso_impl.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-02-24T19:26:18Z",
+      "side": 1,
+      "message": "false",
+      "range": {
+        "startLine": 248,
+        "startChar": 37,
+        "endLine": 248,
+        "endChar": 67
+      },
+      "revId": "cbf11d7d2646bd2295e83ad03246912bd6a55726",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1acd8b36_325fb585",
+        "filename": "system/stack/btm/btm_iso_impl.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 287,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-02-24T19:26:18Z",
+      "side": 1,
+      "message": "NIT: no empty space modifications ?",
+      "revId": "cbf11d7d2646bd2295e83ad03246912bd6a55726",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4aa1b639_3a7859c4",
+        "filename": "system/stack/btm/btm_iso_impl.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 480,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-02-24T19:26:18Z",
+      "side": 1,
+      "message": "NIT: same here",
+      "revId": "cbf11d7d2646bd2295e83ad03246912bd6a55726",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5a0c33b8_7b77548c",
+        "filename": "system/stack/btm/btm_iso_impl.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 752,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-02-24T19:26:18Z",
+      "side": 1,
+      "message": "true",
+      "range": {
+        "startLine": 752,
+        "startChar": 37,
+        "endLine": 752,
+        "endChar": 67
+      },
+      "revId": "cbf11d7d2646bd2295e83ad03246912bd6a55726",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cd392d90_aff3364d",
+        "filename": "system/stack/btm/btm_iso_impl.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 785,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-02-24T19:26:18Z",
+      "side": 1,
+      "message": "false",
+      "range": {
+        "startLine": 785,
+        "startChar": 37,
+        "endLine": 785,
+        "endChar": 70
+      },
+      "revId": "cbf11d7d2646bd2295e83ad03246912bd6a55726",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8b5d3e1d_c858d49a",
+        "filename": "system/stack/include/btm_iso_api.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-02-24T19:26:18Z",
+      "side": 1,
+      "message": "Why not just boolean ?",
+      "range": {
+        "startLine": 58,
+        "startChar": 33,
+        "endLine": 58,
+        "endChar": 58
+      },
+      "revId": "cbf11d7d2646bd2295e83ad03246912bd6a55726",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ef101358_11334ccd",
+        "filename": "system/stack/include/btm_iso_api.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-02-24T19:26:18Z",
+      "side": 1,
+      "message": "What is benefit of passing virtual class implementation vs just simple function pointer, or std::function ?",
+      "range": {
+        "startLine": 99,
+        "startChar": 6,
+        "endLine": 99,
+        "endChar": 57
+      },
+      "revId": "cbf11d7d2646bd2295e83ad03246912bd6a55726",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
