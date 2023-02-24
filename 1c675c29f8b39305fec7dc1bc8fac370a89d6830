@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cb56710c_0b5d559f",
+        "filename": "system/bta/csis/csis_client.cc",
+        "patchSetId": 15
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-02-24T12:04:46Z",
+      "side": 1,
+      "message": "This is probably wrong place to put this check.\nIf you happen to add Headset that doesn\u0027t have CSIS, this will never get invoked.\nYou should probably look in btif_dm for LE scan result callback, which always get invoked",
+      "range": {
+        "startLine": 166,
+        "startChar": 0,
+        "endLine": 169,
+        "endChar": 5
+      },
+      "revId": "1c675c29f8b39305fec7dc1bc8fac370a89d6830",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "afe77406_0bd6ec37",
+        "filename": "system/bta/csis/csis_client.cc",
+        "patchSetId": 15
+      },
+      "lineNbr": 1226,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-02-24T12:04:46Z",
+      "side": 1,
+      "message": "So every time member is avaliable we would push remote device property ?\nIsn\u0027t it enough to push it up to java just once when you find the device ?",
+      "range": {
+        "startLine": 1223,
+        "startChar": 0,
+        "endLine": 1226,
+        "endChar": 7
+      },
+      "revId": "1c675c29f8b39305fec7dc1bc8fac370a89d6830",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
