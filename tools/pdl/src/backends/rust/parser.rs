@@ -509,11 +509,21 @@ impl<'a> FieldParser<'a> {
 
     pub fn done(&mut self) {
         let packet_scope = &self.scope.scopes[&self.scope.typedef[self.packet_name]];
-        let children =
-            self.scope.children.get(self.packet_name).map(Vec::as_slice).unwrap_or_default();
+        let mut children = self.scope.children.get(self.packet_name).cloned().unwrap_or_default();
         if children.is_empty() && packet_scope.payload.is_none() {
             return;
         }
+
+        // Sort the children by the number of constrained fields.
+        // Children with more constraints are sorted first so that we
+        // can distinguish correctly between "Foo : Parent (a = 10)"
+        // and "Bar : Parent (a = 10, b = 100)" by first against Bar
+        // before Foo.
+        children.sort_by_key(|child| match &child.desc {
+            ast::DeclDesc::Packet { constraints, .. }
+            | ast::DeclDesc::Struct { constraints, .. } => -(constraints.len() as isize),
+            _ => unreachable!("Invalid child: {child:?}"),
+        });
 
         let child_ids = children
             .iter()

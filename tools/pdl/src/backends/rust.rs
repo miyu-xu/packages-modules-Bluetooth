@@ -897,4 +897,24 @@ mod tests {
           }
         "
     );
+
+    test_pdl!(
+        packet_decl_child_packets_specificity,
+        "
+          packet Parent {
+              a: 8,
+              b: 8,
+              _size_(_payload_): 8,
+              _payload_
+          }
+
+          packet Foo : Parent (a = 10) {
+              x: 8,
+          }
+
+          packet Bar : Parent (a = 10, b = 100) {
+              y: 16,
+          }
+        "
+    );
 }

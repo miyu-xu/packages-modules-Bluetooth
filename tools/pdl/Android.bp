@@ -85,6 +85,8 @@ rust_test_host {
         "tests/generated/packet_decl_array_unknown_element_width_dynamic_size_little_endian.rs",
         "tests/generated/packet_decl_child_packets_big_endian.rs",
         "tests/generated/packet_decl_child_packets_little_endian.rs",
+        "tests/generated/packet_decl_child_packets_specificity_big_endian.rs",
+        "tests/generated/packet_decl_child_packets_specificity_little_endian.rs",
         "tests/generated/packet_decl_complex_scalars_big_endian.rs",
         "tests/generated/packet_decl_complex_scalars_little_endian.rs",
         "tests/generated/packet_decl_empty_big_endian.rs",
