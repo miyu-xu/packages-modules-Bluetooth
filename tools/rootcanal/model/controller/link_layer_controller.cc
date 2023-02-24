@@ -5488,7 +5488,7 @@ ErrorCode LinkLayerController::Disconnect(uint16_t handle, ErrorCode reason) {
   }
 
   connections_.Disconnect(handle, cancel_task_);
-  SendDisconnectionCompleteEvent(handle, ErrorCode(reason));
+  SendDisconnectionCompleteEvent(handle, ErrorCode::CONNECTION_TERMINATED_BY_LOCAL_HOST);
 #ifdef ROOTCANAL_LMP
   if (is_br_edr) {
     ASSERT(link_manager_remove_link(
