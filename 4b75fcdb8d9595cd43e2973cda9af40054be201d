@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1733bd20_7788ce6e",
+        "filename": "tools/rootcanal/model/controller/link_layer_controller.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 6391,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-02-24T00:47:02Z",
+      "side": 1,
+      "message": "I\u0027d prefer something simpler (even if it\u0027s less performant)\n\nUse a second queue to track which ones need to be deleted?\n\nOr\n\nUse a second queue as a temporary and re-insert remaining tasks into the original queue?",
+      "range": {
+        "startLine": 6391,
+        "startChar": 0,
+        "endLine": 6391,
+        "endChar": 46
+      },
+      "revId": "4b75fcdb8d9595cd43e2973cda9af40054be201d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e91c60df_716d673d",
+        "filename": "tools/rootcanal/model/controller/link_layer_controller.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 6407,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-02-24T00:47:02Z",
+      "side": 1,
+      "message": "This is unexpected behavior to me.  I\u0027d prefer it to just run once.\n\nDo you have a use case in mind?",
+      "range": {
+        "startLine": 6397,
+        "startChar": 0,
+        "endLine": 6407,
+        "endChar": 5
+      },
+      "revId": "4b75fcdb8d9595cd43e2973cda9af40054be201d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e6e444ea_88c49b55",
+        "filename": "tools/rootcanal/model/controller/link_layer_controller.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 1044,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-02-24T00:47:02Z",
+      "side": 1,
+      "message": "I\u0027d prefer to have Task in a separate file.  This file is already pretty large.",
+      "range": {
+        "startLine": 1044,
+        "startChar": 8,
+        "endLine": 1044,
+        "endChar": 12
+      },
+      "revId": "4b75fcdb8d9595cd43e2973cda9af40054be201d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e560cfe3_d9660ae7",
+        "filename": "tools/rootcanal/model/controller/link_layer_controller.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 1079,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-02-24T00:47:02Z",
+      "side": 1,
+      "message": "Why have a set named queue?\n\nCan it be a queue?",
+      "range": {
+        "startLine": 1079,
+        "startChar": 7,
+        "endLine": 1079,
+        "endChar": 10
+      },
+      "revId": "4b75fcdb8d9595cd43e2973cda9af40054be201d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
