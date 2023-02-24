@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "58423cc7_c244af10",
+        "filename": "system/rust/src/gatt/server/gatt_database.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 218,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-02-24T21:19:02Z",
+      "side": 0,
+      "message": "We can remove this since now, once the db is closed, it is immediately dropped and the WeakRefs held by other tasks will produce empty lists of attributes automatically.",
+      "revId": "a1ffc59c7deac1b5fc37d5dc1829d20ca29e87e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
