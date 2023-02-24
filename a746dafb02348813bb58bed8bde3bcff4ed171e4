@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "880f746f_329b237e",
+        "filename": "system/stack/btm/btm_iso_impl.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 665,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-02-24T19:02:22Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "b5f2a396_48128da5",
+      "range": {
+        "startLine": 662,
+        "startChar": 0,
+        "endLine": 665,
+        "endChar": 7
+      },
+      "revId": "a746dafb02348813bb58bed8bde3bcff4ed171e4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b785f727_e482cf91",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3afa69d5_1ad04b73",
+        "filename": "system/stack/btm/btm_iso_impl.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 1027,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-02-24T19:02:22Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "b785f727_e482cf91",
+      "range": {
+        "startLine": 1027,
+        "startChar": 27,
+        "endLine": 1027,
+        "endChar": 46
+      },
+      "revId": "a746dafb02348813bb58bed8bde3bcff4ed171e4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "54abe84f_8c1293a7",
@@ -60,6 +108,30 @@
       "writtenOn": "2023-02-24T07:48:17Z",
       "side": 1,
       "message": "I was thinking more about single method:\nvoid OnIsoTrafficActiveCallbacks(bool active)\n\nWether it\u0027s CIS or CIG, or both, is currently irrelevant.\nASHA code shouldn\u0027t worry about types of events, and internal complexities of ISO, it just cares when the traffic is on or of, so expose just that in callback.",
+      "range": {
+        "startLine": 56,
+        "startChar": 0,
+        "endLine": 60,
+        "endChar": 2
+      },
+      "revId": "a746dafb02348813bb58bed8bde3bcff4ed171e4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5fc4a507_5985b0a3",
+        "filename": "system/stack/include/btm_iso_api.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-02-24T19:02:22Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "54abe84f_8c1293a7",
       "range": {
         "startLine": 56,
         "startChar": 0,
