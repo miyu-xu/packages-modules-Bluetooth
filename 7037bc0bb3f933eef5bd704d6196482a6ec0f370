@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8921cd5c_f9bd232b",
+        "filename": "system/stack/btm/btm_iso_impl.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 884,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-02-24T00:12:13Z",
+      "side": 1,
+      "message": "I add the list just for consistency, e.g. someone in future may register callback and they would expect callback take effects on all method.\nAnd for hearing_aid implementation, I only implement methods for `OnCigEvent`, other callbacks are empty, so hearing aid won\u0027t listen to cis event.",
+      "parentUuid": "2d487b8b_5fa5d5f9",
+      "range": {
+        "startLine": 882,
+        "startChar": 1,
+        "endLine": 884,
+        "endChar": 5
+      },
+      "revId": "7037bc0bb3f933eef5bd704d6196482a6ec0f370",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b25b70cf_2ca4a5d2",
         "filename": "system/stack/btm/btm_iso_impl.h",
         "patchSetId": 4
@@ -37,6 +61,30 @@
       "writtenOn": "2023-02-23T07:37:56Z",
       "side": 1,
       "message": "I think you should be interested in BIG events too, as they will cause similar high bandwidth usage. So maybe \"OnIsoTrafficActive\" callback would be more appropriate ?\nI think in future, other pieces of stack will also care about that.",
+      "range": {
+        "startLine": 993,
+        "startChar": 16,
+        "endLine": 993,
+        "endChar": 30
+      },
+      "revId": "7037bc0bb3f933eef5bd704d6196482a6ec0f370",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "353189e4_decd9656",
+        "filename": "system/stack/btm/btm_iso_impl.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 993,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-02-24T00:12:13Z",
+      "side": 1,
+      "message": "I will implement this",
+      "parentUuid": "b25b70cf_2ca4a5d2",
       "range": {
         "startLine": 993,
         "startChar": 16,
