@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "922a143b_443f81b6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-02-24T02:38:45Z",
+      "side": 1,
+      "message": "@girardier@google.com For owner on the new sysprop folder\n\n@eruffieux@google.com for avrcp area review",
+      "revId": "9ecbe9096fb1a3c1306b7e0a1176c8c6c7093ea7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
