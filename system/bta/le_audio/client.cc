@@ -1364,6 +1364,28 @@ class LeAudioClientImpl : public LeAudioClient {
 
     leAudioDevice->SetConnectionState(DeviceConnectState::DISCONNECTING);
 
+    /* Device which will be "Disconnected" while in transition may have
+     * established CISes, e.g. group will stop in ENABLING state.
+     */
+    auto ases_pair = leAudioDevice->GetFirstActiveAsesByDataPathState(
+        AudioStreamDataPathState::DATA_PATH_ESTABLISHED);
+    while (ases_pair.sink || ases_pair.source) {
+      if (ases_pair.sink)
+        ases_pair.sink->data_path_state =
+            AudioStreamDataPathState::CIS_DISCONNECTING;
+      if (ases_pair.source)
+        ases_pair.source->data_path_state =
+            AudioStreamDataPathState::CIS_DISCONNECTING;
+
+      IsoManager::GetInstance()->DisconnectCis(
+          ases_pair.sink ? ases_pair.sink->cis_conn_hdl
+                         : ases_pair.source->cis_conn_hdl,
+          HCI_ERR_PEER_USER);
+
+      ases_pair = leAudioDevice->GetFirstActiveAsesByDataPathState(
+          AudioStreamDataPathState::DATA_PATH_ESTABLISHED);
+    }
+
     BtaGattQueue::Clean(leAudioDevice->conn_id_);
     BTA_GATTC_Close(leAudioDevice->conn_id_);
 
