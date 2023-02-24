@@ -133,6 +133,30 @@
       },
       "revId": "a67ef83da1a53cb50c84a633631fe0601e26c9a4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "65248174_e38f9a0c",
+        "filename": "system/stack/l2cap/l2c_fcr.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1726,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-02-24T07:20:20Z",
+      "side": 1,
+      "message": "That makes sense.  It looks like the old code assumed that we tried ERTM first if it got rejected.\n\nIn the new code, it looks like we try ERTM again if the peer asked for it.  It feels like some of this code should be unreachable.",
+      "parentUuid": "e9693db4_04af790d",
+      "range": {
+        "startLine": 1726,
+        "startChar": 18,
+        "endLine": 1726,
+        "endChar": 27
+      },
+      "revId": "a67ef83da1a53cb50c84a633631fe0601e26c9a4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
