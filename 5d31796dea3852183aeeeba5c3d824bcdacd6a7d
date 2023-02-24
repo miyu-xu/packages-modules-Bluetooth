@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "724c3862_3806637f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-02-24T00:19:30Z",
+      "side": 1,
+      "message": "Adding comment for posterity:\nWith mainline and apex prebuilt, anything defined in the bdroid_cfg file is no longer taken into account.\n\nAny target using it to customize the stack should move over runtime override",
+      "revId": "5d31796dea3852183aeeeba5c3d824bcdacd6a7d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
