@@ -1825,6 +1825,11 @@ void LinkLayerController::IncomingAclPacket(
 
   uint16_t local_handle =
       connections_.GetHandleOnlyAddress(incoming.GetSourceAddress());
+    
+  if (local_handle == kReservedHandle) {
+      LOG_INFO("Dropping packet since connection does not exist");
+      return;
+  }
 
   std::vector<uint8_t> payload_data(acl_view.GetPayload().begin(),
                                     acl_view.GetPayload().end());
