@@ -17,8 +17,10 @@
 
 #pragma once
 
+#include <list>
 #include <map>
 #include <memory>
+#include <mutex>
 #include <set>
 
 #include "base/functional/bind.h"
@@ -104,6 +106,13 @@ struct iso_impl {
   void handle_register_big_callbacks(BigCallbacks* callbacks) {
     LOG_ASSERT(callbacks != nullptr) << "Invalid BIG callbacks";
     big_callbacks_ = callbacks;
+  }
+
+  void handle_register_on_iso_traffic_active_callback(void callback(bool)) {
+    LOG_ASSERT(callback != nullptr) << "Invalid OnIsoTrafficActive callback";
+    const std::lock_guard<std::mutex> lock(
+        on_iso_traffic_active_callbacks_list_mutex_);
+    on_iso_traffic_active_callbacks_list_.push_back(callback);
   }
 
   void on_set_cig_params(uint8_t cig_id, uint32_t sdu_itv_mtos, uint8_t* stream,
@@ -220,6 +229,14 @@ struct iso_impl {
     }
 
     cig_callbacks_->OnCigEvent(kIsoEventCigOnRemoveCmpl, &evt);
+
+    {
+      const std::lock_guard<std::mutex> lock_iso(
+          on_iso_traffic_active_callbacks_list_mutex_);
+      for (auto callbacks : on_iso_traffic_active_callbacks_list_) {
+        callbacks(false);
+      }
+    }
   }
 
   void remove_cig(uint8_t cig_id, bool force) {
@@ -713,6 +730,14 @@ struct iso_impl {
     }
 
     big_callbacks_->OnBigEvent(kIsoEventBigOnCreateCmpl, &evt);
+
+    {
+      const std::lock_guard<std::mutex> lock(
+          on_iso_traffic_active_callbacks_list_mutex_);
+      for (auto callbacks : on_iso_traffic_active_callbacks_list_) {
+        callbacks(true);
+      }
+    }
   }
 
   void process_terminate_big_cmpl_pkt(uint8_t len, uint8_t* data) {
@@ -737,6 +762,14 @@ struct iso_impl {
 
     LOG_ASSERT(is_known_handle) << "No such big: " << +evt.big_id;
     big_callbacks_->OnBigEvent(kIsoEventBigOnTerminateCmpl, &evt);
+
+    {
+      const std::lock_guard<std::mutex> lock(
+          on_iso_traffic_active_callbacks_list_mutex_);
+      for (auto callbacks : on_iso_traffic_active_callbacks_list_) {
+        callbacks(false);
+      }
+    }
   }
 
   void create_big(uint8_t big_id, struct big_create_params big_params) {
@@ -959,6 +992,8 @@ struct iso_impl {
 
   CigCallbacks* cig_callbacks_ = nullptr;
   BigCallbacks* big_callbacks_ = nullptr;
+  std::mutex on_iso_traffic_active_callbacks_list_mutex_;
+  std::list<void (*)(bool)> on_iso_traffic_active_callbacks_list_;
 };
 
 }  // namespace iso_manager

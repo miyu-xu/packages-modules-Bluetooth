@@ -505,6 +505,7 @@ TEST_F(IsoManagerTest, RegisterCallbacks) {
 
   iso_mgr->RegisterBigCallbacks(big_callbacks_.get());
   iso_mgr->RegisterCigCallbacks(cig_callbacks_.get());
+  iso_mgr->RegisterOnIsoTrafficActiveCallback([](bool is_active) {});
 }
 
 TEST_F(IsoManagerDeathTestNoInit, RegisterNullBigCallbacks) {
