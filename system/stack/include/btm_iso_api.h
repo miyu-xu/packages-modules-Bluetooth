@@ -52,6 +52,12 @@ struct BigCallbacks {
 
   virtual void OnBigEvent(uint8_t event, void* data) = 0;
 };
+
+struct OnIsoTrafficActiveCallbacks {
+  virtual ~OnIsoTrafficActiveCallbacks() = default;
+  virtual void OnCigEvent(uint8_t event, void* data) = 0;
+  virtual void OnBigEvent(uint8_t event, void* data) = 0;
+};
 }  // namespace iso_manager
 
 class IsoManager {
@@ -84,6 +90,14 @@ class IsoManager {
    * @param callbacks BigCallbacks implementation
    */
   virtual void RegisterBigCallbacks(iso_manager::BigCallbacks* callbacks) const;
+
+  /**
+   * Set CIG and BIG event related callbacks
+   *
+   * @param callbacks OnIsoTrafficActiveCallbacks implementation
+   */
+  virtual void RegisterOnIsoTrafficActiveCallbacks(
+      iso_manager::OnIsoTrafficActiveCallbacks* callbacks) const;
 
   /**
    * Creates connected isochronous group (CIG) according to given params.
