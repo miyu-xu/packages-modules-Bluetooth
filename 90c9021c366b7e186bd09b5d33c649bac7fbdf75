@@ -22,6 +22,30 @@
       },
       "revId": "90c9021c366b7e186bd09b5d33c649bac7fbdf75",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e9a8177a_82d5b4bd",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-02-24T01:15:29Z",
+      "side": 1,
+      "message": "Yeah, this failure happened when running avatar tests.",
+      "parentUuid": "d91e01ad_a626fd62",
+      "range": {
+        "startLine": 11,
+        "startChar": 4,
+        "endLine": 11,
+        "endChar": 7
+      },
+      "revId": "90c9021c366b7e186bd09b5d33c649bac7fbdf75",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
