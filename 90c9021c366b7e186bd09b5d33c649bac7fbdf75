@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d91e01ad_a626fd62",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-02-24T01:04:44Z",
+      "side": 1,
+      "message": "Please fix this ERROR reported by Bluetooth Lint: \"Bug: no\" is not a valid bug number. Must be only digits with no prefixes.\n\nAnalyzer Description: Enforces patches that modify Bluetooth code conform to Bluetooth team standards.\nOwner: zachoverflow@google.com\n\n\"Bug: no\" is not a valid bug number. Must be only digits with no prefixes.\n\nI prefer there to be a bug.  Did you see this failure?  Was it just code inspection?",
+      "range": {
+        "startLine": 11,
+        "startChar": 4,
+        "endLine": 11,
+        "endChar": 7
+      },
+      "revId": "90c9021c366b7e186bd09b5d33c649bac7fbdf75",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
