@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "88075807_6a750ac4",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-02-24T08:23:13Z",
+      "side": 1,
+      "message": "Property should not have `ro` as we do not want to enforce them to be read only forever.\n\nCan you also separate the profile from property like this:\n`bluetooth.a2dp.xxx`\n\nCan you also separate the type from the property for example:\n`bluetooth.a2dp.source_codec.sbc.priority`\n\nGuidelines can be found there: https://source.android.com/docs/core/architecture/configuration/add-system-properties",
+      "range": {
+        "startLine": 10,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 43
+      },
+      "revId": "d98ec2fee6873642ca7083658e95e908fd38b00d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
