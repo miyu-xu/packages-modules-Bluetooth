@@ -897,4 +897,19 @@ mod tests {
           }
         "
     );
+
+    test_pdl!(
+        packet_decl_empty_child_packet,
+        "
+          packet Foo {
+              a: 8,
+              _size_(_payload_): 8,
+              _payload_,
+          }
+
+          packet Empty : Foo {
+              _payload_,
+          }
+        "
+    );
 }
