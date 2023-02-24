@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "948084fb_8e3f2adb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2023-02-24T18:31:51Z",
+      "side": 1,
+      "message": "I don\u0027t understand the problem. Please provide the problem log and analysis.",
+      "revId": "9626219bb769dc1e461119aced26cddf2234b95c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4d3eb078_1889c5c5",
+        "filename": "system/bta/hh/bta_hh_le.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1416,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2023-02-24T18:31:51Z",
+      "side": 1,
+      "message": "Rephrase comment to explain what is happening not what you did.\nRemove the \"@{\" from the comment.",
+      "revId": "9626219bb769dc1e461119aced26cddf2234b95c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6e46ec40_10d500f6",
+        "filename": "system/bta/hh/bta_hh_le.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1417,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2023-02-24T18:31:51Z",
+      "side": 1,
+      "message": "Break the line",
+      "revId": "9626219bb769dc1e461119aced26cddf2234b95c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "71cf3514_4e9d86bc",
+        "filename": "system/bta/hh/bta_hh_le.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1418,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2023-02-24T18:31:51Z",
+      "side": 1,
+      "message": "Remove this comment",
+      "revId": "9626219bb769dc1e461119aced26cddf2234b95c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
