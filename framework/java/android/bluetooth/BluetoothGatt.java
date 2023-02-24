@@ -158,6 +158,7 @@ public final class BluetoothGatt implements BluetoothProfile {
     public static final int CONNECTION_PRIORITY_LOW_POWER = 2;
 
     /**
+<<<<<<< HEAD   (b8f748 Snap for 9591423 from 6c4dcebb9e7c6e1df1ab24f394a70acba651f8)
      * Connection parameter update - Request the priority recommended by the
      * Car Connectivity Consortium.
      */
@@ -175,6 +176,14 @@ public final class BluetoothGatt implements BluetoothProfile {
                             CONNECTION_PRIORITY_CCC,
                     })
     public @interface ConnectionPriority {}
+=======
+     * Connection parameter update - Request the priority preferred for Digital Car Key for a
+     * lower latency connection. This connection parameter will consume more power than
+     * {@link BluetoothGatt#CONNECTION_PRIORITY_BALANCED}, so it is recommended that apps do not use
+     * this unless it specifically fits their use case.
+     */
+    public static final int CONNECTION_PRIORITY_DCK = 3;
+>>>>>>> BRANCH (9b6ad1 Merge changes from topic "EncryptedSource")
 
     /**
      * Connection subrate request - Balanced.

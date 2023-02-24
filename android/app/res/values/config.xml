@@ -32,8 +32,13 @@
     <integer name="gatt_balanced_priority_max_interval">40</integer>
     <integer name="gatt_low_power_min_interval">80</integer>
     <integer name="gatt_low_power_max_interval">100</integer>
+<<<<<<< HEAD   (b8f748 Snap for 9591423 from 6c4dcebb9e7c6e1df1ab24f394a70acba651f8)
     <integer name="gatt_ccc_priority_min_interval">24</integer>
     <integer name="gatt_ccc_priority_max_interval">24</integer>
+=======
+    <integer name="gatt_dck_priority_min_interval">24</integer>
+    <integer name="gatt_dck_priority_max_interval">24</integer>
+>>>>>>> BRANCH (9b6ad1 Merge changes from topic "EncryptedSource")
 
     <!-- min/max connection intervals/latencies for companion devices -->
     <!-- Primary companion -->

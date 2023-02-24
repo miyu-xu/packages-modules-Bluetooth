@@ -1,3 +1,4 @@
+<<<<<<< HEAD   (b8f748 Snap for 9591423 from 6c4dcebb9e7c6e1df1ab24f394a70acba651f8)
 //
 //  Copyright 2015 Google, Inc.
 //
@@ -190,3 +191,5 @@ bt_callbacks_t* FakeBluetoothInterface::GetHALCallbacks() const {
 
 }  // namespace hal
 }  // namespace bluetooth
+=======
+>>>>>>> BRANCH (9b6ad1 Merge changes from topic "EncryptedSource")

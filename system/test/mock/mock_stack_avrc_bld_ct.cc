@@ -36,6 +36,6 @@ extern std::map<std::string, int> mock_function_count_map;
 #endif
 
 tAVRC_STS AVRC_BldCommand(tAVRC_COMMAND* p_cmd, BT_HDR** pp_pkt) {
-  mock_function_count_map[__func__]++;
+  inc_func_call_count(__func__);
   return 0;
 }

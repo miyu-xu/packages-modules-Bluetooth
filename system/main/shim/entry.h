@@ -52,6 +52,11 @@ namespace hci {
 class Controller;
 class HciLayer;
 class AclManager;
+<<<<<<< HEAD   (b8f748 Snap for 9591423 from 6c4dcebb9e7c6e1df1ab24f394a70acba651f8)
+=======
+class RemoteNameRequestModule;
+class DistanceMeasurementManager;
+>>>>>>> BRANCH (9b6ad1 Merge changes from topic "EncryptedSource")
 class LeAdvertisingManager;
 class LeScanningManager;
 class VendorSpecificEventManager;
@@ -94,6 +99,11 @@ hci::HciLayer* GetHciLayer();
 l2cap::classic::L2capClassicModule* GetL2capClassicModule();
 l2cap::le::L2capLeModule* GetL2capLeModule();
 neighbor::PageModule* GetPage();
+<<<<<<< HEAD   (b8f748 Snap for 9591423 from 6c4dcebb9e7c6e1df1ab24f394a70acba651f8)
+=======
+hci::RemoteNameRequestModule* GetRemoteNameRequest();
+hci::DistanceMeasurementManager* GetDistanceMeasurementManager();
+>>>>>>> BRANCH (9b6ad1 Merge changes from topic "EncryptedSource")
 hci::LeScanningManager* GetScanning();
 bluetooth::security::SecurityModule* GetSecurityModule();
 hal::SnoopLogger* GetSnoopLogger();

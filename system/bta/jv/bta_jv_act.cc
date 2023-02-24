@@ -884,6 +884,12 @@ static void bta_jv_l2cap_client_cback(uint16_t gap_handle, uint16_t event,
       p_cb->state = BTA_JV_ST_NONE;
       bta_jv_free_sec_id(&p_cb->sec_id);
       evt_data.l2c_close.async = true;
+<<<<<<< HEAD   (b8f748 Snap for 9591423 from 6c4dcebb9e7c6e1df1ab24f394a70acba651f8)
+=======
+      evt_data.l2c_close.reason =
+          data != nullptr ? bta_jv_from_gap_l2cap_err(data->l2cap_result)
+                          : BTA_JV_L2CAP_REASON_EMPTY;
+>>>>>>> BRANCH (9b6ad1 Merge changes from topic "EncryptedSource")
       p_cb->p_cback(BTA_JV_L2CAP_CLOSE_EVT, &evt_data, p_cb->l2cap_socket_id);
       p_cb->p_cback = NULL;
       break;

@@ -1,3 +1,4 @@
+<<<<<<< HEAD   (b8f748 Snap for 9591423 from 6c4dcebb9e7c6e1df1ab24f394a70acba651f8)
 package {
     // See: http://go/android-license-faq
     // A large-scale-change added 'default_applicable_licenses' to import
@@ -309,3 +310,5 @@ cc_library_static {
         "logging_helpers.cc",
     ],
 }
+=======
+>>>>>>> BRANCH (9b6ad1 Merge changes from topic "EncryptedSource")

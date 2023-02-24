@@ -127,9 +127,9 @@ void l2c_csm_execute(tL2C_CCB* p_ccb, tL2CEVT event, void* p_data) {
     return;
   }
 
-  LOG_DEBUG("Entry chnl_state=%s [%d], event=%s [%d]",
-            channel_state_text(p_ccb->chnl_state).c_str(), p_ccb->chnl_state,
-            l2c_csm_get_event_name(event), event);
+  LOG_VERBOSE("Entry chnl_state=%s [%d], event=%s [%d]",
+              channel_state_text(p_ccb->chnl_state).c_str(), p_ccb->chnl_state,
+              l2c_csm_get_event_name(event), event);
 
   switch (p_ccb->chnl_state) {
     case CST_CLOSED:
@@ -356,9 +356,9 @@ static void l2c_csm_closed(tL2C_CCB* p_ccb, tL2CEVT event, void* p_data) {
     default:
       LOG_ERROR("Handling unexpected event:%s", l2c_csm_get_event_name(event));
   }
-  LOG_DEBUG("Exit chnl_state=%s [%d], event=%s [%d]",
-            channel_state_text(p_ccb->chnl_state).c_str(), p_ccb->chnl_state,
-            l2c_csm_get_event_name(event), event);
+  LOG_VERBOSE("Exit chnl_state=%s [%d], event=%s [%d]",
+              channel_state_text(p_ccb->chnl_state).c_str(), p_ccb->chnl_state,
+              l2c_csm_get_event_name(event), event);
 }
 
 /*******************************************************************************
@@ -463,9 +463,9 @@ static void l2c_csm_orig_w4_sec_comp(tL2C_CCB* p_ccb, tL2CEVT event,
     default:
       LOG_ERROR("Handling unexpected event:%s", l2c_csm_get_event_name(event));
   }
-  LOG_DEBUG("Exit chnl_state=%s [%d], event=%s [%d]",
-            channel_state_text(p_ccb->chnl_state).c_str(), p_ccb->chnl_state,
-            l2c_csm_get_event_name(event), event);
+  LOG_VERBOSE("Exit chnl_state=%s [%d], event=%s [%d]",
+              channel_state_text(p_ccb->chnl_state).c_str(), p_ccb->chnl_state,
+              l2c_csm_get_event_name(event), event);
 }
 
 /*******************************************************************************
@@ -603,9 +603,9 @@ static void l2c_csm_term_w4_sec_comp(tL2C_CCB* p_ccb, tL2CEVT event,
     default:
       LOG_ERROR("Handling unexpected event:%s", l2c_csm_get_event_name(event));
   }
-  LOG_DEBUG("Exit chnl_state=%s [%d], event=%s [%d]",
-            channel_state_text(p_ccb->chnl_state).c_str(), p_ccb->chnl_state,
-            l2c_csm_get_event_name(event), event);
+  LOG_VERBOSE("Exit chnl_state=%s [%d], event=%s [%d]",
+              channel_state_text(p_ccb->chnl_state).c_str(), p_ccb->chnl_state,
+              l2c_csm_get_event_name(event), event);
 }
 
 /*******************************************************************************
@@ -786,9 +786,9 @@ static void l2c_csm_w4_l2cap_connect_rsp(tL2C_CCB* p_ccb, tL2CEVT event,
     default:
       LOG_ERROR("Handling unexpected event:%s", l2c_csm_get_event_name(event));
   }
-  LOG_DEBUG("Exit chnl_state=%s [%d], event=%s [%d]",
-            channel_state_text(p_ccb->chnl_state).c_str(), p_ccb->chnl_state,
-            l2c_csm_get_event_name(event), event);
+  LOG_VERBOSE("Exit chnl_state=%s [%d], event=%s [%d]",
+              channel_state_text(p_ccb->chnl_state).c_str(), p_ccb->chnl_state,
+              l2c_csm_get_event_name(event), event);
 }
 
 /*******************************************************************************
@@ -949,9 +949,9 @@ static void l2c_csm_w4_l2ca_connect_rsp(tL2C_CCB* p_ccb, tL2CEVT event,
     default:
       LOG_ERROR("Handling unexpected event:%s", l2c_csm_get_event_name(event));
   }
-  LOG_DEBUG("Exit chnl_state=%s [%d], event=%s [%d]",
-            channel_state_text(p_ccb->chnl_state).c_str(), p_ccb->chnl_state,
-            l2c_csm_get_event_name(event), event);
+  LOG_VERBOSE("Exit chnl_state=%s [%d], event=%s [%d]",
+              channel_state_text(p_ccb->chnl_state).c_str(), p_ccb->chnl_state,
+              l2c_csm_get_event_name(event), event);
 }
 
 /*******************************************************************************
@@ -1249,9 +1249,9 @@ static void l2c_csm_config(tL2C_CCB* p_ccb, tL2CEVT event, void* p_data) {
     default:
       LOG_ERROR("Handling unexpected event:%s", l2c_csm_get_event_name(event));
   }
-  LOG_DEBUG("Exit chnl_state=%s [%d], event=%s [%d]",
-            channel_state_text(p_ccb->chnl_state).c_str(), p_ccb->chnl_state,
-            l2c_csm_get_event_name(event), event);
+  LOG_VERBOSE("Exit chnl_state=%s [%d], event=%s [%d]",
+              channel_state_text(p_ccb->chnl_state).c_str(), p_ccb->chnl_state,
+              l2c_csm_get_event_name(event), event);
 }
 
 /*******************************************************************************
@@ -1273,8 +1273,8 @@ static void l2c_csm_open(tL2C_CCB* p_ccb, tL2CEVT event, void* p_data) {
   uint16_t credit = 0;
   tL2CAP_LE_CFG_INFO* p_le_cfg = (tL2CAP_LE_CFG_INFO*)p_data;
 
-  LOG_DEBUG("LCID: 0x%04x  st: OPEN  evt: %s", p_ccb->local_cid,
-            l2c_csm_get_event_name(event));
+  LOG_VERBOSE("LCID: 0x%04x  st: OPEN  evt: %s", p_ccb->local_cid,
+              l2c_csm_get_event_name(event));
 
   switch (event) {
     case L2CEVT_LP_DISCONNECT_IND: /* Link was disconnected */
@@ -1439,9 +1439,9 @@ static void l2c_csm_open(tL2C_CCB* p_ccb, tL2CEVT event, void* p_data) {
     default:
       LOG_ERROR("Handling unexpected event:%s", l2c_csm_get_event_name(event));
   }
-  LOG_DEBUG("Exit chnl_state=%s [%d], event=%s [%d]",
-            channel_state_text(p_ccb->chnl_state).c_str(), p_ccb->chnl_state,
-            l2c_csm_get_event_name(event), event);
+  LOG_VERBOSE("Exit chnl_state=%s [%d], event=%s [%d]",
+              channel_state_text(p_ccb->chnl_state).c_str(), p_ccb->chnl_state,
+              l2c_csm_get_event_name(event), event);
 }
 
 /*******************************************************************************
@@ -1496,9 +1496,9 @@ static void l2c_csm_w4_l2cap_disconnect_rsp(tL2C_CCB* p_ccb, tL2CEVT event,
     default:
       LOG_ERROR("Handling unexpected event:%s", l2c_csm_get_event_name(event));
   }
-  LOG_DEBUG("Exit chnl_state=%s [%d], event=%s [%d]",
-            channel_state_text(p_ccb->chnl_state).c_str(), p_ccb->chnl_state,
-            l2c_csm_get_event_name(event), event);
+  LOG_VERBOSE("Exit chnl_state=%s [%d], event=%s [%d]",
+              channel_state_text(p_ccb->chnl_state).c_str(), p_ccb->chnl_state,
+              l2c_csm_get_event_name(event), event);
 }
 
 /*******************************************************************************
@@ -1551,9 +1551,9 @@ static void l2c_csm_w4_l2ca_disconnect_rsp(tL2C_CCB* p_ccb, tL2CEVT event,
     default:
       LOG_ERROR("Handling unexpected event:%s", l2c_csm_get_event_name(event));
   }
-  LOG_DEBUG("Exit chnl_state=%s [%d], event=%s [%d]",
-            channel_state_text(p_ccb->chnl_state).c_str(), p_ccb->chnl_state,
-            l2c_csm_get_event_name(event), event);
+  LOG_VERBOSE("Exit chnl_state=%s [%d], event=%s [%d]",
+              channel_state_text(p_ccb->chnl_state).c_str(), p_ccb->chnl_state,
+              l2c_csm_get_event_name(event), event);
 }
 
 /*******************************************************************************

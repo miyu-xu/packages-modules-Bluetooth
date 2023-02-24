@@ -59,6 +59,7 @@
 #define BT_PROFILE_CSIS_CLIENT_ID "csis_client"
 #define BT_PROFILE_LE_AUDIO_ID "le_audio"
 #define BT_PROFILE_LE_AUDIO_BROADCASTER_ID "le_audio_broadcaster"
+#define BT_BQR_ID "bqr"
 
 /** Bluetooth Device Name */
 typedef struct { uint8_t name[249]; } __attribute__((packed)) bt_bdname_t;
@@ -222,6 +223,7 @@ typedef struct {
   bool le_connected_isochronous_stream_central_supported;
   bool le_isochronous_broadcast_supported;
   bool le_periodic_advertising_sync_transfer_recipient_supported;
+  uint16_t adv_filter_extended_features_mask;
 } bt_local_le_features_t;
 
 /** Bluetooth Vendor and Product ID info */
@@ -372,6 +374,20 @@ typedef enum {
    */
   BT_PROPERTY_VENDOR_PRODUCT_INFO,
   BT_PROPERTY_WL_MEDIA_PLAYERS_LIST,
+
+  /**
+   * Description - ASHA capability.
+   * Access mode - GET.
+   * Data Type - int16_t.
+   */
+  BT_PROPERTY_REMOTE_ASHA_CAPABILITY,
+
+  /**
+   * Description - ASHA truncated HiSyncID.
+   * Access mode - GET.
+   * Data Type - uint32_t.
+   */
+  BT_PROPERTY_REMOTE_ASHA_TRUNCATED_HISYNCID,
 
   BT_PROPERTY_REMOTE_DEVICE_TIMESTAMP = 0xFF,
 } bt_property_type_t;
@@ -909,6 +925,12 @@ typedef struct {
   void (*interop_database_add_remove_name)(bool do_add,
                                            const char* feature_name,
                                            const char* name);
+
+  /** get remote Pbap PCE  version*/
+  int (*get_remote_pbap_pce_version)(const RawAddress* bd_addr);
+
+  /** check if pbap pse dynamic version upgrade is enable */
+  bool (*pbap_pse_dynamic_version_upgrade_is_enabled)();
 
 } bt_interface_t;
 

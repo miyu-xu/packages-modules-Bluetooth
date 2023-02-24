@@ -33,14 +33,14 @@ extern std::map<std::string, int> mock_function_count_map;
 #endif
 
 bool BTM_FreeSCN(uint8_t scn) {
-  mock_function_count_map[__func__]++;
+  inc_func_call_count(__func__);
   return false;
 }
 bool BTM_TryAllocateSCN(uint8_t scn) {
-  mock_function_count_map[__func__]++;
+  inc_func_call_count(__func__);
   return false;
 }
 uint8_t BTM_AllocateSCN(void) {
-  mock_function_count_map[__func__]++;
+  inc_func_call_count(__func__);
   return 0;
 }

@@ -41,28 +41,33 @@ extern std::map<std::string, int> mock_function_count_map;
 tA2DP_STATUS A2DP_AddRecord(uint16_t service_uuid, char* p_service_name,
                             char* p_provider_name, uint16_t features,
                             uint32_t sdp_handle) {
-  mock_function_count_map[__func__]++;
+  inc_func_call_count(__func__);
   return A2DP_SUCCESS;
 }
 tA2DP_STATUS A2DP_FindService(uint16_t service_uuid, const RawAddress& bd_addr,
                               tA2DP_SDP_DB_PARAMS* p_db,
                               tA2DP_FIND_CBACK* p_cback) {
-  mock_function_count_map[__func__]++;
+  inc_func_call_count(__func__);
   return A2DP_SUCCESS;
 }
 uint16_t A2DP_GetAvdtpVersion() {
-  mock_function_count_map[__func__]++;
+  inc_func_call_count(__func__);
   return 0;
 }
 uint8_t A2DP_BitsSet(uint64_t num) {
+<<<<<<< HEAD   (b8f748 Snap for 9591423 from 6c4dcebb9e7c6e1df1ab24f394a70acba651f8)
   mock_function_count_map[__func__]++;
   return 0;
+=======
+  inc_func_call_count(__func__);
+  return 1;
+>>>>>>> BRANCH (9b6ad1 Merge changes from topic "EncryptedSource")
 }
 uint8_t A2DP_SetTraceLevel(uint8_t new_level) {
-  mock_function_count_map[__func__]++;
+  inc_func_call_count(__func__);
   return 0;
 }
-void A2DP_Init(void) { mock_function_count_map[__func__]++; }
+void A2DP_Init(void) { inc_func_call_count(__func__); }
 void a2dp_set_avdt_sdp_ver(uint16_t avdt_sdp_ver) {
-  mock_function_count_map[__func__]++;
+  inc_func_call_count(__func__);
 }
