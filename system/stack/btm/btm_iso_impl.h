@@ -17,8 +17,10 @@
 
 #pragma once
 
+#include <list>
 #include <map>
 #include <memory>
+#include <mutex>
 #include <set>
 
 #include "base/functional/bind.h"
@@ -106,6 +108,14 @@ struct iso_impl {
     big_callbacks_ = callbacks;
   }
 
+  void handle_register_on_iso_traffic_active_callbacks(
+      OnIsoTrafficActiveCallbacks* callbacks) {
+    LOG_ASSERT(callbacks != nullptr) << "Invalid OnIsoTrafficActive callbacks";
+    const std::lock_guard<std::mutex> lock(
+        on_iso_traffic_active_callbacks_list_mutex_);
+    on_iso_traffic_active_callbacks_list_.push_back(callbacks);
+  }
+
   void on_set_cig_params(uint8_t cig_id, uint32_t sdu_itv_mtos, uint8_t* stream,
                          uint16_t len) {
     uint8_t cis_cnt;
@@ -160,6 +170,15 @@ struct iso_impl {
     }
 
     cig_callbacks_->OnCigEvent(evt_code, &evt);
+
+    {
+      const std::lock_guard<std::mutex> lock_iso(
+          on_iso_traffic_active_callbacks_list_mutex_);
+      for (OnIsoTrafficActiveCallbacks* callbacks :
+           on_iso_traffic_active_callbacks_list_) {
+        callbacks->OnIsoTrafficEvent(evt_code, &evt);
+      }
+    }
   }
 
   void create_cig(uint8_t cig_id,
@@ -220,6 +239,15 @@ struct iso_impl {
     }
 
     cig_callbacks_->OnCigEvent(kIsoEventCigOnRemoveCmpl, &evt);
+
+    {
+      const std::lock_guard<std::mutex> lock_iso(
+          on_iso_traffic_active_callbacks_list_mutex_);
+      for (OnIsoTrafficActiveCallbacks* callbacks :
+           on_iso_traffic_active_callbacks_list_) {
+        callbacks->OnIsoTrafficEvent(kIsoEventCigOnRemoveCmpl, &evt);
+      }
+    }
   }
 
   void remove_cig(uint8_t cig_id, bool force) {
@@ -256,6 +284,7 @@ struct iso_impl {
         evt.cis_conn_hdl = cis_param.cis_conn_handle;
         evt.cig_id = 0xFF;
         cis->state_flags &= ~kStateFlagIsConnecting;
+
         cig_callbacks_->OnCisEvent(kIsoEventCisEstablishCmpl, &evt);
 
         BTM_LogHistory(
@@ -448,6 +477,7 @@ struct iso_impl {
     STREAM_TO_UINT32(duplicatePackets, stream);
 
     LOG_ASSERT(cig_callbacks_ != nullptr) << "Invalid CIG callbacks";
+
     cig_callbacks_->OnIsoLinkQualityRead(
         conn_handle, iso->cig_id, txUnackedPackets, txFlushedPackets,
         txLastSubeventPackets, retransmittedPackets, crcErrorPackets,
@@ -713,6 +743,15 @@ struct iso_impl {
     }
 
     big_callbacks_->OnBigEvent(kIsoEventBigOnCreateCmpl, &evt);
+
+    {
+      const std::lock_guard<std::mutex> lock(
+          on_iso_traffic_active_callbacks_list_mutex_);
+      for (OnIsoTrafficActiveCallbacks* callbacks :
+           on_iso_traffic_active_callbacks_list_) {
+        callbacks->OnIsoTrafficEvent(kIsoEventBigOnCreateCmpl, &evt);
+      }
+    }
   }
 
   void process_terminate_big_cmpl_pkt(uint8_t len, uint8_t* data) {
@@ -737,6 +776,15 @@ struct iso_impl {
 
     LOG_ASSERT(is_known_handle) << "No such big: " << +evt.big_id;
     big_callbacks_->OnBigEvent(kIsoEventBigOnTerminateCmpl, &evt);
+
+    {
+      const std::lock_guard<std::mutex> lock(
+          on_iso_traffic_active_callbacks_list_mutex_);
+      for (OnIsoTrafficActiveCallbacks* callbacks :
+           on_iso_traffic_active_callbacks_list_) {
+        callbacks->OnIsoTrafficEvent(kIsoEventBigOnTerminateCmpl, &evt);
+      }
+    }
   }
 
   void create_big(uint8_t big_id, struct big_create_params big_params) {
@@ -850,6 +898,7 @@ struct iso_impl {
     evt.p_msg = p_msg;
     evt.cig_id = iso->cig_id;
     evt.seq_nb = seq_nb;
+
     cig_callbacks_->OnCisEvent(kIsoEventCisDataAvailable, &evt);
   }
 
@@ -959,6 +1008,8 @@ struct iso_impl {
 
   CigCallbacks* cig_callbacks_ = nullptr;
   BigCallbacks* big_callbacks_ = nullptr;
+  std::mutex on_iso_traffic_active_callbacks_list_mutex_;
+  std::list<OnIsoTrafficActiveCallbacks*> on_iso_traffic_active_callbacks_list_;
 };
 
 }  // namespace iso_manager
