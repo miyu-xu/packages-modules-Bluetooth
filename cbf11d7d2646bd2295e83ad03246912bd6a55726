@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b0da41dd_436a9c09",
+        "filename": "system/stack/btm/btm_iso_impl.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-02-24T22:13:00Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "597e1c26_60c9fa9f",
+      "range": {
+        "startLine": 174,
+        "startChar": 0,
+        "endLine": 181,
+        "endChar": 5
+      },
+      "revId": "cbf11d7d2646bd2295e83ad03246912bd6a55726",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2fed4c3b_d728db77",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-02-24T19:26:18Z",
       "side": 1,
       "message": "false",
+      "range": {
+        "startLine": 248,
+        "startChar": 37,
+        "endLine": 248,
+        "endChar": 67
+      },
+      "revId": "cbf11d7d2646bd2295e83ad03246912bd6a55726",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "38445eb9_a806ffad",
+        "filename": "system/stack/btm/btm_iso_impl.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-02-24T22:13:00Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "2fed4c3b_d728db77",
       "range": {
         "startLine": 248,
         "startChar": 37,
@@ -64,6 +112,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e1147c53_b19c9d53",
+        "filename": "system/stack/btm/btm_iso_impl.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 287,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-02-24T22:13:00Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "1acd8b36_325fb585",
+      "revId": "cbf11d7d2646bd2295e83ad03246912bd6a55726",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4aa1b639_3a7859c4",
@@ -81,6 +147,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "03bba7b0_54410de1",
+        "filename": "system/stack/btm/btm_iso_impl.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 480,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-02-24T22:13:00Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "4aa1b639_3a7859c4",
+      "revId": "cbf11d7d2646bd2295e83ad03246912bd6a55726",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5a0c33b8_7b77548c",
@@ -94,6 +178,30 @@
       "writtenOn": "2023-02-24T19:26:18Z",
       "side": 1,
       "message": "true",
+      "range": {
+        "startLine": 752,
+        "startChar": 37,
+        "endLine": 752,
+        "endChar": 67
+      },
+      "revId": "cbf11d7d2646bd2295e83ad03246912bd6a55726",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ddd37616_2c7dc0bf",
+        "filename": "system/stack/btm/btm_iso_impl.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 752,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-02-24T22:13:00Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "5a0c33b8_7b77548c",
       "range": {
         "startLine": 752,
         "startChar": 37,
@@ -127,6 +235,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2b00a518_6c3a33df",
+        "filename": "system/stack/btm/btm_iso_impl.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 785,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-02-24T22:13:00Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "cd392d90_aff3364d",
+      "range": {
+        "startLine": 785,
+        "startChar": 37,
+        "endLine": 785,
+        "endChar": 70
+      },
+      "revId": "cbf11d7d2646bd2295e83ad03246912bd6a55726",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8b5d3e1d_c858d49a",
@@ -150,6 +282,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "39a64fe7_d84d9d73",
+        "filename": "system/stack/include/btm_iso_api.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-02-24T22:13:00Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "8b5d3e1d_c858d49a",
+      "range": {
+        "startLine": 58,
+        "startChar": 33,
+        "endLine": 58,
+        "endChar": 58
+      },
+      "revId": "cbf11d7d2646bd2295e83ad03246912bd6a55726",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ef101358_11334ccd",
@@ -163,6 +319,30 @@
       "writtenOn": "2023-02-24T19:26:18Z",
       "side": 1,
       "message": "What is benefit of passing virtual class implementation vs just simple function pointer, or std::function ?",
+      "range": {
+        "startLine": 99,
+        "startChar": 6,
+        "endLine": 99,
+        "endChar": 57
+      },
+      "revId": "cbf11d7d2646bd2295e83ad03246912bd6a55726",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "296b416b_dfa390cd",
+        "filename": "system/stack/include/btm_iso_api.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-02-24T22:13:00Z",
+      "side": 1,
+      "message": "I follow how other parts of code does, will change to function pointer",
+      "parentUuid": "ef101358_11334ccd",
       "range": {
         "startLine": 99,
         "startChar": 6,
