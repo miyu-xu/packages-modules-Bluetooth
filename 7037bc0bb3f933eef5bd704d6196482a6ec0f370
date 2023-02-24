@@ -93,6 +93,30 @@
       },
       "revId": "7037bc0bb3f933eef5bd704d6196482a6ec0f370",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3f89fb43_41494ee1",
+        "filename": "system/stack/btm/btm_iso_impl.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 993,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-02-24T02:31:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "353189e4_decd9656",
+      "range": {
+        "startLine": 993,
+        "startChar": 16,
+        "endLine": 993,
+        "endChar": 30
+      },
+      "revId": "7037bc0bb3f933eef5bd704d6196482a6ec0f370",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
