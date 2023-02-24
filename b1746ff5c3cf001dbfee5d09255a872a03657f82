@@ -52,6 +52,24 @@
       "parentUuid": "ffaa0c35_36649fd1",
       "revId": "b1746ff5c3cf001dbfee5d09255a872a03657f82",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7dd2926c_3ebe0c8f",
+        "filename": "system/gd/hal/snoop_logger_test.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 441,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-02-24T20:14:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "52c275a9_fd9f5773",
+      "revId": "b1746ff5c3cf001dbfee5d09255a872a03657f82",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
