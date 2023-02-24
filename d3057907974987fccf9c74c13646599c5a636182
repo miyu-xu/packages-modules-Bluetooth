@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a2091cf8_c40b3373",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-02-24T17:51:19Z",
+      "side": 1,
+      "message": "Hi Aritra,\ncould you take a look at those change or put the proper reviewer from Classic Audio for HFP.\nThanks !",
+      "revId": "d3057907974987fccf9c74c13646599c5a636182",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
