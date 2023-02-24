@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "02b40ca1_d3a6c86f",
+        "filename": "system/bta/av/bta_av_cfg.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2023-02-24T18:24:28Z",
+      "side": 1,
+      "message": "Please delete",
+      "revId": "3683f6d73040b06c153cba2579d055ef2c77d18d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
