@@ -3800,14 +3800,17 @@ class LeAudioClientImpl : public LeAudioClient {
      * LeAudioContextType::INSTRUCTIONAL
      * LeAudioContextType::ALERTS
      * LeAudioContextType::EMERGENCYALARM
+     * LeAudioContextType::UNSPECIFIED
      * So do not reconfigure if the remote sink is already available at any
      * quality and these are the only contributors to the current audio stream.
      */
     auto no_reconfigure_contexts =
         LeAudioContextType::NOTIFICATIONS | LeAudioContextType::SOUNDEFFECTS |
         LeAudioContextType::INSTRUCTIONAL | LeAudioContextType::ALERTS |
-        LeAudioContextType::EMERGENCYALARM;
-    if ((configuration_context_candidates & ~no_reconfigure_contexts).none() &&
+        LeAudioContextType::EMERGENCYALARM | LeAudioContextType::UNSPECIFIED;
+    if (configuration_context_candidates.any() &&
+        (configuration_context_candidates & ~no_reconfigure_contexts).none() &&
+        (configuration_context_type_ != LeAudioContextType::UNINITIALIZED) &&
         IsDirectionAvailableForCurrentConfiguration(
             group, le_audio::types::kLeAudioDirectionSink)) {
       LOG_INFO(
