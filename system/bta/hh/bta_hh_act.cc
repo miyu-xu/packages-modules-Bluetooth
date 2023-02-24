@@ -76,40 +76,45 @@ static const char* bta_hh_hid_event_name(uint16_t event);
  *
  ******************************************************************************/
 void bta_hh_api_enable(const tBTA_HH_DATA* p_data) {
-  /* Register with L2CAP */
-  tHID_STATUS status = HID_HostRegister(bta_hh_cback);
+  tBTA_HH_STATUS status = BTA_HH_OK;
+  uint8_t xx;
 
-  if (status == HID_SUCCESS) {
-    uint8_t xx;
+  /* initialize BTE HID */
+  HID_HostInit();
 
-    memset(&bta_hh_cb, 0, sizeof(tBTA_HH_CB));
+  memset(&bta_hh_cb, 0, sizeof(tBTA_HH_CB));
 
-    /* initialize BTE HID */
-    HID_HostInit();
+  /* store parameters */
+  bta_hh_cb.p_cback = p_data->api_enable.p_cback;
+  /* initialize device CB */
+  for (xx = 0; xx < BTA_HH_MAX_DEVICE; xx++) {
+    bta_hh_cb.kdev[xx].state = BTA_HH_IDLE_ST;
+    bta_hh_cb.kdev[xx].hid_handle = BTA_HH_INVALID_HANDLE;
+    bta_hh_cb.kdev[xx].index = xx;
+  }
 
-    /* store parameters */
-    bta_hh_cb.p_cback = p_data->api_enable.p_cback;
+  /* initialize control block map */
+  for (xx = 0; xx < BTA_HH_MAX_KNOWN; xx++) {
+    bta_hh_cb.cb_index[xx] = BTA_HH_IDX_INVALID;
+  }
 
-    /* initialize device CB */
-    for (xx = 0; xx < BTA_HH_MAX_DEVICE; xx++) {
-      bta_hh_cb.kdev[xx].state = BTA_HH_IDLE_ST;
-      bta_hh_cb.kdev[xx].hid_handle = BTA_HH_INVALID_HANDLE;
-      bta_hh_cb.kdev[xx].index = xx;
+  if (p_data->api_enable.enable_hid) {
+    /* Register with L2CAP */
+    if (HID_HostRegister(bta_hh_cback) == HID_SUCCESS) {
+      /* store parameters */
+      status = BTA_HH_OK;
     }
+  }
 
-    /* initialize control block map */
-    for (xx = 0; xx < BTA_HH_MAX_KNOWN; xx++) {
-      bta_hh_cb.cb_index[xx] = BTA_HH_IDX_INVALID;
-    }
-
+  if (status == BTA_HH_OK && p_data->api_enable.enable_hogp) {
     bta_hh_le_enable();
-  } else if (status == HID_ERR_ALREADY_REGISTERED) {
-    LOG_WARN("Already registered");
   } else {
     /* signal BTA call back event */
     tBTA_HH bta_hh;
-    bta_hh.status = BTA_HH_ERR;
-    LOG_ERROR("Failed to register, status: %d", status);
+    bta_hh.status = status;
+    if (status != BTA_HH_OK) {
+      LOG_ERROR("Failed to register, status: %d", status);
+    }
     if (bta_hh_cb.p_cback) {
       (*bta_hh_cb.p_cback)(BTA_HH_ENABLE_EVT, &bta_hh);
     }
