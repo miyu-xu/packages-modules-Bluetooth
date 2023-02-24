@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c1a1f10b_8933f41a",
+        "filename": "tools/pdl/tests/generated/packet_decl_child_packets_specificity_big_endian.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2023-02-24T14:49:16Z",
+      "side": 1,
+      "message": "Notice how we match for `Bar` before we match for `Foo` below.",
+      "revId": "de18c022b4d0ea7c03bcedd29baee55f6bd45a69",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
