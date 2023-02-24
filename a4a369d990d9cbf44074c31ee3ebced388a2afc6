@@ -112,6 +112,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e7417d93_420e7a84",
+        "filename": "system/bta/hearing_aid/hearing_aid.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 319,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-02-24T00:56:30Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "eed15276_a6f46651",
+      "revId": "a4a369d990d9cbf44074c31ee3ebced388a2afc6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7365413d_a63e60d4",
@@ -125,6 +143,30 @@
       "writtenOn": "2023-02-23T07:38:35Z",
       "side": 1,
       "message": "This should cause log spam when you receive microphone data with HW offload disabled.",
+      "range": {
+        "startLine": 325,
+        "startChar": 8,
+        "endLine": 325,
+        "endChar": 51
+      },
+      "revId": "a4a369d990d9cbf44074c31ee3ebced388a2afc6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bc3c5fc2_bede26cd",
+        "filename": "system/bta/hearing_aid/hearing_aid.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 325,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-02-24T00:56:30Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "7365413d_a63e60d4",
       "range": {
         "startLine": 325,
         "startChar": 8,
