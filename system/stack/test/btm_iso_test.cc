@@ -43,6 +43,9 @@ using testing::Test;
 // Iso Manager currently works on top of the legacy HCI layer
 bool bluetooth::shim::is_gd_shim_enabled() { return false; }
 
+// for function pointer testing purpose
+bool IsIsoActive = false;
+
 tBTM_SEC_DEV_REC* btm_find_dev_by_handle(uint16_t handle) { return nullptr; }
 void BTM_LogHistory(const std::string& tag, const RawAddress& bd_addr,
                     const std::string& msg, const std::string& extra) {}
@@ -151,6 +154,7 @@ class IsoManagerTest : public Test {
     manager_instance_->Start();
     manager_instance_->RegisterCigCallbacks(cig_callbacks_.get());
     manager_instance_->RegisterBigCallbacks(big_callbacks_.get());
+    manager_instance_->RegisterOnIsoTrafficActiveCallback(iso_active_callback);
 
     // Default mock SetCigParams action
     volatile_test_cig_create_cmpl_evt_ = kDefaultCigParamsEvt;
@@ -320,6 +324,7 @@ class IsoManagerTest : public Test {
 
   std::unique_ptr<MockBigCallbacks> big_callbacks_;
   std::unique_ptr<MockCigCallbacks> cig_callbacks_;
+  void (*iso_active_callback)(bool) = [](bool active) { IsIsoActive = active; };
 };
 
 const bluetooth::hci::iso_manager::cig_create_cmpl_evt
@@ -505,6 +510,7 @@ TEST_F(IsoManagerTest, RegisterCallbacks) {
 
   iso_mgr->RegisterBigCallbacks(big_callbacks_.get());
   iso_mgr->RegisterCigCallbacks(cig_callbacks_.get());
+  iso_mgr->RegisterOnIsoTrafficActiveCallback(iso_active_callback);
 }
 
 TEST_F(IsoManagerDeathTestNoInit, RegisterNullBigCallbacks) {
@@ -2367,4 +2373,25 @@ TEST_F(IsoManagerTest, HandleIsoDataSameSeqNb) {
 
   IsoManager::GetInstance()->HandleIsoData(dummy_msg.data());
   IsoManager::GetInstance()->HandleIsoData(dummy_msg.data());
+}
+
+TEST_F(IsoManagerTest, OnIsoTrafficeBecomesNotActive) {
+  uint8_t hci_mock_rsp_buffer[] = {HCI_SUCCESS,
+                                   volatile_test_cig_create_cmpl_evt_.cig_id};
+
+  IsoManager::GetInstance()->CreateCig(
+      volatile_test_cig_create_cmpl_evt_.cig_id, kDefaultCigParams);
+
+  IsIsoActive = true;
+  ON_CALL(hcic_interface_, RemoveCig)
+      .WillByDefault(
+          [&hci_mock_rsp_buffer](
+              auto, base::OnceCallback<void(uint8_t*, uint16_t)> cb) {
+            std::move(cb).Run(hci_mock_rsp_buffer, sizeof(hci_mock_rsp_buffer));
+            return 0;
+          });
+
+  IsoManager::GetInstance()->RemoveCig(
+      volatile_test_cig_create_cmpl_evt_.cig_id);
+  ASSERT_EQ(IsIsoActive, false);
 }
