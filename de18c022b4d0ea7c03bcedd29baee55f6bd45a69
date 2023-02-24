@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "4692067e_16738ee4",
+        "filename": "tools/pdl/src/backends/rust/parser.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 522,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-02-24T16:15:32Z",
+      "side": 1,
+      "message": "Disambiguate children with similar number of constraints with the minimal size of the packet;\n\n```\npacket A {\n   a: 8,\n   _payload_,\n}\n\npacket B : A (a\u003d1) {\n   b: 8,\n   _payload_,\n}\n\n// Test C before B.\npacket C: A (a\u003d2) {\n   b: 8,\n   c: 8,\n   _payload_,\n}\n```",
+      "revId": "de18c022b4d0ea7c03bcedd29baee55f6bd45a69",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "c1a1f10b_8933f41a",
