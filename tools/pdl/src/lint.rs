@@ -1302,6 +1302,19 @@ impl parser::ast::File {
             if let DeclDesc::Packet { parent_id: Some(parent_id), .. }
             | DeclDesc::Struct { parent_id: Some(parent_id), .. } = &decl.desc
             {
+                let fields = match &decl.desc {
+                    DeclDesc::Packet { fields, .. } | DeclDesc::Struct { fields, .. } => fields,
+                    _ => unreachable!("Parent should be packet or struct, got {:?}", decl.desc),
+                };
+
+                if fields.len() == 1
+                    && matches!(&fields[0].desc, FieldDesc::Payload { .. } | FieldDesc::Body { .. })
+                {
+                    // Aliased packets (with only a payload or body
+                    // field) are not included as children.
+                    continue;
+                }
+
                 scope.children.entry(parent_id.to_string()).or_default().push(decl);
             }
         }

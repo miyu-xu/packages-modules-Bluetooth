@@ -38,6 +38,10 @@ packet EnumParent {
     _payload_
 }
 
+packet EmptyParent : ScalarParent {
+    _payload_
+}
+
 // Packet bit fields
 
 // The parser must be able to handle bit fields with scalar values
