@@ -3636,7 +3636,9 @@ TEST_F(UnicastTest, TwoEarbudsStreamingContextSwitchReconfigure) {
   fake_osi_alarm_set_on_mloop_.cb(fake_osi_alarm_set_on_mloop_.data);
   Mock::VerifyAndClearExpectations(&mock_audio_hal_client_callbacks_);
 
-  ccids = {.sink = {gtbs_ccid}, .source = {}};
+  // Conversational is a bidirectional scenario so expect GTBS CCID
+  // in the metadata for both directions.
+  ccids = {.sink = {gtbs_ccid}, .source = {gtbs_ccid}};
   EXPECT_CALL(mock_state_machine_, StartStream(_, _, _, ccids));
   StartStreaming(AUDIO_USAGE_VOICE_COMMUNICATION, AUDIO_CONTENT_TYPE_SPEECH,
                  group_id);
