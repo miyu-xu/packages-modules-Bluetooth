@@ -85,11 +85,9 @@ pub struct PacketScope<'d> {
     // Group fields.
     groups: HashMap<String, &'d parser::ast::Field>,
 
-    // Flattened field declarations.
+    // Field declarations.
     // Contains field declarations from the original Packet, Struct, or Group,
     // where Group fields have been substituted by their body.
-    // Constrained Scalar or Typedef Group fields are substituted by a Fixed
-    // field.
     pub fields: Vec<&'d parser::ast::Field>,
 
     // Constraint declarations gathered from Group inlining.
