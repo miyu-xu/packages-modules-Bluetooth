@@ -16,6 +16,24 @@
       "message": "That\u0027s not the only occurrence, see line 5457 in the same function, for handling SCO connections",
       "revId": "f48c1b26dbd4cccc1cae8e7f630dde6ffd4e2624",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "045b55bb_c194a172",
+        "filename": "tools/rootcanal/model/controller/link_layer_controller.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 5491,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-02-24T00:32:06Z",
+      "side": 1,
+      "message": "And same on line 5477 for the disconnection of attached SCO links.",
+      "parentUuid": "3dceeb84_a287434c",
+      "revId": "f48c1b26dbd4cccc1cae8e7f630dde6ffd4e2624",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
