@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "017e9fb2_723af5dd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1960961
+      },
+      "writtenOn": "2023-02-24T15:10:13Z",
+      "side": 1,
+      "message": "Hi Charlie,\n\nHave rebased and added 12 test cases in GAP.\nRequest you to review at your feasibility.\n\nThank You.\n\nRegards,\nSnehal",
+      "revId": "e76741b86c79f915d748b3deaad861b3ff7a851b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

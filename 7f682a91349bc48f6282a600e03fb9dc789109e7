@@ -33,6 +33,24 @@
       "message": "Hi Snehal,\n\nWe\u0027ve refined a bit the host.proto interface and some of the methods has changed such as Start/Stop Advertising whom became Advertise and GetRemoteName does not longer exist.\n\nWe are currently modifying the current state of mmi2grpc and the PandoraServer as well (aosp/2435755). This CL needs to land on master ASAP since it is required for Avatar.\n\nWe will let you know when you could rebase your CL on master and do the change accordingly.\n\nThanks",
       "revId": "7f682a91349bc48f6282a600e03fb9dc789109e7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "403d5e68_b338c145",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1960961
+      },
+      "writtenOn": "2023-02-24T15:10:13Z",
+      "side": 1,
+      "message": "Hi Charlie,\n\nHave updated the base and added 2 test cases to previous list. \nRequest you to review at your feasibility.\n\nThank you.\n\nRegards,\nSnehal",
+      "parentUuid": "e2adae7f_411f88b4",
+      "revId": "7f682a91349bc48f6282a600e03fb9dc789109e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
