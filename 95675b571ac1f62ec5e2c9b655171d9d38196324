@@ -3,6 +3,74 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d6b0cf92_52320ff8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2023-02-24T18:26:51Z",
+      "side": 1,
+      "message": "I am not entirely sure what the problem is. There are no logs that show this problem. No test evidence either.",
+      "revId": "95675b571ac1f62ec5e2c9b655171d9d38196324",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eea489d5_ced44563",
+        "filename": "system/bta/hh/bta_hh_le.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1985,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2023-02-24T18:26:51Z",
+      "side": 1,
+      "message": "I am not entirely sure what the problem is. If this",
+      "revId": "95675b571ac1f62ec5e2c9b655171d9d38196324",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "214105b0_eb486b94",
+        "filename": "system/bta/hh/bta_hh_le.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1987,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2023-02-24T18:26:51Z",
+      "side": 1,
+      "message": "Rephrase as \"Some HOGP mouse may not permit reading report map after bonding\". Please correct if I have misunderstood.\n\nRemove unnecessary qualifiers in the comment.",
+      "revId": "95675b571ac1f62ec5e2c9b655171d9d38196324",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1ec9739d_fa3e7471",
+        "filename": "system/bta/hh/bta_hh_le.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1988,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2023-02-24T18:26:51Z",
+      "side": 1,
+      "message": "Shouldn\u0027t we be checking if the descriptor length in \"dscp_info\" is zero?",
+      "revId": "95675b571ac1f62ec5e2c9b655171d9d38196324",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6f07608e_3bb938d7",
         "filename": "system/bta/hh/bta_hh_le.cc",
         "patchSetId": 2
@@ -14,6 +82,23 @@
       "writtenOn": "2023-01-18T21:08:00Z",
       "side": 1,
       "message": "Add LOG_ERROR or LOG_WARN when this condition is not satisfied to indicate triggering this code path",
+      "revId": "95675b571ac1f62ec5e2c9b655171d9d38196324",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2aff6ff4_b4a3d5de",
+        "filename": "system/bta/hh/bta_hh_le.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1992,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2023-02-24T18:26:51Z",
+      "side": 1,
+      "message": "Unnecessary",
       "revId": "95675b571ac1f62ec5e2c9b655171d9d38196324",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
