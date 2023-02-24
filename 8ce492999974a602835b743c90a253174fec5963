@@ -20,6 +20,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f53b2ddf_af4eae09",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-02-24T01:23:18Z",
+      "side": 1,
+      "message": "I\u0027m curious why one year?  I would expect most users to not want messages older than a few weeks synced to their carkit.",
+      "revId": "8ce492999974a602835b743c90a253174fec5963",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a6ab14be_7494e0dd",
         "filename": "android/app/src/com/android/bluetooth/map/BluetoothMapContentObserver.java",
         "patchSetId": 2
@@ -66,6 +83,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d203fc1a_7a32c6f7",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapContentObserverTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-02-24T01:23:18Z",
+      "side": 1,
+      "message": "+1",
+      "parentUuid": "770eb059_14a740e1",
+      "range": {
+        "startLine": 75,
+        "startChar": 13,
+        "endLine": 75,
+        "endChar": 44
+      },
+      "revId": "8ce492999974a602835b743c90a253174fec5963",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "50d84127_eaa672ca",
         "filename": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapContentObserverTest.java",
         "patchSetId": 2
@@ -82,6 +123,29 @@
         "startChar": 32,
         "endLine": 95,
         "endChar": 40
+      },
+      "revId": "8ce492999974a602835b743c90a253174fec5963",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9427e8a2_ebce6332",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapContentObserverTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-02-24T01:23:18Z",
+      "side": 1,
+      "message": "TEST_DATE_MS ?\n\nIt seems nice to keep them in sync all the time.",
+      "range": {
+        "startLine": 96,
+        "startChar": 40,
+        "endLine": 96,
+        "endChar": 80
       },
       "revId": "8ce492999974a602835b743c90a253174fec5963",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
