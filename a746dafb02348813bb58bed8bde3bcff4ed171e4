@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b5f2a396_48128da5",
+        "filename": "system/stack/btm/btm_iso_impl.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 665,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-02-24T07:48:17Z",
+      "side": 1,
+      "message": "This should be enclosed in {} to mark the lifetime of lock, you don\u0027t need it after the for loop.\nSame is true for all for loops that are not at end of function.\nSee my other comments if you want to keep the loops at all.",
+      "range": {
+        "startLine": 662,
+        "startChar": 0,
+        "endLine": 665,
+        "endChar": 7
+      },
+      "revId": "a746dafb02348813bb58bed8bde3bcff4ed171e4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b785f727_e482cf91",
+        "filename": "system/stack/btm/btm_iso_impl.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 1027,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-02-24T07:48:17Z",
+      "side": 1,
+      "message": "Since you have on_iso_traffic_active_callback, you no longer need this to be a list.",
+      "range": {
+        "startLine": 1027,
+        "startChar": 27,
+        "endLine": 1027,
+        "endChar": 46
+      },
+      "revId": "a746dafb02348813bb58bed8bde3bcff4ed171e4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "54abe84f_8c1293a7",
+        "filename": "system/stack/include/btm_iso_api.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-02-24T07:48:17Z",
+      "side": 1,
+      "message": "I was thinking more about single method:\nvoid OnIsoTrafficActiveCallbacks(bool active)\n\nWether it\u0027s CIS or CIG, or both, is currently irrelevant.\nASHA code shouldn\u0027t worry about types of events, and internal complexities of ISO, it just cares when the traffic is on or of, so expose just that in callback.",
+      "range": {
+        "startLine": 56,
+        "startChar": 0,
+        "endLine": 60,
+        "endChar": 2
+      },
+      "revId": "a746dafb02348813bb58bed8bde3bcff4ed171e4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
