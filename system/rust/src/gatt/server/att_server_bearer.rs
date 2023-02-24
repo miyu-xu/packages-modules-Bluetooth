@@ -17,21 +17,30 @@ use crate::{
     utils::{owned_handle::OwnedHandle, packet::HACK_child_to_opcode},
 };
 
-use super::{att_database::AttDatabase, transaction_handler::AttTransactionHandler};
+use super::{att_database::AttDatabase, request_handler::AttRequestHandler};
 
-enum AttTransaction<T: AttDatabase> {
-    Idle(AttTransactionHandler<T>),
+enum AttRequestState<T: AttDatabase> {
+    Idle(AttRequestHandler<T>),
     Pending(Option<OwnedHandle<()>>),
 }
 
 const DEFAULT_ATT_MTU: usize = 23;
 
+/// The errors that can occur while trying to send a packet
+#[derive(Debug)]
+pub enum SendError {
+    /// The packet failed to serialize
+    SerializeError(SerializeError),
+    /// The connection no longer exists
+    ConnectionDropped,
+}
+
 /// This represents a single ATT bearer (currently, always the unenhanced fixed
-/// channel on LE) The AttTransactionHandler ensures that only one transaction
-/// can take place at a time
+/// channel on LE) The AttRequestState ensures that only one transaction can
+/// take place at a time
 pub struct AttServerBearer<T: AttDatabase> {
-    curr_operation: Cell<AttTransaction<T>>,
-    send_response: Box<dyn Fn(AttBuilder) -> Result<(), SerializeError>>,
+    curr_request: Cell<AttRequestState<T>>,
+    send_packet: Box<dyn Fn(AttBuilder) -> Result<(), SerializeError>>,
     mtu: Cell<usize>,
 }
 
@@ -40,11 +49,11 @@ impl<T: AttDatabase + 'static> AttServerBearer<T> {
     /// AttDatabase
     pub fn new(
         db: T,
-        send_response: impl Fn(AttBuilder) -> Result<(), SerializeError> + 'static,
+        send_packet: impl Fn(AttBuilder) -> Result<(), SerializeError> + 'static,
     ) -> Self {
         Self {
-            curr_operation: AttTransaction::Idle(AttTransactionHandler::new(db)).into(),
-            send_response: Box::new(send_response),
+            curr_request: AttRequestState::Idle(AttRequestHandler::new(db)).into(),
+            send_packet: Box::new(send_packet),
             mtu: Cell::new(DEFAULT_ATT_MTU),
         }
     }
@@ -52,9 +61,9 @@ impl<T: AttDatabase + 'static> AttServerBearer<T> {
     /// Handle an incoming packet, and send outgoing packets as appropriate
     /// using the owned ATT channel.
     pub fn handle_packet(this: &WeakBoxRef<Self>, packet: AttView<'_>) {
-        let curr_operation = this.curr_operation.replace(AttTransaction::Pending(None));
-        this.curr_operation.replace(match curr_operation {
-            AttTransaction::Idle(mut request_handler) => {
+        let curr_request = this.curr_request.replace(AttRequestState::Pending(None));
+        this.curr_request.replace(match curr_request {
+            AttRequestState::Idle(mut request_handler) => {
                 // even if the MTU is updated afterwards, 5.3 3F 3.4.2.2 states that the
                 // request-time MTU should be used
                 let mtu = this.mtu.get();
@@ -70,34 +79,34 @@ impl<T: AttDatabase + 'static> AttServerBearer<T> {
                         }
                         Some(this) => {
                             trace!("sending reply packet");
-                            if let Err(err) = this.send_response(reply) {
+                            if let Err(err) = this.send_packet(reply) {
                                 error!("serializer failure {err:?}, dropping packet and sending failed reply");
-                                this.send_response(AttErrorResponseBuilder {
+                                this.send_packet(AttErrorResponseBuilder {
                                     opcode_in_error: packet.view().get_opcode(),
                                     handle_in_error: AttHandle(0).into(),
                                     error_code: AttErrorCode::UNLIKELY_ERROR,
                                 }).expect("packet should never fail to serialize");
                             }
                             // ready for next transaction
-                            this.curr_operation.replace(AttTransaction::Idle(request_handler));
+                            this.curr_request.replace(AttRequestState::Idle(request_handler));
                         }
                     }
                     })
                 });
-                AttTransaction::Pending(Some(task.into()))
+                AttRequestState::Pending(Some(task.into()))
             }
-            AttTransaction::Pending(_) => {
+            AttRequestState::Pending(_) => {
                 warn!("multiple ATT operations cannot simultaneously take place, dropping one");
                 // TODO(aryarahul) - disconnect connection here;
-                curr_operation
+                curr_request
             }
         });
     }
 
-    fn send_response(&self, packet: impl Into<AttChild>) -> Result<(), SerializeError> {
+    fn send_packet(&self, packet: impl Into<AttChild>) -> Result<(), SendError> {
         let child = packet.into();
         let packet = AttBuilder { opcode: HACK_child_to_opcode(&child), _child_: child };
-        (self.send_response)(packet)
+        (self.send_packet)(packet).map_err(SendError::SerializeError)
     }
 }
 
