@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f8ae3a8d_47a5ff12",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-02-24T08:11:46Z",
+      "side": 1,
+      "message": "While searching to reproduce size header error I cross a lot of GMOCK_WARNING and got removed them.\nI promote the mock to be a StricMock so I can removed the Times(0) and need to expect on all call. (but there is no more warning in log output of the tests !)",
+      "revId": "0d3e322876a631689d8df6ee44901c53bca4ebd9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
