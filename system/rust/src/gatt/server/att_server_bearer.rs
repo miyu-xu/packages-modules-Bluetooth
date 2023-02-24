@@ -2,15 +2,13 @@
 //! It handles ATT transactions and unacknowledged operations, backed by an
 //! AttDatabase (that may in turn be backed by an upper-layer protocol)
 
-use std::{
-    cell::Cell,
-    rc::{Rc, Weak},
-};
+use std::cell::Cell;
 
 use log::{error, trace, warn};
 use tokio::task::spawn_local;
 
 use crate::{
+    core::shared_box::WeakBoxRef,
     gatt::ids::AttHandle,
     packets::{
         AttBuilder, AttChild, AttErrorCode, AttErrorResponseBuilder, AttView, Packet,
@@ -29,11 +27,11 @@ enum AttTransaction<T: AttDatabase> {
 const DEFAULT_ATT_MTU: usize = 23;
 
 /// This represents a single ATT bearer (currently, always the unenhanced fixed
-/// channel on LE) The AttTransaction ensures that only one transaction can take
-/// place at a time
+/// channel on LE) The AttTransactionHandler ensures that only one transaction
+/// can take place at a time
 pub struct AttServerBearer<T: AttDatabase> {
     curr_operation: Cell<AttTransaction<T>>,
-    send_packet: Box<dyn Fn(AttBuilder) -> Result<(), SerializeError>>,
+    send_response: Box<dyn Fn(AttBuilder) -> Result<(), SerializeError>>,
     mtu: Cell<usize>,
 }
 
@@ -42,30 +40,31 @@ impl<T: AttDatabase + 'static> AttServerBearer<T> {
     /// AttDatabase
     pub fn new(
         db: T,
-        send_packet: impl Fn(AttBuilder) -> Result<(), SerializeError> + 'static,
-    ) -> Rc<Self> {
+        send_response: impl Fn(AttBuilder) -> Result<(), SerializeError> + 'static,
+    ) -> Self {
         Self {
             curr_operation: AttTransaction::Idle(AttTransactionHandler::new(db)).into(),
-            send_packet: Box::new(send_packet),
+            send_response: Box::new(send_response),
             mtu: Cell::new(DEFAULT_ATT_MTU),
         }
-        .into()
     }
 
     /// Handle an incoming packet, and send outgoing packets as appropriate
     /// using the owned ATT channel.
-    pub fn handle_packet(self: &Rc<Self>, packet: AttView<'_>) {
-        let curr_operation = self.curr_operation.replace(AttTransaction::Pending(None));
-        self.clone().curr_operation.replace(match curr_operation {
+    pub fn handle_packet(this: &WeakBoxRef<Self>, packet: AttView<'_>) {
+        let curr_operation = this.curr_operation.replace(AttTransaction::Pending(None));
+        this.curr_operation.replace(match curr_operation {
             AttTransaction::Idle(mut request_handler) => {
-                // even if the MTU is updated afterwards, 5.3 3F 3.4.2.2 states that the request-time MTU should be used
-                let mtu = self.mtu.get();
-                let this = Rc::downgrade(self);
+                // even if the MTU is updated afterwards, 5.3 3F 3.4.2.2 states that the
+                // request-time MTU should be used
+                let mtu = this.mtu.get();
                 let packet = packet.to_owned_packet();
+                let this = this.downgrade();
                 let task = spawn_local(async move {
                     trace!("starting ATT transaction");
                     let reply = request_handler.process_packet(packet.view(), mtu).await;
-                    match Weak::upgrade(&this) {
+                    this.with(|this| {
+                    match this {
                         None => {
                             warn!("callback returned after disconnect");
                         }
@@ -83,6 +82,7 @@ impl<T: AttDatabase + 'static> AttServerBearer<T> {
                             this.curr_operation.replace(AttTransaction::Idle(request_handler));
                         }
                     }
+                    })
                 });
                 AttTransaction::Pending(Some(task.into()))
             }
@@ -97,18 +97,20 @@ impl<T: AttDatabase + 'static> AttServerBearer<T> {
     fn send_response(&self, packet: impl Into<AttChild>) -> Result<(), SerializeError> {
         let child = packet.into();
         let packet = AttBuilder { opcode: HACK_child_to_opcode(&child), _child_: child };
-        (self.send_packet)(packet)
+        (self.send_response)(packet)
     }
 }
 
 #[cfg(test)]
 mod test {
+    use std::rc::Rc;
+
     use tokio::sync::mpsc::{error::TryRecvError, unbounded_channel, UnboundedReceiver};
 
     use super::*;
 
     use crate::{
-        core::uuid::Uuid,
+        core::{shared_box::SharedBox, uuid::Uuid},
         gatt::{
             callbacks::GattDatastore,
             ids::ConnectionId,
@@ -136,7 +138,8 @@ mod test {
 
     const CONN_ID: ConnectionId = ConnectionId(1);
 
-    fn open_connection() -> (Rc<AttServerBearer<TestAttDatabase>>, UnboundedReceiver<AttBuilder>) {
+    fn open_connection(
+    ) -> (SharedBox<AttServerBearer<TestAttDatabase>>, UnboundedReceiver<AttBuilder>) {
         let db = TestAttDatabase::new(vec![(
             AttAttribute {
                 handle: VALID_HANDLE,
@@ -149,7 +152,8 @@ mod test {
         let conn = AttServerBearer::new(db, move |packet| {
             tx.send(packet).unwrap();
             Ok(())
-        });
+        })
+        .into();
         (conn, rx)
     }
 
@@ -157,7 +161,8 @@ mod test {
     fn test_single_transaction() {
         block_on_locally(async {
             let (conn, mut rx) = open_connection();
-            conn.handle_packet(
+            AttServerBearer::handle_packet(
+                &conn.as_ref(),
                 build_att_view_or_crash(AttReadRequestBuilder {
                     attribute_handle: VALID_HANDLE.into(),
                 })
@@ -172,7 +177,8 @@ mod test {
     fn test_sequential_transactions() {
         block_on_locally(async {
             let (conn, mut rx) = open_connection();
-            conn.handle_packet(
+            AttServerBearer::handle_packet(
+                &conn.as_ref(),
                 build_att_view_or_crash(AttReadRequestBuilder {
                     attribute_handle: INVALID_HANDLE.into(),
                 })
@@ -181,7 +187,8 @@ mod test {
             assert_eq!(rx.recv().await.unwrap().opcode, AttOpcode::ERROR_RESPONSE);
             assert_eq!(rx.try_recv(), Err(TryRecvError::Empty));
 
-            conn.handle_packet(
+            AttServerBearer::handle_packet(
+                &conn.as_ref(),
                 build_att_view_or_crash(AttReadRequestBuilder {
                     attribute_handle: VALID_HANDLE.into(),
                 })
@@ -200,7 +207,7 @@ mod test {
         let datastore = Rc::new(datastore);
         datastore.add_connection(CONN_ID);
         data_rx.blocking_recv().unwrap(); // ignore AddConnection() event
-        let db = Rc::new(GattDatabase::new(datastore));
+        let db = SharedBox::new(GattDatabase::new(datastore));
         db.add_service_with_handles(GattServiceWithHandle {
             handle: AttHandle(1),
             type_: Uuid::new(1),
@@ -223,7 +230,10 @@ mod test {
             tx.send(packet).unwrap();
             Ok(())
         };
-        let conn = AttServerBearer::new(db.get_att_database(CONN_ID), send_response);
+        let conn = SharedBox::new(AttServerBearer::new(
+            GattDatabase::get_att_database(&db, CONN_ID),
+            send_response,
+        ));
         let data = AttAttributeDataChild::RawData([1, 2].into());
 
         // act: send two read requests before replying to either read
@@ -232,12 +242,12 @@ mod test {
             let req1 = build_att_view_or_crash(AttReadRequestBuilder {
                 attribute_handle: VALID_HANDLE.into(),
             });
-            conn.handle_packet(req1.view());
+            AttServerBearer::handle_packet(&conn.as_ref(), req1.view());
             // second request
             let req2 = build_att_view_or_crash(AttReadRequestBuilder {
                 attribute_handle: ANOTHER_VALID_HANDLE.into(),
             });
-            conn.handle_packet(req2.view());
+            AttServerBearer::handle_packet(&conn.as_ref(), req2.view());
             // handle first reply
             let MockDatastoreEvents::ReadCharacteristic(CONN_ID, VALID_HANDLE, data_resp) =
                 data_rx.recv().await.unwrap() else {
