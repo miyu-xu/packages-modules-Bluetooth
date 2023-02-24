@@ -16,6 +16,46 @@
       "message": "Wear OS patch upstreaming",
       "revId": "26c10aba0b39214ea5ff067aae52b5fa3b189705",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "394f104c_902de962",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-02-24T21:38:30Z",
+      "side": 1,
+      "message": "Hi @aryarahul@google.com Can you take a look at this BLE fix ?",
+      "revId": "26c10aba0b39214ea5ff067aae52b5fa3b189705",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "50c2f7df_17b7ef90",
+        "filename": "system/stack/btm/btm_ble.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 519,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-02-24T21:38:30Z",
+      "side": 1,
+      "message": "Comment mention an ovewrite, should we change it ?",
+      "range": {
+        "startLine": 519,
+        "startChar": 27,
+        "endLine": 519,
+        "endChar": 36
+      },
+      "revId": "26c10aba0b39214ea5ff067aae52b5fa3b189705",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
