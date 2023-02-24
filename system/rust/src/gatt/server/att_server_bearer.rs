@@ -9,7 +9,10 @@ use tokio::task::spawn_local;
 
 use crate::{
     core::shared_box::WeakBoxRef,
-    gatt::ids::AttHandle,
+    gatt::{
+        ids::AttHandle,
+        opcode_types::{classify_opcode, OperationType},
+    },
     packets::{
         AttBuilder, AttChild, AttErrorCode, AttErrorResponseBuilder, AttView, Packet,
         SerializeError,
@@ -59,6 +62,23 @@ impl<T: AttDatabase + 'static> AttServerBearer<T> {
     /// Handle an incoming packet, and send outgoing packets as appropriate
     /// using the owned ATT channel.
     pub fn handle_packet(this: &WeakBoxRef<Self>, packet: AttView<'_>) {
+        match classify_opcode(packet.get_opcode()) {
+            OperationType::Command => {
+                error!("dropping ATT command (currently unsupported)");
+            }
+            OperationType::Request => {
+                Self::handle_request(this, packet);
+            }
+            OperationType::Confirmation => {
+                error!("ignoring handle value confirmation (currently unsupported)");
+            }
+            OperationType::Response | OperationType::Notification | OperationType::Indication => {
+                unreachable!("the arbiter should not let us receive these packet types")
+            }
+        }
+    }
+
+    fn handle_request(this: &WeakBoxRef<Self>, packet: AttView<'_>) {
         let curr_request = this.curr_request.replace(AttRequestState::Pending(None));
         this.curr_request.replace(match curr_request {
             AttRequestState::Idle(mut request_handler) => {
