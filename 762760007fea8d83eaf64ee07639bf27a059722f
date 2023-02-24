@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c039f77f_54b1a3ab",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 1473,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-02-24T00:46:04Z",
+      "side": 1,
+      "message": "IMO, we should just be calling the two functions instead of stopping and starting all scans:\n\n```\nself.gatt.as_ref().unwrap().lock().scanner.scan_filter_disable();\nself.gatt.as_ref().unwrap().lock().scanner.stop_scan();\n```\n\nAnd in `start_scan` impl for BluetoothGatt, simply return `BtStatus::Busy` because it\u0027s suspended (we added it specifically for this purpose).",
+      "revId": "762760007fea8d83eaf64ee07639bf27a059722f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
