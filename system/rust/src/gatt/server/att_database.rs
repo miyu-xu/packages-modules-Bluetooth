@@ -1,4 +1,5 @@
 use async_trait::async_trait;
+use bitflags::bitflags;
 
 use crate::{
     core::uuid::Uuid,
@@ -32,20 +33,15 @@ pub struct AttAttribute {
     pub permissions: AttPermissions,
 }
 
-/// The attribute properties supported by the current GATT server implementation
-/// Unimplemented properties will default to false.
-#[derive(Debug, Copy, Clone, PartialEq, Eq)]
-pub struct AttPermissions {
-    /// Whether an attribute is readable
-    pub readable: bool,
-    /// Whether an attribute is writable
-    /// (using ATT_WRITE_REQ, so a response is expected)
-    pub writable: bool,
-}
-
-impl AttPermissions {
-    /// An attribute that is readable, but not writable
-    pub const READONLY: Self = Self { readable: true, writable: false };
+bitflags! {
+    /// The attribute properties supported by the current GATT server implementation
+    /// Unimplemented properties will default to false.
+    pub struct AttPermissions : u8 {
+        /// Attribute can be read using READ_REQ
+        const READABLE = 0x02;
+        /// Attribute can be written to using WRITE_REQ
+        const WRITABLE = 0x08;
+    }
 }
 
 #[async_trait(?Send)]
