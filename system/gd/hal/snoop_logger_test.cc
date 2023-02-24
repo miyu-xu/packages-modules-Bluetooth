@@ -437,10 +437,8 @@ TEST_F(SnoopLoggerModuleTest, delete_old_snooz_log_files) {
   ASSERT_TRUE(std::filesystem::exists(temp_snooz_log_));
   handler->Post(bluetooth::common::BindOnce(fake_timerfd_advance, 10));
   ASSERT_TRUE(std::filesystem::exists(temp_snooz_log_));
-  handler->Post(bluetooth::common::BindOnce(fake_timerfd_advance, 15));
-  handler->Post(bluetooth::common::BindOnce(
-      [](std::filesystem::path path) { ASSERT_FALSE(std::filesystem::exists(path)); }, temp_snooz_log_));
   test_registry->StopAll();
+  ASSERT_FALSE(std::filesystem::exists(temp_snooz_log_));
 }
 
 TEST_F(SnoopLoggerModuleTest, rotate_file_at_new_session_test) {
