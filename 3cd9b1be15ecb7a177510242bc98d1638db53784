@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c4cf1451_bc7934f0",
+        "filename": "system/bta/hearing_aid/hearing_aid.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 315,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-02-25T21:30:24Z",
+      "side": 1,
+      "message": "Please fix this WARNING reported by Build Warnings: inside a lambda, \u0027__func__\u0027 expands to the name of the function call operator; consider capturing the name of the enclosing function explicitly [bugprone-lambda-function-name]\n\nAnalyzer Description: Reports warnings that originate from build.log in the build artifacts.\nOwner: farivar@google.com\n\n    inside a lambda, \u0027__func__\u0027 expands to the name of the function call operator; consider capturing the name of the enclosing function explicitly [bugprone-lambda-function-name]\n                LOG_ERROR(\"Hearing Aid instance is not available\");\n                ^\n    packages/modules/Bluetooth/system/gd/os/log.h:64:77: note: expanded from macro \u0027LOG_ERROR\u0027\n    #define LOG_ERROR(fmt, args...) ALOGE(\"%s:%d %s: \" fmt, __FILE__, __LINE__, __func__, ##args)\n                                                                                ^\n\nThis finding was found on https://android-build.googleplex.com/builds/build-details/P50828260/targets/aosp_arm64-userdebug_tidy, but may also be present on other builds.",
+      "range": {
+        "startLine": 315,
+        "startChar": 13,
+        "endLine": 315,
+        "endChar": 63
+      },
+      "revId": "3cd9b1be15ecb7a177510242bc98d1638db53784",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
