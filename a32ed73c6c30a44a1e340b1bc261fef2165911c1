@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8d351878_a9c794d3",
+        "filename": "android/pandora/test/asha_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2023-02-25T00:17:49Z",
+      "side": 1,
+      "message": "A name describing the test would be better than having 1/2 (even if it\u0027s longer) 😊",
+      "range": {
+        "startLine": 61,
+        "startChar": 8,
+        "endLine": 61,
+        "endChar": 25
+      },
+      "revId": "a32ed73c6c30a44a1e340b1bc261fef2165911c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e99473a5_1195a8e6",
+        "filename": "android/pandora/test/asha_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2023-02-25T00:17:49Z",
+      "side": 1,
+      "message": "It might also be worth adding some comments to match the test specifications, such as `Step 1: ...`, `Step 2: ...`. Especially because we plan to share those tests to Samsung",
+      "range": {
+        "startLine": 67,
+        "startChar": 8,
+        "endLine": 67,
+        "endChar": 81
+      },
+      "revId": "a32ed73c6c30a44a1e340b1bc261fef2165911c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
