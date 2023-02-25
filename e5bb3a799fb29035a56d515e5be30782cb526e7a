@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "42dfc222_efc7733c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-02-25T05:24:32Z",
+      "side": 1,
+      "message": "This code does not compile\n\n```\npackages/modules/Bluetooth/system/bta/le_audio/state_machine_test.cc:2809:7: error: no viable conversion from \u0027types::AudioContexts\u0027 to \u0027const types::BidirectionalPair\u003ctypes::AudioContexts\u003e\u0027\n      types::AudioContexts(context_type)));\n      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\nexternal/googletest/googletest/include/gtest/gtest.h:1990:50: note: expanded from macro \u0027ASSERT_TRUE\u0027\n#define ASSERT_TRUE(condition) GTEST_ASSERT_TRUE(condition)\n                                                 ^~~~~~~~~\nexternal/googletest/googletest/include/gtest/gtest.h:1972:23: note: expanded from macro \u0027GTEST_ASSERT_TRUE\u0027\n  GTEST_TEST_BOOLEAN_(condition, #condition, false, true, \\\n                      ^~~~~~~~~\nexternal/googletest/googletest/include/gtest/internal/gtest-internal.h:1502:34: note: expanded from macro \u0027GTEST_TEST_BOOLEAN_\u0027\n      ::testing::AssertionResult(expression)) \\\n                                 ^~~~~~~~~~\npackages/modules/Bluetooth/system/bta/le_audio/le_audio_types.h:453:8: note: candidate constructor (the implicit copy constructor) not viable: no known conversion from \u0027types::AudioContexts\u0027 to \u0027const le_audio::types::BidirectionalPair\u003cle_audio::types::AudioContexts\u003e \u0026\u0027 for 1st argument\nstruct BidirectionalPair {\n       ^\npackages/modules/Bluetooth/system/bta/le_audio/state_machine.h:53:11: note: passing argument to parameter \u0027metadata_context_types\u0027 here\n          metadata_context_types,\n          ^\n1 error generated.\n```",
+      "revId": "e5bb3a799fb29035a56d515e5be30782cb526e7a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
