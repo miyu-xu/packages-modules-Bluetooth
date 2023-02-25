@@ -567,10 +567,17 @@ void SMP_SecureConnectionOobDataReply(uint8_t* p_data) {
  * Description      This function is called to generate a public key to be
  *                  passed to a remote device via Out of Band transport.
  *
+ * Returns          true if the request is successfully sent, false otherwise
+ *
  ******************************************************************************/
-void SMP_CrLocScOobData() {
+bool SMP_CrLocScOobData() {
   tSMP_INT_DATA smp_int_data;
+  // Fails if the SMP state machine isn't idle
+  if (smp_get_state() == SMP_STATE_IDLE) {
+    return false;
+  }
   smp_sm_event(&smp_cb, SMP_CR_LOC_SC_OOB_DATA_EVT, &smp_int_data);
+  return true;
 }
 
 /*******************************************************************************
