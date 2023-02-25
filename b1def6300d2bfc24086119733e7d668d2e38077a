@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c1e113f6_2a22241c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1874901
+      },
+      "writtenOn": "2023-02-25T01:50:06Z",
+      "side": 1,
+      "message": "After discussing with abhishekpandit@, he suggested that I bypass the presubmit. This revert CL doesn\u0027t affect the failing targets (per Abhishek).",
+      "revId": "b1def6300d2bfc24086119733e7d668d2e38077a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
