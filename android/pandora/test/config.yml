@@ -7,3 +7,11 @@ TestBeds:
     BumbleDevice:
     - transport: 'tcp-client:127.0.0.1:7300'
       classic_enabled: true
+- Name: SMTest
+  Controllers:
+      AndroidDevice: '*'
+      BumbleDevice:
+      - transport: 'tcp-client:127.0.0.1:7300'
+        classic_enabled: true
+        address: 'BC:A3:C1:F9:65:87'
+        irk: '43E96EC5C5DBD8D0F5204CFFDECE0096'
