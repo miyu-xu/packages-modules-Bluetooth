@@ -524,12 +524,12 @@ void btm_dev_consolidate_existing_connections(const RawAddress& bd_addr) {
   }
 }
 
-bool btm_sec_delete_duplicate_device(const RawAddress& pairing_bd_addr,
-                                     const RawAddress& identity_bd_addr) {
+RawAddress btm_get_old_device_with_matching_id_addr(
+    const RawAddress& pairing_bd_addr, const RawAddress& identity_bd_addr) {
   LOG_DEBUG("%s=> pairing_bd_addr: %s and identity_bd_addr: %s", __func__,
             ADDRESS_TO_LOGGABLE_CSTR(pairing_bd_addr),
             ADDRESS_TO_LOGGABLE_CSTR(identity_bd_addr));
-  if (btm_cb.sec_dev_rec == nullptr) return false;
+  if (btm_cb.sec_dev_rec == nullptr) return RawAddress::kEmpty;
 
   list_node_t* end = list_end(btm_cb.sec_dev_rec);
   for (list_node_t* node = list_begin(btm_cb.sec_dev_rec); node != end;
@@ -547,15 +547,14 @@ bool btm_sec_delete_duplicate_device(const RawAddress& pairing_bd_addr,
     if (p_dev_rec->ble.identity_address_with_type.bda == identity_bd_addr &&
         p_dev_rec->ble.pseudo_addr != pairing_bd_addr) {
       LOG_DEBUG(
-          "Removing duplicate device record with bd_addr:%s and "
+          "Found matching duplicate device record with bd_addr:%s and "
           "identity_bd_addr:%s",
           ADDRESS_TO_LOGGABLE_CSTR(p_dev_rec->ble.pseudo_addr),
           ADDRESS_TO_LOGGABLE_CSTR(identity_bd_addr));
-      BTM_SecDeleteDevice(p_dev_rec->bd_addr);
-      return true;
+      return p_dev_rec->ble.pseudo_addr;
     }
   }
-  return false;
+  return RawAddress::kEmpty;
 }
 
 /*******************************************************************************

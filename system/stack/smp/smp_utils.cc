@@ -42,8 +42,6 @@
 #include "types/raw_address.h"
 
 void btm_dev_consolidate_existing_connections(const RawAddress& bd_addr);
-bool btm_sec_delete_duplicate_device(const RawAddress& pairing_bd_addr,
-                                     const RawAddress& identity_bd_addr);
 
 #define SMP_PAIRING_REQ_SIZE 7
 #define SMP_CONFIRM_CMD_SIZE (OCTET16_LEN + 1)
@@ -1006,10 +1004,6 @@ void smp_proc_pairing_cmpl(tSMP_CB* p_cb) {
 
   if (p_cb->status == SMP_SUCCESS && p_cb->smp_over_br) {
     btm_dev_consolidate_existing_connections(pairing_bda);
-  }
-
-  if (p_cb->status == SMP_SUCCESS && !p_cb->smp_over_br) {
-    btm_sec_delete_duplicate_device(pairing_bda, p_cb->id_addr);
   }
 
   smp_reset_control_value(p_cb);
