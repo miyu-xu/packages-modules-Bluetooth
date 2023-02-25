@@ -16,6 +16,24 @@
       "message": "It seems like the real fix is the next one in the Floss code.  Is this just supposed to be \"insurance\"?",
       "revId": "e3545c86f54308fef724a6a74b93946b5b293fc8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "584d2e9b_5619b961",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1963846
+      },
+      "writtenOn": "2023-02-25T09:24:35Z",
+      "side": 1,
+      "message": "Yes, this is an \"insurance\". \n\nI saw that in le_scanning_manager, there is a similar insurance. The scan_filter_enable() checks whether is_filter_supported_ is true before issuing the HCI command.\n\nHence, I think it is good to have this check. Thanks!\n\nhttps://osscs.corp.google.com/android/platform/superproject/+/master:packages/modules/Bluetooth/system/gd/hci/le_scanning_manager.cc;l\u003d727",
+      "parentUuid": "d64088c2_fea463c8",
+      "revId": "e3545c86f54308fef724a6a74b93946b5b293fc8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
