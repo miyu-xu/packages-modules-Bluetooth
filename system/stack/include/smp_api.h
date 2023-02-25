@@ -187,6 +187,9 @@ extern void SMP_SecureConnectionOobDataReply(uint8_t* p_data);
  * Description      This function is called to generate a public key to be
  *                  passed to a remote device via an Out of Band transport
  *
+ * Returns          true if the operations is successfully sent, false
+ *                  otherwise
+ *
  ******************************************************************************/
 extern void SMP_CrLocScOobData();
 
