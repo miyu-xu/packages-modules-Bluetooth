@@ -43,6 +43,7 @@ class HfpIntf {
   uint32_t disconnect(RawAddress addr);
   int disconnect_audio(RawAddress addr);
   uint32_t device_status_notification(TelephonyDeviceStatus status, RawAddress addr);
+  void set_swb_enabled(bool enabled);
   uint32_t indicator_query_response(
       TelephonyDeviceStatus device_status, PhoneState phone_state, RawAddress addr);
   uint32_t current_calls_query_response(const ::rust::Vec<CallInfo>& call_list, RawAddress addr);

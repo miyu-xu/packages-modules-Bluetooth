@@ -195,6 +195,11 @@ impl IBluetoothMedia for IBluetoothMediaDBus {
         dbus_generated!()
     }
 
+    #[dbus_method("SetHfpSwbEnabled")]
+    fn set_hfp_swb_enabled(&mut self, enabled: bool) {
+        dbus_generated!()
+    }
+
     #[dbus_method("SetVolume")]
     fn set_volume(&mut self, volume: u8) {
         dbus_generated!()

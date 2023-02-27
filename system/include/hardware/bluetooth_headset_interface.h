@@ -242,6 +242,14 @@ class Interface {
   virtual bt_status_t SetScoOffloadEnabled(bool value) = 0;
 
   /**
+   * Enable/Disable SWB
+   *
+   * @param value true to enable, false to disable
+   * @return BT_STATUS_SUCCESS on success
+   */
+  virtual bt_status_t SetScoSwbEnabled(bool value) = 0;
+
+  /**
    * Whether we are allowed to initiate SCO
    *
    * @param value true to allow, false to disallow

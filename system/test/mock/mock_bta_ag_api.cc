@@ -67,4 +67,5 @@ void BTA_AgSetCodec(uint16_t handle, tBTA_AG_PEER_CODEC codec) {
   inc_func_call_count(__func__);
 }
 void BTA_AgSetScoOffloadEnabled(bool value) { inc_func_call_count(__func__); }
+void BTA_AgSetScoSwbEnabled(bool value) { inc_func_call_count(__func__); }
 void BTA_AgSetScoAllowed(bool value) { inc_func_call_count(__func__); }

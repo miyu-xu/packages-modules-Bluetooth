@@ -23,8 +23,6 @@
 #include "device/include/esco_parameters.h"
 #include "stack/include/btm_api_types.h"
 
-#define BTM_MSBC_CODE_SIZE 240
-
 constexpr uint16_t kMaxScoLinks = static_cast<uint16_t>(BTM_MAX_SCO_LINKS);
 
 /* SCO-over-HCI audio related definitions */
@@ -51,6 +49,7 @@ namespace bluetooth::audio::sco::wbs {
 
 /* Initialize struct used for storing WBS related information.
  * Args:
+ *    codec - BTM codec type, must be one of TRANSPNT/MSBC/LC3.
  *    pkt_size - Length of the SCO packet. It is determined based on the BT-USB
  *    adapter's capability and alt mode setting. The value should be queried
  *    from HAL interface. It will be used to determine the size of the SCO
@@ -59,19 +58,10 @@ namespace bluetooth::audio::sco::wbs {
  *    The selected packet size. Will fallback to the typical mSBC packet
  *    length(60) if the pkt_size argument is not supported.
  */
-size_t init(size_t pkt_size);
+size_t init(esco_coding_format_t coding_format, size_t pkt_size);
 
 /* Clean up when the SCO connection is done */
-void cleanup();
-
-/* Fill in packet loss stats
- * Args:
- *    num_decoded_frames - Output argument for the number of decode frames
- *    packet_loss_ratio - Output argument for the ratio of lost frames
- * Returns:
- *    False for invalid arguments or unreasonable stats. True otherwise.
- */
-bool fill_plc_stats(int* num_decoded_frames, double* packet_loss_ratio);
+bool cleanup(int* num_decoded_frames, double* packet_loss_ratio);
 
 /* Try to enqueue a packet to a buffer.
  * Args:
@@ -95,11 +85,10 @@ size_t decode(const uint8_t** output);
 /* Try to encode PCM data into one SCO packet and put the packets in the buffer.
  * Args:
  *    data - Pointer to the input PCM bytes for the encoder to encode.
- *    len - Length of the input data.
  * Returns:
  *    The length of input data that is encoded. 0 if failed.
  */
-size_t encode(int16_t* data, size_t len);
+size_t encode(int16_t* data);
 
 /* Dequeue a SCO packet with encoded mSBC data if possible. The length of the
  * packet is determined by the pkt_size set by the init().
@@ -172,16 +161,15 @@ typedef struct {
     return esco.setup.input_data_path == ESCO_DATA_PATH_HCI;
   }
   bool is_wbs() const {
-    return esco.setup.transmit_coding_format.coding_format ==
-               ESCO_CODING_FORMAT_TRANSPNT ||
-           esco.setup.transmit_coding_format.coding_format ==
-               ESCO_CODING_FORMAT_MSBC;
+    return esco.setup.coding_format == ESCO_CODING_FORMAT_MSBC;
+  }
+  bool is_swb() const {
+    return esco.setup.coding_format == ESCO_CODING_FORMAT_LC3;
   }
   uint16_t Handle() const { return hci_handle; }
 
   bool is_orig;           /* true if the originator       */
   bool rem_bd_known;      /* true if remote BD addr known */
-
 } tSCO_CONN;
 
 /* SCO Management control block */

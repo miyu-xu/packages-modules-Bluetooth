@@ -239,6 +239,10 @@ uint32_t HfpIntf::connect(RawAddress addr) {
   return intf_->Connect(&addr);
 }
 
+void HfpIntf::set_swb_enabled(bool enabled) {
+  intf_->SetScoSwbEnabled(enabled);
+}
+
 int HfpIntf::connect_audio(RawAddress addr, bool sco_offload, bool force_cvsd) {
   intf_->SetScoOffloadEnabled(sco_offload);
   return intf_->ConnectAudio(&addr, force_cvsd);

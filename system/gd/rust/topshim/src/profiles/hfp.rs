@@ -132,6 +132,7 @@ pub mod ffi {
         ) -> i32;
         fn set_active_device(self: Pin<&mut HfpIntf>, bt_addr: RawAddress) -> i32;
         fn set_volume(self: Pin<&mut HfpIntf>, volume: i8, bt_addr: RawAddress) -> i32;
+        fn set_swb_enabled(self: Pin<&mut HfpIntf>, enabled: bool);
         fn disconnect(self: Pin<&mut HfpIntf>, bt_addr: RawAddress) -> u32;
         fn disconnect_audio(self: Pin<&mut HfpIntf>, bt_addr: RawAddress) -> i32;
         fn device_status_notification(
@@ -344,6 +345,11 @@ impl Hfp {
     #[profile_enabled_or(BtStatus::NotReady.into())]
     pub fn set_volume(&mut self, volume: i8, addr: RawAddress) -> i32 {
         self.internal.pin_mut().set_volume(volume, addr)
+    }
+
+    #[profile_enabled_or()]
+    pub fn set_swb_enabled(&mut self, enabled: bool) {
+        self.internal.pin_mut().set_swb_enabled(enabled)
     }
 
     #[profile_enabled_or(BtStatus::NotReady)]

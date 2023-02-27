@@ -232,6 +232,10 @@ void BTA_AgSetScoOffloadEnabled(bool value) {
                     base::Bind(&bta_ag_set_sco_offload_enabled, value));
 }
 
+void BTA_AgSetScoSwbEnabled(bool value) {
+  do_in_main_thread(FROM_HERE, base::Bind(&bta_ag_set_sco_swb_enabled, value));
+}
+
 void BTA_AgSetScoAllowed(bool value) {
   do_in_main_thread(FROM_HERE, base::Bind(&bta_ag_set_sco_allowed, value));
 }

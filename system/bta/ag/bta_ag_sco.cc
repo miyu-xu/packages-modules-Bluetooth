@@ -1415,6 +1415,10 @@ void bta_ag_set_sco_offload_enabled(bool value) {
   hfp_hal_interface::enable_offload(value);
 }
 
+void bta_ag_set_sco_swb_enabled(bool value) {
+  hfp_hal_interface::enable_swb(value);
+}
+
 void bta_ag_set_sco_allowed(bool value) {
   sco_allowed = value;
   APPL_TRACE_DEBUG(sco_allowed ? "sco now allowed" : "sco now not allowed");

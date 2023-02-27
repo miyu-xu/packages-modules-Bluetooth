@@ -101,6 +101,9 @@ pub trait IBluetoothMedia {
     fn start_audio_request(&mut self) -> bool;
     fn stop_audio_request(&mut self);
 
+    /// Set whether SWB should be enabled in HFP.
+    fn set_hfp_swb_enabled(&mut self, enabled: bool);
+
     /// Returns true iff A2DP audio has started.
     fn get_a2dp_audio_started(&mut self, address: String) -> bool;
 
@@ -2054,6 +2057,14 @@ impl IBluetoothMedia for BluetoothMedia {
                 }
             }
             _ => warn!("[{}] Not connected or disconnected HFP address", address),
+        }
+    }
+
+    fn set_hfp_swb_enabled(&mut self, enabled: bool) {
+        if let Some(hfp) = self.hfp.as_mut() {
+            hfp.set_swb_enabled(enabled);
+        } else {
+            warn!("Uninitialized HFP to set SWB enabled");
         }
     }
 
