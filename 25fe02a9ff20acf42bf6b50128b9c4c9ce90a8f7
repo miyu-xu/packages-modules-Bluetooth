@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0ce50329_61782da3",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-02-27T15:09:35Z",
+      "side": 1,
+      "message": "could you possibly add here how it will look like ?",
+      "range": {
+        "startLine": 9,
+        "startChar": 18,
+        "endLine": 9,
+        "endChar": 22
+      },
+      "revId": "25fe02a9ff20acf42bf6b50128b9c4c9ce90a8f7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "65d18e4e_4a723c1d",
+        "filename": "system/bta/le_audio/le_audio_types.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 534,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-02-27T15:09:35Z",
+      "side": 1,
+      "message": "Please fix this WARNING reported by Build Warnings: the parameter \u0027indent_string\u0027 is copied for each invocation but only used as a const reference; consider making it a const reference [performance-unnecessary-value-param]\n\nAnalyzer Description: Reports warnings that originate from build.log in the build artifacts.\nOwner: farivar@google.com\n\n    the parameter \u0027indent_string\u0027 is copied for each invocation but only used as a const reference; consider making it a const reference [performance-unnecessary-value-param]\n    std::string LeAudioLtvMap::ToString(std::string indent_string) const {\n                                                    ^\n                                        const      \u0026\n\nThis finding was found on https://android-build.googleplex.com/builds/build-details/P50657392/targets/aosp_arm64-userdebug_tidy, but may also be present on other builds.",
+      "range": {
+        "startLine": 534,
+        "startChar": 49,
+        "endLine": 534,
+        "endChar": 70
+      },
+      "revId": "25fe02a9ff20acf42bf6b50128b9c4c9ce90a8f7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
