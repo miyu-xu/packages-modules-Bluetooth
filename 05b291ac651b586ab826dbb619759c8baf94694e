@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dd8ffe20_f484086c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-02-27T15:10:45Z",
+      "side": 1,
+      "message": "seems it is no building:\n\n```\nBuildbot Version: androidbuild_buildbot_20230219.00_RC00\nMachine: prod-2004-5813\n...build/soong/soong_ui.bash --make-mode TARGET_PRODUCT\u003daosp_arm64 TARGET_BUILD_VARIANT\u003duserdebug -k100 tidy-soong_subset DIST_DIR\u003d/buildbot/dist_dirs/git_master-linux-aosp_arm64-userdebug_tidy/P50874525\nFAILED: out/soong/.intermediates/packages/modules/Bluetooth/system/bta/bluetooth_le_audio_test/android_arm64_armv8-a/obj/packages/modules/Bluetooth/system/bta/le_audio/devices_test.tidy\n...d-cast-call -Wno-error\u003ddeprecated-builtins -Wno-error\u003ddeprecated -Wno-error\u003dsingle-bit-bitfield-constant-conversion -Wno-error\u003dincompatible-function-pointer-types -Wno-error\u003denum-constexpr-conversion \n...build-disk/src/googleplex-android/master/packages/modules/Bluetooth/system/bta/le_audio/devices_test.cc:1329:68: error: too many arguments to function call, expected 7, have 8 [clang-diagnostic-error]\n                               ::le_audio::types::AudioContexts(), ccid_list);\n                                                                   ^~~~~~~~~\n/mnt/disks/build-disk/src/googleplex-android/master/packages/modules/Bluetooth/system/bta/le_audio/devices.h:166:8: note: \u0027ConfigureAses\u0027 declared here\n  bool ConfigureAses(\n       ^\npackages/modules/Bluetooth/system/bta/le_audio/devices_test.cc:1:1: warning: clang-tidy used 56 seconds.\n880 warnings and 1 error generated.\n```",
+      "revId": "05b291ac651b586ab826dbb619759c8baf94694e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
