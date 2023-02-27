@@ -14,6 +14,7 @@ use crate::{
 use super::{
     ffi::{InterceptAction, StoreCallbacksFromRust},
     ids::{AdvertiserId, ConnectionId, ServerId, TransportIndex},
+    mtu::MtuEvent,
     opcode_types::{classify_opcode, OperationType},
 };
 
@@ -32,7 +33,14 @@ pub struct Arbiter {
 pub fn initialize_arbiter() {
     *ARBITER.lock().unwrap() = Some(Arbiter::new());
 
-    StoreCallbacksFromRust(on_le_connect, on_le_disconnect, intercept_packet);
+    StoreCallbacksFromRust(
+        on_le_connect,
+        on_le_disconnect,
+        intercept_packet,
+        |tcb_idx| on_mtu_event(TransportIndex(tcb_idx), MtuEvent::OutgoingRequest),
+        |tcb_idx, mtu| on_mtu_event(TransportIndex(tcb_idx), MtuEvent::IncomingResponse(mtu)),
+        |tcb_idx, mtu| on_mtu_event(TransportIndex(tcb_idx), MtuEvent::IncomingRequest(mtu)),
+    );
 }
 
 /// Acquire the mutex holding the Arbiter and provide a mutable reference to the
@@ -127,6 +135,11 @@ impl Arbiter {
         info!("processing disconnection on transport {tcb_idx:?}");
         self.transport_to_owned_connection.remove(&tcb_idx)
     }
+
+    /// Look up the conn_id for a given tcb_idx, if present
+    pub fn get_conn_id(&self, tcb_idx: TransportIndex) -> Option<ConnectionId> {
+        self.transport_to_owned_connection.get(&tcb_idx).copied()
+    }
 }
 
 fn on_le_connect(tcb_idx: u8, advertiser: u8) {
@@ -165,6 +178,20 @@ fn intercept_packet(tcb_idx: u8, packet: Vec<u8>) -> InterceptAction {
         InterceptAction::Drop
     } else {
         InterceptAction::Forward
+    }
+}
+
+fn on_mtu_event(tcb_idx: TransportIndex, event: MtuEvent) {
+    if let Some(conn_id) = with_arbiter(|arbiter| arbiter.get_conn_id(tcb_idx)) {
+        do_in_rust_thread(move |modules| {
+            let Some(bearer) = modules.gatt_module.get_bearer(conn_id) else {
+                error!("Bearer for {conn_id:?} not found");
+                return;
+            };
+            if let Err(err) = AttServerBearer::handle_mtu_event(&bearer, event) {
+                error!("{err:?}")
+            }
+        });
     }
 }
 
