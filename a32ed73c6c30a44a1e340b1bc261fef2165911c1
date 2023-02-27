@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ada769b8_8f4b20de",
+        "filename": "android/pandora/test/asha_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2023-02-27T17:06:01Z",
+      "side": 1,
+      "message": "Agree. More than that I think we should split the `advertising` test in two differents tests. One for `advertisement data` and the other one for the `scan_response`.",
+      "parentUuid": "8d351878_a9c794d3",
+      "range": {
+        "startLine": 61,
+        "startChar": 8,
+        "endLine": 61,
+        "endChar": 25
+      },
+      "revId": "a32ed73c6c30a44a1e340b1bc261fef2165911c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e99473a5_1195a8e6",
         "filename": "android/pandora/test/asha_test.py",
         "patchSetId": 3
