@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ff26d3aa_4ca02dd3",
+        "filename": "android/app/src/com/android/bluetooth/tbs/TbsGatt.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-02-27T23:42:33Z",
+      "side": 1,
+      "message": "nit: weird to have this method in a callback, but I get what you meant, the callback is a mechanism for someone to calls back to the TbsGeneric class. \n\nmight need a better naming, but I am also fine with what it is",
+      "range": {
+        "startLine": 163,
+        "startChar": 0,
+        "endLine": 163,
+        "endChar": 80
+      },
+      "revId": "b8c2d0dc63065444918687656830836812bbf945",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
