@@ -411,8 +411,8 @@ public final class BluetoothLeAdvertiser {
      * duration has not expired. Valid range is from 1 to 255. 0 means no maximum.
      * @param gattServer the GATT server that will "own" connections derived from this advertising
      * set.
-     * @param callback Callback for advertising set.
      * @param handler Thread upon which the callbacks will be invoked.
+     * @param callback Callback for advertising set.
      * @throws IllegalArgumentException When any of the data parameter exceed the maximum allowable
      * size, or unsupported advertising PHY is selected, or when attempt to use Periodic Advertising
      * feature is made when it's not supported by the controller, or when
@@ -433,10 +433,9 @@ public final class BluetoothLeAdvertiser {
             startAdvertisingSet(@NonNull AdvertisingSetParameters parameters,
             @Nullable AdvertiseData advertiseData, @Nullable AdvertiseData scanResponse,
             @Nullable PeriodicAdvertisingParameters periodicParameters,
-            @Nullable AdvertiseData periodicData, int duration,
-            int maxExtendedAdvertisingEvents, @Nullable BluetoothGattServer gattServer,
-            @Nullable AdvertisingSetCallback callback,
-            @SuppressLint("ListenerLast") @NonNull Handler handler) {
+            @Nullable AdvertiseData periodicData, int duration, int maxExtendedAdvertisingEvents,
+            @Nullable BluetoothGattServer gattServer, @NonNull Handler handler,
+            @Nullable AdvertisingSetCallback callback) {
         BluetoothLeUtils.checkAdapterStateOn(mBluetoothAdapter);
         if (callback == null) {
             throw new IllegalArgumentException("callback cannot be null");

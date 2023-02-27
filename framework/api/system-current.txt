@@ -1127,7 +1127,7 @@ package android.bluetooth.le {
   }
 
   public final class BluetoothLeAdvertiser {
-    method @RequiresPermission(allOf={android.Manifest.permission.BLUETOOTH_PRIVILEGED, android.Manifest.permission.BLUETOOTH_ADVERTISE, android.Manifest.permission.BLUETOOTH_CONNECT}) public void startAdvertisingSet(@NonNull android.bluetooth.le.AdvertisingSetParameters, @Nullable android.bluetooth.le.AdvertiseData, @Nullable android.bluetooth.le.AdvertiseData, @Nullable android.bluetooth.le.PeriodicAdvertisingParameters, @Nullable android.bluetooth.le.AdvertiseData, int, int, @Nullable android.bluetooth.BluetoothGattServer, @Nullable android.bluetooth.le.AdvertisingSetCallback, @NonNull android.os.Handler);
+    method @RequiresPermission(allOf={android.Manifest.permission.BLUETOOTH_PRIVILEGED, android.Manifest.permission.BLUETOOTH_ADVERTISE, android.Manifest.permission.BLUETOOTH_CONNECT}) public void startAdvertisingSet(@NonNull android.bluetooth.le.AdvertisingSetParameters, @Nullable android.bluetooth.le.AdvertiseData, @Nullable android.bluetooth.le.AdvertiseData, @Nullable android.bluetooth.le.PeriodicAdvertisingParameters, @Nullable android.bluetooth.le.AdvertiseData, int, int, @Nullable android.bluetooth.BluetoothGattServer, @NonNull android.os.Handler, @Nullable android.bluetooth.le.AdvertisingSetCallback);
   }
 
   public final class BluetoothLeScanner {
