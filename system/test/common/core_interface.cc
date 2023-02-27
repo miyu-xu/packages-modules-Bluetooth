@@ -52,7 +52,7 @@ static auto mockConfigInterface = MockConfigInterface{};
 // This interface lets us communicate with encoders used in profiles
 struct MockCodecInterface : public bluetooth::core::CodecInterface {
   virtual void initialize(){};
-  virtual void cleanup() {}
+  virtual void cleanup(int* num_decoded_frames, double* packet_loss_ratio){};
 
   virtual uint32_t encodePacket(int16_t* input, uint8_t* output) { return 0; };
   virtual bool decodePacket(const uint8_t* i_buf, int16_t* o_buf,
