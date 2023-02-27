@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a2bc0190_68bf7113",
+        "filename": "android/pandora/test/asha_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1937985
+      },
+      "writtenOn": "2023-02-27T23:33:14Z",
+      "side": 1,
+      "message": "Move constants out of class, it will be more readable",
+      "range": {
+        "startLine": 39,
+        "startChar": 4,
+        "endLine": 42,
+        "endChar": 39
+      },
+      "revId": "aaf2296ff32bb2da457cf3315cc5d7f1ad58572f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "affd51b4_d29478a4",
+        "filename": "android/pandora/test/asha_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1937985
+      },
+      "writtenOn": "2023-02-27T23:33:14Z",
+      "side": 1,
+      "message": "The `PandoraDevices` creation may fail, can you update to the following ?\n```\n    devices: Optional[PandoraDevices] \u003d None\n    dut: PandoraClient\n    ref: BumblePandoraClient\n\n    def setup_class(self) -\u003e None:\n        self.devices \u003d PandoraDevices(self)\n        dut, ref \u003d self.devices\n        assert isinstance(ref, BumblePandoraClient)\n        self.dut, self.ref \u003d dut, ref\n\n    def teardown_class(self) -\u003e None:\n        if self.devices:\n            self.devices.stop_all()\n\n    @asynchronous\n    async def setup_test(self) -\u003e None:\n        await asyncio.gather(self.dut.reset(), self.ref.reset())\n```",
+      "range": {
+        "startLine": 44,
+        "startChar": 4,
+        "endLine": 55,
+        "endChar": 31
+      },
+      "revId": "aaf2296ff32bb2da457cf3315cc5d7f1ad58572f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0b4c5e35_06244ef4",
+        "filename": "android/pandora/test/asha_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1937985
+      },
+      "writtenOn": "2023-02-27T23:33:14Z",
+      "side": 1,
+      "message": "I suggest:\n```\n        scan \u003d self.dut.host.Scan(own_address_type\u003ddut_address_type)\n        ref \u003d next((x for x in scan if ASHATest.ASHA_UUID in x.data.incomplete_service_class_uuids16))\n        scan.cancel()\n        return ref\n```",
+      "range": {
+        "startLine": 81,
+        "startChar": 8,
+        "endLine": 91,
+        "endChar": 18
+      },
+      "revId": "aaf2296ff32bb2da457cf3315cc5d7f1ad58572f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
