@@ -34,6 +34,24 @@
       "parentUuid": "38c45f6f_68c03902",
       "revId": "ad87c37e8280811d18e6d5864ec495e7f8f803a8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f7524df4_7126d104",
+        "filename": "android/app/tests/myinstrumentation/AndroidTest.xml",
+        "patchSetId": 12
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1986325
+      },
+      "writtenOn": "2023-02-27T22:17:40Z",
+      "side": 1,
+      "message": "finally found the wrong version python is from prebuild:\n\n```\n/usr/local/google/home/qiaoccolato/dev/aosp-master-with-phones/prebuilts/build-tools/path/linux-x86\n```\n\nThe pip and python in venv are correct. The `which pip` is correct, but `which python` is linked to the prebuilt tool.\n\ncan be get around by explicitly using the venv/bin/python to run the scripts. need to find out later, while using the python virtualevn, the venv/bin/python should be linked to `python` instead.",
+      "parentUuid": "006452a2_f5f8d1be",
+      "revId": "ad87c37e8280811d18e6d5864ec495e7f8f803a8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
