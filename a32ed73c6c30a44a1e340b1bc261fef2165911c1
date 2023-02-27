@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d1689849_17294876",
+        "filename": "android/pandora/test/asha_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-02-27T22:07:21Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "ada769b8_8f4b20de",
+      "range": {
+        "startLine": 61,
+        "startChar": 8,
+        "endLine": 61,
+        "endChar": 25
+      },
+      "revId": "a32ed73c6c30a44a1e340b1bc261fef2165911c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e99473a5_1195a8e6",
@@ -61,6 +85,30 @@
       "writtenOn": "2023-02-25T00:17:49Z",
       "side": 1,
       "message": "It might also be worth adding some comments to match the test specifications, such as `Step 1: ...`, `Step 2: ...`. Especially because we plan to share those tests to Samsung",
+      "range": {
+        "startLine": 67,
+        "startChar": 8,
+        "endLine": 67,
+        "endChar": 81
+      },
+      "revId": "a32ed73c6c30a44a1e340b1bc261fef2165911c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "65fcc38f_e1bfbb49",
+        "filename": "android/pandora/test/asha_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-02-27T22:07:21Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "e99473a5_1195a8e6",
       "range": {
         "startLine": 67,
         "startChar": 8,
