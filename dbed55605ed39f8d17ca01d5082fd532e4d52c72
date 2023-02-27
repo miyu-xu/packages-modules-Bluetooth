@@ -16,6 +16,23 @@
       "message": "Hi Myles, is this file actually used?\nIt seems that `gd/cert/run --clean` is the correct command. \nRunning this script and then running `gd/cert/run` fails with error.\n\nIf this file is not used, can I remove this file?",
       "revId": "dbed55605ed39f8d17ca01d5082fd532e4d52c72",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1a663db5_0e1c98c4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2023-02-27T07:19:37Z",
+      "side": 1,
+      "message": "The `set_up_virtualenv.sh` script itself runs ok, but after that running gd/cert/run fail with below error message:\n\n```\n\u003cAndroidRoot\u003e/out/dist/bluetooth_venv/bin/python: can\u0027t open file \u0027\u003cAndroidRoot\u003e/out/dist/bluetooth_venv/sources/setup.py\u0027: [Errno 2] No such file or directory\n\n```",
+      "revId": "dbed55605ed39f8d17ca01d5082fd532e4d52c72",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
