@@ -29,7 +29,8 @@ void hfp_msbc_encoder_init();
 // Cleanup the HFP MSBC encoder.
 void hfp_msbc_encoder_cleanup(void);
 
-// Get the HFP MSBC encoded maximum frame size
+// Encode the frame. Puts a zero frame in the event of failure.
+// Returns number of PCM bytes consumed (should always be 240).
 uint32_t hfp_msbc_encode_frames(int16_t* input, uint8_t* output);
 
 #endif  // HFP_MSBC_ENCODER_H
