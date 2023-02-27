@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9a86cb11_098333dd",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/tbs/TbsGenericTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-02-27T23:43:44Z",
+      "side": 1,
+      "message": "probably needs some more unit tests to cover these new methods you are adding",
+      "range": {
+        "startLine": 139,
+        "startChar": 4,
+        "endLine": 150,
+        "endChar": 0
+      },
+      "revId": "44f45b2f2c474bf3e36ba6b23c784676b01918d9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
