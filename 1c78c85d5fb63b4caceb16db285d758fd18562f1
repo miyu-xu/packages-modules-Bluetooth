@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f71d3ac7_285c9d3f",
+        "filename": "android/pandora/test/asha_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2023-02-27T22:22:14Z",
+      "side": 1,
+      "message": "I think both test `test_advertising` and `test_scan_response` are advertising tests but with a difference on which field we are using to advertise.\n\nIt might be better to find a more suitable name for both of them such as `test_advertising_advertisment_data` and `test_advertising_scan_response` for example (not sure these are the most suitable names, just an idea).\n\nAlso could you please update the ASHA specification test accordingly ?\n\nThanks 👍",
+      "range": {
+        "startLine": 121,
+        "startChar": 8,
+        "endLine": 121,
+        "endChar": 24
+      },
+      "revId": "1c78c85d5fb63b4caceb16db285d758fd18562f1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
