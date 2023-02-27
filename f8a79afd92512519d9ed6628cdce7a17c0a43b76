@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "921be45d_970a9b11",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1888950
+      },
+      "writtenOn": "2023-02-27T22:26:51Z",
+      "side": 1,
+      "message": "May change the bug id for this - this should be irrespective of Wear OS convergence IIUC",
+      "revId": "f8a79afd92512519d9ed6628cdce7a17c0a43b76",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
