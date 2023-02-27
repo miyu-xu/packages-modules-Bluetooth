@@ -16,6 +16,24 @@
       "message": "re-approving due to mock changes only",
       "revId": "4a18bad1979b2fd29f1163670ff7be4a09e5f27e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "63dc3d0c_fe8767fa",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-02-27T21:14:19Z",
+      "side": 1,
+      "message": "re-approving \u003d\u003d +2 ?",
+      "parentUuid": "51198294_aa4de83b",
+      "revId": "4a18bad1979b2fd29f1163670ff7be4a09e5f27e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
