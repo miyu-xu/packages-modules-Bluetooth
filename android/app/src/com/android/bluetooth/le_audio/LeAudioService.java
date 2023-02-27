@@ -153,6 +153,7 @@ public class LeAudioService extends ProfileService {
             mCodecStatus = null;
             mLostLeadDeviceWhileStreaming = null;
             mInbandRingtoneEnabled = isInbandRingtonEnabled;
+            mAvailableContexts = 0;
         }
 
         public Boolean mIsConnected;
@@ -1506,7 +1507,9 @@ public class LeAudioService extends ProfileService {
             return;
         }
 
-        boolean isRingtoneEnabled = groupDescriptor.mIsActive;
+        boolean isRingtoneEnabled = ((groupDescriptor.mIsActive)
+                                        && ((groupDescriptor.mAvailableContexts
+                                                & BluetoothLeAudio.CONTEXT_TYPE_RINGTONE) != 0));
 
         if (DBG) {
             Log.d(TAG, "updateInbandRingtoneForTheGroup old: "
@@ -1697,6 +1700,8 @@ public class LeAudioService extends ProfileService {
                         }
                     }
                     descriptor.mDirection = direction;
+                    descriptor.mAvailableContexts = available_contexts;
+                    updateInbandRingtoneForTheGroup(groupId);
                 } else {
                     Log.e(TAG, "no descriptors for group: " + groupId);
                 }
