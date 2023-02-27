@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fcb8610b_4e13e75e",
+        "filename": "system/btif/src/btif_hf.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-02-27T18:54:19Z",
+      "side": 1,
+      "message": "maybe you forget to remove 😊",
+      "range": {
+        "startLine": 155,
+        "startChar": 13,
+        "endLine": 155,
+        "endChar": 20
+      },
+      "revId": "2b75b1ca8fcc667cd596b77489d35d1831acaca6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
