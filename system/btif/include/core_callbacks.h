@@ -86,11 +86,10 @@ struct ConfigInterface {
 // This interface lets us communicate with encoders used in profiles
 struct CodecInterface {
   virtual void initialize() = 0;
-  virtual void cleanup() = 0;
+  virtual bool cleanup(int* num_decoded_frames, double* packet_loss_ratio) = 0;
 
   virtual uint32_t encodePacket(int16_t* input, uint8_t* output) = 0;
-  virtual bool decodePacket(const uint8_t* i_buf, int16_t* o_buf,
-                            size_t out_len) = 0;
+  virtual uint32_t decodePacket(const uint8_t* i_buf, int16_t* o_buf) = 0;
 
   explicit CodecInterface() = default;
   CodecInterface(const CodecInterface&) = delete;
@@ -137,6 +136,7 @@ struct CoreInterface {
 
   // codecs
   CodecInterface* msbcCodec;
+  CodecInterface* lc3Codec;
 
   // DO NOT add any more methods here
   HACK_ProfileInterface* profileSpecific_HACK;
@@ -149,10 +149,12 @@ struct CoreInterface {
 
   CoreInterface(EventCallbacks* eventCallbacks,
                 ConfigInterface* configInterface, CodecInterface* msbcCodec,
+                CodecInterface* lc3Codec,
                 HACK_ProfileInterface* profileSpecific_HACK)
       : events{eventCallbacks},
         config{configInterface},
         msbcCodec{msbcCodec},
+        lc3Codec{lc3Codec},
         profileSpecific_HACK{profileSpecific_HACK} {};
 
   CoreInterface(const CoreInterface&) = delete;

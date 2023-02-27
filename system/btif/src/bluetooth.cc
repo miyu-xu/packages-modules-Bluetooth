@@ -105,6 +105,8 @@
 #include "stack/include/avdt_api.h"
 #include "stack/include/btm_api.h"
 #include "stack/include/btu.h"
+#include "stack/include/hfp_lc3_decoder.h"
+#include "stack/include/hfp_lc3_encoder.h"
 #include "stack/include/hfp_msbc_decoder.h"
 #include "stack/include/hfp_msbc_encoder.h"
 #include "stack/include/hidh_api.h"
@@ -216,17 +218,39 @@ struct MSBCCodec : bluetooth::core::CodecInterface {
     hfp_msbc_encoder_init();
   }
 
-  void cleanup() override {
-    hfp_msbc_decoder_cleanup();
+  bool cleanup(int* num_decoded_frames, double* packet_loss_ratio) override {
     hfp_msbc_encoder_cleanup();
+    return hfp_msbc_decoder_cleanup(num_decoded_frames, packet_loss_ratio);
   }
 
   uint32_t encodePacket(int16_t* input, uint8_t* output) {
     return hfp_msbc_encode_frames(input, output);
   }
 
-  bool decodePacket(const uint8_t* i_buf, int16_t* o_buf, size_t out_len) {
-    return hfp_msbc_decoder_decode_packet(i_buf, o_buf, out_len);
+  uint32_t decodePacket(const uint8_t* i_buf, int16_t* o_buf) {
+    return hfp_msbc_decoder_decode_packet(i_buf, o_buf);
+  }
+};
+
+struct LC3Codec : bluetooth::core::CodecInterface {
+  LC3Codec() : bluetooth::core::CodecInterface(){};
+
+  void initialize() override {
+    hfp_lc3_decoder_init();
+    hfp_lc3_encoder_init();
+  }
+
+  bool cleanup(int* num_decoded_frames, double* packet_loss_ratio) override {
+    hfp_lc3_encoder_cleanup();
+    return hfp_lc3_decoder_cleanup(num_decoded_frames, packet_loss_ratio);
+  }
+
+  uint32_t encodePacket(int16_t* input, uint8_t* output) {
+    return hfp_lc3_encode_frames(input, output);
+  }
+
+  uint32_t decodePacket(const uint8_t* i_buf, int16_t* o_buf) {
+    return hfp_lc3_decoder_decode_packet(i_buf, o_buf);
   }
 };
 
@@ -329,6 +353,7 @@ static bluetooth::core::CoreInterface* CreateInterfaceToProfiles() {
       .invoke_link_quality_report_cb = invoke_link_quality_report_cb};
   static auto configInterface = ConfigInterfaceImpl();
   static auto msbcCodecInterface = MSBCCodec();
+  static auto lc3CodecInterface = LC3Codec();
   static auto profileInterface = bluetooth::core::HACK_ProfileInterface{
       // HID
       .btif_hh_connect = btif_hh_connect,
@@ -350,7 +375,7 @@ static bluetooth::core::CoreInterface* CreateInterfaceToProfiles() {
 
   static auto interfaceForCore =
       CoreInterfaceImpl(&eventCallbacks, &configInterface, &msbcCodecInterface,
-                        &profileInterface);
+                        &lc3CodecInterface, &profileInterface);
   return &interfaceForCore;
 }
 
