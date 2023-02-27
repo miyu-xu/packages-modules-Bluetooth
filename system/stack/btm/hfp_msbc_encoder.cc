@@ -23,6 +23,19 @@
 #include "embdrv/sbc/encoder/include/sbc_encoder.h"
 #include "osi/include/log.h"
 
+const int HFP_MSBC_PCM_BYTES = 240;
+const int HFP_MSBC_FRAME_LEN = 57;
+
+/* The pre-computed mSBC audio frame per HFP 1.7 spec. This mSBC frame will be
+ * decoded into all-zero input PCM. */
+static const uint8_t hfp_msbc_zero_frame[] = {
+    0xad, 0x00, 0x00, 0xc5, 0x00, 0x00, 0x00, 0x00, 0x77, 0x6d, 0xb6, 0xdd,
+    0xdb, 0x6d, 0xb7, 0x76, 0xdb, 0x6d, 0xdd, 0xb6, 0xdb, 0x77, 0x6d, 0xb6,
+    0xdd, 0xdb, 0x6d, 0xb7, 0x76, 0xdb, 0x6d, 0xdd, 0xb6, 0xdb, 0x77, 0x6d,
+    0xb6, 0xdd, 0xdb, 0x6d, 0xb7, 0x76, 0xdb, 0x6d, 0xdd, 0xb6, 0xdb, 0x77,
+    0x6d, 0xb6, 0xdd, 0xdb, 0x6d, 0xb7, 0x76, 0xdb, 0x6c,
+};
+
 typedef struct {
   SBC_ENC_PARAMS sbc_encoder_params;
 } tHFP_MSBC_ENCODER;
@@ -44,5 +57,12 @@ void hfp_msbc_encoder_init(void) {
 void hfp_msbc_encoder_cleanup(void) { hfp_msbc_encoder = {}; }
 
 uint32_t hfp_msbc_encode_frames(int16_t* input, uint8_t* output) {
-  return SBC_Encode(&hfp_msbc_encoder.sbc_encoder_params, input, output);
+  uint32_t encoded_size =
+      SBC_Encode(&hfp_msbc_encoder.sbc_encoder_params, input, output);
+  if (encoded_size != HFP_MSBC_FRAME_LEN) {
+    LOG_WARN("Encoding invalid packet size: %lu", (unsigned long)encoded_size);
+    std::memcpy(output, hfp_msbc_zero_frame, HFP_MSBC_FRAME_LEN);
+  }
+  output[HFP_MSBC_FRAME_LEN] = 0;
+  return HFP_MSBC_PCM_BYTES;
 }
