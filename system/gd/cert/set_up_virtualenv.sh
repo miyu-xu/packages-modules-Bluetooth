@@ -12,6 +12,8 @@
 ## Android build main build setup script relative to top level android source root
 BUILD_SETUP=./build/envsetup.sh
 
+PYTHON_VERSION="python3.10"
+
 function UsageAndroidTree {
     cat<<EOF
 Ensure invoked from within the android source tree
@@ -51,9 +53,9 @@ function SetUpAndroidBuild {
     popd
 }
 
-function SetupPython38 {
-    echo "Setting up python3.8"
-    sudo apt-get install python3.8-dev
+function SetupPython {
+    echo "Setting up $PYTHON_VERSION"
+    sudo apt-get install $PYTHON_VERSION
 }
 
 function SetupPip3 {
@@ -69,12 +71,10 @@ if [[ "${BASH_SOURCE[0]}" == "${0}" ]] ; then
     return 1
 fi
 
-## Check python3.8 is installed properly
-## Need Python 3.8 because bluetooth_packets_python3 is compiled against
-## Python 3.8 headers
-dpkg -l python3.8-dev > /dev/null 2>&1
+## Check PYTHON_VERSION is installed properly
+dpkg -l $PYTHON_VERSION > /dev/null 2>&1
 if [[ $? -ne 0 ]] ; then
-    SetupPython38
+    SetupPython
 fi
 
 ## Check pip3 is installed properly
@@ -112,7 +112,7 @@ CERT_TEST_VENV=$ANDROID_BUILD_TOP/out/dist/bluetooth_venv
 
 rm -rf $CERT_TEST_VENV
 
-python3.8 -m virtualenv --python `which python3.8` $CERT_TEST_VENV
+$PYTHON_VERSION -m virtualenv --python `which $PYTHON_VERSION` $CERT_TEST_VENV
 if [[ $? -ne 0 ]] ; then
     echo "Error setting up virtualenv"
     return 1
