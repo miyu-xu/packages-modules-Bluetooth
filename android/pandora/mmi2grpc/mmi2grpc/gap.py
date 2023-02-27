@@ -6,9 +6,9 @@ from time import sleep
 from pandora_experimental.gatt_grpc import GATT
 from pandora_experimental.gatt_pb2 import GattServiceParams, GattCharacteristicParams
 from pandora.host_grpc import Host
-from pandora.host_pb2 import ConnectabilityMode, DataTypes, DiscoverabilityMode, OwnAddressType
-from pandora.security_grpc import Security, SecurityStorage, PairingEventAnswer
-from pandora.security_pb2 import LESecurityLevel
+from pandora.host_pb2 import PUBLIC, RANDOM, DISCOVERABLE_GENERAL, NOT_DISCOVERABLE, DISCOVERABLE_LIMITED, NOT_CONNECTABLE, DataTypes
+from pandora.security_grpc import Security, SecurityStorage
+from pandora.security_pb2 import LE_LEVEL3, PairingEventAnswer
 
 
 class GAPProxy(ProfileProxy):
@@ -81,7 +81,7 @@ class GAPProxy(ProfileProxy):
 
         self.advertise = self.host.Advertise(
             connectable=True,
-            own_address_type=OwnAddressType.PUBLIC,
+            own_address_type=PUBLIC,
         )
 
         self.pairing_events = self.security.OnPairing()
@@ -135,8 +135,8 @@ class GAPProxy(ProfileProxy):
             if self.counter == 0:
                 self.counter += 1
                 self.security_storage.DeleteBond(public=pts_addr)
-                self.connection = self.host.ConnectLE(own_address_type=OwnAddressType.RANDOM, public=pts_addr).connection
-                self.security.Secure(connection=self.connection, le=LESecurityLevel.LE_LEVEL3)
+                self.connection = self.host.ConnectLE(own_address_type=RANDOM, public=pts_addr).connection
+                self.security.Secure(connection=self.connection, le=LE_LEVEL3)
                 return "OK"
 
         if test == "GAP/SEC/AUT/BV-21-C" and self.connection is not None:
@@ -158,9 +158,9 @@ class GAPProxy(ProfileProxy):
                     scans.cancel()
                     break
 
-        self.connection = self.host.ConnectLE(own_address_type=OwnAddressType.RANDOM, public=address).connection
+        self.connection = self.host.ConnectLE(own_address_type=RANDOM, public=address).connection
         if test in {"GAP/BOND/BON/BV-04-C"}:
-            self.security.Secure(connection=self.connection, le=LESecurityLevel.LE_LEVEL3)
+            self.security.Secure(connection=self.connection, le=LE_LEVEL3)
 
         return "OK"
 
@@ -206,7 +206,7 @@ class GAPProxy(ProfileProxy):
         """
 
         self.advertise = self.host.Advertise(
-            own_address_type=OwnAddressType.PUBLIC,
+            own_address_type=PUBLIC,
             data=DataTypes(complete_service_class_uuids128=["955798ce-3022-455c-b759-ee8edcd73d1a"],))
         return "OK"
 
@@ -217,7 +217,7 @@ class GAPProxy(ProfileProxy):
         """
 
         self.advertise = self.host.Advertise(
-            own_address_type=OwnAddressType.PUBLIC,
+            own_address_type=PUBLIC,
             data=DataTypes(include_complete_local_name=True, include_shortened_local_name=True,))
 
         return "OK"
@@ -230,7 +230,7 @@ class GAPProxy(ProfileProxy):
 
         self.advertise = self.host.Advertise(
             connectable=True,
-            own_address_type=OwnAddressType.PUBLIC,
+            own_address_type=PUBLIC,
         )
 
         self.pairing_events = self.security.OnPairing()
@@ -245,7 +245,7 @@ class GAPProxy(ProfileProxy):
         """
 
         self.advertise = self.host.Advertise(
-            own_address_type=OwnAddressType.PUBLIC,
+            own_address_type=PUBLIC,
             data=DataTypes(manufacturer_specific_data=b"d0n't b3 3v1l!",))
 
         return "OK"
@@ -257,7 +257,7 @@ class GAPProxy(ProfileProxy):
         """
 
         self.advertise = self.host.Advertise(
-            own_address_type=OwnAddressType.PUBLIC,
+            own_address_type=PUBLIC,
             data=DataTypes(include_tx_power_level=True,))
 
         return "OK"
@@ -269,7 +269,7 @@ class GAPProxy(ProfileProxy):
         """
 
         self.advertise = self.host.Advertise(
-            own_address_type=OwnAddressType.PUBLIC,
+            own_address_type=PUBLIC,
             connectable=True,
         )
 
@@ -284,7 +284,7 @@ class GAPProxy(ProfileProxy):
         """
 
         self.advertise = self.host.Advertise(
-            own_address_type=OwnAddressType.PUBLIC,
+            own_address_type=PUBLIC,
             connectable=True,
         )
 
@@ -355,8 +355,8 @@ class GAPProxy(ProfileProxy):
         """
 
         self.advertise = self.host.Advertise(
-            data=DataTypes(le_discoverability_mode=DiscoverabilityMode.DISCOVERABLE_GENERAL),
-            own_address_type=OwnAddressType.PUBLIC,
+            data=DataTypes(le_discoverability_mode=DISCOVERABLE_GENERAL),
+            own_address_type=PUBLIC,
             connectable=True,
         )
 
@@ -373,8 +373,8 @@ class GAPProxy(ProfileProxy):
         """
 
         self.advertise = self.host.Advertise(
-            data=DataTypes(le_discoverability_mode=DiscoverabilityMode.DISCOVERABLE_GENERAL),
-            own_address_type=OwnAddressType.PUBLIC,
+            data=DataTypes(le_discoverability_mode=DISCOVERABLE_GENERAL),
+            own_address_type=PUBLIC,
             connectable=True,
         )
 
@@ -390,8 +390,8 @@ class GAPProxy(ProfileProxy):
         """
 
         self.advertise = self.host.Advertise(
-            data=DataTypes(le_discoverability_mode=DiscoverabilityMode.NOT_DISCOVERABLE),
-            own_address_type=OwnAddressType.PUBLIC,
+            data=DataTypes(le_discoverability_mode=NOT_DISCOVERABLE),
+            own_address_type=PUBLIC,
             connectable=True,
         )
 
@@ -404,8 +404,8 @@ class GAPProxy(ProfileProxy):
         """
 
         self.advertise = self.host.Advertise(
-            data=DataTypes(le_discoverability_mode=DiscoverabilityMode.DISCOVERABLE_GENERAL),
-            own_address_type=OwnAddressType.PUBLIC,
+            data=DataTypes(le_discoverability_mode=DISCOVERABLE_GENERAL),
+            own_address_type=PUBLIC,
             connectable=True,
         )
 
@@ -455,7 +455,7 @@ class GAPProxy(ProfileProxy):
         for response in self.scan_responses:
             assert response.HasField("public")
             if (response.public == pts_addr and
-                response.data.le_discoverability_mode == DiscoverabilityMode.DISCOVERABLE_LIMITED):
+                response.data.le_discoverability_mode == DISCOVERABLE_LIMITED):
                 self.scan_responses.cancel()
                 return "OK"
 
@@ -474,7 +474,7 @@ class GAPProxy(ProfileProxy):
             for response in self.scan_responses:
                 assert response.HasField("public")
                 if (response.public == pts_addr and
-                    response.data.le_discoverability_mode == DiscoverabilityMode.DISCOVERABLE_GENERAL):
+                    response.data.le_discoverability_mode == DISCOVERABLE_GENERAL):
                     self.scan_responses.cancel()
                     discovered = True
                     return
@@ -501,7 +501,7 @@ class GAPProxy(ProfileProxy):
             for response in self.scan_responses:
                 assert response.HasField("public")
                 if (response.public == pts_addr and
-                    response.data.le_discoverability_mode == DiscoverabilityMode.DISCOVERABLE_LIMITED):
+                    response.data.le_discoverability_mode == DISCOVERABLE_LIMITED):
                     self.inquiry_responses.cancel()
                     discovered = True
                     return
@@ -522,7 +522,7 @@ class GAPProxy(ProfileProxy):
         send an advertising report.
         """
 
-        self.advertise = self.host.Advertise(own_address_type=OwnAddressType.PUBLIC,)
+        self.advertise = self.host.Advertise(own_address_type=PUBLIC,)
 
         return "OK"
 
@@ -562,7 +562,7 @@ class GAPProxy(ProfileProxy):
         if test not in {"GAP/SEC/AUT/BV-21-C"}:
             self.security_storage.DeleteBond(public=pts_addr)
 
-        self.security.Secure(connection=self.connection, le=LESecurityLevel.LE_LEVEL3)
+        self.security.Secure(connection=self.connection, le=LE_LEVEL3)
 
         return "OK"
 
@@ -626,11 +626,11 @@ class GAPProxy(ProfileProxy):
         """
 
         self.host.SetDiscoverabilityMode(
-            mode=DiscoverabilityMode.DISCOVERABLE_GENERAL)
+            mode=DISCOVERABLE_GENERAL)
 
         self.advertise = self.host.Advertise(
-            data=DataTypes(le_discoverability_mode=DiscoverabilityMode.DISCOVERABLE_GENERAL),
-            own_address_type=OwnAddressType.PUBLIC,
+            data=DataTypes(le_discoverability_mode=DISCOVERABLE_GENERAL),
+            own_address_type=PUBLIC,
             connectable=True,
         )
 
@@ -658,9 +658,9 @@ class GAPProxy(ProfileProxy):
         """
 
         self.host.SetDiscoverabilityMode(
-            mode=DiscoverabilityMode.NOT_DISCOVERABLE)
+            mode=NOT_DISCOVERABLE)
 
-        self.host.SetConnectabilityMode(mode=ConnectabilityMode.NOT_CONNECTABLE)
+        self.host.SetConnectabilityMode(mode=NOT_CONNECTABLE)
 
         return "OK"
 
@@ -671,8 +671,8 @@ class GAPProxy(ProfileProxy):
         """
 
         self.host.SetDiscoverabilityMode(
-            mode=DiscoverabilityMode.NOT_DISCOVERABLE)
-        self.host.SetConnectabilityMode(mode=ConnectabilityMode.NOT_CONNECTABLE)
+            mode=NOT_DISCOVERABLE)
+        self.host.SetConnectabilityMode(mode=NOT_CONNECTABLE)
 
         return "OK"
 
@@ -705,7 +705,7 @@ class GAPProxy(ProfileProxy):
         """
 
         # No idea how we can bond in non-bondable mode, but this passes the tests...
-        self.security.Secure(connection=self.connection, le=LESecurityLevel.LE_LEVEL3)
+        self.security.Secure(connection=self.connection, le=LE_LEVEL3)
 
         return "OK"
 
@@ -742,7 +742,7 @@ class GAPProxy(ProfileProxy):
         Please enter Non-Connectable mode.
         """
 
-        self.host.SetConnectabilityMode(mode=ConnectabilityMode.NOT_CONNECTABLE)
+        self.host.SetConnectabilityMode(mode=NOT_CONNECTABLE)
 
         return "OK"
 
@@ -753,8 +753,8 @@ class GAPProxy(ProfileProxy):
         """
 
         self.host.SetDiscoverabilityMode(
-            mode=DiscoverabilityMode.DISCOVERABLE_GENERAL)
-        self.host.SetConnectabilityMode(mode=ConnectabilityMode.NOT_CONNECTABLE)
+            mode=DISCOVERABLE_GENERAL)
+        self.host.SetConnectabilityMode(mode=NOT_CONNECTABLE)
 
         return "OK"
 
@@ -767,8 +767,8 @@ class GAPProxy(ProfileProxy):
         """
 
         self.advertise = self.host.Advertise(
-            data=DataTypes(le_discoverability_mode=DiscoverabilityMode.DISCOVERABLE_GENERAL),
-            own_address_type=OwnAddressType.PUBLIC,
+            data=DataTypes(le_discoverability_mode=DISCOVERABLE_GENERAL),
+            own_address_type=PUBLIC,
             connectable=False,
         )
 
@@ -782,8 +782,8 @@ class GAPProxy(ProfileProxy):
         """
 
         self.advertise = self.host.Advertise(
-            data=DataTypes(le_discoverability_mode=DiscoverabilityMode.NOT_DISCOVERABLE),
-            own_address_type=OwnAddressType.PUBLIC,
+            data=DataTypes(le_discoverability_mode=NOT_DISCOVERABLE),
+            own_address_type=PUBLIC,
             connectable=True,
         )
 
@@ -797,8 +797,8 @@ class GAPProxy(ProfileProxy):
         """
 
         self.advertise = self.host.Advertise(
-            data=DataTypes(le_discoverability_mode=DiscoverabilityMode.DISCOVERABLE_GENERAL),
-            own_address_type=OwnAddressType.PUBLIC,
+            data=DataTypes(le_discoverability_mode=DISCOVERABLE_GENERAL),
+            own_address_type=PUBLIC,
             connectable=True,
         )
 
@@ -888,7 +888,7 @@ class GAPProxy(ProfileProxy):
         if test != "GAP/SEC/SEM/BV-08-C":
             # we already started in the Connect MMI
             self.pairing_events = self.security.OnPairing()
-            self.security.Secure(connection=self.connection, le=LESecurityLevel.LE_LEVEL3)
+            self.security.Secure(connection=self.connection, le=LE_LEVEL3)
 
         def after_that():
             self.host.WaitConnection()  # this really waits for bonding
