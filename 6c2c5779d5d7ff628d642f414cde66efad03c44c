@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2c8001f2_b56b3e81",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-02-27T23:39:47Z",
+      "side": 1,
+      "message": "selfreview",
+      "revId": "6c2c5779d5d7ff628d642f414cde66efad03c44c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2c1b57f7_21424fdc",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-02-27T23:39:47Z",
+      "side": 1,
+      "message": "this should be part of next patch - to be fixed.",
+      "revId": "6c2c5779d5d7ff628d642f414cde66efad03c44c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
