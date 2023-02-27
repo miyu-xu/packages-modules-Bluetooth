@@ -353,7 +353,7 @@ static bool get_single_codec(int codec, bt_codec** out) {
 
 constexpr uint8_t OFFLOAD_DATAPATH = 0x01;
 
-// Notify the codec datapath to lower layer for offload mode
+// Notify the codec datapath to lower layer.
 void set_codec_datapath(esco_coding_format_t coding_format) {
   bool found;
   bt_codec* codec;
