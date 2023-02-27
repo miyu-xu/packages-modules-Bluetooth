@@ -216,17 +216,17 @@ struct MSBCCodec : bluetooth::core::CodecInterface {
     hfp_msbc_encoder_init();
   }
 
-  void cleanup() override {
-    hfp_msbc_decoder_cleanup();
+  void cleanup(int* num_decoded_frames, double* packet_loss_ratio) override {
     hfp_msbc_encoder_cleanup();
+    hfp_msbc_decoder_cleanup(num_decoded_frames, packet_loss_ratio);
   }
 
   uint32_t encodePacket(int16_t* input, uint8_t* output) {
     return hfp_msbc_encode_frames(input, output);
   }
 
-  bool decodePacket(const uint8_t* i_buf, int16_t* o_buf, size_t out_len) {
-    return hfp_msbc_decoder_decode_packet(i_buf, o_buf, out_len);
+  uint32_t decodePacket(const uint8_t* i_buf, int16_t* o_buf) {
+    return hfp_msbc_decoder_decode_packet(i_buf, o_buf);
   }
 };
 

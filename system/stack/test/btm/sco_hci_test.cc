@@ -31,6 +31,8 @@
 #include "test/common/mock_functions.h"
 #include "udrv/include/uipc.h"
 
+#define BTM_MSBC_CODE_SIZE 240
+
 extern bluetooth::core::CoreInterface* GetInterfaceToProfiles();
 extern std::unique_ptr<tUIPC_STATE> mock_uipc_init_ret;
 extern uint32_t mock_uipc_read_ret;
@@ -58,17 +60,17 @@ struct CodecInterface : bluetooth::core::CodecInterface {
     hfp_msbc_encoder_init();
   }
 
-  void cleanup() override {
-    hfp_msbc_decoder_cleanup();
+  void cleanup(int* num_decoded_frames, double* packet_loss_ratio) override {
     hfp_msbc_encoder_cleanup();
+    hfp_msbc_decoder_cleanup(num_decoded_frames, packet_loss_ratio);
   }
 
   uint32_t encodePacket(int16_t* input, uint8_t* output) {
     return hfp_msbc_encode_frames(input, output);
   }
 
-  bool decodePacket(const uint8_t* i_buf, int16_t* o_buf, size_t out_len) {
-    return hfp_msbc_decoder_decode_packet(i_buf, o_buf, out_len);
+  uint32_t decodePacket(const uint8_t* i_buf, int16_t* o_buf) {
+    return hfp_msbc_decoder_decode_packet(i_buf, o_buf);
   }
 };
 
@@ -105,9 +107,14 @@ class ScoHciWbsWithInitCleanTest : public ScoHciTest {
  protected:
   void SetUp() override {
     ScoHciTest::SetUp();
-    bluetooth::audio::sco::wbs::init(60);
+    bluetooth::audio::sco::wbs::init(ESCO_CODING_FORMAT_MSBC, 60);
   }
-  void TearDown() override { bluetooth::audio::sco::wbs::cleanup(); }
+  void TearDown() override {
+    int num_decoded_frames;
+    double packet_loss_ratio;
+    bluetooth::audio::sco::wbs::cleanup(&num_decoded_frames,
+                                        &packet_loss_ratio);
+  }
 };
 
 TEST_F(ScoHciTest, ScoOverHciOpenFail) {
@@ -181,11 +188,16 @@ TEST_F(ScoHciWithOpenCleanTest, ScoOverHciWrite) {
 }
 
 TEST_F(ScoHciWbsTest, WbsInit) {
-  ASSERT_EQ(bluetooth::audio::sco::wbs::init(60), size_t(60));
-  ASSERT_EQ(bluetooth::audio::sco::wbs::init(72), size_t(72));
+  ASSERT_EQ(bluetooth::audio::sco::wbs::init(ESCO_CODING_FORMAT_MSBC, 60),
+            size_t(60));
+  ASSERT_EQ(bluetooth::audio::sco::wbs::init(ESCO_CODING_FORMAT_MSBC, 72),
+            size_t(72));
   // Fallback to 60 if the packet size is not supported
-  ASSERT_EQ(bluetooth::audio::sco::wbs::init(48), size_t(60));
-  bluetooth::audio::sco::wbs::cleanup();
+  ASSERT_EQ(bluetooth::audio::sco::wbs::init(ESCO_CODING_FORMAT_MSBC, 48),
+            size_t(60));
+  int num_decoded_frames;
+  double packet_loss_ratio;
+  bluetooth::audio::sco::wbs::cleanup(&num_decoded_frames, &packet_loss_ratio);
 }
 
 TEST_F(ScoHciWbsTest, WbsEnqueuePacketWithoutInit) {
@@ -263,23 +275,15 @@ TEST_F(ScoHciWbsWithInitCleanTest, WbsDecode) {
 TEST_F(ScoHciWbsTest, WbsEncodeWithoutInit) {
   int16_t data[120] = {0};
   // Return 0 if buffer is uninitialized
-  ASSERT_EQ(bluetooth::audio::sco::wbs::encode(data, sizeof(data)), size_t(0));
+  ASSERT_EQ(bluetooth::audio::sco::wbs::encode(data), size_t(0));
 }
 
 TEST_F(ScoHciWbsWithInitCleanTest, WbsEncode) {
   int16_t data[120] = {0};
 
   // Return 0 if data is invalid
-  ASSERT_EQ(bluetooth::audio::sco::wbs::encode(nullptr, sizeof(data)),
-            size_t(0));
-  // Return 0 if data length is insufficient
-  ASSERT_EQ(bluetooth::audio::sco::wbs::encode(data, sizeof(data) - 1),
-            size_t(0));
-  ASSERT_EQ(bluetooth::audio::sco::wbs::encode(data, sizeof(data)),
-            sizeof(data));
-
-  // Return 0 if the packet buffer is full
-  ASSERT_EQ(bluetooth::audio::sco::wbs::encode(data, sizeof(data)), size_t(0));
+  ASSERT_EQ(bluetooth::audio::sco::wbs::encode(nullptr), size_t(0));
+  ASSERT_EQ(bluetooth::audio::sco::wbs::encode(data), sizeof(data));
 }
 
 TEST_F(ScoHciWbsTest, WbsDequeuePacketWithoutInit) {
@@ -306,8 +310,7 @@ TEST_F(ScoHciWbsWithInitCleanTest, WbsEncodeDequeuePackets) {
   const uint8_t* encoded = nullptr;
 
   for (size_t i = 0; i < 5; i++) {
-    ASSERT_EQ(bluetooth::audio::sco::wbs::encode(data, sizeof(data)),
-              sizeof(data));
+    ASSERT_EQ(bluetooth::audio::sco::wbs::encode(data), sizeof(data));
     ASSERT_EQ(bluetooth::audio::sco::wbs::dequeue_packet(&encoded), size_t(60));
     ASSERT_NE(encoded, nullptr);
     for (size_t j = 0; j < 60; j++) {
@@ -333,8 +336,7 @@ TEST_F(ScoHciWbsWithInitCleanTest, WbsPlc) {
     for (size_t j = 0; j < 120; j++, sample_idx++)
       data[j] = triangle[sample_idx % 16];
     // Build the packet
-    ASSERT_EQ(bluetooth::audio::sco::wbs::encode(data, sizeof(data)),
-              sizeof(data));
+    ASSERT_EQ(bluetooth::audio::sco::wbs::encode(data), sizeof(data));
     ASSERT_EQ(bluetooth::audio::sco::wbs::dequeue_packet(&encoded), size_t(60));
     ASSERT_NE(encoded, nullptr);
 
@@ -349,15 +351,16 @@ TEST_F(ScoHciWbsWithInitCleanTest, WbsPlc) {
   std::copy((const int16_t*)decoded,
             (const int16_t*)(decoded + BTM_MSBC_CODE_SIZE), expect_data);
   // Start with the fresh WBS buffer
-  bluetooth::audio::sco::wbs::cleanup();
-  bluetooth::audio::sco::wbs::init(60);
+  int num_decoded_frames;
+  double packet_loss_ratio;
+  bluetooth::audio::sco::wbs::cleanup(&num_decoded_frames, &packet_loss_ratio);
+  bluetooth::audio::sco::wbs::init(ESCO_CODING_FORMAT_MSBC, 60);
   int decode_count = 0;
   for (size_t i = 0, sample_idx = 0; i <= lost_pkt_idx; i++) {
     // Data is a 1000Hz triangle wave
     for (size_t j = 0; j < 120; j++, sample_idx++)
       data[j] = triangle[sample_idx % 16];
-    ASSERT_EQ(bluetooth::audio::sco::wbs::encode(data, sizeof(data)),
-              sizeof(data));
+    ASSERT_EQ(bluetooth::audio::sco::wbs::encode(data), sizeof(data));
     ASSERT_EQ(bluetooth::audio::sco::wbs::dequeue_packet(&encoded), size_t(60));
     ASSERT_NE(encoded, nullptr);
 
@@ -370,12 +373,8 @@ TEST_F(ScoHciWbsWithInitCleanTest, WbsPlc) {
     decode_count++;
     ASSERT_NE(decoded, nullptr);
   }
-  int num_decoded_frames;
-  double packet_loss_ratio;
 
-  ASSERT_EQ(bluetooth::audio::sco::wbs::fill_plc_stats(&num_decoded_frames,
-                                                       &packet_loss_ratio),
-            true);
+  bluetooth::audio::sco::wbs::cleanup(&num_decoded_frames, &packet_loss_ratio);
   ASSERT_EQ(num_decoded_frames, decode_count);
   ASSERT_EQ(packet_loss_ratio, (double)1 / decode_count);
 
@@ -392,14 +391,13 @@ TEST_F(ScoHciWbsWithInitCleanTest, WbsPlc) {
   size_t corrupted_pkt_idx = lost_pkt_idx;
   // Start with the fresh WBS buffer
   decode_count = 0;
-  bluetooth::audio::sco::wbs::cleanup();
-  bluetooth::audio::sco::wbs::init(60);
+  bluetooth::audio::sco::wbs::cleanup(&num_decoded_frames, &packet_loss_ratio);
+  bluetooth::audio::sco::wbs::init(ESCO_CODING_FORMAT_MSBC, 60);
   for (size_t i = 0, sample_idx = 0; i <= corrupted_pkt_idx; i++) {
     // Data is a 1000Hz triangle wave
     for (size_t j = 0; j < 120; j++, sample_idx++)
       data[j] = triangle[sample_idx % 16];
-    ASSERT_EQ(bluetooth::audio::sco::wbs::encode(data, sizeof(data)),
-              sizeof(data));
+    ASSERT_EQ(bluetooth::audio::sco::wbs::encode(data), sizeof(data));
     ASSERT_EQ(bluetooth::audio::sco::wbs::dequeue_packet(&encoded), size_t(60));
     ASSERT_NE(encoded, nullptr);
 
@@ -413,9 +411,7 @@ TEST_F(ScoHciWbsWithInitCleanTest, WbsPlc) {
     ASSERT_NE(decoded, nullptr);
   }
 
-  ASSERT_EQ(bluetooth::audio::sco::wbs::fill_plc_stats(&num_decoded_frames,
-                                                       &packet_loss_ratio),
-            true);
+  bluetooth::audio::sco::wbs::cleanup(&num_decoded_frames, &packet_loss_ratio);
   ASSERT_EQ(num_decoded_frames, decode_count);
   ASSERT_EQ(packet_loss_ratio, (double)1 / decode_count);
 
