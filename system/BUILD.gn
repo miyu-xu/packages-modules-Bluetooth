@@ -132,6 +132,7 @@ config("target_defaults") {
 
   if (target_os == "chromeos") {
     configs += [ ":external_chromeos" ]
+    defines += [ "HAVE_FEATURED" ]
   }
 }
 
@@ -232,7 +233,7 @@ if (defined(use.bt_nonstandard_codecs) && use.bt_nonstandard_codecs) {
   }
 }
 
-# To include ChroemOS-specific libraries and build dependencies.
+# To include ChromeOS-specific libraries and build dependencies.
 if (target_os == "chromeos") {
   config("external_chromeos") {
     configs = [ ":pkgpkg_libstructuredmetrics" ]
