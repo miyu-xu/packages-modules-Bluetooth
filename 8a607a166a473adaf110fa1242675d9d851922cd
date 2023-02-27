@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5a6b0c4d_59422e57",
+        "filename": "android/app/src/com/android/bluetooth/tbs/TbsGatt.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 658,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-02-27T23:44:25Z",
+      "side": 1,
+      "message": "Could there be more unit tests for functions like this to make sure there is no missed branches?",
+      "range": {
+        "startLine": 658,
+        "startChar": 20,
+        "endLine": 658,
+        "endChar": 47
+      },
+      "revId": "8a607a166a473adaf110fa1242675d9d851922cd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
