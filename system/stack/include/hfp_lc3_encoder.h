@@ -15,22 +15,22 @@
  */
 
 //
-// Interface to the HFP mSBC Encoder
+// Interface to the HFP LC3 Encoder
 //
 
-#ifndef HFP_MSBC_ENCODER_H
-#define HFP_MSBC_ENCODER_H
+#ifndef HFP_LC3_ENCODER_H
+#define HFP_LC3_ENCODER_H
 
 #include <stdint.h>
 
-// Initialize the HFP MSBC encoder.
-void hfp_msbc_encoder_init();
+// Initialize the HFP LC3 encoder.
+void hfp_lc3_encoder_init();
 
-// Cleanup the HFP MSBC encoder.
-void hfp_msbc_encoder_cleanup(void);
+// Cleanup the HFP LC3 encoder.
+void hfp_lc3_encoder_cleanup(void);
 
-// Encode the frame. Puts a zero frame in the event of failure.
-// Returns number of PCM bytes consumed (should always be 240).
-uint32_t hfp_msbc_encode_frames(int16_t* input, uint8_t* output);
+// Encode the frame. PLC is conducted if needed.
+// Returns number of PCM bytes consumed (should always be 480).
+uint32_t hfp_lc3_encode_frames(int16_t* input, uint8_t* output);
 
-#endif  // HFP_MSBC_ENCODER_H
+#endif  // HFP_LC3_ENCODER_H
