@@ -75,6 +75,8 @@
 
 using bluetooth::Uuid;
 
+extern bool btif_get_device_type(const RawAddress& bda, int* p_device_type);
+
 namespace {
 constexpr char kBtmLogTag[] = "SDP";
 }
@@ -1857,6 +1859,10 @@ static void bta_dm_discover_device(const RawAddress& remote_bd_addr) {
     tBLE_ADDR_TYPE addr_type;
 
     BTM_ReadDevInfo(remote_bd_addr, &dev_type, &addr_type);
+    int btif_dev_type;
+    if (btif_get_device_type(remote_bd_addr, &btif_dev_type))
+      dev_type = static_cast<tBT_DEVICE_TYPE>(btif_dev_type);
+
     if (dev_type == BT_DEVICE_TYPE_BLE || addr_type == BLE_ADDR_RANDOM)
       transport = BT_TRANSPORT_LE;
   } else {
