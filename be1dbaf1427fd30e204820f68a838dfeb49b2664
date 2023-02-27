@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d7ae98e8_d7440c47",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 2756,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-02-27T15:04:29Z",
+      "side": 1,
+      "message": "since only 1 group is active we could break here.",
+      "revId": "be1dbaf1427fd30e204820f68a838dfeb49b2664",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
