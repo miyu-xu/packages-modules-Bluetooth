@@ -33,6 +33,23 @@
       "message": "The `set_up_virtualenv.sh` script itself runs ok, but after that running gd/cert/run fail with below error message:\n\n```\n\u003cAndroidRoot\u003e/out/dist/bluetooth_venv/bin/python: can\u0027t open file \u0027\u003cAndroidRoot\u003e/out/dist/bluetooth_venv/sources/setup.py\u0027: [Errno 2] No such file or directory\n\n```",
       "revId": "dbed55605ed39f8d17ca01d5082fd532e4d52c72",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7b01b1d3_bd8ae0fb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-02-27T17:10:37Z",
+      "side": 1,
+      "message": "Can we check to see if the system version is \u003e\u003d 3.8 and just use the default system version instead of using a specific version?  Do we really need a specific version?",
+      "revId": "dbed55605ed39f8d17ca01d5082fd532e4d52c72",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
