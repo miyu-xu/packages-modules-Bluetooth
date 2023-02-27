@@ -22,6 +22,30 @@
       },
       "revId": "e87f4c28e765858dbe7e5056f4744f6a9ef30491",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9da6ad86_b5ccfdc8",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 2888,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-02-27T08:21:05Z",
+      "side": 1,
+      "message": "Use case.\n\n1. Bluetooth is OFF on the phone.\n2. User takes it headset which does Targeted Announcements for some time, if not connection happen it could go to General Announcement and low duty cycle advertising to not waste battery.\n\n3. When Bluetooth is turned ON on the Phone I think User expect Bluetooth to actively connect to known devices - for 30 sec. If not succeed, it should fallback to TA.\n\nDoes it makes sense?",
+      "parentUuid": "efbc8d52_82863caa",
+      "range": {
+        "startLine": 2887,
+        "startChar": 5,
+        "endLine": 2888,
+        "endChar": 26
+      },
+      "revId": "e87f4c28e765858dbe7e5056f4744f6a9ef30491",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
