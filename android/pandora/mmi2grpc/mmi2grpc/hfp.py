@@ -18,8 +18,9 @@ from mmi2grpc._proxy import ProfileProxy
 
 from pandora_experimental.hfp_grpc import HFP
 from pandora.host_grpc import Host
-from pandora.host_pb2 import ConnectabilityMode, DiscoverabilityMode
-from pandora.security_grpc import Security, SecurityStorage, PairingEventAnswer
+from pandora.host_pb2 import DISCOVERABLE_GENERAL, CONNECTABLE
+from pandora.security_grpc import Security, SecurityStorage
+from pandora.security_pb2 import PairingEventAnswer
 from pandora_experimental.hfp_pb2 import AudioPath
 
 import sys
@@ -85,7 +86,7 @@ class HFPProxy(ProfileProxy):
             time.sleep(2)
 
             if test == "HFP/AG/SLC/BV-02-C":
-                self.host.SetConnectabilityMode(mode=ConnectabilityMode.CONNECTABLE)
+                self.host.SetConnectabilityMode(mode=CONNECTABLE)
                 self.connection = self.host.Connect(address=pts_addr).connection
             else:
                 if not self.connection:
@@ -130,7 +131,7 @@ class HFPProxy(ProfileProxy):
         Make the Implementation Under Test (IUT) connectable, then click Ok.
         """
 
-        self.host.SetConnectabilityMode(mode=ConnectabilityMode.CONNECTABLE)
+        self.host.SetConnectabilityMode(mode=CONNECTABLE)
 
         return "OK"
 
@@ -772,7 +773,7 @@ class HFPProxy(ProfileProxy):
         click Ok.
         """
 
-        self.host.SetDiscoverabilityMode(mode=DiscoverabilityMode.DISCOVERABLE_GENERAL)
+        self.host.SetDiscoverabilityMode(mode=DISCOVERABLE_GENERAL)
 
         return "OK"
 
