@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "501fba90_74dac6f4",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-02-27T19:45:38Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "2f40f67d_3a4b2e4e",
+      "range": {
+        "startLine": 9,
+        "startChar": 6,
+        "endLine": 9,
+        "endChar": 12
+      },
+      "revId": "1c78c5fba6d7181253c89ef6b9afef479354670c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "88b803dd_251834e5",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-02-25T21:24:11Z",
       "side": 1,
       "message": "Singlar, no \"s\" at end",
+      "range": {
+        "startLine": 64,
+        "startChar": 51,
+        "endLine": 64,
+        "endChar": 52
+      },
+      "revId": "1c78c5fba6d7181253c89ef6b9afef479354670c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "181299a0_7b8e4989",
+        "filename": "system/stack/btm/btm_iso.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-02-27T19:45:38Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "88b803dd_251834e5",
       "range": {
         "startLine": 64,
         "startChar": 51,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3e8f8b4c_762655e2",
+        "filename": "system/stack/btm/btm_iso_impl.h",
+        "patchSetId": 7
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-02-27T19:45:38Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "87d88e25_01079236",
+      "range": {
+        "startLine": 111,
+        "startChar": 60,
+        "endLine": 111,
+        "endChar": 69
+      },
+      "revId": "1c78c5fba6d7181253c89ef6b9afef479354670c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "313227c3_e20821e4",
@@ -83,6 +155,24 @@
       "writtenOn": "2023-02-25T21:24:11Z",
       "side": 1,
       "message": "We should at minimum verify that your callback is called on CIS successful creation, and on termination. \nPlease add a simple test, or extend existing test.",
+      "revId": "1c78c5fba6d7181253c89ef6b9afef479354670c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0fc7bab5_584f3c3e",
+        "filename": "system/stack/test/btm_iso_test.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 502,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-02-27T19:45:38Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "313227c3_e20821e4",
       "revId": "1c78c5fba6d7181253c89ef6b9afef479354670c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
