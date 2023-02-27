@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8128f2c6_df256b84",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2023-02-27T06:54:46Z",
+      "side": 1,
+      "message": "Hi Myles, is this file actually used?\nIt seems that `gd/cert/run --clean` is the correct command. \nRunning this script and then running `gd/cert/run` fails with error.\n\nIf this file is not used, can I remove this file?",
+      "revId": "dbed55605ed39f8d17ca01d5082fd532e4d52c72",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
