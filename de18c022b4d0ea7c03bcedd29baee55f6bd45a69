@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "012862ad_c7f28a31",
+        "filename": "tools/pdl/src/backends/rust/parser.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 522,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2023-02-27T10:12:19Z",
+      "side": 1,
+      "message": "Since `B` and `C` differs on the value for `a`, I don\u0027t see why it matters which order we test them in?\n\nAre there other possible packets where the order matters?",
+      "parentUuid": "4692067e_16738ee4",
+      "revId": "de18c022b4d0ea7c03bcedd29baee55f6bd45a69",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "c1a1f10b_8933f41a",
