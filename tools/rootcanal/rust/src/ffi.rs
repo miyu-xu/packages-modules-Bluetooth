@@ -1,24 +1,29 @@
+use num_traits::FromPrimitive;
 use std::mem::ManuallyDrop;
 use std::rc::Rc;
 use std::slice;
 
+use crate::llcp::manager::LinkLayer;
 use crate::lmp::manager::LinkManager;
-use crate::packets::{hci, lmp};
+use crate::packets::{hci, llcp, lmp};
 
 /// Link Manager callbacks
 #[repr(C)]
 #[derive(Clone)]
-pub struct LinkManagerOps {
+pub struct ControllerOps {
     user_pointer: *mut (),
     get_handle: unsafe extern "C" fn(user: *mut (), address: *const [u8; 6]) -> u16,
     get_address: unsafe extern "C" fn(user: *mut (), handle: u16, result: *mut [u8; 6]),
-    extended_features: unsafe extern "C" fn(user: *mut (), features_page: u8) -> u64,
+    get_extended_features: unsafe extern "C" fn(user: *mut (), features_page: u8) -> u64,
+    get_le_features: unsafe extern "C" fn(user: *mut ()) -> u64,
+    get_le_event_mask: unsafe extern "C" fn(user: *mut ()) -> u64,
     send_hci_event: unsafe extern "C" fn(user: *mut (), data: *const u8, len: usize),
     send_lmp_packet:
         unsafe extern "C" fn(user: *mut (), to: *const [u8; 6], data: *const u8, len: usize),
+    send_llcp_packet: unsafe extern "C" fn(user: *mut (), handle: u16, data: *const u8, len: usize),
 }
 
-impl LinkManagerOps {
+impl ControllerOps {
     pub(crate) fn get_address(&self, handle: u16) -> Option<hci::Address> {
         let mut result = hci::EMPTY_ADDRESS;
         unsafe { (self.get_address)(self.user_pointer, handle, &mut result.bytes as *mut _) };
@@ -33,8 +38,17 @@ impl LinkManagerOps {
         unsafe { (self.get_handle)(self.user_pointer, &addr.bytes as *const _) }
     }
 
-    pub(crate) fn extended_features(&self, features_page: u8) -> u64 {
-        unsafe { (self.extended_features)(self.user_pointer, features_page) }
+    pub(crate) fn get_extended_features(&self, features_page: u8) -> u64 {
+        unsafe { (self.get_extended_features)(self.user_pointer, features_page) }
+    }
+
+    pub(crate) fn get_le_features(&self) -> u64 {
+        unsafe { (self.get_le_features)(self.user_pointer) }
+    }
+
+    #[allow(dead_code)]
+    pub(crate) fn get_le_event_mask(&self) -> u64 {
+        unsafe { (self.get_le_event_mask)(self.user_pointer) }
     }
 
     pub(crate) fn send_hci_event(&self, packet: &[u8]) {
@@ -51,13 +65,17 @@ impl LinkManagerOps {
             )
         }
     }
+
+    pub(crate) fn send_llcp_packet(&self, handle: u16, packet: &[u8]) {
+        unsafe { (self.send_llcp_packet)(self.user_pointer, handle, packet.as_ptr(), packet.len()) }
+    }
 }
 
 /// Create a new link manager instance
 /// # Arguments
 /// * `ops` - Function callbacks required by the link manager
 #[no_mangle]
-pub extern "C" fn link_manager_create(ops: LinkManagerOps) -> *const LinkManager {
+pub extern "C" fn link_manager_create(ops: ControllerOps) -> *const LinkManager {
     Rc::into_raw(Rc::new(LinkManager::new(ops)))
 }
 
@@ -172,4 +190,133 @@ pub unsafe extern "C" fn link_manager_ingest_lmp(
 #[no_mangle]
 pub unsafe extern "C" fn link_manager_destroy(lm: *const LinkManager) {
     let _ = Rc::from_raw(lm);
+}
+
+/// Create a new link manager instance
+/// # Arguments
+/// * `ops` - Function callbacks required by the link manager
+#[no_mangle]
+pub extern "C" fn link_layer_create(ops: ControllerOps) -> *const LinkLayer {
+    Rc::into_raw(Rc::new(LinkLayer::new(ops)))
+}
+
+/// Register a new link with a peer inside the link layer
+/// # Arguments
+/// * `ll` - link layer pointer
+/// * `handle` - connection handle for the link
+/// * `peer_address` - peer address as array of 6 bytes
+/// * `role` - connection role (peripheral or centrl) for the link
+/// # Safety
+/// - This should be called from the thread of creation
+/// - `ll` must be a valid pointer
+/// - `peer` must be valid for reads for 6 bytes
+/// - `role` must be 0 (central) or 1 (peripheral)
+#[no_mangle]
+pub unsafe extern "C" fn link_layer_add_link(
+    ll: *const LinkLayer,
+    handle: u16,
+    peer_address: *const [u8; 6],
+    role: u8,
+) -> bool {
+    let mut ll = ManuallyDrop::new(Rc::from_raw(ll));
+    let ll = Rc::get_mut(&mut ll).unwrap();
+    let role = hci::Role::from_u8(role).unwrap_or(hci::Role::Peripheral);
+    ll.add_link(handle, hci::Address { bytes: *peer_address }, role).is_ok()
+}
+
+/// Unregister a link with a peer inside the link layer
+/// Returns true if successful
+/// # Arguments
+/// * `ll` - link layer pointer
+/// * `peer` - peer address as array of 6 bytes
+/// # Safety
+/// - This should be called from the thread of creation
+/// - `ll` must be a valid pointer
+/// - `peer` must be valid for reads for 6 bytes
+#[no_mangle]
+pub unsafe extern "C" fn link_layer_remove_link(ll: *const LinkLayer, handle: u16) -> bool {
+    let mut ll = ManuallyDrop::new(Rc::from_raw(ll));
+    let ll = Rc::get_mut(&mut ll).unwrap();
+    ll.remove_link(handle).is_ok()
+}
+
+/// Run the Link Manager procedures
+/// # Arguments
+/// * `ll` - link layer pointer
+/// # Safety
+/// - This should be called from the thread of creation
+/// - `ll` must be a valid pointer
+#[no_mangle]
+pub unsafe extern "C" fn link_layer_tick(ll: *const LinkLayer) {
+    let mut ll = ManuallyDrop::new(Rc::from_raw(ll));
+    let ll = Rc::get_mut(&mut ll).unwrap();
+    ll.tick();
+}
+
+/// Process an HCI packet with the link layer
+/// Returns true if successful
+/// # Arguments
+/// * `ll` - link layer pointer
+/// * `data` - HCI packet data
+/// * `len` - HCI packet len
+/// # Safety
+/// - This should be called from the thread of creation
+/// - `ll` must be a valid pointer
+/// - `data` must be valid for reads of len `len`
+#[no_mangle]
+pub unsafe extern "C" fn link_layer_ingest_hci(
+    ll: *const LinkLayer,
+    data: *const u8,
+    len: usize,
+) -> bool {
+    let mut ll = ManuallyDrop::new(Rc::from_raw(ll));
+    let ll = Rc::get_mut(&mut ll).unwrap();
+    let data = slice::from_raw_parts(data, len);
+
+    if let Ok(packet) = hci::CommandPacket::parse(data) {
+        ll.ingest_hci(packet).is_ok()
+    } else {
+        false
+    }
+}
+
+/// Process an LMP packet from a peer with the link layer
+/// Returns true if successful
+/// # Arguments
+/// * `ll` - link layer pointer
+/// * `from` - Address of peer as array of 6 bytes
+/// * `data` - HCI packet data
+/// * `len` - HCI packet len
+/// # Safety
+/// - This should be called from the thread of creation
+/// - `ll` must be a valid pointers
+/// - `from` must be valid pointer for reads for 6 bytes
+/// - `data` must be valid for reads of len `len`
+#[no_mangle]
+pub unsafe extern "C" fn link_layer_ingest_llcp(
+    ll: *const LinkLayer,
+    handle: u16,
+    data: *const u8,
+    len: usize,
+) -> bool {
+    let mut ll = ManuallyDrop::new(Rc::from_raw(ll));
+    let ll = Rc::get_mut(&mut ll).unwrap();
+    let data = slice::from_raw_parts(data, len);
+
+    if let Ok(packet) = llcp::LlcpPacket::parse(data) {
+        ll.ingest_llcp(handle, packet).is_ok()
+    } else {
+        false
+    }
+}
+
+/// Deallocate the link layer instance
+/// # Arguments
+/// * `ll` - link layer pointer
+/// # Safety
+/// - This should be called from the thread of creation
+/// - `ll` must be a valid pointers and must not be reused afterwards
+#[no_mangle]
+pub unsafe extern "C" fn link_layer_destroy(ll: *const LinkLayer) {
+    let _ = Rc::from_raw(ll);
 }

@@ -16,9 +16,10 @@
 
 #include "link_layer_controller.h"
 
-#include <algorithm>
 #include <hci/hci_packets.h>
-#include <lmp.h>
+#include <rootcanal_rs.h>
+
+#include <algorithm>
 
 #include "crypto/crypto.h"
 #include "log.h"
@@ -1802,14 +1803,14 @@ LinkLayerController::LinkLayerController(const Address& address,
                                          const ControllerProperties& properties)
     : address_(address),
       properties_(properties),
-      lm_(nullptr, link_manager_destroy) {
-
+      lm_(nullptr, link_manager_destroy),
+      ll_(nullptr, link_layer_destroy) {
   if (properties_.quirks.has_default_random_address) {
     LOG_WARN("Configuring a default random address for this controller");
     random_address_ = Address { 0xba, 0xdb, 0xad, 0xba, 0xdb, 0xad };
   }
 
-  ops_ = {
+  controller_ops_ = {
       .user_pointer = this,
       .get_handle =
           [](void* user, const uint8_t(*address)[6]) {
@@ -1831,10 +1832,22 @@ LinkLayerController::LinkLayerController(const Address& address,
                       reinterpret_cast<uint8_t*>(result));
           },
 
-      .extended_features =
+      .get_extended_features =
           [](void* user, uint8_t features_page) {
             auto controller = static_cast<LinkLayerController*>(user);
             return controller->GetLmpFeatures(features_page);
+          },
+
+      .get_le_features =
+          [](void* user) {
+            auto controller = static_cast<LinkLayerController*>(user);
+            return controller->GetLeSupportedFeatures();
+          },
+
+      .get_le_event_mask =
+          [](void* user) {
+            auto controller = static_cast<LinkLayerController*>(user);
+            return controller->le_event_mask_;
           },
 
       .send_hci_event =
@@ -1862,9 +1875,34 @@ LinkLayerController::LinkLayerController(const Address& address,
 
             controller->SendLinkLayerPacket(model::packets::LmpBuilder::Create(
                 source, dest, std::move(payload)));
+          },
+
+      .send_llcp_packet =
+          [](void* user, uint16_t acl_connection_handle, const uint8_t* data,
+             uintptr_t len) {
+            auto controller = static_cast<LinkLayerController*>(user);
+            auto payload = std::make_unique<bluetooth::packet::RawBuilder>(
+                std::vector(data, data + len));
+
+            if (!controller->connections_.HasHandle(acl_connection_handle)) {
+              LOG_ERROR(
+                  "Dropping LLCP packet sent for unknown connection handle "
+                  "0x%x",
+                  acl_connection_handle);
+              return;
+            }
+
+            Address source = controller->GetAddress();
+            Address destination =
+                controller->connections_.GetAddress(acl_connection_handle)
+                    .GetAddress();
+
+            controller->SendLinkLayerPacket(model::packets::LlcpBuilder::Create(
+                source, destination, std::move(payload)));
           }};
 
-  lm_.reset(link_manager_create(ops_));
+  lm_.reset(link_manager_create(controller_ops_));
+  ll_.reset(link_layer_create(controller_ops_));
 }
 
 LinkLayerController::~LinkLayerController() {}
@@ -2084,6 +2122,9 @@ void LinkLayerController::IncomingPacket(
       break;
     case model::packets::PacketType::LMP:
       IncomingLmpPacket(incoming);
+      break;
+    case model::packets::PacketType::LLCP:
+      IncomingLlcpPacket(incoming);
       break;
     case model::packets::PacketType::INQUIRY:
       if (inquiry_scan_enable_) {
@@ -2466,6 +2507,8 @@ void LinkLayerController::IncomingDisconnectPacket(
   if (is_br_edr) {
     ASSERT(link_manager_remove_link(
         lm_.get(), reinterpret_cast<uint8_t(*)[6]>(peer.data())));
+  } else {
+    ASSERT(link_layer_remove_link(ll_.get(), handle));
   }
 }
 
@@ -3854,6 +3897,24 @@ void LinkLayerController::IncomingLmpPacket(
       packet.size()));
 }
 
+void LinkLayerController::IncomingLlcpPacket(
+    model::packets::LinkLayerPacketView incoming) {
+  Address address = incoming.GetSourceAddress();
+  auto request = model::packets::LlcpView::Create(incoming);
+  ASSERT(request.IsValid());
+  auto payload = request.GetPayload();
+  auto packet = std::vector(payload.begin(), payload.end());
+  uint16_t acl_connection_handle = connections_.GetHandleOnlyAddress(address);
+
+  if (acl_connection_handle == kReservedHandle) {
+    LOG_INFO("Dropping packet since connection does not exist");
+    return;
+  }
+
+  ASSERT(link_layer_ingest_llcp(ll_.get(), acl_connection_handle, packet.data(),
+                                packet.size()));
+}
+
 uint16_t LinkLayerController::HandleLeConnection(
     AddressWithType address, AddressWithType own_address,
     bluetooth::hci::Role role, uint16_t connection_interval,
@@ -3908,6 +3969,12 @@ uint16_t LinkLayerController::HandleLeConnection(
         address.GetAddress(), connection_interval, connection_latency,
         supervision_timeout, static_cast<bluetooth::hci::ClockAccuracy>(0x00)));
   }
+
+  // Update the link layer with the new link.
+  ASSERT(link_layer_add_link(
+      ll_.get(), handle,
+      reinterpret_cast<const uint8_t(*)[6]>(address.GetAddress().data()),
+      static_cast<uint8_t>(role)));
 
   // Note: the HCI_LE_Connection_Complete event is immediately followed by
   // an HCI_LE_Channel_Selection_Algorithm event if the connection is created
@@ -4873,6 +4940,11 @@ void LinkLayerController::ForwardToLm(bluetooth::hci::CommandView command) {
   ASSERT(link_manager_ingest_hci(lm_.get(), packet.data(), packet.size()));
 }
 
+void LinkLayerController::ForwardToLl(bluetooth::hci::CommandView command) {
+  auto packet = std::vector(command.begin(), command.end());
+  ASSERT(link_layer_ingest_hci(ll_.get(), packet.data(), packet.size()));
+}
+
 std::vector<bluetooth::hci::Lap> const& LinkLayerController::ReadCurrentIacLap()
     const {
   return current_iac_lap_list_;
@@ -5109,6 +5181,8 @@ ErrorCode LinkLayerController::Disconnect(uint16_t handle,
     ASSERT(link_manager_remove_link(
         lm_.get(),
         reinterpret_cast<uint8_t(*)[6]>(remote.GetAddress().data())));
+  } else {
+    ASSERT(link_layer_remove_link(ll_.get(), handle));
   }
   return ErrorCode::SUCCESS;
 }
@@ -5619,7 +5693,8 @@ void LinkLayerController::Reset() {
     page_timeout_task_id_ = kInvalidTaskId;
   }
 
-  lm_.reset(link_manager_create(ops_));
+  lm_.reset(link_manager_create(controller_ops_));
+  ll_.reset(link_layer_create(controller_ops_));
 }
 
 void LinkLayerController::StartInquiry(milliseconds timeout) {

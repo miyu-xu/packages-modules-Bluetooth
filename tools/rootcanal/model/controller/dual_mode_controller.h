@@ -543,7 +543,6 @@ class DualModeController : public Device {
   void WriteConnectionAcceptTimeout(CommandView command);
 
   // Vendor-specific Commands
-
   void LeGetVendorCapabilities(CommandView command);
   void LeEnergyInfo(CommandView command);
   void LeMultiAdv(CommandView command);
@@ -561,6 +560,7 @@ class DualModeController : public Device {
 
   // Command pass-through.
   void ForwardToLm(CommandView command);
+  void ForwardToLl(CommandView command);
 
  protected:
   // Controller configuration.
