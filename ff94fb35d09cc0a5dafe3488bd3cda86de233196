@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a4c4ffc7_b6fc9359",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2023-02-28T00:03:52Z",
+      "side": 1,
+      "message": "Relanded the reverted change.",
+      "revId": "ff94fb35d09cc0a5dafe3488bd3cda86de233196",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
