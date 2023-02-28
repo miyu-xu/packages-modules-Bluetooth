@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7ec5b95e_26eedf93",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 19
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-02-28T19:58:51Z",
+      "side": 1,
+      "message": "Based on discussion with @rongxuan@google.com, we agree that there\u0027s still an issue if the client wants to *force* BLE_ADDR_PUBLIC, but at least this lets us force BLE_ADDR_RANDOM (which is the more common case anyway). The only remaining issue is if we have a connection to a device with a random address type and the same actual address, but we want to use that address with a public address type instead.\n\nBut this is an edge case and fixing it is nontrivial, so approving to unblock.",
+      "revId": "cae44b5d9d0034462f9237fe0d4c1bc910030f09",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
