@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c32b79da_96c07881",
+        "filename": "floss/build/build-in-container.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 1874901
+      },
+      "writtenOn": "2023-02-28T22:24:37Z",
+      "side": 1,
+      "message": "Nit: Using negative flag name can lead to confusion.\nPerhaps --pseudo-tty (or sth along those lines)?\n\nAnd set action/default/help accordingly.",
+      "range": {
+        "startLine": 185,
+        "startChar": 27,
+        "endLine": 185,
+        "endChar": 33
+      },
+      "revId": "71a4a1b3affddd90c20a8f345fd011f81a79f1d4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
