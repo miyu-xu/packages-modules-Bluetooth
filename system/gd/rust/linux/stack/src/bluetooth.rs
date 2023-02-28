@@ -1859,6 +1859,7 @@ impl IBluetooth for Bluetooth {
         // Check all remote uuids to see if they match enabled profiles and connect them.
         let mut has_enabled_uuids = false;
         let uuids = self.get_remote_uuids(device.clone());
+        let mut media_connect_sent = false;
         for uuid in uuids.iter() {
             match UuidHelper::is_known_profile(uuid) {
                 Some(p) => {
@@ -1887,6 +1888,10 @@ impl IBluetooth for Bluetooth {
                             | Profile::A2dpSource
                             | Profile::Hfp
                             | Profile::AvrcpController => {
+                                if media_connect_sent {
+                                    continue;
+                                }
+                                media_connect_sent = true;
                                 let txl = self.tx.clone();
                                 let address = device.address.clone();
                                 topstack::get_runtime().spawn(async move {
@@ -1965,6 +1970,7 @@ impl IBluetooth for Bluetooth {
         }
 
         let uuids = self.get_remote_uuids(device.clone());
+        let mut media_disconnect_sent = false;
         for uuid in uuids.iter() {
             match UuidHelper::is_known_profile(uuid) {
                 Some(p) => {
@@ -1978,6 +1984,10 @@ impl IBluetooth for Bluetooth {
                             | Profile::A2dpSource
                             | Profile::Hfp
                             | Profile::AvrcpController => {
+                                if media_disconnect_sent {
+                                    continue;
+                                }
+                                media_disconnect_sent = true;
                                 let txl = self.tx.clone();
                                 let address = device.address.clone();
                                 topstack::get_runtime().spawn(async move {
