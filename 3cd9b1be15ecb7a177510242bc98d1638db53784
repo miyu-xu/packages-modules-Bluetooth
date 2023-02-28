@@ -65,6 +65,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "12af20e3_878357ae",
+        "filename": "system/bta/hearing_aid/hearing_aid.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 324,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-02-28T20:51:57Z",
+      "side": 1,
+      "message": "We hope the controller adjust connection parameter by itself, but right now it does not, so we adjust the connection parameter manually with `UpdateBleConnParams` method",
+      "parentUuid": "e93de309_e6a5d95c",
+      "revId": "3cd9b1be15ecb7a177510242bc98d1638db53784",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "76dba225_85ee5f5d",
@@ -78,6 +96,24 @@
       "writtenOn": "2023-02-28T07:51:20Z",
       "side": 1,
       "message": "nit: since conn_id is a number, just compare it to 0.",
+      "revId": "3cd9b1be15ecb7a177510242bc98d1638db53784",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "52105077_fb4ff436",
+        "filename": "system/bta/hearing_aid/hearing_aid.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 329,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-02-28T20:51:57Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "76dba225_85ee5f5d",
       "revId": "3cd9b1be15ecb7a177510242bc98d1638db53784",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -105,6 +141,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ff19a611_ed6c4f01",
+        "filename": "system/bta/hearing_aid/hearing_aid.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 360,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-02-28T20:51:57Z",
+      "side": 1,
+      "message": "Yes, it is intended, changed to `CE_LEN_20MS_CI_ISO_RUNNING`",
+      "parentUuid": "bcd4e683_b3cc4e6c",
+      "range": {
+        "startLine": 360,
+        "startChar": 23,
+        "endLine": 360,
+        "endChar": 50
+      },
+      "revId": "3cd9b1be15ecb7a177510242bc98d1638db53784",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1a75101f_ea1dd1bc",
@@ -118,6 +178,24 @@
       "writtenOn": "2023-02-28T07:51:20Z",
       "side": 1,
       "message": "for me this should be LOG_WARN. If somebody unintentionally change the props and this will be changed, we should get this information in the logs.\nAlso please add device address to the log",
+      "revId": "3cd9b1be15ecb7a177510242bc98d1638db53784",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4d7658b1_323d5cb2",
+        "filename": "system/bta/hearing_aid/hearing_aid.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 377,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-02-28T20:51:57Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "1a75101f_ea1dd1bc",
       "revId": "3cd9b1be15ecb7a177510242bc98d1638db53784",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -139,6 +217,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b0366eb1_70c77a8d",
+        "filename": "system/bta/hearing_aid/hearing_aid.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 382,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-02-28T20:51:57Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "065d8fe6_a8964f0f",
+      "revId": "3cd9b1be15ecb7a177510242bc98d1638db53784",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bc57c150_92c2b8ce",
@@ -156,6 +252,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "670cb0e0_942f2c4d",
+        "filename": "system/bta/hearing_aid/hearing_aid.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 387,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-02-28T20:51:57Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "bc57c150_92c2b8ce",
+      "revId": "3cd9b1be15ecb7a177510242bc98d1638db53784",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4b314105_b9ac683a",
@@ -169,6 +283,24 @@
       "writtenOn": "2023-02-28T07:51:20Z",
       "side": 1,
       "message": "general question, since MIN_CE_Length and MAX_CE_Length are the information parameters to the controller, why we bother. Controller can always ignore it.",
+      "revId": "3cd9b1be15ecb7a177510242bc98d1638db53784",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1ad83f25_02c1775f",
+        "filename": "system/bta/hearing_aid/hearing_aid.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 391,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-02-28T20:51:57Z",
+      "side": 1,
+      "message": "It actually matters. As ASHA is specially treated by controllers, controller will try to guarantee those ce length parameter",
+      "parentUuid": "4b314105_b9ac683a",
       "revId": "3cd9b1be15ecb7a177510242bc98d1638db53784",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
