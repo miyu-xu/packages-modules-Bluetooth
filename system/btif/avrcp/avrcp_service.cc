@@ -295,8 +295,66 @@ class VolumeInterfaceWrapper : public VolumeInterface {
   VolumeInterface* wrapped_;
 };
 
+// A wrapper class for the media callbacks that handles thread
+// switching/synchronization so the devices don't have to worry about it.
+class PlayerSettingsInterfaceWrapper : public PlayerSettingsInterface {
+ public:
+  PlayerSettingsInterfaceWrapper(PlayerSettingsInterface* interface)
+      : wrapped_(interface){};
+
+  void ListPlayerSettings(ListPlayerSettingsCallback cb) override {
+    auto cb_lambda = [](ListPlayerSettingsCallback cb,
+                        uint8_t number_of_attributes,
+                        std::vector<PlayerAttribute> player_attribute) {
+      do_in_main_thread(FROM_HERE,
+                        base::Bind(cb, number_of_attributes, player_attribute));
+    };
+
+    auto bound_cb = base::Bind(cb_lambda, cb);
+
+    do_in_avrcp_jni(base::Bind(&PlayerSettingsInterface::ListPlayerSettings,
+                               base::Unretained(wrapped_), bound_cb));
+  }
+
+  void ListPlayerSettingValues(PlayerAttribute setting,
+                               ListPlayerSettingValuesCallback cb) override {
+    auto cb_lambda = [](ListPlayerSettingValuesCallback cb,
+                        PlayerAttribute setting, uint8_t number_of_values,
+                        std::vector<uint8_t> values) {
+      do_in_main_thread(FROM_HERE,
+                        base::Bind(cb, setting, number_of_values, values));
+    };
+
+    auto bound_cb = base::Bind(cb_lambda, cb);
+
+    do_in_avrcp_jni(
+        base::Bind(&PlayerSettingsInterface::ListPlayerSettingValues,
+                   base::Unretained(wrapped_), setting, bound_cb));
+  }
+
+  void GetCurrentPlayerSettingValue(
+      std::vector<PlayerAttribute> attributes,
+      GetCurrentPlayerSettingValueCallback cb) override {
+    auto cb_lambda = [](GetCurrentPlayerSettingValueCallback cb,
+                        std::vector<PlayerAttribute> attributes,
+                        std::vector<uint8_t> values) {
+      do_in_main_thread(FROM_HERE, base::Bind(cb, attributes, values));
+    };
+
+    auto bound_cb = base::Bind(cb_lambda, cb);
+
+    do_in_avrcp_jni(
+        base::Bind(&PlayerSettingsInterface::GetCurrentPlayerSettingValue,
+                   base::Unretained(wrapped_), attributes, bound_cb));
+  }
+
+ private:
+  PlayerSettingsInterface* wrapped_;
+};
+
 void AvrcpService::Init(MediaInterface* media_interface,
-                        VolumeInterface* volume_interface) {
+                        VolumeInterface* volume_interface,
+                        PlayerSettingsInterface* player_settings_interface) {
   LOG(INFO) << "AVRCP Target Service started";
 
   profile_version = avrcp_interface_.GetAvrcpVersion();
@@ -327,6 +385,14 @@ void AvrcpService::Init(MediaInterface* media_interface,
   }
 
   volume_interface_ = wrapped_volume_interface;
+
+  PlayerSettingsInterfaceWrapper* wrapped_player_settings_interface = nullptr;
+  if (player_settings_interface != nullptr) {
+    wrapped_player_settings_interface =
+        new PlayerSettingsInterfaceWrapper(player_settings_interface);
+  }
+
+  player_settings_interface_ = wrapped_player_settings_interface;
 
   ConnectionHandler::Initialize(
       base::Bind(&AvrcpService::DeviceCallback, base::Unretained(instance_)),
@@ -360,6 +426,9 @@ void AvrcpService::Cleanup() {
 
   connection_handler_->CleanUp();
   connection_handler_ = nullptr;
+  if (player_settings_interface_ != nullptr) {
+    delete player_settings_interface_;
+  }
   if (volume_interface_ != nullptr) {
     delete volume_interface_;
   }
@@ -466,12 +535,13 @@ void AvrcpService::DeviceCallback(std::shared_ptr<Device> new_device) {
   // TODO (apanicke): Pass the interfaces into the connection handler
   // so that the devices can be created with any interfaces they need.
   new_device->RegisterInterfaces(media_interface_, &a2dp_interface_,
-                                 volume_interface_);
+                                 volume_interface_, player_settings_interface_);
 }
 
 // Service Interface
 void AvrcpService::ServiceInterfaceImpl::Init(
-    MediaInterface* media_interface, VolumeInterface* volume_interface) {
+    MediaInterface* media_interface, VolumeInterface* volume_interface,
+    PlayerSettingsInterface* player_settings_interface) {
   std::lock_guard<std::mutex> lock(service_interface_lock_);
 
   // TODO: This function should block until the service is completely up so
@@ -481,9 +551,10 @@ void AvrcpService::ServiceInterfaceImpl::Init(
   CHECK(instance_ == nullptr);
   instance_ = new AvrcpService();
 
-  do_in_main_thread(FROM_HERE,
-                    base::Bind(&AvrcpService::Init, base::Unretained(instance_),
-                               media_interface, volume_interface));
+  do_in_main_thread(
+      FROM_HERE,
+      base::Bind(&AvrcpService::Init, base::Unretained(instance_),
+                 media_interface, volume_interface, player_settings_interface));
 }
 
 void AvrcpService::ServiceInterfaceImpl::RegisterBipServer(int psm) {

@@ -171,12 +171,35 @@ class VolumeInterface {
   virtual ~VolumeInterface() = default;
 };
 
+class PlayerSettingsInterface {
+ public:
+  using ListPlayerSettingsCallback =
+      base::Callback<void(uint8_t num_of_attributes,
+                          std::vector<PlayerAttribute> player_attribute)>;
+  virtual void ListPlayerSettings(ListPlayerSettingsCallback cb) = 0;
+
+  using ListPlayerSettingValuesCallback =
+      base::Callback<void(PlayerAttribute setting, uint8_t number_of_values,
+                          std::vector<uint8_t> values)>;
+  virtual void ListPlayerSettingValues(PlayerAttribute setting,
+                                       ListPlayerSettingValuesCallback cb) = 0;
+
+  using GetCurrentPlayerSettingValueCallback = base::Callback<void(
+      std::vector<PlayerAttribute> attributes, std::vector<uint8_t> values)>;
+  virtual void GetCurrentPlayerSettingValue(
+      std::vector<PlayerAttribute> attributes,
+      GetCurrentPlayerSettingValueCallback cb) = 0;
+
+  virtual ~PlayerSettingsInterface() = default;
+};
+
 class ServiceInterface {
  public:
   // mediaInterface can not be null. If volumeInterface is null then Absolute
   // Volume is disabled.
   virtual void Init(MediaInterface* mediaInterface,
-                    VolumeInterface* volumeInterface) = 0;
+                    VolumeInterface* volumeInterface,
+                    PlayerSettingsInterface* player_settings_interface) = 0;
   virtual void RegisterBipServer(int psm) = 0;
   virtual void UnregisterBipServer() = 0;
   virtual bool ConnectDevice(const RawAddress& bdaddr) = 0;
