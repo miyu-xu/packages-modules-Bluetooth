@@ -46,6 +46,131 @@
       },
       "revId": "3cd9b1be15ecb7a177510242bc98d1638db53784",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e93de309_e6a5d95c",
+        "filename": "system/bta/hearing_aid/hearing_aid.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 324,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-02-28T07:51:20Z",
+      "side": 1,
+      "message": "The assumption is that controller will adjust connection parameters by its own in case of the LeAudio traffic. Correct?",
+      "revId": "3cd9b1be15ecb7a177510242bc98d1638db53784",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "76dba225_85ee5f5d",
+        "filename": "system/bta/hearing_aid/hearing_aid.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 329,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-02-28T07:51:20Z",
+      "side": 1,
+      "message": "nit: since conn_id is a number, just compare it to 0.",
+      "revId": "3cd9b1be15ecb7a177510242bc98d1638db53784",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bcd4e683_b3cc4e6c",
+        "filename": "system/bta/hearing_aid/hearing_aid.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 360,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-02-28T07:51:20Z",
+      "side": 1,
+      "message": "Is this correct? max_ce_len \u003d MIN_ ... ?\n\nMaybe it should be called MIN_MAX_CE_WHILE_ISO_RUNNING",
+      "range": {
+        "startLine": 360,
+        "startChar": 23,
+        "endLine": 360,
+        "endChar": 50
+      },
+      "revId": "3cd9b1be15ecb7a177510242bc98d1638db53784",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1a75101f_ea1dd1bc",
+        "filename": "system/bta/hearing_aid/hearing_aid.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 377,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-02-28T07:51:20Z",
+      "side": 1,
+      "message": "for me this should be LOG_WARN. If somebody unintentionally change the props and this will be changed, we should get this information in the logs.\nAlso please add device address to the log",
+      "revId": "3cd9b1be15ecb7a177510242bc98d1638db53784",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "065d8fe6_a8964f0f",
+        "filename": "system/bta/hearing_aid/hearing_aid.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 382,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-02-28T07:51:20Z",
+      "side": 1,
+      "message": "ditto",
+      "revId": "3cd9b1be15ecb7a177510242bc98d1638db53784",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bc57c150_92c2b8ce",
+        "filename": "system/bta/hearing_aid/hearing_aid.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 387,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-02-28T07:51:20Z",
+      "side": 1,
+      "message": "LOG_INFO - is it seem to be important :), but pleas also add device address to the log.",
+      "revId": "3cd9b1be15ecb7a177510242bc98d1638db53784",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4b314105_b9ac683a",
+        "filename": "system/bta/hearing_aid/hearing_aid.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 391,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-02-28T07:51:20Z",
+      "side": 1,
+      "message": "general question, since MIN_CE_Length and MAX_CE_Length are the information parameters to the controller, why we bother. Controller can always ignore it.",
+      "revId": "3cd9b1be15ecb7a177510242bc98d1638db53784",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
