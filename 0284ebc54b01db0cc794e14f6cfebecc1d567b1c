@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "586a9c8d_ea08fdec",
+        "filename": "android/pandora/test/asha_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 1937985
+      },
+      "writtenOn": "2023-02-28T01:09:27Z",
+      "side": 1,
+      "message": "Please remove + a reformat of the file",
+      "range": {
+        "startLine": 231,
+        "startChar": 7,
+        "endLine": 232,
+        "endChar": 85
+      },
+      "revId": "0284ebc54b01db0cc794e14f6cfebecc1d567b1c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
