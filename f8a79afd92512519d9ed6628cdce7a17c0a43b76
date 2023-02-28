@@ -16,6 +16,24 @@
       "message": "May change the bug id for this - this should be irrespective of Wear OS convergence IIUC",
       "revId": "f8a79afd92512519d9ed6628cdce7a17c0a43b76",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1102841a_3126161d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-02-28T02:27:06Z",
+      "side": 1,
+      "message": "Sorry didn\u0027t see the comment before submitting.\n\nThis CL is done only for wear os convergence.\nWear need a way to disable absolute volume.\n\nI agree other OEM / form factor may want to use it one day but the motivation behind this CL is only the wear os convergence now.",
+      "parentUuid": "921be45d_970a9b11",
+      "revId": "f8a79afd92512519d9ed6628cdce7a17c0a43b76",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
