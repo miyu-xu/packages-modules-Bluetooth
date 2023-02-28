@@ -624,7 +624,7 @@ class GAPProxy(ProfileProxy):
 
     def TSC_MMI_make_iut_general_discoverable(self, **kwargs):
         """
-        Please make IUT general discoverable. Press OK to continue.
+        Please make IUT general discoverable.
         """
 
         self.host.SetDiscoverabilityMode(mode=DiscoverabilityMode.DISCOVERABLE_GENERAL)
