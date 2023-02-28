@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a0fa1fb0_a3aea9ee",
+        "filename": "system/rust/Cargo.toml",
+        "patchSetId": 7
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-02-28T20:28:32Z",
+      "side": 1,
+      "message": "do we have to pin it to a specific version?",
+      "range": {
+        "startLine": 27,
+        "startChar": 12,
+        "endLine": 27,
+        "endChar": 17
+      },
+      "revId": "60b935884fcab732c1fbc2961723212e60f8948c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
