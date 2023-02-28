@@ -46,6 +46,30 @@
       },
       "revId": "e87f4c28e765858dbe7e5056f4744f6a9ef30491",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "856bbee9_5b3844cd",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 2888,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-02-28T23:47:19Z",
+      "side": 1,
+      "message": "Per offline discussion, \n\nIdeally, we want the phone to do a 30 second high duty cycle scanning for TA immediately after BT is turned on and the remote headset can advertise TA at low frequency. \n\nThe phone should only connect to a headset that is advertising TA. \n\n+2 this change to unblock the development, but we should revise this policy.",
+      "parentUuid": "9da6ad86_b5ccfdc8",
+      "range": {
+        "startLine": 2887,
+        "startChar": 5,
+        "endLine": 2888,
+        "endChar": 26
+      },
+      "revId": "e87f4c28e765858dbe7e5056f4744f6a9ef30491",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
