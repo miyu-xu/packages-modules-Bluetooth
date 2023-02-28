@@ -29,13 +29,8 @@
 #include "model/controller/controller_properties.h"
 #include "model/controller/le_advertiser.h"
 #include "packets/link_layer_packets.h"
-
-#ifdef ROOTCANAL_LMP
-extern "C" {
-struct LinkManager;
-}
-#include "lmp.h"
-#else
+#include "rootcanal_rust.h"
+#ifndef ROOTCANAL_LMP
 #include "security_manager.h"
 #endif /* ROOTCANAL_LMP */
 
@@ -84,6 +79,7 @@ class LinkLayerController {
   ErrorCode SendScoToRemote(bluetooth::hci::ScoView sco_packet);
   ErrorCode SendAclToRemote(bluetooth::hci::AclView acl_packet);
 
+  void ForwardToLl(bluetooth::hci::CommandView command);
 #ifdef ROOTCANAL_LMP
   void ForwardToLm(bluetooth::hci::CommandView command);
 #else
@@ -988,10 +984,11 @@ class LinkLayerController {
   // Classic state
 #ifdef ROOTCANAL_LMP
   std::unique_ptr<const LinkManager, void (*)(const LinkManager*)> lm_;
-  struct LinkManagerOps ops_;
 #else
   SecurityManager security_manager_{10};
 #endif /* ROOTCANAL_LMP */
+  std::unique_ptr<const LinkLayer, void (*)(const LinkLayer*)> ll_;
+  struct ControllerOps controller_ops_;
 
   TaskId page_timeout_task_id_ = kInvalidTaskId;
 

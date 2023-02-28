@@ -17,9 +17,7 @@
 #include "link_layer_controller.h"
 
 #include <hci/hci_packets.h>
-#ifdef ROOTCANAL_LMP
-#include <lmp.h>
-#endif /* ROOTCANAL_LMP */
+#include <rootcanal_rust.h>
 
 #include "crypto/crypto.h"
 #include "log.h"
@@ -1345,13 +1343,15 @@ void LinkLayerController::SetExtendedInquiryResponse(
             extended_inquiry_response_.begin());
 }
 
-#ifdef ROOTCANAL_LMP
 LinkLayerController::LinkLayerController(const Address& address,
                                          const ControllerProperties& properties)
     : address_(address),
       properties_(properties),
-      lm_(nullptr, link_manager_destroy) {
-  ops_ = {
+#ifdef ROOTCANAL_LMP
+      lm_(nullptr, link_manager_destroy),
+#endif
+      ll_(nullptr, link_layer_destroy) {
+  controller_ops_ = {
       .user_pointer = this,
       .get_handle =
           [](void* user, const uint8_t(*address)[6]) {
@@ -1371,10 +1371,22 @@ LinkLayerController::LinkLayerController(const Address& address,
                       reinterpret_cast<uint8_t*>(result));
           },
 
-      .extended_features =
+      .get_extended_features =
           [](void* user, uint8_t features_page) {
             auto controller = static_cast<LinkLayerController*>(user);
             return controller->GetLmpFeatures(features_page);
+          },
+
+      .get_le_features =
+          [](void* user) {
+            auto controller = static_cast<LinkLayerController*>(user);
+            return controller->GetLeSupportedFeatures();
+          },
+
+      .get_le_event_mask =
+          [](void* user) {
+            auto controller = static_cast<LinkLayerController*>(user);
+            return controller->le_event_mask_;
           },
 
       .send_hci_event =
@@ -1402,15 +1414,37 @@ LinkLayerController::LinkLayerController(const Address& address,
 
             controller->SendLinkLayerPacket(model::packets::LmpBuilder::Create(
                 source, dest, std::move(payload)));
+          },
+
+      .send_llcp_packet =
+          [](void* user, uint16_t acl_connection_handle, const uint8_t* data,
+             uintptr_t len) {
+            auto controller = static_cast<LinkLayerController*>(user);
+            auto payload = std::make_unique<bluetooth::packet::RawBuilder>(
+                std::vector(data, data + len));
+
+            if (!controller->connections_.HasHandle(acl_connection_handle)) {
+              LOG_ERROR(
+                  "Dropping LLCP packet sent for unknown connection handle "
+                  "0x%x",
+                  acl_connection_handle);
+              return;
+            }
+
+            Address source = controller->GetAddress();
+            Address destination =
+                controller->connections_.GetAddress(acl_connection_handle)
+                    .GetAddress();
+
+            controller->SendLinkLayerPacket(model::packets::LlcpBuilder::Create(
+                source, destination, std::move(payload)));
           }};
 
-  lm_.reset(link_manager_create(ops_));
-}
-#else
-LinkLayerController::LinkLayerController(const Address& address,
-                                         const ControllerProperties& properties)
-    : address_(address), properties_(properties) {}
+#ifdef ROOTCANAL_LMP
+  lm_.reset(link_manager_create(controller_ops_));
 #endif
+  ll_.reset(link_layer_create(controller_ops_));
+}
 
 LinkLayerController::~LinkLayerController() {}
 
@@ -2062,6 +2096,9 @@ void LinkLayerController::IncomingDisconnectPacket(
         lm_.get(), reinterpret_cast<uint8_t(*)[6]>(peer.data())));
   }
 #endif
+  if (!is_br_edr) {
+    ASSERT(link_layer_remove_link(ll_.get(), handle));
+  }
 }
 
 #ifndef ROOTCANAL_LMP
@@ -3512,6 +3549,12 @@ uint16_t LinkLayerController::HandleLeConnection(
         supervision_timeout, static_cast<bluetooth::hci::ClockAccuracy>(0x00)));
   }
 
+  // Update the link layer with the new link.
+  ASSERT(link_layer_add_link(
+      ll_.get(), handle,
+      reinterpret_cast<const uint8_t(*)[6]>(address.GetAddress().data()),
+      static_cast<uint8_t>(role)));
+
   // Note: the HCI_LE_Connection_Complete event is immediately followed by
   // an HCI_LE_Channel_Selection_Algorithm event if the connection is created
   // using the LE_Extended_Create_Connection command (see Section 7.7.8.66).
@@ -4576,6 +4619,11 @@ void LinkLayerController::RegisterRemoteChannel(
   send_to_remote_ = send_to_remote;
 }
 
+void LinkLayerController::ForwardToLl(bluetooth::hci::CommandView command) {
+  auto packet = std::vector(command.begin(), command.end());
+  ASSERT(link_layer_ingest_hci(ll_.get(), packet.data(), packet.size()));
+}
+
 #ifdef ROOTCANAL_LMP
 void LinkLayerController::ForwardToLm(bluetooth::hci::CommandView command) {
   auto packet = std::vector(command.begin(), command.end());
@@ -5250,6 +5298,11 @@ ErrorCode LinkLayerController::Disconnect(uint16_t handle, ErrorCode reason) {
         reinterpret_cast<uint8_t(*)[6]>(remote.GetAddress().data())));
   }
 #endif
+
+  if (!is_br_edr) {
+    ASSERT(link_layer_remove_link(ll_.get(), handle));
+  }
+
   return ErrorCode::SUCCESS;
 }
 
@@ -5710,10 +5763,11 @@ void LinkLayerController::Reset() {
   }
 
 #ifdef ROOTCANAL_LMP
-  lm_.reset(link_manager_create(ops_));
+  lm_.reset(link_manager_create(controller_ops_));
 #else
   security_manager_ = SecurityManager(10);
 #endif
+  ll_.reset(link_layer_create(controller_ops_));
 }
 
 void LinkLayerController::StartInquiry(milliseconds timeout) {

@@ -15,6 +15,7 @@ rust_ffi {
     srcs: [
         "src/lib.rs",
         ":LmpGeneratedPackets_rust",
+        ":LlcpGeneratedPackets_rust",
     ],
     edition: "2018",
     proc_macros: ["libnum_derive"],
@@ -45,12 +46,27 @@ genrule {
     ],
 }
 
+genrule {
+    name: "LlcpGeneratedPackets_rust",
+    tools: [
+        "bluetooth_packetgen",
+    ],
+    cmd: "$(location bluetooth_packetgen) --include=packages/modules/Bluetooth/tools/rootcanal/rust  --out=$(genDir) $(in) --rust",
+    srcs: [
+        "llcp_packets.pdl",
+    ],
+    out: [
+        "llcp_packets.rs",
+    ],
+}
+
 rust_test_host {
     name: "librootcanal_rust_test",
     crate_name: "rootcanal",
     srcs: [
         "src/lib.rs",
         ":LmpGeneratedPackets_rust",
+        ":LlcpGeneratedPackets_rust",
     ],
     auto_gen_config: true,
     edition: "2018",
