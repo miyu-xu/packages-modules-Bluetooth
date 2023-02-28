@@ -1,0 +1,78 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b465b5b5_74bea326",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-02-28T07:18:54Z",
+      "side": 1,
+      "message": "Looks good. Minor comments.",
+      "revId": "d48efa9aa7bbc7b60bb699bba5d7b9abd342fe0c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f14a058c_f018a0c0",
+        "filename": "system/stack/btm/btm_iso_impl.h",
+        "patchSetId": 8
+      },
+      "lineNbr": 737,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-02-28T07:18:54Z",
+      "side": 1,
+      "message": "nit: callback",
+      "range": {
+        "startLine": 737,
+        "startChar": 16,
+        "endLine": 737,
+        "endChar": 25
+      },
+      "revId": "d48efa9aa7bbc7b60bb699bba5d7b9abd342fe0c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e58edb6f_5349528c",
+        "filename": "system/stack/btm/btm_iso_impl.h",
+        "patchSetId": 8
+      },
+      "lineNbr": 955,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-02-28T07:18:54Z",
+      "side": 1,
+      "message": "can we add here: Num of traffic callbacks:",
+      "revId": "d48efa9aa7bbc7b60bb699bba5d7b9abd342fe0c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ce160d2a_5dd4dbff",
+        "filename": "system/stack/test/btm_iso_test.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 521,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-02-28T07:18:54Z",
+      "side": 1,
+      "message": "cab we please add test case which register such traffic callback and verifies it is called properly?",
+      "revId": "d48efa9aa7bbc7b60bb699bba5d7b9abd342fe0c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
