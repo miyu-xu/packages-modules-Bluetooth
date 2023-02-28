@@ -3900,8 +3900,9 @@ void btif_dm_set_event_filter_connection_setup_all_devices() {
 }
 
 void btif_dm_allow_wake_by_hid(
-    std::vector<std::pair<RawAddress, uint8_t>> addrs) {
-  BTA_DmAllowWakeByHid(std::move(addrs));
+    std::vector<RawAddress> classic_addrs,
+    std::vector<std::pair<RawAddress, uint8_t>> le_addrs) {
+  BTA_DmAllowWakeByHid(std::move(classic_addrs), std::move(le_addrs));
 }
 
 void btif_dm_restore_filter_accept_list() {
