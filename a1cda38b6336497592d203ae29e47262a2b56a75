@@ -16,6 +16,29 @@
       "message": "Does the unit test needs to be updated?",
       "revId": "a1cda38b6336497592d203ae29e47262a2b56a75",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "66236ed4_d93fa550",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2023-02-28T00:51:06Z",
+      "side": 1,
+      "message": "I\u0027m not sure we want to rely on the intent action string here, could we check for `currentState !\u003d -1` instead?\n\nI don\u0027t think any `CONNECTION_STATE_CHANGED` broadcast would send -1 as current state and even if it does at some point we\u0027re only posting for `CONNECTED` and `DISCONNECTED`\n\nMaybe just check for those states instead even?",
+      "range": {
+        "startLine": 156,
+        "startChar": 16,
+        "endLine": 156,
+        "endChar": 62
+      },
+      "revId": "a1cda38b6336497592d203ae29e47262a2b56a75",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
