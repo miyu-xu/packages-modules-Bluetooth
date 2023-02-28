@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a7c5523b_08ba379c",
+        "filename": "android/app/jni/com_android_bluetooth_gatt.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 2144,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-02-28T20:57:09Z",
+      "side": 1,
+      "message": "Does it make sense to move this while you\u0027re adding the alternate path?\n\nMaybe it should be removed, and the other code would become:\n\nif (bluetooth::gatt::is_connection_isolated(conn_id)) {\n    auto data \u003d ::rust::Slice\u003cconst uint8_t\u003e((uint8_t*)array, val_len);\n    bluetooth::gatt::send_indication(server_if, attr_handle, conn_id, data);\n  } else if (sGattIf) {\n    sGattIf-\u003eserver-\u003esend_indication(server_if, attr_handle, conn_id,\n                                     /*confirm*/ 1, (uint8_t*)array, val_len);\n  } else {\n    // Do we need a warning if there\u0027s an indication and we drop it?\n  }",
+      "range": {
+        "startLine": 2144,
+        "startChar": 0,
+        "endLine": 2144,
+        "endChar": 23
+      },
+      "revId": "812da6a5a1dc0fcdd61dc743003f4bd073308de1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8a411276_f8008142",
+        "filename": "system/rust/src/core/shared_mutex.rs",
+        "patchSetId": 10
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-02-28T20:57:09Z",
+      "side": 1,
+      "message": "That\u0027s a bit odd.  Why would a mutex that someone is waiting on be dropped?",
+      "range": {
+        "startLine": 30,
+        "startChar": 0,
+        "endLine": 33,
+        "endChar": 18
+      },
+      "revId": "812da6a5a1dc0fcdd61dc743003f4bd073308de1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e3e4d298_09213a49",
+        "filename": "system/rust/src/gatt/ffi.rs",
+        "patchSetId": 10
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-02-28T20:57:09Z",
+      "side": 1,
+      "message": "?\nDo we need a log line here to say why something failed?  Is a generic error the best we can do?",
+      "range": {
+        "startLine": 207,
+        "startChar": 21,
+        "endLine": 207,
+        "endChar": 24
+      },
+      "revId": "812da6a5a1dc0fcdd61dc743003f4bd073308de1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
