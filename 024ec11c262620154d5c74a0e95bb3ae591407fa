@@ -33,6 +33,23 @@
       "message": "Bypassing since presubmit has failed 3 times for unrelated failures.",
       "revId": "024ec11c262620154d5c74a0e95bb3ae591407fa",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9c446673_6dc121b1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2023-02-28T20:16:00Z",
+      "side": 1,
+      "message": "Bypassing since this has failed many time for unrelated failures",
+      "revId": "024ec11c262620154d5c74a0e95bb3ae591407fa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
