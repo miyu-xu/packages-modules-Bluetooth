@@ -22,6 +22,30 @@
       },
       "revId": "c5e625904877694b9e8a03442ac162bf53b48084",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6805bd69_e9e0ba35",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/gap.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 625,
+      "author": {
+        "id": 1960961
+      },
+      "writtenOn": "2023-02-28T11:01:16Z",
+      "side": 0,
+      "message": "TC \"GAP/SEC/SEM/BV-10-C\" description has \"Please make IUT general discoverable\" while rest have \"Please make IUT general discoverable. Press OK to continue.\" While testing it was changed. But I have reverted and have removed @Assert_description as the description for same mmi differs in different test case.\n\neg:\n02-28 08:41:17 I/PtsBotTest:                                   MMI      {33,GAP/SEC/SEM/BV-10-C,GAP}Please make IUT general discoverable.\n02-28 08:41:17 E/PtsBotTest: GAP mmi: TSC_MMI_make_iut_general_discoverable\n\n\n02-28 08:37:41 I/PtsBotTest: 001028ms        TS_MMI_MSGBOX  Exit Step   TS_MMI_MSG::LTS_mmi_handler\n02-28 08:37:41 I/PtsBotTest:                 TS_MMI_MSGBOX     MMI      {33,GAP/MOD/GDIS/BV-02-C,GAP}Please make IUT general discoverable. Press OK to continue.\n02-28 08:37:41 E/PtsBotTest: GAP mmi: TSC_MMI_make_iut_general_discoverable",
+      "parentUuid": "6f225e75_025718a7",
+      "range": {
+        "startLine": 625,
+        "startChar": 46,
+        "endLine": 625,
+        "endChar": 67
+      },
+      "revId": "c5e625904877694b9e8a03442ac162bf53b48084",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
