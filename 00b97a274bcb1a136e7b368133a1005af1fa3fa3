@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "acd2b9fc_8d47bcc9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 14
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-02-28T23:50:00Z",
+      "side": 1,
+      "message": "Wanted but not invoked:\nmTbsService.setInbandRingtoneSupport(\n    XX:XX:XX:XX:04:00\n);\n-\u003e at com.android.bluetooth.le_audio.LeAudioServiceTest.testLeadGroupDeviceDisconnects(LeAudioServiceTest.java:1471)\n\nHowever, there were exactly 2 interactions with this mock:\nmTbsService.clearInbandRingtoneSupport(\n    XX:XX:XX:XX:04:00\n);\n-\u003e at com.android.bluetooth.le_audio.LeAudioService.updateInbandRingtoneForTheGroup(LeAudioService.java:1549)\n\nmTbsService.clearInbandRingtoneSupport(\n    XX:XX:XX:XX:04:01\n);\n-\u003e at com.android.bluetooth.le_audio.LeAudioService.updateInbandRingtoneForTheGroup(LeAudioService.java:1549)\n\n\n\tat com.android.bluetooth.le_audio.LeAudioServiceTest.testLeadGroupDeviceDisconnects(LeAudioServiceTest.java:1471)\n\t\n\tbroken tests, please fix",
+      "revId": "00b97a274bcb1a136e7b368133a1005af1fa3fa3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
