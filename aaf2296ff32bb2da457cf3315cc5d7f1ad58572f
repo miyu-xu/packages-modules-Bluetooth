@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d4438eff_930314ab",
+        "filename": "android/pandora/test/asha_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-02-28T00:46:29Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "a2bc0190_68bf7113",
+      "range": {
+        "startLine": 39,
+        "startChar": 4,
+        "endLine": 42,
+        "endChar": 39
+      },
+      "revId": "aaf2296ff32bb2da457cf3315cc5d7f1ad58572f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "affd51b4_d29478a4",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f8ab6d0d_855821dd",
+        "filename": "android/pandora/test/asha_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-02-28T00:46:29Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "affd51b4_d29478a4",
+      "range": {
+        "startLine": 44,
+        "startChar": 4,
+        "endLine": 55,
+        "endChar": 31
+      },
+      "revId": "aaf2296ff32bb2da457cf3315cc5d7f1ad58572f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0b4c5e35_06244ef4",
@@ -60,6 +108,30 @@
       "writtenOn": "2023-02-27T23:33:14Z",
       "side": 1,
       "message": "I suggest:\n```\n        scan \u003d self.dut.host.Scan(own_address_type\u003ddut_address_type)\n        ref \u003d next((x for x in scan if ASHATest.ASHA_UUID in x.data.incomplete_service_class_uuids16))\n        scan.cancel()\n        return ref\n```",
+      "range": {
+        "startLine": 81,
+        "startChar": 8,
+        "endLine": 91,
+        "endChar": 18
+      },
+      "revId": "aaf2296ff32bb2da457cf3315cc5d7f1ad58572f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ef8ee0a3_82da970b",
+        "filename": "android/pandora/test/asha_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-02-28T00:46:29Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "0b4c5e35_06244ef4",
       "range": {
         "startLine": 81,
         "startChar": 8,
