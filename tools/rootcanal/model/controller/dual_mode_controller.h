@@ -592,8 +592,10 @@ class DualModeController : public Device {
   void ReadConnectionAcceptTimeout(CommandView command);
   void WriteConnectionAcceptTimeout(CommandView command);
 
-  // Vendor-specific Commands
+  // Command forwarder for LE-ISO.
+  void ForwardToLl(CommandView command);
 
+  // Vendor-specific Commands
   void LeGetVendorCapabilities(CommandView command);
   void LeEnergyInfo(CommandView command);
   void LeMultiAdv(CommandView command);
@@ -608,10 +610,6 @@ class DualModeController : public Device {
   void CsrWriteVarid(CsrVarid varid, std::vector<uint8_t> const& value);
   void CsrReadPskey(CsrPskey pskey, std::vector<uint8_t>& value);
   void CsrWritePskey(CsrPskey pskey, std::vector<uint8_t> const& value);
-
-  void SetTimerPeriod(std::chrono::milliseconds new_period);
-  void StartTimer();
-  void StopTimer();
 
  protected:
   // Controller configuration.

@@ -215,6 +215,10 @@ void DualModeController::HandleCommand(
   }
 }
 
+void DualModeController::ForwardToLl(CommandView command) {
+  link_layer_controller_.ForwardToLl(command);
+}
+
 void DualModeController::RegisterEventChannel(
     const std::function<void(std::shared_ptr<std::vector<uint8_t>>)>&
         send_event) {
@@ -3658,16 +3662,12 @@ const std::unordered_map<OpCode, DualModeController::CommandHandler>
         {OpCode::LE_READ_BUFFER_SIZE_V2,
          &DualModeController::LeReadBufferSizeV2},
         //{OpCode::LE_READ_ISO_TX_SYNC, &DualModeController::LeReadIsoTxSync},
-        //{OpCode::LE_SET_CIG_PARAMETERS,
-        //&DualModeController::LeSetCigParameters},
-        //{OpCode::LE_SET_CIG_PARAMETERS_TEST,
-        //&DualModeController::LeSetCigParametersTest},
-        //{OpCode::LE_CREATE_CIS, &DualModeController::LeCreateCis},
-        //{OpCode::LE_REMOVE_CIG, &DualModeController::LeRemoveCig},
-        //{OpCode::LE_ACCEPT_CIS_REQUEST,
-        //&DualModeController::LeAcceptCisRequest},
-        //{OpCode::LE_REJECT_CIS_REQUEST,
-        //&DualModeController::LeRejectCisRequest},
+        {OpCode::LE_SET_CIG_PARAMETERS, &DualModeController::ForwardToLl},
+        {OpCode::LE_SET_CIG_PARAMETERS_TEST, &DualModeController::ForwardToLl},
+        {OpCode::LE_CREATE_CIS, &DualModeController::ForwardToLl},
+        {OpCode::LE_REMOVE_CIG, &DualModeController::ForwardToLl},
+        {OpCode::LE_ACCEPT_CIS_REQUEST, &DualModeController::ForwardToLl},
+        {OpCode::LE_REJECT_CIS_REQUEST, &DualModeController::ForwardToLl},
         //{OpCode::LE_CREATE_BIG, &DualModeController::LeCreateBig},
         //{OpCode::LE_CREATE_BIG_TEST, &DualModeController::LeCreateBigTest},
         //{OpCode::LE_TERMINATE_BIG, &DualModeController::LeTerminateBig},
@@ -3675,10 +3675,8 @@ const std::unordered_map<OpCode, DualModeController::CommandHandler>
         //{OpCode::LE_BIG_TERMINATE_SYNC,
         //&DualModeController::LeBigTerminateSync},
         //{OpCode::LE_REQUEST_PEER_SCA, &DualModeController::LeRequestPeerSca},
-        //{OpCode::LE_SETUP_ISO_DATA_PATH,
-        //&DualModeController::LeSetupIsoDataPath},
-        //{OpCode::LE_REMOVE_ISO_DATA_PATH,
-        //&DualModeController::LeRemoveIsoDataPath},
+        {OpCode::LE_SETUP_ISO_DATA_PATH, &DualModeController::ForwardToLl},
+        {OpCode::LE_REMOVE_ISO_DATA_PATH, &DualModeController::ForwardToLl},
         //{OpCode::LE_ISO_TRANSMIT_TEST,
         //&DualModeController::LeIsoTransmitTest},
         //{OpCode::LE_ISO_RECEIVE_TEST, &DualModeController::LeIsoReceiveTest},
