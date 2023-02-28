@@ -3495,6 +3495,13 @@ class LeAudioClientImpl : public LeAudioClient {
       return;
     }
 
+    /* We need new configuration_context_type_ to be selected before we go any
+     * further.
+     */
+    if (audio_receiver_state_ == AudioState::IDLE) {
+      ReconfigureOrUpdateRemoteSource(group);
+    }
+
     /* Check if the device resume is expected */
     if (!group->GetCodecConfigurationByDirection(
             configuration_context_type_,
@@ -3711,6 +3718,9 @@ class LeAudioClientImpl : public LeAudioClient {
     LOG_DEBUG("group state=%s, target_state=%s",
               ToString(group->GetState()).c_str(),
               ToString(group->GetTargetState()).c_str());
+    LOG_INFO("audio_receiver_state_: %s,  audio_sender_state_: %s",
+             ToString(audio_receiver_state_).c_str(),
+             ToString(audio_sender_state_).c_str());
 
     /* When a certain context became unavailable while it was already in
      * an active stream, it means that it is unavailable to other clients
@@ -3728,6 +3738,10 @@ class LeAudioClientImpl : public LeAudioClient {
     metadata_context_types_.sink =
         ChooseMetadataContextType(metadata_context_types_.sink);
 
+    ReconfigureOrUpdateRemoteSink(group);
+  }
+
+  void ReconfigureOrUpdateRemoteSink(LeAudioDeviceGroup* group) {
     if (stack_config_get_interface()
             ->get_pts_force_le_audio_multiple_contexts_metadata()) {
       // Use common audio stream contexts exposed by the PTS
@@ -3842,6 +3856,9 @@ class LeAudioClientImpl : public LeAudioClient {
     LOG_DEBUG("group state=%s, target_state=%s",
               ToString(group->GetState()).c_str(),
               ToString(group->GetTargetState()).c_str());
+    LOG_INFO("audio_receiver_state_: %s,  audio_sender_state_: %s",
+             ToString(audio_receiver_state_).c_str(),
+             ToString(audio_sender_state_).c_str());
 
     /* When a certain context became unavailable while it was already in
      * an active stream, it means that it is unavailable to other clients
@@ -3866,6 +3883,15 @@ class LeAudioClientImpl : public LeAudioClient {
           AudioContexts(LeAudioContextType::CONVERSATIONAL);
     }
 
+    /* Reconfigure or update only if the stream is already started
+     * otherwise wait for the local sink to resume.
+     */
+    if (audio_receiver_state_ == AudioState::STARTED) {
+      ReconfigureOrUpdateRemoteSource(group);
+    }
+  }
+
+  void ReconfigureOrUpdateRemoteSource(LeAudioDeviceGroup* group) {
     if (stack_config_get_interface()
             ->get_pts_force_le_audio_multiple_contexts_metadata()) {
       // Use common audio stream contexts exposed by the PTS
