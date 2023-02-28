@@ -16,6 +16,29 @@
       "message": "Hi Charlie,\n\nHave rebased and added 12 test cases in GAP.\nRequest you to review at your feasibility.\n\nThank You.\n\nRegards,\nSnehal",
       "revId": "e76741b86c79f915d748b3deaad861b3ff7a851b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "12140c5e_048cf69f",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/gap.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 546,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2023-02-28T00:14:15Z",
+      "side": 1,
+      "message": "Why do we need to get the connection like this for this specific tests ? Aren\u0027t we able to get it at the beginning of the test ?",
+      "range": {
+        "startLine": 545,
+        "startChar": 8,
+        "endLine": 546,
+        "endChar": 61
+      },
+      "revId": "e76741b86c79f915d748b3deaad861b3ff7a851b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

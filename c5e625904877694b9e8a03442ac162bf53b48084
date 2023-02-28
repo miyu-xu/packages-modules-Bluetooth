@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6f225e75_025718a7",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/gap.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 625,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2023-02-28T00:14:15Z",
+      "side": 0,
+      "message": "Why did we need to remove this part of the description ?",
+      "range": {
+        "startLine": 625,
+        "startChar": 46,
+        "endLine": 625,
+        "endChar": 67
+      },
+      "revId": "c5e625904877694b9e8a03442ac162bf53b48084",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
