@@ -39,6 +39,30 @@
       },
       "revId": "a1cda38b6336497592d203ae29e47262a2b56a75",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d7c5eb5a_10cb2b13",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2023-02-28T00:54:34Z",
+      "side": 1,
+      "message": "Otherwise, LGTM",
+      "parentUuid": "66236ed4_d93fa550",
+      "range": {
+        "startLine": 156,
+        "startChar": 16,
+        "endLine": 156,
+        "endChar": 62
+      },
+      "revId": "a1cda38b6336497592d203ae29e47262a2b56a75",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
