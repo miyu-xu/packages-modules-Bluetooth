@@ -155,6 +155,24 @@
       "parentUuid": "fec0df95_fd097c72",
       "revId": "7185b3b0cfebaf00308068ad727ed74c98de89f5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "850f4dbc_08806e60",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2023-02-28T16:24:53Z",
+      "side": 1,
+      "message": "Thanks for the suggestions.\n\nHowever, I had a hard time implementing a function to toggle HID and HOGP via these APIs:\n\nHID_HostDeregister, bta_hh_le_deregister, HID_HostRegister, bta_hh_le_enable\n\nI am afraid that the internal states are messed up when deregister A then register B. And to fix it, it will need too much work for this specific task. I wonder if there is anyway other way we could achieve this?",
+      "parentUuid": "916aa04b_bf08a108",
+      "revId": "7185b3b0cfebaf00308068ad727ed74c98de89f5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
