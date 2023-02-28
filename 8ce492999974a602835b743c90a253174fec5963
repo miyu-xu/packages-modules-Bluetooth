@@ -89,6 +89,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "17645fd8_522569b9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-02-28T21:38:04Z",
+      "side": 1,
+      "message": "Got it - there\u0027s some additional context in b/196731316#comment161 (generally seems to be related to RCS setup and/or backup and restore scenarios, so it is usually a very old message).\n\nI\u0027ll keep it as is for now in that case but we can consider changing in future if still reproducible.",
+      "parentUuid": "f2bc3b1d_238d326c",
+      "revId": "8ce492999974a602835b743c90a253174fec5963",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a6ab14be_7494e0dd",
