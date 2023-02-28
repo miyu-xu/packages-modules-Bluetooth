@@ -22,6 +22,30 @@
       },
       "revId": "0284ebc54b01db0cc794e14f6cfebecc1d567b1c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a7d5a9c7_729c1b3c",
+        "filename": "android/pandora/test/asha_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-02-28T01:29:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "586a9c8d_ea08fdec",
+      "range": {
+        "startLine": 231,
+        "startChar": 7,
+        "endLine": 232,
+        "endChar": 85
+      },
+      "revId": "0284ebc54b01db0cc794e14f6cfebecc1d567b1c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
