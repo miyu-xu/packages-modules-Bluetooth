@@ -1,0 +1,136 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1ec25420_11a1af39",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-02-28T02:29:41Z",
+      "side": 1,
+      "message": "Why DO NOT MERGE?",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 12
+      },
+      "revId": "a2ddb28c0ff63363b0fc664cf0ab5a9aa65e0be9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "50aab941_8fb60c48",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-02-28T02:29:41Z",
+      "side": 1,
+      "message": "Please run tests instead.",
+      "range": {
+        "startLine": 9,
+        "startChar": 6,
+        "endLine": 9,
+        "endChar": 14
+      },
+      "revId": "a2ddb28c0ff63363b0fc664cf0ab5a9aa65e0be9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "17fe282f_158d02f1",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-02-28T02:29:41Z",
+      "side": 1,
+      "message": "Please don\u0027t change the comment indentations",
+      "revId": "a2ddb28c0ff63363b0fc664cf0ab5a9aa65e0be9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b959caa9_c998ab20",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-02-28T02:29:41Z",
+      "side": 1,
+      "message": "If you are merging setActiveDeivce methods, why don\u0027t you merge handleConnected?",
+      "range": {
+        "startLine": 232,
+        "startChar": 17,
+        "endLine": 232,
+        "endChar": 36
+      },
+      "revId": "a2ddb28c0ff63363b0fc664cf0ab5a9aa65e0be9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6f15952f_8acb108b",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-02-28T02:29:41Z",
+      "side": 1,
+      "message": "Did you consider to merge these kinds of list as well?",
+      "range": {
+        "startLine": 236,
+        "startChar": 12,
+        "endLine": 236,
+        "endChar": 33
+      },
+      "revId": "a2ddb28c0ff63363b0fc664cf0ab5a9aa65e0be9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "32dc973f_3aeaf33b",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-02-28T02:29:41Z",
+      "side": 1,
+      "message": "This is a behavior change, isn\u0027t it?\n\nI\u0027ll stop code review here since I\u0027m not sure what\u0027s the main purpose of this CL.",
+      "range": {
+        "startLine": 242,
+        "startChar": 0,
+        "endLine": 248,
+        "endChar": 9
+      },
+      "revId": "a2ddb28c0ff63363b0fc664cf0ab5a9aa65e0be9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
