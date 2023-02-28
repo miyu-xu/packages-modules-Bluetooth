@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2c9d698d_ce5625d7",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-02-28T21:29:45Z",
+      "side": 1,
+      "message": "Thanks for catching! Done",
+      "parentUuid": "4cf75e61_f0618ea3",
+      "revId": "8ce492999974a602835b743c90a253174fec5963",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f53b2ddf_af4eae09",
@@ -37,6 +55,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2d7bc54d_d29bef23",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-02-28T21:29:45Z",
+      "side": 1,
+      "message": "Most of the instances of this bug have very old messages (\u003e1 year old) present. \n\nI mostly chose one year because it seemed very safe (I didn\u0027t want to cause any regressions), with intention to monitor and reduce if issue still reproduced.\n\nI could change it to something like one month if you\u0027d prefer?",
+      "parentUuid": "f53b2ddf_af4eae09",
+      "revId": "8ce492999974a602835b743c90a253174fec5963",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a6ab14be_7494e0dd",
         "filename": "android/app/src/com/android/bluetooth/map/BluetoothMapContentObserver.java",
         "patchSetId": 2
@@ -48,6 +84,30 @@
       "writtenOn": "2023-02-22T04:48:21Z",
       "side": 1,
       "message": "We can move this in L1519 and revmoe L1474 (\"listChanged \u003d false\")",
+      "range": {
+        "startLine": 1465,
+        "startChar": 27,
+        "endLine": 1465,
+        "endChar": 47
+      },
+      "revId": "8ce492999974a602835b743c90a253174fec5963",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3bd74470_49f85662",
+        "filename": "android/app/src/com/android/bluetooth/map/BluetoothMapContentObserver.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1465,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-02-28T21:29:45Z",
+      "side": 1,
+      "message": "Good catch! Done",
+      "parentUuid": "a6ab14be_7494e0dd",
       "range": {
         "startLine": 1465,
         "startChar": 27,
@@ -105,6 +165,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "27b303e5_16315bbf",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapContentObserverTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-02-28T21:29:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d203fc1a_7a32c6f7",
+      "range": {
+        "startLine": 75,
+        "startChar": 13,
+        "endLine": 75,
+        "endChar": 44
+      },
+      "revId": "8ce492999974a602835b743c90a253174fec5963",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "50d84127_eaa672ca",
@@ -128,6 +212,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "937dae2e_7eacaf3f",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapContentObserverTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-02-28T21:29:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "50d84127_eaa672ca",
+      "range": {
+        "startLine": 95,
+        "startChar": 32,
+        "endLine": 95,
+        "endChar": 40
+      },
+      "revId": "8ce492999974a602835b743c90a253174fec5963",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9427e8a2_ebce6332",
@@ -141,6 +249,30 @@
       "writtenOn": "2023-02-24T01:23:18Z",
       "side": 1,
       "message": "TEST_DATE_MS ?\n\nIt seems nice to keep them in sync all the time.",
+      "range": {
+        "startLine": 96,
+        "startChar": 40,
+        "endLine": 96,
+        "endChar": 80
+      },
+      "revId": "8ce492999974a602835b743c90a253174fec5963",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e0aaafc7_437876c7",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapContentObserverTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-02-28T21:29:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9427e8a2_ebce6332",
       "range": {
         "startLine": 96,
         "startChar": 40,
