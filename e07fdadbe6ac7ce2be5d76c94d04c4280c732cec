@@ -96,6 +96,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a61e27bb_93895f3e",
+        "filename": "system/stack/sdp/sdpint.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-02-28T19:19:21Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "d8138a5f_b9d47d27",
+      "range": {
+        "startLine": 240,
+        "startChar": 21,
+        "endLine": 240,
+        "endChar": 39
+      },
+      "revId": "e07fdadbe6ac7ce2be5d76c94d04c4280c732cec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "00d3515d_f840af58",
