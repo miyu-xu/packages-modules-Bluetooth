@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "396e5962_7dfb50cd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2023-02-28T01:25:16Z",
+      "side": 1,
+      "message": "Review was conducted on googleplex-android. For review history, see ag/21591804.",
+      "revId": "b8fcef67ef678629459a257cf3afe77f261081c0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
