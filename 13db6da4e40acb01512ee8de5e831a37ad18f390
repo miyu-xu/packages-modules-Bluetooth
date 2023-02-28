@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "017b04b3_11de3d94",
+        "filename": "system/stack/smp/smp_act.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 223,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-02-28T18:41:30Z",
+      "side": 1,
+      "message": "Maybe put a\nLOG_DEBUG(\"Expected but nothing to do event:%s\", str(event));\n\nIdeally we\u0027d have a rotating log of events/state so we could dump last `n` events and all the DEBUG log messages could disappear, but that will be part of the re-write.",
+      "revId": "13db6da4e40acb01512ee8de5e831a37ad18f390",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
