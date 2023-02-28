@@ -16,10 +16,14 @@
 #include "device.h"
 
 #include "abstract_message_loop.h"
+#include "avrcp_common.h"
 #include "connection_handler.h"
 #include "packet/avrcp/avrcp_reject_packet.h"
 #include "packet/avrcp/general_reject_packet.h"
+#include "packet/avrcp/get_current_player_application_setting_value.h"
 #include "packet/avrcp/get_play_status_packet.h"
+#include "packet/avrcp/list_player_application_setting_attributes.h"
+#include "packet/avrcp/list_player_application_setting_values.h"
 #include "packet/avrcp/pass_through_packet.h"
 #include "packet/avrcp/set_absolute_volume.h"
 #include "packet/avrcp/set_addressed_player.h"
@@ -51,14 +55,17 @@ Device::Device(
       browse_mtu_(browse_mtu),
       has_bip_client_(false) {}
 
-void Device::RegisterInterfaces(MediaInterface* media_interface,
-                                A2dpInterface* a2dp_interface,
-                                VolumeInterface* volume_interface) {
+void Device::RegisterInterfaces(
+    MediaInterface* media_interface, A2dpInterface* a2dp_interface,
+    VolumeInterface* volume_interface,
+    PlayerSettingsInterface* player_settings_interface) {
   CHECK(media_interface);
   CHECK(a2dp_interface);
+  CHECK(player_settings_interface);
   a2dp_interface_ = a2dp_interface;
   media_interface_ = media_interface;
   volume_interface_ = volume_interface;
+  player_settings_interface_ = player_settings_interface;
 }
 
 base::WeakPtr<Device> Device::Get() {
@@ -204,6 +211,75 @@ void Device::VendorPacketHandler(uint8_t label,
 
       media_interface_->GetMediaPlayerList(base::Bind(&Device::HandleSetAddressedPlayer, weak_ptr_factory_.GetWeakPtr(),
                                                       label, set_addressed_player_request));
+    } break;
+
+    case CommandPdu::LIST_PLAYER_APPLICATION_SETTING_ATTRIBUTES: {
+      player_settings_interface_->ListPlayerSettings(
+          base::Bind(&Device::ListPlayerApplicationSettingAttributesResponse,
+                     weak_ptr_factory_.GetWeakPtr(), label));
+    } break;
+
+    case CommandPdu::LIST_PLAYER_APPLICATION_SETTING_VALUES: {
+      auto list_player_setting_values_request =
+          Packet::Specialize<ListPlayerApplicationSettingValuesRequest>(pkt);
+
+      if (!list_player_setting_values_request->IsValid()) {
+        DEVICE_LOG(ERROR) << __func__ << ": Request packet is not valid";
+        auto response = RejectBuilder::MakeBuilder(pkt->GetCommandPdu(),
+                                                   Status::INVALID_PARAMETER);
+        send_message(label, false, std::move(response));
+        return;
+      }
+
+      PlayerAttribute setting =
+          list_player_setting_values_request->GetPlayerAttribute();
+      if (setting < PlayerAttribute::EQUALIZER ||
+          setting > PlayerAttribute::SCAN) {
+        DEVICE_LOG(ERROR) << __func__
+                          << ": Player Setting Attribute is not valid";
+        auto response = RejectBuilder::MakeBuilder(pkt->GetCommandPdu(),
+                                                   Status::INVALID_PARAMETER);
+        send_message(label, false, std::move(response));
+        return;
+      }
+
+      player_settings_interface_->ListPlayerSettingValues(
+          setting,
+          base::Bind(&Device::ListPlayerApplicationSettingValuesResponse,
+                     weak_ptr_factory_.GetWeakPtr(), label));
+    } break;
+
+    case CommandPdu::GET_CURRENT_PLAYER_APPLICATION_SETTING_VALUE: {
+      auto get_current_player_setting_value =
+          Packet::Specialize<GetCurrentPlayerApplicationSettingValueRequest>(
+              pkt);
+
+      if (!get_current_player_setting_value->IsValid()) {
+        DEVICE_LOG(ERROR) << __func__ << ": Request packet is not valid";
+        auto response = RejectBuilder::MakeBuilder(pkt->GetCommandPdu(),
+                                                   Status::INVALID_PARAMETER);
+        send_message(label, false, std::move(response));
+        return;
+      }
+
+      std::vector<PlayerAttribute> attributes =
+          get_current_player_setting_value->GetPlayerAttributesRequested();
+      for (auto attribute : attributes) {
+        if (attribute < PlayerAttribute::EQUALIZER ||
+            attribute > PlayerAttribute::SCAN) {
+          DEVICE_LOG(ERROR)
+              << __func__ << ": Player Setting Attribute is not valid";
+          auto response = RejectBuilder::MakeBuilder(pkt->GetCommandPdu(),
+                                                     Status::INVALID_PARAMETER);
+          send_message(label, false, std::move(response));
+          return;
+        }
+      }
+
+      player_settings_interface_->GetCurrentPlayerSettingValue(
+          attributes,
+          base::Bind(&Device::GetPlayerApplicationSettingValueResponse,
+                     weak_ptr_factory_.GetWeakPtr(), label));
     } break;
 
     default: {
@@ -788,6 +864,75 @@ void Device::HandleSetAddressedPlayer(
 
   auto response =
       SetAddressedPlayerResponseBuilder::MakeBuilder(Status::NO_ERROR);
+  send_message(label, false, std::move(response));
+}
+
+void Device::ListPlayerApplicationSettingAttributesResponse(
+    uint8_t label, uint8_t num_of_attributes,
+    std::vector<PlayerAttribute> player_attributes) {
+  DEVICE_LOG(ERROR) << __func__ << ": num_of_attributes="
+                    << std::to_string(num_of_attributes);
+  if (num_of_attributes > 0) {
+    for (auto player_attribute : player_attributes) {
+      DEVICE_LOG(ERROR) << __func__
+                        << ": player_attribute=" << player_attribute;
+    }
+  }
+  auto response =
+      ListPlayerApplicationSettingAttributesResponseBuilder::MakeBuilder(
+          num_of_attributes, player_attributes);
+  send_message(label, false, std::move(response));
+}
+
+void Device::ListPlayerApplicationSettingValuesResponse(
+    uint8_t label, PlayerAttribute setting, uint8_t number_of_values,
+    std::vector<uint8_t> values) {
+  DEVICE_LOG(ERROR) << __func__ << ": setting=" << setting
+                    << ", number_of_values="
+                    << std::to_string(number_of_values);
+
+  if (number_of_values > 0) {
+    if (setting == PlayerAttribute::REPEAT) {
+      for (auto value : values) {
+        DEVICE_LOG(ERROR) << __func__ << ": value="
+                          << static_cast<PlayerRepeatValue>(value);
+      }
+    } else if (setting == PlayerAttribute::SHUFFLE) {
+      for (auto value : values) {
+        DEVICE_LOG(ERROR) << __func__ << ": value="
+                          << static_cast<PlayerShuffleValue>(value);
+      }
+    } else {
+      DEVICE_LOG(ERROR) << __func__ << ": value=" << loghex(values.at(0));
+    }
+  }
+
+  auto response =
+      ListPlayerApplicationSettingValuesResponseBuilder::MakeBuilder(
+          number_of_values, values);
+  send_message(label, false, std::move(response));
+}
+
+void Device::GetPlayerApplicationSettingValueResponse(
+    uint8_t label, std::vector<PlayerAttribute> attributes,
+    std::vector<uint8_t> values) {
+  for (size_t i = 0; i < attributes.size(); i++) {
+    DEVICE_LOG(ERROR) << __func__ << ": attribute="
+                      << static_cast<PlayerAttribute>(attributes[i]);
+    if (attributes[i] == PlayerAttribute::REPEAT) {
+      DEVICE_LOG(ERROR) << __func__ << ": value="
+                        << static_cast<PlayerRepeatValue>(values[i]);
+    } else if (attributes[i] == PlayerAttribute::SHUFFLE) {
+      DEVICE_LOG(ERROR) << __func__ << ": value="
+                        << static_cast<PlayerShuffleValue>(values[i]);
+    } else {
+      DEVICE_LOG(ERROR) << __func__ << ": value=" << loghex(values.at(0));
+    }
+  }
+
+  auto response =
+      GetCurrentPlayerApplicationSettingValueResponseBuilder::MakeBuilder(
+          attributes, values);
   send_message(label, false, std::move(response));
 }
 
