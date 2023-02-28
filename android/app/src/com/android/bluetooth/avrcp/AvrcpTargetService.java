@@ -501,10 +501,16 @@ public class AvrcpTargetService extends ProfileService {
      * Called from player callback to indicate new settings to remote device.
      */
     public void sendPlayerSettings(int shuffleMode, int repeatMode) {
-        String activeDeviceAddress = getA2dpActiveDevice().getAddress();
+        BluetoothDevice activeDevice = getA2dpActiveDevice();
+        if (activeDevice == null) {
+            return;
+        }
+
+        String activeDeviceAddress = activeDevice.getAddress();
         if (activeDeviceAddress == null) {
             return;
         }
+
         mNativeInterface.sendPlayerSettings(activeDeviceAddress, repeatMode, shuffleMode);
     }
 
