@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "edc84994_ed94f7da",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-02-28T19:41:46Z",
+      "side": 1,
+      "message": "I got stuck on the terminology :(",
+      "revId": "dd5c9eb50ef9d13b79ce1d88f9292c8d566b2afe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3e2f145b_366f919b",
+        "filename": "system/rust/src/core/shared_box.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-02-28T19:41:46Z",
+      "side": 1,
+      "message": "nit: Can we make them symmetric?\n\nas_ref and as_weak ?\nor\nupgrade and downgrade ?",
+      "revId": "dd5c9eb50ef9d13b79ce1d88f9292c8d566b2afe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a96becd9_de26840d",
+        "filename": "system/rust/src/core/shared_box.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-02-28T19:41:46Z",
+      "side": 1,
+      "message": "A strong reference to the contents is called a WeakBoxRef?",
+      "range": {
+        "startLine": 69,
+        "startChar": 6,
+        "endLine": 69,
+        "endChar": 22
+      },
+      "revId": "dd5c9eb50ef9d13b79ce1d88f9292c8d566b2afe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
