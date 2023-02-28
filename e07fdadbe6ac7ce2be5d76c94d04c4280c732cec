@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4634c586_bfd8e473",
+        "filename": "system/stack/sdp/sdpint.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-02-28T18:58:33Z",
+      "side": 1,
+      "message": "It looks like this is the same as the new one that\u0027s being added.",
+      "range": {
+        "startLine": 240,
+        "startChar": 21,
+        "endLine": 240,
+        "endChar": 39
+      },
+      "revId": "e07fdadbe6ac7ce2be5d76c94d04c4280c732cec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "00d3515d_f840af58",
+        "filename": "system/stack/test/sdp/stack_sdp_test.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-02-28T18:58:33Z",
+      "side": 1,
+      "message": "This looks the same as the new test on 232",
+      "revId": "e07fdadbe6ac7ce2be5d76c94d04c4280c732cec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
