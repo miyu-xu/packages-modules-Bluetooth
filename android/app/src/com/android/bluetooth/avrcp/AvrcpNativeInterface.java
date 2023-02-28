@@ -262,20 +262,16 @@ public class AvrcpNativeInterface {
         mAvrcpService.setVolume(volume);
     }
 
-    /**
-     * Request from remote to list supported player settings.
-     */
-    void listPlayerSettingsRequest(String bdaddr) {
+    /** Request from remote to list supported player settings. */
+    void listPlayerSettingsRequest() {
         byte[] settingsArray = new byte[2];
         settingsArray[0] = (byte) PlayerSettingsValues.SETTING_REPEAT;
         settingsArray[1] = (byte) PlayerSettingsValues.SETTING_SHUFFLE;
-        listPlayerSettingsRspNative(bdaddr, settingsArray);
+        listPlayerSettingsResponseNative((byte) settingsArray.length, settingsArray);
     }
 
-    /**
-     * Request from remote to list supported values for player setting.
-     */
-    void listPlayerSettingValuesRequest(String bdaddr, byte settingRequest) {
+    /** Request from remote to list supported values for player setting. */
+    void listPlayerSettingValuesRequest(byte settingRequest) {
         byte[] valuesArray;
         switch (settingRequest) {
             case (byte) PlayerSettingsValues.SETTING_REPEAT:
@@ -296,12 +292,11 @@ public class AvrcpNativeInterface {
                 valuesArray = new byte[1];
                 valuesArray[0] = PlayerSettingsValues.STATE_DEFAULT_OFF;
         }
-        listPlayerSettingValuesRspNative(bdaddr, settingRequest, valuesArray);
+        listPlayerSettingValuesResponseNative(
+                settingRequest, (byte) valuesArray.length, valuesArray);
     }
 
-    /**
-     * Request from remote current values for player settings.
-     */
+    /** Request from remote current values for player settings. */
     void getCurrentPlayerSettingValuesRequest(String bdaddr, byte[] settingsRequest) {
         byte[] valuesArray = new byte[settingsRequest.length];
         for (int i = 0; i < settingsRequest.length; i++) {
@@ -320,11 +315,8 @@ public class AvrcpNativeInterface {
         getPlayerSettingsRspNative(bdaddr, settingsRequest, valuesArray);
     }
 
-    /**
-     * Request from remote to set current values for player settings.
-     */
-    boolean setPlayerSettingsRequest(String bdaddr, byte[] settingsRequest,
-            byte[] valuesRequest) {
+    /** Request from remote to set current values for player settings. */
+    boolean setPlayerSettingsRequest(String bdaddr, byte[] settingsRequest, byte[] valuesRequest) {
         if (settingsRequest.length != valuesRequest.length) {
             return false;
         }
@@ -341,14 +333,11 @@ public class AvrcpNativeInterface {
         return success;
     }
 
-    /* Not supported by MediaController, we may want to return internationalized strings
-    void getPlayerSettingTextRequest(String bdaddr, byte[] settingsRequest) {
-    }
+    // Not supported by MediaController, we may want to return internationalized strings
+    void getPlayerSettingTextRequest(String bdaddr, byte[] settingsRequest) {}
 
-    void getPlayerSettingValueTextRequest(String bdaddr, byte settingRequest,
-            byte[] valuesRequest) {
-    }
-    */
+    void getPlayerSettingValueTextRequest(
+            String bdaddr, byte settingRequest, byte[] valuesRequest) {}
 
     void sendPlayerSettings(String bdaddr, int repeatMode, int shuffleMode) {
         byte[] settingsArray = new byte[2];
@@ -360,31 +349,49 @@ public class AvrcpNativeInterface {
         sendPlayerSettingsNative(bdaddr, settingsArray, valuesArray);
     }
 
-
     private static native void classInitNative();
+
     private native void initNative();
+
     private native void registerBipServerNative(int l2capPsm);
+
     private native void unregisterBipServerNative();
+
     private native void sendMediaUpdateNative(
             boolean trackChanged, boolean playState, boolean playPos);
+
     private native void sendFolderUpdateNative(
             boolean availablePlayers, boolean addressedPlayers, boolean uids);
+
     private native void setBrowsedPlayerResponseNative(
             int playerId, boolean success, String rootId, int numItems);
+
     private native void getFolderItemsResponseNative(String parentId, List<ListItem> list);
+
     private native void cleanupNative();
+
     private native boolean connectDeviceNative(String bdaddr);
+
     private native boolean disconnectDeviceNative(String bdaddr);
+
     private native void sendVolumeChangedNative(String bdaddr, int volume);
+
     private native void setBipClientStatusNative(String bdaddr, boolean connected);
-    private native void listPlayerSettingsRspNative(String bdaddr, byte[] settings);
-    private native void listPlayerSettingValuesRspNative(
-            String bdaddr, byte setting, byte[] values);
+
+    private native void listPlayerSettingsResponseNative(
+            byte numberOfAttributes, byte[] settings);
+
+    private native void listPlayerSettingValuesResponseNative(
+            byte setting, byte numberOfValues, byte[] values);
+
     private native void getPlayerSettingsRspNative(String bdaddr, byte[] settings, byte[] values);
-    //private native void getPlayerSettingsTextRspNative(
-    //        String bdaddr, byte[] settings, String[] text);
-    //private native void getPlayerValuesTextRspNative(
-    //        String bdaddr, byte setting, byte[] values, String[] text);
+
+    private native void getPlayerSettingsTextRspNative(
+            String bdaddr, byte[] settings, String[] text);
+
+    private native void getPlayerValuesTextRspNative(
+            String bdaddr, byte setting, byte[] values, String[] text);
+
     private native void sendPlayerSettingsNative(String bdaddr, byte[] settings, byte[] values);
 
     private static void d(String msg) {

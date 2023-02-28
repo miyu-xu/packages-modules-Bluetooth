@@ -16,12 +16,12 @@
 
 #pragma once
 
+#include <base/cancelable_callback.h>
+#include <base/functional/bind.h>
+
 #include <iostream>
 #include <memory>
 #include <stack>
-
-#include <base/cancelable_callback.h>
-#include <base/functional/bind.h>
 
 #include "avrcp_internal.h"
 #include "hardware/avrcp/avrcp.h"
@@ -33,6 +33,8 @@
 #include "packet/avrcp/get_folder_items.h"
 #include "packet/avrcp/get_item_attributes.h"
 #include "packet/avrcp/get_total_number_of_items.h"
+#include "packet/avrcp/list_player_application_setting_attributes.h"
+#include "packet/avrcp/list_player_application_setting_values.h"
 #include "packet/avrcp/play_item.h"
 #include "packet/avrcp/register_notification_packet.h"
 #include "packet/avrcp/set_addressed_player.h"
@@ -113,7 +115,8 @@ class Device {
    */
   void RegisterInterfaces(MediaInterface* interface,
                           A2dpInterface* a2dp_interface,
-                          VolumeInterface* volume_interface);
+                          VolumeInterface* volume_interface,
+                          PlayerSettingsInterface* player_settings_interface);
 
   /**
    * Set the maximum size of a AVRCP Browsing Packet. This is done after the
@@ -258,6 +261,16 @@ class Device {
       uint8_t label, std::shared_ptr<SetAddressedPlayerRequest> request,
       uint16_t curr_player, std::vector<MediaPlayerInfo> players);
 
+  // LIST PLAYER APPLICATION SETTING ATTRIBUTES
+  virtual void ListPlayerApplicationSettingAttributesResponse(
+      uint8_t label, uint8_t num_of_attributes,
+      std::vector<PlayerAttribute> player_attributes);
+
+  // LIST PLAYER APPLICATION SETTING VALUES
+  virtual void ListPlayerApplicationSettingValuesResponse(
+      uint8_t label, PlayerAttribute setting, uint8_t number_of_values,
+      std::vector<uint8_t> values);
+
   /********************
    * MESSAGE REQUESTS
    ********************/
@@ -338,6 +351,7 @@ class Device {
   MediaInterface* media_interface_ = nullptr;
   A2dpInterface* a2dp_interface_ = nullptr;
   VolumeInterface* volume_interface_ = nullptr;
+  PlayerSettingsInterface* player_settings_interface_ = nullptr;
 
   // Labels used for messages currently in flight.
   std::set<uint8_t> active_labels_;
