@@ -1,0 +1,188 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c66fa0a2_028493a7",
+        "filename": "android/pandora/test/asha_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1937985
+      },
+      "writtenOn": "2023-02-28T00:07:03Z",
+      "side": 1,
+      "message": "nit: remove `()` around ConnectLE",
+      "range": {
+        "startLine": 101,
+        "startChar": 18,
+        "endLine": 101,
+        "endChar": 19
+      },
+      "revId": "e63440eecf8e579b4f51e3360c5fa16ecc1625d6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9e15531f_684fe133",
+        "filename": "android/pandora/test/asha_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1937985
+      },
+      "writtenOn": "2023-02-28T00:07:03Z",
+      "side": 1,
+      "message": "Can you move this before the helpers ? thank you !",
+      "range": {
+        "startLine": 113,
+        "startChar": 4,
+        "endLine": 119,
+        "endChar": 62
+      },
+      "revId": "e63440eecf8e579b4f51e3360c5fa16ecc1625d6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fbac3093_c22d07cb",
+        "filename": "android/pandora/test/asha_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 1937985
+      },
+      "writtenOn": "2023-02-28T00:07:03Z",
+      "side": 1,
+      "message": "Is this required by the spec ? If no please remove (same for `test_unbonding`)",
+      "range": {
+        "startLine": 200,
+        "startChar": 8,
+        "endLine": 201,
+        "endChar": 85
+      },
+      "revId": "e63440eecf8e579b4f51e3360c5fa16ecc1625d6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a1ee5441_afce80fc",
+        "filename": "android/pandora/test/asha_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 278,
+      "author": {
+        "id": 1937985
+      },
+      "writtenOn": "2023-02-28T00:07:03Z",
+      "side": 1,
+      "message": "nit: add `  # type: ignore[misc]`",
+      "range": {
+        "startLine": 278,
+        "startChar": 4,
+        "endLine": 278,
+        "endChar": 5
+      },
+      "revId": "e63440eecf8e579b4f51e3360c5fa16ecc1625d6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "310518ee_d972d189",
+        "filename": "android/pandora/test/asha_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 296,
+      "author": {
+        "id": 1937985
+      },
+      "writtenOn": "2023-02-28T00:07:03Z",
+      "side": 1,
+      "message": "Please remove the variable and use `OwnAddressType.RANDOM` directly",
+      "range": {
+        "startLine": 295,
+        "startChar": 8,
+        "endLine": 296,
+        "endChar": 47
+      },
+      "revId": "e63440eecf8e579b4f51e3360c5fa16ecc1625d6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "47817e3c_5a661148",
+        "filename": "android/pandora/test/asha_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 312,
+      "author": {
+        "id": 1937985
+      },
+      "writtenOn": "2023-02-28T00:07:03Z",
+      "side": 1,
+      "message": "Please remove the variable and use `OwnAddressType.RANDOM` directly",
+      "range": {
+        "startLine": 311,
+        "startChar": 8,
+        "endLine": 312,
+        "endChar": 47
+      },
+      "revId": "e63440eecf8e579b4f51e3360c5fa16ecc1625d6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2cfeadaa_fcd9b0d2",
+        "filename": "android/pandora/test/asha_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 373,
+      "author": {
+        "id": 1937985
+      },
+      "writtenOn": "2023-02-28T00:07:03Z",
+      "side": 1,
+      "message": "Please remove `()` around `ConnectLE`",
+      "range": {
+        "startLine": 369,
+        "startChar": 18,
+        "endLine": 373,
+        "endChar": 9
+      },
+      "revId": "e63440eecf8e579b4f51e3360c5fa16ecc1625d6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dddb3f7e_09148a6d",
+        "filename": "android/pandora/test/asha_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 374,
+      "author": {
+        "id": 1937985
+      },
+      "writtenOn": "2023-02-28T00:07:03Z",
+      "side": 1,
+      "message": "Please change to `next(advertisement)` (and the other one on `connect`)",
+      "range": {
+        "startLine": 374,
+        "startChar": 18,
+        "endLine": 374,
+        "endChar": 39
+      },
+      "revId": "e63440eecf8e579b4f51e3360c5fa16ecc1625d6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
