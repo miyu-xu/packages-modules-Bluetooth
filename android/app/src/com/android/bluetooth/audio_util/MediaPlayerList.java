@@ -153,6 +153,12 @@ public class MediaPlayerList {
                 mMediaSessionManager.getActiveSessions(null);
 
         for (android.media.session.MediaController controller : controllers) {
+            if ((controller.getFlags() & MediaSession.FLAG_EXCLUSIVE_GLOBAL_PRIORITY) != 0) {
+                // GLOBAL_PRIORITY session is created by Telecom to handle call control key events
+                // but Bluetooth Headset profile handles the key events for calls so we don't have
+                // to handle these sessions in AVRCP.
+                continue;
+            }
             addMediaPlayer(controller);
         }
 
@@ -699,6 +705,13 @@ public class MediaPlayerList {
                 HashSet<String> addedPackages = new HashSet<String>();
 
                 for (int i = 0; i < newControllers.size(); i++) {
+                    if ((newControllers.get(i).getFlags()
+                            & MediaSession.FLAG_EXCLUSIVE_GLOBAL_PRIORITY) != 0) {
+                        Log.d(TAG, "onActiveSessionsChanged: controller: "
+                                + newControllers.get(i).getPackageName()
+                                + " ignored due to global priority flag");
+                        continue;
+                    }
                     Log.d(TAG, "onActiveSessionsChanged: controller: "
                             + newControllers.get(i).getPackageName());
                     if (addedPackages.contains(newControllers.get(i).getPackageName())) {
@@ -862,6 +875,13 @@ public class MediaPlayerList {
                     if (token != null) {
                         android.media.session.MediaController controller =
                                 new android.media.session.MediaController(mContext, token);
+                        if ((controller.getFlags() & MediaSession.FLAG_EXCLUSIVE_GLOBAL_PRIORITY)
+                                != 0) {
+                            // Skip adding controller for GLOBAL_PRIORITY session.
+                            Log.i(TAG, "onMediaKeyEventSessionChanged,"
+                                    + "ignoring global priority session");
+                            return;
+                        }
                         if (!haveMediaPlayer(controller.getPackageName())) {
                             // Since we have a controller, we can try to to recover by adding the
                             // player and then setting it as active.
@@ -869,7 +889,6 @@ public class MediaPlayerList {
                                     + "changed to a player we didn't have a session for");
                             addMediaPlayer(controller);
                         }
-
                         Log.i(TAG, "onMediaKeyEventSessionChanged: token="
                                 + controller.getPackageName());
                         setActivePlayer(mMediaPlayerIds.get(controller.getPackageName()));
@@ -879,7 +898,6 @@ public class MediaPlayerList {
                                     + "changed to a player we don't have a session for");
                             return;
                         }
-
                         Log.i(TAG, "onMediaKeyEventSessionChanged: packageName=" + packageName);
                         setActivePlayer(mMediaPlayerIds.get(packageName));
                     }
