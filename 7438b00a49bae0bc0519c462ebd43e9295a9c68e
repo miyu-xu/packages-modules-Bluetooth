@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "25e1ed2c_6559860c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2023-03-01T16:58:15Z",
+      "side": 1,
+      "message": "Waiting for pts-bot to pass before +2 and submitting",
+      "revId": "7438b00a49bae0bc0519c462ebd43e9295a9c68e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
