@@ -318,6 +318,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8ff06fa0_3612a7e0",
+        "filename": "system/gd/rust/linux/service/src/iface_bluetooth.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 358,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2023-03-01T00:27:17Z",
+      "side": 1,
+      "message": "Discussed offline. We\u0027re comfortable proceeding with this pattern for now.",
+      "parentUuid": "5c46e897_326ecd08",
+      "range": {
+        "startLine": 358,
+        "startChar": 20,
+        "endLine": 358,
+        "endChar": 38
+      },
+      "revId": "8be5f1e7e327976d8ef14318079e1ee1c404679c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d5e85d42_168421a4",
