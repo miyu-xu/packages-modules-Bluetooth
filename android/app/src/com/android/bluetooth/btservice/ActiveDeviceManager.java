@@ -16,6 +16,7 @@
 
 package com.android.bluetooth.btservice;
 
+import android.annotation.Nullable;
 import android.annotation.RequiresPermission;
 import android.annotation.SuppressLint;
 import android.bluetooth.BluetoothA2dp;
@@ -320,10 +321,9 @@ class ActiveDeviceManager {
         }
         mA2dpConnectedDevices.remove(device);
         if (Objects.equals(mA2dpActiveDevice, device)) {
-            if (mA2dpConnectedDevices.isEmpty()) {
-                setA2dpActiveDevice(null);
+            if (!setFallbackDeviceActive()) {
+                setA2dpActiveDevice(null, false);
             }
-            setFallbackDeviceActive();
         }
     }
 
@@ -566,15 +566,20 @@ class ActiveDeviceManager {
         return mHandlerThread.getLooper();
     }
 
-    private void setA2dpActiveDevice(BluetoothDevice device) {
+    private void setA2dpActiveDevice(@Nullable BluetoothDevice device) {
+        setA2dpActiveDevice(device, true);
+    }
+
+    private void setA2dpActiveDevice(@Nullable BluetoothDevice device, boolean hasFallbackDevice) {
         if (DBG) {
-            Log.d(TAG, "setA2dpActiveDevice(" + device + ")");
+            Log.d(TAG, "setA2dpActiveDevice(" + device + ")"
+                    + (device == null ? " hasFallbackDevice=" + hasFallbackDevice : ""));
         }
         final A2dpService a2dpService = mFactory.getA2dpService();
         if (a2dpService == null) {
             return;
         }
-        if (!a2dpService.setActiveDevice(device)) {
+        if (!a2dpService.setActiveDevice(device, hasFallbackDevice)) {
             return;
         }
         mA2dpActiveDevice = device;
@@ -656,13 +661,20 @@ class ActiveDeviceManager {
         }
     }
 
-    private void setFallbackDeviceActive() {
+    /**
+     * TODO: This method can return true when a fallback device for an unrelated profile is found.
+     *       Take disconnected profile as an argument, and find the exact fallback device.
+     *       Also, split this method to smaller methods for better readability.
+     *
+     * @return true when the fallback device is activated, false otherwise
+     */
+    private boolean setFallbackDeviceActive() {
         if (DBG) {
             Log.d(TAG, "setFallbackDeviceActive");
         }
         DatabaseManager dbManager = mAdapterService.getDatabase();
         if (dbManager == null) {
-            return;
+            return false;
         }
         List<BluetoothDevice> connectedHearingAidDevices = new ArrayList<>();
         if (!mHearingAidConnectedDevices.isEmpty()) {
@@ -692,7 +704,7 @@ class ActiveDeviceManager {
                     setA2dpActiveDevice(null);
                     setHfpActiveDevice(null);
                 }
-                return;
+                return true;
             }
         }
 
@@ -765,7 +777,11 @@ class ActiveDeviceManager {
                     setHfpActiveDevice(null);
                 }
             }
+            return true;
         }
+
+        // No fallback device is found.
+        return false;
     }
 
     private void resetState() {
