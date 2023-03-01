@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d550c308_68f267df",
+        "filename": "android/app/src/com/android/bluetooth/btservice/PhonePolicy.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 356,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-03-01T00:49:32Z",
+      "side": 1,
+      "message": "This check was not present in initial change aosp/2421921.\n@ugoyu@google.com Can you confirm it is needed ?",
+      "range": {
+        "startLine": 356,
+        "startChar": 38,
+        "endLine": 356,
+        "endChar": 65
+      },
+      "revId": "67884a24bff6a52875d497733f5d612ca9634a10",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "84a65197_c40245b2",
+        "filename": "android/app/src/com/android/bluetooth/btservice/PhonePolicy.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 387,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-03-01T00:49:32Z",
+      "side": 1,
+      "message": "HearingAidService is not put in FORBIDDEN mode.\nWhy are we changing the connection policy for a2dp / hfp but not in asha ?",
+      "range": {
+        "startLine": 387,
+        "startChar": 0,
+        "endLine": 387,
+        "endChar": 78
+      },
+      "revId": "67884a24bff6a52875d497733f5d612ca9634a10",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
