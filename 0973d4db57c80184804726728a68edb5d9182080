@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "85d458b4_1c01d1f9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1306903
+      },
+      "writtenOn": "2023-03-01T12:08:36Z",
+      "side": 1,
+      "message": "I am working on unit tests on aosp/2421921. The part touches BLE audio need additional change to align with the profile CUJ.",
+      "revId": "0973d4db57c80184804726728a68edb5d9182080",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "173cdc3e_6005b6fe",
