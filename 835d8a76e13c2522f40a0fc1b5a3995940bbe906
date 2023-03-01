@@ -16,6 +16,24 @@
       "message": "the code does not compile\n\npackages/modules/Bluetooth/android/app/src/com/android/bluetooth/btservice/storage/AudioPolicyEntity.java:25: warning: There are multiple good constructors and Room will pick the no-arg constructor. You can use the @Ignore annotation to eliminate unwanted constructors.\nclass AudioPolicyEntity {\n^\npackages/modules/Bluetooth/android/app/src/com/android/bluetooth/btservice/storage/AudioPolicyEntity.java:25: warning: There are multiple good constructors and Room will pick the no-arg constructor. You can use the @Ignore annotation to eliminate unwanted constructors.\nclass AudioPolicyEntity {\n^\npackages/modules/Bluetooth/android/app/src/com/android/bluetooth/le_audio/LeAudioService.java:1546: error: cannot find symbol\n                        tbsService.setInbandRingtoneSupport(device);\n                                  ^\n  symbol:   method setInbandRingtoneSupport(BluetoothDevice)\n  location: variable tbsService of type TbsService\npackages/modules/Bluetooth/android/app/src/com/android/bluetooth/le_audio/LeAudioService.java:1548: error: cannot find symbol\n                        tbsService.clearInbandRingtoneSupport(device);\n                                  ^\n  symbol:   method clearInbandRingtoneSupport(BluetoothDevice)",
       "revId": "835d8a76e13c2522f40a0fc1b5a3995940bbe906",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5cff04a5_1c212ec0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-03-01T21:36:04Z",
+      "side": 1,
+      "message": "aosp/2458352 was merged - not sure why it is failing.",
+      "parentUuid": "90e247f2_3a546d0e",
+      "revId": "835d8a76e13c2522f40a0fc1b5a3995940bbe906",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
