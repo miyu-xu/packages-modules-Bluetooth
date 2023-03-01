@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "523315ca_1d91d237",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 3719,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-03-01T15:50:12Z",
+      "side": 1,
+      "message": "`current_available_contexts |\u003d` ?",
+      "revId": "0a18c23f99a3e683b0e5a58ee7be87a9e9f1de7f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0c09d894_e3458764",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 3851,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-03-01T15:50:12Z",
+      "side": 1,
+      "message": "ditto",
+      "revId": "0a18c23f99a3e683b0e5a58ee7be87a9e9f1de7f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
