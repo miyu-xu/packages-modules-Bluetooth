@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f8ee60c2_8f69ffa0",
+        "filename": "system/bta/csis/csis_client.cc",
+        "patchSetId": 15
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 1875587
+      },
+      "writtenOn": "2023-03-01T09:02:52Z",
+      "side": 1,
+      "message": "You are right, this is redundant. \nThe property was set in the read dis callback.",
+      "parentUuid": "cb56710c_0b5d559f",
+      "range": {
+        "startLine": 166,
+        "startChar": 0,
+        "endLine": 169,
+        "endChar": 5
+      },
+      "revId": "1c675c29f8b39305fec7dc1bc8fac370a89d6830",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "afe77406_0bd6ec37",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-02-24T12:04:46Z",
       "side": 1,
       "message": "So every time member is avaliable we would push remote device property ?\nIsn\u0027t it enough to push it up to java just once when you find the device ?",
+      "range": {
+        "startLine": 1223,
+        "startChar": 0,
+        "endLine": 1226,
+        "endChar": 7
+      },
+      "revId": "1c675c29f8b39305fec7dc1bc8fac370a89d6830",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "74c159c9_dc3fc150",
+        "filename": "system/bta/csis/csis_client.cc",
+        "patchSetId": 15
+      },
+      "lineNbr": 1226,
+      "author": {
+        "id": 1875587
+      },
+      "writtenOn": "2023-03-01T09:02:52Z",
+      "side": 1,
+      "message": "This was redundant, remove this part. \nOnly push the value to java layer once in the connect callback.",
+      "parentUuid": "afe77406_0bd6ec37",
       "range": {
         "startLine": 1223,
         "startChar": 0,
