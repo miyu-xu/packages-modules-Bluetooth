@@ -309,7 +309,7 @@ class PhonePolicy {
         PanService panService = mFactory.getPanService();
         HearingAidService hearingAidService = mFactory.getHearingAidService();
         LeAudioService leAudioService = mFactory.getLeAudioService();
-        CsipSetCoordinatorService csipSetCooridnatorService =
+        CsipSetCoordinatorService csipSetCoordinatorService =
              mFactory.getCsipSetCoordinatorService();
         VolumeControlService volumeControlService =
              mFactory.getVolumeControlService();
@@ -382,14 +382,14 @@ class PhonePolicy {
             }
         }
 
-        if ((csipSetCooridnatorService != null)
+        if ((csipSetCoordinatorService != null)
                 && (Utils.arrayContains(uuids, BluetoothUuid.COORDINATED_SET))
-                && (csipSetCooridnatorService.getConnectionPolicy(device)
+                && (csipSetCoordinatorService.getConnectionPolicy(device)
                         == BluetoothProfile.CONNECTION_POLICY_UNKNOWN)) {
             mAdapterService.getDatabase().setProfileConnectionPolicy(device,
                     BluetoothProfile.CSIP_SET_COORDINATOR, BluetoothProfile.CONNECTION_POLICY_ALLOWED);
             if (mAutoConnectProfilesSupported) {
-                csipSetCooridnatorService.connect(device);
+                csipSetCoordinatorService.connect(device);
             }
         }
 
@@ -453,6 +453,7 @@ class PhonePolicy {
                 bcService.connect(device);
             }
         }
+
         if ((batteryService != null) && Utils.arrayContains(uuids,
                 BluetoothUuid.BATTERY) && (batteryService.getConnectionPolicy(device)
                     == BluetoothProfile.CONNECTION_POLICY_UNKNOWN)) {
@@ -551,7 +552,7 @@ class PhonePolicy {
         A2dpService a2dpService = mFactory.getA2dpService();
         PanService panService = mFactory.getPanService();
         LeAudioService leAudioService = mFactory.getLeAudioService();
-        CsipSetCoordinatorService csipSetCooridnatorService =
+        CsipSetCoordinatorService csipSetCoordinatorService =
         mFactory.getCsipSetCoordinatorService();
 
         if (hsService != null) {
@@ -564,8 +565,8 @@ class PhonePolicy {
             allProfilesEmpty &= a2dpConnDevList.isEmpty();
             atLeastOneProfileConnectedForDevice |= a2dpConnDevList.contains(device);
         }
-        if (csipSetCooridnatorService != null) {
-            List<BluetoothDevice> csipConnDevList = csipSetCooridnatorService.getConnectedDevices();
+        if (csipSetCoordinatorService != null) {
+            List<BluetoothDevice> csipConnDevList = csipSetCoordinatorService.getConnectedDevices();
             allProfilesEmpty &= csipConnDevList.isEmpty();
             atLeastOneProfileConnectedForDevice |= csipConnDevList.contains(device);
         }
@@ -714,7 +715,7 @@ class PhonePolicy {
         A2dpService a2dpService = mFactory.getA2dpService();
         PanService panService = mFactory.getPanService();
         LeAudioService leAudioService = mFactory.getLeAudioService();
-        CsipSetCoordinatorService csipSetCooridnatorService =
+        CsipSetCoordinatorService csipSetCoordinatorService =
             mFactory.getCsipSetCoordinatorService();
         VolumeControlService volumeControlService =
             mFactory.getVolumeControlService();
@@ -764,14 +765,15 @@ class PhonePolicy {
                 leAudioService.connect(device);
             }
         }
-        if (csipSetCooridnatorService != null) {
-            List<BluetoothDevice> csipConnDevList = csipSetCooridnatorService.getConnectedDevices();
-            if (!csipConnDevList.contains(device) && (csipSetCooridnatorService.getConnectionPolicy(device)
-                    == BluetoothProfile.CONNECTION_POLICY_ALLOWED)
-                    && (csipSetCooridnatorService.getConnectionState(device)
-                    == BluetoothProfile.STATE_DISCONNECTED)) {
+        if (csipSetCoordinatorService != null) {
+            List<BluetoothDevice> csipConnDevList = csipSetCoordinatorService.getConnectedDevices();
+            if (!csipConnDevList.contains(device)
+                    && (csipSetCoordinatorService.getConnectionPolicy(device)
+                        == BluetoothProfile.CONNECTION_POLICY_ALLOWED)
+                    && (csipSetCoordinatorService.getConnectionState(device)
+                        == BluetoothProfile.STATE_DISCONNECTED)) {
                 debugLog("Retrying connection to CSIP with device " + device);
-                csipSetCooridnatorService.connect(device);
+                csipSetCoordinatorService.connect(device);
             }
         }
         if (volumeControlService != null) {
