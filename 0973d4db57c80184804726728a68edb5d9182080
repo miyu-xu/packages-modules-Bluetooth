@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "173cdc3e_6005b6fe",
+        "filename": "android/app/src/com/android/bluetooth/btservice/PhonePolicy.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 378,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-03-01T00:49:26Z",
+      "side": 1,
+      "message": "@ugoyu@google.com Please confirm the `!` is the correct condition for this change.\nCf comment on the [other CL](https://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/2421921/comment/078fb203_ea0818d8/)",
+      "range": {
+        "startLine": 378,
+        "startChar": 53,
+        "endLine": 378,
+        "endChar": 77
+      },
+      "revId": "0973d4db57c80184804726728a68edb5d9182080",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
