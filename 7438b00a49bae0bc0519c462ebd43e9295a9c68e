@@ -16,6 +16,24 @@
       "message": "Waiting for pts-bot to pass before +2 and submitting",
       "revId": "7438b00a49bae0bc0519c462ebd43e9295a9c68e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "613365b9_b1f10264",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2023-03-01T17:36:15Z",
+      "side": 1,
+      "message": "pts-bot passed on aosp-master",
+      "parentUuid": "25e1ed2c_6559860c",
+      "revId": "7438b00a49bae0bc0519c462ebd43e9295a9c68e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
