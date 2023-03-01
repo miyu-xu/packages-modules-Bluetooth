@@ -16,6 +16,24 @@
       "message": "LGTM. Could you add a test for this?",
       "revId": "45c509d0804a2808dd6d13373d308ad1cacb0c22",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bc6b2f41_39449b59",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2023-03-01T01:05:05Z",
+      "side": 1,
+      "message": "Yes, still trying to figure what would be the best way to test this but will submit one with this change, thanks Sungsoo!",
+      "parentUuid": "2d6e3afc_8daaa046",
+      "revId": "45c509d0804a2808dd6d13373d308ad1cacb0c22",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
