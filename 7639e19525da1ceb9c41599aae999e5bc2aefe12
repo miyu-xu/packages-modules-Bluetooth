@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e6aa1ac3_dee08eb2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1970930
+      },
+      "writtenOn": "2023-03-01T09:54:13Z",
+      "side": 1,
+      "message": "Hi Charlie,\n\nSubmitted fix for PBAP/PSE/GOEP/SRMP/BI-02-C flakiness.\nRequest you to provide your inputs.\n\nThank you.\n\nRegards,\nFahad",
+      "revId": "7639e19525da1ceb9c41599aae999e5bc2aefe12",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
