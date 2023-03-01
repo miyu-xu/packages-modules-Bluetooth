@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f318bdd1_51bfe789",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-03-01T19:23:50Z",
+      "side": 1,
+      "message": "This doesn\u0027t seems to be a valid test case for native changes",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 14,
+        "endChar": 41
+      },
+      "revId": "e5d82dc3a157255c1d9849eda58c70246a63b7ce",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "13128dc4_f7bef193",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-03-01T19:23:50Z",
+      "side": 1,
+      "message": "Could you precise which Avatar test did you run ?",
+      "range": {
+        "startLine": 15,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 12
+      },
+      "revId": "e5d82dc3a157255c1d9849eda58c70246a63b7ce",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
