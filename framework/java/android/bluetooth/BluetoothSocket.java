@@ -354,7 +354,9 @@ public final class BluetoothSocket implements Closeable {
             mAddress = BluetoothAdapter.getDefaultAdapter().getAddress();
         } else {
             // Remote socket
-            mAddress = device.getAddress();
+            mAddress = type == TYPE_L2CAP || type == TYPE_L2CAP_LE
+                    ? device.getAddress()
+                    : device.getIdentityAddress();
         }
         mInputStream = new BluetoothInputStream(this);
         mOutputStream = new BluetoothOutputStream(this);

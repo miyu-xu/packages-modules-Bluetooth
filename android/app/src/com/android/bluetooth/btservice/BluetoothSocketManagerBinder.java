@@ -49,13 +49,13 @@ class BluetoothSocketManagerBinder extends IBluetoothSocketManager.Stub {
         if (!Utils.checkConnectPermissionForPreflight(mService)) {
             return null;
         }
-
+        String address =
+                type == BluetoothSocket.TYPE_L2CAP || type == BluetoothSocket.TYPE_L2CAP_LE
+                        ? device.getAddress()
+                        : device.getIdentityAddress();
         return marshalFd(
                 mService.connectSocketNative(
-                        Utils.getBytesFromAddress(
-                                type == BluetoothSocket.TYPE_L2CAP_LE
-                                        ? device.getAddress()
-                                        : mService.getIdentityAddress(device.getAddress())),
+                        Utils.getBytesFromAddress(address),
                         type,
                         Utils.uuidToByteArray(uuid),
                         port,
