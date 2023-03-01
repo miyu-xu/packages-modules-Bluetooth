@@ -50,6 +50,24 @@
       "message": "Can we check to see if the system version is \u003e\u003d 3.8 and just use the default system version instead of using a specific version?  Do we really need a specific version?",
       "revId": "dbed55605ed39f8d17ca01d5082fd532e4d52c72",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5ab4d0af_38d6fef1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2023-03-01T06:02:11Z",
+      "side": 1,
+      "message": "I set the version since the gd/cert/run uses fixed version of python.\n\nHowever, it seems this file is not needed, let\u0027s just remove this file.\nI\u0027ll abandon this CL and upload a new one.",
+      "parentUuid": "7b01b1d3_bd8ae0fb",
+      "revId": "dbed55605ed39f8d17ca01d5082fd532e4d52c72",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
