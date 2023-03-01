@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "841e09f7_2762090f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1059936
+      },
+      "writtenOn": "2023-03-01T06:31:33Z",
+      "side": 1,
+      "message": "FYI, still need to manually test this by doing a modified Wear build which does not locally support Codec Negotiation, and ensure that the watch doesn\u0027t initiate Codec Negotiation.",
+      "revId": "53f0f5ab6a970ca7fa4b350dac8a71851189992e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
