@@ -29,6 +29,8 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.media.AudioManager;
+import android.media.BluetoothProfileConnectionInfo;
 import android.os.Looper;
 import android.os.ParcelUuid;
 
@@ -37,18 +39,17 @@ import androidx.test.filters.MediumTest;
 import androidx.test.rule.ServiceTestRule;
 import androidx.test.runner.AndroidJUnit4;
 
-import com.android.bluetooth.R;
 import com.android.bluetooth.TestUtils;
 import com.android.bluetooth.btservice.AdapterService;
 import com.android.bluetooth.btservice.storage.DatabaseManager;
 
 import org.junit.After;
 import org.junit.Assert;
-import org.junit.Assume;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
@@ -236,7 +237,7 @@ public class A2dpServiceTest {
         // Prepare: connect and set active device
         doReturn(true).when(mA2dpNativeInterface).setActiveDevice(any(BluetoothDevice.class));
         connectDevice(mTestDevice);
-        Assert.assertTrue(mA2dpService.setActiveDevice(mTestDevice));
+        Assert.assertTrue(mA2dpService.setActiveDevice(mTestDevice, false));
         verify(mA2dpNativeInterface).setActiveDevice(mTestDevice);
         // A2DP Service is already running: test stop(). Note: must be done on the main thread.
         InstrumentationRegistry.getInstrumentation().runOnMainSync(new Runnable() {
@@ -756,7 +757,7 @@ public class A2dpServiceTest {
                 anyBoolean());
 
         // Test whether active device been removed after enable silence mode.
-        Assert.assertTrue(mA2dpService.setActiveDevice(mTestDevice));
+        Assert.assertTrue(mA2dpService.setActiveDevice(mTestDevice, false));
         Assert.assertEquals(mTestDevice, mA2dpService.getActiveDevice());
         Assert.assertTrue(mA2dpService.setSilenceMode(mTestDevice, true));
         verify(mA2dpNativeInterface).setSilenceDevice(mTestDevice, true);
@@ -768,7 +769,7 @@ public class A2dpServiceTest {
         Assert.assertEquals(mTestDevice, mA2dpService.getActiveDevice());
 
         // Test that active device should not be changed when silence a non-active device
-        Assert.assertTrue(mA2dpService.setActiveDevice(mTestDevice));
+        Assert.assertTrue(mA2dpService.setActiveDevice(mTestDevice, false));
         Assert.assertEquals(mTestDevice, mA2dpService.getActiveDevice());
         Assert.assertTrue(mA2dpService.setSilenceMode(otherDevice, true));
         verify(mA2dpNativeInterface).setSilenceDevice(otherDevice, true);
@@ -778,6 +779,91 @@ public class A2dpServiceTest {
         Assert.assertTrue(mA2dpService.setSilenceMode(otherDevice, false));
         verify(mA2dpNativeInterface).setSilenceDevice(otherDevice, false);
         Assert.assertEquals(mTestDevice, mA2dpService.getActiveDevice());
+    }
+
+    /**
+     * Test whether setActiveDevice(null, false) suppresses noisy intent.
+     * Music should keep playing.
+     * (e.g. user selected LE headset via UI)
+     */
+    @Test
+    public void testSetActiveDeviceToNull_whenCheckStopAudioIsFalse_suppressNoisyIntent() {
+        connectDevice(mTestDevice);
+        doReturn(true).when(mA2dpNativeInterface).setActiveDevice(any(BluetoothDevice.class));
+        Assert.assertTrue(mA2dpService.setActiveDevice(mTestDevice, false));
+        Assert.assertEquals(mTestDevice, mA2dpService.getActiveDevice());
+        AudioManager audioManager = mock(AudioManager.class);
+        mA2dpService.mAudioManager = audioManager;
+
+        Assert.assertTrue(mA2dpService.disconnect(mTestDevice));
+        verifyConnectionStateIntent(TIMEOUT_MS, mTestDevice, BluetoothProfile.STATE_DISCONNECTING,
+                BluetoothProfile.STATE_CONNECTED);
+        mA2dpService.setActiveDevice(null, /*checkStopAudio=*/false);
+
+        ArgumentCaptor<BluetoothProfileConnectionInfo> connectionInfoArgumentCaptor =
+                ArgumentCaptor.forClass(BluetoothProfileConnectionInfo.class);
+        verify(audioManager).handleBluetoothActiveDeviceChanged(
+                isNull(), eq(mTestDevice), connectionInfoArgumentCaptor.capture());
+        BluetoothProfileConnectionInfo connectionInfo =
+                connectionInfoArgumentCaptor.getValue();
+        // Should suppress noisy intent. (i.e. Music should keep playing)
+        Assert.assertTrue(connectionInfo.isSuppressNoisyIntent());
+    }
+
+    /**
+     * Test setActiveDevice(null, true) when the current active a2dp device is still connected
+     * suppress noisy intent.
+     * (e.g. user selected phone speaker via UI)
+     */
+    @Test
+    public void testSetActiveDeviceToNull_whenCheckStopAudioIsTrue_andActiveDeviceIsNotDisconnected_doesNotSuppressNoisyIntent() {
+        connectDevice(mTestDevice);
+        doReturn(true).when(mA2dpNativeInterface).setActiveDevice(any(BluetoothDevice.class));
+        Assert.assertTrue(mA2dpService.setActiveDevice(mTestDevice, false));
+        Assert.assertEquals(mTestDevice, mA2dpService.getActiveDevice());
+        AudioManager audioManager = mock(AudioManager.class);
+        mA2dpService.mAudioManager = audioManager;
+
+        // Active audio device is still connected.
+        mA2dpService.setActiveDevice(null, /*checkStopAudio=*/true);
+
+        ArgumentCaptor<BluetoothProfileConnectionInfo> connectionInfoArgumentCaptor =
+                ArgumentCaptor.forClass(BluetoothProfileConnectionInfo.class);
+        verify(audioManager).handleBluetoothActiveDeviceChanged(
+                isNull(), eq(mTestDevice), connectionInfoArgumentCaptor.capture());
+        BluetoothProfileConnectionInfo connectionInfo =
+                connectionInfoArgumentCaptor.getValue();
+        // Should not suppress noisy intent. (i.e. Music should pause)
+        Assert.assertTrue(connectionInfo.isSuppressNoisyIntent());
+    }
+
+    /**
+     * Test whether setActiveDevice(null, true) when the active device is disconnected
+     * does not suppress noisy intent.
+     * (e.g. The solely connected BT device is disconnected)
+     */
+    @Test
+    public void testSetActiveDeviceToNull_whenCheckStopAudioIsTrue_andActiveDeviceIsDisconnected_doesNotSuppressNoisyIntent() {
+        connectDevice(mTestDevice);
+        doReturn(true).when(mA2dpNativeInterface).setActiveDevice(any(BluetoothDevice.class));
+        Assert.assertTrue(mA2dpService.setActiveDevice(mTestDevice, false));
+        Assert.assertEquals(mTestDevice, mA2dpService.getActiveDevice());
+        AudioManager audioManager = mock(AudioManager.class);
+        mA2dpService.mAudioManager = audioManager;
+
+        Assert.assertTrue(mA2dpService.disconnect(mTestDevice));
+        verifyConnectionStateIntent(TIMEOUT_MS, mTestDevice, BluetoothProfile.STATE_DISCONNECTING,
+                BluetoothProfile.STATE_CONNECTED);
+        mA2dpService.setActiveDevice(null, /*checkStopAudio=*/true);
+
+        ArgumentCaptor<BluetoothProfileConnectionInfo> connectionInfoArgumentCaptor =
+                ArgumentCaptor.forClass(BluetoothProfileConnectionInfo.class);
+        verify(audioManager).handleBluetoothActiveDeviceChanged(
+                isNull(), eq(mTestDevice), connectionInfoArgumentCaptor.capture());
+        BluetoothProfileConnectionInfo connectionInfo =
+                connectionInfoArgumentCaptor.getValue();
+        // Should not suppress noisy intent. (i.e. Music should pause)
+        Assert.assertFalse(connectionInfo.isSuppressNoisyIntent());
     }
 
     /**

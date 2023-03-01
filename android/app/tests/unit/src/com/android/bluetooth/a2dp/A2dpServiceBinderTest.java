@@ -18,6 +18,8 @@ package com.android.bluetooth.a2dp;
 
 import static android.bluetooth.BluetoothCodecConfig.SOURCE_CODEC_TYPE_INVALID;
 
+import static org.mockito.ArgumentMatchers.anyBoolean;
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.doReturn;
 
@@ -123,7 +125,7 @@ public class A2dpServiceBinderTest {
         final SynchronousResultReceiver<Boolean> recv = SynchronousResultReceiver.get();
 
         mBinder.setActiveDevice(device, source, recv);
-        verify(mService).setActiveDevice(device);
+        verify(mService).setActiveDevice(eq(device), anyBoolean());
     }
 
     @Test
