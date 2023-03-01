@@ -80,6 +80,30 @@
       },
       "revId": "e76741b86c79f915d748b3deaad861b3ff7a851b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "84f883fe_d014a2b5",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/gap.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 546,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2023-03-01T17:57:37Z",
+      "side": 1,
+      "message": "It might make more sense if we wait for the connection in the first MMI. Thus said it might not work because the pts can perform the connection only once the MMI is finised and/or some tests might even never trigger the connection and just check if the advertising packet is well formatted.",
+      "parentUuid": "ab850822_84f81011",
+      "range": {
+        "startLine": 545,
+        "startChar": 8,
+        "endLine": 546,
+        "endChar": 61
+      },
+      "revId": "e76741b86c79f915d748b3deaad861b3ff7a851b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

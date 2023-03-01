@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a7e92814_8f9d86f1",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/gap.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 627,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2023-03-01T17:57:37Z",
+      "side": 1,
+      "message": "Is `@assert_description` not needed here ?",
+      "range": {
+        "startLine": 627,
+        "startChar": 45,
+        "endLine": 627,
+        "endChar": 67
+      },
+      "revId": "b1b36a24828fb4097c75ba83ba4b0b327415990a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
