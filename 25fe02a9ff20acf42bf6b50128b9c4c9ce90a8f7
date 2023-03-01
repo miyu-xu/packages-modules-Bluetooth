@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bca4f13e_b2dc628e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-03-01T09:58:10Z",
+      "side": 1,
+      "message": "```\nLE Audio Groups:\n\n    \u003d\u003d Group id: 3 \u003d\u003d , Inactive\n      state: IDLE (0x00),       target state: IDLE (0x00),      cig state: NONE (0x00)\n      group available contexts:  (0x0000)      configuration context type: UNINITIALIZED      active configuration name:  not set\n      stream configuration:  unknown\n      codec id: 0,      pending_configuration: 0\n      num of devices(connected): 1(0)\n,     num of sinks(connected): 0(0)\n      num of sources(connected): 0(0)\n      allocated CISes: 0\n      \u003d\u003d devices: \u003d\u003d\n        address: 88:ee:6d:12:ca:53: CONNECTING_AUTOCONNECT (0x07): , acl_handle: 65535, left,   Unecrypted,mtu: 0\n        number of ases_: 3\n        \u003d\u003d ASEs \u003d\u003d\n        id  active dir     cis_id  cis_handle  sdu  latency rtn  state\n        1   false  sink    255     0           0    0       0    IDLE (0x00)\n        2   false  sink    255     0           0    0       0    IDLE (0x00)\n        3   false  source  255     0           0    0       0    IDLE (0x00)\n        \u003d\u003d\u003d\u003d\n        address: 88:ee:6d:12:ca:53\n        Sink PACs\n                value handle: 0x1202 / CCC handle: 0x1203\n\n                CodecId(Coding format: 6, Vendor company ID: 0, Vendor codec ID: 0)\n                Codec specific capabilities:\n                        type: 1 len: 2  data: 0400\n                        type: 2 len: 1  data: 03\n                        type: 3 len: 1  data: 01\n                        type: 4 len: 4  data: 1E002800\n                        type: 5 len: 1  data: 01\n                Metadata: 03010100\n\n                CodecId(Coding format: 6, Vendor company ID: 0, Vendor codec ID: 0)\n                Codec specific capabilities:\n                        type: 1 len: 2  data: 2000\n                        type: 2 len: 1  data: 03\n                        type: 3 len: 1  data: 01\n                        type: 4 len: 4  data: 3C005000\n                        type: 5 len: 1  data: 01\n                Metadata: 03010100\n\n                CodecId(Coding format: 6, Vendor company ID: 0, Vendor codec ID: 0)\n                Codec specific capabilities:\n                        type: 1 len: 2  data: 1000\n                        type: 2 len: 1  data: 03\n                        type: 3 len: 1  data: 01\n                        type: 4 len: 4  data: 2D003C00\n                        type: 5 len: 1  data: 01\n                Metadata: 03010100\n\n                CodecId(Coding format: 6, Vendor company ID: 0, Vendor codec ID: 0)\n                Codec specific capabilities:\n                        type: 1 len: 2  data: 8000\n                        type: 2 len: 1  data: 03\n                        type: 3 len: 1  data: 01\n                        type: 4 len: 4  data: 4B009B00\n                        type: 5 len: 1  data: 01\n                Metadata: 03010100\n        Source PACs\n                value handle: 0x1208 / CCC handle: 0x1209\n\n                CodecId(Coding format: 6, Vendor company ID: 0, Vendor codec ID: 0)\n                Codec specific capabilities:\n                        type: 1 len: 2  data: 0400\n                        type: 2 len: 1  data: 03\n                        type: 3 len: 1  data: 01\n                        type: 4 len: 4  data: 1E002800\n                        type: 5 len: 1  data: 01\n                Metadata: 03010100\n\n                CodecId(Coding format: 6, Vendor company ID: 0, Vendor codec ID: 0)\n                Codec specific capabilities:\n                        type: 1 len: 2  data: 2000\n                        type: 2 len: 1  data: 03\n                        type: 3 len: 1  data: 01\n                        type: 4 len: 4  data: 3C005000\n                        type: 5 len: 1  data: 01\n                Metadata: 03010100\n\n                CodecId(Coding format: 6, Vendor company ID: 0, Vendor codec ID: 0)\n                Codec specific capabilities:\n\n\n```",
+      "parentUuid": "0ce50329_61782da3",
+      "range": {
+        "startLine": 9,
+        "startChar": 18,
+        "endLine": 9,
+        "endChar": 22
+      },
+      "revId": "25fe02a9ff20acf42bf6b50128b9c4c9ce90a8f7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "65d18e4e_4a723c1d",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-02-27T15:09:35Z",
       "side": 1,
       "message": "Please fix this WARNING reported by Build Warnings: the parameter \u0027indent_string\u0027 is copied for each invocation but only used as a const reference; consider making it a const reference [performance-unnecessary-value-param]\n\nAnalyzer Description: Reports warnings that originate from build.log in the build artifacts.\nOwner: farivar@google.com\n\n    the parameter \u0027indent_string\u0027 is copied for each invocation but only used as a const reference; consider making it a const reference [performance-unnecessary-value-param]\n    std::string LeAudioLtvMap::ToString(std::string indent_string) const {\n                                                    ^\n                                        const      \u0026\n\nThis finding was found on https://android-build.googleplex.com/builds/build-details/P50657392/targets/aosp_arm64-userdebug_tidy, but may also be present on other builds.",
+      "range": {
+        "startLine": 534,
+        "startChar": 49,
+        "endLine": 534,
+        "endChar": 70
+      },
+      "revId": "25fe02a9ff20acf42bf6b50128b9c4c9ce90a8f7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "927bcf50_a08a1ffe",
+        "filename": "system/bta/le_audio/le_audio_types.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 534,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-03-01T09:58:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "65d18e4e_4a723c1d",
       "range": {
         "startLine": 534,
         "startChar": 49,
