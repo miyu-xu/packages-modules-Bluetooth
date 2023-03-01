@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "401f112e_50a506a8",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2023-03-01T06:34:39Z",
+      "side": 1,
+      "message": "Do we have an associated bug?",
+      "range": {
+        "startLine": 8,
+        "startChar": 0,
+        "endLine": 8,
+        "endChar": 0
+      },
+      "revId": "02fcc49802ecf91bb25a4c5b25059d708ccf5abc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6899d0b0_d0f0a710",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2023-03-01T06:34:39Z",
+      "side": 1,
+      "message": "atest BluetoothInstrumentationTests",
+      "range": {
+        "startLine": 9,
+        "startChar": 6,
+        "endLine": 9,
+        "endChar": 13
+      },
+      "revId": "02fcc49802ecf91bb25a4c5b25059d708ccf5abc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
