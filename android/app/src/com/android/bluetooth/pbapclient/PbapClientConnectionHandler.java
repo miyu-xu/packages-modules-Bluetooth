@@ -229,13 +229,13 @@ class PbapClientConnectionHandler extends Handler {
                         mObexSession.disconnect(null);
                         mObexSession.close();
                     }
-
+                } catch (IOException e) {
+                    Log.w(TAG, "DISCONNECT Failure ", e);
+                } finally {
                     if (DBG) {
                         Log.d(TAG, "Closing Socket");
                     }
                     closeSocket();
-                } catch (IOException e) {
-                    Log.w(TAG, "DISCONNECT Failure ", e);
                 }
                 if (DBG) {
                     Log.d(TAG, "Completing Disconnect");
@@ -358,6 +358,7 @@ class PbapClientConnectionHandler extends Handler {
             // mSocket can be set to null if an abort() --> closeSocket() was called between
             // the calls to connectSocket() and connectObexSession().
             Log.w(TAG, "CONNECT Failure ", e);
+        } finally {
             closeSocket();
         }
         return connectionSuccessful;
