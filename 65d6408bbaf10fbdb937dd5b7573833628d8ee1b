@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9a442c2a_12229b9f",
+        "filename": "system/stack/test/btm_iso_test.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 2381,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-03-01T07:47:06Z",
+      "side": 1,
+      "message": "ASSERT_EQ(IsIsoActive, false);",
+      "revId": "65d6408bbaf10fbdb937dd5b7573833628d8ee1b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5020acff_c85a079e",
+        "filename": "system/stack/test/btm_iso_test.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 2385,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-03-01T07:47:06Z",
+      "side": 1,
+      "message": "After CIG is created, you should just assert, rather than setting the flag yourself ?\n\n  ASSERT_EQ(IsIsoActive, true);",
+      "range": {
+        "startLine": 2385,
+        "startChar": 2,
+        "endLine": 2385,
+        "endChar": 21
+      },
+      "revId": "65d6408bbaf10fbdb937dd5b7573833628d8ee1b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
