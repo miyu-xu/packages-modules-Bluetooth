@@ -298,7 +298,7 @@ public class AvrcpTargetService extends ProfileService {
             Log.d(TAG, "setA2dpActiveDevice: A2dp service not found");
             return;
         }
-        service.setActiveDevice(device);
+        service.setActiveDevice(device, false);
     }
 
     void deviceConnected(BluetoothDevice device, boolean absoluteVolume) {

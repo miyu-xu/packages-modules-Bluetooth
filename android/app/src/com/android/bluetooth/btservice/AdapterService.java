@@ -5185,7 +5185,7 @@ public class AdapterService extends Service {
                 || mA2dpService.getConnectionPolicy(device)
                 == BluetoothProfile.CONNECTION_POLICY_ALLOWED)) {
             Log.i(TAG, "setActiveDevice: Setting active A2dp device " + device);
-            mA2dpService.setActiveDevice(device);
+            mA2dpService.setActiveDevice(device, false);
         }
 
         if (mHearingAidService != null && (device == null
