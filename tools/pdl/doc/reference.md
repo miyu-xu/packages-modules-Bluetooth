@@ -161,22 +161,28 @@ A declaration is either:
 > &nbsp;&nbsp; enum_tag (`,` enum_tag)* `,`?
 >
 > enum_tag:\
-> &nbsp;&nbsp; [IDENTIFIER](#identifier) `=` [INTEGER](#integer)
+> &nbsp;&nbsp; [IDENTIFIER](#identifier) `=` [INTEGER](#integer) (`..` [INTEGER](#integer))?
 
-An *enumeration* or for short *enum*, is a declaration of a set of named [integer](#integer) constants.
+An *enumeration* or for short *enum*, is a declaration of a set of named [integer](#integer) constants
+or named [integer](#integer) ranges. [integer](#integer)  ranges are inclusive in both ends.
+It is valid to specify a constant [integer](#integer) value within a range, but ranges
+*must not* overlap.
 
 The [integer](#integer) following the name specifies the bit size of the values.
 
 ```
 enum CoffeeAddition: 3 {
+  NonAlcoholic = 0..9,
   Empty = 0,
   Cream = 1,
   Vanilla = 2,
   Chocolate = 3,
-  Whisky = 4,
-  Rum = 5,
-  Kahlua = 6,
-  Aquavit = 7
+
+  Alcoholic = 10..19,
+  Whisky = 10,
+  Rum = 11,
+  Kahlua = 12,
+  Aquavit = 13,
 }
 ```
 
