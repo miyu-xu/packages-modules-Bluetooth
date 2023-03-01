@@ -404,7 +404,7 @@ static void bta_ag_create_sco(tBTA_AG_SCB* p_scb, bool is_orig) {
       params = esco_parameters_for_codec(ESCO_CODEC_MSBC_T1, offload);
     }
   } else {
-    if (p_scb->features & BTA_AG_PEER_FEAT_ESCO_S4 &&
+    if (p_scb->features & BTA_AG_FEAT_ESCO_S4 &&
         (p_scb->peer_features & BTA_AG_PEER_FEAT_ESCO_S4)) {
       // HFP >=1.7 eSCO
       params = esco_parameters_for_codec(ESCO_CODEC_CVSD_S4, offload);
@@ -477,7 +477,7 @@ static void bta_ag_create_pending_sco(tBTA_AG_SCB* p_scb, bool is_local) {
         params = esco_parameters_for_codec(ESCO_CODEC_MSBC_T1, offload);
       }
     } else {
-      if (p_scb->features & BTA_AG_PEER_FEAT_ESCO_S4 &&
+      if (p_scb->features & BTA_AG_FEAT_ESCO_S4 &&
           (p_scb->peer_features & BTA_AG_PEER_FEAT_ESCO_S4)) {
         // HFP >=1.7 eSCO
         params = esco_parameters_for_codec(ESCO_CODEC_CVSD_S4, offload);
@@ -512,7 +512,7 @@ static void bta_ag_create_pending_sco(tBTA_AG_SCB* p_scb, bool is_local) {
     // and there is no plan to implement corresponding command handlers,
     // so we only accept CVSD connection from HF no matter what's
     // requested.
-    if (p_scb->features & BTA_AG_PEER_FEAT_ESCO_S4 &&
+    if (p_scb->features & BTA_AG_FEAT_ESCO_S4 &&
         (p_scb->peer_features & BTA_AG_PEER_FEAT_ESCO_S4)) {
       // HFP >=1.7 eSCO
       params = esco_parameters_for_codec(ESCO_CODEC_CVSD_S4, offload);
