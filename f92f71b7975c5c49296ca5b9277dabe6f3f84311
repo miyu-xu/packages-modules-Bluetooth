@@ -16,6 +16,23 @@
       "message": "Please take another look, thanks!",
       "revId": "f92f71b7975c5c49296ca5b9277dabe6f3f84311",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "13779eca_f8accff8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-03-01T17:47:29Z",
+      "side": 1,
+      "message": "LGTM. Please rebase atop aosp/2462375 and verify that pts-bot tests for HID/HOS pass.",
+      "revId": "f92f71b7975c5c49296ca5b9277dabe6f3f84311",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
