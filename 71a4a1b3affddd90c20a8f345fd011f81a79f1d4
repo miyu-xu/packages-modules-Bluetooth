@@ -22,6 +22,30 @@
       },
       "revId": "71a4a1b3affddd90c20a8f345fd011f81a79f1d4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c0b79f8b_a0c40232",
+        "filename": "floss/build/build-in-container.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-03-01T00:29:40Z",
+      "side": 1,
+      "message": "Nack. The default is to have the PTTY available because that\u0027s how the developer expects to use it.",
+      "parentUuid": "c32b79da_96c07881",
+      "range": {
+        "startLine": 185,
+        "startChar": 27,
+        "endLine": 185,
+        "endChar": 33
+      },
+      "revId": "71a4a1b3affddd90c20a8f345fd011f81a79f1d4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
