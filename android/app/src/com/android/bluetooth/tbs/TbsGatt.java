@@ -40,8 +40,11 @@ import com.android.bluetooth.btservice.AdapterService;
 import com.android.internal.annotations.VisibleForTesting;
 
 import java.io.ByteArrayOutputStream;
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -141,11 +144,11 @@ public class TbsGatt {
     private final GattCharacteristic mTerminationReasonCharacteristic;
     private final GattCharacteristic mIncomingCallCharacteristic;
     private final GattCharacteristic mCallFriendlyNameCharacteristic;
-    private List<BluetoothDevice> mSubscribers = new ArrayList<>();
     private BluetoothGattServerProxy mBluetoothGattServer;
     private Handler mHandler;
     private Callback mCallback;
     private AdapterService mAdapterService;
+    private HashMap<BluetoothDevice, HashMap<UUID, Short>> mCccDescriptorValues;
 
     public static abstract class Callback {
 
@@ -233,6 +236,7 @@ public class TbsGatt {
     public boolean init(int ccid, String uci, List<String> uriSchemes,
             boolean isLocalHoldOpcodeSupported, boolean isJoinOpcodeSupported, String providerName,
             int technology, Callback callback) {
+        mCccDescriptorValues = new HashMap<>();
         mBearerProviderNameCharacteristic.setValue(providerName);
         mBearerTechnologyCharacteristic.setValue(new byte[] {(byte) (technology & 0xFF)});
         mBearerUciCharacteristic.setValue(uci);
@@ -330,28 +334,51 @@ public class TbsGatt {
         }
     }
 
+    @VisibleForTesting
+    void setCcc(BluetoothDevice device, UUID charUuid, byte[] value) {
+        HashMap<UUID, Short> characteristicCcc = mCccDescriptorValues.get(device);
+        if (characteristicCcc == null) {
+            characteristicCcc = new HashMap<>();
+            mCccDescriptorValues.put(device, characteristicCcc);
+        }
+
+        characteristicCcc.put(charUuid,
+                ByteBuffer.wrap(value).order(ByteOrder.LITTLE_ENDIAN).getShort());
+
+        Log.d(TAG, "setCcc, device: " + device.getAddress() + ", UUID: " + charUuid + ", value: "
+                + characteristicCcc.get(charUuid));
+    }
+
+    private byte[] getCccBytes(BluetoothDevice device, UUID charUuid) {
+        Map<UUID, Short> characteristicCcc = mCccDescriptorValues.get(device);
+        if (characteristicCcc != null) {
+            ByteBuffer bb = ByteBuffer.allocate(Short.BYTES).order(ByteOrder.LITTLE_ENDIAN);
+            Short ccc = characteristicCcc.get(charUuid);
+            if (ccc != null) {
+                bb.putShort(characteristicCcc.get(charUuid));
+                return bb.array();
+            }
+        }
+
+        return BluetoothGattDescriptor.DISABLE_NOTIFICATION_VALUE;
+    }
+
     /** Class that handles GATT characteristic notifications */
     private class BluetoothGattCharacteristicNotifier {
-        public int setSubscriptionConfiguration(BluetoothDevice device, byte[] configuration) {
-            if (Arrays.equals(configuration, BluetoothGattDescriptor.DISABLE_NOTIFICATION_VALUE)) {
-                mSubscribers.remove(device);
-            } else if (!isSubscribed(device)) {
-                mSubscribers.add(device);
-            }
+        public int setSubscriptionConfiguration(BluetoothDevice device, UUID uuid,
+                byte[] configuration) {
+            setCcc(device, uuid, configuration);
 
             return BluetoothGatt.GATT_SUCCESS;
         }
 
-        public byte[] getSubscriptionConfiguration(BluetoothDevice device) {
-            if (isSubscribed(device)) {
-                return BluetoothGattDescriptor.ENABLE_NOTIFICATION_VALUE;
-            }
-
-            return BluetoothGattDescriptor.DISABLE_NOTIFICATION_VALUE;
+        public byte[] getSubscriptionConfiguration(BluetoothDevice device, UUID uuid) {
+            return getCccBytes(device, uuid);
         }
 
-        public boolean isSubscribed(BluetoothDevice device) {
-            return mSubscribers.contains(device);
+        public boolean isSubscribed(BluetoothDevice device, UUID uuid) {
+            return Arrays.equals(getCccBytes(device, uuid),
+                    BluetoothGattDescriptor.ENABLE_NOTIFICATION_VALUE);
         }
 
         private void notifyCharacteristicChanged(BluetoothDevice device,
@@ -362,14 +389,14 @@ public class TbsGatt {
         }
 
         public void notify(BluetoothDevice device, BluetoothGattCharacteristic characteristic) {
-            if (isSubscribed(device)) {
+            if (isSubscribed(device, characteristic.getUuid())) {
                 notifyCharacteristicChanged(device, characteristic);
             }
         }
 
         public void notifyAll(BluetoothGattCharacteristic characteristic) {
-            for (BluetoothDevice device : mSubscribers) {
-                notifyCharacteristicChanged(device, characteristic);
+            for (BluetoothDevice device : mCccDescriptorValues.keySet()) {
+                notify(device, characteristic);
             }
         }
     }
@@ -389,12 +416,13 @@ public class TbsGatt {
             }
         }
 
-        public byte[] getSubscriptionConfiguration(BluetoothDevice device) {
-            return mNotifier.getSubscriptionConfiguration(device);
+        public byte[] getSubscriptionConfiguration(BluetoothDevice device, UUID uuid) {
+            return mNotifier.getSubscriptionConfiguration(device, uuid);
         }
 
-        public int setSubscriptionConfiguration(BluetoothDevice device, byte[] configuration) {
-            return mNotifier.setSubscriptionConfiguration(device, configuration);
+        public int setSubscriptionConfiguration(BluetoothDevice device, UUID uuid,
+                byte[] configuration) {
+            return mNotifier.setSubscriptionConfiguration(device, uuid, configuration);
         }
 
         private boolean isNotifiable() {
@@ -505,7 +533,8 @@ public class TbsGatt {
 
         public byte[] getValue(BluetoothDevice device) {
             GattCharacteristic characteristic = (GattCharacteristic) getCharacteristic();
-            byte value[] = characteristic.getSubscriptionConfiguration(device);
+            byte[] value = characteristic.getSubscriptionConfiguration(device,
+                    characteristic.getUuid());
             if (value == null) {
                 return BluetoothGattDescriptor.DISABLE_NOTIFICATION_VALUE;
             }
@@ -538,7 +567,8 @@ public class TbsGatt {
                 Log.e(TAG, "Not handled CCC value: " + Arrays.toString(value));
             }
 
-            return characteristic.setSubscriptionConfiguration(device, value);
+            return characteristic.setSubscriptionConfiguration(device, characteristic.getUuid(),
+                    value);
         }
     }
 
@@ -771,7 +801,6 @@ public class TbsGatt {
                 }
 
                 descriptor.setValue(BluetoothGattDescriptor.ENABLE_NOTIFICATION_VALUE);
-                mSubscribers.add(device);
             }
         }
     }
