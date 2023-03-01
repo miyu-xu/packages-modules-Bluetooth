@@ -89,6 +89,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "566da66f_4cb18746",
+        "filename": "system/bta/gatt/bta_gattc_cache.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 809,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-03-01T21:46:48Z",
+      "side": 1,
+      "message": "would be better if we could add an IOP database and only allow partial GATT service discovery results for remote devices that has certain service UUIDs",
+      "range": {
+        "startLine": 809,
+        "startChar": 12,
+        "endLine": 809,
+        "endChar": 50
+      },
+      "revId": "25287400e0a6497c4f244f0179072fbbcee87e89",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4539a9f4_f83200cb",
         "filename": "system/gd/common/init_flags.fbs",
         "patchSetId": 5
