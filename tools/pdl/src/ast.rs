@@ -57,10 +57,9 @@ pub struct Endianness {
 
 #[derive(Debug, Serialize, Clone)]
 #[serde(tag = "kind", rename = "tag")]
-pub struct Tag {
-    pub id: String,
-    pub loc: SourceRange,
-    pub value: usize,
+pub enum Tag {
+    Value { id: String, loc: SourceRange, value: usize },
+    Range { id: String, loc: SourceRange, range: std::ops::Range<usize> },
 }
 
 #[derive(Debug, Serialize, Clone)]
@@ -246,7 +245,36 @@ impl Eq for Tag {}
 impl PartialEq for Tag {
     fn eq(&self, other: &Self) -> bool {
         // Implement structual equality, leave out loc.
-        self.id == other.id && self.value == other.value
+        match (self, other) {
+            (Tag::Value { id, value, .. }, Tag::Value { id: other_id, value: other_value, .. }) => {
+                id == other_id && value == other_value
+            }
+            (Tag::Range { id, range, .. }, Tag::Range { id: other_id, range: other_range, .. }) => {
+                id == other_id && range == other_range
+            }
+            _ => false,
+        }
+    }
+}
+
+impl Tag {
+    pub fn id(&self) -> &str {
+        match self {
+            Tag::Value { id, .. } | Tag::Range { id, .. } => id,
+        }
+    }
+
+    pub fn loc(&self) -> &SourceRange {
+        match self {
+            Tag::Value { loc, .. } | Tag::Range { loc, .. } => loc,
+        }
+    }
+
+    pub fn value(&self) -> Option<usize> {
+        match self {
+            Tag::Value { value, .. } => Some(*value),
+            Tag::Range { .. } => None,
+        }
     }
 }
 

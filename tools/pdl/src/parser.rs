@@ -48,7 +48,7 @@ size_modifier = @{ "+" ~ intvalue }
 
 endianness_declaration = { "little_endian_packets" | "big_endian_packets" }
 
-enum_tag = { identifier ~ "=" ~ integer }
+enum_tag = { identifier ~ "=" ~ integer ~ (".." ~ integer)? }
 enum_tag_list = { enum_tag ~ ("," ~ enum_tag)* ~ ","? }
 enum_declaration = {
     "enum" ~ identifier ~ ":" ~ integer ~ "{" ~
@@ -302,8 +302,13 @@ fn parse_enum_tag(node: Node<'_>, context: &Context) -> Result<crate::ast::Tag, 
         let loc = node.as_loc(context);
         let mut children = node.children();
         let id = parse_identifier(&mut children)?;
-        let value = parse_integer(&mut children)?;
-        Ok(crate::ast::Tag { id, loc, value })
+        let start_value = parse_integer(&mut children)?;
+        let end_value = parse_integer_opt(&mut children)?;
+        if let Some(end_value) = end_value {
+            Ok(crate::ast::Tag::Range { id, loc, range: start_value..end_value })
+        } else {
+            Ok(crate::ast::Tag::Value { id, loc, value: start_value })
+        }
     }
 }
 
