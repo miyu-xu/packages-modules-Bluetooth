@@ -37,7 +37,9 @@ class Node:
 @node('tag')
 class Tag(Node):
     id: str
-    value: int
+    value: Optional[int]
+    range: Optional[(int, int)]
+    tags: Optional[List['Tag']]
 
 
 @node('constraint')
@@ -247,6 +249,8 @@ def convert_(obj: object) -> object:
     if isinstance(obj, list):
         return [convert_(elt) for elt in obj]
     if isinstance(obj, object):
+        if 'start' in vars(obj).keys() and 'end' in vars(obj).keys():
+            return (objs.start, obj.end)
         kind = obj['kind']
         loc = obj['loc']
         loc = SourceRange(loc['file'], SourceLocation(**loc['start']), SourceLocation(**loc['end']))
