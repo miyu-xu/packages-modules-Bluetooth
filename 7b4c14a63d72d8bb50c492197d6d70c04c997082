@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "db1aa6bc_2f6fee9b",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 3499,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-03-02T09:24:59Z",
+      "side": 1,
+      "message": "Ok - could you just put a comment in the code saying that?",
+      "parentUuid": "96aa2f0a_1ff114a0",
+      "revId": "7b4c14a63d72d8bb50c492197d6d70c04c997082",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d646ca88_ef6e1b0d",
         "filename": "system/bta/le_audio/client.cc",
         "patchSetId": 1
