@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8946c893_a6670831",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-03-02T22:43:56Z",
+      "side": 1,
+      "message": "@eruffieux@google.com FYI\n\nThis will change auto-connection order between leaudio and  a2dp / hfp.\n\nWhen the property is set it will also directly auto-connect but the feature is disabled by default and will be only enabled on watch",
+      "revId": "dda106b293a366b883b7805d3ffd98270b2e0155",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d402ae36_79def156",
+        "filename": "android/app/src/com/android/bluetooth/btservice/PhonePolicy.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-03-02T22:43:56Z",
+      "side": 1,
+      "message": "Property holding boolean value are marked with `enabled`. Can we change the name for `bluetooth.phone_policy.auto_connect.enabled` ?",
+      "range": {
+        "startLine": 102,
+        "startChar": 49,
+        "endLine": 102,
+        "endChar": 55
+      },
+      "revId": "dda106b293a366b883b7805d3ffd98270b2e0155",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d860a743_9679c17c",
+        "filename": "android/app/src/com/android/bluetooth/btservice/PhonePolicy.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 358,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-03-02T22:43:56Z",
+      "side": 1,
+      "message": "This logic is different from the ASHA logic (line 420).\n\nWhy do we need to set the policy for FORBIDDEN on a2dp \u0026 headset but not on asha ?\n\nWhy are we not checking `mPreferLeAudioOnlyMode` in ASHA ?",
+      "range": {
+        "startLine": 353,
+        "startChar": 12,
+        "endLine": 358,
+        "endChar": 13
+      },
+      "revId": "dda106b293a366b883b7805d3ffd98270b2e0155",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

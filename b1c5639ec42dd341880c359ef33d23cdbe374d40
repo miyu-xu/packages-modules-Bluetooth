@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f795e87d_6760e3de",
+        "filename": "android/app/src/com/android/bluetooth/btservice/PhonePolicy.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 346,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-03-02T22:43:56Z",
+      "side": 1,
+      "message": "it\u0027s true that connect() is deprecated for external caller.\nI am not sure what is the guideline for internal caller.\n\nLet\u0027s keep this for a follow-up",
+      "parentUuid": "22080ef4_3ffa3343",
+      "range": {
+        "startLine": 339,
+        "startChar": 12,
+        "endLine": 346,
+        "endChar": 9
+      },
+      "revId": "b1c5639ec42dd341880c359ef33d23cdbe374d40",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ca50aca4_1a55cadb",
@@ -180,6 +204,30 @@
       "side": 1,
       "message": "Done. Added unit test and changed the code a bit.",
       "parentUuid": "7e107faa_d5d12918",
+      "range": {
+        "startLine": 369,
+        "startChar": 7,
+        "endLine": 404,
+        "endChar": 88
+      },
+      "revId": "b1c5639ec42dd341880c359ef33d23cdbe374d40",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "244996ed_00906fd1",
+        "filename": "android/app/src/com/android/bluetooth/btservice/PhonePolicy.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 404,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-03-02T22:43:56Z",
+      "side": 1,
+      "message": "I still think we should split the CL in order to make each change easier",
+      "parentUuid": "b144c303_d3969aea",
       "range": {
         "startLine": 369,
         "startChar": 7,
