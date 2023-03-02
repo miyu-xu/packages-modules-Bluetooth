@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "68b35522_c39c64c7",
+        "filename": "android/app/src/com/android/bluetooth/pbapclient/PbapClientConnectionHandler.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 362,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-03-02T14:45:12Z",
+      "side": 1,
+      "message": "Do we always want to closeSocket here?  Before we were only closing it when there was an error.\n\nThe other one makes sense to me, because if there was an error, we might skip the call to closeSocket.",
+      "range": {
+        "startLine": 361,
+        "startChar": 0,
+        "endLine": 362,
+        "endChar": 26
+      },
+      "revId": "ed2b055f6019557afee902e5b63f2d1fa391d403",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
