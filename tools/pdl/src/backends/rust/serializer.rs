@@ -146,7 +146,7 @@ impl<'a> FieldSerializer<'a> {
                 };
 
                 self.code.push(quote! {
-                    if #array_size > #max_value {
+                    if #array_size > #max_value as usize {
                         panic!(
                             "Invalid length for {}::{}: {} > {}",
                             #packet_name, #field_id, #array_size, #max_value
@@ -167,7 +167,7 @@ impl<'a> FieldSerializer<'a> {
                     let packet_name = &self.packet_name;
                     let max_value = mask_bits(*width);
                     self.code.push(quote! {
-                        if self.#field_name.len() > #max_value {
+                        if self.#field_name.len() > #max_value as usize {
                             panic!(
                                 "Invalid length for {}::{}: {} > {}",
                                 #packet_name, #field_id, self.#field_name.len(), #max_value

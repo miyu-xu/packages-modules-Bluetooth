@@ -38,7 +38,7 @@ pub trait Packet {
     fn to_vec(self) -> Vec<u8>;
 }
 
-#[derive(Debug)]
+#[derive(Debug, Clone, PartialEq, Eq)]
 #[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 pub struct Foo {
     pub a: u8,

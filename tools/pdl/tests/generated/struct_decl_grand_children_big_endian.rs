@@ -82,7 +82,7 @@ impl<'de> serde::Deserialize<'de> for Enum16 {
     }
 }
 
-#[derive(Debug)]
+#[derive(Debug, Clone, PartialEq, Eq)]
 #[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 pub struct Parent {
     pub foo: Enum16,
@@ -150,7 +150,7 @@ impl Parent {
         buffer.put_u16(self.foo.to_u16().unwrap());
         buffer.put_u16(self.bar.to_u16().unwrap());
         buffer.put_u16(self.baz.to_u16().unwrap());
-        if self.child.get_total_size() > 0xff {
+        if self.child.get_total_size() > 0xff as usize {
             panic!(
                 "Invalid length for {}::{}: {} > {}",
                 "Parent",
@@ -174,7 +174,7 @@ impl Parent {
     }
 }
 
-#[derive(Debug)]
+#[derive(Debug, Clone, PartialEq, Eq)]
 #[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 pub struct Child {
     pub quux: Enum16,
@@ -221,7 +221,7 @@ impl Child {
     }
 }
 
-#[derive(Debug)]
+#[derive(Debug, Clone, PartialEq, Eq)]
 #[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 pub struct GrandChild {
     pub payload: Vec<u8>,
@@ -258,7 +258,7 @@ impl GrandChild {
     }
 }
 
-#[derive(Debug)]
+#[derive(Debug, Clone, PartialEq, Eq)]
 #[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 pub struct GrandGrandChild {
     pub payload: Vec<u8>,

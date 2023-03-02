@@ -82,7 +82,7 @@ impl<'de> serde::Deserialize<'de> for Enum16 {
     }
 }
 
-#[derive(Debug)]
+#[derive(Debug, Clone, PartialEq, Eq)]
 #[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 pub enum FooDataChild {
     Bar(Arc<BarData>),
@@ -100,7 +100,7 @@ impl FooDataChild {
         }
     }
 }
-#[derive(Debug)]
+#[derive(Debug, Clone, PartialEq, Eq)]
 #[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 pub enum FooChild {
     Bar(Bar),
@@ -108,14 +108,14 @@ pub enum FooChild {
     Payload(Bytes),
     None,
 }
-#[derive(Debug)]
+#[derive(Debug, Clone, PartialEq, Eq)]
 #[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 pub struct FooData {
     a: u8,
     b: Enum16,
     child: FooDataChild,
 }
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone, PartialEq, Eq)]
 #[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 pub struct Foo {
     #[cfg_attr(feature = "serde", serde(flatten))]
@@ -199,7 +199,7 @@ impl FooData {
     fn write_to(&self, buffer: &mut BytesMut) {
         buffer.put_u8(self.a);
         buffer.put_u16(self.b.to_u16().unwrap());
-        if self.child.get_total_size() > 0xff {
+        if self.child.get_total_size() > 0xff as usize {
             panic!(
                 "Invalid length for {}::{}: {} > {}",
                 "Foo",
@@ -291,12 +291,12 @@ impl From<FooBuilder> for Foo {
     }
 }
 
-#[derive(Debug)]
+#[derive(Debug, Clone, PartialEq, Eq)]
 #[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 pub struct BarData {
     x: u8,
 }
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone, PartialEq, Eq)]
 #[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 pub struct Bar {
     #[cfg_attr(feature = "serde", serde(flatten))]
@@ -428,12 +428,12 @@ impl From<BarBuilder> for Bar {
     }
 }
 
-#[derive(Debug)]
+#[derive(Debug, Clone, PartialEq, Eq)]
 #[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 pub struct BazData {
     y: u16,
 }
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone, PartialEq, Eq)]
 #[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 pub struct Baz {
     #[cfg_attr(feature = "serde", serde(flatten))]

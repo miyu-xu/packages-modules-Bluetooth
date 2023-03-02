@@ -82,7 +82,7 @@ impl<'de> serde::Deserialize<'de> for Enum16 {
     }
 }
 
-#[derive(Debug)]
+#[derive(Debug, Clone, PartialEq, Eq)]
 #[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 pub struct Foo {
     pub a: u8,
@@ -140,7 +140,7 @@ impl Foo {
     fn write_to(&self, buffer: &mut BytesMut) {
         buffer.put_u8(self.a);
         buffer.put_u16_le(self.b.to_u16().unwrap());
-        if self.child.get_total_size() > 0xff {
+        if self.child.get_total_size() > 0xff as usize {
             panic!(
                 "Invalid length for {}::{}: {} > {}",
                 "Foo",
@@ -165,7 +165,7 @@ impl Foo {
     }
 }
 
-#[derive(Debug)]
+#[derive(Debug, Clone, PartialEq, Eq)]
 #[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 pub struct Bar {
     pub x: u8,
@@ -204,7 +204,7 @@ impl Bar {
     }
 }
 
-#[derive(Debug)]
+#[derive(Debug, Clone, PartialEq, Eq)]
 #[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 pub struct Baz {
     pub y: u16,
