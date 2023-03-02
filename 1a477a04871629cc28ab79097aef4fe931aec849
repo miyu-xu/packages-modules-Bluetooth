@@ -46,6 +46,30 @@
       },
       "revId": "1a477a04871629cc28ab79097aef4fe931aec849",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9f7a091e_780b79b6",
+        "filename": "system/btif/src/btif_hf.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-03-02T21:13:03Z",
+      "side": 1,
+      "message": "I am merging this CL, let\u0027s address comment and style in follow-up if needed",
+      "parentUuid": "80f5c035_a4b02fbd",
+      "range": {
+        "startLine": 155,
+        "startChar": 0,
+        "endLine": 155,
+        "endChar": 63
+      },
+      "revId": "1a477a04871629cc28ab79097aef4fe931aec849",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
