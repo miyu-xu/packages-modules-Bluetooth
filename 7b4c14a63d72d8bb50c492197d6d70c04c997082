@@ -51,6 +51,24 @@
       "message": "can we log here the receiver state? LOG_INFO",
       "revId": "7b4c14a63d72d8bb50c492197d6d70c04c997082",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "957e5cc0_793d8eec",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 3886,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2023-03-02T09:03:27Z",
+      "side": 1,
+      "message": "Sure.",
+      "parentUuid": "d646ca88_ef6e1b0d",
+      "revId": "7b4c14a63d72d8bb50c492197d6d70c04c997082",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
