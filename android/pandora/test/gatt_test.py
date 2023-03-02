@@ -17,13 +17,8 @@ import logging
 
 from avatar import PandoraDevice, PandoraDevices, asynchronous
 from mobly import base_test, test_runner
-
+from pandora.host_pb2 import RANDOM, DataTypes
 from pandora_experimental.gatt_grpc import GATT
-from pandora.host_pb2 import (
-    RANDOM,
-    DataTypes,
-)
-
 from typing import Optional
 
 

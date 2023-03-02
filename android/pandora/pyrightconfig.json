@@ -1,0 +1,7 @@
+{
+    "exclude": ["**/__pycache__"],
+    "typeCheckingMode": "strict",
+    "useLibraryCodeForTypes": true,
+    "verboseOutput": false,
+    "reportMissingTypeStubs": false,
+}
