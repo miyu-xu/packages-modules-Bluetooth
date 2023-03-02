@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8084c142_316a4620",
+        "filename": "system/rust/src/gatt/server/att_server_bearer.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-03-02T16:22:36Z",
+      "side": 1,
+      "message": "nit: You do not construct this error. If you start using it in a subsequent CL can you move the introduction of the type there ?",
+      "range": {
+        "startLine": 35,
+        "startChar": 4,
+        "endLine": 35,
+        "endChar": 21
+      },
+      "revId": "04b43ff8d71f7c2b58f5aaa17efc56090a5a4272",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "28a72a6d_795198b9",
+        "filename": "system/rust/src/gatt/server/att_server_bearer.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-03-02T16:22:36Z",
+      "side": 1,
+      "message": "nit: This got renamed in the previous CL, can flatten the change to simplify the history ?",
+      "range": {
+        "startLine": 109,
+        "startChar": 14,
+        "endLine": 109,
+        "endChar": 25
+      },
+      "revId": "04b43ff8d71f7c2b58f5aaa17efc56090a5a4272",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
