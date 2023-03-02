@@ -1,3 +1,4 @@
 trace*
 log*
 out*
+venv/

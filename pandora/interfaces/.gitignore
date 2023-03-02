@@ -1,0 +1,4 @@
+__pycache__
+python/pandora_experimental/*
+!python/pandora_experimental/__init__.py
+.eggs/
