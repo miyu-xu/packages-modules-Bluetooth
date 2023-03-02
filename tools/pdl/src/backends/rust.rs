@@ -361,7 +361,7 @@ fn generate_packet_decl(
     });
     let child_declaration = has_children_or_payload.then(|| {
         quote! {
-            #[derive(Debug)]
+            #[derive(Debug, PartialEq, Eq)]
             #[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
             pub enum #id_data_child {
                 #(#child(Arc<#child_data>),)*
@@ -379,7 +379,7 @@ fn generate_packet_decl(
                 }
             }
 
-            #[derive(Debug)]
+            #[derive(Debug, PartialEq, Eq)]
             #[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
             pub enum #id_child {
                 #(#child(#child),)*
@@ -427,13 +427,13 @@ fn generate_packet_decl(
     quote! {
         #child_declaration
 
-        #[derive(Debug)]
+        #[derive(Debug, PartialEq, Eq)]
         #[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
         pub struct #id_data {
             #field_declarations
         }
 
-        #[derive(Debug, Clone)]
+        #[derive(Debug, Clone, PartialEq, Eq)]
         #[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
         pub struct #id_packet {
             #(
