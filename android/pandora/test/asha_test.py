@@ -32,6 +32,7 @@ from pandora.host_grpc import DataTypes
 from pandora.host_grpc import OwnAddressType
 from pandora.host_grpc import ScanningResponse
 from pandora.security_grpc import LESecurityLevel
+from pandora_experimental.mediaplayer_grpc import MediaPlayer
 
 ASHA_UUID = GATT_ASHA_SERVICE.to_hex_str()
 HISYCNID: List[int] = [0x01, 0x02, 0x03, 0x04, 0x5, 0x6, 0x7, 0x8]
@@ -390,6 +391,11 @@ class ASHATest(base_test.BaseTestClass):  # type: ignore[misc]
         ref_dut = next(advertisement).connection
         advertisement.cancel()
         assert ref_dut
+
+
+    def test_music_start(self):
+        media_player = MediaPlayer(self.dut.channel)
+        media_player.Play()
 
 
 if __name__ == "__main__":
