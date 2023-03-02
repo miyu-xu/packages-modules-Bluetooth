@@ -16,6 +16,23 @@
       "message": "Adding DRI owner for HID as +2 reviewer",
       "revId": "940e57cfd4ff5407c00b4eb670d95063dcd03eae",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "38a3b5ca_4b0f1fb7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-03-02T21:38:04Z",
+      "side": 1,
+      "message": "I reviewed and was going to summarize my findings but find that the initial summary was spot on, hence no need for me to add anything here.",
+      "revId": "940e57cfd4ff5407c00b4eb670d95063dcd03eae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
