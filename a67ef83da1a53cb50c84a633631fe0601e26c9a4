@@ -199,6 +199,30 @@
       },
       "revId": "a67ef83da1a53cb50c84a633631fe0601e26c9a4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ee4a6f9c_cd0680b7",
+        "filename": "system/stack/l2cap/l2c_fcr.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1726,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2023-03-02T10:28:38Z",
+      "side": 1,
+      "message": "QQ: may I know how android pass these tests? I saw that Stream Mode is selected in aosp ICS.\n\nhttps://source.corp.google.com/aosp-master/packages/modules/Bluetooth/android/pandora/server/configs/pts_bot_tests_config.json;l\u003d1635?q\u003dTSPC_L2CAP_2_13",
+      "parentUuid": "294e0e6f_bfe53a75",
+      "range": {
+        "startLine": 1726,
+        "startChar": 18,
+        "endLine": 1726,
+        "endChar": 27
+      },
+      "revId": "a67ef83da1a53cb50c84a633631fe0601e26c9a4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
