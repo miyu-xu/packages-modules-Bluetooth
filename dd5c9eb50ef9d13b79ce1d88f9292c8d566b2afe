@@ -35,6 +35,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8e65440e_22662247",
+        "filename": "system/rust/src/core/shared_box.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-03-02T00:20:27Z",
+      "side": 1,
+      "message": "Obviously misunderstood what was going on :(",
+      "parentUuid": "3e2f145b_366f919b",
+      "revId": "dd5c9eb50ef9d13b79ce1d88f9292c8d566b2afe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a96becd9_de26840d",
@@ -48,6 +66,30 @@
       "writtenOn": "2023-02-28T19:41:46Z",
       "side": 1,
       "message": "A strong reference to the contents is called a WeakBoxRef?",
+      "range": {
+        "startLine": 69,
+        "startChar": 6,
+        "endLine": 69,
+        "endChar": 22
+      },
+      "revId": "dd5c9eb50ef9d13b79ce1d88f9292c8d566b2afe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "44ebdcd8_abd507ca",
+        "filename": "system/rust/src/core/shared_box.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-03-02T00:20:27Z",
+      "side": 1,
+      "message": "Temporary strong reference to the contents of the WeakBox.",
+      "parentUuid": "a96becd9_de26840d",
       "range": {
         "startLine": 69,
         "startChar": 6,
