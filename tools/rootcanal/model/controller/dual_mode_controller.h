@@ -30,6 +30,7 @@
 #include "link_layer_controller.h"
 #include "model/controller/vendor_commands/csr.h"
 #include "model/devices/device.h"
+#include "model/setup/async_manager.h"
 #ifndef ROOTCANAL_LMP
 #include "security_manager.h"
 #endif /* !ROOTCANAL_LMP */
@@ -50,7 +51,9 @@ using ::bluetooth::hci::CommandView;
 // the controller's default constructor. Be sure to name your method after the
 // corresponding Bluetooth command in the Core Specification with the prefix
 // "Hci" to distinguish it as a controller command.
-class DualModeController : public Device {
+class DualModeController
+    : public Device,
+      public std::enable_shared_from_this<DualModeController> {
   static constexpr uint16_t kSecurityManagerNumKeys = 15;
 
  public:
@@ -75,6 +78,18 @@ class DualModeController : public Device {
   void HandleCommand(std::shared_ptr<std::vector<uint8_t>> command_packet);
   void HandleSco(std::shared_ptr<std::vector<uint8_t>> sco_packet);
   void HandleIso(std::shared_ptr<std::vector<uint8_t>> iso_packet);
+
+  // Set the callbacks for scheduling tasks.
+  void RegisterTaskScheduler(
+      std::function<AsyncTaskId(std::chrono::milliseconds, TaskCallback)>
+          task_scheduler);
+
+  void RegisterPeriodicTaskScheduler(
+      std::function<AsyncTaskId(std::chrono::milliseconds,
+                                std::chrono::milliseconds, TaskCallback)>
+          periodic_task_scheduler);
+
+  void RegisterTaskCancel(std::function<void(AsyncTaskId)> cancel);
 
   // Set the callbacks for sending packets to the HCI.
   void RegisterEventChannel(
