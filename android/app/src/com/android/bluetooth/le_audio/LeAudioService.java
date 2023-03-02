@@ -1854,7 +1854,6 @@ public class LeAudioService extends ProfileService {
                 return;
             }
             removeStateMachine(device);
-            mDeviceDescriptors.remove(device);
         }
     }
 
@@ -1876,6 +1875,8 @@ public class LeAudioService extends ProfileService {
             sm.doQuit();
             sm.cleanup();
             descriptor.mStateMachine = null;
+
+            mDeviceDescriptors.remove(device);
         }
     }
 
@@ -3324,7 +3325,11 @@ public class LeAudioService extends ProfileService {
                 : mDeviceDescriptors.entrySet()) {
             LeAudioDeviceDescriptor descriptor = entry.getValue();
 
-            descriptor.mStateMachine.dump(sb);
+            if (descriptor.mStateMachine != null) {
+                descriptor.mStateMachine.dump(sb);
+            } else {
+                ProfileService.println(sb, "state machine is null");
+            }
             ProfileService.println(sb, "    mGroupId: " + descriptor.mGroupId);
             ProfileService.println(sb, "    mSinkAudioLocation: " + descriptor.mSinkAudioLocation);
             ProfileService.println(sb, "    mDirection: " + descriptor.mDirection);
