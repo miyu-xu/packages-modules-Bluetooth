@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "400c5b79_e40279d0",
+        "filename": "android/app/src/com/android/bluetooth/a2dp/A2dpService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 491,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-03-02T09:15:20Z",
+      "side": 1,
+      "message": "Could you merge this value with a single boolean?\nWe can know whether pausing the audio or not outside of this method which might be more readable I think.",
+      "range": {
+        "startLine": 491,
+        "startChar": 36,
+        "endLine": 491,
+        "endChar": 92
+      },
+      "revId": "a0c054acbbce323494963bd9d863069001f8f9ce",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e0c3b465_9a84d5da",
+        "filename": "android/app/src/com/android/bluetooth/a2dp/A2dpService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 513,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-03-02T09:15:20Z",
+      "side": 1,
+      "message": "Nice catch! this is the missed one in my CL.",
+      "range": {
+        "startLine": 513,
+        "startChar": 24,
+        "endLine": 513,
+        "endChar": 48
+      },
+      "revId": "a0c054acbbce323494963bd9d863069001f8f9ce",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "707e6e6b_4704c164",
+        "filename": "android/app/src/com/android/bluetooth/a2dp/A2dpService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 543,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-03-02T09:15:20Z",
+      "side": 1,
+      "message": "false would be the default value.\nFYI, when device is not null, the value of hasFallbackDevice is not used.",
+      "range": {
+        "startLine": 543,
+        "startChar": 36,
+        "endLine": 543,
+        "endChar": 40
+      },
+      "revId": "a0c054acbbce323494963bd9d863069001f8f9ce",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2f74a0a7_5d3a8dee",
+        "filename": "android/app/src/com/android/bluetooth/avrcp/AvrcpTargetService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 301,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-03-02T09:15:20Z",
+      "side": 1,
+      "message": "false for default value, and other places as well?",
+      "range": {
+        "startLine": 301,
+        "startChar": 40,
+        "endLine": 301,
+        "endChar": 44
+      },
+      "revId": "a0c054acbbce323494963bd9d863069001f8f9ce",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "017dee74_750f7b48",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 570,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-03-02T09:15:20Z",
+      "side": 1,
+      "message": "why true?",
+      "range": {
+        "startLine": 570,
+        "startChar": 36,
+        "endLine": 570,
+        "endChar": 40
+      },
+      "revId": "a0c054acbbce323494963bd9d863069001f8f9ce",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
