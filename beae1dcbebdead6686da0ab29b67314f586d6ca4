@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4091cd84_8dd2dcf2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-03-02T09:10:44Z",
+      "side": 1,
+      "message": "looks good. minor comment",
+      "revId": "beae1dcbebdead6686da0ab29b67314f586d6ca4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "af31d5db_077bc294",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/PublicBroadcastData.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-03-02T09:10:44Z",
+      "side": 1,
+      "message": "we could verify minimum length of serviceData which is 2.",
+      "revId": "beae1dcbebdead6686da0ab29b67314f586d6ca4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
