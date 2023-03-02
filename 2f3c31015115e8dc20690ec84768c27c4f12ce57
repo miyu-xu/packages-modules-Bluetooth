@@ -16,6 +16,24 @@
       "message": "You should be able to remove hci:: here and everywhere else",
       "revId": "2f3c31015115e8dc20690ec84768c27c4f12ce57",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e1ad2a44_8f81ad3b",
+        "filename": "system/gd/os/linux/metrics.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2023-03-02T20:42:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1c8307d8_c468da87",
+      "revId": "2f3c31015115e8dc20690ec84768c27c4f12ce57",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
