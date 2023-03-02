@@ -1,3 +1,5 @@
 trace*
 log*
 out*
+venv/
+__pycache__/

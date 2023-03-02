@@ -1,0 +1,7 @@
+../../pandora/server/
+../../pandora/interfaces/python/
+../../../../../external/pandora/bt-test-interfaces/python/
+../../../../../external/pandora/avatar/
+../../../../../external/python/bumble/
+../../../../../external/python/mobly/
+../../../../../external/python/pyee/
