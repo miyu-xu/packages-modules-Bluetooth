@@ -16,6 +16,29 @@
       "message": "lgtm",
       "revId": "420db209263470abbb3d497c619d7f9b5e7d9b46",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c88dba59_4e30b621",
+        "filename": "system/bta/hearing_aid/hearing_aid.cc",
+        "patchSetId": 18
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-03-02T20:02:41Z",
+      "side": 1,
+      "message": "do you still need that header ?",
+      "range": {
+        "startLine": 34,
+        "startChar": 10,
+        "endLine": 34,
+        "endChar": 29
+      },
+      "revId": "420db209263470abbb3d497c619d7f9b5e7d9b46",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
