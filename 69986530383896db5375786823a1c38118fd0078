@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "84e47b97_e17dae90",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 373,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-03-02T22:35:34Z",
+      "side": 1,
+      "message": "yes, actually the 1st one. but ideally one adv data set should not include multiple names.",
+      "parentUuid": "6c8f3b65_4f44ec8c",
+      "range": {
+        "startLine": 373,
+        "startChar": 16,
+        "endLine": 373,
+        "endChar": 74
+      },
+      "revId": "69986530383896db5375786823a1c38118fd0078",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1d9209a0_3ab94134",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-03-02T21:27:36Z",
       "side": 1,
       "message": "maybe \n\nlog(\"mBroadcastName: \" + Objects.toString(mBroadcastName));\n\nthis will print null by default and can also tell us if the broadcast name is null",
+      "range": {
+        "startLine": 182,
+        "startChar": 8,
+        "endLine": 184,
+        "endChar": 9
+      },
+      "revId": "69986530383896db5375786823a1c38118fd0078",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c74821c3_8c381a15",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/PeriodicAdvertisementResult.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-03-02T22:35:34Z",
+      "side": 1,
+      "message": "Acknowledged, this name is string, i can just use it.",
+      "parentUuid": "1d9209a0_3ab94134",
       "range": {
         "startLine": 182,
         "startChar": 8,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fbc520a2_9dd312bd",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/PeriodicAdvertisementResult.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-03-02T22:35:34Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "c01c70d5_4dc2700d",
+      "range": {
+        "startLine": 186,
+        "startChar": 8,
+        "endLine": 188,
+        "endChar": 9
+      },
+      "revId": "69986530383896db5375786823a1c38118fd0078",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7e63e4b9_3f04347f",
@@ -93,6 +165,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3ccdb1f2_b7248a6e",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/PublicBroadcastData.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-03-02T22:35:34Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "7e63e4b9_3f04347f",
+      "range": {
+        "startLine": 28,
+        "startChar": 49,
+        "endLine": 28,
+        "endChar": 50
+      },
+      "revId": "69986530383896db5375786823a1c38118fd0078",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f5822252_218d4807",
@@ -106,6 +202,30 @@
       "writtenOn": "2023-03-02T21:27:36Z",
       "side": 1,
       "message": "Could we have a few more test cases for the broken cases? \n\ne.g. when the incoming data is not complete?",
+      "range": {
+        "startLine": 49,
+        "startChar": 16,
+        "endLine": 49,
+        "endChar": 40
+      },
+      "revId": "69986530383896db5375786823a1c38118fd0078",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "99fda23a_5da852ee",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/bass_client/PublicBroadcastDataTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-03-02T22:35:34Z",
+      "side": 1,
+      "message": "Agreed with you here, i did some manual testing with different fields combination.  but it would be better to add more unit tests. Maybe I can create a separate cl to add more.",
+      "parentUuid": "f5822252_218d4807",
       "range": {
         "startLine": 49,
         "startChar": 16,
