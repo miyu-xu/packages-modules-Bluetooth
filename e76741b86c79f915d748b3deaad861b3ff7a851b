@@ -128,6 +128,30 @@
       },
       "revId": "e76741b86c79f915d748b3deaad861b3ff7a851b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4b5f2c85_ee18a7f9",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/gap.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 546,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2023-03-02T17:28:03Z",
+      "side": 1,
+      "message": "Understood, thanks for the clarification 😊",
+      "parentUuid": "ec24ed9d_a8e07bf1",
+      "range": {
+        "startLine": 545,
+        "startChar": 8,
+        "endLine": 546,
+        "endChar": 61
+      },
+      "revId": "e76741b86c79f915d748b3deaad861b3ff7a851b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
