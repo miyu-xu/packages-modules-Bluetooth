@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "acea6434_a6a8a307",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1960961
+      },
+      "writtenOn": "2023-03-02T10:43:25Z",
+      "side": 1,
+      "message": "Hi Charlie,\n\nHave updated the comments, do let us know if you need more details.\n\nThanks and Regards,\nSnehal",
+      "revId": "b1b36a24828fb4097c75ba83ba4b0b327415990a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a7e92814_8f9d86f1",
@@ -14,6 +31,30 @@
       "writtenOn": "2023-03-01T17:57:37Z",
       "side": 1,
       "message": "Is `@assert_description` not needed here ?",
+      "range": {
+        "startLine": 627,
+        "startChar": 45,
+        "endLine": 627,
+        "endChar": 67
+      },
+      "revId": "b1b36a24828fb4097c75ba83ba4b0b327415990a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2b0f35f3_06dfee7b",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/gap.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 627,
+      "author": {
+        "id": 1960961
+      },
+      "writtenOn": "2023-03-02T10:43:25Z",
+      "side": 1,
+      "message": "As there is mismatch for this mmi in other test cases, we had to remove assert description.\neg:\n{33,GAP/SEC/SEM/BV-10-C,GAP}Please make IUT general discoverable.\n{33,GAP/MOD/GDIS/BV-02-C,GAP}Please make IUT general discoverable. Press OK to continue.\n{33,GAP/MOD/GDIS/BV-01-C,GAP}Please make IUT general discoverable. Press OK to continue.",
+      "parentUuid": "a7e92814_8f9d86f1",
       "range": {
         "startLine": 627,
         "startChar": 45,

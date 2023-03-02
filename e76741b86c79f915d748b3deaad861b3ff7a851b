@@ -104,6 +104,30 @@
       },
       "revId": "e76741b86c79f915d748b3deaad861b3ff7a851b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ec24ed9d_a8e07bf1",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/gap.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 546,
+      "author": {
+        "id": 1960961
+      },
+      "writtenOn": "2023-03-02T10:43:25Z",
+      "side": 1,
+      "message": "Hi Charlie,\n\nYes we did try option of setting it in previous mmi, but as yo mentioned, connect request is triggered once previous mmi is completed. So we need to fetch the connection details at disconnect mmi.\neg:\n03-02 10:30:13 I/PtsBotTest: 002499ms          TS_MTC_PASS  Enter Step  TS_MTC_PASS(\"Receive Advertising report successfully.\")\n\n\n03-02 10:30:13 I/PtsBotTest: 002593ms _CONNECT_REQ_handler     Send     :[1]ATT!ATT_CONNECT_REQ {\n03-02 10:30:13 I/PtsBotTest:                                              Peer_Address: 0xDA4C10DE1702,",
+      "parentUuid": "84f883fe_d014a2b5",
+      "range": {
+        "startLine": 545,
+        "startChar": 8,
+        "endLine": 546,
+        "endChar": 61
+      },
+      "revId": "e76741b86c79f915d748b3deaad861b3ff7a851b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
