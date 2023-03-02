@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "96aa2f0a_1ff114a0",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 3499,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2023-03-02T08:12:37Z",
+      "side": 1,
+      "message": "The only reason I see is the configuration_context_type_ being logged before the \u0027switch(...)\u0027 so If I move this to the \u0027case:\u0027, the old and obsolete configuration will be logged.",
+      "parentUuid": "1e6623d3_e26f478c",
+      "revId": "7b4c14a63d72d8bb50c492197d6d70c04c997082",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d646ca88_ef6e1b0d",
         "filename": "system/bta/le_audio/client.cc",
         "patchSetId": 1
