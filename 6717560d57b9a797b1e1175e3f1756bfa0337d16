@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "771cebf6_7e2e03d7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-03-02T17:43:42Z",
+      "side": 1,
+      "message": "would need more clarity here, have we confirmed this change is the root cause of the build failure? from above comment, it seems not, then why are reverting this?",
+      "revId": "6717560d57b9a797b1e1175e3f1756bfa0337d16",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
