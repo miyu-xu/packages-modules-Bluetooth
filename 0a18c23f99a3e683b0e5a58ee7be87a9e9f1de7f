@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a04ff30b_d959d2ed",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 3719,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2023-03-02T09:00:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "523315ca_1d91d237",
+      "revId": "0a18c23f99a3e683b0e5a58ee7be87a9e9f1de7f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0c09d894_e3458764",
@@ -31,6 +49,24 @@
       "writtenOn": "2023-03-01T15:50:12Z",
       "side": 1,
       "message": "ditto",
+      "revId": "0a18c23f99a3e683b0e5a58ee7be87a9e9f1de7f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0bd2d33f_cbb3da7f",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 3851,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2023-03-02T09:00:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0c09d894_e3458764",
       "revId": "0a18c23f99a3e683b0e5a58ee7be87a9e9f1de7f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
