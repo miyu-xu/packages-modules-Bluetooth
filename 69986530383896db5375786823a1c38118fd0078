@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6c8f3b65_4f44ec8c",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 373,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-03-02T21:27:36Z",
+      "side": 1,
+      "message": "so when multiple broadcast names are available, we return the last one?",
+      "range": {
+        "startLine": 373,
+        "startChar": 16,
+        "endLine": 373,
+        "endChar": 74
+      },
+      "revId": "69986530383896db5375786823a1c38118fd0078",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1d9209a0_3ab94134",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/PeriodicAdvertisementResult.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-03-02T21:27:36Z",
+      "side": 1,
+      "message": "maybe \n\nlog(\"mBroadcastName: \" + Objects.toString(mBroadcastName));\n\nthis will print null by default and can also tell us if the broadcast name is null",
+      "range": {
+        "startLine": 182,
+        "startChar": 8,
+        "endLine": 184,
+        "endChar": 9
+      },
+      "revId": "69986530383896db5375786823a1c38118fd0078",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c01c70d5_4dc2700d",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/PeriodicAdvertisementResult.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-03-02T21:27:36Z",
+      "side": 1,
+      "message": "We should print a line to indicate when PublicBroadcastInfo is null",
+      "range": {
+        "startLine": 186,
+        "startChar": 8,
+        "endLine": 188,
+        "endChar": 9
+      },
+      "revId": "69986530383896db5375786823a1c38118fd0078",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7e63e4b9_3f04347f",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/PublicBroadcastData.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-03-02T21:27:36Z",
+      "side": 1,
+      "message": "nit: use . instead of -",
+      "range": {
+        "startLine": 28,
+        "startChar": 49,
+        "endLine": 28,
+        "endChar": 50
+      },
+      "revId": "69986530383896db5375786823a1c38118fd0078",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f5822252_218d4807",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/bass_client/PublicBroadcastDataTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-03-02T21:27:36Z",
+      "side": 1,
+      "message": "Could we have a few more test cases for the broken cases? \n\ne.g. when the incoming data is not complete?",
+      "range": {
+        "startLine": 49,
+        "startChar": 16,
+        "endLine": 49,
+        "endChar": 40
+      },
+      "revId": "69986530383896db5375786823a1c38118fd0078",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

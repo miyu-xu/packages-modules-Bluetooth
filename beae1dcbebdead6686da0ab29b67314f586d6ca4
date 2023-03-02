@@ -51,6 +51,29 @@
       "parentUuid": "af31d5db_077bc294",
       "revId": "beae1dcbebdead6686da0ab29b67314f586d6ca4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3af70190_fb39a2cf",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/bass_client/PublicBroadcastDataTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-03-02T21:27:36Z",
+      "side": 1,
+      "message": "nit: use assertTrue\n\nor something like\n\nassertThat(X).isTrue()",
+      "range": {
+        "startLine": 61,
+        "startChar": 8,
+        "endLine": 61,
+        "endChar": 55
+      },
+      "revId": "beae1dcbebdead6686da0ab29b67314f586d6ca4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
