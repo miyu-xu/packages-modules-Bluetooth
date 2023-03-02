@@ -22,6 +22,30 @@
       },
       "revId": "1a477a04871629cc28ab79097aef4fe931aec849",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "80f5c035_a4b02fbd",
+        "filename": "system/btif/src/btif_hf.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-03-02T05:41:21Z",
+      "side": 1,
+      "message": "I do not understand the question.\nThe mask is either BTA_HSP_SERVICE_MASK or BTA_HFP_SERVICE_MASK or both.\n\nWhat do you want to comment exactly ?",
+      "parentUuid": "b472cf9b_21a31c4a",
+      "range": {
+        "startLine": 155,
+        "startChar": 0,
+        "endLine": 155,
+        "endChar": 63
+      },
+      "revId": "1a477a04871629cc28ab79097aef4fe931aec849",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
