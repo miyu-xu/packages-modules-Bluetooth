@@ -38,7 +38,7 @@ pub trait Packet {
     fn to_vec(self) -> Vec<u8>;
 }
 
-#[derive(Debug)]
+#[derive(Debug, Clone, PartialEq, Eq)]
 #[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 pub struct Foo {
     pub a: Vec<u16>,
@@ -90,12 +90,12 @@ impl Foo {
     }
 }
 
-#[derive(Debug)]
+#[derive(Debug, Clone, PartialEq, Eq)]
 #[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 pub struct BarData {
     x: Vec<Foo>,
 }
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone, PartialEq, Eq)]
 #[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 pub struct Bar {
     #[cfg_attr(feature = "serde", serde(flatten))]
@@ -145,7 +145,7 @@ impl BarData {
     }
     fn write_to(&self, buffer: &mut BytesMut) {
         let x_size = self.x.iter().map(|elem| elem.get_size()).sum::<usize>();
-        if x_size > 0xff {
+        if x_size > 0xff as usize {
             panic!("Invalid length for {}::{}: {} > {}", "Bar", "x", x_size, 0xff);
         }
         buffer.put_u8(x_size as u8);
