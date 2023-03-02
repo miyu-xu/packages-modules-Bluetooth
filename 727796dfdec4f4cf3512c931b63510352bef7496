@@ -22,6 +22,30 @@
       },
       "revId": "727796dfdec4f4cf3512c931b63510352bef7496",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "acc5b6f3_a2ca49b2",
+        "filename": "android/app/src/com/android/bluetooth/btservice/PhonePolicy.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 365,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-03-02T10:23:54Z",
+      "side": 1,
+      "message": "Sorry I misread the dumpsys output, -1 is UNKNOWN, not FORBIDDEN",
+      "parentUuid": "c8952e57_1b1995e4",
+      "range": {
+        "startLine": 364,
+        "startChar": 11,
+        "endLine": 365,
+        "endChar": 68
+      },
+      "revId": "727796dfdec4f4cf3512c931b63510352bef7496",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
