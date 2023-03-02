@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d29d3f4f_f262abd6",
+        "filename": "tools/pdl/src/analyzer.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-03-02T16:52:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "45b9fc8e_01894812",
+      "revId": "809949113c4d06ec013e2b0a5a99f9e6005d8428",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e52492eb_453add2f",
@@ -87,6 +105,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8d51ba3f_eaf9c85f",
+        "filename": "tools/pdl/src/analyzer.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-03-02T16:52:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "96b56c6d_1170ca31",
+      "range": {
+        "startLine": 189,
+        "startChar": 39,
+        "endLine": 189,
+        "endChar": 43
+      },
+      "revId": "809949113c4d06ec013e2b0a5a99f9e6005d8428",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8c85bbea_3191936b",
@@ -100,6 +142,30 @@
       "writtenOn": "2023-03-02T06:22:10Z",
       "side": 1,
       "message": "nit: `expected scalar or typedef identifier`",
+      "range": {
+        "startLine": 560,
+        "startChar": 44,
+        "endLine": 560,
+        "endChar": 79
+      },
+      "revId": "809949113c4d06ec013e2b0a5a99f9e6005d8428",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "738b0aea_8358381a",
+        "filename": "tools/pdl/src/analyzer.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 560,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-03-02T16:52:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8c85bbea_3191936b",
       "range": {
         "startLine": 560,
         "startChar": 44,
@@ -133,6 +199,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "364396ee_07d2722d",
+        "filename": "tools/pdl/src/analyzer.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 626,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-03-02T16:52:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "23643b32_b99ba240",
+      "range": {
+        "startLine": 626,
+        "startChar": 41,
+        "endLine": 626,
+        "endChar": 85
+      },
+      "revId": "809949113c4d06ec013e2b0a5a99f9e6005d8428",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "12362886_60e8f106",
@@ -156,6 +246,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "503a991d_81e6327d",
+        "filename": "tools/pdl/src/analyzer.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 780,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-03-02T16:52:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "12362886_60e8f106",
+      "range": {
+        "startLine": 780,
+        "startChar": 43,
+        "endLine": 780,
+        "endChar": 83
+      },
+      "revId": "809949113c4d06ec013e2b0a5a99f9e6005d8428",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "afcdd17b_5e976f8d",
@@ -169,6 +283,30 @@
       "writtenOn": "2023-03-02T06:22:10Z",
       "side": 1,
       "message": "Nit: Could you make an helper for that and name it ? It would make the comprehension easier something like `file.childs_of(decl)` ?",
+      "range": {
+        "startLine": 929,
+        "startChar": 0,
+        "endLine": 931,
+        "endChar": 69
+      },
+      "revId": "809949113c4d06ec013e2b0a5a99f9e6005d8428",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "52d266ab_4c6291dc",
+        "filename": "tools/pdl/src/analyzer.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 931,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-03-02T16:52:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "afcdd17b_5e976f8d",
       "range": {
         "startLine": 929,
         "startChar": 0,
