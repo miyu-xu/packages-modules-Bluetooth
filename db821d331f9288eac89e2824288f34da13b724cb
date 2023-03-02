@@ -16,6 +16,23 @@
       "message": "Verified locally. Test failures ack.",
       "revId": "db821d331f9288eac89e2824288f34da13b724cb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b4b7f93b_4848c003",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1096830
+      },
+      "writtenOn": "2023-03-02T19:09:31Z",
+      "side": 1,
+      "message": "Did this CL conflict with aosp/2450184?",
+      "revId": "db821d331f9288eac89e2824288f34da13b724cb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
