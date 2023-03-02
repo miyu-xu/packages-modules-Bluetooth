@@ -20,6 +20,46 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c3dd357a_811e513d",
+        "filename": "system/rust/src/core/shared_box.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-03-02T16:15:29Z",
+      "side": 1,
+      "message": "Can you explain the difference with Rc / Weak in a bit more detail ?\nReading this paragraph it sounds like you are re-implementing them 😄\nSpecifically make it clear that the weak references cannot be upgraded \nback to an owning reference.",
+      "revId": "dd5c9eb50ef9d13b79ce1d88f9292c8d566b2afe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2f7e9664_4c8b6f05",
+        "filename": "system/rust/src/core/shared_box.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-03-02T16:15:29Z",
+      "side": 1,
+      "message": "nit: should these be associated functions for the same reason that Rc\u003c\u003e gives ?\n(not clashing with T methods)",
+      "range": {
+        "startLine": 25,
+        "startChar": 11,
+        "endLine": 25,
+        "endChar": 20
+      },
+      "revId": "dd5c9eb50ef9d13b79ce1d88f9292c8d566b2afe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3e2f145b_366f919b",
         "filename": "system/rust/src/core/shared_box.rs",
         "patchSetId": 7
@@ -49,6 +89,23 @@
       "side": 1,
       "message": "Obviously misunderstood what was going on :(",
       "parentUuid": "3e2f145b_366f919b",
+      "revId": "dd5c9eb50ef9d13b79ce1d88f9292c8d566b2afe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f8c50b47_863dff75",
+        "filename": "system/rust/src/core/shared_box.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-03-02T16:15:29Z",
+      "side": 1,
+      "message": "Again, mention that the upgraded Rc\u003c\u003e is not passed to the closure to prevent accidental propagation of the strong ownership.",
       "revId": "dd5c9eb50ef9d13b79ce1d88f9292c8d566b2afe",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -95,6 +152,46 @@
         "startChar": 6,
         "endLine": 69,
         "endChar": 22
+      },
+      "revId": "dd5c9eb50ef9d13b79ce1d88f9292c8d566b2afe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "341a7abb_8b368ea1",
+        "filename": "system/rust/src/gatt/server/gatt_database.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 225,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-03-02T16:15:29Z",
+      "side": 1,
+      "message": "To get back inherent methods, if you want:\n```\nimpl SharedBox\u003cGattDatabase\u003e {\n    fn get_add_database(\u0026self) {\n        // stuff\n    }\n}\n```",
+      "revId": "dd5c9eb50ef9d13b79ce1d88f9292c8d566b2afe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "169c2d81_ea25f8a8",
+        "filename": "system/rust/src/packets.pdl",
+        "patchSetId": 7
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-03-02T16:15:29Z",
+      "side": 1,
+      "message": "nit: shouldn\u0027t be part of this change",
+      "range": {
+        "startLine": 33,
+        "startChar": 0,
+        "endLine": 48,
+        "endChar": 30
       },
       "revId": "dd5c9eb50ef9d13b79ce1d88f9292c8d566b2afe",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
