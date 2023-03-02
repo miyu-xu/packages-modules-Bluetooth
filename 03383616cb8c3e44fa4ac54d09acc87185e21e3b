@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fae8b6e2_75a4ba42",
+        "filename": "TEST_MAPPING",
+        "patchSetId": 7
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-03-02T17:41:33Z",
+      "side": 1,
+      "message": "This is copy pasted from the `presubmit` group, will address in a follow up",
+      "parentUuid": "ab69ba80_33a29316",
+      "range": {
+        "startLine": 227,
+        "startChar": 7,
+        "endLine": 227,
+        "endChar": 13
+      },
+      "revId": "03383616cb8c3e44fa4ac54d09acc87185e21e3b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ec8b8d78_d58dea76",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-03-02T14:47:21Z",
       "side": 1,
       "message": "nit: These",
+      "range": {
+        "startLine": 277,
+        "startChar": 7,
+        "endLine": 277,
+        "endChar": 13
+      },
+      "revId": "03383616cb8c3e44fa4ac54d09acc87185e21e3b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "98883d24_bddb6cdd",
+        "filename": "TEST_MAPPING",
+        "patchSetId": 7
+      },
+      "lineNbr": 277,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-03-02T17:41:33Z",
+      "side": 1,
+      "message": "This is copy pasted from the `presubmit` group, will address in a follow up",
+      "parentUuid": "ec8b8d78_d58dea76",
       "range": {
         "startLine": 277,
         "startChar": 7,
