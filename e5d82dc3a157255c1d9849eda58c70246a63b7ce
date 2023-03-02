@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5fc8a1a8_298051bf",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2023-03-02T10:40:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f318bdd1_51bfe789",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 14,
+        "endChar": 41
+      },
+      "revId": "e5d82dc3a157255c1d9849eda58c70246a63b7ce",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "13128dc4_f7bef193",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-03-01T19:23:50Z",
       "side": 1,
       "message": "Could you precise which Avatar test did you run ?",
+      "range": {
+        "startLine": 15,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 12
+      },
+      "revId": "e5d82dc3a157255c1d9849eda58c70246a63b7ce",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bcafd211_ff869163",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2023-03-02T10:40:58Z",
+      "side": 1,
+      "message": "A modified standard BR/EDR pairing test. It\u0027s not stable yet but should be commited this month.",
+      "parentUuid": "13128dc4_f7bef193",
       "range": {
         "startLine": 15,
         "startChar": 0,
