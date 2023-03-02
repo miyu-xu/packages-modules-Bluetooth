@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 #
 # Copyright 2017, The Android Open Source Project
 #
@@ -45,7 +45,7 @@ def str2bool(argument, default=False):
 
 def check_dir_exists(dir, dirname):
     if not os.path.isdir(dir):
-        print "Couldn't find %s (%s)!" % (dirname, dir)
+        print("Couldn't find {} ({})!".format(dirname, dir))
         sys.exit(0)
 
 
@@ -53,8 +53,8 @@ def get_output_from_command(cmd):
     try:
         return subprocess.check_output(cmd).strip()
     except subprocess.CalledProcessError as e:
-        print 'Failed to call {cmd}, return code {code}'.format(cmd=cmd, code=e.returncode)
-        print e
+        print('Failed to call {cmd}, return code {code}'.format(cmd=cmd, code=e.returncode))
+        print(e)
         return None
 
 
@@ -76,7 +76,7 @@ def get_android_root_or_die():
             else:
                 current_path = parent_path
         if not value:
-            print 'Cannot determine ANDROID_BUILD_TOP'
+            print('Cannot determine ANDROID_BUILD_TOP')
             sys.exit(1)
     check_dir_exists(value, '$ANDROID_BUILD_TOP')
     return value
@@ -86,10 +86,10 @@ def get_android_host_out_or_die():
     value = os.environ.get('ANDROID_HOST_OUT')
     if not value:
         ANDROID_BUILD_TOP = get_android_root_or_die()
-        value = get_output_from_command((os.path.join(ANDROID_BUILD_TOP, SOONG_UI_BASH), '--dumpvar-mode', '--abs',
-                                         'HOST_OUT'))
+        value = get_output_from_command((os.path.join(ANDROID_BUILD_TOP,
+                                                      SOONG_UI_BASH), '--dumpvar-mode', '--abs', 'HOST_OUT'))
         if not value:
-            print 'Cannot determine ANDROID_HOST_OUT'
+            print('Cannot determine ANDROID_HOST_OUT')
             sys.exit(1)
     check_dir_exists(value, '$ANDROID_HOST_OUT')
     return value
@@ -104,7 +104,7 @@ def get_android_dist_dir_or_die():
         value = os.path.join(os.path.join(ANDROID_BUILD_TOP, 'out'), 'dist')
     if not os.path.isdir(value):
         if os.path.exists(value):
-            print '%s is not a directory!' % (value)
+            print('{} is not a directory!'.format(value))
             sys.exit(1)
         os.makedirs(value)
     return value
@@ -116,8 +116,8 @@ def get_native_test_root_or_die():
     if not os.path.isdir(test_root):
         test_root = os.path.join(android_host_out, 'nativetest')
         if not os.path.isdir(test_root):
-            print 'Neither nativetest64 nor nativetest directory exist,' \
-                  ' please compile first'
+            print('Neither nativetest64 nor nativetest directory exist,' \
+                  ' please compile first')
             sys.exit(1)
     return test_root
 
@@ -125,7 +125,7 @@ def get_native_test_root_or_die():
 def get_test_cmd_or_die(test_root, test_name, enable_xml, test_filter):
     test_path = os.path.join(os.path.join(test_root, test_name), test_name)
     if not os.path.isfile(test_path):
-        print 'Cannot find: ' + test_path
+        print('Cannot find: ' + test_path)
         sys.exit(1)
     cmd = [test_path]
     if enable_xml:
@@ -147,7 +147,7 @@ def build_target(target, num_tasks):
     p = subprocess.Popen(build_cmd, cwd=ANDROID_BUILD_TOP, env=os.environ.copy())
     return_code = p.wait()
     if return_code != 0:
-        print 'BUILD FAILED, return code: {0}'.format(str(return_code))
+        print('BUILD FAILED, return code: {0}'.format(str(return_code)))
         sys.exit(1)
     return
 
@@ -156,27 +156,26 @@ def main():
     """ run_host_unit_tests.py - Run registered host based unit tests
   """
     parser = argparse.ArgumentParser(description='Run host based unit tests.')
-    parser.add_argument(
-        '--enable_xml',
-        type=str2bool,
-        dest='enable_xml',
-        nargs='?',
-        const=True,
-        default=False,
-        help='Whether to output structured XML log output in out/dist/gtest directory')
-    parser.add_argument(
-        '-j',
-        type=int,
-        nargs='?',
-        dest='num_tasks',
-        const=-1,
-        default=-1,
-        help='Number of tasks to run at the same time')
-    parser.add_argument(
-        'rest', nargs=argparse.REMAINDER, help='-- args, other gtest arguments for each individual test')
+    parser.add_argument('--enable_xml',
+                        type=str2bool,
+                        dest='enable_xml',
+                        nargs='?',
+                        const=True,
+                        default=False,
+                        help='Whether to output structured XML log output in out/dist/gtest directory')
+    parser.add_argument('-j',
+                        type=int,
+                        nargs='?',
+                        dest='num_tasks',
+                        const=-1,
+                        default=-1,
+                        help='Number of tasks to run at the same time')
+    parser.add_argument('rest',
+                        nargs=argparse.REMAINDER,
+                        help='-- args, other gtest arguments for each individual test')
     args = parser.parse_args()
 
-    build_target('MODULES-IN-system-bt', args.num_tasks)
+    build_target('MODULES-IN-packages-modules-Bluetooth', args.num_tasks)
     TEST_ROOT = get_native_test_root_or_die()
     test_results = []
     for test in HOST_TESTS:
@@ -188,14 +187,14 @@ def main():
     if not all(test_results):
         failures = [i for i, x in enumerate(test_results) if not x]
         for index in failures:
-            print 'TEST FAILLED: ' + HOST_TESTS[index]
+            print('TEST FAILLED: ' + HOST_TESTS[index])
         sys.exit(0)
-    print 'TEST PASSED ' + str(len(test_results)) + ' tests were run'
+    print('TEST PASSED ' + str(len(test_results)) + ' tests were run')
 
     dist_dir = get_android_dist_dir_or_die()
     log_output_path = os.path.join(dist_dir, 'gtest/coverage')
     cmd_path = os.path.join(get_android_root_or_die(), 'packages/modules/Bluetooth/system/test')
-    print cmd_path
+    print(cmd_path)
     cmd = [
         os.path.join(cmd_path, 'gen_coverage.py'),
         '--skip-html',
