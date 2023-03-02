@@ -33,6 +33,24 @@
       "message": "LGTM. Please rebase atop aosp/2462375 and verify that pts-bot tests for HID/HOS pass.",
       "revId": "f92f71b7975c5c49296ca5b9277dabe6f3f84311",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "55e5235a_12995217",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2023-03-02T04:54:41Z",
+      "side": 1,
+      "message": "Thanks. I found an error while rebasing. But I followed this guide[1] to install pts-bot but got the below error when Clone the mmi2grpc repository, so I am using presubmit to verify it.\n\n```\nremote: PERMISSION_DENIED: The caller does not have permission\nremote: [type.googleapis.com/devtools.gerritcodereview.proto.GerritCodeReviewError]\nremote: error_type: PERMISSION_DENIED_BY_HOST_ACL\n\n```\n\n[1] https://developers.google.com/pandora/guides/pts-bot/aosp-user-guide?hl\u003den",
+      "parentUuid": "13779eca_f8accff8",
+      "revId": "f92f71b7975c5c49296ca5b9277dabe6f3f84311",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
