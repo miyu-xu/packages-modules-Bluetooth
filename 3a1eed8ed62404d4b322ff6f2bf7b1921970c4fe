@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "35c049b1_8e9e4cfa",
+        "filename": "system/gd/docs/testing/cert_test.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-03-02T13:05:31Z",
+      "side": 1,
+      "message": "While you\u0027re here, I don\u0027t think we need --host anymore.\n\nMaybe we should document that you need to use --clean when you run it for the first time.",
+      "range": {
+        "startLine": 78,
+        "startChar": 67,
+        "endLine": 78,
+        "endChar": 71
+      },
+      "revId": "3a1eed8ed62404d4b322ff6f2bf7b1921970c4fe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
