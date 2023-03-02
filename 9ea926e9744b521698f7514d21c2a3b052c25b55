@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d52149c4_20b9161f",
+        "filename": "framework/api/system-current.txt",
+        "patchSetId": 3
+      },
+      "lineNbr": 781,
+      "author": {
+        "id": 1044446
+      },
+      "writtenOn": "2023-03-02T18:58:44Z",
+      "side": 1,
+      "message": "I thought the API Council feedback here was to move these to static utility methods, e.g.\n\n`method @NonNull public static String qualityReportIdToString(int);`",
+      "range": {
+        "startLine": 781,
+        "startChar": 4,
+        "endLine": 781,
+        "endChar": 60
+      },
+      "revId": "9ea926e9744b521698f7514d21c2a3b052c25b55",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
