@@ -1471,9 +1471,8 @@ static void gattClientScanNative(JNIEnv* env, jobject object, jboolean start) {
 }
 
 static void gattClientConnectNative(JNIEnv* env, jobject object, jint clientif,
-                                    jstring address, jint addressType,
-                                    jboolean isDirect, jint transport,
-                                    jboolean opportunistic,
+                                    jstring address, jboolean isDirect,
+                                    jint transport, jboolean opportunistic,
                                     jint initiating_phys) {
   if (!sGattIf) return;
 
@@ -2759,7 +2758,7 @@ static JNINativeMethod sMethods[] = {
      (void*)gattClientRegisterAppNative},
     {"gattClientUnregisterAppNative", "(I)V",
      (void*)gattClientUnregisterAppNative},
-    {"gattClientConnectNative", "(ILjava/lang/String;IZIZI)V",
+    {"gattClientConnectNative", "(ILjava/lang/String;ZIZI)V",
      (void*)gattClientConnectNative},
     {"gattClientDisconnectNative", "(ILjava/lang/String;I)V",
      (void*)gattClientDisconnectNative},
