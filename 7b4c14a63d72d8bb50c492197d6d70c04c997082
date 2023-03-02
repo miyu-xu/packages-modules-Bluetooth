@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1e6623d3_e26f478c",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 3499,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-03-02T00:45:28Z",
+      "side": 1,
+      "message": "any reason why it could not go to line 3523?",
+      "revId": "7b4c14a63d72d8bb50c492197d6d70c04c997082",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d646ca88_ef6e1b0d",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 3886,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-03-02T00:45:28Z",
+      "side": 1,
+      "message": "can we log here the receiver state? LOG_INFO",
+      "revId": "7b4c14a63d72d8bb50c492197d6d70c04c997082",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
