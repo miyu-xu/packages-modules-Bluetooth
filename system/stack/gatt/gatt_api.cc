@@ -1269,9 +1269,8 @@ bool GATT_Connect(tGATT_IF gatt_if, const RawAddress& bd_addr,
 }
 
 bool GATT_Connect(tGATT_IF gatt_if, const RawAddress& bd_addr,
-                  tBLE_ADDR_TYPE addr_type, tBTM_BLE_CONN_TYPE connection_type,
-                  tBT_TRANSPORT transport, bool opportunistic,
-                  uint8_t initiating_phys) {
+                  tBTM_BLE_CONN_TYPE connection_type, tBT_TRANSPORT transport,
+                  bool opportunistic, uint8_t initiating_phys) {
   /* Make sure app is registered */
   tGATT_REG* p_reg = gatt_get_regcb(gatt_if);
   if (!p_reg) {
@@ -1296,8 +1295,7 @@ bool GATT_Connect(tGATT_IF gatt_if, const RawAddress& bd_addr,
   if (is_direct) {
     LOG_DEBUG("Starting direct connect gatt_if=%u address=%s", gatt_if,
               ADDRESS_TO_LOGGABLE_CSTR(bd_addr));
-    ret =
-        gatt_act_connect(p_reg, bd_addr, addr_type, transport, initiating_phys);
+    ret = gatt_act_connect(p_reg, bd_addr, transport, initiating_phys);
   } else {
     LOG_DEBUG("Starting background connect gatt_if=%u address=%s", gatt_if,
               ADDRESS_TO_LOGGABLE_CSTR(bd_addr));
@@ -1334,13 +1332,6 @@ bool GATT_Connect(tGATT_IF gatt_if, const RawAddress& bd_addr,
   }
 
   return ret;
-}
-
-bool GATT_Connect(tGATT_IF gatt_if, const RawAddress& bd_addr,
-                  tBTM_BLE_CONN_TYPE connection_type, tBT_TRANSPORT transport,
-                  bool opportunistic, uint8_t initiating_phys) {
-  return GATT_Connect(gatt_if, bd_addr, BLE_ADDR_PUBLIC, connection_type,
-                      transport, opportunistic, initiating_phys);
 }
 
 /*******************************************************************************

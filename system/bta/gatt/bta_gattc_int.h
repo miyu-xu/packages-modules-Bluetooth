@@ -93,7 +93,6 @@ typedef struct {
   tBT_TRANSPORT transport;
   uint8_t initiating_phys;
   bool opportunistic;
-  tBT_DEVICE_TYPE remote_addr_type;
 } tBTA_GATTC_API_OPEN;
 
 typedef struct {
