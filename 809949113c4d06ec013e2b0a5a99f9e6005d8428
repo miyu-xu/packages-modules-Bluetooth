@@ -1,0 +1,182 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "45b9fc8e_01894812",
+        "filename": "tools/pdl/src/analyzer.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-03-02T06:22:10Z",
+      "side": 1,
+      "message": "nit: Use a unit struct `pub struct Annotation;`",
+      "revId": "809949113c4d06ec013e2b0a5a99f9e6005d8428",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e52492eb_453add2f",
+        "filename": "tools/pdl/src/analyzer.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-03-02T06:22:10Z",
+      "side": 1,
+      "message": "Could this be implemented with https://doc.rust-lang.org/std/iter/fn.successors.html + Iter#flatten/flap_map ?",
+      "range": {
+        "startLine": 136,
+        "startChar": 0,
+        "endLine": 159,
+        "endChar": 1
+      },
+      "revId": "809949113c4d06ec013e2b0a5a99f9e6005d8428",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "37717680_f70087df",
+        "filename": "tools/pdl/src/analyzer.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-03-02T06:22:10Z",
+      "side": 1,
+      "message": "Could this be implemented with https://doc.rust-lang.org/std/iter/fn.successors.html ?",
+      "range": {
+        "startLine": 161,
+        "startChar": 0,
+        "endLine": 178,
+        "endChar": 0
+      },
+      "revId": "809949113c4d06ec013e2b0a5a99f9e6005d8428",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "96b56c6d_1170ca31",
+        "filename": "tools/pdl/src/analyzer.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-03-02T06:22:10Z",
+      "side": 1,
+      "message": "Use an enum that implement `Into\u003cString\u003e`",
+      "range": {
+        "startLine": 189,
+        "startChar": 39,
+        "endLine": 189,
+        "endChar": 43
+      },
+      "revId": "809949113c4d06ec013e2b0a5a99f9e6005d8428",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8c85bbea_3191936b",
+        "filename": "tools/pdl/src/analyzer.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 560,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-03-02T06:22:10Z",
+      "side": 1,
+      "message": "nit: `expected scalar or typedef identifier`",
+      "range": {
+        "startLine": 560,
+        "startChar": 44,
+        "endLine": 560,
+        "endChar": 79
+      },
+      "revId": "809949113c4d06ec013e2b0a5a99f9e6005d8428",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "23643b32_b99ba240",
+        "filename": "tools/pdl/src/analyzer.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 626,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-03-02T06:22:10Z",
+      "side": 1,
+      "message": "nit: Could you put the if inside the block and not as a guard and drop the default case to be consistent with line 885 ?",
+      "range": {
+        "startLine": 626,
+        "startChar": 41,
+        "endLine": 626,
+        "endChar": 85
+      },
+      "revId": "809949113c4d06ec013e2b0a5a99f9e6005d8428",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "12362886_60e8f106",
+        "filename": "tools/pdl/src/analyzer.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 780,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-03-02T06:22:10Z",
+      "side": 1,
+      "message": "nit: `expected payload, body or array identifier`",
+      "range": {
+        "startLine": 780,
+        "startChar": 43,
+        "endLine": 780,
+        "endChar": 83
+      },
+      "revId": "809949113c4d06ec013e2b0a5a99f9e6005d8428",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "afcdd17b_5e976f8d",
+        "filename": "tools/pdl/src/analyzer.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 931,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-03-02T06:22:10Z",
+      "side": 1,
+      "message": "Nit: Could you make an helper for that and name it ? It would make the comprehension easier something like `file.childs_of(decl)` ?",
+      "range": {
+        "startLine": 929,
+        "startChar": 0,
+        "endLine": 931,
+        "endChar": 69
+      },
+      "revId": "809949113c4d06ec013e2b0a5a99f9e6005d8428",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
