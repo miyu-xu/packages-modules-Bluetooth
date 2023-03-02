@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b472cf9b_21a31c4a",
+        "filename": "system/btif/src/btif_hf.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 1306903
+      },
+      "writtenOn": "2023-03-02T02:58:30Z",
+      "side": 1,
+      "message": "Can we have a comment here shows how the mask work?",
+      "range": {
+        "startLine": 155,
+        "startChar": 0,
+        "endLine": 155,
+        "endChar": 63
+      },
+      "revId": "1a477a04871629cc28ab79097aef4fe931aec849",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
