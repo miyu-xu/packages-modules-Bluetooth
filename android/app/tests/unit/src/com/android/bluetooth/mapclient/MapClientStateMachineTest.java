@@ -33,6 +33,7 @@ import android.bluetooth.SdpMasRecord;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Handler;
@@ -127,6 +128,9 @@ public class MapClientStateMachineTest {
     private MasClient mMockMasClient;
 
     @Mock
+    private PackageManager mMockPackageManager;
+
+    @Mock
     private RequestPushMessage mMockRequestPushMessage;
 
     @Mock
@@ -160,12 +164,16 @@ public class MapClientStateMachineTest {
         mMockContentResolver.addProvider("sms", mMockContentProvider);
         mMockContentResolver.addProvider("mms", mMockContentProvider);
         mMockContentResolver.addProvider("mms-sms", mMockContentProvider);
+        when(mMockPackageManager.hasSystemFeature(PackageManager.FEATURE_TELEPHONY))
+                .thenReturn(true);
 
         when(mMockMapClientService.getContentResolver()).thenReturn(mMockContentResolver);
         when(mMockMapClientService.getSystemService(Context.TELEPHONY_SUBSCRIPTION_SERVICE))
                 .thenReturn(mMockSubscriptionManager);
         when(mMockMapClientService.getSystemServiceName(SubscriptionManager.class))
                 .thenReturn(Context.TELEPHONY_SUBSCRIPTION_SERVICE);
+        when(mMockMapClientService.getPackageManager()).thenReturn(mMockPackageManager);
+
 
         doReturn(mTargetContext.getResources()).when(mMockMapClientService).getResources();
 
@@ -240,12 +248,9 @@ public class MapClientStateMachineTest {
     }
 
     /**
-     * Test transition from STATE_CONNECTING --> (receive MSG_MAS_CONNECTED) --> STATE_CONNECTED
+     * Simulate transition from STATE_CONNECTING --> (receive MSG_MAS_CONNECTED) --> STATE_CONNECTED
      */
-    @Test
-    public void testStateTransitionFromConnectingToConnected() {
-        Log.i(TAG, "in testStateTransitionFromConnectingToConnected");
-
+    private void doStateTransitionFromConnectingToConnected() {
         setupSdpRecordReceipt();
         Message msg = Message.obtain(mHandler, MceStateMachine.MSG_MAS_CONNECTED);
         mMceStateMachine.sendMessage(msg);
@@ -258,6 +263,36 @@ public class MapClientStateMachineTest {
                 mIntentArgument.capture(), any(String[].class),
                 any(BroadcastOptions.class));
         Assert.assertEquals(BluetoothProfile.STATE_CONNECTED, mMceStateMachine.getState());
+    }
+
+    /**
+     * Test transition from STATE_CONNECTING --> (receive MSG_MAS_CONNECTED) --> STATE_CONNECTED
+     * when Telephony is supported by the local device.
+     */
+    @Test
+    public void testStateTransitionFromConnectingToConnectedWithTelephonySupported() {
+        Log.i(TAG, "in testStateTransitionFromConnectingToConnectedWithTelephonySupported");
+        doStateTransitionFromConnectingToConnected();
+        Assert.assertNotNull(mMceStateMachine.mDatabase);
+    }
+
+    /**
+     * Test transition from STATE_CONNECTING --> (receive MSG_MAS_CONNECTED) --> STATE_CONNECTED
+     * when Telephony is not supported by the local device.
+     */
+    @Test
+    public void testStateTransitionFromConnectingToConnectedWithTelephonyUnsupported() {
+        Log.i(TAG, "in testStateTransitionFromConnectingToConnectedWithTelephonyUnsupported");
+        when(mMockPackageManager.hasSystemFeature(PackageManager.FEATURE_TELEPHONY))
+                .thenReturn(false);
+
+        // Re-instantiate state machine with null default database.
+        mMceStateMachine = new MceStateMachine(mMockMapClientService, mTestDevice, mMockMasClient,
+                null);
+        Assert.assertNotNull(mMceStateMachine);
+
+        doStateTransitionFromConnectingToConnected();
+        Assert.assertNull(mMceStateMachine.mDatabase);
     }
 
     /**
@@ -473,7 +508,7 @@ public class MapClientStateMachineTest {
      *   - Request for MessageListing of INBOX folder not sent
      */
     private void testGetOwnNumber_setup() {
-        testStateTransitionFromConnectingToConnected();
+        doStateTransitionFromConnectingToConnected();
         verify(mMockMasClient, after(ASYNC_CALL_TIMEOUT_MILLIS).never()).makeRequest(
                 any(RequestSetNotificationRegistration.class));
         verify(mMockMasClient, never()).makeRequest(any(RequestGetMessagesListing.class));
@@ -612,9 +647,9 @@ public class MapClientStateMachineTest {
         testGetOwnNumber_assertNextStageStarted(false);
     }
 
-    /**
-     * Test seen status set for new SMS
-     */
+     /**
+      * Test seen status set for new SMS
+      */
      @Test
      public void testReceivedNewSms_messageStoredAsUnseen() {
         setupSdpRecordReceipt();
@@ -648,8 +683,8 @@ public class MapClientStateMachineTest {
      }
 
      /**
-     * Test seen status set for new MMS
-     */
+      * Test seen status set for new MMS
+      */
      @Test
      public void testReceivedNewMms_messageStoredAsUnseen() {
         setupSdpRecordReceipt();
@@ -686,8 +721,8 @@ public class MapClientStateMachineTest {
      }
 
      /**
-     * Test seen status set in database on initial download
-     */
+      * Test seen status set in database on initial download
+      */
      @Test
      public void testDownloadExistingSms_messageStoredAsSeen() {
         setupSdpRecordReceipt();
@@ -732,8 +767,8 @@ public class MapClientStateMachineTest {
      }
 
      /**
-     * Test seen status set in database on initial download
-     */
+      * Test seen status set in database on initial download
+      */
      @Test
      public void testDownloadExistingMms_messageStoredAsSeen() {
         setupSdpRecordReceipt();
@@ -778,7 +813,7 @@ public class MapClientStateMachineTest {
         TestUtils.waitForLooperToBeIdle(mMceStateMachine.getHandler().getLooper());
         verify(mMockDatabase, times(1)).storeMessage(any(), any(),
                 any(), eq(MESSAGE_SEEN));
-     }
+    }
 
     /**
      * Test receiving a new message notification.

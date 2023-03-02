@@ -44,6 +44,7 @@ import static android.Manifest.permission.BLUETOOTH_CONNECT;
 import static android.Manifest.permission.BLUETOOTH_PRIVILEGED;
 import static android.Manifest.permission.RECEIVE_SMS;
 
+import android.annotation.Nullable;
 import android.app.Activity;
 import android.app.PendingIntent;
 import android.bluetooth.BluetoothDevice;
@@ -52,6 +53,7 @@ import android.bluetooth.BluetoothProfile;
 import android.bluetooth.BluetoothUuid;
 import android.bluetooth.SdpMasRecord;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Message;
 import android.provider.Telephony;
@@ -142,7 +144,11 @@ class MceStateMachine extends StateMachine {
     private final BluetoothDevice mDevice;
     private MapClientService mService;
     private MasClient mMasClient;
-    private MapClientContent mDatabase;
+
+    @VisibleForTesting
+    @Nullable
+    MapClientContent mDatabase;
+
     private HashMap<String, Bmessage> mSentMessageLog = new HashMap<>(MAX_MESSAGES);
     private HashMap<Bmessage, PendingIntent> mSentReceiptRequested = new HashMap<>(MAX_MESSAGES);
     private HashMap<Bmessage, PendingIntent> mDeliveryReceiptRequested =
@@ -318,7 +324,8 @@ class MceStateMachine extends StateMachine {
                 }
                 if (PhoneAccount.SCHEME_TEL.equals(contact.getScheme())) {
                     String path = contact.getPath();
-                    if (path != null && path.contains(Telephony.Threads.CONTENT_URI.toString())) {
+                    if (mDatabase != null && path != null
+                            && path.contains(Telephony.Threads.CONTENT_URI.toString())) {
                         mDatabase.addThreadContactsToEntries(bmsg, contact.getLastPathSegment());
                     } else {
                         VCardEntry destEntry = new VCardEntry();
@@ -579,7 +586,8 @@ class MceStateMachine extends StateMachine {
                 }
             };
             // Keeps mock database from being overwritten in tests
-            if (mDatabase == null) {
+            if (mService.getPackageManager().hasSystemFeature(PackageManager.FEATURE_TELEPHONY)
+                    && mDatabase == null) {
                 mDatabase = new MapClientContent(mService, callbacks, mDevice);
             }
             onConnectionStateChanged(mPreviousState, BluetoothProfile.STATE_CONNECTED);
@@ -674,7 +682,7 @@ class MceStateMachine extends StateMachine {
                         // some test devices don't populate messageHandle field.
                         // in such cases, no need to wait up for response for such messages.
                         if (messageHandle != null && messageHandle.length() > 2) {
-                            if (SAVE_OUTBOUND_MESSAGES) {
+                            if (mDatabase != null && SAVE_OUTBOUND_MESSAGES) {
                                 mDatabase.storeMessage(requestPushMessage.getBMsg(), messageHandle,
                                         System.currentTimeMillis(), MESSAGE_SEEN);
                             }
@@ -728,7 +736,9 @@ class MceStateMachine extends StateMachine {
 
         @Override
         public void exit() {
-            mDatabase.cleanUp();
+            if (mDatabase != null) {
+                mDatabase.cleanUp();
+            }
             mDatabase = null;
             mPreviousState = BluetoothProfile.STATE_CONNECTED;
         }
@@ -773,10 +783,14 @@ class MceStateMachine extends StateMachine {
                     notifySentMessageStatus(event.getHandle(), event.getType());
                     break;
                 case READ_STATUS_CHANGED:
-                    mDatabase.markRead(event.getHandle());
+                    if (mDatabase != null) {
+                        mDatabase.markRead(event.getHandle());
+                    }
                     break;
                 case MESSAGE_DELETED:
-                    mDatabase.deleteMessage(event.getHandle());
+                    if (mDatabase != null) {
+                        mDatabase.deleteMessage(event.getHandle());
+                    }
                     break;
             }
         }
@@ -852,7 +866,9 @@ class MceStateMachine extends StateMachine {
                         Log.d(TAG, "processMessageListingForOwnNumber: number found = "
                                 + request.getOwnNumber());
                     }
-                    mDatabase.setRemoteDeviceOwnNumber(request.getOwnNumber());
+                    if (mDatabase != null) {
+                        mDatabase.setRemoteDeviceOwnNumber(request.getOwnNumber());
+                    }
                 }
                 // Remove any outstanding timeouts from state machine queue
                 removeDeferredMessages(MSG_SEARCH_OWN_NUMBER_TIMEOUT);
@@ -936,9 +952,11 @@ class MceStateMachine extends StateMachine {
             if (message == null) {
                 return;
             }
-            mDatabase.storeMessage(message, request.getHandle(),
-                    mMessages.get(request.getHandle()).getTimestamp(),
-                    mMessages.get(request.getHandle()).getSeen());
+            if (mDatabase != null) {
+                mDatabase.storeMessage(message, request.getHandle(),
+                        mMessages.get(request.getHandle()).getTimestamp(),
+                        mMessages.get(request.getHandle()).getSeen());
+            }
             if (!INBOX_PATH.equalsIgnoreCase(message.getFolder())) {
                 if (DBG) {
                     Log.d(TAG, "Ignoring message received in " + message.getFolder() + ".");
