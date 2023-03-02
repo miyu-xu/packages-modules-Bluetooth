@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7c99f7cc_d09ef6bd",
+        "filename": "system/rust/src/gatt/mtu.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-03-02T14:15:40Z",
+      "side": 1,
+      "message": "Why not put this Ok in on_incoming_request to match the other two?",
+      "range": {
+        "startLine": 71,
+        "startChar": 16,
+        "endLine": 71,
+        "endChar": 22
+      },
+      "revId": "83add6543b34264890bc4f788575c89f7ced5dd1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "93c0de5f_d326559b",
+        "filename": "system/rust/src/gatt/server/att_server_bearer.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-03-02T14:15:40Z",
+      "side": 1,
+      "message": "I could also imagine it just using the old MTU, it should be safe.  I\u0027m assuming that GATT specifies that we wait until we know the new MTU?",
+      "range": {
+        "startLine": 103,
+        "startChar": 0,
+        "endLine": 103,
+        "endChar": 80
+      },
+      "revId": "83add6543b34264890bc4f788575c89f7ced5dd1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "601e463f_faee4bb2",
+        "filename": "system/rust/src/utils/task.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-03-02T14:15:40Z",
+      "side": 1,
+      "message": "100000 seconds is eternity.  Are we sure it should be that large?",
+      "range": {
+        "startLine": 21,
+        "startChar": 59,
+        "endLine": 21,
+        "endChar": 65
+      },
+      "revId": "83add6543b34264890bc4f788575c89f7ced5dd1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "96adde18_5dfa8c7d",
+        "filename": "system/stack/arbiter/acl_arbiter.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-03-02T14:15:40Z",
+      "side": 1,
+      "message": "This looks like it will quickly become log spam",
+      "range": {
+        "startLine": 107,
+        "startChar": 0,
+        "endLine": 107,
+        "endChar": 55
+      },
+      "revId": "83add6543b34264890bc4f788575c89f7ced5dd1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1a85d1bf_248f7f7f",
+        "filename": "system/stack/arbiter/acl_arbiter.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-03-02T14:15:40Z",
+      "side": 1,
+      "message": "If it\u0027s not log spam, can we include the MTU :) ?",
+      "revId": "83add6543b34264890bc4f788575c89f7ced5dd1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
