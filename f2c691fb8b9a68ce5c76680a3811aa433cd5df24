@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9dadb8af_6d344065",
+        "filename": "system/rust/src/gatt/ffi/gatt_shim.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-03-02T13:58:13Z",
+      "side": 1,
+      "message": "Should we specify the values here as well?  It looks like we\u0027re relying on the values, not the names here:\n\n    #[namespace \u003d \"bluetooth::gatt\"]\n    enum AttributeBackingType {\n        /// A GATT characteristic\n        #[cxx_name \u003d \"CHARACTERISTIC\"]\n        Characteristic \u003d 0u32,\n        /// A GATT descriptor\n        #[cxx_name \u003d \"DESCRIPTOR\"]\n        Descriptor \u003d 1u32,\n    }",
+      "range": {
+        "startLine": 32,
+        "startChar": 2,
+        "endLine": 32,
+        "endChar": 16
+      },
+      "revId": "f2c691fb8b9a68ce5c76680a3811aa433cd5df24",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a359311c_222d50b0",
+        "filename": "system/rust/src/gatt/server/gatt_database.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-03-02T13:58:13Z",
+      "side": 1,
+      "message": "If there\u0027s no such thing as a GattDescriptorWithoutHandle, can we simplify the naming?",
+      "range": {
+        "startLine": 69,
+        "startChar": 25,
+        "endLine": 69,
+        "endChar": 35
+      },
+      "revId": "f2c691fb8b9a68ce5c76680a3811aa433cd5df24",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
