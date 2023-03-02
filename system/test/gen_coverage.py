@@ -59,40 +59,29 @@ TODO: Support generating XML data and printing results to standard out.
 COVERAGE_TESTS = [
     {
         "test_name": "net_test_avrcp",
-        "covered_files": [
-            "packages/modules/Bluetooth/system/profile/avrcp",
-        ],
+        "covered_files": ["packages/modules/Bluetooth/system/profile/avrcp",],
     },
     {
         "test_name": "bluetooth_test_sdp",
-        "covered_files": [
-            "packages/modules/Bluetooth/system/profile/sdp",
-        ],
+        "covered_files": ["packages/modules/Bluetooth/system/profile/sdp",],
     },
     {
-        "test_name": "rootcanal_test_host",
+        "test_name":
+            "rootcanal_test_host",
         "covered_files": [
             "packages/modules/Bluetooth/tools/rootcanal/include",
             "packages/modules/Bluetooth/tools/rootcanal/src",
         ],
     },
     {
-        "test_name": "rootcanal-packets_test_host",
-        "covered_files": [
-            "packages/modules/Bluetooth/tools/rootcanal/packets",
-        ],
-    },
-    {
         "test_name": "bluetooth_test_common",
-        "covered_files": [
-            "packages/modules/Bluetooth/system/common",
-        ],
+        "covered_files": ["packages/modules/Bluetooth/system/common",],
     },
 ]
 
 WORKING_DIR = '/tmp/coverage'
 SOONG_UI_BASH = 'build/soong/soong_ui.bash'
-LLVM_DIR = 'prebuilts/clang/host/linux-x86/clang-r353983b/bin'
+LLVM_DIR = 'prebuilts/clang/host/linux-x86/clang-r487747/bin'
 LLVM_MERGE = LLVM_DIR + '/llvm-profdata'
 LLVM_COV = LLVM_DIR + '/llvm-cov'
 
@@ -305,21 +294,20 @@ def write_json_summary(test):
 
 def list_tests():
     for test in COVERAGE_TESTS:
-        print "Test Name: " + test['test_name']
-        print "Covered Files: "
+        print("Test Name: " + test['test_name'])
+        print("Covered Files: ")
         for covered_file in test['covered_files']:
-            print "  " + covered_file
-        print
+            print("  " + covered_file)
+        print()
 
 
 def main():
     parser = argparse.ArgumentParser(description='Generate code coverage for enabled tests.')
-    parser.add_argument(
-        '-l',
-        '--list-tests',
-        action='store_true',
-        dest='list_tests',
-        help='List all the available tests to be run as well as covered files.')
+    parser.add_argument('-l',
+                        '--list-tests',
+                        action='store_true',
+                        dest='list_tests',
+                        help='List all the available tests to be run as well as covered files.')
     parser.add_argument(
       '-a', '--all',
       action='store_true',
@@ -342,18 +330,16 @@ def main():
       default='/tmp/coverage',
       help='Specifies the directory to store all files. The directory will be ' \
            'created if it does not exist. Default is \"/tmp/coverage\"')
-    parser.add_argument(
-        '-s',
-        '--skip-html',
-        dest='skip_html',
-        action='store_true',
-        help='Skip opening up the results of the coverage report in a browser.')
-    parser.add_argument(
-        '-j',
-        '--json-file',
-        dest='json_file',
-        action='store_true',
-        help='Write out summary results to json file in test directory.')
+    parser.add_argument('-s',
+                        '--skip-html',
+                        dest='skip_html',
+                        action='store_true',
+                        help='Skip opening up the results of the coverage report in a browser.')
+    parser.add_argument('-j',
+                        '--json-file',
+                        dest='json_file',
+                        action='store_true',
+                        help='Write out summary results to json file in test directory.')
 
     logging.basicConfig(stream=sys.stderr, level=logging.DEBUG, format='%(levelname)s %(message)s')
     logging.addLevelName(logging.DEBUG, "[\033[1;34m%s\033[0m]" % logging.getLevelName(logging.DEBUG))
