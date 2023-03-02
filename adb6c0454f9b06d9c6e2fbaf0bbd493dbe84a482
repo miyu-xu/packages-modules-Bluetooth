@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5fe988a1_aaf6b17b",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 2423,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-03-02T07:53:35Z",
+      "side": 1,
+      "message": "Please fix compilation failure on AOSP",
+      "range": {
+        "startLine": 2423,
+        "startChar": 27,
+        "endLine": 2423,
+        "endChar": 80
+      },
+      "revId": "adb6c0454f9b06d9c6e2fbaf0bbd493dbe84a482",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
