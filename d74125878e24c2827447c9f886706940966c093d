@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e7e9303d_96533ae9",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/MediaPlayerList.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 690,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2023-03-02T01:09:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1d8020f8_2ba48cdb",
+      "range": {
+        "startLine": 690,
+        "startChar": 4,
+        "endLine": 690,
+        "endChar": 10
+      },
+      "revId": "d74125878e24c2827447c9f886706940966c093d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fb8b2549_41cfe8bd",
@@ -37,6 +61,24 @@
       "writtenOn": "2023-03-02T01:02:38Z",
       "side": 1,
       "message": "Remove empty line",
+      "revId": "d74125878e24c2827447c9f886706940966c093d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3ed6da27_c2895ccd",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/audio_util/MediaPlayerListTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 226,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2023-03-02T01:09:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fb8b2549_41cfe8bd",
       "revId": "d74125878e24c2827447c9f886706940966c093d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
