@@ -33,6 +33,24 @@
       "message": "we could verify minimum length of serviceData which is 2.",
       "revId": "beae1dcbebdead6686da0ab29b67314f586d6ca4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0bedf97b_67ae6e5c",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/PublicBroadcastData.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-03-02T18:39:44Z",
+      "side": 1,
+      "message": "Good point, will add that check.",
+      "parentUuid": "af31d5db_077bc294",
+      "revId": "beae1dcbebdead6686da0ab29b67314f586d6ca4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
