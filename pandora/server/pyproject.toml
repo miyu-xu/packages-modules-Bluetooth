@@ -1,12 +1,7 @@
 [project]
-name = "mmi2grpc"
+name = "bumble_experimental"
 authors = [{name = "Pandora", email = "pandora-core@google.com"}]
-readme = "README.md"
 dynamic = ["version", "description"]
-dependencies = ["grpcio >=1.41", "numpy >=1.22", "scipy >= 1.8"]
-
-[tool.flit.sdist]
-include = ["pandora"]
 
 [build-system]
 requires = ["flit_core==3.7.1"]
