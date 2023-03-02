@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "472ec8b4_e0a7bd15",
+        "filename": "system/rust/src/gatt/callbacks/callback_transaction_manager.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-03-02T14:35:27Z",
+      "side": 1,
+      "message": "From the spec, or just a reasonable timeout?",
+      "range": {
+        "startLine": 68,
+        "startChar": 46,
+        "endLine": 68,
+        "endChar": 48
+      },
+      "revId": "74b20b609cb4a9c039e8fd2fdfc7e8b6fdc80ac0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "96a1bd6c_337c2fcb",
+        "filename": "system/rust/src/gatt/callbacks/callback_transaction_manager.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-03-02T14:35:27Z",
+      "side": 1,
+      "message": "?",
+      "range": {
+        "startLine": 141,
+        "startChar": 96,
+        "endLine": 141,
+        "endChar": 107
+      },
+      "revId": "74b20b609cb4a9c039e8fd2fdfc7e8b6fdc80ac0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "68261d5d_7642137a",
+        "filename": "system/rust/tests/gatt_callbacks_test.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 249,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-03-02T14:35:27Z",
+      "side": 1,
+      "message": "TIMEOUT - 1?",
+      "range": {
+        "startLine": 249,
+        "startChar": 49,
+        "endLine": 249,
+        "endChar": 51
+      },
+      "revId": "74b20b609cb4a9c039e8fd2fdfc7e8b6fdc80ac0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
