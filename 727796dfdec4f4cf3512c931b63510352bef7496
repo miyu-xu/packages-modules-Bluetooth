@@ -1,5 +1,29 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c8952e57_1b1995e4",
+        "filename": "android/app/src/com/android/bluetooth/btservice/PhonePolicy.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 365,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-03-02T10:04:38Z",
+      "side": 1,
+      "message": "As I read this code, this should break the logic around switching from LE to A2DP -  we should have preference to switch back to LE Audio.\n\nHowever, after applying this patch locally, all works good.",
+      "range": {
+        "startLine": 364,
+        "startChar": 11,
+        "endLine": 365,
+        "endChar": 68
+      },
+      "revId": "727796dfdec4f4cf3512c931b63510352bef7496",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
