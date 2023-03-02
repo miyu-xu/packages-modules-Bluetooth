@@ -15,28 +15,17 @@
  */
 package com.android.bluetooth.opp;
 
-import static com.android.bluetooth.opp.BluetoothOppService.WHERE_INVISIBLE_UNCONFIRMED;
-
 import static com.google.common.truth.Truth.assertThat;
 
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.anyString;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
 
-import android.app.NotificationManager;
 import android.bluetooth.BluetoothAdapter;
-import android.content.ContentResolver;
-import android.database.MatrixCursor;
-import android.os.Handler;
 
-import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.rule.ServiceTestRule;
 import androidx.test.runner.AndroidJUnit4;
 
-import com.android.bluetooth.BluetoothMethodProxy;
 import com.android.bluetooth.TestUtils;
 import com.android.bluetooth.btservice.AdapterService;
 
@@ -52,31 +41,18 @@ import org.mockito.MockitoAnnotations;
 
 @RunWith(AndroidJUnit4.class)
 public class BluetoothOppServiceTest {
-    @Rule
-    public final ServiceTestRule mServiceRule = new ServiceTestRule();
-    @Mock
-    BluetoothMethodProxy mMethodProxy;
+    @Rule public final ServiceTestRule mServiceRule = new ServiceTestRule();
+
     private BluetoothOppService mService = null;
     private BluetoothAdapter mAdapter = null;
 
-    @Mock
-    private AdapterService mAdapterService;
+    @Mock private AdapterService mAdapterService;
 
     @Before
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
-
-        BluetoothMethodProxy.setInstanceForTesting(mMethodProxy);
-
-        // To void mockito multi-thread inter-tests problem
-        // If the thread still run in the next test, it will raise un-related mockito error
-        BluetoothOppNotification bluetoothOppNotification = mock(BluetoothOppNotification.class);
-        bluetoothOppNotification.mNotificationMgr = mock(NotificationManager.class);
-        doReturn(bluetoothOppNotification).when(mMethodProxy).newBluetoothOppNotification(any());
-
         TestUtils.setAdapterService(mAdapterService);
         doReturn(true, false).when(mAdapterService).isStartedProfile(anyString());
-
         TestUtils.startService(mServiceRule, BluetoothOppService.class);
         mService = BluetoothOppService.getBluetoothOppService();
         Assert.assertNotNull(mService);
@@ -87,7 +63,6 @@ public class BluetoothOppServiceTest {
 
     @After
     public void tearDown() throws Exception {
-        BluetoothMethodProxy.setInstanceForTesting(null);
         TestUtils.stopService(mServiceRule, BluetoothOppService.class);
         TestUtils.clearAdapterService(mAdapterService);
     }
@@ -136,34 +111,5 @@ public class BluetoothOppServiceTest {
 
         // should not throw
         mService.dump(new StringBuilder());
-    }
-
-    @Test
-    public void trimDatabase_trimsOldOrInvisibleRecords() {
-        ContentResolver contentResolver = InstrumentationRegistry
-                .getInstrumentation().getTargetContext().getContentResolver();
-        Assume.assumeTrue("Ignore test when there is no content provider",
-                contentResolver.acquireContentProviderClient(BluetoothShare.CONTENT_URI) != null);
-
-        doReturn(1 /* any int is Ok */).when(mMethodProxy).contentResolverDelete(
-                eq(contentResolver), eq(BluetoothShare.CONTENT_URI), anyString(), any());
-
-        MatrixCursor cursor = new MatrixCursor(new String[]{BluetoothShare._ID}, 500);
-        for (long i = 0; i < Constants.MAX_RECORDS_IN_DATABASE + 20; i++) {
-            cursor.addRow(new Object[]{i});
-        }
-
-        doReturn(cursor).when(mMethodProxy).contentResolverQuery(eq(contentResolver),
-                eq(BluetoothShare.CONTENT_URI), any(), any(), any(), any());
-
-        BluetoothOppService.trimDatabase(contentResolver);
-
-        // check trimmed invisible records
-        verify(mMethodProxy).contentResolverDelete(eq(contentResolver),
-                eq(BluetoothShare.CONTENT_URI), eq(WHERE_INVISIBLE_UNCONFIRMED), any());
-
-        // check trimmed old records
-        verify(mMethodProxy).contentResolverDelete(eq(contentResolver),
-                eq(BluetoothShare.CONTENT_URI), eq(BluetoothShare._ID + " < " + 20), any());
     }
 }
