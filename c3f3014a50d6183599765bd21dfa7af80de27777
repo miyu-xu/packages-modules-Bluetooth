@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "62bfe019_4ee141ac",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 1058,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2023-03-03T19:52:58Z",
+      "side": 1,
+      "message": "nit: \"Failed to parse start handle\"",
+      "revId": "c3f3014a50d6183599765bd21dfa7af80de27777",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f45e1430_307b8e18",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 1061,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2023-03-03T19:52:58Z",
+      "side": 1,
+      "message": "nit: \"Failed to parse end handle\"",
+      "revId": "c3f3014a50d6183599765bd21dfa7af80de27777",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6628319f_a999ebb3",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 1069,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2023-03-03T19:52:58Z",
+      "side": 1,
+      "message": "is `auth_req` required to be a value? Should we fail if it\u0027s set to empty()?",
+      "revId": "c3f3014a50d6183599765bd21dfa7af80de27777",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
