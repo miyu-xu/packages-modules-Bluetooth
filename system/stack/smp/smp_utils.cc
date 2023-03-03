@@ -1002,7 +1002,9 @@ void smp_proc_pairing_cmpl(tSMP_CB* p_cb) {
                           metric_status);
   }
 
+  LOG_INFO("■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ SMP pairing is complete! p_cb->status=%d , p_cb->smp_over_br=%d", p_cb->status, p_cb->smp_over_br);
   if (p_cb->status == SMP_SUCCESS && p_cb->smp_over_br) {
+    LOG_INFO("■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ SMP pairing is complete - call to device consolidataion");
     btm_dev_consolidate_existing_connections(pairing_bda);
   }
 

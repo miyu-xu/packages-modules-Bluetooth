@@ -4270,6 +4270,7 @@ void btm_dm_start_gatt_discovery(const RawAddress& bd_addr) {
     BTA_GATTC_ServiceSearchRequest(bta_dm_search_cb.conn_id, nullptr);
   } else {
     if (BTM_IsAclConnectionUp(bd_addr, BT_TRANSPORT_LE)) {
+      LOG_INFO("■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ will try to open to %s", bd_addr.ToString().c_str());
       BTA_GATTC_Open(bta_dm_search_cb.client_if, bd_addr,
                      BTM_BLE_DIRECT_CONNECTION, true);
     } else {

@@ -765,7 +765,7 @@ static bool is_device_le_audio_capable(const RawAddress bd_addr) {
 /*******************************************************************************
  *
  * Function         btif_dm_cb_create_bond
- *
+ *  
  * Description      Create bond initiated from the BTIF thread context
  *                  Special handling for HID devices
  *
@@ -2872,7 +2872,7 @@ bt_status_t btif_dm_get_adapter_property(bt_property_t* prop) {
  *
  ******************************************************************************/
 void btif_dm_get_remote_services(RawAddress remote_addr, const int transport) {
-  BTIF_TRACE_EVENT("%s: transport=%d, remote_addr=%s", __func__, transport,
+  BTIF_TRACE_ERROR("■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ %s: transport=%d, remote_addr=%s", __func__, transport,
                    ADDRESS_TO_LOGGABLE_CSTR(remote_addr));
 
   BTM_LogHistory(

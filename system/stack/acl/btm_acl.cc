@@ -296,9 +296,23 @@ void BTM_acl_after_controller_started(const controller_t* controller) {
 tACL_CONN* StackAclBtmAcl::btm_bda_to_acl(const RawAddress& bda,
                                           tBT_TRANSPORT transport) {
   tACL_CONN* p_acl = &btm_cb.acl_cb_.acl_db[0];
+
   for (uint8_t index = 0; index < MAX_L2CAP_LINKS; index++, p_acl++) {
-    if ((p_acl->in_use) && p_acl->remote_addr == bda &&
-        p_acl->transport == transport) {
+    if (!p_acl->in_use || p_acl->transport != transport) continue;
+ 
+    if(p_acl->remote_addr == bda) {
+      return p_acl;
+    }
+
+    tBTM_SEC_DEV_REC* record = btm_find_dev(p_acl->remote_addr);
+    LOG_INFO("********************************************* record is null = %d", +(record == nullptr));
+    if (record == nullptr) continue;
+
+    LOG_INFO("********************************************* acl addr is %s , record addr is %s", p_acl->remote_addr.ToString().c_str(), record->bd_addr.ToString().c_str());  
+  
+    // This can happen if connection was established over LE, and then pairing happened on Classic, and we want to use this connection after pairing, using it's identity address
+    if(record->bd_addr == bda) {
+      LOG_INFO("********************************************* Returning matching record");  
       return p_acl;
     }
   }

@@ -32,6 +32,7 @@
 #include "bt_target.h"  // Must be first to define build configuration
 #include "osi/include/allocator.h"
 #include "osi/include/log.h"
+#include "stack/btm/btm_dev.h"
 #include "stack/btm/btm_sec.h"
 #include "stack/eatt/eatt.h"
 #include "stack/gatt/connection_manager.h"
@@ -375,8 +376,21 @@ uint8_t gatt_find_i_tcb_by_addr(const RawAddress& bda,
   uint8_t i = 0;
 
   for (; i < GATT_MAX_PHY_CHANNEL; i++) {
-    if (gatt_cb.tcb[i].peer_bda == bda &&
-        gatt_cb.tcb[i].transport == transport) {
+    if (gatt_cb.tcb[i].transport != transport) continue;
+
+    if (gatt_cb.tcb[i].peer_bda == bda) {
+      return i;
+    }
+
+    tBTM_SEC_DEV_REC* record = btm_find_dev(gatt_cb.tcb[i].peer_bda);
+    LOG_INFO("********************************************* record is null = %d", +(record == nullptr));
+    if (record == nullptr) continue;
+
+    LOG_INFO("********************************************* clcb_bda is %s,  record addr is %s", gatt_cb.tcb[i].peer_bda.ToString().c_str(), record->bd_addr.ToString().c_str());  
+  
+    // This can happen if connection was established over LE, and then pairing happened on Classic, and we want to use this connection after pairing, using it's identity address
+    if(bda == record->bd_addr) {
+      LOG_INFO("********************************************* returning tcb");  
       return i;
     }
   }
