@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5d310764_429b07b4",
+        "filename": "system/bta/test/bta_dm_test.cc",
+        "patchSetId": 15
+      },
+      "lineNbr": 420,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-03-03T16:28:29Z",
+      "side": 1,
+      "message": "nit: I don\u0027t think we need this cast anymore.  Can we remove it?",
+      "range": {
+        "startLine": 420,
+        "startChar": 6,
+        "endLine": 420,
+        "endChar": 41
+      },
+      "revId": "72212c9c39b4e0d1ffdb64ff14b372431deb14be",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "329e9cf7_e3ec14ad",
+        "filename": "system/main/shim/btm_api.cc",
+        "patchSetId": 15
+      },
+      "lineNbr": 1248,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-03-03T16:28:29Z",
+      "side": 1,
+      "message": "This looks like it should complain about an unused parameter.\n\nconst tBTM_REMOTE_DEV_NAME* /* p_name */ ?",
+      "range": {
+        "startLine": 1248,
+        "startChar": 32,
+        "endLine": 1248,
+        "endChar": 38
+      },
+      "revId": "72212c9c39b4e0d1ffdb64ff14b372431deb14be",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3aa486f4_0122c805",
+        "filename": "system/test/headless/read/name.cc",
+        "patchSetId": 15
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-03-03T16:28:29Z",
+      "side": 1,
+      "message": "nit: no need for a static cast.  Maybe we should change the name of the parameter to be more meaningful now that it\u0027s not void* ?",
+      "range": {
+        "startLine": 33,
+        "startChar": 22,
+        "endLine": 33,
+        "endChar": 33
+      },
+      "revId": "72212c9c39b4e0d1ffdb64ff14b372431deb14be",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
