@@ -901,19 +901,18 @@ public final class BluetoothHearingAid implements BluetoothProfile {
                 android.Manifest.permission.BLUETOOTH_SCAN,
                 android.Manifest.permission.BLUETOOTH_PRIVILEGED,
             })
-    public @Nullable AdvertisementServiceData getAdvertisementServiceData(
+    @Nullable
+    public AdvertisementServiceData getAdvertisementServiceData(
             @NonNull BluetoothDevice device) {
         if (DBG) {
             log("getAdvertisementServiceData()");
         }
         final IBluetoothHearingAid service = getService();
         AdvertisementServiceData result = null;
-        if (service == null || !isEnabled() || isValidDevice(device)) {
+        if (service == null) {
             Log.w(TAG, "Proxy not attached to service");
-            if (DBG) {
-                log(Log.getStackTraceString(new Throwable()));
-            }
-        } else {
+            if (DBG) log(Log.getStackTraceString(new Throwable()));
+        } else if (isEnabled() && isValidDevice(device)) {
             try {
                 final SynchronousResultReceiver<AdvertisementServiceData> recv =
                         SynchronousResultReceiver.get();
