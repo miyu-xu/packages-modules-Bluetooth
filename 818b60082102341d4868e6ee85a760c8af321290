@@ -16,6 +16,24 @@
       "message": "BTW, isn\u0027t ignoring the test better than flaky or failures?",
       "revId": "818b60082102341d4868e6ee85a760c8af321290",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "eed7b98e_4721ee77",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-03-03T00:55:20Z",
+      "side": 1,
+      "message": "Yes, the goal was to ignore for tv, however this patch also ignore it for phone meaning that we are not running the test anymore. This allowed a broken test to be added to this class https://r.android.com/2461695 (this is the fix commit)",
+      "parentUuid": "54b9c039_23deb6cf",
+      "revId": "818b60082102341d4868e6ee85a760c8af321290",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
