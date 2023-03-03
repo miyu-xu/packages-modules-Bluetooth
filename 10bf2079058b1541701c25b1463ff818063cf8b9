@@ -16,6 +16,29 @@
       "message": "Hi please take a look at this, thanks!",
       "revId": "10bf2079058b1541701c25b1463ff818063cf8b9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fa0ca830_6aefa1dd",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 1023,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2023-03-03T09:24:48Z",
+      "side": 1,
+      "message": "nit: Implement \u0027From\u003cu32\u003e\u0027 for `AuthReq` and you can call auth_req.into() when calling write_characteristic.\n\nExample https://source.corp.google.com/chromeos_public/src/aosp/packages/modules/Bluetooth/upstream/system/gd/rust/topshim/src/profiles/a2dp.rs;l\u003d35?q\u003dBtavAudioState\u0026ss\u003dpiper%2FGoogle%2Fchromeos_public:src%2Faosp%2Fpackages%2Fmodules%2FBluetooth%2Fupstream%2F",
+      "range": {
+        "startLine": 1023,
+        "startChar": 85,
+        "endLine": 1023,
+        "endChar": 92
+      },
+      "revId": "10bf2079058b1541701c25b1463ff818063cf8b9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
