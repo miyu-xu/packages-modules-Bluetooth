@@ -128,6 +128,30 @@
       },
       "revId": "dda106b293a366b883b7805d3ffd98270b2e0155",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "50ed3542_07b6c546",
+        "filename": "android/app/src/com/android/bluetooth/btservice/PhonePolicy.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 358,
+      "author": {
+        "id": 1875587
+      },
+      "writtenOn": "2023-03-03T03:59:37Z",
+      "side": 1,
+      "message": "In current design, we didn\u0027t rewrite the policy for ASHA devices, so I think we should keep the same in this patch. \n@yuyangh@google.com The logic for HA is different from A2DP/HFP. Could you please help to check ASHA behavior? Thank you.",
+      "parentUuid": "0757d874_b34ed5bb",
+      "range": {
+        "startLine": 353,
+        "startChar": 12,
+        "endLine": 358,
+        "endChar": 13
+      },
+      "revId": "dda106b293a366b883b7805d3ffd98270b2e0155",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

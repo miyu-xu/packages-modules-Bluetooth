@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fb005e95_6d9bdb77",
+        "filename": "android/app/src/com/android/bluetooth/btservice/PhonePolicy.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 389,
+      "author": {
+        "id": 1875587
+      },
+      "writtenOn": "2023-03-03T03:59:37Z",
+      "side": 1,
+      "message": "Recall that CSIP should be connected first, could you please move the CSIP section prior than LE Audio section?",
+      "revId": "a7aca54df1502b2fdd0e6ce62ebdbc0c94131a1a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
