@@ -16,6 +16,52 @@
       "message": "Hi please take a look at this, thanks!",
       "revId": "12895290030e4350c7f2af4c9642e2f964ff8639",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9cafb0a8_17d3186b",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2023-03-03T09:14:50Z",
+      "side": 1,
+      "message": "Just a thought and not necessary to be addressed in this patch. I think by looking at the command description, it\u0027s hard for me to know what the format the uuid should be. Maybe in the future we should add a description or an example for some commands.",
+      "range": {
+        "startLine": 192,
+        "startChar": 62,
+        "endLine": 192,
+        "endChar": 66
+      },
+      "revId": "12895290030e4350c7f2af4c9642e2f964ff8639",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "109453c6_6d474490",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2023-03-03T09:14:50Z",
+      "side": 1,
+      "message": "nit: \"read-characterisitc-uuid\" looks like to read the uuid of a characteristic. Maybe \"read-characterisitc-by-uuid\" or \"read_using_characteristic_uuid\"?\n\nA better way is to merge this with the command read-characteristic.",
+      "range": {
+        "startLine": 192,
+        "startChar": 26,
+        "endLine": 192,
+        "endChar": 50
+      },
+      "revId": "12895290030e4350c7f2af4c9642e2f964ff8639",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
