@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "be68ee43_3ddf7e9f",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2023-03-03T09:42:59Z",
+      "side": 1,
+      "message": "Please refer to:\nhttps://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/system/include/hardware/bt_gatt_client.h;l\u003d251?q\u003dbt_gatt_client.h\n\nand:\nhttps://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/system/gd/rust/linux/stack/src/bluetooth_gatt.rs;l\u003d2150?q\u003ddiscover_service_by_uuid\n\nIn discover_service_by_uuid, what we actually do is call the search_service with\nuuid as filter. The name is different from the lower level API. For the name\n\"search_service\" it means that we enumerate all services in the cached db. For \nthe name \"discover_service\" it means that we really send the command to the\nremote peer to query the service handles.",
+      "parentUuid": "aaa1ee61_9b26e72e",
+      "range": {
+        "startLine": 180,
+        "startChar": 35,
+        "endLine": 180,
+        "endChar": 67
+      },
+      "revId": "6f199f0bb98119a597447c208666368b476ba101",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bd3f97d6_7986c9cd",
@@ -54,6 +78,30 @@
       "writtenOn": "2023-03-03T09:32:29Z",
       "side": 1,
       "message": "Could you explain more why this command is only used by PTS?",
+      "range": {
+        "startLine": 523,
+        "startChar": 59,
+        "endLine": 523,
+        "endChar": 76
+      },
+      "revId": "6f199f0bb98119a597447c208666368b476ba101",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "08ecafc2_b3bc18cb",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 523,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2023-03-03T09:42:59Z",
+      "side": 1,
+      "message": "Please refer to:\nhttps://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/system/include/hardware/bt_gatt_client.h;l\u003d251?q\u003dbt_gatt_client.h\n\nand:\nhttps://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/system/gd/rust/linux/stack/src/bluetooth_gatt.rs;l\u003d2150?q\u003ddiscover_service_by_uuid\n\nIn discover_service_by_uuid, what we actually do is call the search_service with\nuuid as filter. The name is different from the lower level API. For the name\n\"search_service\" it means that we enumerate all services in the cached db. For \nthe name \"discover_service\" it means that we really send the command to the\nremote peer to query the service handles.",
+      "parentUuid": "bd3f97d6_7986c9cd",
       "range": {
         "startLine": 523,
         "startChar": 59,
