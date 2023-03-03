@@ -1,0 +1,106 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "156c5591_8ba88cb8",
+        "filename": "framework/java/android/bluetooth/le/DistanceMeasurementParams.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-03-03T21:48:43Z",
+      "side": 1,
+      "message": "nit: \"until the timeout or explicitly stop\" --\u003e \"until this time has been reached or the session is explicitly stopped with {@link DistanceMeasurementSession#stopSession}\"",
+      "revId": "eed63216bee4aef2594869381c39e8f0957b9b3f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0b985c04_31b1d487",
+        "filename": "framework/java/android/bluetooth/le/DistanceMeasurementParams.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-03-03T21:48:43Z",
+      "side": 1,
+      "message": "Drop the \"In\" before the unit for each of these methods. For example, this should just be getDurationSeconds. Alternatively, you could return a Duration object here and that would make it possible for a developer to convert it to whatever unit they want to use.",
+      "revId": "eed63216bee4aef2594869381c39e8f0957b9b3f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "84381ee4_94a21a9f",
+        "filename": "framework/java/android/bluetooth/le/DistanceMeasurementParams.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-03-03T21:48:43Z",
+      "side": 1,
+      "message": "nit: \"used\" --\u003e \"uses\"",
+      "revId": "eed63216bee4aef2594869381c39e8f0957b9b3f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "acfb8c5a_bf9ae22c",
+        "filename": "framework/java/android/bluetooth/le/DistanceMeasurementParams.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-03-03T21:48:43Z",
+      "side": 1,
+      "message": "nit: typo on measurement",
+      "revId": "eed63216bee4aef2594869381c39e8f0957b9b3f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "17ee6df4_f3486269",
+        "filename": "framework/java/android/bluetooth/le/DistanceMeasurementParams.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 226,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-03-03T21:48:43Z",
+      "side": 1,
+      "message": "Same nit as above",
+      "revId": "eed63216bee4aef2594869381c39e8f0957b9b3f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0c8f59b3_98dc3a36",
+        "filename": "framework/java/android/bluetooth/le/DistanceMeasurementParams.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 244,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-03-03T21:48:43Z",
+      "side": 1,
+      "message": "Same nit: \"used\" --\u003e \"uses\"",
+      "revId": "eed63216bee4aef2594869381c39e8f0957b9b3f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
