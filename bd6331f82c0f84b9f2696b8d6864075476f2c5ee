@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "78359670_2a670c08",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1960961
+      },
+      "writtenOn": "2023-03-03T06:59:45Z",
+      "side": 1,
+      "message": "Hi Charlie/Thomas,\n\nAdded test cases to SM profile. Request you to review at your feasibility.\n\nThank you.\n\nRegards,\nSnehal",
+      "revId": "bd6331f82c0f84b9f2696b8d6864075476f2c5ee",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
