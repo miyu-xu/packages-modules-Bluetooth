@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bec9bede_9ad478ec",
+        "filename": "framework/java/android/bluetooth/BluetoothSocket.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1286922
+      },
+      "writtenOn": "2023-03-03T01:06:16Z",
+      "side": 1,
+      "message": "nit: you can directly reference these enum values to avoid having duplicates.\n\nFor example, you can reference this one as BluetoothStatsLog.BLUETOOTH_L2CAP_COC_CLIENT_CONNECTION__RESULT__RESULT_L2CAP_CONN_UNKNOWN.\n\n\nHere is snippet of the gencode in BluetoothStatsLog.java before your change: \n```\n    public static final int BLUETOOTH_L2CAP_COC_CLIENT_CONNECTION__RESULT__RESULT_L2CAP_CONN_UNKNOWN \u003d 0;\n    public static final int BLUETOOTH_L2CAP_COC_CLIENT_CONNECTION__RESULT__RESULT_L2CAP_CONN_SUCCESS \u003d 1;\n    public static final int BLUETOOTH_L2CAP_COC_CLIENT_CONNECTION__RESULT__RESULT_L2CAP_CONN_TIMEOUT \u003d 2;\n    public static final int BLUETOOTH_L2CAP_COC_CLIENT_CONNECTION__RESULT__RESULT_L2CAP_CONN_PENDING \u003d 3;\n    public static final int BLUETOOTH_L2CAP_COC_CLIENT_CONNECTION__RESULT__RESULT_L2CAP_CONN_NO_PSM \u003d 4;\n    public static final int BLUETOOTH_L2CAP_COC_CLIENT_CONNECTION__RESULT__RESULT_L2CAP_CONN_SECURITY_BLOCK \u003d 5;\n    public static final int BLUETOOTH_L2CAP_COC_CLIENT_CONNECTION__RESULT__RESULT_L2CAP_CONN_NO_RESOURCES \u003d 6;\n    public static final int BLUETOOTH_L2CAP_COC_CLIENT_CONNECTION__RESULT__RESULT_L2CAP_CONN_NO_LINK \u003d 7;\n    public static final int BLUETOOTH_L2CAP_COC_CLIENT_CONNECTION__RESULT__RESULT_L2CAP_CONN_CANCEL \u003d 8;\n\n```",
+      "revId": "64bbe91bb10f9e6ac6d33443bbede8e89926e6ba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
