@@ -34,6 +34,24 @@
       "parentUuid": "017b04b3_11de3d94",
       "revId": "13db6da4e40acb01512ee8de5e831a37ad18f390",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "77f17b1b_f1c2c708",
+        "filename": "system/stack/smp/smp_act.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 223,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-03-03T21:17:57Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "cd94a108_5a82ab6f",
+      "revId": "13db6da4e40acb01512ee8de5e831a37ad18f390",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
