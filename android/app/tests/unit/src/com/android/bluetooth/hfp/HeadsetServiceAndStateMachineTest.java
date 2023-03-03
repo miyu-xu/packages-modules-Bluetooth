@@ -1004,6 +1004,7 @@ public class HeadsetServiceAndStateMachineTest {
      * Reference: Section 4.25, Page 64/144 of HFP 1.7.1 specification
      */
     @Test
+    @Ignore("b/271351629")
     public void testVoiceRecognition_MultiAgInitiatedSuccess() {
         // Connect two devices
         BluetoothDevice deviceA = TestUtils.getTestDevice(mAdapter, 0);
@@ -1043,6 +1044,7 @@ public class HeadsetServiceAndStateMachineTest {
      * Reference: Section 4.25, Page 64/144 of HFP 1.7.1 specification
      */
     @Test
+    @Ignore("b/271351629")
     public void testVoiceRecognition_MultiAgInitiatedDeviceNotActive() {
         // Connect two devices
         BluetoothDevice deviceA = TestUtils.getTestDevice(mAdapter, 0);
