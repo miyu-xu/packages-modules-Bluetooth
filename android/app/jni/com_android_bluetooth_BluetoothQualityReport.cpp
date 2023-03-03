@@ -22,7 +22,6 @@
 
 #include "base/logging.h"
 #include "com_android_bluetooth.h"
-#include "gd/common/init_flags.h"
 #include "hardware/bt_bqr.h"
 
 using bluetooth::bqr::BluetoothQualityReportCallbacks;
@@ -91,11 +90,6 @@ static void classInitNative(JNIEnv* env, jclass clazz) {
 static void initNative(JNIEnv* env, jobject object) {
   std::unique_lock<std::shared_timed_mutex> interface_lock(interface_mutex);
   std::unique_lock<std::shared_timed_mutex> callbacks_lock(callbacks_mutex);
-
-  if (!bluetooth::common::InitFlags::
-          IsBluetoothQualityReportCallbackEnabled()) {
-    return;
-  }
 
   const bt_interface_t* btInf = getBluetoothInterface();
   if (btInf == nullptr) {
