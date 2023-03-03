@@ -164,6 +164,15 @@ public class ActiveDeviceManagerTest {
                     }
                 }
         );
+        when(mDatabaseManager.getProfileConnectionPolicy(mA2dpDevice, BluetoothProfile.HEADSET))
+                .thenReturn(BluetoothProfile.CONNECTION_POLICY_UNKNOWN);
+        when(mDatabaseManager.getProfileConnectionPolicy(mHeadsetDevice, BluetoothProfile.A2DP))
+                .thenReturn(BluetoothProfile.CONNECTION_POLICY_UNKNOWN);
+        when(mDatabaseManager.getProfileConnectionPolicy(
+                mA2dpHeadsetDevice, BluetoothProfile.HEADSET))
+                .thenReturn(BluetoothProfile.CONNECTION_POLICY_ALLOWED);
+        when(mDatabaseManager.getProfileConnectionPolicy(mA2dpHeadsetDevice, BluetoothProfile.A2DP))
+                .thenReturn(BluetoothProfile.CONNECTION_POLICY_ALLOWED);
     }
 
     @After
@@ -192,8 +201,11 @@ public class ActiveDeviceManagerTest {
         a2dpConnected(mA2dpDevice);
         verify(mA2dpService, timeout(TIMEOUT_MS)).setActiveDevice(mA2dpDevice);
 
-        a2dpConnected(mA2dpHeadsetDevice);
-        verify(mA2dpService, timeout(TIMEOUT_MS)).setActiveDevice(mA2dpHeadsetDevice);
+        when(mDatabaseManager.getProfileConnectionPolicy(
+                mSecondaryAudioDevice, BluetoothProfile.HEADSET))
+                .thenReturn(BluetoothProfile.CONNECTION_POLICY_UNKNOWN);
+        a2dpConnected(mSecondaryAudioDevice);
+        verify(mA2dpService, timeout(TIMEOUT_MS)).setActiveDevice(mSecondaryAudioDevice);
     }
 
     /**
@@ -216,8 +228,11 @@ public class ActiveDeviceManagerTest {
         a2dpConnected(mA2dpDevice);
         verify(mA2dpService, timeout(TIMEOUT_MS)).setActiveDevice(mA2dpDevice);
 
-        a2dpConnected(mA2dpHeadsetDevice);
-        verify(mA2dpService, timeout(TIMEOUT_MS)).setActiveDevice(mA2dpHeadsetDevice);
+        when(mDatabaseManager.getProfileConnectionPolicy(
+                mSecondaryAudioDevice, BluetoothProfile.HEADSET))
+                .thenReturn(BluetoothProfile.CONNECTION_POLICY_UNKNOWN);
+        a2dpConnected(mSecondaryAudioDevice);
+        verify(mA2dpService, timeout(TIMEOUT_MS)).setActiveDevice(mSecondaryAudioDevice);
 
         a2dpActiveDeviceChanged(mA2dpDevice);
         // Don't call mA2dpService.setActiveDevice()
@@ -260,8 +275,11 @@ public class ActiveDeviceManagerTest {
         headsetConnected(mHeadsetDevice);
         verify(mHeadsetService, timeout(TIMEOUT_MS)).setActiveDevice(mHeadsetDevice);
 
-        headsetConnected(mA2dpHeadsetDevice);
-        verify(mHeadsetService, timeout(TIMEOUT_MS)).setActiveDevice(mA2dpHeadsetDevice);
+        when(mDatabaseManager.getProfileConnectionPolicy(
+                mSecondaryAudioDevice, BluetoothProfile.A2DP))
+                .thenReturn(BluetoothProfile.CONNECTION_POLICY_UNKNOWN);
+        headsetConnected(mSecondaryAudioDevice);
+        verify(mHeadsetService, timeout(TIMEOUT_MS)).setActiveDevice(mSecondaryAudioDevice);
     }
 
     /**
@@ -284,8 +302,11 @@ public class ActiveDeviceManagerTest {
         headsetConnected(mHeadsetDevice);
         verify(mHeadsetService, timeout(TIMEOUT_MS)).setActiveDevice(mHeadsetDevice);
 
-        headsetConnected(mA2dpHeadsetDevice);
-        verify(mHeadsetService, timeout(TIMEOUT_MS)).setActiveDevice(mA2dpHeadsetDevice);
+        when(mDatabaseManager.getProfileConnectionPolicy(
+                mSecondaryAudioDevice, BluetoothProfile.A2DP))
+                .thenReturn(BluetoothProfile.CONNECTION_POLICY_UNKNOWN);
+        headsetConnected(mSecondaryAudioDevice);
+        verify(mHeadsetService, timeout(TIMEOUT_MS)).setActiveDevice(mSecondaryAudioDevice);
 
         headsetActiveDeviceChanged(mHeadsetDevice);
         // Don't call mHeadsetService.setActiveDevice()
@@ -516,13 +537,13 @@ public class ActiveDeviceManagerTest {
     @Test
     public void leAudioActive_setA2dpActiveExplicitly() {
         leAudioActiveDeviceChanged(mLeAudioDevice);
-        a2dpConnected(mA2dpHeadsetDevice);
-        a2dpActiveDeviceChanged(mA2dpHeadsetDevice);
+        a2dpConnected(mA2dpDevice);
+        a2dpActiveDeviceChanged(mA2dpDevice);
 
         TestUtils.waitForLooperToFinishScheduledTask(mActiveDeviceManager.getHandlerLooper());
         verify(mLeAudioService).setActiveDevice(isNull());
-        verify(mA2dpService).setActiveDevice(mA2dpHeadsetDevice);
-        Assert.assertEquals(mA2dpHeadsetDevice, mActiveDeviceManager.getA2dpActiveDevice());
+        verify(mA2dpService).setActiveDevice(mA2dpDevice);
+        Assert.assertEquals(mA2dpDevice, mActiveDeviceManager.getA2dpActiveDevice());
         Assert.assertEquals(null, mActiveDeviceManager.getLeAudioActiveDevice());
     }
 
@@ -532,13 +553,13 @@ public class ActiveDeviceManagerTest {
     @Test
     public void leAudioActive_setHeadsetActiveExplicitly() {
         leAudioActiveDeviceChanged(mLeAudioDevice);
-        headsetConnected(mA2dpHeadsetDevice);
-        headsetActiveDeviceChanged(mA2dpHeadsetDevice);
+        headsetConnected(mHeadsetDevice);
+        headsetActiveDeviceChanged(mHeadsetDevice);
 
         TestUtils.waitForLooperToFinishScheduledTask(mActiveDeviceManager.getHandlerLooper());
         verify(mLeAudioService).setActiveDevice(isNull());
-        verify(mHeadsetService).setActiveDevice(mA2dpHeadsetDevice);
-        Assert.assertEquals(mA2dpHeadsetDevice, mActiveDeviceManager.getHfpActiveDevice());
+        verify(mHeadsetService).setActiveDevice(mHeadsetDevice);
+        Assert.assertEquals(mHeadsetDevice, mActiveDeviceManager.getHfpActiveDevice());
         Assert.assertEquals(null, mActiveDeviceManager.getLeAudioActiveDevice());
     }
 
