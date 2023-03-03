@@ -34,6 +34,24 @@
       "parentUuid": "bec9bede_9ad478ec",
       "revId": "64bbe91bb10f9e6ac6d33443bbede8e89926e6ba",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "92aef22e_f8518627",
+        "filename": "framework/java/android/bluetooth/BluetoothSocket.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1286922
+      },
+      "writtenOn": "2023-03-03T02:39:24Z",
+      "side": 1,
+      "message": "Ah okay. I agree the logging itself should come from the service side, but I think it should be safe to reference the enum values here. Either way, up to you. Mostly wanted to make sure you know it is an option. I generally encourage it since it makes it easier for constants to stay in sync. \n\nAlso, just as FYI, the code you linked uses BluetoothProtoEnums.xxx. That is a  worse since it requires use of proto (need proto runtime \u0026 proto gen code). stats-log-api-gen generates integer constants in java/cpp directly, which means you don\u0027t have to link any proto to use it.",
+      "parentUuid": "1e8759f3_af8dbb56",
+      "revId": "64bbe91bb10f9e6ac6d33443bbede8e89926e6ba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
