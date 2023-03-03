@@ -434,9 +434,6 @@ bool l2c_link_hci_disc_comp(uint16_t handle, tHCI_REASON reason) {
         for (xx = 0; xx < L2CAP_NUM_FIXED_CHNLS; xx++) {
           if (p_lcb->p_fixed_ccbs[xx] &&
               p_lcb->p_fixed_ccbs[xx] != p_lcb->p_pending_ccb) {
-            (*l2cb.fixed_reg[xx].pL2CA_FixedConn_Cb)(
-                xx + L2CAP_FIRST_FIXED_CHNL, p_lcb->remote_bd_addr, false,
-                p_lcb->DisconnectReason(), p_lcb->transport);
             if (p_lcb->p_fixed_ccbs[xx] == NULL) {
               LOG_ERROR(
                   "unexpected p_fixed_ccbs[%d] is NULL remote_bd_addr = %s "
@@ -452,6 +449,9 @@ bool l2c_link_hci_disc_comp(uint16_t handle, tHCI_REASON reason) {
             l2cu_release_ccb(p_lcb->p_fixed_ccbs[xx]);
 
             p_lcb->p_fixed_ccbs[xx] = NULL;
+            (*l2cb.fixed_reg[xx].pL2CA_FixedConn_Cb)(
+                xx + L2CAP_FIRST_FIXED_CHNL, p_lcb->remote_bd_addr, false,
+                p_lcb->DisconnectReason(), p_lcb->transport);
           }
         }
       }
