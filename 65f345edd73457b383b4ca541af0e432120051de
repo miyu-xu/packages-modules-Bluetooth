@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7a7c7832_14b9438a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2023-03-03T20:02:03Z",
+      "side": 1,
+      "message": "LGTM besides 2 nits. I\u0027ll let Howard +2 since he has more context on PTS",
+      "revId": "65f345edd73457b383b4ca541af0e432120051de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f61f21f3_aa75c709",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 2168,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2023-03-03T20:02:03Z",
+      "side": 1,
+      "message": "nit: can we unwrap here? i.e.\n```\nlet conn_id \u003d match self.context_map.get_conn_id_from_address(client_id, \u0026addr) {\n    None \u003d\u003e return,\n    Some(id) \u003d\u003e id,\n};\n```\nso we don\u0027t have the raw `unwraps` below.",
+      "revId": "65f345edd73457b383b4ca541af0e432120051de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "06167a5a_94d2095d",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 2173,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2023-03-03T20:02:03Z",
+      "side": 1,
+      "message": "nit: same here",
+      "revId": "65f345edd73457b383b4ca541af0e432120051de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
