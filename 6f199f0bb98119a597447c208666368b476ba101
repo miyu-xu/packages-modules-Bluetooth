@@ -16,6 +16,52 @@
       "message": "Hi please take a look at this, thanks!",
       "revId": "6f199f0bb98119a597447c208666368b476ba101",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aaa1ee61_9b26e72e",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2023-03-03T09:32:29Z",
+      "side": 1,
+      "message": "nit: maybe client-discover-service-by-uuid?",
+      "range": {
+        "startLine": 180,
+        "startChar": 35,
+        "endLine": 180,
+        "endChar": 67
+      },
+      "revId": "6f199f0bb98119a597447c208666368b476ba101",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bd3f97d6_7986c9cd",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 523,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2023-03-03T09:32:29Z",
+      "side": 1,
+      "message": "Could you explain more why this command is only used by PTS?",
+      "range": {
+        "startLine": 523,
+        "startChar": 59,
+        "endLine": 523,
+        "endChar": 76
+      },
+      "revId": "6f199f0bb98119a597447c208666368b476ba101",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
