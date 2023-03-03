@@ -22,6 +22,30 @@
       },
       "revId": "ed2b055f6019557afee902e5b63f2d1fa391d403",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "69b0f43c_94b840d1",
+        "filename": "android/app/src/com/android/bluetooth/pbapclient/PbapClientConnectionHandler.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 362,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-03-03T02:42:20Z",
+      "side": 1,
+      "message": "You are right. Fixed.",
+      "parentUuid": "68b35522_c39c64c7",
+      "range": {
+        "startLine": 361,
+        "startChar": 0,
+        "endLine": 362,
+        "endChar": 26
+      },
+      "revId": "ed2b055f6019557afee902e5b63f2d1fa391d403",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
