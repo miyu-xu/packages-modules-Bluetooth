@@ -448,8 +448,12 @@ bool l2c_link_hci_disc_comp(uint16_t handle, tHCI_REASON reason) {
                   p_lcb->LinkRole(), p_lcb->IsBonding(),
                   p_lcb->DisconnectReason(), p_lcb->transport);
             }
-            CHECK(p_lcb->p_fixed_ccbs[xx] != NULL);
-            l2cu_release_ccb(p_lcb->p_fixed_ccbs[xx]);
+            if (p_lcb->p_fixed_ccbs[xx] == NULL) {
+              LOG_ERROR("Fixed channel %d might have been removed by callback",
+                        xx);
+            } else {
+              l2cu_release_ccb(p_lcb->p_fixed_ccbs[xx]);
+            }
 
             p_lcb->p_fixed_ccbs[xx] = NULL;
           }
