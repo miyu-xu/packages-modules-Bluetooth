@@ -16,6 +16,24 @@
       "message": "Recall that CSIP should be connected first, could you please move the CSIP section prior than LE Audio section?",
       "revId": "a7aca54df1502b2fdd0e6ce62ebdbc0c94131a1a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4d52bf5d_c813dd21",
+        "filename": "android/app/src/com/android/bluetooth/btservice/PhonePolicy.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 389,
+      "author": {
+        "id": 1306903
+      },
+      "writtenOn": "2023-03-03T10:16:58Z",
+      "side": 1,
+      "message": "Looks like order is important to LE Audio. I have move the LE audio back to where it was, and only move the mAutoConnectProfilesSupported flag to the top.",
+      "parentUuid": "fb005e95_6d9bdb77",
+      "revId": "a7aca54df1502b2fdd0e6ce62ebdbc0c94131a1a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
