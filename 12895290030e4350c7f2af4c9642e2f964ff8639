@@ -62,6 +62,54 @@
       },
       "revId": "12895290030e4350c7f2af4c9642e2f964ff8639",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f17c4907_da4209fd",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2023-03-03T09:34:49Z",
+      "side": 1,
+      "message": "For how we processing uuid, See: https://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/system/gd/rust/linux/stack/src/uuid.rs;l\u003d263?q\u003dImplement%20more%20UUID%20utils%20by%20using%20Uuid%20from%20gd%2Fhci%2Fuuid.h%20with%20cxx.\n\nIn here the uuid just a 16 chars raw string and it will be converted into 16 bits uuid in lower layer. Any symbol other than 0-9, a-f, A-F will be filtered out.\nI think we can add more descriptions here after we support more uuid formats.",
+      "parentUuid": "9cafb0a8_17d3186b",
+      "range": {
+        "startLine": 192,
+        "startChar": 62,
+        "endLine": 192,
+        "endChar": 66
+      },
+      "revId": "12895290030e4350c7f2af4c9642e2f964ff8639",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6d7c1966_4e78a6cc",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2023-03-03T09:34:49Z",
+      "side": 1,
+      "message": "Thanks!\nI keep them as two commands here to prevent them become too complicated.",
+      "parentUuid": "109453c6_6d474490",
+      "range": {
+        "startLine": 192,
+        "startChar": 26,
+        "endLine": 192,
+        "endChar": 50
+      },
+      "revId": "12895290030e4350c7f2af4c9642e2f964ff8639",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
