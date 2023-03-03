@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c3ca1d75_841c91f4",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 3721,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-03-03T23:17:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1504a8c7_e01ac89a",
+      "revId": "34c1dbae8dd7a9195450310589f3793a5ea7b5c2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "dd2a1ff8_2e138af9",
@@ -31,6 +49,24 @@
       "writtenOn": "2023-03-03T14:45:18Z",
       "side": 1,
       "message": "what about \n\n```\n    LOG_INFO(\n        \"group_id %d state\u003d%s, target_state\u003d%s, audio_receiver_state_: %s, \"\n        \"audio_sender_state_: %s\",\n        group-\u003egroup_id_, ToString(group-\u003eGetState()).c_str(),\n        ToString(group-\u003eGetTargetState()).c_str(),\n        ToString(audio_receiver_state_).c_str(),\n        ToString(audio_sender_state_).c_str());\n```",
+      "revId": "34c1dbae8dd7a9195450310589f3793a5ea7b5c2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4a4aa509_a7ecfa27",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 3859,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-03-03T23:17:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dd2a1ff8_2e138af9",
       "revId": "34c1dbae8dd7a9195450310589f3793a5ea7b5c2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
