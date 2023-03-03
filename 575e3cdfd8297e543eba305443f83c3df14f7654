@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "61aef93b_0b648b73",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2023-03-03T15:21:38Z",
+      "side": 1,
+      "message": "Does this mean that you\u0027re relying on the hidden broadcast intents instead of the MMS/SMS DB + SMSManager for MAP functionality?\n\nFWIW, the goal has been to keep those intents hidden and push Messenger apps to use the DB that they should already know how to use. Given that, I might argue to disable MAP Client entirely if you don\u0027t support the MMS/SMS DB. I don\u0027t have the details, but I do know we were able to get Telephony running in a limited enough capacity on cars (that don\u0027t have a SIM or calling/cellular data capabilities) and work with the MMS/SMS DB.",
+      "revId": "575e3cdfd8297e543eba305443f83c3df14f7654",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
