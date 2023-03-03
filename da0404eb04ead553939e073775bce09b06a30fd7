@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "09a9ed4f_45d16188",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2023-03-03T03:55:44Z",
+      "side": 1,
+      "message": "Not sure what\u0027s wrong in the presubmit. Update mock_bta_hh_api.cc to the new api",
+      "revId": "da0404eb04ead553939e073775bce09b06a30fd7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
