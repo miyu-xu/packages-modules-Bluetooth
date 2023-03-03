@@ -194,6 +194,30 @@
       },
       "revId": "dda106b293a366b883b7805d3ffd98270b2e0155",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dc88aef7_efe32901",
+        "filename": "android/app/src/com/android/bluetooth/btservice/PhonePolicy.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 358,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-03-03T21:26:12Z",
+      "side": 1,
+      "message": "ASHA and LE audio can be mutual exclusive. Only 1 of them will be used.",
+      "parentUuid": "da61a6aa_7ae3bbec",
+      "range": {
+        "startLine": 353,
+        "startChar": 12,
+        "endLine": 358,
+        "endChar": 13
+      },
+      "revId": "dda106b293a366b883b7805d3ffd98270b2e0155",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
