@@ -134,6 +134,30 @@
       },
       "revId": "6f199f0bb98119a597447c208666368b476ba101",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e263f431_7004680e",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 523,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2023-03-03T09:49:03Z",
+      "side": 1,
+      "message": "PTS use the query command to check if\nthe server is able to find all the services on the remote device (discover_service), but we don\u0027t do\nthis in actual.\n\nWe find the all services and cached it into the db when the device connected.\nEach time we call the search_service, we read the service in the cached db but\nnot actually query from the remote device (search_service).",
+      "parentUuid": "08ecafc2_b3bc18cb",
+      "range": {
+        "startLine": 523,
+        "startChar": 59,
+        "endLine": 523,
+        "endChar": 76
+      },
+      "revId": "6f199f0bb98119a597447c208666368b476ba101",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
