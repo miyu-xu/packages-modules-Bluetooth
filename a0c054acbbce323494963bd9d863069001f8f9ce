@@ -26,6 +26,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "e914afef_259dddcc",
+        "filename": "android/app/src/com/android/bluetooth/a2dp/A2dpService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 491,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2023-03-03T13:31:21Z",
+      "side": 1,
+      "message": "Tried the refactoring after reading this comment.\nHowever it was less readable since this method is not only used in setActiveDevice(). \n\nThere were direct calls to this method, and it made the `previousActiveDevice checking \u003d\u003d null` logic duplicate in setActiveDevice and this method.\n\nLet\u0027s leave it as-is.",
+      "parentUuid": "400c5b79_e40279d0",
+      "range": {
+        "startLine": 491,
+        "startChar": 36,
+        "endLine": 491,
+        "endChar": 92
+      },
+      "revId": "a0c054acbbce323494963bd9d863069001f8f9ce",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "e0c3b465_9a84d5da",
         "filename": "android/app/src/com/android/bluetooth/a2dp/A2dpService.java",
         "patchSetId": 1
@@ -70,6 +94,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c77d8cad_1a7e2c41",
+        "filename": "android/app/src/com/android/bluetooth/a2dp/A2dpService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 543,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2023-03-03T13:31:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "707e6e6b_4704c164",
+      "range": {
+        "startLine": 543,
+        "startChar": 36,
+        "endLine": 543,
+        "endChar": 40
+      },
+      "revId": "a0c054acbbce323494963bd9d863069001f8f9ce",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2f74a0a7_5d3a8dee",
@@ -93,6 +141,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c8d6c85d_97380dc7",
+        "filename": "android/app/src/com/android/bluetooth/avrcp/AvrcpTargetService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 301,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2023-03-03T13:31:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2f74a0a7_5d3a8dee",
+      "range": {
+        "startLine": 301,
+        "startChar": 40,
+        "endLine": 301,
+        "endChar": 44
+      },
+      "revId": "a0c054acbbce323494963bd9d863069001f8f9ce",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "017dee74_750f7b48",
@@ -106,6 +178,30 @@
       "writtenOn": "2023-03-02T09:15:20Z",
       "side": 1,
       "message": "why true?",
+      "range": {
+        "startLine": 570,
+        "startChar": 36,
+        "endLine": 570,
+        "endChar": 40
+      },
+      "revId": "a0c054acbbce323494963bd9d863069001f8f9ce",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8081cc71_4a423395",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 570,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2023-03-03T13:31:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "017dee74_750f7b48",
       "range": {
         "startLine": 570,
         "startChar": 36,
