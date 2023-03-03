@@ -16,6 +16,23 @@
       "message": "LGTM",
       "revId": "2d7cd7d525e73f5883673da5f52f7a6db53f0e6b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "db76fc76_2ff75358",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-03-03T23:16:37Z",
+      "side": 1,
+      "message": "hcidoc isn\u0027t built or used by any Android targets. None of these presubmit failures are related",
+      "revId": "2d7cd7d525e73f5883673da5f52f7a6db53f0e6b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
