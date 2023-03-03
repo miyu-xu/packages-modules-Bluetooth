@@ -34,6 +34,7 @@
 #include "gd/common/init_flags.h"
 #include "osi/include/allocator.h"
 #include "osi/include/log.h"
+#include "stack/btm/btm_dev.h"
 #include "types/bt_transport.h"
 #include "types/hci_role.h"
 #include "types/raw_address.h"
@@ -98,8 +99,24 @@ tBTA_GATTC_CLCB* bta_gattc_find_clcb_by_cif(uint8_t client_if,
 
   for (i = 0; i < BTA_GATTC_CLCB_MAX; i++, p_clcb++) {
     if (p_clcb->in_use && p_clcb->p_rcb->client_if == client_if &&
-        p_clcb->transport == transport && p_clcb->bda == remote_bda)
-      return p_clcb;
+        p_clcb->transport == transport ) {
+
+      if (p_clcb->bda == remote_bda)
+        return p_clcb;
+
+      tBTM_SEC_DEV_REC* record = btm_find_dev(p_clcb->bda);
+      LOG_INFO("********************************************* record is null = %d", +(record == nullptr));
+      if (record == nullptr) continue;
+
+      LOG_INFO("********************************************* clcb_bda is %s,  record addr is %s", p_clcb->bda.ToString().c_str(), record->bd_addr.ToString().c_str());  
+    
+      // This can happen if connection was established over LE, and then pairing happened on Classic, and we want to use this connection after pairing, using it's identity address
+      if(remote_bda == record->bd_addr) {
+        LOG_INFO("********************************************* returning clcb");  
+
+        return p_clcb;
+      }
+    }
   }
   return NULL;
 }

@@ -33,6 +33,7 @@
 #include "main/shim/shim.h"
 #include "osi/include/allocator.h"
 #include "osi/include/log.h"
+#include "stack/btm/btm_dev.h"
 #include "stack/btm/btm_sec.h"
 #include "stack/include/acl_api.h"
 #include "stack/include/bt_hdr.h"
@@ -244,9 +245,25 @@ tL2C_LCB* l2cu_find_lcb_by_bd_addr(const RawAddress& p_bd_addr,
   tL2C_LCB* p_lcb = &l2cb.lcb_pool[0];
 
   for (xx = 0; xx < MAX_L2CAP_LINKS; xx++, p_lcb++) {
-    if ((p_lcb->in_use) && p_lcb->transport == transport &&
-        (p_lcb->remote_bd_addr == p_bd_addr)) {
+    if ((!p_lcb->in_use) || p_lcb->transport != transport) {
+      continue;
+    }
+      
+    if (p_lcb->remote_bd_addr == p_bd_addr) {
       return (p_lcb);
+    }
+
+
+    tBTM_SEC_DEV_REC* record = btm_find_dev(p_lcb->remote_bd_addr);
+    LOG_INFO("********************************************* record is null = %d", +(record == nullptr));
+    if (record == nullptr) continue;
+
+    LOG_INFO("********************************************* acl addr is %s , record addr is %s", p_lcb->remote_bd_addr.ToString().c_str(), record->bd_addr.ToString().c_str());  
+  
+    // This can happen if connection was established over LE, and then pairing happened on Classic, and we want to use this connection after pairing, using it's identity address
+    if(record->bd_addr == p_bd_addr) {
+      LOG_INFO("********************************************* Returning matching lcb record");  
+      return p_lcb;
     }
   }
 
