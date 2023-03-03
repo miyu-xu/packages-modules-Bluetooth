@@ -235,8 +235,20 @@ class ActiveDeviceManager {
         mA2dpConnectedDevices.add(device);
         if (mHearingAidActiveDevices.isEmpty() && mLeHearingAidActiveDevice == null) {
             // New connected device: select it as active
-            setA2dpActiveDevice(device);
-            setLeAudioActiveDevice(null);
+            // Activate HFP and A2DP at the same time if both profile already connected.
+            if (mHfpConnectedDevices.contains(device)) {
+                setA2dpActiveDevice(device);
+                setHfpActiveDevice(device);
+                setLeAudioActiveDevice(null);
+                return;
+            }
+            DatabaseManager dbManager = mAdapterService.getDatabase();
+            // Activate, A2DP if HFP is not supported or enabled.
+            if (dbManager.getProfileConnectionPolicy(device, BluetoothProfile.HEADSET)
+                    != BluetoothProfile.CONNECTION_POLICY_ALLOWED) {
+                setA2dpActiveDevice(device);
+                setLeAudioActiveDevice(null);
+            }
         }
     }
 
@@ -250,8 +262,20 @@ class ActiveDeviceManager {
         mHfpConnectedDevices.add(device);
         if (mHearingAidActiveDevices.isEmpty() && mLeHearingAidActiveDevice == null) {
             // New connected device: select it as active
-            setHfpActiveDevice(device);
-            setLeAudioActiveDevice(null);
+            // Activate HFP and A2DP at the same time once both profile connected.
+            if (mA2dpConnectedDevices.contains(device)) {
+                setA2dpActiveDevice(device);
+                setHfpActiveDevice(device);
+                setLeAudioActiveDevice(null);
+                return;
+            }
+            DatabaseManager dbManager = mAdapterService.getDatabase();
+            // Activate HFP, if A2DP is not supported or enabled.
+            if (dbManager.getProfileConnectionPolicy(device, BluetoothProfile.A2DP)
+                    != BluetoothProfile.CONNECTION_POLICY_ALLOWED) {
+                setHfpActiveDevice(device);
+                setLeAudioActiveDevice(null);
+            }
         }
     }
 
@@ -765,6 +789,25 @@ class ActiveDeviceManager {
                     setHfpActiveDevice(null);
                 }
             }
+        }
+    }
+
+    private boolean isMediaMode(int mode) {
+        switch (mode) {
+            case AudioManager.MODE_RINGTONE:
+                final HeadsetService headsetService = mFactory.getHeadsetService();
+                if (headsetService != null && headsetService.isInbandRingingEnabled()) {
+                    return false;
+                }
+                return true;
+            case AudioManager.MODE_IN_CALL:
+            case AudioManager.MODE_IN_COMMUNICATION:
+            case AudioManager.MODE_CALL_SCREENING:
+            case AudioManager.MODE_CALL_REDIRECT:
+            case AudioManager.MODE_COMMUNICATION_REDIRECT:
+                return false;
+            default:
+                return true;
         }
     }
 
