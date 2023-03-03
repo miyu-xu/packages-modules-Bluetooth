@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "95f4925e_a6b7680d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1970925
+      },
+      "writtenOn": "2023-03-03T07:24:29Z",
+      "side": 1,
+      "message": "Hi Charlie,\n\nWe have started to work on HID/DEV test cases and updated the observations in the comments.Request you to confirm if our approach is correct, or do we have any other way to enable HID in SDP records\n\nThanks \u0026 Regards,\nDhananjaya",
+      "revId": "511a6f633541b6d7a7cdebeb65be7d1df8c11045",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
