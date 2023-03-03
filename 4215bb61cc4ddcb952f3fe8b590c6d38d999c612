@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2a2fd20c_b77b2559",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 239,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2023-03-03T18:02:37Z",
+      "side": 1,
+      "message": "In this case that does not matter too much I think but should we synchronize the methods where these lists are accessed/modified?",
+      "revId": "4215bb61cc4ddcb952f3fe8b590c6d38d999c612",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e67e4ac5_b2ef9056",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2023-03-03T18:02:37Z",
+      "side": 1,
+      "message": "This check is added to postpone the profile activation until both HFP and A2DP profiles are connected?",
+      "range": {
+        "startLine": 274,
+        "startChar": 0,
+        "endLine": 275,
+        "endChar": 68
+      },
+      "revId": "4215bb61cc4ddcb952f3fe8b590c6d38d999c612",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
