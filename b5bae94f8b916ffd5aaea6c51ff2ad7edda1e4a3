@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "564313a6_01ca9b36",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2023-03-03T06:35:57Z",
+      "side": 1,
+      "message": "It\u0027s my first time using try-resource statement in java, so please tell me if something\u0027s wrong. And should I add a test in this CL as well?",
+      "revId": "b5bae94f8b916ffd5aaea6c51ff2ad7edda1e4a3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
