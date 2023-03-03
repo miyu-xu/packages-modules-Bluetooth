@@ -16,6 +16,24 @@
       "message": "Maybe put a\nLOG_DEBUG(\"Expected but nothing to do event:%s\", str(event));\n\nIdeally we\u0027d have a rotating log of events/state so we could dump last `n` events and all the DEBUG log messages could disappear, but that will be part of the re-write.",
       "revId": "13db6da4e40acb01512ee8de5e831a37ad18f390",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cd94a108_5a82ab6f",
+        "filename": "system/stack/smp/smp_act.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 223,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-03-03T16:35:02Z",
+      "side": 1,
+      "message": "The reason I didn\u0027t do that is because it is handled above in the same function.",
+      "parentUuid": "017b04b3_11de3d94",
+      "revId": "13db6da4e40acb01512ee8de5e831a37ad18f390",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
