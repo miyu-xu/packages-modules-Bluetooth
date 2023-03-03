@@ -1018,7 +1018,7 @@ ErrorCode LinkLayerController::LeSetExtendedAdvertisingEnable(
     if (connectable_advertising && directed_advertising &&
         high_duty_cycle_advertising &&
         (set.duration_ == 0 ||
-         slots(set.duration_) > adv_direct_ind_high_timeout)) {
+         milliseconds(set.duration_ * 10) > adv_direct_ind_high_timeout)) {
       LOG_INFO(
           "extended advertising is high duty cycle connectable directed"
           " but the duration is either 0 or larger than 1.28 seconds");
