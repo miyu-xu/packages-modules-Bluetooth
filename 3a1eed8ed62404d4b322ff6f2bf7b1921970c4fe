@@ -22,6 +22,30 @@
       },
       "revId": "3a1eed8ed62404d4b322ff6f2bf7b1921970c4fe",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fdc5d26d_43a8902b",
+        "filename": "system/gd/docs/testing/cert_test.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2023-03-03T00:50:37Z",
+      "side": 1,
+      "message": "Thanks for your comment, Myles.\nRemoving --host in the doc is handled in https://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/2458008.\n\n\nAbout using --clean first time:\nSince the two docs (here and g3doc) are slightly different and they should be fixed together, I\u0027ll file a separate bug for it.",
+      "parentUuid": "35c049b1_8e9e4cfa",
+      "range": {
+        "startLine": 78,
+        "startChar": 67,
+        "endLine": 78,
+        "endChar": 71
+      },
+      "revId": "3a1eed8ed62404d4b322ff6f2bf7b1921970c4fe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
