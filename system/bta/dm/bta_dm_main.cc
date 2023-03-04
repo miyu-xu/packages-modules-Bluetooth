@@ -128,9 +128,13 @@ bool bta_dm_search_sm_execute(BT_HDR_RIGID* p_msg) {
           bta_dm_search_cancel_notify();
           break;
         case BTA_DM_SDP_RESULT_EVT:
+          bta_dm_sdp_result(message);
+          break;
+        case BTA_DM_DISCOVERY_RESULT_EVT:
+          bta_dm_disc_result(message);
+          [[fallthrough]];
         case BTA_DM_REMT_NAME_EVT:
         case BTA_DM_SEARCH_CMPL_EVT:
-        case BTA_DM_DISCOVERY_RESULT_EVT:
           bta_dm_search_set_state(BTA_DM_SEARCH_IDLE);
           bta_dm_free_sdp_db();
           bta_dm_search_cancel_notify();
