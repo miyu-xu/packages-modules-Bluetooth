@@ -105,6 +105,24 @@
       "message": "This CL will regress b/242981127\n\nYou need to truncate the full advertisement response, and the full scan response, before concatenating them together. Otherwise we will report \u003csignificant\u003e\u003czeros\u003e\u003csignificant\u003e to the upper layer.\n\nI expect a unit test will also fail because of this.",
       "revId": "bc1a992844d1e441c26336e90c4206b6f0408d31",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b628599c_89d8043a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-03-04T02:10:30Z",
+      "side": 1,
+      "message": "I am not comfortable approving a CL in this area of the code without a unit test. In my view, Avatar tests should not replace unit tests in areas of the code where unit tests are straightforward to add - instead, in my opinion, they are most important in areas of the legacy stack where unit tests are impossible.\n\nBut LeScanningManager is relatively straightforward to modify and easy to run, whereas Avatar is much more heavyweight and (probably) will be flakey. It also doesn\u0027t currently run in presubmit and is not stable.\n\nRefer to e.g. https://g3doc.corp.google.com/lens/g3doc/android/end_to_end_testing.md?cl\u003dhead#writing-reliable-worthwhile-e2e-tests (\"If you can achieve the same goal with a unit test, don\u0027t write an E2E test.\").",
+      "parentUuid": "fde026ae_1cc565e9",
+      "revId": "bc1a992844d1e441c26336e90c4206b6f0408d31",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
