@@ -88,6 +88,23 @@
       "parentUuid": "28da3cb0_22d99e42",
       "revId": "bc1a992844d1e441c26336e90c4206b6f0408d31",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ce84893f_c23a0e35",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-03-04T02:08:12Z",
+      "side": 1,
+      "message": "This CL will regress b/242981127\n\nYou need to truncate the full advertisement response, and the full scan response, before concatenating them together. Otherwise we will report \u003csignificant\u003e\u003czeros\u003e\u003csignificant\u003e to the upper layer.\n\nI expect a unit test will also fail because of this.",
+      "revId": "bc1a992844d1e441c26336e90c4206b6f0408d31",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
