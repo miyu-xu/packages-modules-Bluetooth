@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "feac03e8_fcaa58dc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-03-04T00:36:26Z",
+      "side": 1,
+      "message": "LGTM on l2cap logic part",
+      "revId": "64bbe91bb10f9e6ac6d33443bbede8e89926e6ba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bec9bede_9ad478ec",
