@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aae993e4_89b5f20c",
+        "filename": "android/app/src/com/android/bluetooth/sdp/SdpManager.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-03-04T01:50:43Z",
+      "side": 1,
+      "message": "This method can return null when bad things happen. Can you add a check ?\n\nOr ....\n\nCan you use the same pattern as other location :\n```\nsAdapterService.getIdentityAddress(device.getAddress());\n```\nIt is not really fancy but you are cutting the framework and binder call + you will not have to check for null here",
+      "range": {
+        "startLine": 201,
+        "startChar": 42,
+        "endLine": 201,
+        "endChar": 60
+      },
+      "revId": "98ef7cab24b7c960a313601ba6343f4cd36f85f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
