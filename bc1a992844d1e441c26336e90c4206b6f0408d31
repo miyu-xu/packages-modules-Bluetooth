@@ -16,6 +16,24 @@
       "message": "Test please? 😊",
       "revId": "bc1a992844d1e441c26336e90c4206b6f0408d31",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9d288e41_e80e0492",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-03-04T01:58:06Z",
+      "side": 1,
+      "message": "\u003cunresolved\u003e",
+      "parentUuid": "cc053980_879cfaeb",
+      "revId": "bc1a992844d1e441c26336e90c4206b6f0408d31",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
