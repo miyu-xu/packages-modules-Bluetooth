@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "42536274_007bcc8c",
+        "filename": "android/pandora/test/gatt_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1937985
+      },
+      "writtenOn": "2023-03-04T00:36:21Z",
+      "side": 1,
+      "message": "missing `@asynchronous` decorator",
+      "revId": "c888ce0828bf9cc37524ae6ae961e456b38b5284",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0190c62c_d067df68",
+        "filename": "android/pandora/test/gatt_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1937985
+      },
+      "writtenOn": "2023-03-04T00:36:21Z",
+      "side": 1,
+      "message": "missing `@asynchronous` decorator",
+      "revId": "c888ce0828bf9cc37524ae6ae961e456b38b5284",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
