@@ -37,8 +37,8 @@ while read r; do
 done < "${root}/requirements.txt"
 
 echo -n "-- Generate Pandora python code:"; check "$(
-  2>/dev/null python -c 'import pandora' || 2>&1 python "./${root}/../../../../../external/pandora/bt-test-interfaces/python/_build/grpc.py"
-  2>/dev/null python -c 'import pandora_experimental' || 2>&1 python "${root}/../../pandora/interfaces/python/_build/grpc.py"
+   2>&1 python "./${root}/../../../../../external/pandora/bt-test-interfaces/python/_build/grpc.py"
+   2>&1 python "${root}/../../pandora/interfaces/python/_build/grpc.py"
 )" || return
 
 if [[ $# -gt 0 ]]; then
