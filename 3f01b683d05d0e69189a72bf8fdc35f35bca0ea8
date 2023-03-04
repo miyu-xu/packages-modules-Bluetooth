@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9df46b31_38ecce2b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-03-04T01:18:12Z",
+      "side": 1,
+      "message": "@rahulsabnis@google.com Can you review this change as CTKD area owner ?",
+      "revId": "3f01b683d05d0e69189a72bf8fdc35f35bca0ea8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
