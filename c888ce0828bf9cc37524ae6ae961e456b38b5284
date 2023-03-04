@@ -33,6 +33,52 @@
       "message": "missing `@asynchronous` decorator",
       "revId": "c888ce0828bf9cc37524ae6ae961e456b38b5284",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3a6f8321_9781f4fa",
+        "filename": "android/pandora/test/gatt_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1937985
+      },
+      "writtenOn": "2023-03-04T01:02:09Z",
+      "side": 1,
+      "message": "nit: `dut_gatt`",
+      "range": {
+        "startLine": 126,
+        "startChar": 8,
+        "endLine": 126,
+        "endChar": 12
+      },
+      "revId": "c888ce0828bf9cc37524ae6ae961e456b38b5284",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aa702775_89fb0ac6",
+        "filename": "android/pandora/test/gatt_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1937985
+      },
+      "writtenOn": "2023-03-04T01:02:09Z",
+      "side": 1,
+      "message": "LE_LEVEL3",
+      "range": {
+        "startLine": 133,
+        "startChar": 91,
+        "endLine": 133,
+        "endChar": 116
+      },
+      "revId": "c888ce0828bf9cc37524ae6ae961e456b38b5284",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
