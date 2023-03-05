@@ -670,6 +670,7 @@ typedef struct {
   uint8_t max_key_size;       /* max encryption key size */
   tBTM_LE_KEY_TYPE init_keys; /* keys to be distributed, bit mask */
   tBTM_LE_KEY_TYPE resp_keys; /* keys to be distributed, bit mask */
+  bool le_bonding_required;
 } tBTM_LE_IO_REQ;
 
 /* data type for tBTM_LE_COMPLT */

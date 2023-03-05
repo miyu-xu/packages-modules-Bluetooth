@@ -144,6 +144,10 @@ void smp_send_app_cback(tSMP_CB* p_cb, tSMP_INT_DATA* p_data) {
         cb_data.id_addr = p_cb->id_addr;
         break;
 
+      case SMP_CONSENT_REQ_EVT:
+        cb_data.io_req.le_bonding_required = p_cb->le_bonding_required;
+        break;
+
       default:
         LOG_ERROR("Unexpected event:%hhu", p_cb->cb_evt);
         break;

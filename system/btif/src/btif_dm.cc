@@ -159,6 +159,7 @@ struct btif_dm_pairing_cb_t {
   uint8_t timeout_retries;
   uint8_t is_local_initiated;
   uint8_t sdp_attempts;
+  bool le_bonding_required;
   bool is_le_only;
   bool is_le_nc; /* LE Numeric comparison */
   btif_dm_ble_cb_t ble;
@@ -3441,6 +3442,11 @@ static void btif_dm_save_ble_bonding_keys(RawAddress& bd_addr) {
     return;
   }
 
+  if (!pairing_cb.le_bonding_required) {
+    LOG_WARN("No LE bonding required.");
+    return;
+  }
+
   if (pairing_cb.ble.is_penc_key_rcvd) {
     btif_storage_add_ble_bonding_key(
         &bd_addr, (uint8_t*)&pairing_cb.ble.penc_key, BTM_LE_KEY_PENC,
@@ -3523,6 +3529,7 @@ static void btif_dm_ble_sec_req_evt(tBTA_DM_BLE_SEC_REQ* p_ble_req,
   pairing_cb.is_le_only = true;
   pairing_cb.is_le_nc = false;
   pairing_cb.is_ssp = true;
+  pairing_cb.le_bonding_required = p_ble_req->le_bonding_required;
   btm_set_bond_type_dev(p_ble_req->bd_addr, pairing_cb.bond_type);
 
   cod = COD_UNCLASSIFIED;
