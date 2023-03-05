@@ -251,6 +251,8 @@ typedef struct {
   uint8_t max_key_size;   /* max encryption key size */
   tSMP_KEYS init_keys;    /* initiator keys to be distributed */
   tSMP_KEYS resp_keys;    /* responder keys */
+  bool le_bonding_required; /* determine if bonding is required based on local
+                               and peer authreq bonding flag*/
 } tSMP_IO_REQ;
 
 typedef struct {
