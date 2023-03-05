@@ -144,6 +144,10 @@ void smp_send_app_cback(tSMP_CB* p_cb, tSMP_INT_DATA* p_data) {
         cb_data.id_addr = p_cb->id_addr;
         break;
 
+      case SMP_CONSENT_REQ_EVT:
+        cb_data.io_req.le_bonding_required = p_cb->le_bonding_required;
+        break;
+
       default:
         LOG_ERROR("Unexpected event:%hhu", p_cb->cb_evt);
         break;
@@ -551,7 +555,10 @@ void smp_proc_pair_cmd(tSMP_CB* p_cb, tSMP_INT_DATA* p_data) {
   STREAM_TO_UINT8(p_cb->peer_i_key, p);
   STREAM_TO_UINT8(p_cb->peer_r_key, p);
 
-  tSMP_STATUS reason = p_cb->cert_failure;
+  p_cb->le_bonding_required = (p_cb->peer_auth_req & SMP_AUTH_BOND) &&
+                              (p_cb->loc_auth_req & SMP_AUTH_BOND)
+
+                                  tSMP_STATUS reason = p_cb->cert_failure;
   if (reason == SMP_ENC_KEY_SIZE) {
     tSMP_INT_DATA smp_int_data;
     smp_int_data.status = reason;
