@@ -159,6 +159,7 @@ struct btif_dm_pairing_cb_t {
   uint8_t timeout_retries;
   uint8_t is_local_initiated;
   uint8_t sdp_attempts;
+  bool le_bonding_required;
   bool is_le_only;
   bool is_le_nc; /* LE Numeric comparison */
   btif_dm_ble_cb_t ble;
@@ -3545,8 +3546,9 @@ static void btif_dm_ble_sec_req_evt(tBTA_DM_BLE_SEC_REQ* p_ble_req,
   bd_name.name[BD_NAME_LEN] = '\0';
 
   bond_state_changed(BT_STATUS_SUCCESS, bd_addr, BT_BOND_STATE_BONDING);
-
-  pairing_cb.bond_type = tBTM_SEC_DEV_REC::BOND_TYPE_PERSISTENT;
+  pairing_cb.bond_type = p_ble_req->le_bonding_required
+                             ? tBTM_SEC_DEV_REC::BOND_TYPE_PERSISTENT
+                             : tBTM_SEC_DEV_REC::BOND_TYPE_TEMPORARY;
   pairing_cb.is_le_only = true;
   pairing_cb.is_le_nc = false;
   pairing_cb.is_ssp = true;
