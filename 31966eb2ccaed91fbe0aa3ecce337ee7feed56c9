@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ba911c08_f4716735",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1995081
+      },
+      "writtenOn": "2023-03-05T16:11:34Z",
+      "side": 1,
+      "message": "vitahabalan@gmail.com",
+      "revId": "31966eb2ccaed91fbe0aa3ecce337ee7feed56c9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
