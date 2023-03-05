@@ -3537,7 +3537,9 @@ static void btif_dm_ble_sec_req_evt(tBTA_DM_BLE_SEC_REQ* p_ble_req,
 
   bond_state_changed(BT_STATUS_SUCCESS, bd_addr, BT_BOND_STATE_BONDING);
 
-  pairing_cb.bond_type = tBTM_SEC_DEV_REC::BOND_TYPE_PERSISTENT;
+  pairing_cb.bond_type = p_ble_req->le_bonding_required
+                             ? tBTM_SEC_DEV_REC::BOND_TYPE_PERSISTENT
+                             : tBTM_SEC_DEV_REC::BOND_TYPE_TEMPORARY;
   pairing_cb.is_le_only = true;
   pairing_cb.is_le_nc = false;
   pairing_cb.is_ssp = true;

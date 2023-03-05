@@ -273,6 +273,8 @@ typedef struct {
   tSMP_OOB_FLAG loc_oob_flag;
   tSMP_AUTH_REQ peer_auth_req;
   tSMP_AUTH_REQ loc_auth_req;
+  bool le_bonding_required{
+      true}; /*  peer_auth_req->bonding_flag & local_auth_req->bonding_flag */
   bool secure_connections_only_mode_required; /* true if locally SM is required
                                                  to operate */
   /* either in Secure Connections mode or not at all */
