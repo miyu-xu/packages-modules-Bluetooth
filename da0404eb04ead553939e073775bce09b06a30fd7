@@ -16,6 +16,23 @@
       "message": "Not sure what\u0027s wrong in the presubmit. Update mock_bta_hh_api.cc to the new api",
       "revId": "da0404eb04ead553939e073775bce09b06a30fd7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0b5fdc47_099bb546",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2023-03-05T03:57:04Z",
+      "side": 1,
+      "message": "Hi Myles, we need an owner to +2 to be able to submit. Thanks",
+      "revId": "da0404eb04ead553939e073775bce09b06a30fd7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
