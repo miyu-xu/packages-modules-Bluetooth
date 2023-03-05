@@ -307,6 +307,7 @@ typedef uint8_t tBTA_DM_BLE_SEC_GRANT;
 typedef struct {
   RawAddress bd_addr; /* peer address */
   BD_NAME bd_name; /* peer device name */
+  bool le_bonding_required;
 } tBTA_DM_BLE_SEC_REQ;
 
 typedef struct {

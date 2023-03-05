@@ -3805,6 +3805,8 @@ static uint8_t bta_dm_ble_smp_cback(tBTM_LE_EVT event, const RawAddress& bda,
 
     case BTM_LE_CONSENT_REQ_EVT:
       sec_event.ble_req.bd_addr = bda;
+      sec_event.ble_req.le_bonding_required =
+          p_data->io_req.le_bonding_required;
       p_name = BTM_SecReadDevName(bda);
       if (p_name != NULL)
         strlcpy((char*)sec_event.ble_req.bd_name, p_name, BD_NAME_LEN);
