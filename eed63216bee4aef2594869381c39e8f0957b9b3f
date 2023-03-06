@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "273b85f5_eda6b52e",
+        "filename": "framework/java/android/bluetooth/le/DistanceMeasurementParams.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2023-03-06T03:22:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "156c5591_8ba88cb8",
+      "revId": "eed63216bee4aef2594869381c39e8f0957b9b3f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0b985c04_31b1d487",
@@ -31,6 +49,24 @@
       "writtenOn": "2023-03-03T21:48:43Z",
       "side": 1,
       "message": "Drop the \"In\" before the unit for each of these methods. For example, this should just be getDurationSeconds. Alternatively, you could return a Duration object here and that would make it possible for a developer to convert it to whatever unit they want to use.",
+      "revId": "eed63216bee4aef2594869381c39e8f0957b9b3f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5b591551_ed2d6273",
+        "filename": "framework/java/android/bluetooth/le/DistanceMeasurementParams.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2023-03-06T03:22:59Z",
+      "side": 1,
+      "message": "Done, I would like keep the unit always be seconds. Thanks!",
+      "parentUuid": "0b985c04_31b1d487",
       "revId": "eed63216bee4aef2594869381c39e8f0957b9b3f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -52,6 +88,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f189282b_0963917f",
+        "filename": "framework/java/android/bluetooth/le/DistanceMeasurementParams.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2023-03-06T03:22:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "84381ee4_94a21a9f",
+      "revId": "eed63216bee4aef2594869381c39e8f0957b9b3f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "acfb8c5a_bf9ae22c",
@@ -65,6 +119,24 @@
       "writtenOn": "2023-03-03T21:48:43Z",
       "side": 1,
       "message": "nit: typo on measurement",
+      "revId": "eed63216bee4aef2594869381c39e8f0957b9b3f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c24dbbf7_81f51991",
+        "filename": "framework/java/android/bluetooth/le/DistanceMeasurementParams.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2023-03-06T03:22:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "acfb8c5a_bf9ae22c",
       "revId": "eed63216bee4aef2594869381c39e8f0957b9b3f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -86,6 +158,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d811f00c_e874fd85",
+        "filename": "framework/java/android/bluetooth/le/DistanceMeasurementParams.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 226,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2023-03-06T03:22:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "17ee6df4_f3486269",
+      "revId": "eed63216bee4aef2594869381c39e8f0957b9b3f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0c8f59b3_98dc3a36",
@@ -99,6 +189,24 @@
       "writtenOn": "2023-03-03T21:48:43Z",
       "side": 1,
       "message": "Same nit: \"used\" --\u003e \"uses\"",
+      "revId": "eed63216bee4aef2594869381c39e8f0957b9b3f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cea660fb_33454593",
+        "filename": "framework/java/android/bluetooth/le/DistanceMeasurementParams.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 244,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2023-03-06T03:22:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0c8f59b3_98dc3a36",
       "revId": "eed63216bee4aef2594869381c39e8f0957b9b3f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
