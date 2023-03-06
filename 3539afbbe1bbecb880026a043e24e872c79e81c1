@@ -52,6 +52,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "061d24d1_f93a3a23",
+        "filename": "system/stack/gap/gap_conn.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 626,
+      "author": {
+        "id": 1965943
+      },
+      "writtenOn": "2023-03-06T08:23:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b3459268_e2bc57ce",
+      "revId": "3539afbbe1bbecb880026a043e24e872c79e81c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3d30ec30_e38fd53e",
