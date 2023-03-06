@@ -205,8 +205,11 @@ void DualModeController::HandleCommand(
   }
   // Command is supported but not implemented:
   // the command needs to be implemented to fix this.
+  // Note: Command Complete is not sent for un-implemented commands in order
+  // to provide better feedback for connected stacks that something is wrong.
+  // The error will bubble up as an HCI Timeout.
   else if (is_supported_command) {
-    LOG_ALWAYS_FATAL(
+    LOG_ERROR(
         "Unimplemented command %s;\n"
         "This message will be displayed if the command is set as supported\n"
         "in the command mask but no implementation was provided.\n"
