@@ -179,6 +179,24 @@
       "parentUuid": "2d7b2427_2febcd1d",
       "revId": "940e57cfd4ff5407c00b4eb670d95063dcd03eae",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a88d8fe9_3c550796",
+        "filename": "system/btif/src/btif_profile_storage.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 303,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-03-06T23:12:26Z",
+      "side": 1,
+      "message": "I moved it into `btif_dm.h`. PTAL",
+      "parentUuid": "cc0d0558_38dacd07",
+      "revId": "940e57cfd4ff5407c00b4eb670d95063dcd03eae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
