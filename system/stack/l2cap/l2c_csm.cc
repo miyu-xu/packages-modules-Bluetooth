@@ -97,9 +97,24 @@ static void l2c_csm_indicate_connection_open(tL2C_CCB* p_ccb) {
   if (p_ccb->connection_initiator == L2CAP_INITIATOR_LOCAL) {
     (*p_ccb->p_rcb->api.pL2CA_ConnectCfm_Cb)(p_ccb->local_cid, L2CAP_CONN_OK);
   } else {
-    (*p_ccb->p_rcb->api.pL2CA_ConnectInd_Cb)(
-        p_ccb->p_lcb->remote_bd_addr, p_ccb->local_cid, p_ccb->p_rcb->psm,
-        p_ccb->remote_id);
+    if (p_ccb->ecoc && p_ccb->p_rcb->api.pL2CA_CreditBasedConnectInd_Cb) {
+      L2CAP_TRACE_API("Calling CreditBasedConnect_Ind_Cb(), num of cids: %d",
+        p_ccb->p_lcb->pending_ecoc_conn_cnt);
+
+      std::vector<uint16_t> pending_cids;
+      for (int i = 0; i < p_ccb->p_lcb->pending_ecoc_conn_cnt; i++) {
+        uint16_t cid = p_ccb->p_lcb->pending_ecoc_connection_cids[i];
+        if (cid != 0) pending_cids.push_back(cid);
+      }
+
+      (*p_ccb->p_rcb->api.pL2CA_CreditBasedConnectInd_Cb)(
+          p_ccb->p_lcb->remote_bd_addr, pending_cids, p_ccb->p_rcb->psm,
+          p_ccb->peer_conn_cfg.mtu, p_ccb->remote_id);
+    } else {
+      (*p_ccb->p_rcb->api.pL2CA_ConnectInd_Cb)(
+          p_ccb->p_lcb->remote_bd_addr, p_ccb->local_cid, p_ccb->p_rcb->psm,
+          p_ccb->remote_id);
+    }
   }
   if (p_ccb->chnl_state == CST_OPEN && !p_ccb->p_lcb->is_transport_ble()) {
     (*p_ccb->p_rcb->api.pL2CA_ConfigCfm_Cb)(
