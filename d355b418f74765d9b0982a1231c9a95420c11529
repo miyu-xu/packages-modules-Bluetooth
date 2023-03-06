@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "011f7a13_173f3967",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2023-03-06T23:39:10Z",
+      "side": 1,
+      "message": "Signal boosting.",
+      "revId": "d355b418f74765d9b0982a1231c9a95420c11529",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "37672b03_3c9e2ee7",
