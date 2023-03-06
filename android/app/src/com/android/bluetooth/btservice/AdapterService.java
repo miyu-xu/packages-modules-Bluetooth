@@ -5167,6 +5167,9 @@ public class AdapterService extends Service {
                 return false;
         }
 
+
+        // TODO: This should be handled by ActiveDeviceManager, not by each ProfileService.
+
         if (mLeAudioService != null && (device == null
                 || mLeAudioService.getConnectionPolicy(device)
                 == BluetoothProfile.CONNECTION_POLICY_ALLOWED)) {
@@ -5178,7 +5181,11 @@ public class AdapterService extends Service {
                 || mA2dpService.getConnectionPolicy(device)
                 == BluetoothProfile.CONNECTION_POLICY_ALLOWED)) {
             Log.i(TAG, "setActiveDevice: Setting active A2dp device " + device);
-            mA2dpService.setActiveDevice(device, false);
+            if (device == null) {
+                mActiveDeviceManager.deactivateA2dpDevice();
+            } else {
+
+            }
         }
 
         if (mHearingAidService != null && (device == null

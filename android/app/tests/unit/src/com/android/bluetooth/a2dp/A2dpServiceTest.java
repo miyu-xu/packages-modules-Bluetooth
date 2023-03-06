@@ -782,12 +782,10 @@ public class A2dpServiceTest {
     }
 
     /**
-     * Test setActiveDevice(null, true) when the current active a2dp device is disconnected
-     * suppresses noisy intent.
-     * (e.g. Active a2dp is disconnected and there is no fallback device)
+     * Test setting active device to null when stopPlayingAudio is false.
      */
     @Test
-    public void testSetActiveDeviceToNull_whenFallbackDeviceIsFound_suppressNoisyIntent() {
+    public void testSetActiveDeviceToNull_whenStopPlayingAudioIsFalse_suppressNoisyIntent() {
         connectDevice(mTestDevice);
         doReturn(true).when(mA2dpNativeInterface).setActiveDevice(any(BluetoothDevice.class));
         Assert.assertTrue(mA2dpService.setActiveDevice(mTestDevice, false));
@@ -798,7 +796,7 @@ public class A2dpServiceTest {
         Assert.assertTrue(mA2dpService.disconnect(mTestDevice));
         verifyConnectionStateIntent(TIMEOUT_MS, mTestDevice, BluetoothProfile.STATE_DISCONNECTING,
                 BluetoothProfile.STATE_CONNECTED);
-        mA2dpService.setActiveDevice(null, /*hasFallbackDevice=*/true);
+        mA2dpService.setActiveDevice(null, /*stopPlayingAudio=*/false);
 
         ArgumentCaptor<BluetoothProfileConnectionInfo> connectionInfoArgumentCaptor =
                 ArgumentCaptor.forClass(BluetoothProfileConnectionInfo.class);
@@ -811,13 +809,10 @@ public class A2dpServiceTest {
     }
 
     /**
-     * Test setActiveDevice(null, false) when the current active a2dp device is disconnected
-     * does not suppress noisy intent.
-     * (e.g. Active a2dp is disconnected and a fallback device exists)
+     * Test setting active device to null when stopPlayingAudio is true.
      */
     @Test
-    public void
-            testSetActiveDeviceToNull_whenFallbackDeviceIsNotFound_doesNotSuppressNoisyIntent() {
+    public void testSetActiveDeviceToNull_whenStopPlayingAudioIsTrue_doesNotSuppressNoisyIntent() {
         connectDevice(mTestDevice);
         doReturn(true).when(mA2dpNativeInterface).setActiveDevice(any(BluetoothDevice.class));
         Assert.assertTrue(mA2dpService.setActiveDevice(mTestDevice, false));
@@ -828,36 +823,7 @@ public class A2dpServiceTest {
         Assert.assertTrue(mA2dpService.disconnect(mTestDevice));
         verifyConnectionStateIntent(TIMEOUT_MS, mTestDevice, BluetoothProfile.STATE_DISCONNECTING,
                 BluetoothProfile.STATE_CONNECTED);
-        mA2dpService.setActiveDevice(null, /*hasFallbackDevice=*/false);
-
-        ArgumentCaptor<BluetoothProfileConnectionInfo> connectionInfoArgumentCaptor =
-                ArgumentCaptor.forClass(BluetoothProfileConnectionInfo.class);
-        verify(audioManager).handleBluetoothActiveDeviceChanged(
-                isNull(), eq(mTestDevice), connectionInfoArgumentCaptor.capture());
-        BluetoothProfileConnectionInfo connectionInfo =
-                connectionInfoArgumentCaptor.getValue();
-        // Should not suppress noisy intent. (i.e. Music should pause)
-        Assert.assertFalse(connectionInfo.isSuppressNoisyIntent());
-    }
-
-    /**
-     * Test setActiveDevice(null, false) when the current active a2dp device is still connected
-     * does not suppress noisy intent.
-     * (e.g. user selected another output device via UI)
-     */
-    @Test
-    public void testSetActiveDevice_whenHasFallbackDeviceIsFalse_doesNotSuppressNoisyIntent() {
-        connectDevice(mTestDevice);
-        doReturn(true).when(mA2dpNativeInterface).setActiveDevice(any(BluetoothDevice.class));
-        Assert.assertTrue(mA2dpService.setActiveDevice(mTestDevice, false));
-        Assert.assertEquals(mTestDevice, mA2dpService.getActiveDevice());
-        AudioManager audioManager = mock(AudioManager.class);
-        mA2dpService.mAudioManager = audioManager;
-
-        Assert.assertTrue(mA2dpService.disconnect(mTestDevice));
-        verifyConnectionStateIntent(TIMEOUT_MS, mTestDevice, BluetoothProfile.STATE_DISCONNECTING,
-                BluetoothProfile.STATE_CONNECTED);
-        mA2dpService.setActiveDevice(null, /*hasFallbackDevice=*/false);
+        mA2dpService.setActiveDevice(null, /*stopPlayingAudio=*/true);
 
         ArgumentCaptor<BluetoothProfileConnectionInfo> connectionInfoArgumentCaptor =
                 ArgumentCaptor.forClass(BluetoothProfileConnectionInfo.class);
