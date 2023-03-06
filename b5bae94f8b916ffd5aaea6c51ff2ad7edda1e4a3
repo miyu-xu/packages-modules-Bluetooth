@@ -39,6 +39,30 @@
       },
       "revId": "b5bae94f8b916ffd5aaea6c51ff2ad7edda1e4a3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5061aeb6_3a39d466",
+        "filename": "android/app/src/com/android/bluetooth/pbapclient/CallLogPullRequest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2023-03-06T05:48:07Z",
+      "side": 1,
+      "message": "Changed!",
+      "parentUuid": "003e80c2_c17adac0",
+      "range": {
+        "startLine": 150,
+        "startChar": 12,
+        "endLine": 150,
+        "endChar": 82
+      },
+      "revId": "b5bae94f8b916ffd5aaea6c51ff2ad7edda1e4a3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
