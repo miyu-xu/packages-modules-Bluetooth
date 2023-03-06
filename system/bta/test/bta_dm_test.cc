@@ -35,10 +35,14 @@
 #include "test/mock/mock_osi_allocator.h"
 #include "test/mock/mock_stack_acl.h"
 #include "test/mock/mock_stack_btm_sec.h"
+#include "types/bluetooth/uuid.h"
 
 using namespace std::chrono_literals;
 
 extern struct btm_client_interface_t btm_client_interface;
+
+void BTA_dm_on_hw_on();
+void BTA_dm_on_hw_off();
 
 namespace base {
 class MessageLoop;
@@ -68,7 +72,7 @@ struct alarm_t {
   int any_value;
 };
 
-class BtaDmTest : public testing::Test {
+class BtaDmWithMockTest : public testing::Test {
  protected:
   void SetUp() override {
     reset_mock_function_count_map();
@@ -90,25 +94,17 @@ class BtaDmTest : public testing::Test {
       free(*ptr);
       *ptr = nullptr;
     };
-
-    main_thread_start_up();
-    post_on_bt_main([]() { LOG_INFO("Main thread started up"); });
-
-    bta_sys_register(BTA_ID_DM_SEARCH, &bta_dm_search_reg);
-    bta_dm_init_cb();
-
-    for (int i = 0; i < BTA_DM_NUM_PM_TIMER; i++) {
-      for (int j = 0; j < BTA_DM_PM_MODE_TIMER_MAX; j++) {
-        bta_dm_cb.pm_timer[i].srvc_id[j] = kUnusedTimer;
-      }
-    }
+    test::mock::osi_alarm::alarm_set_on_mloop.body =
+        [this](alarm_t* alarm, uint64_t interval_ms, alarm_callback_t cb,
+               void* data) {
+          ASSERT_TRUE(alarm != nullptr);
+          this->alarm_callback = cb;
+          this->alarm_data = data;
+        };
   }
-  void TearDown() override {
-    bta_sys_deregister(BTA_ID_DM_SEARCH);
-    bta_dm_deinit_cb();
-    post_on_bt_main([]() { LOG_INFO("Main thread shutting down"); });
-    main_thread_shut_down();
 
+  void TearDown() override {
+    test::mock::osi_alarm::alarm_set_on_mloop = {};
     test::mock::osi_alarm::alarm_new = {};
     test::mock::osi_alarm::alarm_free = {};
     test::mock::osi_allocator::osi_malloc = {};
@@ -116,41 +112,82 @@ class BtaDmTest : public testing::Test {
     test::mock::osi_allocator::osi_free = {};
     test::mock::osi_allocator::osi_free_and_reset = {};
   }
-};
-
-TEST_F(BtaDmTest, nop) {
-  bool status = true;
-  ASSERT_EQ(true, status);
-}
-
-TEST_F(BtaDmTest, disable_no_acl_links) {
-  bta_dm_cb.disabling = true;
 
   alarm_callback_t alarm_callback;
   void* alarm_data{nullptr};
-  test::mock::osi_alarm::alarm_set_on_mloop.body =
-      [&alarm_callback, &alarm_data](alarm_t* alarm, uint64_t interval_ms,
-                                     alarm_callback_t cb, void* data) {
-        ASSERT_TRUE(alarm != nullptr);
-        alarm_callback = cb;
-        alarm_data = data;
-      };
+};
+
+class BtaDmWithMainThreadTest : public BtaDmWithMockTest {
+ protected:
+  void SetUp() override {
+    BtaDmWithMockTest::SetUp();
+    bluetooth::common::InitFlags::Load(test_flags);
+    main_thread_start_up();
+    post_on_bt_main([]() { LOG_INFO("Main thread started up"); });
+  }
+
+  void TearDown() override {
+    post_on_bt_main([]() { LOG_INFO("Main thread shutting down"); });
+    sync_main_handler();
+    main_thread_shut_down();
+    BtaDmWithMockTest::TearDown();
+  }
+};
+
+class BtaDmTest : public BtaDmWithMainThreadTest {
+ protected:
+  void SetUp() override {
+    BtaDmWithMainThreadTest::SetUp();
+
+    bta_sys_register(BTA_ID_DM_SEARCH, &bta_dm_search_reg);
+    bta_dm_init_cb();
+
+    // Tag each timer as not in use
+    for (int i = 0; i < BTA_DM_NUM_PM_TIMER; i++) {
+      for (int j = 0; j < BTA_DM_PM_MODE_TIMER_MAX; j++) {
+        bta_dm_cb.pm_timer[i].srvc_id[j] = kUnusedTimer;
+      }
+    }
+  }
+
+  void TearDown() override {
+    bta_sys_deregister(BTA_ID_DM_SEARCH);
+    bta_dm_deinit_cb();
+    BtaDmWithMainThreadTest::TearDown();
+  }
+};
+
+class BtaDmHwOnOffTest : public BtaDmWithMainThreadTest {
+ protected:
+  void SetUp() override {
+    BtaDmWithMainThreadTest::SetUp();
+    BTA_dm_on_hw_on();
+  }
+
+  void TearDown() override {
+    BTA_dm_on_hw_off();
+    BtaDmWithMainThreadTest::TearDown();
+  }
+};
+
+TEST_F(BtaDmTest, nop) {}
+
+TEST_F(BtaDmHwOnOffTest, disable_no_acl_links) {
+  bta_dm_cb.disabling = true;
 
   bta_dm_disable();  // Waiting for all ACL connections to drain
   ASSERT_EQ(0, get_func_call_count("btm_remove_acl"));
   ASSERT_EQ(1, get_func_call_count("alarm_set_on_mloop"));
 
   // Execute timer callback
-  alarm_callback(alarm_data);
+  alarm_callback(this->alarm_data);
   ASSERT_EQ(1, get_func_call_count("alarm_set_on_mloop"));
   ASSERT_EQ(0, get_func_call_count("BTIF_dm_disable"));
   ASSERT_EQ(1, get_func_call_count("future_ready"));
   ASSERT_TRUE(!bta_dm_cb.disabling);
-
-  test::mock::osi_alarm::alarm_set_on_mloop = {};
 }
 
-TEST_F(BtaDmTest, disable_first_pass_with_acl_links) {
+TEST_F(BtaDmHwOnOffTest, disable_first_pass_with_acl_links) {
   uint16_t links_up = 1;
   test::mock::stack_acl::BTM_GetNumAclLinks.body = [&links_up]() {
     return links_up;
@@ -158,16 +195,6 @@ TEST_F(BtaDmTest, disable_first_pass_with_acl_links) {
   bta_dm_cb.disabling = true;
   // ACL link is open
   bta_dm_cb.device_list.count = 1;
-
-  alarm_callback_t alarm_callback;
-  void* alarm_data{nullptr};
-  test::mock::osi_alarm::alarm_set_on_mloop.body =
-      [&alarm_callback, &alarm_data](alarm_t* alarm, uint64_t interval_ms,
-                                     alarm_callback_t cb, void* data) {
-        ASSERT_TRUE(alarm != nullptr);
-        alarm_callback = cb;
-        alarm_data = data;
-      };
 
   bta_dm_disable();              // Waiting for all ACL connections to drain
   ASSERT_EQ(1, get_func_call_count("alarm_set_on_mloop"));
@@ -175,16 +202,15 @@ TEST_F(BtaDmTest, disable_first_pass_with_acl_links) {
 
   links_up = 0;
   // First disable pass
-  alarm_callback(alarm_data);
+  alarm_callback(this->alarm_data);
   ASSERT_EQ(1, get_func_call_count("alarm_set_on_mloop"));
   ASSERT_EQ(1, get_func_call_count("BTIF_dm_disable"));
   ASSERT_TRUE(!bta_dm_cb.disabling);
 
   test::mock::stack_acl::BTM_GetNumAclLinks = {};
-  test::mock::osi_alarm::alarm_set_on_mloop = {};
 }
 
-TEST_F(BtaDmTest, disable_second_pass_with_acl_links) {
+TEST_F(BtaDmHwOnOffTest, disable_second_pass_with_acl_links) {
   uint16_t links_up = 1;
   test::mock::stack_acl::BTM_GetNumAclLinks.body = [&links_up]() {
     return links_up;
@@ -193,33 +219,22 @@ TEST_F(BtaDmTest, disable_second_pass_with_acl_links) {
   // ACL link is open
   bta_dm_cb.device_list.count = 1;
 
-  alarm_callback_t alarm_callback;
-  void* alarm_data{nullptr};
-  test::mock::osi_alarm::alarm_set_on_mloop.body =
-      [&alarm_callback, &alarm_data](alarm_t* alarm, uint64_t interval_ms,
-                                     alarm_callback_t cb, void* data) {
-        ASSERT_TRUE(alarm != nullptr);
-        alarm_callback = cb;
-        alarm_data = data;
-      };
-
   bta_dm_disable();  // Waiting for all ACL connections to drain
   ASSERT_EQ(1, get_func_call_count("alarm_set_on_mloop"));
   ASSERT_EQ(0, get_func_call_count("BTIF_dm_disable"));
 
   // First disable pass
-  alarm_callback(alarm_data);
+  alarm_callback(this->alarm_data);
   ASSERT_EQ(2, get_func_call_count("alarm_set_on_mloop"));
   ASSERT_EQ(0, get_func_call_count("BTIF_dm_disable"));
   ASSERT_EQ(1, get_func_call_count("btm_remove_acl"));
 
   // Second disable pass
-  alarm_callback(alarm_data);
+  alarm_callback(this->alarm_data);
   ASSERT_EQ(1, get_func_call_count("BTIF_dm_disable"));
   ASSERT_TRUE(!bta_dm_cb.disabling);
 
   test::mock::stack_acl::BTM_GetNumAclLinks = {};
-  test::mock::osi_alarm::alarm_set_on_mloop = {};
 }
 
 namespace {
@@ -497,4 +512,75 @@ TEST_F(BtaDmTest, bta_dm_search_evt_text) {
       bta_dm_search_evt_text(
           static_cast<tBTA_DM_SEARCH_EVT>(std::numeric_limits<uint8_t>::max()))
           .c_str());
+}
+
+TEST_F(BtaDmHwOnOffTest, nop) {}
+
+TEST_F(BtaDmWithMockTest, bta_dm_search_cb) {  // tBTA_DM_SEARCH_CB
+  constexpr char kTestName[] = "TestName";
+
+  bta_dm_search_cb.p_search_cback =
+      reinterpret_cast<tBTA_DM_SEARCH_CBACK*>(this);
+  bta_dm_search_cb.p_btm_inq_info = reinterpret_cast<tBTM_INQ_INFO*>(this);
+  bta_dm_search_cb.services = static_cast<tBTA_SERVICE_MASK>(0xffffffff);
+  bta_dm_search_cb.services_to_search =
+      static_cast<tBTA_SERVICE_MASK>(0xf0f0f0f0);
+  bta_dm_search_cb.services_found = static_cast<tBTA_SERVICE_MASK>(0x0f0f0f0f);
+  bta_dm_search_cb.p_sdp_db = reinterpret_cast<tSDP_DISCOVERY_DB*>(this);
+  bta_dm_search_cb.state = BTA_DM_DISCOVER_ACTIVE;
+  bta_dm_search_cb.peer_bdaddr = RawAddress::kAny;
+  bta_dm_search_cb.name_discover_done = true;
+  bta_dm_search_cb.search_timer = reinterpret_cast<alarm_t*>(this);
+  bta_dm_search_cb.service_index = 0xff;
+  bta_dm_search_cb.p_pending_search = reinterpret_cast<tBTA_DM_MSG*>(this);
+  bta_dm_search_cb.pending_discovery_queue =
+      reinterpret_cast<fixed_queue_t*>(this);
+  bta_dm_search_cb.wait_disc = true;
+  bta_dm_search_cb.sdp_results = true;
+  bta_dm_search_cb.uuid = bluetooth::Uuid::GetRandom();
+  ;
+  bta_dm_search_cb.peer_scn = 0xff;
+  bta_dm_search_cb.transport = BT_TRANSPORT_LE;
+  bta_dm_search_cb.p_scan_cback = reinterpret_cast<tBTA_DM_SEARCH_CBACK*>(this);
+  bta_dm_search_cb.p_csis_scan_cback =
+      reinterpret_cast<tBTA_DM_SEARCH_CBACK*>(this);
+  bta_dm_search_cb.client_if = 0xff;
+  bta_dm_search_cb.uuid_to_search = 0xff;
+  bta_dm_search_cb.gatt_disc_active = true;
+  bta_dm_search_cb.conn_id = 0x1234;
+  ;
+  bta_dm_search_cb.gatt_close_timer = reinterpret_cast<alarm_t*>(this);
+  bta_dm_search_cb.pending_close_bda = RawAddress::kAny;
+  strncpy((char*)bta_dm_search_cb.peer_name, kTestName, strlen(kTestName));
+
+  bta_dm_search_cb = {};
+
+  ASSERT_EQ(nullptr, bta_dm_search_cb.p_search_cback);
+  ASSERT_EQ(nullptr, bta_dm_search_cb.p_btm_inq_info);
+  ASSERT_EQ(static_cast<tBTA_SERVICE_MASK>(0), bta_dm_search_cb.services);
+  ASSERT_EQ(static_cast<tBTA_SERVICE_MASK>(0),
+            bta_dm_search_cb.services_to_search);
+  ASSERT_EQ(static_cast<tBTA_SERVICE_MASK>(0), bta_dm_search_cb.services_found);
+  ASSERT_EQ(nullptr, bta_dm_search_cb.p_sdp_db);
+  ASSERT_EQ(BTA_DM_SEARCH_IDLE, bta_dm_search_cb.state);
+  ASSERT_EQ(RawAddress::kEmpty, bta_dm_search_cb.peer_bdaddr);
+  ASSERT_EQ(false, bta_dm_search_cb.name_discover_done);
+  ASSERT_EQ(nullptr, bta_dm_search_cb.search_timer);
+  ASSERT_EQ(0U, bta_dm_search_cb.service_index);
+  ASSERT_EQ(nullptr, bta_dm_search_cb.p_pending_search);
+  ASSERT_EQ(nullptr, bta_dm_search_cb.pending_discovery_queue);
+  ASSERT_EQ(false, bta_dm_search_cb.wait_disc);
+  ASSERT_EQ(false, bta_dm_search_cb.sdp_results);
+  ASSERT_EQ(bluetooth::Uuid::kEmpty, bta_dm_search_cb.uuid);
+  ASSERT_EQ(0U, bta_dm_search_cb.peer_scn);
+  ASSERT_EQ(BT_TRANSPORT_AUTO, bta_dm_search_cb.transport);
+  ASSERT_EQ(nullptr, bta_dm_search_cb.p_scan_cback);
+  ASSERT_EQ(nullptr, bta_dm_search_cb.p_csis_scan_cback);
+  ASSERT_EQ(0U, bta_dm_search_cb.client_if);
+  ASSERT_EQ(0U, bta_dm_search_cb.uuid_to_search);
+  ASSERT_EQ(false, bta_dm_search_cb.gatt_disc_active);
+  ASSERT_EQ(0U, bta_dm_search_cb.conn_id);
+  ASSERT_EQ(nullptr, bta_dm_search_cb.gatt_close_timer);
+  ASSERT_EQ(RawAddress::kEmpty, bta_dm_search_cb.pending_close_bda);
+  ASSERT_EQ('\0', bta_dm_search_cb.peer_name[0]);
 }
