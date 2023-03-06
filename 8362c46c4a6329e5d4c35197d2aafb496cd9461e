@@ -22,6 +22,30 @@
       },
       "revId": "8362c46c4a6329e5d4c35197d2aafb496cd9461e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "713d16c2_e77a9af9",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 582,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2023-03-06T09:01:34Z",
+      "side": 1,
+      "message": "About refactoring `A2dpService.setActiveDevice(device, hasFallbackDevice)` to `A2dpService.setActiveDevice(device, stopAudio)`:\n\nShort Answer: We\u0027d better do it in another CL.\n\nLong Answer:\nThere are some system APIs which calls `A2dpService.setActiveDevice(null)`:\n - BluetoothAdapter.removeActiveDevice() (System API, used by Settings)\n - BluetoothA2dp.setActiveDevice(null) (@hide, unused)\n\nSince they don\u0027t know whether the audio should be stopped, we should replace those direct calls with a new method in ActiveDeviceManager.\nAfter some trial I realized that it is not a simple work.",
+      "parentUuid": "2902b4bd_34b91825",
+      "range": {
+        "startLine": 582,
+        "startChar": 7,
+        "endLine": 582,
+        "endChar": 70
+      },
+      "revId": "8362c46c4a6329e5d4c35197d2aafb496cd9461e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
