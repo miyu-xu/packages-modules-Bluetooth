@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1a6f3a4a_6ce9cd84",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-03-06T19:50:42Z",
+      "side": 1,
+      "message": "Just to confirm, are you still planning on adding a separate test for this?",
+      "revId": "128600fa6cbafc0d724a6224a662340f9315d13f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e83fc3d2_67fc9e7e",
+        "filename": "system/stack/include/smp_api_types.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 254,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-03-06T19:50:42Z",
+      "side": 1,
+      "message": "nit: typo",
+      "range": {
+        "startLine": 254,
+        "startChar": 44,
+        "endLine": 254,
+        "endChar": 50
+      },
+      "revId": "128600fa6cbafc0d724a6224a662340f9315d13f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
