@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "49943365_2070970b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-03-06T13:13:49Z",
+      "side": 1,
+      "message": "\u003d\u003d devices: \u003d\u003d\n        address: xx:xx:xx:xx:be:bc: CONNECTED (0x01): 1035, acl_handle: 64, left/right, Encrypted,mtu: 512\n        number of ases_: 3\n        \u003d\u003d ASEs \u003d\u003d\n        id  active dir     cis_id  cis_handle  sdu  latency rtn  state\n        1   false  sink    255     0           120  100     13   IDLE (0x00)\n        2   false  sink    255     0           120  100     13   IDLE (0x00)\n        3   false  source  255     0           0    0       0    IDLE (0x00)\n        \u003d\u003d\u003d\u003d\n        address: 28:6f:40:57:be:bc\n        Sink PACs\n                value handle: 0x0061 / CCC handle: 0x0062\n\n                CodecId(Coding format: 6, Vendor company ID: 0, Vendor codec ID: 0)\n                Codec specific capabilities:\n                        type: 1 len: 2  data: B500\n                        type: 2 len: 1  data: 03\n                        type: 3 len: 1  data: 01\n                        type: 4 len: 4  data: 1A009B00\n                        type: 5 len: 1  data: 01\n                        type: 255       len: 4  data: FFFF0202\n                Metadata: 03010600\n        Source PACs\n                value handle: 0x0067 / CCC handle: 0x0068\n\n                CodecId(Coding format: 6, Vendor company ID: 0, Vendor codec ID: 0)\n                Codec specific capabilities:\n                        type: 1 len: 2  data: B500\n                        type: 2 len: 1  data: 03\n                        type: 3 len: 1  data: 01\n                        type: 4 len: 4  data: 1A009B00\n                        type: 5 len: 1  data: 01\n                        type: 255       len: 4  data: FFFF0202\n                Metadata: 03010600\n\n\n\nMaybe we could add some more human readable form?",
+      "revId": "6cf566f225f327abdd0b0b95b03d0e667466a673",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
