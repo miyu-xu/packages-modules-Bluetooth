@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1ddfaab0_fdd32a60",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 1058,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2023-03-06T02:09:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "62bfe019_4ee141ac",
+      "revId": "c3f3014a50d6183599765bd21dfa7af80de27777",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f45e1430_307b8e18",
@@ -35,6 +53,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6b768010_c9ead818",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 1061,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2023-03-06T02:09:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f45e1430_307b8e18",
+      "revId": "c3f3014a50d6183599765bd21dfa7af80de27777",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6628319f_a999ebb3",
@@ -48,6 +84,24 @@
       "writtenOn": "2023-03-03T19:52:58Z",
       "side": 1,
       "message": "is `auth_req` required to be a value? Should we fail if it\u0027s set to empty()?",
+      "revId": "c3f3014a50d6183599765bd21dfa7af80de27777",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "41e140b9_1854078a",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 1069,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2023-03-06T02:09:49Z",
+      "side": 1,
+      "message": "Yes - I have another patch: https://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/2465711\nto force it to be \"None: i32 \u003d 0\" when the auth_req is not set. \nThis is to align with the auth config stays in system/stack/include/gatt_api.h.",
+      "parentUuid": "6628319f_a999ebb3",
       "revId": "c3f3014a50d6183599765bd21dfa7af80de27777",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
