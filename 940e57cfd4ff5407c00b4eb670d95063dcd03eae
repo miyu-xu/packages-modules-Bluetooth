@@ -33,6 +33,86 @@
       "message": "I reviewed and was going to summarize my findings but find that the initial summary was spot on, hence no need for me to add anything here.",
       "revId": "940e57cfd4ff5407c00b4eb670d95063dcd03eae",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "559bc2a2_61520dc4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-03-06T18:54:12Z",
+      "side": 1,
+      "message": "lgtm with nits",
+      "revId": "940e57cfd4ff5407c00b4eb670d95063dcd03eae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e6a75c16_260f5234",
+        "filename": "system/btif/src/btif_profile_storage.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 260,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-03-06T18:54:12Z",
+      "side": 1,
+      "message": "nit: UUID_SERVCLASS_LE_HID",
+      "range": {
+        "startLine": 260,
+        "startChar": 46,
+        "endLine": 260,
+        "endChar": 71
+      },
+      "revId": "940e57cfd4ff5407c00b4eb670d95063dcd03eae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0e215bd0_cf52c602",
+        "filename": "system/btif/src/btif_profile_storage.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 264,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-03-06T18:54:12Z",
+      "side": 1,
+      "message": "nit: UUID_SERVCLASS_HUMAN_INTERFACE",
+      "range": {
+        "startLine": 264,
+        "startChar": 46,
+        "endLine": 264,
+        "endChar": 71
+      },
+      "revId": "940e57cfd4ff5407c00b4eb670d95063dcd03eae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2d7b2427_2febcd1d",
+        "filename": "system/btif/src/btif_profile_storage.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 303,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-03-06T18:54:12Z",
+      "side": 1,
+      "message": "enums exist in https://source.corp.google.com/h/googleplex-android/platform/superproject/+/master:packages/modules/Bluetooth/system/gd/hci/controller.h;l\u003d29?q\u003d0x0540%20lang:cpp\u0026sq\u003drepo:googleplex-android%2Fplatform%2Fsuperproject%20branch:master%20file:packages%2Fmodules%2FBluetooth",
+      "revId": "940e57cfd4ff5407c00b4eb670d95063dcd03eae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
