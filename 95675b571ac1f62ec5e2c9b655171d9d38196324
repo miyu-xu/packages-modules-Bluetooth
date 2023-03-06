@@ -88,6 +88,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "59da0cd1_b16816b6",
+        "filename": "system/bta/hh/bta_hh_le.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1987,
+      "author": {
+        "id": 1965943
+      },
+      "writtenOn": "2023-03-06T09:43:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "182360de_80ade3a3",
+      "revId": "95675b571ac1f62ec5e2c9b655171d9d38196324",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1ec9739d_fa3e7471",
@@ -101,6 +119,24 @@
       "writtenOn": "2023-02-24T18:26:51Z",
       "side": 1,
       "message": "Shouldn\u0027t we be checking if the descriptor length in \"dscp_info\" is zero?",
+      "revId": "95675b571ac1f62ec5e2c9b655171d9d38196324",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bea6e654_889f8cfd",
+        "filename": "system/bta/hh/bta_hh_le.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1988,
+      "author": {
+        "id": 1965943
+      },
+      "writtenOn": "2023-03-06T09:43:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1ec9739d_fa3e7471",
       "revId": "95675b571ac1f62ec5e2c9b655171d9d38196324",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -153,6 +189,24 @@
       "writtenOn": "2023-02-24T18:26:51Z",
       "side": 1,
       "message": "Unnecessary",
+      "revId": "95675b571ac1f62ec5e2c9b655171d9d38196324",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c6396e78_50f56ee2",
+        "filename": "system/bta/hh/bta_hh_le.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1992,
+      "author": {
+        "id": 1965943
+      },
+      "writtenOn": "2023-03-06T09:43:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2aff6ff4_b4a3d5de",
       "revId": "95675b571ac1f62ec5e2c9b655171d9d38196324",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
