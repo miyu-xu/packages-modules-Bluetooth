@@ -38,6 +38,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a65d5f15_22deb605",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 246,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2023-03-06T06:16:26Z",
+      "side": 1,
+      "message": "Activate A2DP (without comma)",
+      "range": {
+        "startLine": 246,
+        "startChar": 15,
+        "endLine": 246,
+        "endChar": 29
+      },
+      "revId": "4215bb61cc4ddcb952f3fe8b590c6d38d999c612",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e67e4ac5_b2ef9056",
         "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
         "patchSetId": 2

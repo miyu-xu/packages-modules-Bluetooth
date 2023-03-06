@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "21486441_f44a190d",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/ActiveDeviceManagerTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2023-03-06T06:16:26Z",
+      "side": 1,
+      "message": "Can we move into `a2dpConnected()` by adding an argument `boolean hfpConnectionAllowed` in `a2dpConnected()`?\n\nSame for `hfpConnected()`",
+      "range": {
+        "startLine": 204,
+        "startChar": 8,
+        "endLine": 206,
+        "endChar": 72
+      },
+      "revId": "4cb846ae1eacfc508761fee81c418e583bc6a000",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
