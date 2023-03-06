@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2902b4bd_34b91825",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 582,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2023-03-06T02:11:58Z",
+      "side": 1,
+      "message": "Had offline meeting with Sungsoo:\n\nsuggestion) How about deciding here whether we should stop audio and pass the boolean variable?",
+      "range": {
+        "startLine": 582,
+        "startChar": 7,
+        "endLine": 582,
+        "endChar": 70
+      },
+      "revId": "8362c46c4a6329e5d4c35197d2aafb496cd9461e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
