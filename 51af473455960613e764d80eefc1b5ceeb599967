@@ -34,6 +34,24 @@
       "parentUuid": "a126bdb8_8f3e2af9",
       "revId": "51af473455960613e764d80eefc1b5ceeb599967",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8e925d00_78a3e3ae",
+        "filename": "system/audio_bluetooth_hw/stream_apis.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 742,
+      "author": {
+        "id": 1965943
+      },
+      "writtenOn": "2023-03-06T09:02:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "adc6b5b0_ecb7f880",
+      "revId": "51af473455960613e764d80eefc1b5ceeb599967",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
