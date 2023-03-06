@@ -58,8 +58,10 @@ void bta_dm_search_sm_disable() { bta_sys_deregister(BTA_ID_DM_SEARCH); }
  *
  ******************************************************************************/
 bool bta_dm_search_sm_execute(BT_HDR_RIGID* p_msg) {
-  LOG_INFO("bta_dm_search_sm_execute state:%d, event:0x%x",
-           bta_dm_search_get_state(), p_msg->event);
+  const tBTA_DM_EVT event = static_cast<tBTA_DM_EVT>(p_msg->event);
+  LOG_INFO("bta_dm_search_sm_execute state:%s, event:%s[0x%x]",
+           bta_dm_state_text(bta_dm_search_get_state()).c_str(),
+           bta_dm_event_text(event).c_str(), event);
 
   tBTA_DM_MSG* message = (tBTA_DM_MSG*)p_msg;
   switch (bta_dm_search_get_state()) {
@@ -80,8 +82,9 @@ bool bta_dm_search_sm_execute(BT_HDR_RIGID* p_msg) {
           bta_dm_close_gatt_conn(message);
           break;
         default:
-          LOG_INFO("Received unexpected event 0x%x in state %d", p_msg->event,
-                   bta_dm_search_cb.state);
+          LOG_INFO("Received unexpected event %s[0x%x] in state %s",
+                   bta_dm_event_text(event).c_str(), event,
+                   bta_dm_state_text(bta_dm_search_get_state()).c_str());
       }
       break;
     case BTA_DM_SEARCH_ACTIVE:
@@ -102,8 +105,9 @@ bool bta_dm_search_sm_execute(BT_HDR_RIGID* p_msg) {
           bta_dm_queue_disc(message);
           break;
         default:
-          LOG_INFO("Received unexpected event 0x%x in state %d", p_msg->event,
-                   bta_dm_search_cb.state);
+          LOG_INFO("Received unexpected event %s[0x%x] in state %s",
+                   bta_dm_event_text(event).c_str(), event,
+                   bta_dm_state_text(bta_dm_search_get_state()).c_str());
       }
       break;
     case BTA_DM_SEARCH_CANCELLING:
@@ -131,8 +135,9 @@ bool bta_dm_search_sm_execute(BT_HDR_RIGID* p_msg) {
           }
           [[fallthrough]];
         default:
-          LOG_INFO("Received unexpected event 0x%x in state %d", p_msg->event,
-                   bta_dm_search_cb.state);
+          LOG_INFO("Received unexpected event %s[0x%x] in state %s",
+                   bta_dm_event_text(event).c_str(), event,
+                   bta_dm_state_text(bta_dm_search_get_state()).c_str());
       }
       break;
     case BTA_DM_DISCOVER_ACTIVE:
@@ -163,8 +168,9 @@ bool bta_dm_search_sm_execute(BT_HDR_RIGID* p_msg) {
           }
           [[fallthrough]];
         default:
-          LOG_INFO("Received unexpected event 0x%x in state %d", p_msg->event,
-                   bta_dm_search_cb.state);
+          LOG_INFO("Received unexpected event %s[0x%x] in state %s",
+                   bta_dm_event_text(event).c_str(), event,
+                   bta_dm_state_text(bta_dm_search_get_state()).c_str());
       }
       break;
   }
