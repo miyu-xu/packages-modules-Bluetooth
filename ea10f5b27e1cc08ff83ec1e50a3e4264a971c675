@@ -34,6 +34,23 @@
       "parentUuid": "0ad863cc_ba802a88",
       "revId": "ea10f5b27e1cc08ff83ec1e50a3e4264a971c675",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "135f8e53_d6cf07b1",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1363,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-03-06T09:38:01Z",
+      "side": 1,
+      "message": "instead of this, please consider doing something like this:\n\nhttps://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/system/bta/le_audio/client.cc;l\u003d1338;drc\u003d5ca657189aac546af0aafaba11bbc9c5d889eab3?q\u003dle_audio%2Fclient.cc\n\nin the handler of the OnLeAudioDeviceSetStateTimeout.",
+      "revId": "ea10f5b27e1cc08ff83ec1e50a3e4264a971c675",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
