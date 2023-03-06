@@ -35,6 +35,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "67d6bc1a_bd80e238",
+        "filename": "system/bta/hh/bta_hh_le.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1416,
+      "author": {
+        "id": 1965943
+      },
+      "writtenOn": "2023-03-06T08:37:49Z",
+      "side": 1,
+      "message": "output report will not be cached when BT reset.",
+      "parentUuid": "4d3eb078_1889c5c5",
+      "revId": "9626219bb769dc1e461119aced26cddf2234b95c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6e46ec40_10d500f6",
