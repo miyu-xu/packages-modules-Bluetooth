@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "98341b07_3d3ffabd",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-03-06T14:51:12Z",
+      "side": 1,
+      "message": "If you want to prevent this CL to be submit, I think `DO NOT SUBMIT` is more appropriate as it will put a lint -2.\n\nOr you can also set the CL as a wip in gerrit either with -w option when upstreaming: `repo upload -w` or with the 3 dots in the top right corner -\u003e Mark as work in progress",
+      "range": {
+        "startLine": 7,
+        "startChar": 7,
+        "endLine": 7,
+        "endChar": 19
+      },
+      "revId": "cc843f0fde4dd8b4a82cccf1f406be271015875b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "70ef6bcc_00d7f4f1",
         "filename": "android/app/jni/com_android_bluetooth_avrcp_target.cpp",
         "patchSetId": 1
