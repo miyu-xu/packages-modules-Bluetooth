@@ -471,3 +471,30 @@ TEST_F(BtaDmTest, bta_dm_remname_cback__HCI_ERR_CONNECTION_EXISTS) {
   ASSERT_EQ(1, get_func_call_count("BTM_SecDeleteRmtNameNotifyCallback"));
   ASSERT_TRUE(bta_dm_search_cb.name_discover_done);
 }
+
+TEST_F(BtaDmTest, bta_dm_search_evt_text) {
+  std::vector<std::pair<tBTA_DM_SEARCH_EVT, std::string>> events = {
+      std::make_pair(BTA_DM_INQ_RES_EVT, "BTA_DM_INQ_RES_EVT"),
+      std::make_pair(BTA_DM_INQ_CMPL_EVT, "BTA_DM_INQ_CMPL_EVT"),
+      std::make_pair(BTA_DM_DISC_RES_EVT, "BTA_DM_DISC_RES_EVT"),
+      std::make_pair(BTA_DM_GATT_OVER_LE_RES_EVT,
+                     "BTA_DM_GATT_OVER_LE_RES_EVT"),
+      std::make_pair(BTA_DM_DISC_CMPL_EVT, "BTA_DM_DISC_CMPL_EVT"),
+      std::make_pair(BTA_DM_UNUSED_05, "BTA_DM_UNUSED_05"),
+      std::make_pair(BTA_DM_SEARCH_CANCEL_CMPL_EVT,
+                     "BTA_DM_SEARCH_CANCEL_CMPL_EVT"),
+      std::make_pair(BTA_DM_DID_RES_EVT, "BTA_DM_DID_RES_EVT"),
+      std::make_pair(BTA_DM_GATT_OVER_SDP_RES_EVT,
+                     "BTA_DM_GATT_OVER_SDP_RES_EVT"),
+  };
+  for (const auto& event : events) {
+    ASSERT_STREQ(event.second.c_str(),
+                 bta_dm_search_evt_text(event.first).c_str());
+  }
+  ASSERT_STREQ(
+      base::StringPrintf("UNKNOWN[%hhu]", std::numeric_limits<uint8_t>::max())
+          .c_str(),
+      bta_dm_search_evt_text(
+          static_cast<tBTA_DM_SEARCH_EVT>(std::numeric_limits<uint8_t>::max()))
+          .c_str());
+}
