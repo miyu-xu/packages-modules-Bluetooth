@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "70ef6bcc_00d7f4f1",
+        "filename": "android/app/jni/com_android_bluetooth_avrcp_target.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 1035,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-03-06T14:49:01Z",
+      "side": 1,
+      "message": "I suppose all the log(ERROR) are temporary. (nit: remove before submitting since you have ALOGD)",
+      "range": {
+        "startLine": 1035,
+        "startChar": 0,
+        "endLine": 1035,
+        "endChar": 56
+      },
+      "revId": "cc843f0fde4dd8b4a82cccf1f406be271015875b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bb967a0e_73587d07",
+        "filename": "system/include/hardware/avrcp/avrcp_logging_helper.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 254,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-03-06T14:49:01Z",
+      "side": 1,
+      "message": "Wouldn\u0027t it be better to NOT have a `default` case here ?\n\nBy removing the default you are checking at compile time that all the case are present in the switch (in case a new value is added later but not added in this method.\n\n\nThen the default need to be moved after the switch (because we still want to handle the case where a bad cast has been done when calling the method",
+      "range": {
+        "startLine": 253,
+        "startChar": 0,
+        "endLine": 254,
+        "endChar": 66
+      },
+      "revId": "cc843f0fde4dd8b4a82cccf1f406be271015875b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6b58e21d_a28e04d4",
+        "filename": "system/profile/avrcp/device.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 858,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-03-06T14:49:01Z",
+      "side": 1,
+      "message": "merge both logs ?",
+      "range": {
+        "startLine": 856,
+        "startChar": 2,
+        "endLine": 858,
+        "endChar": 56
+      },
+      "revId": "cc843f0fde4dd8b4a82cccf1f406be271015875b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
