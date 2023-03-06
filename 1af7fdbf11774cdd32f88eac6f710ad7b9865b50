@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d98fd4fa_7ecee5f2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2023-03-06T06:39:36Z",
+      "side": 1,
+      "message": "Hi Yuyang. This is an HFP specific change for Audio policy. \n\nCan you take a look and review accordingly?",
+      "revId": "1af7fdbf11774cdd32f88eac6f710ad7b9865b50",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
