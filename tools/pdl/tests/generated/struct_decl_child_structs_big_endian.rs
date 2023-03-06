@@ -38,79 +38,143 @@ pub trait Packet {
     fn to_vec(self) -> Vec<u8>;
 }
 
-#[derive(Debug)]
-#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
-pub struct Foo {
-    pub a: Vec<u16>,
+#[derive(FromPrimitive, ToPrimitive, Debug, Hash, Eq, PartialEq, Clone, Copy)]
+#[repr(u64)]
+pub enum Enum16 {
+    A = 0x1,
+    B = 0x2,
 }
-impl Foo {
-    fn conforms(bytes: &[u8]) -> bool {
-        bytes.len() >= 1
+#[cfg(feature = "serde")]
+impl serde::Serialize for Enum16 {
+    fn serialize<S>(&self, serializer: S) -> std::result::Result<S::Ok, S::Error>
+    where
+        S: serde::Serializer,
+    {
+        serializer.serialize_u64(*self as u64)
     }
-    pub fn parse(bytes: &[u8]) -> Result<Self> {
-        let mut cell = Cell::new(bytes);
-        let packet = Self::parse_inner(&mut cell)?;
-        if !cell.get().is_empty() {
-            return Err(Error::InvalidPacketError);
-        }
-        Ok(packet)
+}
+#[cfg(feature = "serde")]
+struct Enum16Visitor;
+#[cfg(feature = "serde")]
+impl<'de> serde::de::Visitor<'de> for Enum16Visitor {
+    type Value = Enum16;
+    fn expecting(&self, formatter: &mut std::fmt::Formatter) -> std::fmt::Result {
+        formatter.write_str("a valid discriminant")
     }
-    fn parse_inner(mut bytes: &mut Cell<&[u8]>) -> Result<Self> {
-        if bytes.get().remaining() < 1 {
-            return Err(Error::InvalidLengthError {
-                obj: "Foo".to_string(),
-                wanted: 1,
-                got: bytes.get().remaining(),
-            });
-        }
-        let a_count = bytes.get_mut().get_u8() as usize;
-        if bytes.get().remaining() < a_count {
-            return Err(Error::InvalidLengthError {
-                obj: "Foo".to_string(),
-                wanted: a_count,
-                got: bytes.get().remaining(),
-            });
-        }
-        let a = (0..a_count)
-            .map(|_| Ok::<_, Error>(bytes.get_mut().get_u16_le()))
-            .collect::<Result<Vec<_>>>()?;
-        Ok(Self { a })
-    }
-    fn write_to(&self, buffer: &mut BytesMut) {
-        buffer.put_u8(self.a.len() as u8);
-        for elem in &self.a {
-            buffer.put_u16_le(*elem);
+    fn visit_u64<E>(self, value: u64) -> std::result::Result<Self::Value, E>
+    where
+        E: serde::de::Error,
+    {
+        match value {
+            0x1 => Ok(Enum16::A),
+            0x2 => Ok(Enum16::B),
+            _ => Err(E::custom(format!("invalid discriminant: {value}"))),
         }
     }
-    fn get_total_size(&self) -> usize {
-        self.get_size()
-    }
-    fn get_size(&self) -> usize {
-        1 + self.a.len() * 2
+}
+#[cfg(feature = "serde")]
+impl<'de> serde::Deserialize<'de> for Enum16 {
+    fn deserialize<D>(deserializer: D) -> std::result::Result<Self, D::Error>
+    where
+        D: serde::Deserializer<'de>,
+    {
+        deserializer.deserialize_u64(Enum16Visitor)
     }
 }
 
 #[derive(Debug)]
 #[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
-pub struct BarData {
-    x: Vec<Foo>,
+pub struct Foo {
+    pub a: u8,
+    pub b: Enum16,
+    pub payload: Vec<u8>,
 }
-#[derive(Debug, Clone)]
-#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
-pub struct Bar {
-    #[cfg_attr(feature = "serde", serde(flatten))]
-    bar: Arc<BarData>,
+impl Foo {
+    fn conforms(bytes: &[u8]) -> bool {
+        bytes.len() >= 4
+    }
+    pub fn parse(bytes: &[u8]) -> Result<Self> {
+        let mut cell = Cell::new(bytes);
+        let packet = Self::parse_inner(&mut cell)?;
+        if !cell.get().is_empty() {
+            return Err(Error::InvalidPacketError);
+        }
+        Ok(packet)
+    }
+    fn parse_inner(mut bytes: &mut Cell<&[u8]>) -> Result<Self> {
+        if bytes.get().remaining() < 1 {
+            return Err(Error::InvalidLengthError {
+                obj: "Foo".to_string(),
+                wanted: 1,
+                got: bytes.get().remaining(),
+            });
+        }
+        let a = bytes.get_mut().get_u8();
+        if bytes.get().remaining() < 2 {
+            return Err(Error::InvalidLengthError {
+                obj: "Foo".to_string(),
+                wanted: 2,
+                got: bytes.get().remaining(),
+            });
+        }
+        let b = Enum16::from_u16(bytes.get_mut().get_u16()).unwrap();
+        if bytes.get().remaining() < 1 {
+            return Err(Error::InvalidLengthError {
+                obj: "Foo".to_string(),
+                wanted: 1,
+                got: bytes.get().remaining(),
+            });
+        }
+        let payload_size = bytes.get_mut().get_u8() as usize;
+        if bytes.get().remaining() < payload_size {
+            return Err(Error::InvalidLengthError {
+                obj: "Foo".to_string(),
+                wanted: payload_size,
+                got: bytes.get().remaining(),
+            });
+        }
+        let payload = &bytes.get()[..payload_size];
+        bytes.get_mut().advance(payload_size);
+        Ok(Self { a, b, payload })
+    }
+    fn write_to(&self, buffer: &mut BytesMut) {
+        buffer.put_u8(self.a);
+        buffer.put_u16(self.b.to_u16().unwrap());
+        if self.child.get_total_size() > 0xff {
+            panic!(
+                "Invalid length for {}::{}: {} > {}",
+                "Foo",
+                "_payload_",
+                self.child.get_total_size(),
+                0xff
+            );
+        }
+        buffer.put_u8(self.child.get_total_size() as u8);
+        match &self.child {
+            FooDataChild::Bar(child) => child.write_to(buffer),
+            FooDataChild::Baz(child) => child.write_to(buffer),
+            FooDataChild::Payload(payload) => buffer.put_slice(payload),
+            FooDataChild::None => {}
+        }
+    }
+    fn get_total_size(&self) -> usize {
+        self.get_size()
+    }
+    fn get_size(&self) -> usize {
+        4 + self.child.get_total_size()
+    }
 }
+
 #[derive(Debug)]
 #[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
-pub struct BarBuilder {
-    pub x: Vec<Foo>,
+pub struct Bar {
+    pub x: u8,
 }
-impl BarData {
+impl Bar {
     fn conforms(bytes: &[u8]) -> bool {
         bytes.len() >= 1
     }
-    fn parse(bytes: &[u8]) -> Result<Self> {
+    pub fn parse(bytes: &[u8]) -> Result<Self> {
         let mut cell = Cell::new(bytes);
         let packet = Self::parse_inner(&mut cell)?;
         if !cell.get().is_empty() {
@@ -126,61 +190,29 @@ impl BarData {
                 got: bytes.get().remaining(),
             });
         }
-        let x_size = bytes.get_mut().get_u8() as usize;
-        if bytes.get().remaining() < x_size {
-            return Err(Error::InvalidLengthError {
-                obj: "Bar".to_string(),
-                wanted: x_size,
-                got: bytes.get().remaining(),
-            });
-        }
-        let (head, tail) = bytes.get().split_at(x_size);
-        let mut head = &mut Cell::new(head);
-        bytes.replace(tail);
-        let mut x = Vec::new();
-        while !head.get().is_empty() {
-            x.push(Foo::parse_inner(head)?);
-        }
+        let x = bytes.get_mut().get_u8();
         Ok(Self { x })
     }
     fn write_to(&self, buffer: &mut BytesMut) {
-        let x_size = self.x.iter().map(|elem| elem.get_size()).sum::<usize>();
-        if x_size > 0xff {
-            panic!("Invalid length for {}::{}: {} > {}", "Bar", "x", x_size, 0xff);
-        }
-        buffer.put_u8(x_size as u8);
-        for elem in &self.x {
-            elem.write_to(buffer);
-        }
+        buffer.put_u8(self.x);
     }
     fn get_total_size(&self) -> usize {
         self.get_size()
     }
     fn get_size(&self) -> usize {
-        1 + self.x.iter().map(|elem| elem.get_size()).sum::<usize>()
+        1
     }
 }
-impl Packet for Bar {
-    fn to_bytes(self) -> Bytes {
-        let mut buffer = BytesMut::with_capacity(self.bar.get_size());
-        self.bar.write_to(&mut buffer);
-        buffer.freeze()
-    }
-    fn to_vec(self) -> Vec<u8> {
-        self.to_bytes().to_vec()
-    }
+
+#[derive(Debug)]
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
+pub struct Baz {
+    pub y: u16,
 }
-impl From<Bar> for Bytes {
-    fn from(packet: Bar) -> Self {
-        packet.to_bytes()
+impl Baz {
+    fn conforms(bytes: &[u8]) -> bool {
+        bytes.len() >= 2
     }
-}
-impl From<Bar> for Vec<u8> {
-    fn from(packet: Bar) -> Self {
-        packet.to_vec()
-    }
-}
-impl Bar {
     pub fn parse(bytes: &[u8]) -> Result<Self> {
         let mut cell = Cell::new(bytes);
         let packet = Self::parse_inner(&mut cell)?;
@@ -190,30 +222,23 @@ impl Bar {
         Ok(packet)
     }
     fn parse_inner(mut bytes: &mut Cell<&[u8]>) -> Result<Self> {
-        let data = BarData::parse_inner(&mut bytes)?;
-        Ok(Self::new(Arc::new(data)).unwrap())
-    }
-    fn new(bar: Arc<BarData>) -> std::result::Result<Self, &'static str> {
-        Ok(Self { bar })
-    }
-    pub fn get_x(&self) -> &Vec<Foo> {
-        &self.bar.as_ref().x
+        if bytes.get().remaining() < 2 {
+            return Err(Error::InvalidLengthError {
+                obj: "Baz".to_string(),
+                wanted: 2,
+                got: bytes.get().remaining(),
+            });
+        }
+        let y = bytes.get_mut().get_u16();
+        Ok(Self { y })
     }
     fn write_to(&self, buffer: &mut BytesMut) {
-        self.bar.write_to(buffer)
+        buffer.put_u16(self.y);
     }
-    pub fn get_size(&self) -> usize {
-        self.bar.get_size()
+    fn get_total_size(&self) -> usize {
+        self.get_size()
     }
-}
-impl BarBuilder {
-    pub fn build(self) -> Bar {
-        let bar = Arc::new(BarData { x: self.x });
-        Bar::new(bar).unwrap()
-    }
-}
-impl From<BarBuilder> for Bar {
-    fn from(builder: BarBuilder) -> Bar {
-        builder.build().into()
+    fn get_size(&self) -> usize {
+        2
     }
 }
