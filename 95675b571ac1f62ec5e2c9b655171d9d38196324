@@ -35,6 +35,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f8a24f97_ba587ccf",
+        "filename": "system/bta/hh/bta_hh_le.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1985,
+      "author": {
+        "id": 1965943
+      },
+      "writtenOn": "2023-03-06T09:42:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "eea489d5_ced44563",
+      "revId": "95675b571ac1f62ec5e2c9b655171d9d38196324",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "214105b0_eb486b94",
@@ -100,6 +118,24 @@
       "writtenOn": "2023-01-18T21:08:00Z",
       "side": 1,
       "message": "Add LOG_ERROR or LOG_WARN when this condition is not satisfied to indicate triggering this code path",
+      "revId": "95675b571ac1f62ec5e2c9b655171d9d38196324",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "99ed95fa_40def41d",
+        "filename": "system/bta/hh/bta_hh_le.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1991,
+      "author": {
+        "id": 1965943
+      },
+      "writtenOn": "2023-03-06T09:42:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6f07608e_3bb938d7",
       "revId": "95675b571ac1f62ec5e2c9b655171d9d38196324",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
