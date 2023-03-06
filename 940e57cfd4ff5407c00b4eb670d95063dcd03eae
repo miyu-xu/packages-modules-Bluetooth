@@ -75,6 +75,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cb2d6d18_1b4a1fb4",
+        "filename": "system/btif/src/btif_profile_storage.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 260,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-03-06T22:32:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e6a75c16_260f5234",
+      "range": {
+        "startLine": 260,
+        "startChar": 46,
+        "endLine": 260,
+        "endChar": 71
+      },
+      "revId": "940e57cfd4ff5407c00b4eb670d95063dcd03eae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0e215bd0_cf52c602",
@@ -98,6 +122,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "88dad968_63312cb5",
+        "filename": "system/btif/src/btif_profile_storage.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 264,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-03-06T22:32:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0e215bd0_cf52c602",
+      "range": {
+        "startLine": 264,
+        "startChar": 46,
+        "endLine": 264,
+        "endChar": 71
+      },
+      "revId": "940e57cfd4ff5407c00b4eb670d95063dcd03eae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2d7b2427_2febcd1d",
@@ -111,6 +159,24 @@
       "writtenOn": "2023-03-06T18:54:12Z",
       "side": 1,
       "message": "enums exist in https://source.corp.google.com/h/googleplex-android/platform/superproject/+/master:packages/modules/Bluetooth/system/gd/hci/controller.h;l\u003d29?q\u003d0x0540%20lang:cpp\u0026sq\u003drepo:googleplex-android%2Fplatform%2Fsuperproject%20branch:master%20file:packages%2Fmodules%2FBluetooth",
+      "revId": "940e57cfd4ff5407c00b4eb670d95063dcd03eae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cc0d0558_38dacd07",
+        "filename": "system/btif/src/btif_profile_storage.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 303,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-03-06T22:32:25Z",
+      "side": 1,
+      "message": "Adding dependencies to `gd/hci/controller.h` from btif is probably a bad idea (it didn\u0027t compile when I added the header for one).\n\nThe values are also duplicated in btif_dm.cc.\n\nAny suggestions for where to move them?",
+      "parentUuid": "2d7b2427_2febcd1d",
       "revId": "940e57cfd4ff5407c00b4eb670d95063dcd03eae",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
