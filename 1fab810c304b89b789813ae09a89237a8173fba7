@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8374f55a_847b5693",
+        "filename": "system/gd/rust/topshim/src/btif.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1067,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-03-06T18:59:11Z",
+      "side": 1,
+      "message": "design nit:\n\nWe should create a `NoOpOsCallouts` structure and pass it into this function from `gd/rust/linux/stack`. In the future, Android may use this topshim layer and they need to be able to use the os callouts (let\u0027s not hide that directly behind the init here)",
+      "revId": "1fab810c304b89b789813ae09a89237a8173fba7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
