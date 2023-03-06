@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e44060a5_1f064b6c",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 239,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-03-06T01:14:56Z",
+      "side": 1,
+      "message": "Good point. They are all running on the handler thread, so it shouldn\u0027t be matter for now. But I guess this will be used by the other thread as well soon.",
+      "parentUuid": "2a2fd20c_b77b2559",
+      "revId": "4215bb61cc4ddcb952f3fe8b590c6d38d999c612",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e67e4ac5_b2ef9056",
@@ -31,6 +49,30 @@
       "writtenOn": "2023-03-03T18:02:37Z",
       "side": 1,
       "message": "This check is added to postpone the profile activation until both HFP and A2DP profiles are connected?",
+      "range": {
+        "startLine": 274,
+        "startChar": 0,
+        "endLine": 275,
+        "endChar": 68
+      },
+      "revId": "4215bb61cc4ddcb952f3fe8b590c6d38d999c612",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bb796ee4_6fe1c5d5",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-03-06T01:14:56Z",
+      "side": 1,
+      "message": "Yes.\nIf both profiles are allowed and only FHP is connected, this check preventing the activation of HFP profile here.",
+      "parentUuid": "e67e4ac5_b2ef9056",
       "range": {
         "startLine": 274,
         "startChar": 0,
