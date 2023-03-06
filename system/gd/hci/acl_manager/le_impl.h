@@ -966,8 +966,8 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
               conn_interval_max,
               conn_latency,
               supervision_timeout,
-              kMinimumCeLength,
-              kMaximumCeLength),
+              0x00,
+              0x00),
           handler_->BindOnce(&le_impl::on_create_connection, common::Unretained(this)));
     }
   }
