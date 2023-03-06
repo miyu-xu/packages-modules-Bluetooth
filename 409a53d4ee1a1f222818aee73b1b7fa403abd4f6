@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "66fd4b93_d6c0a6e1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2023-03-06T15:47:45Z",
+      "side": 1,
+      "message": "LGTM. I\u0027ll let Howard +2 since he has more context on PTS",
+      "revId": "409a53d4ee1a1f222818aee73b1b7fa403abd4f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
