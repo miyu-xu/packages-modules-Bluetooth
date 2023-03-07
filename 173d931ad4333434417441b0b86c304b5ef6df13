@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5426a9e9_b01f62a7",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 3845,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-03-07T16:52:28Z",
+      "side": 1,
+      "message": "since sink is empty, why do we care about kAllowMultipleContextsInMetadata ?\n\nShouldn\u0027t it be:\n\n```\n if ((metadata_context_types_.sink.none() \u0026\u0026\n           metadata_context_types_.source.any()) ||\n          metadata_context_types_.source.test_any(bidir_contexts)) {\n     LOG_DEBUG(\n              \"Replacing remote sink metadata to match the source context\");\n          metadata_context_types_.sink \u003d metadata_context_types_.source;\n }\n```",
+      "range": {
+        "startLine": 3838,
+        "startChar": 7,
+        "endLine": 3845,
+        "endChar": 72
+      },
+      "revId": "173d931ad4333434417441b0b86c304b5ef6df13",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
