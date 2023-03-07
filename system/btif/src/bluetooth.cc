@@ -83,6 +83,7 @@
 #include "common/address_obfuscator.h"
 #include "common/metric_id_allocator.h"
 #include "common/metrics.h"
+#include "gd/metrics/metrics_state.h"
 #include "common/os_utils.h"
 #include "device/include/device_iot_config.h"
 #include "device/include/interop.h"
