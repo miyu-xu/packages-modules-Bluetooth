@@ -15,19 +15,20 @@
   ~ limitations under the License.
   -->
 <configuration description="Avatar tests.">
-    <target_preparer class="com.android.tradefed.targetprep.TestAppInstallSetup">
+    <target_preparer class="com.android.tradefed.targetprep.suite.SuiteApkInstaller">
         <option name="test-file-name" value="PandoraServer.apk" />
         <option name="install-arg" value="-r" />
         <option name="install-arg" value="-g" />
     </target_preparer>
     <target_preparer class="com.android.tradefed.targetprep.RunHostCommandTargetPreparer">
-        <option name="host-setup-command" value="adb -s $SERIAL forward tcp:7300 tcp:6211" />
+        <option name="host-setup-command" value="adb -s $SERIAL forward tcp:6211 tcp:6211" />
         <option name="host-background-command" value="adb -s $SERIAL shell nc -L -p 6211 nc 192.168.97.1 7300" />
-        <option name="host-teardown-command" value="adb -s $SERIAL forward --remove tcp:7300" />
+        <option name="host-teardown-command" value="adb -s $SERIAL forward --remove tcp:6211" />
     </target_preparer>
     <target_preparer class="com.android.tradefed.targetprep.PythonVirtualenvPreparer">
-        <option name="dep-module" value="grpcio" />
-        <option name="dep-module" value="cryptography" />
+        <option name="dep-module" value="grpcio==1.51.1" />
+        <option name="dep-module" value="cryptography==35" />
+        <option name="dep-module" value="appdirs==1.4.4" />
     </target_preparer>
     <test class="com.android.tradefed.testtype.mobly.MoblyBinaryHostTest">
         <option name="mobly-par-file-name" value="avatar" />
@@ -35,4 +36,3 @@
         <option name="mobly-test-timeout" value="1800000" />
     </test>
 </configuration>
-
