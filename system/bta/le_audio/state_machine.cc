@@ -206,7 +206,7 @@ class LeAudioGroupStateMachineImpl : public LeAudioGroupStateMachine {
 
         /* All ASEs should aim to achieve target state */
         SetTargetState(group, AseState::BTA_LE_AUDIO_ASE_STATE_STREAMING);
-        PrepareAndSendEnable(leAudioDevice);
+        PrepareAndSendEnableToTheGroup(group);
         break;
       }
 
@@ -1928,7 +1928,7 @@ class LeAudioGroupStateMachineImpl : public LeAudioGroupStateMachine {
           leAudioDevice = group->GetFirstActiveDevice();
           LOG_ASSERT(leAudioDevice)
               << __func__ << " Shouldn't be called without an active device.";
-          PrepareAndSendEnable(leAudioDevice);
+          PrepareAndSendEnableToTheGroup(group);
         }
 
         break;
@@ -1991,6 +1991,22 @@ class LeAudioGroupStateMachineImpl : public LeAudioGroupStateMachine {
                           AseState::BTA_LE_AUDIO_ASE_STATE_QOS_CONFIGURED);
         StopStream(group);
         break;
+    }
+  }
+
+  void PrepareAndSendEnableToTheGroup(LeAudioDeviceGroup* group) {
+    LOG_INFO("group_id: %d", group->group_id_);
+
+    auto leAudioDevice = group->GetFirstActiveDevice();
+    if (!leAudioDevice) {
+      LOG_ERROR("No active for the group,");
+      StopStream(group);
+      return;
+    }
+
+    for (; leAudioDevice;
+         leAudioDevice = group->GetNextActiveDevice(leAudioDevice)) {
+      PrepareAndSendEnable(leAudioDevice);
     }
   }
 
@@ -2533,11 +2549,15 @@ class LeAudioGroupStateMachineImpl : public LeAudioGroupStateMachine {
   }
 
   void ProcessGroupEnable(LeAudioDeviceGroup* group, LeAudioDevice* device) {
-    /* Enable ASEs for next device in group. */
-    LeAudioDevice* deviceNext = group->GetNextActiveDevice(device);
-    if (deviceNext) {
-      PrepareAndSendEnable(deviceNext);
-      return;
+    if (group->GetState() != AseState::BTA_LE_AUDIO_ASE_STATE_ENABLING) {
+      if (!group->IsGroupReadyToCreateStream()) {
+        LOG_DEBUG(
+            "Waiting for more ASEs to be in enabling or directly in streaming "
+            "state");
+        return;
+      }
+
+      group->SetState(AseState::BTA_LE_AUDIO_ASE_STATE_ENABLING);
     }
 
     /* At this point all of the active ASEs within group are enabled. The server
@@ -2547,8 +2567,6 @@ class LeAudioGroupStateMachineImpl : public LeAudioGroupStateMachine {
     if (group->HaveAllActiveDevicesAsesTheSameState(
             AseState::BTA_LE_AUDIO_ASE_STATE_STREAMING)) {
       group->SetState(AseState::BTA_LE_AUDIO_ASE_STATE_STREAMING);
-    } else {
-      group->SetState(AseState::BTA_LE_AUDIO_ASE_STATE_ENABLING);
     }
 
     if (group->GetTargetState() == AseState::BTA_LE_AUDIO_ASE_STATE_STREAMING) {
