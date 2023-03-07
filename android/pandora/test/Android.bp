@@ -35,3 +35,31 @@ python_test_host {
     },
     data: ["config.yml"],
 }
+
+sh_binary_host {
+    name: "avatar-run",
+    src: "avatar-run.sh",
+    required: [
+        "avatar",
+        "avatar-fmt",
+        "avatar-lint",
+        "tradefed",
+        "tradefed-core",
+        "tradefed-contrib",
+        "tradefed-test-framework",
+    ]
+}
+
+sh_binary_host {
+    name: "avatar-fmt",
+    src: "avatar-fmt.sh"
+}
+
+sh_binary_host {
+    name: "avatar-lint",
+    src: "avatar-lint.sh",
+    required: [
+        "pandora-python-gen-src",
+        "pandora_experimental-python-gen-src",
+    ]
+}
