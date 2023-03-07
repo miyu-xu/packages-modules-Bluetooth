@@ -2,25 +2,32 @@
 //! It handles ATT transactions and unacknowledged operations, backed by an
 //! AttDatabase (that may in turn be backed by an upper-layer protocol)
 
-use std::cell::Cell;
+use std::{cell::Cell, future::Future};
 
 use log::{error, trace, warn};
 use tokio::task::spawn_local;
 
 use crate::{
-    core::shared_box::WeakBoxRef,
+    core::{
+        shared_box::{WeakBox, WeakBoxRef},
+        shared_mutex::SharedMutex,
+    },
     gatt::{
         ids::AttHandle,
         opcode_types::{classify_opcode, OperationType},
     },
     packets::{
-        AttBuilder, AttChild, AttErrorCode, AttErrorResponseBuilder, AttView, Packet,
-        SerializeError,
+        AttAttributeDataChild, AttBuilder, AttChild, AttErrorCode, AttErrorResponseBuilder,
+        AttView, Packet, SerializeError,
     },
     utils::{owned_handle::OwnedHandle, packet::HACK_child_to_opcode},
 };
 
-use super::{att_database::AttDatabase, request_handler::AttRequestHandler};
+use super::{
+    att_database::AttDatabase,
+    indication_handler::{ConfirmationWatcher, IndicationError, IndicationHandler},
+    request_handler::AttRequestHandler,
+};
 
 enum AttRequestState<T: AttDatabase> {
     Idle(AttRequestHandler<T>),
@@ -34,28 +41,67 @@ const DEFAULT_ATT_MTU: usize = 23;
 pub enum SendError {
     /// The packet failed to serialize
     SerializeError(SerializeError),
+    /// The connection no longer exists
+    ConnectionDropped,
 }
 
 /// This represents a single ATT bearer (currently, always the unenhanced fixed
 /// channel on LE) The AttRequestState ensures that only one transaction can
 /// take place at a time
 pub struct AttServerBearer<T: AttDatabase> {
-    curr_request: Cell<AttRequestState<T>>,
+    // general
     send_packet: Box<dyn Fn(AttBuilder) -> Result<(), SerializeError>>,
     mtu: Cell<usize>,
+
+    // request state
+    curr_request: Cell<AttRequestState<T>>,
+
+    // indication state
+    indication_handler: SharedMutex<IndicationHandler<T>>,
+    pending_confirmation: ConfirmationWatcher,
 }
 
-impl<T: AttDatabase + 'static> AttServerBearer<T> {
+impl<T: AttDatabase + Clone + 'static> AttServerBearer<T> {
     /// Constructor, wrapping an ATT channel (for outgoing packets) and an
     /// AttDatabase
     pub fn new(
         db: T,
         send_packet: impl Fn(AttBuilder) -> Result<(), SerializeError> + 'static,
     ) -> Self {
+        let (indication_handler, pending_confirmation) = IndicationHandler::new(db.clone());
         Self {
-            curr_request: AttRequestState::Idle(AttRequestHandler::new(db)).into(),
             send_packet: Box::new(send_packet),
             mtu: Cell::new(DEFAULT_ATT_MTU),
+
+            curr_request: AttRequestState::Idle(AttRequestHandler::new(db)).into(),
+
+            indication_handler: SharedMutex::new(indication_handler),
+            pending_confirmation,
+        }
+    }
+
+    /// Send an indication, wait for the peer confirmation, and return the
+    /// appropriate status If multiple calls are outstanding, they are
+    /// executed in FIFO order.
+    pub fn send_indication(
+        this: &WeakBoxRef<'_, Self>,
+        handle: AttHandle,
+        data: AttAttributeDataChild,
+    ) -> impl Future<Output = Result<(), IndicationError>> {
+        trace!("sending indication for handle {handle:?}");
+
+        let locked_indication_handler = this.indication_handler.lock();
+        let this = this.downgrade();
+
+        async move {
+            locked_indication_handler
+                .await
+                .ok_or_else(|| {
+                    warn!("indication for handle {handle:?} cancelled while queued since the connection dropped");
+                    IndicationError::SendError(SendError::ConnectionDropped)
+                })?
+                .send(handle, data, |packet| Self::try_send_packet(&this, packet))
+                .await
         }
     }
 
@@ -69,9 +115,7 @@ impl<T: AttDatabase + 'static> AttServerBearer<T> {
             OperationType::Request => {
                 Self::handle_request(this, packet);
             }
-            OperationType::Confirmation => {
-                error!("ignoring handle value confirmation (currently unsupported)");
-            }
+            OperationType::Confirmation => this.pending_confirmation.on_confirmation(),
             OperationType::Response | OperationType::Notification | OperationType::Indication => {
                 unreachable!("the arbiter should not let us receive these packet types")
             }
@@ -91,25 +135,30 @@ impl<T: AttDatabase + 'static> AttServerBearer<T> {
                     trace!("starting ATT transaction");
                     let reply = request_handler.process_packet(packet.view(), mtu).await;
                     this.with(|this| {
-                    match this {
-                        None => {
-                            warn!("callback returned after disconnect");
-                        }
-                        Some(this) => {
-                            trace!("sending reply packet");
-                            if let Err(err) = this.send_packet(reply) {
-                                error!("serializer failure {err:?}, dropping packet and sending failed reply");
-                                this.send_packet(AttErrorResponseBuilder {
-                                    opcode_in_error: packet.view().get_opcode(),
-                                    handle_in_error: AttHandle(0).into(),
-                                    error_code: AttErrorCode::UNLIKELY_ERROR,
-                                }).expect("packet should never fail to serialize");
-                            }
+                        this.map(|this| {
+                            match this.send_packet(reply) {
+                                Ok(_) => {
+                                    trace!("reply packet sent")
+                                }
+                                Err(SendError::ConnectionDropped) => {
+                                    warn!("callback returned after disconnect");
+                                }
+                                Err(SendError::SerializeError(err)) => {
+                                    error!("serializer failure {err:?}, dropping packet and sending failed reply");
+                                    // if this also fails, we're stuck
+                                    if let Err(SendError::SerializeError(err)) = this.send_packet(AttErrorResponseBuilder {
+                                        opcode_in_error: packet.view().get_opcode(),
+                                        handle_in_error: AttHandle(0).into(),
+                                        error_code: AttErrorCode::UNLIKELY_ERROR,
+                                    }) {
+                                        panic!("unexpected serialize error for known-good packet {err:?}")
+                                    }
+                                }
+                            };
                             // ready for next transaction
                             this.curr_request.replace(AttRequestState::Idle(request_handler));
-                        }
-                    }
-                    })
+                        })
+                    });
                 });
                 AttRequestState::Pending(Some(task.into()))
             }
@@ -119,6 +168,16 @@ impl<T: AttDatabase + 'static> AttServerBearer<T> {
                 curr_request
             }
         });
+    }
+
+    fn try_send_packet(this: &WeakBox<Self>, packet: impl Into<AttChild>) -> Result<(), SendError> {
+        this.with(|this| {
+            this.ok_or_else(|| {
+                warn!("connection dropped before packet sent");
+                SendError::ConnectionDropped
+            })?
+            .send_packet(packet)
+        })
     }
 
     fn send_packet(&self, packet: impl Into<AttChild>) -> Result<(), SendError> {
@@ -151,7 +210,8 @@ mod test {
             },
         },
         packets::{
-            AttAttributeDataChild, AttOpcode, AttReadRequestBuilder, AttReadResponseBuilder,
+            AttAttributeDataChild, AttHandleValueConfirmationBuilder, AttOpcode,
+            AttReadRequestBuilder, AttReadResponseBuilder,
         },
         utils::{
             packet::{build_att_data, build_att_view_or_crash},
@@ -167,14 +227,24 @@ mod test {
 
     fn open_connection(
     ) -> (SharedBox<AttServerBearer<TestAttDatabase>>, UnboundedReceiver<AttBuilder>) {
-        let db = TestAttDatabase::new(vec![(
-            AttAttribute {
-                handle: VALID_HANDLE,
-                type_: Uuid::new(0x1234),
-                permissions: AttPermissions::READABLE,
-            },
-            vec![5, 6],
-        )]);
+        let db = TestAttDatabase::new(vec![
+            (
+                AttAttribute {
+                    handle: VALID_HANDLE,
+                    type_: Uuid::new(0x1234),
+                    permissions: AttPermissions::READABLE | AttPermissions::INDICATE,
+                },
+                vec![5, 6],
+            ),
+            (
+                AttAttribute {
+                    handle: ANOTHER_VALID_HANDLE,
+                    type_: Uuid::new(0x5678),
+                    permissions: AttPermissions::READABLE | AttPermissions::INDICATE,
+                },
+                vec![5, 6],
+            ),
+        ]);
         let (tx, rx) = unbounded_channel();
         let conn = AttServerBearer::new(db, move |packet| {
             tx.send(packet).unwrap();
@@ -296,6 +366,203 @@ mod test {
             assert_eq!(rx.try_recv(), Err(TryRecvError::Empty));
             // assert no callbacks are pending
             assert_eq!(data_rx.try_recv().unwrap_err(), TryRecvError::Empty);
+        });
+    }
+
+    #[test]
+    fn test_indication_confirmation() {
+        block_on_locally(async {
+            // arrange
+            let (conn, mut rx) = open_connection();
+
+            // act: send an indication
+            let pending_send = spawn_local(AttServerBearer::send_indication(
+                &conn.as_ref(),
+                VALID_HANDLE,
+                AttAttributeDataChild::RawData([1, 2, 3].into()),
+            ));
+            assert_eq!(rx.recv().await.unwrap().opcode, AttOpcode::HANDLE_VALUE_INDICATION);
+            assert_eq!(rx.try_recv(), Err(TryRecvError::Empty));
+            // and the confirmation
+            AttServerBearer::handle_packet(
+                &conn.as_ref(),
+                build_att_view_or_crash(AttHandleValueConfirmationBuilder {}).view(),
+            );
+
+            // assert: the indication was correctly sent
+            assert!(matches!(pending_send.await.unwrap(), Ok(())));
+        });
+    }
+
+    #[test]
+    fn test_sequential_indications() {
+        block_on_locally(async {
+            // arrange
+            let (conn, mut rx) = open_connection();
+
+            // act: send the first indication
+            let pending_send1 = spawn_local(AttServerBearer::send_indication(
+                &conn.as_ref(),
+                VALID_HANDLE,
+                AttAttributeDataChild::RawData([1, 2, 3].into()),
+            ));
+            // wait for/capture the outgoing packet
+            let sent1 = rx.recv().await.unwrap();
+            // send the response
+            AttServerBearer::handle_packet(
+                &conn.as_ref(),
+                build_att_view_or_crash(AttHandleValueConfirmationBuilder {}).view(),
+            );
+            // send the second indication
+            let pending_send2 = spawn_local(AttServerBearer::send_indication(
+                &conn.as_ref(),
+                VALID_HANDLE,
+                AttAttributeDataChild::RawData([1, 2, 3].into()),
+            ));
+            // wait for/capture the outgoing packet
+            let sent2 = rx.recv().await.unwrap();
+            // and the response
+            AttServerBearer::handle_packet(
+                &conn.as_ref(),
+                build_att_view_or_crash(AttHandleValueConfirmationBuilder {}).view(),
+            );
+
+            // assert: exactly two indications were sent
+            assert_eq!(sent1.opcode, AttOpcode::HANDLE_VALUE_INDICATION);
+            assert_eq!(sent2.opcode, AttOpcode::HANDLE_VALUE_INDICATION);
+            assert_eq!(rx.try_recv(), Err(TryRecvError::Empty));
+            // and that both got successful responses
+            assert!(matches!(pending_send1.await.unwrap(), Ok(())));
+            assert!(matches!(pending_send2.await.unwrap(), Ok(())));
+        });
+    }
+
+    #[test]
+    fn test_queued_indications_only_one_sent() {
+        block_on_locally(async {
+            // arrange
+            let (conn, mut rx) = open_connection();
+
+            // act: send two indications simultaneously
+            let pending_send1 = spawn_local(AttServerBearer::send_indication(
+                &conn.as_ref(),
+                VALID_HANDLE,
+                AttAttributeDataChild::RawData([1, 2, 3].into()),
+            ));
+            let pending_send2 = spawn_local(AttServerBearer::send_indication(
+                &conn.as_ref(),
+                ANOTHER_VALID_HANDLE,
+                AttAttributeDataChild::RawData([1, 2, 3].into()),
+            ));
+            // assert: only one was initially sent
+            assert_eq!(rx.recv().await.unwrap().opcode, AttOpcode::HANDLE_VALUE_INDICATION);
+            assert_eq!(rx.try_recv(), Err(TryRecvError::Empty));
+            // and both are still pending
+            assert!(!pending_send1.is_finished());
+            assert!(!pending_send2.is_finished());
+        });
+    }
+
+    #[test]
+    fn test_queued_indications_dequeue_second() {
+        block_on_locally(async {
+            // arrange
+            let (conn, mut rx) = open_connection();
+
+            // act: send two indications simultaneously
+            let pending_send1 = spawn_local(AttServerBearer::send_indication(
+                &conn.as_ref(),
+                VALID_HANDLE,
+                AttAttributeDataChild::RawData([1, 2, 3].into()),
+            ));
+            let pending_send2 = spawn_local(AttServerBearer::send_indication(
+                &conn.as_ref(),
+                ANOTHER_VALID_HANDLE,
+                AttAttributeDataChild::RawData([1, 2, 3].into()),
+            ));
+            // wait for/capture the outgoing packet
+            let sent1 = rx.recv().await.unwrap();
+            // send response for the first one
+            AttServerBearer::handle_packet(
+                &conn.as_ref(),
+                build_att_view_or_crash(AttHandleValueConfirmationBuilder {}).view(),
+            );
+            // wait for/capture the outgoing packet
+            let sent2 = rx.recv().await.unwrap();
+
+            // assert: the first future has completed successfully, the second one is
+            // pending
+            assert!(matches!(pending_send1.await.unwrap(), Ok(())));
+            assert!(!pending_send2.is_finished());
+            // and that both indications have been sent
+            assert_eq!(sent1.opcode, AttOpcode::HANDLE_VALUE_INDICATION);
+            assert_eq!(sent2.opcode, AttOpcode::HANDLE_VALUE_INDICATION);
+            assert_eq!(rx.try_recv(), Err(TryRecvError::Empty));
+        });
+    }
+
+    #[test]
+    fn test_queued_indications_complete_both() {
+        block_on_locally(async {
+            // arrange
+            let (conn, mut rx) = open_connection();
+
+            // act: send two indications simultaneously
+            let pending_send1 = spawn_local(AttServerBearer::send_indication(
+                &conn.as_ref(),
+                VALID_HANDLE,
+                AttAttributeDataChild::RawData([1, 2, 3].into()),
+            ));
+            let pending_send2 = spawn_local(AttServerBearer::send_indication(
+                &conn.as_ref(),
+                ANOTHER_VALID_HANDLE,
+                AttAttributeDataChild::RawData([1, 2, 3].into()),
+            ));
+            // wait for/capture the outgoing packet
+            let sent1 = rx.recv().await.unwrap();
+            // send response for the first one
+            AttServerBearer::handle_packet(
+                &conn.as_ref(),
+                build_att_view_or_crash(AttHandleValueConfirmationBuilder {}).view(),
+            );
+            // wait for/capture the outgoing packet
+            let sent2 = rx.recv().await.unwrap();
+            // and now the second
+            AttServerBearer::handle_packet(
+                &conn.as_ref(),
+                build_att_view_or_crash(AttHandleValueConfirmationBuilder {}).view(),
+            );
+
+            // assert: both futures have completed successfully
+            assert!(matches!(pending_send1.await.unwrap(), Ok(())));
+            assert!(matches!(pending_send2.await.unwrap(), Ok(())));
+            // and both indications have been sent
+            assert_eq!(sent1.opcode, AttOpcode::HANDLE_VALUE_INDICATION);
+            assert_eq!(sent2.opcode, AttOpcode::HANDLE_VALUE_INDICATION);
+            assert_eq!(rx.try_recv(), Err(TryRecvError::Empty));
+        });
+    }
+
+    #[test]
+    fn test_indication_connection_drop() {
+        block_on_locally(async {
+            // arrange: a pending indication
+            let (conn, mut rx) = open_connection();
+            let pending_send = spawn_local(AttServerBearer::send_indication(
+                &conn.as_ref(),
+                VALID_HANDLE,
+                AttAttributeDataChild::RawData([1, 2, 3].into()),
+            ));
+
+            // act: drop the connection after the indication is sent
+            rx.recv().await.unwrap();
+            drop(conn);
+
+            // assert: the pending indication fails with the appropriate error
+            assert!(matches!(
+                pending_send.await.unwrap(),
+                Err(IndicationError::ConnectionDroppedWhileWaitingForConfirmation)
+            ));
         });
     }
 }

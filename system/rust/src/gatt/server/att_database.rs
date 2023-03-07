@@ -44,6 +44,8 @@ bitflags! {
         const READABLE = 0x02;
         /// Attribute can be written to using WRITE_REQ
         const WRITABLE = 0x08;
+        /// Attribute value may be sent using indications
+        const INDICATE = 0x20;
     }
 }
 

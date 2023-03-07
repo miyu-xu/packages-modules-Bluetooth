@@ -17,8 +17,8 @@ use crate::{
         ids::{AttHandle, ConnectionId},
     },
     packets::{
-        AttAttributeDataChild, AttAttributeDataView, AttCharacteristicPropertiesBuilder,
-        AttErrorCode, GattCharacteristicDeclarationValueBuilder,
+        AttAttributeDataChild, AttAttributeDataView, AttErrorCode,
+        GattCharacteristicDeclarationValueBuilder, GattCharacteristicPropertiesBuilder,
         GattServiceDeclarationValueBuilder, UuidBuilder,
     },
 };
@@ -139,7 +139,7 @@ impl<T: GattDatastore + ?Sized> GattDatabase<T> {
                 },
                 AttAttributeBackingValue::Static(
                     GattCharacteristicDeclarationValueBuilder {
-                        properties: AttCharacteristicPropertiesBuilder {
+                        properties: GattCharacteristicPropertiesBuilder {
                             broadcast: 0,
                             read: characteristic
                                 .permissions
@@ -151,7 +151,10 @@ impl<T: GattDatastore + ?Sized> GattDatabase<T> {
                                 .contains(AttPermissions::WRITABLE)
                                 .into(),
                             notify: 0,
-                            indicate: 0,
+                            indicate: characteristic
+                                .permissions
+                                .contains(AttPermissions::INDICATE)
+                                .into(),
                             authenticated_signed_writes: 0,
                             extended_properties: 0,
                         },
@@ -310,6 +313,12 @@ where
     }
 }
 
+impl<T: ?Sized> Clone for AttDatabaseImpl<T> {
+    fn clone(&self) -> Self {
+        Self { gatt_db: self.gatt_db.clone(), conn_id: self.conn_id }
+    }
+}
+
 #[cfg(test)]
 mod test {
     use tokio::{join, task::spawn_local};
@@ -456,7 +465,9 @@ mod test {
                 characteristics: vec![GattCharacteristicWithHandle {
                     handle: CHARACTERISTIC_VALUE_HANDLE,
                     type_: CHARACTERISTIC_TYPE,
-                    permissions: AttPermissions::READABLE | AttPermissions::WRITABLE,
+                    permissions: AttPermissions::READABLE
+                        | AttPermissions::WRITABLE
+                        | AttPermissions::INDICATE,
                 }],
             })
             .unwrap();
@@ -481,7 +492,9 @@ mod test {
             AttAttribute {
                 handle: CHARACTERISTIC_VALUE_HANDLE,
                 type_: CHARACTERISTIC_TYPE,
-                permissions: AttPermissions::READABLE | AttPermissions::WRITABLE
+                permissions: AttPermissions::READABLE
+                    | AttPermissions::WRITABLE
+                    | AttPermissions::INDICATE
             }
         );
 
@@ -489,13 +502,13 @@ mod test {
             characteristic_decl,
             Ok(AttAttributeDataChild::GattCharacteristicDeclarationValue(
                 GattCharacteristicDeclarationValueBuilder {
-                    properties: AttCharacteristicPropertiesBuilder {
+                    properties: GattCharacteristicPropertiesBuilder {
                         read: 1,
                         broadcast: 0,
                         write_without_response: 0,
                         write: 1,
                         notify: 0,
-                        indicate: 0,
+                        indicate: 1,
                         authenticated_signed_writes: 0,
                         extended_properties: 0,
                     },
