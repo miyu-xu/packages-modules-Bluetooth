@@ -299,11 +299,34 @@ pub enum BtScanMode {
     None_,
     Connectable,
     ConnectableDiscoverable,
+    ConnectableLimitedDiscoverable,
 }
 
 impl From<bindings::bt_scan_mode_t> for BtScanMode {
     fn from(item: bindings::bt_scan_mode_t) -> Self {
         BtScanMode::from_u32(item).unwrap_or(BtScanMode::None_)
+    }
+}
+
+#[derive(Debug, Copy, Clone, PartialEq)]
+#[repr(u32)]
+pub enum BtDiscMode {
+    // reference to system/stack/btm/neighbor_inquiry.h
+    NonDiscoverable = 0,
+    LimitedDiscoverable = 1,
+    GeneralDiscoverable = 2,
+}
+
+impl TryFrom<u32> for BtDiscMode {
+    type Error = &'static str;
+
+    fn try_from(num: u32) -> std::result::Result<Self, Self::Error> {
+        match num {
+            0 => Ok(BtDiscMode::NonDiscoverable),
+            1 => Ok(BtDiscMode::LimitedDiscoverable),
+            2 => Ok(BtDiscMode::GeneralDiscoverable),
+            _ => Err("Unknown discoverable mode."),
+        }
     }
 }
 

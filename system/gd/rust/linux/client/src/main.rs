@@ -26,6 +26,7 @@ use btstack::bluetooth::{BluetoothDevice, IBluetooth};
 use btstack::suspend::ISuspend;
 use manager_service::iface_bluetooth_manager::IBluetoothManager;
 
+mod bt_adapter;
 mod bt_adv;
 mod bt_gatt;
 mod callbacks;
