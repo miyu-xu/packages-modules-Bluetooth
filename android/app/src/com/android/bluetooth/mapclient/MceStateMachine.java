@@ -285,7 +285,7 @@ class MceStateMachine extends StateMachine {
 
     public boolean disconnect() {
         if (DBG) {
-            Log.d(TAG, "Disconnect Request " + mDevice.getAddress());
+            Log.d(TAG, "Disconnect Request " + mDevice);
         }
         sendMessage(MSG_DISCONNECT, mDevice);
         return true;
@@ -442,7 +442,7 @@ class MceStateMachine extends StateMachine {
     }
 
     public void dump(StringBuilder sb) {
-        ProfileService.println(sb, "mCurrentDevice: " + mDevice.getAddress() + "("
+        ProfileService.println(sb, "mCurrentDevice: " + mDevice + "("
                 + Utils.getName(mDevice) + ") " + this.toString());
         if (mDatabase != null) {
             mDatabase.dump(sb);
