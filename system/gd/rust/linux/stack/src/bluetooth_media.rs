@@ -250,6 +250,7 @@ pub struct BluetoothMedia {
     delay_enable_profiles: HashSet<uuid::Profile>,
     connected_profiles: HashMap<RawAddress, HashSet<uuid::Profile>>,
     device_states: Arc<Mutex<HashMap<RawAddress, DeviceConnectionStates>>>,
+    delay_volume_update: HashMap<uuid::Profile, u8>,
     telephony_device_status: TelephonyDeviceStatus,
     phone_state: PhoneState,
     call_list: Vec<CallInfo>,
@@ -295,6 +296,7 @@ impl BluetoothMedia {
             delay_enable_profiles: HashSet::new(),
             connected_profiles: HashMap::new(),
             device_states: Arc::new(Mutex::new(HashMap::new())),
+            delay_volume_update: HashMap::new(),
             telephony_device_status: TelephonyDeviceStatus::new(),
             phone_state: PhoneState { num_active: 0, num_held: 0, state: CallState::Idle },
             call_list: vec![],
@@ -339,6 +341,7 @@ impl BluetoothMedia {
         }
 
         self.connected_profiles.entry(addr).or_insert_with(HashSet::new).remove(&profile);
+        self.delay_volume_update.remove(&profile);
 
         if is_profile_critical {
             self.notify_critical_profile_disconnected(addr);
@@ -558,9 +561,23 @@ impl BluetoothMedia {
                 );
             }
             AvrcpCallbacks::AvrcpAbsoluteVolumeUpdate(volume) => {
-                self.callbacks.lock().unwrap().for_all_callbacks(|callback| {
-                    callback.on_absolute_volume_changed(volume);
-                });
+                for (addr, state) in self.device_states.lock().unwrap().iter() {
+                    info!("[{}]: state {:?}", DisplayAddress(&addr), state);
+                    match state {
+                        DeviceConnectionStates::ConnectingBeforeRetry
+                        | DeviceConnectionStates::ConnectingAfterRetry => {
+                            self.delay_volume_update.insert(Profile::AvrcpController, volume);
+                        }
+                        DeviceConnectionStates::FullyConnected => {
+                            self.delay_volume_update.remove(&Profile::AvrcpController);
+                            self.callbacks.lock().unwrap().for_all_callbacks(|callback| {
+                                callback.on_absolute_volume_changed(volume);
+                            });
+                            return;
+                        }
+                        _ => {}
+                    }
+                }
             }
             AvrcpCallbacks::AvrcpSendKeyEvent(key, value) => {
                 match self.uinput.send_key(key, value) {
@@ -691,9 +708,31 @@ impl BluetoothMedia {
                 }
             }
             HfpCallbacks::VolumeUpdate(volume, addr) => {
-                self.callbacks.lock().unwrap().for_all_callbacks(|callback| {
-                    callback.on_hfp_volume_changed(volume, addr.to_string());
-                });
+                if self.hfp_states.get(&addr).is_none()
+                    || BthfConnectionState::SlcConnected != *self.hfp_states.get(&addr).unwrap()
+                {
+                    warn!("[{}]: Unknown address hfp or slc not ready", addr.to_string());
+                    return;
+                }
+
+                let states = self.device_states.lock().unwrap();
+                info!(
+                    "[{}]: VolumeUpdate state: {:?}",
+                    DisplayAddress(&addr),
+                    states.get(&addr).unwrap()
+                );
+                match states.get(&addr).unwrap() {
+                    DeviceConnectionStates::ConnectingBeforeRetry
+                    | DeviceConnectionStates::ConnectingAfterRetry => {
+                        self.delay_volume_update.insert(Profile::Hfp, volume);
+                    }
+                    DeviceConnectionStates::FullyConnected => {
+                        self.callbacks.lock().unwrap().for_all_callbacks(|callback| {
+                            callback.on_hfp_volume_changed(volume, addr.to_string());
+                        });
+                    }
+                    _ => {}
+                }
             }
             HfpCallbacks::BatteryLevelUpdate(battery_level, addr) => {
                 let battery_set = BatterySet::new(
@@ -862,6 +901,7 @@ impl BluetoothMedia {
                     }
                 };
             }
+            self.delay_volume_update.clear();
         }
     }
 
@@ -911,6 +951,8 @@ impl BluetoothMedia {
 
         let _ = txl.send(Message::Media(MediaActions::Disconnect(addr.to_string()))).await;
     }
+
+    fn notify_volume_changed(&mut self) {}
 
     fn notify_media_capability_updated(&mut self, addr: RawAddress) {
         let mut guard = self.fallback_tasks.lock().unwrap();
@@ -1049,8 +1091,18 @@ impl BluetoothMedia {
                     absolute_volume,
                 );
 
+                let hfp_volume = self.delay_volume_update.remove(&Profile::Hfp);
+                let avrcp_volume = self.delay_volume_update.remove(&Profile::AvrcpController);
+
                 self.callbacks.lock().unwrap().for_all_callbacks(|callback| {
                     callback.on_bluetooth_audio_device_added(device.clone());
+                    if let Some(volume) = hfp_volume {
+                        callback.on_hfp_volume_changed(volume, addr.to_string());
+                    }
+
+                    if let Some(volume) = avrcp_volume {
+                        callback.on_absolute_volume_changed(volume);
+                    }
                 });
 
                 guard.insert(addr, None);
