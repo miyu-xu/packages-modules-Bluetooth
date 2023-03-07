@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "567708b4_57a103ab",
+        "filename": "framework/java/android/bluetooth/BluetoothHearingAid.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 916,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-03-07T22:22:31Z",
+      "side": 1,
+      "message": "We should be throwing an exception if the input is invalid or BT is off as it is a case of developer error.",
+      "revId": "71cd7d1e8e3d47a862500dd60b98eb91852266d3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "cb3eaada_ef16a24d",
         "filename": "framework/java/android/bluetooth/BluetoothHearingAid.java",
         "patchSetId": 1
