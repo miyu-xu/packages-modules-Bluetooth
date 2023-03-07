@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a60680bf_5d9b0f16",
+        "filename": "framework/java/android/bluetooth/BluetoothSocket.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 584,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-03-07T23:06:36Z",
+      "side": 1,
+      "message": "Shouldn\u0027t we log the timestamp at the start of the call to connect? Otherwise, you\u0027re going to get a lot of noise from what the app chooses to do after calling the APIs to construct the object.",
+      "revId": "696b356654cb9191a522a63a6689255c4b5c33bf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
