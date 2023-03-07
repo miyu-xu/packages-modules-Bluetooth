@@ -35,6 +35,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a10baf8d_a396d1a2",
+        "filename": "system/gd/hci/le_scanning_reassembler.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-03-07T19:45:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a9b1007_5ba3f511",
+      "revId": "a128e3ff367daaa1df202486b1970831862af5d5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "85607f32_d3ea4d4b",
@@ -48,6 +66,30 @@
       "writtenOn": "2023-03-07T02:27:54Z",
       "side": 1,
       "message": "Can this be simplified to just:\n```\n if (data_status \u003d\u003d DataStatus::CONTINUING || expect_scan_response)) {\n    return {};\n }\n```\nand remove the extended vs legacy distinction?",
+      "range": {
+        "startLine": 78,
+        "startChar": 0,
+        "endLine": 89,
+        "endChar": 0
+      },
+      "revId": "a128e3ff367daaa1df202486b1970831862af5d5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bcbd8cf8_3ba2f3ca",
+        "filename": "system/gd/hci/le_scanning_reassembler.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-03-07T19:45:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "85607f32_d3ea4d4b",
       "range": {
         "startLine": 78,
         "startChar": 0,
@@ -81,6 +123,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "87eac664_aebe01ce",
+        "filename": "system/gd/hci/le_scanning_reassembler.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-03-07T19:45:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b46320cb_ec1af5f0",
+      "range": {
+        "startLine": 92,
+        "startChar": 0,
+        "endLine": 94,
+        "endChar": 0
+      },
+      "revId": "a128e3ff367daaa1df202486b1970831862af5d5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "dfb579b6_6050c5c0",
@@ -94,6 +160,24 @@
       "writtenOn": "2023-03-07T02:27:54Z",
       "side": 1,
       "message": "so if the SID is not provided, we we use 0? How do we distinguish between SID\u003d0 and SID\u003d0xFF/not provided?",
+      "revId": "a128e3ff367daaa1df202486b1970831862af5d5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8b1e040f_9804aba2",
+        "filename": "system/gd/hci/le_scanning_reassembler.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-03-07T19:45:48Z",
+      "side": 1,
+      "message": "The sid is optional in AdvertisingKey,\nIf sid \u003d\u003d 0xff then AdvertisingKey.sid is none.",
+      "parentUuid": "dfb579b6_6050c5c0",
       "revId": "a128e3ff367daaa1df202486b1970831862af5d5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -121,6 +205,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "65647b0f_35c95b4d",
+        "filename": "system/gd/hci/le_scanning_reassembler.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-03-07T19:45:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5eb093b6_8a672024",
+      "range": {
+        "startLine": 141,
+        "startChar": 35,
+        "endLine": 141,
+        "endChar": 36
+      },
+      "revId": "a128e3ff367daaa1df202486b1970831862af5d5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fd3b0dcc_2e0ae782",
@@ -138,6 +246,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f9e81e02_11ec7502",
+        "filename": "system/gd/hci/le_scanning_reassembler.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-03-07T19:45:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fd3b0dcc_2e0ae782",
+      "revId": "a128e3ff367daaa1df202486b1970831862af5d5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bfdb56ed_b64a9a1f",
@@ -151,6 +277,30 @@
       "writtenOn": "2023-03-07T02:27:54Z",
       "side": 1,
       "message": "nit: \"AdvertisingKey\" or something? I originally thought this contained the actual report data, not just the identifiers",
+      "range": {
+        "startLine": 83,
+        "startChar": 9,
+        "endLine": 83,
+        "endChar": 24
+      },
+      "revId": "a128e3ff367daaa1df202486b1970831862af5d5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4f8a6fcd_6a70b75a",
+        "filename": "system/gd/hci/le_scanning_reassembler.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-03-07T19:45:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bfdb56ed_b64a9a1f",
       "range": {
         "startLine": 83,
         "startChar": 9,
