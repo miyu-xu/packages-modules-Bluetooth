@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1cc0dbac_04949c90",
+        "filename": "system/rust/src/gatt/server/att_server_bearer.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-03-07T03:04:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8084c142_316a4620",
+      "range": {
+        "startLine": 35,
+        "startChar": 4,
+        "endLine": 35,
+        "endChar": 21
+      },
+      "revId": "04b43ff8d71f7c2b58f5aaa17efc56090a5a4272",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "28a72a6d_795198b9",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-03-02T16:22:36Z",
       "side": 1,
       "message": "nit: This got renamed in the previous CL, can flatten the change to simplify the history ?",
+      "range": {
+        "startLine": 109,
+        "startChar": 14,
+        "endLine": 109,
+        "endChar": 25
+      },
+      "revId": "04b43ff8d71f7c2b58f5aaa17efc56090a5a4272",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e3b0879f_86ef5608",
+        "filename": "system/rust/src/gatt/server/att_server_bearer.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-03-07T03:04:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "28a72a6d_795198b9",
       "range": {
         "startLine": 109,
         "startChar": 14,
