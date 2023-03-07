@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6174e3e5_8cb62949",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-03-07T22:15:39Z",
+      "side": 1,
+      "message": "Tested by parent CL (but did not inherit ps+1)",
+      "revId": "8d4c318c1b80f806021d1a4d42f4f16714877d6a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
