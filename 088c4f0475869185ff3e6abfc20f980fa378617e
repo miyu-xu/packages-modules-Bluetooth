@@ -39,6 +39,30 @@
       },
       "revId": "088c4f0475869185ff3e6abfc20f980fa378617e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e093eed8_6cbca81a",
+        "filename": "system/device/include/interop.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1965943
+      },
+      "writtenOn": "2023-03-07T08:29:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "18910adf_7dbaafab",
+      "range": {
+        "startLine": 123,
+        "startChar": 41,
+        "endLine": 123,
+        "endChar": 46
+      },
+      "revId": "088c4f0475869185ff3e6abfc20f980fa378617e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
