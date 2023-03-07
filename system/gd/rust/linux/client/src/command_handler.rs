@@ -4,6 +4,7 @@ use std::slice::SliceIndex;
 use std::sync::{Arc, Mutex};
 use std::time::Duration;
 
+use crate::bt_adapter::BtDiscMode;
 use crate::bt_adv::AdvSet;
 use crate::bt_gatt::AuthReq;
 use crate::callbacks::{BtGattCallback, BtGattServerCallback};
@@ -125,7 +126,7 @@ fn build_commands() -> HashMap<String, CommandOption> {
             )],
             description: String::from(
                 "Enable/Disable/Show default bluetooth adapter. (e.g. adapter enable)\n
-                 Discoverable On/Off (e.g. adapter discoverable on)\n
+                 Discoverable On/Off/Limited (e.g. adapter discoverable on)\n
                  Connectable On/Off (e.g. adapter connectable on)",
             ),
             function_pointer: CommandHandler::cmd_adapter,
@@ -500,9 +501,21 @@ impl CommandHandler {
                         .adapter_dbus
                         .as_mut()
                         .unwrap()
-                        .set_discoverable(true, 60);
+                        .set_discoverable(BtDiscMode::GeneralDiscoverable.into(), 60);
                     print_info!(
                         "Set discoverable for 60s: {}",
+                        if discoverable { "succeeded" } else { "failed" }
+                    );
+                }
+                "limited" => {
+                    let discoverable = self
+                        .lock_context()
+                        .adapter_dbus
+                        .as_mut()
+                        .unwrap()
+                        .set_discoverable(BtDiscMode::LimitedDiscoverable.into(), 60);
+                    print_info!(
+                        "Set limited discoverable for 60s: {}",
                         if discoverable { "succeeded" } else { "failed" }
                     );
                 }
@@ -512,7 +525,7 @@ impl CommandHandler {
                         .adapter_dbus
                         .as_mut()
                         .unwrap()
-                        .set_discoverable(false, 60);
+                        .set_discoverable(BtDiscMode::NonDiscoverable.into(), 60);
                     print_info!(
                         "Turn discoverable off: {}",
                         if discoverable { "succeeded" } else { "failed" }

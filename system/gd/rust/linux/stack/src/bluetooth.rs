@@ -2,10 +2,10 @@
 
 use bt_topshim::btif::{
     BaseCallbacks, BaseCallbacksDispatcher, BluetoothInterface, BluetoothProperty, BtAclState,
-    BtBondState, BtConnectionDirection, BtConnectionState, BtDeviceType, BtDiscoveryState,
-    BtHciErrorCode, BtPinCode, BtPropertyType, BtScanMode, BtSspVariant, BtState, BtStatus,
-    BtTransport, BtVendorProductInfo, DisplayAddress, RawAddress, ToggleableProfile, Uuid,
-    Uuid128Bit,
+    BtBondState, BtConnectionDirection, BtConnectionState, BtDeviceType, BtDiscMode,
+    BtDiscoveryState, BtHciErrorCode, BtPinCode, BtPropertyType, BtScanMode, BtSspVariant, BtState,
+    BtStatus, BtTransport, BtVendorProductInfo, DisplayAddress, RawAddress, ToggleableProfile,
+    Uuid, Uuid128Bit,
 };
 use bt_topshim::{
     metrics,
@@ -24,6 +24,7 @@ use btif_macros::{btif_callback, btif_callbacks_dispatcher};
 use log::{debug, warn};
 use num_traits::cast::ToPrimitive;
 use std::collections::HashMap;
+use std::convert::TryInto;
 use std::fs::File;
 use std::hash::Hash;
 use std::io::Write;
@@ -105,7 +106,7 @@ pub trait IBluetooth {
     fn get_discoverable_timeout(&self) -> u32;
 
     /// Sets discoverability. If discoverable, limits the duration with given value.
-    fn set_discoverable(&mut self, mode: bool, duration: u32) -> bool;
+    fn set_discoverable(&mut self, mode: u32, duration: u32) -> bool;
 
     /// Returns whether multi-advertisement is supported.
     /// A minimum number of 5 advertising instances is required for multi-advertisment support.
@@ -1382,8 +1383,12 @@ impl IBluetooth for Bluetooth {
         }
     }
 
-    fn set_discoverable(&mut self, mode: bool, duration: u32) -> bool {
+    fn set_discoverable(&mut self, mode: u32, duration: u32) -> bool {
         let intf = self.intf.lock().unwrap();
+        let disc_mode = match mode.try_into() {
+            Err(_) => return false,
+            Ok(mode) => mode,
+        };
 
         // The old timer should be overwritten regardless of what the new mode is.
         if let Some(ref handle) = self.discoverable_timeout {
@@ -1393,7 +1398,12 @@ impl IBluetooth for Bluetooth {
 
         let off_mode =
             if self.is_connectable { BtScanMode::Connectable } else { BtScanMode::None_ };
-        let new_mode = if mode { BtScanMode::ConnectableDiscoverable } else { off_mode.clone() };
+
+        let new_mode = match disc_mode {
+            BtDiscMode::LimitedDiscoverable => BtScanMode::ConnectableLimitedDiscoverable,
+            BtDiscMode::GeneralDiscoverable => BtScanMode::ConnectableDiscoverable,
+            BtDiscMode::NonDiscoverable => off_mode.clone(),
+        };
 
         if intf.set_adapter_property(BluetoothProperty::AdapterDiscoverableTimeout(duration)) != 0
             || intf.set_adapter_property(BluetoothProperty::AdapterScanMode(new_mode)) != 0
@@ -1401,7 +1411,7 @@ impl IBluetooth for Bluetooth {
             return false;
         }
 
-        if mode && duration != 0 {
+        if (disc_mode != BtDiscMode::NonDiscoverable) || (duration != 0) {
             let intf_clone = self.intf.clone();
             self.discoverable_timeout = Some(tokio::spawn(async move {
                 time::sleep(Duration::from_secs(duration.into())).await;
