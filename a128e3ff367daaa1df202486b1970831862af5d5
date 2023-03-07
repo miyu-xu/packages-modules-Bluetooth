@@ -1,0 +1,164 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "793a1032_4fcaf7d1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-03-07T02:27:54Z",
+      "side": 1,
+      "message": "LGTM with nits. I will let the DRI give +2.",
+      "revId": "a128e3ff367daaa1df202486b1970831862af5d5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1a9b1007_5ba3f511",
+        "filename": "system/gd/hci/le_scanning_reassembler.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-03-07T02:27:54Z",
+      "side": 1,
+      "message": "Can a LOG_DEBUG/LOG_VERBOSE be added here?",
+      "revId": "a128e3ff367daaa1df202486b1970831862af5d5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "85607f32_d3ea4d4b",
+        "filename": "system/gd/hci/le_scanning_reassembler.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-03-07T02:27:54Z",
+      "side": 1,
+      "message": "Can this be simplified to just:\n```\n if (data_status \u003d\u003d DataStatus::CONTINUING || expect_scan_response)) {\n    return {};\n }\n```\nand remove the extended vs legacy distinction?",
+      "range": {
+        "startLine": 78,
+        "startChar": 0,
+        "endLine": 89,
+        "endChar": 0
+      },
+      "revId": "a128e3ff367daaa1df202486b1970831862af5d5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b46320cb_ec1af5f0",
+        "filename": "system/gd/hci/le_scanning_reassembler.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-03-07T02:27:54Z",
+      "side": 1,
+      "message": "Can you do move construction here?\n```\nauto complete_advertising_data \u003d std::move(advertising_fragment-\u003edata)\n```",
+      "range": {
+        "startLine": 92,
+        "startChar": 0,
+        "endLine": 94,
+        "endChar": 0
+      },
+      "revId": "a128e3ff367daaa1df202486b1970831862af5d5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dfb579b6_6050c5c0",
+        "filename": "system/gd/hci/le_scanning_reassembler.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-03-07T02:27:54Z",
+      "side": 1,
+      "message": "so if the SID is not provided, we we use 0? How do we distinguish between SID\u003d0 and SID\u003d0xFF/not provided?",
+      "revId": "a128e3ff367daaa1df202486b1970831862af5d5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5eb093b6_8a672024",
+        "filename": "system/gd/hci/le_scanning_reassembler.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-03-07T02:27:54Z",
+      "side": 1,
+      "message": "rm",
+      "range": {
+        "startLine": 141,
+        "startChar": 35,
+        "endLine": 141,
+        "endChar": 36
+      },
+      "revId": "a128e3ff367daaa1df202486b1970831862af5d5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fd3b0dcc_2e0ae782",
+        "filename": "system/gd/hci/le_scanning_reassembler.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-03-07T02:27:54Z",
+      "side": 1,
+      "message": "Is this public just for testing? If so, would it be possible to use FRIEND_TEST / an internal namespace to access it?\n\nJust to make the API of this class clearer.",
+      "revId": "a128e3ff367daaa1df202486b1970831862af5d5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bfdb56ed_b64a9a1f",
+        "filename": "system/gd/hci/le_scanning_reassembler.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-03-07T02:27:54Z",
+      "side": 1,
+      "message": "nit: \"AdvertisingKey\" or something? I originally thought this contained the actual report data, not just the identifiers",
+      "range": {
+        "startLine": 83,
+        "startChar": 9,
+        "endLine": 83,
+        "endChar": 24
+      },
+      "revId": "a128e3ff367daaa1df202486b1970831862af5d5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
