@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "298cfc87_c93ee35f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-03-07T21:43:43Z",
+      "side": 1,
+      "message": "LGTM with comments.",
+      "revId": "a8c2df1668e9b84889ce056ee6ee9ef2d2920e6e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "80f32807_721c7f9b",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 1497,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-03-07T21:43:43Z",
+      "side": 1,
+      "message": "We probably shouldn\u0027t just copy a git commit verbatim here... reword to:\n\n```\n// Note: We can\u0027t simply disable the LE scanning. When a filter is offloaded\n// with the MSFT extension and it is monitoring a device, it sends a\n// `Monitor Device Event` to indicate that monitoring is stopped and this\n// can cause an early wake-up. Until we fix the disable + mask solution, we\n// must remove all monitors before suspend and re-monitor them on resume.\n```",
+      "revId": "a8c2df1668e9b84889ce056ee6ee9ef2d2920e6e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7e3edde0_701cab2a",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 1770,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-03-07T21:43:43Z",
+      "side": 1,
+      "message": "rewrite this entire block so that you don\u0027t need extra clones. You could probably do this as a reference too but that might be more difficult.\n\n```\nlet filter \u003d {\n  let mut scanners_lock \u003d self.scanners.lock().unwrap();\n  match Self::find_scanner_by_id(\u0026mut scanners_lock, scanner_id) {\n    None \u003d\u003e {\n      log::warn!(\"Scanner {} not found\", scanner_id);\n      return BtStatus::Fail;\n    }\n    \n    Some(scanner) \u003d\u003e {\n      scanner.is_active \u003d true;\n      if scanner.is_suspended {\n        scanner.filter.clone()\n      } else {\n        filter\n      }\n    }\n  }\n};\n```",
+      "revId": "a8c2df1668e9b84889ce056ee6ee9ef2d2920e6e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cf8d13fb_96eb1034",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 1813,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-03-07T21:43:43Z",
+      "side": 1,
+      "message": "I don\u0027t see any other changes in this block -- is `mut` needed?",
+      "revId": "a8c2df1668e9b84889ce056ee6ee9ef2d2920e6e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
