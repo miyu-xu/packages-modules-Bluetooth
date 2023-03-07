@@ -33,6 +33,24 @@
       "message": "What is the advantage of this script over `atest --host`/`b test` ?",
       "revId": "f232c69809831acbd9b00107f22d5bd38b022eb1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "221a8ed7_8c43dd65",
+        "filename": "system/test/run_host_unit_tests.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-03-07T22:25:01Z",
+      "side": 0,
+      "message": "I don\u0027t know that there is any. Maybe we should just delete it and update the documentation at http://go/bluetooth-unit-test",
+      "parentUuid": "ad3a4118_d6890c2a",
+      "revId": "f232c69809831acbd9b00107f22d5bd38b022eb1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
