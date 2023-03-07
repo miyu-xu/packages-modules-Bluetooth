@@ -25,6 +25,7 @@ import static org.mockito.Mockito.*;
 
 import android.annotation.Nullable;
 import android.app.BroadcastOptions;
+import android.app.role.RoleManager;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothMapClient;
@@ -165,6 +166,8 @@ public class MapClientStateMachineTest {
                 .thenReturn(mMockSubscriptionManager);
         when(mMockMapClientService.getSystemServiceName(SubscriptionManager.class))
                 .thenReturn(Context.TELEPHONY_SUBSCRIPTION_SERVICE);
+//        when(mMockMapClientService.getSystemService(RoleManager.class))
+//                .thenReturn(mMockRoleManager);
 
         doReturn(mTargetContext.getResources()).when(mMockMapClientService).getResources();
 
@@ -196,7 +199,6 @@ public class MapClientStateMachineTest {
         when(mMockMapClientService.getSystemService(Context.TELEPHONY_SERVICE)).thenReturn(
                 mMockTelephonyManager);
         when(mMockTelephonyManager.isSmsCapable()).thenReturn(false);
-
     }
 
     @After
@@ -607,7 +609,7 @@ public class MapClientStateMachineTest {
                 any(BroadcastOptions.class));
         assertThat(mMceStateMachine.getState()).isEqualTo(BluetoothProfile.STATE_CONNECTED);
 
-        EventReport event = createNewEventReport("NewMessage", mTestMessageSmsHandle,
+        EventReport event = createNewEventReport("NewMessage", new Date(), mTestMessageSmsHandle,
                 "telecom/msg/inbox", null, "SMS_GSM");
 
         mMceStateMachine.receiveEvent(event);
@@ -641,7 +643,7 @@ public class MapClientStateMachineTest {
                 any(BroadcastOptions.class));
         assertThat(mMceStateMachine.getState()).isEqualTo(BluetoothProfile.STATE_CONNECTED);
 
-        EventReport event = createNewEventReport("NewMessage", mTestMessageMmsHandle,
+        EventReport event = createNewEventReport("NewMessage", new Date(), mTestMessageMmsHandle,
                 "telecom/msg/inbox", null, "MMS");
 
         when(mMockRequestGetMessage.getMessage()).thenReturn(mTestIncomingMmsBmessage);
@@ -661,6 +663,40 @@ public class MapClientStateMachineTest {
         verify(mMockDatabase, times(1)).storeMessage(eq(mTestIncomingMmsBmessage),
                 eq(mTestMessageMmsHandle), any(), eq(MESSAGE_NOT_SEEN));
      }
+
+    @Test
+    public void testReceivedNewMmsNoSMSDefaultPackage_broadcastToSMSReplyPackage() {
+        setupSdpRecordReceipt();
+        Message msg = Message.obtain(mHandler, MceStateMachine.MSG_MAS_CONNECTED);
+        mMceStateMachine.sendMessage(msg);
+
+        //verifying that state machine is in the Connected state
+        verify(mMockMapClientService,
+                timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(2)).sendBroadcastMultiplePermissions(
+                mIntentArgument.capture(), any(String[].class),
+                any(BroadcastOptions.class));
+        assertThat(mMceStateMachine.getState()).isEqualTo(BluetoothProfile.STATE_CONNECTED);
+
+        EventReport event = createNewEventReport("NewMessage", new Date(), mTestMessageSmsHandle,
+                "telecom/msg/inbox", null, "SMS_GSM");
+
+        mMceStateMachine.receiveEvent(event);
+
+        TestUtils.waitForLooperToBeIdle(mMceStateMachine.getHandler().getLooper());
+        verify(mMockMasClient, times(1)).makeRequest
+                (any(RequestGetMessage.class));
+
+        msg = Message.obtain(mHandler, MceStateMachine.MSG_MAS_REQUEST_COMPLETED,
+                mMockRequestGetMessage);
+        mMceStateMachine.sendMessage(msg);
+
+        TestUtils.waitForLooperToBeIdle(mMceStateMachine.getHandler().getLooper());
+        verify(mMockMapClientService,
+                timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(1)).sendBroadcast(
+                        mIntentArgument.capture(),
+                        eq(android.Manifest.permission.RECEIVE_SMS));
+        Assert.assertNull(mIntentArgument.getValue().getPackage());
+    }
 
      /**
      * Test seen status set in database on initial download
@@ -829,12 +865,13 @@ public class MapClientStateMachineTest {
         return message;
     }
 
-    EventReport createNewEventReport(String mType, String mHandle, String mFolder, String
+    EventReport createNewEventReport(String mType, Date mDateTime, String mHandle, String mFolder, String
                 mOldFolder, String mMsgType){
 
         HashMap<String, String> attrs = new HashMap<String, String>();
 
         attrs.put("type", mType);
+        attrs.put("datetime", mDateTime.toString());
         attrs.put("handle", mHandle);
         attrs.put("folder", mFolder);
         attrs.put("old_folder", mOldFolder);
