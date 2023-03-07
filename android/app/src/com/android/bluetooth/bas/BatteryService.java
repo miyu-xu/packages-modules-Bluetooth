@@ -61,6 +61,7 @@ public class BatteryService extends ProfileService {
 
     private static final int MAX_BATTERY_STATE_MACHINES = 10;
     private static BatteryService sBatteryService;
+    private static BatteryService sBatteryServiceForTesting;
 
     private AdapterService mAdapterService;
     private DatabaseManager mDatabaseManager;
@@ -165,6 +166,10 @@ public class BatteryService extends ProfileService {
      * Gets the BatteryService instance
      */
     public static synchronized BatteryService getBatteryService() {
+        if (sBatteryServiceForTesting != null) {
+            return sBatteryServiceForTesting;
+        }
+
         if (sBatteryService == null) {
             Log.w(TAG, "getBatteryService(): service is NULL");
             return null;
@@ -182,6 +187,11 @@ public class BatteryService extends ProfileService {
             Log.d(TAG, "setBatteryService(): set to: " + instance);
         }
         sBatteryService = instance;
+    }
+
+    @VisibleForTesting
+    public static synchronized void setBatteryServiceForTesting(BatteryService instance) {
+        sBatteryServiceForTesting = instance;
     }
 
     /**
