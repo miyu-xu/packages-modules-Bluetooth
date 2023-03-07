@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d5afb400_1028c7a9",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 3466,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2023-03-07T07:03:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "db518d02_d33d1dea",
+      "range": {
+        "startLine": 3466,
+        "startChar": 0,
+        "endLine": 3466,
+        "endChar": 59
+      },
+      "revId": "5ab65ae444f3a05a70c9f154eea1184ccd3b2ab5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8e98b9ee_f4862895",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-03-03T07:25:00Z",
       "side": 1,
       "message": "Please fix this ERROR reported by Build Warnings: package descriptor does not exist\n\nAnalyzer Description: Reports warnings that originate from build.log in the build artifacts.\nOwner: farivar@google.com\n\n    package descriptor does not exist\n                            descriptor.mStateMachine.dump(sb);\n                                      ^\n\nThis finding was found on https://android-build.googleplex.com/builds/build-details/P51363307/targets/errorprone, but may also be present on other builds.",
+      "range": {
+        "startLine": 3467,
+        "startChar": 0,
+        "endLine": 3467,
+        "endChar": 58
+      },
+      "revId": "5ab65ae444f3a05a70c9f154eea1184ccd3b2ab5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "51321c46_3e797dde",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 3467,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2023-03-07T07:03:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8e98b9ee_f4862895",
       "range": {
         "startLine": 3467,
         "startChar": 0,
