@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "beecf911_d2feaca8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1960961
+      },
+      "writtenOn": "2023-03-07T12:04:28Z",
+      "side": 1,
+      "message": "Hi Charlie,\n\nFixed merge conflict, Rebase.\n\nThank you.\n\nRegards,\nSnehal",
+      "revId": "b4f491c621b064e946d43f16d48d934ccf6d09c9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
