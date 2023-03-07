@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "83699ea6_d84bb7e2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2023-03-07T10:02:21Z",
+      "side": 1,
+      "message": "Hi Sonny, could you help to stamp on this? Need you owner approve.\n\nFor more informations about security requirements in bt_gatt.rs AuthReq, please refer to gatt_api.h:\n\n/* authentication requirement\n*/\n#define GATT_AUTH_REQ_NONE 0\n#define GATT_AUTH_REQ_NO_MITM 1 /* unauthenticated encryption */\n#define GATT_AUTH_REQ_MITM 2    /* authenticated encryption */\n#define GATT_AUTH_REQ_SIGNED_NO_MITM 3\n#define GATT_AUTH_REQ_SIGNED_MITM 4\ntypedef uint8_t tGATT_AUTH_REQ;\n\nThey are 1:1 mapping. Thanks.",
+      "revId": "6b4d27aa545246de69af3c082ba884da3e4a14e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
