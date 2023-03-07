@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6b11ab00_eb616d27",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 366,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2023-03-07T22:31:57Z",
+      "side": 1,
+      "message": "Shouldn\u0027t this be \u0027true\u0027?",
+      "range": {
+        "startLine": 366,
+        "startChar": 10,
+        "endLine": 366,
+        "endChar": 22
+      },
+      "revId": "6bd4aac4576d3cda51c62899f95d83bafe772fab",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "de7c227d_9b330cc9",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 2594,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2023-03-07T22:31:57Z",
+      "side": 1,
+      "message": "Do we still need it?",
+      "range": {
+        "startLine": 2594,
+        "startChar": 52,
+        "endLine": 2594,
+        "endChar": 75
+      },
+      "revId": "6bd4aac4576d3cda51c62899f95d83bafe772fab",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
