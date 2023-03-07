@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cc5f185f_ce372c96",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2023-03-07T09:54:39Z",
+      "side": 1,
+      "message": "Hi Myles, please help to take a look.\nThis change is to configure floss into limited discoverable mode.\nThanks.",
+      "revId": "34878b8ce9b08aedc22cf34a713d16862dc05758",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
