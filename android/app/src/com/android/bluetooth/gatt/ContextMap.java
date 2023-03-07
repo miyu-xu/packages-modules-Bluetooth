@@ -615,6 +615,7 @@ public class ContextMap<C, T> {
      */
     Integer connIdByAddress(int id, String address) {
         App entry = getById(id);
+        Log.e(TAG, "■■■■■■■■■■■■■■■■■ attepmt to get connid for address" + address);
         if (entry == null) {
             return null;
         }
@@ -623,10 +624,12 @@ public class ContextMap<C, T> {
             while (i.hasNext()) {
                 Connection connection = i.next();
                 if (connection.address.equalsIgnoreCase(address) && connection.appId == id) {
+                    Log.e(TAG, "■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ getting connid for address " + address + " connId=" + connection.connId);
                     return connection.connId;
                 }
             }
         }
+        Log.e(TAG, "■■■■■■■■■■■■■■■■■ connIdByAddress not found!!!!!!!");
         return null;
     }
 
@@ -634,15 +637,18 @@ public class ContextMap<C, T> {
      * Returns the device address for a given connection ID.
      */
     String addressByConnId(int connId) {
+        Log.e(TAG, "■■■■■■■■■■■■■■■■■ attepmt to get address for connId" + connId);
         synchronized (mConnectionsLock) {
             Iterator<Connection> i = mConnections.iterator();
             while (i.hasNext()) {
                 Connection connection = i.next();
                 if (connection.connId == connId) {
+                    Log.e(TAG, "■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ getting address for connId=" + connId + " address=" + connection.address);
                     return connection.address;
                 }
             }
         }
+        Log.e(TAG, "■■■■■■■■■■■■■■■■■ addressByConnId not found!!!!!!!");
         return null;
     }
 

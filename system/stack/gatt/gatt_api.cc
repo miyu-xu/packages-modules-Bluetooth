@@ -1294,12 +1294,12 @@ bool GATT_Connect(tGATT_IF gatt_if, const RawAddress& bd_addr,
 
   bool ret;
   if (is_direct) {
-    LOG_DEBUG("Starting direct connect gatt_if=%u address=%s", gatt_if,
+    LOG_INFO("************************* Starting direct connect gatt_if=%u address=%s", gatt_if,
               ADDRESS_TO_LOGGABLE_CSTR(bd_addr));
     ret =
         gatt_act_connect(p_reg, bd_addr, addr_type, transport, initiating_phys);
   } else {
-    LOG_DEBUG("Starting background connect gatt_if=%u address=%s", gatt_if,
+    LOG_INFO("************************* Starting background connect gatt_if=%u address=%s", gatt_if,
               ADDRESS_TO_LOGGABLE_CSTR(bd_addr));
     if (!BTM_BackgroundConnectAddressKnown(bd_addr)) {
       //  RPA can rotate, causing address to "expire" in the background
@@ -1309,7 +1309,7 @@ bool GATT_Connect(tGATT_IF gatt_if, const RawAddress& bd_addr,
                ADDRESS_TO_LOGGABLE_CSTR(bd_addr), +gatt_if);
       ret = false;
     } else {
-      LOG_DEBUG("Adding to background connect to device:%s",
+      LOG_INFO("************************* Adding to background connect to device:%s",
                 ADDRESS_TO_LOGGABLE_CSTR(bd_addr));
       if (connection_type == BTM_BLE_BKG_CONNECT_ALLOW_LIST) {
         ret = connection_manager::background_connect_add(gatt_if, bd_addr);

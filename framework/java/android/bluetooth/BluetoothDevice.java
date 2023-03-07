@@ -1887,7 +1887,7 @@ public final class BluetoothDevice implements Parcelable, Attributable {
         } else {
             try {
                 final SynchronousResultReceiver<Boolean> recv = SynchronousResultReceiver.get();
-                service.createBond(this, transport, remoteP192Data, remoteP256Data,
+                service.createBond(this, TRANSPORT_BREDR, remoteP192Data, remoteP256Data,
                         mAttributionSource, recv);
                 return recv.awaitResultNoInterrupt(getSyncTimeout()).getValue(defaultValue);
             } catch (RemoteException | TimeoutException e) {
