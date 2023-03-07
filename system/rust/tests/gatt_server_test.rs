@@ -10,6 +10,7 @@ use bluetooth_core::{
             mock_transport::MockAttTransport,
         },
         server::{
+            att_server_bearer::AttServerBearer,
             gatt_database::{AttPermissions, GattCharacteristicWithHandle, GattServiceWithHandle},
             GattModule,
         },
@@ -124,12 +125,11 @@ fn test_service_read() {
         data_rx.recv().await.unwrap();
 
         // act
-        gatt.handle_packet(
-            CONN_ID,
+        AttServerBearer::handle_packet(
+            &gatt.get_bearer(CONN_ID).unwrap(),
             build_att_view_or_crash(AttReadRequestBuilder { attribute_handle: HANDLE_1.into() })
                 .view(),
-        )
-        .unwrap();
+        );
         let (tcb_idx, resp) = transport_rx.recv().await.unwrap();
 
         // assert
@@ -162,12 +162,11 @@ fn test_server_closed_while_connected() {
         gatt.close_gatt_server(SERVER_ID).unwrap();
 
         // act: read from the closed server
-        gatt.handle_packet(
-            CONN_ID,
+        AttServerBearer::handle_packet(
+            &gatt.get_bearer(CONN_ID).unwrap(),
             build_att_view_or_crash(AttReadRequestBuilder { attribute_handle: HANDLE_1.into() })
                 .view(),
-        )
-        .unwrap();
+        );
         let (_, resp) = transport_rx.recv().await.unwrap();
 
         // assert that the read failed, but that a response was provided
@@ -196,12 +195,11 @@ fn test_characteristic_read() {
         data_rx.recv().await.unwrap();
 
         // act
-        gatt.handle_packet(
-            CONN_ID,
+        AttServerBearer::handle_packet(
+            &gatt.get_bearer(CONN_ID).unwrap(),
             build_att_view_or_crash(AttReadRequestBuilder { attribute_handle: HANDLE_2.into() })
                 .view(),
-        )
-        .unwrap();
+        );
         let tx = if let MockDatastoreEvents::ReadCharacteristic(CONN_ID, HANDLE_2, tx) =
             data_rx.recv().await.unwrap()
         {
@@ -236,15 +234,14 @@ fn test_characteristic_write() {
         data_rx.recv().await.unwrap();
 
         // act
-        gatt.handle_packet(
-            CONN_ID,
+        AttServerBearer::handle_packet(
+            &gatt.get_bearer(CONN_ID).unwrap(),
             build_att_view_or_crash(AttWriteRequestBuilder {
                 handle: HANDLE_2.into(),
                 value: build_att_data(data.clone()),
             })
             .view(),
-        )
-        .unwrap();
+        );
         let (tx, written_data) =
             if let MockDatastoreEvents::WriteCharacteristic(CONN_ID, HANDLE_2, written_data, tx) =
                 data_rx.recv().await.unwrap()
