@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cb3eaada_ef16a24d",
+        "filename": "framework/java/android/bluetooth/BluetoothHearingAid.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 925,
+      "author": {
+        "id": 1478537
+      },
+      "writtenOn": "2023-03-07T10:23:34Z",
+      "side": 1,
+      "message": "Do you need to consider other cases, i.e. (!isEnabled() || !isValidDevice) and log the cases?",
+      "range": {
+        "startLine": 925,
+        "startChar": 8,
+        "endLine": 925,
+        "endChar": 9
+      },
+      "revId": "71cd7d1e8e3d47a862500dd60b98eb91852266d3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
