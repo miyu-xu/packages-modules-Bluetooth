@@ -69,6 +69,9 @@ bool bta_dm_search_sm_execute(BT_HDR_RIGID* p_msg) {
           bta_dm_search_set_state(BTA_DM_SEARCH_ACTIVE);
           bta_dm_search_start(message);
           break;
+        case BTA_DM_API_SEARCH_CANCEL_EVT:
+          bta_dm_search_cancel_notify();
+          break;
         case BTA_DM_API_DISCOVER_EVT:
           bta_dm_search_set_state(BTA_DM_DISCOVER_ACTIVE);
           bta_dm_discover(message);
@@ -86,6 +89,10 @@ bool bta_dm_search_sm_execute(BT_HDR_RIGID* p_msg) {
       break;
     case BTA_DM_SEARCH_ACTIVE:
       switch (p_msg->event) {
+        case BTA_DM_API_SEARCH_CANCEL_EVT:
+          bta_dm_search_set_state(BTA_DM_SEARCH_CANCELLING);
+          bta_dm_search_cancel();
+          break;
         case BTA_DM_REMT_NAME_EVT:
           bta_dm_rmt_name(message);
           break;
@@ -110,6 +117,10 @@ bool bta_dm_search_sm_execute(BT_HDR_RIGID* p_msg) {
       switch (p_msg->event) {
         case BTA_DM_API_SEARCH_EVT:
           bta_dm_queue_search(message);
+          break;
+        case BTA_DM_API_SEARCH_CANCEL_EVT:
+          bta_dm_search_clear_queue();
+          bta_dm_search_cancel_notify();
           break;
         case BTA_DM_API_DISCOVER_EVT:
           bta_dm_queue_disc(message);
@@ -137,6 +148,10 @@ bool bta_dm_search_sm_execute(BT_HDR_RIGID* p_msg) {
       break;
     case BTA_DM_DISCOVER_ACTIVE:
       switch (p_msg->event) {
+        case BTA_DM_API_SEARCH_CANCEL_EVT:
+          bta_dm_search_set_state(BTA_DM_SEARCH_CANCELLING);
+          bta_dm_search_cancel_notify();
+          break;
         case BTA_DM_REMT_NAME_EVT:
           bta_dm_disc_rmt_name(message);
           break;
