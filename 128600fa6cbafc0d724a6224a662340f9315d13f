@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "bf3c9f99_16bb0fe0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929170
+      },
+      "writtenOn": "2023-03-07T00:48:48Z",
+      "side": 1,
+      "message": "Yes, I have the test ready. I will land once I am able to run this. Still having issue with acloud. \naosp/2458540",
+      "parentUuid": "1a6f3a4a_6ce9cd84",
+      "revId": "128600fa6cbafc0d724a6224a662340f9315d13f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e83fc3d2_67fc9e7e",
         "filename": "system/stack/include/smp_api_types.h",
         "patchSetId": 4
@@ -31,6 +49,30 @@
       "writtenOn": "2023-03-06T19:50:42Z",
       "side": 1,
       "message": "nit: typo",
+      "range": {
+        "startLine": 254,
+        "startChar": 44,
+        "endLine": 254,
+        "endChar": 50
+      },
+      "revId": "128600fa6cbafc0d724a6224a662340f9315d13f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "456f7636_180af3cf",
+        "filename": "system/stack/include/smp_api_types.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 254,
+      "author": {
+        "id": 1929170
+      },
+      "writtenOn": "2023-03-07T00:48:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e83fc3d2_67fc9e7e",
       "range": {
         "startLine": 254,
         "startChar": 44,
