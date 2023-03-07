@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9186690e_ae0555df",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-03-07T12:08:24Z",
+      "side": 1,
+      "message": "Thank you ! I\u0027ve marked as work in progress here.",
+      "parentUuid": "98341b07_3d3ffabd",
+      "range": {
+        "startLine": 7,
+        "startChar": 7,
+        "endLine": 7,
+        "endChar": 19
+      },
+      "revId": "cc843f0fde4dd8b4a82cccf1f406be271015875b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "70ef6bcc_00d7f4f1",
         "filename": "android/app/jni/com_android_bluetooth_avrcp_target.cpp",
         "patchSetId": 1
@@ -37,6 +61,30 @@
       "writtenOn": "2023-03-06T14:49:01Z",
       "side": 1,
       "message": "I suppose all the log(ERROR) are temporary. (nit: remove before submitting since you have ALOGD)",
+      "range": {
+        "startLine": 1035,
+        "startChar": 0,
+        "endLine": 1035,
+        "endChar": 56
+      },
+      "revId": "cc843f0fde4dd8b4a82cccf1f406be271015875b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4eee7a8c_53c6a306",
+        "filename": "android/app/jni/com_android_bluetooth_avrcp_target.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 1035,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-03-07T12:08:24Z",
+      "side": 1,
+      "message": "All such logs are temporary, only in WIP version. Later I will leave just some of them as debug logs.",
+      "parentUuid": "70ef6bcc_00d7f4f1",
       "range": {
         "startLine": 1035,
         "startChar": 0,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "24c0e9f8_d8e4fb6d",
+        "filename": "system/include/hardware/avrcp/avrcp_logging_helper.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 254,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-03-07T12:08:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bb967a0e_73587d07",
+      "range": {
+        "startLine": 253,
+        "startChar": 0,
+        "endLine": 254,
+        "endChar": 66
+      },
+      "revId": "cc843f0fde4dd8b4a82cccf1f406be271015875b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6b58e21d_a28e04d4",
@@ -83,6 +155,30 @@
       "writtenOn": "2023-03-06T14:49:01Z",
       "side": 1,
       "message": "merge both logs ?",
+      "range": {
+        "startLine": 856,
+        "startChar": 2,
+        "endLine": 858,
+        "endChar": 56
+      },
+      "revId": "cc843f0fde4dd8b4a82cccf1f406be271015875b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f6a47a49_ea0ecde3",
+        "filename": "system/profile/avrcp/device.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 858,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-03-07T12:08:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6b58e21d_a28e04d4",
       "range": {
         "startLine": 856,
         "startChar": 2,
