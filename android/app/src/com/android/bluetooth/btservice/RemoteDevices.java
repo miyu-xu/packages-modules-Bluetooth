@@ -1209,8 +1209,8 @@ final class RemoteDevices {
             return;
         }
         if (intent.getIntExtra(BluetoothProfile.EXTRA_STATE, BluetoothProfile.STATE_DISCONNECTED)
-                == BluetoothProfile.STATE_DISCONNECTED) {
-            // TODO: Rework this when non-HFP sources of battery level indication is added
+                == BluetoothProfile.STATE_DISCONNECTED
+                && !hasBatteryService(device)) {
             resetBatteryLevel(device);
         }
     }
@@ -1373,6 +1373,13 @@ final class RemoteDevices {
         return batteryLevel * 100 / (numberOfLevels - 1);
     }
 
+    @VisibleForTesting
+    boolean hasBatteryService(BluetoothDevice device) {
+        BatteryService batteryService = BatteryService.getBatteryService();
+        return batteryService != null
+                && batteryService.getConnectionState(device) == BluetoothProfile.STATE_CONNECTED;
+    }
+
     /**
      * Handles headset client connection state change event
      * @param intent must be {@link BluetoothHeadsetClient#ACTION_CONNECTION_STATE_CHANGED} intent
@@ -1385,8 +1392,8 @@ final class RemoteDevices {
             return;
         }
         if (intent.getIntExtra(BluetoothProfile.EXTRA_STATE, BluetoothProfile.STATE_DISCONNECTED)
-                == BluetoothProfile.STATE_DISCONNECTED) {
-            // TODO: Rework this when non-HFP sources of battery level indication is added
+                == BluetoothProfile.STATE_DISCONNECTED
+                && !hasBatteryService(device)) {
             resetBatteryLevel(device);
         }
     }
