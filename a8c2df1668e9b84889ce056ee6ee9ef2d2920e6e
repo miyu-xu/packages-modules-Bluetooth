@@ -37,6 +37,46 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b985fa07_3b1ec534",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 1541,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2023-03-07T22:18:00Z",
+      "side": 1,
+      "message": "do we also want to clear the `paused_scanner_ids`? If that\u0027s the case you can drain it before iterating:\n```\n        let paused_scanner_ids \u003d self.paused_scanner_ids.drain(..).collect::\u003cVec\u003c_\u003e\u003e();\n        for scanner_id in paused_scanner_ids {\n          ...\n```",
+      "revId": "a8c2df1668e9b84889ce056ee6ee9ef2d2920e6e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1ded6c29_e291997a",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 1544,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2023-03-07T22:18:00Z",
+      "side": 1,
+      "message": "I\u0027m not comfortable with having these placeholder values as now the meaning of start_scan becomes different. Maybe a better way is to create something like start_scan_internal which doesn\u0027t have these placeholder but only cares about restarting the scan.\n\nIf this is already working well in practice, maybe just document this as a tech debt under http://b/issues/178529365/dependencies.",
+      "range": {
+        "startLine": 1544,
+        "startChar": 40,
+        "endLine": 1544,
+        "endChar": 69
+      },
+      "revId": "a8c2df1668e9b84889ce056ee6ee9ef2d2920e6e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7e3edde0_701cab2a",
         "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
         "patchSetId": 5
