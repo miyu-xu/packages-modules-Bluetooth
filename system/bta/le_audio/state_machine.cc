@@ -269,15 +269,10 @@ class LeAudioGroupStateMachineImpl : public LeAudioGroupStateMachine {
   }
 
   void SuspendStream(LeAudioDeviceGroup* group) override {
-    LeAudioDevice* leAudioDevice = group->GetFirstActiveDevice();
-    LOG_ASSERT(leAudioDevice)
-        << __func__ << " Shouldn't be called without an active device.";
-
     /* All ASEs should aim to achieve target state */
     SetTargetState(group, AseState::BTA_LE_AUDIO_ASE_STATE_QOS_CONFIGURED);
-    PrepareAndSendDisable(leAudioDevice);
-    state_machine_callbacks_->StatusReportCb(group->group_id_,
-                                             GroupStreamStatus::SUSPENDING);
+    auto status = PrepareAndSendDisableToTheGroup(group);
+    state_machine_callbacks_->StatusReportCb(group->group_id_, status);
   }
 
   void StopStream(LeAudioDeviceGroup* group) override {
@@ -2036,6 +2031,23 @@ class LeAudioGroupStateMachineImpl : public LeAudioGroupStateMachine {
                                       GATT_WRITE_NO_RSP, NULL, NULL);
   }
 
+  GroupStreamStatus PrepareAndSendDisableToTheGroup(LeAudioDeviceGroup* group) {
+    LOG_INFO("grop_id: %d", group->group_id_);
+
+    auto leAudioDevice = group->GetFirstActiveDevice();
+    if (!leAudioDevice) {
+      LOG_ERROR("Shall not be called if there is no active device.");
+      StopStream(group);
+      return GroupStreamStatus::IDLE;
+    }
+
+    for (; leAudioDevice;
+         leAudioDevice = group->GetNextActiveDevice(leAudioDevice)) {
+      PrepareAndSendDisable(leAudioDevice);
+    }
+    return GroupStreamStatus::SUSPENDING;
+  }
+
   void PrepareAndSendDisable(LeAudioDevice* leAudioDevice) {
     ase* ase = leAudioDevice->GetFirstActiveAse();
     LOG_ASSERT(ase) << __func__ << " shouldn't be called without an active ASE";
@@ -2581,10 +2593,12 @@ class LeAudioGroupStateMachineImpl : public LeAudioGroupStateMachine {
 
   void ProcessGroupDisable(LeAudioDeviceGroup* group, LeAudioDevice* device) {
     /* Disable ASEs for next device in group. */
-    LeAudioDevice* deviceNext = group->GetNextActiveDevice(device);
-    if (deviceNext) {
-      PrepareAndSendDisable(deviceNext);
-      return;
+    if (group->GetState() != AseState::BTA_LE_AUDIO_ASE_STATE_DISABLING) {
+      if (!group->IsGroupReadyToSuspendStream()) {
+        LOG_INFO("Waiting for all devices to be in disable state");
+        return;
+      }
+      group->SetState(AseState::BTA_LE_AUDIO_ASE_STATE_DISABLING);
     }
 
     /* At this point all of the active ASEs within group are disabled. As there
@@ -2594,8 +2608,6 @@ class LeAudioGroupStateMachineImpl : public LeAudioGroupStateMachine {
     if (group->HaveAllActiveDevicesAsesTheSameState(
             AseState::BTA_LE_AUDIO_ASE_STATE_QOS_CONFIGURED)) {
       group->SetState(AseState::BTA_LE_AUDIO_ASE_STATE_QOS_CONFIGURED);
-    } else {
-      group->SetState(AseState::BTA_LE_AUDIO_ASE_STATE_DISABLING);
     }
 
     /* Transition to QoS configured is done by CIS disconnection */
