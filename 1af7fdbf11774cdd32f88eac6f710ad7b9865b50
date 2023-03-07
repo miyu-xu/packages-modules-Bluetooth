@@ -16,6 +16,190 @@
       "message": "Hi Yuyang. This is an HFP specific change for Audio policy. \n\nCan you take a look and review accordingly?",
       "revId": "1af7fdbf11774cdd32f88eac6f710ad7b9865b50",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d6a15a3f_c0718f30",
+        "filename": "TEST_MAPPING",
+        "patchSetId": 7
+      },
+      "lineNbr": 421,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-03-07T07:39:57Z",
+      "side": 1,
+      "message": "Can you explain when this rule will be triggered ?\n\nI think we also want to add the BluetoothInstrumentationTests so this is also run on AOSP target",
+      "range": {
+        "startLine": 417,
+        "startChar": 3,
+        "endLine": 421,
+        "endChar": 3
+      },
+      "revId": "1af7fdbf11774cdd32f88eac6f710ad7b9865b50",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f396e324_c688f5e4",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 1871,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-03-07T07:39:57Z",
+      "side": 1,
+      "message": "This log is  no longer correct.\nBy moving the `if (callState \u003d\u003d HeadsetHalConstants.CALL_STATE_IDLE)` after the null check you cannot say for sure that the callState is IDLE",
+      "range": {
+        "startLine": 1871,
+        "startChar": 43,
+        "endLine": 1871,
+        "endChar": 58
+      },
+      "revId": "1af7fdbf11774cdd32f88eac6f710ad7b9865b50",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "251e505f_9acfbe5e",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-03-07T07:39:57Z",
+      "side": 1,
+      "message": "Is the naming explicit ?\nwhen I read `bt_audio_policy_ag` I do not understand that this will toggle the support of audio policy",
+      "range": {
+        "startLine": 168,
+        "startChar": 59,
+        "endLine": 168,
+        "endChar": 77
+      },
+      "revId": "1af7fdbf11774cdd32f88eac6f710ad7b9865b50",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "293e94c8_8dcf5d9f",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 1978,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-03-07T07:39:57Z",
+      "side": 1,
+      "message": "Flagging here allow all other code in this method to be executed. Is this intended ? If not see comment below",
+      "range": {
+        "startLine": 1978,
+        "startChar": 48,
+        "endLine": 1978,
+        "endChar": 70
+      },
+      "revId": "1af7fdbf11774cdd32f88eac6f710ad7b9865b50",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "30d133b7_9ee68dac",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 2113,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-03-07T07:39:57Z",
+      "side": 1,
+      "message": "why not flagging directly this if ? it looks like the entry point of the new added `processAndroidAt` in aosp/2299966",
+      "range": {
+        "startLine": 2113,
+        "startChar": 19,
+        "endLine": 2113,
+        "endChar": 52
+      },
+      "revId": "1af7fdbf11774cdd32f88eac6f710ad7b9865b50",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "488be32f_d8ede6e1",
+        "filename": "android/app/src/com/android/bluetooth/hfpclient/HeadsetClientService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 958,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-03-07T07:39:57Z",
+      "side": 1,
+      "message": "Why not flagging this one ?",
+      "range": {
+        "startLine": 958,
+        "startChar": 18,
+        "endLine": 958,
+        "endChar": 22
+      },
+      "revId": "1af7fdbf11774cdd32f88eac6f710ad7b9865b50",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "637157de_16ecd917",
+        "filename": "android/app/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachine.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 1216,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-03-07T07:39:57Z",
+      "side": 1,
+      "message": "This 2 stack event were handled in the audio policy CL. Should they be flagged too ?",
+      "range": {
+        "startLine": 1183,
+        "startChar": 28,
+        "endLine": 1216,
+        "endChar": 34
+      },
+      "revId": "1af7fdbf11774cdd32f88eac6f710ad7b9865b50",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "094c87ed_e9791c08",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachineTest.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-03-07T07:39:57Z",
+      "side": 1,
+      "message": "by putting this to true in the setup that mean we will only test the scenario where the flag is enabled.\nAll the path code without the feature will slowly become dead code.\n\nShouldn\u0027t have test with the flag enabled and tests without the flag ?",
+      "range": {
+        "startLine": 145,
+        "startChar": 0,
+        "endLine": 145,
+        "endChar": 71
+      },
+      "revId": "1af7fdbf11774cdd32f88eac6f710ad7b9865b50",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
