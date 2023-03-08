@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e8bae1b4_7add2e9b",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-03-08T15:29:36Z",
+      "side": 1,
+      "message": "Yes, it is valid as long as it\u0027s the same context type and there were no changes in \"configuration\" (e.g. different number of ASEs would be used for the same context)",
+      "parentUuid": "fa197606_17ac9678",
+      "range": {
+        "startLine": 173,
+        "startChar": 14,
+        "endLine": 173,
+        "endChar": 43
+      },
+      "revId": "170b9c6c995b5a778b4526f190321593529e1fe5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "018ad6c5_128acf9e",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-03-08T15:27:08Z",
       "side": 1,
       "message": "Shouldn\u0027t this also be called in `ConfigureStream()`?",
+      "range": {
+        "startLine": 187,
+        "startChar": 8,
+        "endLine": 187,
+        "endChar": 28
+      },
+      "revId": "170b9c6c995b5a778b4526f190321593529e1fe5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0a6f71e3_be3ead19",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-03-08T15:29:36Z",
+      "side": 1,
+      "message": "This was caught on attached bug - didn\u0027t saw issue with ConfigureStream.",
+      "parentUuid": "018ad6c5_128acf9e",
       "range": {
         "startLine": 187,
         "startChar": 8,
