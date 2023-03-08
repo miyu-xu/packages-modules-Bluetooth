@@ -607,7 +607,7 @@ public class MapClientStateMachineTest {
                 any(BroadcastOptions.class));
         assertThat(mMceStateMachine.getState()).isEqualTo(BluetoothProfile.STATE_CONNECTED);
 
-        EventReport event = createNewEventReport("NewMessage", mTestMessageSmsHandle,
+        EventReport event = createNewEventReport("NewMessage", new Date(), mTestMessageSmsHandle,
                 "telecom/msg/inbox", null, "SMS_GSM");
 
         mMceStateMachine.receiveEvent(event);
@@ -641,7 +641,7 @@ public class MapClientStateMachineTest {
                 any(BroadcastOptions.class));
         assertThat(mMceStateMachine.getState()).isEqualTo(BluetoothProfile.STATE_CONNECTED);
 
-        EventReport event = createNewEventReport("NewMessage", mTestMessageMmsHandle,
+        EventReport event = createNewEventReport("NewMessage", new Date(), mTestMessageMmsHandle,
                 "telecom/msg/inbox", null, "MMS");
 
         when(mMockRequestGetMessage.getMessage()).thenReturn(mTestIncomingMmsBmessage);
@@ -757,6 +757,43 @@ public class MapClientStateMachineTest {
                 any(), eq(MESSAGE_SEEN));
      }
 
+    /**
+     * Test receiving a new message notification.
+     */
+    @Test
+    public void testReceiveNewMessageNotification() {
+        setupSdpRecordReceipt();
+        Message msg = Message.obtain(mHandler, MceStateMachine.MSG_MAS_CONNECTED);
+        mMceStateMachine.sendMessage(msg);
+
+        verify(mMockMapClientService,
+                timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(2)).sendBroadcastMultiplePermissions(
+                mIntentArgument.capture(), any(String[].class),
+                any(BroadcastOptions.class));
+        assertThat(mMceStateMachine.getState()).isEqualTo(BluetoothProfile.STATE_CONNECTED);
+
+        // Receive a new message notification.
+        Date currentDate = new Date();
+        EventReport event = createNewEventReport("NewMessage", currentDate, mTestMessageSmsHandle,
+                "telecom/msg/inbox", null, "SMS_GSM");
+
+        Message notificationMessage =
+                Message.obtain(mHandler, MceStateMachine.MSG_NOTIFICATION, (Object)event);
+
+        mMceStateMachine.getCurrentState().processMessage(notificationMessage);
+
+        verify(mMockMasClient,
+                timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(1))
+                        .makeRequest(any(RequestGetMessage.class));
+
+        MceStateMachine.MessageMetadata messageMetadata =
+                mMceStateMachine.mMessages.get(mTestMessageSmsHandle);
+        Assert.assertEquals(messageMetadata.getHandle(), mTestMessageSmsHandle);
+        Assert.assertEquals(
+                new ObexTime(new Date(messageMetadata.getTimestamp())).toString(),
+                new ObexTime(currentDate).toString());
+    }
+
     private void setupSdpRecordReceipt() {
         // Perform first part of MAP connection logic.
         verify(mMockMapClientService,
@@ -829,12 +866,13 @@ public class MapClientStateMachineTest {
         return message;
     }
 
-    EventReport createNewEventReport(String mType, String mHandle, String mFolder, String
-                mOldFolder, String mMsgType){
+    EventReport createNewEventReport(String mType, Date mDateTime, String mHandle, String mFolder,
+            String mOldFolder, String mMsgType){
 
         HashMap<String, String> attrs = new HashMap<String, String>();
 
         attrs.put("type", mType);
+        attrs.put("datetime", (new ObexTime(mDateTime)).toString());
         attrs.put("handle", mHandle);
         attrs.put("folder", mFolder);
         attrs.put("old_folder", mOldFolder);
