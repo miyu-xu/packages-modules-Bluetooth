@@ -2474,6 +2474,7 @@ public final class BluetoothDevice implements Parcelable, Attributable {
         } else {
             try {
                 final SynchronousResultReceiver<Boolean> recv = SynchronousResultReceiver.get();
+                // SDP Initiated SDP fetch UUID request
                 service.fetchRemoteUuids(this, transport, mAttributionSource, recv);
                 return recv.awaitResultNoInterrupt(getSyncTimeout()).getValue(defaultValue);
             } catch (RemoteException | TimeoutException e) {
