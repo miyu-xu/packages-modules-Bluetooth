@@ -797,8 +797,12 @@ static void btif_hh_upstreams_evt(uint16_t event, char* p_param) {
     case BTA_HH_OPEN_EVT:
       BTIF_TRACE_DEBUG("BTA_HH_OPEN_EVT: status = %d, handle = %d",
                        p_data->dev_status.status, p_data->dev_status.handle);
-      HAL_CBACK(bt_hh_callbacks, connection_state_cb,
-                (RawAddress*)&p_data->conn.bda, BTHH_CONN_STATE_CONNECTING);
+      do_in_jni_thread(base::Bind(
+          [](RawAddress bd_addr) {
+            HAL_CBACK(bt_hh_callbacks, connection_state_cb, &bd_addr,
+                      BTHH_CONN_STATE_CONNECTING);
+          },
+          p_data->conn.bda));
       btif_hh_cb.pending_conn_address = RawAddress::kEmpty;
       if (p_data->conn.status == BTA_HH_OK) {
         p_dev = btif_hh_find_connected_dev_by_handle(p_data->conn.handle);
@@ -811,9 +815,12 @@ static void btif_hh_upstreams_evt(uint16_t event, char* p_param) {
           // connected
           // HID device number.
           BTA_HhClose(p_data->conn.handle);
-          HAL_CBACK(bt_hh_callbacks, connection_state_cb,
-                    (RawAddress*)&p_data->conn.bda,
-                    BTHH_CONN_STATE_DISCONNECTED);
+          do_in_jni_thread(base::Bind(
+              [](RawAddress bd_addr) {
+                HAL_CBACK(bt_hh_callbacks, connection_state_cb, &bd_addr,
+                          BTHH_CONN_STATE_DISCONNECTED);
+              },
+              p_data->conn.bda));
         } else if (p_dev->fd < 0) {
           BTIF_TRACE_WARNING(
               "BTA_HH_OPEN_EVT: Error, failed to find the uhid driver...");
@@ -837,8 +844,12 @@ static void btif_hh_upstreams_evt(uint16_t event, char* p_param) {
             BTA_HhSetIdle(p_data->conn.handle, 0);
           BTA_HhGetDscpInfo(p_data->conn.handle);
           p_dev->dev_status = BTHH_CONN_STATE_CONNECTED;
-          HAL_CBACK(bt_hh_callbacks, connection_state_cb, &(p_dev->bd_addr),
-                    p_dev->dev_status);
+          do_in_jni_thread(base::Bind(
+              [](RawAddress bd_addr) {
+                HAL_CBACK(bt_hh_callbacks, connection_state_cb, &bd_addr,
+                          BTHH_CONN_STATE_CONNECTED);
+              },
+              p_dev->bd_addr));
         }
       } else {
         RawAddress* bdaddr = &p_data->conn.bda;
@@ -852,8 +863,12 @@ static void btif_hh_upstreams_evt(uint16_t event, char* p_param) {
           }
           p_dev->dev_status = BTHH_CONN_STATE_DISCONNECTED;
         }
-        HAL_CBACK(bt_hh_callbacks, connection_state_cb,
-                  (RawAddress*)&p_data->conn.bda, BTHH_CONN_STATE_DISCONNECTED);
+        do_in_jni_thread(base::Bind(
+            [](RawAddress bd_addr) {
+              HAL_CBACK(bt_hh_callbacks, connection_state_cb, &bd_addr,
+                        BTHH_CONN_STATE_DISCONNECTED);
+            },
+            p_data->conn.bda));
         btif_hh_cb.status = (BTIF_HH_STATUS)BTIF_HH_DEV_DISCONNECTED;
       }
       break;
@@ -861,8 +876,12 @@ static void btif_hh_upstreams_evt(uint16_t event, char* p_param) {
     case BTA_HH_CLOSE_EVT:
       BTIF_TRACE_DEBUG("BTA_HH_CLOSE_EVT: status = %d, handle = %d",
                        p_data->dev_status.status, p_data->dev_status.handle);
-      HAL_CBACK(bt_hh_callbacks, connection_state_cb,
-                (RawAddress*)&p_data->conn.bda, BTHH_CONN_STATE_DISCONNECTING);
+      do_in_jni_thread(base::Bind(
+          [](RawAddress bd_addr) {
+            HAL_CBACK(bt_hh_callbacks, connection_state_cb, &bd_addr,
+                      BTHH_CONN_STATE_DISCONNECTING);
+          },
+          p_data->conn.bda));
       p_dev = btif_hh_find_connected_dev_by_handle(p_data->dev_status.handle);
       if (p_dev != NULL) {
         BTIF_TRACE_DEBUG("%s: uhid fd=%d local_vup=%d", __func__, p_dev->fd,
@@ -883,8 +902,12 @@ static void btif_hh_upstreams_evt(uint16_t event, char* p_param) {
           bta_hh_co_destroy(p_dev->fd);
           p_dev->fd = -1;
         }
-        HAL_CBACK(bt_hh_callbacks, connection_state_cb, &(p_dev->bd_addr),
-                  p_dev->dev_status);
+        do_in_jni_thread(base::Bind(
+            [](RawAddress bd_addr) {
+              HAL_CBACK(bt_hh_callbacks, connection_state_cb, &bd_addr,
+                        BTHH_CONN_STATE_DISCONNECTED);
+            },
+            p_dev->bd_addr));
       } else {
         BTIF_TRACE_WARNING("Error: cannot find device with handle %d",
                            p_data->dev_status.handle);
@@ -908,9 +931,11 @@ static void btif_hh_upstreams_evt(uint16_t event, char* p_param) {
                     (RawAddress*)&(p_dev->bd_addr),
                     (bthh_status_t)p_data->hs_data.status, data, len);
         } else {
-          HAL_CBACK(bt_hh_callbacks, handshake_cb,
-                    (RawAddress*)&(p_dev->bd_addr),
-                    (bthh_status_t)p_data->hs_data.status);
+          do_in_jni_thread(base::Bind(
+              [](RawAddress bd_addr, bthh_status_t status) {
+                HAL_CBACK(bt_hh_callbacks, handshake_cb, &bd_addr, status);
+              },
+              p_dev->bd_addr, (bthh_status_t)p_data->hs_data.status));
         }
       } else {
         BTIF_TRACE_WARNING("Error: cannot find device with handle %d",
@@ -924,8 +949,11 @@ static void btif_hh_upstreams_evt(uint16_t event, char* p_param) {
                        p_data->dev_status.status, p_data->dev_status.handle);
       p_dev = btif_hh_find_connected_dev_by_handle(p_data->dev_status.handle);
       if (p_dev != NULL) {
-        HAL_CBACK(bt_hh_callbacks, handshake_cb, (RawAddress*)&(p_dev->bd_addr),
-                  (bthh_status_t)p_data->hs_data.status);
+        do_in_jni_thread(base::Bind(
+            [](RawAddress bd_addr, bthh_status_t status) {
+              HAL_CBACK(bt_hh_callbacks, handshake_cb, &bd_addr, status);
+            },
+            p_dev->bd_addr, (bthh_status_t)p_data->hs_data.status));
 
 #if ENABLE_UHID_SET_REPORT
         if (p_dev->le_hid && p_dev->set_rpt_id_queue) {
@@ -959,13 +987,20 @@ static void btif_hh_upstreams_evt(uint16_t event, char* p_param) {
               ? "Boot Mode"
               : "Unsupported");
       if (p_data->hs_data.rsp_data.proto_mode != BTA_HH_PROTO_UNKNOWN) {
-        HAL_CBACK(bt_hh_callbacks, protocol_mode_cb,
-                  (RawAddress*)&(p_dev->bd_addr),
-                  (bthh_status_t)p_data->hs_data.status,
-                  (bthh_protocol_mode_t)p_data->hs_data.rsp_data.proto_mode);
+        do_in_jni_thread(base::Bind(
+            [](RawAddress bd_addr, bthh_status_t status,
+               bthh_protocol_mode_t proto_mode) {
+              HAL_CBACK(bt_hh_callbacks, protocol_mode_cb, &bd_addr, status,
+                        proto_mode);
+            },
+            p_dev->bd_addr, (bthh_status_t)p_data->hs_data.status,
+            (bthh_protocol_mode_t)p_data->hs_data.rsp_data.proto_mode));
       } else {
-        HAL_CBACK(bt_hh_callbacks, handshake_cb, (RawAddress*)&(p_dev->bd_addr),
-                  (bthh_status_t)p_data->hs_data.status);
+        do_in_jni_thread(base::Bind(
+            [](RawAddress bd_addr, bthh_status_t status) {
+              HAL_CBACK(bt_hh_callbacks, handshake_cb, &bd_addr, status);
+            },
+            p_dev->bd_addr, (bthh_status_t)p_data->hs_data.status));
       }
       break;
 
@@ -974,8 +1009,11 @@ static void btif_hh_upstreams_evt(uint16_t event, char* p_param) {
                        p_data->dev_status.status, p_data->dev_status.handle);
       p_dev = btif_hh_find_connected_dev_by_handle(p_data->dev_status.handle);
       if (p_dev) {
-        HAL_CBACK(bt_hh_callbacks, handshake_cb, (RawAddress*)&(p_dev->bd_addr),
-                  (bthh_status_t)p_data->hs_data.status);
+        do_in_jni_thread(base::Bind(
+            [](RawAddress bd_addr, bthh_status_t status) {
+              HAL_CBACK(bt_hh_callbacks, handshake_cb, &bd_addr, status);
+            },
+            p_dev->bd_addr, (bthh_status_t)p_data->hs_data.status));
       }
       break;
 
@@ -986,9 +1024,12 @@ static void btif_hh_upstreams_evt(uint16_t event, char* p_param) {
           p_data->hs_data.rsp_data.idle_rate);
       p_dev = btif_hh_find_connected_dev_by_handle(p_data->hs_data.handle);
       if (p_dev) {
-        HAL_CBACK(bt_hh_callbacks, idle_time_cb, (RawAddress*)&(p_dev->bd_addr),
-                  (bthh_status_t)p_data->hs_data.status,
-                  p_data->hs_data.rsp_data.idle_rate);
+        do_in_jni_thread(base::Bind(
+            [](RawAddress bd_addr, bthh_status_t status, uint8_t rate) {
+              HAL_CBACK(bt_hh_callbacks, idle_time_cb, &bd_addr, status, rate);
+            },
+            p_dev->bd_addr, (bthh_status_t)p_data->hs_data.status,
+            p_data->hs_data.rsp_data.idle_rate));
       }
       break;
 
@@ -1119,8 +1160,11 @@ static void btif_hh_upstreams_evt(uint16_t event, char* p_param) {
         btif_hh_stop_vup_timer(&(p_dev->bd_addr));
         p_dev->dev_status = BTHH_CONN_STATE_DISCONNECTED;
         BTIF_TRACE_DEBUG("%s---Sending connection state change", __func__);
-        HAL_CBACK(bt_hh_callbacks, connection_state_cb, &(p_dev->bd_addr),
-                  p_dev->dev_status);
+        do_in_jni_thread(base::Bind(
+            [](RawAddress bd_addr, bthh_connection_state_t status) {
+              HAL_CBACK(bt_hh_callbacks, connection_state_cb, &bd_addr, status);
+            },
+            p_dev->bd_addr, p_dev->dev_status));
         BTIF_TRACE_DEBUG("%s---Removing HID bond", __func__);
         /* If it is locally initiated VUP or remote device has its major COD as
         Peripheral removed the bond.*/
@@ -1129,8 +1173,11 @@ static void btif_hh_upstreams_evt(uint16_t event, char* p_param) {
           BTA_DmRemoveDevice(p_dev->bd_addr);
         } else
           btif_hh_remove_device(p_dev->bd_addr);
-        HAL_CBACK(bt_hh_callbacks, virtual_unplug_cb, &(p_dev->bd_addr),
-                  (bthh_status_t)p_data->dev_status.status);
+        do_in_jni_thread(base::Bind(
+            [](RawAddress bd_addr, bthh_status_t status) {
+              HAL_CBACK(bt_hh_callbacks, virtual_unplug_cb, &bd_addr, status);
+            },
+            p_dev->bd_addr, (bthh_status_t)p_data->dev_status.status));
       }
       break;
 
@@ -1244,20 +1291,27 @@ static void btif_hh_handle_evt(uint16_t event, char* p_param) {
     case BTIF_HH_CONNECT_REQ_EVT: {
       LOG_DEBUG("Connect request received remote:%s",
                 ADDRESS_TO_LOGGABLE_CSTR((*bd_addr)));
-      if (btif_hh_connect(bd_addr) == BT_STATUS_SUCCESS) {
-        HAL_CBACK(bt_hh_callbacks, connection_state_cb, bd_addr,
-                  BTHH_CONN_STATE_CONNECTING);
-      } else
-        HAL_CBACK(bt_hh_callbacks, connection_state_cb, bd_addr,
-                  BTHH_CONN_STATE_DISCONNECTED);
+      bthh_connection_state_t dev_status =
+          btif_hh_connect(bd_addr) == BT_STATUS_SUCCESS
+              ? BTHH_CONN_STATE_CONNECTING
+              : BTHH_CONN_STATE_DISCONNECTED;
+      do_in_jni_thread(base::Bind(
+          [](RawAddress bd_addr, bthh_connection_state_t status) {
+            HAL_CBACK(bt_hh_callbacks, connection_state_cb, &bd_addr, status);
+          },
+          *bd_addr, dev_status));
     } break;
 
     case BTIF_HH_DISCONNECT_REQ_EVT: {
       LOG_DEBUG("Disconnect request received remote:%s",
                 ADDRESS_TO_LOGGABLE_CSTR((*bd_addr)));
       btif_hh_disconnect(bd_addr);
-      HAL_CBACK(bt_hh_callbacks, connection_state_cb, bd_addr,
-                BTHH_CONN_STATE_DISCONNECTING);
+      do_in_jni_thread(base::Bind(
+          [](RawAddress bd_addr) {
+            HAL_CBACK(bt_hh_callbacks, connection_state_cb, &bd_addr,
+                      BTHH_CONN_STATE_DISCONNECTING);
+          },
+          *bd_addr));
     } break;
 
     case BTIF_HH_VUP_REQ_EVT: {
