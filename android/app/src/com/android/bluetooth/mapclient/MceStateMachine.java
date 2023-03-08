@@ -52,8 +52,10 @@ import android.bluetooth.BluetoothProfile;
 import android.bluetooth.BluetoothUuid;
 import android.bluetooth.SdpMasRecord;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Message;
+import android.os.SystemProperties;
 import android.provider.Telephony;
 import android.telecom.PhoneAccount;
 import android.telephony.SmsManager;
@@ -978,9 +980,25 @@ class MceStateMachine extends StateMachine {
                                     getRecipientsUri(recipients));
                         }
                     }
-                    // Only send to the current default SMS app if one exists
+                    // Target the current default SMS app if one exists
                     String defaultMessagingPackage = Telephony.Sms.getDefaultSmsPackage(mService);
                     if (defaultMessagingPackage != null) {
+                        // Clone the intent for a secondary SMS receiver package if one exist
+                        try {
+                            String smsReplyPackageName =
+                                    SystemProperties.get(
+                                            "bluetooth.profile.map.sms_receiver_package",
+                                            null
+                                    );
+                            if (smsReplyPackageName != null && !smsReplyPackageName.isEmpty()) {
+                                Intent messageNotificationIntent = (Intent) intent.clone();
+                                messageNotificationIntent.setPackage(smsReplyPackageName);
+                                mService.sendBroadcast(messageNotificationIntent,
+                                        android.Manifest.permission.RECEIVE_SMS);
+                            }
+                        } catch (Resources.NotFoundException e) {
+                            Log.d(TAG, "SMS Receiver Package not set for iMessage/SMS replies");
+                        }
                         intent.setPackage(defaultMessagingPackage);
                     }
                     mService.sendBroadcast(intent, RECEIVE_SMS);
