@@ -135,9 +135,6 @@ impl FooData {
     fn parse(bytes: &[u8]) -> Result<Self> {
         let mut cell = Cell::new(bytes);
         let packet = Self::parse_inner(&mut cell)?;
-        if !cell.get().is_empty() {
-            return Err(Error::InvalidPacketError);
-        }
         Ok(packet)
     }
     fn parse_inner(mut bytes: &mut Cell<&[u8]>) -> Result<Self> {
@@ -178,17 +175,11 @@ impl FooData {
             (100, _) => {
                 let mut cell = Cell::new(payload);
                 let child_data = BarData::parse_inner(&mut cell)?;
-                if !cell.get().is_empty() {
-                    return Err(Error::InvalidPacketError);
-                }
                 FooDataChild::Bar(Arc::new(child_data))
             }
             (_, Enum16::B) => {
                 let mut cell = Cell::new(payload);
                 let child_data = BazData::parse_inner(&mut cell)?;
-                if !cell.get().is_empty() {
-                    return Err(Error::InvalidPacketError);
-                }
                 FooDataChild::Baz(Arc::new(child_data))
             }
             _ if !payload.is_empty() => FooDataChild::Payload(Bytes::copy_from_slice(payload)),
@@ -247,9 +238,6 @@ impl Foo {
     pub fn parse(bytes: &[u8]) -> Result<Self> {
         let mut cell = Cell::new(bytes);
         let packet = Self::parse_inner(&mut cell)?;
-        if !cell.get().is_empty() {
-            return Err(Error::InvalidPacketError);
-        }
         Ok(packet)
     }
     fn parse_inner(mut bytes: &mut Cell<&[u8]>) -> Result<Self> {
@@ -317,9 +305,6 @@ impl BarData {
     fn parse(bytes: &[u8]) -> Result<Self> {
         let mut cell = Cell::new(bytes);
         let packet = Self::parse_inner(&mut cell)?;
-        if !cell.get().is_empty() {
-            return Err(Error::InvalidPacketError);
-        }
         Ok(packet)
     }
     fn parse_inner(mut bytes: &mut Cell<&[u8]>) -> Result<Self> {
@@ -378,9 +363,6 @@ impl Bar {
     pub fn parse(bytes: &[u8]) -> Result<Self> {
         let mut cell = Cell::new(bytes);
         let packet = Self::parse_inner(&mut cell)?;
-        if !cell.get().is_empty() {
-            return Err(Error::InvalidPacketError);
-        }
         Ok(packet)
     }
     fn parse_inner(mut bytes: &mut Cell<&[u8]>) -> Result<Self> {
@@ -454,9 +436,6 @@ impl BazData {
     fn parse(bytes: &[u8]) -> Result<Self> {
         let mut cell = Cell::new(bytes);
         let packet = Self::parse_inner(&mut cell)?;
-        if !cell.get().is_empty() {
-            return Err(Error::InvalidPacketError);
-        }
         Ok(packet)
     }
     fn parse_inner(mut bytes: &mut Cell<&[u8]>) -> Result<Self> {
@@ -515,9 +494,6 @@ impl Baz {
     pub fn parse(bytes: &[u8]) -> Result<Self> {
         let mut cell = Cell::new(bytes);
         let packet = Self::parse_inner(&mut cell)?;
-        if !cell.get().is_empty() {
-            return Err(Error::InvalidPacketError);
-        }
         Ok(packet)
     }
     fn parse_inner(mut bytes: &mut Cell<&[u8]>) -> Result<Self> {
