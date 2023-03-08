@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "edb4c095_e919e753",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-03-08T19:44:11Z",
+      "side": 1,
+      "message": "Rather than this change, could we instead post the callback (just above) to run after this synchronous logic completes? So on line 437, invoke the callback using `do_on_main_thread` and then keep the CHECK as is.",
+      "revId": "9de04950895df6219ccdc2e753a366507a7ae223",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
