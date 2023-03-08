@@ -794,6 +794,40 @@ public class MapClientStateMachineTest {
                 new ObexTime(currentDate).toString());
     }
 
+    @Test
+    public void testReceivedNewMmsNoSMSDefaultPackage_broadcastToSMSReplyPackage() {
+        setupSdpRecordReceipt();
+        Message msg = Message.obtain(mHandler, MceStateMachine.MSG_MAS_CONNECTED);
+        mMceStateMachine.sendMessage(msg);
+
+        //verifying that state machine is in the Connected state
+        verify(mMockMapClientService,
+                timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(2)).sendBroadcastMultiplePermissions(
+                mIntentArgument.capture(), any(String[].class),
+                any(BroadcastOptions.class));
+        assertThat(mMceStateMachine.getState()).isEqualTo(BluetoothProfile.STATE_CONNECTED);
+
+        EventReport event = createNewEventReport("NewMessage", new Date(), mTestMessageSmsHandle,
+                "telecom/msg/inbox", null, "SMS_GSM");
+
+        mMceStateMachine.receiveEvent(event);
+
+        TestUtils.waitForLooperToBeIdle(mMceStateMachine.getHandler().getLooper());
+        verify(mMockMasClient, times(1)).makeRequest
+                (any(RequestGetMessage.class));
+
+        msg = Message.obtain(mHandler, MceStateMachine.MSG_MAS_REQUEST_COMPLETED,
+                mMockRequestGetMessage);
+        mMceStateMachine.sendMessage(msg);
+
+        TestUtils.waitForLooperToBeIdle(mMceStateMachine.getHandler().getLooper());
+        verify(mMockMapClientService,
+                timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(1)).sendBroadcast(
+                mIntentArgument.capture(),
+                eq(android.Manifest.permission.RECEIVE_SMS));
+        Assert.assertNull(mIntentArgument.getValue().getPackage());
+    }
+
     private void setupSdpRecordReceipt() {
         // Perform first part of MAP connection logic.
         verify(mMockMapClientService,
