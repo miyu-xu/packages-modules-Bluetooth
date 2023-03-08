@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "44897413_88868a99",
+        "filename": "system/rust/Cargo.toml",
+        "patchSetId": 7
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-03-08T22:08:54Z",
+      "side": 1,
+      "message": "David requested that I do so for other crates here: https://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/2407722/comment/0b42b5a5_1cbf546f/",
+      "parentUuid": "a0fa1fb0_a3aea9ee",
+      "range": {
+        "startLine": 27,
+        "startChar": 12,
+        "endLine": 27,
+        "endChar": 17
+      },
+      "revId": "60b935884fcab732c1fbc2961723212e60f8948c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6bfde806_48272560",
         "filename": "system/rust/src/gatt/server/att_database.rs",
         "patchSetId": 7
@@ -37,6 +61,24 @@
       "writtenOn": "2023-03-02T16:39:57Z",
       "side": 1,
       "message": "I am not fan of the fact that you implicitly require the permission bits to be the same as the c++ version. Either document it or change the values and do the conversion manually.",
+      "revId": "60b935884fcab732c1fbc2961723212e60f8948c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6998b216_f8a93c0a",
+        "filename": "system/rust/src/gatt/server/att_database.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-03-08T22:08:54Z",
+      "side": 1,
+      "message": "Done. They actually are from the spec, so I think I\u0027ll keep the values the same, but document appropriately.",
+      "parentUuid": "6bfde806_48272560",
       "revId": "60b935884fcab732c1fbc2961723212e60f8948c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -54,6 +96,30 @@
       "writtenOn": "2023-03-02T16:39:57Z",
       "side": 1,
       "message": "nit: can you impl `fn readable(\u0026self) -\u003e bool {}`, `fn write(\u0026self) -\u003e bool {}` on AttPermissions to avoid these patterns ?",
+      "range": {
+        "startLine": 260,
+        "startChar": 43,
+        "endLine": 260,
+        "endChar": 77
+      },
+      "revId": "60b935884fcab732c1fbc2961723212e60f8948c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "657e4737_5dd474c6",
+        "filename": "system/rust/src/gatt/server/gatt_database.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 260,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-03-08T22:08:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "744ad91b_5814254d",
       "range": {
         "startLine": 260,
         "startChar": 43,
