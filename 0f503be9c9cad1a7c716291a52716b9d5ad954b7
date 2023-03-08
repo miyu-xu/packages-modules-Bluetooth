@@ -16,6 +16,24 @@
       "message": "Do we have a small test for this?",
       "revId": "0f503be9c9cad1a7c716291a52716b9d5ad954b7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ecba7421_06bfcb6e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1951737
+      },
+      "writtenOn": "2023-03-08T09:01:54Z",
+      "side": 1,
+      "message": "It\u0027s difficult to test stop() method directly since it\u0027s a protected method and there\u0027re some complicated preconditions for stop() or doStop() to be triggered.\n\nSeems like mAdapterService can be null at stop() time only when something goes very wrong (crashes?). According to the attached bug, `atest SystemAppCheck` will fail if this case isn\u0027t handled correctly.",
+      "parentUuid": "174a9486_60ebfafe",
+      "revId": "0f503be9c9cad1a7c716291a52716b9d5ad954b7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
