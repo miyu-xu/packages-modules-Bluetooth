@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5d6fa5be_5cf51940",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-03-08T14:55:17Z",
+      "side": 1,
+      "message": "If you scan continuously, can this cause CPU to wake up on each scan result, causing high battery usage ? Or is this filtered TA scan ?",
+      "revId": "4d8221309613bf738a848c48a52997d88308aaa2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
