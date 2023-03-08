@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "163f3ef4_8c2e003d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-03-08T20:45:43Z",
+      "side": 1,
+      "message": "These are all the java layer interesting choke point conditionals that may be useful for metrics to understand UUID reception in the stack.",
+      "revId": "44296fb3cd0c0ffb1763af8e53ad4130a3ad96a4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
