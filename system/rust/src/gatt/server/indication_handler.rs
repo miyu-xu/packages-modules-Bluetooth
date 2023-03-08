@@ -8,7 +8,7 @@ use tokio::{
 
 use crate::{
     gatt::ids::AttHandle,
-    packets::{AttAttributeDataChild, AttChild, AttHandleValueIndicationBuilder},
+    packets::{AttAttributeDataChild, AttChild, AttHandleValueIndicationBuilder, Serializable},
     utils::packet::build_att_data,
 };
 
@@ -21,6 +21,12 @@ use super::{
 #[derive(Debug)]
 /// Errors that can occur while sending an indication
 pub enum IndicationError {
+    /// The provided data exceeds the MTU limitations
+    DataExceedsMtu {
+        /// The actual max payload size permitted
+        /// (ATT_MTU - 3, since 3 bytes are needed for the header)
+        mtu: usize,
+    },
     /// The indicated attribute handle does not exist
     AttributeNotFound,
     /// The indicated attribute does not support indications
@@ -48,8 +54,19 @@ impl<T: AttDatabase> IndicationHandler<T> {
         &mut self,
         handle: AttHandle,
         data: AttAttributeDataChild,
+        mtu: usize,
         send_packet: impl FnOnce(AttChild) -> Result<(), SendError>,
     ) -> Result<(), IndicationError> {
+        let data_size = data
+            .size_in_bits()
+            .map_err(SendError::SerializeError)
+            .map_err(IndicationError::SendError)?;
+        // As per Core Spec 5.3 Vol 3F 3.4.7.2, the indicated value must be at most
+        // ATT_MTU-3
+        if data_size > (mtu - 3) * 8 {
+            return Err(IndicationError::DataExceedsMtu { mtu: mtu - 3 });
+        }
+
         if !self
             .db
             .snapshot()
@@ -118,6 +135,7 @@ mod test {
     const HANDLE: AttHandle = AttHandle(1);
     const NONEXISTENT_HANDLE: AttHandle = AttHandle(2);
     const NON_INDICATE_HANDLE: AttHandle = AttHandle(3);
+    const MTU: usize = 32;
 
     fn get_data() -> AttAttributeDataChild {
         AttAttributeDataChild::RawData([1, 2, 3].into())
@@ -155,7 +173,7 @@ mod test {
             // act: send an indication
             spawn_local(async move {
                 indication_handler
-                    .send(HANDLE, get_data(), move |packet| {
+                    .send(HANDLE, get_data(), MTU, move |packet| {
                         tx.send(packet).unwrap();
                         Ok(())
                     })
@@ -185,7 +203,7 @@ mod test {
 
             // act: send an indication on a nonexistent handle
             let ret = indication_handler
-                .send(NONEXISTENT_HANDLE, get_data(), move |_| unreachable!())
+                .send(NONEXISTENT_HANDLE, get_data(), MTU, move |_| unreachable!())
                 .await;
 
             // assert: that we failed with IndicationError::AttributeNotFound
@@ -202,7 +220,7 @@ mod test {
 
             // act: send an indication on an attribute that does not support indications
             let ret = indication_handler
-                .send(NON_INDICATE_HANDLE, get_data(), move |_| unreachable!())
+                .send(NON_INDICATE_HANDLE, get_data(), MTU, move |_| unreachable!())
                 .await;
 
             // assert: that we failed with IndicationError::IndicationsNotSupported
@@ -221,7 +239,7 @@ mod test {
             // act: send an indication
             let pending_result = spawn_local(async move {
                 indication_handler
-                    .send(HANDLE, get_data(), move |packet| {
+                    .send(HANDLE, get_data(), MTU, move |packet| {
                         tx.send(packet).unwrap();
                         Ok(())
                     })
@@ -247,7 +265,7 @@ mod test {
             // act: send an indication
             let pending_result = spawn_local(async move {
                 indication_handler
-                    .send(HANDLE, get_data(), move |packet| {
+                    .send(HANDLE, get_data(), MTU, move |packet| {
                         tx.send(packet).unwrap();
                         Ok(())
                     })
@@ -279,7 +297,7 @@ mod test {
             // act: send an indication
             let pending_result = spawn_local(async move {
                 indication_handler
-                    .send(HANDLE, get_data(), move |packet| {
+                    .send(HANDLE, get_data(), MTU, move |packet| {
                         tx.send(packet).unwrap();
                         Ok(())
                     })
@@ -304,7 +322,6 @@ mod test {
     fn test_indication_timeout() {
         block_on_locally(async move {
             // arrange: send a few confirmations in advance
-            tokio::time::pause();
             let (mut indication_handler, confirmation_watcher) =
                 IndicationHandler::new(get_att_database());
             let (tx, rx) = oneshot::channel();
@@ -315,7 +332,7 @@ mod test {
             let time_sent = Instant::now();
             let pending_result = spawn_local(async move {
                 indication_handler
-                    .send(HANDLE, get_data(), move |packet| {
+                    .send(HANDLE, get_data(), MTU, move |packet| {
                         tx.send(packet).unwrap();
                         Ok(())
                     })
@@ -335,6 +352,29 @@ mod test {
             let time_slept = Instant::now().duration_since(time_sent);
             assert!(time_slept > Duration::from_secs(29));
             assert!(time_slept < Duration::from_secs(31));
+        });
+    }
+
+    #[test]
+    fn test_mtu_exceeds() {
+        block_on_locally(async move {
+            // arrange
+            let (mut indication_handler, _confirmation_watcher) =
+                IndicationHandler::new(get_att_database());
+
+            // act: send an indication with an ATT_MTU of 4 and data length of 3
+            let res = indication_handler
+                .send(
+                    HANDLE,
+                    AttAttributeDataChild::RawData([1, 2, 3].into()),
+                    4,
+                    move |_| unreachable!(),
+                )
+                .await;
+
+            // assert: that we got the expected error, indicating the max data size (not the
+            // ATT_MTU, but ATT_MTU-3)
+            assert!(matches!(res, Err(IndicationError::DataExceedsMtu { mtu: 1 })));
         });
     }
 }
