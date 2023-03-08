@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9d8469d0_3e1a5d36",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 4581,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-03-08T21:32:01Z",
+      "side": 1,
+      "message": "why just BR_EDR?  It looks like this could get called with other transports.\n\n  if (BTM_IsAclConnectionUpAndHandleValid(bd_addr, transport)) {\n    btm_sec_wait_and_start_authentication(p_dev_rec);\n    \nAnother way to fix this would be to cancel the timer on disconnect.",
+      "range": {
+        "startLine": 4581,
+        "startChar": 50,
+        "endLine": 4581,
+        "endChar": 69
+      },
+      "revId": "226efb2621fccc5f421725d81f0c65fd82767ab1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
