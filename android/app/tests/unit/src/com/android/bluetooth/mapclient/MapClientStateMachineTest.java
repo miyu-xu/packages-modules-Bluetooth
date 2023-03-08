@@ -607,7 +607,7 @@ public class MapClientStateMachineTest {
                 any(BroadcastOptions.class));
         assertThat(mMceStateMachine.getState()).isEqualTo(BluetoothProfile.STATE_CONNECTED);
 
-        EventReport event = createNewEventReport("NewMessage", mTestMessageSmsHandle,
+        EventReport event = createNewEventReport("NewMessage", new Date(), mTestMessageSmsHandle,
                 "telecom/msg/inbox", null, "SMS_GSM");
 
         mMceStateMachine.receiveEvent(event);
@@ -641,7 +641,7 @@ public class MapClientStateMachineTest {
                 any(BroadcastOptions.class));
         assertThat(mMceStateMachine.getState()).isEqualTo(BluetoothProfile.STATE_CONNECTED);
 
-        EventReport event = createNewEventReport("NewMessage", mTestMessageMmsHandle,
+        EventReport event = createNewEventReport("NewMessage", new Date(), mTestMessageMmsHandle,
                 "telecom/msg/inbox", null, "MMS");
 
         when(mMockRequestGetMessage.getMessage()).thenReturn(mTestIncomingMmsBmessage);
@@ -829,12 +829,13 @@ public class MapClientStateMachineTest {
         return message;
     }
 
-    EventReport createNewEventReport(String mType, String mHandle, String mFolder, String
-                mOldFolder, String mMsgType){
+    EventReport createNewEventReport(String mType, Date mDateTime, String mHandle, String mFolder,
+            String mOldFolder, String mMsgType){
 
         HashMap<String, String> attrs = new HashMap<String, String>();
 
         attrs.put("type", mType);
+        attrs.put("date", (new ObexTime(mDateTime)).toString());
         attrs.put("handle", mHandle);
         attrs.put("folder", mFolder);
         attrs.put("old_folder", mOldFolder);

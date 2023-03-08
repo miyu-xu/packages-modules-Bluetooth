@@ -74,6 +74,7 @@ import com.android.vcard.VCardProperty;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -732,12 +733,16 @@ class MceStateMachine extends StateMachine {
 
             switch (event.getType()) {
                 case NEW_MESSAGE:
-                    // Infer the timestamp for this message as 'now' and read status false
-                    // instead of getting the message listing data for it
-                    if (!mMessages.containsKey(event.getHandle())) {
-                        Calendar calendar = Calendar.getInstance();
+                    if (!mMessages.contains(event.getHandle())) {
+                        Date dateTime = event.getDateTime();
+                        if (dateTime == null) {
+                            // Infer the timestamp for this message as 'now' and read status
+                            // false instead of getting the message listing data for it
+                            Calendar calendar = Calendar.getInstance();
+                            dateTime = calendar.getTime();
+                        }
                         MessageMetadata metadata = new MessageMetadata(event.getHandle(),
-                                calendar.getTime().getTime(), false, MESSAGE_NOT_SEEN);
+                                dateTime.getTime(), false, MESSAGE_NOT_SEEN);
                         mMessages.put(event.getHandle(), metadata);
                     }
                     mMasClient.makeRequest(new RequestGetMessage(event.getHandle(),
