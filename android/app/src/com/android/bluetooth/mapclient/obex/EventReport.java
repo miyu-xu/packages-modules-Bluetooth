@@ -29,6 +29,7 @@ import org.xmlpull.v1.XmlPullParserFactory;
 import java.io.DataInputStream;
 import java.io.IOException;
 import java.math.BigInteger;
+import java.util.Date;
 import java.util.HashMap;
 
 /**
@@ -40,6 +41,7 @@ import java.util.HashMap;
 public class EventReport {
     private static final String TAG = "EventReport";
     private final Type mType;
+    private final Date mDateTime;
     private final String mHandle;
     private final String mFolder;
     private final String mOldFolder;
@@ -66,6 +68,14 @@ public class EventReport {
         mFolder = attrs.get("folder");
 
         mOldFolder = attrs.get("old_folder");
+
+        String dateTime = attrs.get("datetime");
+        // Handle possible NPE when not able to retrieve datetime attribute
+        if (dateTime != null) {
+            mDateTime = (new ObexTime(dateTime)).getTime();
+        } else {
+            mDateTime = null;
+        }
 
         if (mType != Type.MEMORY_FULL && mType != Type.MEMORY_AVAILABLE) {
             String s = attrs.get("msg_type");
@@ -183,12 +193,21 @@ public class EventReport {
         return mMsgType;
     }
 
+    /**
+     * @return value corresponding to <code>datetime</code> parameter in MAP
+     * specification for NEW_MESSAGE (can be null)
+     */
+    public Date getDateTime() {
+        return mDateTime;
+    }
+
     @Override
     public String toString() {
         JSONObject json = new JSONObject();
 
         try {
             json.put("type", mType);
+            json.put("datetime", new ObexTime(mDateTime));
             json.put("handle", mHandle);
             json.put("folder", mFolder);
             json.put("old_folder", mOldFolder);
