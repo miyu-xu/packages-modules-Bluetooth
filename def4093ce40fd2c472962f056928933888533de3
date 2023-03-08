@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cc510eee_5a7765b5",
+        "filename": "android/app/src/com/android/bluetooth/bas/BatteryService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-03-08T00:39:17Z",
+      "side": 1,
+      "message": "maybe keep one BatteryService as other services do would be better [link](https://source.corp.google.com/h/android/platform/superproject/+/master:packages/modules/Bluetooth/android/app/src/com/android/bluetooth/hap/HapClientService.java;l\u003d104)?",
+      "range": {
+        "startLine": 64,
+        "startChar": 34,
+        "endLine": 64,
+        "endChar": 59
+      },
+      "revId": "def4093ce40fd2c472962f056928933888533de3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
