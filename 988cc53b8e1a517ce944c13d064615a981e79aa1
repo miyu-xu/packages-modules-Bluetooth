@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fe71ffab_6b89a91c",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioBroadcasterNativeInterface.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-03-08T17:17:39Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "6549ce45_a02e9013",
+      "range": {
+        "startLine": 179,
+        "startChar": 57,
+        "endLine": 179,
+        "endChar": 78
+      },
+      "revId": "988cc53b8e1a517ce944c13d064615a981e79aa1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "72f16d58_4d54642f",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-03-08T02:14:28Z",
       "side": 1,
       "message": "List\u003cbyte[]\u003e",
+      "range": {
+        "startLine": 742,
+        "startChar": 8,
+        "endLine": 742,
+        "endChar": 16
+      },
+      "revId": "988cc53b8e1a517ce944c13d064615a981e79aa1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a637dcf0_2f25aada",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 742,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-03-08T17:17:39Z",
+      "side": 1,
+      "message": "as we discussed offline, we might not need this function if we separate quality field out",
+      "parentUuid": "72f16d58_4d54642f",
       "range": {
         "startLine": 742,
         "startChar": 8,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "63b16522_3bcd01f8",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 744,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-03-08T17:17:39Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "8e53026b_ce5bdaf9",
+      "range": {
+        "startLine": 744,
+        "startChar": 8,
+        "endLine": 744,
+        "endChar": 48
+      },
+      "revId": "988cc53b8e1a517ce944c13d064615a981e79aa1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "66f9a892_dd2c884f",
@@ -83,6 +155,30 @@
       "writtenOn": "2023-03-08T02:14:28Z",
       "side": 1,
       "message": "Could we split quality into a separate byte array?",
+      "range": {
+        "startLine": 751,
+        "startChar": 12,
+        "endLine": 758,
+        "endChar": 13
+      },
+      "revId": "988cc53b8e1a517ce944c13d064615a981e79aa1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "02c119ad_0a79ff4e",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 758,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-03-08T17:17:39Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "66f9a892_dd2c884f",
       "range": {
         "startLine": 751,
         "startChar": 12,
@@ -116,6 +212,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a45ff5d4_0c2243f6",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 790,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-03-08T17:17:39Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "e1b36af6_0919245d",
+      "range": {
+        "startLine": 790,
+        "startChar": 63,
+        "endLine": 790,
+        "endChar": 75
+      },
+      "revId": "988cc53b8e1a517ce944c13d064615a981e79aa1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9cd3c6a4_30d95ede",
@@ -139,6 +259,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "da69cc2e_c11984f4",
+        "filename": "system/bta/le_audio/broadcaster/broadcaster.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 267,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-03-08T17:17:39Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "9cd3c6a4_30d95ede",
+      "range": {
+        "startLine": 267,
+        "startChar": 4,
+        "endLine": 267,
+        "endChar": 59
+      },
+      "revId": "988cc53b8e1a517ce944c13d064615a981e79aa1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4ef29fff_2dd1ec66",
@@ -152,6 +296,30 @@
       "writtenOn": "2023-03-08T02:14:28Z",
       "side": 1,
       "message": "same as above",
+      "range": {
+        "startLine": 345,
+        "startChar": 0,
+        "endLine": 345,
+        "endChar": 59
+      },
+      "revId": "988cc53b8e1a517ce944c13d064615a981e79aa1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ed3b4be1_23fa4694",
+        "filename": "system/bta/le_audio/broadcaster/broadcaster.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 345,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-03-08T17:17:39Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "4ef29fff_2dd1ec66",
       "range": {
         "startLine": 345,
         "startChar": 0,
