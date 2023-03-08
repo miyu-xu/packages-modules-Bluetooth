@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dea22911_db17f83b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-03-08T21:36:13Z",
+      "side": 1,
+      "message": "https://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/system/btif/src/btif_hh.cc;l\u003d1304;bpv\u003d1;bpt\u003d1?q\u003dbtif_hh_upstreams_evt\u0026ss\u003dandroid%2Fplatform%2Fsuperproject:packages%2Fmodules%2FBluetooth%2F\n\nDon\u0027t we already jump to the JNI thread once we get to this function?",
+      "revId": "a58bf8b9f04a42d47137867c8ba1f86aaf2d31c7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
