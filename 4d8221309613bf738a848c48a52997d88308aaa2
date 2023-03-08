@@ -16,6 +16,41 @@
       "message": "If you scan continuously, can this cause CPU to wake up on each scan result, causing high battery usage ? Or is this filtered TA scan ?",
       "revId": "4d8221309613bf738a848c48a52997d88308aaa2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "34f54567_621dcbd7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-03-08T15:11:41Z",
+      "side": 1,
+      "message": "probably not needed. Issue is somewhere else.",
+      "revId": "4d8221309613bf738a848c48a52997d88308aaa2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3082007c_99fbea61",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-03-08T15:11:41Z",
+      "side": 1,
+      "message": "hmm you are right. We should not need this patch. Thanks for taking me back 😊",
+      "parentUuid": "5d6fa5be_5cf51940",
+      "revId": "4d8221309613bf738a848c48a52997d88308aaa2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
