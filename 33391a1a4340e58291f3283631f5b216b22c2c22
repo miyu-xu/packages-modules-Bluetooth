@@ -34,6 +34,24 @@
       "parentUuid": "47829fd5_600692ab",
       "revId": "33391a1a4340e58291f3283631f5b216b22c2c22",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f6212dbb_2887651c",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-03-08T12:31:06Z",
+      "side": 1,
+      "message": "There is misundestanding 😊\nI meant that group-\u003eDeactivate(); could be done without `else`\n\nThe above path ends on success in line 181. \nIf it fails, then we should be ok with calling Deactivate() \n\nSo Comment and group-\u003eDeactivate(); could be placed  as it was but without `else`",
+      "parentUuid": "a29f31ad_fa4146a8",
+      "revId": "33391a1a4340e58291f3283631f5b216b22c2c22",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
