@@ -70,6 +70,30 @@
       },
       "revId": "226efb2621fccc5f421725d81f0c65fd82767ab1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e258d4ba_25861b89",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 4581,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-03-08T22:27:19Z",
+      "side": 1,
+      "message": "got it.\n\nWe timeout authenticating, so we then start authentication ?!?\n\nI agree, transport should not be an issue here.",
+      "parentUuid": "fef2c0f2_c41a00f0",
+      "range": {
+        "startLine": 4581,
+        "startChar": 50,
+        "endLine": 4581,
+        "endChar": 69
+      },
+      "revId": "226efb2621fccc5f421725d81f0c65fd82767ab1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
