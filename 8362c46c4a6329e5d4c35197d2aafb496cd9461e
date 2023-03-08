@@ -46,6 +46,30 @@
       },
       "revId": "8362c46c4a6329e5d4c35197d2aafb496cd9461e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "61107b8c_b8baa939",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 582,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2023-03-08T06:31:23Z",
+      "side": 1,
+      "message": "Instead, moved the checking logic from removeActiveDevice() to setActiveDevice().\nNow removeActiveDevice() has only one boolean argument.",
+      "parentUuid": "713d16c2_e77a9af9",
+      "range": {
+        "startLine": 582,
+        "startChar": 7,
+        "endLine": 582,
+        "endChar": 70
+      },
+      "revId": "8362c46c4a6329e5d4c35197d2aafb496cd9461e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
