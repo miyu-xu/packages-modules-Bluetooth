@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4ae47cdb_59104e73",
+        "filename": "system/rust/src/gatt/callbacks/callback_transaction_manager.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-03-08T22:12:27Z",
+      "side": 1,
+      "message": "Just a reasonable timeout. All that matters is that it is less than 30s, since at that point the _client_ will disconnect. Left a comment accordingly.",
+      "parentUuid": "472ec8b4_e0a7bd15",
+      "range": {
+        "startLine": 68,
+        "startChar": 46,
+        "endLine": 68,
+        "endChar": 48
+      },
+      "revId": "74b20b609cb4a9c039e8fd2fdfc7e8b6fdc80ac0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "96a1bd6c_337c2fcb",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4bcc3c9b_99431d26",
+        "filename": "system/rust/src/gatt/callbacks/callback_transaction_manager.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-03-08T22:12:27Z",
+      "side": 1,
+      "message": "Fixed. This should be unreachable, so I upgraded it to an error!().",
+      "parentUuid": "96a1bd6c_337c2fcb",
+      "range": {
+        "startLine": 141,
+        "startChar": 96,
+        "endLine": 141,
+        "endChar": 107
+      },
+      "revId": "74b20b609cb4a9c039e8fd2fdfc7e8b6fdc80ac0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "68261d5d_7642137a",
@@ -60,6 +108,30 @@
       "writtenOn": "2023-03-02T14:35:27Z",
       "side": 1,
       "message": "TIMEOUT - 1?",
+      "range": {
+        "startLine": 249,
+        "startChar": 49,
+        "endLine": 249,
+        "endChar": 51
+      },
+      "revId": "74b20b609cb4a9c039e8fd2fdfc7e8b6fdc80ac0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4239e065_df692680",
+        "filename": "system/rust/tests/gatt_callbacks_test.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 249,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-03-08T22:12:27Z",
+      "side": 1,
+      "message": "TIMEOUT is private. I think it\u0027s OK to have some trivial duplication here, since it\u0027s only in a test (so if it goes out of sync, it will be immediately obvious) and we don\u0027t want to otherwise expose TIMEOUT.",
+      "parentUuid": "68261d5d_7642137a",
       "range": {
         "startLine": 249,
         "startChar": 49,
