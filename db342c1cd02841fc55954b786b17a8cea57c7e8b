@@ -52,6 +52,24 @@
       "parentUuid": "f5b7b2cc_b1ded9bd",
       "revId": "db342c1cd02841fc55954b786b17a8cea57c7e8b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "937e175b_88d8f2d3",
+        "filename": "system/stack/smp/smp_l2c.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-03-08T22:34:41Z",
+      "side": 1,
+      "message": "ConnectFixedChnl will call l2cu_initialize_fixed_ccb() if needed, but will also try to connect to the peer device if we are not connected. So it is used if we want to _send_ a packet.\n\nBut to receive a packet, the stack will still call `l2cu_initialize_fixed_ccb` on an incoming packet, and obviously does not need to try to connect to the peer.",
+      "parentUuid": "6e00fca9_ab07eceb",
+      "revId": "db342c1cd02841fc55954b786b17a8cea57c7e8b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
