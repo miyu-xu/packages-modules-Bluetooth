@@ -183,6 +183,8 @@ impl IBluetoothMedia for IBluetoothMediaDBus {
     #[dbus_method("SetAudioConfig")]
     fn set_audio_config(
         &mut self,
+        address: String,
+        codec_type: i32,
         sample_rate: i32,
         bits_per_sample: i32,
         channel_mode: i32,
@@ -207,6 +209,11 @@ impl IBluetoothMedia for IBluetoothMediaDBus {
 
     #[dbus_method("GetA2dpAudioStarted")]
     fn get_a2dp_audio_started(&mut self, address: String) -> bool {
+        dbus_generated!()
+    }
+
+    #[dbus_method("GetA2dpAudioFinalConfig")]
+    fn get_a2dp_audio_final_config(&mut self, address: String) -> A2dpCodecConfig {
         dbus_generated!()
     }
 

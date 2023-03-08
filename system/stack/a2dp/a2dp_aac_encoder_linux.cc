@@ -226,7 +226,7 @@ static void a2dp_aac_encoder_update(A2dpCodecConfig* a2dp_codec_config,
   ctx->sample_rate = p_encoder_params->sample_rate;
 
   // Set the encoder's parameters: Bit Rate - MANDATORY
-  aac_param_value = std::min(96000, A2DP_GetBitRateAac(p_codec_info));
+  aac_param_value = std::min(128000, A2DP_GetBitRateAac(p_codec_info));
   // Calculate the bit rate from MTU and sampling frequency
   aac_peak_bit_rate =
       A2DP_ComputeMaxBitRateAac(p_codec_info, a2dp_aac_encoder_cb.TxAaMtuSize);
@@ -287,6 +287,9 @@ void a2dp_aac_encoder_cleanup(void) {
 void a2dp_aac_feeding_reset(void) {
   auto frame_length = a2dp_aac_encoder_cb.aac_encoder_params.frame_length;
   auto sample_rate = a2dp_aac_encoder_cb.feeding_params.sample_rate;
+  if (a2dp_aac_encoder_cb.aac_context) {
+    a2dp_aac_encoder_cb.aac_context->sample_rate = sample_rate;
+  }
   if (frame_length == 0 || sample_rate == 0) {
     LOG_WARN("%s: AAC encoder is not configured", __func__);
     a2dp_aac_encoder_interval_ms = A2DP_AAC_ENCODER_INTERVAL_MS;
@@ -413,10 +416,10 @@ static void a2dp_aac_encode_frames(uint8_t nb_frame) {
       //
       uint32_t bytes_read = 0;
       if (a2dp_aac_read_feeding(read_buffer, &bytes_read)) {
-        LOG_WARN("424242 %s: bytes_read=%d, frame_size=%d", __func__,
-                 bytes_read, ctx->frame_size);
+        // LOG_WARN("424242 %s: bytes_read=%d, frame_size=%d", __func__,
+        //          bytes_read, ctx->frame_size);
         uint8_t* packet = (uint8_t*)(p_buf + 1) + p_buf->offset + p_buf->len;
-        if (!a2dp_aac_encoder_cb.aac_context) {
+        if (!ctx) {
           LOG_ERROR("%s: invalid AAC handle", __func__);
           a2dp_aac_encoder_cb.stats.media_read_total_dropped_packets++;
           osi_free(p_buf);
@@ -444,10 +447,23 @@ static void a2dp_aac_encode_frames(uint8_t nb_frame) {
           return;
         }
 
-        int16_t* buff = (int16_t*)read_buffer;
+        const int sample_rate = p_feeding_params->sample_rate;
+        const int bit_depth = p_feeding_params->bits_per_sample;
+        const int bytes_per_sample = bit_depth / 8;
+        const float scaling_factor = (float)1 / (1 << (bit_depth - 1));
+
+        uint8_t* buff = (uint8_t*)read_buffer;
         float* data[] = {(float*)frame->data[0], (float*)frame->data[1]};
-        for (int i = 0; i < bytes_read / 2; ++i) {
-          *(data[i & 1]++) = *(buff++) / 32768.0;
+        for (int i = 0; i < bytes_read / bytes_per_sample; ++i) {
+          if (bit_depth == 16) {
+            *(data[i & 1]++) = *((int16_t*)buff) * scaling_factor;
+          } else if (bit_depth == 32) {
+            *(data[i & 1]++) = *((int32_t*)buff) * scaling_factor;
+          } else {
+            LOG_ERROR("%s: Unsupported bit depth %d", bit_depth);
+            return;
+          }
+          buff += bytes_per_sample;
         }
 
         AVPacket* pkt = av_packet_alloc();
@@ -478,7 +494,9 @@ static void a2dp_aac_encode_frames(uint8_t nb_frame) {
           uint8_t* dst = (uint8_t*)(p_buf + 1) + p_buf->offset + p_buf->len;
 
           uint8_t header[9] = {
-              0x47, 0xfc, 0x00, 0x00, 0xb0, 0x90, 0x80, 0x03, 0x00,
+              0x47, 0xfc, 0x00,
+              0x00, 0xb0, (uint8_t)(sample_rate == 44100 ? 0x90 : 0x8c),
+              0x80, 0x03, 0x00,
           };
           memcpy(dst, header, 9);
           dst += 9;
@@ -530,29 +548,30 @@ static void a2dp_aac_encode_frames(uint8_t nb_frame) {
       a2dp_aac_encoder_cb.timestamp +=
           p_buf->layer_specific * p_encoder_params->frame_length;
 
-      LOG_WARN("424242: written=%d, pbuflen=%d, offset=%d", written, p_buf->len,
-               (int)p_buf->offset);
-      std::string s;
-      uint8_t* ptr = (uint8_t*)p_buf;
-      for (int i = 0; i < (int)p_buf->len + 1 + (int)p_buf->offset; ++i) {
-        int x = *(ptr++);
-        int a = x / 16;
-        int b = x % 16;
-        if (a < 10)
-          s += std::string(1, (char)'0' + a);
-        else
-          s += std::string(1, (char)'A' + a - 10);
-        if (b < 10)
-          s += std::string(1, (char)'0' + b);
-        else
-          s += std::string(1, (char)'A' + b - 10);
-        s += " ";
-        if (s.size() == 96) {
-          LOG_WARN("payload=%s", s.c_str());
-          s = "";
-        }
-      }
-      LOG_WARN("payload=%s", s.c_str());
+      // LOG_WARN("424242: written=%d, pbuflen=%d, offset=%d", written,
+      // p_buf->len,
+      //          (int)p_buf->offset);
+      // std::string s;
+      // uint8_t* ptr = (uint8_t*)p_buf;
+      // for (int i = 0; i < (int)p_buf->len + 1 + (int)p_buf->offset; ++i) {
+      //   int x = *(ptr++);
+      //   int a = x / 16;
+      //   int b = x % 16;
+      //   if (a < 10)
+      //     s += std::string(1, (char)'0' + a);
+      //   else
+      //     s += std::string(1, (char)'A' + a - 10);
+      //   if (b < 10)
+      //     s += std::string(1, (char)'0' + b);
+      //   else
+      //     s += std::string(1, (char)'A' + b - 10);
+      //   s += " ";
+      //   if (s.size() == 96) {
+      //     LOG_WARN("payload=%s", s.c_str());
+      //     s = "";
+      //   }
+      // }
+      // LOG_WARN("payload=%s", s.c_str());
 
       uint8_t done_nb_frame = remain_nb_frame - nb_frame;
       remain_nb_frame = nb_frame;

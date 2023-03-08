@@ -127,7 +127,7 @@
  *****************************************************************************/
 
 #ifndef BT_DEFAULT_BUFFER_SIZE
-#define BT_DEFAULT_BUFFER_SIZE (4096 + 16)
+#define BT_DEFAULT_BUFFER_SIZE (8192 + 16)
 #endif
 
 #ifndef BT_SMALL_BUFFER_SIZE
