@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d6bfdc8a_10ade481",
+        "filename": "tools/rootcanal/model/hci/hci_sniffer.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-03-08T22:45:38Z",
+      "side": 1,
+      "message": "Bluetooth HCI UART transport layer; the frame contains a 4-byte direction field, in network byte order (big-endian), the low-order bit of which is set if the frame was sent from the host to the controller and clear if the frame was received by the host from the controller,\n\n\"set if host to controller\".\n\nIt looks like it was correct.\n\nhttps://www.tcpdump.org/linktypes.html",
+      "range": {
+        "startLine": 31,
+        "startChar": 2,
+        "endLine": 31,
+        "endChar": 20
+      },
+      "revId": "20c6aa15822c84c41f670df391f25bcc73d4d0c9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
