@@ -16,6 +16,74 @@
       "message": "Hi, please help review. Thanks",
       "revId": "e57ce3184cd3d8bf4b52f2700df01c7219391e96",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1cf0844e_cd17748e",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 8
+      },
+      "lineNbr": 570,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-03-08T05:14:38Z",
+      "side": 1,
+      "message": "nit: Needs `TODO(b/#)` and should read `don\u0027t enable until...`",
+      "revId": "e57ce3184cd3d8bf4b52f2700df01c7219391e96",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1189afe9_a60b5a06",
+        "filename": "system/gd/rust/linux/stack/src/lib.rs",
+        "patchSetId": 8
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-03-08T05:14:38Z",
+      "side": 1,
+      "message": "nit: If you don\u0027t need any data, just make this `HidHostEnable`",
+      "revId": "e57ce3184cd3d8bf4b52f2700df01c7219391e96",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "410f5b69_67400adf",
+        "filename": "system/gd/rust/topshim/src/profiles/hid_host.rs",
+        "patchSetId": 8
+      },
+      "lineNbr": 332,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-03-08T05:14:38Z",
+      "side": 1,
+      "message": "nit: Pub fn should have docstring.\n```\n/// Return true if we need to restart hidhost.\n```",
+      "revId": "e57ce3184cd3d8bf4b52f2700df01c7219391e96",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ab90733f_8d6411bf",
+        "filename": "system/gd/rust/topshim/src/profiles/hid_host.rs",
+        "patchSetId": 8
+      },
+      "lineNbr": 334,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-03-08T05:14:38Z",
+      "side": 1,
+      "message": "Better to use `if`:\n```\nbool needs_restart \u003d self.is_profile_updated;\n\nif self.is_profile_updated {\n  ccall!(self, configure_enabled_profiles, self.is_hidp_activated, self.is_hogp_activated);\n  self.is_profile_updated \u003d false;\n}\n\nneeds_restart\n```",
+      "revId": "e57ce3184cd3d8bf4b52f2700df01c7219391e96",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
