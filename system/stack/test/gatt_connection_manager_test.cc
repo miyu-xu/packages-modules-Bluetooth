@@ -40,7 +40,10 @@ class AcceptlistMock {
 
   /* Not really accept list related, btui still BTM - just for testing put it
    * here. */
-  MOCK_METHOD2(EnableTargetedAnnouncements, void(bool, tBTM_INQ_RESULTS_CB*));
+  MOCK_METHOD3(EnableTargetedAnnouncements,
+               void(bool, tBTM_INQ_RESULTS_CB*, tBTM_CMPL_CB*));
+  MOCK_METHOD4(BleObserve,
+               tBTM_STATUS(bool, uint8_t, tBTM_INQ_RESULTS_CB*, tBTM_CMPL_CB*));
 };
 
 std::unique_ptr<AcceptlistMock> localAcceptlistMock;
@@ -74,8 +77,17 @@ void BTM_SetLeConnectionModeToSlow() {
 }
 
 void BTM_BleTargetAnnouncementObserve(bool enable,
-                                      tBTM_INQ_RESULTS_CB* p_results_cb) {
-  localAcceptlistMock->EnableTargetedAnnouncements(enable, p_results_cb);
+                                      tBTM_INQ_RESULTS_CB* p_results_cb,
+                                      tBTM_CMPL_CB* p_cmpl_cb) {
+  localAcceptlistMock->EnableTargetedAnnouncements(enable, p_results_cb,
+                                                   p_cmpl_cb);
+}
+
+tBTM_STATUS BTM_BleObserve(bool start, uint8_t duration,
+                           tBTM_INQ_RESULTS_CB* p_results_cb,
+                           tBTM_CMPL_CB* p_cmpl_cb) {
+  return localAcceptlistMock->BleObserve(start, duration, p_results_cb,
+                                         p_cmpl_cb);
 }
 
 void BTM_LogHistory(const std::string& tag, const RawAddress& bd_addr,

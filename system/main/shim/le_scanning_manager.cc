@@ -180,6 +180,11 @@ void BleScannerInterfaceImpl::Scan(bool start) {
                                       btm_cb.neighbor.le_scan.results));
     btm_cb.ble_ctr_cb.reset_ble_observe();
     btm_cb.neighbor.le_scan = {};
+
+    if (btm_cb.ble_ctr_cb.p_target_announcement_obs_cmpl_cb) {
+      (btm_cb.ble_ctr_cb.p_target_announcement_obs_cmpl_cb)(
+          &btm_cb.btm_inq_vars.inq_cmpl_info);
+    }
   } else {
     LOG_WARN("Invalid state: start:%d, current scan state: %d", start,
              btm_cb.ble_ctr_cb.is_ble_observe_active());

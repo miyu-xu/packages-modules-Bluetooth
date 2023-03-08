@@ -247,6 +247,7 @@ typedef struct {
 
   /* target announcement observer */
   tBTM_INQ_RESULTS_CB* p_target_announcement_obs_results_cb;
+  tBTM_CMPL_CB* p_target_announcement_obs_cmpl_cb;
 
   /* background connection procedure cb value */
   uint16_t scan_int;

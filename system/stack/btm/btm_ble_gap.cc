@@ -480,17 +480,21 @@ void BTM_BleOpportunisticObserve(bool enable,
 }
 
 void BTM_BleTargetAnnouncementObserve(bool enable,
-                                      tBTM_INQ_RESULTS_CB* p_results_cb) {
+                                      tBTM_INQ_RESULTS_CB* p_results_cb,
+                                      tBTM_CMPL_CB* p_cmpl_cb) {
   if (bluetooth::shim::is_gd_shim_enabled()) {
-    bluetooth::shim::BTM_BleTargetAnnouncementObserve(enable, p_results_cb);
+    bluetooth::shim::BTM_BleTargetAnnouncementObserve(enable, p_results_cb,
+                                                      p_cmpl_cb);
     // NOTE: passthrough, no return here. GD would send the results back to BTM,
     // and it needs the callbacks set properly.
   }
 
   if (enable) {
     btm_cb.ble_ctr_cb.p_target_announcement_obs_results_cb = p_results_cb;
+    btm_cb.ble_ctr_cb.p_target_announcement_obs_cmpl_cb = p_cmpl_cb;
   } else {
     btm_cb.ble_ctr_cb.p_target_announcement_obs_results_cb = NULL;
+    btm_cb.ble_ctr_cb.p_target_announcement_obs_cmpl_cb = NULL;
   }
 }
 
@@ -3103,6 +3107,8 @@ void btm_ble_stop_inquiry(void) {
 static void btm_ble_stop_observe(void) {
   tBTM_BLE_CB* p_ble_cb = &btm_cb.ble_ctr_cb;
   tBTM_CMPL_CB* p_obs_cb = p_ble_cb->p_obs_cmpl_cb;
+  tBTM_CMPL_CB* p_target_announcement_obs_cb =
+      p_ble_cb->p_target_announcement_obs_cmpl_cb;
 
   alarm_cancel(p_ble_cb->observer_timer);
 
@@ -3116,6 +3122,10 @@ static void btm_ble_stop_observe(void) {
   }
 
   if (p_obs_cb) (p_obs_cb)(&btm_cb.btm_inq_vars.inq_cmpl_info);
+
+  if (p_target_announcement_obs_cb) {
+    (p_target_announcement_obs_cb)(&btm_cb.btm_inq_vars.inq_cmpl_info);
+  }
 }
 /*******************************************************************************
  *

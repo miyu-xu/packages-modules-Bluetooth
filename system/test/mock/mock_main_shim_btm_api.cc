@@ -159,7 +159,7 @@ void bluetooth::shim::BTM_BleOpportunisticObserve(
   inc_func_call_count(__func__);
 }
 void bluetooth::shim::BTM_BleTargetAnnouncementObserve(
-    bool enable, tBTM_INQ_RESULTS_CB* p_results_cb) {
+    bool enable, tBTM_INQ_RESULTS_CB* p_results_cb, tBTM_CMPL_CB* p_cmpl_cb) {
   inc_func_call_count(__func__);
 }
 tBTM_STATUS bluetooth::shim::BTM_CancelRemoteDeviceName(void) {

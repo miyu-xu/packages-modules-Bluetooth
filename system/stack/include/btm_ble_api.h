@@ -204,12 +204,14 @@ extern void BTM_BleOpportunisticObserve(bool enable,
  *
  * Parameters       start: start or stop observe.
  *                  p_results_cb: callback for results.
+ *                  p_cmpl_cb: monitor scanning
  *
  * Returns          void
  *
  ******************************************************************************/
 extern void BTM_BleTargetAnnouncementObserve(bool enable,
-                                             tBTM_INQ_RESULTS_CB* p_results_cb);
+                                             tBTM_INQ_RESULTS_CB* p_results_cb,
+                                             tBTM_CMPL_CB* p_cmpl_cb);
 
 /** Returns local device encryption root (ER) */
 const Octet16& BTM_GetDeviceEncRoot();

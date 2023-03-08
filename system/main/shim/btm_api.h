@@ -134,12 +134,14 @@ void BTM_BleOpportunisticObserve(bool enable,
  *
  * Parameters       start: start or stop observe.
  *                  p_results_cb: callback for results.
+ *                  p_cmpl_cb: scan state monitor callback
  *
  * Returns          void
  *
  ******************************************************************************/
 void BTM_BleTargetAnnouncementObserve(bool enable,
-                                      tBTM_INQ_RESULTS_CB* p_results_cb);
+                                      tBTM_INQ_RESULTS_CB* p_results_cb,
+                                      tBTM_CMPL_CB* p_cmpl_cb);
 
 void BTM_EnableInterlacedInquiryScan();
 

@@ -42,6 +42,7 @@
 #include "types/raw_address.h"
 
 #define DIRECT_CONNECT_TIMEOUT (30 * 1000) /* 30 seconds */
+#define TA_SCAN_TIMEOUT_SEC (0)
 
 constexpr char kBtmLogTag[] = "TA";
 
@@ -88,6 +89,11 @@ std::map<RawAddress, tAPPS_CONNECTING> bgconn_dev;
 int num_of_targeted_announcements_users(void) {
   return std::count_if(
       bgconn_dev.begin(), bgconn_dev.end(), [](const auto& pair) {
+        if (BTM_GetHCIConnHandle(pair.first, BT_TRANSPORT_LE) != 0xFFFF) {
+          /* Means device is not connected, we should not count it */
+          return false;
+        }
+
         return (!pair.second.is_in_accept_list &&
                 !pair.second.doing_targeted_announcements_conn.empty());
       });
@@ -155,6 +161,22 @@ bool IsTargetedAnnouncement(const uint8_t* p_eir, uint16_t eir_len) {
 static void schedule_direct_connect_add(uint8_t app_id,
                                         const RawAddress& address);
 
+static void schedule_scan_start() {
+  BTM_LogHistory(kBtmLogTag, RawAddress::kEmpty, "Restart scanning");
+  BTM_BleObserve(true, TA_SCAN_TIMEOUT_SEC, NULL, NULL);
+}
+
+static void target_announcement_scanning_cmpl_cb(void* p_result) {
+  LOG_DEBUG(" Scanning complete");
+
+  if (num_of_targeted_announcements_users() > 0) {
+    LOG_DEBUG("Restarting scanner");
+    do_in_main_thread(FROM_HERE, base::BindOnce(schedule_scan_start));
+  } else {
+    BTM_LogHistory(kBtmLogTag, RawAddress::kEmpty, "Scanning stopped");
+  }
+}
+
 static void target_announcement_observe_results_cb(tBTM_INQ_RESULTS* p_inq,
                                                    const uint8_t* p_eir,
                                                    uint16_t eir_len) {
@@ -203,7 +225,11 @@ void target_announcements_filtering_set(bool enable) {
    * ignored. */
   bluetooth::shim::set_target_announcements_filter(enable);
   BTM_BleTargetAnnouncementObserve(enable,
-                                   target_announcement_observe_results_cb);
+                                   target_announcement_observe_results_cb,
+                                   target_announcement_scanning_cmpl_cb);
+  if (enable) {
+    BTM_BleObserve(true, TA_SCAN_TIMEOUT_SEC, NULL, NULL);
+  }
 }
 
 /** Add a device to the background connection list for targeted announcements.

@@ -99,7 +99,8 @@ void BTM_BleOpportunisticObserve(bool enable,
   inc_func_call_count(__func__);
 }
 void BTM_BleTargetAnnouncementObserve(bool enable,
-                                      tBTM_INQ_RESULTS_CB* p_results_cb) {
+                                      tBTM_INQ_RESULTS_CB* p_results_cb,
+                                      tBTM_CMPL_CB* p_cmpl_cb) {
   inc_func_call_count(__func__);
 }
 tBTM_STATUS btm_ble_read_remote_name(const RawAddress& remote_bda,
