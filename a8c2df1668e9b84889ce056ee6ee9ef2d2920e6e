@@ -35,6 +35,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "56188b85_e939202c",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 1497,
+      "author": {
+        "id": 1963846
+      },
+      "writtenOn": "2023-03-08T10:13:42Z",
+      "side": 1,
+      "message": "Done. Thanks for rewording!",
+      "parentUuid": "80f32807_721c7f9b",
+      "revId": "a8c2df1668e9b84889ce056ee6ee9ef2d2920e6e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b985fa07_3b1ec534",
@@ -48,6 +66,24 @@
       "writtenOn": "2023-03-07T22:18:00Z",
       "side": 1,
       "message": "do we also want to clear the `paused_scanner_ids`? If that\u0027s the case you can drain it before iterating:\n```\n        let paused_scanner_ids \u003d self.paused_scanner_ids.drain(..).collect::\u003cVec\u003c_\u003e\u003e();\n        for scanner_id in paused_scanner_ids {\n          ...\n```",
+      "revId": "a8c2df1668e9b84889ce056ee6ee9ef2d2920e6e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cbf675f7_f9eab6b8",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 1541,
+      "author": {
+        "id": 1963846
+      },
+      "writtenOn": "2023-03-08T10:13:42Z",
+      "side": 1,
+      "message": "Done. Thank you for catching it! It is a good idea to use drain() and collect().",
+      "parentUuid": "b985fa07_3b1ec534",
       "revId": "a8c2df1668e9b84889ce056ee6ee9ef2d2920e6e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -75,6 +111,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "099bb305_4c10239f",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 1544,
+      "author": {
+        "id": 1963846
+      },
+      "writtenOn": "2023-03-08T10:13:42Z",
+      "side": 1,
+      "message": "You are right. It would be more difficult to maintain if we have place holders in start_scan(). I refactored the code. I use resume_scan to make it clear it is specifically for resuming scanning after system suspension.",
+      "parentUuid": "1ded6c29_e291997a",
+      "range": {
+        "startLine": 1544,
+        "startChar": 40,
+        "endLine": 1544,
+        "endChar": 69
+      },
+      "revId": "a8c2df1668e9b84889ce056ee6ee9ef2d2920e6e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7e3edde0_701cab2a",
@@ -92,6 +152,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f4e37d50_b0bb065e",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 1770,
+      "author": {
+        "id": 1963846
+      },
+      "writtenOn": "2023-03-08T10:13:42Z",
+      "side": 1,
+      "message": "Done. The extra clones are avoided. \n\nPer Sonny\u0027s comment, I refactored start_scan() such that I also integrated your idea of using let filter \u003d {} to avoid extra clones.",
+      "parentUuid": "7e3edde0_701cab2a",
+      "revId": "a8c2df1668e9b84889ce056ee6ee9ef2d2920e6e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cf8d13fb_96eb1034",
@@ -105,6 +183,24 @@
       "writtenOn": "2023-03-07T21:43:43Z",
       "side": 1,
       "message": "I don\u0027t see any other changes in this block -- is `mut` needed?",
+      "revId": "a8c2df1668e9b84889ce056ee6ee9ef2d2920e6e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f6496182_13482910",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 1813,
+      "author": {
+        "id": 1963846
+      },
+      "writtenOn": "2023-03-08T10:13:42Z",
+      "side": 1,
+      "message": "Done. Owing to the refactoring in start_scan(), the filter_mut is avoided.",
+      "parentUuid": "cf8d13fb_96eb1034",
       "revId": "a8c2df1668e9b84889ce056ee6ee9ef2d2920e6e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }

@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "002c2f92_8346ade6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1963846
+      },
+      "writtenOn": "2023-03-08T10:13:42Z",
+      "side": 1,
+      "message": "Fixed the code per Abhishek and Sonny\u0027s comments. PTAL. Thanks!",
+      "revId": "59e1638e5324d8c68496fa6f2a02755f379d2729",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
