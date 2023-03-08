@@ -27,7 +27,7 @@ static_library("crypto_toolbox") {
 }
 
 source_set("nonstandard_codecs") {
-  if (true) {
+  if (use.bt_nonstandard_codecs) {
     sources = [
       "a2dp/a2dp_aac.cc",
       "a2dp/a2dp_aac_decoder_linux.cc",
@@ -37,9 +37,9 @@ source_set("nonstandard_codecs") {
       "a2dp/a2dp_vendor_aptx_encoder.cc",
       "a2dp/a2dp_vendor_aptx_hd.cc",
       "a2dp/a2dp_vendor_aptx_hd_encoder.cc",
-      # "a2dp/a2dp_vendor_ldac.cc",
-      # "a2dp/a2dp_vendor_ldac_decoder.cc",
-      # "a2dp/a2dp_vendor_ldac_encoder.cc",
+      "a2dp/a2dp_vendor_ldac.cc",
+      "a2dp/a2dp_vendor_ldac_decoder.cc",
+      "a2dp/a2dp_vendor_ldac_encoder.cc",
     ]
 
     include_dirs = [
@@ -51,12 +51,16 @@ source_set("nonstandard_codecs") {
       "//bt/system/utils/include",
       "//bt/system/embdrv/encoder_for_aptx/include",
       "//bt/system/embdrv/encoder_for_aptxhd/include",
+      "//bt/system/embdrv/libldac/inc",
+      "//bt/system/embdrv/libldac/abr/inc",
     ]
 
     deps = [
       "//bt/system/gd/rust/shim:init_flags_bridge_header",
       "//bt/system/embdrv/encoder_for_aptxhd:libaptxhd_enc",
       "//bt/system/embdrv/encoder_for_aptx:libaptx_enc",
+      "//bt/system/embdrv/libldac:libldacBT_enc",
+      "//bt/system/embdrv/libldac:libldacBT_abr",
     ]
 
     libs = [
