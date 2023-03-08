@@ -164,6 +164,30 @@
       },
       "revId": "812da6a5a1dc0fcdd61dc743003f4bd073308de1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9fe4810b_1a55e50f",
+        "filename": "system/rust/src/gatt/ffi.rs",
+        "patchSetId": 10
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-03-08T22:09:07Z",
+      "side": 1,
+      "message": "Added errors where they are first thrown. I am matching the behavior of legacy stack here for now - we can change this later without much risk ,since this only affects systemAPI users (so we can fix this before making this the default implementation).\n\nAlready tracked as part of b/201571634",
+      "parentUuid": "e3e4d298_09213a49",
+      "range": {
+        "startLine": 207,
+        "startChar": 21,
+        "endLine": 207,
+        "endChar": 24
+      },
+      "revId": "812da6a5a1dc0fcdd61dc743003f4bd073308de1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
