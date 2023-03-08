@@ -34,7 +34,6 @@ rust_defaults {
         "liblog_rust",
         "libanyhow",
         "libcxx",
-        "libtokio",
         "libbt_common",
         "libbitflags",
 
@@ -72,6 +71,9 @@ rust_ffi_static {
     name: "libbluetooth_core_rs",
     crate_name: "bluetooth_core",
     defaults: ["libbluetooth_core_rs_defaults"],
+    rustlibs: [
+        "libtokio",
+    ],
     target: {
         android: {
             rustlibs: [
@@ -86,6 +88,7 @@ rust_test_host {
     name: "libbluetooth_core_rs_test",
     defaults: ["libbluetooth_core_rs_defaults"],
     rustlibs: [
+        "libtokio_for_test",
         "libtokio_test",
     ],
 }
