@@ -22,6 +22,30 @@
       },
       "revId": "707047724d640a62d4225585c3d36ed37ddd34ea",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "91ae5f30_5eee8f85",
+        "filename": "system/stack/include/hci_error_code.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-03-08T22:47:26Z",
+      "side": 1,
+      "message": "There is already casting capabilities below.\n\n`to_hci_error_code`\n\nThe reason to not do this automatically is to force the developers (us) to update the code base with proper types, and not primitives, and to eventually allow the compiler to catch inconsistencies.",
+      "parentUuid": "ca9fc7d5_7b532b4a",
+      "range": {
+        "startLine": 83,
+        "startChar": 4,
+        "endLine": 83,
+        "endChar": 20
+      },
+      "revId": "707047724d640a62d4225585c3d36ed37ddd34ea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
