@@ -16,6 +16,24 @@
       "message": "Those 3 fields are for manufacturer identification from MAC address OUIs (mainly for classic). If you have random mac address here then we shouldn\u0027t upload them.",
       "revId": "23d3fd423bb5f41cb37d32a40b638d463405353f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "09ac14b2_05d3c268",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 947,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2023-03-08T18:42:10Z",
+      "side": 1,
+      "message": "Address here can be the resolved static address. I am not sure if we should upload them.",
+      "parentUuid": "da30ccbb_20f51d81",
+      "revId": "23d3fd423bb5f41cb37d32a40b638d463405353f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
