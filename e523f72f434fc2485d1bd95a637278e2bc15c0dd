@@ -39,6 +39,30 @@
       },
       "revId": "e523f72f434fc2485d1bd95a637278e2bc15c0dd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a80c10cb_942bf798",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/mapclient/MapClientStateMachineTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 424,
+      "author": {
+        "id": 1951737
+      },
+      "writtenOn": "2023-03-08T17:13:25Z",
+      "side": 1,
+      "message": "It is an SMS, but some SMS are formatted like email. Talked offline and discussed the use cases.",
+      "parentUuid": "807f338f_15c8733d",
+      "range": {
+        "startLine": 424,
+        "startChar": 16,
+        "endLine": 424,
+        "endChar": 41
+      },
+      "revId": "e523f72f434fc2485d1bd95a637278e2bc15c0dd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
