@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b29bf5f7_dfac17e3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1970925
+      },
+      "writtenOn": "2023-03-08T09:47:25Z",
+      "side": 1,
+      "message": "Hi Charlie,\n\nWe are submitting 3 HFP test cases for review. Kindly provide your inputs.\n\nThanks \u0026 Regards,\nDhananjaya",
+      "revId": "89ebc9aef7eba641a9787362a321b90a5a7b9f88",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
