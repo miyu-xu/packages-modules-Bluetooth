@@ -69,6 +69,24 @@
       "parentUuid": "a8b5f6b7_aa31f151",
       "revId": "412220ed038061753d4124eb7c47f41cb42726dd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fc15cb2b_ba36b61c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-03-08T18:23:08Z",
+      "side": 1,
+      "message": "Thanks for looping me in, Rahul.\n\n+1 to this comment, otherwise LGTM.",
+      "parentUuid": "9b5aad1c_aacaaed8",
+      "revId": "412220ed038061753d4124eb7c47f41cb42726dd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
