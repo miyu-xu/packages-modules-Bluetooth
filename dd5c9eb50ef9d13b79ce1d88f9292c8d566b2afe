@@ -35,6 +35,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "22e21e78_5af89636",
+        "filename": "system/rust/src/core/shared_box.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-03-08T21:53:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c3dd357a_811e513d",
+      "revId": "dd5c9eb50ef9d13b79ce1d88f9292c8d566b2afe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2f7e9664_4c8b6f05",
@@ -48,6 +66,30 @@
       "writtenOn": "2023-03-02T16:15:29Z",
       "side": 1,
       "message": "nit: should these be associated functions for the same reason that Rc\u003c\u003e gives ?\n(not clashing with T methods)",
+      "range": {
+        "startLine": 25,
+        "startChar": 11,
+        "endLine": 25,
+        "endChar": 20
+      },
+      "revId": "dd5c9eb50ef9d13b79ce1d88f9292c8d566b2afe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1ca7846a_87126514",
+        "filename": "system/rust/src/core/shared_box.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-03-08T21:53:51Z",
+      "side": 1,
+      "message": "I considered that, but since this is part of our crate, and we control both the container + contained types, I think it\u0027s OK since the experience is better.\n\nWe can always disambiguate with `.deref().downgrade()` if for some reason we need it.",
+      "parentUuid": "2f7e9664_4c8b6f05",
       "range": {
         "startLine": 25,
         "startChar": 11,
@@ -106,6 +148,24 @@
       "writtenOn": "2023-03-02T16:15:29Z",
       "side": 1,
       "message": "Again, mention that the upgraded Rc\u003c\u003e is not passed to the closure to prevent accidental propagation of the strong ownership.",
+      "revId": "dd5c9eb50ef9d13b79ce1d88f9292c8d566b2afe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6f8c120f_6de23df6",
+        "filename": "system/rust/src/core/shared_box.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-03-08T21:53:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f8c50b47_863dff75",
       "revId": "dd5c9eb50ef9d13b79ce1d88f9292c8d566b2afe",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -174,6 +234,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3c92cdd1_ca7ac5c0",
+        "filename": "system/rust/src/gatt/server/gatt_database.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 225,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-03-08T21:53:51Z",
+      "side": 1,
+      "message": "Oh yeah, that would work! Since SharedBox is part of our crate. That\u0027s awesome, I couldn\u0027t figure out how to do this, but I kept thinking that SharedBox was from a different crate.",
+      "parentUuid": "341a7abb_8b368ea1",
+      "revId": "dd5c9eb50ef9d13b79ce1d88f9292c8d566b2afe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "169c2d81_ea25f8a8",
@@ -187,6 +265,30 @@
       "writtenOn": "2023-03-02T16:15:29Z",
       "side": 1,
       "message": "nit: shouldn\u0027t be part of this change",
+      "range": {
+        "startLine": 33,
+        "startChar": 0,
+        "endLine": 48,
+        "endChar": 30
+      },
+      "revId": "dd5c9eb50ef9d13b79ce1d88f9292c8d566b2afe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d4ba1146_c65d4250",
+        "filename": "system/rust/src/packets.pdl",
+        "patchSetId": 7
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-03-08T21:53:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "169c2d81_ea25f8a8",
       "range": {
         "startLine": 33,
         "startChar": 0,
