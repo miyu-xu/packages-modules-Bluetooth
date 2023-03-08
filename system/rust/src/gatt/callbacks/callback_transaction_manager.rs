@@ -137,7 +137,7 @@ impl GattDatastore for CallbackTransactionManager {
 
         self.callbacks.on_server_read(conn_id, trans_id, handle, attr_type, 0, false);
 
-        match pending_transaction.wait(&self).await {
+        match pending_transaction.wait(self).await {
             Ok(value) => value,
             Err(PendingTransactionError::SenderDropped) => {
                 warn!("sender side of {trans_id:?} dropped / timed out while handling request - most likely this response will not be sent over the air");
@@ -163,7 +163,7 @@ impl GattDatastore for CallbackTransactionManager {
 
         self.callbacks.on_server_write(conn_id, trans_id, handle, attr_type, 0, true, false, data);
 
-        match pending_transaction.wait(&self).await {
+        match pending_transaction.wait(self).await {
             Ok(value) => value.map(|_| ()), // the data passed back is irrelevant for write
             // requests
             Err(PendingTransactionError::SenderDropped) => {
