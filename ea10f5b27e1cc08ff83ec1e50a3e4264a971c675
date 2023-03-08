@@ -51,6 +51,24 @@
       "message": "instead of this, please consider doing something like this:\n\nhttps://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/system/bta/le_audio/client.cc;l\u003d1338;drc\u003d5ca657189aac546af0aafaba11bbc9c5d889eab3?q\u003dle_audio%2Fclient.cc\n\nin the handler of the OnLeAudioDeviceSetStateTimeout.",
       "revId": "ea10f5b27e1cc08ff83ec1e50a3e4264a971c675",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cbe95610_6c3c34d8",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1363,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-03-08T11:52:51Z",
+      "side": 1,
+      "message": "Could you please elaborate more because I\u0027m not getting it.\n\nDevices/group which does not finish it\u0027s transition (group state \u003d\u003d STREAMING), -\u003e `group-\u003eGetState() \u003d\u003d\n              le_audio::types::AseState::BTA_LE_AUDIO_ASE_STATE_STREAMING` (group remains in ENABLING)\n              \nis treated as unresponsive. -\u003e https://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/system/bta/le_audio/client.cc;drc\u003d173d931ad4333434417441b0b86c304b5ef6df13;l\u003d465 (StopStream - is used on \"responsive\" group)\n\nso\n`groupStateMachine_-\u003eStopStream(group);`\n\nmakes no sense. OnLeAudioDeviceSetStateTimeout sets group to IDLE.\n\n`leAudioDevice-\u003eclosing_stream_for_disconnection_ \u003d true;`\nprobably will do nothing since Devices are disconnecting it\u0027s ACL due to timeout.",
+      "parentUuid": "135f8e53_d6cf07b1",
+      "revId": "ea10f5b27e1cc08ff83ec1e50a3e4264a971c675",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
