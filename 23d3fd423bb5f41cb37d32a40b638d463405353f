@@ -34,6 +34,24 @@
       "parentUuid": "da30ccbb_20f51d81",
       "revId": "23d3fd423bb5f41cb37d32a40b638d463405353f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0848047f_f23529cf",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 947,
+      "author": {
+        "id": 1581454
+      },
+      "writtenOn": "2023-03-08T18:58:17Z",
+      "side": 1,
+      "message": "Could you please make sure no random address is uploaded? If you are certain that address here will only be the resolved address then we can upload.\n\nIf you are not sure after research then can we leave this 3 fields empty?",
+      "parentUuid": "09ac14b2_05d3c268",
+      "revId": "23d3fd423bb5f41cb37d32a40b638d463405353f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
