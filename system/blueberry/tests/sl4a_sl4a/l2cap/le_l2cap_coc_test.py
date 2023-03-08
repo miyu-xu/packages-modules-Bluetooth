@@ -56,6 +56,33 @@ class LeL2capCoCTest(sl4a_sl4a_base_test.Sl4aSl4aBaseTestClass):
                     continue
 
         return address, irk
+        
+    def __get_dut_public_address_and_irk_from_bt_config(self):
+        # Pull IRK from SL4A dut side to pass in from SL4A cert side when scanning
+        bt_config_file_path = os.path.join(get_current_context().get_full_output_path(),
+                                           "CERT_%s_bt_config.conf" % self.dut.serial)
+        try:
+            self.dut.adb.pull(["/data/misc/bluedroid/bt_config.conf", bt_config_file_path])
+        except AdbError as error:
+            logging.error("Failed to pull SL4A dut BT config")
+            return False
+        logging.debug("Reading SL4A dut BT config")
+        with io.open(bt_config_file_path) as f:
+            for line in f.readlines():
+                stripped_line = line.strip()
+                if (stripped_line.startswith("Address")):
+                    address_fields = stripped_line.split(' ')
+                    # API currently requires public address to be capitalized
+                    address = address_fields[2].upper()
+                    logging.debug("Found dut address: %s" % address)
+                    continue
+                if (stripped_line.startswith("LE_LOCAL_KEY_IRK")):
+                    irk_fields = stripped_line.split(' ')
+                    irk = irk_fields[2]
+                    logging.debug("Found dut IRK: %s" % irk)
+                    continue
+
+        return address, irk
 
     def setup_class(self):
         super().setup_class()
@@ -80,6 +107,18 @@ class LeL2capCoCTest(sl4a_sl4a_base_test.Sl4aSl4aBaseTestClass):
         scan_result_addr = self.dut_scanner_.scan_for_name(advertising_name)
         assertThat(scan_result_addr).isNotNone()
         assertThat(scan_result_addr).isNotEqualTo(cert_public_address)
+
+        return scan_result_addr
+    # Scans for the dut device by name. We expect to get back a RPA.
+    def __scan_for_dut_by_name(self):
+        dut_public_address, irk = self.__get_dut_public_address_and_irk_from_bt_config()
+        self.dut_advertiser_.advertise_public_extended_pdu()
+        advertising_name = self.dut_advertiser_.get_local_advertising_name()
+
+        # Scan with name and verify we get back a scan result with the RPA
+        scan_result_addr = self.cert_scanner_.scan_for_name(advertising_name)
+        assertThat(scan_result_addr).isNotNone()
+        assertThat(scan_result_addr).isNotEqualTo(dut_public_address)
 
         return scan_result_addr
 
@@ -111,7 +150,7 @@ class LeL2capCoCTest(sl4a_sl4a_base_test.Sl4aSl4aBaseTestClass):
         self.dut_security_.generate_oob_data(Security.TRANSPORT_LE, wait_for_oob_data)
         self.__create_le_bond_oob_single_sided(wait_for_oob_data, wait_for_device_bonded, addr, addr_type)
 
-    def __test_le_l2cap_insecure_coc(self):
+    def test_le_l2cap_insecure_coc(self):
         logging.info("Testing insecure L2CAP CoC")
         cert_rpa = self.__scan_for_cert_by_name()
 
@@ -125,7 +164,7 @@ class LeL2capCoCTest(sl4a_sl4a_base_test.Sl4aSl4aBaseTestClass):
         self.cert_advertiser_.stop_advertising()
         self.cert_l2cap_.close_l2cap_le_coc_server()
 
-    def __test_le_l2cap_secure_coc(self):
+    def test_le_l2cap_secure_coc(self):
         logging.info("Testing secure L2CAP CoC")
         cert_rpa = self.__create_le_bond_oob_single_sided()
 
@@ -140,6 +179,36 @@ class LeL2capCoCTest(sl4a_sl4a_base_test.Sl4aSl4aBaseTestClass):
         self.cert_l2cap_.close_l2cap_le_coc_server()
         self.dut_security_.remove_all_bonded_devices()
         self.cert_security_.remove_all_bonded_devices()
+        
+    def test_le_l2cap_insecure_coc_server(self):
+        logging.info("Testing insecure L2CAP CoC server")
+        dut_rpa = self.__scan_for_dut_by_name()
+
+        # Listen on an insecure l2cap coc on the cert
+        psm = self.dut_l2cap_.listen_using_l2cap_le_coc(False)
+        self.cert_l2cap_.create_l2cap_le_coc(dut_rpa, psm, False)
+
+        # Cleanup
+        self.cert_scanner_.stop_scanning()
+        self.cert_l2cap_.close_l2cap_le_coc_client()
+        self.dut_advertiser_.stop_advertising()
+        self.dut_l2cap_.close_l2cap_le_coc_server()
+        
+    def __test_le_l2cap_secure_coc_server(self):
+        logging.info("Testing secure L2CAP CoC server")
+        dut_rpa = self.__create_le_bond_oob_single_sided()
+
+        # Listen on an secure l2cap coc on the cert
+        psm = self.dut_l2cap_.listen_using_l2cap_le_coc(True)
+        self.cert_l2cap_.create_l2cap_le_coc(dut_rpa, psm, True)
+
+        # Cleanup
+        self.cert_scanner_.stop_scanning()
+        self.cert_l2cap_.close_l2cap_le_coc_client()
+        self.dut_advertiser_.stop_advertising()
+        self.dut_l2cap_.close_l2cap_le_coc_server()
+        self.cert_security_.remove_all_bonded_devices()
+        self.dut_security_.remove_all_bonded_devices()
 
     def __test_le_l2cap_secure_coc_after_irk_scan(self):
         logging.info("Testing secure L2CAP CoC after IRK scan")

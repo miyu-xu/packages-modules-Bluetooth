@@ -9,12 +9,12 @@ TestBeds:
       forwarded_port: '8897'
       # Preferred server port used by SL4A on Android device
       server_port: '8897'
-      serial: 'DUT'
+      serial: '14201JECB00260'
     - label: cert
       # Preferred server port number forwarded from Android to the host PC
       # via adb for SL4A connections
       forwarded_port: '8899'
       # Preferred server port used by SL4A on Android device
       server_port: '8899'
-      serial: 'CERT'
+      serial: '14161FQCB00073'
 logpath: "/tmp/logs"

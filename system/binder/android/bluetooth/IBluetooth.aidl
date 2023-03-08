@@ -178,6 +178,9 @@ interface IBluetooth
 
     // For Socket
     @JavaPassthrough(annotation="@android.annotation.RequiresNoPermission")
+    oneway void logL2capcocServerConnection(in BluetoothDevice device, int port, boolean isSecured, int result, long connectionLatencyMillis, long timeoutMillis);
+
+    @JavaPassthrough(annotation="@android.annotation.RequiresNoPermission")
     IBluetoothSocketManager getSocketManager();
 
     @JavaPassthrough(annotation="@android.annotation.RequiresNoPermission")

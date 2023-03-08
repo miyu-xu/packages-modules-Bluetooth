@@ -123,14 +123,14 @@ public final class BluetoothSocket implements Closeable {
 
     // Defined in BluetoothProtoEnums.L2capCocConnectionResult of proto logging
     private static final int RESULT_L2CAP_CONN_UNKNOWN = 0;
-    private static final int RESULT_L2CAP_CONN_SUCCESS = 1;
+    /*package*/ static final int RESULT_L2CAP_CONN_SUCCESS = 1;
     private static final int RESULT_L2CAP_CONN_BlUETOOTH_SOCKET_CONNECTION_FAILED = 1000;
     private static final int RESULT_L2CAP_CONN_BlUETOOTH_SOCKET_CONNECTION_CLOSED = 1001;
     private static final int RESULT_L2CAP_CONN_BlUETOOTH_UNABLE_TO_SEND_RPC = 1002;
     private static final int RESULT_L2CAP_CONN_BlUETOOTH_NULL_BLUETOOTH_DEVICE = 1003;
     private static final int RESULT_L2CAP_CONN_BlUETOOTH_GET_SOCKET_MANAGER_FAILED = 1004;
     private static final int RESULT_L2CAP_CONN_BlUETOOTH_NULL_FILE_DESCRIPTOR = 1005;
-
+    /*package*/ static final int RESULT_L2CAP_CONN_SERVER_FAILURE = 2000;
     private final int mType;  /* one of TYPE_RFCOMM etc */
     private BluetoothDevice mDevice;    /* remote device */
     private String mAddress;    /* remote address */
@@ -537,6 +537,9 @@ public final class BluetoothSocket implements Closeable {
         mServiceName = name;
     }
 
+    /*package*/ boolean isAuth() {
+        return mAuth;
+    }
     /**
      * Attempt to connect to a remote device.
      * <p>This method will block until a connection is made or the connection
