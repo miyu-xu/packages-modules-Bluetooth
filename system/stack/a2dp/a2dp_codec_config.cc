@@ -32,8 +32,8 @@
 #if !defined(EXCLUDE_NONSTANDARD_CODECS)
 #include "a2dp_vendor_aptx.h"
 #include "a2dp_vendor_aptx_hd.h"
-#ifndef TARGET_FLOSS
 #include "a2dp_vendor_ldac.h"
+#ifndef TARGET_FLOSS
 #include "a2dp_vendor_opus.h"
 #endif
 #endif
@@ -132,12 +132,12 @@ A2dpCodecConfig* A2dpCodecConfig::createCodec(
     case BTAV_A2DP_CODEC_INDEX_SOURCE_APTX_HD:
       codec_config = new A2dpCodecConfigAptxHd(codec_priority);
       break;
+    case BTAV_A2DP_CODEC_INDEX_SOURCE_LDAC:
+      codec_config = new A2dpCodecConfigLdacSource(codec_priority);
+      break;
 #ifndef TARGET_FLOSS
     case BTAV_A2DP_CODEC_INDEX_SINK_AAC:
       codec_config = new A2dpCodecConfigAacSink(codec_priority);
-      break;
-    case BTAV_A2DP_CODEC_INDEX_SOURCE_LDAC:
-      codec_config = new A2dpCodecConfigLdacSource(codec_priority);
       break;
     case BTAV_A2DP_CODEC_INDEX_SINK_LDAC:
       codec_config = new A2dpCodecConfigLdacSink(codec_priority);
@@ -227,7 +227,6 @@ bool A2dpCodecConfig::getCodecSpecificConfig(tBT_A2DP_OFFLOAD* p_a2dp_offload) {
       p_a2dp_offload->codec_info[3] = (vendor_id & 0xFF000000) >> 24;
       p_a2dp_offload->codec_info[4] = (codec_id & 0x000000FF);
       p_a2dp_offload->codec_info[5] = (codec_id & 0x0000FF00) >> 8;
-#ifndef TARGET_FLOSS
       if (vendor_id == A2DP_LDAC_VENDOR_ID && codec_id == A2DP_LDAC_CODEC_ID) {
         if (codec_config_.codec_specific_1 == 0) {  // default is 0, ABR
           p_a2dp_offload->codec_info[6] =
@@ -259,7 +258,6 @@ bool A2dpCodecConfig::getCodecSpecificConfig(tBT_A2DP_OFFLOAD* p_a2dp_offload) {
         LOG_VERBOSE("%s: Ldac specific channelmode =%d", __func__,
                     p_a2dp_offload->codec_info[7]);
       }
-#endif
       break;
 #endif
     default:
@@ -551,9 +549,9 @@ int A2DP_IotGetPeerSinkCodecType(const uint8_t* p_codec_info) {
       } else if (codec_id == A2DP_APTX_HD_CODEC_ID_BLUETOOTH &&
                  vendor_id == A2DP_APTX_HD_VENDOR_ID) {
         peer_codec_type = IOT_CONF_VAL_A2DP_CODECTYPE_APTXHD;
-        // } else if (codec_id == A2DP_LDAC_CODEC_ID &&
-        //            vendor_id == A2DP_LDAC_VENDOR_ID) {
-        //   peer_codec_type = IOT_CONF_VAL_A2DP_CODECTYPE_LDAC;
+      } else if (codec_id == A2DP_LDAC_CODEC_ID &&
+                 vendor_id == A2DP_LDAC_VENDOR_ID) {
+          peer_codec_type = IOT_CONF_VAL_A2DP_CODECTYPE_LDAC;
       }
       break;
     }
