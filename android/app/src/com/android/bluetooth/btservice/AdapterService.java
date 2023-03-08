@@ -3077,8 +3077,11 @@ public class AdapterService extends Service {
         public void fetchRemoteUuids(BluetoothDevice device, int transport,
                 AttributionSource source, SynchronousResultReceiver receiver) {
             try {
-                receiver.send(fetchRemoteUuids(device, transport, source));
-            } catch (RuntimeException e) {
+                // SDP Initiated SDP fetch UUID request
+		receiver.send(fetchRemoteUuids(device, transport, source));
+                MetricsLogger.getInstance().cacheCount(
+                        BluetoothProtoEnums.SDP_FETCH_UUID_REQUEST, 1);
+	    } catch (RuntimeException e) {
                 receiver.propagateException(e);
             }
         }
