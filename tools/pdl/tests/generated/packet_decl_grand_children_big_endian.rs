@@ -27,6 +27,21 @@ pub enum Error {
     ImpossibleStructError,
     #[error("when parsing field {obj}.{field}, {value} is not a valid {type_} value")]
     InvalidEnumValueError { obj: String, field: String, value: u64, type_: String },
+    #[error("Found {len_trailing} trailing bytes when parsing {obj}::{child} from {data:x?}")]
+    TrailingDataError { obj: String, child: String, data: Vec<u8>, len_trailing: usize },
+}
+impl Error {
+    #[doc = r" Construct a new `TrailingDataError` variant."]
+    #[doc = r""]
+    #[doc = r" The data will be truncated to max 1024 bytes."]
+    fn new_trailing_data_error(obj: &str, child: &str, data: &[u8], len_trailing: usize) -> Error {
+        Error::TrailingDataError {
+            obj: obj.into(),
+            child: child.into(),
+            data: data[..std::cmp::min(data.len(), 1024)].into(),
+            len_trailing,
+        }
+    }
 }
 
 #[derive(Debug, Error)]
@@ -135,7 +150,12 @@ impl ParentData {
         let mut cell = Cell::new(bytes);
         let packet = Self::parse_inner(&mut cell)?;
         if !cell.get().is_empty() {
-            return Err(Error::InvalidPacketError);
+            return Err(Error::new_trailing_data_error(
+                "Parent",
+                "<parse_inner>",
+                bytes,
+                cell.get().len(),
+            ));
         }
         Ok(packet)
     }
@@ -186,7 +206,12 @@ impl ParentData {
                 let mut cell = Cell::new(payload);
                 let child_data = ChildData::parse_inner(&mut cell, bar, baz)?;
                 if !cell.get().is_empty() {
-                    return Err(Error::InvalidPacketError);
+                    return Err(Error::new_trailing_data_error(
+                        "Parent",
+                        "Child",
+                        payload,
+                        cell.get().len(),
+                    ));
                 }
                 ParentDataChild::Child(Arc::new(child_data))
             }
@@ -247,7 +272,12 @@ impl Parent {
         let mut cell = Cell::new(bytes);
         let packet = Self::parse_inner(&mut cell)?;
         if !cell.get().is_empty() {
-            return Err(Error::InvalidPacketError);
+            return Err(Error::new_trailing_data_error(
+                "Parent",
+                "<parse_inner>",
+                bytes,
+                cell.get().len(),
+            ));
         }
         Ok(packet)
     }
@@ -356,7 +386,12 @@ impl ChildData {
         let mut cell = Cell::new(bytes);
         let packet = Self::parse_inner(&mut cell, bar, baz)?;
         if !cell.get().is_empty() {
-            return Err(Error::InvalidPacketError);
+            return Err(Error::new_trailing_data_error(
+                "Child",
+                "<parse_inner>",
+                bytes,
+                cell.get().len(),
+            ));
         }
         Ok(packet)
     }
@@ -376,7 +411,12 @@ impl ChildData {
                 let mut cell = Cell::new(payload);
                 let child_data = GrandChildData::parse_inner(&mut cell, baz)?;
                 if !cell.get().is_empty() {
-                    return Err(Error::InvalidPacketError);
+                    return Err(Error::new_trailing_data_error(
+                        "Child",
+                        "GrandChild",
+                        payload,
+                        cell.get().len(),
+                    ));
                 }
                 ChildDataChild::GrandChild(Arc::new(child_data))
             }
@@ -436,7 +476,12 @@ impl Child {
         let mut cell = Cell::new(bytes);
         let packet = Self::parse_inner(&mut cell)?;
         if !cell.get().is_empty() {
-            return Err(Error::InvalidPacketError);
+            return Err(Error::new_trailing_data_error(
+                "Child",
+                "<parse_inner>",
+                bytes,
+                cell.get().len(),
+            ));
         }
         Ok(packet)
     }
@@ -560,7 +605,12 @@ impl GrandChildData {
         let mut cell = Cell::new(bytes);
         let packet = Self::parse_inner(&mut cell, baz)?;
         if !cell.get().is_empty() {
-            return Err(Error::InvalidPacketError);
+            return Err(Error::new_trailing_data_error(
+                "GrandChild",
+                "<parse_inner>",
+                bytes,
+                cell.get().len(),
+            ));
         }
         Ok(packet)
     }
@@ -572,7 +622,12 @@ impl GrandChildData {
                 let mut cell = Cell::new(payload);
                 let child_data = GrandGrandChildData::parse_inner(&mut cell)?;
                 if !cell.get().is_empty() {
-                    return Err(Error::InvalidPacketError);
+                    return Err(Error::new_trailing_data_error(
+                        "GrandChild",
+                        "GrandGrandChild",
+                        payload,
+                        cell.get().len(),
+                    ));
                 }
                 GrandChildDataChild::GrandGrandChild(Arc::new(child_data))
             }
@@ -638,7 +693,12 @@ impl GrandChild {
         let mut cell = Cell::new(bytes);
         let packet = Self::parse_inner(&mut cell)?;
         if !cell.get().is_empty() {
-            return Err(Error::InvalidPacketError);
+            return Err(Error::new_trailing_data_error(
+                "GrandChild",
+                "<parse_inner>",
+                bytes,
+                cell.get().len(),
+            ));
         }
         Ok(packet)
     }
@@ -770,7 +830,12 @@ impl GrandGrandChildData {
         let mut cell = Cell::new(bytes);
         let packet = Self::parse_inner(&mut cell)?;
         if !cell.get().is_empty() {
-            return Err(Error::InvalidPacketError);
+            return Err(Error::new_trailing_data_error(
+                "GrandGrandChild",
+                "<parse_inner>",
+                bytes,
+                cell.get().len(),
+            ));
         }
         Ok(packet)
     }
@@ -844,7 +909,12 @@ impl GrandGrandChild {
         let mut cell = Cell::new(bytes);
         let packet = Self::parse_inner(&mut cell)?;
         if !cell.get().is_empty() {
-            return Err(Error::InvalidPacketError);
+            return Err(Error::new_trailing_data_error(
+                "GrandGrandChild",
+                "<parse_inner>",
+                bytes,
+                cell.get().len(),
+            ));
         }
         Ok(packet)
     }
