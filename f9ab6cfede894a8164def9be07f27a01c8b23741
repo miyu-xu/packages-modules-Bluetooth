@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b00f0815_ce142df1",
+        "filename": "android/pandora/test/asha_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1937985
+      },
+      "writtenOn": "2023-03-08T23:52:25Z",
+      "side": 1,
+      "message": "dut_scan_for_asha",
+      "range": {
+        "startLine": 88,
+        "startChar": 8,
+        "endLine": 88,
+        "endChar": 21
+      },
+      "revId": "f9ab6cfede894a8164def9be07f27a01c8b23741",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "82176221_12eeb46d",
+        "filename": "android/pandora/test/asha_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1937985
+      },
+      "writtenOn": "2023-03-08T23:52:25Z",
+      "side": 1,
+      "message": "dut_connect_to_ref",
+      "range": {
+        "startLine": 106,
+        "startChar": 8,
+        "endLine": 106,
+        "endChar": 15
+      },
+      "revId": "f9ab6cfede894a8164def9be07f27a01c8b23741",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
