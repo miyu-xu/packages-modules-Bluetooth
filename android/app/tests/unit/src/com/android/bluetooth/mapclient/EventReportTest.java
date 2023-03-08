@@ -25,6 +25,7 @@ import static org.mockito.Mockito.mock;
 import androidx.test.filters.SmallTest;
 import androidx.test.runner.AndroidJUnit4;
 
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -32,6 +33,7 @@ import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Date;
 
 @SmallTest
 @RunWith(AndroidJUnit4.class)
@@ -58,6 +60,7 @@ public class EventReportTest {
         EventReport report = EventReport.fromStream(new DataInputStream(stream));
 
         assertThat(report.getType()).isEqualTo(type);
+        Assert.assertNull(report.getDateTime());
         assertThat(report.getHandle()).isEqualTo(handle);
         assertThat(report.getFolder()).isEqualTo(folder);
         assertThat(report.getOldFolder()).isEqualTo(oldFolder);
@@ -74,6 +77,37 @@ public class EventReportTest {
         EventReport report = EventReport.fromStream(new DataInputStream(stream));
 
         assertThat(report).isNull();
+    }
+
+    @Test
+    public void fromStreamWithDateTime() throws Exception {
+        EventReport.Type type = EventReport.Type.PARTICIPANT_CHAT_STATE_CHANGED;
+        String handle = "FFAB";
+        String dateTime = new ObexTime(new Date());
+        String folder = "test_folder";
+        String oldFolder = "old_folder";
+        Bmessage.Type msgType = Bmessage.Type.MMS;
+
+        final StringBuilder xml = new StringBuilder();
+        xml.append("<event\n");
+        xml.append("type=\"" + type.toString() + "\"\n");
+        xml.append("type=\"" + dateTime + "\"\n");
+        xml.append("handle=\"" + handle + "\"\n");
+        xml.append("folder=\"" + folder + "\"\n");
+        xml.append("old_folder=\"" + oldFolder + "\"\n");
+        xml.append("msg_type=\"" + msgType + "\"\n");
+        xml.append("/>\n");
+        ByteArrayInputStream stream = new ByteArrayInputStream(xml.toString().getBytes());
+
+        EventReport report = EventReport.fromStream(new DataInputStream(stream));
+
+        assertThat(report.getType()).isEqualTo(type);
+        assertThat(report.getDateTime()).isEqualTo(dateTime);
+        assertThat(report.getHandle()).isEqualTo(handle);
+        assertThat(report.getFolder()).isEqualTo(folder);
+        assertThat(report.getOldFolder()).isEqualTo(oldFolder);
+        assertThat(report.getMsgType()).isEqualTo(msgType);
+        assertThat(report.toString()).isNotEmpty();
     }
 
     @Test
