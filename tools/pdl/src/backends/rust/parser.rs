@@ -562,10 +562,8 @@ impl<'a> FieldParser<'a> {
             return;
         }
 
-        let child_ids = children
-            .iter()
-            .map(|child| format_ident!("{}", child.id().unwrap()))
-            .collect::<Vec<_>>();
+        let child_names = children.iter().map(|child| child.id().unwrap()).collect::<Vec<_>>();
+        let child_ids = child_names.iter().map(|name| format_ident!("{name}")).collect::<Vec<_>>();
         let child_ids_data = child_ids.iter().map(|ident| format_ident!("{ident}Data"));
 
         // Set of field names (sorted by name).
@@ -607,13 +605,14 @@ impl<'a> FieldParser<'a> {
             quote!(#(, #fields)*)
         });
         let packet_data_child = format_ident!("{}DataChild", self.packet_name);
+        let packet_name = self.packet_name;
         self.code.push(quote! {
             let child = match (#(#constrained_field_idents),*) {
                 #(#match_values => {
                     let mut cell = Cell::new(payload);
                     let child_data = #child_ids_data::parse_inner(&mut cell #child_parse_args)?;
                     if !cell.get().is_empty() {
-                        return Err(Error::InvalidPacketError);
+                        return Err(Error::new_trailing_data_error(#packet_name, #child_names, cell.get()));
                     }
                     #packet_data_child::#child_ids(Arc::new(child_data))
                 }),*

@@ -27,6 +27,20 @@ pub enum Error {
     ImpossibleStructError,
     #[error("when parsing field {obj}.{field}, {value} is not a valid {type_} value")]
     InvalidEnumValueError { obj: String, field: String, value: u64, type_: String },
+    # [error ("when found {} bytes of extra data when parsing {obj}::{child}: {data:#04x?}" , . data . len ())]
+    TrailingDataError { obj: String, child: String, data: Vec<u8> },
+}
+impl Error {
+    #[doc = r" Construct a new `TrailingDataError` variant."]
+    #[doc = r""]
+    #[doc = r" The data will be truncated to max 1024 bytes."]
+    fn new_trailing_data_error(obj: &str, child: &str, data: &[u8]) -> Error {
+        Error::TrailingDataError {
+            obj: obj.into(),
+            child: child.into(),
+            data: data[..std::cmp::min(data.len(), 1024)].into(),
+        }
+    }
 }
 
 #[derive(Debug, Error)]
@@ -136,7 +150,7 @@ impl FooData {
         let mut cell = Cell::new(bytes);
         let packet = Self::parse_inner(&mut cell)?;
         if !cell.get().is_empty() {
-            return Err(Error::InvalidPacketError);
+            return Err(Error::new_trailing_data_error("Foo", "<parse_inner>", cell.get()));
         }
         Ok(packet)
     }
@@ -179,7 +193,7 @@ impl FooData {
                 let mut cell = Cell::new(payload);
                 let child_data = BarData::parse_inner(&mut cell)?;
                 if !cell.get().is_empty() {
-                    return Err(Error::InvalidPacketError);
+                    return Err(Error::new_trailing_data_error("Foo", "Bar", cell.get()));
                 }
                 FooDataChild::Bar(Arc::new(child_data))
             }
@@ -187,7 +201,7 @@ impl FooData {
                 let mut cell = Cell::new(payload);
                 let child_data = BazData::parse_inner(&mut cell)?;
                 if !cell.get().is_empty() {
-                    return Err(Error::InvalidPacketError);
+                    return Err(Error::new_trailing_data_error("Foo", "Baz", cell.get()));
                 }
                 FooDataChild::Baz(Arc::new(child_data))
             }
@@ -248,7 +262,7 @@ impl Foo {
         let mut cell = Cell::new(bytes);
         let packet = Self::parse_inner(&mut cell)?;
         if !cell.get().is_empty() {
-            return Err(Error::InvalidPacketError);
+            return Err(Error::new_trailing_data_error("Foo", "<parse_inner>", cell.get()));
         }
         Ok(packet)
     }
@@ -326,7 +340,7 @@ impl BarData {
         let mut cell = Cell::new(bytes);
         let packet = Self::parse_inner(&mut cell)?;
         if !cell.get().is_empty() {
-            return Err(Error::InvalidPacketError);
+            return Err(Error::new_trailing_data_error("Bar", "<parse_inner>", cell.get()));
         }
         Ok(packet)
     }
@@ -387,7 +401,7 @@ impl Bar {
         let mut cell = Cell::new(bytes);
         let packet = Self::parse_inner(&mut cell)?;
         if !cell.get().is_empty() {
-            return Err(Error::InvalidPacketError);
+            return Err(Error::new_trailing_data_error("Bar", "<parse_inner>", cell.get()));
         }
         Ok(packet)
     }
@@ -463,7 +477,7 @@ impl BazData {
         let mut cell = Cell::new(bytes);
         let packet = Self::parse_inner(&mut cell)?;
         if !cell.get().is_empty() {
-            return Err(Error::InvalidPacketError);
+            return Err(Error::new_trailing_data_error("Baz", "<parse_inner>", cell.get()));
         }
         Ok(packet)
     }
@@ -524,7 +538,7 @@ impl Baz {
         let mut cell = Cell::new(bytes);
         let packet = Self::parse_inner(&mut cell)?;
         if !cell.get().is_empty() {
-            return Err(Error::InvalidPacketError);
+            return Err(Error::new_trailing_data_error("Baz", "<parse_inner>", cell.get()));
         }
         Ok(packet)
     }
