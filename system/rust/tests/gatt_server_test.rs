@@ -21,8 +21,9 @@ use bluetooth_core::{
     packets::{
         AttAttributeDataChild, AttBuilder, AttChild, AttErrorCode, AttErrorResponseBuilder,
         AttHandleValueConfirmationBuilder, AttHandleValueIndicationBuilder, AttOpcode,
-        AttReadRequestBuilder, AttReadResponseBuilder, AttWriteRequestBuilder,
-        AttWriteResponseBuilder, GattServiceDeclarationValueBuilder, Serializable,
+        AttReadByTypeRequestBuilder, AttReadRequestBuilder, AttReadResponseBuilder,
+        AttWriteRequestBuilder, AttWriteResponseBuilder, GattServiceDeclarationValueBuilder,
+        Serializable,
     },
     utils::packet::{build_att_data, build_att_view_or_crash},
 };
@@ -36,9 +37,9 @@ const TCB_IDX: TransportIndex = TransportIndex(1);
 const SERVER_ID: ServerId = ServerId(2);
 const CONN_ID: ConnectionId = ConnectionId::new(TCB_IDX, SERVER_ID);
 
-const SERVICE_HANDLE: AttHandle = AttHandle(3);
-const CHARACTERISTIC_HANDLE: AttHandle = AttHandle(5);
-const DESCRIPTOR_HANDLE: AttHandle = AttHandle(6);
+const SERVICE_HANDLE: AttHandle = AttHandle(6);
+const CHARACTERISTIC_HANDLE: AttHandle = AttHandle(8);
+const DESCRIPTOR_HANDLE: AttHandle = AttHandle(9);
 
 const SERVICE_TYPE: Uuid = Uuid::new(0x0102);
 const CHARACTERISTIC_TYPE: Uuid = Uuid::new(0x0103);
@@ -352,4 +353,35 @@ fn test_write_to_descriptor() {
             written_data.view().get_raw_payload().collect::<Vec<_>>()
         )
     })
+}
+
+#[test]
+fn test_read_device_name() {
+    start_test(async move {
+        // arrange
+        let (mut gatt, mut transport_rx) = start_gatt_module();
+        create_server_and_open_connection(&mut gatt);
+
+        // act
+        gatt.get_bearer(CONN_ID).unwrap().handle_packet(
+            build_att_view_or_crash(AttReadByTypeRequestBuilder {
+                starting_handle: AttHandle(1).into(),
+                ending_handle: AttHandle(0xFFFF).into(),
+                attribute_type: Uuid::new(0x2A00).into(), // Device Name
+            })
+            .view(),
+        );
+        let (tcb_idx, resp) = transport_rx.recv().await.unwrap();
+
+        // assert
+        assert_eq!(tcb_idx, TCB_IDX);
+        let AttChild::AttReadByTypeResponse(resp) = resp._child_ else {
+            unreachable!("{resp:?}");
+        };
+        assert_eq!(resp.data.len(), 1);
+        assert_eq!(
+            resp.data[0].value._child_.to_vec().unwrap(),
+            "Android Phone".as_bytes().to_vec()
+        );
+    });
 }
