@@ -54,6 +54,22 @@ pub fn generate(path: &Path) -> String {
             ImpossibleStructError,
             #[error("when parsing field {obj}.{field}, {value} is not a valid {type_} value")]
             InvalidEnumValueError { obj: String, field: String, value: u64, type_: String },
+            #[error("Found {len_trailing} trailing bytes when parsing {obj}::{child} from {data:x?}")]
+            TrailingDataError { obj: String, child: String, data: Vec<u8>, len_trailing: usize },
+        }
+
+        impl Error {
+            /// Construct a new `TrailingDataError` variant.
+            ///
+            /// The data will be truncated to max 1024 bytes.
+            fn new_trailing_data_error(obj: &str, child: &str, data: &[u8], len_trailing: usize) -> Error {
+                Error::TrailingDataError {
+                    obj: obj.into(),
+                    child: child.into(),
+                    data: data[..std::cmp::min(data.len(), 1024)].into(),
+                    len_trailing,
+                }
+            }
         }
     });
 
