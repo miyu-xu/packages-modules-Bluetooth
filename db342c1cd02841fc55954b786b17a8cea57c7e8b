@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cbe4cf99_2884a716",
+        "filename": "system/stack/smp/smp_l2c.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2023-03-08T04:11:29Z",
+      "side": 1,
+      "message": "This is a case where a remote device initiated the pairing while the local device was already pairing with another device.\nOriginal logic was ignoring the pairing request which would have left the remote device waiting for 30 seconds before the SMP timeout leads to disconnection. BT stack likes to initiate only one pairing at a time. But I am not sure we can reliably avoid this scenario altogether.\nIdeally, in such a case the incoming pairing request should be saved and processed later when the current pairing completes. However that may be a much bigger change. The least we can do at present is to log it. However fixing that problem is not the intention of this change.\n\nThe new change ensures that the SMP is no longer a stakeholder for the link. That means that the SMP would not hold up the link if ATT and other stakeholders also withdraw from the link.\nHowever, in this case SMP would not be a stakeholder in the link anyway if SMP pairing was not already going on for the link. SMP becomes a stakeholder in the link when it is pairing. See https://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/system/stack/smp/smp_api.cc;drc\u003d5ca657189aac546af0aafaba11bbc9c5d889eab3;l\u003d164\n\nSo I am not sure what this change will achieve. I am not sure how it relates to the problem described in the bug. There is no evidence presented of the issue and solution proposed.",
+      "revId": "db342c1cd02841fc55954b786b17a8cea57c7e8b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
