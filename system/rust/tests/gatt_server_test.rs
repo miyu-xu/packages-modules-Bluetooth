@@ -46,20 +46,19 @@ const DESCRIPTOR_TYPE: Uuid = Uuid::new(0x0104);
 
 const DATA: [u8; 4] = [1, 2, 3, 4];
 
-fn start_gatt_module() -> (
-    gatt::server::GattModule,
-    UnboundedReceiver<MockDatastoreEvents>,
-    UnboundedReceiver<(TransportIndex, AttBuilder)>,
-) {
-    let (datastore, data_rx) = MockDatastore::new();
+fn start_gatt_module() -> (gatt::server::GattModule, UnboundedReceiver<(TransportIndex, AttBuilder)>)
+{
     let (transport, transport_rx) = MockAttTransport::new();
-    let gatt = GattModule::new(Rc::new(datastore), Rc::new(transport));
+    let gatt = GattModule::new(Rc::new(transport));
 
-    (gatt, data_rx, transport_rx)
+    (gatt, transport_rx)
 }
 
-fn create_server_and_open_connection(gatt: &mut GattModule) {
+fn create_server_and_open_connection(
+    gatt: &mut GattModule,
+) -> UnboundedReceiver<MockDatastoreEvents> {
     gatt.open_gatt_server(SERVER_ID).unwrap();
+    let (datastore, data_rx) = MockDatastore::new();
     gatt.register_gatt_service(
         SERVER_ID,
         GattServiceWithHandle {
@@ -78,16 +77,18 @@ fn create_server_and_open_connection(gatt: &mut GattModule) {
                 }],
             }],
         },
+        Rc::new(datastore),
     )
     .unwrap();
     gatt.on_le_connect(CONN_ID).unwrap();
+    data_rx
 }
 
 #[test]
 fn test_service_read() {
     start_test(async move {
         // arrange
-        let (mut gatt, _, mut transport_rx) = start_gatt_module();
+        let (mut gatt, mut transport_rx) = start_gatt_module();
 
         create_server_and_open_connection(&mut gatt);
 
@@ -121,7 +122,7 @@ fn test_service_read() {
 fn test_server_closed_while_connected() {
     start_test(async move {
         // arrange: set up a connection to a closed server
-        let (mut gatt, _, mut transport_rx) = start_gatt_module();
+        let (mut gatt, mut transport_rx) = start_gatt_module();
 
         // open a server and connect
         create_server_and_open_connection(&mut gatt);
@@ -154,11 +155,11 @@ fn test_server_closed_while_connected() {
 fn test_characteristic_read() {
     start_test(async move {
         // arrange
-        let (mut gatt, mut data_rx, mut transport_rx) = start_gatt_module();
+        let (mut gatt, mut transport_rx) = start_gatt_module();
 
         let data = AttAttributeDataChild::RawData(DATA.into());
 
-        create_server_and_open_connection(&mut gatt);
+        let mut data_rx = create_server_and_open_connection(&mut gatt);
 
         // act
         gatt.get_bearer(CONN_ID).unwrap().handle_packet(
@@ -197,11 +198,11 @@ fn test_characteristic_read() {
 fn test_characteristic_write() {
     start_test(async move {
         // arrange
-        let (mut gatt, mut data_rx, mut transport_rx) = start_gatt_module();
+        let (mut gatt, mut transport_rx) = start_gatt_module();
 
         let data = AttAttributeDataChild::RawData(DATA.into());
 
-        create_server_and_open_connection(&mut gatt);
+        let mut data_rx = create_server_and_open_connection(&mut gatt);
 
         // act
         gatt.get_bearer(CONN_ID).unwrap().handle_packet(
@@ -246,7 +247,7 @@ fn test_characteristic_write() {
 fn test_send_indication() {
     start_test(async move {
         // arrange
-        let (mut gatt, _, mut transport_rx) = start_gatt_module();
+        let (mut gatt, mut transport_rx) = start_gatt_module();
 
         let data = AttAttributeDataChild::RawData(DATA.into());
 
@@ -284,7 +285,7 @@ fn test_send_indication() {
 fn test_send_indication_and_disconnect() {
     start_test(async move {
         // arrange
-        let (mut gatt, _, mut transport_rx) = start_gatt_module();
+        let (mut gatt, mut transport_rx) = start_gatt_module();
 
         create_server_and_open_connection(&mut gatt);
 
@@ -308,11 +309,11 @@ fn test_send_indication_and_disconnect() {
 fn test_write_to_descriptor() {
     start_test(async move {
         // arrange
-        let (mut gatt, mut data_rx, mut transport_rx) = start_gatt_module();
+        let (mut gatt, mut transport_rx) = start_gatt_module();
 
         let data = AttAttributeDataChild::RawData(DATA.into());
 
-        create_server_and_open_connection(&mut gatt);
+        let mut data_rx = create_server_and_open_connection(&mut gatt);
 
         // act
         gatt.get_bearer(CONN_ID).unwrap().handle_packet(
