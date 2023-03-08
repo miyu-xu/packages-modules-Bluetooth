@@ -16,6 +16,24 @@
       "message": "I think we could move it outside this else. Otherwise looks good.",
       "revId": "33391a1a4340e58291f3283631f5b216b22c2c22",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a29f31ad_fa4146a8",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-03-08T12:02:42Z",
+      "side": 1,
+      "message": "It\u0027s ok now ?",
+      "parentUuid": "47829fd5_600692ab",
+      "revId": "33391a1a4340e58291f3283631f5b216b22c2c22",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
