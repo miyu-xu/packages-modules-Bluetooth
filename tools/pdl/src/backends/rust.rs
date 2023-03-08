@@ -261,7 +261,9 @@ fn generate_data_struct(
                 let mut cell = Cell::new(#span);
                 let packet = Self::parse_inner(&mut cell #(, #parse_arg_names)*)?;
                 if !cell.get().is_empty() {
-                    return Err(Error::InvalidPacketError);
+                    return Err(Error::new_trailing_data_error(
+                        #id, "<parse_inner>", #span, cell.get().len(),
+                    ));
                 }
                 Ok(packet)
             }
@@ -594,7 +596,9 @@ fn generate_packet_decl(
                 let mut cell = Cell::new(#span);
                 let packet = Self::parse_inner(&mut cell)?;
                 if !cell.get().is_empty() {
-                    return Err(Error::InvalidPacketError);
+                    return Err(Error::new_trailing_data_error(
+                        #id, "<parse_inner>", #span, cell.get().len(),
+                    ));
                 }
                 Ok(packet)
             }
