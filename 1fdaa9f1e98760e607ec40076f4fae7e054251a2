@@ -16,6 +16,24 @@
       "message": "Now that these are gone, how do you protect against uninitialized interfaces? Do we need `gd/rust/linux/stack` to do the checks?",
       "revId": "1fdaa9f1e98760e607ec40076f4fae7e054251a2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4b7cc4eb_48d5c5e4",
+        "filename": "system/gd/rust/topshim/src/profiles/hid_host.rs",
+        "patchSetId": 8
+      },
+      "lineNbr": 226,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2023-03-08T07:09:26Z",
+      "side": 0,
+      "message": "Now I think that this should still be protected because we create a small window that the hh is disabled.",
+      "parentUuid": "e3e68dd6_a9f30d4c",
+      "revId": "1fdaa9f1e98760e607ec40076f4fae7e054251a2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
