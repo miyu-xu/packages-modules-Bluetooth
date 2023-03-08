@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "011a4ccb_c843564b",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 354,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-03-08T07:34:50Z",
+      "side": 1,
+      "message": "yes, but this function is called when there are active devices. so we should be good. We want to skip expired devices.",
+      "parentUuid": "dcf68f2b_7706d29b",
+      "range": {
+        "startLine": 354,
+        "startChar": 10,
+        "endLine": 354,
+        "endChar": 23
+      },
+      "revId": "b83d0d828c59c9c39322916836830645860156d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "44c0ecad_a9030bc7",
@@ -60,6 +84,30 @@
       "writtenOn": "2023-03-07T22:25:19Z",
       "side": 1,
       "message": "We don\u0027t need the device anymore, right?",
+      "range": {
+        "startLine": 2551,
+        "startChar": 52,
+        "endLine": 2551,
+        "endChar": 74
+      },
+      "revId": "b83d0d828c59c9c39322916836830645860156d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cd40df56_315462fc",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 2551,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-03-08T07:34:50Z",
+      "side": 1,
+      "message": "will fix. Thanks",
+      "parentUuid": "5ac0b713_23b4e32d",
       "range": {
         "startLine": 2551,
         "startChar": 52,
