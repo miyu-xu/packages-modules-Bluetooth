@@ -113,8 +113,11 @@ final class RemoteDevices {
                 case MESSAGE_UUID_INTENT:
                     BluetoothDevice device = (BluetoothDevice) msg.obj;
                     if (device != null) {
+                      // SDP Sending delayed SDP UUID intent
                         DeviceProperties prop = getDeviceProperties(device);
                         sendUuidIntent(device, prop);
+                    } else {
+                      // SDP Not sending delayed SDP UUID intent b/c device is not there
                     }
                     break;
             }
@@ -695,6 +698,7 @@ final class RemoteDevices {
         Utils.sendBroadcast(mAdapterService, intent, BLUETOOTH_CONNECT,
                 Utils.getTempAllowlistBroadcastOptions());
 
+        // SDP Sent UUID Intent here
         //Remove the outstanding UUID request
         mSdpTracker.remove(device);
     }
@@ -898,9 +902,11 @@ final class RemoteDevices {
                         case AbstractionLayer.BT_PROPERTY_UUIDS:
                             final ParcelUuid[] newUuids = Utils.byteArrayToUuid(val);
                             if (areUuidsEqual(newUuids, deviceProperties.getUuids())) {
+                                // SDP Skip adding properties to property cache if equal
                                 debugLog( "Skip uuids update for " + bdDevice.getAddress());
                                 break;
                             }
+                            // SDP Adding new/different properties to property cache
                             deviceProperties.setUuids(newUuids);
                             if (mAdapterService.getState() == BluetoothAdapter.STATE_ON) {
                                 mAdapterService.deviceUuidUpdated(bdDevice);
@@ -1168,6 +1174,7 @@ final class RemoteDevices {
 
     void fetchUuids(BluetoothDevice device, int transport) {
         if (mSdpTracker.contains(device)) {
+            // SDP Skip fetch UUIDs if cached
             return;
         }
 
@@ -1175,6 +1182,7 @@ final class RemoteDevices {
         DeviceProperties deviceProperties = getDeviceProperties(device);
         if (deviceProperties != null && deviceProperties.isBonding()
                 && getDeviceProperties(device).getUuids() == null) {
+            // SDP Skip fetch UUIDs due to bonding
             return;
         }
 
@@ -1186,6 +1194,7 @@ final class RemoteDevices {
 
         // Uses cached UUIDs if we are bonding. If not, we fetch the UUIDs with SDP.
         if (deviceProperties == null || !deviceProperties.isBonding()) {
+            // SDP Invoked native code to spin up SDP cycle
             mAdapterService.getRemoteServicesNative(Utils.getBytesFromAddress(device.getAddress()),
                     transport);
         }
