@@ -95,6 +95,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7c568619_1c55cfde",
+        "filename": "system/rust/src/gatt/server/att_server_bearer.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-03-08T22:11:24Z",
+      "side": 1,
+      "message": "See the comment in mtu.rs",
+      "parentUuid": "bf33e9a1_0ce37a34",
+      "range": {
+        "startLine": 103,
+        "startChar": 0,
+        "endLine": 103,
+        "endChar": 80
+      },
+      "revId": "83add6543b34264890bc4f788575c89f7ced5dd1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "601e463f_faee4bb2",
