@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6549ce45_a02e9013",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioBroadcasterNativeInterface.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-03-08T02:14:28Z",
+      "side": 1,
+      "message": "byte[] qualityArray, byte[][] metadataArray",
+      "range": {
+        "startLine": 179,
+        "startChar": 57,
+        "endLine": 179,
+        "endChar": 78
+      },
+      "revId": "988cc53b8e1a517ce944c13d064615a981e79aa1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "72f16d58_4d54642f",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 742,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-03-08T02:14:28Z",
+      "side": 1,
+      "message": "List\u003cbyte[]\u003e",
+      "range": {
+        "startLine": 742,
+        "startChar": 8,
+        "endLine": 742,
+        "endChar": 16
+      },
+      "revId": "988cc53b8e1a517ce944c13d064615a981e79aa1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8e53026b_ce5bdaf9",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 744,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-03-08T02:14:28Z",
+      "side": 1,
+      "message": "for (BluetoothLeAudioContentMetadata metadata : settings) \n\nor \n\nuse stream()",
+      "range": {
+        "startLine": 744,
+        "startChar": 8,
+        "endLine": 744,
+        "endChar": 48
+      },
+      "revId": "988cc53b8e1a517ce944c13d064615a981e79aa1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "66f9a892_dd2c884f",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 758,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-03-08T02:14:28Z",
+      "side": 1,
+      "message": "Could we split quality into a separate byte array?",
+      "range": {
+        "startLine": 751,
+        "startChar": 12,
+        "endLine": 758,
+        "endChar": 13
+      },
+      "revId": "988cc53b8e1a517ce944c13d064615a981e79aa1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e1b36af6_0919245d",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 790,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-03-08T02:14:28Z",
+      "side": 1,
+      "message": "byte[][] settingArray \u003d settingsList.stream()\n  .map(setting -\u003e setting.getContentMetadata().getRawMetadata())\n  .toArray(Byte[]::new)\nbyte[] qualityArray \u003d settingsList.stream()\n  .map(setting -\u003e (byte) setting.getPreferredQuality())\n  .toArray(Byte[]::new)",
+      "range": {
+        "startLine": 790,
+        "startChar": 63,
+        "endLine": 790,
+        "endChar": 75
+      },
+      "revId": "988cc53b8e1a517ce944c13d064615a981e79aa1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9cd3c6a4_30d95ede",
+        "filename": "system/bta/le_audio/broadcaster/broadcaster.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 267,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-03-08T02:14:28Z",
+      "side": 1,
+      "message": "for (const std::vector\u003cuint8_t\u003e\u0026 metadata : subgroup_metadata)",
+      "range": {
+        "startLine": 267,
+        "startChar": 4,
+        "endLine": 267,
+        "endChar": 59
+      },
+      "revId": "988cc53b8e1a517ce944c13d064615a981e79aa1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4ef29fff_2dd1ec66",
+        "filename": "system/bta/le_audio/broadcaster/broadcaster.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 345,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-03-08T02:14:28Z",
+      "side": 1,
+      "message": "same as above",
+      "range": {
+        "startLine": 345,
+        "startChar": 0,
+        "endLine": 345,
+        "endChar": 59
+      },
+      "revId": "988cc53b8e1a517ce944c13d064615a981e79aa1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
