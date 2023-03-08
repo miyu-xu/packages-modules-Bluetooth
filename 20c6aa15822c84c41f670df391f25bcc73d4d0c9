@@ -22,6 +22,30 @@
       },
       "revId": "20c6aa15822c84c41f670df391f25bcc73d4d0c9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "78ac34d9_c1fd39a5",
+        "filename": "tools/rootcanal/model/hci/hci_sniffer.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-03-08T23:46:17Z",
+      "side": 1,
+      "message": "The implementation in wireshark does not match the doc on tcpdump.\nThis change uses the wireshark values.",
+      "parentUuid": "d6bfdc8a_10ade481",
+      "range": {
+        "startLine": 31,
+        "startChar": 2,
+        "endLine": 31,
+        "endChar": 20
+      },
+      "revId": "20c6aa15822c84c41f670df391f25bcc73d4d0c9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
