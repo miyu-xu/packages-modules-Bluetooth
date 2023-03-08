@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "10200b55_a16c2305",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1874901
+      },
+      "writtenOn": "2023-03-08T23:20:57Z",
+      "side": 1,
+      "message": "Something that may need to be addressed: The Floss build fails.\n\nhttps://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/2470982?filter\u003dfloss\u0026checksResultsFilter\u003dfloss\u0026checksRunsSelected\u003dfloss/flossbuild_gcp_presubmit,floss_build:aosp-master-floss\u0026tab\u003dchecks\n\nOn the checks page/tab, open the detailed link: `more detailed logs are available at ...` and click \"Download\" to view the detailed build logs.",
+      "revId": "d5a8ae3186b2382457f5221dccb2a42ed8f3dbb5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
