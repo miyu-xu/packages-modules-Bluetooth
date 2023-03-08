@@ -4577,6 +4577,9 @@ static void btm_sec_auth_timer_timeout(void* data) {
     LOG_INFO("%s: invalid device or not found", __func__);
   } else if (btm_dev_authenticated(p_dev_rec)) {
     LOG_INFO("%s: device is already authenticated", __func__);
+  } else if (BTM_IsAclConnectionUpAndHandleValid(p_dev_rec->bd_addr,
+                                                 BT_TRANSPORT_BR_EDR)) {
+    LOG_INFO("%s: device is not connected", __func__);
   } else {
     LOG_INFO("%s: starting authentication", __func__);
     btsnd_hcic_auth_request(p_dev_rec->hci_handle);
