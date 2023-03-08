@@ -16,6 +16,24 @@
       "message": "Hi @aryarahul@google.com\nAs Le dri, can you review this change ? \n\nThanks you very much !",
       "revId": "412220ed038061753d4124eb7c47f41cb42726dd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3c005a67_478e9dd4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1306903
+      },
+      "writtenOn": "2023-03-08T03:03:54Z",
+      "side": 1,
+      "message": "@aryarahul@google.com friendly ping",
+      "parentUuid": "084cbac9_e3263afe",
+      "revId": "412220ed038061753d4124eb7c47f41cb42726dd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
