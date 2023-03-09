@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fccd2c08_a904cf1d",
+        "filename": "system/gd/rust/topshim/src/btif.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 821,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-03-09T19:36:29Z",
+      "side": 1,
+      "message": "Prefer `RawAddress::new()` or `RawAddress::default()`. We shouldn\u0027t use unsafe when it\u0027s avoidable.\n\nempty address is just `[0; 6]` too....",
+      "revId": "5d113f520393558d4d9705cc6115a3ec3885e4e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
