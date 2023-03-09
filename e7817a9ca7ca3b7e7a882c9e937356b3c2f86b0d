@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "46ee1c51_b2b554b2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-03-09T09:34:15Z",
+      "side": 1,
+      "message": "Hi Yuyang, can you review this hfp (client) change  ?",
+      "revId": "e7817a9ca7ca3b7e7a882c9e937356b3c2f86b0d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
