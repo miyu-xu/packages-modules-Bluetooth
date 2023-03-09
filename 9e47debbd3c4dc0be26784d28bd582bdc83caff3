@@ -16,6 +16,24 @@
       "message": "I don\u0027t see any comments in the bug that make me think this CL is at fault.\n\n\"I tried a few things and all of them seemed to work.\", but I don\u0027t see this revert on the list.  If deregistering on the main thread works, should we do that instead?  It seems reasonable to set the registered pointer to null when deregistering.",
       "revId": "9e47debbd3c4dc0be26784d28bd582bdc83caff3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f4b201e5_3f0f4055",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-03-09T17:09:45Z",
+      "side": 1,
+      "message": "I agree...the logic seems sound, and if reverting this \"fixes\" another bug, I suspect the true culprit is somewhere else.\n\nQuick check of the bug seems that the on/off sequence there is no sync\u0027ing, so previous behavior is that it is lucky and happens to work b/c of the static memory initialization.\n\nHence, the \u0027off\u0027 request never really turns it off, and previous behavior is assumed to work but there was no validation `off` occurred.",
+      "parentUuid": "081f0445_beef0992",
+      "revId": "9e47debbd3c4dc0be26784d28bd582bdc83caff3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
