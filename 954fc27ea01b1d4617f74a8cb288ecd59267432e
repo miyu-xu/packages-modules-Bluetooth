@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "30560f39_f5ec7de0",
+        "filename": "system/bta/le_audio/broadcaster/broadcaster.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 314,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2023-03-09T12:42:19Z",
+      "side": 1,
+      "message": "Handling different qualities for each subgroup is left for future, right?",
+      "range": {
+        "startLine": 314,
+        "startChar": 33,
+        "endLine": 314,
+        "endChar": 45
+      },
+      "revId": "954fc27ea01b1d4617f74a8cb288ecd59267432e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5b4c72a5_4914e21b",
+        "filename": "system/bta/le_audio/broadcaster/broadcaster_test.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 316,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2023-03-09T12:42:19Z",
+      "side": 1,
+      "message": "Can we also make sure the number of subgroups is correct?",
+      "range": {
+        "startLine": 316,
+        "startChar": 53,
+        "endLine": 316,
+        "endChar": 69
+      },
+      "revId": "954fc27ea01b1d4617f74a8cb288ecd59267432e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
