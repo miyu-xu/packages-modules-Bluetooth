@@ -16,6 +16,29 @@
       "message": "@rahulsabnis@google.com Can you review this change as CTKD area owner ?",
       "revId": "3f01b683d05d0e69189a72bf8fdc35f35bca0ea8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9cea4bb2_b2f0b8e2",
+        "filename": "system/stack/btm/btm_ble.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-03-09T18:42:00Z",
+      "side": 1,
+      "message": "nit: a couple typos (parameters, decimal)",
+      "range": {
+        "startLine": 67,
+        "startChar": 11,
+        "endLine": 67,
+        "endChar": 22
+      },
+      "revId": "3f01b683d05d0e69189a72bf8fdc35f35bca0ea8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
