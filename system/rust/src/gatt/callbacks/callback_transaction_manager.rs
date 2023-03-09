@@ -6,7 +6,7 @@ use tokio::{sync::oneshot, time::timeout};
 
 use crate::{
     gatt::{
-        ids::{AttHandle, ConnectionId, TransactionId},
+        ids::{AttHandle, ConnectionId, ServerId, TransactionId, TransportIndex},
         GattCallbacks,
     },
     packets::{AttAttributeDataChild, AttAttributeDataView, AttErrorCode},
@@ -110,6 +110,11 @@ impl CallbackTransactionManager {
             Err(CallbackResponseError::NonExistentTransaction(trans_id))
         }
     }
+
+    /// Get an impl GattDatastore for a particular server
+    pub fn get_datastore(self: Rc<Self>, server_id: ServerId) -> impl GattDatastore {
+        GattDatastoreImpl { callback_transaction_manager: self.clone(), server_id }
+    }
 }
 
 impl PendingTransactionsState {
@@ -123,21 +128,33 @@ impl PendingTransactionsState {
     }
 }
 
+struct GattDatastoreImpl {
+    callback_transaction_manager: Rc<CallbackTransactionManager>,
+    server_id: ServerId,
+}
+
 #[async_trait(?Send)]
-impl GattDatastore for CallbackTransactionManager {
+impl GattDatastore for GattDatastoreImpl {
     async fn read(
         &self,
-        conn_id: ConnectionId,
+        tcb_idx: TransportIndex,
         handle: AttHandle,
         attr_type: AttributeBackingType,
     ) -> Result<AttAttributeDataChild, AttErrorCode> {
-        let pending_transaction =
-            self.pending_transactions.borrow_mut().start_new_transaction(conn_id);
+        let conn_id = ConnectionId::new(tcb_idx, self.server_id);
+
+        let pending_transaction = self
+            .callback_transaction_manager
+            .pending_transactions
+            .borrow_mut()
+            .start_new_transaction(conn_id);
         let trans_id = pending_transaction.trans_id;
 
-        self.callbacks.on_server_read(conn_id, trans_id, handle, attr_type, 0, false);
+        self.callback_transaction_manager
+            .callbacks
+            .on_server_read(conn_id, trans_id, handle, attr_type, 0, false);
 
-        match pending_transaction.wait(self).await {
+        match pending_transaction.wait(&self.callback_transaction_manager).await {
             Ok(value) => value,
             Err(PendingTransactionError::SenderDropped) => {
                 warn!("sender side of {trans_id:?} dropped / timed out while handling request - most likely this response will not be sent over the air");
@@ -152,18 +169,25 @@ impl GattDatastore for CallbackTransactionManager {
 
     async fn write(
         &self,
-        conn_id: ConnectionId,
+        tcb_idx: TransportIndex,
         handle: AttHandle,
         attr_type: AttributeBackingType,
         data: AttAttributeDataView<'_>,
     ) -> Result<(), AttErrorCode> {
-        let pending_transaction =
-            self.pending_transactions.borrow_mut().start_new_transaction(conn_id);
+        let conn_id = ConnectionId::new(tcb_idx, self.server_id);
+
+        let pending_transaction = self
+            .callback_transaction_manager
+            .pending_transactions
+            .borrow_mut()
+            .start_new_transaction(conn_id);
         let trans_id = pending_transaction.trans_id;
 
-        self.callbacks.on_server_write(conn_id, trans_id, handle, attr_type, 0, true, false, data);
+        self.callback_transaction_manager
+            .callbacks
+            .on_server_write(conn_id, trans_id, handle, attr_type, 0, true, false, data);
 
-        match pending_transaction.wait(self).await {
+        match pending_transaction.wait(&self.callback_transaction_manager).await {
             Ok(value) => value.map(|_| ()), // the data passed back is irrelevant for write
             // requests
             Err(PendingTransactionError::SenderDropped) => {

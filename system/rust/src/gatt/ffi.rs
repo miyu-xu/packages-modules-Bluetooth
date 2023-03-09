@@ -1,7 +1,7 @@
 //! FFI interfaces for the GATT module. Some structs are exported so that
 //! core::init can instantiate and pass them into the main loop.
 
-use std::iter::Peekable;
+use std::{iter::Peekable, rc::Rc};
 
 use anyhow::{bail, Result};
 use bt_common::init_flags::{
@@ -259,7 +259,7 @@ fn open_server(server_id: u8) {
 
     if always_use_private_gatt_for_debugging_is_enabled() {
         with_arbiter(|arbiter| {
-            arbiter.associate_server_with_advertiser(server_id, AdvertiserId(0))
+            arbiter.isolation_manager.associate_server_with_advertiser(server_id, AdvertiserId(0))
         });
     }
 
@@ -278,7 +278,7 @@ fn close_server(server_id: u8) {
     let server_id = ServerId(server_id);
 
     if !always_use_private_gatt_for_debugging_is_enabled() {
-        with_arbiter(move |arbiter| arbiter.clear_server(server_id));
+        with_arbiter(move |arbiter| arbiter.isolation_manager.clear_server(server_id));
     }
 
     do_in_rust_thread(move |modules| {
@@ -361,7 +361,7 @@ fn add_service(server_id: u8, service_records: Vec<GattRecord>) {
                 let ok = modules.gatt_module.register_gatt_service(
                     server_id,
                     service.clone(),
-                    modules.gatt_incoming_callbacks.clone(),
+                    Rc::new(modules.gatt_incoming_callbacks.clone().get_datastore(server_id)),
                 );
                 match ok {
                     Ok(_) => info!(
@@ -404,7 +404,9 @@ fn is_connection_isolated(conn_id: u16) -> bool {
         return false;
     }
 
-    with_arbiter(|arbiter| arbiter.is_connection_isolated(ConnectionId(conn_id)))
+    with_arbiter(|arbiter| {
+        arbiter.isolation_manager.is_connection_isolated(ConnectionId(conn_id).get_tcb_idx())
+    })
 }
 
 fn send_response(_server_id: u8, conn_id: u16, trans_id: u32, status: u8, value: &[u8]) {
@@ -441,7 +443,7 @@ fn send_indication(_server_id: u8, handle: u16, conn_id: u16, value: &[u8]) {
     let value = AttAttributeDataChild::RawData(value.into());
 
     do_in_rust_thread(move |modules| {
-        let Some(bearer) = modules.gatt_module.get_bearer(conn_id) else {
+        let Some(bearer) = modules.gatt_module.get_bearer(conn_id.get_tcb_idx()) else {
             error!("connection {conn_id:?} does not exist");
             return;
         };
@@ -460,7 +462,9 @@ fn associate_server_with_advertiser(server_id: u8, advertiser_id: u8) {
     }
 
     arbiter::with_arbiter(move |arbiter| {
-        arbiter.associate_server_with_advertiser(ServerId(server_id), AdvertiserId(advertiser_id))
+        arbiter
+            .isolation_manager
+            .associate_server_with_advertiser(ServerId(server_id), AdvertiserId(advertiser_id))
     })
 }
 
@@ -469,7 +473,9 @@ fn clear_advertiser(advertiser_id: u8) {
         return;
     }
 
-    arbiter::with_arbiter(move |arbiter| arbiter.clear_advertiser(AdvertiserId(advertiser_id)))
+    arbiter::with_arbiter(move |arbiter| {
+        arbiter.isolation_manager.clear_advertiser(AdvertiserId(advertiser_id))
+    })
 }
 
 #[cfg(test)]

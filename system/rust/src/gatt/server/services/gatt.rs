@@ -10,7 +10,7 @@ use crate::{
     gatt::{
         callbacks::GattDatastore,
         ffi::AttributeBackingType,
-        ids::{AttHandle, ConnectionId},
+        ids::{AttHandle, TransportIndex},
         server::gatt_database::{
             AttPermissions, GattCharacteristicWithHandle, GattDatabase, GattDescriptorWithHandle,
             GattServiceWithHandle,
@@ -33,7 +33,7 @@ const SERVICE_CHANGE_CCC_DESCRIPTOR_HANDLE: AttHandle = AttHandle(4);
 impl GattDatastore for GattService {
     async fn read(
         &self,
-        _: ConnectionId,
+        _: TransportIndex,
         handle: AttHandle,
         _: AttributeBackingType,
     ) -> Result<AttAttributeDataChild, AttErrorCode> {
@@ -47,7 +47,7 @@ impl GattDatastore for GattService {
 
     async fn write(
         &self,
-        _: ConnectionId,
+        _: TransportIndex,
         handle: AttHandle,
         _: AttributeBackingType,
         _: AttAttributeDataView<'_>,
@@ -64,7 +64,7 @@ impl GattDatastore for GattService {
 pub fn register_gatt_service(database: &mut GattDatabase) -> Result<()> {
     database.add_service_with_handles(
         // GATT Service
-        GattServiceWithHandle {
+        &GattServiceWithHandle {
             handle: GATT_SERVICE_HANDLE,
             type_: Uuid::new(0x1801),
             // Service Changed Characteristic

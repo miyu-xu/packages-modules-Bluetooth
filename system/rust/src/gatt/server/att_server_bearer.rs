@@ -219,7 +219,7 @@ mod test {
         core::{shared_box::SharedBox, uuid::Uuid},
         gatt::{
             ffi::AttributeBackingType,
-            ids::ConnectionId,
+            ids::TransportIndex,
             mocks::mock_datastore::{MockDatastore, MockDatastoreEvents},
             server::{
                 att_database::{AttAttribute, AttPermissions},
@@ -243,7 +243,7 @@ mod test {
     const INVALID_HANDLE: AttHandle = AttHandle(4);
     const ANOTHER_VALID_HANDLE: AttHandle = AttHandle(10);
 
-    const CONN_ID: ConnectionId = ConnectionId(1);
+    const TCB_IDX: TransportIndex = TransportIndex(1);
 
     fn open_connection(
     ) -> (SharedBox<AttServerBearer<TestAttDatabase>>, UnboundedReceiver<AttBuilder>) {
@@ -321,7 +321,7 @@ mod test {
         let datastore = Rc::new(datastore);
         let db = SharedBox::new(GattDatabase::new());
         db.add_service_with_handles(
-            GattServiceWithHandle {
+            &GattServiceWithHandle {
                 handle: AttHandle(1),
                 type_: Uuid::new(1),
                 characteristics: vec![
@@ -347,7 +347,7 @@ mod test {
             tx.send(packet).unwrap();
             Ok(())
         };
-        let conn = SharedBox::new(AttServerBearer::new(db.get_att_database(CONN_ID), send_packet));
+        let conn = SharedBox::new(AttServerBearer::new(db.get_att_database(TCB_IDX), send_packet));
         let data = AttAttributeDataChild::RawData([1, 2].into());
 
         // act: send two read requests before replying to either read
@@ -363,7 +363,7 @@ mod test {
             });
             conn.as_ref().handle_packet(req2.view());
             // handle first reply
-            let MockDatastoreEvents::Read(CONN_ID, VALID_HANDLE, AttributeBackingType::Characteristic, data_resp) =
+            let MockDatastoreEvents::Read(TCB_IDX, VALID_HANDLE, AttributeBackingType::Characteristic, data_resp) =
                 data_rx.recv().await.unwrap() else {
                     unreachable!();
             };

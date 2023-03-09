@@ -16,7 +16,7 @@ use crate::{
     gatt::{
         callbacks::GattDatastore,
         ffi::AttributeBackingType,
-        ids::{AttHandle, ConnectionId},
+        ids::{AttHandle, TransportIndex},
     },
     packets::{
         AttAttributeDataChild, AttAttributeDataView, AttErrorCode,
@@ -113,7 +113,7 @@ impl GattDatabase {
     /// Returns failure if handles overlap with ones already allocated
     pub fn add_service_with_handles(
         &self,
-        service: GattServiceWithHandle,
+        service: &GattServiceWithHandle,
         datastore: Rc<dyn GattDatastore>,
     ) -> Result<()> {
         let mut attributes = BTreeMap::new();
@@ -140,7 +140,7 @@ impl GattDatabase {
         );
 
         // characteristics
-        for characteristic in service.characteristics {
+        for characteristic in &service.characteristics {
             characteristics.push(characteristic.clone());
 
             // declaration
@@ -184,7 +184,7 @@ impl GattDatabase {
             );
 
             // descriptors
-            for descriptor in characteristic.descriptors {
+            for descriptor in &characteristic.descriptors {
                 add_attribute(
                     AttAttribute {
                         handle: descriptor.handle,
@@ -240,15 +240,15 @@ impl GattDatabase {
 impl SharedBox<GattDatabase> {
     /// Generate an impl AttDatabase from a backing GattDatabase, associated
     /// with a given connection.
-    pub fn get_att_database(&self, conn_id: ConnectionId) -> AttDatabaseImpl {
-        AttDatabaseImpl { gatt_db: self.downgrade(), conn_id }
+    pub fn get_att_database(&self, tcb_idx: TransportIndex) -> AttDatabaseImpl {
+        AttDatabaseImpl { gatt_db: self.downgrade(), tcb_idx }
     }
 }
 
 /// An implementation of AttDatabase wrapping an underlying GattDatabase
 pub struct AttDatabaseImpl {
     gatt_db: WeakBox<GattDatabase>,
-    conn_id: ConnectionId,
+    tcb_idx: TransportIndex,
 }
 
 #[async_trait(?Send)]
@@ -275,10 +275,10 @@ impl AttDatabase for AttDatabaseImpl {
         match value {
             AttAttributeBackingValue::Static(val) => return Ok(val),
             AttAttributeBackingValue::DynamicCharacteristic(datastore) => {
-                datastore.read(self.conn_id, handle, AttributeBackingType::Characteristic).await
+                datastore.read(self.tcb_idx, handle, AttributeBackingType::Characteristic).await
             }
             AttAttributeBackingValue::DynamicDescriptor(datastore) => {
-                datastore.read(self.conn_id, handle, AttributeBackingType::Descriptor).await
+                datastore.read(self.tcb_idx, handle, AttributeBackingType::Descriptor).await
             }
         }
     }
@@ -310,11 +310,11 @@ impl AttDatabase for AttDatabaseImpl {
             }
             AttAttributeBackingValue::DynamicCharacteristic(datastore) => {
                 datastore
-                    .write(self.conn_id, handle, AttributeBackingType::Characteristic, data)
+                    .write(self.tcb_idx, handle, AttributeBackingType::Characteristic, data)
                     .await
             }
             AttAttributeBackingValue::DynamicDescriptor(datastore) => {
-                datastore.write(self.conn_id, handle, AttributeBackingType::Descriptor, data).await
+                datastore.write(self.tcb_idx, handle, AttributeBackingType::Descriptor, data).await
             }
         }
     }
@@ -329,7 +329,7 @@ impl AttDatabase for AttDatabaseImpl {
 
 impl Clone for AttDatabaseImpl {
     fn clone(&self) -> Self {
-        Self { gatt_db: self.gatt_db.clone(), conn_id: self.conn_id }
+        Self { gatt_db: self.gatt_db.clone(), tcb_idx: self.tcb_idx }
     }
 }
 
@@ -358,12 +358,12 @@ mod test {
     const DESCRIPTOR_HANDLE: AttHandle = AttHandle(4);
     const DESCRIPTOR_TYPE: Uuid = Uuid::new(0x9ABC);
 
-    const CONN_ID: ConnectionId = ConnectionId(1);
+    const TCB_IDX: TransportIndex = TransportIndex(1);
 
     #[test]
     fn test_read_empty_db() {
         let gatt_db = SharedBox::new(GattDatabase::new());
-        let att_db = gatt_db.get_att_database(CONN_ID);
+        let att_db = gatt_db.get_att_database(TCB_IDX);
 
         let resp = tokio_test::block_on(att_db.read_attribute(AttHandle(1)));
 
@@ -376,7 +376,7 @@ mod test {
         let gatt_db = SharedBox::new(GattDatabase::new());
         gatt_db
             .add_service_with_handles(
-                GattServiceWithHandle {
+                &GattServiceWithHandle {
                     handle: SERVICE_HANDLE,
                     type_: SERVICE_TYPE,
                     characteristics: vec![],
@@ -384,7 +384,7 @@ mod test {
                 Rc::new(gatt_datastore),
             )
             .unwrap();
-        let att_db = gatt_db.get_att_database(CONN_ID);
+        let att_db = gatt_db.get_att_database(TCB_IDX);
 
         let attrs = att_db.list_attributes();
         let service_value = tokio_test::block_on(att_db.read_attribute(SERVICE_HANDLE));
@@ -414,7 +414,7 @@ mod test {
 
         gatt_db
             .add_service_with_handles(
-                GattServiceWithHandle {
+                &GattServiceWithHandle {
                     handle: AttHandle(1),
                     type_: SERVICE_TYPE,
                     characteristics: vec![GattCharacteristicWithHandle {
@@ -429,7 +429,7 @@ mod test {
             .unwrap();
         gatt_db
             .add_service_with_handles(
-                GattServiceWithHandle {
+                &GattServiceWithHandle {
                     handle: AttHandle(4),
                     type_: SERVICE_TYPE,
                     characteristics: vec![GattCharacteristicWithHandle {
@@ -444,7 +444,7 @@ mod test {
             .unwrap();
         gatt_db
             .add_service_with_handles(
-                GattServiceWithHandle {
+                &GattServiceWithHandle {
                     handle: AttHandle(7),
                     type_: SERVICE_TYPE,
                     characteristics: vec![GattCharacteristicWithHandle {
@@ -457,7 +457,7 @@ mod test {
                 gatt_datastore,
             )
             .unwrap();
-        let att_db = gatt_db.get_att_database(CONN_ID);
+        let att_db = gatt_db.get_att_database(TCB_IDX);
         assert_eq!(att_db.list_attributes().len(), 9);
 
         // act: remove the middle service
@@ -492,7 +492,7 @@ mod test {
         let gatt_db = SharedBox::new(GattDatabase::new());
         gatt_db
             .add_service_with_handles(
-                GattServiceWithHandle {
+                &GattServiceWithHandle {
                     handle: SERVICE_HANDLE,
                     type_: SERVICE_TYPE,
                     characteristics: vec![GattCharacteristicWithHandle {
@@ -507,7 +507,7 @@ mod test {
                 Rc::new(gatt_datastore),
             )
             .unwrap();
-        let att_db = gatt_db.get_att_database(CONN_ID);
+        let att_db = gatt_db.get_att_database(TCB_IDX);
 
         let attrs = att_db.list_attributes();
         let characteristic_decl =
@@ -562,7 +562,7 @@ mod test {
         let gatt_db = SharedBox::new(GattDatabase::new());
         gatt_db
             .add_service_with_handles(
-                GattServiceWithHandle {
+                &GattServiceWithHandle {
                     handle: SERVICE_HANDLE,
                     type_: SERVICE_TYPE,
                     characteristics: vec![GattCharacteristicWithHandle {
@@ -575,7 +575,7 @@ mod test {
                 Rc::new(gatt_datastore),
             )
             .unwrap();
-        let att_db = gatt_db.get_att_database(CONN_ID);
+        let att_db = gatt_db.get_att_database(TCB_IDX);
         let data = AttAttributeDataChild::RawData(Box::new([1, 2]));
 
         // act: read from the database, and supply a value from the backing datastore
@@ -583,7 +583,7 @@ mod test {
             join!(
                 async {
                     let MockDatastoreEvents::Read(
-                    CONN_ID,
+                    TCB_IDX,
                     CHARACTERISTIC_VALUE_HANDLE,
                     AttributeBackingType::Characteristic,
                     reply,
@@ -607,7 +607,7 @@ mod test {
         let gatt_db = SharedBox::new(GattDatabase::new());
         gatt_db
             .add_service_with_handles(
-                GattServiceWithHandle {
+                &GattServiceWithHandle {
                     handle: SERVICE_HANDLE,
                     type_: SERVICE_TYPE,
                     characteristics: vec![GattCharacteristicWithHandle {
@@ -622,7 +622,7 @@ mod test {
             .unwrap();
 
         let characteristic_value = tokio_test::block_on(
-            gatt_db.get_att_database(CONN_ID).read_attribute(CHARACTERISTIC_VALUE_HANDLE),
+            gatt_db.get_att_database(TCB_IDX).read_attribute(CHARACTERISTIC_VALUE_HANDLE),
         );
 
         assert_eq!(characteristic_value, Err(AttErrorCode::READ_NOT_PERMITTED));
@@ -634,7 +634,7 @@ mod test {
         let gatt_db = SharedBox::new(GattDatabase::new());
 
         let result = gatt_db.add_service_with_handles(
-            GattServiceWithHandle {
+            &GattServiceWithHandle {
                 handle: SERVICE_HANDLE,
                 type_: SERVICE_TYPE,
                 characteristics: vec![GattCharacteristicWithHandle {
@@ -658,7 +658,7 @@ mod test {
 
         gatt_db
             .add_service_with_handles(
-                GattServiceWithHandle {
+                &GattServiceWithHandle {
                     handle: SERVICE_HANDLE,
                     type_: SERVICE_TYPE,
                     characteristics: vec![],
@@ -668,7 +668,7 @@ mod test {
             .unwrap();
 
         let result = gatt_db.add_service_with_handles(
-            GattServiceWithHandle {
+            &GattServiceWithHandle {
                 handle: SERVICE_HANDLE,
                 type_: SERVICE_TYPE,
                 characteristics: vec![],
@@ -686,7 +686,7 @@ mod test {
         let gatt_db = SharedBox::new(GattDatabase::new());
         gatt_db
             .add_service_with_handles(
-                GattServiceWithHandle {
+                &GattServiceWithHandle {
                     handle: SERVICE_HANDLE,
                     type_: SERVICE_TYPE,
                     characteristics: vec![GattCharacteristicWithHandle {
@@ -699,7 +699,7 @@ mod test {
                 Rc::new(gatt_datastore),
             )
             .unwrap();
-        let att_db = gatt_db.get_att_database(CONN_ID);
+        let att_db = gatt_db.get_att_database(TCB_IDX);
         let data =
             build_view_or_crash(build_att_data(AttAttributeDataChild::RawData(Box::new([1, 2]))));
 
@@ -715,7 +715,7 @@ mod test {
             });
 
             let MockDatastoreEvents::Write(
-                CONN_ID,
+                TCB_IDX,
                 CHARACTERISTIC_VALUE_HANDLE,
                 AttributeBackingType::Characteristic,
                 recv_data,
@@ -740,7 +740,7 @@ mod test {
         let gatt_db = SharedBox::new(GattDatabase::new());
         gatt_db
             .add_service_with_handles(
-                GattServiceWithHandle {
+                &GattServiceWithHandle {
                     handle: SERVICE_HANDLE,
                     type_: SERVICE_TYPE,
                     characteristics: vec![GattCharacteristicWithHandle {
@@ -753,7 +753,7 @@ mod test {
                 Rc::new(gatt_datastore),
             )
             .unwrap();
-        let att_db = gatt_db.get_att_database(CONN_ID);
+        let att_db = gatt_db.get_att_database(TCB_IDX);
         let data =
             build_view_or_crash(build_att_data(AttAttributeDataChild::RawData(Box::new([1, 2]))));
 
@@ -781,7 +781,7 @@ mod test {
         let gatt_db = SharedBox::new(GattDatabase::new());
         gatt_db
             .add_service_with_handles(
-                GattServiceWithHandle {
+                &GattServiceWithHandle {
                     handle: SERVICE_HANDLE,
                     type_: SERVICE_TYPE,
                     characteristics: vec![GattCharacteristicWithHandle {
@@ -799,7 +799,7 @@ mod test {
 
         let characteristic_value = tokio_test::block_on(
             gatt_db
-                .get_att_database(CONN_ID)
+                .get_att_database(TCB_IDX)
                 .write_attribute(CHARACTERISTIC_VALUE_HANDLE, data.view()),
         );
 
@@ -812,7 +812,7 @@ mod test {
         let gatt_db = SharedBox::new(GattDatabase::new());
         gatt_db
             .add_service_with_handles(
-                GattServiceWithHandle {
+                &GattServiceWithHandle {
                     handle: SERVICE_HANDLE,
                     type_: SERVICE_TYPE,
                     characteristics: vec![GattCharacteristicWithHandle {
@@ -829,7 +829,7 @@ mod test {
                 Rc::new(gatt_datastore),
             )
             .unwrap();
-        let att_db = gatt_db.get_att_database(CONN_ID);
+        let att_db = gatt_db.get_att_database(TCB_IDX);
         let data = AttAttributeDataChild::RawData(Box::new([1, 2]));
 
         let descriptor_value = block_on_locally(async {
@@ -838,7 +838,7 @@ mod test {
                 spawn_local(async move { att_db.read_attribute(DESCRIPTOR_HANDLE).await.unwrap() });
 
             let MockDatastoreEvents::Read(
-                CONN_ID,
+                TCB_IDX,
                 DESCRIPTOR_HANDLE,
                 AttributeBackingType::Descriptor,
                 reply,
@@ -861,7 +861,7 @@ mod test {
         let gatt_db = SharedBox::new(GattDatabase::new());
         gatt_db
             .add_service_with_handles(
-                GattServiceWithHandle {
+                &GattServiceWithHandle {
                     handle: SERVICE_HANDLE,
                     type_: SERVICE_TYPE,
                     characteristics: vec![GattCharacteristicWithHandle {
@@ -878,7 +878,7 @@ mod test {
                 Rc::new(gatt_datastore),
             )
             .unwrap();
-        let att_db = gatt_db.get_att_database(CONN_ID);
+        let att_db = gatt_db.get_att_database(TCB_IDX);
         let data =
             build_view_or_crash(build_att_data(AttAttributeDataChild::RawData(Box::new([1, 2]))));
 
@@ -890,7 +890,7 @@ mod test {
             });
 
             let MockDatastoreEvents::Write(
-                CONN_ID,
+                TCB_IDX,
                 DESCRIPTOR_HANDLE,
                 AttributeBackingType::Descriptor,
                 _,
@@ -910,7 +910,7 @@ mod test {
         let gatt_db = SharedBox::new(GattDatabase::new());
         gatt_db
             .add_service_with_handles(
-                GattServiceWithHandle {
+                &GattServiceWithHandle {
                     handle: AttHandle(1),
                     type_: SERVICE_TYPE,
                     characteristics: vec![
@@ -949,7 +949,7 @@ mod test {
             .unwrap();
 
         // act: get the attributes
-        let attributes = gatt_db.get_att_database(CONN_ID).list_attributes();
+        let attributes = gatt_db.get_att_database(TCB_IDX).list_attributes();
 
         // assert: check the attributes are in the correct order
         assert_eq!(attributes.len(), 8);

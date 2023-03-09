@@ -261,6 +261,7 @@ init_flags!(
         device_iot_config_logging,
         dynamic_avrcp_version_enhancement = true,
         finite_att_timeout = true,
+        full_rust_gatt_server,
         gatt_robust_caching_client = true,
         gatt_robust_caching_server,
         gd_core,

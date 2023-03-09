@@ -12,7 +12,7 @@ use crate::packets::{AttAttributeDataChild, AttAttributeDataView, AttErrorCode};
 
 use super::{
     ffi::AttributeBackingType,
-    ids::{AttHandle, ConnectionId, TransactionId},
+    ids::{AttHandle, ConnectionId, TransactionId, TransportIndex},
     server::IndicationError,
 };
 
@@ -62,7 +62,7 @@ pub trait GattDatastore {
     /// Read a characteristic from the specified connection at the given handle.
     async fn read(
         &self,
-        conn_id: ConnectionId,
+        tcb_idx: TransportIndex,
         handle: AttHandle,
         attr_type: AttributeBackingType,
     ) -> Result<AttAttributeDataChild, AttErrorCode>;
@@ -70,7 +70,7 @@ pub trait GattDatastore {
     /// Write data to a given characteristic on the specified connection.
     async fn write(
         &self,
-        conn_id: ConnectionId,
+        tcb_idx: TransportIndex,
         handle: AttHandle,
         attr_type: AttributeBackingType,
         data: AttAttributeDataView<'_>,

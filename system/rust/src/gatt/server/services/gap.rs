@@ -10,7 +10,7 @@ use crate::{
     gatt::{
         callbacks::GattDatastore,
         ffi::AttributeBackingType,
-        ids::{AttHandle, ConnectionId},
+        ids::{AttHandle, TransportIndex},
         server::gatt_database::{
             AttPermissions, GattCharacteristicWithHandle, GattDatabase, GattServiceWithHandle,
         },
@@ -29,7 +29,7 @@ const DEVICE_APPEARANCE_HANDLE: AttHandle = AttHandle(24);
 impl GattDatastore for GapService {
     async fn read(
         &self,
-        _: ConnectionId,
+        _: TransportIndex,
         handle: AttHandle,
         _: AttributeBackingType,
     ) -> Result<AttAttributeDataChild, AttErrorCode> {
@@ -46,7 +46,7 @@ impl GattDatastore for GapService {
 
     async fn write(
         &self,
-        _: ConnectionId,
+        _: TransportIndex,
         _: AttHandle,
         _: AttributeBackingType,
         _: AttAttributeDataView<'_>,
@@ -59,7 +59,7 @@ impl GattDatastore for GapService {
 pub fn register_gap_service(database: &mut GattDatabase) -> Result<()> {
     database.add_service_with_handles(
         // GAP Service
-        GattServiceWithHandle {
+        &GattServiceWithHandle {
             handle: GAP_SERVICE_HANDLE,
             type_: Uuid::new(0x1800),
             // Device Name

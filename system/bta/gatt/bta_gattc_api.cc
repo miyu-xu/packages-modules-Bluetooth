@@ -387,6 +387,12 @@ void BTA_GATTC_GetGattDb(uint16_t conn_id, uint16_t start_handle,
 void BTA_GATTC_ReadCharacteristic(uint16_t conn_id, uint16_t handle,
                                   tGATT_AUTH_REQ auth_req,
                                   GATT_READ_OP_CB callback, void* cb_data) {
+  if (bluetooth::common::init_flags::rust_gatt_client_is_enabled()) {
+    bluetooth::gatt::read_characteristic(conn_id, handle, auth_req, callback,
+                                         cb_data);
+    return;
+  }
+
   tBTA_GATTC_API_READ* p_buf =
       (tBTA_GATTC_API_READ*)osi_calloc(sizeof(tBTA_GATTC_API_READ));
 
