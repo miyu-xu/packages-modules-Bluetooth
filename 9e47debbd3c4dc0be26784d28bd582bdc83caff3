@@ -34,6 +34,24 @@
       "parentUuid": "081f0445_beef0992",
       "revId": "9e47debbd3c4dc0be26784d28bd582bdc83caff3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0e9fa326_7071ddca",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2023-03-09T18:07:19Z",
+      "side": 1,
+      "message": "I can explain why this CL caused the issue. While I do agree with Chris that the true culprit is somewhere else, this CL actually causes the sys control block for AV to deregister before the AV stream blocks are cleared.\n\nWe found ` bta_sys_event: Ignoring receipt of unregistered event id:Advanced audio/video` showing that bta_sys_events couldn\u0027t be processed.",
+      "parentUuid": "f4b201e5_3f0f4055",
+      "revId": "9e47debbd3c4dc0be26784d28bd582bdc83caff3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
