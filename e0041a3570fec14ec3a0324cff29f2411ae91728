@@ -46,6 +46,30 @@
       },
       "revId": "e0041a3570fec14ec3a0324cff29f2411ae91728",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "49ebdaef_21cfe974",
+        "filename": "system/btif/src/btif_core.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-03-09T18:37:55Z",
+      "side": 1,
+      "message": "I usually agree with this, but there are a few race conditions when we are shutting down.",
+      "parentUuid": "a3bc3f5c_84c127b2",
+      "range": {
+        "startLine": 126,
+        "startChar": 12,
+        "endLine": 126,
+        "endChar": 33
+      },
+      "revId": "e0041a3570fec14ec3a0324cff29f2411ae91728",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
