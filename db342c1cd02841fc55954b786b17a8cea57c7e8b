@@ -70,6 +70,24 @@
       "parentUuid": "6e00fca9_ab07eceb",
       "revId": "db342c1cd02841fc55954b786b17a8cea57c7e8b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c4b79df0_cd12771b",
+        "filename": "system/stack/smp/smp_l2c.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2023-03-09T17:04:38Z",
+      "side": 1,
+      "message": "Can we resolved this comment and stamp the CL if everyone agree ?",
+      "parentUuid": "937e175b_88d8f2d3",
+      "revId": "db342c1cd02841fc55954b786b17a8cea57c7e8b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
