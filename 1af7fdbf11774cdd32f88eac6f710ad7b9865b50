@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "23a9290b_8993fc62",
+        "filename": "TEST_MAPPING",
+        "patchSetId": 7
+      },
+      "lineNbr": 421,
+      "author": {
+        "id": 1985260
+      },
+      "writtenOn": "2023-03-09T05:05:21Z",
+      "side": 1,
+      "message": "This change be used in postsubmit to test flag on / flag off...etc.",
+      "parentUuid": "d6a15a3f_c0718f30",
+      "range": {
+        "startLine": 417,
+        "startChar": 3,
+        "endLine": 421,
+        "endChar": 3
+      },
+      "revId": "1af7fdbf11774cdd32f88eac6f710ad7b9865b50",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f396e324_c688f5e4",
@@ -54,6 +78,30 @@
       "writtenOn": "2023-03-07T07:39:57Z",
       "side": 1,
       "message": "This log is  no longer correct.\nBy moving the `if (callState \u003d\u003d HeadsetHalConstants.CALL_STATE_IDLE)` after the null check you cannot say for sure that the callState is IDLE",
+      "range": {
+        "startLine": 1871,
+        "startChar": 43,
+        "endLine": 1871,
+        "endChar": 58
+      },
+      "revId": "1af7fdbf11774cdd32f88eac6f710ad7b9865b50",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "065c6d7d_bd1c037a",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 1871,
+      "author": {
+        "id": 1985260
+      },
+      "writtenOn": "2023-03-09T05:05:21Z",
+      "side": 1,
+      "message": "I\u0027ll modify old log and a new log to show CALL_STATE_IDLE.",
+      "parentUuid": "f396e324_c688f5e4",
       "range": {
         "startLine": 1871,
         "startChar": 43,
@@ -87,6 +135,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6ddf43f2_3e6873e0",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 1985260
+      },
+      "writtenOn": "2023-03-09T05:05:21Z",
+      "side": 1,
+      "message": "I\u0027ll change it into \"audio_policy_ag_enabled\".",
+      "parentUuid": "251e505f_9acfbe5e",
+      "range": {
+        "startLine": 168,
+        "startChar": 59,
+        "endLine": 168,
+        "endChar": 77
+      },
+      "revId": "1af7fdbf11774cdd32f88eac6f710ad7b9865b50",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "293e94c8_8dcf5d9f",
@@ -100,6 +172,30 @@
       "writtenOn": "2023-03-07T07:39:57Z",
       "side": 1,
       "message": "Flagging here allow all other code in this method to be executed. Is this intended ? If not see comment below",
+      "range": {
+        "startLine": 1978,
+        "startChar": 48,
+        "endLine": 1978,
+        "endChar": 70
+      },
+      "revId": "1af7fdbf11774cdd32f88eac6f710ad7b9865b50",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "36f2301f_e3886331",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 1978,
+      "author": {
+        "id": 1985260
+      },
+      "writtenOn": "2023-03-09T05:05:21Z",
+      "side": 1,
+      "message": "Yes. This is intended.\n\nThere\u0027re might be more vendor specific commands in the future if needed.\n\nAs for this feature, the feature id is 1. (aosp/2299966, HeadsetStateMachine.java#Line 161)\nWe recognize this feature id at line 1976.\n\nSo we can not flag directly at line 2113. This will make other AT+ANDROID not be processed.",
+      "parentUuid": "293e94c8_8dcf5d9f",
       "range": {
         "startLine": 1978,
         "startChar": 48,
@@ -133,6 +229,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "481f3cf2_fe8dad34",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 2113,
+      "author": {
+        "id": 1985260
+      },
+      "writtenOn": "2023-03-09T05:05:21Z",
+      "side": 1,
+      "message": "Details in the above comment.",
+      "parentUuid": "30d133b7_9ee68dac",
+      "range": {
+        "startLine": 2113,
+        "startChar": 19,
+        "endLine": 2113,
+        "endChar": 52
+      },
+      "revId": "1af7fdbf11774cdd32f88eac6f710ad7b9865b50",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "488be32f_d8ede6e1",
@@ -156,6 +276,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "95478b46_978d13ea",
+        "filename": "android/app/src/com/android/bluetooth/hfpclient/HeadsetClientService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 958,
+      "author": {
+        "id": 1985260
+      },
+      "writtenOn": "2023-03-09T05:05:21Z",
+      "side": 1,
+      "message": "You\u0027re right. If hf doesn\u0027t support this feature, hf does not care about the feature status of ag side.",
+      "parentUuid": "488be32f_d8ede6e1",
+      "range": {
+        "startLine": 958,
+        "startChar": 18,
+        "endLine": 958,
+        "endChar": 22
+      },
+      "revId": "1af7fdbf11774cdd32f88eac6f710ad7b9865b50",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "637157de_16ecd917",
@@ -169,6 +313,30 @@
       "writtenOn": "2023-03-07T07:39:57Z",
       "side": 1,
       "message": "This 2 stack event were handled in the audio policy CL. Should they be flagged too ?",
+      "range": {
+        "startLine": 1183,
+        "startChar": 28,
+        "endLine": 1216,
+        "endChar": 34
+      },
+      "revId": "1af7fdbf11774cdd32f88eac6f710ad7b9865b50",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0ffa1ce0_5d5ad0b6",
+        "filename": "android/app/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachine.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 1216,
+      "author": {
+        "id": 1985260
+      },
+      "writtenOn": "2023-03-09T05:05:21Z",
+      "side": 1,
+      "message": "No. This feature is based on using vendor specific commands.\nWe have to receive and process all the VSCs here and flag only for audio policy later.",
+      "parentUuid": "637157de_16ecd917",
       "range": {
         "startLine": 1183,
         "startChar": 28,
