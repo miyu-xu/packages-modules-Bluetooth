@@ -1,5 +1,4 @@
 import asyncio
-import lib_rootcanal_python3 as rootcanal
 import hci_packets as hci
 import link_layer_packets as ll
 import unittest
