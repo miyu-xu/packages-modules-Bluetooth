@@ -16,7 +16,7 @@
 #pragma once
 
 #include <cstdint>
-
+#include <frameworks/proto_logging/stats/enums/bluetooth/le/enums.pb.h>
 #include "types/raw_address.h"
 
 namespace bluetooth {
