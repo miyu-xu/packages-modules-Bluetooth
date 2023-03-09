@@ -42,6 +42,7 @@ class GattInstance(val mDevice: BluetoothDevice, val mTransport: Int, val mConte
   private var mConnectionState = MutableStateFlow(BluetoothProfile.STATE_DISCONNECTED)
   private var mValuesRead = MutableStateFlow(0)
   private var mValueWrote = MutableStateFlow(false)
+  private var mOnCharacteristicChanged = false
 
   /**
    * Wrapper for characteristic and descriptor reading. Uuid, startHandle and endHandle are used to
@@ -155,6 +156,15 @@ class GattInstance(val mDevice: BluetoothDevice, val mTransport: Int, val mConte
         mGattInstanceValueWrote.status = AttStatusCode.forNumber(status)
         mValueWrote.value = true
       }
+
+      override fun onCharacteristicChanged(
+        bluetoothGatt: BluetoothGatt,
+        characteristic: BluetoothGattCharacteristic,
+        value: ByteArray
+      ) {
+        Log.i(TAG, "onCharacteristicChanged, characteristic: " + characteristic.getUuid().toString())
+        mOnCharacteristicChanged = true
+      }
     }
 
   init {
@@ -189,6 +199,10 @@ class GattInstance(val mDevice: BluetoothDevice, val mTransport: Int, val mConte
 
   public fun servicesDiscovered(): Boolean {
     return mServiceDiscovered.value
+  }
+
+  public fun isOnCharacteristicChanged():  Boolean{
+    return mOnCharacteristicChanged
   }
 
   public suspend fun waitForState(newState: Int) {

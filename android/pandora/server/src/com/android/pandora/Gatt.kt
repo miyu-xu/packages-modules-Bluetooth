@@ -273,6 +273,43 @@ class Gatt(private val context: Context) : GATTImplBase(), Closeable {
     }
   }
 
+  override fun setCharacteristicNotificationFromHandle(
+    request: SetCharacteristicNotificationFromHandleRequest,
+    responseObserver: StreamObserver<SetCharacteristicNotificationFromHandleResponse>
+  ) {
+    grpcUnary<SetCharacteristicNotificationFromHandleResponse>(mScope, responseObserver) {
+      Log.i(TAG, "SetCharcteristicNotificationFromHandle")
+      val gattInstance = GattInstance.get(request.connection.address)
+      val descriptor: BluetoothGattDescriptor? =
+        getDescriptorWithHandle(request.handle, gattInstance)
+      checkNotNull(descriptor) {
+        "Found no descriptor with handle ${request.handle}"
+      }
+      var characteristic = descriptor!!.getCharacteristic()
+      gattInstance.mGatt.setCharacteristicNotification(characteristic, true)
+      if (request.enableValue == EnableValue.ENABLE_INDICATION_VALUE){
+        val valueWrote =
+          gattInstance.writeDescriptorBlocking(descriptor, BluetoothGattDescriptor.ENABLE_INDICATION_VALUE)
+        SetCharacteristicNotificationFromHandleResponse.newBuilder().setHandle(valueWrote.handle).setStatus(valueWrote.status).build()
+      } else {
+        val valueWrote =
+          gattInstance.writeDescriptorBlocking(descriptor, BluetoothGattDescriptor.ENABLE_NOTIFICATION_VALUE)
+        SetCharacteristicNotificationFromHandleResponse.newBuilder().setHandle(valueWrote.handle).setStatus(valueWrote.status).build()
+      }
+    }
+  }
+
+  override fun isCharacteristicNotificationReceived(
+    request: IsCharacteristicNotificationReceivedRequest,
+    responseObserver: StreamObserver<IsCharacteristicNotificationReceivedResponse>
+  ) {
+    grpcUnary<IsCharacteristicNotificationReceivedResponse>(mScope, responseObserver) {
+      val gattInstance = GattInstance.get(request.connection.address)
+      val characteristicNotificationReceived = gattInstance.isOnCharacteristicChanged()
+      IsCharacteristicNotificationReceivedResponse.newBuilder().setCharacteristicNotificationReceived(characteristicNotificationReceived).build()
+    }
+  }
+
   /**
    * Discovers services, then returns characteristic with given handle. BluetoothGatt API is
    * package-private so we have to redefine it here.
