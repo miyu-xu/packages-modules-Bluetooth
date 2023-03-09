@@ -17,4 +17,11 @@ prop {
     prop_name: "bluetooth.hfp.version.config"
 }
 
+prop {
+    api_name: "hf_client_features"
+    type: Integer
+    scope: Internal
+    access: Readonly
+    prop_name: "bluetooth.hfp.hf_client_features.config"
+}
 
