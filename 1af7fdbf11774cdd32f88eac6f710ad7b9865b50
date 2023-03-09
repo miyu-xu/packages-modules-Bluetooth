@@ -368,6 +368,30 @@
       },
       "revId": "1af7fdbf11774cdd32f88eac6f710ad7b9865b50",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "344a46d7_06acbc5d",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachineTest.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 1985260
+      },
+      "writtenOn": "2023-03-09T08:21:53Z",
+      "side": 1,
+      "message": "My original purpose is to avoid running unit test fail.\n\nAfter I\u0027ve tested it, in current change, this line doesn\u0027t needed anymore.",
+      "parentUuid": "094c87ed_e9791c08",
+      "range": {
+        "startLine": 145,
+        "startChar": 0,
+        "endLine": 145,
+        "endChar": 71
+      },
+      "revId": "1af7fdbf11774cdd32f88eac6f710ad7b9865b50",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
