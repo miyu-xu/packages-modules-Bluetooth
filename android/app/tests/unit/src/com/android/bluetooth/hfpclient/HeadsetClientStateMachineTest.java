@@ -35,6 +35,7 @@ import android.bluetooth.BluetoothAssignedNumbers;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothHeadsetClient;
 import android.bluetooth.BluetoothSinkAudioPolicy;
+import android.bluetooth.BluetoothStatusCodes;
 import android.bluetooth.BluetoothProfile;
 import android.content.Context;
 import android.content.Intent;
@@ -1105,6 +1106,37 @@ public class HeadsetClientStateMachineTest {
 
         mHeadsetClientStateMachine.setAudioPolicy(dummyAudioPolicy);
         verify(mNativeInterface).sendAndroidAt(mTestDevice, "+ANDROID=1,1,2,1");
+    }
+
+    @SmallTest
+    @Test
+    public void testSetAudioRouteAllowed() {
+        // Mock sent policies
+        when(mHeadsetClientStateMachine.getConnectingTimePolicyProperty().thenReturn(2));
+        when(mHeadsetClientStateMachine.getInBandRingtonePolicyProperty().thenReturn(1));
+
+        // Case 1: if remote is not supported
+        // Expect: Should not send +ANDROID to remote
+        when(mHeadsetClientStateMachine.getAudioPolicyRemoteSupported().thenReturn(
+                BluetoothStatusCodes.FEATURE_NOT_SUPPORTED));
+
+        mHeadsetClientStateMachine.setAudioRouteAllowed(true);
+        verify(mNativeInterface, never()).sendAndroidAt(mTestDevice, "+ANDROID:1,1,0,0");
+
+        // Case 2: if remote is supported and mForceSetAudioPolicyProperty is false
+        // Expect: Should send +ANDROID:1,1,0,0 to remote
+        when(mHeadsetClientStateMachine.getForceSetAudioPolicyProperty().thenReturn(false));
+        mHeadsetClientStateMachine.setAudioRouteAllowed(true);
+        verify(mNativeInterface).sendAndroidAt(mTestDevice, "+ANDROID:1,1,0,0");
+
+        mHeadsetClientStateMachine.setAudioRouteAllowed(false);
+        verify(mNativeInterface).sendAndroidAt(mTestDevice, "+ANDROID:1,2,0,0");
+
+        // Case 3: if remote is supported and mForceSetAudioPolicyProperty is true
+        // Expect: Should send +ANDROID:1,1,2,1 to remote
+        when(mHeadsetClientStateMachine.getForceSetAudioPolicyProperty().thenReturn(true));
+        mHeadsetClientStateMachine.setAudioRouteAllowed(true);
+        verify(mNativeInterface).sendAndroidAt(mTestDevice, "+ANDROID:1,1,2,1");
     }
 
     @Test
