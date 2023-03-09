@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f2423dbf_2b39c560",
+        "filename": "system/bta/hf_client/bta_hf_client_sco.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 244,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2023-03-09T22:18:41Z",
+      "side": 1,
+      "message": "This doesn\u0027t seem to be the case anymore with this change, could you please modify the documentation accordingly?",
+      "range": {
+        "startLine": 244,
+        "startChar": 5,
+        "endLine": 244,
+        "endChar": 61
+      },
+      "revId": "e591b258c715d0150d3a1bd722edd20fc98b9171",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8e5bffe6_cfe64fe4",
+        "filename": "system/bta/hf_client/bta_hf_client_sco.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 254,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2023-03-09T22:18:41Z",
+      "side": 1,
+      "message": "This isn\u0027t needed anymore if we default to CVSD_S3 above, maybe move the documentation above too?",
+      "range": {
+        "startLine": 253,
+        "startChar": 4,
+        "endLine": 254,
+        "endChar": 37
+      },
+      "revId": "e591b258c715d0150d3a1bd722edd20fc98b9171",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
