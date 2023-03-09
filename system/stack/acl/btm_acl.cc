@@ -44,12 +44,14 @@
 #include "device/include/controller.h"
 #include "device/include/device_iot_config.h"
 #include "device/include/interop.h"
+#include "gd/metrics/metrics_state.h"
 #include "include/l2cap_hci_link_interface.h"
 #include "main/shim/acl_api.h"
 #include "main/shim/btm_api.h"
 #include "main/shim/controller.h"
 #include "main/shim/dumpsys.h"
 #include "main/shim/l2c_api.h"
+#include "main/shim/metrics_api.h"
 #include "main/shim/shim.h"
 #include "osi/include/allocator.h"
 #include "osi/include/log.h"
@@ -2809,6 +2811,23 @@ bool acl_create_le_connection_with_id(uint8_t id, const RawAddress& bd_addr,
     return false;
   }
 
+<<<<<<< PATCH SET (ee6ee8 [BluetoothMetrics] Adding the code for logging metrics)
+  // argument list
+  auto argument_list =
+      std::vector<std::pair<bluetooth::os::ArgumentType, int>>();
+
+  LOG_INFO("Create a new ACL Connection here: %s\n", ADDRESS_TO_LOGGABLE_CSTR(bd_addr));
+
+  bluetooth::shim::LogMetricBluetoothLEConnectionMetricEvent(
+      bd_addr, android::bluetooth::le::LETransactionOriginType::ORIGIN_NATIVE,
+      android::bluetooth::le::LEACLConnectionType::TRANSACTION_TYPE_LE_ACL,
+      android::bluetooth::le::LEConnectionTransactionState::STATE_LE_ACL_START,
+      argument_list);
+
+    bluetooth::shim::ACL_AcceptLeConnectionFrom(address_with_type,
+                                                /* is_direct */ true);
+    return true;
+=======
   bluetooth::shim::ACL_AcceptLeConnectionFrom(address_with_type,
                                               /* is_direct */ true);
   return true;
@@ -2816,6 +2835,7 @@ bool acl_create_le_connection_with_id(uint8_t id, const RawAddress& bd_addr,
 
 bool acl_create_le_connection_with_id(uint8_t id, const RawAddress& bd_addr) {
   return acl_create_le_connection_with_id(id, bd_addr, BLE_ADDR_PUBLIC);
+>>>>>>> BASE      (5e4540 Revert "dumpsys: Expand le_impl and le_address_manager data")
 }
 
 bool acl_create_le_connection(const RawAddress& bd_addr) {
