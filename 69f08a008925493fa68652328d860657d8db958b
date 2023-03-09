@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "31f9eee3_9930b430",
+        "filename": "android/app/src/com/android/bluetooth/a2dp/A2dpService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 545,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2023-03-09T17:44:27Z",
+      "side": 1,
+      "message": "So this variable indicates that when the device is null there is still an audio device active, so the audio should not stop?\n\nShould this be renamed \"shouldAudioStop\" or something audio related? I\u0027m asking because it\u0027s also set when an other audio device is set active, which doesn\u0027t really feel like a \"fallback\" device",
+      "revId": "69f08a008925493fa68652328d860657d8db958b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
