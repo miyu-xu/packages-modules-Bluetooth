@@ -184,6 +184,16 @@ void bluetooth::shim::LogMetricManufacturerInfo(
 bool bluetooth::shim::CountCounterMetrics(int32_t key, int64_t count) {
   inc_func_call_count(__func__);
   return false;
+
+}
+void bluetooth::shim::LogMetricBluetoothLEConnectionMetricEvent(
+    const RawAddress& raw_address,
+    android::bluetooth::le::LETransactionOriginType origin_type,
+    android::bluetooth::le::LEACLConnectionType connection_type,
+    android::bluetooth::le::LEConnectionTransactionState transaction_state,
+    std::vector<std::pair<bluetooth::os::ArgumentType, int>> argument_list) {
+  mock_function_count_map[__func__]++;
+  // test::mock::main_shim_metrics_api::LogMetricBluetoothLEConnectionMetricEvent(raw_address, origin_type, connection_type, transaction_state, argument_list);
 }
 
 // END mockcify generation

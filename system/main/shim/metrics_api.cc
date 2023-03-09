@@ -155,5 +155,21 @@ bool CountCounterMetrics(int32_t key, int64_t count) {
   }
   return counter_metrics->Count(key, count);
 }
+
+void LogMetricBluetoothLEConnectionMetricEvent(
+    const RawAddress& raw_address,
+    android::bluetooth::le::LETransactionOriginType origin_type,
+    android::bluetooth::le::LEACLConnectionType connection_type,
+    android::bluetooth::le::LEConnectionTransactionState transaction_state,
+    std::vector<std::pair<os::ArgumentType, int>> argument_list) {
+
+  Address address = bluetooth::ToGdAddress(raw_address);
+  bluetooth::os::LogMetricBluetoothLEConnectionMetricEvent(address, origin_type, connection_type, transaction_state, argument_list);
+}
+
 }  // namespace shim
 }  // namespace bluetooth
+<<<<<<< PATCH SET (ee6ee8 [BluetoothMetrics] Adding the code for logging metrics)
+   //
+=======
+>>>>>>> BASE      (5e4540 Revert "dumpsys: Expand le_impl and le_address_manager data")
