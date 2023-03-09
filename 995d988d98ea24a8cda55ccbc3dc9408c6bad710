@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5736dca4_5713765a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1970930
+      },
+      "writtenOn": "2023-03-09T12:32:10Z",
+      "side": 1,
+      "message": "Hi Charlie,\n\nSubmitted 10 GATT test cases. Moved back GATT/CL/GAD/BV-07-C and GATT/CL/GAD/BV-08-C to flaky list.\nRequest you to provide your inputs.\n\nThank you.\n\nRegards,\nFahad",
+      "revId": "995d988d98ea24a8cda55ccbc3dc9408c6bad710",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
