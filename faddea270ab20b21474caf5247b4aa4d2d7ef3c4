@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "749fa86c_45f13c9f",
+        "filename": "tools/pdl/src/lint.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 223,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2023-03-09T16:41:14Z",
+      "side": 1,
+      "message": "The `let _` assignment is not needed (as far as I can tell).",
+      "range": {
+        "startLine": 223,
+        "startChar": 12,
+        "endLine": 223,
+        "endChar": 18
+      },
+      "revId": "faddea270ab20b21474caf5247b4aa4d2d7ef3c4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7c6f516a_031639be",
+        "filename": "tools/pdl/src/lint.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 311,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2023-03-09T16:41:14Z",
+      "side": 1,
+      "message": "Probably not needed?",
+      "range": {
+        "startLine": 311,
+        "startChar": 12,
+        "endLine": 311,
+        "endChar": 17
+      },
+      "revId": "faddea270ab20b21474caf5247b4aa4d2d7ef3c4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
