@@ -16,6 +16,52 @@
       "message": "Hi Myles, please help to take a look.\nThis change is to configure floss into limited discoverable mode.\nThanks.",
       "revId": "34878b8ce9b08aedc22cf34a713d16862dc05758",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a19525c3_0d8ebd2a",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 506,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-03-09T17:30:07Z",
+      "side": 1,
+      "message": "I think it would be nicer to have a variable for duration and pass it and print it so these are always in sync.",
+      "range": {
+        "startLine": 506,
+        "startChar": 46,
+        "endLine": 506,
+        "endChar": 49
+      },
+      "revId": "34878b8ce9b08aedc22cf34a713d16862dc05758",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b655c382_0de84dd7",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 528,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-03-09T17:30:07Z",
+      "side": 1,
+      "message": "why pass 60 to off?",
+      "range": {
+        "startLine": 528,
+        "startChar": 78,
+        "endLine": 528,
+        "endChar": 80
+      },
+      "revId": "34878b8ce9b08aedc22cf34a713d16862dc05758",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
