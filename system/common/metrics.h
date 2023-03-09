@@ -21,13 +21,16 @@
 #include <bta/include/bta_api.h>
 #include <frameworks/proto_logging/stats/enums/bluetooth/enums.pb.h>
 #include <frameworks/proto_logging/stats/enums/bluetooth/hci/enums.pb.h>
+#include <frameworks/proto_logging/stats/enums/bluetooth/le/enums.pb.h>
 #include <stdint.h>
 
 #include <memory>
 #include <string>
 #include <vector>
 
+#include "os/metrics.h"
 #include "types/raw_address.h"
+#include "hci/address.h"
 
 namespace bluetooth {
 
@@ -519,6 +522,49 @@ void LogLeAudioConnectionSessionReported(
     std::vector<int32_t>& streaming_context_type);
 
 void LogLeAudioBroadcastSessionReported(int64_t duration_nanos);
+
+using android::bluetooth::le::LEACLConnectionState;
+using android::bluetooth::le::LEConnectionOriginType;
+using android::bluetooth::le::LEConnectionType;
+using android::bluetooth::le::LEConnectionState;
+
+// Adding options
+struct LEConnectionSessionOptions {
+  // Contains the state of the LE-ACL Connection
+  LEACLConnectionState acl_connection_state = LEACLConnectionState::LE_ACL_UNSPECIFIED;
+  // Origin of the transaction
+  LEConnectionOriginType origin_type = LEConnectionOriginType::ORIGIN_UNSPECIFIED;
+  // Transaction Type
+  LEConnectionType transaction_type = LEConnectionType::CONNECTION_TYPE_UNSPECIFIED;
+  // Transaction State
+  LEConnectionState transaction_state = LEConnectionState::STATE_UNSPECIFIED;
+  // Latency of the entire transaction
+  int latency = 0;
+  // Address of the remote device
+  hci::Address remote_address = hci::Address::kEmpty;
+  // UID associated with the device
+  int app_uid = 0;
+  // Latency of the ACL Transaction
+  int acl_latency = 0;
+  // Version Number associated with the proto
+  int version_number = 1;
+  // Contains the error code associated with the ACL Connection if failed
+  android::bluetooth::hci::StatusEnum status = android::bluetooth::hci::StatusEnum::STATUS_UNKNOWN;
+  // Cancelled connection
+  bool is_cancelled = false;
+};
+
+// Argument Type
+enum ArgumentType { GATT_IF, L2CAP_PSM, L2CAP_CID, APP_UID, ACL_STATUS_CODE };
+
+void LogLeBluetoothConnectionMetricEventReported(
+    const RawAddress& raw_address,
+    android::bluetooth::le::LEConnectionOriginType origin_type,
+    android::bluetooth::le::LEConnectionType connection_type,
+    android::bluetooth::le::LEConnectionState transaction_state,
+    std::vector<std::pair<os::ArgumentType, int>>
+        argument_list);
+
 
 }  // namespace common
 
