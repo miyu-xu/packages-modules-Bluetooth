@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c70f4f7f_2afb7351",
+        "filename": "framework/java/android/bluetooth/BluetoothHearingAid.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 916,
+      "author": {
+        "id": 1576109
+      },
+      "writtenOn": "2023-03-09T04:52:21Z",
+      "side": 1,
+      "message": "Yes we can add log or throw exception if BT is off or device is invalid, but do we need to add all the 23 bluetooth files (more than 200 times) they did not do this for the same thing?\n\naffected files: https://source.corp.google.com/search?q\u003disEnabled%20snippet:3\u0026ss\u003dh%2Fgoogleplex-android%2Fplatform%2Fsuperproject%2F%2B%2Fmaster:packages%2Fmodules%2FBluetooth%2Fframework%2Fjava%2Fandroid%2Fbluetooth%2F",
+      "parentUuid": "567708b4_57a103ab",
+      "revId": "71cd7d1e8e3d47a862500dd60b98eb91852266d3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "cb3eaada_ef16a24d",
         "filename": "framework/java/android/bluetooth/BluetoothHearingAid.java",
         "patchSetId": 1
@@ -31,6 +49,30 @@
       "writtenOn": "2023-03-07T10:23:34Z",
       "side": 1,
       "message": "Do you need to consider other cases, i.e. (!isEnabled() || !isValidDevice) and log the cases?",
+      "range": {
+        "startLine": 925,
+        "startChar": 8,
+        "endLine": 925,
+        "endChar": 9
+      },
+      "revId": "71cd7d1e8e3d47a862500dd60b98eb91852266d3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8a135d57_172ed49d",
+        "filename": "framework/java/android/bluetooth/BluetoothHearingAid.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 925,
+      "author": {
+        "id": 1576109
+      },
+      "writtenOn": "2023-03-09T04:52:21Z",
+      "side": 1,
+      "message": "I think we should, but there are more than 200 times in bluetooth module they did not do this.\n\naffcted files:\nhttps://source.corp.google.com/search?q\u003disEnabled%20snippet:3\u0026ss\u003dh%2Fgoogleplex-android%2Fplatform%2Fsuperproject%2F%2B%2Fmaster:packages%2Fmodules%2FBluetooth%2Fframework%2Fjava%2Fandroid%2Fbluetooth%2F",
+      "parentUuid": "cb3eaada_ef16a24d",
       "range": {
         "startLine": 925,
         "startChar": 8,
