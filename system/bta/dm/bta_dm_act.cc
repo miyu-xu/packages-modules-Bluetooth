@@ -890,26 +890,45 @@ void bta_dm_ci_rmt_oob_act(std::unique_ptr<tBTA_DM_CI_RMT_OOB> msg) {
  *
  ******************************************************************************/
 void bta_dm_search_start(tBTA_DM_MSG* p_data) {
-  tBTM_INQUIRY_CMPL result = {};
+  CHECK(p_data != nullptr);
 
   bta_dm_gattc_register();
-
-  APPL_TRACE_DEBUG("%s avoid_scatter=%d", __func__,
-                   p_bta_dm_cfg->avoid_scatter);
-
   BTM_ClearInqDb(nullptr);
+
+  const tBTA_DM_API_SEARCH& search = p_data->search;
+
   /* save search params */
-  bta_dm_search_cb.p_search_cback = p_data->search.p_cback;
-  bta_dm_search_cb.services = p_data->search.services;
+  if (search.p_cback == nullptr) {
+    LOG_ERROR("Device discovery search callback is nullptr");
+  }
+  if (search.services == 0) {
+    LOG_ERROR("Device discovery search services is zero");
+  }
 
-  result.status = BTM_StartInquiry(bta_dm_inq_results_cb, bta_dm_inq_cmpl_cb);
+  bta_dm_search_cb.p_search_cback = search.p_cback;
+  bta_dm_search_cb.services = search.services;
 
-  APPL_TRACE_EVENT("%s status=%d", __func__, result.status);
-  if (result.status != BTM_CMD_STARTED) {
-    LOG(ERROR) << __func__ << ": BTM_StartInquiry returned "
-               << std::to_string(result.status);
-    result.num_resp = 0;
-    bta_dm_inq_cmpl_cb((void*)&result);
+  const tBTM_STATUS btm_status =
+      BTM_StartInquiry(bta_dm_inq_results_cb, bta_dm_inq_cmpl_cb);
+  switch (btm_status) {
+    case BTM_CMD_STARTED:
+      LOG_INFO("Device discovery started services:0x%x avoid_scatter=%d",
+               bta_dm_search_cb.services, p_bta_dm_cfg->avoid_scatter);
+      // callback will be sent when device discovery completes
+      break;
+    default: {
+      // TODO Unwind previous caching of global search params
+      LOG_ERROR("Unable to start device discovery status:%s avoid_scatter=%d",
+                btm_status_text(btm_status).c_str(),
+                p_bta_dm_cfg->avoid_scatter);
+      const tBTM_INQUIRY_CMPL result = {
+          .status = btm_status,
+          .num_resp = 0,
+      };
+      // Force an early callback complete
+      bta_dm_inq_cmpl_cb((void*)&result);
+      break;
+    }
   }
 }
 

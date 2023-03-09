@@ -34,7 +34,9 @@
 #include "test/mock/mock_osi_alarm.h"
 #include "test/mock/mock_osi_allocator.h"
 #include "test/mock/mock_stack_acl.h"
+#include "test/mock/mock_stack_btm_inq.h"
 #include "test/mock/mock_stack_btm_sec.h"
+#include "test/mock/mock_stack_gatt_api.h"
 
 using namespace std::chrono_literals;
 
@@ -60,6 +62,8 @@ void bta_dm_search_sm_disable() { bta_sys_deregister(BTA_ID_DM_SEARCH); }
 
 const tBTA_SYS_REG bta_dm_search_reg = {bta_dm_search_sm_execute,
                                         bta_dm_search_sm_disable};
+
+constexpr tBTA_SERVICE_MASK kServiceMask = 0xf0f0f0f0;
 
 }  // namespace
 
@@ -115,6 +119,19 @@ class BtaDmTest : public testing::Test {
     test::mock::osi_allocator::osi_calloc = {};
     test::mock::osi_allocator::osi_free = {};
     test::mock::osi_allocator::osi_free_and_reset = {};
+  }
+};
+
+class BtaDmWithGattTest : public BtaDmTest {
+ protected:
+  void SetUp() override {
+    BtaDmTest::SetUp();
+    test::mock::stack_gatt_api::GATT_Register::return_value =
+        static_cast<tGATT_IF>(1);
+  }
+  void TearDown() override {
+    test::mock::stack_gatt_api::GATT_Register::return_value = {};
+    BtaDmTest::TearDown();
   }
 };
 
@@ -500,4 +517,54 @@ TEST_F(BtaDmTest, bta_dm_determine_discovery_transport__BT_TRANSPORT_AUTO) {
   ASSERT_EQ(BT_TRANSPORT_BR_EDR,
             bluetooth::legacy::testing::bta_dm_determine_discovery_transport(
                 bd_addr));
+}
+
+TEST_F(BtaDmWithGattTest, bta_dm_search_start__BTM_CMD_STARTED) {
+  test::mock::stack_btm_inq::BTM_StartInquiry::return_value = BTM_CMD_STARTED;
+
+  tBTA_DM_MSG msg = {
+      .search =
+          {
+              // tBTA_DM_API_SEARCH
+              .hdr =
+                  {
+                      .event = BTA_DM_API_SEARCH_EVT,
+                  },
+              .p_cback = [](tBTA_DM_SEARCH_EVT event,
+                            tBTA_DM_SEARCH* p_data) {},
+              .services = kServiceMask,
+          },
+  };
+  bta_dm_search_start(&msg);
+
+  ASSERT_EQ(1, get_func_call_count("BTM_ClearInqDb"));
+  ASSERT_EQ(kServiceMask, bta_dm_search_cb.services);
+
+  sync_main_handler();  // GATT posts on main handler
+  test::mock::stack_btm_inq::BTM_StartInquiry::return_value = {};
+}
+
+TEST_F(BtaDmWithGattTest, bta_dm_search_start__BTM_CMD_BUSY) {
+  test::mock::stack_btm_inq::BTM_StartInquiry::return_value = BTM_BUSY;
+
+  tBTA_DM_MSG msg = {
+      .search =
+          {
+              // tBTA_DM_API_SEARCH
+              .hdr =
+                  {
+                      .event = BTA_DM_API_SEARCH_EVT,
+                  },
+              .p_cback = [](tBTA_DM_SEARCH_EVT event,
+                            tBTA_DM_SEARCH* p_data) {},
+              .services = kServiceMask,
+          },
+  };
+  bta_dm_search_start(&msg);
+
+  ASSERT_EQ(1, get_func_call_count("BTM_ClearInqDb"));
+  ASSERT_EQ(kServiceMask, bta_dm_search_cb.services);
+
+  sync_main_handler();  // GATT posts on main handler
+  test::mock::stack_btm_inq::BTM_StartInquiry::return_value = {};
 }
