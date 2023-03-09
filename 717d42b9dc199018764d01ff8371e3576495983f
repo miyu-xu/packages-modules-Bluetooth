@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "993e1060_4828bb5f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-03-09T10:09:20Z",
+      "side": 1,
+      "message": "Add `Fix: 272109130`\nThere split the bug into subcategory and I think this CL is resolving it",
+      "revId": "717d42b9dc199018764d01ff8371e3576495983f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
