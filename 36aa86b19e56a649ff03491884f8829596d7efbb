@@ -16,6 +16,24 @@
       "message": "It makes me nervous not to have a test, but it makes sense not to starve SDP.",
       "revId": "36aa86b19e56a649ff03491884f8829596d7efbb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c8b5f469_04836f35",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-03-09T17:25:41Z",
+      "side": 1,
+      "message": "Yes, this is part of the un-testability of the stack.",
+      "parentUuid": "1fe792c6_c72bb521",
+      "revId": "36aa86b19e56a649ff03491884f8829596d7efbb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
