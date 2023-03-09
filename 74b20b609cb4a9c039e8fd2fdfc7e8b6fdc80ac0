@@ -140,6 +140,30 @@
       },
       "revId": "74b20b609cb4a9c039e8fd2fdfc7e8b6fdc80ac0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0bf06612_6cf18a73",
+        "filename": "system/rust/tests/gatt_callbacks_test.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 249,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-03-09T17:44:56Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "4239e065_df692680",
+      "range": {
+        "startLine": 249,
+        "startChar": 49,
+        "endLine": 249,
+        "endChar": 51
+      },
+      "revId": "74b20b609cb4a9c039e8fd2fdfc7e8b6fdc80ac0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
