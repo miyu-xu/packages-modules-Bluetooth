@@ -45,7 +45,9 @@ fn test_read_characteristic_callback() {
         let (callback_manager, mut callbacks_rx) = initialize_manager_with_connection();
 
         // act: start read operation
-        spawn_local(async move { callback_manager.read(CONN_ID, HANDLE_1, BACKING_TYPE).await });
+        spawn_local(async move {
+            callback_manager.get_datastore(SERVER_ID).read(TCB_IDX, HANDLE_1, BACKING_TYPE).await
+        });
 
         // assert: verify the read callback is received
         let MockCallbackEvents::OnServerRead(
@@ -65,8 +67,9 @@ fn test_read_characteristic_response() {
 
         // act: start read operation
         let cloned_manager = callback_manager.clone();
-        let pending_read =
-            spawn_local(async move { cloned_manager.read(CONN_ID, HANDLE_1, BACKING_TYPE).await });
+        let pending_read = spawn_local(async move {
+            cloned_manager.get_datastore(SERVER_ID).read(TCB_IDX, HANDLE_1, BACKING_TYPE).await
+        });
         // provide a response
         let trans_id = pull_trans_id(&mut callbacks_rx).await;
         callback_manager.send_response(CONN_ID, trans_id, data.clone()).unwrap();
@@ -86,16 +89,18 @@ fn test_sequential_reads() {
 
         // act: start read operation
         let cloned_manager = callback_manager.clone();
-        let pending_read_1 =
-            spawn_local(async move { cloned_manager.read(CONN_ID, HANDLE_1, BACKING_TYPE).await });
+        let pending_read_1 = spawn_local(async move {
+            cloned_manager.get_datastore(SERVER_ID).read(TCB_IDX, HANDLE_1, BACKING_TYPE).await
+        });
         // respond to first
         let trans_id = pull_trans_id(&mut callbacks_rx).await;
         callback_manager.send_response(CONN_ID, trans_id, data1.clone()).unwrap();
 
         // do a second read operation
         let cloned_manager = callback_manager.clone();
-        let pending_read_2 =
-            spawn_local(async move { cloned_manager.read(CONN_ID, HANDLE_1, BACKING_TYPE).await });
+        let pending_read_2 = spawn_local(async move {
+            cloned_manager.get_datastore(SERVER_ID).read(TCB_IDX, HANDLE_1, BACKING_TYPE).await
+        });
         // respond to second
         let trans_id = pull_trans_id(&mut callbacks_rx).await;
         callback_manager.send_response(CONN_ID, trans_id, data2.clone()).unwrap();
@@ -116,13 +121,15 @@ fn test_concurrent_reads() {
 
         // act: start read operation
         let cloned_manager = callback_manager.clone();
-        let pending_read_1 =
-            spawn_local(async move { cloned_manager.read(CONN_ID, HANDLE_1, BACKING_TYPE).await });
+        let pending_read_1 = spawn_local(async move {
+            cloned_manager.get_datastore(SERVER_ID).read(TCB_IDX, HANDLE_1, BACKING_TYPE).await
+        });
 
         // do a second read operation
         let cloned_manager = callback_manager.clone();
-        let pending_read_2 =
-            spawn_local(async move { cloned_manager.read(CONN_ID, HANDLE_1, BACKING_TYPE).await });
+        let pending_read_2 = spawn_local(async move {
+            cloned_manager.get_datastore(SERVER_ID).read(TCB_IDX, HANDLE_1, BACKING_TYPE).await
+        });
 
         // respond to first
         let trans_id = pull_trans_id(&mut callbacks_rx).await;
@@ -146,9 +153,13 @@ fn test_distinct_transaction_ids() {
 
         // act: start two read operations concurrently
         let cloned_manager = callback_manager.clone();
-        spawn_local(async move { cloned_manager.read(CONN_ID, HANDLE_1, BACKING_TYPE).await });
+        spawn_local(async move {
+            cloned_manager.get_datastore(SERVER_ID).read(TCB_IDX, HANDLE_1, BACKING_TYPE).await
+        });
         let cloned_manager = callback_manager.clone();
-        spawn_local(async move { cloned_manager.read(CONN_ID, HANDLE_1, BACKING_TYPE).await });
+        spawn_local(async move {
+            cloned_manager.get_datastore(SERVER_ID).read(TCB_IDX, HANDLE_1, BACKING_TYPE).await
+        });
 
         // pull both trans_ids
         let trans_id_1 = pull_trans_id(&mut callbacks_rx).await;
@@ -168,7 +179,9 @@ fn test_invalid_trans_id() {
 
         // act: start a read operation
         let cloned_manager = callback_manager.clone();
-        spawn_local(async move { cloned_manager.read(CONN_ID, HANDLE_1, BACKING_TYPE).await });
+        spawn_local(async move {
+            cloned_manager.get_datastore(SERVER_ID).read(TCB_IDX, HANDLE_1, BACKING_TYPE).await
+        });
         // respond with the correct conn_id but an invalid trans_id
         let trans_id = pull_trans_id(&mut callbacks_rx).await;
         let invalid_trans_id = TransactionId(trans_id.0 + 1);
@@ -190,7 +203,10 @@ fn test_write_characteristic_callback() {
             build_view_or_crash(build_att_data(AttAttributeDataChild::RawData([1, 2].into())));
         let cloned_data = data.view().to_owned_packet();
         spawn_local(async move {
-            callback_manager.write(CONN_ID, HANDLE_1, BACKING_TYPE, cloned_data.view()).await
+            callback_manager
+                .get_datastore(SERVER_ID)
+                .write(TCB_IDX, HANDLE_1, BACKING_TYPE, cloned_data.view())
+                .await
         });
 
         // assert: verify the write callback is received
@@ -217,7 +233,10 @@ fn test_write_characteristic_response() {
             build_view_or_crash(build_att_data(AttAttributeDataChild::RawData([1, 2].into())));
         let cloned_manager = callback_manager.clone();
         let pending_write = spawn_local(async move {
-            cloned_manager.write(CONN_ID, HANDLE_1, BACKING_TYPE, data.view()).await
+            cloned_manager
+                .get_datastore(SERVER_ID)
+                .write(TCB_IDX, HANDLE_1, BACKING_TYPE, data.view())
+                .await
         });
         // provide a response with some error code
         let trans_id = pull_trans_id(&mut callbacks_rx).await;
@@ -238,10 +257,9 @@ fn test_response_timeout() {
 
         // act: start operation
         let time_sent = Instant::now();
-        let pending_write =
-            spawn_local(
-                async move { callback_manager.read(CONN_ID, HANDLE_1, BACKING_TYPE).await },
-            );
+        let pending_write = spawn_local(async move {
+            callback_manager.get_datastore(SERVER_ID).read(TCB_IDX, HANDLE_1, BACKING_TYPE).await
+        });
 
         // assert: that we time-out after 15s
         assert_eq!(pending_write.await.unwrap(), Err(AttErrorCode::UNLIKELY_ERROR));

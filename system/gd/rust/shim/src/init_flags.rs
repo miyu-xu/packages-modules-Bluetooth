@@ -37,6 +37,7 @@ mod ffi {
         fn queue_l2cap_coc_while_encrypting_is_enabled() -> bool;
         fn redact_log_is_enabled() -> bool;
         fn rust_event_loop_is_enabled() -> bool;
+        fn rust_gatt_client_is_enabled() -> bool;
         fn sdp_serialization_is_enabled() -> bool;
         fn sdp_skip_rnr_if_known_is_enabled() -> bool;
         fn bluetooth_quality_report_callback_is_enabled() -> bool;

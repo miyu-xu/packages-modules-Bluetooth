@@ -5,7 +5,7 @@ use bluetooth_core::{
     gatt::{
         self,
         ffi::AttributeBackingType,
-        ids::{AttHandle, ConnectionId, ServerId, TransportIndex},
+        ids::{AttHandle, ServerId, TransportIndex},
         mocks::{
             mock_datastore::{MockDatastore, MockDatastoreEvents},
             mock_transport::MockAttTransport,
@@ -35,7 +35,6 @@ mod utils;
 
 const TCB_IDX: TransportIndex = TransportIndex(1);
 const SERVER_ID: ServerId = ServerId(2);
-const CONN_ID: ConnectionId = ConnectionId::new(TCB_IDX, SERVER_ID);
 
 const SERVICE_HANDLE: AttHandle = AttHandle(6);
 const CHARACTERISTIC_HANDLE: AttHandle = AttHandle(8);
@@ -81,7 +80,7 @@ fn create_server_and_open_connection(
         Rc::new(datastore),
     )
     .unwrap();
-    gatt.on_le_connect(CONN_ID).unwrap();
+    gatt.on_le_connect(TCB_IDX, None).unwrap();
     data_rx
 }
 
@@ -94,7 +93,7 @@ fn test_service_read() {
         create_server_and_open_connection(&mut gatt);
 
         // act
-        gatt.get_bearer(CONN_ID).unwrap().handle_packet(
+        gatt.get_bearer(TCB_IDX).unwrap().handle_packet(
             build_att_view_or_crash(AttReadRequestBuilder {
                 attribute_handle: SERVICE_HANDLE.into(),
             })
@@ -130,7 +129,7 @@ fn test_server_closed_while_connected() {
         gatt.close_gatt_server(SERVER_ID).unwrap();
 
         // act: read from the closed server
-        gatt.get_bearer(CONN_ID).unwrap().handle_packet(
+        gatt.get_bearer(TCB_IDX).unwrap().handle_packet(
             build_att_view_or_crash(AttReadRequestBuilder {
                 attribute_handle: SERVICE_HANDLE.into(),
             })
@@ -163,14 +162,14 @@ fn test_characteristic_read() {
         let mut data_rx = create_server_and_open_connection(&mut gatt);
 
         // act
-        gatt.get_bearer(CONN_ID).unwrap().handle_packet(
+        gatt.get_bearer(TCB_IDX).unwrap().handle_packet(
             build_att_view_or_crash(AttReadRequestBuilder {
                 attribute_handle: CHARACTERISTIC_HANDLE.into(),
             })
             .view(),
         );
         let tx = if let MockDatastoreEvents::Read(
-            CONN_ID,
+            TCB_IDX,
             CHARACTERISTIC_HANDLE,
             AttributeBackingType::Characteristic,
             tx,
@@ -206,7 +205,7 @@ fn test_characteristic_write() {
         let mut data_rx = create_server_and_open_connection(&mut gatt);
 
         // act
-        gatt.get_bearer(CONN_ID).unwrap().handle_packet(
+        gatt.get_bearer(TCB_IDX).unwrap().handle_packet(
             build_att_view_or_crash(AttWriteRequestBuilder {
                 handle: CHARACTERISTIC_HANDLE.into(),
                 value: build_att_data(data.clone()),
@@ -214,7 +213,7 @@ fn test_characteristic_write() {
             .view(),
         );
         let (tx, written_data) = if let MockDatastoreEvents::Write(
-            CONN_ID,
+            TCB_IDX,
             CHARACTERISTIC_HANDLE,
             AttributeBackingType::Characteristic,
             written_data,
@@ -256,12 +255,12 @@ fn test_send_indication() {
 
         // act
         let pending_indication = spawn_local(
-            gatt.get_bearer(CONN_ID).unwrap().send_indication(CHARACTERISTIC_HANDLE, data.clone()),
+            gatt.get_bearer(TCB_IDX).unwrap().send_indication(CHARACTERISTIC_HANDLE, data.clone()),
         );
 
         let (tcb_idx, resp) = transport_rx.recv().await.unwrap();
 
-        gatt.get_bearer(CONN_ID)
+        gatt.get_bearer(TCB_IDX)
             .unwrap()
             .handle_packet(build_att_view_or_crash(AttHandleValueConfirmationBuilder {}).view());
 
@@ -291,12 +290,12 @@ fn test_send_indication_and_disconnect() {
         create_server_and_open_connection(&mut gatt);
 
         // act: send an indication, then disconnect
-        let pending_indication = spawn_local(gatt.get_bearer(CONN_ID).unwrap().send_indication(
+        let pending_indication = spawn_local(gatt.get_bearer(TCB_IDX).unwrap().send_indication(
             CHARACTERISTIC_HANDLE,
             AttAttributeDataChild::RawData([1, 2, 3, 4].into()),
         ));
         transport_rx.recv().await.unwrap();
-        gatt.on_le_disconnect(CONN_ID);
+        gatt.on_le_disconnect(TCB_IDX);
 
         // assert: the pending indication resolves appropriately
         assert!(matches!(
@@ -317,7 +316,7 @@ fn test_write_to_descriptor() {
         let mut data_rx = create_server_and_open_connection(&mut gatt);
 
         // act
-        gatt.get_bearer(CONN_ID).unwrap().handle_packet(
+        gatt.get_bearer(TCB_IDX).unwrap().handle_packet(
             build_att_view_or_crash(AttWriteRequestBuilder {
                 handle: DESCRIPTOR_HANDLE.into(),
                 value: build_att_data(data.clone()),
@@ -325,7 +324,7 @@ fn test_write_to_descriptor() {
             .view(),
         );
         let (tx, written_data) = if let MockDatastoreEvents::Write(
-            CONN_ID,
+            TCB_IDX,
             DESCRIPTOR_HANDLE,
             AttributeBackingType::Descriptor,
             written_data,
@@ -363,7 +362,7 @@ fn test_read_device_name() {
         create_server_and_open_connection(&mut gatt);
 
         // act
-        gatt.get_bearer(CONN_ID).unwrap().handle_packet(
+        gatt.get_bearer(TCB_IDX).unwrap().handle_packet(
             build_att_view_or_crash(AttReadByTypeRequestBuilder {
                 starting_handle: AttHandle(1).into(),
                 ending_handle: AttHandle(0xFFFF).into(),
