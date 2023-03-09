@@ -63,6 +63,30 @@
       },
       "revId": "e523f72f434fc2485d1bd95a637278e2bc15c0dd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "62c2769f_45cc82a1",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/mapclient/MapClientStateMachineTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 424,
+      "author": {
+        "id": 1799080
+      },
+      "writtenOn": "2023-03-09T09:49:18Z",
+      "side": 1,
+      "message": "Adding this for info:\niOS can use an email address as the sender/receiver when the message is using the iMessage protocol. Over MAP, this appears as an SMS (with the sender or receiver as email (instead of a number))",
+      "parentUuid": "a80c10cb_942bf798",
+      "range": {
+        "startLine": 424,
+        "startChar": 16,
+        "endLine": 424,
+        "endChar": 41
+      },
+      "revId": "e523f72f434fc2485d1bd95a637278e2bc15c0dd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
