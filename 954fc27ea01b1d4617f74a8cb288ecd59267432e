@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e3c67f63_8c78378a",
+        "filename": "system/bta/le_audio/broadcaster/broadcaster.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 314,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-03-09T17:49:37Z",
+      "side": 1,
+      "message": "yes, the next cl will leverage this field, public broadcast announcement has this info. And for other codec setting usage, we might plan later once we come to that point.",
+      "parentUuid": "30560f39_f5ec7de0",
+      "range": {
+        "startLine": 314,
+        "startChar": 33,
+        "endLine": 314,
+        "endChar": 45
+      },
+      "revId": "954fc27ea01b1d4617f74a8cb288ecd59267432e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5b4c72a5_4914e21b",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-03-09T12:42:19Z",
       "side": 1,
       "message": "Can we also make sure the number of subgroups is correct?",
+      "range": {
+        "startLine": 316,
+        "startChar": 53,
+        "endLine": 316,
+        "endChar": 69
+      },
+      "revId": "954fc27ea01b1d4617f74a8cb288ecd59267432e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4d6eaeff_058bcb89",
+        "filename": "system/bta/le_audio/broadcaster/broadcaster_test.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 316,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-03-09T17:49:37Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "5b4c72a5_4914e21b",
       "range": {
         "startLine": 316,
         "startChar": 53,
