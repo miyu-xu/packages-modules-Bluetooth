@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0a5c0411_cd3d5915",
+        "filename": "system/bta/av/bta_av_act.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 2346,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2023-03-09T21:40:25Z",
+      "side": 1,
+      "message": "Should this field be init to a COD like `BTM_COD_SERVICE_AUDIO` or do we want to keep it at 0 to indicate it\u0027s not set?",
+      "range": {
+        "startLine": 2346,
+        "startChar": 15,
+        "endLine": 2346,
+        "endChar": 16
+      },
+      "revId": "d99708d51b2d0b3012fca7904d39de995fd43388",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
