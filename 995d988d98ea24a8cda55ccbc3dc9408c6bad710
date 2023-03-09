@@ -16,6 +16,75 @@
       "message": "Hi Charlie,\n\nSubmitted 10 GATT test cases. Moved back GATT/CL/GAD/BV-07-C and GATT/CL/GAD/BV-08-C to flaky list.\nRequest you to provide your inputs.\n\nThank you.\n\nRegards,\nFahad",
       "revId": "995d988d98ea24a8cda55ccbc3dc9408c6bad710",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e07a697c_553bbf04",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/gatt.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1218,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2023-03-09T18:46:11Z",
+      "side": 1,
+      "message": "I don\u0027t think we are enabling any notification here, are we ? I think we should use something like:\nhttps://developer.android.com/reference/android/bluetooth/BluetoothGatt#setCharacteristicNotification(android.bluetooth.BluetoothGattCharacteristic,%20boolean)",
+      "range": {
+        "startLine": 1205,
+        "startChar": 4,
+        "endLine": 1218,
+        "endChar": 19
+      },
+      "revId": "995d988d98ea24a8cda55ccbc3dc9408c6bad710",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c7031733_b3444d87",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/gatt.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1230,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2023-03-09T18:46:11Z",
+      "side": 1,
+      "message": "Same here, I don\u0027t think we are testing anything. What about listening to the notification callback `onCharacteristicChanged` ?\nhttps://developer.android.com/reference/android/bluetooth/BluetoothGattCallback#onCharacteristicChanged(android.bluetooth.BluetoothGatt,%20android.bluetooth.BluetoothGattCharacteristic,%20byte[])",
+      "range": {
+        "startLine": 1220,
+        "startChar": 4,
+        "endLine": 1230,
+        "endChar": 19
+      },
+      "revId": "995d988d98ea24a8cda55ccbc3dc9408c6bad710",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ca171c19_cb55530a",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/gatt.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1239,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2023-03-09T18:46:11Z",
+      "side": 1,
+      "message": "Are we sure the security key is deleted here ? Shouldn\u0027t we try to `deleteBond` or `reset` ?",
+      "range": {
+        "startLine": 1232,
+        "startChar": 4,
+        "endLine": 1239,
+        "endChar": 19
+      },
+      "revId": "995d988d98ea24a8cda55ccbc3dc9408c6bad710",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
