@@ -20,17 +20,9 @@
         <option name="test-file-name" value="PandoraInstrumentationTests.apk" />
     </target_preparer>
 
-    <target_preparer class="com.android.tradefed.targetprep.RunHostCommandTargetPreparer">
-        <option name="work-dir" value="external/pandora/avatar" />
-        <option name="host-setup-command" value="virtualenv venv" />
-    </target_preparer>
-
     <target_preparer class="com.android.tradefed.targetprep.PythonVirtualenvPreparer">
-        <option name="venv-dir" value="external/pandora/avatar/venv"/>
         <option name="dep-module" value="grpcio-tools"/>
-        <option name="dep-module" value="external/pandora/avatar/bt-test-interfaces/python/"/>
-        <option name="dep-module" value="external/pandora/avatar/third-party/bumble/"/>
-        <option name="dep-module" value="external/pandora/avatar/"/>
+        <option name="dep-module" value="cryptography"/>
     </target_preparer>
 
     <target_preparer class="com.android.tradefed.targetprep.RunHostCommandTargetPreparer">
@@ -39,11 +31,7 @@
     </target_preparer>
 
     <target_preparer class="com.android.tradefed.targetprep.RunHostCommandTargetPreparer">
-        <option name="work-dir" value="external/pandora/avatar" />
-        <option name="host-setup-command"
-              value="venv/bin/python ./bt-test-interfaces/python/_build/grpc.py" />
-        <option name="host-background-command"
-              value="venv/bin/python avatar/bumble_server/__init__.py" />
+        <option name="host-background-command" value="/tmp/script.sh" />
     </target_preparer>
 
     <option name="test-tag" value="PandoraInstrumentationTests" />

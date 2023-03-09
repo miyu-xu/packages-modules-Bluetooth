@@ -30,8 +30,7 @@ java_defaults {
     // Include all test java files.
     srcs: ["src/**/*.java"],
 
-    // TODO: the binary target is not compiling with test
-    required:["bumble_pandora_server_bin"],
+    data: [":bumble_pandora_server_bin"],
 
     platform_apis: true,
     test_suites: [
