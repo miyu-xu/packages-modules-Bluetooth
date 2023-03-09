@@ -249,7 +249,10 @@ bool gatt_connect(const RawAddress& rem_bda, tBLE_ADDR_TYPE addr_type,
   }
 
   p_tcb->att_lcid = L2CAP_ATT_CID;
-  return acl_create_le_connection_with_id(gatt_if, rem_bda, addr_type);
+
+  /* b/272572974 sort out connection manager resposibilities and passing address
+   * type */
+  return connection_manager::direct_connect_add(gatt_if, rem_bda);
 }
 
 bool gatt_connect(const RawAddress& rem_bda, tGATT_TCB* p_tcb,
