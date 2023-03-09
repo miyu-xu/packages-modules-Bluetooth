@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "02c482cc_8f8e1ed7",
+        "filename": "tools/pdl/src/backends/rust.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-03-09T00:27:27Z",
+      "side": 1,
+      "message": "Description a bit unclear I find.\n```\nList all the fields of the current declaration `id` that are constrained in child packet declarations, and recursively their children.\n```",
+      "revId": "1a7675d61a5985b93ac9d650ac3b1fa59e343cef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
