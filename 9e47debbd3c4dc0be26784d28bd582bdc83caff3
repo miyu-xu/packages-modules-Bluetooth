@@ -52,6 +52,24 @@
       "parentUuid": "f4b201e5_3f0f4055",
       "revId": "9e47debbd3c4dc0be26784d28bd582bdc83caff3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f20f5fac_0795f73a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2023-03-09T18:18:54Z",
+      "side": 1,
+      "message": "I also added a more detailed explanation on the bug itself. This shows up as an Android U regression since it wasn\u0027t pushed to T.",
+      "parentUuid": "0e9fa326_7071ddca",
+      "revId": "9e47debbd3c4dc0be26784d28bd582bdc83caff3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
