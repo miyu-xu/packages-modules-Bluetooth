@@ -35,6 +35,7 @@ import android.bluetooth.BluetoothAssignedNumbers;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothHeadsetClient;
 import android.bluetooth.BluetoothSinkAudioPolicy;
+import android.bluetooth.BluetoothStatusCodes;
 import android.bluetooth.BluetoothProfile;
 import android.content.Context;
 import android.content.Intent;
@@ -1103,8 +1104,23 @@ public class HeadsetClientStateMachineTest {
                 .setInBandRingtonePolicy(BluetoothSinkAudioPolicy.POLICY_ALLOWED)
                 .build();
 
+        // Test setAudioPolicy
         mHeadsetClientStateMachine.setAudioPolicy(dummyAudioPolicy);
         verify(mNativeInterface).sendAndroidAt(mTestDevice, "+ANDROID=1,1,2,1");
+        verify(mHeadsetClientStateMachine).addQueuedAction(anyInt());
+
+        // Test if not support audio policy feature
+        when(mHeadsetClientStateMachine.getAudioPolicyRemoteSupported()).thenReturn(
+                BluetoothStatusCodes.FEATURE_NOT_SUPPORTED);
+        mHeadsetClientStateMachine.setAudioPolicy(dummyAudioPolicy);
+        verify(mNativeInterface, never()).sendAndroidAt(mTestDevice, "+ANDROID=1,1,2,1");
+        verify(mHeadsetClientStateMachine, never()).addQueuedAction(anyInt());
+
+        // Test if fail to sendAndroidAt
+        when(mHeadsetClientStateMachine.getAudioPolicyRemoteSupported()).thenReturn(
+                BluetoothStatusCodes.FEATURE_SUPPORTED);
+        doReturn(false).when(mNativeInterface).sendAndroidAt(anyObject(), anyString());
+        verify(mHeadsetClientStateMachine, never()).addQueuedAction(anyInt());
     }
 
     @Test
