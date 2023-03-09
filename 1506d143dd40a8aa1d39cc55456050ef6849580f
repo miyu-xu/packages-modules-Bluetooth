@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d0cf5c6f_479ad176",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1970930
+      },
+      "writtenOn": "2023-03-09T05:58:25Z",
+      "side": 1,
+      "message": "Hi Thomas/Charlie,\n\nSubmitted 10 GATT test cases. Also moved 2 test cases from flaky list to pass list.\nRequest you to provide your inputs.\n\nThank you.\n\nRegards,\nFahad",
+      "revId": "1506d143dd40a8aa1d39cc55456050ef6849580f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
