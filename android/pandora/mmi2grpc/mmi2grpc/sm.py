@@ -15,6 +15,7 @@
 from queue import Empty, Queue
 from threading import Thread
 import sys
+import time
 import asyncio
 
 from mmi2grpc._helpers import assert_description, match_description
@@ -71,6 +72,13 @@ class SMProxy(ProfileProxy):
         the Implementation Under Test(IUT) can initiate a disconnect request to
         PTS.
         """
+        # Wait 2sec before sending the disconnection request:
+        # when the LE ACL Data Packet Size is larger than 64 bytes,
+        # there is a race that prevents the stack from closing the opened
+        # EATT fixed channels when disconnect is sent in between
+        # connect() and supported_features_cb().
+        time.sleep(2)
+
         self.host.Disconnect(connection=self.connection)
         self.connection = None
         return "OK"
