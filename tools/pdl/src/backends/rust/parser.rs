@@ -579,11 +579,9 @@ impl<'a> FieldParser<'a> {
             return;
         }
 
-        let child_ids = children
-            .iter()
-            .map(|child| format_ident!("{}", child.id().unwrap()))
-            .collect::<Vec<_>>();
-        let child_ids_data = child_ids.iter().map(|ident| format_ident!("{ident}Data"));
+        let child_ids = children.iter().map(|child| child.id().unwrap()).collect::<Vec<_>>();
+        let child_idents = child_ids.iter().map(|id| format_ident!("{id}"));
+        let child_data_idents = child_ids.iter().map(|id| format_ident!("{id}Data"));
 
         // Set of field names (sorted by name).
         let mut constrained_fields = BTreeSet::new();
@@ -607,8 +605,7 @@ impl<'a> FieldParser<'a> {
         }
 
         let wildcard = quote!(_);
-        let match_values = children.iter().map(|child| {
-            let child_id = child.id().unwrap();
+        let match_values = child_ids.iter().map(|child_id| {
             let values = constrained_fields.iter().map(|field_name| {
                 constraint_values.get(&(child_id, field_name)).unwrap_or(&wildcard)
             });
@@ -618,8 +615,8 @@ impl<'a> FieldParser<'a> {
         });
         let constrained_field_idents =
             constrained_fields.iter().map(|field| format_ident!("{field}"));
-        let child_parse_args = children.iter().map(|child| {
-            let fields = find_constrained_parent_fields(self.scope, child.id().unwrap())
+        let child_parse_args = child_ids.iter().map(|child_id| {
+            let fields = find_constrained_parent_fields(self.scope, child_id)
                 .map(|field| format_ident!("{}", field.id().unwrap()));
             quote!(#(, #fields)*)
         });
@@ -628,9 +625,9 @@ impl<'a> FieldParser<'a> {
             let child = match (#(#constrained_field_idents),*) {
                 #(#match_values => {
                     let mut cell = Cell::new(payload);
-                    let child_data = #child_ids_data::parse_inner(&mut cell #child_parse_args)?;
+                    let child_data = #child_data_idents::parse_inner(&mut cell #child_parse_args)?;
                     // TODO(mgeisler): communicate back to user if !cell.get().is_empty()?
-                    #packet_data_child::#child_ids(Arc::new(child_data))
+                    #packet_data_child::#child_idents(Arc::new(child_data))
                 }),*
                 _ if !payload.is_empty() => {
                     #packet_data_child::Payload(Bytes::copy_from_slice(payload))
