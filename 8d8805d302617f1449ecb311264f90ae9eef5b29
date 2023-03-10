@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b3aa08d5_d456a517",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/pbapclient/PbapClientServiceTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-03-10T03:10:48Z",
+      "side": 1,
+      "message": "Are you going to fix this issue in near future?\nIf not, please file another issue.",
+      "range": {
+        "startLine": 168,
+        "startChar": 15,
+        "endLine": 168,
+        "endChar": 24
+      },
+      "revId": "8d8805d302617f1449ecb311264f90ae9eef5b29",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
