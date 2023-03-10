@@ -16,14 +16,15 @@
  *
  ******************************************************************************/
 
+#include "stack/btm/security_device_record.h"
 #include "types/raw_address.h"
-
-/** Adds the device into acceptlist. Returns false if acceptlist is full and
- * device can't be added, true otherwise. */
-extern bool BTM_AcceptlistAdd(const RawAddress& address);
 
 /** Removes the device from acceptlist */
 extern void BTM_AcceptlistRemove(const RawAddress& address);
 
 /** Clear the acceptlist, end any pending acceptlist connections */
 extern void BTM_AcceptlistClear();
+
+/** Resolve a raw address based on the provided security record */
+extern const tBLE_BD_ADDR BTM_ConvertToAddressWithType(
+    const RawAddress& bd_addr, const tBTM_SEC_DEV_REC* p_dev_rec);

@@ -1312,10 +1312,13 @@ bool GATT_Connect(tGATT_IF gatt_if, const RawAddress& bd_addr,
       LOG_DEBUG("Adding to background connect to device:%s",
                 ADDRESS_TO_LOGGABLE_CSTR(bd_addr));
       if (connection_type == BTM_BLE_BKG_CONNECT_ALLOW_LIST) {
-        ret = connection_manager::background_connect_add(gatt_if, bd_addr);
+        ret = connection_manager::background_connect_add(
+            gatt_if,
+            BTM_ConvertToAddressWithType(bd_addr, btm_find_dev(bd_addr)));
       } else {
         ret = connection_manager::background_connect_targeted_announcement_add(
-            gatt_if, bd_addr);
+            gatt_if,
+            BTM_ConvertToAddressWithType(bd_addr, btm_find_dev(bd_addr)));
       }
     }
   }
@@ -1394,7 +1397,8 @@ bool GATT_CancelConnect(tGATT_IF gatt_if, const RawAddress& bd_addr,
     }
   }
 
-  if (!connection_manager::remove_unconditional(bd_addr)) {
+  if (!connection_manager::remove_unconditional(
+          BTM_ConvertToAddressWithType(bd_addr, btm_find_dev(bd_addr)))) {
     LOG(ERROR)
         << __func__
         << ": no app associated with the bg device for unconditional removal";

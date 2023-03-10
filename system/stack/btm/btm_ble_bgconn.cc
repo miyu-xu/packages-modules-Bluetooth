@@ -68,7 +68,7 @@ struct BgConnHash {
 static std::unordered_map<RawAddress, BackgroundConnection, BgConnHash>
     background_connections;
 
-const tBLE_BD_ADDR convert_to_address_with_type(
+const tBLE_BD_ADDR BTM_ConvertToAddressWithType(
     const RawAddress& bd_addr, const tBTM_SEC_DEV_REC* p_dev_rec) {
   if (p_dev_rec == nullptr || !p_dev_rec->is_device_type_has_ble()) {
     return {
@@ -170,21 +170,6 @@ bool BTM_BackgroundConnectAddressKnown(const RawAddress& address) {
   return false;
 }
 
-/** Adds the device into acceptlist. Returns false if acceptlist is full and
- * device can't be added, true otherwise. */
-bool BTM_AcceptlistAdd(const RawAddress& address) {
-  if (!controller_get_interface()->supports_ble()) {
-    LOG_WARN("Controller does not support Le");
-    return false;
-  }
-
-  tBTM_SEC_DEV_REC* p_dev_rec = btm_find_dev(address);
-
-  return bluetooth::shim::ACL_AcceptLeConnectionFrom(
-      convert_to_address_with_type(address, p_dev_rec),
-      /* is_direct */ false);
-}
-
 /** Removes the device from acceptlist */
 void BTM_AcceptlistRemove(const RawAddress& address) {
   if (!controller_get_interface()->supports_ble()) {
@@ -195,7 +180,7 @@ void BTM_AcceptlistRemove(const RawAddress& address) {
   tBTM_SEC_DEV_REC* p_dev_rec = btm_find_dev(address);
 
   bluetooth::shim::ACL_IgnoreLeConnectionFrom(
-      convert_to_address_with_type(address, p_dev_rec));
+      BTM_ConvertToAddressWithType(address, p_dev_rec));
   return;
 }
 

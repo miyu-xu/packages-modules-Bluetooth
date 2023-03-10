@@ -32,6 +32,7 @@
 #include "bt_target.h"  // Must be first to define build configuration
 #include "osi/include/allocator.h"
 #include "osi/include/log.h"
+#include "stack/btm/btm_dev.h"
 #include "stack/btm/btm_sec.h"
 #include "stack/eatt/eatt.h"
 #include "stack/gatt/connection_manager.h"
@@ -1467,8 +1468,9 @@ bool gatt_cancel_open(tGATT_IF gatt_if, const RawAddress& bda) {
     gatt_disconnect(p_tcb);
   }
 
-  if (!connection_manager::direct_connect_remove(gatt_if, bda)) {
-    if (!connection_manager::is_background_connection(bda)) {
+  auto address_with_type = BTM_ConvertToAddressWithType(bda, btm_find_dev(bda));
+  if (!connection_manager::direct_connect_remove(gatt_if, address_with_type)) {
+    if (!connection_manager::is_background_connection(address_with_type)) {
       BTM_AcceptlistRemove(bda);
       LOG_INFO(
           "Gatt connection manager has no background record but "
@@ -1727,5 +1729,6 @@ uint8_t* gatt_dbg_op_name(uint8_t op_code) {
 bool gatt_auto_connect_dev_remove(tGATT_IF gatt_if, const RawAddress& bd_addr) {
   tGATT_TCB* p_tcb = gatt_find_tcb_by_addr(bd_addr, BT_TRANSPORT_LE);
   if (p_tcb) gatt_update_app_use_link_flag(gatt_if, p_tcb, false, false);
-  return connection_manager::background_connect_remove(gatt_if, bd_addr);
+  return connection_manager::background_connect_remove(
+      gatt_if, BTM_ConvertToAddressWithType(bd_addr, btm_find_dev(bd_addr)));
 }

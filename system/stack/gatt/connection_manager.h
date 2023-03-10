@@ -20,7 +20,7 @@
 
 #include <set>
 
-#include "types/raw_address.h"
+#include "types/ble_address_with_type.h"
 
 /* connection_manager takes care of all the low-level details of LE connection
  * initiation. It accept requests from multiple subsystems to connect to
@@ -38,29 +38,29 @@ using tAPP_ID = uint8_t;
 
 /* for background connection */
 extern bool background_connect_targeted_announcement_add(
-    tAPP_ID app_id, const RawAddress& address);
-extern bool background_connect_add(tAPP_ID app_id, const RawAddress& address);
+    tAPP_ID app_id, const tBLE_BD_ADDR& address);
+extern bool background_connect_add(tAPP_ID app_id, const tBLE_BD_ADDR& address);
 extern bool background_connect_remove(tAPP_ID app_id,
-                                      const RawAddress& address);
-extern bool remove_unconditional(const RawAddress& address);
+                                      const tBLE_BD_ADDR& address);
+extern bool remove_unconditional(const tBLE_BD_ADDR& address);
 
 extern void reset(bool after_reset);
 
 extern void on_app_deregistered(tAPP_ID app_id);
-extern void on_connection_complete(const RawAddress& address);
+extern void on_connection_complete(const tBLE_BD_ADDR& address);
 
-extern std::set<tAPP_ID> get_apps_connecting_to(const RawAddress& remote_bda);
+extern std::set<tAPP_ID> get_apps_connecting_to(const tBLE_BD_ADDR& remote_bda);
 
-extern bool direct_connect_add(tAPP_ID app_id, const RawAddress& address);
-extern bool direct_connect_remove(tAPP_ID app_id, const RawAddress& address);
+extern bool direct_connect_add(tAPP_ID app_id, const tBLE_BD_ADDR& address);
+extern bool direct_connect_remove(tAPP_ID app_id, const tBLE_BD_ADDR& address);
 
 extern void dump(int fd);
 
 /* This callback will be executed when direct connect attempt fails due to
  * timeout. It must be implemented by users of connection_manager */
-extern void on_connection_timed_out(uint8_t app_id, const RawAddress& address);
-extern void on_connection_timed_out_from_shim(const RawAddress& address);
+extern void on_connection_timed_out(uint8_t app_id, const tBLE_BD_ADDR& address);
+extern void on_connection_timed_out_from_shim(const tBLE_BD_ADDR& address);
 
-extern bool is_background_connection(const RawAddress& address);
+extern bool is_background_connection(const tBLE_BD_ADDR& address);
 
 }  // namespace connection_manager
