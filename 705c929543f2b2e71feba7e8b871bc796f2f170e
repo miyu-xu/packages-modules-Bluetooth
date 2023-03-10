@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "99269f6d_7647cce6",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-03-10T10:37:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "970fcc9a_0dc961f8",
+      "range": {
+        "startLine": 7,
+        "startChar": 22,
+        "endLine": 7,
+        "endChar": 28
+      },
+      "revId": "705c929543f2b2e71feba7e8b871bc796f2f170e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "aa3e5769_cd0bca83",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7620b437_f22bb6cf",
+        "filename": "system/stack/btm/btm_ble.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-03-10T10:37:13Z",
+      "side": 1,
+      "message": "Thanks. That makes me thing this is not a valid place for this call. I fixed it.",
+      "parentUuid": "aa3e5769_cd0bca83",
+      "range": {
+        "startLine": 85,
+        "startChar": 0,
+        "endLine": 87,
+        "endChar": 0
+      },
+      "revId": "705c929543f2b2e71feba7e8b871bc796f2f170e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fb798175_910b734c",
@@ -60,6 +108,30 @@
       "writtenOn": "2023-02-10T19:18:59Z",
       "side": 1,
       "message": "nit: for",
+      "range": {
+        "startLine": 228,
+        "startChar": 65,
+        "endLine": 228,
+        "endChar": 67
+      },
+      "revId": "705c929543f2b2e71feba7e8b871bc796f2f170e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "57c110e5_0f34a6b4",
+        "filename": "system/stack/btm/security_device_record.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 228,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-03-10T10:37:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fb798175_910b734c",
       "range": {
         "startLine": 228,
         "startChar": 65,
