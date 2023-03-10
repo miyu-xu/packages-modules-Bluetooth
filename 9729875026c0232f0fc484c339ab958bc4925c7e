@@ -51,6 +51,23 @@
       "parentUuid": "879137a2_7fdd2a18",
       "revId": "9729875026c0232f0fc484c339ab958bc4925c7e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "290ac0f6_8b6a5944",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-03-10T23:56:31Z",
+      "side": 1,
+      "message": "Having bg/direct connection set/list in le_impl is useful as that it all runs synchronously within the same context.",
+      "revId": "9729875026c0232f0fc484c339ab958bc4925c7e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
