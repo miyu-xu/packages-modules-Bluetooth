@@ -94,6 +94,30 @@
       },
       "revId": "226efb2621fccc5f421725d81f0c65fd82767ab1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5356358c_0885930f",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 4581,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2023-03-10T11:48:39Z",
+      "side": 1,
+      "message": "Update: This case is not directly related to timer but the inconsistency between BTM_SEC and BTM_SEC(you can see how aosp/2481896 fixes it). For some reasons `btm_sec_bond_by_transport()` can still invoke `btm_sec_wait_and_start_authentication()` during a reconnection procudure. Without aosp/2481896 `btm_sec_disconnected()` are invoked to reset p_dev_rec\u0027s HCI handle but p_acl still hold the old handle which already released.",
+      "parentUuid": "e258d4ba_25861b89",
+      "range": {
+        "startLine": 4581,
+        "startChar": 50,
+        "endLine": 4581,
+        "endChar": 69
+      },
+      "revId": "226efb2621fccc5f421725d81f0c65fd82767ab1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
