@@ -16,6 +16,24 @@
       "message": "Prefer `RawAddress::new()` or `RawAddress::default()`. We shouldn\u0027t use unsafe when it\u0027s avoidable.\n\nempty address is just `[0; 6]` too....",
       "revId": "5d113f520393558d4d9705cc6115a3ec3885e4e7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8f2f4f92_5e7d88a2",
+        "filename": "system/gd/rust/topshim/src/btif.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 821,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2023-03-10T00:07:09Z",
+      "side": 1,
+      "message": "I was actually trying to refer to the [existing definition](https://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/system/types/bluetooth/uuid.h;l\u003d43) intentionally to prevent potential breakage from future change.\n\nDo you think it\u0027s not necessary and we should just define our own?\n\nThe root cause is that the existing `set_active_device` was designed to use the empty address as the signal for reset unfortunately.",
+      "parentUuid": "fccd2c08_a904cf1d",
+      "revId": "5d113f520393558d4d9705cc6115a3ec3885e4e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
