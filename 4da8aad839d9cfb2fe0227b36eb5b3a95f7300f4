@@ -129,6 +129,30 @@
       },
       "revId": "4da8aad839d9cfb2fe0227b36eb5b3a95f7300f4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "95becffe_dd705ad7",
+        "filename": "system/stack/btm/btm_ble.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-03-10T22:32:34Z",
+      "side": 1,
+      "message": "\u003e or you want us to make feature-based boolean properties\n\nYep this is what I meant as discrete values\n\n\u003e My initial idea is that since we can configure them in the past\n\nWell, not really, it was configurable for testing with the PTS not for production usage.",
+      "parentUuid": "d0b1fcd3_4d5f4983",
+      "range": {
+        "startLine": 67,
+        "startChar": 0,
+        "endLine": 81,
+        "endChar": 46
+      },
+      "revId": "4da8aad839d9cfb2fe0227b36eb5b3a95f7300f4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
