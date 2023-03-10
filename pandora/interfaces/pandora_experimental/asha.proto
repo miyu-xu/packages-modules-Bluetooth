@@ -33,7 +33,7 @@ service Asha {
   // Playback audio
   rpc PlaybackAudio(stream PlaybackAudioRequest) returns (PlaybackAudioResponse);
   // Stop a started stream.
-  rpc Stop(stream StopRequest) returns (StopResponse);
+  rpc Stop(StopRequest) returns (StopResponse);
 }
 
 // Request of the `Register` method.
