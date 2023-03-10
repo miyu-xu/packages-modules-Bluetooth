@@ -118,6 +118,30 @@
       },
       "revId": "226efb2621fccc5f421725d81f0c65fd82767ab1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a5721cb3_bfd1546b",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 4581,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-03-10T18:56:12Z",
+      "side": 1,
+      "message": "I didn\u0027t follow your explanation.\n\nIf this fixes a disconnection while we were waiting, I think it\u0027s reasonable (but cancelling the timer on disconnect would be even better.)\n\nOtherwise, I\u0027d rather fix it somewhere else.",
+      "parentUuid": "5356358c_0885930f",
+      "range": {
+        "startLine": 4581,
+        "startChar": 50,
+        "endLine": 4581,
+        "endChar": 69
+      },
+      "revId": "226efb2621fccc5f421725d81f0c65fd82767ab1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
