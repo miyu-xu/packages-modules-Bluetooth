@@ -13,6 +13,7 @@ pub mod bluetooth_adv;
 pub mod bluetooth_gatt;
 pub mod bluetooth_logging;
 pub mod bluetooth_media;
+pub mod bluetooth_qa;
 pub mod callbacks;
 pub mod socket_manager;
 pub mod suspend;
@@ -118,6 +119,10 @@ pub enum Message {
     // Admin policy related
     AdminCallbackDisconnected(u32),
     HidHostEnable,
+
+    // QA related
+    QaEnableA2dpSink,
+    QaSendAvrcpPassThrough(String, u8, u8),
 }
 
 /// Represents suspend mode of a module.
@@ -330,6 +335,15 @@ impl Stack {
                 }
                 Message::AvrcpCtrl(a) => {
                     bluetooth_media.lock().unwrap().dispatch_avrcp_ctrl_callbacks(a);
+                }
+                Message::QaEnableA2dpSink => {
+                    bluetooth_media.lock().unwrap().enable_a2dp_sink();
+                }
+                Message::QaSendAvrcpPassThrough(addr, key_code, key_state) => {
+                    bluetooth_media
+                        .lock()
+                        .unwrap()
+                        .send_pass_through_cmd(addr, key_code, key_state);
                 }
             }
         }
