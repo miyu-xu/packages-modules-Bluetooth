@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "36fdc135_c328f8f7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2023-03-10T09:53:33Z",
+      "side": 1,
+      "message": "Very simple change found in developing other functions. Not sure if it could cause any negative impact.",
+      "revId": "7c9250287796050f2d229ddbc5273c72c903b66c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
