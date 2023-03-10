@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5dbf0849_1e160761",
+        "filename": "android/app/src/com/android/bluetooth/mapclient/MapClientService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 342,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-03-10T05:46:01Z",
+      "side": 1,
+      "message": "I\u0027m curious how mAdapterService can be null here?\nIf it is null, L330 in start() also throws NPE, doesn\u0027t it?",
+      "range": {
+        "startLine": 342,
+        "startChar": 12,
+        "endLine": 342,
+        "endChar": 35
+      },
+      "revId": "02f0978f9bbdb84c8b793075f491890f02f9ac2c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
