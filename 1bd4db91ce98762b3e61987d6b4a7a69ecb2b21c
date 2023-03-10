@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "66e4fea3_49c2763a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1892435
+      },
+      "writtenOn": "2023-03-10T04:23:28Z",
+      "side": 1,
+      "message": "Perhaps you want to uprev to 0.64 since that is current.",
+      "revId": "1bd4db91ce98762b3e61987d6b4a7a69ecb2b21c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
