@@ -371,7 +371,7 @@ bool l2c_link_hci_disc_comp(uint16_t handle, tHCI_REASON reason) {
   tL2C_LCB* p_lcb = l2cu_find_lcb_by_handle(handle);
   tL2C_CCB* p_ccb;
   bool status = true;
-  bool lcb_is_free = true;
+  bool reconnect = false;
 
   /* If we don't have one, maybe an SCO link. Send to MM */
   if (!p_lcb) {
@@ -415,6 +415,7 @@ bool l2c_link_hci_disc_comp(uint16_t handle, tHCI_REASON reason) {
      */
     if (p_lcb->ccb_queue.p_first_ccb != NULL || p_lcb->p_pending_ccb) {
       LOG_DEBUG("l2c_link_hci_disc_comp: Restarting pending ACL request");
+      reconnect = true;
       /* Release any held buffers */
       while (!list_is_empty(p_lcb->link_xmit_data_q)) {
         BT_HDR* p_buf =
@@ -455,26 +456,25 @@ bool l2c_link_hci_disc_comp(uint16_t handle, tHCI_REASON reason) {
           }
         }
       }
-      if (p_lcb->transport == BT_TRANSPORT_LE) {
-        if (l2cu_create_conn_le(p_lcb))
-          lcb_is_free = false; /* still using this lcb */
-      } else {
-        l2cu_create_conn_br_edr(p_lcb);
-        lcb_is_free = false; /* still using this lcb */
-      }
     }
 
     p_lcb->p_pending_ccb = NULL;
-
+    tBT_TRANSPORT transport = p_lcb->transport;
+    RawAddress remote_bd_addr = p_lcb->remote_bd_addr;
     /* Release the LCB */
-    if (lcb_is_free) l2cu_release_lcb(p_lcb);
-  }
-
-  /* Now that we have a free acl connection, see if any lcbs are pending */
-  if (lcb_is_free &&
-      ((p_lcb = l2cu_find_lcb_by_state(LST_CONNECT_HOLDING)) != NULL)) {
-    /* we found one-- create a connection */
-    l2cu_create_conn_br_edr(p_lcb);
+    l2cu_release_lcb(p_lcb);
+    if (reconnect) {
+      p_lcb = l2cu_allocate_lcb(remote_bd_addr, false, transport);
+      if (transport == BT_TRANSPORT_LE) {
+        l2cu_create_conn_le(p_lcb);
+      } else {
+        l2cu_create_conn_br_edr(p_lcb);
+      }
+    } else if ((p_lcb = l2cu_find_lcb_by_state(LST_CONNECT_HOLDING)) != NULL) {
+      // If there is any connection holded(due to exceeding connection limit) we
+      // have a slot to reconnect now
+      l2cu_create_conn_br_edr(p_lcb);
+    }
   }
 
   return status;
