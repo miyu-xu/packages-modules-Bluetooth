@@ -22,6 +22,30 @@
       },
       "revId": "a2722353ebe47e3cfe186e5c7ff84bc5ed137cbb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ca41ab22_3dcdd65a",
+        "filename": "system/stack/btm/btm_dev.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 622,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-03-10T19:17:13Z",
+      "side": 1,
+      "message": "you are right, but I did it on purpose, for better code readiness.",
+      "parentUuid": "de979242_7f2575d2",
+      "range": {
+        "startLine": 622,
+        "startChar": 0,
+        "endLine": 622,
+        "endChar": 37
+      },
+      "revId": "a2722353ebe47e3cfe186e5c7ff84bc5ed137cbb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
