@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2ad9ce39_996b0fde",
+        "filename": "system/bta/gatt/bta_gattc_utils.cc",
+        "patchSetId": 22
+      },
+      "lineNbr": 379,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-03-10T19:56:55Z",
+      "side": 1,
+      "message": "I\u0027m worried about this.  I\u0027d rather not have the API lie.  It seems easier to fix things up later if we are returning the true MTU.",
+      "range": {
+        "startLine": 376,
+        "startChar": 0,
+        "endLine": 379,
+        "endChar": 0
+      },
+      "revId": "6ef9f51751d069928b8289643710d761964f820f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
