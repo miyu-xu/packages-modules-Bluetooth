@@ -35,6 +35,7 @@
 #endif
 
 #include <cstdint>
+#include <mutex>
 #include <string>
 
 #include "bta/include/bta_ag_api.h"
@@ -98,16 +99,18 @@ static RawAddress active_bda = {};
  *  Static variables
  ******************************************************************************/
 static Callbacks* bt_hf_callbacks = nullptr;
+static std::mutex bt_hf_callbacks_lock;
 
 #define CHECK_BTHF_INIT()                                             \
-  do {                                                                \
+  std::lock_guard<std::mutex> lg(bt_hf_callbacks_lock);               \
+  {                                                                   \
     if (!bt_hf_callbacks) {                                           \
       BTIF_TRACE_WARNING("BTHF: %s: BTHF not initialized", __func__); \
       return BT_STATUS_NOT_READY;                                     \
     } else {                                                          \
       BTIF_TRACE_EVENT("BTHF: %s", __func__);                         \
     }                                                                 \
-  } while (false)
+  }
 
 /* BTIF-HF control block to map bdaddr to BTA handle */
 struct btif_hf_cb_t {
@@ -302,6 +305,7 @@ static bool IsSlcConnected(RawAddress* bd_addr) {
  *
  ******************************************************************************/
 static void btif_hf_upstreams_evt(uint16_t event, char* p_param) {
+  std::lock_guard<std::mutex> lg(bt_hf_callbacks_lock);
   if (event == BTA_AG_ENABLE_EVT || event == BTA_AG_DISABLE_EVT) {
     LOG(INFO) << __func__ << ": AG enable/disable event " << event;
     return;
@@ -770,6 +774,7 @@ static void UpdateCallStates(btif_hf_cb_t* control_block, int num_active,
  *
  ******************************************************************************/
 bool IsCallIdle() {
+  std::lock_guard<std::mutex> lg(bt_hf_callbacks_lock);
   if (!bt_hf_callbacks) return true;
 
   for (int i = 0; i < btif_max_hf_clients; ++i) {
@@ -845,6 +850,7 @@ bt_status_t HeadsetInterface::Init(Callbacks* callbacks, int max_hf_clients,
   BTIF_TRACE_DEBUG(
       "%s: btif_hf_features=%zu, max_hf_clients=%d, inband_ringing_enabled=%d",
       __func__, btif_hf_features, btif_max_hf_clients, inband_ringing_enabled);
+  std::lock_guard<std::mutex> lg(bt_hf_callbacks_lock);
   bt_hf_callbacks = callbacks;
   for (btif_hf_cb_t& hf_cb : btif_hf_cb) {
     reset_control_block(&hf_cb);
@@ -1490,6 +1496,7 @@ bt_status_t HeadsetInterface::PhoneStateChange(
 
 void HeadsetInterface::Cleanup() {
   BTIF_TRACE_EVENT("%s", __func__);
+  std::lock_guard<std::mutex> lg(bt_hf_callbacks_lock);
 
   btif_queue_cleanup(UUID_SERVCLASS_AG_HANDSFREE);
 
