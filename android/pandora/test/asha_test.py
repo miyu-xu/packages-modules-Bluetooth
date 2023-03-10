@@ -17,24 +17,31 @@ import avatar
 import enum
 import grpc
 import logging
+import time
 
 from avatar import BumblePandoraDevice, PandoraDevice, PandoraDevices, asynchronous, bumble_server
 from bumble.gatt import GATT_ASHA_SERVICE
 from bumble.smp import PairingDelegate
-from bumble_experimental.asha import ASHAService
+from bumble_experimental.asha import AshaService, AshaGattService
 from mobly import base_test, signals, test_runner
+from mobly import base_test, test_runner
 from mobly.asserts import assert_equal  # type: ignore
 from mobly.asserts import assert_in  # type: ignore
+from mobly.asserts import skip  # type: ignore
+from pandora._utils import Stream
 from pandora._utils import AioStream
 from pandora.host_pb2 import PUBLIC, RANDOM, AdvertiseResponse, Connection, DataTypes, OwnAddressType, ScanningResponse
 from pandora.security_pb2 import LE_LEVEL3, LESecurityLevel
 from pandora_experimental.asha_grpc_aio import Asha as AioAsha, add_AshaServicer_to_server
+from pandora_experimental.asha_pb2 import PlaybackAudioRequest
 from typing import List, Optional, Tuple
 
 ASHA_UUID = GATT_ASHA_SERVICE.to_hex_str()
 HISYCNID: List[int] = [0x01, 0x02, 0x03, 0x04, 0x5, 0x6, 0x7, 0x8]
 CAPABILITY: int = 0x0
 COMPLETE_LOCAL_NAME: str = "Bumble"
+AUDIO_SIGNAL_AMPLITUDE = 0.8
+AUDIO_SIGNAL_SAMPLING_RATE = 44100
 
 
 class Ear(enum.IntEnum):
@@ -58,7 +65,7 @@ class ASHATest(base_test.BaseTestClass):  # type: ignore[misc]
     def setup_class(self) -> None:
         # Register experimental bumble servicers hook.
         bumble_server.register_servicer_hook(
-            lambda bumble, server: add_AshaServicer_to_server(ASHAService(bumble.device), server)
+            lambda bumble, server: add_AshaServicer_to_server(AshaService(bumble.device), server)
         )
 
         self.devices = PandoraDevices(self)
@@ -256,17 +263,14 @@ class ASHATest(base_test.BaseTestClass):  # type: ignore[misc]
 
         dut_ref, ref_dut = await self.dut_connect_to_ref(advertisement, ref, dut_address_type)
 
-        secure = self.dut.security.Secure(connection=dut_ref, le=LESecurityLevel.LE_LEVEL3)
+        secure = self.dut.security.Secure(connection=dut_ref, le=LE_LEVEL3)
 
         assert_equal(secure.WhichOneof("result"), "success")
         await self.dut.aio.host.Disconnect(dut_ref)
         await self.ref_left.aio.host.WaitDisconnection(ref_dut)
 
         # delete the bond
-        if dut_address_type == OwnAddressType.PUBLIC:
-            await self.dut.aio.security_storage.DeleteBond(public=self.ref_left.address)
-        else:
-            await self.dut.aio.security_storage.DeleteBond(random=self.ref_left.random_address)
+        await self.dut.aio.security_storage.DeleteBond(random=self.ref_left.random_address)
 
         # DUT connect to REF again
         dut_ref = (
@@ -278,7 +282,7 @@ class ASHATest(base_test.BaseTestClass):  # type: ignore[misc]
         advertisement.cancel()
         assert dut_ref
 
-        secure = await self.dut.aio.security.Secure(connection=dut_ref, le=LESecurityLevel.LE_LEVEL3)
+        secure = await self.dut.aio.security.Secure(connection=dut_ref, le=LE_LEVEL3)
 
         assert_equal(secure.WhichOneof("result"), "success")
 
@@ -460,6 +464,231 @@ class ASHATest(base_test.BaseTestClass):  # type: ignore[misc]
             await self.ref_right.aio.host.Disconnect(connection=ref_right_dut)
             assert not await self.is_device_connected(device=self.ref_right, connection=ref_right_dut, timeout=5.0)
             assert await self.is_device_connected(device=self.ref_left, connection=ref_left_dut, timeout=5.0)
+
+    @asynchronous
+    async def test_music_start(self) -> None:
+        """
+        DUT discovers Ref.
+        DUT initiates connection to Ref.
+        Verify that DUT and Ref are bonded and connected.
+        DUT starts media streaming.
+        Verify that DUT sends a correct AudioControlPoint `Start` command (codec=1,
+        audiotype=0, volume=<volume set on DUT>, otherstate=<state of Ref aux if dual devices>).
+        """
+        advertisement = await self.ref_advertise_asha(ref_device=self.ref_left, ref_address_type=RANDOM)
+
+        ref = await self.dut_scan_for_asha(dut_address_type=RANDOM)
+
+        # DUT initiates connection to Ref.
+        dut_ref, ref_dut = await self.dut_connect_to_ref(advertisement, ref, RANDOM)
+        assert dut_ref, ref_dut
+
+        asha_service = next((x for x in self.ref_left.device.gatt_server.attributes if isinstance(x, AshaGattService)))
+
+        # check DUT read le_psm
+        le_psm_future = asyncio.get_running_loop().create_future()
+
+        def le_psm_handler(connection: Connection, data: int):
+            le_psm_future.set_result(data)
+
+        asha_service.on('le_psm_out', le_psm_handler)
+
+        # check DUT read read_only_properties
+        read_only_properties_future = asyncio.get_running_loop().create_future()
+
+        def read_only_properties_handler(connection: Connection, data: bytes):
+            read_only_properties_future.set_result(data)
+
+        asha_service.on('read_only_properties', read_only_properties_handler)
+
+        # DUT starts pairing with the Ref.
+        # FIXME: assert the security Level on ref side
+        secure = await self.dut.aio.security.Secure(connection=dut_ref, le=LE_LEVEL3)
+
+        le_psm_out_result = await asyncio.wait_for(le_psm_future, timeout=3.0)
+        assert le_psm_out_result is not None
+
+        read_only_properties_result = await asyncio.wait_for(read_only_properties_future, timeout=3.0)
+        assert read_only_properties_result is not None
+
+        dut_asha = AioAsha(self.dut.aio.channel)
+
+        start_future = asyncio.get_running_loop().create_future()
+
+        def start_command_handler(connection: Connection, data: dict[str:int]):
+            start_future.set_result(data)
+
+        asha_service.on('start', start_command_handler)
+
+        logging.info("send start")
+        _, start_result = await asyncio.gather(
+            dut_asha.Start(connection=dut_ref), asyncio.wait_for(start_future, timeout=3.0)
+        )
+
+        logging.info(f"start_result:{start_result}")
+        assert start_result is not None
+        assert isinstance(start_result, dict)
+        assert start_result['codec'] == 1
+        assert start_result['audiotype'] == 0
+        assert start_result['volume'] is not None
+        assert start_result['otherstate'] == 0
+
+        asha_service.remove_listener('start', start_command_handler)
+
+    @asynchronous
+    async def test_set_volume(self) -> None:
+        """
+        DUT discovers Ref.
+        DUT initiates connection to Ref.
+        Verify that DUT and Ref are bonded and connected.
+        DUT is streaming media to Ref.
+        Change volume on DUT.
+        Verify DUT writes the correct value to ASHA `Volume` characteristic.
+        """
+        raise signals.TestSkip("TODO: update bt test interface for SetVolume to retry")
+
+        advertisement = await self.ref_advertise_asha(ref_device=self.ref_left, ref_address_type=RANDOM)
+
+        ref = await self.dut_scan_for_asha(dut_address_type=RANDOM)
+
+        # DUT initiates connection to Ref.
+        dut_ref, ref_dut = await self.dut_connect_to_ref(advertisement, ref, RANDOM)
+        assert dut_ref, ref_dut
+
+        # DUT starts pairing with the Ref.
+        # FIXME: assert the security Level on ref side
+        secure = await self.dut.aio.security.Secure(connection=dut_ref, le=LE_LEVEL3)
+
+        asha_service = next((x for x in self.ref_left.device.gatt_server.attributes if isinstance(x, AshaGattService)))
+        dut_asha = AioAsha(self.dut.aio.channel)
+
+        volume_future = asyncio.get_running_loop().create_future()
+
+        def volume_command_handler(connection: Connection, data: int):
+            volume_future.set_result(data)
+
+        asha_service.on('volume', volume_command_handler)
+
+        await dut_asha.Start(connection=connection)
+        # set volume to max volume
+        _, volume_result = await asyncio.gather(dut_asha.SetVolume(1), asyncio.wait_for(volume_future, timeout=3.0))
+
+        logging.info(f"start_result:{volume_result}")
+        assert volume_result is not None
+        assert volume_result == 0  # Android max volume's value is 0
+
+        asha_service.remove_listener('volume', volume_command_handler)
+
+    @asynchronous
+    async def test_music_stop(self) -> None:
+        """
+        DUT discovers Ref.
+        DUT initiates connection to Ref.
+        Verify that DUT and Ref are bonded and connected.
+        DUT is streaming media to Ref.
+        DUT stops media streaming on Ref.
+        Verify that DUT sends a correct AudioControlPoint `Stop` command.
+        """
+        advertisement = await self.ref_advertise_asha(ref_device=self.ref_left, ref_address_type=RANDOM)
+
+        ref = await self.dut_scan_for_asha(dut_address_type=RANDOM)
+
+        # DUT initiates connection to Ref.
+        dut_ref, ref_dut = await self.dut_connect_to_ref(advertisement, ref, RANDOM)
+        assert dut_ref, ref_dut
+
+        # DUT starts pairing with the Ref.
+        # FIXME: assert the security Level on ref side
+        secure = await self.dut.aio.security.Secure(connection=dut_ref, le=LE_LEVEL3)
+
+        asha_service = next((x for x in self.ref_left.device.gatt_server.attributes if isinstance(x, AshaGattService)))
+        dut_asha = AioAsha(self.dut.aio.channel)
+
+        stop_future = asyncio.get_running_loop().create_future()
+
+        def stop_command_handler(connection: Connection):
+            stop_future.set_result(connection)
+
+        asha_service.on('stop', stop_command_handler)
+
+        await dut_asha.Start(connection=dut_ref)
+        logging.info("send stop")
+        _, stop_result = await asyncio.gather(dut_asha.Stop(), asyncio.wait_for(stop_future, timeout=10.0))
+
+        logging.info(f"stop_result:{stop_result}")
+        assert stop_result is not None
+
+        ref_asha = AioAsha(self.ref_left.aio.channel)
+        try:
+            audio = ref_asha.CaptureAudio(connection=ref_dut, timeout=2)
+        except grpc.aio.AioRpcError as e:
+            if e.code() == grpc.StatusCode.DEADLINE_EXCEEDED:
+                logging.info("no audio data, work as expected")
+            else:
+                raise e
+        finally:
+            asha_service.remove_listener('stop', stop_command_handler)
+
+    @asynchronous
+    async def test_music_restart(self) -> None:
+        """
+        DUT discovers Ref.
+        DUT initiates connection to Ref.
+        Verify that DUT and Ref are bonded and connected.
+        DUT starts media streaming.
+        DUT stops media streaming.
+        Verify that DUT sends a correct AudioControlPoint `Stop` command.
+        DUT starts media streaming again.
+        Verify that DUT sends a correct AudioControlPoint `Start` command.
+        """
+        advertisement = await self.ref_advertise_asha(ref_device=self.ref_left, ref_address_type=RANDOM)
+
+        ref = await self.dut_scan_for_asha(dut_address_type=RANDOM)
+
+        # DUT initiates connection to Ref.
+        dut_ref, ref_dut = await self.dut_connect_to_ref(advertisement, ref, RANDOM)
+        assert dut_ref, ref_dut
+
+        # DUT starts pairing with the Ref.
+        # FIXME: assert the security Level on ref side
+        secure = await self.dut.aio.security.Secure(connection=dut_ref, le=LE_LEVEL3)
+
+        asha_service = next((x for x in self.ref_left.device.gatt_server.attributes if isinstance(x, AshaGattService)))
+        dut_asha = AioAsha(self.dut.aio.channel)
+
+        stop_future = asyncio.get_running_loop().create_future()
+
+        def stop_command_handler(connection: Connection):
+            stop_future.set_result(connection)
+
+        asha_service.on('stop', stop_command_handler)
+
+        await dut_asha.Start(connection=dut_ref)
+        _, stop_result = await asyncio.gather(dut_asha.Stop(), asyncio.wait_for(stop_future, timeout=10.0))
+
+        logging.info(f"stop_result:{stop_result}")
+        assert stop_result is not None
+
+        asha_service.remove_listener('stop', stop_command_handler)
+
+        # restart music streaming
+        logging.info("restart music streaming")
+
+        start_future = asyncio.get_running_loop().create_future()
+
+        def start_command_handler(connection: Connection, data: dict[str:int]):
+            start_future.set_result(data)
+
+        asha_service.on('start', start_command_handler)
+
+        _, start_result = await asyncio.gather(
+            dut_asha.Start(connection=dut_ref), asyncio.wait_for(start_future, timeout=3.0)
+        )
+
+        logging.info(f"start_result:{start_result}")
+        assert start_result is not None
+
+        asha_service.remove_listener('start', start_command_handler)
 
 
 if __name__ == "__main__":
