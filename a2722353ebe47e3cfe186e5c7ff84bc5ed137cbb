@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "de979242_7f2575d2",
+        "filename": "system/stack/btm/btm_dev.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 622,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-03-10T18:14:58Z",
+      "side": 1,
+      "message": "nit: This isn\u0027t necessary, since p_dev_rec is calloced.",
+      "range": {
+        "startLine": 622,
+        "startChar": 0,
+        "endLine": 622,
+        "endChar": 37
+      },
+      "revId": "a2722353ebe47e3cfe186e5c7ff84bc5ed137cbb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
