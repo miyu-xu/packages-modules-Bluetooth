@@ -568,3 +568,105 @@ TEST_F(BtaDmWithGattTest, bta_dm_search_start__BTM_CMD_BUSY) {
   sync_main_handler();  // GATT posts on main handler
   test::mock::stack_btm_inq::BTM_StartInquiry::return_value = {};
 }
+
+TEST_F(BtaDmWithGattTest, bta_dm_inq_cmpl__BTA_DM_SEARCH_IDLE) {
+  bta_dm_search_set_state(BTA_DM_SEARCH_IDLE);
+  bta_dm_inq_cmpl(123);
+}
+
+TEST_F(BtaDmWithGattTest,
+       bta_dm_inq_cmpl__BTA_DM_SEARCH_ACTIVE__no_ble__no_inquiry_data) {
+  // Remove GATT capabilies for now
+  bta_dm_search_cb.conn_id = GATT_INVALID_CONN_ID;
+  bta_dm_search_set_state(BTA_DM_SEARCH_ACTIVE);
+  // Fake out a callback when Service Discovery starts on these inquiry results
+  bta_dm_search_cb.p_search_cback = [](tBTA_DM_SEARCH_EVT event,
+                                       tBTA_DM_SEARCH* data) {
+    switch (event) {
+      case BTA_DM_INQ_CMPL_EVT: {
+        const tBTA_DM_INQ_CMPL& search = data->inq_cmpl;
+        ASSERT_EQ(123, search.num_resps);
+      } break;
+      case BTA_DM_DISC_CMPL_EVT: {
+        ASSERT_EQ(nullptr, data);
+      } break;
+      default:
+        FAIL();
+        break;
+    }
+  };
+
+  // Set up some global conditions to check code path
+  bta_dm_search_cb.services = kServiceMask;
+
+  bta_dm_inq_cmpl(123);
+  ASSERT_EQ(0U, bta_dm_search_cb.services);
+}
+
+TEST_F(BtaDmWithGattTest,
+       bta_dm_inq_cmpl__BTA_DM_SEARCH_ACTIVE__no_ble__with_inquiry_data) {
+  bta_dm_search_cb.conn_id = GATT_INVALID_CONN_ID;
+  bta_dm_search_set_state(BTA_DM_SEARCH_ACTIVE);
+  tBTM_INQ_INFO inq_info = {
+      .results =
+          {
+              .clock_offset = 0U,
+              .remote_bd_addr = kRawAddress,
+              .dev_class = {},
+              .page_scan_rep_mode = 0U,
+              .page_scan_per_mode = 0U,
+              .page_scan_mode = 0U,
+              .rssi = 0,
+              .eir_uuid = {},
+              .eir_complete_list = false,
+              .device_type = {},
+              .inq_result_type = 0U,
+              .ble_addr_type = {},
+              .ble_evt_type = 0U,
+              .ble_primary_phy = 0U,
+              .ble_secondary_phy = 0U,
+              .ble_advertising_sid = 0U,
+              .ble_tx_power = 0,
+              .ble_periodic_adv_int = 0U,
+              .ble_ad_rsi = {},
+              .ble_ad_is_le_audio_capable = false,
+              .flag = 0U,
+              .include_rsi = false,
+              .original_bda = {},
+          },
+      .appl_knows_rem_name = false,
+      .remote_name_len = 0U,
+      .remote_name = {},
+      .remote_name_state = 0U,
+      .remote_name_type = 0U,
+  };
+
+  test::mock::stack_btm_inq::BTM_InqDbFirst::return_value = &inq_info;
+
+  // Fake out a callback when Service Discovery starts on these inquiry results
+  bta_dm_search_cb.p_search_cback = [](tBTA_DM_SEARCH_EVT event,
+                                       tBTA_DM_SEARCH* data) {
+    const tBTA_DM_INQ_CMPL& search = data->inq_cmpl;
+    ASSERT_EQ(BTA_DM_INQ_CMPL_EVT, event);
+    ASSERT_EQ(123, search.num_resps);
+  };
+
+  // Set up some global conditions to check code path
+  bta_dm_search_cb.peer_name[0] = 0xff;
+
+  bta_dm_inq_cmpl(123);
+
+  ASSERT_EQ(0U, bta_dm_search_cb.peer_name[0]);
+
+  test::mock::stack_btm_inq::BTM_InqDbFirst::return_value = {};
+}
+
+TEST_F(BtaDmWithGattTest, bta_dm_inq_cmpl__BTA_DM_SEARCH_CANCELLING) {
+  bta_dm_search_set_state(BTA_DM_SEARCH_CANCELLING);
+  bta_dm_inq_cmpl(123);
+}
+
+TEST_F(BtaDmWithGattTest, bta_dm_inq_cmpl__BTA_DM_DISCOVER_ACTIVE) {
+  bta_dm_search_set_state(BTA_DM_DISCOVER_ACTIVE);
+  bta_dm_inq_cmpl(123);
+}

@@ -1078,34 +1078,51 @@ static bool bta_dm_read_remote_device_name(const RawAddress& bd_addr,
  *
  ******************************************************************************/
 void bta_dm_inq_cmpl(uint8_t num) {
-  if (bta_dm_search_get_state() == BTA_DM_SEARCH_CANCELLING) {
-    bta_dm_search_set_state(BTA_DM_SEARCH_IDLE);
-    bta_dm_execute_queued_request();
-    return;
-  }
+  LOG_DEBUG("Inquiry complete num_results received:%hhu", num);
 
-  if (bta_dm_search_get_state() != BTA_DM_SEARCH_ACTIVE) {
-    return;
-  }
+  switch (bta_dm_search_get_state()) {
+    case BTA_DM_SEARCH_CANCELLING:
+      LOG_DEBUG("Search was cancelling so transition to idle");
+      bta_dm_search_set_state(BTA_DM_SEARCH_IDLE);
+      bta_dm_execute_queued_request();
+      break;
 
-  tBTA_DM_SEARCH data;
+    case BTA_DM_SEARCH_ACTIVE: {
+      CHECK(bta_dm_search_cb.p_search_cback != nullptr);
+      const tBTA_DM_SEARCH data = {
+          .inq_cmpl =
+              {
+                  .num_resps = num,
+              },
+      };
+      bta_dm_search_cb.p_search_cback(BTA_DM_INQ_CMPL_EVT,
+                                      const_cast<tBTA_DM_SEARCH*>(&data));
 
-  APPL_TRACE_DEBUG("bta_dm_inq_cmpl");
+      bta_dm_search_cb.p_btm_inq_info = BTM_InqDbFirst();
+      if (bta_dm_search_cb.p_btm_inq_info != NULL) {
+        LOG_DEBUG(
+            "Start remote name request and service discovery on first device "
+            "from inquiry result");
+        // TODO These global states are not universally set/reset
+        bta_dm_search_cb.name_discover_done = false;
+        bta_dm_search_cb.peer_name[0] = 0;
+        bta_dm_discover_device(
+            bta_dm_search_cb.p_btm_inq_info->results.remote_bd_addr);
+      } else {
+        LOG_DEBUG(
+            "No devices responded skipping remote name request and service "
+            "discovery");
+        // TODO These global states are not universally set/reset
+        bta_dm_search_cb.services = 0;
+        bta_dm_search_cmpl();
+      }
+    } break;
 
-  data.inq_cmpl.num_resps = num;
-  bta_dm_search_cb.p_search_cback(BTA_DM_INQ_CMPL_EVT, &data);
-
-  bta_dm_search_cb.p_btm_inq_info = BTM_InqDbFirst();
-  if (bta_dm_search_cb.p_btm_inq_info != NULL) {
-    /* start name and service discovery from the first device on inquiry result
-     */
-    bta_dm_search_cb.name_discover_done = false;
-    bta_dm_search_cb.peer_name[0] = 0;
-    bta_dm_discover_device(
-        bta_dm_search_cb.p_btm_inq_info->results.remote_bd_addr);
-  } else {
-    bta_dm_search_cb.services = 0;
-    bta_dm_search_cmpl();
+    case BTA_DM_SEARCH_IDLE:
+    case BTA_DM_DISCOVER_ACTIVE:
+      LOG_WARN("Search complete received but was in unexpected state:%s",
+               bta_dm_state_text(bta_dm_search_get_state()).c_str());
+      break;
   }
 }
 
