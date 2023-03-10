@@ -22,6 +22,30 @@
       },
       "revId": "e83afa56dd1042dcd10703234ef0802a94daccfb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "655cdab1_4310e28a",
+        "filename": "system/stack/l2cap/l2c_link.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 435,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2023-03-10T19:18:44Z",
+      "side": 1,
+      "message": "LUL... ag/1048704 added the redundant checks to capture the failures we found here, so maybe it\u0027s the time to correctly fix it and remove these footprints?",
+      "parentUuid": "76dfb5e8_17724013",
+      "range": {
+        "startLine": 435,
+        "startChar": 14,
+        "endLine": 435,
+        "endChar": 37
+      },
+      "revId": "e83afa56dd1042dcd10703234ef0802a94daccfb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
