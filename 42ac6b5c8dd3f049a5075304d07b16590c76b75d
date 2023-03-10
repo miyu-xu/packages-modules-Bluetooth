@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "aa7d7a0d_6ab65f6c",
+        "filename": "framework/java/android/bluetooth/BluetoothServerSocket.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 1581454
+      },
+      "writtenOn": "2023-03-10T00:12:23Z",
+      "side": 1,
+      "message": "Good catch!",
+      "parentUuid": "3e00600a_cb75a168",
+      "revId": "42ac6b5c8dd3f049a5075304d07b16590c76b75d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b2d4d4b0_3cda2f5f",
         "filename": "framework/java/android/bluetooth/BluetoothServerSocket.java",
         "patchSetId": 3
@@ -48,6 +66,24 @@
       "writtenOn": "2023-03-09T23:55:36Z",
       "side": 1,
       "message": "Always rethrow RemoteException from system server",
+      "revId": "42ac6b5c8dd3f049a5075304d07b16590c76b75d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cfa57c47_7d8d2834",
+        "filename": "framework/java/android/bluetooth/BluetoothServerSocket.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 220,
+      "author": {
+        "id": 1581454
+      },
+      "writtenOn": "2023-03-10T00:12:23Z",
+      "side": 1,
+      "message": "I don\u0027t want the metric code affect users. If the socket is connected but metrics logging fails, we want to move on.",
+      "parentUuid": "b4bc000d_8101a568",
       "revId": "42ac6b5c8dd3f049a5075304d07b16590c76b75d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
