@@ -46,6 +46,30 @@
       },
       "revId": "6ef9f51751d069928b8289643710d761964f820f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8777f6b4_b9d87fd8",
+        "filename": "system/bta/gatt/bta_gattc_utils.cc",
+        "patchSetId": 22
+      },
+      "lineNbr": 379,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-03-10T21:37:15Z",
+      "side": 1,
+      "message": "I\u0027m worried that there will be some device that the app needs to set a smaller MTU to work around a bug.  I\u0027d rather not make debugging that much harder.",
+      "parentUuid": "3ee32920_f687d23d",
+      "range": {
+        "startLine": 376,
+        "startChar": 0,
+        "endLine": 379,
+        "endChar": 0
+      },
+      "revId": "6ef9f51751d069928b8289643710d761964f820f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
