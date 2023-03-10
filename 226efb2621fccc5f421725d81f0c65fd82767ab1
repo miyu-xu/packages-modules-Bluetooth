@@ -142,6 +142,30 @@
       },
       "revId": "226efb2621fccc5f421725d81f0c65fd82767ab1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dbbcb96b_5969e589",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 4581,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2023-03-10T21:05:11Z",
+      "side": 1,
+      "message": "Sorry for poor description here.\n\nThe context I trigger this issue is that `btm_sec_wait_and_start_authentication()` checks connected with `BTM_IsAclConnectionUpAndHandleValid()` which may returns a wrong state due to another error fixed by aosp/2481896. Then, it enters line 4582 and sends `HCI_AUTH_REQ(0xFFFF)`. In this case, timer doesn\u0027t really participate in the failure.\n\nHowever, it\u0027s still possible that when timeout(where t\u003e0) callback gets invoked and connection was lost in this interval. In this case I think cancelling timer on disconnected might be a good idea.\n\nShall we merge these 2 CLs into 1?",
+      "parentUuid": "a5721cb3_bfd1546b",
+      "range": {
+        "startLine": 4581,
+        "startChar": 50,
+        "endLine": 4581,
+        "endChar": 69
+      },
+      "revId": "226efb2621fccc5f421725d81f0c65fd82767ab1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
