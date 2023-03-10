@@ -6,11 +6,12 @@ use bt_topshim::btif::{
 };
 use bt_topshim::profiles::a2dp::{
     A2dp, A2dpCallbacks, A2dpCallbacksDispatcher, A2dpCodecBitsPerSample, A2dpCodecChannelMode,
-    A2dpCodecConfig, A2dpCodecSampleRate, BtavAudioState, BtavConnectionState,
-    PresentationPosition,
+    A2dpCodecConfig, A2dpCodecSampleRate, A2dpSink, A2dpSinkCallbacks, A2dpSinkCallbacksDispatcher,
+    BtavAudioState, BtavConnectionState, PresentationPosition,
 };
 use bt_topshim::profiles::avrcp::{
-    Avrcp, AvrcpCallbacks, AvrcpCallbacksDispatcher, PlayerMetadata,
+    Avrcp, AvrcpCallbacks, AvrcpCallbacksDispatcher, AvrcpCtrl, AvrcpCtrlCallbacks,
+    AvrcpCtrlCallbacksDispatcher, PlayerMetadata,
 };
 use bt_topshim::profiles::hfp::{
     BthfAudioState, BthfConnectionState, CallHoldCommand, CallInfo, CallState, Hfp, HfpCallbacks,
@@ -256,6 +257,9 @@ pub struct BluetoothMedia {
     phone_ops_enabled: bool,
     memory_dialing_number: Option<String>,
     last_dialing_number: Option<String>,
+    // Used by qualification tests
+    a2dp_sink: Option<A2dpSink>,
+    avrcp_ctrl: Option<AvrcpCtrl>,
 }
 
 impl BluetoothMedia {
@@ -301,6 +305,9 @@ impl BluetoothMedia {
             phone_ops_enabled: false,
             memory_dialing_number: None,
             last_dialing_number: None,
+            // Used by qualification tests
+            a2dp_sink: None,
+            avrcp_ctrl: None,
         }
     }
 
@@ -419,6 +426,33 @@ impl BluetoothMedia {
             _ => {
                 warn!("Tried to query enablement status of {} in bluetooth_media", profile);
                 None
+            }
+        }
+    }
+
+    pub fn dispatch_a2dp_sink_callbacks(&mut self, cb: A2dpSinkCallbacks) {
+        match cb {
+            A2dpSinkCallbacks::ConnectionState(addr, state, _error) => {
+                info!("dispatch_a2dp_sink_callbacks {} {:?}", addr.to_string(), state);
+            }
+            _ => {
+                return;
+            }
+        }
+    }
+
+    pub fn dispatch_avrcp_ctrl_callbacks(&mut self, cb: AvrcpCtrlCallbacks) {
+        match cb {
+            AvrcpCtrlCallbacks::ConnectionState(rc_connect, bt_connect, addr) => {
+                info!(
+                    "dispatch_avrcp_ctrl_callbacks {} {} {}",
+                    addr.to_string(),
+                    rc_connect,
+                    bt_connect
+                );
+            }
+            _ => {
+                return;
             }
         }
     }
@@ -1399,6 +1433,34 @@ impl BluetoothMedia {
         }
         true
     }
+
+    /// used in qualification purpose
+    pub fn enable_a2dp_sink(&mut self) {
+        self.disable_profile(&Profile::AvrcpTarget);
+        self.disable_profile(&Profile::A2dpSource);
+        self.a2dp_sink = Some(A2dpSink::new(&self.intf.lock().unwrap()));
+        self.a2dp_sink.as_mut().unwrap().initialize(get_a2dp_sink_dispatcher(self.tx.clone()));
+        self.a2dp_sink.as_mut().unwrap().enable();
+        self.avrcp_ctrl = Some(AvrcpCtrl::new(&self.intf.lock().unwrap()));
+        self.avrcp_ctrl.as_mut().unwrap().initialize(get_avrcp_ctrl_dispatcher(self.tx.clone()));
+    }
+
+    pub fn send_pass_through_cmd(
+        &mut self,
+        address: String,
+        key_code: u8,
+        key_state: u8,
+    ) -> BtStatus {
+        match RawAddress::from_string(address) {
+            None => {
+                warn!("Invalid device address");
+                BtStatus::InvalidParam
+            }
+            Some(addr) => {
+                self.avrcp_ctrl.as_mut().unwrap().send_pass_through_cmd(addr, key_code, key_state)
+            }
+        }
+    }
 }
 
 fn get_a2dp_dispatcher(tx: Sender<Message>) -> A2dpCallbacksDispatcher {
@@ -1429,6 +1491,28 @@ fn get_hfp_dispatcher(tx: Sender<Message>) -> HfpCallbacksDispatcher {
             let txl = tx.clone();
             topstack::get_runtime().spawn(async move {
                 let _ = txl.send(Message::Hfp(cb)).await;
+            });
+        }),
+    }
+}
+
+fn get_avrcp_ctrl_dispatcher(tx: Sender<Message>) -> AvrcpCtrlCallbacksDispatcher {
+    AvrcpCtrlCallbacksDispatcher {
+        dispatch: Box::new(move |cb| {
+            let txl = tx.clone();
+            topstack::get_runtime().spawn(async move {
+                let _ = txl.send(Message::AvrcpCtrl(cb)).await;
+            });
+        }),
+    }
+}
+
+fn get_a2dp_sink_dispatcher(tx: Sender<Message>) -> A2dpSinkCallbacksDispatcher {
+    A2dpSinkCallbacksDispatcher {
+        dispatch: Box::new(move |cb| {
+            let txl = tx.clone();
+            topstack::get_runtime().spawn(async move {
+                let _ = txl.send(Message::A2dpSink(cb)).await;
             });
         }),
     }

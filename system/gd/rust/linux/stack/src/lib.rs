@@ -18,6 +18,8 @@ pub mod socket_manager;
 pub mod suspend;
 pub mod uuid;
 
+use bt_topshim::profiles::a2dp::A2dpSinkCallbacks;
+use bt_topshim::profiles::avrcp::AvrcpCtrlCallbacks;
 use log::debug;
 use num_derive::{FromPrimitive, ToPrimitive};
 use std::sync::{Arc, Mutex};
@@ -114,6 +116,10 @@ pub enum Message {
     // Admin policy related
     AdminCallbackDisconnected(u32),
     HidHostEnable,
+
+    // Qualification Only
+    A2dpSink(A2dpSinkCallbacks),
+    AvrcpCtrl(AvrcpCtrlCallbacks),
 }
 
 /// Represents suspend mode of a module.
@@ -320,6 +326,13 @@ impl Stack {
                 }
                 Message::HidHostEnable => {
                     bluetooth.lock().unwrap().enable_hidhost();
+                }
+                // Qualification Only
+                Message::A2dpSink(a) => {
+                    bluetooth_media.lock().unwrap().dispatch_a2dp_sink_callbacks(a);
+                }
+                Message::AvrcpCtrl(a) => {
+                    bluetooth_media.lock().unwrap().dispatch_avrcp_ctrl_callbacks(a);
                 }
             }
         }
