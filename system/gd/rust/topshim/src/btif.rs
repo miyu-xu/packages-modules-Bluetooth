@@ -1015,7 +1015,7 @@ impl BluetoothInterface {
         // Fill up callbacks struct to pass to init function (will be copied so
         // no need to worry about ownership)
         let mut callbacks = Box::new(bindings::bt_callbacks_t {
-            size: 16 * 8,
+            size: 19 * 8,
             adapter_state_changed_cb: Some(adapter_state_cb),
             adapter_properties_cb: Some(adapter_properties_cb),
             remote_device_properties_cb: Some(remote_device_properties_cb),
