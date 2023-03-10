@@ -15,6 +15,7 @@ use bt_topshim::profiles::{gatt::LePhy, ProfileConnectionState};
 use btstack::bluetooth::{BluetoothDevice, IBluetooth, IBluetoothQALegacy};
 use btstack::bluetooth_gatt::{GattWriteType, IBluetoothGatt, ScanSettings, ScanType};
 use btstack::bluetooth_media::IBluetoothTelephony;
+use btstack::bluetooth_qa::IBluetoothQA;
 use btstack::socket_manager::{IBluetoothSocketManager, SocketResult};
 use btstack::uuid::{Profile, UuidHelper, UuidWrapper};
 use manager_service::iface_bluetooth_manager::IBluetoothManager;
@@ -254,6 +255,17 @@ fn build_commands() -> HashMap<String, CommandOption> {
             rules: vec![String::from("get-address")],
             description: String::from("Gets the local device address."),
             function_pointer: CommandHandler::cmd_get_address,
+        },
+    );
+    command_options.insert(
+        String::from("qa"),
+        CommandOption {
+            rules: vec![
+                String::from("qa enable-a2dp-sink"),
+                String::from("qa send-avrcp-pass-through <address> <key_value> <key_code>"),
+            ],
+            description: String::from("Methods for testing purposes"),
+            function_pointer: CommandHandler::cmd_qa,
         },
     );
     command_options.insert(
@@ -1772,6 +1784,39 @@ impl CommandHandler {
                 return Err(format!("Invalid argument '{}'", other).into());
             }
         }
+        Ok(())
+    }
+    fn cmd_qa(&mut self, args: &Vec<String>) -> CommandResult {
+        if !self.context.lock().unwrap().adapter_ready {
+            return Err(self.adapter_not_ready());
+        }
+
+        let command = get_arg(args, 0)?;
+
+        match &command[..] {
+            "enable-a2dp-sink" => {
+                self.context.lock().unwrap().qa_dbus.as_mut().unwrap().enable_a2dp_sink();
+            }
+            "send-avrcp-pass-through" => {
+                let addr = String::from(get_arg(args, 1)?);
+                let key_code = String::from(get_arg(args, 2)?)
+                    .parse::<u8>()
+                    .or(Err("Failed parsing key_code"))?;
+                let key_state = String::from(get_arg(args, 3)?)
+                    .parse::<u8>()
+                    .or(Err("Failed parsing key_state"))?;
+
+                self.context
+                    .lock()
+                    .unwrap()
+                    .qa_dbus
+                    .as_mut()
+                    .unwrap()
+                    .send_avrcp_pass_through(addr, key_code, key_state);
+            }
+            _ => return Err(CommandError::InvalidArgs),
+        };
+
         Ok(())
     }
 }
