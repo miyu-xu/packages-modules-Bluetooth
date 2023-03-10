@@ -32,9 +32,6 @@ using std::vector;
 
 namespace rootcanal {
 constexpr uint16_t kNumCommandPackets = 0x01;
-constexpr uint16_t kLeMaximumAdvertisingDataLength = 512;
-constexpr uint16_t kLeMaximumDataLength = 64;
-constexpr uint16_t kLeMaximumDataTime = 0x148;
 
 // Device methods.
 std::string DualModeController::GetTypeString() const {
@@ -2129,10 +2126,10 @@ void DualModeController::LeReadMaximumDataLength(CommandView command) {
       gd_hci::LeSecurityCommandView::Create(command));
   ASSERT(command_view.IsValid());
   bluetooth::hci::LeMaximumDataLength data_length;
-  data_length.supported_max_rx_octets_ = kLeMaximumDataLength;
-  data_length.supported_max_rx_time_ = kLeMaximumDataTime;
-  data_length.supported_max_tx_octets_ = kLeMaximumDataLength + 10;
-  data_length.supported_max_tx_time_ = kLeMaximumDataTime + 10;
+  data_length.supported_max_rx_octets_ = properties_.le_supported_max_rx_octets;
+  data_length.supported_max_rx_time_ = properties_.le_supported_max_rx_time;
+  data_length.supported_max_tx_octets_ = properties_.le_supported_max_tx_octets;
+  data_length.supported_max_tx_time_ = properties_.le_supported_max_tx_time;
   send_event_(bluetooth::hci::LeReadMaximumDataLengthCompleteBuilder::Create(
       kNumCommandPackets, ErrorCode::SUCCESS, data_length));
 }
@@ -2760,7 +2757,7 @@ void DualModeController::LeReadMaximumAdvertisingDataLength(
   send_event_(
       bluetooth::hci::LeReadMaximumAdvertisingDataLengthCompleteBuilder::Create(
           kNumCommandPackets, ErrorCode::SUCCESS,
-          kLeMaximumAdvertisingDataLength));
+          properties_.le_max_advertising_data_length));
 }
 
 void DualModeController::LeReadNumberOfSupportedAdvertisingSets(

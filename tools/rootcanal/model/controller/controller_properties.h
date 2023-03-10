@@ -82,7 +82,7 @@ struct ControllerProperties {
   uint16_t total_num_sco_data_packets{10};
 
   // LE Buffer Size (Vol 4, Part E § 7.8.2).
-  uint16_t le_acl_data_packet_length{27};
+  uint16_t le_acl_data_packet_length{251};
   uint16_t iso_data_packet_length{1021};
   uint8_t total_num_le_acl_data_packets{20};
   uint8_t total_num_iso_data_packets{12};
@@ -103,6 +103,13 @@ struct ControllerProperties {
 
   // LE Resolving List Size (Vol 4, Part E § 7.8.41).
   uint8_t le_resolving_list_size{16};
+
+  // LE Maximum Data Length (Vol 4, Part E § 7.8.46).
+  // Note: octets valid range 0x1b to 0xfb, time valid range 0x148 to 0x4290.
+  uint16_t le_supported_max_tx_octets{0xfb};
+  uint16_t le_supported_max_tx_time{0x4290};
+  uint16_t le_supported_max_rx_octets{0xfb};
+  uint16_t le_supported_max_rx_time{0x4290};
 
   // LE Supported States (Vol 4, Part E § 7.8.27).
   uint64_t le_supported_states{0x3ffffffffff};
