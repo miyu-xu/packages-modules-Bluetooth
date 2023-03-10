@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "76dfb5e8_17724013",
+        "filename": "system/stack/l2cap/l2c_link.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 435,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-03-10T18:53:15Z",
+      "side": 1,
+      "message": "do we need a mutex or something?\n\nWe\u0027re checking if it\u0027s null on lines 435, 437, and 448.",
+      "range": {
+        "startLine": 435,
+        "startChar": 14,
+        "endLine": 435,
+        "endChar": 37
+      },
+      "revId": "e83afa56dd1042dcd10703234ef0802a94daccfb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
