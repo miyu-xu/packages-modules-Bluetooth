@@ -1721,10 +1721,20 @@ void bta_dm_search_cancel_notify() {
   if (bta_dm_search_cb.p_search_cback) {
     bta_dm_search_cb.p_search_cback(BTA_DM_SEARCH_CANCEL_CMPL_EVT, NULL);
   }
-  if (!bta_dm_search_cb.name_discover_done &&
-      (bta_dm_search_cb.state == BTA_DM_SEARCH_ACTIVE ||
-       bta_dm_search_cb.state == BTA_DM_SEARCH_CANCELLING)) {
-    BTM_CancelRemoteDeviceName();
+  switch (bta_dm_search_get_state()) {
+    case BTA_DM_SEARCH_ACTIVE:
+    case BTA_DM_SEARCH_CANCELLING:
+      if (!bta_dm_search_cb.name_discover_done) {
+        LOG_DEBUG("Remote name read for discovery not done so cancel RNR");
+        BTM_CancelRemoteDeviceName();
+      } else {
+        LOG_DEBUG("Remote name read for discovery done so skip RNR cancel");
+      }
+      break;
+    case BTA_DM_SEARCH_IDLE:
+    case BTA_DM_DISCOVER_ACTIVE:
+    default:
+      break;
   }
 }
 
