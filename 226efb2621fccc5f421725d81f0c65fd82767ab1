@@ -166,6 +166,30 @@
       },
       "revId": "226efb2621fccc5f421725d81f0c65fd82767ab1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c930a757_50ee5e96",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 4581,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-03-10T21:09:31Z",
+      "side": 1,
+      "message": "Good idea.  I\u0027d like to LOG_ERROR when it\u0027s disconnected here if we\u0027re cancelling the timer on disconnect.",
+      "parentUuid": "dbbcb96b_5969e589",
+      "range": {
+        "startLine": 4581,
+        "startChar": 50,
+        "endLine": 4581,
+        "endChar": 69
+      },
+      "revId": "226efb2621fccc5f421725d81f0c65fd82767ab1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
