@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4129bd8f_826970aa",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-03-10T18:53:07Z",
+      "side": 1,
+      "message": "TODO before submit: look at all the callsites that do NOT infer the type, and think carefully about any behavioral changes this introduces",
+      "revId": "8c2bd3bb68ea6ccfd9584383dc172d5b7216cc82",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
