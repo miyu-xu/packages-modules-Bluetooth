@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3cbd26db_6a6263e7",
+        "filename": "tools/rootcanal/model/controller/link_layer_controller.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 386,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-03-10T23:02:32Z",
+      "side": 1,
+      "message": "Google style guide says use a pointer so it\u0027s obvious that this is a return parameter.",
+      "range": {
+        "startLine": 386,
+        "startChar": 49,
+        "endLine": 386,
+        "endChar": 56
+      },
+      "revId": "8a98c2d8af39ed58ba2ce437e4b749e2c052a0b5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
