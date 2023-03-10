@@ -33,6 +33,24 @@
       "message": "Looks like we have scenarios when devices address, which was never seen by the stack, is provided by java along with a type. Therefore, we need to make sure gatt/connection_manager is aware of address type. \n\nWill keep this CL open, but other patch will be provided by Rahul Arya.",
       "revId": "9729875026c0232f0fc484c339ab958bc4925c7e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "48c7c4ef_66b3ffd8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-03-10T17:04:14Z",
+      "side": 1,
+      "message": "yes, connect with type support is recently added, but we might not have application use case at this point. it would be best to keep this path so to avoid regression. But if this issue is urgently blocking dogfood, we can proceed with this and have a follow-up change after this. just make sure everything is ready for U.",
+      "parentUuid": "879137a2_7fdd2a18",
+      "revId": "9729875026c0232f0fc484c339ab958bc4925c7e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
