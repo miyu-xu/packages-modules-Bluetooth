@@ -21,18 +21,25 @@ from avatar import BumblePandoraDevice, PandoraDevice, PandoraDevices
 from bumble.gatt import GATT_ASHA_SERVICE
 from bumble.smp import PairingDelegate
 from mobly import base_test, signals, test_runner
+from bumble.profiles.asha_service import AshaService
+from mobly import base_test, test_runner
 from mobly.asserts import assert_equal  # type: ignore
 from mobly.asserts import assert_in  # type: ignore
 from mobly.asserts import skip  # type: ignore
 from pandora._utils import Stream
+from pandora.asha_pb2 import PlaybackAudioRequest
 from pandora.host_pb2 import PUBLIC, RANDOM, AdvertiseResponse, Connection, DataTypes, OwnAddressType, ScanningResponse
 from pandora.security_pb2 import LE_LEVEL3, LESecurityLevel
+from queue import Queue
 from typing import List, Optional, Tuple
+from _audio import AudioSignal
 
 ASHA_UUID = GATT_ASHA_SERVICE.to_hex_str()
 HISYCNID: List[int] = [0x01, 0x02, 0x03, 0x04, 0x5, 0x6, 0x7, 0x8]
 CAPABILITY: int = 0x0
 COMPLETE_LOCAL_NAME: str = "Bumble"
+AUDIO_SIGNAL_AMPLITUDE = 0.8
+AUDIO_SIGNAL_SAMPLING_RATE = 44100
 
 
 class ASHATest(base_test.BaseTestClass):  # type: ignore[misc]
@@ -216,14 +223,14 @@ class ASHATest(base_test.BaseTestClass):  # type: ignore[misc]
 
         dut_ref, ref_dut = self.dut_connect_to_ref(advertisement, ref, dut_address_type)
 
-        secure = self.dut.security.Secure(connection=dut_ref, le=LESecurityLevel.LE_LEVEL3)
+        secure = self.dut.security.Secure(connection=dut_ref, le=LE_LEVEL3)
 
         assert_equal(secure.WhichOneof("result"), "success")
         self.dut.host.Disconnect(dut_ref)
         self.ref.host.WaitDisconnection(ref_dut)
 
         # delete the bond
-        if dut_address_type == OwnAddressType.PUBLIC:
+        if dut_address_type == PUBLIC:
             self.dut.security_storage.DeleteBond(public=self.ref.address)
         else:
             self.dut.security_storage.DeleteBond(random=self.ref.random_address)
@@ -236,7 +243,7 @@ class ASHATest(base_test.BaseTestClass):  # type: ignore[misc]
         advertisement.cancel()
         assert dut_ref
 
-        secure = self.dut.security.Secure(connection=dut_ref, le=LESecurityLevel.LE_LEVEL3)
+        secure = self.dut.security.Secure(connection=dut_ref, le=LE_LEVEL3)
 
         assert_equal(secure.WhichOneof("result"), "success")
 
@@ -357,6 +364,190 @@ class ASHATest(base_test.BaseTestClass):  # type: ignore[misc]
         ref_dut = next(advertisement).connection
         advertisement.cancel()
         assert ref_dut
+
+    def test_music_start(self) -> None:
+        """
+        DUT discovers Ref.
+        DUT initiates connection to Ref.
+        Verify that DUT and Ref are bonded and connected.
+        DUT starts media streaming.
+        Verify that DUT sends a correct AudioControlPoint `Start` command (codec=1,
+        audiotype=0, volume=<volume set on DUT>, otherstate=<state of Ref aux if dual devices>).
+        """
+        dut_address_type: OwnAddressType = RANDOM
+        ref_address_type: OwnAddressType = RANDOM
+
+        advertisement = self.ref_advertise_asha(ref_address_type=ref_address_type)
+        ref = self.dut_scan_for_asha(dut_address_type=dut_address_type)
+        dut_ref, ref_dut = self.dut_connect_to_ref(advertisement, ref, dut_address_type)
+
+        # DUT starts pairing with the Ref.
+        secure = self.dut.security.Secure(connection=dut_ref, le=LE_LEVEL3)
+        assert_equal(secure.WhichOneof("result"), "success")
+
+        asha_service = next((x for x in self.ref.device.gatt_server.attributes if isinstance(x, AshaService)))
+
+        q = Queue()
+        assert q.empty()
+
+        def start_command_handler(connection: Connection, data: dict[str:int]):
+            q.put_nowait(data)
+
+        asha_service.on('start', start_command_handler)
+
+        # wait for handling audio routing etc
+        time.sleep(1)
+        self.dut.asha.Start()
+
+        result = q.get(timeout=5)
+        logging.info(f"result:{result}")
+        assert result is not None
+
+        asha_service.remove_listener('start', start_command_handler)
+
+    def test_set_volume(self) -> None:
+        """
+        DUT discovers Ref.
+        DUT initiates connection to Ref.
+        Verify that DUT and Ref are bonded and connected.
+        DUT is streaming media to Ref.
+        Change volume on DUT.
+        Verify DUT writes the correct value to ASHA `Volume` characteristic.
+        """
+        dut_address_type: OwnAddressType = RANDOM
+        ref_address_type: OwnAddressType = RANDOM
+
+        advertisement = self.ref_advertise_asha(ref_address_type=ref_address_type)
+        ref = self.dut_scan_for_asha(dut_address_type=dut_address_type)
+
+        dut_ref, ref_dut = self.dut_connect_to_ref(advertisement, ref, dut_address_type)
+
+        # DUT starts pairing with the Ref.
+        secure = self.dut.security.Secure(connection=dut_ref, le=LE_LEVEL3)
+        assert_equal(secure.WhichOneof("result"), "success")
+
+        asha_service = next((x for x in self.ref.device.gatt_server.attributes if isinstance(x, AshaService)))
+
+        volume_q = Queue()
+
+        def volume_handler(connection: Connection, volume: int):
+            volume_q.put_nowait(volume)
+
+        asha_service.on('volume', volume_handler)
+
+        time.sleep(1)
+        self.dut.asha.Start()
+
+        result = volume_q.get(timeout=1)
+        logging.info(f"result:{result}")
+        assert result is not None
+
+        asha_service.remove_listener('volume', volume_handler)
+
+    def test_music_stop(self) -> None:
+        """
+        DUT discovers Ref.
+        DUT initiates connection to Ref.
+        Verify that DUT and Ref are bonded and connected.
+        DUT is streaming media to Ref.
+        DUT stops media streaming on Ref.
+        Verify that DUT sends a correct AudioControlPoint `Stop` command.
+        """
+        dut_address_type: OwnAddressType = RANDOM
+        ref_address_type: OwnAddressType = RANDOM
+
+        advertisement = self.ref_advertise_asha(ref_address_type=ref_address_type)
+        ref = self.dut_scan_for_asha(dut_address_type=dut_address_type)
+
+        dut_ref, ref_dut = self.dut_connect_to_ref(advertisement, ref, dut_address_type)
+
+        # DUT starts pairing with the Ref.
+        secure = self.dut.security.Secure(connection=dut_ref, le=LE_LEVEL3)
+        assert_equal(secure.WhichOneof("result"), "success")
+
+        asha = next((x for x in self.ref.device.gatt_server.attributes if isinstance(x, AshaService)))
+
+        q = Queue()
+        assert q.empty()
+
+        def stop_command_handler(connection: Connection):
+            q.put_nowait(connection)
+
+        asha.on('stop', stop_command_handler)
+
+        time.sleep(1)
+        self.dut.asha.Start()
+
+        result = q.get(timeout=5)
+        logging.info(f"result:{result}")
+        assert result is not None
+
+        asha.remove_listener('stop', stop_command_handler)
+
+    def test_music_restart(self) -> None:
+        """
+        DUT discovers Ref.
+        DUT initiates connection to Ref.
+        Verify that DUT and Ref are bonded and connected.
+        DUT starts media streaming.
+        DUT stops media streaming.
+        Verify that DUT sends a correct AudioControlPoint `Stop` command.
+        DUT starts media streaming again.
+        Verify that DUT sends a correct AudioControlPoint `Start` command.
+        """
+        dut_address_type: OwnAddressType = RANDOM
+        ref_address_type: OwnAddressType = RANDOM
+
+        advertisement = self.ref_advertise_asha(ref_address_type=ref_address_type)
+        ref = self.dut_scan_for_asha(dut_address_type=dut_address_type)
+
+        dut_ref, ref_dut = self.dut_connect_to_ref(advertisement, ref, dut_address_type)
+
+        # DUT starts pairing with the Ref.
+        secure = self.dut.security.Secure(connection=dut_ref, le=LE_LEVEL3)
+        assert_equal(secure.WhichOneof("result"), "success")
+
+        asha = next((x for x in self.ref.device.gatt_server.attributes if isinstance(x, AshaService)))
+
+        q = Queue()
+        assert q.empty()
+
+        def stop_command_handler(connection):
+            q.put_nowait(connection)
+
+        stop_command_handler = asha.on('stop', stop_command_handler)
+
+        time.sleep(1)
+        self.dut.asha.Start()
+
+        result = q.get(timeout=5)
+        logging.debug(f"result:{result}")
+        assert result is not None
+        asha.remove_listener('stop', stop_command_handler)
+
+        # restart music streaming
+        logging.info("start again")
+        time.sleep(1)
+
+        def start_command_handler(connection: Connection, data: dict[str:int]):
+            q.put_nowait(data)
+
+        asha.on('start', start_command_handler)
+
+        def convert_frame(data):
+            return PlaybackAudioRequest(data=data)
+
+        audio = AudioSignal(
+            lambda frames: self.dut.asha.PlaybackAudio(map(convert_frame, frames)),
+            AUDIO_SIGNAL_AMPLITUDE,
+            AUDIO_SIGNAL_SAMPLING_RATE,
+        )
+        audio.start()
+
+        result = q.get(timeout=35)
+        logging.debug(f"result:{result}")
+        assert result is not None
+        asha.remove_listener('start', start_command_handler)
 
 
 if __name__ == "__main__":
