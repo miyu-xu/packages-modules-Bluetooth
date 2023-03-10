@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aa9cacb8_28139ac7",
+        "filename": "android/pandora/test/_audio.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-03-10T22:36:18Z",
+      "side": 1,
+      "message": "This file was made specifically for PTS-bot, I don\u0027t think you should use it as is.",
+      "revId": "4e9f53667364959b08e2b68e2d6ad29559eba15b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bc9f5b98_14224ea9",
+        "filename": "android/pandora/test/_audio.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-03-10T22:36:18Z",
+      "side": 1,
+      "message": "This file was made specifically for PTS-bot, I don\u0027t think you should use it as is.",
+      "revId": "4e9f53667364959b08e2b68e2d6ad29559eba15b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
