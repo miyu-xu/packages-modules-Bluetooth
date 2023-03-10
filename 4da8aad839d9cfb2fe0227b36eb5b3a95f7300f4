@@ -81,6 +81,30 @@
       },
       "revId": "4da8aad839d9cfb2fe0227b36eb5b3a95f7300f4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2408cb54_ec568635",
+        "filename": "system/stack/btm/btm_ble.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-03-10T22:08:16Z",
+      "side": 1,
+      "message": "\u003e We even let users to control parameters in LE connections\n\nMaybe but I didn\u0027t say that this was great as well.\n\n\u003e  but obviously only rooted users or manufacturers can control them and they are responsible for what they do.\n\nI will be our responsability when we will be Mainline as this is part of our API surface.\n\n\u003e Also it\u0027s relatively complicated to make them discrete and the size restricts what they can fianlly be. However, an alternative way is to have a checker to make sure these values are valid.\n\nI don\u0027t see where the complexity is.",
+      "parentUuid": "4e900447_b52e12d7",
+      "range": {
+        "startLine": 67,
+        "startChar": 0,
+        "endLine": 81,
+        "endChar": 46
+      },
+      "revId": "4da8aad839d9cfb2fe0227b36eb5b3a95f7300f4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
