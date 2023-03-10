@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6eabe5ea_80f88864",
+        "filename": "tools/pdl/tests/generated/struct_decl_grand_children_big_endian.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-03-10T18:22:46Z",
+      "side": 1,
+      "message": "You need to parse the parent fields as well.",
+      "range": {
+        "startLine": 188,
+        "startChar": 0,
+        "endLine": 193,
+        "endChar": 18
+      },
+      "revId": "fc1fdc2a3a75dee081615db4c864b11cb95df3d7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f759e44d_742daa6f",
+        "filename": "tools/pdl/tests/generated/struct_decl_grand_children_big_endian.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 214,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-03-10T18:22:46Z",
+      "side": 1,
+      "message": "`struct Child` no longer has a child member",
+      "range": {
+        "startLine": 209,
+        "startChar": 0,
+        "endLine": 214,
+        "endChar": 9
+      },
+      "revId": "fc1fdc2a3a75dee081615db4c864b11cb95df3d7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
