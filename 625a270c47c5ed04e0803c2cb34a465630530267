@@ -16,6 +16,24 @@
       "message": "May also want to prevent sending out discovering changes or freshness checks when suspending. Clients don\u0027t need to be notified of discovery pausing during suspend (they will probably try to restore it and fail...)\n\n```\nif self.get_suspend_mode() !\u003d Normal | Resuming {\n  return\n}\n```",
       "revId": "625a270c47c5ed04e0803c2cb34a465630530267",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b705aadb_b402e1fb",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1091,
+      "author": {
+        "id": 1963846
+      },
+      "writtenOn": "2023-03-10T02:53:09Z",
+      "side": 1,
+      "message": "Done. Thanks for catching this!",
+      "parentUuid": "4f29c05b_9e2a3f06",
+      "revId": "625a270c47c5ed04e0803c2cb34a465630530267",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
