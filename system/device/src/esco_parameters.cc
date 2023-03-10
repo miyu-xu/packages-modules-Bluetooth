@@ -16,11 +16,29 @@
  *
  ******************************************************************************/
 
-#include "base/logging.h"
-
 #include "device/include/esco_parameters.h"
 
+#include "base/logging.h"
 #include "check.h"
+#include "osi/include/properties.h"
+
+static constexpr uint16_t kDefaultCodedDataSize = 16;
+static constexpr uint8_t kDefaultTransportUnitSize = 0;
+static constexpr esco_data_path_t kDefaultDataPath = ESCO_DATA_PATH_PCM;
+
+// ESCO parameters defined in Core Specification Vol 4 Part E, Chapter 7.1.45
+static const char kPropertyEscoInputCodedDataSize[] =
+    "bluetooth.core.sco.input_coded_data_size";
+static const char kPropertyEscoOutputCodedDataSize[] =
+    "bluetooth.core.sco.output_coded_data_size";
+static const char kPropertyEscoInputTransportUnitSize[] =
+    "bluetooth.core.sco.input_transport_unit_size";
+static const char kPropertyEscoOutputTransportUnitSize[] =
+    "bluetooth.core.sco.output_transport_unit_size";
+static const char kPropertyEscoInputDataPath[] =
+    "bluetooth.core.sco.input_data_path";
+static const char kPropertyEscoOutputDataPath[] =
+    "bluetooth.core.sco.output_data_path";
 
 static const enh_esco_params_t default_esco_parameters[ESCO_NUM_CODECS] = {
     // CVSD D1
@@ -43,16 +61,16 @@ static const enh_esco_params_t default_esco_parameters[ESCO_NUM_CODECS] = {
         .output_coding_format = {.coding_format = ESCO_CODING_FORMAT_LINEAR,
                                  .company_id = 0x0000,
                                  .vendor_specific_codec_id = 0x0000},
-        .input_coded_data_size = 16,
-        .output_coded_data_size = 16,
+        .input_coded_data_size = kDefaultCodedDataSize,
+        .output_coded_data_size = kDefaultCodedDataSize,
         .input_pcm_data_format = ESCO_PCM_DATA_FORMAT_2_COMP,
         .output_pcm_data_format = ESCO_PCM_DATA_FORMAT_2_COMP,
         .input_pcm_payload_msb_position = 0,
         .output_pcm_payload_msb_position = 0,
-        .input_data_path = ESCO_DATA_PATH_PCM,
-        .output_data_path = ESCO_DATA_PATH_PCM,
-        .input_transport_unit_size = 0x00,
-        .output_transport_unit_size = 0x00,
+        .input_data_path = kDefaultDataPath,
+        .output_data_path = kDefaultDataPath,
+        .input_transport_unit_size = kDefaultTransportUnitSize,
+        .output_transport_unit_size = kDefaultTransportUnitSize,
         .max_latency_ms = 0xFFFF,  // Don't care
         .packet_types = (ESCO_PKT_TYPES_MASK_HV1 | ESCO_PKT_TYPES_MASK_HV2 |
                          ESCO_PKT_TYPES_MASK_HV3),
@@ -78,16 +96,16 @@ static const enh_esco_params_t default_esco_parameters[ESCO_NUM_CODECS] = {
         .output_coding_format = {.coding_format = ESCO_CODING_FORMAT_LINEAR,
                                  .company_id = 0x0000,
                                  .vendor_specific_codec_id = 0x0000},
-        .input_coded_data_size = 16,
-        .output_coded_data_size = 16,
+        .input_coded_data_size = kDefaultCodedDataSize,
+        .output_coded_data_size = kDefaultCodedDataSize,
         .input_pcm_data_format = ESCO_PCM_DATA_FORMAT_2_COMP,
         .output_pcm_data_format = ESCO_PCM_DATA_FORMAT_2_COMP,
         .input_pcm_payload_msb_position = 0,
         .output_pcm_payload_msb_position = 0,
-        .input_data_path = ESCO_DATA_PATH_PCM,
-        .output_data_path = ESCO_DATA_PATH_PCM,
-        .input_transport_unit_size = 0x00,
-        .output_transport_unit_size = 0x00,
+        .input_data_path = kDefaultDataPath,
+        .output_data_path = kDefaultDataPath,
+        .input_transport_unit_size = kDefaultTransportUnitSize,
+        .output_transport_unit_size = kDefaultTransportUnitSize,
         .max_latency_ms = 10,
         .packet_types =
             (ESCO_PKT_TYPES_MASK_HV1 | ESCO_PKT_TYPES_MASK_HV2 |
@@ -117,16 +135,16 @@ static const enh_esco_params_t default_esco_parameters[ESCO_NUM_CODECS] = {
         .output_coding_format = {.coding_format = ESCO_CODING_FORMAT_LINEAR,
                                  .company_id = 0x0000,
                                  .vendor_specific_codec_id = 0x0000},
-        .input_coded_data_size = 16,
-        .output_coded_data_size = 16,
+        .input_coded_data_size = kDefaultCodedDataSize,
+        .output_coded_data_size = kDefaultCodedDataSize,
         .input_pcm_data_format = ESCO_PCM_DATA_FORMAT_2_COMP,
         .output_pcm_data_format = ESCO_PCM_DATA_FORMAT_2_COMP,
         .input_pcm_payload_msb_position = 0,
         .output_pcm_payload_msb_position = 0,
-        .input_data_path = ESCO_DATA_PATH_PCM,
-        .output_data_path = ESCO_DATA_PATH_PCM,
-        .input_transport_unit_size = 0x00,
-        .output_transport_unit_size = 0x00,
+        .input_data_path = kDefaultDataPath,
+        .output_data_path = kDefaultDataPath,
+        .input_transport_unit_size = kDefaultTransportUnitSize,
+        .output_transport_unit_size = kDefaultTransportUnitSize,
         .max_latency_ms = 12,
         .packet_types =
             (ESCO_PKT_TYPES_MASK_HV1 | ESCO_PKT_TYPES_MASK_HV2 |
@@ -156,16 +174,16 @@ static const enh_esco_params_t default_esco_parameters[ESCO_NUM_CODECS] = {
         .output_coding_format = {.coding_format = ESCO_CODING_FORMAT_LINEAR,
                                  .company_id = 0x0000,
                                  .vendor_specific_codec_id = 0x0000},
-        .input_coded_data_size = 16,
-        .output_coded_data_size = 16,
+        .input_coded_data_size = kDefaultCodedDataSize,
+        .output_coded_data_size = kDefaultCodedDataSize,
         .input_pcm_data_format = ESCO_PCM_DATA_FORMAT_2_COMP,
         .output_pcm_data_format = ESCO_PCM_DATA_FORMAT_2_COMP,
         .input_pcm_payload_msb_position = 0,
         .output_pcm_payload_msb_position = 0,
-        .input_data_path = ESCO_DATA_PATH_PCM,
-        .output_data_path = ESCO_DATA_PATH_PCM,
-        .input_transport_unit_size = 0x00,
-        .output_transport_unit_size = 0x00,
+        .input_data_path = kDefaultDataPath,
+        .output_data_path = kDefaultDataPath,
+        .input_transport_unit_size = kDefaultTransportUnitSize,
+        .output_transport_unit_size = kDefaultTransportUnitSize,
         .max_latency_ms = 8,
         .packet_types =
             (ESCO_PKT_TYPES_MASK_EV3 | ESCO_PKT_TYPES_MASK_NO_3_EV3 |
@@ -193,16 +211,16 @@ static const enh_esco_params_t default_esco_parameters[ESCO_NUM_CODECS] = {
         .output_coding_format = {.coding_format = ESCO_CODING_FORMAT_LINEAR,
                                  .company_id = 0x0000,
                                  .vendor_specific_codec_id = 0x0000},
-        .input_coded_data_size = 16,
-        .output_coded_data_size = 16,
+        .input_coded_data_size = kDefaultCodedDataSize,
+        .output_coded_data_size = kDefaultCodedDataSize,
         .input_pcm_data_format = ESCO_PCM_DATA_FORMAT_2_COMP,
         .output_pcm_data_format = ESCO_PCM_DATA_FORMAT_2_COMP,
         .input_pcm_payload_msb_position = 0,
         .output_pcm_payload_msb_position = 0,
-        .input_data_path = ESCO_DATA_PATH_PCM,
-        .output_data_path = ESCO_DATA_PATH_PCM,
-        .input_transport_unit_size = 0x00,
-        .output_transport_unit_size = 0x00,
+        .input_data_path = kDefaultDataPath,
+        .output_data_path = kDefaultDataPath,
+        .input_transport_unit_size = kDefaultTransportUnitSize,
+        .output_transport_unit_size = kDefaultTransportUnitSize,
         .max_latency_ms = 13,
         .packet_types =
             (ESCO_PKT_TYPES_MASK_EV3 | ESCO_PKT_TYPES_MASK_NO_3_EV3 |
@@ -215,6 +233,21 @@ enh_esco_params_t esco_parameters_for_codec(esco_codec_t codec, bool offload) {
   CHECK(codec >= 0) << "codec index " << (int)codec << "< 0";
   CHECK(codec < ESCO_NUM_CODECS)
       << "codec index " << (int)codec << " > " << ESCO_NUM_CODECS;
+
+  // Set vendor-specific parameters
+  param.input_data_path =
+      osi_property_get_int32(kPropertyEscoInputDataPath, kDefaultDataPath);
+  param.output_data_path =
+      osi_property_get_int32(kPropertyEscoOutputDataPath, kDefaultDataPath);
+  param.input_transport_unit_size = osi_property_get_int32(
+      kPropertyEscoInputTransportUnitSize, kDefaultTransportUnitSize);
+  param.output_transport_unit_size = osi_property_get_int32(
+      kPropertyEscoOutputTransportUnitSize, kDefaultTransportUnitSize);
+  param.input_coded_data_size = osi_property_get_int32(
+      kPropertyEscoInputCodedDataSize, kDefaultCodedDataSize);
+  param.output_coded_data_size = osi_property_get_int32(
+      kPropertyEscoOutputCodedDataSize, kDefaultCodedDataSize);
+
   if (offload) {
     return default_esco_parameters[codec];
   }
