@@ -177,6 +177,30 @@
       },
       "revId": "4da8aad839d9cfb2fe0227b36eb5b3a95f7300f4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "40aa3582_c4a4749f",
+        "filename": "system/stack/btm/btm_ble.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2023-03-10T22:39:39Z",
+      "side": 1,
+      "message": "I understood(though they are usually ignored in CTKD).\nHow about just make `auth_req` and `key_dist` configurable, and assert their keys are valid?",
+      "parentUuid": "98b5402c_df7dd18c",
+      "range": {
+        "startLine": 67,
+        "startChar": 0,
+        "endLine": 81,
+        "endChar": 46
+      },
+      "revId": "4da8aad839d9cfb2fe0227b36eb5b3a95f7300f4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
