@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0e790256_e0b77c65",
+        "filename": "framework/java/android/bluetooth/BluetoothServerSocket.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 1581454
+      },
+      "writtenOn": "2023-03-10T01:12:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "aa7d7a0d_6ab65f6c",
+      "revId": "42ac6b5c8dd3f049a5075304d07b16590c76b75d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b2d4d4b0_3cda2f5f",
@@ -49,6 +67,24 @@
       "writtenOn": "2023-03-09T23:55:36Z",
       "side": 1,
       "message": "We should use a SynchronousResultReceiver for all binder calls. I think we might need to add one for the client metrics too now that I think about it. This prevents the call from blocking indefinitely and holding the application thread.",
+      "revId": "42ac6b5c8dd3f049a5075304d07b16590c76b75d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "028d7647_f92c5e89",
+        "filename": "framework/java/android/bluetooth/BluetoothServerSocket.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 212,
+      "author": {
+        "id": 1581454
+      },
+      "writtenOn": "2023-03-10T01:12:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b2d4d4b0_3cda2f5f",
       "revId": "42ac6b5c8dd3f049a5075304d07b16590c76b75d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -84,6 +120,24 @@
       "side": 1,
       "message": "I don\u0027t want the metric code affect users. If the socket is connected but metrics logging fails, we want to move on.",
       "parentUuid": "b4bc000d_8101a568",
+      "revId": "42ac6b5c8dd3f049a5075304d07b16590c76b75d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "239e2c3f_9ee8d0a5",
+        "filename": "framework/java/android/bluetooth/BluetoothServerSocket.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 220,
+      "author": {
+        "id": 1581454
+      },
+      "writtenOn": "2023-03-10T01:12:50Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "cfa57c47_7d8d2834",
       "revId": "42ac6b5c8dd3f049a5075304d07b16590c76b75d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
