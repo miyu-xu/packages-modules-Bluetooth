@@ -29,6 +29,7 @@ use btstack::bluetooth_gatt::{
     ScanFilterPattern, ScanResult, ScanSettings, ScanType,
 };
 use btstack::bluetooth_media::IBluetoothTelephony;
+use btstack::bluetooth_qa::IBluetoothQA;
 use btstack::socket_manager::{
     BluetoothServerSocket, BluetoothSocket, CallbackId, IBluetoothSocketManager,
     IBluetoothSocketManagerCallbacks, SocketId, SocketResult,
@@ -2157,6 +2158,35 @@ impl IBluetoothTelephony for BluetoothTelephonyDBus {
     }
     #[dbus_method("AudioDisconnect")]
     fn audio_disconnect(&mut self, address: String) {
+        dbus_generated!()
+    }
+}
+
+pub(crate) struct BluetoothQADBus {
+    client_proxy: ClientDBusProxy,
+}
+
+impl BluetoothQADBus {
+    pub(crate) fn new(conn: Arc<SyncConnection>, index: i32) -> BluetoothQADBus {
+        BluetoothQADBus {
+            client_proxy: ClientDBusProxy::new(
+                conn.clone(),
+                String::from("org.chromium.bluetooth"),
+                make_object_path(index, "qa"),
+                String::from("org.chromium.bluetooth.BluetoothQA"),
+            ),
+        }
+    }
+}
+
+#[generate_dbus_interface_client]
+impl IBluetoothQA for BluetoothQADBus {
+    #[dbus_method("EnableA2dpSink")]
+    fn enable_a2dp_sink(&self) {
+        dbus_generated!()
+    }
+    #[dbus_method("SendAvrcpPassThrough")]
+    fn send_avrcp_pass_through(&self, addr: String, key_code: u8, key_state: u8) {
         dbus_generated!()
     }
 }
