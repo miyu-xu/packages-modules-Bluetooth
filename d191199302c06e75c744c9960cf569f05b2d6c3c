@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c2006363_f30af1e4",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 20
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-03-10T14:38:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1c1b3b26_261abb99",
+      "range": {
+        "startLine": 11,
+        "startChar": 34,
+        "endLine": 11,
+        "endChar": 39
+      },
+      "revId": "d191199302c06e75c744c9960cf569f05b2d6c3c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e6efbc04_4d644eae",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-02-10T19:34:12Z",
       "side": 1,
       "message": "nit: formatting looks odd.",
+      "range": {
+        "startLine": 22,
+        "startChar": 72,
+        "endLine": 23,
+        "endChar": 75
+      },
+      "revId": "d191199302c06e75c744c9960cf569f05b2d6c3c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "43d39ae1_1590e870",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 20
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-03-10T14:38:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e6efbc04_4d644eae",
       "range": {
         "startLine": 22,
         "startChar": 72,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "183028db_600dc6ba",
+        "filename": "system/bta/gatt/bta_gattc_utils.cc",
+        "patchSetId": 20
+      },
+      "lineNbr": 435,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-03-10T14:38:51Z",
+      "side": 1,
+      "message": "I agree. Fixed.",
+      "parentUuid": "2547dc0d_648e3cb5",
+      "range": {
+        "startLine": 435,
+        "startChar": 6,
+        "endLine": 435,
+        "endChar": 51
+      },
+      "revId": "d191199302c06e75c744c9960cf569f05b2d6c3c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9db45787_feb4aeab",
@@ -83,6 +155,30 @@
       "writtenOn": "2023-02-10T19:34:12Z",
       "side": 1,
       "message": "Why is this necessary?\n\nCan we copy the formatting from GATTC_ConfigureMTU to avoid this?",
+      "range": {
+        "startLine": 731,
+        "startChar": 0,
+        "endLine": 731,
+        "endChar": 19
+      },
+      "revId": "d191199302c06e75c744c9960cf569f05b2d6c3c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "11bac8a6_cca2dbf0",
+        "filename": "system/stack/gatt/gatt_api.cc",
+        "patchSetId": 20
+      },
+      "lineNbr": 731,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-03-10T14:38:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9db45787_feb4aeab",
       "range": {
         "startLine": 731,
         "startChar": 0,
@@ -116,6 +212,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "10718c83_edbbd8c2",
+        "filename": "system/stack/gatt/gatt_api.cc",
+        "patchSetId": 20
+      },
+      "lineNbr": 772,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-03-10T14:38:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e63105ad_42570831",
+      "range": {
+        "startLine": 771,
+        "startChar": 0,
+        "endLine": 772,
+        "endChar": 36
+      },
+      "revId": "d191199302c06e75c744c9960cf569f05b2d6c3c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ca888fff_442b4a84",
@@ -139,6 +259,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "94140989_4e482c1e",
+        "filename": "system/stack/gatt/gatt_api.cc",
+        "patchSetId": 20
+      },
+      "lineNbr": 785,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-03-10T14:38:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ca888fff_442b4a84",
+      "range": {
+        "startLine": 785,
+        "startChar": 0,
+        "endLine": 785,
+        "endChar": 19
+      },
+      "revId": "d191199302c06e75c744c9960cf569f05b2d6c3c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6fd24155_b4158a6e",
@@ -152,6 +296,30 @@
       "writtenOn": "2023-02-10T19:34:12Z",
       "side": 1,
       "message": "Can we add\nMTU_EXCHANGE_DEVICE_DISCONNECTED to separate the case from NOT_ALLOWED?",
+      "range": {
+        "startLine": 133,
+        "startChar": 0,
+        "endLine": 133,
+        "endChar": 27
+      },
+      "revId": "d191199302c06e75c744c9960cf569f05b2d6c3c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1da127fe_5115692f",
+        "filename": "system/stack/include/gatt_api.h",
+        "patchSetId": 20
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-03-10T14:38:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6fd24155_b4158a6e",
       "range": {
         "startLine": 133,
         "startChar": 0,

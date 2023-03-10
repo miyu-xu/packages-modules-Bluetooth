@@ -22,6 +22,30 @@
       },
       "revId": "705c929543f2b2e71feba7e8b871bc796f2f170e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bfcc123c_019dcb74",
+        "filename": "system/bta/gatt/bta_gattc_act.cc",
+        "patchSetId": 20
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-03-10T14:38:51Z",
+      "side": 0,
+      "message": "I tried, no success. However I hopefully improved the CL",
+      "parentUuid": "a8021234_d00162eb",
+      "range": {
+        "startLine": 65,
+        "startChar": 0,
+        "endLine": 68,
+        "endChar": 0
+      },
+      "revId": "705c929543f2b2e71feba7e8b871bc796f2f170e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
