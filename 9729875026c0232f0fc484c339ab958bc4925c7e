@@ -16,6 +16,23 @@
       "message": "fyi since this might affect your address type fixes?",
       "revId": "9729875026c0232f0fc484c339ab958bc4925c7e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "879137a2_7fdd2a18",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-03-10T09:48:46Z",
+      "side": 1,
+      "message": "Looks like we have scenarios when devices address, which was never seen by the stack, is provided by java along with a type. Therefore, we need to make sure gatt/connection_manager is aware of address type. \n\nWill keep this CL open, but other patch will be provided by Rahul Arya.",
+      "revId": "9729875026c0232f0fc484c339ab958bc4925c7e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
