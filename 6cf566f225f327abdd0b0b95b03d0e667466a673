@@ -16,6 +16,24 @@
       "message": "\u003d\u003d devices: \u003d\u003d\n        address: xx:xx:xx:xx:be:bc: CONNECTED (0x01): 1035, acl_handle: 64, left/right, Encrypted,mtu: 512\n        number of ases_: 3\n        \u003d\u003d ASEs \u003d\u003d\n        id  active dir     cis_id  cis_handle  sdu  latency rtn  state\n        1   false  sink    255     0           120  100     13   IDLE (0x00)\n        2   false  sink    255     0           120  100     13   IDLE (0x00)\n        3   false  source  255     0           0    0       0    IDLE (0x00)\n        \u003d\u003d\u003d\u003d\n        address: 28:6f:40:57:be:bc\n        Sink PACs\n                value handle: 0x0061 / CCC handle: 0x0062\n\n                CodecId(Coding format: 6, Vendor company ID: 0, Vendor codec ID: 0)\n                Codec specific capabilities:\n                        type: 1 len: 2  data: B500\n                        type: 2 len: 1  data: 03\n                        type: 3 len: 1  data: 01\n                        type: 4 len: 4  data: 1A009B00\n                        type: 5 len: 1  data: 01\n                        type: 255       len: 4  data: FFFF0202\n                Metadata: 03010600\n        Source PACs\n                value handle: 0x0067 / CCC handle: 0x0068\n\n                CodecId(Coding format: 6, Vendor company ID: 0, Vendor codec ID: 0)\n                Codec specific capabilities:\n                        type: 1 len: 2  data: B500\n                        type: 2 len: 1  data: 03\n                        type: 3 len: 1  data: 01\n                        type: 4 len: 4  data: 1A009B00\n                        type: 5 len: 1  data: 01\n                        type: 255       len: 4  data: FFFF0202\n                Metadata: 03010600\n\n\n\nMaybe we could add some more human readable form?",
       "revId": "6cf566f225f327abdd0b0b95b03d0e667466a673",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "22680dc1_aebed10e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-03-10T09:30:58Z",
+      "side": 1,
+      "message": "Updated:\n\n```\n\taddress: 14:3f:a6:de:2c:08\n\tSink PACs\n\t\tvalue handle: 0x1202 / CCC handle: 0x1203\n\n\t\tCodecId(Coding format: 6, Vendor company ID: 0, Vendor codec ID: 0)\n\t\tCodec specific capabilities:\n\t\t\tSupported Sampling Frequencies: 16 [kHz]\n\t\t\tSupported Frame Durations: 7.5 [ms]\n\t\t\tSupported Audio Channel Count: 1 channel/s\n\t\t\tSupported Octets Per Codec Frame: Minimum: 30, Maximum: 30\n\t\t\tSupported Max Codec Frames Per SDU: 1 frame/s\n\t\tMetadata: 0301FF0F\n\n\t\tCodecId(Coding format: 6, Vendor company ID: 0, Vendor codec ID: 0)\n\t\tCodec specific capabilities:\n\t\t\tSupported Sampling Frequencies: 32 [kHz]\n\t\t\tSupported Frame Durations: 7.5 [ms]\n\t\t\tSupported Audio Channel Count: 1 channel/s\n\t\t\tSupported Octets Per Codec Frame: Minimum: 60, Maximum: 60\n\t\t\tSupported Max Codec Frames Per SDU: 1 frame/s\n\t\tMetadata: 0301FF0F\n\n```",
+      "parentUuid": "49943365_2070970b",
+      "revId": "6cf566f225f327abdd0b0b95b03d0e667466a673",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
