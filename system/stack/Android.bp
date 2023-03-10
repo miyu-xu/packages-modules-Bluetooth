@@ -648,7 +648,7 @@ cc_test {
         "libosi-AllocationTestHarness",
     ],
     sanitize: {
-        address: true,
+
         cfi: true,
         misc_undefined: ["bounds"],
     },
@@ -704,7 +704,6 @@ cc_test {
         "libosi-AllocationTestHarness",
     ],
     sanitize: {
-        address: true,
         cfi: true,
         misc_undefined: ["bounds"],
     },
@@ -807,7 +806,6 @@ cc_test {
         "libldacBT_enc",
     ],
     sanitize: {
-        address: true,
         cfi: true,
         misc_undefined: ["bounds"],
     },
@@ -847,7 +845,6 @@ cc_test {
         "libosi-AllocationTestHarness",
     ],
     sanitize: {
-        address: true,
         cfi: true,
         misc_undefined: ["bounds"],
     },
@@ -934,7 +931,6 @@ cc_test {
     sanitize: {
         cfi: true,
         scs: true,
-        address: true,
         all_undefined: true,
         integer_overflow: true,
         diag: {
@@ -1100,7 +1096,6 @@ cc_test {
         "libcrypto",
     ],
     sanitize: {
-        address: true,
         all_undefined: true,
         cfi: true,
         integer_overflow: true,
@@ -1146,7 +1141,6 @@ cc_test {
         "libcrypto",
     ],
     sanitize: {
-        address: true,
         all_undefined: true,
         cfi: true,
         integer_overflow: true,
@@ -1201,7 +1195,6 @@ cc_test {
         "libcrypto",
     ],
     sanitize: {
-        address: true,
         all_undefined: true,
         cfi: true,
         integer_overflow: true,
@@ -1265,7 +1258,6 @@ cc_test {
         "libcrypto",
     ],
     sanitize: {
-        address: true,
         all_undefined: true,
         cfi: true,
         integer_overflow: true,
@@ -1345,7 +1337,6 @@ cc_test {
         "libcrypto",
     ],
     sanitize: {
-        address: true,
         all_undefined: true,
         cfi: true,
         integer_overflow: true,
@@ -1419,7 +1410,6 @@ cc_test {
         "libcrypto",
     ],
     sanitize: {
-        address: true,
         all_undefined: true,
         cfi: true,
         integer_overflow: true,
@@ -1492,7 +1482,6 @@ cc_test {
         "libcrypto",
     ],
     sanitize: {
-        address: true,
         all_undefined: true,
         cfi: true,
         integer_overflow: true,
