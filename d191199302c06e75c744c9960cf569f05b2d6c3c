@@ -72,6 +72,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a11dbb0b_483afb4a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 20
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-03-10T21:15:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "791fa8a1_5fc692a4",
+      "range": {
+        "startLine": 11,
+        "startChar": 34,
+        "endLine": 11,
+        "endChar": 39
+      },
+      "revId": "d191199302c06e75c744c9960cf569f05b2d6c3c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e6efbc04_4d644eae",
@@ -133,6 +157,30 @@
       "side": 1,
       "message": "This still looks odd.",
       "parentUuid": "43d39ae1_1590e870",
+      "range": {
+        "startLine": 22,
+        "startChar": 72,
+        "endLine": 23,
+        "endChar": 75
+      },
+      "revId": "d191199302c06e75c744c9960cf569f05b2d6c3c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "33d0db73_e865efe3",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 20
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-03-10T21:15:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "97222290_132d33b9",
       "range": {
         "startLine": 22,
         "startChar": 72,

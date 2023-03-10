@@ -22,6 +22,30 @@
       },
       "revId": "6ef9f51751d069928b8289643710d761964f820f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3ee32920_f687d23d",
+        "filename": "system/bta/gatt/bta_gattc_utils.cc",
+        "patchSetId": 22
+      },
+      "lineNbr": 379,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-03-10T21:15:26Z",
+      "side": 1,
+      "message": "Well this is my opinion as well. I would just return the actual MTU, but based on @jpawlowski@google.com opinion I change that to keep current behavior. i.e. if user requested 100, lets don\u0027t give him 200.\n\nIf I think longer about that, if user wanted 100, and the pipe below is bigger than that, but of course still can satisfy 100, let\u0027s do not confuse user and let him know that requested 100 can be satisfied. How big is the pipe below, is not important for the user.",
+      "parentUuid": "2ad9ce39_996b0fde",
+      "range": {
+        "startLine": 376,
+        "startChar": 0,
+        "endLine": 379,
+        "endChar": 0
+      },
+      "revId": "6ef9f51751d069928b8289643710d761964f820f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
