@@ -966,7 +966,16 @@ void bta_dm_discover(tBTA_DM_MSG* p_data) {
  *
  ******************************************************************************/
 static void bta_dm_disable_search_and_disc(void) {
-  if (bta_dm_search_cb.state != BTA_DM_SEARCH_IDLE) bta_dm_search_cancel();
+  switch (bta_dm_search_get_state()) {
+    case BTA_DM_SEARCH_IDLE:
+      break;
+    case BTA_DM_SEARCH_ACTIVE:
+    case BTA_DM_SEARCH_CANCELLING:
+    case BTA_DM_DISCOVER_ACTIVE:
+    default:
+      LOG_DEBUG("Search state was not idle so issuing search cancel");
+      bta_dm_search_cancel();
+  }
 }
 
 /*******************************************************************************
