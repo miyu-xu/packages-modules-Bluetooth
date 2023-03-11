@@ -29,7 +29,7 @@ impl<'a> FieldDeclarations<'a> {
     pub fn done(&mut self) {
         let packet_data_child = format_ident!("{}DataChild", self.packet_name);
         let packet_scope = &self.scope.scopes[&self.scope.typedef[self.packet_name]];
-        if self.scope.children.contains_key(self.packet_name) || packet_scope.payload.is_some() {
+        if self.scope.has_children(self.packet_name) || packet_scope.get_payload_field().is_some() {
             self.code.push(quote! {
                 child: #packet_data_child,
             });
