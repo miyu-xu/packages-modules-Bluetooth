@@ -124,8 +124,8 @@ fn top_level_packet<'a>(scope: &lint::Scope<'a>, packet_name: &'a str) -> &'a pa
     decl
 }
 
-fn get_packet_children<'a>(scope: &'a lint::Scope<'_>, id: &str) -> &'a [&'a parser_ast::Decl] {
-    scope.children.get(id).map(Vec::as_slice).unwrap_or_default()
+fn get_packet_children<'a>(scope: &'a lint::Scope<'_>, id: &str) -> Vec<&'a parser_ast::Decl> {
+    scope.iter_children(id).collect::<Vec<_>>()
 }
 
 /// Find all constrained fields in children of `id`.
@@ -135,7 +135,7 @@ fn find_constrained_fields<'a>(
 ) -> Vec<&'a parser_ast::Field> {
     let mut fields = Vec::new();
     let mut field_names = BTreeSet::new();
-    let mut children = Vec::from(get_packet_children(scope, id));
+    let mut children = get_packet_children(scope, id);
 
     while let Some(child) = children.pop() {
         if let ast::DeclDesc::Packet { id, constraints, .. }
@@ -213,7 +213,7 @@ fn generate_data_struct(
         quote! { #span.len() >= #constant_width }
     };
 
-    let has_payload = packet_scope.payload.is_some();
+    let has_payload = packet_scope.get_payload_field().is_some();
     let children = get_packet_children(scope, id);
     let has_children_or_payload = !children.is_empty() || has_payload;
     let child_field = has_children_or_payload.then(|| quote!(child));
@@ -388,7 +388,7 @@ fn generate_packet_decl(
             })
             .collect::<Vec<_>>();
 
-        if parent_packet_scope.payload.is_some() {
+        if parent_packet_scope.get_payload_field().is_some() {
             field.push(format_ident!("child"));
             if idx == 0 {
                 // Top-most parent, the child is simply created from
@@ -418,7 +418,7 @@ fn generate_packet_decl(
     });
 
     let children = get_packet_children(scope, id);
-    let has_payload = packet_scope.payload.is_some();
+    let has_payload = packet_scope.get_payload_field().is_some();
     let has_children_or_payload = !children.is_empty() || has_payload;
     let child =
         children.iter().map(|child| format_ident!("{}", child.id().unwrap())).collect::<Vec<_>>();
