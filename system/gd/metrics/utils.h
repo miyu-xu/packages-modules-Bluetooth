@@ -16,11 +16,16 @@
 #pragma once
 
 #include <string>
+#include <vector>
+#include <utility>
+#include "os/metrics.h"
 
 namespace bluetooth {
 namespace metrics {
 
 bool GetBootId(std::string* boot_id);
+int GetArgumentTypeFromList(std::vector<std::pair<os::ArgumentType, int>>& argument_list, os::ArgumentType argumentType);
+
 
 }  // namespace metrics
 }  // namespace bluetooth
