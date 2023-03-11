@@ -143,10 +143,6 @@ fn top_level_packet<'a>(scope: &lint::Scope<'a>, packet_name: &'a str) -> &'a pa
     decl
 }
 
-fn get_packet_children<'a>(scope: &'a lint::Scope<'_>, id: &str) -> &'a [&'a parser_ast::Decl] {
-    scope.children.get(id).map(Vec::as_slice).unwrap_or_default()
-}
-
 /// Find all constrained fields in children of `id`.
 fn find_constrained_fields<'a>(
     scope: &'a lint::Scope<'a>,
@@ -154,7 +150,7 @@ fn find_constrained_fields<'a>(
 ) -> Vec<&'a parser_ast::Field> {
     let mut fields = Vec::new();
     let mut field_names = BTreeSet::new();
-    let mut children = Vec::from(get_packet_children(scope, id));
+    let mut children = scope.iter_children(id).collect::<Vec<_>>();
 
     while let Some(child) = children.pop() {
         if let ast::DeclDesc::Packet { id, constraints, .. }
@@ -166,7 +162,7 @@ fn find_constrained_fields<'a>(
                     fields.push(packet_scope.all_fields[&constraint.id]);
                 }
             }
-            children.extend(get_packet_children(scope, id));
+            children.extend(scope.iter_children(id).collect::<Vec<_>>());
         }
     }
 
@@ -231,8 +227,9 @@ fn generate_data_struct(
     };
 
     let visibility = if is_packet { quote!() } else { quote!(pub) };
-    let has_payload = packet_scope.payload.is_some();
-    let children = get_packet_children(scope, id);
+    let has_payload = packet_scope.get_payload_field().is_some();
+    let children = scope.iter_children(id).collect::<Vec<_>>();
+
     let has_children_or_payload = !children.is_empty() || has_payload;
     let struct_name = if is_packet { format_ident!("{id}Data") } else { format_ident!("{id}") };
     let fields_with_ids =
@@ -432,7 +429,7 @@ fn generate_packet_decl(
             })
             .collect::<Vec<_>>();
 
-        if parent_packet_scope.payload.is_some() {
+        if parent_packet_scope.get_payload_field().is_some() {
             field.push(format_ident!("child"));
             if idx == 0 {
                 // Top-most parent, the child is simply created from
@@ -461,8 +458,8 @@ fn generate_packet_decl(
         }
     });
 
-    let children = get_packet_children(scope, id);
-    let has_payload = packet_scope.payload.is_some();
+    let children = scope.iter_children(id).collect::<Vec<_>>();
+    let has_payload = packet_scope.get_payload_field().is_some();
     let has_children_or_payload = !children.is_empty() || has_payload;
     let child =
         children.iter().map(|child| format_ident!("{}", child.id().unwrap())).collect::<Vec<_>>();
