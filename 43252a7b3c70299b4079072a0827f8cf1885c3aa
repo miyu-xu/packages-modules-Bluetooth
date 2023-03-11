@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6dda97a0_c2923654",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketException.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-03-11T00:33:44Z",
+      "side": 1,
+      "message": "Need to update current.txt",
+      "revId": "43252a7b3c70299b4079072a0827f8cf1885c3aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a31fd68f_994f63ae",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketException.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-03-11T00:33:44Z",
+      "side": 1,
+      "message": "Please add docs",
+      "revId": "43252a7b3c70299b4079072a0827f8cf1885c3aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "10712fcf_b3b0dfd3",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketException.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-03-11T00:33:44Z",
+      "side": 1,
+      "message": "There\u0027s still no easy way to use this new class. I can\u0027t tell what the error is (if one is to occur). We should add API methods to surface this to a developer.",
+      "revId": "43252a7b3c70299b4079072a0827f8cf1885c3aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

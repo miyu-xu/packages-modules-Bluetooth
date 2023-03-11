@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1c5e7f4d_39d920a6",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketException.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-03-11T00:33:44Z",
+      "side": 1,
+      "message": "This should be inside the BluetoothSocketException class",
+      "revId": "ce67a884df81113be1b530c4064a859e7a032703",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
