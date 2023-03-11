@@ -291,8 +291,7 @@ impl<'a> FieldSerializer<'a> {
             panic!("Payload field does not start on an octet boundary");
         }
 
-        let children =
-            self.scope.children.get(self.packet_name).map(Vec::as_slice).unwrap_or_default();
+        let children = self.scope.iter_children(self.packet_name).collect::<Vec<_>>();
         let child_ids = children
             .iter()
             .map(|child| format_ident!("{}", child.id().unwrap()))
