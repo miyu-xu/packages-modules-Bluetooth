@@ -4541,9 +4541,17 @@ static void bta_dm_gattc_callback(tBTA_GATTC_EVT event, tBTA_GATTC* p_data) {
       break;
 
     case BTA_GATTC_SEARCH_CMPL_EVT:
-      if (bta_dm_search_get_state() != BTA_DM_SEARCH_IDLE)
-        bta_dm_gatt_disc_complete(p_data->search_cmpl.conn_id,
-                                  p_data->search_cmpl.status);
+      switch (bta_dm_search_get_state()) {
+        case BTA_DM_SEARCH_IDLE:
+          break;
+        case BTA_DM_SEARCH_ACTIVE:
+        case BTA_DM_SEARCH_CANCELLING:
+        case BTA_DM_DISCOVER_ACTIVE:
+        default:
+          bta_dm_gatt_disc_complete(p_data->search_cmpl.conn_id,
+                                    p_data->search_cmpl.status);
+          break;
+      }
       break;
 
     case BTA_GATTC_CLOSE_EVT:
