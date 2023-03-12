@@ -125,9 +125,6 @@ class Acl : public hci::acl_manager::ConnectionCallbacks,
 
   void ClearFilterAcceptList();
 
-  void AddDeviceToFilterAcceptList(
-      const hci::AddressWithType& address_with_type);
-
   void ClearEventFilter();
 
  protected:
