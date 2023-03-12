@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f312d844_0bbfb525",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-03-12T01:33:20Z",
+      "side": 1,
+      "message": "Please note that targeted_announcements_test is NOT reflective of the new behavior, so it is currently failing. If you agree that this behavioral change is OK, then I will update the test file.",
+      "revId": "9a1c740dd85dd11d207878ef268a473e3fdec51e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
