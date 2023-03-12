@@ -83,6 +83,7 @@ public:
  virtual void CreateConnection(Address address);
 
  // Generates OnLeConnectSuccess if connected, or OnLeConnectFail otherwise
+ // called from BTM_AcceptlistAdd, acl_create_le_connection_with_id, and some weird FLOSS HID stuff
  virtual void CreateLeConnection(AddressWithType address_with_type, bool is_direct);
 
  // Ask the controller for specific data parameters
@@ -108,9 +109,14 @@ public:
  // Generates OnConnectFail with error code "terminated by local host 0x16" if cancelled, or OnConnectSuccess if not
  // successfully cancelled and already connected
  virtual void CancelConnect(Address address);
+
+ // called from hci_btsnd_hcic_disconnect on LE connections (i.e. if WE initiate the disconnect)
+ // thus, this only is invoked if we are currently connected to the peer
+ // probably then we actually DO want to reconnect? Then maybe this should simply not be called at all...
  virtual void RemoveFromBackgroundList(AddressWithType address_with_type);
  virtual void IsOnBackgroundList(AddressWithType address_with_type, std::promise<bool> promise);
 
+ // only called from BTM_AcceptlistRemove
  virtual void CancelLeConnect(AddressWithType address_with_type);
 
  virtual void ClearFilterAcceptList();
