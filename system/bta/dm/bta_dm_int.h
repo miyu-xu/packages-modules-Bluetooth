@@ -117,14 +117,6 @@ typedef struct {
 } tBTA_DM_API_PIN_REPLY;
 
 typedef struct {
-  BT_HDR_RIGID hdr;
-  RawAddress bd_addr;
-  tBTM_IO_CAP io_cap;
-  tBTM_OOB_DATA oob_data;
-  tBTM_AUTH_REQ auth_req;
-} tBTA_DM_CI_IO_REQ;
-
-typedef struct {
   RawAddress bd_addr;
   Octet16 c;
   Octet16 r;
@@ -165,11 +157,6 @@ typedef struct {
   BD_NAME bd_name;
   uint8_t pin_length;
 } tBTA_DM_API_ADD_DEVICE;
-
-typedef struct {
-  BT_HDR_RIGID hdr;
-  bool enable;
-} tBTA_DM_API_BLE_FEATURE;
 
 /* union of all data types */
 typedef union {
@@ -402,13 +389,11 @@ typedef struct {
   fixed_queue_t* pending_discovery_queue;
   bool wait_disc;
   bool sdp_results;
-  bluetooth::Uuid uuid;
   uint8_t peer_scn;
   tBT_TRANSPORT transport;
   tBTA_DM_SEARCH_CBACK* p_scan_cback;
   tBTA_DM_SEARCH_CBACK* p_csis_scan_cback;
   tGATT_IF client_if;
-  uint8_t uuid_to_search;
   bool gatt_disc_active;
   uint16_t conn_id;
   alarm_t* gatt_close_timer; /* GATT channel close delay timer */
@@ -469,12 +454,6 @@ typedef struct {
   const char* name{nullptr};
 } tBTA_DM_SSR_SPEC;
 
-typedef struct {
-  uint16_t manufacturer;
-  uint16_t lmp_sub_version;
-  uint8_t lmp_version;
-} tBTA_DM_LMP_VER_INFO;
-
 extern const uint16_t bta_service_id_to_uuid_lkup_tbl[];
 
 /* For Insight, PM cfg lookup tables are runtime configurable (to allow tweaking
@@ -525,7 +504,6 @@ extern void bta_dm_close_acl(const RawAddress&, bool, tBT_TRANSPORT);
 extern void bta_dm_pm_btm_status(const RawAddress&, tBTM_PM_STATUS, uint16_t,
                                  tHCI_STATUS);
 extern void bta_dm_pm_timer(const RawAddress&, tBTA_DM_PM_ACTION);
-extern void bta_dm_add_ampkey(tBTA_DM_MSG* p_data);
 
 extern void bta_dm_add_blekey(const RawAddress& bd_addr,
                               tBTA_LE_KEY_VALUE blekey,
