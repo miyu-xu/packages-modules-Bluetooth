@@ -68,6 +68,23 @@
       "message": "Having bg/direct connection set/list in le_impl is useful as that it all runs synchronously within the same context.",
       "revId": "9729875026c0232f0fc484c339ab958bc4925c7e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0ccac7e2_165c0f11",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-03-12T01:03:03Z",
+      "side": 1,
+      "message": "There is a more serious issue with this change. connection_manager::direct_connect is broken, since it still only does a background connection with slow scan parameters. Thus, this will worsen connection latency.",
+      "revId": "9729875026c0232f0fc484c339ab958bc4925c7e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
