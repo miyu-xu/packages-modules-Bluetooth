@@ -4237,7 +4237,6 @@ static void bta_dm_gatt_disc_complete(uint16_t conn_id, tGATT_STATUS status) {
       bta_dm_search_cb.conn_id = GATT_INVALID_CONN_ID;
     }
   }
-  bta_dm_search_cb.gatt_disc_active = false;
 }
 
 /*******************************************************************************
@@ -4268,8 +4267,6 @@ void bta_dm_close_gatt_conn(UNUSED_ATTR tBTA_DM_MSG* p_data) {
  *
  ******************************************************************************/
 void btm_dm_start_gatt_discovery(const RawAddress& bd_addr) {
-  bta_dm_search_cb.gatt_disc_active = true;
-
   /* connection is already open */
   if (bta_dm_search_cb.pending_close_bda == bd_addr &&
       bta_dm_search_cb.conn_id != GATT_INVALID_CONN_ID) {

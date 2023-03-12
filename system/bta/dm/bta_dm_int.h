@@ -111,14 +111,6 @@ typedef struct {
 } tBTA_DM_API_PIN_REPLY;
 
 typedef struct {
-  BT_HDR_RIGID hdr;
-  RawAddress bd_addr;
-  tBTM_IO_CAP io_cap;
-  tBTM_OOB_DATA oob_data;
-  tBTM_AUTH_REQ auth_req;
-} tBTA_DM_CI_IO_REQ;
-
-typedef struct {
   RawAddress bd_addr;
   Octet16 c;
   Octet16 r;
@@ -159,11 +151,6 @@ typedef struct {
   BD_NAME bd_name;
   uint8_t pin_length;
 } tBTA_DM_API_ADD_DEVICE;
-
-typedef struct {
-  BT_HDR_RIGID hdr;
-  bool enable;
-} tBTA_DM_API_BLE_FEATURE;
 
 /* union of all data types */
 typedef union {
@@ -396,14 +383,11 @@ typedef struct {
   fixed_queue_t* pending_discovery_queue;
   bool wait_disc;
   bool sdp_results;
-  bluetooth::Uuid uuid;
   uint8_t peer_scn;
   tBT_TRANSPORT transport;
   tBTA_DM_SEARCH_CBACK* p_scan_cback;
   tBTA_DM_SEARCH_CBACK* p_csis_scan_cback;
   tGATT_IF client_if;
-  uint8_t uuid_to_search;
-  bool gatt_disc_active;
   uint16_t conn_id;
   alarm_t* gatt_close_timer; /* GATT channel close delay timer */
   RawAddress pending_close_bda; /* pending GATT channel remote device address */
