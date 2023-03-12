@@ -33,6 +33,7 @@ mod do_not_use {
 }
 
 pub mod core;
+pub mod connection;
 pub mod gatt;
 pub mod packets;
 pub mod utils;
