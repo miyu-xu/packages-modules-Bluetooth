@@ -243,6 +243,7 @@ cc_library_static {
         "gatt/gatt_sr.cc",
         "gatt/gatt_sr_hash.cc",
         "gatt/gatt_utils.cc",
+        "gatt/targeted_announcements.cc",
         "hcic/hciblecmds.cc",
         "hcic/hcicmds.cc",
         "l2cap/l2c_api.cc",
@@ -589,6 +590,47 @@ cc_test {
         "gatt/connection_manager.cc",
         "test/common/mock_btm_api_layer.cc",
         "test/gatt_connection_manager_test.cc",
+        ":TestCommonMainHandler",
+    ],
+    shared_libs: [
+        "libcutils",
+    ],
+    static_libs: [
+        "libbluetooth-types",
+        "libbt-common",
+        "liblog",
+        "libgmock",
+    ],
+    sanitize: {
+        cfi: false,
+    },
+}
+
+// Bluetooth stack connection multiplexing
+cc_test {
+    name: "net_test_targeted_announcements",
+    defaults: [
+        "fluoride_defaults",
+        "mts_defaults",
+    ],
+    host_supported: true,
+    test_suites: ["general-tests"],
+    local_include_dirs: [
+        "include",
+        "btm",
+        "test/common",
+    ],
+    include_dirs: [
+        "packages/modules/Bluetooth/system",
+        "packages/modules/Bluetooth/system/gd",
+        "packages/modules/Bluetooth/system/internal_include",
+        "packages/modules/Bluetooth/system/utils/include",
+    ],
+    srcs: [
+        "gatt/connection_manager.cc",
+        "gatt/targeted_announcements.cc",
+        "test/common/mock_btm_api_layer.cc",
+        "test/targeted_announcements_test.cc",
         ":TestCommonMainHandler",
     ],
     shared_libs: [

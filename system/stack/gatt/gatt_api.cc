@@ -41,6 +41,7 @@
 #include "stack/btm/btm_dev.h"
 #include "stack/gatt/connection_manager.h"
 #include "stack/gatt/gatt_int.h"
+#include "stack/gatt/targeted_announcements.h"
 #include "stack/include/bt_hdr.h"
 #include "types/bluetooth/uuid.h"
 #include "types/bt_transport.h"
@@ -1314,8 +1315,9 @@ bool GATT_Connect(tGATT_IF gatt_if, const RawAddress& bd_addr,
       if (connection_type == BTM_BLE_BKG_CONNECT_ALLOW_LIST) {
         ret = connection_manager::background_connect_add(gatt_if, bd_addr);
       } else {
-        ret = connection_manager::background_connect_targeted_announcement_add(
-            gatt_if, bd_addr);
+        ret =
+            targeted_announcements::TargetedAnnouncementsManager::Get().Connect(
+                gatt_if, bd_addr);
       }
     }
   }
