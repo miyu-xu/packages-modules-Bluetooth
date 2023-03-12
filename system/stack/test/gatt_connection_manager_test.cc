@@ -35,10 +35,6 @@ class AcceptlistMock {
   MOCK_METHOD1(AcceptlistRemove, void(const RawAddress&));
   MOCK_METHOD0(AcceptlistClear, void());
   MOCK_METHOD2(OnConnectionTimedOut, void(uint8_t, const RawAddress&));
-
-  /* Not really accept list related, btui still BTM - just for testing put it
-   * here. */
-  MOCK_METHOD2(EnableTargetedAnnouncements, void(bool, tBTM_INQ_RESULTS_CB*));
 };
 
 std::unique_ptr<AcceptlistMock> localAcceptlistMock;
@@ -63,18 +59,12 @@ void BTM_AcceptlistRemove(const RawAddress& address) {
 
 void BTM_AcceptlistClear() { return localAcceptlistMock->AcceptlistClear(); }
 
-void BTM_BleTargetAnnouncementObserve(bool enable,
-                                      tBTM_INQ_RESULTS_CB* p_results_cb) {
-  localAcceptlistMock->EnableTargetedAnnouncements(enable, p_results_cb);
-}
-
 void BTM_LogHistory(const std::string& tag, const RawAddress& bd_addr,
                     const std::string& msg){};
 
 namespace bluetooth {
 namespace shim {
 bool is_gd_l2cap_enabled() { return false; }
-void set_target_announcements_filter(bool enable) {}
 }  // namespace shim
 }  // namespace bluetooth
 
@@ -291,62 +281,4 @@ TEST_F(BleConnectionManager, test_direct_and_background_connect) {
   Mock::VerifyAndClearExpectations(localAcceptlistMock.get());
 }
 
-TEST_F(BleConnectionManager, test_target_announement_connect) {
-  EXPECT_CALL(*localAcceptlistMock, AcceptlistRemove(_)).Times(0);
-  EXPECT_TRUE(background_connect_targeted_announcement_add(CLIENT1, address1));
-  EXPECT_TRUE(background_connect_targeted_announcement_add(CLIENT1, address1));
-}
-
-TEST_F(BleConnectionManager,
-       test_add_targeted_announement_when_allow_list_used) {
-  /* Accept adding to allow list */
-  EXPECT_CALL(*localAcceptlistMock, AcceptlistAdd(address1))
-      .WillOnce(Return(true));
-
-  /* This shall be called when registering announcements */
-  EXPECT_CALL(*localAcceptlistMock, AcceptlistRemove(_)).Times(1);
-  EXPECT_TRUE(background_connect_add(CLIENT1, address1));
-  EXPECT_TRUE(background_connect_targeted_announcement_add(CLIENT2, address1));
-
-  Mock::VerifyAndClearExpectations(localAcceptlistMock.get());
-}
-
-TEST_F(BleConnectionManager,
-       test_add_background_connect_when_targeted_announcement_are_enabled) {
-  /* Accept adding to allow list */
-  EXPECT_CALL(*localAcceptlistMock, AcceptlistAdd(address1)).Times(0);
-
-  /* This shall be called when registering announcements */
-  EXPECT_CALL(*localAcceptlistMock, AcceptlistRemove(_)).Times(0);
-
-  EXPECT_TRUE(background_connect_targeted_announcement_add(CLIENT2, address1));
-
-  EXPECT_TRUE(background_connect_add(CLIENT1, address1));
-  Mock::VerifyAndClearExpectations(localAcceptlistMock.get());
-}
-
-TEST_F(BleConnectionManager, test_re_add_background_connect_to_allow_list) {
-  EXPECT_CALL(*localAcceptlistMock, AcceptlistAdd(address1)).Times(0);
-  EXPECT_CALL(*localAcceptlistMock, AcceptlistRemove(_)).Times(0);
-
-  EXPECT_TRUE(background_connect_targeted_announcement_add(CLIENT2, address1));
-
-  EXPECT_TRUE(background_connect_add(CLIENT1, address1));
-  Mock::VerifyAndClearExpectations(localAcceptlistMock.get());
-
-  /* Now remove app using targeted announcement and expect device
-   * to be added to white list
-   */
-
-  /* Accept adding to allow list */
-  EXPECT_CALL(*localAcceptlistMock, AcceptlistAdd(address1))
-      .WillOnce(Return(true));
-
-  EXPECT_TRUE(background_connect_remove(CLIENT2, address1));
-  Mock::VerifyAndClearExpectations(localAcceptlistMock.get());
-
-  EXPECT_CALL(*localAcceptlistMock, AcceptlistRemove(_)).Times(1);
-  EXPECT_TRUE(background_connect_remove(CLIENT1, address1));
-  Mock::VerifyAndClearExpectations(localAcceptlistMock.get());
-}
 }  // namespace connection_manager

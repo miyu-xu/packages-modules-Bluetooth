@@ -35,6 +35,7 @@
 #include "stack/btm/btm_sec.h"
 #include "stack/eatt/eatt.h"
 #include "stack/gatt/connection_manager.h"
+#include "stack/gatt/targeted_announcements.h"
 #include "stack/gatt/gatt_int.h"
 #include "stack/include/acl_api.h"
 #include "stack/include/bt_hdr.h"
@@ -1727,5 +1728,12 @@ uint8_t* gatt_dbg_op_name(uint8_t op_code) {
 bool gatt_auto_connect_dev_remove(tGATT_IF gatt_if, const RawAddress& bd_addr) {
   tGATT_TCB* p_tcb = gatt_find_tcb_by_addr(bd_addr, BT_TRANSPORT_LE);
   if (p_tcb) gatt_update_app_use_link_flag(gatt_if, p_tcb, false, false);
-  return connection_manager::background_connect_remove(gatt_if, bd_addr);
+
+  auto removed_from_conn_manager =
+      connection_manager::background_connect_remove(gatt_if, bd_addr);
+  auto removed_from_targeted_announcements =
+      targeted_announcements::TargetedAnnouncementsManager::Get().CancelConnect(
+          gatt_if, bd_addr);
+
+  return removed_from_conn_manager || removed_from_targeted_announcements;
 }
