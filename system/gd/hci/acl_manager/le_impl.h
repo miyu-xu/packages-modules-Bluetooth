@@ -379,8 +379,7 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
             &LeConnectionCallbacks::OnLeConnectFail,
             common::Unretained(le_client_callbacks_),
             remote_address,
-            status,
-            true /* locally_initiated */));
+            status));
         return;
       }
     } else {
@@ -393,12 +392,6 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
       if (status != ErrorCode::SUCCESS) {
         std::string error_code = ErrorCodeText(status);
         LOG_WARN("Received on_le_connection_complete with error code %s", error_code.c_str());
-        le_client_handler_->Post(common::BindOnce(
-            &LeConnectionCallbacks::OnLeConnectFail,
-            common::Unretained(le_client_callbacks_),
-            remote_address,
-            status,
-            false /* locally_initiated */));
         return;
       }
 
@@ -524,8 +517,7 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
             &LeConnectionCallbacks::OnLeConnectFail,
             common::Unretained(le_client_callbacks_),
             remote_address,
-            status,
-            true /* locally_initiated */));
+            status));
         return;
       }
 
@@ -539,12 +531,6 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
       if (status != ErrorCode::SUCCESS) {
         std::string error_code = ErrorCodeText(status);
         LOG_WARN("Received on_le_enhanced_connection_complete with error code %s", error_code.c_str());
-        le_client_handler_->Post(common::BindOnce(
-            &LeConnectionCallbacks::OnLeConnectFail,
-            common::Unretained(le_client_callbacks_),
-            remote_address,
-            status,
-            false /* locally_initiated */));
         return;
       }
 
@@ -1088,8 +1074,7 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
           &LeConnectionCallbacks::OnLeConnectFail,
           common::Unretained(le_client_callbacks_),
           address_with_type,
-          ErrorCode::CONNECTION_ACCEPT_TIMEOUT,
-          true /* locally_initiated */));
+          ErrorCode::CONNECTION_ACCEPT_TIMEOUT));
     }
   }
 
