@@ -44,6 +44,7 @@
 #include "stack/btm/btm_sec.h"
 #include "stack/eatt/eatt.h"
 #include "stack/gatt/gatt_int.h"
+#include "stack/gatt/targeted_announcements.h"
 #include "stack/include/bt_hdr.h"
 #include "stack/include/l2cap_acl_interface.h"
 #include "stack/include/srvc_api.h"  // tDIS_VALUE
@@ -472,6 +473,8 @@ bool gatt_act_connect(tGATT_REG* p_reg, const RawAddress& bd_addr,
 
 namespace connection_manager {
 void on_connection_timed_out(uint8_t app_id, const RawAddress& address) {
+  targeted_announcements::TargetedAnnouncementsManager::Get().CancelConnect(
+      app_id, address);
   gatt_le_connect_cback(L2CAP_ATT_CID, address, false, 0xff, BT_TRANSPORT_LE);
 }
 }  // namespace connection_manager
