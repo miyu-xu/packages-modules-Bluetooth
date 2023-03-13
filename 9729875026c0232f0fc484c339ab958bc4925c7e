@@ -85,6 +85,24 @@
       "message": "There is a more serious issue with this change. connection_manager::direct_connect is broken, since it still only does a background connection with slow scan parameters. Thus, this will worsen connection latency.",
       "revId": "9729875026c0232f0fc484c339ab958bc4925c7e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "45c57334_9b8e4614",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-03-13T09:33:15Z",
+      "side": 1,
+      "message": "Connection manager indeed uses \"background connect\", but it is only because the 30 sec timer, is now handled in connection_manager and not down in the le_impl.h\n\nTHis is not an issue.",
+      "parentUuid": "0ccac7e2_165c0f11",
+      "revId": "9729875026c0232f0fc484c339ab958bc4925c7e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
