@@ -103,6 +103,24 @@
       "parentUuid": "0ccac7e2_165c0f11",
       "revId": "9729875026c0232f0fc484c339ab958bc4925c7e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "605d7d9e_63a99b4a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-03-13T14:07:06Z",
+      "side": 1,
+      "message": "I agree that the 30s timer works here. But what I\u0027m worried about are the scan parameters used. If you look in le_impl here:https://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/system/gd/hci/acl_manager/le_impl.h;l\u003d793;drc\u003d4a9797a8cc057fe2b8c73cc05e51c584433d2448?q\u003dle_impl\u0026ss\u003dandroid%2Fplatform%2Fsuperproject:packages%2Fmodules%2FBluetooth%2F\n\nthe scan interval + other parameters are selected based on whether it is \"direct\" or \"background\". But if connection manager manages the timer, then le_impl will use the \"background\" parameters.",
+      "parentUuid": "45c57334_9b8e4614",
+      "revId": "9729875026c0232f0fc484c339ab958bc4925c7e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
