@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "851b3429_7aede53d",
+        "filename": "framework/java/android/bluetooth/BluetoothSocket.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 462,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2023-03-13T17:54:37Z",
+      "side": 1,
+      "message": "As you have defined an intdef you shouldn\u0027t have to list all error codes here, maybe replace this by something like `In case of failure, a {@link BluetoothSocketException} is thrown, with the corresponding {@link BluetoothSocketException#ErrorCode}`",
+      "range": {
+        "startLine": 432,
+        "startChar": 7,
+        "endLine": 462,
+        "endChar": 45
+      },
+      "revId": "dbe60b36bc15f9a0c637f2a012d8ff3e7920a7cb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
