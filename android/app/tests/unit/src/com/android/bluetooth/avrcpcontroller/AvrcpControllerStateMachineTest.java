@@ -1377,6 +1377,7 @@ public class AvrcpControllerStateMachineTest {
         setUpConnectedState(true, true);
         sendAudioFocusUpdate(AudioManager.AUDIOFOCUS_GAIN);
         TestUtils.waitForLooperToBeIdle(mAvrcpStateMachine.getHandler().getLooper());
+        Assert.assertTrue(BluetoothMediaBrowserService.isActive());
         verify(mAvrcpControllerService, never()).sendPassThroughCommandNative(eq(mTestAddress),
                 eq(AvrcpControllerService.PASS_THRU_CMD_ID_PAUSE), eq(KEY_DOWN));
         verify(mAvrcpControllerService,never()).sendPassThroughCommandNative(eq(mTestAddress),
@@ -1397,6 +1398,7 @@ public class AvrcpControllerStateMachineTest {
         sendAudioFocusUpdate(AudioManager.AUDIOFOCUS_LOSS_TRANSIENT);
 
         TestUtils.waitForLooperToBeIdle(mAvrcpStateMachine.getHandler().getLooper());
+        Assert.assertTrue(BluetoothMediaBrowserService.isActive());
         verify(mAvrcpControllerService, times(1)).sendPassThroughCommandNative(eq(mTestAddress),
                 eq(AvrcpControllerService.PASS_THRU_CMD_ID_PAUSE), eq(KEY_DOWN));
         verify(mAvrcpControllerService, times(1)).sendPassThroughCommandNative(eq(mTestAddress),
@@ -1415,6 +1417,7 @@ public class AvrcpControllerStateMachineTest {
         sendAudioFocusUpdate(AudioManager.AUDIOFOCUS_LOSS_TRANSIENT);
 
         TestUtils.waitForLooperToBeIdle(mAvrcpStateMachine.getHandler().getLooper());
+        Assert.assertTrue(BluetoothMediaBrowserService.isActive());
         verify(mAvrcpControllerService, never()).sendPassThroughCommandNative(eq(mTestAddress),
                 eq(AvrcpControllerService.PASS_THRU_CMD_ID_PAUSE), eq(KEY_DOWN));
         verify(mAvrcpControllerService, never()).sendPassThroughCommandNative(eq(mTestAddress),
@@ -1433,6 +1436,7 @@ public class AvrcpControllerStateMachineTest {
         sendAudioFocusUpdate(AudioManager.AUDIOFOCUS_LOSS);
 
         TestUtils.waitForLooperToBeIdle(mAvrcpStateMachine.getHandler().getLooper());
+        Assert.assertFalse(BluetoothMediaBrowserService.isActive());
         verify(mAvrcpControllerService, times(1)).sendPassThroughCommandNative(eq(mTestAddress),
                 eq(AvrcpControllerService.PASS_THRU_CMD_ID_PAUSE), eq(KEY_DOWN));
         verify(mAvrcpControllerService, times(1)).sendPassThroughCommandNative(eq(mTestAddress),
@@ -1450,6 +1454,7 @@ public class AvrcpControllerStateMachineTest {
         sendAudioFocusUpdate(AudioManager.AUDIOFOCUS_LOSS);
 
         TestUtils.waitForLooperToBeIdle(mAvrcpStateMachine.getHandler().getLooper());
+        Assert.assertFalse(BluetoothMediaBrowserService.isActive());
         verify(mAvrcpControllerService, times(0)).sendPassThroughCommandNative(eq(mTestAddress),
                 eq(AvrcpControllerService.PASS_THRU_CMD_ID_PAUSE), eq(KEY_DOWN));
         verify(mAvrcpControllerService, times(0)).sendPassThroughCommandNative(eq(mTestAddress),
@@ -1468,6 +1473,7 @@ public class AvrcpControllerStateMachineTest {
         sendAudioFocusUpdate(AudioManager.AUDIOFOCUS_GAIN);
 
         TestUtils.waitForLooperToBeIdle(mAvrcpStateMachine.getHandler().getLooper());
+        Assert.assertTrue(BluetoothMediaBrowserService.isActive());
         verify(mAvrcpControllerService, times(1)).sendPassThroughCommandNative(eq(mTestAddress),
                 eq(AvrcpControllerService.PASS_THRU_CMD_ID_PLAY), eq(KEY_DOWN));
         verify(mAvrcpControllerService, times(1)).sendPassThroughCommandNative(eq(mTestAddress),
@@ -1496,6 +1502,7 @@ public class AvrcpControllerStateMachineTest {
 
         sendAudioFocusUpdate(AudioManager.AUDIOFOCUS_GAIN);
         TestUtils.waitForLooperToBeIdle(mAvrcpStateMachine.getHandler().getLooper());
+        Assert.assertTrue(BluetoothMediaBrowserService.isActive());
 
         verify(mAvrcpControllerService, never()).sendPassThroughCommandNative(eq(mTestAddress),
                 eq(AvrcpControllerService.PASS_THRU_CMD_ID_PLAY), eq(KEY_DOWN));
@@ -1526,6 +1533,7 @@ public class AvrcpControllerStateMachineTest {
 
         sendAudioFocusUpdate(AudioManager.AUDIOFOCUS_GAIN);
         TestUtils.waitForLooperToBeIdle(mAvrcpStateMachine.getHandler().getLooper());
+        Assert.assertTrue(BluetoothMediaBrowserService.isActive());
 
         verify(mAvrcpControllerService, never()).sendPassThroughCommandNative(eq(mTestAddress),
                 eq(AvrcpControllerService.PASS_THRU_CMD_ID_PLAY), eq(KEY_DOWN));
@@ -1544,6 +1552,7 @@ public class AvrcpControllerStateMachineTest {
         sendAudioFocusUpdate(AudioManager.AUDIOFOCUS_GAIN);
 
         TestUtils.waitForLooperToBeIdle(mAvrcpStateMachine.getHandler().getLooper());
+        Assert.assertTrue(BluetoothMediaBrowserService.isActive());
         verify(mAvrcpControllerService, never()).sendPassThroughCommandNative(eq(mTestAddress),
                 eq(AvrcpControllerService.PASS_THRU_CMD_ID_PLAY), eq(KEY_DOWN));
         verify(mAvrcpControllerService, never()).sendPassThroughCommandNative(eq(mTestAddress),

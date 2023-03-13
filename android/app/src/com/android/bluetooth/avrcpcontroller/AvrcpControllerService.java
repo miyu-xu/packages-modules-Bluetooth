@@ -510,13 +510,11 @@ public class AvrcpControllerService extends ProfileService {
             // The first device to connect gets to be the active device
             if (getActiveDevice() == null) {
                 setActiveDevice(device);
-                BluetoothMediaBrowserService.setActive(true);
             }
         } else {
             stateMachine.disconnect();
             if (device.equals(getActiveDevice())) {
                 setActiveDevice(null);
-                BluetoothMediaBrowserService.setActive(false);
             }
         }
     }

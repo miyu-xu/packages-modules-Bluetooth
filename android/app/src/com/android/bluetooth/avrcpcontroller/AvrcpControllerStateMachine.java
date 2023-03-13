@@ -503,6 +503,7 @@ class AvrcpControllerStateMachine extends StateMachine {
                     logD("Audio focus changed -> " + newState);
                     switch (newState) {
                         case AudioManager.AUDIOFOCUS_GAIN:
+                            BluetoothMediaBrowserService.setActive(true);
                             // Begin playing audio again if we paused the remote
                             if (mShouldSendPlayOnFocusRecovery) {
                                 logD("Regained focus, establishing play status");
@@ -525,6 +526,7 @@ class AvrcpControllerStateMachine extends StateMachine {
                             break;
 
                         case AudioManager.AUDIOFOCUS_LOSS:
+                            BluetoothMediaBrowserService.setActive(false);
                             // Permanent loss of focus probably due to another audio app. Send a
                             // courtesy pause
                             logD("Lost focus, send a courtesy pause");

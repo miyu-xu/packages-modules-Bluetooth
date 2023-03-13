@@ -33,6 +33,7 @@ import androidx.media.MediaBrowserServiceCompat;
 
 import com.android.bluetooth.BluetoothPrefs;
 import com.android.bluetooth.R;
+import com.android.internal.annotations.VisibleForTesting;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -304,12 +305,24 @@ public class BluetoothMediaBrowserService extends MediaBrowserServiceCompat {
      */
     public static synchronized void setActive(boolean active) {
         if (sBluetoothMediaBrowserService != null) {
+            if (DBG) Log.d(TAG, "Setting the session active state to:" + active);
             sBluetoothMediaBrowserService.mSession.setActive(active);
         } else {
             Log.w(TAG, "setActive Unavailable");
         }
     }
 
+    /**
+     * Checks if the media session is active or not.
+     * @return true if media session is active, false otherwise.
+     */
+    @VisibleForTesting
+    public static synchronized boolean isActive() {
+        if (sBluetoothMediaBrowserService != null) {
+            return sBluetoothMediaBrowserService.mSession.isActive();
+        }
+        return false;
+    }
     /**
      * Get Media session for updating state
      */
@@ -328,6 +341,7 @@ public class BluetoothMediaBrowserService extends MediaBrowserServiceCompat {
     public static synchronized void reset() {
         if (sBluetoothMediaBrowserService != null) {
             sBluetoothMediaBrowserService.clearNowPlayingQueue();
+            setActive(false);
             sBluetoothMediaBrowserService.mSession.setMetadata(null);
             sBluetoothMediaBrowserService.setErrorPlaybackState();
             sBluetoothMediaBrowserService.mSession.setCallback(null);

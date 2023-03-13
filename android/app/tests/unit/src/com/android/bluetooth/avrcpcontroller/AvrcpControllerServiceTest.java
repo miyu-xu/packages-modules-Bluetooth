@@ -38,6 +38,7 @@ import com.android.bluetooth.TestUtils;
 import com.android.bluetooth.btservice.AdapterService;
 
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Assume;
 import org.junit.Before;
 import org.junit.Rule;
@@ -298,6 +299,7 @@ public class AvrcpControllerServiceTest {
         assertThat(event.mType).isEqualTo(StackEvent.EVENT_TYPE_CONNECTION_STATE_CHANGED);
         assertThat(event.mRemoteControlConnected).isEqualTo(remoteControlConnected);
         assertThat(event.mBrowsingConnected).isEqualTo(browsingConnected);
+        Assert.assertFalse(BluetoothMediaBrowserService.isActive());
     }
 
     @Test
@@ -307,7 +309,7 @@ public class AvrcpControllerServiceTest {
 
         mService.onConnectionStateChanged(
                 remoteControlConnected, browsingConnected, REMOTE_DEVICE_ADDRESS_AS_ARRAY);
-
+        Assert.assertFalse(BluetoothMediaBrowserService.isActive());
         verify(mStateMachine).disconnect();
     }
 
