@@ -1132,8 +1132,11 @@ void bta_ag_at_hfp_cback(tBTA_AG_SCB* p_scb, uint16_t cmd, uint8_t arg_type,
                        p_scb->peer_features, p_scb->masked_features);
 
       /* send BRSF, send OK */
+      /* BRSF response doesn't need to be masked.
+       * The HF in HFP/AG/SLC/BV-* tests may not support 1.7 and later,
+       * but we still need to tell all we support. */
       bta_ag_send_result(p_scb, BTA_AG_LOCAL_RES_BRSF, nullptr,
-                         (int16_t)p_scb->masked_features);
+                         (int16_t)p_scb->features);
       bta_ag_send_ok(p_scb);
       break;
     }
