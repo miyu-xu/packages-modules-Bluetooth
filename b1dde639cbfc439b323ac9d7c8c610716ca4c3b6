@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bec3957f_c4c2c963",
+        "filename": "android/app/jni/com_android_bluetooth_avrcp_target.cpp",
+        "patchSetId": 17
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-03-13T20:49:43Z",
+      "side": 1,
+      "message": "I know you are removing this in the next CL in the chain, but can we not add this at all ? I feel like it create useless noise.\nI have the same command for any commented method below",
+      "range": {
+        "startLine": 65,
+        "startChar": 0,
+        "endLine": 74,
+        "endChar": 61
+      },
+      "revId": "b1dde639cbfc439b323ac9d7c8c610716ca4c3b6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
