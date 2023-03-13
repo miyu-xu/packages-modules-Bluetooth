@@ -46,11 +46,6 @@ pub struct PacketScope<'d> {
 }
 
 impl std::cmp::Eq for &parser::ast::Decl {}
-impl<'d> std::cmp::PartialEq for &'d parser::ast::Decl {
-    fn eq(&self, other: &Self) -> bool {
-        std::ptr::eq(*self, *other)
-    }
-}
 
 impl<'d> std::hash::Hash for &'d parser::ast::Decl {
     fn hash<H: std::hash::Hasher>(&self, state: &mut H) {
