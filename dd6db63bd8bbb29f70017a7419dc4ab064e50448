@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9b2c3adc_66bfcee5",
+        "filename": "framework/java/android/bluetooth/BluetoothSocket.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 432,
+      "author": {
+        "id": 1056478
+      },
+      "writtenOn": "2023-03-13T20:16:21Z",
+      "side": 1,
+      "message": "BluetoothSocketException",
+      "range": {
+        "startLine": 432,
+        "startChar": 15,
+        "endLine": 432,
+        "endChar": 26
+      },
+      "revId": "dd6db63bd8bbb29f70017a7419dc4ab064e50448",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
