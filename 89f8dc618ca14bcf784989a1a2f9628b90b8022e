@@ -16,6 +16,23 @@
       "message": "Thanks for the review! PTAL~",
       "revId": "89f8dc618ca14bcf784989a1a2f9628b90b8022e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "761820fe_e5927751",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2023-03-13T06:36:43Z",
+      "side": 1,
+      "message": "Gentle ping for review. Thanks.",
+      "revId": "89f8dc618ca14bcf784989a1a2f9628b90b8022e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
