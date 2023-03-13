@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "46433abd_fab3b69b",
+        "filename": "system/gd/hci/acl_manager.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 313,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-03-13T20:07:10Z",
+      "side": 0,
+      "message": "Can you also remove the corresponding method in le_impl.h as part of this cleanup?",
+      "range": {
+        "startLine": 313,
+        "startChar": 16,
+        "endLine": 313,
+        "endChar": 83
+      },
+      "revId": "c479602e7635c99a29894687f233d7745feb5dcf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
