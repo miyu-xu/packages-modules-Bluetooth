@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6ef2ad7d_43929e15",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketException.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2023-03-13T17:46:37Z",
+      "side": 1,
+      "message": "I\u0027d recommend naming this `ErrorCode` as these are only errors",
+      "revId": "2c46a3941ac4ecb87dca5b8231246ff8ab460ca4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
