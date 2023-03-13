@@ -903,22 +903,6 @@ extern tBTA_STATUS BTA_DmRemoveDevice(const RawAddress& bd_addr);
 
 /*******************************************************************************
  *
- * Function         BTA_GetEirService
- *
- * Description      This function is called to get BTA service mask from EIR.
- *
- * Parameters       p_eir - pointer of EIR significant part
- *                  eir_len - EIR length
- *                  p_services - return the BTA service mask
- *
- * Returns          None
- *
- ******************************************************************************/
-extern void BTA_GetEirService(const uint8_t* p_eir, size_t eir_len,
-                              tBTA_SERVICE_MASK* p_services);
-
-/*******************************************************************************
- *
  * Function         BTA_DmGetConnectionState
  *
  * Description      Returns whether the remote device is currently connected.
