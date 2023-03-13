@@ -118,6 +118,30 @@
       },
       "revId": "6ef9f51751d069928b8289643710d761964f820f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b82bacb3_3712bbda",
+        "filename": "system/bta/gatt/bta_gattc_utils.cc",
+        "patchSetId": 22
+      },
+      "lineNbr": 379,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-03-13T22:08:34Z",
+      "side": 1,
+      "message": "I doubt there is such a device, because there are qualification testes which check min and max values on MTU request. Those are mandatory.\n\nMoreover, any application on Android can request bigger MTU - so if issue is there, then we cannot avoid it.\n\nAnd the last, if the device has an limit in MTU, it will return probably the MTU which is supported by the device. And note that MTU sent by Android in the MTU Exchange Request is the one which Android supports, and then it waits on what is supported on the remote side and take min( from both).\n\nHopefully we have good logs now around that operation, so if there is such a device out there which is having problem with that, we should be able to quickly catch it.",
+      "parentUuid": "a386825f_384ba4b2",
+      "range": {
+        "startLine": 376,
+        "startChar": 0,
+        "endLine": 379,
+        "endChar": 0
+      },
+      "revId": "6ef9f51751d069928b8289643710d761964f820f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
