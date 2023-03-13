@@ -6,6 +6,7 @@ use std::collections::HashMap;
 
 use crate::ast::*;
 use crate::parser::ast as parser_ast;
+use crate::utils;
 
 pub mod ast {
     use serde::Serialize;
@@ -25,7 +26,7 @@ pub mod ast {
         Unknown,
     }
 
-    #[derive(Debug, Serialize, Default)]
+    #[derive(Debug, Serialize, Default, Clone, PartialEq)]
     pub struct Annotation;
 
     #[derive(Default, Debug, Clone)]
@@ -1205,8 +1206,69 @@ fn compute_field_sizes(file: &parser_ast::File) -> ast::File {
 }
 
 /// Inline group fields and remove group declarations.
-fn inline_groups(_file: &mut ast::File) -> Result<(), Diagnostics> {
-    // TODO
+fn inline_groups(file: &mut ast::File) -> Result<(), Diagnostics> {
+    fn inline_fields(groups: &HashMap<String, ast::Decl>, fields: &mut Vec<ast::Field>) {
+        let mut n = 0;
+        let mut constraints: HashMap<String, Constraint> = HashMap::new();
+        while n < fields.len() {
+            let replacement = match &fields[n].desc {
+                FieldDesc::Group { group_id, constraints: group_constraints } => {
+                    constraints.extend(
+                        group_constraints
+                            .iter()
+                            .map(|constraint| (constraint.id.clone(), constraint.clone())),
+                    );
+                    Some(groups.get(group_id).unwrap().fields().cloned().collect())
+                }
+                FieldDesc::Scalar { id, width } if constraints.contains_key(id) => {
+                    Some(vec![ast::Field {
+                        desc: FieldDesc::FixedScalar {
+                            width: *width,
+                            value: constraints.get(id).unwrap().value.unwrap(),
+                        },
+                        loc: fields[n].loc,
+                        annot: fields[n].annot.clone(),
+                    }])
+                }
+                FieldDesc::Typedef { id, type_id, .. } if constraints.contains_key(id) => {
+                    Some(vec![ast::Field {
+                        desc: FieldDesc::FixedEnum {
+                            enum_id: type_id.clone(),
+                            tag_id: constraints
+                                .get(id)
+                                .and_then(|constraint| constraint.tag_id.clone())
+                                .unwrap(),
+                        },
+                        loc: fields[n].loc,
+                        annot: fields[n].annot.clone(),
+                    }])
+                }
+                _ => None,
+            };
+            if let Some(replacement) = replacement {
+                fields.splice(n..n + 1, replacement);
+            } else {
+                n += 1;
+            }
+        }
+    }
+
+    let groups = utils::drain_filter(&mut file.declarations, |decl| {
+        matches!(&decl.desc, DeclDesc::Group { .. })
+    })
+    .into_iter()
+    .map(|decl| (decl.id().unwrap().to_owned(), decl))
+    .collect::<HashMap<String, _>>();
+
+    for decl in file.declarations.iter_mut() {
+        match &mut decl.desc {
+            DeclDesc::Packet { fields, .. } | DeclDesc::Struct { fields, .. } => {
+                inline_fields(&groups, fields)
+            }
+            _ => (),
+        }
+    }
+
     Ok(())
 }
 
@@ -2048,6 +2110,91 @@ mod test {
         packet A {
             x : 8[],
             _padding_ [16]
+        }
+        "#
+        );
+    }
+
+    macro_rules! desugared {
+        ($before:literal, $after:literal) => {{
+            let mut db = SourceDatabase::new();
+            let file_before = parse_inline(&mut db, "stdin".to_owned(), $before.to_owned())
+                .expect("parsing failure");
+            let file_after = parse_inline(&mut db, "stdin".to_owned(), $after.to_owned())
+                .expect("parsing failure");
+            let file_before = analyzer::analyze(&file_before).expect("analyzer failure");
+            let file_after = analyzer::analyze(&file_after).expect("analyzer failure");
+            assert_eq!(file_before, file_after);
+        }};
+    }
+
+    #[test]
+    fn test_inline_groups() {
+        desugared!(
+            r#"
+        little_endian_packets
+        enum E : 8 { X=0, Y=1 }
+        group G {
+            a: 8,
+            b: E,
+        }
+        packet A {
+            G { }
+        }
+        "#,
+            r#"
+        little_endian_packets
+        enum E : 8 { X=0, Y=1 }
+        packet A {
+            a: 8,
+            b: E,
+        }
+        "#
+        );
+
+        desugared!(
+            r#"
+        little_endian_packets
+        enum E : 8 { X=0, Y=1 }
+        group G {
+            a: 8,
+            b: E,
+        }
+        packet A {
+            G { a=1, b=X }
+        }
+        "#,
+            r#"
+        little_endian_packets
+        enum E : 8 { X=0, Y=1 }
+        packet A {
+            _fixed_ = 1: 8,
+            _fixed_ = X: E,
+        }
+        "#
+        );
+
+        desugared!(
+            r#"
+        little_endian_packets
+        enum E : 8 { X=0, Y=1 }
+        group G1 {
+            a: 8,
+        }
+        group G2 {
+            G1 { a=1 },
+            b: E,
+        }
+        packet A {
+            G2 { b=X }
+        }
+        "#,
+            r#"
+        little_endian_packets
+        enum E : 8 { X=0, Y=1 }
+        packet A {
+            _fixed_ = 1: 8,
+            _fixed_ = X: E,
         }
         "#
         );
