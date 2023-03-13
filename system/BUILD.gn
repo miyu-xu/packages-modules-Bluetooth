@@ -122,8 +122,9 @@ config("target_defaults") {
     "EXPORT_SYMBOL=__attribute__((visibility(\"default\")))",
     "FALLTHROUGH_INTENDED=[[clang::fallthrough]]",
     # BTA_AG_FEAT_ECS (Enhanced Call Status 0x040) |
-    # BTA_AG_FEAT_CODEC (Codec Negotiation 0x200)
-    "BTIF_HF_FEATURES=0x00000240",
+    # BTA_AG_FEAT_CODEC (Codec Negotiation 0x200) |
+    # BTA_AG_FEAT_ESCO_S4 (eSCO S4 setting supported 0x800)
+    "BTIF_HF_FEATURES=0x00000A40",
   ]
 
   if (!(defined(use.bt_nonstandard_codecs) && use.bt_nonstandard_codecs)) {
