@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "20144367_164e7855",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 542,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-03-13T05:00:59Z",
+      "side": 0,
+      "message": "Hi, I agree that the wording of `Vol 4, Part E, 7.7.65.1 LE Connection Complete event` seems to suggest that on failure case it\u0027s only sent to the initiator.\nHowever there is a diagram on `Vol 6, Part D, 3.2 DIRECTED ADVERTISING` which shows the event being sent to the peripheral\u0027s side even without the initiator sending a `LE Create Connection`.\nTo me it looks contradictory and I\u0027m a bit hesitant to remove the code.\n\nA slight tangent: I think if this is regarded as a dead code, then the whole `if` block should be as well. But looks like the `if` block here is to handle the directed advertising case.",
+      "revId": "394a2e8732550524a59929c149fa6270166e74f0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
