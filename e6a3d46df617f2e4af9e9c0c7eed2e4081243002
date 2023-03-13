@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e7c32f41_6d00d87b",
+        "filename": "tools/pdl/src/backends/rust.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2023-03-13T08:23:11Z",
+      "side": 1,
+      "message": "I think we should just inline this function now 😊",
+      "range": {
+        "startLine": 127,
+        "startChar": 3,
+        "endLine": 127,
+        "endChar": 22
+      },
+      "revId": "e6a3d46df617f2e4af9e9c0c7eed2e4081243002",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0164ef34_4ae40075",
+        "filename": "tools/pdl/src/lint.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2023-03-13T08:23:11Z",
+      "side": 1,
+      "message": "I\u0027m sure I\u0027ve added a few `get_` methods as well, but we should try to avoid them to be more \"rustidiomatic\": https://rust-lang.github.io/api-guidelines/naming.html#getter-names-follow-rust-convention-c-getter. I think `payload_field` would be an equally nice method name here.",
+      "range": {
+        "startLine": 169,
+        "startChar": 11,
+        "endLine": 169,
+        "endChar": 28
+      },
+      "revId": "e6a3d46df617f2e4af9e9c0c7eed2e4081243002",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
