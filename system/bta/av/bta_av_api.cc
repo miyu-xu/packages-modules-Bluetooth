@@ -32,6 +32,7 @@
 #include "osi/include/compat.h"
 #include "osi/include/log.h"
 #include "stack/include/bt_hdr.h"
+#include "stack/include/btu.h"
 #include "types/raw_address.h"
 
 /*****************************************************************************
@@ -77,12 +78,8 @@ void BTA_AvEnable(tBTA_AV_FEAT features, tBTA_AV_CBACK* p_cback) {
  *
  ******************************************************************************/
 void BTA_AvDisable(void) {
-  BT_HDR_RIGID* p_buf = (BT_HDR_RIGID*)osi_malloc(sizeof(BT_HDR_RIGID));
-
   bta_sys_deregister(BTA_ID_AV);
-  p_buf->event = BTA_AV_API_DISABLE_EVT;
-
-  bta_sys_sendmsg(p_buf);
+  post_on_bt_main([]() { bta_av_disable(&bta_av_cb, NULL); });
 }
 
 /*******************************************************************************
