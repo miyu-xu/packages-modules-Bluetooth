@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "31fe538e_f2378379",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1963846
+      },
+      "writtenOn": "2023-03-13T08:35:33Z",
+      "side": 1,
+      "message": "This is just for the record if it is needed later.\n\nAbandon this patch as there is already a work around in the autotest.",
+      "revId": "aed7a9c4c642cb4c21bd31fd4f5135f853f9427e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
