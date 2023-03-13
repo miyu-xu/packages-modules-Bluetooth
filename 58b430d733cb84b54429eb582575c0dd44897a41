@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5fc8a81c_f7e2ebdc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2023-03-13T06:34:49Z",
+      "side": 1,
+      "message": "Please take a look at this and the next patch. Thanks.\n\nIf this is not acceptable, I can expose the next patch methods in another interface, ex. A2dpSink interface.",
+      "revId": "58b430d733cb84b54429eb582575c0dd44897a41",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
