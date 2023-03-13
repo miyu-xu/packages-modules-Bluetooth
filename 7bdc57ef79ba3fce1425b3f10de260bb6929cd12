@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8d3dcbcd_c65a64a9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2023-03-13T20:38:46Z",
+      "side": 1,
+      "message": "Is this only used for qualifiction? If yes, may you add comments for these callbacks describing that?",
+      "revId": "7bdc57ef79ba3fce1425b3f10de260bb6929cd12",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
