@@ -72,6 +72,8 @@ public class Config {
             "ro.bluetooth.leaudio_broadcast_switcher.supported";
     private static final String LE_AUDIO_SWITCHER_DISABLED_PROPERTY =
             "persist.bluetooth.leaudio_switcher.disabled";
+    private static final String LE_AUDIO_BCAST_DYNAMIC_ENABLED_PROPERTY =
+            "persist.bluetooth.leaudio_broadcast_switcher.enabled";
 
     private static final Set<String> PERSISTENT_FLAGS = Set.of(
             FEATURE_HEARING_AID,
@@ -194,6 +196,18 @@ public class Config {
             }
         }
 
+        final boolean bcastDynamicSwitchSupported =
+                SystemProperties.getBoolean(LE_AUDIO_BROADCAST_DYNAMIC_SWITCH_PROPERTY, false);
+        if (bcastDynamicSwitchSupported) {
+            final String bcastDynamicEnabled = SystemProperties
+                    .get(LE_AUDIO_BCAST_DYNAMIC_ENABLED_PROPERTY, "none");
+            if (bcastDynamicEnabled.equals("true")) {
+                setBcastProfileStatus(true);
+            } else if (bcastDynamicEnabled.equals("false")) {
+                setBcastProfileStatus(false);
+            }
+        }
+
         // Disable ASHA if BLE is not supported on this platform
         if (!ctx.getPackageManager().hasSystemFeature(PackageManager.FEATURE_BLUETOOTH_LE)) {
             setProfileEnabled(HearingAidService.class, false);
@@ -226,15 +240,12 @@ public class Config {
         setProfileEnabled(TbsService.class, enable);
         setProfileEnabled(McpService.class, enable);
         setProfileEnabled(VolumeControlService.class, enable);
+    }
 
-        final boolean broadcastDynamicSwitchSupported =
-                SystemProperties.getBoolean(LE_AUDIO_BROADCAST_DYNAMIC_SWITCH_PROPERTY, false);
-
-        if (broadcastDynamicSwitchSupported) {
-            setProfileEnabled(BassClientService.class, enable);
-            updateSupportedProfileMask(
-                    enable, LeAudioService.class, BluetoothProfile.LE_AUDIO_BROADCAST);
-        }
+    static void setBcastProfileStatus(Boolean enable) {
+        setProfileEnabled(BassClientService.class, enable);
+        updateSupportedProfileMask(
+                enable, LeAudioService.class, BluetoothProfile.LE_AUDIO_BROADCAST);
     }
 
     /**
