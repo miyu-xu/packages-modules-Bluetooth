@@ -94,6 +94,30 @@
       },
       "revId": "6ef9f51751d069928b8289643710d761964f820f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a386825f_384ba4b2",
+        "filename": "system/bta/gatt/bta_gattc_utils.cc",
+        "patchSetId": 22
+      },
+      "lineNbr": 379,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-03-13T21:43:38Z",
+      "side": 1,
+      "message": "MyDevice has a bug where it requests an MTU of 230, but if an MTU larger than 187 is used, the last few bytes get corrupted...  So the MyDeviceApp requests 150.  If the developer sees that the MTU returns 150 (even though the MTU was set to 230), it will be less obvious what happened.",
+      "parentUuid": "98e0c792_501f9608",
+      "range": {
+        "startLine": 376,
+        "startChar": 0,
+        "endLine": 379,
+        "endChar": 0
+      },
+      "revId": "6ef9f51751d069928b8289643710d761964f820f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
