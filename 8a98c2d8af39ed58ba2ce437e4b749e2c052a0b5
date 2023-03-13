@@ -22,6 +22,30 @@
       },
       "revId": "8a98c2d8af39ed58ba2ce437e4b749e2c052a0b5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e9c0277c_fa7aa189",
+        "filename": "tools/rootcanal/model/controller/link_layer_controller.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 386,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-03-13T22:41:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3cbd26db_6a6263e7",
+      "range": {
+        "startLine": 386,
+        "startChar": 49,
+        "endLine": 386,
+        "endChar": 56
+      },
+      "revId": "8a98c2d8af39ed58ba2ce437e4b749e2c052a0b5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
