@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "45a48c3d_6f3a5223",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 20
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1010050
+      },
+      "writtenOn": "2023-03-13T23:42:27Z",
+      "side": 1,
+      "message": "Since this looks to be straightforward conversion of the existing error codes and docs from BluetoothSocket to be part of the new BluetoothSocketException, and the usual reviewer isn\u0027t available, API+2 granted.\n\nHopefully tests will be updated shortly in a follow-up?",
+      "revId": "0e03f15f54bbce9d8ed47390da74f4ff76f2c816",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
