@@ -24,6 +24,54 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d6b9b3b0_557a3c79",
+        "filename": "tools/pdl/tests/generated/struct_decl_grand_children_big_endian.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2023-03-13T23:41:42Z",
+      "side": 1,
+      "message": "The old generator actually doesn\u0027t pass in the parent fields explicitly — instead, it passes in a slice large enough to encompass the parent fields. I find that API a little strange, so I went with a simpler API here.\n\nThe UWB tests don\u0027t depend on it either way, as far as I can tell, so I would say this is good enough for now.",
+      "parentUuid": "6eabe5ea_80f88864",
+      "range": {
+        "startLine": 188,
+        "startChar": 0,
+        "endLine": 193,
+        "endChar": 18
+      },
+      "revId": "fc1fdc2a3a75dee081615db4c864b11cb95df3d7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "41bdff32_c021389b",
+        "filename": "tools/pdl/tests/generated/struct_decl_grand_children_big_endian.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2023-03-13T23:41:42Z",
+      "side": 1,
+      "message": "I\u0027m not sure why this is necessary: from what I can tell, the old generator did the same thing for structs. That is, it always assumed you would parse the top-level data. That\u0027s how I remember it from last week, but I could be confused 😊",
+      "parentUuid": "6eabe5ea_80f88864",
+      "range": {
+        "startLine": 188,
+        "startChar": 0,
+        "endLine": 193,
+        "endChar": 18
+      },
+      "revId": "fc1fdc2a3a75dee081615db4c864b11cb95df3d7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f759e44d_742daa6f",
@@ -37,6 +85,30 @@
       "writtenOn": "2023-03-10T18:22:46Z",
       "side": 1,
       "message": "`struct Child` no longer has a child member",
+      "range": {
+        "startLine": 209,
+        "startChar": 0,
+        "endLine": 214,
+        "endChar": 9
+      },
+      "revId": "fc1fdc2a3a75dee081615db4c864b11cb95df3d7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9a22d606_89cc2ae0",
+        "filename": "tools/pdl/tests/generated/struct_decl_grand_children_big_endian.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 214,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2023-03-13T23:41:42Z",
+      "side": 1,
+      "message": "Oh yeah, thanks!\n\nI\u0027ve now tried compiling all auto-generated files and fixed a few problems with `self.child`.",
+      "parentUuid": "f759e44d_742daa6f",
       "range": {
         "startLine": 209,
         "startChar": 0,
