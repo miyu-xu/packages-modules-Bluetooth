@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c101f27c_fdbbe716",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2023-03-13T19:11:54Z",
+      "side": 1,
+      "message": "We recently had to revert a change aosp/2479098 because the sys_deregister was introducing other issues (mostly because the sequence of statements in which do_in_main_thread and the function stack would run). That should fix your issue as well.",
+      "revId": "4524c026a039987a6557c9fd36bc0994df1644c2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
