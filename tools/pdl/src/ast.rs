@@ -112,7 +112,7 @@ pub enum FieldDesc {
     Group { group_id: String, constraints: Vec<Constraint> },
 }
 
-#[derive(Debug, Serialize, PartialEq, Eq)]
+#[derive(Debug, Serialize, Clone)]
 pub struct Field<A: Annotation> {
     pub loc: SourceRange,
     #[serde(skip_serializing)]
@@ -121,14 +121,14 @@ pub struct Field<A: Annotation> {
     pub desc: FieldDesc,
 }
 
-#[derive(Debug, Serialize, Clone)]
+#[derive(Debug, Serialize, Clone, PartialEq, Eq)]
 #[serde(tag = "kind", rename = "test_case")]
 pub struct TestCase {
     pub loc: SourceRange,
     pub input: String,
 }
 
-#[derive(Debug, Serialize)]
+#[derive(Debug, Serialize, PartialEq, Eq)]
 #[serde(tag = "kind")]
 pub enum DeclDesc<A: Annotation> {
     #[serde(rename = "checksum_declaration")]
@@ -235,6 +235,27 @@ impl ops::Add<SourceRange> for SourceRange {
     }
 }
 
+impl Eq for Endianness {}
+impl PartialEq for Endianness {
+    fn eq(&self, other: &Self) -> bool {
+        self.value == other.value
+    }
+}
+
+impl Eq for Tag {}
+impl PartialEq for Tag {
+    fn eq(&self, other: &Self) -> bool {
+        self.id == other.id && self.value == other.value
+    }
+}
+
+impl<A: Annotation + std::cmp::PartialEq> Eq for File<A> {}
+impl<A: Annotation + std::cmp::PartialEq> PartialEq for File<A> {
+    fn eq(&self, other: &Self) -> bool {
+        self.endianness == other.endianness && self.declarations == other.declarations
+    }
+}
+
 impl<A: Annotation> File<A> {
     pub fn new(file: FileId) -> File<A> {
         File {
@@ -256,6 +277,13 @@ impl<A: Annotation> File<A> {
     /// declarations, use with caution.
     pub fn iter_children<'d>(&'d self, decl: &'d Decl<A>) -> impl Iterator<Item = &'d Decl<A>> {
         self.declarations.iter().filter(|other_decl| other_decl.parent_id() == decl.id())
+    }
+}
+
+impl<A: Annotation + std::cmp::PartialEq> Eq for Decl<A> {}
+impl<A: Annotation + std::cmp::PartialEq> PartialEq for Decl<A> {
+    fn eq(&self, other: &Self) -> bool {
+        self.desc == other.desc
     }
 }
 
@@ -379,6 +407,13 @@ impl<A: Annotation> Decl<A> {
             DeclDesc::Group { .. } => "group",
             DeclDesc::Test { .. } => "test",
         }
+    }
+}
+
+impl<A: Annotation> Eq for Field<A> {}
+impl<A: Annotation> PartialEq for Field<A> {
+    fn eq(&self, other: &Self) -> bool {
+        self.desc == other.desc
     }
 }
 
