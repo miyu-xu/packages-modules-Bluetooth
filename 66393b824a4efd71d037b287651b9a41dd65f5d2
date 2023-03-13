@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d07cf8b1_eca833cd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1003366
+      },
+      "writtenOn": "2023-03-13T21:59:49Z",
+      "side": 1,
+      "message": "Hi Rahul,\nWould you also add another test scenario?\nUse a write request to trigger the Auth, and verify the write request is retried by Android?",
+      "revId": "66393b824a4efd71d037b287651b9a41dd65f5d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
