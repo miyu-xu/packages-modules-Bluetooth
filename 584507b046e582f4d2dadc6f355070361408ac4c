@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "25f1a181_216ed142",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 256,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2023-03-13T20:41:52Z",
+      "side": 1,
+      "message": "Maybe separate those fields only used for qualification purpose?",
+      "revId": "584507b046e582f4d2dadc6f355070361408ac4c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
