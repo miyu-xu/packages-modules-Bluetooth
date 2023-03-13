@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5ba45b05_fca2f315",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1581454
+      },
+      "writtenOn": "2023-03-13T17:18:47Z",
+      "side": 1,
+      "message": "This CL has been blocked by presubmit since Thursday. I tried to wait it patiently but the presubmit is still broken. We have other work based on this one (eg cl/515740462) and other future works on blocked. \n\nNeed to merge it now.",
+      "revId": "1e120dc655a6e3d21942859c7a20f7c1be57210c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
