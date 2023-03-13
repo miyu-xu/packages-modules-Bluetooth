@@ -102,6 +102,7 @@ void SyspropsModule::parse_config(std::string file_path) {
       "bluetooth.sco.disable_enhanced_connection",
       // Profile
       "persist.bluetooth.avrcpcontrolversion",
+      "bluetooth.gatt.check_encrypted_link.enabled",
   };
 
   auto config = storage::LegacyConfigFile::FromPath(file_path).Read(kDefaultCapacity);
