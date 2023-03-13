@@ -22,6 +22,30 @@
       },
       "revId": "19fa209674220a32546bd4252d9aa142ddf45c6d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b4449964_07d76b53",
+        "filename": "system/stack/sdp/sdp_server.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1075,
+      "author": {
+        "id": 1470368
+      },
+      "writtenOn": "2023-03-13T13:04:58Z",
+      "side": 1,
+      "message": "Added change to handle this scenario",
+      "parentUuid": "ea323b31_420f67e5",
+      "range": {
+        "startLine": 1075,
+        "startChar": 0,
+        "endLine": 1075,
+        "endChar": 6
+      },
+      "revId": "19fa209674220a32546bd4252d9aa142ddf45c6d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
