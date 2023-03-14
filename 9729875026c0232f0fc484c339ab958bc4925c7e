@@ -175,6 +175,24 @@
       "parentUuid": "c7acd8c0_323f9508",
       "revId": "9729875026c0232f0fc484c339ab958bc4925c7e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "10859471_d6cfa223",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-03-14T14:38:53Z",
+      "side": 1,
+      "message": "Unfortunately that is dead code: see in https://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/2479899 that I can remove all of it without any changes to behavior",
+      "parentUuid": "c57cc641_e2ec8bc4",
+      "revId": "9729875026c0232f0fc484c339ab958bc4925c7e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
