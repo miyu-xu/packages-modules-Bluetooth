@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "32cdc9dc_ff78b777",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2023-03-14T07:35:09Z",
+      "side": 1,
+      "message": "PTAL, thanks!",
+      "revId": "cfc215254b3e8196c7fa8d4ce91860c6821310e4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "eccde2ec_8551c077",
+        "filename": "system/gd/rust/topshim/Android.bp",
+        "patchSetId": 3
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2023-03-14T07:35:09Z",
+      "side": 1,
+      "message": "I missed this one and it caused the aosp builder to fail.",
+      "revId": "cfc215254b3e8196c7fa8d4ce91860c6821310e4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
