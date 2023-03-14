@@ -15,10 +15,12 @@
 import asyncio
 import logging
 
-from avatar import PandoraDevice, PandoraDevices, asynchronous
+from avatar import PandoraDevice, PandoraDevices, asynchronous, bumble_server
+from bumble_experimental.gatt import GATTService
 from mobly import base_test, test_runner
 from pandora.host_pb2 import RANDOM, DataTypes
 from pandora_experimental.gatt_grpc import GATT
+from pandora_experimental.gatt_grpc_aio import add_GATTServicer_to_server
 from typing import Optional
 
 
@@ -30,6 +32,11 @@ class GattTest(base_test.BaseTestClass):  # type: ignore[misc]
     ref: PandoraDevice
 
     def setup_class(self) -> None:
+        # Register experimental bumble servicers hook.
+        bumble_server.register_servicer_hook(
+            lambda bumble, server: add_GATTServicer_to_server(GATTService(bumble.device), server)
+        )
+
         self.devices = PandoraDevices(self)
         self.dut, self.ref, *_ = self.devices
 
