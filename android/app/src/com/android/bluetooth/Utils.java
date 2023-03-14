@@ -34,6 +34,7 @@ import android.annotation.NonNull;
 import android.annotation.Nullable;
 import android.annotation.RequiresPermission;
 import android.annotation.SuppressLint;
+import android.app.ActivityManager;
 import android.app.BroadcastOptions;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
@@ -485,6 +486,7 @@ public final class Utils {
         if (isInstrumentationTestMode()) {
             return true;
         }
+
         // STOPSHIP(b/188391719): enable this security enforcement
         // attributionSource.enforceCallingUid();
         AttributionSource currentAttribution = new AttributionSource
@@ -652,6 +654,7 @@ public final class Utils {
         UserHandle callingUser = UserHandle.getUserHandleForUid(callingUid);
 
         return (sForegroundUserId == callingUser.getIdentifier())
+                || (sForegroundUserId == ActivityManager.getCurrentUser())
                 || (UserHandle.getAppId(sSystemUiUid) == UserHandle.getAppId(callingUid))
                 || (UserHandle.getAppId(Process.SYSTEM_UID) == UserHandle.getAppId(callingUid));
     }
@@ -702,6 +705,7 @@ public final class Utils {
 
             // Always allow SystemUI/System access.
             return (sForegroundUserId == callingUser.getIdentifier())
+                    //|| (sForegroundUserId == ActivityManager.getCurrentUser())
                     || (sForegroundUserId == parentUser)
                     || (UserHandle.getAppId(sSystemUiUid) == UserHandle.getAppId(callingUid))
                     || (UserHandle.getAppId(Process.SYSTEM_UID) == UserHandle.getAppId(callingUid));
@@ -714,9 +718,6 @@ public final class Utils {
     }
 
     public static boolean checkCallerIsSystemOrActiveOrManagedUser(Context context, String tag) {
-        if (isInstrumentationTestMode()) {
-            return true;
-        }
         final boolean res = checkCallerIsSystemOrActiveOrManagedUser(context);
         if (!res) {
             Log.w(TAG, tag + " - Not allowed for"
