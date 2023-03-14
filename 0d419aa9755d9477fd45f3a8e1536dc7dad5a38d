@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "065217f1_c56a1295",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2023-03-14T08:38:48Z",
+      "side": 1,
+      "message": "Important changes from patch set 5:\n\n1. Made A2dpService.setActiveDevice() take non-null device argument, and rerouted the null calls to A2dpService.removeActiveDevice(boolean stopAudio)\n\n2. Removed the `previous device connection check` from `A2dpService.setActiveDevice()` as it is no longer needed.",
+      "revId": "0d419aa9755d9477fd45f3a8e1536dc7dad5a38d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
