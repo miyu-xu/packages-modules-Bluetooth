@@ -34,6 +34,24 @@
       "parentUuid": "e3e68dd6_a9f30d4c",
       "revId": "1fdaa9f1e98760e607ec40076f4fae7e054251a2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d28f3873_18afc8c4",
+        "filename": "system/gd/rust/topshim/src/profiles/hid_host.rs",
+        "patchSetId": 8
+      },
+      "lineNbr": 226,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2023-03-14T04:39:17Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "4b7cc4eb_48d5c5e4",
+      "revId": "1fdaa9f1e98760e607ec40076f4fae7e054251a2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
