@@ -740,6 +740,7 @@ void bta_dm_add_device(std::unique_ptr<tBTA_DM_API_ADD_DEVICE> msg) {
 
 /** This function forces to close the connection to a remote device and
  * optionaly remove the device from security database if required. */
+// TODO Remove as this is not called b/274950877
 void bta_dm_close_acl(const RawAddress& bd_addr, bool remove_dev,
                       tBT_TRANSPORT transport) {
   uint8_t index;
