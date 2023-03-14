@@ -54,7 +54,6 @@ struct BTA_DmBleSecurityGrant BTA_DmBleSecurityGrant;
 struct BTA_DmBleUpdateConnectionParams BTA_DmBleUpdateConnectionParams;
 struct BTA_DmBond BTA_DmBond;
 struct BTA_DmBondCancel BTA_DmBondCancel;
-struct BTA_DmCloseACL BTA_DmCloseACL;
 struct BTA_DmConfirm BTA_DmConfirm;
 struct BTA_DmDiscover BTA_DmDiscover;
 struct BTA_DmGetConnectionState BTA_DmGetConnectionState;
@@ -148,11 +147,6 @@ void BTA_DmBond(const RawAddress& bd_addr, tBLE_ADDR_TYPE addr_type,
 void BTA_DmBondCancel(const RawAddress& bd_addr) {
   inc_func_call_count(__func__);
   test::mock::bta_dm_api::BTA_DmBondCancel(bd_addr);
-}
-void BTA_DmCloseACL(const RawAddress& bd_addr, bool remove_dev,
-                    tBT_TRANSPORT transport) {
-  inc_func_call_count(__func__);
-  test::mock::bta_dm_api::BTA_DmCloseACL(bd_addr, remove_dev, transport);
 }
 void BTA_DmConfirm(const RawAddress& bd_addr, bool accept) {
   inc_func_call_count(__func__);
