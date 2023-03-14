@@ -157,6 +157,24 @@
       "parentUuid": "8c5a418f_14a4e760",
       "revId": "9729875026c0232f0fc484c339ab958bc4925c7e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c57cc641_e2ec8bc4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-03-14T09:44:54Z",
+      "side": 1,
+      "message": "actually connection parameters should be fine - due to this:\n\nhttps://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/system/stack/gatt/connection_manager.cc;l\u003d494;drc\u003df6ccb2ded4a52b6029db0cc1c4737484ec3cce95?q\u003dconnection_manager.cc\u0026ss\u003dandroid",
+      "parentUuid": "c7acd8c0_323f9508",
+      "revId": "9729875026c0232f0fc484c339ab958bc4925c7e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
