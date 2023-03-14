@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0fe81809_0c447d07",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 622,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-03-14T12:49:37Z",
+      "side": 1,
+      "message": "this check is unnecessary. Group is in IDLE already, so there is no streaming devices.\nBelow we CIG will be removed, so call ReleaseCisIds should be enough. Probably Deactivate too, or not needed?",
+      "revId": "23357aed90fbb2afb262f9b74500e85e61e6a548",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
