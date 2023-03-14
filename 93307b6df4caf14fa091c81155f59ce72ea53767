@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d91d384b_a5b10431",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-03-14T15:43:45Z",
+      "side": 1,
+      "message": "Can you confirm that you are doing this because Companion manager need to be enabled only on wear os ?",
+      "revId": "93307b6df4caf14fa091c81155f59ce72ea53767",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
