@@ -13,13 +13,21 @@
 # limitations under the License.
 
 import asyncio
+import grpc.aio
 import logging
 
-from avatar import PandoraDevice, PandoraDevices, asynchronous
+from avatar import bumble_server, PandoraDevice, PandoraDevices, asynchronous
+from avatar.bumble_device import BumbleDevice
+from bumble_experimental.gatt import GATTService
 from mobly import base_test, test_runner
 from pandora.host_pb2 import RANDOM, DataTypes
 from pandora_experimental.gatt_grpc import GATT
+from pandora_experimental.gatt_grpc_aio import add_GATTServicer_to_server
 from typing import Optional
+
+
+def _bumble_servicer_hook(bumble: BumbleDevice, server: grpc.aio.Server) -> None:
+    add_GATTServicer_to_server(GATTService(bumble.device), server)
 
 
 class GattTest(base_test.BaseTestClass):  # type: ignore[misc]
@@ -30,6 +38,9 @@ class GattTest(base_test.BaseTestClass):  # type: ignore[misc]
     ref: PandoraDevice
 
     def setup_class(self) -> None:
+        # Register experimental bumble servicers hook.
+        bumble_server.register_servicer_hook(_bumble_servicer_hook)
+
         self.devices = PandoraDevices(self)
         self.dut, self.ref, *_ = self.devices
 

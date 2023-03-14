@@ -6,24 +6,15 @@ import argparse
 import asha_test
 import example
 import gatt_test
-import grpc.aio
 import logging
 import os
 import sys
 
-from avatar import bumble_server
-from avatar.bumble_device import BumbleDevice
-from bumble_experimental.gatt import GATTService
 from collections import OrderedDict
 from mobly import base_test, config_parser, signals, suite_runner, test_runner
-from pandora_experimental.gatt_grpc_aio import add_GATTServicer_to_server
 from typing import Any, List, Optional, Type
 
 _TEST_CLASSES_LIST = [example.ExampleTest, asha_test.ASHATest, gatt_test.GattTest]
-
-
-def _bumble_servicer_hook(bumble: BumbleDevice, server: grpc.aio.Server) -> None:
-    add_GATTServicer_to_server(GATTService(bumble.device), server)
 
 
 def _parse_cli_args(argv: List[str]) -> argparse.Namespace:
@@ -53,9 +44,7 @@ def _parse_cli_args(argv: List[str]) -> argparse.Namespace:
     )
     parser.add_argument('-v', '--verbose', action='store_true', help='Set console logger level to DEBUG')
     parser.add_argument('-o', '--log', '--log_path', type=str, metavar='<PATH>', help='Path where to store log files')
-    parser.add_argument(
-        '-s', '--serial', '--device_serial', type=str, metavar='<SERIAL>', help='Android device serial'
-    )
+    parser.add_argument('-s', '--serial', '--device_serial', type=str, metavar='<SERIAL>', help='Android device serial')
     if not argv:
         argv = sys.argv[1:]
     return parser.parse_args(argv)
@@ -67,15 +56,14 @@ def run(test_classes: List[Any], argv: List[str]) -> None:
     # Check the classes that were passed in
     for test_class in test_classes:
         if not issubclass(test_class, base_test.BaseTestClass):
-            logging.error('Test class %s does not extend ' 'mobly.base_test.BaseTestClass', test_class)
+            logging.error('Test class %s does not extend '
+                          'mobly.base_test.BaseTestClass', test_class)
             sys.exit(1)
 
     # Find the full list of tests to execute
-    selected_tests: OrderedDict[
-        Type[base_test.BaseTestClass], Optional[List[str]]
-    ] = suite_runner.compute_selected_tests(  # type: ignore
-        test_classes, args.tests
-    )
+    selected_tests: OrderedDict[Type[base_test.BaseTestClass],
+                                Optional[List[str]]] = suite_runner.compute_selected_tests(  # type: ignore
+                                    test_classes, args.tests)
     if args.list:
         for (test_class, test_names) in selected_tests.items():
             test = test_class(config_parser.TestRunConfig())
@@ -88,7 +76,8 @@ def run(test_classes: List[Any], argv: List[str]) -> None:
     ok = True
     try:
         # Load test config file.
-        test_configs: List[config_parser.TestRunConfig] = config_parser.load_test_config_file(args.config, args.test_bed)  # type: ignore
+        test_configs: List[config_parser.TestRunConfig] = config_parser.load_test_config_file(
+            args.config, args.test_bed)  # type: ignore
 
         console_level = logging.DEBUG if args.verbose else logging.INFO
         for config in test_configs:
@@ -123,9 +112,6 @@ if __name__ == "__main__":
     # Default configuration file & `PandoraServer.apk`.
     root = str(os.path.dirname(__file__))
     default_argv = ['-c', os.path.join(root, 'config.yml')]
-
-    # Register experimental bumble servicers hook.
-    bumble_server.register_servicer_hook(_bumble_servicer_hook)
 
     # Run the test suite.
     run(_TEST_CLASSES_LIST, default_argv + argv)
