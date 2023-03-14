@@ -1,0 +1,182 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f042a3c5_451d4423",
+        "filename": "system/rust/src/connection.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-03-14T08:07:30Z",
+      "side": 1,
+      "message": "Why not just return existing connection ?\nYou will remember which client started connections and which never attempted it ?",
+      "range": {
+        "startLine": 15,
+        "startChar": 4,
+        "endLine": 15,
+        "endChar": 34
+      },
+      "revId": "930fae87a74712a0f638f225c78de6afd864f2e8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ccd4f3e7_4c22c119",
+        "filename": "system/rust/src/connection.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-03-14T08:07:30Z",
+      "side": 1,
+      "message": "Connection is not \"tied\" to address, that\u0027s why we have connection handle as identifier. If multiple clients request connection using different RPAs, X, Y, Z, I wouldn\u0027t mind returning same handle with different addresses to each of them.\n\nOr you have to specify in callback what type of address will we return, but it can change, i.e. if you pair device on other transport.",
+      "range": {
+        "startLine": 16,
+        "startChar": 4,
+        "endLine": 16,
+        "endChar": 55
+      },
+      "revId": "930fae87a74712a0f638f225c78de6afd864f2e8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bf2bcb43_55c7ad05",
+        "filename": "system/rust/src/connection.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-03-14T08:07:30Z",
+      "side": 1,
+      "message": "Why would you need that ? HCI must return invalid connection ID because it have race condition you can\u0027t work around. But if we build layer on top of it, we can hide it.",
+      "range": {
+        "startLine": 18,
+        "startChar": 4,
+        "endLine": 18,
+        "endChar": 23
+      },
+      "revId": "930fae87a74712a0f638f225c78de6afd864f2e8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "96eb3015_342b2634",
+        "filename": "system/rust/src/connection.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-03-14T08:07:30Z",
+      "side": 1,
+      "message": "Why not just be idempotent for cancelation ? Do you really want to handle that error in each client ?",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 23,
+        "endChar": 1
+      },
+      "revId": "930fae87a74712a0f638f225c78de6afd864f2e8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "91d73694_1ee0f1d1",
+        "filename": "system/rust/src/connection.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-03-14T08:07:30Z",
+      "side": 1,
+      "message": "I think you can\u0027t make this assumption.\nSome clients might want to do background connection, and bump up connection parameters by starting direct connection when having good indication device is nearby, i.e. user tapping on it in application to speed up connection.\n\nIn such case, client shouldn\u0027t be required to cancel the connection attempt first (which would modify the accept list) to start it immediately later.",
+      "range": {
+        "startLine": 48,
+        "startChar": 0,
+        "endLine": 48,
+        "endChar": 67
+      },
+      "revId": "930fae87a74712a0f638f225c78de6afd864f2e8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5c937071_cfecf9af",
+        "filename": "system/rust/src/connection.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-03-14T08:07:30Z",
+      "side": 1,
+      "message": "can you use varargs for addresses ? i.e. LE Audio would add whole set at once.",
+      "range": {
+        "startLine": 53,
+        "startChar": 7,
+        "endLine": 53,
+        "endChar": 33
+      },
+      "revId": "930fae87a74712a0f638f225c78de6afd864f2e8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ff479fbc_f8d84fe9",
+        "filename": "system/rust/src/connection.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-03-14T08:07:30Z",
+      "side": 1,
+      "message": "Where callbacks?",
+      "revId": "930fae87a74712a0f638f225c78de6afd864f2e8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2a22edb1_82f2779c",
+        "filename": "system/rust/src/connection/le_manager.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-03-14T08:07:30Z",
+      "side": 1,
+      "message": "I think current accept list management isn\u0027t too efficient, why not have way to add/remove multiple devices at same device ?",
+      "range": {
+        "startLine": 18,
+        "startChar": 3,
+        "endLine": 20,
+        "endChar": 81
+      },
+      "revId": "930fae87a74712a0f638f225c78de6afd864f2e8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
