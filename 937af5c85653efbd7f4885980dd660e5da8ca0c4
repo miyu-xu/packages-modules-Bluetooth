@@ -34,6 +34,24 @@
       "parentUuid": "8af6e7a7_2307a03f",
       "revId": "937af5c85653efbd7f4885980dd660e5da8ca0c4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3979a9e2_b74adca5",
+        "filename": "android/pandora/server/Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-03-14T00:42:28Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "21006aad_1a5f01c3",
+      "revId": "937af5c85653efbd7f4885980dd660e5da8ca0c4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
