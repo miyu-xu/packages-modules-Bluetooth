@@ -70,6 +70,8 @@ public class CompanionManager {
     @VisibleForTesting static final String COMPANION_DEVICE_KEY = "companion_device";
     @VisibleForTesting static final String COMPANION_TYPE_KEY = "companion_type";
 
+    static final String PROPERTY_COMPANION_MANAGER_ENABLED = "bluetooth.companion_manager.enabled";
+
     static final String PROPERTY_HIGH_MIN_INTERVAL = "bluetooth.gatt.high_priority.min_interval";
     static final String PROPERTY_HIGH_MAX_INTERVAL = "bluetooth.gatt.high_priority.max_interval";
     static final String PROPERTY_HIGH_LATENCY = "bluetooth.gatt.high_priority.latency";
@@ -88,8 +90,13 @@ public class CompanionManager {
     private final BluetoothAdapter mAdapter = BluetoothAdapter.getDefaultAdapter();
     private final Set<BluetoothDevice> mMetadataListeningDevices = new HashSet<>();
 
+    @VisibleForTesting boolean mCompanionManagerEnabled;
+
     public CompanionManager(AdapterService service, ServiceFactory factory) {
         mAdapterService = service;
+
+        mCompanionManagerEnabled =
+                SystemProperties.getBoolean(PROPERTY_COMPANION_MANAGER_ENABLED, false);
 
         mGattConnHighDefault = new int[] {
                 getGattConfig(PROPERTY_HIGH_MIN_INTERVAL,
