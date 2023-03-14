@@ -67,6 +67,24 @@
       "message": "It needs all the current test code that uses BluetoothQA D-Bus to switch to BluetoothQALegacy, right? And the CL must be merged together. This sounds like a non-trivial effort. Do we really a strong motivation to do so?  If so, we should come out with a good mechanism for the tests to work with either current BluetoothQA or new BluetoothQALegacy API.",
       "revId": "58b430d733cb84b54429eb582575c0dd44897a41",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "083b8025_b0e60c92",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2023-03-14T11:41:41Z",
+      "side": 1,
+      "message": "Yes, we need to modify autotest code, but no, we don\u0027t need them to be merged together. What we can do is, for example, use a `try..catch` block to try BluetoothQALegacy first then use BluetoothQA if the first attempt fails. Then we only need to merge autotest change first.\n\nIf we want to avoid modifying autotest code now, another way is to **not** change the existing BluetoothQA name but name the new BluetoothQA to like BluetoothQANew.\n\nWDYT?",
+      "parentUuid": "9770a570_e19b6c93",
+      "revId": "58b430d733cb84b54429eb582575c0dd44897a41",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
