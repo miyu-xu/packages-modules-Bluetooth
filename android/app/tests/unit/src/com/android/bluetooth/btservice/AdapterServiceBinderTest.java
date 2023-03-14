@@ -26,8 +26,13 @@ import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothClass;
 import android.bluetooth.IBluetoothOobDataCallback;
 import android.content.AttributionSource;
+import android.content.Context;
+import android.os.Binder;
 import android.os.ParcelUuid;
+import android.os.UserHandle;
+import android.os.UserManager;
 
+import com.android.bluetooth.Utils;
 import com.android.bluetooth.x.com.android.modules.utils.SynchronousResultReceiver;
 
 import org.junit.After;
@@ -41,16 +46,25 @@ import java.io.FileDescriptor;
 
 public class AdapterServiceBinderTest {
     @Mock private AdapterService mService;
+    @Mock private UserManager mUserManager;
     @Mock private AdapterProperties mAdapterProperties;
 
     private AdapterService.AdapterServiceBinder mBinder;
     private AttributionSource mAttributionSource;
+    private int mForegroundUserId;
 
     @Before
     public void setUp() {
+        mForegroundUserId = Utils.getForegroundUserId();
+        int callingUid = Binder.getCallingUid();
+        UserHandle callingUser = UserHandle.getUserHandleForUid(callingUid);
+        Utils.setForegroundUserId(callingUser.getIdentifier());
+
         MockitoAnnotations.initMocks(this);
         mService.mAdapterProperties = mAdapterProperties;
         doReturn(true).when(mService).isAvailable();
+        doReturn(mUserManager).when(mService).getSystemService(Context.USER_SERVICE);
+        doReturn(callingUser).when(mUserManager).getProfileParent(callingUser);
         doNothing().when(mService).enforceCallingOrSelfPermission(any(), any());
         mBinder = new AdapterService.AdapterServiceBinder(mService);
         mAttributionSource = new AttributionSource.Builder(0).build();
@@ -59,6 +73,7 @@ public class AdapterServiceBinderTest {
     @After
     public void cleaUp() {
         mBinder.cleanup();
+        Utils.setForegroundUserId(mForegroundUserId);
     }
 
     @Test

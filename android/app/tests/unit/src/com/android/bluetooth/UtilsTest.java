@@ -17,18 +17,27 @@ package com.android.bluetooth;
 
 import static com.google.common.truth.Truth.assertThat;
 
+import static org.junit.Assert.fail;
 import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 import static org.mockito.Mockito.verify;
 
+import android.app.ActivityManager;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
+import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.content.pm.UserInfo;
 import android.location.LocationManager;
+import android.os.Binder;
 import android.os.Build;
 import android.os.ParcelUuid;
 import android.os.UserHandle;
+import android.os.UserManager;
+import android.util.Log;
 
 import androidx.test.InstrumentationRegistry;
 import androidx.test.filters.SmallTest;
@@ -36,6 +45,8 @@ import androidx.test.runner.AndroidJUnit4;
 
 import com.android.bluetooth.btservice.ProfileService;
 
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
@@ -47,7 +58,11 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
+
+import javax.annotation.concurrent.GuardedBy;
 
 /**
  * Test for Utils.java
@@ -55,6 +70,58 @@ import java.util.UUID;
 @SmallTest
 @RunWith(AndroidJUnit4.class)
 public class UtilsTest {
+    private static final String TAG = "UtilsTest";
+    private static final int REMOVE_CHECK_INTERVAL_MILLIS = 500; // 0.5 seconds
+    private static final int REMOVE_TIMEOUT_MILLIS = 60 * 1000; // 60 seconds
+    private static final int SWITCH_USER_TIMEOUT_MILLIS = 40 * 1000; // 40 seconds
+
+    private final Context mContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
+    private final Object mUserRemoveLock = new Object();
+    private final Object mUserSwitchLock = new Object();
+    UserManager mUserManager;
+    private List<Integer> mUsersToRemove;
+    private int mUserIdReceived;
+    private int mForegroundUserId;
+
+    @Before
+    public void setUp() {
+        mForegroundUserId = Utils.getForegroundUserId();
+        int callingUid = Binder.getCallingUid();
+        UserHandle callingUser = UserHandle.getUserHandleForUid(callingUid);
+        Utils.setForegroundUserId(callingUser.getIdentifier());
+
+        mUsersToRemove = new ArrayList<>();
+        mUserManager = UserManager.get(mContext);
+        IntentFilter filter = new IntentFilter(Intent.ACTION_USER_REMOVED);
+        filter.addAction(Intent.ACTION_USER_SWITCHED);
+        mContext.registerReceiver(new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                if (Intent.ACTION_USER_REMOVED.equals(intent.getAction())) {
+                    synchronized (mUserRemoveLock) {
+                        mUserIdReceived = intent.getIntExtra(Intent.EXTRA_USER_HANDLE, -1);
+                        mUserRemoveLock.notifyAll();
+                    }
+                } else if (Intent.ACTION_USER_SWITCHED.equals(intent.getAction())) {
+                    synchronized (mUserSwitchLock) {
+                        mUserIdReceived = intent.getIntExtra(Intent.EXTRA_USER_HANDLE, -1);
+                        Utils.setForegroundUserId(mForegroundUserId);
+                        mUserSwitchLock.notifyAll();
+                    }
+                }
+            }
+        }, filter);
+    }
+
+    @After
+    public void tearDown() {
+        for (Integer userId : mUsersToRemove) {
+            removeUser(userId);
+        }
+        Utils.setForegroundUserId(mForegroundUserId);
+    }
+
+
     @Test
     public void byteArrayToShort() {
         byte[] valueBuf = new byte[] {0x01, 0x02};
@@ -99,30 +166,28 @@ public class UtilsTest {
 
     @Test
     public void blockedByLocationOff() throws Exception {
-        Context context = InstrumentationRegistry.getTargetContext();
         UserHandle userHandle = new UserHandle(UserHandle.USER_SYSTEM);
-        LocationManager locationManager = context.getSystemService(LocationManager.class);
+        LocationManager locationManager = mContext.getSystemService(LocationManager.class);
         boolean enableStatus = locationManager.isLocationEnabledForUser(userHandle);
-        assertThat(Utils.blockedByLocationOff(context, userHandle)).isEqualTo(!enableStatus);
+        assertThat(Utils.blockedByLocationOff(mContext, userHandle)).isEqualTo(!enableStatus);
 
         locationManager.setLocationEnabledForUser(!enableStatus, userHandle);
-        assertThat(Utils.blockedByLocationOff(context, userHandle)).isEqualTo(enableStatus);
+        assertThat(Utils.blockedByLocationOff(mContext, userHandle)).isEqualTo(enableStatus);
 
         locationManager.setLocationEnabledForUser(enableStatus, userHandle);
     }
 
     @Test
     public void checkCallerHasCoarseLocation_doesNotCrash() {
-        Context context = InstrumentationRegistry.getTargetContext();
         UserHandle userHandle = new UserHandle(UserHandle.USER_SYSTEM);
-        LocationManager locationManager = context.getSystemService(LocationManager.class);
+        LocationManager locationManager = mContext.getSystemService(LocationManager.class);
         boolean enabledStatus = locationManager.isLocationEnabledForUser(userHandle);
 
         locationManager.setLocationEnabledForUser(false, userHandle);
-        assertThat(Utils.checkCallerHasCoarseLocation(context, null, userHandle)).isFalse();
+        assertThat(Utils.checkCallerHasCoarseLocation(mContext, null, userHandle)).isFalse();
 
         locationManager.setLocationEnabledForUser(true, userHandle);
-        Utils.checkCallerHasCoarseLocation(context, null, userHandle);
+        Utils.checkCallerHasCoarseLocation(mContext, null, userHandle);
         if (!enabledStatus) {
             locationManager.setLocationEnabledForUser(false, userHandle);
         }
@@ -130,16 +195,15 @@ public class UtilsTest {
 
     @Test
     public void checkCallerHasCoarseOrFineLocation_doesNotCrash() {
-        Context context = InstrumentationRegistry.getTargetContext();
         UserHandle userHandle = new UserHandle(UserHandle.USER_SYSTEM);
-        LocationManager locationManager = context.getSystemService(LocationManager.class);
+        LocationManager locationManager = mContext.getSystemService(LocationManager.class);
         boolean enabledStatus = locationManager.isLocationEnabledForUser(userHandle);
 
         locationManager.setLocationEnabledForUser(false, userHandle);
-        assertThat(Utils.checkCallerHasCoarseOrFineLocation(context, null, userHandle)).isFalse();
+        assertThat(Utils.checkCallerHasCoarseOrFineLocation(mContext, null, userHandle)).isFalse();
 
         locationManager.setLocationEnabledForUser(true, userHandle);
-        Utils.checkCallerHasCoarseOrFineLocation(context, null, userHandle);
+        Utils.checkCallerHasCoarseOrFineLocation(mContext, null, userHandle);
         if (!enabledStatus) {
             locationManager.setLocationEnabledForUser(false, userHandle);
         }
@@ -147,13 +211,12 @@ public class UtilsTest {
 
     @Test
     public void checkPermissionMethod_doesNotCrash() {
-        Context context = InstrumentationRegistry.getTargetContext();
         try {
-            Utils.checkAdvertisePermissionForDataDelivery(context, null, "message");
-            Utils.checkAdvertisePermissionForPreflight(context);
-            Utils.checkCallerHasWriteSmsPermission(context);
-            Utils.checkScanPermissionForPreflight(context);
-            Utils.checkConnectPermissionForPreflight(context);
+            Utils.checkAdvertisePermissionForDataDelivery(mContext, null, "message");
+            Utils.checkAdvertisePermissionForPreflight(mContext);
+            Utils.checkCallerHasWriteSmsPermission(mContext);
+            Utils.checkScanPermissionForPreflight(mContext);
+            Utils.checkConnectPermissionForPreflight(mContext);
         } catch (SecurityException e) {
             // SecurityException could happen.
         }
@@ -161,9 +224,8 @@ public class UtilsTest {
 
     @Test
     public void enforceDumpPermission_doesNotCrash() {
-        Context context = InstrumentationRegistry.getTargetContext();
         try {
-            Utils.enforceDumpPermission(context);
+            Utils.enforceDumpPermission(mContext);
         } catch (SecurityException e) {
             // SecurityException could happen.
         }
@@ -180,12 +242,58 @@ public class UtilsTest {
 
     @Test
     public void checkCallerIsSystemMethods_doesNotCrash() {
-        Context context = InstrumentationRegistry.getTargetContext();
-        String tag = "test_tag";
+        Utils.checkCallerIsSystemOrActiveOrManagedUser(mContext, TAG);
+        Utils.checkCallerIsSystemOrActiveOrManagedUser(null, TAG);
+        Utils.checkCallerIsSystemOrActiveUser(TAG);
+    }
 
-        Utils.checkCallerIsSystemOrActiveOrManagedUser(context, tag);
-        Utils.checkCallerIsSystemOrActiveOrManagedUser(null, tag);
-        Utils.checkCallerIsSystemOrActiveUser(tag);
+    @Test
+    public void checkCallerIsSystemMethods_afterSwitchingUser_doesNotCrash() {
+        ActivityManager am = mContext.getSystemService(ActivityManager.class);
+        int currentUserId = am.getCurrentUser();
+        List<UserInfo> userInfos = mUserManager.getUsers();
+        UserInfo userToSwitch = null;
+        for (UserInfo user : userInfos) {
+            if (user.id == currentUserId) {
+                continue;
+            } else {
+                userToSwitch = user;
+                break;
+            }
+        }
+        if (userToSwitch == null) {
+            userToSwitch = createUser("guest:", UserInfo.FLAG_GUEST);
+        }
+
+        synchronized (mUserSwitchLock) {
+            am.switchUser(userToSwitch.id);
+            Utils.checkCallerIsSystemOrActiveOrManagedUser(mContext, TAG);
+            Utils.checkCallerIsSystemOrActiveOrManagedUser(null, TAG);
+            Utils.checkCallerIsSystemOrActiveUser(TAG);
+
+            try {
+                while (mUserIdReceived != userToSwitch.id) {
+                    mUserSwitchLock.wait(SWITCH_USER_TIMEOUT_MILLIS);
+                }
+            } catch (InterruptedException ie) {
+                Thread.currentThread().interrupt();
+            }
+        }
+
+        synchronized (mUserSwitchLock) {
+            am.switchUser(currentUserId);
+            Utils.checkCallerIsSystemOrActiveOrManagedUser(mContext, TAG);
+            Utils.checkCallerIsSystemOrActiveOrManagedUser(null, TAG);
+            Utils.checkCallerIsSystemOrActiveUser(TAG);
+
+            try {
+                while (mUserIdReceived != currentUserId) {
+                    mUserSwitchLock.wait(SWITCH_USER_TIMEOUT_MILLIS);
+                }
+            } catch (InterruptedException ie) {
+                Thread.currentThread().interrupt();
+            }
+        }
     }
 
     @Test
@@ -248,5 +356,37 @@ public class UtilsTest {
         Mockito.clearInvocations(os);
         doThrow(new IOException()).when(os).close();
         Utils.safeCloseStream(os);
+    }
+
+    private UserInfo createUser(String name, int flags) {
+        UserInfo user = mUserManager.createUser(name, flags);
+        if (user != null) {
+            mUsersToRemove.add(user.id);
+        }
+        return user;
+    }
+
+    private void removeUser(int userId) {
+        synchronized (mUserRemoveLock) {
+            mUserManager.removeUser(userId);
+            waitForUserRemovalLocked(userId);
+        }
+    }
+
+    @GuardedBy("mUserRemoveLock")
+    private void waitForUserRemovalLocked(int userId) {
+        long time = System.currentTimeMillis();
+        while (mUserManager.getAliveUsers().stream().anyMatch(x -> x.id == userId)) {
+            try {
+                mUserRemoveLock.wait(REMOVE_CHECK_INTERVAL_MILLIS);
+            } catch (InterruptedException ie) {
+                Thread.currentThread().interrupt();
+                return;
+            }
+            if (System.currentTimeMillis() - time > REMOVE_TIMEOUT_MILLIS) {
+                Log.e(TAG,"Timeout waiting for removeUser. userId = " + userId);
+                break;
+            }
+        }
     }
 }
