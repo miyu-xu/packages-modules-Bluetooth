@@ -16,6 +16,23 @@
       "message": "we tested in UPF and this fix didn\u0027t work. will post details + BR later",
       "revId": "b2949dcf5ab3c97c9bd4bc5bb753eaef24ce71dd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cc55278a_b28a312d",
+        "filename": "system/bta/hh/bta_hh_act.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 666,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-03-14T20:04:40Z",
+      "side": 1,
+      "message": "do you want to call connect here? or bredr conn?",
+      "revId": "b2949dcf5ab3c97c9bd4bc5bb753eaef24ce71dd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
