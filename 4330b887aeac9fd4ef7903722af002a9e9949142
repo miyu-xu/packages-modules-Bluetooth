@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3fa127b3_eecde20a",
+        "filename": "tools/pdl/src/lint.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2023-03-14T13:28:35Z",
+      "side": 0,
+      "message": "Should we not remove more lines here? Or do you want to keep both implementations for some reason?",
+      "revId": "4330b887aeac9fd4ef7903722af002a9e9949142",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

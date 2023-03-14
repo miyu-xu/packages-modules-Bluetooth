@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "22360d9e_640757dc",
+        "filename": "tools/pdl/src/analyzer.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 2116,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2023-03-14T13:28:35Z",
+      "side": 1,
+      "message": "I would propose a more telling name: something like `assert_before_after_eq!`. I would have expected `desugured!` to take and desugar a single input.\n\nActually, perhaps you can make this easier to use in tests by creating a function (you know, they still exist 😄) which takes a string as input and gives you back the analyzer output.\n\nThen the tests would look something like this\n\n```\nassert_eq!(\n    desugar(\"blah blah\"),\n    degugar(\"more blah\"),\n);       \n```",
+      "revId": "dc932de85d75714878170fe288b7c02be35abdef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a64a080f_b000bef1",
+        "filename": "tools/pdl/src/ast.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2023-03-14T13:28:35Z",
+      "side": 1,
+      "message": "I recently saw a trick to ensure that this code stays up to date: use exhausting unpacking to ensure you mention all fields:\n\n```\nlet Tag { id: self_id, value: self_value, loc: _ } \u003d self;\nlet Tag { id: other_id, value: other_value, loc: _ } \u003d other;\nself_id \u003d\u003d self_other \u0026\u0026 self_value \u003d\u003d other_value\n```\n\nIt\u0027s a bit verbose, but also kind of neat. You could implement this if you like.",
+      "revId": "dc932de85d75714878170fe288b7c02be35abdef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "741c1575_e30d41c2",
+        "filename": "tools/pdl/src/ast.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 286,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2023-03-14T13:28:35Z",
+      "side": 1,
+      "message": "What about the `annot` field? I guess you left it out on purpose — you could explain why in a doccomment?",
+      "revId": "dc932de85d75714878170fe288b7c02be35abdef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "639d3cc1_70a73363",
+        "filename": "tools/pdl/src/ast.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 416,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2023-03-14T13:28:35Z",
+      "side": 1,
+      "message": "Same here about the `annot` field.",
+      "revId": "dc932de85d75714878170fe288b7c02be35abdef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
