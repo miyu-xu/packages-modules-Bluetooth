@@ -1730,7 +1730,7 @@ static void btif_dm_search_services_evt(tBTA_DM_SEARCH_EVT event,
 
       const tBTA_STATUS bta_status = p_data->disc_res.result;
       BTM_LogHistory(
-          kBtmLogTagSdp, bd_addr, "Discovered services",
+          kBtmLogTagSdp, bd_addr, "Services discovered",
           base::StringPrintf("bta_status:%s sdp_uuids:%zu eir_uuids:%zu",
                              bta_status_text(bta_status).c_str(),
                              p_data->disc_res.num_uuids, num_eir_uuids));
@@ -1815,6 +1815,8 @@ static void btif_dm_search_services_evt(tBTA_DM_SEARCH_EVT event,
         }
       }
 
+      BTM_LogHistory(kBtmLogTagSdp, bd_addr, "Services discovered",
+                     base::StringPrintf("gatt_uuids:%zu", uuids.size()));
       if (uuids.empty()) {
         LOG_INFO("No well known GATT services discovered");
         return;
