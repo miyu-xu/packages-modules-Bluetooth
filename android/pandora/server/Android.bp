@@ -55,9 +55,9 @@ android_test_helper_app {
 
 android_test {
     name: "pts-bot",
-    required: ["PandoraServer"],
     test_config: "configs/PtsBotTest.xml",
     data: [
+        ":PandoraServer",
         "configs/pts_bot_tests_config.json",
         ":mmi2grpc"
     ],
@@ -67,9 +67,9 @@ android_test {
 
 android_test {
     name: "pts-bot-mts",
-    required: ["PandoraServer"],
     test_config: "configs/PtsBotTestMts.xml",
     data: [
+        ":PandoraServer",
         "configs/pts_bot_tests_config.json",
         ":mmi2grpc"
     ],
