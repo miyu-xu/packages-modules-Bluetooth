@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "30c0aae7_07ef2882",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-03-14T23:59:53Z",
+      "side": 1,
+      "message": "Please give me one day to check one thing.\nI\u0027m testing a fix with ActivityManager.getCurrentUser() in Utils.java",
+      "revId": "8ec31c7732b93f40b89a8977d692c1b8eec21e8e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
