@@ -1922,11 +1922,13 @@ static void bta_dm_discover_device(const RawAddress& remote_bd_addr) {
   VLOG(1) << __func__ << " BDA: " << ADDRESS_TO_LOGGABLE_STR(remote_bd_addr);
 
   bta_dm_search_cb.peer_bdaddr = remote_bd_addr;
-
-  APPL_TRACE_DEBUG(
-      "%s name_discover_done = %d p_btm_inq_info 0x%x state = %d, transport=%d",
-      __func__, bta_dm_search_cb.name_discover_done,
-      bta_dm_search_cb.p_btm_inq_info, bta_dm_search_cb.state, transport);
+  LOG_DEBUG(
+      "Service discovery peer:%s remote_name_request_done:%c transport:%s "
+      "state:%d is_inq_data_avail:%c",
+      ADDRESS_TO_LOGGABLE_CSTR(remote_bd_addr),
+      (bta_dm_search_cb.name_discover_done) ? 'T' : 'F',
+      bt_transport_text(transport).c_str(), bta_dm_search_get_state(),
+      (bta_dm_search_cb.p_btm_inq_info) ? 'T' : 'F');
 
   if (bta_dm_search_cb.p_btm_inq_info) {
     APPL_TRACE_DEBUG("%s appl_knows_rem_name %d", __func__,
