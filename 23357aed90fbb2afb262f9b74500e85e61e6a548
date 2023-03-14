@@ -16,6 +16,24 @@
       "message": "this check is unnecessary. Group is in IDLE already, so there is no streaming devices.\nBelow we CIG will be removed, so call ReleaseCisIds should be enough. Probably Deactivate too, or not needed?",
       "revId": "23357aed90fbb2afb262f9b74500e85e61e6a548",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "be9d826a_0cf832f4",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 622,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-03-14T13:19:30Z",
+      "side": 1,
+      "message": "This is for Releasing CIS IDs only on last device ACL disconnection.",
+      "parentUuid": "0fe81809_0c447d07",
+      "revId": "23357aed90fbb2afb262f9b74500e85e61e6a548",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
