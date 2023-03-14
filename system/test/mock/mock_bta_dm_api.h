@@ -403,15 +403,6 @@ struct BTA_DmSetLocalDiRecord {
 };
 extern struct BTA_DmSetLocalDiRecord BTA_DmSetLocalDiRecord;
 
-// Name: BTA_VendorInit
-// Params: void
-// Return: void
-struct BTA_VendorInit {
-  std::function<void(void)> body{[](void) {}};
-  void operator()(void) { body(); };
-};
-extern struct BTA_VendorInit BTA_VendorInit;
-
 // Name: BTA_dm_init
 // Params:
 // Return: void
