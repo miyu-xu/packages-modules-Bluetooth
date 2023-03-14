@@ -16,6 +16,24 @@
       "message": "Maybe separate those fields only used for qualification purpose?",
       "revId": "584507b046e582f4d2dadc6f355070361408ac4c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "86c8e212_20b4b680",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 256,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2023-03-14T07:36:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "25f1a181_216ed142",
+      "revId": "584507b046e582f4d2dadc6f355070361408ac4c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
