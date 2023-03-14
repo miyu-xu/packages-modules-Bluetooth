@@ -16,6 +16,24 @@
       "message": "Shouldn\u0027t we have a test for this change of behavior in CompanionManagerTest.java ?",
       "revId": "3f86c5499f19dfaee8f0e36193cf4fcf077a91f4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e8d4b103_103e5bcb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1306903
+      },
+      "writtenOn": "2023-03-14T10:08:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "65aeab99_6675008d",
+      "revId": "3f86c5499f19dfaee8f0e36193cf4fcf077a91f4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
