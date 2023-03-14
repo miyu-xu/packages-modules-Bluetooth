@@ -82,6 +82,7 @@ public class CompanionManagerTest {
 
         // Must be called to initialize services
         mCompanionManager = new CompanionManager(mAdapterService, null);
+        mCompanionManager.mCompanionManagerEnabled = true;
     }
 
     @After
