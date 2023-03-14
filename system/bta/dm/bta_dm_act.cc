@@ -349,6 +349,7 @@ void BTA_dm_on_hw_off() {
   /* hw is ready, go on with BTA DM initialization */
   alarm_free(bta_dm_search_cb.search_timer);
   alarm_free(bta_dm_search_cb.gatt_close_timer);
+  alarm_free(bta_dm_search_cb.gatt_open_timer);
   osi_free_and_reset((void**)&bta_dm_search_cb.p_pending_search);
   fixed_queue_free(bta_dm_search_cb.pending_discovery_queue, osi_free);
   bta_dm_search_cb =
@@ -371,6 +372,7 @@ void BTA_dm_on_hw_on() {
   /* hw is ready, go on with BTA DM initialization */
   alarm_free(bta_dm_search_cb.search_timer);
   alarm_free(bta_dm_search_cb.gatt_close_timer);
+  alarm_free(bta_dm_search_cb.gatt_open_timer);
   osi_free_and_reset((void**)&bta_dm_search_cb.p_pending_search);
   fixed_queue_free(bta_dm_search_cb.pending_discovery_queue, osi_free);
   bta_dm_search_cb =
@@ -384,6 +386,9 @@ void BTA_dm_on_hw_on() {
       osi_property_get_bool("bluetooth.gatt.delay_close.enabled", true);
   bta_dm_search_cb.gatt_close_timer =
       delay_close_gatt ? alarm_new("bta_dm_search.gatt_close_timer") : nullptr;
+  // TODO add external property
+  bta_dm_search_cb.gatt_open_timer =
+      (true) ? alarm_new("bta_dm_search.gatt_open_timer") : nullptr;
   bta_dm_search_cb.pending_discovery_queue = fixed_queue_new(SIZE_MAX);
 
   memset(&bta_dm_conn_srvcs, 0, sizeof(bta_dm_conn_srvcs));
@@ -4330,6 +4335,18 @@ void btm_dm_start_gatt_discovery(const RawAddress& bd_addr) {
       BTA_GATTC_Open(bta_dm_search_cb.client_if, bd_addr,
                      BTM_BLE_DIRECT_CONNECTION, true);
     } else {
+      LOG_DEBUG(
+          "Opening new gatt client connection for discovery peer:%s "
+          "transport:%s opportunistic:%c",
+          ADDRESS_TO_LOGGABLE_CSTR(bd_addr),
+          bt_transport_text(BT_TRANSPORT_LE).c_str(), 'F');
+      if (bta_dm_search_cb.gatt_open_timer != nullptr) {
+#define BTA_DM_GATT_OPEN_DELAY_TOUT 2000
+        /* start a GATT channel close delay timer */
+        bta_sys_start_timer(bta_dm_search_cb.gatt_open_timer,
+                            BTA_DM_GATT_OPEN_DELAY_TOUT,
+                            BTA_DM_DISC_OPEN_TOUT_EVT, 0);
+      }
       BTA_GATTC_Open(bta_dm_search_cb.client_if, bd_addr,
                      BTM_BLE_DIRECT_CONNECTION, false);
     }
@@ -4353,6 +4370,8 @@ void bta_dm_proc_open_evt(tBTA_GATTC_OPEN* p_data) {
   APPL_TRACE_DEBUG("BTA_GATTC_OPEN_EVT conn_id = %d client_if=%d status = %d",
                    p_data->conn_id, p_data->client_if, p_data->status);
 
+  alarm_cancel(bta_dm_search_cb.gatt_open_timer);
+
   bta_dm_search_cb.conn_id = p_data->conn_id;
 
   if (p_data->status == GATT_SUCCESS) {
@@ -4360,6 +4379,21 @@ void bta_dm_proc_open_evt(tBTA_GATTC_OPEN* p_data) {
   } else {
     bta_dm_gatt_disc_complete(GATT_INVALID_CONN_ID, p_data->status);
   }
+}
+
+void bta_dm_open_gatt_conn_timeout(UNUSED_ATTR tBTA_DM_MSG* p_data) {
+  LOG_INFO("Service discovery over gatt timeout peer:%s transport:%s",
+           ADDRESS_TO_LOGGABLE_CSTR(bta_dm_search_cb.peer_bdaddr),
+           bt_transport_text(bta_dm_search_cb.transport).c_str());
+  tBTA_GATTC_OPEN open = {
+      .status = GATT_TIMEOUT,
+      .conn_id = 0,
+      .client_if = 0,
+      .remote_bda = bta_dm_search_cb.peer_bdaddr,
+      .transport = bta_dm_search_cb.transport,
+      .mtu = 0,
+  };
+  bta_dm_proc_open_evt(&open);
 }
 
 /*******************************************************************************
