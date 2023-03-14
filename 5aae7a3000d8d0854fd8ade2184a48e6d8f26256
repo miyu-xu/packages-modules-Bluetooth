@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "66652cf2_8576d3a3",
+        "filename": "android/pandora/test/gatt_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1937985
+      },
+      "writtenOn": "2023-03-14T04:39:50Z",
+      "side": 1,
+      "message": "I suggest using a lambda here instead of `_bumble_servicer_hook`",
+      "revId": "5aae7a3000d8d0854fd8ade2184a48e6d8f26256",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
