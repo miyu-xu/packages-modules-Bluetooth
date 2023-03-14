@@ -72,6 +72,7 @@ typedef enum : uint16_t {
   BTA_DM_SEARCH_CMPL_EVT,
   BTA_DM_DISCOVERY_RESULT_EVT,
   BTA_DM_DISC_CLOSE_TOUT_EVT,
+  BTA_DM_DISC_OPEN_TOUT_EVT,
 } tBTA_DM_EVT;
 
 inline std::string bta_dm_event_text(const tBTA_DM_EVT& event) {
@@ -85,6 +86,7 @@ inline std::string bta_dm_event_text(const tBTA_DM_EVT& event) {
     CASE_RETURN_TEXT(BTA_DM_SEARCH_CMPL_EVT);
     CASE_RETURN_TEXT(BTA_DM_DISCOVERY_RESULT_EVT);
     CASE_RETURN_TEXT(BTA_DM_DISC_CLOSE_TOUT_EVT);
+    CASE_RETURN_TEXT(BTA_DM_DISC_OPEN_TOUT_EVT);
     default:
       return base::StringPrintf("UNKNOWN[0x%04x]", event);
   }
@@ -397,6 +399,7 @@ typedef struct {
   bool gatt_disc_active;
   uint16_t conn_id;
   alarm_t* gatt_close_timer; /* GATT channel close delay timer */
+  alarm_t* gatt_open_timer;  /* GATT channel open wait timer */
   RawAddress pending_close_bda; /* pending GATT channel remote device address */
 
 } tBTA_DM_SEARCH_CB;
@@ -517,6 +520,7 @@ extern void bta_dm_ble_confirm_reply(const RawAddress&, bool);
 extern void bta_dm_ble_set_conn_params(const RawAddress&, uint16_t, uint16_t,
                                        uint16_t, uint16_t);
 extern void bta_dm_close_gatt_conn(tBTA_DM_MSG* p_data);
+extern void bta_dm_open_gatt_conn_timeout(tBTA_DM_MSG* p_data);
 extern void bta_dm_ble_observe(bool, uint8_t, tBTA_DM_SEARCH_CBACK*);
 extern void bta_dm_ble_scan(bool, uint8_t);
 extern void bta_dm_ble_csis_observe(bool, tBTA_DM_SEARCH_CBACK*);
