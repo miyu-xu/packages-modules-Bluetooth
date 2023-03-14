@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "adbe6403_9b7a2216",
+        "filename": "patch.diff",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-03-14T00:24:08Z",
+      "side": 1,
+      "message": "Remove this file",
+      "revId": "cd35a95888c54cf5df5da9e1aa7b6d914419236d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
