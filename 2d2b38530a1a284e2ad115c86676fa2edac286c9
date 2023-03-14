@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f0f3257a_f3eb3a64",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-03-14T03:53:50Z",
+      "side": 1,
+      "message": "CrOS rust_crates dependency has landed. OK to submit once flossbuild approves",
+      "revId": "2d2b38530a1a284e2ad115c86676fa2edac286c9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
