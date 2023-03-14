@@ -58,6 +58,7 @@ android_test {
     required: ["PandoraServer"],
     test_config: "configs/PtsBotTest.xml",
     data: [
+        ":PandoraServer",
         "configs/pts_bot_tests_config.json",
         ":mmi2grpc"
     ],
