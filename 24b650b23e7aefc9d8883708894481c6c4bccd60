@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c16183be_4928c800",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1970925
+      },
+      "writtenOn": "2023-03-14T10:27:19Z",
+      "side": 1,
+      "message": "Hi Charlie,\n\nI have taken care of your comments. Kindly provide your inputs.\n\nThanks \u0026 Regards,\nDhananjaya",
+      "revId": "24b650b23e7aefc9d8883708894481c6c4bccd60",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
