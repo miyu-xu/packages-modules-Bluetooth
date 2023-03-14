@@ -1187,18 +1187,6 @@ extern void BTA_DmBleGetEnergyInfo(tBTA_BLE_ENERGY_INFO_CBACK* p_cmpl_cback);
 
 /*******************************************************************************
  *
- * Function         BTA_BrcmInit
- *
- * Description      This function initializes Broadcom specific VS handler in
- *                  BTA
- *
- * Returns          void
- *
- ******************************************************************************/
-extern void BTA_VendorInit(void);
-
-/*******************************************************************************
- *
  * Function         BTA_DmClearEventFilter
  *
  * Description      This function clears the event filter

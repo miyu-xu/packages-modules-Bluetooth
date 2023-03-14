@@ -66,7 +66,6 @@ struct BTA_DmSetBlePrefConnParams BTA_DmSetBlePrefConnParams;
 struct BTA_DmSetDeviceName BTA_DmSetDeviceName;
 struct BTA_DmSetEncryption BTA_DmSetEncryption;
 struct BTA_DmSetLocalDiRecord BTA_DmSetLocalDiRecord;
-struct BTA_VendorInit BTA_VendorInit;
 struct BTA_dm_init BTA_dm_init;
 
 }  // namespace bta_dm_api
@@ -207,10 +206,6 @@ tBTA_STATUS BTA_DmSetLocalDiRecord(tSDP_DI_RECORD* p_device_info,
   inc_func_call_count(__func__);
   return test::mock::bta_dm_api::BTA_DmSetLocalDiRecord(p_device_info,
                                                         p_handle);
-}
-void BTA_VendorInit(void) {
-  inc_func_call_count(__func__);
-  test::mock::bta_dm_api::BTA_VendorInit();
 }
 void BTA_dm_init() {
   inc_func_call_count(__func__);
