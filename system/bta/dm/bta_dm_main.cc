@@ -80,6 +80,9 @@ bool bta_dm_search_sm_execute(BT_HDR_RIGID* p_msg) {
         case BTA_DM_SDP_RESULT_EVT:
           bta_dm_free_sdp_db();
           break;
+        case BTA_DM_DISC_OPEN_TOUT_EVT:
+          bta_dm_open_gatt_conn_timeout(message);
+          break;
         case BTA_DM_DISC_CLOSE_TOUT_EVT:
           bta_dm_close_gatt_conn(message);
           break;
@@ -140,6 +143,9 @@ bool bta_dm_search_sm_execute(BT_HDR_RIGID* p_msg) {
           bta_dm_search_cancel_notify();
           bta_dm_execute_queued_request();
           break;
+        case BTA_DM_DISC_OPEN_TOUT_EVT:
+          bta_dm_open_gatt_conn_timeout(message);
+          break;
         case BTA_DM_DISC_CLOSE_TOUT_EVT:
           if (bluetooth::common::init_flags::
                   bta_dm_clear_conn_id_on_client_close_is_enabled()) {
@@ -176,6 +182,9 @@ bool bta_dm_search_sm_execute(BT_HDR_RIGID* p_msg) {
           bta_dm_search_clear_queue();
           bta_dm_search_set_state(BTA_DM_SEARCH_CANCELLING);
           bta_dm_search_cancel_notify();
+          break;
+        case BTA_DM_DISC_OPEN_TOUT_EVT:
+          bta_dm_open_gatt_conn_timeout(message);
           break;
         case BTA_DM_DISC_CLOSE_TOUT_EVT:
           if (bluetooth::common::init_flags::
