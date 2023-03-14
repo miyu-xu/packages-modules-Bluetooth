@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "da0c51b4_3bf2edfc",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2023-03-14T23:09:25Z",
+      "side": 1,
+      "message": "Huge nit, but seems like your commit message lines are a bit long. That, or someone changed something on git and I haven\u0027t seen it yet 😊\n\nDouble check when you reupload!",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 75
+      },
+      "revId": "5722dc956f008dc7216d5b34a1acf826968d4e5b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3bfed1e7_ae040d88",
+        "filename": "android/app/src/com/android/bluetooth/avrcpcontroller/AvrcpControllerStateMachine.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 506,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2023-03-14T23:09:25Z",
+      "side": 1,
+      "message": "This will work and I\u0027m fine with it as is, but!\n\nWhat was the line of thinking around putting it here vs. in AvrcpControllerService? Activity is global to all BT devices, not just the active one. It _might_ be safer to handle it one level up so we don\u0027t need to worry about active changes during focus changes.",
+      "range": {
+        "startLine": 506,
+        "startChar": 28,
+        "endLine": 506,
+        "endChar": 73
+      },
+      "revId": "5722dc956f008dc7216d5b34a1acf826968d4e5b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e932be6a_f5101117",
+        "filename": "android/app/src/com/android/bluetooth/avrcpcontroller/BluetoothMediaBrowserService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 357,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2023-03-14T23:09:25Z",
+      "side": 1,
+      "message": "nit: It might be nice to add active status to dump() as well.",
+      "range": {
+        "startLine": 357,
+        "startChar": 37,
+        "endLine": 357,
+        "endChar": 44
+      },
+      "revId": "5722dc956f008dc7216d5b34a1acf826968d4e5b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a6482128_c2b2368e",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/a2dpsink/A2dpSinkStreamHandlerTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2023-03-14T23:09:25Z",
+      "side": 1,
+      "message": "Did you mean to use this and assert state against it? Or did you just want the stream handler under test to have a place to send commands to so we can get requests back?",
+      "range": {
+        "startLine": 74,
+        "startChar": 35,
+        "endLine": 74,
+        "endChar": 59
+      },
+      "revId": "5722dc956f008dc7216d5b34a1acf826968d4e5b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d6dab6f3_2f4d1c28",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/avrcpcontroller/AvrcpControllerServiceTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 302,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2023-03-14T23:09:25Z",
+      "side": 1,
+      "message": "Use the go/truth bindings and not the Assert library, something like:\nassertThat(BluetoothMediaBrowserService.isActive()).isFalse()\n\nSame below too",
+      "range": {
+        "startLine": 302,
+        "startChar": 15,
+        "endLine": 302,
+        "endChar": 26
+      },
+      "revId": "5722dc956f008dc7216d5b34a1acf826968d4e5b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3983caed_79e6ebdf",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/avrcpcontroller/AvrcpControllerStateMachineTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1380,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2023-03-14T23:09:25Z",
+      "side": 1,
+      "message": "This one is a harder ask since so much of the code doesn\u0027t do it, but consider use go/truth instead for these new lines. We can clean up the rest some other time.",
+      "range": {
+        "startLine": 1380,
+        "startChar": 8,
+        "endLine": 1380,
+        "endChar": 67
+      },
+      "revId": "5722dc956f008dc7216d5b34a1acf826968d4e5b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
