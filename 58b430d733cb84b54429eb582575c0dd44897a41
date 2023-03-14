@@ -33,6 +33,23 @@
       "message": "Loop in Hsinchen and Dean autotest.",
       "revId": "58b430d733cb84b54429eb582575c0dd44897a41",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f017f402_dfa1bbb0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1993150
+      },
+      "writtenOn": "2023-03-14T02:41:13Z",
+      "side": 1,
+      "message": "What\u0027s the purpose and the content of migrating API for qualification? Do you have a doc for this? I didn\u0027t see it in the bug link.",
+      "revId": "58b430d733cb84b54429eb582575c0dd44897a41",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
