@@ -50,6 +50,23 @@
       "message": "What\u0027s the purpose and the content of migrating API for qualification? Do you have a doc for this? I didn\u0027t see it in the bug link.",
       "revId": "58b430d733cb84b54429eb582575c0dd44897a41",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9770a570_e19b6c93",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1993150
+      },
+      "writtenOn": "2023-03-14T02:47:13Z",
+      "side": 1,
+      "message": "It needs all the current test code that uses BluetoothQA D-Bus to switch to BluetoothQALegacy, right? And the CL must be merged together. This sounds like a non-trivial effort. Do we really a strong motivation to do so?  If so, we should come out with a good mechanism for the tests to work with either current BluetoothQA or new BluetoothQALegacy API.",
+      "revId": "58b430d733cb84b54429eb582575c0dd44897a41",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
