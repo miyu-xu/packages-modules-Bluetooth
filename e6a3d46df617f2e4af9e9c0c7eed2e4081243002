@@ -93,6 +93,30 @@
       },
       "revId": "e6a3d46df617f2e4af9e9c0c7eed2e4081243002",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "45d83e60_b5ca59db",
+        "filename": "tools/pdl/src/lint.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2023-03-14T13:15:58Z",
+      "side": 1,
+      "message": "Yeah, I see what you mean.\n\nIn any case, it\u0027s not high on my priority list, just something I figured we should take into account. I think we could try streamlining the API in the future and see if we like it better without the `get_` prefixes.",
+      "parentUuid": "ddd7baff_9282f72e",
+      "range": {
+        "startLine": 169,
+        "startChar": 11,
+        "endLine": 169,
+        "endChar": 28
+      },
+      "revId": "e6a3d46df617f2e4af9e9c0c7eed2e4081243002",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
