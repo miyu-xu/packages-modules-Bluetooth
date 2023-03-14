@@ -16,6 +16,24 @@
       "message": "Perhaps you want to uprev to 0.64 since that is current.",
       "revId": "1bd4db91ce98762b3e61987d6b4a7a69ecb2b21c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a018b8a6_8f33526c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-03-14T22:29:53Z",
+      "side": 1,
+      "message": "Yes -- I think that\u0027s a good idea. I\u0027m now updating ChromeOS repos so it has 0.64 instead of 0.63... I\u0027m 100% in favor of emulators just using the android vendored crates... reduces the amount of repos we have to update at once",
+      "parentUuid": "66e4fea3_49c2763a",
+      "revId": "1bd4db91ce98762b3e61987d6b4a7a69ecb2b21c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
