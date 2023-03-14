@@ -16,6 +16,24 @@
       "message": "Remove this file",
       "revId": "cd35a95888c54cf5df5da9e1aa7b6d914419236d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4471608b_bf2c10d0",
+        "filename": "patch.diff",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1986325
+      },
+      "writtenOn": "2023-03-14T00:28:14Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "adbe6403_9b7a2216",
+      "revId": "cd35a95888c54cf5df5da9e1aa7b6d914419236d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
