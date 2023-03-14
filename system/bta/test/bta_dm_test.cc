@@ -33,6 +33,7 @@
 #include "common/message_loop_thread.h"
 #include "osi/include/compat.h"
 #include "stack/include/bt_dev_class.h"
+#include "stack/include/bt_device_type.h"
 #include "stack/include/bt_name.h"
 #include "stack/include/btm_status.h"
 #include "test/common/main_handler.h"
@@ -41,8 +42,10 @@
 #include "test/mock/mock_osi_alarm.h"
 #include "test/mock/mock_osi_allocator.h"
 #include "test/mock/mock_stack_acl.h"
+#include "test/mock/mock_stack_btm_ble.h"
 #include "test/mock/mock_stack_btm_inq.h"
 #include "test/mock/mock_stack_btm_sec.h"
+#include "types/ble_address_with_type.h"
 
 using namespace std::chrono_literals;
 using ::testing::ElementsAre;
@@ -474,13 +477,61 @@ TEST_F(BtaDmTest, bta_dm_determine_discovery_transport__BT_TRANSPORT_LE) {
                 bd_addr));
 }
 
-TEST_F(BtaDmTest, bta_dm_determine_discovery_transport__BT_TRANSPORT_AUTO) {
+TEST_F(BtaDmTest,
+       bta_dm_determine_discovery_transport__BT_TRANSPORT_AUTO__BR_EDR) {
   const RawAddress bd_addr{{0x11, 0x22, 0x33, 0x44, 0x55, 0x66}};
   bta_dm_search_cb.transport = BT_TRANSPORT_AUTO;
+
+  test::mock::stack_btm_ble::BTM_ReadDevInfo.body =
+      [](const RawAddress& remote_bda, tBT_DEVICE_TYPE* p_dev_type,
+         tBLE_ADDR_TYPE* p_addr_type) {
+        *p_dev_type = BT_DEVICE_TYPE_BREDR;
+        *p_addr_type = BLE_ADDR_PUBLIC;
+      };
 
   ASSERT_EQ(BT_TRANSPORT_BR_EDR,
             bluetooth::legacy::testing::bta_dm_determine_discovery_transport(
                 bd_addr));
+
+  test::mock::stack_btm_ble::BTM_ReadDevInfo = {};
+}
+
+TEST_F(BtaDmTest,
+       bta_dm_determine_discovery_transport__BT_TRANSPORT_AUTO__BLE__PUBLIC) {
+  const RawAddress bd_addr{{0x11, 0x22, 0x33, 0x44, 0x55, 0x66}};
+  bta_dm_search_cb.transport = BT_TRANSPORT_AUTO;
+
+  test::mock::stack_btm_ble::BTM_ReadDevInfo.body =
+      [](const RawAddress& remote_bda, tBT_DEVICE_TYPE* p_dev_type,
+         tBLE_ADDR_TYPE* p_addr_type) {
+        *p_dev_type = BT_DEVICE_TYPE_BLE;
+        *p_addr_type = BLE_ADDR_PUBLIC;
+      };
+
+  ASSERT_EQ(BT_TRANSPORT_LE,
+            bluetooth::legacy::testing::bta_dm_determine_discovery_transport(
+                bd_addr));
+
+  test::mock::stack_btm_ble::BTM_ReadDevInfo = {};
+}
+
+TEST_F(BtaDmTest,
+       bta_dm_determine_discovery_transport__BT_TRANSPORT_AUTO__DUMO) {
+  const RawAddress bd_addr{{0x11, 0x22, 0x33, 0x44, 0x55, 0x66}};
+  bta_dm_search_cb.transport = BT_TRANSPORT_AUTO;
+
+  test::mock::stack_btm_ble::BTM_ReadDevInfo.body =
+      [](const RawAddress& remote_bda, tBT_DEVICE_TYPE* p_dev_type,
+         tBLE_ADDR_TYPE* p_addr_type) {
+        *p_dev_type = BT_DEVICE_TYPE_DUMO;
+        *p_addr_type = BLE_ADDR_PUBLIC;
+      };
+
+  ASSERT_EQ(BT_TRANSPORT_BR_EDR,
+            bluetooth::legacy::testing::bta_dm_determine_discovery_transport(
+                bd_addr));
+
+  test::mock::stack_btm_ble::BTM_ReadDevInfo = {};
 }
 
 TEST_F(BtaDmTest, bta_dm_search_evt_text) {
