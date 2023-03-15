@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c11a4056_9fa5c1df",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2023-03-15T13:59:26Z",
+      "side": 1,
+      "message": "Hi Ivan, this is the test-all-the-things test I talked about: it shows that the code we generate in our tests actually compiles successfully. I\u0027ve been expanding the tests as we add support for more and more PDL constructs, so this gives us a high level of confidence that we generate correct Rust code (the test here would have found the bug fixed by https://r.android.com/2478376).\n\nA step further would be to actually fuzz the compiler: generate random PDL inputs and compile the generated output. I guess we\u0027ll eventually set up such a system, but until then, this is simple test helps us a lot.",
+      "revId": "19deb9085184e6bfe6ce980c5764bf9d17af7a44",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
