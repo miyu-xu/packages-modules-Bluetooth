@@ -389,7 +389,7 @@ void BTA_dm_on_hw_on() {
 
   btif_dm_get_local_class_of_device(dev_class);
   LOG_INFO("%s: Read default class of device {0x%x, 0x%x, 0x%x}", __func__,
-      dev_class[0], dev_class[1], dev_class[2]);
+           dev_class[0], dev_class[1], dev_class[2]);
 
   if (bluetooth::shim::is_gd_security_enabled()) {
     bluetooth::shim::BTM_SetDeviceClass(dev_class);
@@ -673,7 +673,8 @@ void bta_dm_remove_device(const RawAddress& bd_addr) {
       if (peer_device.peer_bdaddr == other_address &&
           peer_device.transport == other_transport) {
         peer_device.conn_state = BTA_DM_UNPAIRING;
-        LOG_INFO("Remove ACL of address %s", ADDRESS_TO_LOGGABLE_CSTR(other_address));
+        LOG_INFO("Remove ACL of address %s",
+                 ADDRESS_TO_LOGGABLE_CSTR(other_address));
 
         /* Make sure device is not in acceptlist before we disconnect */
         GATT_CancelConnect(0, bd_addr, false);
@@ -763,7 +764,8 @@ void bta_dm_close_acl(const RawAddress& bd_addr, bool remove_dev,
 void bta_dm_bond(const RawAddress& bd_addr, tBLE_ADDR_TYPE addr_type,
                  tBT_TRANSPORT transport, tBT_DEVICE_TYPE device_type) {
   LOG_DEBUG("Bonding with peer device:%s type:%s transport:%s type:%s",
-            ADDRESS_TO_LOGGABLE_CSTR(bd_addr), AddressTypeText(addr_type).c_str(),
+            ADDRESS_TO_LOGGABLE_CSTR(bd_addr),
+            AddressTypeText(addr_type).c_str(),
             bt_transport_text(transport).c_str(),
             DeviceTypeText(device_type).c_str());
 
@@ -1462,43 +1464,56 @@ void bta_dm_search_cmpl() {
 
   uint16_t conn_id = bta_dm_search_cb.conn_id;
 
-  /* no BLE connection, i.e. Classic service discovery end */
-  if (conn_id == GATT_INVALID_CONN_ID) {
-    bta_dm_search_cb.p_search_cback(BTA_DM_DISC_CMPL_EVT, nullptr);
-    bta_dm_execute_queued_request();
-    return;
-  }
-
-  btgatt_db_element_t* db = NULL;
-  int count = 0;
-  BTA_GATTC_GetGattDb(conn_id, 0x0000, 0xFFFF, &db, &count);
-
-  if (count == 0) {
-    LOG_INFO("Empty GATT database - no BLE services discovered");
-    bta_dm_search_cb.p_search_cback(BTA_DM_DISC_CMPL_EVT, nullptr);
-    bta_dm_execute_queued_request();
-    return;
-  }
-
-  std::vector<Uuid> gatt_services;
-
-  for (int i = 0; i < count; i++) {
-    // we process service entries only
-    if (db[i].type == BTGATT_DB_PRIMARY_SERVICE) {
-      gatt_services.push_back(db[i].uuid);
-    }
-  }
-  osi_free(db);
-
   tBTA_DM_SEARCH result;
+  std::vector<Uuid> gatt_services;
   result.disc_ble_res.services = &gatt_services;
   result.disc_ble_res.bd_addr = bta_dm_search_cb.peer_bdaddr;
   strlcpy((char*)result.disc_ble_res.bd_name, bta_dm_get_remname(),
           BD_NAME_LEN + 1);
 
-  LOG_INFO("GATT services discovered using LE Transport");
+  bool send_gatt_results =
+      bluetooth::common::init_flags::
+              always_send_services_if_gatt_disc_done_is_enabled()
+          ? bta_dm_search_cb.gatt_disc_active
+          : false;
+
+  bta_dm_search_cb.gatt_disc_active = false;
+
+  /* no BLE connection, i.e. Classic service discovery end */
+  if (conn_id == GATT_INVALID_CONN_ID) {
+    if (bta_dm_search_cb.gatt_disc_active) {
+      LOG_INFO(
+          "GATT active but no BLE connection, likely disconnected midway "
+          "through");
+    } else {
+      LOG_INFO("No BLE connection, processing classic results");
+    }
+  } else {
+    btgatt_db_element_t* db = NULL;
+    int count = 0;
+    BTA_GATTC_GetGattDb(conn_id, 0x0000, 0xFFFF, &db, &count);
+    if (count != 0) {
+      for (int i = 0; i < count; i++) {
+        // we process service entries only
+        if (db[i].type == BTGATT_DB_PRIMARY_SERVICE) {
+          gatt_services.push_back(db[i].uuid);
+        }
+      }
+      osi_free(db);
+      LOG_INFO(
+          "GATT services discovered using LE Transport, will always send to "
+          "upper layer");
+      send_gatt_results = true;
+    } else {
+      LOG_INFO("Empty GATT database - no BLE services discovered");
+    }
+  }
+
   // send all result back to app
-  bta_dm_search_cb.p_search_cback(BTA_DM_GATT_OVER_LE_RES_EVT, &result);
+  if (send_gatt_results) {
+    LOG_INFO("Sending GATT results to upper layer");
+    bta_dm_search_cb.p_search_cback(BTA_DM_GATT_OVER_LE_RES_EVT, &result);
+  }
 
   bta_dm_search_cb.p_search_cback(BTA_DM_DISC_CMPL_EVT, nullptr);
 
@@ -1732,8 +1747,8 @@ static void bta_dm_find_services(const RawAddress& bd_addr) {
   while (bta_dm_search_cb.service_index < BTA_MAX_SERVICE_ID) {
     Uuid uuid = Uuid::kEmpty;
     if (bta_dm_search_cb.services_to_search &
-        (tBTA_SERVICE_MASK)(
-            BTA_SERVICE_ID_TO_SERVICE_MASK(bta_dm_search_cb.service_index))) {
+        (tBTA_SERVICE_MASK)(BTA_SERVICE_ID_TO_SERVICE_MASK(
+            bta_dm_search_cb.service_index))) {
       bta_dm_search_cb.p_sdp_db =
           (tSDP_DISCOVERY_DB*)osi_malloc(BTA_DM_SDP_DB_SIZE);
       APPL_TRACE_DEBUG("bta_dm_search_cb.services = %04x***********",
@@ -2107,7 +2122,6 @@ static void bta_dm_service_search_remname_cback(const RawAddress& bd_addr,
 
   APPL_TRACE_DEBUG("%s name=<%s>", __func__, bd_name);
 
-
   /* if this is what we are looking for */
   if (bta_dm_search_cb.peer_bdaddr == bd_addr) {
     rem_name.bd_addr = bd_addr;
@@ -2398,7 +2412,8 @@ static void bta_dm_authentication_complete_cback(
         LOG_WARN(
             "Deleting device record as authentication failed entry:%s "
             "reason:%s",
-            ADDRESS_TO_LOGGABLE_CSTR(bd_addr), hci_reason_code_text(reason).c_str());
+            ADDRESS_TO_LOGGABLE_CSTR(bd_addr),
+            hci_reason_code_text(reason).c_str());
         break;
 
       default:
@@ -2583,8 +2598,9 @@ static void handle_role_change(const RawAddress& bd_addr, tHCI_ROLE new_role,
   LOG_INFO(
       "Role change callback peer:%s info:0x%x new_role:%s dev count:%d "
       "hci_status:%s",
-      ADDRESS_TO_LOGGABLE_CSTR(bd_addr), p_dev->Info(), RoleText(new_role).c_str(),
-      bta_dm_cb.device_list.count, hci_error_code_text(hci_status).c_str());
+      ADDRESS_TO_LOGGABLE_CSTR(bd_addr), p_dev->Info(),
+      RoleText(new_role).c_str(), bta_dm_cb.device_list.count,
+      hci_error_code_text(hci_status).c_str());
 
   if (p_dev->Info() & BTA_DM_DI_AV_ACTIVE) {
     bool need_policy_change = false;
@@ -2624,7 +2640,8 @@ void BTA_dm_report_role_change(const RawAddress bd_addr, tHCI_ROLE new_role,
 void handle_remote_features_complete(const RawAddress& bd_addr) {
   tBTA_DM_PEER_DEVICE* p_dev = bta_dm_find_peer_device(bd_addr);
   if (!p_dev) {
-    LOG_WARN("Unable to find device peer:%s", ADDRESS_TO_LOGGABLE_CSTR(bd_addr));
+    LOG_WARN("Unable to find device peer:%s",
+             ADDRESS_TO_LOGGABLE_CSTR(bd_addr));
     return;
   }
 
@@ -3143,7 +3160,7 @@ static void bta_dm_set_eir(char* local_name) {
 #endif  // BTA_EIR_CANNED_UUID_LIST
 #if (BTM_EIR_DEFAULT_FEC_REQUIRED == FALSE)
   uint8_t free_eir_length = HCI_EXT_INQ_RESPONSE_LEN;
-#else  // BTM_EIR_DEFAULT_FEC_REQUIRED
+#else   // BTM_EIR_DEFAULT_FEC_REQUIRED
   uint8_t free_eir_length = HCI_DM5_PACKET_SIZE;
 #endif  // BTM_EIR_DEFAULT_FEC_REQUIRED
   uint8_t num_uuid;
@@ -3254,7 +3271,8 @@ static void bta_dm_set_eir(char* local_name) {
       for (custom_uuid_idx = 0;
            custom_uuid_idx < BTA_EIR_SERVER_NUM_CUSTOM_UUID;
            custom_uuid_idx++) {
-        const Uuid& curr = bta_dm_cb.bta_custom_uuid[custom_uuid_idx].custom_uuid;
+        const Uuid& curr =
+            bta_dm_cb.bta_custom_uuid[custom_uuid_idx].custom_uuid;
         if (curr.GetShortestRepresentationSize() == Uuid::kNumBytes16) {
           if (num_uuid < max_num_uuid) {
             UINT16_TO_STREAM(p, curr.As16Bit());
@@ -3396,8 +3414,8 @@ static uint8_t bta_dm_get_cust_uuid_index(uint32_t handle) {
 #if (BTA_EIR_SERVER_NUM_CUSTOM_UUID > 0)
   uint8_t c_uu_idx = 0;
 
-  while(c_uu_idx < BTA_EIR_SERVER_NUM_CUSTOM_UUID &&
-      bta_dm_cb.bta_custom_uuid[c_uu_idx].handle != handle) {
+  while (c_uu_idx < BTA_EIR_SERVER_NUM_CUSTOM_UUID &&
+         bta_dm_cb.bta_custom_uuid[c_uu_idx].handle != handle) {
     c_uu_idx++;
   }
 
@@ -3416,7 +3434,8 @@ static uint8_t bta_dm_get_cust_uuid_index(uint32_t handle) {
  * Returns          None
  *
  ******************************************************************************/
-static void bta_dm_update_cust_uuid(uint8_t c_uu_idx, const Uuid& uuid, uint32_t handle) {
+static void bta_dm_update_cust_uuid(uint8_t c_uu_idx, const Uuid& uuid,
+                                    uint32_t handle) {
 #if (BTA_EIR_SERVER_NUM_CUSTOM_UUID > 0)
   if (c_uu_idx < BTA_EIR_SERVER_NUM_CUSTOM_UUID) {
     tBTA_CUSTOM_UUID& curr = bta_dm_cb.bta_custom_uuid[c_uu_idx];
@@ -3432,7 +3451,8 @@ static void bta_dm_update_cust_uuid(uint8_t c_uu_idx, const Uuid& uuid, uint32_t
  *
  * Function         bta_dm_eir_update_cust_uuid
  *
- * Description      This function adds or removes custom service UUID in EIR database.
+ * Description      This function adds or removes custom service UUID in EIR
+ *database.
  *
  * Returns          None
  *
@@ -3445,7 +3465,8 @@ void bta_dm_eir_update_cust_uuid(const tBTA_CUSTOM_UUID& curr, bool adding) {
     c_uu_idx = bta_dm_get_cust_uuid_index(0); /* find a vacant from uuid list */
     bta_dm_update_cust_uuid(c_uu_idx, curr.custom_uuid, curr.handle);
   } else {
-    c_uu_idx = bta_dm_get_cust_uuid_index(curr.handle); /* find the uuid from uuid list */
+    c_uu_idx = bta_dm_get_cust_uuid_index(
+        curr.handle); /* find the uuid from uuid list */
     bta_dm_update_cust_uuid(c_uu_idx, curr.custom_uuid, 0);
   }
 
@@ -3523,29 +3544,33 @@ void bta_dm_encrypt_cback(const RawAddress* bd_addr, tBT_TRANSPORT transport,
     case BTM_WRONG_MODE:
       LOG_WARN(
           "Unable to encrypt link peer:%s transport:%s status:%s callback:%c",
-          ADDRESS_TO_LOGGABLE_CSTR((*bd_addr)), bt_transport_text(transport).c_str(),
-          btm_status_text(result).c_str(), (p_callback) ? 'T' : 'F');
+          ADDRESS_TO_LOGGABLE_CSTR((*bd_addr)),
+          bt_transport_text(transport).c_str(), btm_status_text(result).c_str(),
+          (p_callback) ? 'T' : 'F');
       bta_status = BTA_WRONG_MODE;
       break;
     case BTM_NO_RESOURCES:
       LOG_WARN(
           "Unable to encrypt link peer:%s transport:%s status:%s callback:%c",
-          ADDRESS_TO_LOGGABLE_CSTR((*bd_addr)), bt_transport_text(transport).c_str(),
-          btm_status_text(result).c_str(), (p_callback) ? 'T' : 'F');
+          ADDRESS_TO_LOGGABLE_CSTR((*bd_addr)),
+          bt_transport_text(transport).c_str(), btm_status_text(result).c_str(),
+          (p_callback) ? 'T' : 'F');
       bta_status = BTA_NO_RESOURCES;
       break;
     case BTM_BUSY:
       LOG_WARN(
           "Unable to encrypt link peer:%s transport:%s status:%s callback:%c",
-          ADDRESS_TO_LOGGABLE_CSTR((*bd_addr)), bt_transport_text(transport).c_str(),
-          btm_status_text(result).c_str(), (p_callback) ? 'T' : 'F');
+          ADDRESS_TO_LOGGABLE_CSTR((*bd_addr)),
+          bt_transport_text(transport).c_str(), btm_status_text(result).c_str(),
+          (p_callback) ? 'T' : 'F');
       bta_status = BTA_BUSY;
       break;
     default:
       LOG_ERROR(
           "Failed to encrypt link peer:%s transport:%s status:%s callback:%c",
-          ADDRESS_TO_LOGGABLE_CSTR((*bd_addr)), bt_transport_text(transport).c_str(),
-          btm_status_text(result).c_str(), (p_callback) ? 'T' : 'F');
+          ADDRESS_TO_LOGGABLE_CSTR((*bd_addr)),
+          bt_transport_text(transport).c_str(), btm_status_text(result).c_str(),
+          (p_callback) ? 'T' : 'F');
       bta_status = BTA_FAILURE;
       break;
   }
@@ -3566,7 +3591,8 @@ void bta_dm_set_encryption(const RawAddress& bd_addr, tBT_TRANSPORT transport,
   tBTA_DM_PEER_DEVICE* device = find_connected_device(bd_addr, transport);
   if (device == nullptr) {
     LOG_ERROR("Unable to find active ACL connection device:%s transport:%s",
-              ADDRESS_TO_LOGGABLE_CSTR(bd_addr), bt_transport_text(transport).c_str());
+              ADDRESS_TO_LOGGABLE_CSTR(bd_addr),
+              bt_transport_text(transport).c_str());
     return;
   }
 
@@ -3574,7 +3600,8 @@ void bta_dm_set_encryption(const RawAddress& bd_addr, tBT_TRANSPORT transport,
     LOG_ERROR(
         "Unable to start encryption as already in progress peer:%s "
         "transport:%s",
-        ADDRESS_TO_LOGGABLE_CSTR(bd_addr), bt_transport_text(transport).c_str());
+        ADDRESS_TO_LOGGABLE_CSTR(bd_addr),
+        bt_transport_text(transport).c_str());
     (*p_callback)(bd_addr, transport, BTA_BUSY);
     return;
   }
@@ -3583,10 +3610,12 @@ void bta_dm_set_encryption(const RawAddress& bd_addr, tBT_TRANSPORT transport,
                         sec_act) == BTM_CMD_STARTED) {
     device->p_encrypt_cback = p_callback;
     LOG_DEBUG("Started encryption peer:%s transport:%s",
-              ADDRESS_TO_LOGGABLE_CSTR(bd_addr), bt_transport_text(transport).c_str());
+              ADDRESS_TO_LOGGABLE_CSTR(bd_addr),
+              bt_transport_text(transport).c_str());
   } else {
     LOG_ERROR("Unable to start encryption process peer:%s transport:%s",
-              ADDRESS_TO_LOGGABLE_CSTR(bd_addr), bt_transport_text(transport).c_str());
+              ADDRESS_TO_LOGGABLE_CSTR(bd_addr),
+              bt_transport_text(transport).c_str());
   }
 }
 
@@ -4180,8 +4209,8 @@ static void bta_dm_gattc_register(void) {
                               bta_dm_search_cb.client_if = client_id;
                             else
                               bta_dm_search_cb.client_if = BTA_GATTS_INVALID_IF;
-
-                          }), false);
+                          }),
+                          false);
   }
 }
 
@@ -4237,7 +4266,6 @@ static void bta_dm_gatt_disc_complete(uint16_t conn_id, tGATT_STATUS status) {
       bta_dm_search_cb.conn_id = GATT_INVALID_CONN_ID;
     }
   }
-  bta_dm_search_cb.gatt_disc_active = false;
 }
 
 /*******************************************************************************
@@ -4539,15 +4567,15 @@ static void bta_dm_ctrl_features_rd_cmpl_cback(tHCI_STATUS result) {
 }
 #endif /* BLE_VND_INCLUDED */
 
-void bta_dm_process_delete_key_RC_to_unpair(const RawAddress& bd_addr)
-{
-    LOG_WARN("RC key missing");
-    tBTA_DM_SEC param = {
-        .delete_key_RC_to_unpair = {
-            .bd_addr = bd_addr,
-        },
-    };
-    bta_dm_cb.p_sec_cback(BTA_DM_REPORT_BONDING_EVT, &param);
+void bta_dm_process_delete_key_RC_to_unpair(const RawAddress& bd_addr) {
+  LOG_WARN("RC key missing");
+  tBTA_DM_SEC param = {
+      .delete_key_RC_to_unpair =
+          {
+              .bd_addr = bd_addr,
+          },
+  };
+  bta_dm_cb.p_sec_cback(BTA_DM_REPORT_BONDING_EVT, &param);
 }
 
 /*******************************************************************************
@@ -4562,9 +4590,9 @@ void bta_dm_process_delete_key_RC_to_unpair(const RawAddress& bd_addr)
 void bta_dm_ble_subrate_request(const RawAddress& bd_addr, uint16_t subrate_min,
                                 uint16_t subrate_max, uint16_t max_latency,
                                 uint16_t cont_num, uint16_t timeout) {
-    // Logging done in l2c_ble.cc
-    L2CA_SubrateRequest(bd_addr, subrate_min, subrate_max, max_latency,
-                        cont_num, timeout);
+  // Logging done in l2c_ble.cc
+  L2CA_SubrateRequest(bd_addr, subrate_min, subrate_max, max_latency, cont_num,
+                      timeout);
 }
 
 namespace bluetooth {
