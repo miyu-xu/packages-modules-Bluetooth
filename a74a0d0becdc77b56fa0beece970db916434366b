@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8733f467_598fb804",
+        "filename": "system/profile/avrcp/connection_handler.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-03-15T16:50:18Z",
+      "side": 1,
+      "message": "Is this fix specific to the feature ? Can we put it in a separate CL ?",
+      "range": {
+        "startLine": 184,
+        "startChar": 0,
+        "endLine": 184,
+        "endChar": 24
+      },
+      "revId": "a74a0d0becdc77b56fa0beece970db916434366b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c26ed5d9_80f03bba",
+        "filename": "system/profile/avrcp/connection_handler.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 472,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-03-15T16:50:18Z",
+      "side": 1,
+      "message": "what `to do review` mean? 😊",
+      "range": {
+        "startLine": 472,
+        "startChar": 49,
+        "endLine": 472,
+        "endChar": 62
+      },
+      "revId": "a74a0d0becdc77b56fa0beece970db916434366b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0f6d4af6_360db634",
+        "filename": "system/profile/avrcp/connection_handler.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 655,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-03-15T16:50:18Z",
+      "side": 1,
+      "message": "A few line above you are checking for it-\u003esecond before returning a list and here we are not.\n\nIf the check is needed it should be added here as well, if it is not needed, we should removed it",
+      "range": {
+        "startLine": 655,
+        "startChar": 22,
+        "endLine": 655,
+        "endChar": 28
+      },
+      "revId": "a74a0d0becdc77b56fa0beece970db916434366b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
