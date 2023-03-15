@@ -70,6 +70,30 @@
       },
       "revId": "6c655c79c247206a7b26056461030bf089a32146",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "88d9e43d_6b4070e6",
+        "filename": "system/bta/dm/bta_dm_api.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 539,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-03-15T00:47:15Z",
+      "side": 0,
+      "message": "I don\u0027t know of a global list, but it\u0027s my understanding each DRI has the responsibility to clean up and assess the code quality within their domain.",
+      "parentUuid": "dd1bcfa2_931619a8",
+      "range": {
+        "startLine": 539,
+        "startChar": 28,
+        "endLine": 539,
+        "endChar": 44
+      },
+      "revId": "6c655c79c247206a7b26056461030bf089a32146",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
