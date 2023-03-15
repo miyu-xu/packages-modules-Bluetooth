@@ -49,6 +49,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "dfe057d2_113ac235",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-03-15T15:53:02Z",
+      "side": 1,
+      "message": "You can use BluetoothDevice#getAnonymizedAddress",
+      "parentUuid": "53c68425_50d540a6",
+      "range": {
+        "startLine": 19,
+        "startChar": 25,
+        "endLine": 19,
+        "endChar": 42
+      },
+      "revId": "a811194451815b57195318f957d1f4a321dcaccf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c83a3140_de891d33",
         "filename": "/COMMIT_MSG",
         "patchSetId": 1
