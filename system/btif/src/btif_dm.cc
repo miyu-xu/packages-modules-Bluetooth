@@ -3184,7 +3184,7 @@ void btif_dm_proc_loc_oob(tBT_TRANSPORT transport, bool is_valid,
  * Returns          true if the options were successfully read, else false
  *
  ******************************************************************************/
-bool btif_dm_get_smp_config(tBTE_APPL_CFG* p_cfg) {
+bool btif_dm_get_smp_config(const RawAddress& bd_addr, tBTE_APPL_CFG* p_cfg) {
   const std::string* recv = stack_config_get_interface()->get_pts_smp_options();
   if (!recv) {
     LOG_DEBUG("SMP pairing options not found in stack configuration");
@@ -3227,6 +3227,11 @@ bool btif_dm_get_smp_config(tBTE_APPL_CFG* p_cfg) {
     p_cfg->ble_max_key_size = (uint8_t)strtoul(pch, &endptr, 16);
   else
     return false;
+
+  if ((p_cfg->ble_auth_req & BTM_LE_AUTH_REQ_BOND) == 0) {
+    BTIF_TRACE_DEBUG("%s: Setting BOND_TYPE_TEMPORARY for PTS", __func__);
+    btm_set_bond_type_dev(bd_addr, tBTM_SEC_DEV_REC::BOND_TYPE_TEMPORARY);
+  }
 
   return true;
 }

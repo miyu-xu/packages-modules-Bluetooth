@@ -112,7 +112,7 @@ void btif_dm_metadata_changed(const RawAddress& remote_bd_addr, int key,
                               std::vector<uint8_t> value);
 
 /*callout for reading SMP properties from Text file*/
-bool btif_dm_get_smp_config(tBTE_APPL_CFG* p_cfg);
+bool btif_dm_get_smp_config(const RawAddress& bd_addr, tBTE_APPL_CFG* p_cfg);
 
 typedef struct {
   bool is_penc_key_rcvd;

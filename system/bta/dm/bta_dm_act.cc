@@ -3741,7 +3741,7 @@ static void ble_io_req(const RawAddress& bd_addr, tBTM_IO_CAP* p_io_cap,
 
   /* Retrieve the properties from file system if possible */
   tBTE_APPL_CFG nv_config;
-  if (btif_dm_get_smp_config(&nv_config)) bte_appl_cfg = nv_config;
+  if (btif_dm_get_smp_config(bd_addr, &nv_config)) bte_appl_cfg = nv_config;
 
   /* *p_auth_req by default is false for devices with NoInputNoOutput; true for
    * other devices. */
