@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5324962a_f753f51a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-03-15T17:16:26Z",
+      "side": 1,
+      "message": "Any plans for using PDL in the future for these packets?",
+      "revId": "9427b3d6ef645d6b13943aa3470e4c7ac9869099",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "77633c17_d975ca50",
+        "filename": "system/btif/include/btif_bqr.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-03-15T17:16:26Z",
+      "side": 1,
+      "message": "nit: I would prefer using hex here.  0x101 and 0x102 are easier to see with 1.01 and 1.02.",
+      "range": {
+        "startLine": 165,
+        "startChar": 0,
+        "endLine": 168,
+        "endChar": 50
+      },
+      "revId": "9427b3d6ef645d6b13943aa3470e4c7ac9869099",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
