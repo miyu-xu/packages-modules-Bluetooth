@@ -1,0 +1,234 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0c035dd3_2f86f391",
+        "filename": "system/btif/avrcp/avrcp_service.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 581,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-03-15T14:05:36Z",
+      "side": 1,
+      "message": "ADDRESS_TO_LOGGABLE_STR(bdaddr)",
+      "range": {
+        "startLine": 581,
+        "startChar": 31,
+        "endLine": 581,
+        "endChar": 46
+      },
+      "revId": "071498ed627cdb440a82380f3a904fa4fd38d40a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5f8a7abf_2eb18942",
+        "filename": "system/btif/src/btif_a2dp.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-03-15T14:05:36Z",
+      "side": 1,
+      "message": "`__func__` is not needed in `LOG_XXX()` macro has it is already included in it",
+      "range": {
+        "startLine": 46,
+        "startChar": 52,
+        "endLine": 46,
+        "endChar": 60
+      },
+      "revId": "071498ed627cdb440a82380f3a904fa4fd38d40a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "04b88517_179ca379",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 415,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-03-15T14:05:36Z",
+      "side": 1,
+      "message": "`invalid_peer_check_` is initialized to false\n`SetInvalidPeerCheck` is always called with false\n\nIs there we are never setting the variable to true, we should delete it and the setter",
+      "range": {
+        "startLine": 415,
+        "startChar": 0,
+        "endLine": 415,
+        "endChar": 97
+      },
+      "revId": "071498ed627cdb440a82380f3a904fa4fd38d40a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a54e86f1_41e9480b",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1172,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-03-15T14:05:36Z",
+      "side": 1,
+      "message": "What is the purpose of this lock_guard ? only wait on other operation to complete ?\n\nDon\u0027t we want to perform the full `cleanupAllPeers` while holding the lock ?",
+      "range": {
+        "startLine": 1172,
+        "startChar": 47,
+        "endLine": 1172,
+        "endChar": 70
+      },
+      "revId": "071498ed627cdb440a82380f3a904fa4fd38d40a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1548f35f_1ecb851d",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1443,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-03-15T14:05:36Z",
+      "side": 1,
+      "message": "I understand the code is doing a pop and not a peak",
+      "range": {
+        "startLine": 1443,
+        "startChar": 26,
+        "endLine": 1443,
+        "endChar": 34
+      },
+      "revId": "071498ed627cdb440a82380f3a904fa4fd38d40a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eaf5a6db_c89622b8",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1709,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-03-15T14:05:36Z",
+      "side": 1,
+      "message": "Same as source, this looks like a pop",
+      "range": {
+        "startLine": 1709,
+        "startChar": 24,
+        "endLine": 1709,
+        "endChar": 32
+      },
+      "revId": "071498ed627cdb440a82380f3a904fa4fd38d40a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6e9d3387_6a63c762",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 3052,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-03-15T14:05:36Z",
+      "side": 1,
+      "message": "remove comment",
+      "range": {
+        "startLine": 3052,
+        "startChar": 0,
+        "endLine": 3052,
+        "endChar": 53
+      },
+      "revId": "071498ed627cdb440a82380f3a904fa4fd38d40a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "95c6dc7c_8e822462",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 3169,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-03-15T14:05:36Z",
+      "side": 1,
+      "message": "This method is the perfect exemple to shows that BtifAvSink and BtifAvSource should inehrit a common interface.\n\nIt would be a huge simplification to do something like:\n```cpp\nauto btif_av_both \u003d peer_sep \u003d\u003d AVDT_TSEP_SRC ? btif_av_sink : btif_av_source;\n...\n\nbtif_av_both.FindOrCreatePeer(peer_address, bta_handle);\n```",
+      "range": {
+        "startLine": 3169,
+        "startChar": 19,
+        "endLine": 3169,
+        "endChar": 43
+      },
+      "revId": "071498ed627cdb440a82380f3a904fa4fd38d40a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "613caa98_9912d50f",
+        "filename": "system/btif/src/btif_rc.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 3466,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-03-15T14:05:36Z",
+      "side": 1,
+      "message": "Typo: `don\u0027t`",
+      "range": {
+        "startLine": 3466,
+        "startChar": 36,
+        "endLine": 3466,
+        "endChar": 40
+      },
+      "revId": "071498ed627cdb440a82380f3a904fa4fd38d40a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "16e7cc98_ea682400",
+        "filename": "system/btif/test/btif_rc_test.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-03-15T14:05:36Z",
+      "side": 1,
+      "message": "remove comment",
+      "range": {
+        "startLine": 42,
+        "startChar": 32,
+        "endLine": 42,
+        "endChar": 55
+      },
+      "revId": "071498ed627cdb440a82380f3a904fa4fd38d40a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

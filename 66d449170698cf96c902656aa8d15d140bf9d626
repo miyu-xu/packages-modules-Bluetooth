@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "079f9f6c_073e5611",
+        "filename": "system/btif/src/btif_rc.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 2746,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-03-15T14:05:36Z",
+      "side": 0,
+      "message": "Is this removed on purpose?",
+      "range": {
+        "startLine": 2746,
+        "startChar": 0,
+        "endLine": 2746,
+        "endChar": 32
+      },
+      "revId": "66d449170698cf96c902656aa8d15d140bf9d626",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
