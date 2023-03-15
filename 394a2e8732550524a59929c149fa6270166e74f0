@@ -16,6 +16,24 @@
       "message": "Hi, I agree that the wording of `Vol 4, Part E, 7.7.65.1 LE Connection Complete event` seems to suggest that on failure case it\u0027s only sent to the initiator.\nHowever there is a diagram on `Vol 6, Part D, 3.2 DIRECTED ADVERTISING` which shows the event being sent to the peripheral\u0027s side even without the initiator sending a `LE Create Connection`.\nTo me it looks contradictory and I\u0027m a bit hesitant to remove the code.\n\nA slight tangent: I think if this is regarded as a dead code, then the whole `if` block should be as well. But looks like the `if` block here is to handle the directed advertising case.",
       "revId": "394a2e8732550524a59929c149fa6270166e74f0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "db9642b8_1a6329c5",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 542,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-03-15T18:27:20Z",
+      "side": 0,
+      "message": "From 7.8.9 LE Advertising Enable:\n\nIf the Advertising_Type parameter is 0x01 (ADV_DIRECT_IND, high duty\ncycle) and the directed advertising fails to create a connection, an\nHCI_LE_Connection_Complete or HCI_LE_Enhanced_Connection_Complete\nevent shall be generated with the Status code set to Advertising Timeout\n(0x3C).\nIf the Advertising_Type parameter is 0x00 (ADV_IND), 0x01 (ADV_DIRECT_-\nIND, high duty cycle), or 0x04 (ADV_DIRECT_IND, low duty cycle) and a\nconnection is created, an HCI_LE_Connection_Complete or HCI_LE_-\nEnhanced_Connection_Complete event shall be generated.\n\nIt looks like we can tell by the status, so we don\u0027t need the locally_initiated parameter.",
+      "parentUuid": "20144367_164e7855",
+      "revId": "394a2e8732550524a59929c149fa6270166e74f0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
