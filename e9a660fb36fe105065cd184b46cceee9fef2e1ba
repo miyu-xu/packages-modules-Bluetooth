@@ -1,0 +1,234 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8d5bcfc6_8520fe15",
+        "filename": "system/bta/ar/bta_ar_int.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-03-15T12:31:02Z",
+      "side": 1,
+      "message": "I understand the encapsulation of the feature was needed for keeping it as an external cherry-pick but I think we should remove it in this upstream",
+      "range": {
+        "startLine": 47,
+        "startChar": 0,
+        "endLine": 47,
+        "endChar": 65
+      },
+      "revId": "e9a660fb36fe105065cd184b46cceee9fef2e1ba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6d460ab9_6a5bd0f5",
+        "filename": "system/bta/av/bta_av_aact.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1177,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-03-15T12:31:02Z",
+      "side": 1,
+      "message": "There is some format issue. Please run clang-format on the code",
+      "range": {
+        "startLine": 1177,
+        "startChar": 2,
+        "endLine": 1177,
+        "endChar": 4
+      },
+      "revId": "e9a660fb36fe105065cd184b46cceee9fef2e1ba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "abf71460_7214b116",
+        "filename": "system/bta/av/bta_av_aact.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1471,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-03-15T12:31:02Z",
+      "side": 1,
+      "message": "I think you wanted to inverse this check `if (!is_enabled)`",
+      "range": {
+        "startLine": 1471,
+        "startChar": 37,
+        "endLine": 1471,
+        "endChar": 69
+      },
+      "revId": "e9a660fb36fe105065cd184b46cceee9fef2e1ba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6c576236_04dff155",
+        "filename": "system/bta/av/bta_av_act.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-03-15T12:31:02Z",
+      "side": 1,
+      "message": "peer_addr is always not null in this if.\nyou can directly write `p_msg-\u003epeer_addr \u003d *peer_addr` and remove the kEpmty above",
+      "range": {
+        "startLine": 227,
+        "startChar": 10,
+        "endLine": 227,
+        "endChar": 19
+      },
+      "revId": "e9a660fb36fe105065cd184b46cceee9fef2e1ba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "31af69e5_724d9496",
+        "filename": "system/bta/av/bta_av_act.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 631,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-03-15T12:31:02Z",
+      "side": 1,
+      "message": "We should not upstream TODO statement. Or they should reference a bug number",
+      "range": {
+        "startLine": 631,
+        "startChar": 7,
+        "endLine": 631,
+        "endChar": 21
+      },
+      "revId": "e9a660fb36fe105065cd184b46cceee9fef2e1ba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5655406d_90d0c556",
+        "filename": "system/bta/av/bta_av_act.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 943,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-03-15T12:31:02Z",
+      "side": 1,
+      "message": "It is in my understanding that btif_av_both_enable will never return true if a2dp_src_sink_coexist_is_enabled is false.\n\nI think we should either move the flag check into `btif_av_both_enable`, but this should not be needed either as the situation should be impossible to happen",
+      "range": {
+        "startLine": 943,
+        "startChar": 14,
+        "endLine": 943,
+        "endChar": 33
+      },
+      "revId": "e9a660fb36fe105065cd184b46cceee9fef2e1ba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9f85d7c3_2b03d489",
+        "filename": "system/bta/av/bta_av_act.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1372,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-03-15T12:31:02Z",
+      "side": 1,
+      "message": "Is this a case that happen because of the src and sink coexist or is this a generic bug fix ?\nIf it is the second case, I think we should do it in a separate CL",
+      "range": {
+        "startLine": 1372,
+        "startChar": 8,
+        "endLine": 1372,
+        "endChar": 48
+      },
+      "revId": "e9a660fb36fe105065cd184b46cceee9fef2e1ba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "57833eaf_2cb422a3",
+        "filename": "system/bta/av/bta_av_act.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 2195,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-03-15T12:31:02Z",
+      "side": 1,
+      "message": "Can we simplify these structure instantiation with something shorter like:\n```\ntBTA_AV_RC_OPEN rc_open \u003d {\n  .peer_addr \u003d p_scb-\u003ePeerAddress();\n  .status \u003d BTA_AV_FAIL_RESOURCES;\n};\n```\n\nThis will guarantee that everything not declared is set to 0.\nIt will also guarantee that any new field added in the future will be set to 0.\nAnd it is also more readable since we can focused on actually set values",
+      "range": {
+        "startLine": 2189,
+        "startChar": 12,
+        "endLine": 2195,
+        "endChar": 51
+      },
+      "revId": "e9a660fb36fe105065cd184b46cceee9fef2e1ba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ba1450dc_de5e519a",
+        "filename": "system/bta/av/bta_av_act.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 2485,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-03-15T12:31:02Z",
+      "side": 1,
+      "message": "Please do not use `ToString.c_str` for address, instead use [`ADDRESS_TO_LOGGABLE_CSTR`](https://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/system/gd/os/logging/log_adapter.h;l\u003d38;drc\u003d896fe4e75dce21e8b91d6ba956a0d07121b2df50)\n\nIt adds some privacy filter (same in all the CL in the topic)",
+      "range": {
+        "startLine": 2485,
+        "startChar": 93,
+        "endLine": 2485,
+        "endChar": 101
+      },
+      "revId": "e9a660fb36fe105065cd184b46cceee9fef2e1ba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2dc5b8dc_a64b731d",
+        "filename": "system/bta/av/bta_av_int.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 446,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-03-15T12:31:02Z",
+      "side": 1,
+      "message": "The last field of BT_HDR is a flexible array length `data[]`\nThat mean that BT_HDR must be the last field of structure.\n\n\nIf you do not need to use the `data`, you can replace BT_HDR with [BT_HDR_RIGID](https://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/system/stack/include/bt_hdr.h;l\u003d35;drc\u003dda92e07730502566a44a8bb53ccb0bbeefcc4a77)",
+      "range": {
+        "startLine": 446,
+        "startChar": 2,
+        "endLine": 446,
+        "endChar": 8
+      },
+      "revId": "e9a660fb36fe105065cd184b46cceee9fef2e1ba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
