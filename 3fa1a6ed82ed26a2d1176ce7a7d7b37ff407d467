@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a29311b4_142d3fde",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-03-15T18:31:26Z",
+      "side": 1,
+      "message": "All the failures are sanitizer failures.",
+      "revId": "3fa1a6ed82ed26a2d1176ce7a7d7b37ff407d467",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
