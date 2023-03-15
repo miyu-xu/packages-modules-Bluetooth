@@ -549,6 +549,7 @@ package android.bluetooth {
     method public void onSourceAddFailed(@NonNull android.bluetooth.BluetoothDevice, @NonNull android.bluetooth.BluetoothLeBroadcastMetadata, int);
     method public void onSourceAdded(@NonNull android.bluetooth.BluetoothDevice, int, int);
     method public void onSourceFound(@NonNull android.bluetooth.BluetoothLeBroadcastMetadata);
+    method public void onSourceLost(@NonNull android.bluetooth.BluetoothLeBroadcastMetadata);
     method public void onSourceModified(@NonNull android.bluetooth.BluetoothDevice, int, int);
     method public void onSourceModifyFailed(@NonNull android.bluetooth.BluetoothDevice, int, int);
     method public void onSourceRemoveFailed(@NonNull android.bluetooth.BluetoothDevice, int, int);

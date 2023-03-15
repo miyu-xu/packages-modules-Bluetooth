@@ -1333,6 +1333,7 @@ public class BassClientService extends ProfileService {
         private static final int MSG_SOURCE_REMOVED = 10;
         private static final int MSG_SOURCE_REMOVED_FAILED = 11;
         private static final int MSG_RECEIVESTATE_CHANGED = 12;
+        private static final int MSG_SOURCE_LOST = 13;
 
         private final RemoteCallbackList<IBluetoothLeBroadcastAssistantCallback>
                 mCallbacks = new RemoteCallbackList<>();
@@ -1425,6 +1426,9 @@ public class BassClientService extends ProfileService {
                 case MSG_SOURCE_FOUND:
                     callback.onSourceFound((BluetoothLeBroadcastMetadata) msg.obj);
                     break;
+                case MSG_SOURCE_LOST:
+                    callback.onSourceLost((BluetoothLeBroadcastMetadata) msg.obj);
+                    break;
                 case MSG_SOURCE_ADDED:
                     param = (ObjParams) msg.obj;
                     sink = (BluetoothDevice) param.mObj1;
@@ -1482,6 +1486,10 @@ public class BassClientService extends ProfileService {
 
         void notifySourceFound(BluetoothLeBroadcastMetadata source) {
             obtainMessage(MSG_SOURCE_FOUND, 0, 0, source).sendToTarget();
+        }
+
+        void notifySourceLost(BluetoothLeBroadcastMetadata source) {
+            obtainMessage(MSG_SOURCE_LOST, 0, 0, source).sendToTarget();
         }
 
         void notifySourceAdded(BluetoothDevice sink, BluetoothLeBroadcastReceiveState recvState,

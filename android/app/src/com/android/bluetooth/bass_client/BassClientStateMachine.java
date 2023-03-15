@@ -582,8 +582,18 @@ public class BassClientStateMachine extends StateMachine {
 
                 @Override
                 public void onSyncLost(int syncHandle) {
-                    log("OnSyncLost" + syncHandle);
+                    log("OnSyncLost " + syncHandle);
                     BluetoothDevice srcDevice = mService.getDeviceForSyncHandle(syncHandle);
+                    BaseData baseData = mService.getBase(syncHandle);
+                    if (baseData != null) {
+                        BluetoothLeBroadcastMetadata metaData =
+                                getBroadcastMetadataFromBaseData(baseData, srcDevice);
+                        if (metaData != null) {
+                            int broadcastId = metaData.getBroadcastId();
+                            log("notifySourceLost: " + broadcastId);
+                            mService.getCallbacks().notifySourceLost(metaData);
+                        }
+                    }
                     cancelActiveSync(srcDevice);
                 }
 
