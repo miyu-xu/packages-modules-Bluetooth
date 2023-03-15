@@ -1,6 +1,6 @@
+use crate::analyzer::ast as analyzer_ast;
 use crate::backends::rust::types;
 use crate::lint;
-use crate::parser::ast as parser_ast;
 use quote::{format_ident, quote};
 
 pub struct FieldDeclarations<'a> {
@@ -14,7 +14,7 @@ impl<'a> FieldDeclarations<'a> {
         FieldDeclarations { scope, packet_name, code: Vec::new() }
     }
 
-    pub fn add(&mut self, field: &parser_ast::Field) {
+    pub fn add(&mut self, field: &analyzer_ast::Field) {
         let id = match field.id() {
             Some(id) => format_ident!("{id}"),
             None => return, // No id => field not stored.
