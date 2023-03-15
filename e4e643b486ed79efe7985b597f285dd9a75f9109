@@ -46,6 +46,30 @@
       },
       "revId": "e4e643b486ed79efe7985b597f285dd9a75f9109",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6de6719b_77bbb550",
+        "filename": "android/pandora/test/le_advertising_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-03-15T17:56:58Z",
+      "side": 1,
+      "message": "I haven\u0027t written one yet, so I was just trying to understand how it\u0027s all used :)",
+      "parentUuid": "4f05f38c_57679834",
+      "range": {
+        "startLine": 17,
+        "startChar": 7,
+        "endLine": 17,
+        "endChar": 11
+      },
+      "revId": "e4e643b486ed79efe7985b597f285dd9a75f9109",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
