@@ -94,6 +94,30 @@
       },
       "revId": "6c655c79c247206a7b26056461030bf089a32146",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "827ccfbf_101c8553",
+        "filename": "system/bta/dm/bta_dm_api.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 539,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-03-15T00:56:21Z",
+      "side": 0,
+      "message": "Could we create a bug or put a TODO on top of `bta_dm_close_acl` then ?",
+      "parentUuid": "88d9e43d_6b4070e6",
+      "range": {
+        "startLine": 539,
+        "startChar": 28,
+        "endLine": 539,
+        "endChar": 44
+      },
+      "revId": "6c655c79c247206a7b26056461030bf089a32146",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
