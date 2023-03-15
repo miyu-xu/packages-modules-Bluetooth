@@ -16,6 +16,24 @@
       "message": "Please give me one day to check one thing.\nI\u0027m testing a fix with ActivityManager.getCurrentUser() in Utils.java",
       "revId": "8ec31c7732b93f40b89a8977d692c1b8eec21e8e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "42045562_4e89b1d1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-03-15T00:05:59Z",
+      "side": 1,
+      "message": "Of course.  It\u0027s very easy for me to reproduce with a user-switching script.\n\nwhile adb shell am switch-user 0 \u0026\u0026 echo \"0\"; do sleep 6 \u0026\u0026 adb shell am switch-user 10 \u0026\u0026 echo \"10\" \u0026\u0026 sleep 7; done \n\nI\u0027m happy to test.\n\nI don\u0027t think this CL will affect anything else in the stack.  It just changes whether the exception is fatal or not.",
+      "parentUuid": "30c0aae7_07ef2882",
+      "revId": "8ec31c7732b93f40b89a8977d692c1b8eec21e8e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
