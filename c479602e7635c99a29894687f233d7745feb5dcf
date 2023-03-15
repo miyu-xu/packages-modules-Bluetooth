@@ -22,6 +22,30 @@
       },
       "revId": "c479602e7635c99a29894687f233d7745feb5dcf",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6f158fb8_15c3dca4",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-03-15T22:20:40Z",
+      "side": 1,
+      "message": "What happens if an app wants to connect to LE audio device using connectGatt()? Is that app allowed to do so directly, or not?",
+      "parentUuid": "47356512_1dcc98ba",
+      "range": {
+        "startLine": 11,
+        "startChar": 15,
+        "endLine": 12,
+        "endChar": 23
+      },
+      "revId": "c479602e7635c99a29894687f233d7745feb5dcf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
