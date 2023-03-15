@@ -7,6 +7,7 @@ import asha_test
 import example
 import gatt_test
 import grpc.aio
+import le_advertising_test
 import logging
 import os
 import sys
@@ -19,7 +20,12 @@ from mobly import base_test, config_parser, signals, suite_runner, test_runner
 from pandora_experimental.gatt_grpc_aio import add_GATTServicer_to_server
 from typing import Any, List, Optional, Type
 
-_TEST_CLASSES_LIST = [example.ExampleTest, asha_test.ASHATest, gatt_test.GattTest]
+_TEST_CLASSES_LIST = [
+    example.ExampleTest,
+    asha_test.ASHATest,
+    gatt_test.GattTest,
+    le_advertising_test.LeAdvertisingTest,
+]
 
 
 def _bumble_servicer_hook(bumble: BumbleDevice, server: grpc.aio.Server) -> None:
@@ -88,7 +94,9 @@ def run(test_classes: List[Any], argv: List[str]) -> None:
     ok = True
     try:
         # Load test config file.
-        test_configs: List[config_parser.TestRunConfig] = config_parser.load_test_config_file(args.config, args.test_bed)  # type: ignore
+        test_configs: List[config_parser.TestRunConfig] = config_parser.load_test_config_file(
+            args.config, args.test_bed
+        )  # type: ignore
 
         console_level = logging.DEBUG if args.verbose else logging.INFO
         for config in test_configs:
