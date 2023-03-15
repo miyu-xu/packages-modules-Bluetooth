@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "758b1738_d49c09e8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2023-03-15T06:31:07Z",
+      "side": 1,
+      "message": "Hi David, could you help bypass presubmit for this CL? Thanks!",
+      "revId": "aa5ec5b33e79a034952fc86cb1144ad42ced75c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
