@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7d1d1399_30354f75",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-03-15T11:06:45Z",
+      "side": 1,
+      "message": "If I understand correctly, the user switch, we propagate the userId in the stack but are still connected with old user and permission are failing at this point.\n\nI feel like adding an additional check is a good short term fix but this should be dealt with by making the bluetooth properly switch the user (turn off first, save new user ID then turn on)",
+      "range": {
+        "startLine": 9,
+        "startChar": 32,
+        "endLine": 9,
+        "endChar": 49
+      },
+      "revId": "89cb1e3225db8707adffa608ad824f1b35d45a46",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dc2e0556_5e73d0ff",
+        "filename": "android/app/src/com/android/bluetooth/Utils.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 708,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-03-15T11:06:45Z",
+      "side": 1,
+      "message": "Why adding here as a comment ? Can we remove the line or remove the comment ?",
+      "range": {
+        "startLine": 708,
+        "startChar": 0,
+        "endLine": 708,
+        "endChar": 80
+      },
+      "revId": "89cb1e3225db8707adffa608ad824f1b35d45a46",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d1c6d52b_dbc88ead",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/AdapterServiceBinderTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-03-15T11:06:45Z",
+      "side": 1,
+      "message": "We are adding some doReturn here without modifying the other tests. Is this code needed ?",
+      "range": {
+        "startLine": 66,
+        "startChar": 0,
+        "endLine": 68,
+        "endChar": 79
+      },
+      "revId": "89cb1e3225db8707adffa608ad824f1b35d45a46",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
