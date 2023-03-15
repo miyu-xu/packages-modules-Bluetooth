@@ -16,6 +16,23 @@
       "message": "Please take a look, thanks!",
       "revId": "50138ed4924c27b5399b2b9567caa982b0c2deba",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ca5c16c5_2b5faaa3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2023-03-15T04:58:48Z",
+      "side": 1,
+      "message": "Thanks for the lighting review!",
+      "revId": "50138ed4924c27b5399b2b9567caa982b0c2deba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
