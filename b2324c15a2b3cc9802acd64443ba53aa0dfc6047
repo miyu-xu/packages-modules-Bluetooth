@@ -16,6 +16,24 @@
       "message": "As far as I can tell, nowhere else in the stack do we modify the p_lcb-\u003eremote_bd_addr. How confident are you that this won\u0027t break anything? (e.g. if an upper layer is doing L2CAP CoC to the RPA, and then we swap out the address, will the connection drop?)",
       "revId": "b2324c15a2b3cc9802acd64443ba53aa0dfc6047",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "032b2d60_f1ca09c2",
+        "filename": "system/stack/l2cap/l2c_ble.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-03-15T21:51:26Z",
+      "side": 1,
+      "message": "This is executed only if you have existing LE link while you perform pairing on Classic link.\nPreviously, just FP was doing that, but they didn\u0027t care about the LE link, wether it was encrypted or used.\nNow with LE Audio, we want to encrypt and use this existing LE link for music playback.\n\nMy testing showed that what I \"consolidate\" so far is enough to have LE audio fully working. Never tried CoC, if it\u0027s ever needed, and would need continuity through encryption, this would probably need to be extended.",
+      "parentUuid": "0ddac773_019237dd",
+      "revId": "b2324c15a2b3cc9802acd64443ba53aa0dfc6047",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
