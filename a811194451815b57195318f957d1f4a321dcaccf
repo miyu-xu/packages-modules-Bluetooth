@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "19c7abac_4f2b84a1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-03-15T17:28:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "06a53b39_8f1ef494",
+      "range": {
+        "startLine": 17,
+        "startChar": 13,
+        "endLine": 17,
+        "endChar": 28
+      },
+      "revId": "a811194451815b57195318f957d1f4a321dcaccf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "53c68425_50d540a6",
@@ -71,6 +95,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9e4713eb_27561794",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-03-15T17:28:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dfe057d2_113ac235",
+      "range": {
+        "startLine": 19,
+        "startChar": 25,
+        "endLine": 19,
+        "endChar": 42
+      },
+      "revId": "a811194451815b57195318f957d1f4a321dcaccf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c83a3140_de891d33",
@@ -84,6 +132,30 @@
       "writtenOn": "2023-03-15T13:15:28Z",
       "side": 1,
       "message": "also, human readable characteristic names would be great to have. If not, I would stick to 2 Octects long UUIDs",
+      "range": {
+        "startLine": 20,
+        "startChar": 9,
+        "endLine": 20,
+        "endChar": 17
+      },
+      "revId": "a811194451815b57195318f957d1f4a321dcaccf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "19cdec7d_8061c47e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-03-15T17:28:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c83a3140_de891d33",
       "range": {
         "startLine": 20,
         "startChar": 9,
