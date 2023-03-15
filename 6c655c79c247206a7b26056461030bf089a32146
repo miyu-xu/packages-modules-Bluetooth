@@ -22,6 +22,30 @@
       },
       "revId": "6c655c79c247206a7b26056461030bf089a32146",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "79a59042_38747443",
+        "filename": "system/bta/dm/bta_dm_api.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 539,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-03-15T00:40:07Z",
+      "side": 0,
+      "message": "Yes, if it\u0027s not used, will be done in a future CL.\n\nThe idea is to slowly break down brick-by-brick.",
+      "parentUuid": "b6532193_9c5c36ab",
+      "range": {
+        "startLine": 539,
+        "startChar": 28,
+        "endLine": 539,
+        "endChar": 44
+      },
+      "revId": "6c655c79c247206a7b26056461030bf089a32146",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
