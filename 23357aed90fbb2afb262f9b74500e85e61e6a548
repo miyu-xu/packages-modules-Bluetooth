@@ -52,6 +52,24 @@
       "parentUuid": "be9d826a_0cf832f4",
       "revId": "23357aed90fbb2afb262f9b74500e85e61e6a548",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "345e8389_bc149aa0",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 622,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-03-15T13:12:38Z",
+      "side": 1,
+      "message": "Group in IDLE means only this that group state is IDLE but there may be still assigned CIS ID and ACL may exist.\n\nNum of connected must be equal to 0 (no ACL \u003d\u003d last device is disconnecting)\nhttps://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/system/bta/le_audio/devices.cc;drc\u003d45d16720f61c1ae1815e47d8c4712a1403f7c66a;l\u003d127",
+      "parentUuid": "2e010c5d_28160a69",
+      "revId": "23357aed90fbb2afb262f9b74500e85e61e6a548",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
