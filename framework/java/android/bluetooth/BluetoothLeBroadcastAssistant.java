@@ -151,6 +151,16 @@ public final class BluetoothLeBroadcastAssistant implements BluetoothProfile, Au
         void onSourceFound(@NonNull BluetoothLeBroadcastMetadata source);
 
         /**
+         * Callback invoked when a Broadcast Source is lost with the
+         * {@link BluetoothLeBroadcastMetadata}.
+         *
+         * @param source {@link BluetoothLeBroadcastMetadata} representing a Broadcast Source
+         * @hide
+         */
+        @SystemApi
+        void onSourceLost(@NonNull BluetoothLeBroadcastMetadata source);
+
+        /**
          * Callback invoked when a new Broadcast Source has been successfully added to the
          * Broadcast Sink.
          *

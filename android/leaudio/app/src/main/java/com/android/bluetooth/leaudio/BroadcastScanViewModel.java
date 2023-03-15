@@ -56,6 +56,12 @@ public class BroadcastScanViewModel extends AndroidViewModel {
         }
 
         @Override
+        public void onSourceLost(BluetoothLeBroadcastMetadata source) {
+            mScanSessionBroadcasts.remove(source.getBroadcastId());
+            refreshBroadcasts();
+        }
+
+        @Override
         public void onScanningStateChanged(boolean isScanning) {
             if (!isScanning) {
                 // Update the live broadcast list and clear scan session results

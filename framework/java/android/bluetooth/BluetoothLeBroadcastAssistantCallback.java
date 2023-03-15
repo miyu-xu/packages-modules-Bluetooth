@@ -177,6 +177,21 @@ public class BluetoothLeBroadcastAssistantCallback
     }
 
     @Override
+    public void onSourceLost(BluetoothLeBroadcastMetadata source) {
+        synchronized (this) {
+            for (BluetoothLeBroadcastAssistant.Callback cb : mCallbackMap.keySet()) {
+                Executor executor = mCallbackMap.get(cb);
+                final long identity = Binder.clearCallingIdentity();
+                try {
+                    executor.execute(() -> cb.onSourceLost(source));
+                } finally {
+                    Binder.restoreCallingIdentity(identity);
+                }
+            }
+        }
+    }
+
+    @Override
     public void onSourceAdded(BluetoothDevice sink, int sourceId, int reason) {
         synchronized (this) {
             for (BluetoothLeBroadcastAssistant.Callback cb : mCallbackMap.keySet()) {

@@ -382,6 +382,14 @@ public class BluetoothProxy {
         }
 
         @Override
+        public void onSourceLost(BluetoothLeBroadcastMetadata source) {
+            Log.d("BluetoothProxy", "onSourceLost");
+            if (mBassEventListener != null) {
+                mBassEventListener.onSourceLost(source);
+            }
+        }
+
+        @Override
         public void onSourceAdded(BluetoothDevice sink, int sourceId, int reason) {}
 
         @Override
@@ -1432,6 +1440,7 @@ public class BluetoothProxy {
     // Used by BroadcastScanViewModel
     public interface OnBassEventListener {
         void onSourceFound(BluetoothLeBroadcastMetadata source);
+        void onSourceLost(BluetoothLeBroadcastMetadata source);
         void onScanningStateChanged(boolean isScanning);
     }
 

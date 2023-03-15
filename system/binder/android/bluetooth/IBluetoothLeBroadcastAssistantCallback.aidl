@@ -31,6 +31,7 @@ interface IBluetoothLeBroadcastAssistantCallback {
     void onSearchStopped(in int reason);
     void onSearchStopFailed(in int reason);
     void onSourceFound(in BluetoothLeBroadcastMetadata source);
+    void onSourceLost(in BluetoothLeBroadcastMetadata source);
     void onSourceAdded(in BluetoothDevice sink, in int sourceId, in int reason);
     void onSourceAddFailed(in BluetoothDevice sink, in BluetoothLeBroadcastMetadata source,
             in int reason);
