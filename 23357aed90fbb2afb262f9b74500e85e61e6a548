@@ -34,6 +34,24 @@
       "parentUuid": "0fe81809_0c447d07",
       "revId": "23357aed90fbb2afb262f9b74500e85e61e6a548",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2e010c5d_28160a69",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 622,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-03-15T13:10:13Z",
+      "side": 1,
+      "message": "when group is in IDLE, CISes are not valid anyway, or ?",
+      "parentUuid": "be9d826a_0cf832f4",
+      "revId": "23357aed90fbb2afb262f9b74500e85e61e6a548",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
