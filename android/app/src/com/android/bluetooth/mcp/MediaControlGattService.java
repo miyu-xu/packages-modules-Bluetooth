@@ -1957,5 +1957,12 @@ public class MediaControlGattService implements MediaControlGattServiceInterface
         sb.append("\n\t\tCcid = " + mCcid);
         sb.append("\n\t\tFeatures = " + String.format("0x%08X", mFeatures));
         sb.append("\n\t\tCurrentPlaybackState = " + mCurrentMediaState);
+        for (Map.Entry<String, HashMap<UUID, Short>> deviceEntry
+                : mCccDescriptorValues.entrySet()) {
+            sb.append("\n\t\tCcc states for device: " + deviceEntry.getKey());
+            for (Map.Entry<UUID, Short> entry : deviceEntry.getValue().entrySet()) {
+                sb.append("\n\t\t\tUUID: " + entry.getKey() + ", value: " + entry.getValue());
+            }
+        }
     }
 }
