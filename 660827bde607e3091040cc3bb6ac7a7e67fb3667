@@ -16,6 +16,24 @@
       "message": "I thought the is_le_transport check would handle this, but this also lgtm",
       "revId": "660827bde607e3091040cc3bb6ac7a7e67fb3667",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cf48876d_f3bb6c11",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-03-15T21:45:48Z",
+      "side": 1,
+      "message": "we never hit that check previously, because authentication complete was send for classic address, and we never tried to enable EATT if there was existing LE connection at same time.\n\nThis is fixing corner case where FP pairs on Classic transport when you already have LE link.\n\nIn usual cases, where you connect and pair on LE transport, this worked well.",
+      "parentUuid": "0720a5c1_bc9fac71",
+      "revId": "660827bde607e3091040cc3bb6ac7a7e67fb3667",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
