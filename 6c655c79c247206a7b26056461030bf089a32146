@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b6532193_9c5c36ab",
+        "filename": "system/bta/dm/bta_dm_api.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 539,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-03-15T00:25:56Z",
+      "side": 0,
+      "message": "Should this remove this `bta_dm_close_acl` function as well ?",
+      "range": {
+        "startLine": 539,
+        "startChar": 28,
+        "endLine": 539,
+        "endChar": 44
+      },
+      "revId": "6c655c79c247206a7b26056461030bf089a32146",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
