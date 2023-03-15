@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "96b1210e_96af647d",
+        "filename": "system/stack/avct/avct_bcb_act.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 513,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-03-15T16:45:04Z",
+      "side": 1,
+      "message": "Can you not declared i here but only in the for loop",
+      "range": {
+        "startLine": 513,
+        "startChar": 0,
+        "endLine": 513,
+        "endChar": 12
+      },
+      "revId": "0bf61452e30eb6b50fe72624c0b654af09d0b05f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "61c1230b_9415636d",
+        "filename": "system/stack/avct/avct_bcb_act.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 561,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-03-15T16:45:04Z",
+      "side": 1,
+      "message": "According to line 531, `p_data-\u003ep_buf` is never null. Can you remove this if ? It confused me since I was thinking p_bak_buf could be null in the next forloop but it is not the case",
+      "range": {
+        "startLine": 561,
+        "startChar": 0,
+        "endLine": 561,
+        "endChar": 24
+      },
+      "revId": "0bf61452e30eb6b50fe72624c0b654af09d0b05f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0a4aa201_5a7c6c8c",
+        "filename": "system/stack/avct/avct_bcb_act.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 580,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-03-15T16:45:04Z",
+      "side": 1,
+      "message": "it would be simpler to always use this and to `osi_free_and_reset(p_data-\u003ep_buf)`\nThat will remove the if/else and remove the need for `p_bak_buf` and `buf_used`",
+      "range": {
+        "startLine": 577,
+        "startChar": 10,
+        "endLine": 580,
+        "endChar": 46
+      },
+      "revId": "0bf61452e30eb6b50fe72624c0b654af09d0b05f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b541d665_38af6f29",
+        "filename": "system/stack/avct/avct_lcb_act.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 244,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-03-15T16:45:04Z",
+      "side": 1,
+      "message": "replace with __func__",
+      "range": {
+        "startLine": 244,
+        "startChar": 24,
+        "endLine": 244,
+        "endChar": 37
+      },
+      "revId": "0bf61452e30eb6b50fe72624c0b654af09d0b05f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "30d9a3de_882910f9",
+        "filename": "system/stack/avct/avct_lcb_act.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 707,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-03-15T16:45:04Z",
+      "side": 1,
+      "message": "Can you put all this in a function since this is exactly the same code as in `avct_bcb_msg_ind`",
+      "range": {
+        "startLine": 680,
+        "startChar": 4,
+        "endLine": 707,
+        "endChar": 22
+      },
+      "revId": "0bf61452e30eb6b50fe72624c0b654af09d0b05f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
