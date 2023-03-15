@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ff6c82b0_3a3956e1",
+        "filename": "system/gd/rust/linux/client/src/bt_adapter.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2023-03-15T03:07:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "77699d0c_85d698ad",
+      "revId": "50b52c51824a61bdb4992fe5e16a03abb7a10218",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "30237a53_63da9314",
@@ -31,6 +49,24 @@
       "writtenOn": "2023-03-14T04:06:20Z",
       "side": 1,
       "message": "nit: Better to put Err(_) second. Fits in w/ current code better.",
+      "revId": "50b52c51824a61bdb4992fe5e16a03abb7a10218",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a721e01d_277bd31b",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 1388,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2023-03-15T03:07:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "30237a53_63da9314",
       "revId": "50b52c51824a61bdb4992fe5e16a03abb7a10218",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -52,6 +88,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f3248d7b_59252878",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 1420,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2023-03-15T03:07:23Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "234123b3_c10b7d5b",
+      "revId": "50b52c51824a61bdb4992fe5e16a03abb7a10218",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "86745cfa_5cb5eac0",
@@ -65,6 +119,24 @@
       "writtenOn": "2023-03-14T04:06:20Z",
       "side": 1,
       "message": "Use `#[derive(FromPrimitive)]` for BtDiscMode and `.from_u32(num).map_err(...)` here.",
+      "revId": "50b52c51824a61bdb4992fe5e16a03abb7a10218",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d077428d_b48d97ce",
+        "filename": "system/gd/rust/topshim/src/btif.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 323,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2023-03-15T03:07:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "86745cfa_5cb5eac0",
       "revId": "50b52c51824a61bdb4992fe5e16a03abb7a10218",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
