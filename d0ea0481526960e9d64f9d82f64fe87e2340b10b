@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c055a6fa_0e1d89b6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-03-15T18:34:50Z",
+      "side": 1,
+      "message": "Thanks looks good. Adding current player name would create the full picture",
+      "revId": "d0ea0481526960e9d64f9d82f64fe87e2340b10b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7ecb1ae9_83535f4d",
+        "filename": "android/app/src/com/android/bluetooth/mcp/MediaControlGattService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 2009,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-03-15T18:34:50Z",
+      "side": 1,
+      "message": "maybe we could add  also current media player name ?",
+      "revId": "d0ea0481526960e9d64f9d82f64fe87e2340b10b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
