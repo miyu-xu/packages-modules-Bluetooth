@@ -46,6 +46,30 @@
       },
       "revId": "c479602e7635c99a29894687f233d7745feb5dcf",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "37c8af44_20720a24",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-03-15T22:23:07Z",
+      "side": 1,
+      "message": "Otherwise it seems like you are blocking any client from _ever_ connecting to the LE audio device unless it does TA, or the LE audio client decides to stop connecting with TA.\n\nThe concrete example I am thinking of is if a companion app wants to connect to the peer device, while it is not doing targeted announcements, and the user doesn\u0027t want to change the audio path. Then the app will call connectGatt(), but we still won\u0027t connect.",
+      "parentUuid": "6f158fb8_15c3dca4",
+      "range": {
+        "startLine": 11,
+        "startChar": 15,
+        "endLine": 12,
+        "endChar": 23
+      },
+      "revId": "c479602e7635c99a29894687f233d7745feb5dcf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
