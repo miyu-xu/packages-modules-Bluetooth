@@ -16,6 +16,52 @@
       "message": "Important changes from patch set 5:\n\n1. Made A2dpService.setActiveDevice() take non-null device argument, and rerouted the null calls to A2dpService.removeActiveDevice(boolean stopAudio)\n\n2. Removed the `previous device connection check` from `A2dpService.setActiveDevice()` as it is no longer needed.",
       "revId": "0d419aa9755d9477fd45f3a8e1536dc7dad5a38d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a4d48d00_1f3e2d07",
+        "filename": "android/app/src/com/android/bluetooth/a2dp/A2dpService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 540,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-03-15T08:27:05Z",
+      "side": 1,
+      "message": "remove?",
+      "range": {
+        "startLine": 537,
+        "startChar": 0,
+        "endLine": 540,
+        "endChar": 9
+      },
+      "revId": "0d419aa9755d9477fd45f3a8e1536dc7dad5a38d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a39b227b_c76b446a",
+        "filename": "android/app/src/com/android/bluetooth/a2dp/A2dpService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 560,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-03-15T08:27:05Z",
+      "side": 1,
+      "message": "@NonNull?",
+      "range": {
+        "startLine": 560,
+        "startChar": 35,
+        "endLine": 560,
+        "endChar": 50
+      },
+      "revId": "0d419aa9755d9477fd45f3a8e1536dc7dad5a38d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
