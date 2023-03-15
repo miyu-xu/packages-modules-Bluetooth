@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "06a53b39_8f1ef494",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-03-15T13:15:28Z",
+      "side": 1,
+      "message": "Nice to have features here: could we decode this?",
+      "range": {
+        "startLine": 17,
+        "startChar": 13,
+        "endLine": 17,
+        "endChar": 28
+      },
+      "revId": "a811194451815b57195318f957d1f4a321dcaccf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "53c68425_50d540a6",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-03-15T13:15:28Z",
+      "side": 1,
+      "message": "nit: there is propably a way to print it in privacy way.",
+      "range": {
+        "startLine": 19,
+        "startChar": 25,
+        "endLine": 19,
+        "endChar": 42
+      },
+      "revId": "a811194451815b57195318f957d1f4a321dcaccf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c83a3140_de891d33",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-03-15T13:15:28Z",
+      "side": 1,
+      "message": "also, human readable characteristic names would be great to have. If not, I would stick to 2 Octects long UUIDs",
+      "range": {
+        "startLine": 20,
+        "startChar": 9,
+        "endLine": 20,
+        "endChar": 17
+      },
+      "revId": "a811194451815b57195318f957d1f4a321dcaccf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b1d8abd7_29c97fc6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-03-15T13:15:28Z",
+      "side": 1,
+      "message": "Thanks! :)",
+      "revId": "a811194451815b57195318f957d1f4a321dcaccf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
