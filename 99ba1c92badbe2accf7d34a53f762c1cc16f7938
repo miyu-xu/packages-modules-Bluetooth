@@ -16,6 +16,23 @@
       "message": "Please sort all the value in alphabetical order.",
       "revId": "99ba1c92badbe2accf7d34a53f762c1cc16f7938",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b2d14a78_80d698cb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2023-03-15T17:25:12Z",
+      "side": 1,
+      "message": "We should use a sysprop instead of flags, as we want this feature enabled depending on vendors.\n\nYou can see an example implementation here: \nhttps://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/2455633\n\n\nImplementation steps:\n- Create an a2dp.sysprop file here: https://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/sysprop/\n- Add it to the Android.bp here: https://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/sysprop/Android.bp\n- Add the sysprop:\n```\nprop {\n    api_name: \"isA2dpSourceSinkCoexistEnabled\"\n    type: Boolean\n    scope: Internal\n    access: Readonly\n    prop_name: \"bluetooth.profile.a2dp.source_sink_coexist.enabled\"\n}\n```\n- Store the value of the sysprop in a variable and check its value in the conditions\n```\nstatic const bool src_sink_coexist \u003d android::sysprop::bluetooth::A2dp::isA2dpSourceSinkCoexistEnabled().value_or(false);\n```\n\nLet me know if you have any questions, thank you",
+      "revId": "99ba1c92badbe2accf7d34a53f762c1cc16f7938",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
