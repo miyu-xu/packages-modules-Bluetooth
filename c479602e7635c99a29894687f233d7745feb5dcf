@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "47356512_1dcc98ba",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-03-15T20:38:41Z",
+      "side": 1,
+      "message": "no, targeted announcement shall have the highest prio as it is implement now. PLease do not change behavior unless you have very good reason.",
+      "range": {
+        "startLine": 11,
+        "startChar": 15,
+        "endLine": 12,
+        "endChar": 23
+      },
+      "revId": "c479602e7635c99a29894687f233d7745feb5dcf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
