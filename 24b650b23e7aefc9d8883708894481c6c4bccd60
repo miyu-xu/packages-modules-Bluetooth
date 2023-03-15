@@ -16,6 +16,23 @@
       "message": "Hi Charlie,\n\nI have taken care of your comments. Kindly provide your inputs.\n\nThanks \u0026 Regards,\nDhananjaya",
       "revId": "24b650b23e7aefc9d8883708894481c6c4bccd60",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bb5ff48b_be7723f6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2023-03-15T19:38:20Z",
+      "side": 1,
+      "message": "I ran an abtd run and pts-bot is not passing:\nhttps://android-build.googleplex.com/builds/abtd/run/L59700000959165592",
+      "revId": "24b650b23e7aefc9d8883708894481c6c4bccd60",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
