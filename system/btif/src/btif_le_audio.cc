@@ -117,13 +117,14 @@ class LeAudioClientInterfaceImpl : public LeAudioClientInterface,
 
     LeAudioClient::InitializeAudioSetConfigurationProvider();
     do_in_main_thread(
-        FROM_HERE, Bind(&LeAudioClient::Initialize, this,
-                        jni_thread_wrapper(
-                            FROM_HERE, Bind(&btif_storage_load_bonded_leaudio)),
-                        base::Bind([]() -> bool {
-                          return LeAudioHalVerifier::SupportsLeAudio();
-                        }),
-                        offloading_preference));
+        FROM_HERE,
+        base::BindOnce(&LeAudioClient::Initialize, this,
+                       jni_thread_wrapper(
+                           FROM_HERE, Bind(&btif_storage_load_bonded_leaudio)),
+                       base::Bind([]() -> bool {
+                         return LeAudioHalVerifier::SupportsLeAudio();
+                       }),
+                       offloading_preference));
 
     /* It might be not yet initialized, but setting this flag here is safe,
      * because other calls will check this and the native instance

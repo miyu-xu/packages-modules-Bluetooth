@@ -45,9 +45,10 @@ class LeAudioBroadcasterInterfaceImpl : public LeAudioBroadcasterInterface,
     this->callbacks_ = callbacks;
     do_in_main_thread(
         FROM_HERE,
-        Bind(&LeAudioBroadcaster::Initialize, this, base::Bind([]() -> bool {
-          return LeAudioHalVerifier::SupportsLeAudioBroadcast();
-        })));
+        base::BindOnce(&LeAudioBroadcaster::Initialize, this,
+                       base::Bind([]() -> bool {
+                         return LeAudioHalVerifier::SupportsLeAudioBroadcast();
+                       })));
   }
 
   void CreateBroadcast(

@@ -157,7 +157,7 @@ class MediaInterfaceWrapper : public MediaInterface {
 
   void GetSongInfo(SongInfoCallback info_cb) override {
     auto cb_lambda = [](SongInfoCallback cb, SongInfo data) {
-      do_in_main_thread(FROM_HERE, base::Bind(cb, data));
+      do_in_main_thread(FROM_HERE, base::BindOnce(cb, data));
     };
 
     auto bound_cb = base::Bind(cb_lambda, info_cb);
@@ -168,7 +168,7 @@ class MediaInterfaceWrapper : public MediaInterface {
 
   void GetPlayStatus(PlayStatusCallback status_cb) override {
     auto cb_lambda = [](PlayStatusCallback cb, PlayStatus status) {
-      do_in_main_thread(FROM_HERE, base::Bind(cb, status));
+      do_in_main_thread(FROM_HERE, base::BindOnce(cb, status));
     };
 
     auto bound_cb = base::Bind(cb_lambda, status_cb);
@@ -180,8 +180,8 @@ class MediaInterfaceWrapper : public MediaInterface {
   void GetNowPlayingList(NowPlayingCallback now_playing_cb) override {
     auto cb_lambda = [](NowPlayingCallback cb, std::string curr_media_id,
                         std::vector<SongInfo> song_list) {
-      do_in_main_thread(FROM_HERE,
-                        base::Bind(cb, curr_media_id, std::move(song_list)));
+      do_in_main_thread(
+          FROM_HERE, base::BindOnce(cb, curr_media_id, std::move(song_list)));
     };
 
     auto bound_cb = base::Bind(cb_lambda, now_playing_cb);
@@ -193,8 +193,8 @@ class MediaInterfaceWrapper : public MediaInterface {
   void GetMediaPlayerList(MediaListCallback list_cb) override {
     auto cb_lambda = [](MediaListCallback cb, uint16_t curr_player,
                         std::vector<MediaPlayerInfo> player_list) {
-      do_in_main_thread(FROM_HERE,
-                        base::Bind(cb, curr_player, std::move(player_list)));
+      do_in_main_thread(
+          FROM_HERE, base::BindOnce(cb, curr_player, std::move(player_list)));
     };
 
     auto bound_cb = base::Bind(cb_lambda, list_cb);
@@ -207,7 +207,7 @@ class MediaInterfaceWrapper : public MediaInterface {
                       FolderItemsCallback folder_cb) override {
     auto cb_lambda = [](FolderItemsCallback cb,
                         std::vector<ListItem> item_list) {
-      do_in_main_thread(FROM_HERE, base::Bind(cb, std::move(item_list)));
+      do_in_main_thread(FROM_HERE, base::BindOnce(cb, std::move(item_list)));
     };
 
     auto bound_cb = base::Bind(cb_lambda, folder_cb);
@@ -221,7 +221,8 @@ class MediaInterfaceWrapper : public MediaInterface {
                         SetBrowsedPlayerCallback browse_cb) override {
     auto cb_lambda = [](SetBrowsedPlayerCallback cb, bool success,
                         std::string root_id, uint32_t num_items) {
-      do_in_main_thread(FROM_HERE, base::Bind(cb, success, root_id, num_items));
+      do_in_main_thread(FROM_HERE,
+                        base::BindOnce(cb, success, root_id, num_items));
     };
 
     auto bound_cb = base::Bind(cb_lambda, browse_cb);
@@ -270,7 +271,7 @@ class VolumeInterfaceWrapper : public VolumeInterface {
 
   void DeviceConnected(const RawAddress& bdaddr, VolumeChangedCb cb) override {
     auto cb_lambda = [](VolumeChangedCb cb, int8_t volume) {
-      do_in_main_thread(FROM_HERE, base::Bind(cb, volume));
+      do_in_main_thread(FROM_HERE, base::BindOnce(cb, volume));
     };
 
     auto bound_cb = base::Bind(cb_lambda, cb);
@@ -435,8 +436,9 @@ void AvrcpService::SendMediaUpdate(bool track_changed, bool play_state,
   // device update happens on the main thread.
   for (const auto& device :
        instance_->connection_handler_->GetListOfDevices()) {
-    do_in_main_thread(FROM_HERE,
-                      base::Bind(&Device::SendMediaUpdate, device.get()->Get(), track_changed, play_state, queue));
+    do_in_main_thread(
+        FROM_HERE, base::BindOnce(&Device::SendMediaUpdate, device.get()->Get(),
+                                  track_changed, play_state, queue));
   }
 }
 
@@ -450,8 +452,10 @@ void AvrcpService::SendFolderUpdate(bool available_players,
   // Ensure that the update is posted to the correct thread
   for (const auto& device :
        instance_->connection_handler_->GetListOfDevices()) {
-    do_in_main_thread(FROM_HERE, base::Bind(&Device::SendFolderUpdate, device.get()->Get(), available_players,
-                                            addressed_players, uids));
+    do_in_main_thread(
+        FROM_HERE,
+        base::BindOnce(&Device::SendFolderUpdate, device.get()->Get(),
+                       available_players, addressed_players, uids));
   }
 }
 
@@ -481,31 +485,35 @@ void AvrcpService::ServiceInterfaceImpl::Init(
   CHECK(instance_ == nullptr);
   instance_ = new AvrcpService();
 
-  do_in_main_thread(FROM_HERE,
-                    base::Bind(&AvrcpService::Init, base::Unretained(instance_),
-                               media_interface, volume_interface));
+  do_in_main_thread(
+      FROM_HERE,
+      base::BindOnce(&AvrcpService::Init, base::Unretained(instance_),
+                     media_interface, volume_interface));
 }
 
 void AvrcpService::ServiceInterfaceImpl::RegisterBipServer(int psm) {
   std::lock_guard<std::mutex> lock(service_interface_lock_);
   CHECK(instance_ != nullptr);
-  do_in_main_thread(FROM_HERE, base::Bind(&AvrcpService::RegisterBipServer,
-                                          base::Unretained(instance_), psm));
+  do_in_main_thread(FROM_HERE,
+                    base::BindOnce(&AvrcpService::RegisterBipServer,
+                                   base::Unretained(instance_), psm));
 }
 
 void AvrcpService::ServiceInterfaceImpl::UnregisterBipServer() {
   std::lock_guard<std::mutex> lock(service_interface_lock_);
   CHECK(instance_ != nullptr);
-  do_in_main_thread(FROM_HERE, base::Bind(&AvrcpService::UnregisterBipServer,
-                                          base::Unretained(instance_)));
+  do_in_main_thread(FROM_HERE,
+                    base::BindOnce(&AvrcpService::UnregisterBipServer,
+                                   base::Unretained(instance_)));
 }
 
 bool AvrcpService::ServiceInterfaceImpl::ConnectDevice(
     const RawAddress& bdaddr) {
   std::lock_guard<std::mutex> lock(service_interface_lock_);
   CHECK(instance_ != nullptr);
-  do_in_main_thread(FROM_HERE, base::Bind(&AvrcpService::ConnectDevice,
-                                          base::Unretained(instance_), bdaddr));
+  do_in_main_thread(FROM_HERE,
+                    base::BindOnce(&AvrcpService::ConnectDevice,
+                                   base::Unretained(instance_), bdaddr));
   return true;
 }
 
@@ -513,8 +521,9 @@ bool AvrcpService::ServiceInterfaceImpl::DisconnectDevice(
     const RawAddress& bdaddr) {
   std::lock_guard<std::mutex> lock(service_interface_lock_);
   CHECK(instance_ != nullptr);
-  do_in_main_thread(FROM_HERE, base::Bind(&AvrcpService::DisconnectDevice,
-                                          base::Unretained(instance_), bdaddr));
+  do_in_main_thread(FROM_HERE,
+                    base::BindOnce(&AvrcpService::DisconnectDevice,
+                                   base::Unretained(instance_), bdaddr));
   return true;
 }
 
@@ -522,9 +531,9 @@ void AvrcpService::ServiceInterfaceImpl::SetBipClientStatus(
     const RawAddress& bdaddr, bool connected) {
   std::lock_guard<std::mutex> lock(service_interface_lock_);
   CHECK(instance_ != nullptr);
-  do_in_main_thread(FROM_HERE, base::Bind(&AvrcpService::SetBipClientStatus,
-                                          base::Unretained(instance_), bdaddr,
-                                          connected));
+  do_in_main_thread(FROM_HERE, base::BindOnce(&AvrcpService::SetBipClientStatus,
+                                              base::Unretained(instance_),
+                                              bdaddr, connected));
 }
 
 bool AvrcpService::ServiceInterfaceImpl::Cleanup() {
@@ -532,8 +541,8 @@ bool AvrcpService::ServiceInterfaceImpl::Cleanup() {
 
   if (instance_ == nullptr) return false;
 
-  do_in_main_thread(FROM_HERE,
-                    base::Bind(&AvrcpService::Cleanup, base::Owned(instance_)));
+  do_in_main_thread(FROM_HERE, base::BindOnce(&AvrcpService::Cleanup,
+                                              base::Owned(instance_)));
 
   // Setting instance to nullptr here is fine since it will be deleted on the
   // other thread.

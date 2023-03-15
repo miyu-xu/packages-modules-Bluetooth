@@ -369,14 +369,14 @@ static void event_shut_down_stack(ProfileStopCallback stopProfiles) {
   hack_future = local_hack_future;
   stack_is_running = false;
 
-  do_in_main_thread(FROM_HERE, base::Bind(&btm_ble_multi_adv_cleanup));
+  do_in_main_thread(FROM_HERE, base::BindOnce(&btm_ble_multi_adv_cleanup));
 
-  do_in_main_thread(FROM_HERE, base::Bind(&btm_ble_scanner_cleanup));
+  do_in_main_thread(FROM_HERE, base::BindOnce(&btm_ble_scanner_cleanup));
 
   btif_dm_on_disable();
   stopProfiles();
 
-  do_in_main_thread(FROM_HERE, base::Bind(bta_dm_disable));
+  do_in_main_thread(FROM_HERE, base::BindOnce(bta_dm_disable));
 
   future_await(local_hack_future);
   local_hack_future = future_new();
