@@ -70,6 +70,30 @@
       },
       "revId": "e4e643b486ed79efe7985b597f285dd9a75f9109",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "71fefb75_396afca3",
+        "filename": "android/pandora/test/le_advertising_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2023-03-15T19:35:58Z",
+      "side": 1,
+      "message": "Have you tried to use `avatar format` and `avatar lint` ?",
+      "parentUuid": "6de6719b_77bbb550",
+      "range": {
+        "startLine": 17,
+        "startChar": 7,
+        "endLine": 17,
+        "endChar": 11
+      },
+      "revId": "e4e643b486ed79efe7985b597f285dd9a75f9109",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
