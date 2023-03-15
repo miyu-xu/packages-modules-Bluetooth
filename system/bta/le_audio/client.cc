@@ -1105,10 +1105,35 @@ class LeAudioClientImpl : public LeAudioClient {
       return;
     }
 
-    if (leAudioDevice->conn_id_ != GATT_INVALID_CONN_ID) {
-      Disconnect(address);
-      leAudioDevice->SetConnectionState(DeviceConnectState::REMOVING);
-      return;
+    LOG_INFO("%s, state: %s", ADDRESS_TO_LOGGABLE_CSTR(address),
+             bluetooth::common::ToString(leAudioDevice->GetConnectionState())
+                 .c_str());
+    auto connection_state = leAudioDevice->GetConnectionState();
+    switch (connection_state) {
+      case DeviceConnectState::REMOVING:
+      case DeviceConnectState::PENDING_REMOVAL:
+        /* Just return, and let device disconnect */
+        return;
+      case DeviceConnectState::CONNECTED:
+      case DeviceConnectState::CONNECTED_AUTOCONNECT_GETTING_READY:
+      case DeviceConnectState::CONNECTED_BY_USER_GETTING_READY:
+        /* ACL exist in this case, disconnect and mark as removing */
+        Disconnect(address);
+        [[fallthrough]];
+      case DeviceConnectState::DISCONNECTING:
+        /* Device is disconnecting, just mark it shall be removed after all. */
+        leAudioDevice->SetConnectionState(DeviceConnectState::REMOVING);
+        return;
+      case DeviceConnectState::CONNECTING_BY_USER:
+        BTA_GATTC_CancelOpen(gatt_if_, address, true);
+        [[fallthrough]];
+      case DeviceConnectState::CONNECTING_AUTOCONNECT:
+        /* Cancel background conection */
+        BTA_GATTC_CancelOpen(gatt_if_, address, false);
+        break;
+      case DeviceConnectState::DISCONNECTED:
+        /* Do nothing, just remove device  */
+        break;
     }
 
     /* Remove the group assignment if not yet removed. It might happen that the
