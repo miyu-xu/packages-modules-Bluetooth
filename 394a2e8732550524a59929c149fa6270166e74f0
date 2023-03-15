@@ -34,6 +34,24 @@
       "parentUuid": "20144367_164e7855",
       "revId": "394a2e8732550524a59929c149fa6270166e74f0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a2dff974_f6f707cb",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 542,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-03-15T19:06:55Z",
+      "side": 0,
+      "message": "Thanks for chiming in here Myles - this LGTM given the above.",
+      "parentUuid": "db9642b8_1a6329c5",
+      "revId": "394a2e8732550524a59929c149fa6270166e74f0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
