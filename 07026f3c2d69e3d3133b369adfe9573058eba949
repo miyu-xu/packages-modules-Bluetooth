@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "556742d5_c4898d29",
+        "filename": "tools/pdl/Android.bp",
+        "patchSetId": 2
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2023-03-16T21:25:38Z",
+      "side": 1,
+      "message": "Sorry, but this won\u0027t work -- the tests call out to `rustfmt` at runtime to format the generated code. This in turn is integral to how the snapshot based testing works.",
+      "revId": "07026f3c2d69e3d3133b369adfe9573058eba949",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
