@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b701da19_278efb8f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1997420
+      },
+      "writtenOn": "2023-03-16T02:07:18Z",
+      "side": 1,
+      "message": "camera2/extensions/service_based_sample/extensions_service/src/com/android/oemextensions/AdvancedExtenderImplStub.java",
+      "revId": "3463a7df03b03becc4536061bd01135c6a532dfd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
