@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fc906e19_7d5d9ee8",
+        "filename": "system/stack/btm/btm_inq.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 574,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-03-16T17:41:34Z",
+      "side": 1,
+      "message": "Why not leave it p_inq?",
+      "range": {
+        "startLine": 574,
+        "startChar": 6,
+        "endLine": 574,
+        "endChar": 25
+      },
+      "revId": "fea7c0a7d64e87200d72ee66c1aeb9848aedea6e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
