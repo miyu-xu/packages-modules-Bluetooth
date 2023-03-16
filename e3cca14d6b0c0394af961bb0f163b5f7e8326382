@@ -34,6 +34,24 @@
       "parentUuid": "5590c346_92b0576b",
       "revId": "e3cca14d6b0c0394af961bb0f163b5f7e8326382",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1553ad1d_58b7501e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1010056
+      },
+      "writtenOn": "2023-03-16T21:37:51Z",
+      "side": 1,
+      "message": "We shouldn\u0027t add hermeticity issues to the build, and depending on outside tooling is even worse than what\u0027s happening here. I\u0027m also not sure how brittle it is to run `rustfmt` on code and then expect it to match a pre-recorded version of the code, because `rustfmt` can also change in subtle ways between releases (particularly if you\u0027re depending on any unspecified defaults).\n\nCould we disable the text comparison tests for now (or at least the text-comparing portions of them) on Android? If not, we really need someone to work on getting a proper rule added for `rustfmt` added to Soong where you can then fix the pdl build here to call the non-sandboxed (i.e. non-genrule-invoked) `rustfmt`.",
+      "parentUuid": "e1579247_26f68eb5",
+      "revId": "e3cca14d6b0c0394af961bb0f163b5f7e8326382",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

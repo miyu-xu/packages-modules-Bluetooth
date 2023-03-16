@@ -16,6 +16,24 @@
       "message": "Sorry, but this won\u0027t work -- the tests call out to `rustfmt` at runtime to format the generated code. This in turn is integral to how the snapshot based testing works.",
       "revId": "07026f3c2d69e3d3133b369adfe9573058eba949",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d0d27359_199ae1ff",
+        "filename": "tools/pdl/Android.bp",
+        "patchSetId": 2
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1010056
+      },
+      "writtenOn": "2023-03-16T21:37:51Z",
+      "side": 1,
+      "message": "So `rustfmt` is not being run correctly in the build system, and that prevents us from updating rustc now. Creating `rustfmt` as a cc_prebuilt meant that it had no other dependencies, when the latest versions of `rustfmt` do have library dependencies. So the long-term solution is that the build system (Soong) needs to be taught how to run `rustfmt` correctly, and that can be plugged into pdl\u0027s genrules.",
+      "parentUuid": "556742d5_c4898d29",
+      "revId": "07026f3c2d69e3d3133b369adfe9573058eba949",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
