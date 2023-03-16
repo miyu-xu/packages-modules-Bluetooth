@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f9843561_b703d6e5",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-03-16T09:43:38Z",
+      "side": 1,
+      "message": "Short answer is I do not know.\nI assume it was done like this in order to have a cache of the value ?\n\nAlso if the user had switch but the bluetooth not yet, we are still performing operation as the previous user and checking the getCurrentUser may not be accurate.\n\nIt is a corner case and I am not sure I understand all the consequence of the  solution.\n\n@mylesgw@google.com, I would really like to know your thought on that.\n\nOverall, I think this change looks good.",
+      "parentUuid": "bf52791c_c3018cb5",
+      "range": {
+        "startLine": 9,
+        "startChar": 32,
+        "endLine": 9,
+        "endChar": 49
+      },
+      "revId": "89cb1e3225db8707adffa608ad824f1b35d45a46",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "eecec336_87b5425c",
         "filename": "android/app/src/com/android/bluetooth/Utils.java",
         "patchSetId": 4
