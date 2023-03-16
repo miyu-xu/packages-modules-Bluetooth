@@ -223,6 +223,30 @@
       },
       "revId": "a67ef83da1a53cb50c84a633631fe0601e26c9a4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "80ef468b_d76052c1",
+        "filename": "system/stack/l2cap/l2c_fcr.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1726,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2023-03-16T10:41:48Z",
+      "side": 1,
+      "message": "Gentle ping.\n\n\u003e In the new code, it looks like we try ERTM again if the peer asked for it. It feels like some of this code should be unreachable.\n\nAdding more context to this, there is a \"if\" in the previous few lines to check if our mode and the peer mode is different. So if we tried ERTM at first, even though the peer wants ERTM, we won\u0027t try ERTM again because of this change.",
+      "parentUuid": "ee4a6f9c_cd0680b7",
+      "range": {
+        "startLine": 1726,
+        "startChar": 18,
+        "endLine": 1726,
+        "endChar": 27
+      },
+      "revId": "a67ef83da1a53cb50c84a633631fe0601e26c9a4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
