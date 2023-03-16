@@ -70,6 +70,41 @@ public final class BluetoothLeAudio implements BluetoothProfile, AutoCloseable {
     private CloseGuard mCloseGuard;
 
     /**
+     * Listener wrapper to re-register callbacks when the service is connected.
+     */
+    private final class LeAudioServiceListener extends ForwardingServiceListener {
+        LeAudioServiceListener(ServiceListener listener) {
+            super(listener);
+        }
+
+        @Override
+        public void onServiceConnected(int profile, BluetoothProfile proxy) {
+            if (profile == LE_AUDIO) {
+                // re-register the service-to-app callback
+                synchronized (mCallbackExecutorMap) {
+                    if (mCallbackExecutorMap.isEmpty()) {
+                        return;
+                    }
+                    try {
+                        final IBluetoothLeAudio service = getService();
+                        if (service != null) {
+                            final SynchronousResultReceiver<Integer> recv =
+                                    SynchronousResultReceiver.get();
+                            service.registerCallback(mCallback, mAttributionSource, recv);
+                            recv.awaitResultNoInterrupt(getSyncTimeout()).getValue(null);
+                        }
+                    } catch (TimeoutException e) {
+                        Log.e(TAG, "Failed to register callback", e);
+                    } catch (RemoteException e) {
+                        throw e.rethrowFromSystemServer();
+                    }
+                }
+            }
+            super.onServiceConnected(profile, proxy);
+        }
+    }
+
+    /**
      * This class provides a callback that is invoked when audio codec config changes on
      * the remote device.
      *
@@ -640,37 +675,6 @@ public final class BluetoothLeAudio implements BluetoothProfile, AutoCloseable {
                 }
     };
 
-
-    @SuppressLint("AndroidFrameworkBluetoothPermission")
-    private final IBluetoothStateChangeCallback mBluetoothStateChangeCallback =
-            new IBluetoothStateChangeCallback.Stub() {
-                public void onBluetoothStateChange(boolean up) {
-                    if (DBG) Log.d(TAG, "onBluetoothStateChange: up=" + up);
-                    if (up) {
-                        // re-register the service-to-app callback
-                        synchronized (mCallbackExecutorMap) {
-                            if (!mCallbackExecutorMap.isEmpty()) {
-                                try {
-                                    final IBluetoothLeAudio service = getService();
-                                    if (service != null) {
-                                        final SynchronousResultReceiver<Integer> recv =
-                                                SynchronousResultReceiver.get();
-                                        service.registerCallback(mCallback,
-                                                mAttributionSource, recv);
-                                        recv.awaitResultNoInterrupt(getSyncTimeout())
-                                                .getValue(null);
-                                    }
-                                } catch (TimeoutException e) {
-                                    Log.e(TAG, "Failed to register callback", e);
-                                } catch (RemoteException e) {
-                                    throw e.rethrowFromSystemServer();
-                                }
-                            }
-                        }
-                    }
-                }
-            };
-
     /**
      * Create a BluetoothLeAudio proxy object for interacting with the local
      * Bluetooth LeAudio service.
@@ -679,33 +683,16 @@ public final class BluetoothLeAudio implements BluetoothProfile, AutoCloseable {
             BluetoothAdapter adapter) {
         mAdapter = adapter;
         mAttributionSource = adapter.getAttributionSource();
-        mProfileConnector.connect(context, listener);
-
-        IBluetoothManager mgr = mAdapter.getBluetoothManager();
-        if (mgr != null) {
-            try {
-                mgr.registerStateChangeCallback(mBluetoothStateChangeCallback);
-            } catch (RemoteException e) {
-                throw e.rethrowFromSystemServer();
-            }
-        }
+        mProfileConnector.connect(context, new LeAudioServiceListener(listener));
 
         mCloseGuard = new CloseGuard();
         mCloseGuard.open("close");
     }
 
+
     /** @hide */
     @Override
     public void close() {
-        IBluetoothManager mgr = mAdapter.getBluetoothManager();
-        if (mgr != null) {
-            try {
-                mgr.unregisterStateChangeCallback(mBluetoothStateChangeCallback);
-            } catch (RemoteException e) {
-                Log.e(TAG, "", e);
-            }
-        }
-
         mProfileConnector.disconnect();
     }
 
