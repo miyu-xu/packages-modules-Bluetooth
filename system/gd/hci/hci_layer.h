@@ -104,7 +104,8 @@ class HciLayer : public Module, public CommandInterface<CommandBuilder> {
     return "Hci Layer";
   }
 
-  static constexpr std::chrono::milliseconds kHciTimeoutMs = std::chrono::milliseconds(2000);
+  static std::chrono::milliseconds get_hci_timeout_ms();
+
   static constexpr std::chrono::milliseconds kHciTimeoutRestartMs = std::chrono::milliseconds(5000);
 
   static const ModuleFactory Factory;
