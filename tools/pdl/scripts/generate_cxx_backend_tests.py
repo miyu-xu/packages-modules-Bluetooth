@@ -1,0 +1,213 @@
+#!/usr/bin/env python3
+
+import argparse
+from dataclasses import dataclass, field
+import json
+from pathlib import Path
+import sys
+from textwrap import dedent
+from typing import List, Tuple, Union, Optional
+
+from pdl import ast, core
+
+
+def indent(lines: List[str], depth: int) -> str:
+    """Indent a code block to the selected depth.
+    The first line is intentionally not indented so that
+    the caller may use it as:
+
+    '''
+    def generated():
+        {codeblock}
+    '''
+    """
+    sep = '\n' + (' ' * (depth * 4))
+    return sep.join(lines)
+
+
+def indent_block(text: str, depth: int) -> str:
+    return indent(text.split('\n'), depth)
+
+
+def to_pascal_case(text: str) -> str:
+    return text.replace('_', ' ').title().replace(' ', '')
+
+
+def get_cxx_scalar_type(width: int) -> str:
+    """Return the cxx scalar type to be used to back a PDL type."""
+    for n in [8, 16, 32, 64]:
+        if width <= n:
+            return f'uint{n}_t'
+    # PDL type does not fit on non-extended scalar types.
+    assert False
+
+
+def generate_packet_parser_test(packet: ast.PacketDeclaration, tests: List[object]) -> str:
+    """Generate the implementation of unit tests for the selected packet."""
+
+    def parse_packet(packet: ast.PacketDeclaration) -> str:
+        parent = parse_packet(packet.parent) if packet.parent else "input"
+        return f"{packet.id}View::Create({parent})"
+
+    def input_bytes(input: str) -> List[str]:
+        input = bytes.fromhex(input)
+        input_bytes = []
+        for i in range(0, len(input), 16):
+            input_bytes.append(' '.join(f'0x{b:x},' for b in input[i:i+16]))
+        return input_bytes
+
+    def get_field(decl: ast.Declaration, var: str, id: str) -> str:
+        if isinstance(decl, ast.StructDeclaration):
+            return f"{var}.{id}_"
+        else:
+            return f"{var}.Get{to_pascal_case(id)}()"
+
+    def check_members(decl: ast.Declaration, var: str, expected: object):
+        checks = []
+        for (id, value) in expected.items():
+            field = core.get_packet_field(decl, id)
+            sanitized_var = var.replace('[', '_').replace(']', '')
+            field_var = f'{sanitized_var}_{id}'
+
+            if isinstance(field, ast.ScalarField):
+                checks.append(f"ASSERT_EQ({get_field(decl, var, id)}, {value});")
+
+            elif (isinstance(field, ast.TypedefField) and
+                  isinstance(field.type, (ast.EnumDeclaration, ast.CustomFieldDeclaration, ast.ChecksumDeclaration))):
+                checks.append(f"ASSERT_EQ({get_field(decl, var, id)}, {field.type_id}({value}));")
+
+            elif isinstance(field, ast.TypedefField):
+                checks.append(f"{field.type_id} const& {field_var} = {get_field(decl, var, id)};")
+                checks.extend(check_members(field.type, field_var, value))
+
+            elif isinstance(field, (ast.TypedefField, ast.BodyField)):
+                checks.append(f"std::vector<uint8_t> expected_{field_var} {{")
+                for i in range(0, len(value), 16):
+                    checks.append('    ' + ' '.join([f"0x{v:x}," for v in value[i:i+16]]))
+                checks.append("};")
+                checks.append(f"ASSERT_EQ({get_field(decl, var, id)}, expected_{field_var});")
+
+            elif isinstance(field, ast.ArrayField) and field.width:
+                checks.append(f"std::vector<{get_cxx_scalar_type(field.width)}> expected_{field_var} {{")
+                step = int(16 * 8 / field.width)
+                for i in range(0, len(value), step):
+                    checks.append('    ' + ' '.join([f"0x{v:x}," for v in value[i:i+step]]))
+                checks.append("};")
+                checks.append(f"ASSERT_EQ({get_field(decl, var, id)}, expected_{field_var});")
+
+            elif (isinstance(field, ast.ArrayField) and
+                  isinstance(field.type, ast.EnumDeclaration)):
+                checks.append(f"std::vector<{field.type_id}> expected_{field_var} {{")
+                for v in value:
+                    checks.append(f"    {field.type_id}({v}),")
+                checks.append("};")
+                checks.append(f"ASSERT_EQ({get_field(decl, var, id)}, expected_{field_var});")
+
+            elif isinstance(field, ast.ArrayField):
+                checks.append(f"std::vector<{field.type_id}> {field_var} = {get_field(decl, var, id)};")
+                checks.append(f"ASSERT_EQ({field_var}.size(), {len(value)});")
+                for (n, value) in enumerate(value):
+                    checks.extend(check_members(field.type, f"{field_var}[{n}]", value))
+
+            else:
+                pass
+
+        return checks
+
+
+    generated_tests = []
+    for (test_nr, test) in enumerate(tests):
+        child_packet_id = test.get('packet', packet.id)
+        child_packet = packet.file.packet_scope[child_packet_id]
+
+        generated_tests.append(dedent("""\
+
+            TEST_F(ParserTest, {packet_id}_Case{test_nr}) {{
+                pdl::packet::slice input(std::shared_ptr<std::vector<uint8_t>>(new std::vector<uint8_t> {{
+                    {input_bytes}
+                }}));
+                {child_packet_id}View packet = {parse_packet};
+                ASSERT_TRUE(packet.IsValid());
+                {checks}
+            }}
+            """).format(packet_id=packet.id,
+                        child_packet_id=child_packet_id,
+                        test_nr=test_nr,
+                        input_bytes=indent(input_bytes(test['packed']), 2),
+                        parse_packet=parse_packet(child_packet),
+                        checks=indent(check_members(packet, 'packet', test['unpacked']), 1)))
+
+    return ''.join(generated_tests)
+
+
+def run(input: argparse.FileType,
+        output: argparse.FileType,
+        test_vectors: argparse.FileType,
+        include_header: List[str],
+        using_namespace: List[str]):
+
+    file = ast.File.from_json(json.load(input))
+    tests = json.load(test_vectors)
+    core.desugar(file)
+
+    include_header = '\n'.join([f'#include <{header}>' for header in include_header])
+    using_namespace = '\n'.join([f'using {namespace};' for namespace in using_namespace])
+
+    skipped_tests = [
+        'Packet_Checksum_Field_FromStart',
+        'Packet_Checksum_Field_FromEnd',
+        'Struct_Checksum_Field_FromStart',
+        'Struct_Checksum_Field_FromEnd',
+        'PartialParent5',
+        'PartialParent12',
+    ]
+
+    output.write(dedent("""\
+        // File generated from {input_name} and {test_vectors_name}, with the command:
+        //  {input_command}
+        // /!\\ Do not edit by hand
+
+        #include <cstdint>
+        #include <string>
+        #include <gtest/gtest.h>
+        #include <packet_runtime.h>
+
+        {include_header}
+        {using_namespace}
+
+        namespace pdl {{
+
+        class ParserTest : public testing::Test {{}};
+        class SerializerTest : public testing::Test {{}};
+        """).format(input_name=input.name,
+                    input_command=' '.join(sys.argv),
+                    test_vectors_name=test_vectors.name,
+                    include_header=include_header,
+                    using_namespace=using_namespace))
+
+    for decl in file.declarations:
+        if decl.id in skipped_tests:
+            continue
+
+        if isinstance(decl, ast.PacketDeclaration):
+            matching_tests = [test['tests'] for test in tests if test['packet'] == decl.id]
+            matching_tests = [test for test_list in matching_tests for test in test_list]
+            if matching_tests:
+                output.write(generate_packet_parser_test(decl, matching_tests))
+
+    output.write("}  // namespace pdl\n")
+
+
+def main() -> int:
+    """Generate cxx PDL backend."""
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--input', type=argparse.FileType('r'), default=sys.stdin, help='Input PDL-JSON source')
+    parser.add_argument('--output', type=argparse.FileType('w'), default=sys.stdout, help='Output C++ file')
+    parser.add_argument('--test-vectors', type=argparse.FileType('r'), required=True, help='Input PDL test file')
+    parser.add_argument('--include-header', type=str, default=[], action='append', help='Added include directives')
+    parser.add_argument('--using-namespace', type=str, default=[], action='append', help='Added using namespace directives')
+    return run(**vars(parser.parse_args()))
+
+
+if __name__ == '__main__':
+    sys.exit(main())
