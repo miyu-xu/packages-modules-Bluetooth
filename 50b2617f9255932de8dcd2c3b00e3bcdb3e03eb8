@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "121dbc42_5f101db3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-03-16T10:31:00Z",
+      "side": 1,
+      "message": "The bug mention that this will solve `GAP/BOND/NBON/BV-01-C`\n\nIf I look at the [pts-bot config](https://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/android/pandora/server/configs/pts_bot_tests_config.json;l\u003d176;drc\u003db4f491c621b064e946d43f16d48d934ccf6d09c9) we only have `GAP/BOND/BON/BV-01-C` and `GAP/BOND/BON/BV-03-C`. Can we add it there as well ? and make sure that the test pass ?",
+      "revId": "50b2617f9255932de8dcd2c3b00e3bcdb3e03eb8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
