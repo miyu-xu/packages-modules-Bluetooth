@@ -169,6 +169,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3186997d_bdc3796b",
+        "filename": "android/pandora/test/le_advertising_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1937985
+      },
+      "writtenOn": "2023-03-16T00:08:13Z",
+      "side": 1,
+      "message": "We can use constants directly instead of an enum",
+      "parentUuid": "19cf4685_58b06274",
+      "range": {
+        "startLine": 53,
+        "startChar": 0,
+        "endLine": 53,
+        "endChar": 30
+      },
+      "revId": "e4e643b486ed79efe7985b597f285dd9a75f9109",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "83535e6e_14a6a86e",
         "filename": "android/pandora/test/le_advertising_test.py",
         "patchSetId": 1
@@ -204,6 +228,30 @@
       "side": 1,
       "message": "Sure.\nNote that I copied this from example.py, other implementers might do the same.\nThe codelab template also uses \n```\n    devices: Optional[PandoraDevices] \u003d None\n    dut: PandoraClient\n    ref: BumblePandoraClient  # `BumblePandoraClient` is a sub-class of `PandoraClient`\n```",
       "parentUuid": "83535e6e_14a6a86e",
+      "range": {
+        "startLine": 64,
+        "startChar": 9,
+        "endLine": 64,
+        "endChar": 21
+      },
+      "revId": "e4e643b486ed79efe7985b597f285dd9a75f9109",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4ab32074_89112ef8",
+        "filename": "android/pandora/test/le_advertising_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1937985
+      },
+      "writtenOn": "2023-03-16T00:08:13Z",
+      "side": 1,
+      "message": "Yes it\u0027s only for tests that need ref to be a Bumble device, I\u0027m gonna update all this asap!",
+      "parentUuid": "24a652d4_3ebe0746",
       "range": {
         "startLine": 64,
         "startChar": 9,
