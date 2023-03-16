@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "bf52791c_c3018cb5",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-03-16T00:04:47Z",
+      "side": 1,
+      "message": "Yes, I agree that his is a short term solution.\nMy question here is why do you need to track instead of using ActivityManager.getCurrentUser?",
+      "parentUuid": "7d1d1399_30354f75",
+      "range": {
+        "startLine": 9,
+        "startChar": 32,
+        "endLine": 9,
+        "endChar": 49
+      },
+      "revId": "89cb1e3225db8707adffa608ad824f1b35d45a46",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "eecec336_87b5425c",
         "filename": "android/app/src/com/android/bluetooth/Utils.java",
         "patchSetId": 4
@@ -37,6 +61,30 @@
       "writtenOn": "2023-03-15T20:19:54Z",
       "side": 1,
       "message": "Unrelated white-space change.\n\nIt highlighted the STOPSHIP comment below it, though.",
+      "range": {
+        "startLine": 489,
+        "startChar": 0,
+        "endLine": 489,
+        "endChar": 0
+      },
+      "revId": "89cb1e3225db8707adffa608ad824f1b35d45a46",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9e8680fe_5af8ef41",
+        "filename": "android/app/src/com/android/bluetooth/Utils.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 489,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-03-16T00:04:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "eecec336_87b5425c",
       "range": {
         "startLine": 489,
         "startChar": 0,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0b8c099e_dba038c0",
+        "filename": "android/app/src/com/android/bluetooth/Utils.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 708,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-03-16T00:04:47Z",
+      "side": 1,
+      "message": "My bad. Done.",
+      "parentUuid": "dc2e0556_5e73d0ff",
+      "range": {
+        "startLine": 708,
+        "startChar": 0,
+        "endLine": 708,
+        "endChar": 80
+      },
+      "revId": "89cb1e3225db8707adffa608ad824f1b35d45a46",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d1c6d52b_dbc88ead",
@@ -83,6 +155,30 @@
       "writtenOn": "2023-03-15T11:06:45Z",
       "side": 1,
       "message": "We are adding some doReturn here without modifying the other tests. Is this code needed ?",
+      "range": {
+        "startLine": 66,
+        "startChar": 0,
+        "endLine": 68,
+        "endChar": 79
+      },
+      "revId": "89cb1e3225db8707adffa608ad824f1b35d45a46",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "686a7889_cd31f12b",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/AdapterServiceBinderTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-03-16T00:04:47Z",
+      "side": 1,
+      "message": "This is required since I removed in Utils.java\n```\n        if (isInstrumentationTestMode()) {\n            return true;\n        }\n```\n\ngetIoCapability and many other tests would make checkCallerIsSystemOrActiveOrManagedUser be called and it should return true to make the test passed.",
+      "parentUuid": "d1c6d52b_dbc88ead",
       "range": {
         "startLine": 66,
         "startChar": 0,
