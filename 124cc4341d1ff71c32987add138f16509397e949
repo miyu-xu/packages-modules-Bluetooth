@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c103e159_8a3754e2",
+        "filename": "android/pandora/test/le_advertising_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1937985
+      },
+      "writtenOn": "2023-03-16T01:54:08Z",
+      "side": 1,
+      "message": ".. And to use the enum type here",
+      "range": {
+        "startLine": 82,
+        "startChar": 68,
+        "endLine": 82,
+        "endChar": 71
+      },
+      "revId": "124cc4341d1ff71c32987add138f16509397e949",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
