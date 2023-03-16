@@ -12,8 +12,8 @@ pub mod ast {
     use serde::Serialize;
 
     /// Field and declaration size information.
-    #[derive(Default, Debug, Clone, Copy)]
-    #[allow(unused)]
+    #[derive(Debug, Clone, Copy)]
+    #[allow(unused, clippy::derivable_impls)]
     pub enum Size {
         /// Constant size in bits.
         Static(usize),
@@ -22,8 +22,14 @@ pub mod ast {
         Dynamic,
         /// The size cannot be determined statically or at runtime.
         /// The packet assumes the largest possible size.
-        #[default]
         Unknown,
+    }
+
+    // TODO: use derive(Default) when UWB is using Rust 1.62.0.
+    impl Default for Size {
+        fn default() -> Size {
+            Size::Unknown
+        }
     }
 
     #[derive(Debug, Serialize, Default, Clone, PartialEq)]
