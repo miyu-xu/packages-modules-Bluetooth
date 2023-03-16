@@ -16,6 +16,24 @@
       "message": "Can you confirm that you are doing this because Companion manager need to be enabled only on wear os ?",
       "revId": "93307b6df4caf14fa091c81155f59ce72ea53767",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5c6eeb61_c5a87986",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1306903
+      },
+      "writtenOn": "2023-03-16T05:05:27Z",
+      "side": 1,
+      "message": "On Wear OS or any platform wants to have different sets of BLE connection intervals.\nFor those don\u0027t have the requirement we can skip the database query part.",
+      "parentUuid": "d91d384b_a5b10431",
+      "revId": "93307b6df4caf14fa091c81155f59ce72ea53767",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
