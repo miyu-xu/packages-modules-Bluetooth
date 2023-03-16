@@ -3,6 +3,7 @@ import site
 site.main()
 
 import argparse
+import asha_dual_device_test
 import asha_test
 import example
 import gatt_test
@@ -18,6 +19,7 @@ from typing import Any, List, Optional, Type
 _TEST_CLASSES_LIST = [
     example.ExampleTest,
     asha_test.ASHATest,
+    asha_dual_device_test.ASHADualDeviceTest,
     gatt_test.GattTest,
     le_advertising_test.LeAdvertisingTest,
 ]
@@ -50,9 +52,7 @@ def _parse_cli_args(argv: List[str]) -> argparse.Namespace:
     )
     parser.add_argument('-v', '--verbose', action='store_true', help='Set console logger level to DEBUG')
     parser.add_argument('-o', '--log', '--log_path', type=str, metavar='<PATH>', help='Path where to store log files')
-    parser.add_argument(
-        '-s', '--serial', '--device_serial', type=str, metavar='<SERIAL>', help='Android device serial'
-    )
+    parser.add_argument('-s', '--serial', '--device_serial', type=str, metavar='<SERIAL>', help='Android device serial')
     if not argv:
         argv = sys.argv[1:]
     return parser.parse_args(argv)
@@ -64,15 +64,14 @@ def run(test_classes: List[Any], argv: List[str]) -> None:
     # Check the classes that were passed in
     for test_class in test_classes:
         if not issubclass(test_class, base_test.BaseTestClass):
-            logging.error('Test class %s does not extend ' 'mobly.base_test.BaseTestClass', test_class)
+            logging.error('Test class %s does not extend '
+                          'mobly.base_test.BaseTestClass', test_class)
             sys.exit(1)
 
     # Find the full list of tests to execute
-    selected_tests: OrderedDict[
-        Type[base_test.BaseTestClass], Optional[List[str]]
-    ] = suite_runner.compute_selected_tests(  # type: ignore
-        test_classes, args.tests
-    )
+    selected_tests: OrderedDict[Type[base_test.BaseTestClass],
+                                Optional[List[str]]] = suite_runner.compute_selected_tests(  # type: ignore
+                                    test_classes, args.tests)
     if args.list:
         for (test_class, test_names) in selected_tests.items():
             test = test_class(config_parser.TestRunConfig())
@@ -86,8 +85,7 @@ def run(test_classes: List[Any], argv: List[str]) -> None:
     try:
         # Load test config file.
         test_configs: List[config_parser.TestRunConfig] = config_parser.load_test_config_file(
-            args.config, args.test_bed
-        )  # type: ignore
+            args.config, args.test_bed)  # type: ignore
 
         console_level = logging.DEBUG if args.verbose else logging.INFO
         for config in test_configs:
