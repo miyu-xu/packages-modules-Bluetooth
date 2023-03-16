@@ -63,7 +63,7 @@ namespace bluetooth {
 namespace hci {
 namespace {
 
-constexpr std::chrono::milliseconds kTimeout = HciLayer::kHciTimeoutMs / 2;
+const std::chrono::milliseconds kTimeout = HciLayer::get_hci_timeout_ms() / 2;
 
 class DependsOnHci : public Module {
  public:

@@ -439,20 +439,21 @@ class HciHalHidl : public HciHal {
     LOG_INFO("Trying to find a HIDL interface");
 
     auto get_service_alarm = new os::Alarm(GetHandler());
+
+    hal_start_timeout_ms = 500;
+    {
+      auto hal_start_timeout_prop = os::GetSystemProperty("ro.bluetooth.gd_hci_hal_start_timeout");
+      if (hal_start_timeout_prop) {
+        auto timeout = common::Uint64FromString(hal_start_timeout_prop.value());
+        if (timeout) {
+          hal_start_timeout_ms = static_cast<uint32_t>(timeout.value());
+        }
+      }
+    }
+
     get_service_alarm->Schedule(
-        BindOnce([] {
-          const std::string kBoardProperty = "ro.product.board";
-          const std::string kCuttlefishBoard = "cutf";
-          auto board_name = os::GetSystemProperty(kBoardProperty);
-          bool emulator = board_name.has_value() && board_name.value() == kCuttlefishBoard;
-          if (emulator) {
-            LOG_ERROR("board_name: %s", board_name.value().c_str());
-            LOG_ERROR("Unable to get a Bluetooth service after 500ms, start the HAL before starting Bluetooth");
-            return;
-          }
-          LOG_ALWAYS_FATAL("Unable to get a Bluetooth service after 500ms, start the HAL before starting Bluetooth");
-        }),
-        std::chrono::milliseconds(500));
+        BindOnce(&HciHalHidl::onStartTimeout, base::Unretained(this)),
+        std::chrono::milliseconds(hal_start_timeout_ms));
 
     bt_hci_1_1_ = IBluetoothHci_1_1::getService();
 
@@ -528,6 +529,23 @@ class HciHalHidl : public HciHal {
   ::ndk::ScopedAIBinder_DeathRecipient aidl_death_recipient_;
   activity_attribution::ActivityAttribution* btaa_logger_;
   SnoopLogger* btsnoop_logger_;
+  uint32_t hal_start_timeout_ms;
+
+  void onStartTimeout() {
+    const std::string kBoardProperty = "ro.product.board";
+    const std::string kCuttlefishBoard = "cutf";
+    auto board_name = os::GetSystemProperty(kBoardProperty);
+    bool emulator = board_name.has_value() && board_name.value() == kCuttlefishBoard;
+    if (emulator) {
+      LOG_ERROR("board_name: %s", board_name.value().c_str());
+      LOG_ERROR("Unable to get a Bluetooth service after %u ms,"
+          " start the HAL before starting Bluetooth", hal_start_timeout_ms);
+      return;
+    }
+    LOG_ALWAYS_FATAL("Unable to get a Bluetooth service after %u ms,"
+        " start the HAL before starting Bluetooth", hal_start_timeout_ms);
+  }
+
 };
 
 const ModuleFactory HciHal::Factory = ModuleFactory([]() { return new HciHalHidl(); });
