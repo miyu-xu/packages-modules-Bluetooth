@@ -23,3 +23,25 @@ python_binary_host {
         "pdl/core.py",
     ],
 }
+
+// C++ generator.
+python_binary_host {
+    name: "pdl_cxx_generator",
+    main: "generate_cxx_backend.py",
+    srcs: [
+        "generate_cxx_backend.py",
+        "pdl/ast.py",
+        "pdl/core.py",
+    ],
+}
+
+// C++ test generator.
+python_binary_host {
+    name: "pdl_cxx_unittest_generator",
+    main: "generate_cxx_backend_tests.py",
+    srcs: [
+        "generate_cxx_backend_tests.py",
+        "pdl/ast.py",
+        "pdl/core.py",
+    ],
+}
