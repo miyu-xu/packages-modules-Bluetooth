@@ -16,6 +16,24 @@
       "message": "There are some open comment on the wear cherry-pick of this CL to add a property check.\nCan we solve them before submitting the CL?",
       "revId": "2a013965f80af744cebc33b90de17343ef231d7c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "24391e1f_1991e08b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1951737
+      },
+      "writtenOn": "2023-03-16T14:51:02Z",
+      "side": 1,
+      "message": "As mentioned in that CL, we proposed to make this open (i.e., not guarded by property check) as supporting messages with email contacts this may not be feature specific. WDYT? I\u0027m also fine by adding a property check if that\u0027s more preferable.",
+      "parentUuid": "a921853f_721d4eb3",
+      "revId": "2a013965f80af744cebc33b90de17343ef231d7c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
