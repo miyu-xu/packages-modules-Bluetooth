@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "df3d9131_e0bca781",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/gatt.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1218,
+      "author": {
+        "id": 1970930
+      },
+      "writtenOn": "2023-03-16T11:39:38Z",
+      "side": 1,
+      "message": "Added SetCharacteristicNotificationFromHandle and IsCharacteristicNotificationReceived grpc calls to set characteristic notification/indication and verify characteristic notification/indication received.",
+      "parentUuid": "e07a697c_553bbf04",
+      "range": {
+        "startLine": 1205,
+        "startChar": 4,
+        "endLine": 1218,
+        "endChar": 19
+      },
+      "revId": "995d988d98ea24a8cda55ccbc3dc9408c6bad710",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c7031733_b3444d87",
@@ -64,6 +88,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f4c23838_f13a23b2",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/gatt.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1230,
+      "author": {
+        "id": 1970930
+      },
+      "writtenOn": "2023-03-16T11:39:38Z",
+      "side": 1,
+      "message": "Added SetCharacteristicNotificationFromHandle and IsCharacteristicNotificationReceived grpc calls to set characteristic notification/indication and verify characteristic notification/indication received.",
+      "parentUuid": "c7031733_b3444d87",
+      "range": {
+        "startLine": 1220,
+        "startChar": 4,
+        "endLine": 1230,
+        "endChar": 19
+      },
+      "revId": "995d988d98ea24a8cda55ccbc3dc9408c6bad710",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ca171c19_cb55530a",
@@ -77,6 +125,30 @@
       "writtenOn": "2023-03-09T18:46:11Z",
       "side": 1,
       "message": "Are we sure the security key is deleted here ? Shouldn\u0027t we try to `deleteBond` or `reset` ?",
+      "range": {
+        "startLine": 1232,
+        "startChar": 4,
+        "endLine": 1239,
+        "endChar": 19
+      },
+      "revId": "995d988d98ea24a8cda55ccbc3dc9408c6bad710",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0fbc96c4_7a63cd20",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/gatt.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1239,
+      "author": {
+        "id": 1970930
+      },
+      "writtenOn": "2023-03-16T11:39:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ca171c19_cb55530a",
       "range": {
         "startLine": 1232,
         "startChar": 4,

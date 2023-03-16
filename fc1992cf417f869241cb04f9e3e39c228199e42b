@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "474d283e_86c0a2cf",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1970930
+      },
+      "writtenOn": "2023-03-16T11:39:38Z",
+      "side": 1,
+      "message": "Hi Charlie,\n\nSubmitted 9 GATT test cases.\nAdded SetCharacteristicNotificationFromHandle and IsCharacteristicNotificationReceived grpc calls to set characteristic notification/indication and verify characteristic notification/indication received.\nRemoved GATT/CL/GAN/BV-01-C from pass list as it is not passing.\nRequest you to provide your inputs.\n\nRegards,\nFahad",
+      "revId": "fc1992cf417f869241cb04f9e3e39c228199e42b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
