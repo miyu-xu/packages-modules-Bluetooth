@@ -62,7 +62,7 @@ namespace bluetooth {
 namespace hci {
 namespace {
 
-constexpr std::chrono::milliseconds kTimeout = HciLayer::kHciTimeoutMs / 2;
+constexpr std::chrono::milliseconds kTimeout = HciLayer::get_hci_timeout_ms() / 2;
 constexpr std::chrono::milliseconds kAclTimeout = std::chrono::milliseconds(1000);
 
 class TestHciHal : public hal::HciHal {
@@ -508,7 +508,7 @@ TEST_F(HciTest, DISABLED_hciTimeOut) {
   ASSERT_EQ(reset.GetOpCode(), OpCode::RESET);
 
   auto debug_command_future = hal->GetSentCommandFuture();
-  auto event_status = event_future.wait_for(HciLayer::kHciTimeoutMs);
+  auto event_status = event_future.wait_for(HciLayer::get_hci_timeout_ms());
   ASSERT_NE(event_status, std::future_status::ready);
   auto debug_command_sent_status = debug_command_future.wait_for(kTimeout);
   ASSERT_EQ(debug_command_sent_status, std::future_status::ready);
