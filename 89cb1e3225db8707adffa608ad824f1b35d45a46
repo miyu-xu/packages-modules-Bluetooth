@@ -98,6 +98,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d0337a7b_6ef97f45",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-03-16T16:38:59Z",
+      "side": 1,
+      "message": "I agree, but this change make the sForeground to be check against the caller or against the currentUser, allowing us to be alive during an overlaping time. when the caller can be different than the foreground user (there is no check doing `caller \u003d\u003d currentUser`)\n\nSo this change is saying \"We know we are loosing the race, let\u0027s not crash because of our implementation.\"",
+      "parentUuid": "b9074d9c_37478871",
+      "range": {
+        "startLine": 9,
+        "startChar": 32,
+        "endLine": 9,
+        "endChar": 49
+      },
+      "revId": "89cb1e3225db8707adffa608ad824f1b35d45a46",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "eecec336_87b5425c",
         "filename": "android/app/src/com/android/bluetooth/Utils.java",
         "patchSetId": 4
