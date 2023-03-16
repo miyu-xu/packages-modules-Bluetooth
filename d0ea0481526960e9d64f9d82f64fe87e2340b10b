@@ -33,6 +33,24 @@
       "message": "maybe we could add  also current media player name ?",
       "revId": "d0ea0481526960e9d64f9d82f64fe87e2340b10b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f87296e0_c84776a0",
+        "filename": "android/app/src/com/android/bluetooth/mcp/MediaControlGattService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 2009,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-03-16T08:57:39Z",
+      "side": 1,
+      "message": "```\nProfile: McpService\nMedia Control Service  instance list:\n\tMediaControlService instance:\n\t\tCcid \u003d 2\n\t\tFeatures:\n\t\t\tPLAYER_NAME(BIT 1)\n\t\t\tTRACK_CHANGED(BIT 4)\n\t\t\tTRACK_TITLE(BIT 5)\n\t\t\tTRACK_DURATION(BIT 6)\n\t\t\tTRACK_POSITION(BIT 7)\n\t\t\tPLAYBACK_SPEED(BIT 8)\n\t\t\tSEEKING_SPEED(BIT 9)\n\t\t\tPLAYING_ORDER(BIT 15)\n\t\t\tPLAYING_ORDER_SUPPORTED(BIT 16)\n\t\t\tMEDIA_STATE(BIT 17)\n\t\t\tMEDIA_CONTROL_POINT(BIT 18)\n\t\t\tMEDIA_CONTROL_POINT_OPCODES_SUPPORTED(BIT 19)\n\t\t\tCONTENT_CONTROL_ID(BIT 22)\n\t\t\tPLAYER_NAME(BIT 1)\n\t\t\tTRACK_TITLE(BIT 5)\n\t\t\tTRACK_DURATION(BIT 6)\n\t\t\tTRACK_POSITION(BIT 7)\n\t\t\tPLAYBACK_SPEED(BIT 8)\n\t\t\tSEEKING_SPEED(BIT 9)\n\t\t\tPLAYING_ORDER(BIT 15)\n\t\t\tMEDIA_CONTROL_POINT_OPCODES_SUPPORTED(BIT 19)\n\t\tPlayer name: YouTube Music\n\t\tCurrentPlaybackState \u003d PLAYING\n\t\tCCC states for device: xx:xx:xx:xx:2C:08\n\t\t\tCharacteristic: MEDIA_STATE, value: NOTIFICATION\n\t\t\tCharacteristic: PLAYER_NAME, value: NOTIFICATION\n\t\t\tCharacteristic: MEDIA_CONTROL_POINT, value: NOTIFICATION\n\t\t\tCharacteristic: MEDIA_CONTROL_POINT_OPCODES_SUPPORTED, value: NOTIFICATION\n\t\t\tCharacteristic: TRACK_CHANGED, value: NOTIFICATION\n\t\tCCC states for device: xx:xx:xx:xx:0F:2E\n\t\t\tCharacteristic: MEDIA_STATE, value: NOTIFICATION\n\t\t\tCharacteristic: PLAYER_NAME, value: NOTIFICATION\n\t\t\tCharacteristic: MEDIA_CONTROL_POINT, value: NOTIFICATION\n\t\t\tCharacteristic: MEDIA_CONTROL_POINT_OPCODES_SUPPORTED, value: NOTIFICATION\n\t\t\tCharacteristic: TRACK_CHANGED, value: NOTIFICATION\n\t\tDevice: XX:XX:XX:XX:2C:08, access: ACCESS_ALLOWED\n\t\tDevice: XX:XX:XX:XX:0F:2E, access: ACCESS_ALLOWED\n```",
+      "parentUuid": "7ecb1ae9_83535f4d",
+      "revId": "d0ea0481526960e9d64f9d82f64fe87e2340b10b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
