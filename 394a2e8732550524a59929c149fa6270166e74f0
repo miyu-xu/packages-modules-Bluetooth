@@ -52,6 +52,24 @@
       "parentUuid": "db9642b8_1a6329c5",
       "revId": "394a2e8732550524a59929c149fa6270166e74f0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "42a9633d_46ab6022",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 542,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-03-16T02:19:55Z",
+      "side": 0,
+      "message": "If that\u0027s the case, shouldn\u0027t we keep this call to OnLeConnectFail but only remove the `locally_initiated` instead?\nThen in ble_acl.cc we derive the locally_initiated by the status.\n\nAlso, could you update the commit message with this information?",
+      "parentUuid": "a2dff974_f6f707cb",
+      "revId": "394a2e8732550524a59929c149fa6270166e74f0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
