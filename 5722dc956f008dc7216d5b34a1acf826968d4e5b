@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "53d9edbb_662ca146",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2023-03-16T21:40:54Z",
+      "side": 1,
+      "message": "It looks like git uses 72 characters for commit messages",
+      "parentUuid": "83cc68b3_c931dca2",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 75
+      },
+      "revId": "5722dc956f008dc7216d5b34a1acf826968d4e5b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3bfed1e7_ae040d88",
         "filename": "android/app/src/com/android/bluetooth/avrcpcontroller/AvrcpControllerStateMachine.java",
         "patchSetId": 1
@@ -85,6 +109,30 @@
       "side": 1,
       "message": "the controller service only sends the onfocus change event only to the active state machine. https://source.corp.google.com/android-internal/packages/modules/Bluetooth/android/app/src/com/android/bluetooth/avrcpcontroller/AvrcpControllerService.java;l\u003d588,599?q\u003davrcpcont\u0026sq\u003dpackage:android-internal",
       "parentUuid": "3bfed1e7_ae040d88",
+      "range": {
+        "startLine": 506,
+        "startChar": 28,
+        "endLine": 506,
+        "endChar": 73
+      },
+      "revId": "5722dc956f008dc7216d5b34a1acf826968d4e5b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0bdbba29_1d994629",
+        "filename": "android/app/src/com/android/bluetooth/avrcpcontroller/AvrcpControllerStateMachine.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 506,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2023-03-16T21:40:54Z",
+      "side": 1,
+      "message": "What if we have no active device at the moment and lose focus (i.e. device disconnects)? Will we setActive(false) in that case?",
+      "parentUuid": "d0a7a0bb_a9a7c2be",
       "range": {
         "startLine": 506,
         "startChar": 28,
