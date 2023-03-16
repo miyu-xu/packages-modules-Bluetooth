@@ -27,7 +27,7 @@ pub fn generate_packet_serializer(
     curr_schema: &PacketOrStruct,
     children: &HashMap<&str, Vec<&str>>,
 ) -> TokenStream {
-    let id_ident = format_ident!("{id}Builder");
+    let id_ident = format_ident!("{}Builder", id);
 
     let builder_fields = fields
         .iter()
@@ -48,7 +48,7 @@ pub fn generate_packet_serializer(
                     unimplemented!("checksums not yet supported with this backend")
                 }
                 ast::FieldDesc::Body | ast::FieldDesc::Payload { .. } => {
-                    let type_ident = format_ident!("{id}Child");
+                    let type_ident = format_ident!("{}Child", id);
                     Some(("_child_", quote! { #type_ident }))
                 }
                 ast::FieldDesc::Array { id, width, type_id, .. } => {
@@ -56,9 +56,9 @@ pub fn generate_packet_serializer(
                         get_integer_type(*width)
                     } else if let Some(type_id) = type_id {
                         if schema.enums.contains_key(type_id.as_str()) {
-                            format_ident!("{type_id}")
+                            format_ident!("{}", type_id)
                         } else {
-                            format_ident!("{type_id}Builder")
+                            format_ident!("{}Builder", type_id)
                         }
                     } else {
                         unreachable!();
@@ -71,16 +71,16 @@ pub fn generate_packet_serializer(
                 }
                 ast::FieldDesc::Typedef { id, type_id } => {
                     let type_ident = if schema.enums.contains_key(type_id.as_str()) {
-                        format_ident!("{type_id}")
+                        format_ident!("{}", type_id)
                     } else {
-                        format_ident!("{type_id}Builder")
+                        format_ident!("{}Builder", type_id)
                     };
                     Some((id.as_str(), quote! { #type_ident }))
                 }
             }
         })
         .map(|(id, typ)| {
-            let id_ident = format_ident!("{id}");
+            let id_ident = format_ident!("{}", id);
             quote! { pub #id_ident: #typ }
         });
 
@@ -99,7 +99,7 @@ pub fn generate_packet_serializer(
             },
             ast::FieldDesc::Size { field_id, width } => {
                 let field_id = standardize_child(field_id);
-                let field_ident = format_ident!("{field_id}");
+                let field_ident = format_ident!("{}", field_id);
 
                 // if the element-size is fixed, we can directly multiply
                 if let Some(ComputedValue::Constant(element_width)) = curr_schema.computed_values.get(&ComputedValueId::FieldElementSize(field_id)) {
@@ -140,12 +140,12 @@ pub fn generate_packet_serializer(
                 }
             }
             ast::FieldDesc::Count { field_id, width } => {
-                let field_ident = format_ident!("{field_id}");
+                let field_ident = format_ident!("{}", field_id);
                 quote! { writer.write_bits(#width, || u64::try_from(self.#field_ident.len()).or(Err(SerializeError::IntegerConversionFailure)))?; }
             }
             ast::FieldDesc::ElementSize { field_id, width } => {
                 // TODO(aryarahul) - add validation for elementsize against all the other elements
-                let field_ident = format_ident!("{field_id}");
+                let field_ident = format_ident!("{}", field_id);
                 quote! {
                     let get_element_size = || Ok(if let Some(field) = self.#field_ident.get(0) {
                         let size_in_bits = field.size_in_bits()?;
@@ -164,7 +164,7 @@ pub fn generate_packet_serializer(
                 quote!{ writer.write_bits(#width, || Ok(0u64))?; }
             }
             ast::FieldDesc::Scalar { width, id } => {
-                let field_ident = format_ident!("{id}");
+                let field_ident = format_ident!("{}", id);
                 quote! { writer.write_bits(#width, || Ok(self.#field_ident))?; }
             }
             ast::FieldDesc::FixedScalar { width, value } => {
@@ -182,7 +182,7 @@ pub fn generate_packet_serializer(
                 };
                 let value = {
                     let enum_ident = format_ident!("{}", enum_id);
-                    let tag_ident = format_ident!("{tag_id}");
+                    let tag_ident = format_ident!("{}", tag_id);
                     quote! { #enum_ident::#tag_ident.value() }
                 };
                 quote!{ writer.write_bits(#width, || Ok(#value))?; }
@@ -192,7 +192,7 @@ pub fn generate_packet_serializer(
                 quote! { self._child_.serialize(writer)?; }
             }
             ast::FieldDesc::Array { width, id, .. } => {
-                let id_ident = format_ident!("{id}");
+                let id_ident = format_ident!("{}", id);
                 if let Some(width) = width {
                     quote! {
                         for elem in self.#id_ident.iter() {
@@ -211,7 +211,7 @@ pub fn generate_packet_serializer(
                 }
             }
             ast::FieldDesc::Typedef { id, .. } => {
-                let id_ident = format_ident!("{id}");
+                let id_ident = format_ident!("{}", id);
                 quote! { self.#id_ident.serialize(writer)?; }
             }
         }
@@ -220,13 +220,13 @@ pub fn generate_packet_serializer(
     let variant_names = children.get(id).into_iter().flatten().collect::<Vec<_>>();
 
     let variants = variant_names.iter().map(|name| {
-        let name_ident = format_ident!("{name}");
-        let variant_ident = format_ident!("{name}Builder");
+        let name_ident = format_ident!("{}", name);
+        let variant_ident = format_ident!("{}Builder", name);
         quote! { #name_ident(#variant_ident) }
     });
 
     let variant_serializers = variant_names.iter().map(|name| {
-        let name_ident = format_ident!("{name}");
+        let name_ident = format_ident!("{}", name);
         quote! {
             Self::#name_ident(x) => {
                 x.serialize(writer)?;
@@ -235,7 +235,7 @@ pub fn generate_packet_serializer(
     });
 
     let children_enum = if has_child {
-        let enum_ident = format_ident!("{id}Child");
+        let enum_ident = format_ident!("{}Child", id);
         quote! {
             #[derive(Debug, Clone, PartialEq, Eq)]
             pub enum #enum_ident {
@@ -262,8 +262,8 @@ pub fn generate_packet_serializer(
     };
 
     let parent_type_converter = if let Some(parent_id) = parent_id {
-        let parent_enum_ident = format_ident!("{parent_id}Child");
-        let variant_ident = format_ident!("{id}");
+        let parent_enum_ident = format_ident!("{}Child", parent_id);
+        let variant_ident = format_ident!("{}", id);
         Some(quote! {
             impl From<#id_ident> for #parent_enum_ident {
                 fn from(x: #id_ident) -> Self {
@@ -275,7 +275,7 @@ pub fn generate_packet_serializer(
         None
     };
 
-    let owned_packet_ident = format_ident!("Owned{id}View");
+    let owned_packet_ident = format_ident!("Owned{}View", id);
 
     quote! {
       #[derive(Debug, Clone, PartialEq, Eq)]

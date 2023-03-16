@@ -20,7 +20,7 @@ pub fn generate(path: &Path) -> String {
     // to the generated code. We cannot add the module-level attribute
     // here because of how the generated code is used with include! in
     // lmp/src/packets.rs.
-    code.push_str(&format!("// @generated rust packets from {filename}\n\n"));
+    code.push_str(&format!("// @generated rust packets from {}\n\n", filename));
 
     code.push_str(&quote_block! {
         use bytes::{Buf, BufMut, Bytes, BytesMut};

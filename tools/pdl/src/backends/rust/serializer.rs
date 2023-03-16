@@ -51,7 +51,7 @@ impl<'a> FieldSerializer<'a> {
             ast::FieldDesc::Payload { .. } | ast::FieldDesc::Body { .. } => {
                 self.add_payload_field()
             }
-            _ => todo!("Cannot yet serialize {field:?}"),
+            _ => todo!("Cannot yet serialize {:?}", field),
         }
     }
 
@@ -61,7 +61,7 @@ impl<'a> FieldSerializer<'a> {
 
         match &field.desc {
             ast::FieldDesc::Scalar { id, width } => {
-                let field_name = format_ident!("{id}");
+                let field_name = format_ident!("{}", id);
                 let field_type = types::Integer::new(*width);
                 if field_type.width > *width {
                     let packet_name = &self.packet_name;
@@ -79,7 +79,7 @@ impl<'a> FieldSerializer<'a> {
             }
             ast::FieldDesc::FixedEnum { enum_id, tag_id, .. } => {
                 let field_type = types::Integer::new(width);
-                let enum_id = format_ident!("{enum_id}");
+                let enum_id = format_ident!("{}", enum_id);
                 let tag_id = format_ident!("{}", tag_id.to_upper_camel_case());
                 self.chunk.push(BitField { value: quote!(#enum_id::#tag_id), field_type, shift });
             }
@@ -89,7 +89,7 @@ impl<'a> FieldSerializer<'a> {
                 self.chunk.push(BitField { value: quote!(#value), field_type, shift });
             }
             ast::FieldDesc::Typedef { id, .. } => {
-                let field_name = format_ident!("{id}");
+                let field_name = format_ident!("{}", id);
                 let field_type = types::Integer::new(width);
                 let to_u = format_ident!("to_u{}", field_type.width);
                 // TODO(mgeisler): remove `unwrap` and return error to
@@ -111,13 +111,13 @@ impl<'a> FieldSerializer<'a> {
                 let scope = self.scope.scopes.get(decl).unwrap();
                 let value_field = scope.get_packet_field(field_id).unwrap();
 
-                let field_name = format_ident!("{field_id}");
+                let field_name = format_ident!("{}", field_id);
                 let field_type = types::Integer::new(*width);
                 // TODO: size modifier
 
                 let value_field_decl = value_field.declaration(self.scope);
 
-                let field_size_name = format_ident!("{field_id}_size");
+                let field_size_name = format_ident!("{}_size", field_id);
                 let array_size = match (&value_field.desc, value_field_decl.map(|decl| &decl.desc))
                 {
                     (ast::FieldDesc::Payload { .. } | ast::FieldDesc::Body { .. }, _) => {
@@ -142,7 +142,7 @@ impl<'a> FieldSerializer<'a> {
                         });
                         quote! { #field_size_name }
                     }
-                    _ => panic!("Unexpected size field: {field:?}"),
+                    _ => panic!("Unexpected size field: {:?}", field),
                 };
 
                 self.code.push(quote! {
@@ -161,7 +161,7 @@ impl<'a> FieldSerializer<'a> {
                 });
             }
             ast::FieldDesc::Count { field_id, width, .. } => {
-                let field_name = format_ident!("{field_id}");
+                let field_name = format_ident!("{}", field_id);
                 let field_type = types::Integer::new(*width);
                 if field_type.width > *width {
                     let packet_name = &self.packet_name;
@@ -181,7 +181,7 @@ impl<'a> FieldSerializer<'a> {
                     shift,
                 });
             }
-            _ => todo!("{field:?}"),
+            _ => todo!("{:?}", field),
         }
 
         self.shift += width;
@@ -264,7 +264,7 @@ impl<'a> FieldSerializer<'a> {
             }
         };
 
-        let id = format_ident!("{id}");
+        let id = format_ident!("{}", id);
         self.code.push(quote! {
             for elem in &self.#id {
                 #serialize;
@@ -279,7 +279,7 @@ impl<'a> FieldSerializer<'a> {
             panic!("Derived struct used in typedef field");
         }
 
-        let id = format_ident!("{id}");
+        let id = format_ident!("{}", id);
         let span = format_ident!("{}", self.span);
         self.code.push(quote! {
             self.#id.write_to(#span);

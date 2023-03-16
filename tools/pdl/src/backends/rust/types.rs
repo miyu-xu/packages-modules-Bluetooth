@@ -22,7 +22,7 @@ impl Integer {
                 return Integer { width: integer_width };
             }
         }
-        panic!("Cannot construct Integer with width: {width}")
+        panic!("Cannot construct Integer with width: {}", width)
     }
 }
 
@@ -41,7 +41,7 @@ pub fn rust_type(field: &parser_ast::Field) -> proc_macro2::TokenStream {
             quote!(#field_type)
         }
         ast::FieldDesc::Typedef { type_id, .. } => {
-            let field_type = format_ident!("{type_id}");
+            let field_type = format_ident!("{}", type_id);
             quote!(#field_type)
         }
         ast::FieldDesc::Array { width: Some(width), size: Some(size), .. } => {
@@ -54,16 +54,16 @@ pub fn rust_type(field: &parser_ast::Field) -> proc_macro2::TokenStream {
             quote!(Vec<#field_type>)
         }
         ast::FieldDesc::Array { type_id: Some(type_id), size: Some(size), .. } => {
-            let field_type = format_ident!("{type_id}");
+            let field_type = format_ident!("{}", type_id);
             let size = proc_macro2::Literal::usize_unsuffixed(*size);
             quote!([#field_type; #size])
         }
         ast::FieldDesc::Array { type_id: Some(type_id), size: None, .. } => {
-            let field_type = format_ident!("{type_id}");
+            let field_type = format_ident!("{}", type_id);
             quote!(Vec<#field_type>)
         }
         //ast::Field::Size { .. } | ast::Field::Count { .. } => quote!(),
-        _ => todo!("{field:?}"),
+        _ => todo!("{:?}", field),
     }
 }
 
@@ -73,7 +73,7 @@ pub fn rust_borrow(field: &parser_ast::Field, scope: &lint::Scope<'_>) -> proc_m
         ast::FieldDesc::Typedef { type_id, .. } => match &scope.typedef[type_id].desc {
             ast::DeclDesc::Enum { .. } => quote!(),
             ast::DeclDesc::Struct { .. } => quote!(&),
-            desc => unreachable!("unexpected declaration: {desc:?}"),
+            desc => unreachable!("unexpected declaration: {:?}", desc),
         },
         ast::FieldDesc::Array { .. } => quote!(&),
         _ => todo!(),

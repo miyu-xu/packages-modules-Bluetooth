@@ -6,6 +6,6 @@ pub fn get_integer_type(width: usize) -> Ident {
         .into_iter()
         .filter(|x| *x >= width)
         .min()
-        .unwrap_or_else(|| panic!("width {width} is too large"));
-    format_ident!("u{best_width}")
+        .unwrap_or_else(|| panic!("width {} is too large", width));
+    format_ident!("u{}", best_width)
 }

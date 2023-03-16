@@ -68,7 +68,7 @@ impl<'de> serde::de::Visitor<'de> for Enum7Visitor {
         match value {
             0x1 => Ok(Enum7::A),
             0x2 => Ok(Enum7::B),
-            _ => Err(E::custom(format!("invalid discriminant: {value}"))),
+            _ => Err(E::custom(format!("invalid discriminant: {}", value))),
         }
     }
 }

@@ -20,7 +20,7 @@ pub fn generate_packet(
     schema: &Schema,
     curr_schema: &PacketOrStruct,
 ) -> Result<TokenStream, String> {
-    let id_ident = format_ident!("{id}View");
+    let id_ident = format_ident!("{}View", id);
 
     let needs_external = matches!(curr_schema.length, PacketOrStructLength::NeedsExternal);
 
@@ -92,8 +92,8 @@ pub fn generate_packet(
                     unreachable!()
                 };
 
-                let try_getter_name = format_ident!("try_get_{id}_iter");
-                let getter_name = format_ident!("get_{id}_iter");
+                let try_getter_name = format_ident!("try_get_{}_iter", id);
+                let getter_name = format_ident!("get_{}_iter", id);
 
                 let start_offset = ComputedOffsetId::FieldOffset(id).call_fn();
                 let count = ComputedValueId::FieldCount(id).call_fn();
@@ -143,8 +143,8 @@ pub fn generate_packet(
                 }
             }
             ast::FieldDesc::Scalar { id, width } => {
-                let try_getter_name = format_ident!("try_get_{id}");
-                let getter_name = format_ident!("get_{id}");
+                let try_getter_name = format_ident!("try_get_{}", id);
+                let getter_name = format_ident!("get_{}", id);
                 let offset = ComputedOffsetId::FieldOffset(id).call_fn();
                 let scalar_type = get_integer_type(*width);
                 quote! {
@@ -159,11 +159,11 @@ pub fn generate_packet(
                 }
             }
             ast::FieldDesc::Typedef { id, type_id } => {
-                let try_getter_name = format_ident!("try_get_{id}");
-                let getter_name = format_ident!("get_{id}");
+                let try_getter_name = format_ident!("try_get_{}", id);
+                let getter_name = format_ident!("get_{}", id);
 
                 let (type_ident, return_type) = if schema.enums.contains_key(type_id.as_str()) {
-                    let ident = format_ident!("{type_id}");
+                    let ident = format_ident!("{}", type_id);
                     (ident.clone(), quote! { #ident })
                 } else {
                     let ident = format_ident!("{}View", type_id);
@@ -201,7 +201,7 @@ pub fn generate_packet(
     };
 
     let parent_ident = match parent_id {
-        Some(parent) => format_ident!("{parent}View"),
+        Some(parent) => format_ident!("{}View", parent),
         None => match curr_schema.length {
             PacketOrStructLength::Static(_) => format_ident!("BitSlice"),
             PacketOrStructLength::Dynamic => format_ident!("BitSlice"),
@@ -235,7 +235,7 @@ pub fn generate_packet(
             }
         }
         ast::FieldDesc::Array { id, .. } => {
-            let iter_ident = format_ident!("try_get_{id}_iter");
+            let iter_ident = format_ident!("try_get_{}_iter", id);
             quote! {
                 for elem in self.#iter_ident()? {
                     elem?;
@@ -243,15 +243,15 @@ pub fn generate_packet(
             }
         }
         ast::FieldDesc::Scalar { id, .. } | ast::FieldDesc::Typedef { id, .. } => {
-            let getter_ident = format_ident!("try_get_{id}");
+            let getter_ident = format_ident!("try_get_{}", id);
             quote! { self.#getter_ident()?; }
         }
     });
 
     let packet_end_offset = ComputedOffsetId::PacketEnd.call_fn();
 
-    let owned_id_ident = format_ident!("Owned{id_ident}");
-    let builder_ident = format_ident!("{id}Builder");
+    let owned_id_ident = format_ident!("Owned{}", id_ident);
+    let builder_ident = format_ident!("{}Builder", id);
 
     Ok(quote! {
         #[derive(Clone, Copy, Debug)]

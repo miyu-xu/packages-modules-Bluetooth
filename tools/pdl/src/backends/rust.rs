@@ -44,7 +44,7 @@ macro_rules! quote_block {
 /// `LitInt` returned. This should either be `u64` or `usize`
 /// depending on where the result is used.
 pub fn mask_bits(n: usize, suffix: &str) -> syn::LitInt {
-    let suffix = if n > 31 { format!("_{suffix}") } else { String::new() };
+    let suffix = if n > 31 { format!("_{}", suffix) } else { String::new() };
     // Format the hex digits as 0x1111_2222_3333_usize.
     let hex_digits = format!("{:x}", (1u64 << n) - 1)
         .as_bytes()
@@ -53,7 +53,7 @@ pub fn mask_bits(n: usize, suffix: &str) -> syn::LitInt {
         .map(|chunk| std::str::from_utf8(chunk).unwrap())
         .collect::<Vec<&str>>()
         .join("_");
-    syn::parse_str::<syn::LitInt>(&format!("0x{hex_digits}{suffix}")).unwrap()
+    syn::parse_str::<syn::LitInt>(&format!("0x{}{}", hex_digits, suffix)).unwrap()
 }
 
 fn generate_packet_size_getter(
@@ -75,11 +75,11 @@ fn generate_packet_size_getter(
                 self.child.get_total_size()
             },
             ast::FieldDesc::Typedef { id, .. } => {
-                let id = format_ident!("{id}");
+                let id = format_ident!("{}", id);
                 quote!(self.#id.get_size())
             }
             ast::FieldDesc::Array { id, width, .. } => {
-                let id = format_ident!("{id}");
+                let id = format_ident!("{}", id);
                 match &decl {
                     Some(parser_ast::Decl {
                         desc: ast::DeclDesc::Struct { .. } | ast::DeclDesc::CustomField { .. },
@@ -106,7 +106,7 @@ fn generate_packet_size_getter(
                     }
                 }
             }
-            _ => panic!("Unsupported field type: {field:?}"),
+            _ => panic!("Unsupported field type: {:?}", field),
         });
     }
 
@@ -192,7 +192,7 @@ fn generate_data_struct(
     id: &str,
 ) -> (proc_macro2::TokenStream, proc_macro2::TokenStream) {
     let packet_scope = &scope.scopes[&scope.typedef[id]];
-    let id_data = format_ident!("{id}Data");
+    let id_data = format_ident!("{}Data", id);
 
     let fields_with_ids =
         packet_scope.fields.iter().filter(|f| f.id().is_some()).collect::<Vec<_>>();
@@ -300,13 +300,13 @@ pub fn constraint_to_value(
         // drop the packet_scope argument.
         ast::Constraint { tag_id: Some(tag_id), .. } => {
             let type_id = match &packet_scope.all_fields[&constraint.id].desc {
-                ast::FieldDesc::Typedef { type_id, .. } => format_ident!("{type_id}"),
-                _ => unreachable!("Invalid constraint: {constraint:?}"),
+                ast::FieldDesc::Typedef { type_id, .. } => format_ident!("{}", type_id),
+                _ => unreachable!("Invalid constraint: {:?}", constraint),
             };
             let tag_id = format_ident!("{}", tag_id.to_upper_camel_case());
             quote!(#type_id::#tag_id)
         }
-        _ => unreachable!("Invalid constraint: {constraint:?}"),
+        _ => unreachable!("Invalid constraint: {:?}", constraint),
     }
 }
 
@@ -321,28 +321,28 @@ fn generate_packet_decl(
 
     let top_level = top_level_packet(scope, id);
     let top_level_id = top_level.id().unwrap();
-    let top_level_packet = format_ident!("{top_level_id}");
-    let top_level_data = format_ident!("{top_level_id}Data");
+    let top_level_packet = format_ident!("{}", top_level_id);
+    let top_level_data = format_ident!("{}Data", top_level_id);
     let top_level_id_lower = format_ident!("{}", top_level_id.to_lowercase());
 
     // TODO(mgeisler): use the convert_case crate to convert between
     // `FooBar` and `foo_bar` in the code below.
     let span = format_ident!("bytes");
     let id_lower = format_ident!("{}", id.to_lowercase());
-    let id_packet = format_ident!("{id}");
-    let id_child = format_ident!("{id}Child");
-    let id_data_child = format_ident!("{id}DataChild");
-    let id_builder = format_ident!("{id}Builder");
+    let id_packet = format_ident!("{}", id);
+    let id_child = format_ident!("{}Child", id);
+    let id_data_child = format_ident!("{}DataChild", id);
+    let id_builder = format_ident!("{}Builder", id);
 
     let parents = find_parents(scope, id);
     let parent_ids = parents.iter().map(|p| p.id().unwrap()).collect::<Vec<_>>();
-    let parent_shifted_ids = parent_ids.iter().skip(1).map(|id| format_ident!("{id}"));
+    let parent_shifted_ids = parent_ids.iter().skip(1).map(|id| format_ident!("{}", id));
     let parent_lower_ids =
         parent_ids.iter().map(|id| format_ident!("{}", id.to_lowercase())).collect::<Vec<_>>();
     let parent_shifted_lower_ids = parent_lower_ids.iter().skip(1).collect::<Vec<_>>();
-    let parent_packet = parent_ids.iter().map(|id| format_ident!("{id}"));
-    let parent_data = parent_ids.iter().map(|id| format_ident!("{id}Data"));
-    let parent_data_child = parent_ids.iter().map(|id| format_ident!("{id}DataChild"));
+    let parent_packet = parent_ids.iter().map(|id| format_ident!("{}", id));
+    let parent_data = parent_ids.iter().map(|id| format_ident!("{}Data", id));
+    let parent_data_child = parent_ids.iter().map(|id| format_ident!("{}DataChild", id));
 
     let all_fields = {
         let mut fields = packet_scope.all_fields.values().collect::<Vec<_>>();
@@ -354,7 +354,7 @@ fn generate_packet_decl(
     let all_field_types = all_fields.iter().map(|f| types::rust_type(f)).collect::<Vec<_>>();
     let all_field_borrows =
         all_fields.iter().map(|f| types::rust_borrow(f, scope)).collect::<Vec<_>>();
-    let all_field_getter_names = all_field_names.iter().map(|id| format_ident!("get_{id}"));
+    let all_field_getter_names = all_field_names.iter().map(|id| format_ident!("get_{}", id));
     let all_field_self_field = all_fields.iter().map(|f| {
         for (parent, parent_id) in parents.iter().zip(parent_lower_ids.iter()) {
             if scope.scopes[parent].fields.contains(f) {
@@ -378,8 +378,8 @@ fn generate_packet_decl(
     let builder_assignments = rev_parents.iter().enumerate().map(|(idx, parent)| {
         let parent_id = parent.id().unwrap();
         let parent_id_lower = format_ident!("{}", parent_id.to_lowercase());
-        let parent_data = format_ident!("{parent_id}Data");
-        let parent_data_child = format_ident!("{parent_id}DataChild");
+        let parent_data = format_ident!("{}Data", parent_id);
+        let parent_data_child = format_ident!("{}DataChild", parent_id);
         let parent_packet_scope = &scope.scopes[&scope.typedef[parent_id]];
 
         let named_fields = {
@@ -388,13 +388,13 @@ fn generate_packet_decl(
             names
         };
 
-        let mut field = named_fields.iter().map(|id| format_ident!("{id}")).collect::<Vec<_>>();
+        let mut field = named_fields.iter().map(|id| format_ident!("{}", id)).collect::<Vec<_>>();
         let mut value = named_fields
             .iter()
             .map(|&id| match packet_scope.all_constraints.get(id) {
                 Some(constraint) => constraint_to_value(packet_scope, constraint),
                 None => {
-                    let id = format_ident!("{id}");
+                    let id = format_ident!("{}", id);
                     quote!(self.#id)
                 }
             })
@@ -415,7 +415,7 @@ fn generate_packet_decl(
                 // Child is created from the previous parent.
                 let prev_parent_id = rev_parents[idx - 1].id().unwrap();
                 let prev_parent_id_lower = format_ident!("{}", prev_parent_id.to_lowercase());
-                let prev_parent_id = format_ident!("{prev_parent_id}");
+                let prev_parent_id = format_ident!("{}", prev_parent_id);
                 value.push(quote! {
                     #parent_data_child::#prev_parent_id(#prev_parent_id_lower)
                 });
@@ -434,7 +434,7 @@ fn generate_packet_decl(
     let has_children_or_payload = !children.is_empty() || has_payload;
     let child =
         children.iter().map(|child| format_ident!("{}", child.id().unwrap())).collect::<Vec<_>>();
-    let child_data = child.iter().map(|child| format_ident!("{child}Data")).collect::<Vec<_>>();
+    let child_data = child.iter().map(|child| format_ident!("{}Data", child)).collect::<Vec<_>>();
     let get_payload = (children.is_empty() && has_payload).then(|| {
         quote! {
             pub fn get_payload(&self) -> &[u8] {
@@ -496,7 +496,7 @@ fn generate_packet_decl(
     });
 
     let ancestor_packets =
-        parent_ids[..parent_ids.len() - 1].iter().map(|id| format_ident!("{id}"));
+        parent_ids[..parent_ids.len() - 1].iter().map(|id| format_ident!("{}", id));
     let impl_from_and_try_from = (top_level_id != id).then(|| {
         quote! {
             #(
@@ -628,14 +628,14 @@ fn generate_packet_decl(
 }
 
 fn generate_enum_decl(id: &str, tags: &[ast::Tag]) -> proc_macro2::TokenStream {
-    let name = format_ident!("{id}");
+    let name = format_ident!("{}", id);
     let variants =
         tags.iter().map(|t| format_ident!("{}", t.id.to_upper_camel_case())).collect::<Vec<_>>();
     let values = tags
         .iter()
         .map(|t| syn::parse_str::<syn::LitInt>(&format!("{:#x}", t.value)).unwrap())
         .collect::<Vec<_>>();
-    let visitor_name = format_ident!("{id}Visitor");
+    let visitor_name = format_ident!("{}Visitor", id);
 
     quote! {
         #[derive(FromPrimitive, ToPrimitive, Debug, Hash, Eq, PartialEq, Clone, Copy)]
@@ -671,7 +671,7 @@ fn generate_enum_decl(id: &str, tags: &[ast::Tag]) -> proc_macro2::TokenStream {
             {
                 match value {
                     #(#values => Ok(#name::#variants),)*
-                    _ => Err(E::custom(format!("invalid discriminant: {value}"))),
+                    _ => Err(E::custom(format!("invalid discriminant: {}", value))),
                 }
             }
         }
@@ -797,12 +797,12 @@ mod tests {
                 fn [< test_ $name _ $endianness >]() {
                     let name = stringify!($name);
                     let endianness = stringify!($endianness);
-                    let code = format!("{endianness}_packets\n{}", $code);
+                    let code = format!("{}_packets\n{}", endianness, $code);
                     let mut db = ast::SourceDatabase::new();
                     let file = parse_inline(&mut db, String::from("test"), code).unwrap();
                     let actual_code = generate(&db, &file);
                     assert_snapshot_eq(
-                        &format!("tests/generated/{name}_{endianness}.rs"),
+                        &format!("tests/generated/{}_{}.rs", name, endianness),
                         &rustfmt(&actual_code),
                     );
                 }

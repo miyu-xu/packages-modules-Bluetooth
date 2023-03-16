@@ -16,7 +16,7 @@ impl<'a> FieldDeclarations<'a> {
 
     pub fn add(&mut self, field: &parser_ast::Field) {
         let id = match field.id() {
-            Some(id) => format_ident!("{id}"),
+            Some(id) => format_ident!("{}", id),
             None => return, // No id => field not stored.
         };
 

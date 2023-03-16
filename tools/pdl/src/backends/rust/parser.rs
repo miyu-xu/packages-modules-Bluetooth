@@ -63,7 +63,7 @@ impl<'a> FieldParser<'a> {
                 self.add_payload_field(size_modifier.as_deref())
             }
             ast::FieldDesc::Body { .. } => self.add_payload_field(None),
-            _ => todo!("{field:?}"),
+            _ => todo!("{:?}", field),
         }
     }
 
@@ -125,13 +125,13 @@ impl<'a> FieldParser<'a> {
 
             self.code.push(match &field.desc {
                 ast::FieldDesc::Scalar { id, .. } => {
-                    let id = format_ident!("{id}");
+                    let id = format_ident!("{}", id);
                     quote! {
                         let #id = #v;
                     }
                 }
                 ast::FieldDesc::FixedEnum { enum_id, tag_id, .. } => {
-                    let enum_id = format_ident!("{enum_id}");
+                    let enum_id = format_ident!("{}", enum_id);
                     let tag_id = format_ident!("{}", tag_id.to_upper_camel_case());
                     quote! {
                         if #v != #enum_id::#tag_id as #value_type {
@@ -154,8 +154,8 @@ impl<'a> FieldParser<'a> {
                     }
                 }
                 ast::FieldDesc::Typedef { id, type_id } => {
-                    let id = format_ident!("{id}");
-                    let type_id = format_ident!("{type_id}");
+                    let id = format_ident!("{}", id);
+                    let type_id = format_ident!("{}", type_id);
                     let from_u = format_ident!("from_u{}", value_type.width);
                     // TODO(mgeisler): Remove the `unwrap` from the
                     // generated code and return the error to the
@@ -185,7 +185,7 @@ impl<'a> FieldParser<'a> {
                     }
                 }
                 ast::FieldDesc::Count { field_id, .. } => {
-                    let id = format_ident!("{field_id}_count");
+                    let id = format_ident!("{}_count", field_id);
                     quote! {
                         let #id = #v as usize;
                     }
@@ -204,7 +204,7 @@ impl<'a> FieldParser<'a> {
 
     fn find_count_field(&self, id: &str) -> Option<proc_macro2::Ident> {
         match self.packet_scope()?.sizes.get(id)?.desc {
-            ast::FieldDesc::Count { .. } => Some(format_ident!("{id}_count")),
+            ast::FieldDesc::Count { .. } => Some(format_ident!("{}_count", id)),
             _ => None,
         }
     }
@@ -268,7 +268,7 @@ impl<'a> FieldParser<'a> {
         }
         let element_width = match width.or_else(|| decl?.width(self.scope, false)) {
             Some(w) => {
-                assert_eq!(w % 8, 0, "Array element size ({w}) is not a multiple of 8");
+                assert_eq!(w % 8, 0, "Array element size ({}) is not a multiple of 8", w);
                 ElementWidth::Static(w / 8)
             }
             None => ElementWidth::Unknown,
@@ -297,7 +297,7 @@ impl<'a> FieldParser<'a> {
 
         // TODO padded_size
 
-        let id = format_ident!("{id}");
+        let id = format_ident!("{}", id);
         let span = self.span;
 
         let parse_element = self.parse_array_element(self.span, width, type_id, decl);
@@ -390,7 +390,7 @@ impl<'a> FieldParser<'a> {
                 } else {
                     quote!(#span.get().remaining())
                 };
-                let count_field = format_ident!("{id}_count");
+                let count_field = format_ident!("{}_count", id);
                 let array_count = if element_width != 1 {
                     let element_width = syn::Index::from(element_width);
                     self.code.push(quote! {
@@ -430,8 +430,8 @@ impl<'a> FieldParser<'a> {
         }
 
         let span = self.span;
-        let id = format_ident!("{id}");
-        let type_id = format_ident!("{type_id}");
+        let id = format_ident!("{}", id);
+        let type_id = format_ident!("{}", type_id);
 
         match decl.width(self.scope, true) {
             None => self.code.push(quote! {
@@ -465,7 +465,8 @@ impl<'a> FieldParser<'a> {
 
         if size_modifier.is_some() {
             todo!(
-                "Unsupported size modifier for {packet}: {size_modifier:?}",
+                "Unsupported size modifier for {packet}: {:?}",
+                size_modifier,
                 packet = self.packet_name
             );
         }
@@ -540,7 +541,7 @@ impl<'a> FieldParser<'a> {
         if let Some(ast::DeclDesc::Enum { id, width, .. }) = decl.map(|decl| &decl.desc) {
             let element_type = types::Integer::new(*width);
             let get_uint = types::get_uint(self.endianness, *width, span);
-            let type_id = format_ident!("{id}");
+            let type_id = format_ident!("{}", id);
             let from_u = format_ident!("from_u{}", element_type.width);
             let packet_name = &self.packet_name;
             return quote! {
@@ -571,7 +572,7 @@ impl<'a> FieldParser<'a> {
             .iter()
             .map(|child| format_ident!("{}", child.id().unwrap()))
             .collect::<Vec<_>>();
-        let child_ids_data = child_ids.iter().map(|ident| format_ident!("{ident}Data"));
+        let child_ids_data = child_ids.iter().map(|ident| format_ident!("{}Data", ident));
 
         // Set of field names (sorted by name).
         let mut constrained_fields = BTreeSet::new();
@@ -590,7 +591,7 @@ impl<'a> FieldParser<'a> {
                         );
                     }
                 }
-                _ => unreachable!("Invalid child: {child:?}"),
+                _ => unreachable!("Invalid child: {:?}", child),
             }
         }
 
@@ -605,7 +606,7 @@ impl<'a> FieldParser<'a> {
             }
         });
         let constrained_field_idents =
-            constrained_fields.iter().map(|field| format_ident!("{field}"));
+            constrained_fields.iter().map(|field| format_ident!("{}", field));
         let child_parse_args = children.iter().map(|child| {
             let fields = find_constrained_parent_fields(self.scope, child.id().unwrap())
                 .map(|field| format_ident!("{}", field.id().unwrap()));

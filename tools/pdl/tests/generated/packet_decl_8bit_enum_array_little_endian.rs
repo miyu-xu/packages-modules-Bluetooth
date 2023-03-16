@@ -68,7 +68,7 @@ impl<'de> serde::de::Visitor<'de> for FooVisitor {
         match value {
             0x1 => Ok(Foo::FooBar),
             0x2 => Ok(Foo::Baz),
-            _ => Err(E::custom(format!("invalid discriminant: {value}"))),
+            _ => Err(E::custom(format!("invalid discriminant: {}", value))),
         }
     }
 }

@@ -40,15 +40,15 @@ fn hexadecimal_to_vec(hex: &str) -> proc_macro2::TokenStream {
 /// double-quotes.
 fn to_json<T: Serialize>(value: &T) -> syn::LitStr {
     let json = serde_json::to_string(value).unwrap();
-    assert!(!json.contains("\"#"), "Please increase number of # for {json:?}");
-    syn::parse_str::<syn::LitStr>(&format!("r#\" {json} \"#")).unwrap()
+    assert!(!json.contains("\"#"), "Please increase number of # for {:?}", json);
+    syn::parse_str::<syn::LitStr>(&format!("r#\" {} \"#", json)).unwrap()
 }
 
 fn generate_unit_tests(input: &str, packet_names: &[&str], module_name: &str) {
-    eprintln!("Reading test vectors from {input}, will use {} packets", packet_names.len());
+    eprintln!("Reading test vectors from {}, will use {} packets", input, packet_names.len());
 
     let data = std::fs::read_to_string(input)
-        .unwrap_or_else(|err| panic!("Could not read {input}: {err}"));
+        .unwrap_or_else(|err| panic!("Could not read {}: {}", input, err));
     let packets: Vec<Packet> = serde_json::from_str(&data).expect("Could not parse JSON");
 
     let module = format_ident!("{}", module_name);
@@ -82,8 +82,8 @@ fn generate_unit_tests(input: &str, packet_names: &[&str], module_name: &str) {
                 panic!("Expected test vector object, found: {}", test_vector.unpacked)
             });
             let assertions = object.iter().map(|(key, value)| {
-                let getter = format_ident!("get_{key}");
-                let expected = format_ident!("expected_{key}");
+                let getter = format_ident!("get_{}", key);
+                let expected = format_ident!("expected_{}", key);
                 let json = to_json(&value);
                 quote! {
                     let #expected: serde_json::Value = serde_json::from_str(#json)

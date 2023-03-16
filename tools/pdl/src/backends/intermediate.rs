@@ -104,7 +104,7 @@ fn process_decl<'a>(schema: &mut Schema<'a>, decl: &'a parser::ast::Decl) {
             process_packet_or_struct(schema, id, fields)
         }
         ast::DeclDesc::Group { .. } => todo!(),
-        _ => unimplemented!("type {decl:?} not supported"),
+        _ => unimplemented!("type {:?} not supported", decl),
     }
 }
 
@@ -510,7 +510,8 @@ fn compute_length_to_goal(
     let mut out = 0;
     let mut pos = start;
     while pos != goal {
-        match computed_offsets.get(&pos).ok_or_else(|| format!("key {pos:?} not found")).unwrap() {
+        match computed_offsets.get(&pos).ok_or_else(|| format!("key {:?} not found", pos)).unwrap()
+        {
             ComputedOffset::ConstantPlusOffsetInBits(base_id, offset) => {
                 out += offset;
                 pos = *base_id;

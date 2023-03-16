@@ -32,10 +32,10 @@ pub trait Declarable {
 impl Declarable for ComputedValueId<'_> {
     fn get_name(&self) -> String {
         match self {
-            ComputedValueId::FieldSize(field) => format!("{field}_size"),
-            ComputedValueId::FieldElementSize(field) => format!("{field}_element_size"),
-            ComputedValueId::FieldCount(field) => format!("{field}_count"),
-            ComputedValueId::Custom(i) => format!("custom_value_{i}"),
+            ComputedValueId::FieldSize(field) => format!("{}_size", field),
+            ComputedValueId::FieldElementSize(field) => format!("{}_element_size", field),
+            ComputedValueId::FieldCount(field) => format!("{}_count", field),
+            ComputedValueId::Custom(i) => format!("custom_value_{}", i),
         }
     }
 }
@@ -45,9 +45,9 @@ impl Declarable for ComputedOffsetId<'_> {
         match self {
             ComputedOffsetId::HeaderStart => "header_start_offset".to_string(),
             ComputedOffsetId::PacketEnd => "packet_end_offset".to_string(),
-            ComputedOffsetId::FieldOffset(field) => format!("{field}_offset"),
-            ComputedOffsetId::FieldEndOffset(field) => format!("{field}_end_offset"),
-            ComputedOffsetId::Custom(i) => format!("custom_offset_{i}"),
+            ComputedOffsetId::FieldOffset(field) => format!("{}_offset", field),
+            ComputedOffsetId::FieldEndOffset(field) => format!("{}_end_offset", field),
+            ComputedOffsetId::Custom(i) => format!("custom_offset_{}", i),
             ComputedOffsetId::TrailerStart => "trailer_start_offset".to_string(),
         }
     }
@@ -65,7 +65,7 @@ impl Computable for ComputedValue<'_> {
             ComputedValue::CountStructsUpToSize { base_id, size, struct_type } => {
                 let base_offset = base_id.call_fn();
                 let size = size.call_fn();
-                let struct_type = format_ident!("{struct_type}View");
+                let struct_type = format_ident!("{}View", struct_type);
                 quote! {
                     let mut cnt = 0;
                     let mut view = self.buf.offset(#base_offset)?;
@@ -85,7 +85,7 @@ impl Computable for ComputedValue<'_> {
             ComputedValue::SizeOfNStructs { base_id, n, struct_type } => {
                 let base_offset = base_id.call_fn();
                 let n = n.call_fn();
-                let struct_type = format_ident!("{struct_type}View");
+                let struct_type = format_ident!("{}View", struct_type);
                 quote! {
                     let mut view = self.buf.offset(#base_offset)?;
                     let mut size = 0;

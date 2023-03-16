@@ -52,12 +52,12 @@ fn generate_matchers(
         if !filter_fields(field_name)? {
             continue;
         }
-        let getter_ident = format_ident!("get_{field_name}");
+        let getter_ident = format_ident!("get_{}", field_name);
         match field_value {
             Field::Number(num) => {
                 let num = *num as u64;
                 if let Some(field_type) = type_lookup[curr_type][field_name.as_str()] {
-                    let field_ident = format_ident!("{field_type}");
+                    let field_ident = format_ident!("{}", field_type);
                     out.push(quote! { assert_eq!(#base.#getter_ident(), #field_ident::new(#num as _).unwrap()); });
                 } else {
                     out.push(quote! { assert_eq!(u64::from(#base.#getter_ident()), #num); });
@@ -76,8 +76,8 @@ fn generate_matchers(
                         assert_eq!(#base.get_raw_payload().collect::<Vec<_>>(), vec![#(#reference),*]);
                     })
                 } else {
-                    let get_iter_ident = format_ident!("get_{field_name}_iter");
-                    let vec_ident = format_ident!("{field_name}_vec");
+                    let get_iter_ident = format_ident!("get_{}_iter", field_name);
+                    let vec_ident = format_ident!("{}_vec", field_name);
                     out.push(
                         quote! { let #vec_ident = #base.#get_iter_ident().collect::<Vec<_>>(); },
                     );
@@ -87,7 +87,7 @@ fn generate_matchers(
                         out.push(match val {
                             ListEntry::Number(num) => {
                                 if let Some(field_type) = type_lookup[curr_type][field_name.as_str()] {
-                                    let field_ident = format_ident!("{field_type}");
+                                    let field_ident = format_ident!("{}", field_type);
                                     quote! { assert_eq!(#list_elem, #field_ident::new(#num as _).unwrap()); }
                                 } else {
                                     quote! { assert_eq!(u64::from(#list_elem), #num as u64); }
@@ -120,8 +120,8 @@ fn generate_builder(
     type_lookup: &HashMap<&str, HashMap<&str, Option<&str>>>,
     value: &UnpackedTestFields,
 ) -> TokenStream {
-    let builder_ident = format_ident!("{curr_type}Builder");
-    let child_ident = format_ident!("{curr_type}Child");
+    let builder_ident = format_ident!("{}Builder", curr_type);
+    let child_ident = format_ident!("{}Child", curr_type);
 
     let curr_fields = &type_lookup[curr_type];
 
@@ -132,12 +132,12 @@ fn generate_builder(
             let field_name_ident = if field_name == "payload" {
                 format_ident!("_child_")
             } else {
-                format_ident!("{field_name}")
+                format_ident!("{}", field_name)
             };
             let val = match field_value {
                 Field::Number(val) => {
                     if let Some(field) = curr_field_info {
-                        let field_ident = format_ident!("{field}");
+                        let field_ident = format_ident!("{}", field);
                         quote! { #field_ident::new(#val as _).unwrap() }
                     } else {
                         quote! { (#val as u64).try_into().unwrap() }
@@ -150,7 +150,7 @@ fn generate_builder(
                     let elems = lst.iter().map(|entry| match entry {
                         ListEntry::Number(val) => {
                             if let Some(field) = curr_field_info {
-                                let field_ident = format_ident!("{field}");
+                                let field_ident = format_ident!("{}", field);
                                 quote! { #field_ident::new(#val as _).unwrap() }
                             } else {
                                 quote! { (#val as u64).try_into().unwrap() }
@@ -247,9 +247,9 @@ pub fn generate_test_file() -> Result<String, String> {
                 }
             }
 
-            let test_name_ident = format_ident!("test_{packet}_{i}");
-            let packet_ident = format_ident!("{packet}_instance");
-            let packet_view = format_ident!("{packet}View");
+            let test_name_ident = format_ident!("test_{}_{}", packet, i);
+            let packet_ident = format_ident!("{}_instance", packet);
+            let packet_view = format_ident!("{}View", packet);
 
             let mut leaf_packet = packet;
 
@@ -263,7 +263,7 @@ pub fn generate_test_file() -> Result<String, String> {
                 quote! {}
             };
 
-            let leaf_packet_ident = format_ident!("{leaf_packet}_instance");
+            let leaf_packet_ident = format_ident!("{}_instance", leaf_packet);
 
             let packet_matchers = generate_matchers(
                 quote! { #packet_ident },
@@ -271,7 +271,7 @@ pub fn generate_test_file() -> Result<String, String> {
                 &|field| {
                     Ok(packet_lookup
                         .get(packet.as_str())
-                        .ok_or(format!("could not find packet {packet}"))?
+                        .ok_or(format!("could not find packet {}", packet))?
                         .contains_key(field))
                 },
                 packet,
@@ -284,7 +284,7 @@ pub fn generate_test_file() -> Result<String, String> {
                 &|field| {
                     Ok(packet_lookup
                         .get(leaf_packet.as_str())
-                        .ok_or(format!("could not find packet {packet}"))?
+                        .ok_or(format!("could not find packet {}", packet))?
                         .contains_key(field))
                 },
                 sub_packet.as_ref().unwrap_or(packet),
@@ -306,7 +306,7 @@ pub fn generate_test_file() -> Result<String, String> {
 
             let builder = generate_builder(packet, sub_packet.as_deref(), &packet_lookup, unpacked);
 
-            let test_name_ident = format_ident!("test_{packet}_builder_{i}");
+            let test_name_ident = format_ident!("test_{}_builder_{}", packet, i);
             out.push_str(&quote_block! {
               #[test]
               fn #test_name_ident() {
