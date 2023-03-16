@@ -16,6 +16,24 @@
       "message": "Could you put a TODO with a bug number to track fixing that ?",
       "revId": "09b360c404238c1450651f36633be80768444af1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d462897a_701383bd",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/sm.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-03-16T22:33:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "729be92f_700b59be",
+      "revId": "09b360c404238c1450651f36633be80768444af1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
