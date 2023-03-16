@@ -389,9 +389,11 @@ class PhonePolicy {
 
         if ((hearingAidService != null) && Utils.arrayContains(uuids,
                 BluetoothUuid.HEARING_AID) && (hearingAidService.getConnectionPolicy(device)
-                == BluetoothProfile.CONNECTION_POLICY_UNKNOWN)) {
+                != BluetoothProfile.CONNECTION_POLICY_FORBIDDEN)) {
             if (isLeAudioProfileAllowed) {
                 debugLog("LE Audio preferred over ASHA for device " + device);
+                mAdapterService.getDatabase().setProfileConnectionPolicy(device,
+                        BluetoothProfile.HEARING_AID, BluetoothProfile.CONNECTION_POLICY_FORBIDDEN);
             } else {
                 debugLog("setting hearing aid profile priority for device " + device);
                 mAdapterService.getDatabase().setProfileConnectionPolicy(device,
