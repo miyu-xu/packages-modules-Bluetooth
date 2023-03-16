@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a921853f_721d4eb3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-03-16T14:34:01Z",
+      "side": 1,
+      "message": "There are some open comment on the wear cherry-pick of this CL to add a property check.\nCan we solve them before submitting the CL?",
+      "revId": "2a013965f80af744cebc33b90de17343ef231d7c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
