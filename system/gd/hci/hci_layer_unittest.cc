@@ -126,7 +126,7 @@ TEST_F(HciLayerTest, reset_command_sent_on_start) {
 
 TEST_F(HciLayerTest, controller_debug_info_requested_on_hci_timeout) {
   FailIfResetNotSent();
-  FakeTimerAdvance(HciLayer::kHciTimeoutMs.count());
+  FakeTimerAdvance(HciLayer::get_hci_timeout_ms().count());
 
   sync_handler();
 
@@ -138,7 +138,7 @@ TEST_F(HciLayerTest, controller_debug_info_requested_on_hci_timeout) {
 
 TEST_F(HciLayerTest, abort_after_hci_restart_timeout) {
   FailIfResetNotSent();
-  FakeTimerAdvance(HciLayer::kHciTimeoutMs.count());
+  FakeTimerAdvance(HciLayer::get_hci_timeout_ms().count());
 
   auto sent_command = hal_->GetSentCommand();
   ASSERT_TRUE(sent_command.has_value());
