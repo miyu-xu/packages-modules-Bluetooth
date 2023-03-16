@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5590c346_92b0576b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1010056
+      },
+      "writtenOn": "2023-03-16T18:34:05Z",
+      "side": 1,
+      "message": "I\u0027m just trying this out first (and am happy to file a separate bug for the followup build system work that will need to happen to reinstate `rustfmt`).",
+      "revId": "e3cca14d6b0c0394af961bb0f163b5f7e8326382",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
