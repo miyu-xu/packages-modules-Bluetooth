@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9789a787_e5012284",
+        "filename": "system/gd/packet/parser/packet_def.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-03-16T17:22:20Z",
+      "side": 1,
+      "message": "Validate() or PrivateIsValid() or anything else with \"Valid\" in it.\n\nExcept IHateThisNameButItShouldBeValid.",
+      "range": {
+        "startLine": 198,
+        "startChar": 23,
+        "endLine": 198,
+        "endChar": 31
+      },
+      "revId": "3e46ca29bb099bd1a12d2e072547ae33908c85c9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
