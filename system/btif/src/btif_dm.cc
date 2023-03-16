@@ -147,7 +147,17 @@ constexpr char kBtmLogTag[] = "API";
 }
 
 struct btif_dm_pairing_cb_t {
+ private:
   bt_bond_state_t state;
+
+ public:
+  bt_bond_state_t bond_state() const { return state; }
+  void update_bond_state(const bt_bond_state_t& state) { this->state = state; }
+  bool is_bond_state_busy() const { return state != BT_BOND_STATE_NONE; }
+  bool is_bond_state_bonding() const { return state == BT_BOND_STATE_BONDING; }
+  bool is_bond_state_bonded() const { return state == BT_BOND_STATE_BONDED; }
+  unsigned bond_state_uint() const { return static_cast<unsigned>(state); }
+
   RawAddress static_bdaddr;
   RawAddress bd_addr;
   tBTM_SEC_DEV_REC::tBTM_BOND_TYPE bond_type;
@@ -296,8 +306,8 @@ static bool is_empty_128bit(uint8_t* data) {
 }
 
 static bool is_bonding_or_sdp() {
-  return pairing_cb.state == BT_BOND_STATE_BONDING ||
-         (pairing_cb.state == BT_BOND_STATE_BONDED && pairing_cb.sdp_attempts);
+  return pairing_cb.is_bond_state_bonding() ||
+         (pairing_cb.is_bond_state_bonding() && pairing_cb.sdp_attempts);
 }
 
 void btif_dm_init(uid_set_t* set) { uid_set = set; }
@@ -547,7 +557,7 @@ static void bond_state_changed(bt_status_t status, const RawAddress& bd_addr,
                                bt_bond_state_t state) {
   btif_stats_add_bond_event(bd_addr, BTIF_DM_FUNC_BOND_STATE_CHANGED, state);
 
-  if ((pairing_cb.state == state) && (state == BT_BOND_STATE_BONDING)) {
+  if (state == BT_BOND_STATE_BONDING && pairing_cb.is_bond_state_bonding()) {
     // Cross key pairing so send callback for static address
     if (!pairing_cb.static_bdaddr.IsEmpty()) {
       GetInterfaceToProfiles()->events->invoke_bond_state_changed_cb(
@@ -563,7 +573,7 @@ static void bond_state_changed(bt_status_t status, const RawAddress& bd_addr,
   LOG_INFO(
       "Bond state changed to state=%d [0:none, 1:bonding, 2:bonded],"
       " prev_state=%d, sdp_attempts = %d",
-      state, pairing_cb.state, pairing_cb.sdp_attempts);
+      state, pairing_cb.bond_state_uint(), pairing_cb.sdp_attempts);
 
   if (state == BT_BOND_STATE_NONE) {
     forget_device_from_metric_id_allocator(bd_addr);
@@ -602,7 +612,7 @@ static void bond_state_changed(bt_status_t status, const RawAddress& bd_addr,
         pairing_cb.gatt_over_le ==
             btif_dm_pairing_cb_t::ServiceDiscoveryState::SCHEDULED))) {
     // Save state for the device is bonding or SDP or GATT over LE discovery
-    pairing_cb.state = state;
+    pairing_cb.update_bond_state(state);
     pairing_cb.bd_addr = bd_addr;
   } else {
     LOG_INFO("clearing btif pairing_cb");
@@ -896,8 +906,7 @@ static void btif_dm_pin_req_evt(tBTA_DM_PIN_REQ* p_pin_req) {
   memcpy(bd_name.name, p_pin_req->bd_name, BD_NAME_LEN);
   bd_name.name[BD_NAME_LEN] = '\0';
 
-  if (pairing_cb.state == BT_BOND_STATE_BONDING &&
-      bd_addr != pairing_cb.bd_addr) {
+  if (pairing_cb.is_bond_state_bonding() && bd_addr != pairing_cb.bd_addr) {
     BTIF_TRACE_WARNING("%s(): already in bonding state, reject request",
                        __FUNCTION__);
     return;
@@ -967,7 +976,7 @@ static void btif_dm_pin_req_evt(tBTA_DM_PIN_REQ* p_pin_req) {
  ******************************************************************************/
 static void btif_dm_ssp_cfm_req_evt(tBTA_DM_SP_CFM_REQ* p_ssp_cfm_req) {
   bt_bdname_t bd_name;
-  bool is_incoming = !(pairing_cb.state == BT_BOND_STATE_BONDING);
+  bool is_incoming = !(pairing_cb.is_bond_state_bonding());
   uint32_t cod;
   int dev_type;
 
@@ -988,8 +997,7 @@ static void btif_dm_ssp_cfm_req_evt(tBTA_DM_SP_CFM_REQ* p_ssp_cfm_req) {
   RawAddress bd_addr = p_ssp_cfm_req->bd_addr;
   memcpy(bd_name.name, p_ssp_cfm_req->bd_name, BD_NAME_LEN);
 
-  if (pairing_cb.state == BT_BOND_STATE_BONDING &&
-      bd_addr != pairing_cb.bd_addr) {
+  if (pairing_cb.is_bond_state_bonding() && bd_addr != pairing_cb.bd_addr) {
     BTIF_TRACE_WARNING("%s(): already in bonding state, reject request",
                        __FUNCTION__);
     btif_dm_ssp_reply(bd_addr, BT_SSP_VARIANT_PASSKEY_CONFIRMATION, 0);
@@ -1098,7 +1106,7 @@ static void btif_dm_auth_cmpl_evt(tBTA_DM_AUTH_CMPL* p_auth_cmpl) {
   bool skip_sdp = false;
 
   BTIF_TRACE_DEBUG("%s: bond state=%d, success=%d, key_present=%d", __func__,
-                   pairing_cb.state, p_auth_cmpl->success,
+                   pairing_cb.bond_state_uint(), p_auth_cmpl->success,
                    p_auth_cmpl->key_present);
 
   pairing_cb.fail_reason = p_auth_cmpl->fail_reason;
@@ -1170,7 +1178,7 @@ static void btif_dm_auth_cmpl_evt(tBTA_DM_AUTH_CMPL* p_auth_cmpl) {
     }
 
     bool is_crosskey = false;
-    if (pairing_cb.state == BT_BOND_STATE_BONDING && p_auth_cmpl->is_ctkd) {
+    if (pairing_cb.is_bond_state_bonding() && p_auth_cmpl->is_ctkd) {
       LOG_INFO("bonding initiated due to cross key pairing");
       is_crosskey = true;
     }
@@ -1308,7 +1316,7 @@ static void btif_dm_auth_cmpl_evt(tBTA_DM_AUTH_CMPL* p_auth_cmpl) {
     }
     // Report bond state change to java only if we are bonding to a device or
     // a device is removed from the pairing list.
-    if (pairing_cb.state == BT_BOND_STATE_BONDING || is_bonded_device_removed) {
+    if (pairing_cb.is_bond_state_bonding() || is_bonded_device_removed) {
       bond_state_changed(status, bd_addr, state);
     }
   }
@@ -1608,7 +1616,7 @@ static void btif_dm_search_services_evt(tBTA_DM_SEARCH_EVT event,
       LOG_VERBOSE("result=0x%x, services 0x%x", p_data->disc_res.result,
                   p_data->disc_res.services);
       if (p_data->disc_res.result != BTA_SUCCESS &&
-          pairing_cb.state == BT_BOND_STATE_BONDED &&
+          pairing_cb.is_bond_state_bonded() &&
           pairing_cb.sdp_attempts < BTIF_DM_MAX_SDP_ATTEMPTS_AFTER_PAIRING) {
         if (pairing_cb.sdp_attempts) {
           LOG_WARN("SDP failed after bonding re-attempting for %s",
@@ -1691,7 +1699,7 @@ static void btif_dm_search_services_evt(tBTA_DM_SEARCH_EVT event,
       */
       size_t num_eir_uuids = 0U;
       Uuid uuid = {};
-      if (pairing_cb.state == BT_BOND_STATE_BONDED && pairing_cb.sdp_attempts &&
+      if (pairing_cb.is_bond_state_bonded() && pairing_cb.sdp_attempts &&
           (p_data->disc_res.bd_addr == pairing_cb.bd_addr ||
            p_data->disc_res.bd_addr == pairing_cb.static_bdaddr)) {
         LOG_INFO("SDP search done for %s", ADDRESS_TO_LOGGABLE_CSTR(bd_addr));
@@ -2146,7 +2154,7 @@ static void btif_dm_upstreams_evt(uint16_t event, char* p_param) {
       not
       have setup properly. Setup pairing_cb and notify App about Bonding state
       now*/
-      if (pairing_cb.state != BT_BOND_STATE_BONDING) {
+      if (!pairing_cb.is_bond_state_bonding()) {
         BTIF_TRACE_DEBUG(
             "Bond state not sent to App so far.Notify the app now");
         bond_state_changed(BT_STATUS_SUCCESS, p_data->ble_key.bd_addr,
@@ -2378,9 +2386,7 @@ void btif_dm_cancel_discovery(void) {
   BTA_DmSearchCancel();
 }
 
-bool btif_dm_pairing_is_busy() {
-  return pairing_cb.state != BT_BOND_STATE_NONE;
-}
+bool btif_dm_pairing_is_busy() { return pairing_cb.is_bond_state_busy(); }
 
 /*******************************************************************************
  *
@@ -2398,7 +2404,7 @@ void btif_dm_create_bond(const RawAddress bd_addr, int transport) {
       base::StringPrintf("transport:%s", bt_transport_text(transport).c_str()));
 
   btif_stats_add_bond_event(bd_addr, BTIF_DM_FUNC_CREATE_BOND,
-                            pairing_cb.state);
+                            pairing_cb.bond_state());
 
   pairing_cb.timeout_retries = NUM_TIMEOUT_RETRIES;
   btif_dm_cb_create_bond(bd_addr, transport);
@@ -2416,7 +2422,7 @@ void btif_dm_create_bond_le(const RawAddress bd_addr,
   BTIF_TRACE_EVENT("%s: bd_addr=%s, addr_type=%d, transport=%d", __func__,
                    ADDRESS_TO_LOGGABLE_CSTR(bd_addr), addr_type);
   btif_stats_add_bond_event(bd_addr, BTIF_DM_FUNC_CREATE_BOND,
-                            pairing_cb.state);
+                            pairing_cb.bond_state());
 
   pairing_cb.timeout_retries = NUM_TIMEOUT_RETRIES;
   btif_dm_cb_create_bond_le(bd_addr, addr_type);
@@ -2545,7 +2551,7 @@ void btif_dm_cancel_bond(const RawAddress bd_addr) {
   BTM_LogHistory(kBtmLogTag, bd_addr, "Cancel bond");
 
   btif_stats_add_bond_event(bd_addr, BTIF_DM_FUNC_CANCEL_BOND,
-                            pairing_cb.state);
+                            pairing_cb.bond_state());
 
   /* TODO:
   **  1. Restore scan modes
@@ -2584,8 +2590,7 @@ void btif_dm_cancel_bond(const RawAddress bd_addr) {
  ******************************************************************************/
 
 void btif_dm_hh_open_failed(RawAddress* bdaddr) {
-  if (pairing_cb.state == BT_BOND_STATE_BONDING &&
-      *bdaddr == pairing_cb.bd_addr) {
+  if (pairing_cb.is_bond_state_bonding() && *bdaddr == pairing_cb.bd_addr) {
     bond_state_changed(BT_STATUS_RMT_DEV_DOWN, *bdaddr, BT_BOND_STATE_NONE);
   }
 }
@@ -2605,7 +2610,7 @@ void btif_dm_remove_bond(const RawAddress bd_addr) {
   BTM_LogHistory(kBtmLogTag, bd_addr, "Remove bond");
 
   btif_stats_add_bond_event(bd_addr, BTIF_DM_FUNC_REMOVE_BOND,
-                            pairing_cb.state);
+                            pairing_cb.bond_state());
 
   // special handling for HID devices
   // VUP needs to be sent if its a HID Device. The HID HOST module will check if
@@ -3508,7 +3513,7 @@ static void btif_dm_ble_sec_req_evt(tBTA_DM_BLE_SEC_REQ* p_ble_req,
 
   BTIF_TRACE_DEBUG("%s", __func__);
 
-  if (!is_consent && pairing_cb.state == BT_BOND_STATE_BONDING) {
+  if (!is_consent && pairing_cb.is_bond_state_bonding()) {
     BTIF_TRACE_DEBUG("%s Discard security request", __func__);
     return;
   }
