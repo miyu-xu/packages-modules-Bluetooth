@@ -108,9 +108,10 @@ static constexpr uint64_t LlFeatures() {
       LLFeaturesBits::LE_PING,
       LLFeaturesBits::LL_PRIVACY,
       LLFeaturesBits::EXTENDED_SCANNER_FILTER_POLICIES,
-      LLFeaturesBits::LE_2M_PHY, LLFeaturesBits::LE_CODED_PHY,
+      LLFeaturesBits::LE_2M_PHY,
+      LLFeaturesBits::LE_CODED_PHY,
       LLFeaturesBits::LE_EXTENDED_ADVERTISING,
-      // LLFeaturesBits::LE_PERIODIC_ADVERTISING,
+      LLFeaturesBits::LE_PERIODIC_ADVERTISING,
 
       // TODO: breaks AVD boot tests with LE audio
       // LLFeaturesBits::CONNECTED_ISOCHRONOUS_STREAM_CENTRAL,
