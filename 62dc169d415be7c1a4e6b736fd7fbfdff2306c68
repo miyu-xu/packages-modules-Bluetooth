@@ -46,6 +46,53 @@
       },
       "revId": "62dc169d415be7c1a4e6b736fd7fbfdff2306c68",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "720cc177_8d928ac1",
+        "filename": "android/app/src/com/android/bluetooth/mapclient/MceStateMachine.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 987,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-03-17T14:35:53Z",
+      "side": 1,
+      "message": "Should we call this `map_client` ?",
+      "range": {
+        "startLine": 987,
+        "startChar": 59,
+        "endLine": 987,
+        "endChar": 62
+      },
+      "revId": "62dc169d415be7c1a4e6b736fd7fbfdff2306c68",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9b617a6b_9b503467",
+        "filename": "android/app/src/com/android/bluetooth/mapclient/MceStateMachine.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 987,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-03-17T14:35:53Z",
+      "side": 1,
+      "message": "Properties can be override on different devices.\nIt\u0027s harder to override config.xml",
+      "parentUuid": "27db4ce5_c34fc9bc",
+      "range": {
+        "startLine": 987,
+        "startChar": 40,
+        "endLine": 987,
+        "endChar": 85
+      },
+      "revId": "62dc169d415be7c1a4e6b736fd7fbfdff2306c68",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
