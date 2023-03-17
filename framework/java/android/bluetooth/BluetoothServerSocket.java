@@ -89,6 +89,7 @@ public final class BluetoothServerSocket implements Closeable {
     private int mMessage;
     private int mChannel;
     private long mSocketCreationTime = 0;
+    private long mSocketCreationLatency = 0;
 
     // BluetoothSocket.getConnectionType() will hide L2CAP_LE.
     // Therefore a new variable need to be maintained here.
@@ -106,13 +107,14 @@ public final class BluetoothServerSocket implements Closeable {
      */
     /*package*/ BluetoothServerSocket(int type, boolean auth, boolean encrypt, int port)
             throws IOException {
+        mSocketCreationTime = System.currentTimeMillis();
         mType = type;
         mChannel = port;
-        mSocketCreationTime = System.currentTimeMillis();
         mSocket = new BluetoothSocket(type, -1, auth, encrypt, null, port, null);
         if (port == BluetoothAdapter.SOCKET_CHANNEL_AUTO_STATIC_NO_SDP) {
             mSocket.setExcludeSdp(true);
         }
+        mSocketCreationLatency = System.currentTimeMillis() - mSocketCreationTime;
     }
 
     /**
@@ -130,14 +132,15 @@ public final class BluetoothServerSocket implements Closeable {
     /*package*/ BluetoothServerSocket(int type, boolean auth, boolean encrypt, int port,
             boolean mitm, boolean min16DigitPin)
             throws IOException {
+        mSocketCreationTime = System.currentTimeMillis();
         mType = type;
         mChannel = port;
-        mSocketCreationTime = System.currentTimeMillis();
         mSocket = new BluetoothSocket(type, -1, auth, encrypt, null, port, null, mitm,
                 min16DigitPin);
         if (port == BluetoothAdapter.SOCKET_CHANNEL_AUTO_STATIC_NO_SDP) {
             mSocket.setExcludeSdp(true);
         }
+        mSocketCreationLatency = System.currentTimeMillis() - mSocketCreationTime;
     }
 
     /**
@@ -152,11 +155,12 @@ public final class BluetoothServerSocket implements Closeable {
      */
     /*package*/ BluetoothServerSocket(int type, boolean auth, boolean encrypt, ParcelUuid uuid)
             throws IOException {
-        mType = type;
         mSocketCreationTime = System.currentTimeMillis();
+        mType = type;
         mSocket = new BluetoothSocket(type, -1, auth, encrypt, null, -1, uuid);
         // TODO: This is the same as mChannel = -1 - is this intentional?
         mChannel = mSocket.getPort();
+        mSocketCreationLatency = System.currentTimeMillis() - mSocketCreationTime;
     }
 
 
@@ -185,21 +189,28 @@ public final class BluetoothServerSocket implements Closeable {
      * @throws IOException on error, for example this call was aborted, or timeout
      */
     public BluetoothSocket accept(int timeout) throws IOException {
+        long socketConnectionTime = System.currentTimeMillis();
         BluetoothSocket acceptedSocket = null;
         try {
             acceptedSocket = mSocket.accept(timeout);
             logL2capcocServerConnection(
-                    acceptedSocket, timeout, BluetoothSocket.RESULT_L2CAP_CONN_SUCCESS);
+                    acceptedSocket,
+                    timeout,
+                    BluetoothSocket.RESULT_L2CAP_CONN_SUCCESS,
+                    socketConnectionTime);
             return acceptedSocket;
         } catch (IOException e) {
             logL2capcocServerConnection(
-                    acceptedSocket, timeout, BluetoothSocket.RESULT_L2CAP_CONN_SERVER_FAILURE);
+                    acceptedSocket,
+                    timeout,
+                    BluetoothSocket.RESULT_L2CAP_CONN_SERVER_FAILURE,
+                    socketConnectionTime);
             throw e;
         }
     }
 
     private void logL2capcocServerConnection(
-            BluetoothSocket acceptedSocket, int timeout, int result) {
+            BluetoothSocket acceptedSocket, int timeout, int result, long socketConnectionTime) {
         if (mType != BluetoothSocket.TYPE_L2CAP_LE) {
             return;
         }
@@ -212,12 +223,15 @@ public final class BluetoothServerSocket implements Closeable {
         }
         try {
             final SynchronousResultReceiver recv = SynchronousResultReceiver.get();
+            long currentTime = System.currentTimeMillis();
             bluetoothProxy.logL2capcocServerConnection(
                     acceptedSocket == null ? null : acceptedSocket.getRemoteDevice(),
                     getPsm(),
                     mSocket.isAuth(),
                     result,
-                    System.currentTimeMillis() - mSocketCreationTime,
+                    currentTime - mSocketCreationTime, // end to end latency
+                    mSocketCreationLatency, // socket creation latency
+                    currentTime - socketConnectionTime, // socket connection latency
                     timeout,
                     recv);
             recv.awaitResultNoInterrupt(getSyncTimeout()).getValue(null);
