@@ -830,6 +830,22 @@ bool L2CA_ConnectCreditBasedRsp(const RawAddress& bd_addr, uint8_t id,
 }
 
 /**
+ * Ping APIs
+ */
+bool L2CA_Ping(const RawAddress& p_bd_addr, tL2CA_ECHO_RSP_CB* p_callback) {
+  LOG_INFO("UNIMPLEMENTED addr:%s p_callback:%p",
+           ADDRESS_TO_LOGGABLE_CSTR(p_bd_addr), p_callback);
+  return false;
+}
+
+bool L2CA_Echo(const RawAddress& p_bd_addr, BT_HDR* p_data,
+               tL2CA_ECHO_DATA_CB* p_callback) {
+  LOG_INFO("UNIMPLEMENTED addr:%s p_callback:%p",
+           ADDRESS_TO_LOGGABLE_CSTR(p_bd_addr), p_callback);
+  return false;
+}
+
+/**
  * Link APIs
  */
 bool L2CA_SetIdleTimeoutByBdAddr(const RawAddress& bd_addr, uint16_t timeout,
