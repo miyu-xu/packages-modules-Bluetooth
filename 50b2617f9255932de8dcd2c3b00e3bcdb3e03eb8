@@ -16,6 +16,24 @@
       "message": "The bug mention that this will solve `GAP/BOND/NBON/BV-01-C`\n\nIf I look at the [pts-bot config](https://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/android/pandora/server/configs/pts_bot_tests_config.json;l\u003d176;drc\u003db4f491c621b064e946d43f16d48d934ccf6d09c9) we only have `GAP/BOND/BON/BV-01-C` and `GAP/BOND/BON/BV-03-C`. Can we add it there as well ? and make sure that the test pass ?",
       "revId": "50b2617f9255932de8dcd2c3b00e3bcdb3e03eb8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c35e6592_2844db1b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2023-03-17T07:39:37Z",
+      "side": 1,
+      "message": "This patch is not working because in https://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/system/stack/smp/smp_act.cc;l\u003d1357\nwe will sends ble_sec_req_evt again and re-write the bond_type after pairing response.\n\nI\u0027m not able to check what we\u0027re doing in https://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/system/stack/smp/smp_act.cc;l\u003d1357 (which I believe is wrong) but I think\nsome other app will need it so I have another patch for nonbondable mode:\nhttps://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/2494416, PTAL.",
+      "parentUuid": "121dbc42_5f101db3",
+      "revId": "50b2617f9255932de8dcd2c3b00e3bcdb3e03eb8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
