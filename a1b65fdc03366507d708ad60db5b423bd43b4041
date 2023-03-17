@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "91002082_93aa0856",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1378,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2023-03-17T12:51:17Z",
+      "side": 1,
+      "message": "Is it enough to set it on one device only, while we stop the whole group?",
+      "range": {
+        "startLine": 1378,
+        "startChar": 10,
+        "endLine": 1378,
+        "endChar": 66
+      },
+      "revId": "a1b65fdc03366507d708ad60db5b423bd43b4041",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
