@@ -349,6 +349,35 @@ struct L2CA_GetRemoteCid {
   bool operator()(uint16_t lcid, uint16_t* rcid) { return body(lcid, rcid); };
 };
 extern struct L2CA_GetRemoteCid L2CA_GetRemoteCid;
+// Name: L2CA_Ping
+// Params: const RawAddress& p_bd_addr, tL2CA_ECHO_RSP_CB* p_callback
+// Returns: bool
+struct L2CA_Ping {
+  std::function<bool(const RawAddress& p_bd_addr,
+                     tL2CA_ECHO_RSP_CB* p_callback)>
+      body{[](const RawAddress& p_bd_addr, tL2CA_ECHO_RSP_CB* p_callback) {
+        return false;
+      }};
+  bool operator()(const RawAddress& p_bd_addr, tL2CA_ECHO_RSP_CB* p_callback) {
+    return body(p_bd_addr, p_callback);
+  };
+};
+extern struct L2CA_Ping L2CA_Ping;
+// Name: L2CA_Echo
+// Params: const RawAddress& p_bd_addr, BT_HDR* p_data,
+//         tL2CA_ECHO_RSP_CB* p_callback
+// Returns: bool
+struct L2CA_Echo {
+  std::function<bool(const RawAddress& p_bd_addr, BT_HDR* p_data,
+                     tL2CA_ECHO_DATA_CB* p_callback)>
+      body{[](const RawAddress& p_bd_addr, BT_HDR* p_data,
+              tL2CA_ECHO_DATA_CB* p_callback) { return false; }};
+  bool operator()(const RawAddress& p_bd_addr, BT_HDR* p_data,
+                  tL2CA_ECHO_DATA_CB* p_callback) {
+    return body(p_bd_addr, p_data, p_callback);
+  };
+};
+extern struct L2CA_Echo L2CA_Echo;
 // Name: L2CA_SetTxPriority
 // Params: uint16_t cid, tL2CAP_CHNL_PRIORITY priority
 // Returns: bool

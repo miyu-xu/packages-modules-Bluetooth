@@ -65,6 +65,8 @@ struct L2CA_GetLeHandle L2CA_GetLeHandle;
 struct L2CA_LeConnectionUpdate L2CA_LeConnectionUpdate;
 struct L2CA_EnableUpdateBleConnParams L2CA_EnableUpdateBleConnParams;
 struct L2CA_GetRemoteCid L2CA_GetRemoteCid;
+struct L2CA_Ping L2CA_Ping;
+struct L2CA_Echo L2CA_Echo;
 struct L2CA_SetTxPriority L2CA_SetTxPriority;
 struct L2CA_SetLeGattTimeout L2CA_SetLeGattTimeout;
 struct L2CA_SetChnlFlushability L2CA_SetChnlFlushability;
@@ -220,6 +222,17 @@ bool bluetooth::shim::L2CA_EnableUpdateBleConnParams(const RawAddress& rem_bda,
 bool bluetooth::shim::L2CA_GetRemoteCid(uint16_t lcid, uint16_t* rcid) {
   inc_func_call_count(__func__);
   return test::mock::main_shim_l2cap_api::L2CA_GetRemoteCid(lcid, rcid);
+}
+bool bluetooth::shim::L2CA_Ping(const RawAddress& p_bd_addr,
+                                tL2CA_ECHO_RSP_CB* p_callback) {
+  inc_func_call_count(__func__);
+  return test::mock::main_shim_l2cap_api::L2CA_Ping(p_bd_addr, p_callback);
+}
+bool bluetooth::shim::L2CA_Echo(const RawAddress& p_bd_addr, BT_HDR* p_data,
+                                tL2CA_ECHO_DATA_CB* p_callback) {
+  inc_func_call_count(__func__);
+  return test::mock::main_shim_l2cap_api::L2CA_Echo(p_bd_addr, p_data,
+                                                    p_callback);
 }
 bool bluetooth::shim::L2CA_SetTxPriority(uint16_t cid,
                                          tL2CAP_CHNL_PRIORITY priority) {
