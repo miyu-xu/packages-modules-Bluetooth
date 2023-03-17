@@ -568,6 +568,7 @@ typedef struct {
 
 typedef union {
   tBTM_LE_IO_REQ io_req; /* BTM_LE_IO_REQ_EVT      */
+  tBTM_LE_SEC_REQ sec_req;
   uint32_t key_notif;    /* BTM_LE_KEY_NOTIF_EVT   */
                          /* BTM_LE_NC_REQ_EVT */
                          /* no callback data for

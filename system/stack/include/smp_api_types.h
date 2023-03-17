@@ -254,6 +254,12 @@ typedef struct {
 } tSMP_IO_REQ;
 
 typedef struct {
+  bool just_works;
+  tSMP_AUTH_REQ peer_auth_req;
+  tSMP_AUTH_REQ loc_auth_req;
+} tSMP_SEC_REQ;
+
+typedef struct {
   tSMP_STATUS reason;
   tSMP_SEC_LEVEL sec_level;
   bool is_pair_cancel;
@@ -295,6 +301,7 @@ typedef struct {
 typedef union {
   uint32_t passkey;
   tSMP_IO_REQ io_req; /* IO request */
+  tSMP_SEC_REQ sec_req;
   tSMP_CMPL cmplt;
   tSMP_OOB_DATA_TYPE req_oob_type;
   tSMP_LOC_OOB_DATA loc_oob_data;
