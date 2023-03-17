@@ -672,6 +672,12 @@ typedef struct {
   tBTM_LE_KEY_TYPE resp_keys; /* keys to be distributed, bit mask */
 } tBTM_LE_IO_REQ;
 
+typedef struct {
+  bool just_works;
+  tBTM_LE_AUTH_REQ peer_auth_req;
+  tBTM_LE_AUTH_REQ loc_auth_req;
+} tBTM_LE_SEC_REQ;
+
 /* data type for tBTM_LE_COMPLT */
 typedef struct {
   uint8_t reason;
