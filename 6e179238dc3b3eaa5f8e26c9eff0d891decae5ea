@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "caff482f_b727b0d2",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 3100,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-03-17T17:01:07Z",
+      "side": 1,
+      "message": "I wanted to delete it, but without mixing up with the fix for the bug... and then I forgot to upload the CL 😊\n\nThanks for catching it ! Uploaded with aosp/2496102",
+      "parentUuid": "b97f70ec_8fa98c62",
+      "range": {
+        "startLine": 3100,
+        "startChar": 26,
+        "endLine": 3100,
+        "endChar": 42
+      },
+      "revId": "6e179238dc3b3eaa5f8e26c9eff0d891decae5ea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "296978b4_76c6896c",
@@ -61,6 +85,30 @@
       "side": 1,
       "message": "I guess it makes it easier to have all the locked try/catch blocks look the same, and this is the correct way if there were a return in the try/catch.",
       "parentUuid": "296978b4_76c6896c",
+      "range": {
+        "startLine": 3121,
+        "startChar": 0,
+        "endLine": 3122,
+        "endChar": 45
+      },
+      "revId": "6e179238dc3b3eaa5f8e26c9eff0d891decae5ea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5e79ac5e_2d009397",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 3122,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-03-17T17:01:07Z",
+      "side": 1,
+      "message": "Whatever happen in the try, I want to release the lock.\nI agree that here the finally looks like it is not needed since we are catching all possible error... But what if there is a RuntimeException we didn\u0027t think about ? Maybe it doesn\u0027t matter since we are crashing at this point...\n\nI like my bluetooth to crash and unlock its mutex better than just crashing ah ah ah",
+      "parentUuid": "30ad2f96_3ca3ca0e",
       "range": {
         "startLine": 3121,
         "startChar": 0,
