@@ -54,6 +54,7 @@ using testing::Invoke;
 using testing::Matcher;
 using testing::Mock;
 using testing::MockFunction;
+using testing::NiceMock;
 using testing::NotNull;
 using testing::Return;
 using testing::SaveArg;
@@ -2263,14 +2264,14 @@ class UnicastTestNoInit : public Test {
   uint8_t default_ase_cnt = 1;
 
   MockCsisClient mock_csis_client_module_;
-  MockDeviceGroups mock_groups_module_;
+  NiceMock<MockDeviceGroups> mock_groups_module_;
   bluetooth::groups::DeviceGroupsCallbacks* group_callbacks_;
-  MockLeAudioGroupStateMachine mock_state_machine_;
+  NiceMock<MockLeAudioGroupStateMachine> mock_state_machine_;
 
   MockFunction<void()> mock_storage_load;
   MockFunction<bool()> mock_hal_2_1_verifier;
 
-  controller::MockControllerInterface controller_interface_;
+  NiceMock<controller::MockControllerInterface> controller_interface_;
   bluetooth::manager::MockBtmInterface mock_btm_interface_;
   gatt::MockBtaGattInterface mock_gatt_interface_;
   gatt::MockBtaGattQueue mock_gatt_queue_;
