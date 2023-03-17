@@ -49,6 +49,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b739b516_bc8a9d42",
+        "filename": "tools/rootcanal/model/controller/link_layer_controller.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 4795,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2023-03-17T19:01:19Z",
+      "side": 1,
+      "message": "Cool... So this is actually a behavior common existed in real controllers though it doesn\u0027t follow the spec. Not sure if we need it.",
+      "parentUuid": "ef60d523_84d8ce8b",
+      "range": {
+        "startLine": 4788,
+        "startChar": 0,
+        "endLine": 4795,
+        "endChar": 3
+      },
+      "revId": "05c04738be2df8817c2af4337c091c9db2018a5b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "aed3f27d_1490f5f4",
         "filename": "tools/rootcanal/model/controller/link_layer_controller.cc",
         "patchSetId": 6
