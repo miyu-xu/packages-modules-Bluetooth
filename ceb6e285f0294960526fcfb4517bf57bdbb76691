@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "359b8585_77b1c151",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-03-17T20:25:04Z",
+      "side": 1,
+      "message": "please remove and inline the information (or move the information to the bug)",
+      "range": {
+        "startLine": 12,
+        "startChar": 8,
+        "endLine": 12,
+        "endChar": 42
+      },
+      "revId": "ceb6e285f0294960526fcfb4517bf57bdbb76691",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "37542d55_8ecbe33a",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1504,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-03-17T20:25:04Z",
+      "side": 1,
+      "message": "Can this stay an INFO?  Should it be a warning?",
+      "range": {
+        "startLine": 1504,
+        "startChar": 6,
+        "endLine": 1504,
+        "endChar": 14
+      },
+      "revId": "ceb6e285f0294960526fcfb4517bf57bdbb76691",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2d9efa42_d10b3010",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1508,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-03-17T20:25:04Z",
+      "side": 1,
+      "message": "Can we put this on line 1516?  (Or maybe right after?)  I\u0027d like discovery active to get set to false as close to the complete event as possible.",
+      "range": {
+        "startLine": 1508,
+        "startChar": 2,
+        "endLine": 1508,
+        "endChar": 44
+      },
+      "revId": "ceb6e285f0294960526fcfb4517bf57bdbb76691",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
