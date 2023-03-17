@@ -46,6 +46,30 @@
       },
       "revId": "6649f9b097c537911ccb0bdf04311abf32569b51",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f3575b69_c85bcbfc",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 3943,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-03-17T20:18:03Z",
+      "side": 1,
+      "message": "I didn\u0027t look up far enough.  We could maybe add an assert if bluetoothService is null before we do anything else.\n\nThen with the lock downgrade, we\u0027d be sure we didn\u0027t have a null mService.",
+      "parentUuid": "2bc2c8c2_4b5ebaab",
+      "range": {
+        "startLine": 3941,
+        "startChar": 0,
+        "endLine": 3943,
+        "endChar": 25
+      },
+      "revId": "6649f9b097c537911ccb0bdf04311abf32569b51",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
