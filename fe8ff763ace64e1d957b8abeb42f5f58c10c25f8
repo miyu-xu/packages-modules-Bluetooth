@@ -22,6 +22,30 @@
       },
       "revId": "fe8ff763ace64e1d957b8abeb42f5f58c10c25f8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e3fa7372_332c6dfa",
+        "filename": "android/app/src/com/android/bluetooth/mapclient/MceStateMachine.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 985,
+      "author": {
+        "id": 1951737
+      },
+      "writtenOn": "2023-03-17T07:40:07Z",
+      "side": 1,
+      "message": "1. For Wear usecase, we\u0027d like WearServices to also receive the broadcast even when a default messaging package exists. WearServices handle the intent for features such as message reply.\n\n2. When there\u0027s no default SMS app, we keep the original behavior where the intent is broadcasted widely with no target package specified. The secondary app receives the intent anyway from that wide broadcast.",
+      "parentUuid": "5afdc779_1eadd537",
+      "range": {
+        "startLine": 985,
+        "startChar": 24,
+        "endLine": 985,
+        "endChar": 93
+      },
+      "revId": "fe8ff763ace64e1d957b8abeb42f5f58c10c25f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
