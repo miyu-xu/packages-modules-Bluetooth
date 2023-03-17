@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "804e7e26_954f0467",
+        "filename": "android/app/src/com/android/bluetooth/mapclient/MceStateMachine.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 987,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-03-17T09:07:01Z",
+      "side": 1,
+      "message": "Can\u0027t we use config.xml like the origin CL?",
+      "range": {
+        "startLine": 987,
+        "startChar": 40,
+        "endLine": 987,
+        "endChar": 85
+      },
+      "revId": "62dc169d415be7c1a4e6b736fd7fbfdff2306c68",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
