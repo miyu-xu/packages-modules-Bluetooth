@@ -96,7 +96,8 @@ static_assert(LOG_TAG != nullptr, "LOG_TAG is null after header inclusion");
 #else
 #define LOG_VERBOSE(...)                                                      \
   do {                                                                        \
-    if (bluetooth::common::InitFlags::IsDebugLoggingEnabledForTag(LOG_TAG)) { \
+    if (bluetooth::common::InitFlags::IsDebugLoggingEnabledForTag(LOG_TAG) && \
+        bluetooth::common::InitFlags::IsVerboseLoggingEnabledForAll()) {      \
       LOGWRAPPER(LOG_TAG_VERBOSE, __VA_ARGS__);                               \
     }                                                                         \
   } while (false)

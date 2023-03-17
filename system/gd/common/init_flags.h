@@ -44,6 +44,10 @@ class InitFlags final {
     return init_flags::logging_debug_enabled_for_all_is_enabled();
   }
 
+  inline static bool IsVerboseLoggingEnabledForAll() {
+    return init_flags::is_verbose_logging_enabled();
+  }
+
   inline static bool IsDeviceIotConfigLoggingEnabled() {
     return init_flags::device_iot_config_logging_is_enabled();
   }

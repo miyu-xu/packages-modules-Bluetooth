@@ -29,6 +29,7 @@ mod ffi {
         fn hfp_dynamic_version_is_enabled() -> bool;
         fn irk_rotation_is_enabled() -> bool;
         fn is_debug_logging_enabled_for_tag(tag: &str) -> bool;
+        fn is_verbose_logging_enabled() -> bool;
         fn leaudio_targeted_announcement_reconnection_mode_is_enabled() -> bool;
         fn logging_debug_enabled_for_all_is_enabled() -> bool;
         fn pass_phy_update_callback_is_enabled() -> bool;

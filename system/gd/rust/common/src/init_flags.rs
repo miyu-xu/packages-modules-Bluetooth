@@ -244,6 +244,13 @@ pub fn is_debug_logging_enabled_for_tag(tag: &str) -> bool {
         .unwrap_or(&guard.logging_debug_enabled_for_all)
 }
 
+/// Returns true if verbose logging is allowed. Must also check
+/// `is_debug_logging_enabled_for_tag`.
+pub fn is_verbose_logging_enabled() -> bool {
+    let guard = FLAGS.lock().unwrap();
+    guard.logging_verbose_enabled_for_all
+}
+
 fn parse_hci_adapter(flags: &mut InitFlags, values: Vec<&str>) {
     flags.hci_adapter = values[1].parse().unwrap_or(0);
 }
@@ -276,6 +283,7 @@ init_flags!(
         hfp_dynamic_version = true,
         irk_rotation,
         leaudio_targeted_announcement_reconnection_mode = true,
+        logging_verbose_enabled_for_all = true,
         pass_phy_update_callback = true,
         pbap_pse_dynamic_version_upgrade = true,
         periodic_advertising_adi = true,
