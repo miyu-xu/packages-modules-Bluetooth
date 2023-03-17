@@ -2,6 +2,7 @@ little_endian_packets
 
 custom_field Address : 48 "hci/"
 custom_field ClassOfDevice : 24 "hci/"
+custom_field Role : 8 "hci/"
 
 enum PacketType : 8 {
     UNKNOWN = 0x00,
@@ -63,6 +64,8 @@ enum PacketType : 8 {
 
     PING_REQUEST = 0x35,
     PING_RESPONSE = 0x36,
+
+    ROLE_SWITCH_REQUEST = 0x37,
 }
 
 packet LinkLayerPacket {
@@ -454,4 +457,8 @@ packet PingRequest : LinkLayerPacket (type = PING_REQUEST) {
 }
 
 packet PingResponse : LinkLayerPacket (type = PING_RESPONSE) {
+}
+
+packet RoleSwitchRequest : LinkLayerPacket (type = ROLE_SWITCH_REQUEST) {
+  role: Role,
 }
