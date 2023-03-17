@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bf94d5d0_c636b715",
+        "filename": "system/gd/hci/controller.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 419,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-03-17T16:38:19Z",
+      "side": 1,
+      "message": "This is probably not necessary.  You have a LOG_INFO in read_default_erroneous_data_reporting_handler, and this log line is only reached when status is SUCCESS",
+      "range": {
+        "startLine": 419,
+        "startChar": 3,
+        "endLine": 419,
+        "endChar": 98
+      },
+      "revId": "fac24c1432247e05b50dcd659fa60afae8cc95ee",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
