@@ -667,6 +667,7 @@ class LinkLayerController {
   void IncomingScoDisconnect(model::packets::LinkLayerPacketView incoming);
 
   void IncomingPingRequest(model::packets::LinkLayerPacketView incoming);
+  void IncomingRoleSwitch(model::packets::LinkLayerPacketView incoming);
 
  public:
   bool IsEventUnmasked(bluetooth::hci::EventCode event) const;
