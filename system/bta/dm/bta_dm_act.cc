@@ -3128,15 +3128,18 @@ static char* bta_dm_get_remname(void) {
  *
  ******************************************************************************/
 static void bta_dm_bond_cancel_complete_cback(tBTM_STATUS result) {
-  tBTA_DM_SEC sec_event;
-
-  if (result == BTM_SUCCESS)
-    sec_event.bond_cancel_cmpl.result = BTA_SUCCESS;
-  else
-    sec_event.bond_cancel_cmpl.result = BTA_FAILURE;
-
+  tBTA_DM_SEC sec_event = {
+      .bond_cancel_cmpl =
+          {
+              // tBTA_DM_BOND_CANCEL_CMPL
+              .result = (result == BTM_SUCCESS) ? BTA_SUCCESS : BTA_FAILURE,
+          },
+  };
   if (bta_dm_cb.p_sec_cback) {
     bta_dm_cb.p_sec_cback(BTA_DM_BOND_CANCEL_CMPL_EVT, &sec_event);
+  } else {
+    LOG_WARN("Bond cancel complete without a callback btm_status:%s",
+             btm_status_text(result).c_str());
   }
 }
 
