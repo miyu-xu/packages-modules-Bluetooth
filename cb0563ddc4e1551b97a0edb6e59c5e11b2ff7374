@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5fa9ae51_886b60c8",
+        "filename": "android/app/src/com/android/bluetooth/mapclient/MceStateMachine.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 998,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-03-17T19:28:12Z",
+      "side": 1,
+      "message": "I understand this code is sending twice the intent. Can this be an issue?\n\nI am talking without knowing but shouldn\u0027t we do something like:\n```\nif (smsReplyPackageName !\u003d null \u0026\u0026 !smsReplyPackageName.isEmpty()) {\n  intent.setPackage(smsReplyPackageName);\n} else {\n  intent.setPackage(defaultMessagingPackage);\n}\n```",
+      "range": {
+        "startLine": 998,
+        "startChar": 0,
+        "endLine": 998,
+        "endChar": 64
+      },
+      "revId": "cb0563ddc4e1551b97a0edb6e59c5e11b2ff7374",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
