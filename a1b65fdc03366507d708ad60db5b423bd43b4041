@@ -22,6 +22,30 @@
       },
       "revId": "a1b65fdc03366507d708ad60db5b423bd43b4041",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "159e5ad2_8e88aa64",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1378,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-03-17T13:01:55Z",
+      "side": 1,
+      "message": "should be enough. Indeed we did here assumption that disconnecting any group device will cause stream stop, but let\u0027s java to disconnect other devices by them self.\nAnd it is enough that one device will be hanging until the stream is stopped.",
+      "parentUuid": "91002082_93aa0856",
+      "range": {
+        "startLine": 1378,
+        "startChar": 10,
+        "endLine": 1378,
+        "endChar": 66
+      },
+      "revId": "a1b65fdc03366507d708ad60db5b423bd43b4041",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
