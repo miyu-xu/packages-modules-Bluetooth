@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "85c721c7_0d599fc4",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-03-17T21:29:02Z",
+      "side": 1,
+      "message": "I edited one of my comments on the bug to include this link.",
+      "parentUuid": "748a0cf3_682dcfe2",
+      "range": {
+        "startLine": 12,
+        "startChar": 8,
+        "endLine": 12,
+        "endChar": 42
+      },
+      "revId": "ceb6e285f0294960526fcfb4517bf57bdbb76691",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "37542d55_8ecbe33a",
