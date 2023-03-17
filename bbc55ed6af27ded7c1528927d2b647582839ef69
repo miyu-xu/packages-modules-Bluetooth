@@ -22,6 +22,30 @@
       },
       "revId": "bbc55ed6af27ded7c1528927d2b647582839ef69",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f45d570f_0b89934f",
+        "filename": "system/btif/Android.bp",
+        "patchSetId": 7
+      },
+      "lineNbr": 385,
+      "author": {
+        "id": 1121894
+      },
+      "writtenOn": "2023-03-17T01:46:54Z",
+      "side": 1,
+      "message": "Done, thanks !",
+      "parentUuid": "0bfc5d34_963f7840",
+      "range": {
+        "startLine": 385,
+        "startChar": 12,
+        "endLine": 385,
+        "endChar": 23
+      },
+      "revId": "bbc55ed6af27ded7c1528927d2b647582839ef69",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
