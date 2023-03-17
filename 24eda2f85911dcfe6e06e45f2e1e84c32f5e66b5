@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "959fabf9_3a43145b",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 2377,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-03-17T15:22:18Z",
+      "side": 1,
+      "message": "should be not needed if group will handle CIS disconnection.\n\nbtw: have a look on LeAudioDeviceGroup::CleanUp() where CISes are disconnected - maybe you could make use of it.",
+      "revId": "24eda2f85911dcfe6e06e45f2e1e84c32f5e66b5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ae8fb620_df103a3b",
+        "filename": "system/bta/le_audio/devices.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-03-17T15:22:18Z",
+      "side": 1,
+      "message": "this will be not needed if you let group to disconnect CISes.",
+      "revId": "24eda2f85911dcfe6e06e45f2e1e84c32f5e66b5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "175bbc84_34be8252",
+        "filename": "system/bta/le_audio/le_audio_client_test.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 4381,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-03-17T15:22:18Z",
+      "side": 1,
+      "message": "can we also test here that group is not active any more, and the actually group state?",
+      "revId": "24eda2f85911dcfe6e06e45f2e1e84c32f5e66b5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

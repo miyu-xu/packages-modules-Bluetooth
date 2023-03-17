@@ -69,6 +69,24 @@
       "parentUuid": "135f8e53_d6cf07b1",
       "revId": "ea10f5b27e1cc08ff83ec1e50a3e4264a971c675",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e7ba77f4_37846e7b",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1363,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-03-17T15:22:18Z",
+      "side": 1,
+      "message": "if group is unresponsive, then disconnecting ACL should be enough.\nNote that ACL disconnection will also disconnect CISes.\n\nIf you really need  more graceful disconnect, please create some group function which will have access to ASESs and not extract it here in client.cc\n\nStill not sure what problem it solves.",
+      "parentUuid": "cbe95610_6c3c34d8",
+      "revId": "ea10f5b27e1cc08ff83ec1e50a3e4264a971c675",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
