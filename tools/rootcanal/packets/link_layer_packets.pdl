@@ -63,6 +63,7 @@ enum PacketType : 8 {
 
     PING_REQUEST = 0x35,
     PING_RESPONSE = 0x36,
+    ROLE_SWITCH_REQUEST = 0x38,
 }
 
 packet LinkLayerPacket {
@@ -454,4 +455,7 @@ packet PingRequest : LinkLayerPacket (type = PING_REQUEST) {
 }
 
 packet PingResponse : LinkLayerPacket (type = PING_RESPONSE) {
+}
+
+packet RoleSwitchRequest : LinkLayerPacket (type = ROLE_SWITCH_REQUEST) {
 }

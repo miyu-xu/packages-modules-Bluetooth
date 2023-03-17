@@ -1797,6 +1797,9 @@ void LinkLayerController::IncomingPacket(
     case model::packets::PacketType::PING_RESPONSE:
       // ping responses require no action
       break;
+    case model::packets::PacketType::ROLE_SWITCH_REQUEST:
+      IncomingRoleSwitchRequest(incoming);
+      break;
     default:
       LOG_WARN("Dropping unhandled packet of type %s",
                model::packets::PacketTypeText(incoming.GetType()).c_str());
@@ -4709,6 +4712,7 @@ void LinkLayerController::IncomingPageResponsePacket(
     model::packets::LinkLayerPacketView incoming) {
   Address peer = incoming.GetSourceAddress();
   LOG_INFO("%s", peer.ToString().c_str());
+  auto response = model::packets::PageResponseView::Create(incoming);
 #ifndef ROOTCANAL_LMP
   bool awaiting_authentication = connections_.AuthenticatePendingConnection();
 #endif /* !ROOTCANAL_LMP */
@@ -4726,10 +4730,20 @@ void LinkLayerController::IncomingPageResponsePacket(
 
   CheckExpiringConnection(handle);
 
+  auto addr = incoming.GetSourceAddress();
+  // TODO(b/272713533): Reject role switch if disabled by host
+  if (response.GetTryRoleSwitch()) {
+    connections_.SetAclRole(handle, bluetooth::hci::Role::PERIPHERAL);
+    if (IsEventUnmasked(EventCode::ROLE_CHANGE)) {
+      auto role = connections_.GetAclRole(handle);
+      send_event_(bluetooth::hci::RoleChangeBuilder::Create(ErrorCode::SUCCESS,
+                                                            addr, role));
+    }
+  }
   if (IsEventUnmasked(EventCode::CONNECTION_COMPLETE)) {
     send_event_(bluetooth::hci::ConnectionCompleteBuilder::Create(
-        ErrorCode::SUCCESS, handle, incoming.GetSourceAddress(),
-        bluetooth::hci::LinkType::ACL, bluetooth::hci::Enable::DISABLED));
+        ErrorCode::SUCCESS, handle, addr, bluetooth::hci::LinkType::ACL,
+        bluetooth::hci::Enable::DISABLED));
   }
 
 #ifndef ROOTCANAL_LMP
@@ -5331,6 +5345,15 @@ void LinkLayerController::MakePeripheralConnection(const Address& addr,
 
   CheckExpiringConnection(handle);
 
+  if (try_role_switch) {
+    connections_.SetAclRole(handle, bluetooth::hci::Role::CENTRAL);
+  }
+  if (IsEventUnmasked(EventCode::ROLE_CHANGE)) {
+    auto role = connections_.GetAclRole(handle);
+    send_event_(bluetooth::hci::RoleChangeBuilder::Create(ErrorCode::SUCCESS,
+                                                          addr, role));
+  }
+
   LOG_INFO("CreateConnection returned handle 0x%x", handle);
   if (IsEventUnmasked(EventCode::CONNECTION_COMPLETE)) {
     send_event_(bluetooth::hci::ConnectionCompleteBuilder::Create(
@@ -5568,17 +5591,40 @@ ErrorCode LinkLayerController::RoleDiscovery(uint16_t handle,
 }
 
 ErrorCode LinkLayerController::SwitchRole(Address addr,
-                                          bluetooth::hci::Role role) {
+                                          bluetooth::hci::Role new_role) {
   auto handle = connections_.GetHandleOnlyAddress(addr);
   if (handle == rootcanal::kReservedHandle) {
     return ErrorCode::UNKNOWN_CONNECTION;
   }
-  connections_.SetAclRole(handle, role);
-  ScheduleTask(kNoDelayMs, [this, addr, role]() {
+  bluetooth::hci::Role role = connections_.GetAclRole(handle);
+  if (role != new_role) {
+    connections_.SetAclRole(handle, new_role);
+    SendLinkLayerPacket(
+        model::packets::RoleSwitchRequestBuilder::Create(GetAddress(), addr));
+  }
+
+  ScheduleTask(kNoDelayMs, [this, addr, new_role]() {
     send_event_(bluetooth::hci::RoleChangeBuilder::Create(ErrorCode::SUCCESS,
-                                                          addr, role));
+                                                          addr, new_role));
   });
   return ErrorCode::SUCCESS;
+}
+
+void LinkLayerController::IncomingRoleSwitchRequest(
+    model::packets::LinkLayerPacketView incoming) {
+  auto addr = incoming.GetSourceAddress();
+  auto handle = connections_.GetHandleOnlyAddress(addr);
+  bluetooth::hci::Role role = connections_.GetAclRole(handle);
+
+  bluetooth::hci::Role new_role = bluetooth::hci::Role::CENTRAL;
+  if (role == bluetooth::hci::Role::CENTRAL) {
+    new_role = bluetooth::hci::Role::PERIPHERAL;
+  }
+  connections_.SetAclRole(handle, new_role);
+  ScheduleTask(kNoDelayMs, [this, addr, new_role]() {
+    send_event_(bluetooth::hci::RoleChangeBuilder::Create(ErrorCode::SUCCESS,
+                                                          addr, new_role));
+  });
 }
 
 ErrorCode LinkLayerController::ReadLinkPolicySettings(uint16_t handle,
