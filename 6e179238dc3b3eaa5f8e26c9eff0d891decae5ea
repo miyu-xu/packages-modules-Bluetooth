@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b97f70ec_8fa98c62",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 3100,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-03-17T16:48:15Z",
+      "side": 1,
+      "message": "Why is this synchronized with mManagerCallback?",
+      "range": {
+        "startLine": 3100,
+        "startChar": 26,
+        "endLine": 3100,
+        "endChar": 42
+      },
+      "revId": "6e179238dc3b3eaa5f8e26c9eff0d891decae5ea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "296978b4_76c6896c",
         "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
         "patchSetId": 1
@@ -14,6 +37,30 @@
       "writtenOn": "2023-03-17T16:43:27Z",
       "side": 1,
       "message": "Why not put this after the try/catch.  Does it belong in a finally?",
+      "range": {
+        "startLine": 3121,
+        "startChar": 0,
+        "endLine": 3122,
+        "endChar": 45
+      },
+      "revId": "6e179238dc3b3eaa5f8e26c9eff0d891decae5ea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "30ad2f96_3ca3ca0e",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 3122,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-03-17T16:48:15Z",
+      "side": 1,
+      "message": "I guess it makes it easier to have all the locked try/catch blocks look the same, and this is the correct way if there were a return in the try/catch.",
+      "parentUuid": "296978b4_76c6896c",
       "range": {
         "startLine": 3121,
         "startChar": 0,
