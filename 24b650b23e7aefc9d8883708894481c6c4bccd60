@@ -33,6 +33,41 @@
       "message": "I ran an abtd run and pts-bot is not passing:\nhttps://android-build.googleplex.com/builds/abtd/run/L59700000959165592",
       "revId": "24b650b23e7aefc9d8883708894481c6c4bccd60",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f8428ba2_c1a08715",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1970925
+      },
+      "writtenOn": "2023-03-17T06:25:08Z",
+      "side": 1,
+      "message": "Hi Charlie,\n\nI have tried running ABTD with this CL and checked that all the pts-bot test cases are passed as per https://android-build.corp.google.com/test_investigate/?invocationId\u003dI72100010141000399\u0026testResultId\u003dTR62128550852034223\u0026redirect\u003dhttp://fusion2/cace6fd6-d42b-41a3-a615-5f2f3c73b0a7\n\nKindly check and provide your inputs.\n\nThanks \u0026 Regards,\nDhananjaya",
+      "revId": "24b650b23e7aefc9d8883708894481c6c4bccd60",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "39861200_0bd0e7e2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1970925
+      },
+      "writtenOn": "2023-03-17T06:25:08Z",
+      "side": 1,
+      "message": "I tried running abtd and verified that all pts-bot test cases passed\nhttps://android-build.corp.google.com/test_investigate/?invocationId\u003dI72100010141000399\u0026testResultId\u003dTR62128550852034223\u0026redirect\u003dhttp://fusion2/cace6fd6-d42b-41a3-a615-5f2f3c73b0a7",
+      "parentUuid": "bb5ff48b_be7723f6",
+      "revId": "24b650b23e7aefc9d8883708894481c6c4bccd60",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
