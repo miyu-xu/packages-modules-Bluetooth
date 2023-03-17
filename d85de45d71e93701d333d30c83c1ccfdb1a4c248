@@ -16,6 +16,24 @@
       "message": "Bug?  Even if you create a bug for generic cleanups and close it after one CL, it makes it easier to track later.",
       "revId": "d85de45d71e93701d333d30c83c1ccfdb1a4c248",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "00cba6c2_f1615ac2",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-03-17T17:35:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4080d0ee_ff19b458",
+      "revId": "d85de45d71e93701d333d30c83c1ccfdb1a4c248",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
