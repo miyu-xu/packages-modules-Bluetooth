@@ -16,6 +16,29 @@
       "message": "Hi yuyangh, please help to review this as well. Thanks.",
       "revId": "c7eb3ab0786f9cb4dfd34edffa5279f89f7d9760",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "782776dc_92e2740c",
+        "filename": "android/app/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachine.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 2281,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-03-17T16:53:18Z",
+      "side": 1,
+      "message": "nit: maybe it would be more readable without negation outside e.g. `mProp\u003c POLICY_UNCONFIGURED || mProp \u003e POLICY_NOT_ALLOWED`",
+      "range": {
+        "startLine": 2280,
+        "startChar": 12,
+        "endLine": 2281,
+        "endChar": 73
+      },
+      "revId": "c7eb3ab0786f9cb4dfd34edffa5279f89f7d9760",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
