@@ -28,6 +28,18 @@ static_assert(LOG_TAG != nullptr, "LOG_TAG should never be NULL");
 
 #include "os/logging/log_adapter.h"
 
+// These log levels may need to be mapped to system values. These values are
+// used to control the log level via init flags.
+enum LogLevels {
+  LOG_TAG_FATAL = 0,
+  LOG_TAG_ERROR,
+  LOG_TAG_WARN,
+  LOG_TAG_NOTICE,
+  LOG_TAG_INFO,
+  LOG_TAG_DEBUG,
+  LOG_TAG_VERBOSE
+};
+
 #if defined(OS_ANDROID)
 
 #include <log/log.h>
@@ -44,18 +56,18 @@ static_assert(LOG_TAG != nullptr, "LOG_TAG should never be NULL");
 
 static_assert(LOG_TAG != nullptr, "LOG_TAG is null after header inclusion");
 
-#define LOG_VERBOSE(fmt, args...)                                             \
-  do {                                                                        \
-    if (bluetooth::common::InitFlags::IsDebugLoggingEnabledForTag(LOG_TAG)) { \
-      ALOGV("%s:%d %s: " fmt, __FILE__, __LINE__, __func__, ##args);          \
-    }                                                                         \
+#define LOG_VERBOSE(fmt, args...)                                                      \
+  do {                                                                                 \
+    if (bluetooth::common::InitFlags::GetLogLevelForTag(LOG_TAG) >= LOG_TAG_VERBOSE) { \
+      ALOGV("%s:%d %s: " fmt, __FILE__, __LINE__, __func__, ##args);                   \
+    }                                                                                  \
   } while (false)
 
-#define LOG_DEBUG(fmt, args...)                                               \
-  do {                                                                        \
-    if (bluetooth::common::InitFlags::IsDebugLoggingEnabledForTag(LOG_TAG)) { \
-      ALOGD("%s:%d %s: " fmt, __FILE__, __LINE__, __func__, ##args);          \
-    }                                                                         \
+#define LOG_DEBUG(fmt, args...)                                                      \
+  do {                                                                               \
+    if (bluetooth::common::InitFlags::GetLogLevelForTag(LOG_TAG) >= LOG_TAG_DEBUG) { \
+      ALOGD("%s:%d %s: " fmt, __FILE__, __LINE__, __func__, ##args);                 \
+    }                                                                                \
   } while (false)
 
 #define LOG_INFO(fmt, args...) ALOGI("%s:%d %s: " fmt, __FILE__, __LINE__, __func__, ##args)
@@ -94,17 +106,17 @@ static_assert(LOG_TAG != nullptr, "LOG_TAG is null after header inclusion");
 #define LOG_INFO(...)
 #define LOG_WARN(...)
 #else
-#define LOG_VERBOSE(...)                                                      \
-  do {                                                                        \
-    if (bluetooth::common::InitFlags::IsDebugLoggingEnabledForTag(LOG_TAG)) { \
-      LOGWRAPPER(LOG_TAG_VERBOSE, __VA_ARGS__);                               \
-    }                                                                         \
+#define LOG_VERBOSE(...)                                                               \
+  do {                                                                                 \
+    if (bluetooth::common::InitFlags::GetLogLevelForTag(LOG_TAG) >= LOG_TAG_VERBOSE) { \
+      LOGWRAPPER(LOG_TAG_VERBOSE, __VA_ARGS__);                                        \
+    }                                                                                  \
   } while (false)
-#define LOG_DEBUG(...)                                                        \
-  do {                                                                        \
-    if (bluetooth::common::InitFlags::IsDebugLoggingEnabledForTag(LOG_TAG)) { \
-      LOGWRAPPER(LOG_TAG_DEBUG, __VA_ARGS__);                                 \
-    }                                                                         \
+#define LOG_DEBUG(...)                                                               \
+  do {                                                                               \
+    if (bluetooth::common::InitFlags::GetLogLevelForTag(LOG_TAG) >= LOG_TAG_DEBUG) { \
+      LOGWRAPPER(LOG_TAG_DEBUG, __VA_ARGS__);                                        \
+    }                                                                                \
   } while (false)
 #define LOG_INFO(...) LOGWRAPPER(LOG_TAG_INFO, __VA_ARGS__)
 #define LOG_WARN(...) LOGWRAPPER(LOG_TAG_WARN, __VA_ARGS__)
@@ -157,17 +169,17 @@ static_assert(LOG_TAG != nullptr, "LOG_TAG is null after header inclusion");
 #define LOG_INFO(...)
 #define LOG_WARN(...)
 #else
-#define LOG_VERBOSE(fmt, args...)                                             \
-  do {                                                                        \
-    if (bluetooth::common::InitFlags::IsDebugLoggingEnabledForTag(LOG_TAG)) { \
-      LOGWRAPPER(fmt, ##args);                                                \
-    }                                                                         \
+#define LOG_VERBOSE(fmt, args...)                                                      \
+  do {                                                                                 \
+    if (bluetooth::common::InitFlags::GetLogLevelForTag(LOG_TAG) >= LOG_TAG_VERBOSE) { \
+      LOGWRAPPER(fmt, ##args);                                                         \
+    }                                                                                  \
   } while (false)
-#define LOG_DEBUG(fmt, args...)                                               \
-  do {                                                                        \
-    if (bluetooth::common::InitFlags::IsDebugLoggingEnabledForTag(LOG_TAG)) { \
-      LOGWRAPPER(fmt, ##args);                                                \
-    }                                                                         \
+#define LOG_DEBUG(fmt, args...)                                                      \
+  do {                                                                               \
+    if (bluetooth::common::InitFlags::GetLogLevelForTag(LOG_TAG) >= LOG_TAG_DEBUG) { \
+      LOGWRAPPER(fmt, ##args);                                                       \
+    }                                                                                \
   } while (false)
 #define LOG_INFO(...) LOGWRAPPER(__VA_ARGS__)
 #define LOG_WARN(...) LOGWRAPPER(__VA_ARGS__)
