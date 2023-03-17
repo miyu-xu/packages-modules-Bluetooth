@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c475f254_fc14e18c",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 3934,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-03-17T17:29:04Z",
+      "side": 1,
+      "message": "Done\n\nI edited the other 2 occurences",
+      "parentUuid": "3af9b554_62e944a2",
+      "range": {
+        "startLine": 3934,
+        "startChar": 20,
+        "endLine": 3934,
+        "endChar": 26
+      },
+      "revId": "34674c3d9f341cd51321265bb0052dbfb261dd34",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a5a893a0_a35f982d",
@@ -49,6 +73,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1906268b_3d6fed44",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 3937,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-03-17T17:29:04Z",
+      "side": 1,
+      "message": "It cannot, but the try is here to have a finally and to release the lock. I understand it looks not needed, but because of lock I prefer to keep it.\nIt make obvious that everything in the braces are performed with the lock",
+      "parentUuid": "a5a893a0_a35f982d",
+      "range": {
+        "startLine": 3937,
+        "startChar": 23,
+        "endLine": 3937,
+        "endChar": 52
+      },
+      "revId": "34674c3d9f341cd51321265bb0052dbfb261dd34",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "021e3d83_f6529db2",
         "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
         "patchSetId": 2
@@ -60,6 +108,30 @@
       "writtenOn": "2023-03-17T17:06:04Z",
       "side": 1,
       "message": "Can we acquire the readLock while holding the writeLock or vice versa?  This feels a little strange.",
+      "range": {
+        "startLine": 3941,
+        "startChar": 33,
+        "endLine": 3941,
+        "endChar": 41
+      },
+      "revId": "34674c3d9f341cd51321265bb0052dbfb261dd34",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "43db7f95_b755157f",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 3941,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-03-17T17:29:04Z",
+      "side": 1,
+      "message": "I thought it wasn\u0027t possible at first, but it is !\ncf [Lock downgrading](https://docs.oracle.com/javase/7/docs/api/java/util/concurrent/locks/ReentrantReadWriteLock.html)\n\nI don\u0027t know if the ErrorProne will be happy with it. Let\u0027s see",
+      "parentUuid": "021e3d83_f6529db2",
       "range": {
         "startLine": 3941,
         "startChar": 33,
