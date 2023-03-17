@@ -79,6 +79,8 @@ struct L2CA_ReconfigCreditBasedConnsReq L2CA_ReconfigCreditBasedConnsReq;
 struct L2CA_DisconnectReq L2CA_DisconnectReq;
 struct L2CA_DisconnectLECocReq L2CA_DisconnectLECocReq;
 struct L2CA_GetRemoteCid L2CA_GetRemoteCid;
+struct L2CA_Ping L2CA_Ping;
+struct L2CA_Echo L2CA_Echo;
 struct L2CA_SetIdleTimeoutByBdAddr L2CA_SetIdleTimeoutByBdAddr;
 struct L2CA_SetTraceLevel L2CA_SetTraceLevel;
 struct L2CA_UseLatencyMode L2CA_UseLatencyMode;
@@ -204,6 +206,15 @@ bool L2CA_DisconnectLECocReq(uint16_t cid) {
 bool L2CA_GetRemoteCid(uint16_t lcid, uint16_t* rcid) {
   inc_func_call_count(__func__);
   return test::mock::stack_l2cap_api::L2CA_GetRemoteCid(lcid, rcid);
+}
+bool L2CA_Ping(const RawAddress& p_bd_addr, tL2CA_ECHO_RSP_CB* p_callback) {
+  inc_func_call_count(__func__);
+  return test::mock::stack_l2cap_api::L2CA_Ping(p_bd_addr, p_callback);
+}
+bool L2CA_Echo(const RawAddress& p_bd_addr, BT_HDR* p_data,
+               tL2CA_ECHO_RSP_CB* p_callback) {
+  inc_func_call_count(__func__);
+  return test::mock::stack_l2cap_api::L2CA_Echo(p_bd_addr, p_data, p_callback);
 }
 bool L2CA_SetIdleTimeoutByBdAddr(const RawAddress& bd_addr, uint16_t timeout,
                                  tBT_TRANSPORT transport) {
