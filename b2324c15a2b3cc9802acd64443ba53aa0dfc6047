@@ -34,6 +34,24 @@
       "parentUuid": "0ddac773_019237dd",
       "revId": "b2324c15a2b3cc9802acd64443ba53aa0dfc6047",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "78e79254_8a79e605",
+        "filename": "system/stack/l2cap/l2c_ble.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-03-17T21:23:37Z",
+      "side": 1,
+      "message": "Discussed over chat.",
+      "parentUuid": "032b2d60_f1ca09c2",
+      "revId": "b2324c15a2b3cc9802acd64443ba53aa0dfc6047",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
