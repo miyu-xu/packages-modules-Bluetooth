@@ -50,6 +50,23 @@
       "message": "Looks good, give me some time to test it. I guess our other queue on top of that one, is causing that we dont see issue in the Android.",
       "revId": "7269820f6caee6dea571a1e087210d4f7ae3d3a5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "95aaf2cc_ccd4bf07",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-03-17T08:54:42Z",
+      "side": 1,
+      "message": "LGTM",
+      "revId": "7269820f6caee6dea571a1e087210d4f7ae3d3a5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
