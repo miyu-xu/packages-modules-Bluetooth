@@ -22,6 +22,30 @@
       },
       "revId": "62dc169d415be7c1a4e6b736fd7fbfdff2306c68",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "27db4ce5_c34fc9bc",
+        "filename": "android/app/src/com/android/bluetooth/mapclient/MceStateMachine.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 987,
+      "author": {
+        "id": 1951737
+      },
+      "writtenOn": "2023-03-17T09:43:28Z",
+      "side": 1,
+      "message": "I was suggested that we\u0027re moving away from res/config.xml and system properties is now more preferable. cc @ugoyu@google.com, CMIIW",
+      "parentUuid": "804e7e26_954f0467",
+      "range": {
+        "startLine": 987,
+        "startChar": 40,
+        "endLine": 987,
+        "endChar": 85
+      },
+      "revId": "62dc169d415be7c1a4e6b736fd7fbfdff2306c68",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
