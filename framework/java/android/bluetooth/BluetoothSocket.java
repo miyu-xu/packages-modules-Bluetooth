@@ -170,6 +170,7 @@ public final class BluetoothSocket implements Closeable {
     private int mMaxRxPacketSize = 0; // The l2cap maximum packet size that can be received.
 
     private long mSocketCreationTime = 0;
+    private long mSocketCreationLatency = 0;
 
     private enum SocketState {
         INIT,
@@ -253,6 +254,7 @@ public final class BluetoothSocket implements Closeable {
         }
         mInputStream = new BluetoothInputStream(this);
         mOutputStream = new BluetoothOutputStream(this);
+        mSocketCreationLatency = System.currentTimeMillis() - mSocketCreationTime;
     }
 
     /**
@@ -299,6 +301,7 @@ public final class BluetoothSocket implements Closeable {
         mAuthMitm = s.mAuthMitm;
         mMin16DigitPin = s.mMin16DigitPin;
         mSocketCreationTime = s.mSocketCreationTime;
+        mSocketCreationLatency = s.mSocketCreationLatency;
     }
 
     private BluetoothSocket acceptSocket(String remoteAddr) throws IOException {
@@ -444,25 +447,32 @@ public final class BluetoothSocket implements Closeable {
     public void connect() throws IOException {
         IBluetooth bluetoothProxy =
                 BluetoothAdapter.getDefaultAdapter().getBluetoothService();
+        long socketConnectionTime = System.currentTimeMillis();
         if (bluetoothProxy == null) {
             throw new BluetoothSocketException(BluetoothSocketException.BLUETOOTH_OFF_FAILURE);
         }
         if (mDevice == null) {
             logL2capcocClientConnection(
-                    bluetoothProxy, RESULT_L2CAP_CONN_BLUETOOTH_NULL_BLUETOOTH_DEVICE);
+                    bluetoothProxy,
+                    RESULT_L2CAP_CONN_BLUETOOTH_NULL_BLUETOOTH_DEVICE,
+                    socketConnectionTime);
             throw new BluetoothSocketException(BluetoothSocketException.NULL_DEVICE);
         }
         try {
             if (mSocketState == SocketState.CLOSED) {
                 logL2capcocClientConnection(
-                        bluetoothProxy, RESULT_L2CAP_CONN_BLUETOOTH_SOCKET_CONNECTION_CLOSED);
+                        bluetoothProxy,
+                        RESULT_L2CAP_CONN_BLUETOOTH_SOCKET_CONNECTION_CLOSED,
+                        socketConnectionTime);
                 throw new BluetoothSocketException(BluetoothSocketException.SOCKET_CLOSED);
             }
 
             IBluetoothSocketManager socketManager = bluetoothProxy.getSocketManager();
             if (socketManager == null) {
                 logL2capcocClientConnection(
-                        bluetoothProxy, RESULT_L2CAP_CONN_BLUETOOTH_GET_SOCKET_MANAGER_FAILED);
+                        bluetoothProxy,
+                        RESULT_L2CAP_CONN_BLUETOOTH_GET_SOCKET_MANAGER_FAILED,
+                        socketConnectionTime);
                 throw new BluetoothSocketException(BluetoothSocketException.SOCKET_MANAGER_FAILURE);
             }
             mPfd = socketManager.connectSocket(mDevice, mType, mUuid, mPort, getSecurityFlags());
@@ -470,13 +480,17 @@ public final class BluetoothSocket implements Closeable {
                 if (DBG) Log.d(TAG, "connect(), SocketState: " + mSocketState + ", mPfd: " + mPfd);
                 if (mSocketState == SocketState.CLOSED) {
                     logL2capcocClientConnection(
-                            bluetoothProxy, RESULT_L2CAP_CONN_BLUETOOTH_SOCKET_CONNECTION_CLOSED);
+                            bluetoothProxy,
+                            RESULT_L2CAP_CONN_BLUETOOTH_SOCKET_CONNECTION_CLOSED,
+                            socketConnectionTime);
                     throw new BluetoothSocketException(
                             BluetoothSocketException.SOCKET_CONNECTION_FAILURE);
                 }
                 if (mPfd == null) {
                     logL2capcocClientConnection(
-                            bluetoothProxy, RESULT_L2CAP_CONN_BLUETOOTH_NULL_FILE_DESCRIPTOR);
+                            bluetoothProxy,
+                            RESULT_L2CAP_CONN_BLUETOOTH_NULL_FILE_DESCRIPTOR,
+                            socketConnectionTime);
                     throw new BluetoothSocketException(
                             BluetoothSocketException.SOCKET_CONNECTION_FAILURE);
                 }
@@ -488,12 +502,14 @@ public final class BluetoothSocket implements Closeable {
             int channel = readInt(mSocketIS);
             if (channel == 0) {
                 int errCode = (int) mSocketIS.read();
-                logL2capcocClientConnection(bluetoothProxy, errCode);
+                logL2capcocClientConnection(bluetoothProxy, errCode, socketConnectionTime);
                 throw new BluetoothSocketException(errCode);
             }
             if (channel < 0) {
                 logL2capcocClientConnection(
-                        bluetoothProxy, RESULT_L2CAP_CONN_BLUETOOTH_SOCKET_CONNECTION_FAILED);
+                        bluetoothProxy,
+                        RESULT_L2CAP_CONN_BLUETOOTH_SOCKET_CONNECTION_FAILED,
+                        socketConnectionTime);
                 throw new BluetoothSocketException(
                         BluetoothSocketException.SOCKET_CONNECTION_FAILURE);
             }
@@ -502,17 +518,23 @@ public final class BluetoothSocket implements Closeable {
             synchronized (this) {
                 if (mSocketState == SocketState.CLOSED) {
                     logL2capcocClientConnection(
-                            bluetoothProxy, RESULT_L2CAP_CONN_BLUETOOTH_SOCKET_CONNECTION_CLOSED);
+                            bluetoothProxy,
+                            RESULT_L2CAP_CONN_BLUETOOTH_SOCKET_CONNECTION_CLOSED,
+                            socketConnectionTime);
                     throw new BluetoothSocketException(BluetoothSocketException.SOCKET_CLOSED);
                 }
                 mSocketState = SocketState.CONNECTED;
                 if (DBG) Log.d(TAG, "connect(), socket connected");
             }
-            logL2capcocClientConnection(bluetoothProxy, RESULT_L2CAP_CONN_SUCCESS);
+            logL2capcocClientConnection(bluetoothProxy,
+                    RESULT_L2CAP_CONN_SUCCESS,
+                    socketConnectionTime);
         } catch (RemoteException e) {
             Log.e(TAG, e.toString() + "\n" + Log.getStackTraceString(new Throwable()));
             logL2capcocClientConnection(
-                    bluetoothProxy, RESULT_L2CAP_CONN_BLUETOOTH_UNABLE_TO_SEND_RPC);
+                    bluetoothProxy,
+                    RESULT_L2CAP_CONN_BLUETOOTH_UNABLE_TO_SEND_RPC,
+                    socketConnectionTime);
             throw new BluetoothSocketException(BluetoothSocketException.RPC_FAILURE,
                     "unable to send RPC: " + e.getMessage());
         }
@@ -722,15 +744,23 @@ public final class BluetoothSocket implements Closeable {
         }
     }
 
-    private void logL2capcocClientConnection(IBluetooth bluetoothProxy, int errCode) {
+    private void logL2capcocClientConnection(
+            IBluetooth bluetoothProxy, int errCode, long socketConnectionTime) {
         if (mType != TYPE_L2CAP_LE) {
             return;
         }
         try {
             final SynchronousResultReceiver recv = SynchronousResultReceiver.get();
+            long currentTime = System.currentTimeMillis();
             bluetoothProxy.logL2capcocClientConnection(
-                    mDevice, mPort, mAuth, errCode,
-                    System.currentTimeMillis() - mSocketCreationTime, recv);
+                    mDevice,
+                    mPort,
+                    mAuth,
+                    errCode,
+                    currentTime - mSocketCreationTime, // end to end latency
+                    mSocketCreationLatency, // latency of the constructor
+                    currentTime - socketConnectionTime, // latency of connect()
+                    recv);
             recv.awaitResultNoInterrupt(getSyncTimeout()).getValue(null);
         } catch (RemoteException | TimeoutException e) {
             Log.w(TAG, "logL2capcocClientConnection failed due to remote exception");
