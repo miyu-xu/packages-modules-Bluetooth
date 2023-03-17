@@ -144,6 +144,14 @@ void smp_send_app_cback(tSMP_CB* p_cb, tSMP_INT_DATA* p_data) {
         cb_data.id_addr = p_cb->id_addr;
         break;
 
+      case SMP_SEC_REQUEST_EVT:
+      case SMP_CONSENT_REQ_EVT:
+        cb_data.sec_req.peer_auth_req = p_cb->peer_auth_req;
+        cb_data.sec_req.loc_auth_req = p_cb->loc_auth_req;
+        cb_data.sec_req.just_works =
+            (p_cb->selected_association_model == SMP_MODEL_ENCRYPTION_ONLY);
+        break;
+
       default:
         LOG_ERROR("Unexpected event:%hhu", p_cb->cb_evt);
         break;

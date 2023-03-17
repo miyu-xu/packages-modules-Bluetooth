@@ -3808,6 +3808,11 @@ static uint8_t bta_dm_ble_smp_cback(tBTM_LE_EVT event, const RawAddress& bda,
         strlcpy((char*)sec_event.ble_req.bd_name, p_name, BD_NAME_LEN);
       else
         sec_event.ble_req.bd_name[0] = 0;
+
+      sec_event.ble_req.just_works = p_data->sec_req.just_works;
+      sec_event.ble_req.loc_auth_req = p_data->sec_req.loc_auth_req;
+      sec_event.ble_req.peer_auth_req = p_data->sec_req.peer_auth_req;
+
       bta_dm_cb.p_sec_cback(BTA_DM_BLE_CONSENT_REQ_EVT, &sec_event);
       break;
 
@@ -3820,6 +3825,11 @@ static uint8_t bta_dm_ble_smp_cback(tBTM_LE_EVT event, const RawAddress& bda,
         strlcpy((char*)sec_event.ble_req.bd_name, p_name, BD_NAME_LEN + 1);
       else
         sec_event.ble_req.bd_name[0] = 0;
+
+      sec_event.ble_req.just_works = p_data->sec_req.just_works;
+      sec_event.ble_req.loc_auth_req = p_data->sec_req.loc_auth_req;
+      sec_event.ble_req.peer_auth_req = p_data->sec_req.peer_auth_req;
+
       bta_dm_cb.p_sec_cback(BTA_DM_BLE_SEC_REQ_EVT, &sec_event);
       break;
 

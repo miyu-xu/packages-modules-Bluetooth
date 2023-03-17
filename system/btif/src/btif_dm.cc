@@ -3526,11 +3526,27 @@ static void btif_dm_ble_sec_req_evt(tBTA_DM_BLE_SEC_REQ* p_ble_req,
 
   bond_state_changed(BT_STATUS_SUCCESS, bd_addr, BT_BOND_STATE_BONDING);
 
-  pairing_cb.bond_type = tBTM_SEC_DEV_REC::BOND_TYPE_PERSISTENT;
+  /* Set the pairing_cb based on the local & remote authentication requirements
+   */
+  BTIF_TRACE_DEBUG("%s: just_works:%d, loc_auth_req=%d, peer_auth_req=%d",
+                   __func__, p_ble_req->just_works, p_ble_req->loc_auth_req,
+                   p_ble_req->peer_auth_req);
+
+  /* if just_works and bonding bit is not set treat this as temporary */
+  if (p_ble_req->just_works &&
+      !(p_ble_req->loc_auth_req & BTM_LE_AUTH_REQ_BOND) &&
+      !(p_ble_req->peer_auth_req & BTM_LE_AUTH_REQ_BOND) &&
+      !(check_cod((RawAddress*)&p_ble_req->bd_addr, COD_HID_POINTING))) {
+    pairing_cb.bond_type = tBTM_SEC_DEV_REC::BOND_TYPE_TEMPORARY;
+  } else {
+    pairing_cb.bond_type = tBTM_SEC_DEV_REC::BOND_TYPE_PERSISTENT;
+  }
+
+  btm_set_bond_type_dev(p_ble_req->bd_addr, pairing_cb.bond_type);
+
   pairing_cb.is_le_only = true;
   pairing_cb.is_le_nc = false;
   pairing_cb.is_ssp = true;
-  btm_set_bond_type_dev(p_ble_req->bd_addr, pairing_cb.bond_type);
 
   cod = COD_UNCLASSIFIED;
 
