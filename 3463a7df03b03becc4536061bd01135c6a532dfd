@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "077db1ca_5f0d97bd",
+        "filename": "tools/pdl/src/backends/rust.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-03-17T15:38:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2fee8f0b_5f717d48",
+      "range": {
+        "startLine": 231,
+        "startChar": 43,
+        "endLine": 231,
+        "endChar": 62
+      },
+      "revId": "3463a7df03b03becc4536061bd01135c6a532dfd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e6cdb9fc_37bf3a4b",
@@ -54,6 +78,30 @@
       "writtenOn": "2023-03-17T15:30:18Z",
       "side": 1,
       "message": "I believe the `.collect` call here is unnecessary.",
+      "range": {
+        "startLine": 299,
+        "startChar": 66,
+        "endLine": 299,
+        "endChar": 85
+      },
+      "revId": "3463a7df03b03becc4536061bd01135c6a532dfd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "37239f09_a3fe7c90",
+        "filename": "tools/pdl/src/backends/rust/serializer.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 299,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-03-17T15:38:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e6cdb9fc_37bf3a4b",
       "range": {
         "startLine": 299,
         "startChar": 66,
