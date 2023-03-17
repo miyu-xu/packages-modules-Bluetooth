@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "73be8f9b_f35d247d",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 3943,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-03-17T17:53:53Z",
+      "side": 1,
+      "message": "If we can downgrade the lock, Can this move to between line 3937 and 3938?",
+      "range": {
+        "startLine": 3941,
+        "startChar": 0,
+        "endLine": 3943,
+        "endChar": 25
+      },
+      "revId": "6649f9b097c537911ccb0bdf04311abf32569b51",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

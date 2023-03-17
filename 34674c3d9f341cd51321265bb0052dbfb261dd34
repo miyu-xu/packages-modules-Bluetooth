@@ -95,6 +95,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d89cfa4d_50e2ef27",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 3937,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-03-17T17:53:53Z",
+      "side": 1,
+      "message": "I\u0027m still confused why you want it.  To me, this is as obvious:\n\nmServiceLock.writeLock().lock();\nmService \u003d bluetoothService;\nmServiceLock.writeLock().unlock();",
+      "parentUuid": "1906268b_3d6fed44",
+      "range": {
+        "startLine": 3937,
+        "startChar": 23,
+        "endLine": 3937,
+        "endChar": 52
+      },
+      "revId": "34674c3d9f341cd51321265bb0052dbfb261dd34",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "021e3d83_f6529db2",
