@@ -62,6 +62,11 @@
 #define L2CAP_DW_SUCCESS true
 #define L2CAP_DW_CONGESTED 2
 
+/* ping result codes */
+#define L2CAP_PING_RESULT_OK 0      /* Ping reply received OK     */
+#define L2CAP_PING_RESULT_NO_LINK 1 /* Link could not be setup    */
+#define L2CAP_PING_RESULT_NO_RESP 2 /* Remote L2CAP did not reply */
+
 /* Values for priority parameter to L2CA_SetAclPriority */
 typedef enum : uint8_t {
   L2CAP_PRIORITY_NORMAL = 0,
@@ -597,6 +602,36 @@ extern bool L2CA_DisconnectLECocReq(uint16_t cid);
 extern uint8_t L2CA_DataWrite(uint16_t cid, BT_HDR* p_data);
 
 extern uint8_t L2CA_LECocDataWrite(uint16_t cid, BT_HDR* p_data);
+/*******************************************************************************
+ *
+ * Function         L2CA_Ping
+ *
+ * Description      Higher layers call this function to send an echo request.
+ *
+ * Returns          true if echo request sent, else false.
+ *
+ ******************************************************************************/
+extern bool L2CA_Ping(const RawAddress& p_bd_addr, tL2CA_ECHO_RSP_CB* p_cb);
+
+/*******************************************************************************
+ *
+ * Function         L2CA_Echo
+ *
+ * Description      Higher layers call this function to send an echo request
+ *                  with application-specific data.
+ *
+ * Returns          true if echo request sent, else false.
+ *
+ ******************************************************************************/
+extern bool L2CA_Echo(const RawAddress& p_bd_addr, BT_HDR* p_data,
+                      tL2CA_ECHO_DATA_CB* p_callback);
+
+// Given a local channel identifier, |lcid|, this function returns the bound
+// remote channel identifier, |rcid|, and the ACL link handle, |handle|. If
+// |lcid| is not known or is invalid, this function returns false and does not
+// modify the values pointed at by |rcid| and |handle|. |rcid| and |handle| may
+// be NULL.
+bool L2CA_GetIdentifiers(uint16_t lcid, uint16_t* rcid, uint16_t* handle);
 
 // Given a local channel identifier, |lcid|, this function returns the bound
 // remote channel identifier, |rcid|. If

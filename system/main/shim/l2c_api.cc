@@ -830,6 +830,28 @@ bool L2CA_ConnectCreditBasedRsp(const RawAddress& bd_addr, uint8_t id,
 }
 
 /**
+ * Ping APIs
+ */
+bool L2CA_GetIdentifiers(uint16_t lcid, uint16_t* rcid, uint16_t* handle) {
+  LOG_INFO(LOG_TAG, "UNIMPLEMENTED %s lcid:%d rcid:%d handle:%d", __func__,
+           lcid, *rcid, *handle);
+  return false;
+}
+
+bool L2CA_Ping(const RawAddress& p_bd_addr, tL2CA_ECHO_RSP_CB* p_callback) {
+  LOG_INFO(LOG_TAG, "UNIMPLEMENTED %s addr:%s p_callback:%p", __func__,
+           p_bd_addr.ToString().c_str(), p_callback);
+  return false;
+}
+
+bool L2CA_Echo(const RawAddress& p_bd_addr, BT_HDR* p_data,
+               tL2CA_ECHO_DATA_CB* p_callback) {
+  LOG_INFO(LOG_TAG, "UNIMPLEMENTED %s addr:%s p_callback:%p", __func__,
+           p_bd_addr.ToString().c_str(), p_callback);
+  return false;
+}
+
+/**
  * Link APIs
  */
 bool L2CA_SetIdleTimeoutByBdAddr(const RawAddress& bd_addr, uint16_t timeout,
