@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8c3e1b8d_01548acd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-03-17T23:59:11Z",
+      "side": 1,
+      "message": "I\u0027d like to see a couple of tests that cover this.",
+      "revId": "c02618f1ddd45d7d8276fed325abae5c42c1d531",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "693ae4f2_85380c41",
+        "filename": "system/bta/gatt/bta_gattc_act.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 555,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-03-17T23:59:11Z",
+      "side": 1,
+      "message": "Remove?  This function is called only on connections.",
+      "range": {
+        "startLine": 554,
+        "startChar": 53,
+        "endLine": 555,
+        "endChar": 21
+      },
+      "revId": "c02618f1ddd45d7d8276fed325abae5c42c1d531",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "00bec3cb_31a6817d",
+        "filename": "system/bta/gatt/bta_gattc_act.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 555,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-03-17T23:59:11Z",
+      "side": 1,
+      "message": "don\u0027t just ?\n\nthen ?",
+      "range": {
+        "startLine": 555,
+        "startChar": 54,
+        "endLine": 555,
+        "endChar": 57
+      },
+      "revId": "c02618f1ddd45d7d8276fed325abae5c42c1d531",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
