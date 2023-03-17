@@ -52,6 +52,24 @@
       "parentUuid": "24391e1f_1991e08b",
       "revId": "2a013965f80af744cebc33b90de17343ef231d7c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ce9adb0d_3f3823c6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1306903
+      },
+      "writtenOn": "2023-03-17T08:10:56Z",
+      "side": 1,
+      "message": "Yep, looks good to me. Thanks Dikra 😊",
+      "parentUuid": "0a5797fe_4d33fddb",
+      "revId": "2a013965f80af744cebc33b90de17343ef231d7c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
