@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3af9b554_62e944a2",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 3934,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-03-17T17:06:04Z",
+      "side": 1,
+      "message": "Can we remove this variable?",
+      "range": {
+        "startLine": 3934,
+        "startChar": 20,
+        "endLine": 3934,
+        "endChar": 26
+      },
+      "revId": "34674c3d9f341cd51321265bb0052dbfb261dd34",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a5a893a0_a35f982d",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 3937,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-03-17T17:06:04Z",
+      "side": 1,
+      "message": "can this assignment fail?  If not, can we remove the try?",
+      "range": {
+        "startLine": 3937,
+        "startChar": 23,
+        "endLine": 3937,
+        "endChar": 52
+      },
+      "revId": "34674c3d9f341cd51321265bb0052dbfb261dd34",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "021e3d83_f6529db2",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 3941,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-03-17T17:06:04Z",
+      "side": 1,
+      "message": "Can we acquire the readLock while holding the writeLock or vice versa?  This feels a little strange.",
+      "range": {
+        "startLine": 3941,
+        "startChar": 33,
+        "endLine": 3941,
+        "endChar": 41
+      },
+      "revId": "34674c3d9f341cd51321265bb0052dbfb261dd34",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
