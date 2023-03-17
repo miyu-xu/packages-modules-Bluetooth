@@ -97,6 +97,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6f939631_83aed5fa",
+        "filename": "tools/rootcanal/model/controller/link_layer_controller.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 4795,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2023-03-17T19:15:52Z",
+      "side": 1,
+      "message": "I attached a snoop log in b/272713533. Most Android devices(which use QCOM, BRCM, and MTK controllers) have the similar behavior, means that some assumption may have been made on platforms.",
+      "parentUuid": "879186ff_2e16bc26",
+      "range": {
+        "startLine": 4788,
+        "startChar": 0,
+        "endLine": 4795,
+        "endChar": 3
+      },
+      "revId": "05c04738be2df8817c2af4337c091c9db2018a5b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "aed3f27d_1490f5f4",
         "filename": "tools/rootcanal/model/controller/link_layer_controller.cc",
         "patchSetId": 6
