@@ -92,9 +92,6 @@ class AclConnectionHandler {
   void Encrypt(uint16_t handle);
   bool IsEncrypted(uint16_t handle) const;
 
-  void SetRssi(uint16_t handle, int8_t rssi);
-  int8_t GetRssi(uint16_t handle) const;
-
   Phy::Type GetPhyType(uint16_t handle) const;
 
   uint16_t GetAclLinkPolicySettings(uint16_t handle) const;

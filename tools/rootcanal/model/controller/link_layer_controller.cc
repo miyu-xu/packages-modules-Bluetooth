@@ -225,24 +225,6 @@ LinkLayerController::GenerateResolvablePrivateAddress(AddressWithType address,
 }
 
 // =============================================================================
-//  BR/EDR Commands
-// =============================================================================
-
-// HCI Read Rssi command (Vol 4, Part E § 7.5.4).
-ErrorCode LinkLayerController::ReadRssi(uint16_t connection_handle,
-                                        int8_t* rssi) {
-  // Not documented: If the connection handle is not found, the Controller
-  // shall return the error code Unknown Connection Identifier (0x02).
-  if (!connections_.HasHandle(connection_handle)) {
-    LOG_INFO("unknown connection identifier");
-    return ErrorCode::UNKNOWN_CONNECTION;
-  }
-
-  *rssi = connections_.GetRssi(connection_handle);
-  return ErrorCode::SUCCESS;
-}
-
-// =============================================================================
 //  General LE Commands
 // =============================================================================
 
@@ -1653,7 +1635,7 @@ void LinkLayerController::IncomingPacket(
 
   switch (incoming.GetType()) {
     case model::packets::PacketType::ACL:
-      IncomingAclPacket(incoming, rssi);
+      IncomingAclPacket(incoming);
       break;
     case model::packets::PacketType::SCO:
       IncomingScoPacket(incoming);
@@ -1822,7 +1804,7 @@ void LinkLayerController::IncomingPacket(
 }
 
 void LinkLayerController::IncomingAclPacket(
-    model::packets::LinkLayerPacketView incoming, int8_t rssi) {
+    model::packets::LinkLayerPacketView incoming) {
   auto acl = model::packets::AclView::Create(incoming);
   ASSERT(acl.IsValid());
   auto payload = acl.GetPayload();
@@ -1845,9 +1827,6 @@ void LinkLayerController::IncomingAclPacket(
       LOG_INFO("Dropping packet since connection does not exist");
       return;
   }
-
-  // Update the RSSI for the local ACL connection.
-  connections_.SetRssi(local_handle, rssi);
 
   std::vector<uint8_t> payload_data(acl_view.GetPayload().begin(),
                                     acl_view.GetPayload().end());
