@@ -62,6 +62,54 @@
       },
       "revId": "c02618f1ddd45d7d8276fed325abae5c42c1d531",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aaa58cfc_f912d912",
+        "filename": "system/bta/gatt/bta_gattc_act.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 555,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-03-18T00:40:44Z",
+      "side": 1,
+      "message": "sorry, remove what?",
+      "parentUuid": "693ae4f2_85380c41",
+      "range": {
+        "startLine": 554,
+        "startChar": 53,
+        "endLine": 555,
+        "endChar": 21
+      },
+      "revId": "c02618f1ddd45d7d8276fed325abae5c42c1d531",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "61f4d3f0_dc696483",
+        "filename": "system/bta/gatt/bta_gattc_act.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 555,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-03-18T00:40:44Z",
+      "side": 1,
+      "message": "Could you elaborate?",
+      "parentUuid": "00bec3cb_31a6817d",
+      "range": {
+        "startLine": 555,
+        "startChar": 54,
+        "endLine": 555,
+        "endChar": 57
+      },
+      "revId": "c02618f1ddd45d7d8276fed325abae5c42c1d531",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
