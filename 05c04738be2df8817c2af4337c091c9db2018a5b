@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "141191f7_0ceb27b5",
+        "filename": "tools/rootcanal/model/controller/link_layer_controller.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 4787,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2023-03-18T18:12:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "18a52823_af5cee27",
+      "range": {
+        "startLine": 4787,
+        "startChar": 12,
+        "endLine": 4787,
+        "endChar": 21
+      },
+      "revId": "05c04738be2df8817c2af4337c091c9db2018a5b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ef60d523_84d8ce8b",
@@ -145,6 +169,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2403673a_1699c21c",
+        "filename": "tools/rootcanal/model/controller/link_layer_controller.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 4795,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2023-03-18T18:12:16Z",
+      "side": 1,
+      "message": "From Android\u0027s perspective, this behavior is necessary as it never send `RoleDiscovery`. This can be separated to another CL but I would like to have it soon.",
+      "parentUuid": "8f237f5c_b4d7bb11",
+      "range": {
+        "startLine": 4788,
+        "startChar": 0,
+        "endLine": 4795,
+        "endChar": 3
+      },
+      "revId": "05c04738be2df8817c2af4337c091c9db2018a5b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "aed3f27d_1490f5f4",
         "filename": "tools/rootcanal/model/controller/link_layer_controller.cc",
         "patchSetId": 6
@@ -156,6 +204,30 @@
       "writtenOn": "2023-03-17T18:54:26Z",
       "side": 1,
       "message": "nit: please rename the local variable`role` as `current_role` instead, there is a clang-tidy warning for the parameter names.",
+      "range": {
+        "startLine": 5650,
+        "startChar": 63,
+        "endLine": 5650,
+        "endChar": 71
+      },
+      "revId": "05c04738be2df8817c2af4337c091c9db2018a5b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8f33afe9_71affe03",
+        "filename": "tools/rootcanal/model/controller/link_layer_controller.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 5650,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2023-03-18T18:12:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "aed3f27d_1490f5f4",
       "range": {
         "startLine": 5650,
         "startChar": 63,
@@ -179,6 +251,24 @@
       "writtenOn": "2023-03-17T18:54:26Z",
       "side": 1,
       "message": "Please implement RoleSwitchResponse as well, at least as placeholder for future modifications.",
+      "revId": "05c04738be2df8817c2af4337c091c9db2018a5b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fef8bad8_0a908076",
+        "filename": "tools/rootcanal/packets/link_layer_packets.pdl",
+        "patchSetId": 6
+      },
+      "lineNbr": 460,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2023-03-18T18:12:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3488c2f3_76907062",
       "revId": "05c04738be2df8817c2af4337c091c9db2018a5b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
