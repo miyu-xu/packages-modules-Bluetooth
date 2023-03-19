@@ -16,6 +16,7 @@ crypto_toolbox_srcs = [
 
 cc_test_library {
     name: "crypto_toolbox_for_tests",
+    static_libs: ["libchrome"],
     defaults: ["fluoride_defaults"],
     host_supported: true,
     include_dirs: [
@@ -352,6 +353,7 @@ cc_test {
         "libprotobuf-cpp-lite",
         "libudrv-uipc",
         "libbt-protos-lite",
+        "libchrome",
     ],
     whole_static_libs: [
         "libbluetooth-for-tests",
@@ -421,6 +423,8 @@ cc_test {
         "libprotobuf-cpp-lite",
         "libbt-common",
         "libbt-protos-lite",
+        "libchrome",
+        "libevent",
     ],
     sanitize: {
         cfi: false,
@@ -485,9 +489,11 @@ cc_test {
         "libcutils",
     ],
     static_libs: [
-        "liblog",
+        "libchrome",
+        "libevent",
         "libflatbuffers-cpp",
         "libgmock",
+        "liblog",
         "libosi",
     ],
 }
@@ -526,8 +532,9 @@ cc_test {
     static_libs: [
         "android.system.suspend.control-V1-ndk",
         "libbluetooth-types",
-        "liblog",
+        "libchrome",
         "libgmock",
+        "liblog",
     ],
     sanitize: {
         cfi: false,
@@ -595,8 +602,10 @@ cc_test {
     static_libs: [
         "libbluetooth-types",
         "libbt-common",
-        "liblog",
+        "libchrome",
+        "libevent",
         "libgmock",
+        "liblog",
     ],
     sanitize: {
         cfi: false,
@@ -645,6 +654,8 @@ cc_test {
         "libbt-protos-lite",
         "libgmock",
         "libosi-AllocationTestHarness",
+        "libchrome",
+        "libevent",
     ],
     sanitize: {
         address: true,
@@ -697,10 +708,12 @@ cc_test {
     static_libs: [
         "libbt-common",
         "libbt-protos-lite",
+        "libchrome",
+        "libevent",
         "liblog",
         "libosi",
-        "libprotobuf-cpp-lite",
         "libosi-AllocationTestHarness",
+        "libprotobuf-cpp-lite",
     ],
     sanitize: {
         address: true,
@@ -791,11 +804,12 @@ cc_test {
         "libprotobuf-cpp-lite",
     ],
     static_libs: [
+        "libFraunhoferAAC",
         "libbt-common",
         "libbt-protos-lite",
         "libbt-sbc-decoder",
         "libbt-sbc-encoder",
-        "libFraunhoferAAC",
+        "libchrome",
         "libgmock",
         "liblog",
         "libopus",
@@ -845,6 +859,7 @@ cc_test {
     static_libs: [
         "libbt-common",
         "libbt-protos-lite",
+        "libchrome",
         "liblog",
         "libosi",
         "libosi-AllocationTestHarness",
@@ -893,8 +908,10 @@ cc_test {
     static_libs: [
         "libbt-common",
         "libbt-protos-lite",
-        "liblog",
+        "libchrome",
+        "libevent",
         "libgmock",
+        "liblog",
         "libosi",
     ],
 }
@@ -931,6 +948,7 @@ cc_test {
     ],
     static_libs: [
         "libbt-common",
+        "libchrome",
         "libgmock",
         "liblog",
         "libosi",
@@ -987,14 +1005,16 @@ cc_test {
         ":TestCommonStackConfig",
     ],
     shared_libs: [
-        "libcutils",
         "libcrypto",
+        "libcutils",
     ],
     static_libs: [
         "libbt-common",
         "libbt-protos-lite",
-        "liblog",
+        "libchrome",
+        "libevent",
         "libgmock",
+        "liblog",
         "libosi",
         "libprotobuf-cpp-lite",
     ],
@@ -1090,10 +1110,12 @@ cc_test {
     ],
     static_libs: [
         "libbt-common",
+        "libbt-protos-lite",
         "libbt-sbc-decoder",
         "libbt-sbc-encoder",
-        "libbt-protos-lite",
         "libbtdevice",
+        "libchrome",
+        "libevent",
         "libflatbuffers-cpp",
         "libgmock",
         "liblog",
@@ -1142,11 +1164,12 @@ cc_test {
     static_libs: [
         "libbt-common",
         "libbt-protos-lite",
+        "libbtdevice",
         "libbte",
+        "libchrome",
         "libgmock",
         "liblog",
         "libosi",
-        "libbtdevice",
     ],
     shared_libs: [
         "libcrypto",
@@ -1199,6 +1222,8 @@ cc_test {
         "libbt-protos-lite",
         "libbtdevice",
         "libbte",
+        "libchrome",
+        "libevent",
         "libgmock",
         "liblog",
         "libosi",
@@ -1263,6 +1288,8 @@ cc_test {
         "libbt-common",
         "libbt-protos-lite",
         "libbtdevice",
+        "libchrome",
+        "libevent",
         "libflatbuffers-cpp",
         "libgmock",
         "liblog",
@@ -1342,6 +1369,8 @@ cc_test {
         "libbt-common",
         "libbt-protos-lite",
         "libbtdevice",
+        "libchrome",
+        "libevent",
         "libflatbuffers-cpp",
         "libgmock",
         "liblog",
@@ -1416,6 +1445,8 @@ cc_test {
         "libbt-common",
         "libbt-protos-lite",
         "libbtdevice",
+        "libchrome",
+        "libevent",
         "libflatbuffers-cpp",
         "libgmock",
         "liblog",
@@ -1490,6 +1521,8 @@ cc_test {
         "libbt-common",
         "libbt-protos-lite",
         "libbtdevice",
+        "libchrome",
+        "libevent",
         "libflatbuffers-cpp",
         "libgmock",
         "liblog",
@@ -1552,5 +1585,6 @@ cc_test {
         "libbluetooth-types",
         "liblog",
         "libgmock",
+        "libchrome",
     ],
 }

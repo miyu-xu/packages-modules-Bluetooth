@@ -332,6 +332,7 @@ cc_test {
     ],
     static_libs: [
         "libbluetooth-types",
+        "libchrome",
         "libflatbuffers-cpp",
         "libosi",
     ],
@@ -366,6 +367,8 @@ cc_test {
         "libbluetooth-types",
         "libbt-common",
         "libbt-protos-lite",
+        "libchrome",
+        "libevent",
         "libosi",
         "libosi-AllocationTestHarness",
     ],
@@ -405,6 +408,7 @@ cc_test {
     static_libs: [
         "libbluetooth-types",
         "libc++fs",
+        "libchrome",
         "libgmock",
         "libosi",
     ],
@@ -439,6 +443,7 @@ cc_test {
     ],
     static_libs: [
         "libbluetooth-types",
+        "libchrome",
         "libcom.android.sysprop.bluetooth",
         "libosi",
     ],
