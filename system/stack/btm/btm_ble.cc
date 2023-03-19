@@ -1331,7 +1331,9 @@ void btm_ble_link_sec_check(const RawAddress& bd_addr,
 
     /* currently encrpted  */
     if (p_dev_rec->sec_flags & BTM_SEC_LE_ENCRYPTED) {
-      if (p_dev_rec->sec_flags & BTM_SEC_LE_AUTHENTICATED)
+      if (p_dev_rec->sec_flags &
+          BTM_SEC_LE_AUTHENTICATED)  // TODO: seperate encryped and
+                                     // mitm_encrypted
         cur_sec_level = SMP_SEC_AUTHENTICATED;
       else
         cur_sec_level = SMP_SEC_UNAUTHENTICATE;
