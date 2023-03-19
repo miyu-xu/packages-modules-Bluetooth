@@ -52,6 +52,24 @@
       "parentUuid": "e1579247_26f68eb5",
       "revId": "e3cca14d6b0c0394af961bb0f163b5f7e8326382",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "64ab658d_5b3391db",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2023-03-19T17:03:41Z",
+      "side": 1,
+      "message": "\u003e I\u0027m also not sure how brittle it is to run rustfmt on code and then expect it to match a pre-recorded version of the code, because rustfmt can also change in subtle ways between releases (particularly if you\u0027re depending on any unspecified defaults).\n\nIn my experience, `rustfmt` is very stable — they kind of have to be since it\u0027s often used in CI to check the formatting of files: https://github.com/rust-lang/rustfmt#checking-style-on-a-ci-server\n\n\u003e Could we disable the text comparison tests for now (or at least the text-comparing portions of them) on Android? If not, we really need someone to work on getting a proper rule added for rustfmt added to Soong where you can then fix the pdl build here to call the non-sandboxed (i.e. non-genrule-invoked) rustfmt.\n\nI talked with Chris about this on chat and we would basically end up disable all tests if we remove `rustfmt`. That\u0027s okay if we get it back soonish 😊\n\nAn alternative, which I explored in go/pdl-rust-backend-testing-strategy, would be to use the prettyplease library. I\u0027ll explore that tomorrow and if it works, then importing that will be a much nicer solution for me (no more shelling out to `rustfmt`).",
+      "parentUuid": "1553ad1d_58b7501e",
+      "revId": "e3cca14d6b0c0394af961bb0f163b5f7e8326382",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
