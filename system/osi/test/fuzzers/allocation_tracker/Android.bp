@@ -19,6 +19,7 @@ cc_fuzz {
     ],
     static_libs: [
         "libosi",
+        "libchrome",
     ],
     corpus: [
         "corpus/checkfail-regression-156805580",

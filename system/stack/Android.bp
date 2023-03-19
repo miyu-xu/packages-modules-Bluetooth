@@ -16,6 +16,7 @@ crypto_toolbox_srcs = [
 
 cc_test_library {
     name: "crypto_toolbox_for_tests",
+    static_libs: ["libchrome"],
     defaults: ["fluoride_defaults"],
     host_supported: true,
     include_dirs: [
@@ -351,6 +352,7 @@ cc_test {
         "libprotobuf-cpp-lite",
         "libudrv-uipc",
         "libbt-protos-lite",
+        "libchrome",
     ],
     whole_static_libs: [
         "libbluetooth-for-tests",
@@ -424,6 +426,8 @@ cc_test {
         "libprotobuf-cpp-lite",
         "libbt-common",
         "libbt-protos-lite",
+        "libchrome",
+        "libevent",
     ],
     sanitize: {
         cfi: false,
@@ -496,6 +500,8 @@ cc_test {
         "libflatbuffers-cpp",
         "libgmock",
         "libosi",
+        "libchrome",
+        "libevent",
     ],
     target: {
         android: {
@@ -539,6 +545,7 @@ cc_test {
         "libbluetooth-types",
         "liblog",
         "libgmock",
+        "libchrome",
     ],
     sanitize: {
         cfi: false,
@@ -616,6 +623,8 @@ cc_test {
         "libbt-common",
         "liblog",
         "libgmock",
+        "libchrome",
+        "libevent",
     ],
     sanitize: {
         cfi: false,
@@ -668,6 +677,8 @@ cc_test {
         "libbt-protos-lite",
         "libgmock",
         "libosi-AllocationTestHarness",
+        "libchrome",
+        "libevent",
     ],
     sanitize: {
         address: true,
@@ -728,6 +739,8 @@ cc_test {
         "libosi",
         "libprotobuf-cpp-lite",
         "libosi-AllocationTestHarness",
+        "libchrome",
+        "libevent",
     ],
     sanitize: {
         address: true,
@@ -829,6 +842,7 @@ cc_test {
         "libopus",
         "libosi",
         "libosi-AllocationTestHarness",
+        "libchrome",
     ],
     whole_static_libs: [
         "libaptx_enc",
@@ -875,6 +889,7 @@ cc_test {
         "liblog",
         "libosi",
         "libosi-AllocationTestHarness",
+        "libchrome",
     ],
     sanitize: {
         address: true,
@@ -927,6 +942,8 @@ cc_test {
         "liblog",
         "libgmock",
         "libosi",
+        "libchrome",
+        "libevent",
     ],
     target: {
         android: {
@@ -969,6 +986,7 @@ cc_test {
         "libgmock",
         "liblog",
         "libosi",
+        "libchrome",
     ],
     sanitize: {
         cfi: true,
@@ -1036,6 +1054,8 @@ cc_test {
         "libgmock",
         "libosi",
         "libprotobuf-cpp-lite",
+        "libchrome",
+        "libevent",
     ],
     sanitize: {
         cfi: false,
@@ -1143,6 +1163,8 @@ cc_test {
         "libosi",
         "libprotobuf-cpp-lite",
         "libudrv-uipc",
+        "libchrome",
+        "libevent",
     ],
     shared_libs: [
         "libcrypto",
@@ -1194,6 +1216,7 @@ cc_test {
         "liblog",
         "libosi",
         "libbtdevice",
+        "libchrome",
     ],
     shared_libs: [
         "libcrypto",
@@ -1254,6 +1277,8 @@ cc_test {
         "liblog",
         "libosi",
         "libprotobuf-cpp-lite",
+        "libchrome",
+        "libevent",
     ],
     shared_libs: [
         "libcrypto",
@@ -1322,6 +1347,8 @@ cc_test {
         "libgmock",
         "liblog",
         "libosi",
+        "libchrome",
+        "libevent",
     ],
     shared_libs: [
         "libbinder_ndk",
@@ -1406,6 +1433,8 @@ cc_test {
         "liblog",
         "libosi",
         "libprotobuf-cpp-lite",
+        "libchrome",
+        "libevent",
     ],
     shared_libs: [
         "libbinder_ndk",
@@ -1484,6 +1513,8 @@ cc_test {
         "liblog",
         "libosi",
         "libprotobuf-cpp-lite",
+        "libchrome",
+        "libevent",
     ],
     shared_libs: [
         "libbinder_ndk",
@@ -1556,6 +1587,8 @@ cc_test {
         "libgmock",
         "liblog",
         "libosi",
+        "libchrome",
+        "libevent",
     ],
     shared_libs: [
         "libbinder_ndk",
@@ -1618,6 +1651,7 @@ cc_test {
         "libbluetooth-types",
         "liblog",
         "libgmock",
+        "libchrome",
     ],
     target: {
         android: {

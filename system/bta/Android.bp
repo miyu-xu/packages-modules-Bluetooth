@@ -219,6 +219,7 @@ cc_test {
         "libcom.android.sysprop.bluetooth",
         "libosi",
         "libbt-common",
+        "libchrome",
     ],
     data: [
         ":audio_set_scenarios_bfbs",
@@ -309,6 +310,8 @@ cc_test {
         "libcom.android.sysprop.bluetooth",
         "libflatbuffers-cpp",
         "libgmock",
+        "libchrome",
+        "libevent",
     ],
     sanitize: {
         address: true,
@@ -358,6 +361,7 @@ cc_test {
         "libbt-common",
         "libbt-protos-lite",
         "libosi",
+        "libchrome",
     ],
     sanitize: {
         cfi: true,
@@ -400,6 +404,7 @@ cc_test {
         "libbt-common",
         "libbt-protos-lite",
         "libosi",
+        "libchrome",
     ],
     sanitize: {
         cfi: true,
@@ -615,6 +620,8 @@ cc_test {
         "libbt-protos-lite",
         "libflatbuffers-cpp",
         "libosi",
+        "libchrome",
+        "libevent",
     ],
     sanitize: {
         cfi: false,
@@ -684,6 +691,8 @@ cc_test {
         "libflatbuffers-cpp",
         "libosi",
         "liblc3",
+        "libchrome",
+        "libevent",
     ],
     data: [
         ":audio_set_scenarios_bfbs",
@@ -752,6 +761,7 @@ cc_test {
         "libbt-common",
         "libbt-protos-lite",
         "liblc3",
+        "libchrome",
     ],
     sanitize: {
         cfi: true,
@@ -815,6 +825,8 @@ cc_test {
         "libbt-protos-lite",
         "libosi",
         "liblc3",
+        "libchrome",
+        "libevent",
     ],
     target: {
         android: {
@@ -879,6 +891,7 @@ cc_test {
         "libgmock",
         "libbt-common",
         "libbt-protos-lite",
+        "libchrome",
     ],
     sanitize: {
         cfi: true,
@@ -944,7 +957,9 @@ cc_test {
         "libbt-common",
         "libbt-protos-lite",
         "libcom.android.sysprop.bluetooth",
-        "libosi", // ADDED
+        "libosi",
+        "libchrome",
+        "libevent",
     ],
     generated_headers: [
         "BluetoothGeneratedDumpsysDataSchema_h",

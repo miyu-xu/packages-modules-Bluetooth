@@ -111,6 +111,10 @@ cc_defaults {
 
 cc_test {
     name: "net_test_bluetooth",
+    static_libs: [
+        "libchrome",
+        "libevent",
+    ],
     test_suites: ["device-tests"],
     defaults: [
         "net_test_defaults",

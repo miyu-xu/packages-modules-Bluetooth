@@ -32,6 +32,7 @@ cc_fuzz {
         "lib-bt-packets",
         "lib-bt-packets-base",
         "lib-bt-packets-avrcp",
+        "libchrome",
     ],
     cflags: [
         "-DBUILDCFG",
@@ -64,6 +65,7 @@ cc_fuzz {
         "lib-bt-packets",
         "lib-bt-packets-base",
         "lib-bt-packets-avrcp",
+        "libchrome",
     ],
     cflags: [
         "-DBUILDCFG",
@@ -96,6 +98,7 @@ cc_fuzz {
         "lib-bt-packets",
         "lib-bt-packets-base",
         "lib-bt-packets-avrcp",
+        "libchrome",
     ],
     cflags: [
         "-DBUILDCFG",
@@ -128,6 +131,7 @@ cc_fuzz {
         "lib-bt-packets",
         "lib-bt-packets-base",
         "lib-bt-packets-avrcp",
+        "libchrome",
     ],
     cflags: [
         "-DBUILDCFG",
@@ -160,6 +164,7 @@ cc_fuzz {
         "lib-bt-packets",
         "lib-bt-packets-base",
         "lib-bt-packets-avrcp",
+        "libchrome",
     ],
     cflags: [
         "-DBUILDCFG",
@@ -192,6 +197,7 @@ cc_fuzz {
         "lib-bt-packets",
         "lib-bt-packets-base",
         "lib-bt-packets-avrcp",
+        "libchrome",
     ],
     cflags: [
         "-DBUILDCFG",
@@ -224,6 +230,7 @@ cc_fuzz {
         "lib-bt-packets",
         "lib-bt-packets-base",
         "lib-bt-packets-avrcp",
+        "libchrome",
     ],
     cflags: [
         "-DBUILDCFG",
@@ -256,6 +263,7 @@ cc_fuzz {
         "lib-bt-packets",
         "lib-bt-packets-base",
         "lib-bt-packets-avrcp",
+        "libchrome",
     ],
     cflags: [
         "-DBUILDCFG",
@@ -288,6 +296,7 @@ cc_fuzz {
         "lib-bt-packets",
         "lib-bt-packets-base",
         "lib-bt-packets-avrcp",
+        "libchrome",
     ],
     cflags: [
         "-DBUILDCFG",
@@ -320,6 +329,7 @@ cc_fuzz {
         "lib-bt-packets",
         "lib-bt-packets-base",
         "lib-bt-packets-avrcp",
+        "libchrome",
     ],
     cflags: [
         "-DBUILDCFG",
@@ -352,6 +362,7 @@ cc_fuzz {
         "lib-bt-packets",
         "lib-bt-packets-base",
         "lib-bt-packets-avrcp",
+        "libchrome",
     ],
     cflags: [
         "-DBUILDCFG",
@@ -384,6 +395,7 @@ cc_fuzz {
         "lib-bt-packets",
         "lib-bt-packets-base",
         "lib-bt-packets-avrcp",
+        "libchrome",
     ],
     cflags: [
         "-DBUILDCFG",
@@ -416,6 +428,7 @@ cc_fuzz {
         "lib-bt-packets",
         "lib-bt-packets-base",
         "lib-bt-packets-avrcp",
+        "libchrome",
     ],
     cflags: [
         "-DBUILDCFG",
@@ -448,6 +461,7 @@ cc_fuzz {
         "lib-bt-packets",
         "lib-bt-packets-base",
         "lib-bt-packets-avrcp",
+        "libchrome",
     ],
     cflags: [
         "-DBUILDCFG",
@@ -480,6 +494,7 @@ cc_fuzz {
         "lib-bt-packets",
         "lib-bt-packets-base",
         "lib-bt-packets-avrcp",
+        "libchrome",
     ],
     cflags: [
         "-DBUILDCFG",
@@ -512,6 +527,7 @@ cc_fuzz {
         "lib-bt-packets",
         "lib-bt-packets-base",
         "lib-bt-packets-avrcp",
+        "libchrome",
     ],
     cflags: [
         "-DBUILDCFG",
@@ -544,6 +560,7 @@ cc_fuzz {
         "lib-bt-packets",
         "lib-bt-packets-base",
         "lib-bt-packets-avrcp",
+        "libchrome",
     ],
     cflags: [
         "-DBUILDCFG",
@@ -576,6 +593,7 @@ cc_fuzz {
         "lib-bt-packets",
         "lib-bt-packets-base",
         "lib-bt-packets-avrcp",
+        "libchrome",
     ],
     cflags: [
         "-DBUILDCFG",
@@ -608,6 +626,7 @@ cc_fuzz {
         "lib-bt-packets",
         "lib-bt-packets-base",
         "lib-bt-packets-avrcp",
+        "libchrome",
     ],
     cflags: [
         "-DBUILDCFG",
@@ -640,6 +659,7 @@ cc_fuzz {
         "lib-bt-packets",
         "lib-bt-packets-base",
         "lib-bt-packets-avrcp",
+        "libchrome",
     ],
     cflags: [
         "-DBUILDCFG",
@@ -672,6 +692,7 @@ cc_fuzz {
         "lib-bt-packets",
         "lib-bt-packets-base",
         "lib-bt-packets-avrcp",
+        "libchrome",
     ],
     cflags: [
         "-DBUILDCFG",
@@ -704,6 +725,7 @@ cc_fuzz {
         "lib-bt-packets",
         "lib-bt-packets-base",
         "lib-bt-packets-avrcp",
+        "libchrome",
     ],
     cflags: [
         "-DBUILDCFG",
@@ -736,6 +758,7 @@ cc_fuzz {
         "lib-bt-packets",
         "lib-bt-packets-base",
         "lib-bt-packets-avrcp",
+        "libchrome",
     ],
     cflags: [
         "-DBUILDCFG",
@@ -768,6 +791,7 @@ cc_fuzz {
         "lib-bt-packets",
         "lib-bt-packets-base",
         "lib-bt-packets-avrcp",
+        "libchrome",
     ],
     cflags: [
         "-DBUILDCFG",
@@ -800,6 +824,7 @@ cc_fuzz {
         "lib-bt-packets",
         "lib-bt-packets-base",
         "lib-bt-packets-avrcp",
+        "libchrome",
     ],
     cflags: [
         "-DBUILDCFG",

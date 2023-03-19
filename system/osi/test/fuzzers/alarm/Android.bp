@@ -25,6 +25,7 @@ cc_fuzz {
         "libbt-protos-lite",
         "libgmock",
         "libosi",
+        "libchrome",
     ],
     cflags: ["-Wno-unused-function"],
 }

@@ -17,5 +17,6 @@ cc_fuzz {
     static_libs: [
         "libosi",
         "liblog",
+        "libchrome",
     ],
 }

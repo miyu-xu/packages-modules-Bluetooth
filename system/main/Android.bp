@@ -202,6 +202,8 @@ cc_test {
         "liblog",
         "libosi",
         "libbtdevice",
+        "libchrome",
+        "libevent",
     ],
     shared_libs: [
         "libcrypto",

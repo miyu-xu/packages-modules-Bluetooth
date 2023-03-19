@@ -48,5 +48,6 @@ cc_test {
         "lib-bt-packets-base",
         "lib-bt-packets-avrcp",
         "libbluetooth-types",
+        "libchrome",
     ],
 }

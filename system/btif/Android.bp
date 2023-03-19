@@ -332,6 +332,7 @@ cc_test {
         "libbluetooth-types",
         "libflatbuffers-cpp",
         "libosi",
+        "libchrome",
     ],
     cflags: ["-DBUILDCFG"],
     target: {
@@ -370,6 +371,8 @@ cc_test {
         "libbt-protos-lite",
         "libosi",
         "libosi-AllocationTestHarness",
+        "libchrome",
+        "libevent",
     ],
     cflags: ["-DBUILDCFG"],
     sanitize: {
@@ -413,6 +416,7 @@ cc_test {
         "libosi",
         "libgmock",
         "libc++fs",
+        "libchrome",
     ],
     cflags: ["-DBUILDCFG"],
     target: {
@@ -447,6 +451,7 @@ cc_test {
         "libbluetooth-types",
         "libcom.android.sysprop.bluetooth",
         "libosi",
+        "libchrome",
     ],
     cflags: ["-DBUILDCFG"],
     target: {

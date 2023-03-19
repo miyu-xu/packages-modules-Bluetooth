@@ -112,6 +112,9 @@ cc_binary {
         "libprotobuf-cpp-lite",
         "libudrv-uipc",
         "libz",
+        "libchrome",
+        "libevent",
+        "libmodpb64",
     ],
     shared_libs: [
         "android.hardware.bluetooth@1.0",

@@ -168,6 +168,8 @@ cc_test {
         "libosi",
         "libprotobuf-cpp-lite",
         "libc++fs",
+        "libchrome",
+        "libevent",
     ],
     target: {
         host_linux: {

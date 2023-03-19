@@ -105,6 +105,7 @@ cc_test {
         "libosi",
         "libosi-AllocationTestHarness",
         "libbtcore",
+        "libchrome",
     ],
     host_supported: true,
     test_options: {

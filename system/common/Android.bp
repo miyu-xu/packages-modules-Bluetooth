@@ -85,6 +85,8 @@ cc_test {
         "libgmock",
         "libbt-common",
         "libbt-protos-lite",
+        "libchrome",
+        "libevent",
     ],
     sanitize: {
         cfi: false,
@@ -112,6 +114,8 @@ cc_test {
         "libgmock",
         "libosi",
         "libbt-common",
+        "libchrome",
+        "libevent",
     ],
 }
 
@@ -132,6 +136,8 @@ cc_benchmark {
     static_libs: [
         "libosi",
         "libbt-common",
+        "libchrome",
+        "libevent",
     ],
 }
 
@@ -156,5 +162,7 @@ cc_benchmark {
         "libosi",
         "libbt-common",
         "libbt-protos-lite",
+        "libchrome",
+        "libevent",
     ],
 }

@@ -90,11 +90,16 @@ cc_test {
         "libbluetooth-for-tests",
         "libbtcore",
         "libbt-hci",
+        "libchrome",
     ],
 }
 
 cc_test {
     name: "net_test_hci_fragmenter_native",
+    static_libs: [
+        "libchrome",
+        "libbase",
+    ],
     test_suites: ["device-tests"],
     defaults: [
         "fluoride_unit_test_defaults",
