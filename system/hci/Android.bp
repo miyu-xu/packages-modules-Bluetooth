@@ -97,7 +97,7 @@ cc_test {
     name: "net_test_hci_fragmenter_native",
     test_suites: ["device-tests"],
     defaults: [
-        "fluoride_unit_test_defaults",
+        "fluoride_test_defaults",
         "mts_defaults",
     ],
     local_include_dirs: [
