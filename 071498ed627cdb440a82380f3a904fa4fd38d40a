@@ -26,6 +26,52 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0e388302_0c1cbf3d",
+        "filename": "system/btif/include/btif_av.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2023-03-19T05:17:00Z",
+      "side": 1,
+      "message": "I am not sure if this belongs here considering the new function added is down below.",
+      "range": {
+        "startLine": 94,
+        "startChar": 0,
+        "endLine": 94,
+        "endChar": 63
+      },
+      "revId": "071498ed627cdb440a82380f3a904fa4fd38d40a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "120d46d6_f6c3b58a",
+        "filename": "system/btif/include/btif_av.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 244,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2023-03-19T05:17:00Z",
+      "side": 1,
+      "message": "I see there are two btif_av_is_connected implementations here. Can we keep them next to each other?",
+      "range": {
+        "startLine": 244,
+        "startChar": 5,
+        "endLine": 244,
+        "endChar": 25
+      },
+      "revId": "071498ed627cdb440a82380f3a904fa4fd38d40a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5f8a7abf_2eb18942",
         "filename": "system/btif/src/btif_a2dp.cc",
         "patchSetId": 4
@@ -49,6 +95,52 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8510a19d_716a190f",
+        "filename": "system/btif/src/btif_a2dp.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2023-03-19T05:17:00Z",
+      "side": 1,
+      "message": "Here we are calling the same function(i.e. is_sink(peer)) multiple times (for logging its called again) and we seem to only log if it is sink. We should also log if it is source.  We could do one of the following -\n\nOption 1:\nbool is_sink \u003d ...;\nbool is_source \u003d ...;\nLOG_INFO(\" is_sink \u003d %d, is_source \u003d %d \", is_sink, is_source)\nif(is_sink) source_on_idle(); \nelse if(is_source) sink_on_idle():\n\n\nOption 2:\nif(btif_av_peer_is_sink(peer)) { \n   LOG_INFO(is sink \u003d TRUE)\n   source_on_idle()\n} else if(btif_av_peer_is_source(peer)) { \n   LOG_INFO(is source \u003d TRUE)\n   sink_on_idle()\n}",
+      "range": {
+        "startLine": 46,
+        "startChar": 4,
+        "endLine": 52,
+        "endChar": 5
+      },
+      "revId": "071498ed627cdb440a82380f3a904fa4fd38d40a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0696f094_1a24eeb8",
+        "filename": "system/btif/src/btif_a2dp.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2023-03-19T05:17:00Z",
+      "side": 1,
+      "message": "nit: Instead of an if else block we can just return at the end of the if block.",
+      "range": {
+        "startLine": 53,
+        "startChar": 4,
+        "endLine": 53,
+        "endChar": 10
+      },
+      "revId": "071498ed627cdb440a82380f3a904fa4fd38d40a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "04b88517_179ca379",
         "filename": "system/btif/src/btif_av.cc",
         "patchSetId": 4
@@ -65,6 +157,52 @@
         "startChar": 0,
         "endLine": 415,
         "endChar": 97
+      },
+      "revId": "071498ed627cdb440a82380f3a904fa4fd38d40a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "df51bc4c_0f07ac59",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 574,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2023-03-19T05:17:00Z",
+      "side": 1,
+      "message": "lets prefer using LOG_WARN here (or LOG_XXX for any newly added logs)",
+      "range": {
+        "startLine": 574,
+        "startChar": 8,
+        "endLine": 574,
+        "endChar": 32
+      },
+      "revId": "071498ed627cdb440a82380f3a904fa4fd38d40a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b2057154_633caeba",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 894,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2023-03-19T05:17:00Z",
+      "side": 1,
+      "message": "nit: peer \u003d\u003d nullptr",
+      "range": {
+        "startLine": 894,
+        "startChar": 8,
+        "endLine": 894,
+        "endChar": 23
       },
       "revId": "071498ed627cdb440a82380f3a904fa4fd38d40a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
@@ -111,6 +249,52 @@
         "startChar": 26,
         "endLine": 1443,
         "endChar": 34
+      },
+      "revId": "071498ed627cdb440a82380f3a904fa4fd38d40a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "95186f9a_d24dde6c",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1626,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2023-03-19T05:17:00Z",
+      "side": 1,
+      "message": "for LOG_XXX functions, we don\u0027t need to log the function name separately. Its included in the definition. Hence remove. Could you apply for all LOG_INFO or LOG_XXX format logging usages?",
+      "range": {
+        "startLine": 1626,
+        "startChar": 11,
+        "endLine": 1626,
+        "endChar": 30
+      },
+      "revId": "071498ed627cdb440a82380f3a904fa4fd38d40a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "34cb7fe3_642c3f9b",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1633,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2023-03-19T05:17:00Z",
+      "side": 1,
+      "message": "Can we write this as \nreturn connected \u003c max_connected_peers_ \u0026\u0026 !btif_av_source.Peers().empty()",
+      "range": {
+        "startLine": 1629,
+        "startChar": 4,
+        "endLine": 1633,
+        "endChar": 5
       },
       "revId": "071498ed627cdb440a82380f3a904fa4fd38d40a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
@@ -180,6 +364,75 @@
         "startChar": 19,
         "endLine": 3169,
         "endChar": 43
+      },
+      "revId": "071498ed627cdb440a82380f3a904fa4fd38d40a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aa105034_c34938cb",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 3473,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2023-03-19T05:17:00Z",
+      "side": 1,
+      "message": "nit: btif_av_both_enable()",
+      "range": {
+        "startLine": 3473,
+        "startChar": 6,
+        "endLine": 3473,
+        "endChar": 35
+      },
+      "revId": "071498ed627cdb440a82380f3a904fa4fd38d40a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0721844a_cc9b68c4",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 3481,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2023-03-19T05:17:00Z",
+      "side": 1,
+      "message": "btif_av_is_sink_enabled()",
+      "range": {
+        "startLine": 3481,
+        "startChar": 6,
+        "endLine": 3481,
+        "endChar": 40
+      },
+      "revId": "071498ed627cdb440a82380f3a904fa4fd38d40a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6224dbd1_76d99564",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 4181,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2023-03-19T05:17:00Z",
+      "side": 1,
+      "message": "nit: peer !\u003d nullptr",
+      "range": {
+        "startLine": 4181,
+        "startChar": 8,
+        "endLine": 4181,
+        "endChar": 23
       },
       "revId": "071498ed627cdb440a82380f3a904fa4fd38d40a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
