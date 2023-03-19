@@ -3,6 +3,52 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "40cf669e_f50e9906",
+        "filename": "system/bta/ar/bta_ar.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2023-03-19T04:23:49Z",
+      "side": 1,
+      "message": "I am curious why this is being done this way. I have seen UINT16_TO_BE_STREAM being used multiple places in our code bases and I don\u0027t see any reason why we cant use temp(the uint_8 pointer) directly but instead have to rely on copying it.",
+      "range": {
+        "startLine": 58,
+        "startChar": 0,
+        "endLine": 58,
+        "endChar": 13
+      },
+      "revId": "e9a660fb36fe105065cd184b46cceee9fef2e1ba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8dd863ff_0640c093",
+        "filename": "system/bta/ar/bta_ar.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 270,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2023-03-19T04:23:49Z",
+      "side": 1,
+      "message": "Can we add documentation for what this does.",
+      "range": {
+        "startLine": 270,
+        "startChar": 5,
+        "endLine": 270,
+        "endChar": 41
+      },
+      "revId": "e9a660fb36fe105065cd184b46cceee9fef2e1ba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8d5bcfc6_8520fe15",
         "filename": "system/bta/ar/bta_ar_int.h",
         "patchSetId": 4
@@ -14,6 +60,30 @@
       "writtenOn": "2023-03-15T12:31:02Z",
       "side": 1,
       "message": "I understand the encapsulation of the feature was needed for keeping it as an external cherry-pick but I think we should remove it in this upstream",
+      "range": {
+        "startLine": 47,
+        "startChar": 0,
+        "endLine": 47,
+        "endChar": 65
+      },
+      "revId": "e9a660fb36fe105065cd184b46cceee9fef2e1ba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6a6bc534_30b7650c",
+        "filename": "system/bta/ar/bta_ar_int.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2023-03-19T04:23:49Z",
+      "side": 1,
+      "message": "Can we do this for all files and not just this one.",
+      "parentUuid": "8d5bcfc6_8520fe15",
       "range": {
         "startLine": 47,
         "startChar": 0,
@@ -65,6 +135,53 @@
         "startChar": 37,
         "endLine": 1471,
         "endChar": 69
+      },
+      "revId": "e9a660fb36fe105065cd184b46cceee9fef2e1ba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2289c47b_81a1450d",
+        "filename": "system/bta/av/bta_av_aact.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1471,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2023-03-19T04:23:49Z",
+      "side": 1,
+      "message": "Or just invert the if and else conditions. We mostly always check flag enabled so a negation check might just confuse (or be read wrongly).",
+      "parentUuid": "abf71460_7214b116",
+      "range": {
+        "startLine": 1471,
+        "startChar": 37,
+        "endLine": 1471,
+        "endChar": 69
+      },
+      "revId": "e9a660fb36fe105065cd184b46cceee9fef2e1ba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bd9c3fd5_74bf1021",
+        "filename": "system/bta/av/bta_av_aact.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1520,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2023-03-19T04:23:49Z",
+      "side": 1,
+      "message": "Can we move it inside the above is_enabled if statement.",
+      "range": {
+        "startLine": 1500,
+        "startChar": 2,
+        "endLine": 1520,
+        "endChar": 3
       },
       "revId": "e9a660fb36fe105065cd184b46cceee9fef2e1ba",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
@@ -210,6 +327,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "fb121321_3efdacab",
+        "filename": "system/bta/av/bta_av_api.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 658,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2023-03-19T04:23:49Z",
+      "side": 1,
+      "message": "Can you please add documentation for this",
+      "range": {
+        "startLine": 658,
+        "startChar": 5,
+        "endLine": 658,
+        "endChar": 21
+      },
+      "revId": "e9a660fb36fe105065cd184b46cceee9fef2e1ba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2dc5b8dc_a64b731d",
         "filename": "system/bta/av/bta_av_int.h",
         "patchSetId": 4
@@ -226,6 +366,98 @@
         "startChar": 2,
         "endLine": 446,
         "endChar": 8
+      },
+      "revId": "e9a660fb36fe105065cd184b46cceee9fef2e1ba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a6685a9d_4f37fc6d",
+        "filename": "system/bta/av/bta_av_main.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2023-03-19T04:23:49Z",
+      "side": 1,
+      "message": "We can push this if condition into the above if statement.",
+      "range": {
+        "startLine": 133,
+        "startChar": 0,
+        "endLine": 133,
+        "endChar": 34
+      },
+      "revId": "e9a660fb36fe105065cd184b46cceee9fef2e1ba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4fc32fb9_c00c865f",
+        "filename": "system/bta/av/bta_av_main.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 507,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2023-03-19T04:23:49Z",
+      "side": 1,
+      "message": "nit: p_scb \u003d\u003d nullptr",
+      "range": {
+        "startLine": 507,
+        "startChar": 10,
+        "endLine": 507,
+        "endChar": 26
+      },
+      "revId": "e9a660fb36fe105065cd184b46cceee9fef2e1ba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "34373938_a30d29e5",
+        "filename": "system/bta/av/bta_av_main.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 511,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2023-03-19T04:23:49Z",
+      "side": 1,
+      "message": "A cleaner way to write this might just be --\n\nif (is_enabled()) { \n     p_scb \u003d bta_av_find_scb(registr.chnl, registr.app_id);\n}\nif(p_scb \u003d\u003d nullptr) {\n     p_scb \u003d bta_av_alloc_scb(registr.chnl);\n}",
+      "range": {
+        "startLine": 507,
+        "startChar": 6,
+        "endLine": 511,
+        "endChar": 5
+      },
+      "revId": "e9a660fb36fe105065cd184b46cceee9fef2e1ba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "81fa8593_a66483c4",
+        "filename": "system/bta/include/bta_ar_api.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2023-03-19T04:23:49Z",
+      "side": 1,
+      "message": "Could you add documentation for this.",
+      "range": {
+        "startLine": 137,
+        "startChar": 12,
+        "endLine": 137,
+        "endChar": 48
       },
       "revId": "e9a660fb36fe105065cd184b46cceee9fef2e1ba",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
