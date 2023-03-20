@@ -70,6 +70,30 @@
       },
       "revId": "6649f9b097c537911ccb0bdf04311abf32569b51",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b7921bb0_0536d74d",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 3943,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-03-20T10:24:52Z",
+      "side": 1,
+      "message": "You are right. Done\n\nPlus it looks like the `bluetoothService` cannot be null in this implementation\nIt is called :\n* [here](https://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/service/java/com/android/server/bluetooth/BluetoothManagerService.java;l\u003d1923?q\u003dbluetoothmanagerservice) \n* above method is called [here](https://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/service/java/com/android/server/bluetooth/BluetoothManagerService.java;l\u003d2389;drc\u003dc16c36030a21d6fc21901899d13477c31cc808a7)\n* we are in the `mBluetoothLock.writeLock().lock();` and we are setting `mBluetooth` just above from a stub.",
+      "parentUuid": "f3575b69_c85bcbfc",
+      "range": {
+        "startLine": 3941,
+        "startChar": 0,
+        "endLine": 3943,
+        "endChar": 25
+      },
+      "revId": "6649f9b097c537911ccb0bdf04311abf32569b51",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
