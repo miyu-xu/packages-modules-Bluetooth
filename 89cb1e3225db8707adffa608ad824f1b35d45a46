@@ -170,6 +170,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "bbfef831_f5988f8c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-03-20T17:49:40Z",
+      "side": 1,
+      "message": "I\u0027m sorry, I don\u0027t really understand yet.  Here\u0027s my understanding so far:\n\nWhen Bluetooth starts up, it saves the current foreground user as sForegroundUserId.\n\nWhen we get a user switch, Bluetooth gets shut down and restarted, so the new instance of Bluetooth will get the new foreground user.  \n\nAny calls with the old instance of the Bluetooth stack (but with the new user) shouldn\u0027t pass the check.\n\nAnything done with the new stack, but with the old user shouldn\u0027t pass the check.\n\nI think it\u0027s reasonable to gracefully handle these cases at the call sites, but I don\u0027t think it\u0027s a good idea to just remove the possibility of a crash.  I think it hides the problem.",
+      "parentUuid": "78841cc2_9aa022fe",
+      "range": {
+        "startLine": 9,
+        "startChar": 32,
+        "endLine": 9,
+        "endChar": 49
+      },
+      "revId": "89cb1e3225db8707adffa608ad824f1b35d45a46",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "eecec336_87b5425c",
         "filename": "android/app/src/com/android/bluetooth/Utils.java",
         "patchSetId": 4
