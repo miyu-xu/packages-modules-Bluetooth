@@ -7,8 +7,9 @@ use bt_topshim::btif::{
 use bt_topshim::profiles::gatt::{AdvertisingStatus, GattStatus, LePhy};
 use bt_topshim::profiles::hid_host::BthhReportType;
 use bt_topshim::profiles::sdp::{
-    BtSdpDipRecord, BtSdpHeaderOverlay, BtSdpMasRecord, BtSdpMnsRecord, BtSdpOpsRecord,
-    BtSdpPceRecord, BtSdpPseRecord, BtSdpRecord, BtSdpSapRecord, BtSdpType, SupportedFormatsList,
+    BtSdpDipRecord, BtSdpHeaderOverlay, BtSdpMasRecord, BtSdpMnsRecord, BtSdpMpsRecord,
+    BtSdpOpsRecord, BtSdpPceRecord, BtSdpPseRecord, BtSdpRecord, BtSdpSapRecord, BtSdpType,
+    SupportedFormatsList,
 };
 use bt_topshim::profiles::socket::SocketType;
 use bt_topshim::profiles::ProfileConnectionState;
@@ -181,6 +182,14 @@ struct BtSdpDipRecordDBus {
     primary_record: bool,
 }
 
+#[dbus_propmap(BtSdpMpsRecord)]
+pub struct BtSdpMpsRecordDBus {
+    hdr: BtSdpHeaderOverlay,
+    supported_scenarios_mpsd: u64,
+    supported_scenarios_mpmd: u64,
+    supported_dependencies: u16,
+}
+
 fn read_propmap_value<T: 'static + DirectDBus>(
     propmap: &dbus::arg::PropMap,
     key: &str,
@@ -278,6 +287,10 @@ impl DBusArg for BtSdpRecord {
                 let arg_0 = parse_propmap_value::<BtSdpDipRecord>(&data, "0")?;
                 BtSdpRecord::Dip(arg_0)
             }
+            BtSdpType::Mps => {
+                let arg_0 = parse_propmap_value::<BtSdpMpsRecord>(&data, "0")?;
+                BtSdpRecord::Mps(arg_0)
+            }
         };
         Ok(record)
     }
@@ -313,6 +326,9 @@ impl DBusArg for BtSdpRecord {
             }
             BtSdpRecord::Dip(dip_record) => {
                 write_propmap_value::<BtSdpDipRecord>(&mut map, dip_record, &String::from("0"))?
+            }
+            BtSdpRecord::Mps(mps_record) => {
+                write_propmap_value::<BtSdpMpsRecord>(&mut map, mps_record, &String::from("0"))?
             }
         }
         Ok(map)
