@@ -16,6 +16,40 @@
       "message": "@rwt@google.com can you please help review this?\n\ncc @bidsharma@google.com",
       "revId": "5e270682bd94bda27e9d36ca3d5d3c6de2e8d02b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "514629c6_7e3117b0",
+        "filename": "system/btif/src/btif_ble_scanner.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2023-03-20T18:04:08Z",
+      "side": 1,
+      "message": "I am surprised that the remote device name is not reported for the random addresses. Casually scanning for some LE-only devices using random addresses does show the remote device name in the device search results.\nMaybe I didn\u0027t understand the issue correctly but I would like to see the evidence before allowing this change.",
+      "revId": "5e270682bd94bda27e9d36ca3d5d3c6de2e8d02b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ae5f4643_f1a0aade",
+        "filename": "system/btif/src/btif_ble_scanner.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2023-03-20T18:04:08Z",
+      "side": 1,
+      "message": "Unnecessary comment. Remove these tokens from the previous comment as well.",
+      "revId": "5e270682bd94bda27e9d36ca3d5d3c6de2e8d02b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
