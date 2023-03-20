@@ -22,6 +22,30 @@
       },
       "revId": "cb0563ddc4e1551b97a0edb6e59c5e11b2ff7374",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d810f15b_89829f06",
+        "filename": "android/app/src/com/android/bluetooth/mapclient/MceStateMachine.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 998,
+      "author": {
+        "id": 1951737
+      },
+      "writtenOn": "2023-03-20T11:54:57Z",
+      "side": 1,
+      "message": "Reorganized the code a bit to make it clearer. Hope the added comments cleared up your concern, but lmk if there\u0027s any follow-up question",
+      "parentUuid": "5fa9ae51_886b60c8",
+      "range": {
+        "startLine": 998,
+        "startChar": 0,
+        "endLine": 998,
+        "endChar": 64
+      },
+      "revId": "cb0563ddc4e1551b97a0edb6e59c5e11b2ff7374",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
