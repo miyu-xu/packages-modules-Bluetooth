@@ -1,16 +1,12 @@
-// @generated rust packets from test
-
 use bytes::{Buf, BufMut, Bytes, BytesMut};
 use num_derive::{FromPrimitive, ToPrimitive};
 use num_traits::{FromPrimitive, ToPrimitive};
-use std::cell::Cell;
 use std::convert::{TryFrom, TryInto};
+use std::cell::Cell;
 use std::fmt;
 use std::sync::Arc;
 use thiserror::Error;
-
 type Result<T> = std::result::Result<T, Error>;
-
 #[derive(Debug, Error)]
 pub enum Error {
     #[error("Packet parsing failed")]
@@ -21,23 +17,22 @@ pub enum Error {
     InvalidFixedValue { expected: u64, actual: u64 },
     #[error("when parsing {obj} needed length of {wanted} but got {got}")]
     InvalidLengthError { obj: String, wanted: usize, got: usize },
-    #[error("array size ({array} bytes) is not a multiple of the element size ({element} bytes)")]
+    #[error(
+        "array size ({array} bytes) is not a multiple of the element size ({element} bytes)"
+    )]
     InvalidArraySize { array: usize, element: usize },
     #[error("Due to size restrictions a struct could not be parsed.")]
     ImpossibleStructError,
     #[error("when parsing field {obj}.{field}, {value} is not a valid {type_} value")]
     InvalidEnumValueError { obj: String, field: String, value: u64, type_: String },
 }
-
 #[derive(Debug, Error)]
 #[error("{0}")]
 pub struct TryFromError(&'static str);
-
 pub trait Packet {
     fn to_bytes(self) -> Bytes;
     fn to_vec(self) -> Vec<u8>;
 }
-
 #[derive(FromPrimitive, ToPrimitive, Debug, Hash, Eq, PartialEq, Clone, Copy)]
 #[repr(u64)]
 pub enum Enum16 {
@@ -81,7 +76,6 @@ impl<'de> serde::Deserialize<'de> for Enum16 {
         deserializer.deserialize_u64(Enum16Visitor)
     }
 }
-
 #[derive(Debug, Clone, PartialEq, Eq)]
 #[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 pub enum ParentDataChild {
@@ -184,7 +178,9 @@ impl ParentData {
                 let child_data = ChildData::parse_inner(&mut cell, bar, baz)?;
                 ParentDataChild::Child(Arc::new(child_data))
             }
-            _ if !payload.is_empty() => ParentDataChild::Payload(Bytes::copy_from_slice(payload)),
+            _ if !payload.is_empty() => {
+                ParentDataChild::Payload(Bytes::copy_from_slice(payload))
+            }
             _ => ParentDataChild::None,
         };
         Ok(Self { foo, bar, baz, child })
@@ -195,11 +191,8 @@ impl ParentData {
         buffer.put_u16(self.baz.to_u16().unwrap());
         if self.child.get_total_size() > 0xff {
             panic!(
-                "Invalid length for {}::{}: {} > {}",
-                "Parent",
-                "_payload_",
-                self.child.get_total_size(),
-                0xff
+                "Invalid length for {}::{}: {} > {}", "Parent", "_payload_", self.child
+                .get_total_size(), 0xff
             );
         }
         buffer.put_u8(self.child.get_total_size() as u8);
@@ -293,7 +286,6 @@ impl From<ParentBuilder> for Parent {
         builder.build().into()
     }
 }
-
 #[derive(Debug, Clone, PartialEq, Eq)]
 #[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 pub enum ChildDataChild {
@@ -348,7 +340,11 @@ impl ChildData {
         let packet = Self::parse_inner(&mut cell, bar, baz)?;
         Ok(packet)
     }
-    fn parse_inner(mut bytes: &mut Cell<&[u8]>, bar: Enum16, baz: Enum16) -> Result<Self> {
+    fn parse_inner(
+        mut bytes: &mut Cell<&[u8]>,
+        bar: Enum16,
+        baz: Enum16,
+    ) -> Result<Self> {
         if bytes.get().remaining() < 2 {
             return Err(Error::InvalidLengthError {
                 obj: "Child".to_string(),
@@ -365,7 +361,9 @@ impl ChildData {
                 let child_data = GrandChildData::parse_inner(&mut cell, baz)?;
                 ChildDataChild::GrandChild(Arc::new(child_data))
             }
-            _ if !payload.is_empty() => ChildDataChild::Payload(Bytes::copy_from_slice(payload)),
+            _ if !payload.is_empty() => {
+                ChildDataChild::Payload(Bytes::copy_from_slice(payload))
+            }
             _ => ChildDataChild::None,
         };
         Ok(Self { quux, child })
@@ -489,7 +487,6 @@ impl From<ChildBuilder> for Child {
         builder.build().into()
     }
 }
-
 #[derive(Debug, Clone, PartialEq, Eq)]
 #[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 pub enum GrandChildDataChild {
@@ -622,9 +619,13 @@ impl GrandChild {
     pub fn specialize(&self) -> GrandChildChild {
         match &self.grandchild.child {
             GrandChildDataChild::GrandGrandChild(_) => {
-                GrandChildChild::GrandGrandChild(GrandGrandChild::new(self.parent.clone()).unwrap())
+                GrandChildChild::GrandGrandChild(
+                    GrandGrandChild::new(self.parent.clone()).unwrap(),
+                )
             }
-            GrandChildDataChild::Payload(payload) => GrandChildChild::Payload(payload.clone()),
+            GrandChildDataChild::Payload(payload) => {
+                GrandChildChild::Payload(payload.clone())
+            }
             GrandChildDataChild::None => GrandChildChild::None,
         }
     }
@@ -666,8 +667,10 @@ impl GrandChildBuilder {
                 Some(bytes) => GrandChildDataChild::Payload(bytes),
             },
         });
-        let child =
-            Arc::new(ChildData { quux: Enum16::A, child: ChildDataChild::GrandChild(grandchild) });
+        let child = Arc::new(ChildData {
+            quux: Enum16::A,
+            child: ChildDataChild::GrandChild(grandchild),
+        });
         let parent = Arc::new(ParentData {
             bar: Enum16::A,
             baz: self.baz,
@@ -692,7 +695,6 @@ impl From<GrandChildBuilder> for GrandChild {
         builder.build().into()
     }
 }
-
 #[derive(Debug, Clone, PartialEq, Eq)]
 #[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 pub enum GrandGrandChildDataChild {
@@ -840,7 +842,12 @@ impl GrandGrandChild {
             GrandChildDataChild::GrandGrandChild(value) => value.clone(),
             _ => return Err("Could not parse data, wrong child type"),
         };
-        Ok(Self { parent, child, grandchild, grandgrandchild })
+        Ok(Self {
+            parent,
+            child,
+            grandchild,
+            grandgrandchild,
+        })
     }
     pub fn get_bar(&self) -> Enum16 {
         self.parent.as_ref().bar
@@ -878,8 +885,10 @@ impl GrandGrandChildBuilder {
         let grandchild = Arc::new(GrandChildData {
             child: GrandChildDataChild::GrandGrandChild(grandgrandchild),
         });
-        let child =
-            Arc::new(ChildData { quux: Enum16::A, child: ChildDataChild::GrandChild(grandchild) });
+        let child = Arc::new(ChildData {
+            quux: Enum16::A,
+            child: ChildDataChild::GrandChild(grandchild),
+        });
         let parent = Arc::new(ParentData {
             bar: Enum16::A,
             baz: Enum16::A,

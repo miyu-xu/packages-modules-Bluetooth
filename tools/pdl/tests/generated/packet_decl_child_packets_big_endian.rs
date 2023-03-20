@@ -1,16 +1,12 @@
-// @generated rust packets from test
-
 use bytes::{Buf, BufMut, Bytes, BytesMut};
 use num_derive::{FromPrimitive, ToPrimitive};
 use num_traits::{FromPrimitive, ToPrimitive};
-use std::cell::Cell;
 use std::convert::{TryFrom, TryInto};
+use std::cell::Cell;
 use std::fmt;
 use std::sync::Arc;
 use thiserror::Error;
-
 type Result<T> = std::result::Result<T, Error>;
-
 #[derive(Debug, Error)]
 pub enum Error {
     #[error("Packet parsing failed")]
@@ -21,23 +17,22 @@ pub enum Error {
     InvalidFixedValue { expected: u64, actual: u64 },
     #[error("when parsing {obj} needed length of {wanted} but got {got}")]
     InvalidLengthError { obj: String, wanted: usize, got: usize },
-    #[error("array size ({array} bytes) is not a multiple of the element size ({element} bytes)")]
+    #[error(
+        "array size ({array} bytes) is not a multiple of the element size ({element} bytes)"
+    )]
     InvalidArraySize { array: usize, element: usize },
     #[error("Due to size restrictions a struct could not be parsed.")]
     ImpossibleStructError,
     #[error("when parsing field {obj}.{field}, {value} is not a valid {type_} value")]
     InvalidEnumValueError { obj: String, field: String, value: u64, type_: String },
 }
-
 #[derive(Debug, Error)]
 #[error("{0}")]
 pub struct TryFromError(&'static str);
-
 pub trait Packet {
     fn to_bytes(self) -> Bytes;
     fn to_vec(self) -> Vec<u8>;
 }
-
 #[derive(FromPrimitive, ToPrimitive, Debug, Hash, Eq, PartialEq, Clone, Copy)]
 #[repr(u64)]
 pub enum Enum16 {
@@ -81,7 +76,6 @@ impl<'de> serde::Deserialize<'de> for Enum16 {
         deserializer.deserialize_u64(Enum16Visitor)
     }
 }
-
 #[derive(Debug, Clone, PartialEq, Eq)]
 #[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 pub enum FooDataChild {
@@ -182,7 +176,9 @@ impl FooData {
                 let child_data = BazData::parse_inner(&mut cell)?;
                 FooDataChild::Baz(Arc::new(child_data))
             }
-            _ if !payload.is_empty() => FooDataChild::Payload(Bytes::copy_from_slice(payload)),
+            _ if !payload.is_empty() => {
+                FooDataChild::Payload(Bytes::copy_from_slice(payload))
+            }
             _ => FooDataChild::None,
         };
         Ok(Self { a, b, child })
@@ -192,11 +188,8 @@ impl FooData {
         buffer.put_u16(self.b.to_u16().unwrap());
         if self.child.get_total_size() > 0xff {
             panic!(
-                "Invalid length for {}::{}: {} > {}",
-                "Foo",
-                "_payload_",
-                self.child.get_total_size(),
-                0xff
+                "Invalid length for {}::{}: {} > {}", "Foo", "_payload_", self.child
+                .get_total_size(), 0xff
             );
         }
         buffer.put_u8(self.child.get_total_size() as u8);
@@ -286,7 +279,6 @@ impl From<FooBuilder> for Foo {
         builder.build().into()
     }
 }
-
 #[derive(Debug, Clone, PartialEq, Eq)]
 #[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 pub struct BarData {
@@ -403,7 +395,11 @@ impl Bar {
 impl BarBuilder {
     pub fn build(self) -> Bar {
         let bar = Arc::new(BarData { x: self.x });
-        let foo = Arc::new(FooData { a: 100, b: self.b, child: FooDataChild::Bar(bar) });
+        let foo = Arc::new(FooData {
+            a: 100,
+            b: self.b,
+            child: FooDataChild::Bar(bar),
+        });
         Bar::new(foo).unwrap()
     }
 }
@@ -417,7 +413,6 @@ impl From<BarBuilder> for Bar {
         builder.build().into()
     }
 }
-
 #[derive(Debug, Clone, PartialEq, Eq)]
 #[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 pub struct BazData {
@@ -534,7 +529,11 @@ impl Baz {
 impl BazBuilder {
     pub fn build(self) -> Baz {
         let baz = Arc::new(BazData { y: self.y });
-        let foo = Arc::new(FooData { a: self.a, b: Enum16::B, child: FooDataChild::Baz(baz) });
+        let foo = Arc::new(FooData {
+            a: self.a,
+            b: Enum16::B,
+            child: FooDataChild::Baz(baz),
+        });
         Baz::new(foo).unwrap()
     }
 }

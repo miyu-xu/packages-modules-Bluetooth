@@ -1,16 +1,12 @@
-// @generated rust packets from test
-
 use bytes::{Buf, BufMut, Bytes, BytesMut};
 use num_derive::{FromPrimitive, ToPrimitive};
 use num_traits::{FromPrimitive, ToPrimitive};
-use std::cell::Cell;
 use std::convert::{TryFrom, TryInto};
+use std::cell::Cell;
 use std::fmt;
 use std::sync::Arc;
 use thiserror::Error;
-
 type Result<T> = std::result::Result<T, Error>;
-
 #[derive(Debug, Error)]
 pub enum Error {
     #[error("Packet parsing failed")]
@@ -21,23 +17,22 @@ pub enum Error {
     InvalidFixedValue { expected: u64, actual: u64 },
     #[error("when parsing {obj} needed length of {wanted} but got {got}")]
     InvalidLengthError { obj: String, wanted: usize, got: usize },
-    #[error("array size ({array} bytes) is not a multiple of the element size ({element} bytes)")]
+    #[error(
+        "array size ({array} bytes) is not a multiple of the element size ({element} bytes)"
+    )]
     InvalidArraySize { array: usize, element: usize },
     #[error("Due to size restrictions a struct could not be parsed.")]
     ImpossibleStructError,
     #[error("when parsing field {obj}.{field}, {value} is not a valid {type_} value")]
     InvalidEnumValueError { obj: String, field: String, value: u64, type_: String },
 }
-
 #[derive(Debug, Error)]
 #[error("{0}")]
 pub struct TryFromError(&'static str);
-
 pub trait Packet {
     fn to_bytes(self) -> Bytes;
     fn to_vec(self) -> Vec<u8>;
 }
-
 #[derive(Debug, Clone, PartialEq, Eq)]
 #[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 pub struct FooData {
@@ -84,7 +79,10 @@ impl FooData {
             });
         }
         if x_size % 3 != 0 {
-            return Err(Error::InvalidArraySize { array: x_size, element: 3 });
+            return Err(Error::InvalidArraySize {
+                array: x_size,
+                element: 3,
+            });
         }
         let x_count = x_size / 3;
         let mut x = Vec::with_capacity(x_count);
@@ -95,10 +93,15 @@ impl FooData {
     }
     fn write_to(&self, buffer: &mut BytesMut) {
         if (self.x.len() * 3) > 0x1f {
-            panic!("Invalid length for {}::{}: {} > {}", "Foo", "x", (self.x.len() * 3), 0x1f);
+            panic!(
+                "Invalid length for {}::{}: {} > {}", "Foo", "x", (self.x.len() * 3),
+                0x1f
+            );
         }
         if self.padding > 0x7 {
-            panic!("Invalid value for {}::{}: {} > {}", "Foo", "padding", self.padding, 0x7);
+            panic!(
+                "Invalid value for {}::{}: {} > {}", "Foo", "padding", self.padding, 0x7
+            );
         }
         let value = (self.x.len() * 3) as u8 | (self.padding << 5);
         buffer.put_u8(value);
@@ -161,7 +164,10 @@ impl Foo {
 }
 impl FooBuilder {
     pub fn build(self) -> Foo {
-        let foo = Arc::new(FooData { padding: self.padding, x: self.x });
+        let foo = Arc::new(FooData {
+            padding: self.padding,
+            x: self.x,
+        });
         Foo::new(foo).unwrap()
     }
 }

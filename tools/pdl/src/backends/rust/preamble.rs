@@ -76,11 +76,11 @@ pub fn generate(path: &Path) -> String {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use crate::test_utils::{assert_snapshot_eq, rustfmt};
+    use crate::test_utils::{assert_snapshot_eq, format_rust};
 
     #[test]
     fn test_generate_preamble() {
         let actual_code = generate(Path::new("some/path/foo.pdl"));
-        assert_snapshot_eq("tests/generated/preamble.rs", &rustfmt(&actual_code));
+        assert_snapshot_eq("tests/generated/preamble.rs", &format_rust(&actual_code));
     }
 }
