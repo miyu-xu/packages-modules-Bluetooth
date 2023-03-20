@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4da02304_74790af9",
+        "filename": "framework/java/android/bluetooth/BluetoothServerSocket.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-03-20T19:06:02Z",
+      "side": 1,
+      "message": "Shouldn\u0027t we compute the current time minus the socketConnectionTime here for the most accurate results?",
+      "revId": "9c0b16399bfcef433204df795377dd6755c8fa87",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "56c37fc5_6e2d3686",
+        "filename": "framework/java/android/bluetooth/BluetoothSocket.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 458,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-03-20T19:06:02Z",
+      "side": 1,
+      "message": "Same nit, shouldn\u0027t we capture the time here?",
+      "revId": "9c0b16399bfcef433204df795377dd6755c8fa87",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
