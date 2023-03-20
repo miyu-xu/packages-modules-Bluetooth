@@ -35,34 +35,83 @@ namespace utils {
  */
 LeAudioContextType AudioContentToLeAudioContext(
     audio_content_type_t content_type, audio_usage_t usage) {
-  /* Check audio attribute usage of stream */
+  /* Check audio attribute usage and optionally context:
+   *  AUDIO_CONTENT_TYPE_UNKNOWN
+   *  AUDIO_CONTENT_TYPE_SPEECH
+   *  AUDIO_CONTENT_TYPE_MUSIC
+   *  AUDIO_CONTENT_TYPE_MOVIE
+   *  AUDIO_CONTENT_TYPE_SONIFICATION
+   *  AUDIO_CONTENT_TYPE_ULTRASOUND
+   */
   switch (usage) {
     case AUDIO_USAGE_MEDIA:
+      // Usage value to use when the usage is media, such as music, or movie
+      // soundtracks.
       return LeAudioContextType::MEDIA;
+    case AUDIO_USAGE_ASSISTANCE_ACCESSIBILITY:
+      // Usage value to use when the usage is for accessibility, such as with a
+      // screen reader.
+      [[fallthrough]];
     case AUDIO_USAGE_ASSISTANT:
+      // Usage value to use for audio responses to user queries, audio
+      // instructions or help utterances.
       return LeAudioContextType::VOICEASSISTANTS;
     case AUDIO_USAGE_VOICE_COMMUNICATION:
+      // Usage value to use when the usage is voice communications, such as
+      // telephony or VoIP.
+      [[fallthrough]];
     case AUDIO_USAGE_CALL_ASSISTANT:
+      // Usage value to use for assistant voice interaction with remote caller
+      // on Cell and VoIP calls.
       return LeAudioContextType::CONVERSATIONAL;
     case AUDIO_USAGE_VOICE_COMMUNICATION_SIGNALLING:
+      // Usage value to use when the usage is in-call signalling, such as with a
+      // "busy" beep, or DTMF tones.
       if (content_type == AUDIO_CONTENT_TYPE_SPEECH)
         return LeAudioContextType::CONVERSATIONAL;
       else
-        return LeAudioContextType::MEDIA;
+        return LeAudioContextType::SOUNDEFFECTS;
     case AUDIO_USAGE_GAME:
+      // Usage value to use when the usage is for game audio.
       return LeAudioContextType::GAME;
+    case AUDIO_USAGE_SAFETY:
+      // Usage value to use when the usage is a safety sound.
+      [[fallthrough]];
+    case AUDIO_USAGE_VEHICLE_STATUS:
+      // Usage value to use when the usage is a vehicle status.
+      [[fallthrough]];
+    case AUDIO_USAGE_ANNOUNCEMENT:
+      // Usage value to use when the usage is an announcement.
+      [[fallthrough]];
     case AUDIO_USAGE_NOTIFICATION:
+      // Usage value to use when the usage is notification.
+      [[fallthrough]];
+    case AUDIO_USAGE_NOTIFICATION_EVENT:
+      // Usage value to use when the usage is to attract the user's attention,
+      // such as a reminder or low battery warning.
       return LeAudioContextType::NOTIFICATIONS;
     case AUDIO_USAGE_NOTIFICATION_TELEPHONY_RINGTONE:
+      // Usage value to use when the usage is telephony ringtone.
       return LeAudioContextType::RINGTONE;
     case AUDIO_USAGE_ALARM:
+      // Usage value to use when the usage is an alarm (e.g. wake-up alarm).
       return LeAudioContextType::ALERTS;
     case AUDIO_USAGE_EMERGENCY:
+      // Usage value to use when the usage is an emergency.
       return LeAudioContextType::EMERGENCYALARM;
     case AUDIO_USAGE_ASSISTANCE_NAVIGATION_GUIDANCE:
+      // Usage value to use when the usage is driving or navigation directions.
       return LeAudioContextType::INSTRUCTIONAL;
     case AUDIO_USAGE_ASSISTANCE_SONIFICATION:
+      // Usage value to use when the usage is sonification, such as  with user
+      // interface sounds.
       return LeAudioContextType::SOUNDEFFECTS;
+    case AUDIO_USAGE_VIRTUAL_SOURCE:
+      // Usage value to use when feeding audio to the platform and replacing
+      // "traditional" audio source, such as audio capture devices.
+      return LeAudioContextType::LIVE;
+    case AUDIO_USAGE_UNKNOWN:
+      [[fallthrough]];
     default:
       break;
   }
@@ -172,6 +221,63 @@ AudioContexts GetAllowedAudioContextsFromSourceMetadata(
   return track_contexts;
 }
 
+/* The returned LeAudioContextType should have its entry in the
+ * AudioSetConfigurationProvider's ContextTypeToScenario mapping table.
+ * Otherwise the AudioSetConfigurationProvider will fall back
+ * to default scenario.
+ */
+static LeAudioContextType AudioSourceToLeAudioContext(
+    audio_source_t audio_source) {
+  switch (audio_source) {
+    case AUDIO_SOURCE_MIC:
+      // Microphone audio source
+      [[fallthrough]];
+    case AUDIO_SOURCE_CAMCORDER:
+      // Microphone audio source tuned for video recording
+      [[fallthrough]];
+    case AUDIO_SOURCE_VOICE_PERFORMANCE:
+      // Source for capturing audio meant to be processed in real time and
+      // played back for live performance (e.g karaoke).
+      return LeAudioContextType::LIVE;
+    case AUDIO_SOURCE_VOICE_UPLINK:
+      // Voice call uplink (Tx) audio source.
+      [[fallthrough]];
+    case AUDIO_SOURCE_VOICE_DOWNLINK:
+      // Voice call downlink (Rx) audio source
+      [[fallthrough]];
+    case AUDIO_SOURCE_VOICE_CALL:
+      // Voice call uplink + downlink audio source
+      [[fallthrough]];
+    case AUDIO_SOURCE_VOICE_RECOGNITION:
+      // Microphone audio source tuned for voice recognition
+      [[fallthrough]];
+    case AUDIO_SOURCE_VOICE_COMMUNICATION:
+      // Microphone audio source tuned for voice communications such as VoIP
+      return LeAudioContextType::CONVERSATIONAL;
+    case AUDIO_SOURCE_REMOTE_SUBMIX:
+      // Audio source for a submix of audio streams to be presented remotely.
+      [[fallthrough]];
+    case AUDIO_SOURCE_UNPROCESSED:
+      // Microphone audio source tuned for unprocessed (raw) sound if available,
+      // behaves like DEFAULT otherwise.
+      [[fallthrough]];
+    case AUDIO_SOURCE_ECHO_REFERENCE:
+      // Source for an echo canceller to capture the reference signal to be
+      // cancelled.
+      [[fallthrough]];
+    case AUDIO_SOURCE_FM_TUNER:
+      // Audio source for capturing broadcast radio tuner output.
+      [[fallthrough]];
+    default:
+      /* Fallback to voice assistant */
+      LOG_WARN(
+          "Could not match the recording track type to group available "
+          "context. Using context %s.",
+          ToString(LeAudioContextType::VOICEASSISTANTS).c_str());
+      return LeAudioContextType::VOICEASSISTANTS;
+  }
+}
+
 AudioContexts GetAllowedAudioContextsFromSinkMetadata(
     const std::vector<struct record_track_metadata>& sink_metadata,
     AudioContexts allowed_contexts) {
@@ -179,8 +285,6 @@ AudioContexts GetAllowedAudioContextsFromSinkMetadata(
 
   for (auto& track : sink_metadata) {
     if (track.source == AUDIO_SOURCE_INVALID) continue;
-    LeAudioContextType track_context;
-
     LOG_DEBUG(
         "source=%s(0x%02x), gain=%f, destination device=0x%08x, destination "
         "device address=%.32s, allowed_contexts=%s",
@@ -188,27 +292,10 @@ AudioContexts GetAllowedAudioContextsFromSinkMetadata(
         track.dest_device, track.dest_device_address,
         bluetooth::common::ToString(allowed_contexts).c_str());
 
-    if ((track.source == AUDIO_SOURCE_MIC) &&
-        (allowed_contexts.test(LeAudioContextType::LIVE))) {
-      track_context = LeAudioContextType::LIVE;
-
-    } else if ((track.source == AUDIO_SOURCE_VOICE_COMMUNICATION) &&
-               (allowed_contexts.test(LeAudioContextType::CONVERSATIONAL))) {
-      track_context = LeAudioContextType::CONVERSATIONAL;
-
-    } else if (allowed_contexts.test(LeAudioContextType::VOICEASSISTANTS)) {
-      /* Fallback to voice assistant
-       * This will handle also a case when the device is
-       * AUDIO_SOURCE_VOICE_RECOGNITION
-       */
-      track_context = LeAudioContextType::VOICEASSISTANTS;
-      LOG_WARN(
-          "Could not match the recording track type to group available "
-          "context. Using context %s.",
-          ToString(track_context).c_str());
-    }
-
-    all_track_contexts.set(track_context);
+    LeAudioContextType track_context =
+        AudioSourceToLeAudioContext(track.source);
+    if (allowed_contexts.test(track_context))
+      all_track_contexts.set(track_context);
   }
 
   if (all_track_contexts.none()) {
