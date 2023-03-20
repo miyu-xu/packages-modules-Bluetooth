@@ -218,9 +218,6 @@ class ActiveDeviceManager {
                 case BluetoothLeAudio.ACTION_LE_AUDIO_ACTIVE_DEVICE_CHANGED:
                     mHandler.post(() -> handleLeAudioActiveDeviceChanged(device));
                     break;
-                case BluetoothHapClient.ACTION_HAP_DEVICE_AVAILABLE:
-                    mHandler.post(() -> handleHapActiveDeviceChanged(device));
-                    break;
                 default:
                     Log.e(TAG, "Received unexpected intent, action=" + action);
                     break;
@@ -508,26 +505,12 @@ class ActiveDeviceManager {
                 setHfpActiveDevice(null);
                 setHearingAidActiveDevice(null);
             }
-            mLeAudioActiveDevice = device;
-        }
-    }
 
-    private void handleHapActiveDeviceChanged(BluetoothDevice device) {
-        synchronized (mLock) {
-            if (DBG) {
-                Log.d(TAG, "handleHapActiveDeviceChanged: " + device);
+            if (mLeHearingAidConnectedDevices.contains(device)) {
+                mLeHearingAidActiveDevice = device;
             }
-            if (device != null && !mLeHearingAidConnectedDevices.contains(device)) {
-                mLeHearingAidConnectedDevices.add(device);
-            }
-            // Just assign locally the new value
-            if (device != null && !Objects.equals(mLeHearingAidActiveDevice, device)) {
-                setA2dpActiveDevice(null);
-                setHfpActiveDevice(null);
-                setHearingAidActiveDevice(null);
-            }
+
             mLeAudioActiveDevice = device;
-            mLeHearingAidActiveDevice = device;
         }
     }
 
@@ -599,7 +582,6 @@ class ActiveDeviceManager {
         filter.addAction(BluetoothLeAudio.ACTION_LE_AUDIO_CONNECTION_STATE_CHANGED);
         filter.addAction(BluetoothLeAudio.ACTION_LE_AUDIO_ACTIVE_DEVICE_CHANGED);
         filter.addAction(BluetoothHapClient.ACTION_HAP_CONNECTION_STATE_CHANGED);
-        filter.addAction(BluetoothHapClient.ACTION_HAP_DEVICE_AVAILABLE);
         mAdapterService.registerReceiver(mReceiver, filter, Context.RECEIVER_EXPORTED);
 
         mAudioManager.registerAudioDeviceCallback(mAudioManagerAudioDeviceCallback, mHandler);
