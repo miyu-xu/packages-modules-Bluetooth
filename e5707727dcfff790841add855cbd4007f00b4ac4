@@ -16,6 +16,24 @@
       "message": "Hi all,\n\nI can switch the formatting of the generated Rust code to use the `prettyplease` library instead of `rustfmt` — that\u0027s better all around since it\u0027s simpler, faster, and designed to be stable.\n\nDoing this would be my preferred way to solve https://r.android.com/2493607. It depends on vendoring the library, of course. Please let me know if you also like this approach — then I can start the vendoring process.",
       "revId": "e5707727dcfff790841add855cbd4007f00b4ac4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "398066db_f6d54658",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1047255
+      },
+      "writtenOn": "2023-03-20T17:18:28Z",
+      "side": 1,
+      "message": "Thanks for putting this together.  I think we can discuss this in our team meeting today.",
+      "parentUuid": "12d35dd8_1f8a90fd",
+      "revId": "e5707727dcfff790841add855cbd4007f00b4ac4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
