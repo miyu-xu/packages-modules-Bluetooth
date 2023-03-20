@@ -1253,8 +1253,15 @@ class UnicastTestNoInit : public Test {
           group->SetState(group->GetTargetState());
           state_machine_callbacks_->StatusReportCb(
               group->group_id_, GroupStreamStatus::RELEASING);
-          state_machine_callbacks_->StatusReportCb(group->group_id_,
-                                                   GroupStreamStatus::IDLE);
+
+          do_in_main_thread(
+              FROM_HERE,
+              base::BindOnce(
+                  [](le_audio::LeAudioGroupStateMachine::Callbacks* cb,
+                     int group_id) {
+                    cb->StatusReportCb(group_id, GroupStreamStatus::IDLE);
+                  },
+                  state_machine_callbacks_, group->group_id_));
         });
   }
 
@@ -3439,7 +3446,17 @@ TEST_F(UnicastTest, RemoveWhileStreaming) {
               OnConnectionState(ConnectionState::DISCONNECTED, test_address0))
       .Times(1);
 
-  LeAudioClient::Get()->RemoveDevice(test_address0);
+  /*
+   * StopStream will put calls on main_loop so to keep the correct order
+   * of operations and to avoid races we put the test command on main_loop as
+   * well.
+   */
+  do_in_main_thread(FROM_HERE, base::BindOnce(
+                                   [](LeAudioClient* client,
+                                      const RawAddress& test_address0) {
+                                     client->RemoveDevice(test_address0);
+                                   },
+                                   LeAudioClient::Get(), test_address0));
 
   SyncOnMainLoop();
   Mock::VerifyAndClearExpectations(&mock_groups_module_);
