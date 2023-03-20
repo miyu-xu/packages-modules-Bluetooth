@@ -92,6 +92,7 @@ static_library("btif") {
     "src/btif_uid.cc",
     "src/btif_util.cc",
     "src/stack_manager.cc",
+    "src/btif_l2test.cc",
   ]
 
   include_dirs = [
