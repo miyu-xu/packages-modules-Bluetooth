@@ -110,6 +110,54 @@
       },
       "revId": "c02618f1ddd45d7d8276fed325abae5c42c1d531",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "967ba743_9a17fd3b",
+        "filename": "system/bta/gatt/bta_gattc_act.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 555,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-03-20T21:03:17Z",
+      "side": 1,
+      "message": "The highlighted text.  It\u0027s redundant, and the comment is already pretty long.",
+      "parentUuid": "aaa58cfc_f912d912",
+      "range": {
+        "startLine": 554,
+        "startChar": 53,
+        "endLine": 555,
+        "endChar": 21
+      },
+      "revId": "c02618f1ddd45d7d8276fed325abae5c42c1d531",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ef110f0c_24f324b5",
+        "filename": "system/bta/gatt/bta_gattc_act.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 555,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-03-20T21:03:17Z",
+      "side": 1,
+      "message": "\"always do A, not just B\" is awkward English.\n\n\"don\u0027t just\" makes it less awkward.\n\nIt could also be:\n\"always check the db hash first, then load the stored database.\"\n\nDepending on what you want to say.",
+      "parentUuid": "61f4d3f0_dc696483",
+      "range": {
+        "startLine": 555,
+        "startChar": 54,
+        "endLine": 555,
+        "endChar": 57
+      },
+      "revId": "c02618f1ddd45d7d8276fed325abae5c42c1d531",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
