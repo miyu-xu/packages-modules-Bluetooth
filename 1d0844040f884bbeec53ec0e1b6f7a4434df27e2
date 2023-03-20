@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "73a04849_857ead3e",
+        "filename": "system/bta/gatt/bta_gattc_act.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 560,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-03-20T21:06:16Z",
+      "side": 1,
+      "message": "I\u0027d rather not make that assumption.\n\nThe hash isn\u0027t specific to the bond, is it?  Do we remove the hash when we remove the bond?",
+      "range": {
+        "startLine": 559,
+        "startChar": 50,
+        "endLine": 560,
+        "endChar": 30
+      },
+      "revId": "1d0844040f884bbeec53ec0e1b6f7a4434df27e2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
