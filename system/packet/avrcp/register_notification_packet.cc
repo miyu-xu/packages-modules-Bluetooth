@@ -77,7 +77,7 @@ RegisterNotificationResponseBuilder::MakePlaybackStatusBuilder(
       new RegisterNotificationResponseBuilder(interim,
                                               Event::PLAYBACK_STATUS_CHANGED));
 
-  builder->data_ = play_status;
+  builder->data_[0] = play_status;
   return builder;
 }
 
@@ -86,8 +86,9 @@ RegisterNotificationResponseBuilder::MakeTrackChangedBuilder(
     bool interim, uint64_t track_uid) {
   std::unique_ptr<RegisterNotificationResponseBuilder> builder(
       new RegisterNotificationResponseBuilder(interim, Event::TRACK_CHANGED));
-
-  builder->data_ = track_uid;
+  for (int i = 0; i < 8; i++) {
+    builder->data_[i] = (track_uid >> i * 8) & 0xFF;
+  }
   return builder;
 }
 
@@ -97,8 +98,29 @@ RegisterNotificationResponseBuilder::MakePlaybackPositionBuilder(
   std::unique_ptr<RegisterNotificationResponseBuilder> builder(
       new RegisterNotificationResponseBuilder(interim,
                                               Event::PLAYBACK_POS_CHANGED));
+  for (int i = 0; i < 4; i++) {
+    builder->data_[i] = (playback_pos >> i * 8) & 0xFF;
+  }
 
-  builder->data_ = playback_pos;
+  return builder;
+}
+
+std::unique_ptr<RegisterNotificationResponseBuilder>
+RegisterNotificationResponseBuilder::MakePlayerSettingChangedBuilder(
+    bool interim, std::vector<PlayerAttribute> attributes,
+    std::vector<uint8_t> values) {
+  std::unique_ptr<RegisterNotificationResponseBuilder> builder(
+      new RegisterNotificationResponseBuilder(
+          interim, Event::PLAYER_APPLICATION_SETTING_CHANGED));
+  uint8_t data_idx = 1;
+  uint8_t number_of_attributes = static_cast<uint8_t>(attributes.size());
+  builder->data_[0] = number_of_attributes;
+  for (int i = 0; i < number_of_attributes; i++) {
+    builder->data_[data_idx] = static_cast<uint8_t>(attributes.at(i));
+    data_idx++;
+    builder->data_[data_idx] = values.at(i);
+    data_idx++;
+  }
   return builder;
 }
 
@@ -124,8 +146,10 @@ RegisterNotificationResponseBuilder::MakeAddressedPlayerBuilder(
   std::unique_ptr<RegisterNotificationResponseBuilder> builder(
       new RegisterNotificationResponseBuilder(interim,
                                               Event::ADDRESSED_PLAYER_CHANGED));
-  builder->data_ = ((uint32_t)player_id) << 16;
-  builder->data_ |= uid_counter;
+  builder->data_[0] = (uint8_t)uid_counter;
+  builder->data_[1] = ((uint8_t)uid_counter) >> 16;
+  builder->data_[2] = (uint8_t)player_id;
+  builder->data_[3] = ((uint8_t)player_id) >> 16;
   return builder;
 }
 
@@ -135,7 +159,8 @@ RegisterNotificationResponseBuilder::MakeUidsChangedBuilder(
   std::unique_ptr<RegisterNotificationResponseBuilder> builder(
       new RegisterNotificationResponseBuilder(interim, Event::UIDS_CHANGED));
 
-  builder->data_ = uid_counter;
+  builder->data_[0] = (uint8_t)uid_counter;
+  builder->data_[1] = ((uint8_t)uid_counter) >> 16;
   return builder;
 }
 
@@ -155,7 +180,7 @@ size_t RegisterNotificationResponseBuilder::size() const {
       data_size = 4;
       break;
     case Event::PLAYER_APPLICATION_SETTING_CHANGED:
-      LOG(FATAL) << "Player Application Notification Not Implemented";
+      data_size = static_cast<size_t>(1) + static_cast<size_t>(data_[0] * 2);
       break;
     case Event::NOW_PLAYING_CONTENT_CHANGED:
       data_size = 0;
@@ -188,34 +213,50 @@ bool RegisterNotificationResponseBuilder::Serialize(
   AddPayloadOctets1(pkt, static_cast<uint8_t>(event_));
   switch (event_) {
     case Event::PLAYBACK_STATUS_CHANGED: {
-      uint8_t playback_status = data_ & 0xFF;
+      uint8_t playback_status = data_[0];
       AddPayloadOctets1(pkt, playback_status);
       break;
     }
     case Event::TRACK_CHANGED: {
-      AddPayloadOctets8(pkt, base::ByteSwap(data_));
+      uint64_t track_changed = 0;
+      for (int i = 0; i < 8; i++) {
+        track_changed |= (uint64_t)data_[i] << i * 8;
+      }
+      AddPayloadOctets8(pkt, base::ByteSwap(track_changed));
       break;
     }
     case Event::PLAYBACK_POS_CHANGED: {
-      uint32_t playback_pos = data_ & 0xFFFFFFFF;
+      uint32_t playback_pos = 0;
+      for (int i = 0; i < 4; i++) {
+        playback_pos |= (uint32_t)data_[i] << i * 8;
+      }
       AddPayloadOctets4(pkt, base::ByteSwap(playback_pos));
       break;
     }
-    case Event::PLAYER_APPLICATION_SETTING_CHANGED:
+    case Event::PLAYER_APPLICATION_SETTING_CHANGED: {
+      uint8_t number_of_attributes = data_[0];
+      AddPayloadOctets1(pkt, number_of_attributes);
+      for (int i = 1; i <= number_of_attributes * 2; i++) {
+        AddPayloadOctets1(pkt, data_[i]);
+      }
       break;  // No additional data
+    }
     case Event::NOW_PLAYING_CONTENT_CHANGED:
       break;  // No additional data
     case Event::AVAILABLE_PLAYERS_CHANGED:
       break;  // No additional data
     case Event::ADDRESSED_PLAYER_CHANGED: {
-      uint16_t uid_counter = data_ & 0xFFFF;
-      uint16_t player_id = (data_ >> 16) & 0xFFFF;
+      uint16_t uid_counter = data_[0];
+      uid_counter |= (uint16_t)data_[1] << 8;
+      uint16_t player_id = data_[2];
+      player_id |= (uint16_t)data_[3] << 8;
       AddPayloadOctets2(pkt, base::ByteSwap(player_id));
       AddPayloadOctets2(pkt, base::ByteSwap(uid_counter));
       break;
     }
     case Event::UIDS_CHANGED: {
-      uint16_t uid_counter = data_ & 0xFFFF;
+      uint16_t uid_counter = data_[0];
+      uid_counter |= (uint16_t)data_[1] << 8;
       AddPayloadOctets2(pkt, base::ByteSwap(uid_counter));
       break;
     }

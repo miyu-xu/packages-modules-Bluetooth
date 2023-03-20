@@ -69,6 +69,11 @@ class RegisterNotificationResponseBuilder : public VendorPacketBuilder {
   MakePlaybackPositionBuilder(bool interim, uint32_t playback_pos);
 
   static std::unique_ptr<RegisterNotificationResponseBuilder>
+  MakePlayerSettingChangedBuilder(bool interim,
+                                  std::vector<PlayerAttribute> attributes,
+                                  std::vector<uint8_t> values);
+
+  static std::unique_ptr<RegisterNotificationResponseBuilder>
   MakeNowPlayingBuilder(bool interim);
 
   static std::unique_ptr<RegisterNotificationResponseBuilder>
@@ -87,7 +92,7 @@ class RegisterNotificationResponseBuilder : public VendorPacketBuilder {
 
  protected:
   Event event_;
-  uint64_t data_;
+  uint8_t data_[9];
 
   RegisterNotificationResponseBuilder(bool interim, Event event)
       : VendorPacketBuilder(interim ? CType::INTERIM : CType::CHANGED,
