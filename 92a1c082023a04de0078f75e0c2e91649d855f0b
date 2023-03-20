@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3aa4f55a_c4fd1e88",
+        "filename": "system/bta/csis/csis_client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1208,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-03-20T12:30:07Z",
+      "side": 1,
+      "message": "let\u0027s print group id",
+      "range": {
+        "startLine": 1208,
+        "startChar": 16,
+        "endLine": 1208,
+        "endChar": 21
+      },
+      "revId": "92a1c082023a04de0078f75e0c2e91649d855f0b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
