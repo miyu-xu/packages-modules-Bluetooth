@@ -75,6 +75,7 @@
 #include "btif_hf.h"
 #include "btif_hh.h"
 #include "btif_keystore.h"
+#include "btif_l2test.h"
 #include "btif_metrics_logging.h"
 #include "btif_pan.h"
 #include "btif_profile_storage.h"
@@ -160,6 +161,8 @@ extern const btrc_ctrl_interface_t* btif_rc_ctrl_get_interface();
 extern const btsdp_interface_t* btif_sdp_get_interface();
 /*Hearing Aid client*/
 extern HearingAidInterface* btif_hearing_aid_get_interface();
+/*L2Cap interface for qualification*/
+extern const btl2test_interface_t* btif_l2cap_test_get_interface();
 #ifndef TARGET_FLOSS
 /* Hearing Access client */
 extern HasClientInterface* btif_has_client_get_interface();
@@ -910,6 +913,9 @@ static const void* get_profile_interface(const char* profile_id) {
     if (is_profile(profile_id, BT_BQR_ID))
       return bluetooth::bqr::getBluetoothQualityReportInterface();
   }
+
+  if (is_profile(profile_id, BT_L2CAP_TEST_ID))
+    return btif_l2cap_test_get_interface();
 
   return NULL;
 }

@@ -60,6 +60,7 @@
 #define BT_PROFILE_LE_AUDIO_ID "le_audio"
 #define BT_PROFILE_LE_AUDIO_BROADCASTER_ID "le_audio_broadcaster"
 #define BT_BQR_ID "bqr"
+#define BT_L2CAP_TEST_ID "l2cap_test"
 
 /** Bluetooth Device Name */
 typedef struct { uint8_t name[249]; } __attribute__((packed)) bt_bdname_t;
