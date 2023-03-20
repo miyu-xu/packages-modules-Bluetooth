@@ -194,6 +194,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "53d8b909_0620734f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-03-20T22:51:59Z",
+      "side": 1,
+      "message": "Isn\u0027t the reason we track the switched user that Bluetooth don\u0027t get shut down at that time?",
+      "parentUuid": "bbfef831_f5988f8c",
+      "range": {
+        "startLine": 9,
+        "startChar": 32,
+        "endLine": 9,
+        "endChar": 49
+      },
+      "revId": "89cb1e3225db8707adffa608ad824f1b35d45a46",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "eecec336_87b5425c",
         "filename": "android/app/src/com/android/bluetooth/Utils.java",
         "patchSetId": 4
