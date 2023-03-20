@@ -72,6 +72,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c26e86f6_853b4060",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1985170
+      },
+      "writtenOn": "2023-03-20T17:15:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "53d9edbb_662ca146",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 75
+      },
+      "revId": "5722dc956f008dc7216d5b34a1acf826968d4e5b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3bfed1e7_ae040d88",
@@ -143,6 +167,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6e3e9cf2_0130a63d",
+        "filename": "android/app/src/com/android/bluetooth/avrcpcontroller/AvrcpControllerStateMachine.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 506,
+      "author": {
+        "id": 1985170
+      },
+      "writtenOn": "2023-03-20T17:15:12Z",
+      "side": 1,
+      "message": "In 1st patch. the media session wasn\u0027t associated with audio focus. In 2nd patch, it\u0027s tied down with audio focus",
+      "parentUuid": "0bdbba29_1d994629",
+      "range": {
+        "startLine": 506,
+        "startChar": 28,
+        "endLine": 506,
+        "endChar": 73
+      },
+      "revId": "5722dc956f008dc7216d5b34a1acf826968d4e5b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e932be6a_f5101117",
@@ -156,6 +204,30 @@
       "writtenOn": "2023-03-14T23:09:25Z",
       "side": 1,
       "message": "nit: It might be nice to add active status to dump() as well.",
+      "range": {
+        "startLine": 357,
+        "startChar": 37,
+        "endLine": 357,
+        "endChar": 44
+      },
+      "revId": "5722dc956f008dc7216d5b34a1acf826968d4e5b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d22b5b3d_088e0831",
+        "filename": "android/app/src/com/android/bluetooth/avrcpcontroller/BluetoothMediaBrowserService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 357,
+      "author": {
+        "id": 1985170
+      },
+      "writtenOn": "2023-03-20T17:15:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e932be6a_f5101117",
       "range": {
         "startLine": 357,
         "startChar": 37,
@@ -213,6 +285,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "709ef698_2c0267b5",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/a2dpsink/A2dpSinkStreamHandlerTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1985170
+      },
+      "writtenOn": "2023-03-20T17:15:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5ad11609_25cefa4b",
+      "range": {
+        "startLine": 74,
+        "startChar": 35,
+        "endLine": 74,
+        "endChar": 59
+      },
+      "revId": "5722dc956f008dc7216d5b34a1acf826968d4e5b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d6dab6f3_2f4d1c28",
@@ -236,6 +332,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "681819ac_38b8c077",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/avrcpcontroller/AvrcpControllerServiceTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 302,
+      "author": {
+        "id": 1985170
+      },
+      "writtenOn": "2023-03-20T17:15:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d6dab6f3_2f4d1c28",
+      "range": {
+        "startLine": 302,
+        "startChar": 15,
+        "endLine": 302,
+        "endChar": 26
+      },
+      "revId": "5722dc956f008dc7216d5b34a1acf826968d4e5b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3983caed_79e6ebdf",
@@ -249,6 +369,30 @@
       "writtenOn": "2023-03-14T23:09:25Z",
       "side": 1,
       "message": "This one is a harder ask since so much of the code doesn\u0027t do it, but consider use go/truth instead for these new lines. We can clean up the rest some other time.",
+      "range": {
+        "startLine": 1380,
+        "startChar": 8,
+        "endLine": 1380,
+        "endChar": 67
+      },
+      "revId": "5722dc956f008dc7216d5b34a1acf826968d4e5b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a055be8a_190e6ee2",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/avrcpcontroller/AvrcpControllerStateMachineTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1380,
+      "author": {
+        "id": 1985170
+      },
+      "writtenOn": "2023-03-20T17:15:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3983caed_79e6ebdf",
       "range": {
         "startLine": 1380,
         "startChar": 8,
