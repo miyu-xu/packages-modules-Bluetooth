@@ -52,6 +52,11 @@
 
 #define L2CAP_FCS_LENGTH 2
 
+/* ping result codes */
+#define L2CAP_PING_RESULT_OK 0      /* Ping reply received OK     */
+#define L2CAP_PING_RESULT_NO_LINK 1 /* Link could not be setup    */
+#define L2CAP_PING_RESULT_NO_RESP 2 /* Remote L2CAP did not reply */
+
 /* result code for L2CA_DataWrite() */
 #define L2CAP_DW_FAILED false
 #define L2CAP_DW_SUCCESS true
@@ -253,6 +258,17 @@ typedef void(tL2CA_DISCONNECT_CFM_CB)(uint16_t, uint16_t);
  *              Result
  */
 typedef void(tL2CA_DATA_IND_CB)(uint16_t, BT_HDR*);
+
+/* Echo response callback prototype. Note that this is not included in the
+ * registration information, but is passed to L2CAP as part of the API to
+ * actually send an echo request. Parameters are
+ *              Result
+ */
+typedef void(tL2CA_ECHO_RSP_CB)(uint16_t);
+
+/* Callback function prototype to pass broadcom specific echo response  */
+/* to the upper layer                                                   */
+typedef void(tL2CA_ECHO_DATA_CB)(const RawAddress&, uint16_t, uint8_t*);
 
 /* Congestion status callback protype. This callback is optional. If
  * an application tries to send data when the transmit queue is full,
