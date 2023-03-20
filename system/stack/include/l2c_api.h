@@ -254,6 +254,17 @@ typedef void(tL2CA_DISCONNECT_CFM_CB)(uint16_t, uint16_t);
  */
 typedef void(tL2CA_DATA_IND_CB)(uint16_t, BT_HDR*);
 
+/* Echo response callback prototype. Note that this is not included in the
+ * registration information, but is passed to L2CAP as part of the API to
+ * actually send an echo request. Parameters are
+ *              Result
+ */
+typedef void(tL2CA_ECHO_RSP_CB)(uint16_t);
+
+/* Callback function prototype to pass broadcom specific echo response  */
+/* to the upper layer                                                   */
+typedef void(tL2CA_ECHO_DATA_CB)(const RawAddress&, uint16_t, uint8_t*);
+
 /* Congestion status callback protype. This callback is optional. If
  * an application tries to send data when the transmit queue is full,
  * the data will anyways be dropped. The parameter is:
