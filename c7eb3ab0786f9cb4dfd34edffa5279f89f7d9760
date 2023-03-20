@@ -39,6 +39,30 @@
       },
       "revId": "c7eb3ab0786f9cb4dfd34edffa5279f89f7d9760",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "429bcb37_ca24c321",
+        "filename": "android/app/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachine.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 2281,
+      "author": {
+        "id": 1985260
+      },
+      "writtenOn": "2023-03-20T05:23:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "782776dc_92e2740c",
+      "range": {
+        "startLine": 2280,
+        "startChar": 12,
+        "endLine": 2281,
+        "endChar": 73
+      },
+      "revId": "c7eb3ab0786f9cb4dfd34edffa5279f89f7d9760",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
