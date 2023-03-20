@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7a4c99c0_d7bd8f43",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-03-20T20:41:54Z",
+      "side": 1,
+      "message": "nit: requiring",
+      "range": {
+        "startLine": 10,
+        "startChar": 45,
+        "endLine": 10,
+        "endChar": 50
+      },
+      "revId": "928608602f241167170a3d70ed9bde95a2582ef5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
