@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6bc3e6c5_16bc1c4e",
+        "filename": "framework/java/android/bluetooth/BluetoothServerSocket.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-03-20T21:06:19Z",
+      "side": 1,
+      "message": "If there\u0027s something wrong in the metrics logging function, it has nothing to do with connection time. I would have no problem if you wanted to add metrics for how long the metrics logging takes, but if we are logging connection time, we should mark the end of it when we are done trying to connect.",
+      "parentUuid": "422fe6ce_b0081b7c",
+      "revId": "9c0b16399bfcef433204df795377dd6755c8fa87",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "56c37fc5_6e2d3686",
         "filename": "framework/java/android/bluetooth/BluetoothSocket.java",
         "patchSetId": 3
