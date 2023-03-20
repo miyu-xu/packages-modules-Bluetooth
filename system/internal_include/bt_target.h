@@ -957,6 +957,9 @@
  * AVRCP
  *
  *****************************************************************************/
+#ifndef AVRC_QTI_V1_3_OPTIONAL_FEAT
+#define AVRC_QTI_V1_3_OPTIONAL_FEAT TRUE
+#endif
 
 #ifndef DUMP_PCM_DATA
 #define DUMP_PCM_DATA FALSE
