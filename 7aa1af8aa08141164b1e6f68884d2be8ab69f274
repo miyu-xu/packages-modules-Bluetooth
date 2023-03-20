@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f4dd0ac1_e57482ea",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-03-20T20:42:47Z",
+      "side": 1,
+      "message": "NotifyAboutGroupTunrnedIdleEnabled  is now failing with this error message:\n\n```\n[0320/144759.093512:ERROR:message_loop_thread.cc(103)] DoInThreadDelayed: message loop is null for thread test message loop(-1), from pc:0x5a7615815a95\n[0320/144759.093574:ERROR:le_audio_client_test.cc(108)] do_in_main_thread: failed from pc:0x5a7615815a95\n```",
+      "revId": "7aa1af8aa08141164b1e6f68884d2be8ab69f274",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
