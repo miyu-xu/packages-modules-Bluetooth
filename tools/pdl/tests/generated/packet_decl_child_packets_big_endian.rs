@@ -1,18 +1,15 @@
-// @generated rust packets from test
-
+#![rustfmt::skip]
 use bytes::{Buf, BufMut, Bytes, BytesMut};
-use std::cell::Cell;
 use std::convert::{TryFrom, TryInto};
+use std::cell::Cell;
 use std::fmt;
 use std::sync::Arc;
 use thiserror::Error;
-
 type Result<T> = std::result::Result<T, Error>;
-
-#[doc = r" Private prevents users from creating arbitrary scalar values"]
-#[doc = r" in situations where the value needs to be validated."]
-#[doc = r" Users can freely deref the value, but only the backend"]
-#[doc = r" may create it."]
+/// Private prevents users from creating arbitrary scalar values
+/// in situations where the value needs to be validated.
+/// Users can freely deref the value, but only the backend
+/// may create it.
 #[derive(Debug, Clone, Copy, Hash, PartialEq, Eq, PartialOrd, Ord)]
 pub struct Private<T>(T);
 impl<T> std::ops::Deref for Private<T> {
@@ -21,7 +18,6 @@ impl<T> std::ops::Deref for Private<T> {
         &self.0
     }
 }
-
 #[derive(Debug, Error)]
 pub enum Error {
     #[error("Packet parsing failed")]
@@ -32,23 +28,22 @@ pub enum Error {
     InvalidFixedValue { expected: u64, actual: u64 },
     #[error("when parsing {obj} needed length of {wanted} but got {got}")]
     InvalidLengthError { obj: String, wanted: usize, got: usize },
-    #[error("array size ({array} bytes) is not a multiple of the element size ({element} bytes)")]
+    #[error(
+        "array size ({array} bytes) is not a multiple of the element size ({element} bytes)"
+    )]
     InvalidArraySize { array: usize, element: usize },
     #[error("Due to size restrictions a struct could not be parsed.")]
     ImpossibleStructError,
     #[error("when parsing field {obj}.{field}, {value} is not a valid {type_} value")]
     InvalidEnumValueError { obj: String, field: String, value: u64, type_: String },
 }
-
 #[derive(Debug, Error)]
 #[error("{0}")]
 pub struct TryFromError(&'static str);
-
 pub trait Packet {
     fn to_bytes(self) -> Bytes;
     fn to_vec(self) -> Vec<u8>;
 }
-
 #[derive(Debug, Clone, Copy, Hash, Eq, PartialEq)]
 #[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 #[cfg_attr(feature = "serde", serde(try_from = "u16", into = "u16"))]
@@ -99,7 +94,6 @@ impl From<Enum16> for u64 {
         u16::from(value) as Self
     }
 }
-
 #[derive(Debug, Clone, PartialEq, Eq)]
 #[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 pub enum FooDataChild {
@@ -200,7 +194,9 @@ impl FooData {
                 let child_data = BazData::parse_inner(&mut cell)?;
                 FooDataChild::Baz(Arc::new(child_data))
             }
-            _ if !payload.is_empty() => FooDataChild::Payload(Bytes::copy_from_slice(payload)),
+            _ if !payload.is_empty() => {
+                FooDataChild::Payload(Bytes::copy_from_slice(payload))
+            }
             _ => FooDataChild::None,
         };
         Ok(Self { a, b, child })
@@ -210,11 +206,8 @@ impl FooData {
         buffer.put_u16(u16::from(self.b));
         if self.child.get_total_size() > 0xff {
             panic!(
-                "Invalid length for {}::{}: {} > {}",
-                "Foo",
-                "_payload_",
-                self.child.get_total_size(),
-                0xff
+                "Invalid length for {}::{}: {} > {}", "Foo", "_payload_", self.child
+                .get_total_size(), 0xff
             );
         }
         buffer.put_u8(self.child.get_total_size() as u8);
@@ -304,7 +297,6 @@ impl From<FooBuilder> for Foo {
         builder.build().into()
     }
 }
-
 #[derive(Debug, Clone, PartialEq, Eq)]
 #[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 pub struct BarData {
@@ -421,7 +413,11 @@ impl Bar {
 impl BarBuilder {
     pub fn build(self) -> Bar {
         let bar = Arc::new(BarData { x: self.x });
-        let foo = Arc::new(FooData { a: 100, b: self.b, child: FooDataChild::Bar(bar) });
+        let foo = Arc::new(FooData {
+            a: 100,
+            b: self.b,
+            child: FooDataChild::Bar(bar),
+        });
         Bar::new(foo).unwrap()
     }
 }
@@ -435,7 +431,6 @@ impl From<BarBuilder> for Bar {
         builder.build().into()
     }
 }
-
 #[derive(Debug, Clone, PartialEq, Eq)]
 #[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 pub struct BazData {
@@ -552,7 +547,11 @@ impl Baz {
 impl BazBuilder {
     pub fn build(self) -> Baz {
         let baz = Arc::new(BazData { y: self.y });
-        let foo = Arc::new(FooData { a: self.a, b: Enum16::B, child: FooDataChild::Baz(baz) });
+        let foo = Arc::new(FooData {
+            a: self.a,
+            b: Enum16::B,
+            child: FooDataChild::Baz(baz),
+        });
         Baz::new(foo).unwrap()
     }
 }
