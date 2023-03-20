@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6a7fddd0_e36297a7",
+        "filename": "android/pandora/test/le_advertising_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1937985
+      },
+      "writtenOn": "2023-03-20T18:27:29Z",
+      "side": 1,
+      "message": "I guess using `dict` in `parameterized` is fine, but please change this to `Dict` to support earlier versions of python",
+      "range": {
+        "startLine": 152,
+        "startChar": 60,
+        "endLine": 152,
+        "endChar": 64
+      },
+      "revId": "1b9aa17d87c78aeb2e47809755df117b671f5bbe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
