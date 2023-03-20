@@ -246,10 +246,12 @@ impl PartialEq for Tag {
     fn eq(&self, other: &Self) -> bool {
         // Implement structual equality, leave out loc.
         match (self, other) {
-            (Tag::Value { id, value, .. }, Tag::Value { id: other_id, value: other_value, .. }) =>
-                id == other_id && value == other_value,
-            (Tag::Range { id, range, .. }, Tag::Range { id: other_id, range: other_range, .. }) =>
-                id == other_id && range == other_range,
+            (Tag::Value { id, value, .. }, Tag::Value { id: other_id, value: other_value, .. }) => {
+                id == other_id && value == other_value
+            }
+            (Tag::Range { id, range, .. }, Tag::Range { id: other_id, range: other_range, .. }) => {
+                id == other_id && range == other_range
+            }
             _ => false,
         }
     }
