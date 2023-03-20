@@ -16,6 +16,24 @@
       "message": "This patch will let GAP/BOND/NBON/BV-01-C, GAP/BOND/NBON/BV-02-C, GAP/BOND/NBON/BV-03-C pass in floss. \n\nAlthough I\u0027m not able test in pandora now but I believe it also work if any app has equivelent code of ssp_reply wiring and gatt client. https://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/system/gd/rust/linux/stack/src/bluetooth.rs?q\u003dset_pairing_confirmation",
       "revId": "dc904307a57a28361e08a5080ca935890a0f56f9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a1968b3f_c387cb61",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-03-20T09:34:44Z",
+      "side": 1,
+      "message": "Why can\u0027t we test this in pandora ? Can you sync with pandora team to help upstream the appropriate test ?",
+      "parentUuid": "3374b5bf_5e467df9",
+      "revId": "dc904307a57a28361e08a5080ca935890a0f56f9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
