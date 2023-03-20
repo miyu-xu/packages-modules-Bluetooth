@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3483b308_4b3ee432",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2023-03-20T10:13:45Z",
+      "side": 1,
+      "message": "To reviewers:\n\npatchset #1 is the raw revert and apply both changes when conflict\npatchset #2 is with some necessary changes because of other common functions changed.",
+      "revId": "e7bb5901b46409eea16123eb0ee9764ae03d8125",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
