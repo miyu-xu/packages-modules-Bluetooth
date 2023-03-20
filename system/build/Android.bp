@@ -114,10 +114,7 @@ cc_defaults {
         },
     },
     defaults: ["fluoride_types_defaults_fuzzable"],
-    header_libs: [
-        "libbluetooth_headers",
-        "libbt_callbacks_cxx_headers",
-    ],
+    header_libs: ["libbluetooth_headers"],
     generated_headers: [
         "cxx-bridge-header",
         "libbt_message_loop_thread_bridge_header",
@@ -128,7 +125,6 @@ cc_defaults {
         "libbluetooth-types",
         "libbluetooth_rust_interop",
         "libbt-platform-protos-lite",
-        "libbt_callbacks_cxx",
         "libbt_shim_bridge",
         "libbt_shim_ffi",
     ],
@@ -199,6 +195,10 @@ cc_defaults {
         "libbluetooth-types",
         "libbluetooth_gd",
         "libbluetooth_rust_interop",
+<<<<<<< HEAD
+=======
+        "libbluetooth-types",
+>>>>>>> 8caf46be08 (Unplug gd rust)
         "libbt-platform-protos-lite",
         "libbt-protos-lite",
         "libbt-sbc-decoder",
@@ -284,7 +284,11 @@ cc_defaults {
     static_libs: [
         "libbluetooth_gd",
         "libbluetooth_rust_interop",
+<<<<<<< HEAD
         "libbt_callbacks_cxx",
+=======
+        "libbt_shim_ffi",
+>>>>>>> 8caf46be08 (Unplug gd rust)
         "libbt_shim_bridge",
         "libbt_shim_ffi",
         "libbt_shim_ffi",
