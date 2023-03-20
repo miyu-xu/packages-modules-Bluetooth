@@ -32,7 +32,6 @@ table InitFlagsData {
     gd_l2cap_is_enabled:bool (privacy:"Any");
     gd_link_policy_is_enabled:bool (privacy:"Any");
     gd_remote_name_request_is_enabled:bool (privacy:"Any");
-    gd_rust_is_enabled:bool (privacy:"Any");
     gd_security_is_enabled:bool (privacy:"Any");
     get_default_log_level:int (privacy:"Any");
     get_hci_adapter:int (privacy:"Any");
