@@ -22,6 +22,30 @@
       },
       "revId": "1b9aa17d87c78aeb2e47809755df117b671f5bbe",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ea461069_46b1d381",
+        "filename": "android/pandora/test/le_advertising_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-03-20T18:55:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6a7fddd0_e36297a7",
+      "range": {
+        "startLine": 152,
+        "startChar": 60,
+        "endLine": 152,
+        "endChar": 64
+      },
+      "revId": "1b9aa17d87c78aeb2e47809755df117b671f5bbe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
