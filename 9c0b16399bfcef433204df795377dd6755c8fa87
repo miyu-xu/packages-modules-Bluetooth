@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "422fe6ce_b0081b7c",
+        "filename": "framework/java/android/bluetooth/BluetoothServerSocket.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 1581454
+      },
+      "writtenOn": "2023-03-20T19:10:10Z",
+      "side": 1,
+      "message": "Shall we catch as late as possible? In case something inside metrics logging function is wrong and it increases the latency, we also want to catch it.",
+      "parentUuid": "4da02304_74790af9",
+      "revId": "9c0b16399bfcef433204df795377dd6755c8fa87",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "56c37fc5_6e2d3686",
         "filename": "framework/java/android/bluetooth/BluetoothSocket.java",
         "patchSetId": 3
