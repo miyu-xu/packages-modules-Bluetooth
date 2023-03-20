@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6629a8e0_71ce5b15",
+        "filename": "system/bta/ar/bta_ar.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-03-20T11:01:56Z",
+      "side": 1,
+      "message": "@aritrasen@google.com\nIn other similar [scenario](https://cs.android.com/search?q\u003dSDP_AddAttribute%20-f:mock%20-f:test%20%22temp%5B8%5D%22\u0026sq\u003d) this is also `temp[8]`.\nWhy so big ? should it be `temp[sizeof(unit16)]` since temp will only contain a uint16\n\nand when calling `SDP_AddAttribute` below, should we replace the  `2` with `sizeof(temp)` (if temp is defined with the correct size)",
+      "range": {
+        "startLine": 55,
+        "startChar": 15,
+        "endLine": 55,
+        "endChar": 16
+      },
+      "revId": "e9a660fb36fe105065cd184b46cceee9fef2e1ba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "40cf669e_f50e9906",
         "filename": "system/bta/ar/bta_ar.cc",
         "patchSetId": 4
@@ -14,6 +37,30 @@
       "writtenOn": "2023-03-19T04:23:49Z",
       "side": 1,
       "message": "I am curious why this is being done this way. I have seen UINT16_TO_BE_STREAM being used multiple places in our code bases and I don\u0027t see any reason why we cant use temp(the uint_8 pointer) directly but instead have to rely on copying it.",
+      "range": {
+        "startLine": 58,
+        "startChar": 0,
+        "endLine": 58,
+        "endChar": 13
+      },
+      "revId": "e9a660fb36fe105065cd184b46cceee9fef2e1ba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "80b426fe_2db7379e",
+        "filename": "system/bta/ar/bta_ar.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-03-20T11:01:56Z",
+      "side": 1,
+      "message": "It is done like this in similar [scenario](https://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/system/bta/ar/bta_ar.cc;l\u003d191;drc\u003d2a9d9f2de4f7ec791933093069890067a457afb0).\n\nBecause `p` will be moved in the [macro](https://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/system/stack/include/bt_types.h;l\u003d267;drc\u003d26648d40731a2c8dcb2174ccfb1263600d429b3f).\n\nIf you do `temp++` you will later have an issue when passing the variable to `SDP_AddAttribute`.\n\nBut that make me raise another concern about the size of temp.",
+      "parentUuid": "40cf669e_f50e9906",
       "range": {
         "startLine": 58,
         "startChar": 0,
@@ -430,6 +477,30 @@
       "writtenOn": "2023-03-19T04:23:49Z",
       "side": 1,
       "message": "A cleaner way to write this might just be --\n\nif (is_enabled()) { \n     p_scb \u003d bta_av_find_scb(registr.chnl, registr.app_id);\n}\nif(p_scb \u003d\u003d nullptr) {\n     p_scb \u003d bta_av_alloc_scb(registr.chnl);\n}",
+      "range": {
+        "startLine": 507,
+        "startChar": 6,
+        "endLine": 511,
+        "endChar": 5
+      },
+      "revId": "e9a660fb36fe105065cd184b46cceee9fef2e1ba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a9267ab9_8bcc1f9d",
+        "filename": "system/bta/av/bta_av_main.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 511,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-03-20T11:01:56Z",
+      "side": 1,
+      "message": "Your snippet miss the initialisation.\nIf it `is_enabled()` is false, `p_scb` is not initialized (AKA we cannot check if it is null or not)\nA complete code could be\n```\np_scb \u003d nullptr;\nif (is_enabled()) {\n  p_scb \u003d bta_av_find_scb(registr.chnl, registr.app_id);\n}\nif (p_scb \u003d\u003d nullptr) {\n  p_scb \u003d bta_av_alloc_scb(registr.chnl);\n}\n```",
+      "parentUuid": "34373938_a30d29e5",
       "range": {
         "startLine": 507,
         "startChar": 6,
