@@ -85,7 +85,6 @@ cc_binary {
         "libbt-audio-hal-interface",
         "libbt-bta",
         "libbt-bta-core",
-        "libbt_callbacks_cxx",
         "libbt-common",
         "libbtdevice",
         "libbte",

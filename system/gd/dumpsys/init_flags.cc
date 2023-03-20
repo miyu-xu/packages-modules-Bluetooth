@@ -62,7 +62,6 @@ flatbuffers::Offset<bluetooth::common::InitFlagsData> bluetooth::dumpsys::InitFl
   builder.add_gd_l2cap_is_enabled(initFlags::gd_l2cap_is_enabled());
   builder.add_gd_link_policy_is_enabled(initFlags::gd_link_policy_is_enabled());
   builder.add_gd_remote_name_request_is_enabled(initFlags::gd_remote_name_request_is_enabled());
-  builder.add_gd_rust_is_enabled(initFlags::gd_rust_is_enabled());
   builder.add_gd_security_is_enabled(initFlags::gd_security_is_enabled());
   builder.add_get_hci_adapter(initFlags::get_hci_adapter());
   builder.add_hfp_dynamic_version_is_enabled(initFlags::hfp_dynamic_version_is_enabled());

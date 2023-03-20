@@ -213,7 +213,6 @@ cc_defaults {
         "libbluetooth-protos",
         "libbluetooth_rust_interop",
         "libbt-platform-protos-lite",
-        "libbt_callbacks_cxx",
         "libbt_shim_bridge",
         "libbt_shim_ffi",
     ],
@@ -302,7 +301,6 @@ cc_binary {
         "libbluetooth_gd",
         "libflatbuffers-cpp",
         "libbluetooth_rust_interop",
-        "libbt_callbacks_cxx",
         "libbt_shim_bridge",
         "libbt_shim_ffi",
     ],
@@ -424,10 +422,9 @@ cc_test {
         "libflatbuffers-cpp",
         "libgmock",
         "libbluetooth_rust_interop",
-        "libbt_callbacks_cxx",
         "libbt_shim_bridge",
         "libbt_shim_ffi",
-        "libbt-platform-protos-lite"
+        "libbt-platform-protos-lite",
     ],
     shared_libs: [
         "libcrypto",
@@ -467,7 +464,6 @@ cc_test {
     },
     static_libs: [
         "libbluetooth_rust_interop",
-        "libbt_callbacks_cxx",
         "libbt_shim_bridge",
         "libbt_shim_ffi",
     ],
@@ -508,7 +504,6 @@ cc_defaults {
         "libgmock",
         "libgtest",
         "libbluetooth_rust_interop",
-        "libbt_callbacks_cxx",
         "libbt_shim_bridge",
         "libbt_shim_ffi",
     ],
