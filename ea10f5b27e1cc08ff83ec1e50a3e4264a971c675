@@ -87,6 +87,24 @@
       "parentUuid": "cbe95610_6c3c34d8",
       "revId": "ea10f5b27e1cc08ff83ec1e50a3e4264a971c675",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d351a24d_9742e7c9",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1363,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-03-20T08:49:25Z",
+      "side": 1,
+      "message": "I don\u0027t really need more graceful disconnect. This problem came from bug that is referenced in Commit message. From my perspective this is just a additional clean up that disconnects not previously disconnected CIS and change it\u0027s data path state - just a clean up CL. If this is not needed we may just leave this part as is and abandon this CL.",
+      "parentUuid": "e7ba77f4_37846e7b",
+      "revId": "ea10f5b27e1cc08ff83ec1e50a3e4264a971c675",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
