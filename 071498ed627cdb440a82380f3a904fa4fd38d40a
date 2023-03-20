@@ -279,6 +279,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "147bdc9d_35255201",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1626,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-03-20T11:23:43Z",
+      "side": 1,
+      "message": "LOG_XXXX are logging `__func__` and not `__PRETTY_FUNCTION__`.\nI am guessing this was done on purpose in order to have the class in the log (Sink or Source).\nIf we remove the pretty, we may want to change a bit the log to know which func is it.",
+      "parentUuid": "95186f9a_d24dde6c",
+      "range": {
+        "startLine": 1626,
+        "startChar": 11,
+        "endLine": 1626,
+        "endChar": 30
+      },
+      "revId": "071498ed627cdb440a82380f3a904fa4fd38d40a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "34cb7fe3_642c3f9b",
         "filename": "system/btif/src/btif_av.cc",
         "patchSetId": 4
@@ -290,6 +314,30 @@
       "writtenOn": "2023-03-19T05:17:00Z",
       "side": 1,
       "message": "Can we write this as \nreturn connected \u003c max_connected_peers_ \u0026\u0026 !btif_av_source.Peers().empty()",
+      "range": {
+        "startLine": 1629,
+        "startChar": 4,
+        "endLine": 1633,
+        "endChar": 5
+      },
+      "revId": "071498ed627cdb440a82380f3a904fa4fd38d40a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "beda330b_e464fbe7",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1633,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-03-20T11:23:43Z",
+      "side": 1,
+      "message": "Do you mean \n```\nreturn connected \u003c max_connected_peers_ \u0026\u0026 btif_av_source.Peers().empty();\n```",
+      "parentUuid": "34cb7fe3_642c3f9b",
       "range": {
         "startLine": 1629,
         "startChar": 4,
