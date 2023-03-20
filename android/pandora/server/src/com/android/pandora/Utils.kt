@@ -27,6 +27,7 @@ import android.content.IntentFilter
 import android.media.*
 import android.net.MacAddress
 import android.os.ParcelFileDescriptor
+import android.os.ParcelUuid
 import android.util.Log
 import androidx.test.platform.app.InstrumentationRegistry
 import com.google.protobuf.Any
@@ -326,6 +327,16 @@ fun BluetoothDevice.toConnection(transport: Int): Connection {
   val cookie = Any.newBuilder().setValue(internal_connection_ref.toByteString()).build()
 
   return Connection.newBuilder().setCookie(cookie).build()
+}
+
+fun ParcelUuid.fromUuid16(uuid16: String): ParcelUuid {
+  assert(uuid16.length == 4)
+  ParcelUuid.fromString("0000${this}-0000-1000-8000-00805F9B34FB")
+}
+
+fun ParcelUuid.fromUuid32(uuid32: String): ParcelUuid {
+  assert(uuid32.length == 8)
+  ParcelUuid.fromString("${this}-0000-1000-8000-00805F9B34FB")
 }
 
 /** Creates Audio track instance and returns the reference. */
