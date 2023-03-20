@@ -34,10 +34,6 @@ static_library("profile_avrcp") {
     "device.cc",
   ]
 
-  deps = [
-    "//bt/system/gd/rust/shim:message_loop_thread_bridge_header",
-  ]
-
   configs += [
     ":avrcp_config"
   ]
