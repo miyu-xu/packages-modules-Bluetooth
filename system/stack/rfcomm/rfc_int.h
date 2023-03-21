@@ -50,6 +50,13 @@
 #define RFCOMM_MIN_MTU 23
 #define RFCOMM_MAX_MTU 32767
 
+/*
+ * Define RFCOMM collision system property and
+ * default timeout value.
+ */
+#define RFCOMM_COLLISION_TIMEOUT_PROPERTY "bluetooth.rfcomm.collision.timeout"
+#define RFCOMM_COLLISION_DEFAULT_TIMEOUT 3
+
 extern void RFCOMM_StartReq(tRFC_MCB* p_mcb);
 extern void RFCOMM_StartRsp(tRFC_MCB* p_mcb, uint16_t result);
 
