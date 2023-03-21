@@ -22,6 +22,30 @@
       },
       "revId": "5d0b7e72c37d46c04287933c45b9aad0577d1f4f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ae4bce2a_e6b9fd88",
+        "filename": "android/app/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachine.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 888,
+      "author": {
+        "id": 1930335
+      },
+      "writtenOn": "2023-03-21T15:17:04Z",
+      "side": 1,
+      "message": "Resolved. Please keep it is persistent or correct settings when a device boots up.",
+      "parentUuid": "300ec97a_92982f6b",
+      "range": {
+        "startLine": 888,
+        "startChar": 13,
+        "endLine": 888,
+        "endChar": 16
+      },
+      "revId": "5d0b7e72c37d46c04287933c45b9aad0577d1f4f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
