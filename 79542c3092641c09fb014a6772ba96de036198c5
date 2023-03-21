@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1191bf07_13505f93",
+        "filename": "system/rust/src/gatt/server/services/gatt.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-03-21T20:01:55Z",
+      "side": 1,
+      "message": "test_unsubscribe?",
+      "range": {
+        "startLine": 186,
+        "startChar": 16,
+        "endLine": 186,
+        "endChar": 17
+      },
+      "revId": "79542c3092641c09fb014a6772ba96de036198c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
