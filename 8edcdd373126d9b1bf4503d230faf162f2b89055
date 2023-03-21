@@ -16,6 +16,24 @@
       "message": "Is it possible to add a test for this?",
       "revId": "8edcdd373126d9b1bf4503d230faf162f2b89055",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9955630b_890d838a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2023-03-21T07:38:10Z",
+      "side": 1,
+      "message": "I looked into it, and seems like adding a test will take some time. Would it be okay to add in a later CL?",
+      "parentUuid": "8bfd5dc7_29df44d2",
+      "revId": "8edcdd373126d9b1bf4503d230faf162f2b89055",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
