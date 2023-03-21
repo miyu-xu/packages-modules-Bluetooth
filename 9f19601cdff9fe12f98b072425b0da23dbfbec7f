@@ -50,6 +50,24 @@
       "message": "This needs to be called regardless of mCallbackExecutorMap, otherwise if there will be empty mCallbackExecutorMap ServiceConnected will be never called.",
       "revId": "9f19601cdff9fe12f98b072425b0da23dbfbec7f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e4d3785c_1a484eb4",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudio.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-03-21T10:12:00Z",
+      "side": 1,
+      "message": "nice catch - seems same issue is in other profiles as well.",
+      "parentUuid": "b67c7291_214b54ed",
+      "revId": "9f19601cdff9fe12f98b072425b0da23dbfbec7f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
