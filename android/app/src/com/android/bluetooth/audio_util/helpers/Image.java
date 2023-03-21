@@ -265,4 +265,13 @@ public class Image {
     public String toString() {
         return "<Image source=" + mSource + ">";
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null) return false;
+        if (!(o instanceof Image)) return false;
+        if (!(mSource == ((Image) o).getSource())) return false;
+
+        return true;
+    }
 }
