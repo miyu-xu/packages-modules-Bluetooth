@@ -22,6 +22,30 @@
       },
       "revId": "7e6474d2e19bae30bd8da862595aa1f9e4f3fc2f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1aab101e_162b6bf0",
+        "filename": "android/app/src/com/android/bluetooth/a2dp/A2dpCodecConfig.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-03-21T23:13:40Z",
+      "side": 1,
+      "message": "+1 You are perfectly right.\n\nCan you change the property name to be more consistent with already existing config ? (bluetooth.a2dp.source.xxx)\n```\nbluetooth.a2dp.source.sbc_priority.config\nbluetooth.a2dp.source.aac_priority.config\nbluetooth.a2dp.source.aptx_priority.config\nbluetooth.a2dp.source.ldac_priority.config\n```",
+      "parentUuid": "16b42d05_c22f24dd",
+      "range": {
+        "startLine": 194,
+        "startChar": 58,
+        "endLine": 194,
+        "endChar": 61
+      },
+      "revId": "7e6474d2e19bae30bd8da862595aa1f9e4f3fc2f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
