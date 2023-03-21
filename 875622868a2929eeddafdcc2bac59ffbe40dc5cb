@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "58e9a79c_9eac5a5c",
+        "filename": "system/stack/acl/btm_acl.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 2404,
+      "author": {
+        "id": 1930335
+      },
+      "writtenOn": "2023-03-21T15:27:50Z",
+      "side": 1,
+      "message": "no public_adv_brodcasting in AOSP so we might sync another patch",
+      "range": {
+        "startLine": 2404,
+        "startChar": 54,
+        "endLine": 2404,
+        "endChar": 76
+      },
+      "revId": "875622868a2929eeddafdcc2bac59ffbe40dc5cb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
