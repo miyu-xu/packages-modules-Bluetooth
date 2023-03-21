@@ -16,6 +16,24 @@
       "message": "This leads to setting 0xFFFFFFFF ?",
       "revId": "1445d3acf7a548c63124b0f02aa022937c3e783f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "685fcd84_4851332c",
+        "filename": "android/app/src/com/android/bluetooth/mcp/MediaControlGattService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1329,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-03-21T16:11:15Z",
+      "side": 1,
+      "message": "no. it will update media state.\nduration is handled somewhere above. we just removed here a code which is setting player as inactive based on the duration.",
+      "parentUuid": "8a187d73_b3aee577",
+      "revId": "1445d3acf7a548c63124b0f02aa022937c3e783f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
