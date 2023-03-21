@@ -43,8 +43,8 @@ import java.util.HashMap;
  */
 public class MetricsLogger {
     private static final String TAG = "BluetoothMetricsLogger";
-    private static final String BLOOMFILTER_PATH = "/data/misc/bluetooth/metrics";
-    private static final String BLOOMFILTER_FILE = "/devices";
+    private static final String BLOOMFILTER_PATH = "/data/misc/bluetooth";
+    private static final String BLOOMFILTER_FILE = "/devices_for_metrics";
     public static final String BLOOMFILTER_FULL_PATH = BLOOMFILTER_PATH + BLOOMFILTER_FILE;
 
     public static final boolean DEBUG = false;
@@ -113,7 +113,18 @@ public class MetricsLogger {
             mBloomFilter = BloomFilter.readFrom(in, Funnels.byteArrayFunnel());
             mBloomFilterInitialized = true;
         } catch (IOException e) {
-            Log.w(TAG, "MetricsLogger can't read the BloomFilter file");
+            Log.w(TAG, "MetricsLogger can't read the BloomFilter file.");
+            byte[] bloomfilterData = DeviceBloomfilterGenerator.hexStringToByteArray(
+                    DeviceBloomfilterGenerator.BLOOM_FILTER_DEFAULT);
+            try {
+                mBloomFilter = BloomFilter.readFrom(
+                        new ByteArrayInputStream(bloomfilterData), Funnels.byteArrayFunnel()));
+                mBloomFilterInitialized = true;
+                Log.i(TAG, "The default bloomfilter is used");
+                return true;
+            } catch (IOException e) {
+                Log.w(TAG, "The default bloomfilter can't be used.");
+            }
             return false;
         }
         return true;
