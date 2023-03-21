@@ -45,6 +45,30 @@
       },
       "revId": "e591b258c715d0150d3a1bd722edd20fc98b9171",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1b10ed53_fa208330",
+        "filename": "system/bta/hf_client/bta_hf_client_sco.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 254,
+      "author": {
+        "id": 1983105
+      },
+      "writtenOn": "2023-03-21T09:38:44Z",
+      "side": 1,
+      "message": "You are right. The default value is CVSD_S3. else {} can be removed",
+      "parentUuid": "8e5bffe6_cfe64fe4",
+      "range": {
+        "startLine": 253,
+        "startChar": 4,
+        "endLine": 254,
+        "endChar": 37
+      },
+      "revId": "e591b258c715d0150d3a1bd722edd20fc98b9171",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
