@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "29852686_cfa17fa2",
+        "filename": "system/bta/hf_client/bta_hf_client_sco.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 244,
+      "author": {
+        "id": 1983105
+      },
+      "writtenOn": "2023-03-21T09:52:47Z",
+      "side": 1,
+      "message": "It\u0027s used for audio path switch by hf client.\nStep is\n1. phone call and hfp going, sound from hf client\n2. switch sound to phone local\n3. switch sound to hfp by hf client.\nThe sco link will be create by hf client. The old flow will use CVSD codec even if both AG and HF support MSBC.\nThe new flow will check whether both AG and HF support codec negotiation. If yes, hf client will select MSBC codec",
+      "parentUuid": "f2423dbf_2b39c560",
+      "range": {
+        "startLine": 244,
+        "startChar": 5,
+        "endLine": 244,
+        "endChar": 61
+      },
+      "revId": "e591b258c715d0150d3a1bd722edd20fc98b9171",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8e5bffe6_cfe64fe4",
         "filename": "system/bta/hf_client/bta_hf_client_sco.cc",
         "patchSetId": 2
