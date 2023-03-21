@@ -64,6 +64,9 @@ public class Metadata implements Cloneable {
         if (!Objects.equals(album, m.album)) return false;
         if (!Objects.equals(trackNum, m.trackNum)) return false;
         if (!Objects.equals(numTracks, m.numTracks)) return false;
+        if (!Objects.equals(genre, m.genre)) return false;
+        if (!Objects.equals(duration, m.duration)) return false;
+        if (!Objects.equals(image, m.image)) return false;
         return true;
     }
 
