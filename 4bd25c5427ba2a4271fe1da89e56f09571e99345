@@ -22,6 +22,30 @@
       },
       "revId": "4bd25c5427ba2a4271fe1da89e56f09571e99345",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "97da59fc_fd919aa1",
+        "filename": "system/stack/rfcomm/rfc_l2cap_if.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-03-21T23:21:20Z",
+      "side": 1,
+      "message": "The randomness is important, and is per spec. (at least in theory)\n\nThe idea is that if there is a collision, we don\u0027t want both sides to keep retrying at exactly the same time. From RFCOMM spec:\n\u003e  How the situation is resolved is up to the implementation (e.g., it may retry after a random time, or leave it up to the user to retry\nmanually).\n\nBut making the range configurable sgtm",
+      "parentUuid": "55d8486e_6af51bbc",
+      "range": {
+        "startLine": 102,
+        "startChar": 9,
+        "endLine": 102,
+        "endChar": 36
+      },
+      "revId": "4bd25c5427ba2a4271fe1da89e56f09571e99345",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
