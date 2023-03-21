@@ -90,6 +90,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "027dafc0_65ad24c7",
+        "filename": "framework/java/android/bluetooth/BluetoothServerSocket.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 1581454
+      },
+      "writtenOn": "2023-03-21T21:54:29Z",
+      "side": 1,
+      "message": "Resolved offline",
+      "parentUuid": "003a25cd_8abc0cee",
+      "revId": "9c0b16399bfcef433204df795377dd6755c8fa87",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "56c37fc5_6e2d3686",
