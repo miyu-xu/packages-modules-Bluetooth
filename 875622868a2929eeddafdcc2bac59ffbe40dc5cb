@@ -46,6 +46,30 @@
       },
       "revId": "875622868a2929eeddafdcc2bac59ffbe40dc5cb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "422a993a_5e897da5",
+        "filename": "system/stack/acl/btm_acl.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 2404,
+      "author": {
+        "id": 1929170
+      },
+      "writtenOn": "2023-03-21T22:54:21Z",
+      "side": 1,
+      "message": "Yeah that would make sense to me but I don\u0027t see any way to get address type from `RawAdress`. I think here we are interested in address type of `local_conn_addr`.",
+      "parentUuid": "59ba6680_0966b13c",
+      "range": {
+        "startLine": 2404,
+        "startChar": 54,
+        "endLine": 2404,
+        "endChar": 76
+      },
+      "revId": "875622868a2929eeddafdcc2bac59ffbe40dc5cb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
