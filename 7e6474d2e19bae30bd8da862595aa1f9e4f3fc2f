@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "16b42d05_c22f24dd",
+        "filename": "android/app/src/com/android/bluetooth/a2dp/A2dpCodecConfig.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2023-03-21T22:06:15Z",
+      "side": 1,
+      "message": "nit: I think we don\u0027t need to end it with an sbc here.\nbluetooth.a2dp.source_codec.sbc.priority sounds good enough.\n\nsimilarly can we rename others too -\neg: bluetooth.a2dp.source_codec.aac.priority,bluetooth.a2dp.source_codec.aptx.priority etc.",
+      "range": {
+        "startLine": 194,
+        "startChar": 58,
+        "endLine": 194,
+        "endChar": 61
+      },
+      "revId": "7e6474d2e19bae30bd8da862595aa1f9e4f3fc2f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
