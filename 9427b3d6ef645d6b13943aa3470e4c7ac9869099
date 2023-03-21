@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9606dcb6_2499c7f3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1325198
+      },
+      "writtenOn": "2023-03-21T16:36:52Z",
+      "side": 1,
+      "message": "Hi Myles,\nAfter discussed internally, we plan to use PDL for these BQR packets in Android V.\nBecause BQR packets are currently handled in legacy Stack, even if the BQR PDL are defined, they cannot be handled.\nAfter the BQR handler is implemented in GD, we will define PDL for BQR packets.",
+      "parentUuid": "5324962a_f753f51a",
+      "revId": "9427b3d6ef645d6b13943aa3470e4c7ac9869099",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "77633c17_d975ca50",
@@ -31,6 +49,30 @@
       "writtenOn": "2023-03-15T17:16:26Z",
       "side": 1,
       "message": "nit: I would prefer using hex here.  0x101 and 0x102 are easier to see with 1.01 and 1.02.",
+      "range": {
+        "startLine": 165,
+        "startChar": 0,
+        "endLine": 168,
+        "endChar": 50
+      },
+      "revId": "9427b3d6ef645d6b13943aa3470e4c7ac9869099",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d447897b_3348e3ce",
+        "filename": "system/btif/include/btif_bqr.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 1325198
+      },
+      "writtenOn": "2023-03-21T16:36:52Z",
+      "side": 1,
+      "message": "Thanks for the comment. Done.",
+      "parentUuid": "77633c17_d975ca50",
       "range": {
         "startLine": 165,
         "startChar": 0,
