@@ -22,6 +22,30 @@
       },
       "revId": "d98ec2fee6873642ca7083658e95e908fd38b00d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2e421506_40d2df72",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1930335
+      },
+      "writtenOn": "2023-03-21T15:14:33Z",
+      "side": 1,
+      "message": "Resolved. Please keep it is persistent or correct settings when a device boots up.",
+      "parentUuid": "88075807_6a750ac4",
+      "range": {
+        "startLine": 10,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 43
+      },
+      "revId": "d98ec2fee6873642ca7083658e95e908fd38b00d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
