@@ -33,6 +33,24 @@
       "message": "Is there a PTS test for signed writes?",
       "revId": "1ee0a16bf151c337cba17d6459ff2d6eb9c536cf",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4a83faf9_f8a23d39",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2023-03-21T01:59:15Z",
+      "side": 1,
+      "message": "Yes, it\u0027s GAP/BOND/BON/BV-01-C. \n\nI\u0027m not sure how android pass this test (https://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/android/pandora/server/configs/pts_bot_tests_config.json;l\u003d176?q\u003dGAP%2FBOND%2FBON%2FBV-01-C)\nbut if there\u0027s a way to configure the device into LE security mode 1\nthen this flag is not required.",
+      "parentUuid": "5108a461_031e82bc",
+      "revId": "1ee0a16bf151c337cba17d6459ff2d6eb9c536cf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
