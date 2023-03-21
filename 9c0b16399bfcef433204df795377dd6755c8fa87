@@ -74,6 +74,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "003a25cd_8abc0cee",
+        "filename": "framework/java/android/bluetooth/BluetoothServerSocket.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-03-21T00:52:50Z",
+      "side": 1,
+      "message": "Noted on chat, but if the goal is to extract the calculation to a function, it should be the first thing we do in the function call.\n\nIf the goal is to include the latency of the start of the function call to logL2capcocServerConnection until the time we make the binder call, then we\u0027re not just taking a connection metric. The socket creation latency does not include this time, so I don\u0027t understand why the connection time latency should. The first call to BluetoothAdapter.getDefaultAdapter() for an app in particular could take longer because we need to set up the BluetoothAdapter instance.\n\nAlso, if we end up deciding that the latency brought by metrics is important, then we should include the time taken by the binder call as well instead of stopping in the framework code. That wouldn\u0027t account for the call to BluetoothStatsLog.write, but it\u0027d be as close as you could get.",
+      "parentUuid": "dbdd16de_dd4c37e3",
+      "revId": "9c0b16399bfcef433204df795377dd6755c8fa87",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "56c37fc5_6e2d3686",
         "filename": "framework/java/android/bluetooth/BluetoothSocket.java",
         "patchSetId": 3
