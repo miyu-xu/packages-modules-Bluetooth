@@ -87,6 +87,24 @@
       "message": "Same nit, shouldn\u0027t we capture the time here?",
       "revId": "9c0b16399bfcef433204df795377dd6755c8fa87",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "067c7c34_0926c7f2",
+        "filename": "framework/java/android/bluetooth/BluetoothSocket.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 458,
+      "author": {
+        "id": 1581454
+      },
+      "writtenOn": "2023-03-21T00:04:18Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "56c37fc5_6e2d3686",
+      "revId": "9c0b16399bfcef433204df795377dd6755c8fa87",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
