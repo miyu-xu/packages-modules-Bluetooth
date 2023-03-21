@@ -16,6 +16,40 @@
       "message": "Futures are a sync primitive between two threads, so if I understand correctly, the jni thread is delayed until the main thread triggers the future.\n\nA few things.\n\n1. The promise data is a `bool` but is used as a constant.  In these cases one can use a `void` promise as no data is passed, but used as a sync mechanism.\n\n2. I don\u0027t know how this would work more than once; as a promise/future combo is single use, it needs to be reset else an error will be thrown that the promise was used multiple times.\n\n3. Blocking the main thread until jni completes seems like a bad idea.  I initially thought it was a driver thread but the main/jni threads should be independent.\n\nIt seems you want something more like a secondary callback, where the hh control block enters into a `suspended` state until the jni callback completes.  This could be accomplished with a callback from jni back onto the main loop to the hh structure to release or otherwise modify the resources now that jni callback has completed.",
       "revId": "7a5a967b1fdb20fd93ded8c7e668fdc7a944629e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "37250437_348cd5d9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2023-03-21T23:48:17Z",
+      "side": 1,
+      "message": "Both connection complete and disconnection complete seems to be handled through the same thread.\n\nAlso, HOGP reconnection has to wait for encryption so it cannot happen immediately after disconnection.",
+      "revId": "7a5a967b1fdb20fd93ded8c7e668fdc7a944629e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0d7fe01b_60e74b23",
+        "filename": "system/btif/co/bta_hh_co.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 364,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2023-03-21T23:48:17Z",
+      "side": 1,
+      "message": "What happens the first time a HID device is connected? What if there are multiple HID connections.\n\nHas this been tested? Would you be able to attach the bugreports in the bug.",
+      "revId": "7a5a967b1fdb20fd93ded8c7e668fdc7a944629e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
