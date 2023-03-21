@@ -22,6 +22,30 @@
       },
       "revId": "d0c96b4642ca86e7b2e15295a6a0f2a38b382ee5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ff950765_d131e6eb",
+        "filename": "system/rust/src/gatt/ids.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-03-21T23:39:26Z",
+      "side": 1,
+      "message": "No, but I included it just to make it more obvious why MIN !\u003d 0 (since AttHandle(0) does show up in some places).",
+      "parentUuid": "c8fd6151_8605803c",
+      "range": {
+        "startLine": 49,
+        "startChar": 14,
+        "endLine": 49,
+        "endChar": 22
+      },
+      "revId": "d0c96b4642ca86e7b2e15295a6a0f2a38b382ee5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
