@@ -70,6 +70,30 @@
       },
       "revId": "7e6474d2e19bae30bd8da862595aa1f9e4f3fc2f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2908c4a2_00f1a93d",
+        "filename": "android/app/src/com/android/bluetooth/a2dp/A2dpCodecConfig.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-03-21T23:45:37Z",
+      "side": 1,
+      "message": "I have to disagree 😊\nThere is not a specific rule but the `config` at the end is one of the few values recommended by the documentation.\nhttps://source.android.com/docs/core/architecture/configuration/add-system-properties\n\nIf we put it in the sysprop name it should definitively go at the end",
+      "parentUuid": "8478ae69_2034303d",
+      "range": {
+        "startLine": 194,
+        "startChar": 58,
+        "endLine": 194,
+        "endChar": 61
+      },
+      "revId": "7e6474d2e19bae30bd8da862595aa1f9e4f3fc2f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
