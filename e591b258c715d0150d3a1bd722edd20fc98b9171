@@ -69,6 +69,30 @@
       },
       "revId": "e591b258c715d0150d3a1bd722edd20fc98b9171",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c047444c_da85b60d",
+        "filename": "system/bta/hf_client/bta_hf_client_sco.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 254,
+      "author": {
+        "id": 1965943
+      },
+      "writtenOn": "2023-03-21T09:47:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1b10ed53_fa208330",
+      "range": {
+        "startLine": 253,
+        "startChar": 4,
+        "endLine": 254,
+        "endChar": 37
+      },
+      "revId": "e591b258c715d0150d3a1bd722edd20fc98b9171",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
