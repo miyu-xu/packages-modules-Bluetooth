@@ -3,6 +3,40 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8adb4aac_59bb2a9f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-03-21T23:29:55Z",
+      "side": 1,
+      "message": "This seems like a hack masking the underlying problem. Somehow BTM_FreeSCN is being called too early. So the solution is to just \"avoid\" using recently used SCNs to reduce the chance of collisions.\n\nDo we understand why BTM_FreeSCN is called before we are finished with the SCN? If so, can we defer when it is called to the actual point when it is free?",
+      "revId": "f75786629c0659450c74fbfc3d869af29b284785",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8635ce28_696ae53d",
+        "filename": "system/stack/btm/btm_scn.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-03-21T23:29:55Z",
+      "side": 1,
+      "message": "nit: can we remove these forward declarations, and use the variables in the loop like is conventional?",
+      "revId": "f75786629c0659450c74fbfc3d869af29b284785",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a421da5e_f4a2a9b6",
         "filename": "system/stack/btm/btm_scn.cc",
         "patchSetId": 2
