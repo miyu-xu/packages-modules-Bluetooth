@@ -26,6 +26,7 @@ import android.util.Log;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Objects;
 
 /**
  * An object to represent an image from the Media Framework
@@ -264,5 +265,20 @@ public class Image {
     @Override
     public String toString() {
         return "<Image source=" + mSource + ">";
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null) return false;
+        if (!(o instanceof Image)) return false;
+        if (!(mSource == ((Image) o).getSource())) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        // Do not hash the Bitmap as it does not implement hashCode
+        return Objects.hash(mSource);
     }
 }
