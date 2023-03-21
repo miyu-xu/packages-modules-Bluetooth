@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "38b51f3b_e0a7c0e5",
+        "filename": "system/bta/hf_client/bta_hf_client_sco.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 244,
+      "author": {
+        "id": 1983105
+      },
+      "writtenOn": "2023-03-21T09:53:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "29852686_cfa17fa2",
+      "range": {
+        "startLine": 244,
+        "startChar": 5,
+        "endLine": 244,
+        "endChar": 61
+      },
+      "revId": "e591b258c715d0150d3a1bd722edd20fc98b9171",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8e5bffe6_cfe64fe4",
