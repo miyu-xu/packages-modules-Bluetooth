@@ -33,6 +33,24 @@
       "message": "Are there any alternatives to adding the test interface?",
       "revId": "9f2e7553eb8f5c16fe207edea76269607d45b813",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a7984c79_280eb51b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2023-03-21T03:45:00Z",
+      "side": 1,
+      "message": "Perhaps move the function to btsock_interface_t? Please let me know which one do you prefer or you have other suggestions. Thanks.",
+      "parentUuid": "8ad5f26d_c95b96cd",
+      "revId": "9f2e7553eb8f5c16fe207edea76269607d45b813",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
