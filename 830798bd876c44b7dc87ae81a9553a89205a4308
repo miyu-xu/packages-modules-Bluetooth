@@ -16,6 +16,46 @@
       "message": "Thanks for the review! PTAL.",
       "revId": "830798bd876c44b7dc87ae81a9553a89205a4308",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "91f736b0_7badf880",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-03-21T13:45:39Z",
+      "side": 1,
+      "message": "@aryarahul@google.com, can you check from a L2cap expert point of view ?",
+      "revId": "830798bd876c44b7dc87ae81a9553a89205a4308",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5ef6fe56_79f953ce",
+        "filename": "system/stack/l2cap/l2c_api.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1005,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-03-21T13:45:39Z",
+      "side": 1,
+      "message": "nit: We can have a better git diff if you do not delete the empty line between 998 \u0026 999 and if you do not add parenthesis around `true` in the return",
+      "range": {
+        "startLine": 998,
+        "startChar": 3,
+        "endLine": 1005,
+        "endChar": 0
+      },
+      "revId": "830798bd876c44b7dc87ae81a9553a89205a4308",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
