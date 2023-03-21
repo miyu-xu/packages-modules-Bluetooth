@@ -33,6 +33,24 @@
       "message": "Hi Yuyang,\n\nShould we be storing these properties?  What do you think about ignoring them here?",
       "revId": "21800f99528ed2297c4ff8fc452a768ecc6ec09d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9a83d321_23233ed5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-03-21T21:51:48Z",
+      "side": 1,
+      "message": "@yuyangh@google.com",
+      "parentUuid": "8bd81903_c1e45635",
+      "revId": "21800f99528ed2297c4ff8fc452a768ecc6ec09d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
