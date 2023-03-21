@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8bb53e69_dd075759",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-03-21T17:05:35Z",
+      "side": 1,
+      "message": "not sure if we can have it disclose like this.",
+      "range": {
+        "startLine": 16,
+        "startChar": 33,
+        "endLine": 16,
+        "endChar": 42
+      },
+      "revId": "12c7a631ba6af9f692feafcd131cd59981d29204",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
