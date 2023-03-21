@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a421da5e_f4a2a9b6",
+        "filename": "system/stack/btm/btm_scn.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-03-21T16:03:04Z",
+      "side": 1,
+      "message": "If the issue is a race condition on the `btm_cb.btm_scn[x]`, I don\u0027t think we are solving this\n\nI think that the race can still happen if the two rfcomm server enter the method at the same time and both of them will have btm_available_index set to 1. They will start iterating before updating the value.\n\n\nDon\u0027t you want to add a mutex to protect the allocation ?\n\n\n```\n  lock_guard()\n  for (x \u003d 1; x \u003c PORT_MAX_RFC_PORTS; x++) {\n    if (!btm_cb.btm_scn[x]) {\n      btm_cb.btm_scn[x] \u003d true;\n      return (x + 1);\n    }\n  }\n```",
+      "range": {
+        "startLine": 42,
+        "startChar": 13,
+        "endLine": 42,
+        "endChar": 32
+      },
+      "revId": "f75786629c0659450c74fbfc3d869af29b284785",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
