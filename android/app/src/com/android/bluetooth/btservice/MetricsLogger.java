@@ -43,8 +43,8 @@ import java.util.HashMap;
  */
 public class MetricsLogger {
     private static final String TAG = "BluetoothMetricsLogger";
-    private static final String BLOOMFILTER_PATH = "/data/misc/bluetooth/metrics";
-    private static final String BLOOMFILTER_FILE = "/devices";
+    private static final String BLOOMFILTER_PATH = "/data/misc/bluetooth";
+    private static final String BLOOMFILTER_FILE = "/devices_for_metrics";
     public static final String BLOOMFILTER_FULL_PATH = BLOOMFILTER_PATH + BLOOMFILTER_FILE;
 
     public static final boolean DEBUG = false;
