@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "82f7959d_684bd32d",
+        "filename": "system/gd/hci/hci_packets.pdl",
+        "patchSetId": 1
+      },
+      "lineNbr": 2518,
+      "author": {
+        "id": 1963846
+      },
+      "writtenOn": "2023-03-21T10:41:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da6cc297_fdc8d14f",
+      "range": {
+        "startLine": 2518,
+        "startChar": 29,
+        "endLine": 2518,
+        "endChar": 30
+      },
+      "revId": "216f5a406b4905e9974c6076426ae6e52acb335f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9e7107af_17422eba",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-03-17T16:35:24Z",
       "side": 1,
       "message": "Do the tests pass?  These packets don\u0027t look right to me.\n\nYou should be able to run\n\nbluetooth_test_gd_unit --gtest_filter\u003d*Erroneous* \n\nI recommend taking the binary test data from wireshark directly.  You only need to remove the packet type, since it\u0027s part of H4, not HCI.\n\n\"\\x0e/* command complete */\\x06/* size */\\x01\\x5a\\x0c\\x00\\0x01\"",
+      "range": {
+        "startLine": 2523,
+        "startChar": 2,
+        "endLine": 2523,
+        "endChar": 23
+      },
+      "revId": "216f5a406b4905e9974c6076426ae6e52acb335f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "538db511_90e1efb5",
+        "filename": "system/gd/hci/hci_packets.pdl",
+        "patchSetId": 1
+      },
+      "lineNbr": 2523,
+      "author": {
+        "id": 1963846
+      },
+      "writtenOn": "2023-03-21T10:41:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9e7107af_17422eba",
       "range": {
         "startLine": 2523,
         "startChar": 2,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "86dbd6a3_e3eb4619",
+        "filename": "system/gd/hci/hci_packets.pdl",
+        "patchSetId": 1
+      },
+      "lineNbr": 2527,
+      "author": {
+        "id": 1963846
+      },
+      "writtenOn": "2023-03-21T10:41:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ae322aaf_e2500046",
+      "range": {
+        "startLine": 2527,
+        "startChar": 29,
+        "endLine": 2527,
+        "endChar": 30
+      },
+      "revId": "216f5a406b4905e9974c6076426ae6e52acb335f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5accc56f_1fae7d9d",
@@ -83,6 +155,30 @@
       "writtenOn": "2023-03-17T16:35:24Z",
       "side": 1,
       "message": "These look like they\u0027re missing the parameter length.",
+      "range": {
+        "startLine": 2531,
+        "startChar": 3,
+        "endLine": 2531,
+        "endChar": 15
+      },
+      "revId": "216f5a406b4905e9974c6076426ae6e52acb335f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6dba1a93_143249fe",
+        "filename": "system/gd/hci/hci_packets.pdl",
+        "patchSetId": 1
+      },
+      "lineNbr": 2531,
+      "author": {
+        "id": 1963846
+      },
+      "writtenOn": "2023-03-21T10:41:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5accc56f_1fae7d9d",
       "range": {
         "startLine": 2531,
         "startChar": 3,
