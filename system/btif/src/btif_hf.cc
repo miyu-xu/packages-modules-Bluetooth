@@ -52,6 +52,7 @@
 #include "osi/include/log.h"
 #include "stack/btm/btm_sco_hfp_hal.h"
 #include "stack/include/btm_api.h"
+#include "stack/include/btu.h"  // do_in_main_thread
 #include "types/raw_address.h"
 
 namespace {
@@ -1500,9 +1501,7 @@ bt_status_t HeadsetInterface::PhoneStateChange(
   return status;
 }
 
-void HeadsetInterface::Cleanup() {
-  BTIF_TRACE_EVENT("%s", __func__);
-
+static void btif_hf_cleanup() {
   btif_queue_cleanup(UUID_SERVCLASS_AG_HANDSFREE);
 
   tBTA_SERVICE_MASK mask = btif_get_enabled_services_mask();
@@ -1517,6 +1516,14 @@ void HeadsetInterface::Cleanup() {
   }
 
   bt_hf_callbacks = nullptr;
+}
+
+void HeadsetInterface::Cleanup() {
+  BTIF_TRACE_EVENT("%s", __func__);
+
+  /* Cleanup is called in the JNI thread, which may lead to race conditions
+   * accessing bt_hf_callbacks */
+  do_in_main_thread(FROM_HERE, base::Bind(&btif_hf_cleanup));
 }
 
 bt_status_t HeadsetInterface::SetScoOffloadEnabled(bool value) {
