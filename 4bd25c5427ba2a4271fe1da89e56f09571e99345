@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "55d8486e_6af51bbc",
+        "filename": "system/stack/rfcomm/rfc_l2cap_if.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-03-21T15:12:37Z",
+      "side": 1,
+      "message": "This is no longer random.\nI do not know the importance of the rand but to keep it we can do something like this:\n```c++\nstatic const int32_t collision_timeout_prop \u003d osi_property_get_int32(        RFCOMM_COLLISION_TIMEOUT_PROPERTY, -1);\n\nif (collision_timeout_prop !\u003d -1) {\n  collision_timeout \u003d (uint16_t)collision_timeout_prop\n} else {\n  collision_timeout \u003d (uint16_t)(bluetooth::common::time_get_os_boottime_ms() % 10 + 2;\n}\n```",
+      "range": {
+        "startLine": 102,
+        "startChar": 9,
+        "endLine": 102,
+        "endChar": 36
+      },
+      "revId": "4bd25c5427ba2a4271fe1da89e56f09571e99345",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
