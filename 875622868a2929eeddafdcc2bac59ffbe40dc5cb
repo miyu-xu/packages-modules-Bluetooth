@@ -70,6 +70,30 @@
       },
       "revId": "875622868a2929eeddafdcc2bac59ffbe40dc5cb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b0ee7c22_5b1921c4",
+        "filename": "system/stack/acl/btm_acl.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 2404,
+      "author": {
+        "id": 1929170
+      },
+      "writtenOn": "2023-03-21T23:01:15Z",
+      "side": 1,
+      "message": "I think we can use: `BTM_BleLocalPrivacyEnabled`. We will use public address if privacy is not enabled.\n```\nif (!BTM_BleLocalPrivacyEnabled) {\n}\n```",
+      "parentUuid": "422a993a_5e897da5",
+      "range": {
+        "startLine": 2404,
+        "startChar": 54,
+        "endLine": 2404,
+        "endChar": 76
+      },
+      "revId": "875622868a2929eeddafdcc2bac59ffbe40dc5cb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
