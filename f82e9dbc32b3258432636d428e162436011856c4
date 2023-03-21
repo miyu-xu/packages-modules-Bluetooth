@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8eb083f3_47de153f",
+        "filename": "system/gd/os/log.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-03-21T23:27:55Z",
+      "side": 1,
+      "message": "This should have been tagged at @wescande@google.com",
+      "parentUuid": "dc6e494a_4e284861",
+      "revId": "f82e9dbc32b3258432636d428e162436011856c4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c22ae7b5_4d0f1b1d",
         "filename": "system/gd/rust/linux/service/src/main.rs",
         "patchSetId": 1
