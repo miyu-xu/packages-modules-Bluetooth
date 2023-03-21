@@ -56,6 +56,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "dbdd16de_dd4c37e3",
+        "filename": "framework/java/android/bluetooth/BluetoothServerSocket.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 1581454
+      },
+      "writtenOn": "2023-03-21T00:03:59Z",
+      "side": 1,
+      "message": "If the time of passing this is too trivial (which it should be) to be counted, then I don\u0027t see issues to extract calculation in to the function.\n\nIf it\u0027s not then we should include it. Latency brought by metrics should be detected. Anything affecting user experiences should be included in the latency. \n\nEither way the existing implementation is good.",
+      "parentUuid": "6bc3e6c5_16bc1c4e",
+      "revId": "9c0b16399bfcef433204df795377dd6755c8fa87",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "56c37fc5_6e2d3686",
         "filename": "framework/java/android/bluetooth/BluetoothSocket.java",
         "patchSetId": 3
