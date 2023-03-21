@@ -22,6 +22,30 @@
       },
       "revId": "d99708d51b2d0b3012fca7904d39de995fd43388",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "85e80d3b_0f30ee96",
+        "filename": "system/bta/av/bta_av_act.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 2346,
+      "author": {
+        "id": 1983105
+      },
+      "writtenOn": "2023-03-21T09:28:54Z",
+      "side": 1,
+      "message": "This field only be set in line 2423.\nIf it be init to non 0, it will cause a coverity issue because it\u0027s not used",
+      "parentUuid": "0a5c0411_cd3d5915",
+      "range": {
+        "startLine": 2346,
+        "startChar": 15,
+        "endLine": 2346,
+        "endChar": 16
+      },
+      "revId": "d99708d51b2d0b3012fca7904d39de995fd43388",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
