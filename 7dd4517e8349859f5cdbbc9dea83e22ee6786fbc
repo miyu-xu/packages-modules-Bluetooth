@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "57dfde5e_3db09e7b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-03-21T18:51:00Z",
+      "side": 1,
+      "message": "Core library DRI",
+      "revId": "7dd4517e8349859f5cdbbc9dea83e22ee6786fbc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
