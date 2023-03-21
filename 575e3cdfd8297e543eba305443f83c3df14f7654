@@ -34,6 +34,24 @@
       "parentUuid": "61aef93b_0b648b73",
       "revId": "575e3cdfd8297e543eba305443f83c3df14f7654",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d991fb63_c65ad6aa",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1951737
+      },
+      "writtenOn": "2023-03-21T16:38:35Z",
+      "side": 1,
+      "message": "Sorry, just revisited this CL again after a while.\n\nThis feature was already code complete with this design in mind. We\u0027ll consider alternatives, but we don\u0027t have the capacity to change this anytime soon.\n\nSince there\u0027s nothing that prevents an app to become a MAP client anyway, without this CL, MceStateMachine will always break when a MAP client doesn\u0027t support telephony.\n\n@salsavage@google.com therefore can we proceed with this CL? Otherwise, is it fine to at least submit this to Wear branch?",
+      "parentUuid": "c60a523e_69a0caa5",
+      "revId": "575e3cdfd8297e543eba305443f83c3df14f7654",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
