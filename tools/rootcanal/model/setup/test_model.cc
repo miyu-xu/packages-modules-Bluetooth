@@ -43,16 +43,13 @@ TestModel::TestModel(
 
     std::function<void(AsyncUserId)> cancel_tasks_from_user,
     std::function<void(AsyncTaskId)> cancel,
-    std::function<std::shared_ptr<Device>(const std::string&, int, Phy::Type)>
-        connect_to_remote,
     std::array<uint8_t, 5> bluetooth_address_prefix)
     : bluetooth_address_prefix_(std::move(bluetooth_address_prefix)),
       get_user_id_(std::move(get_user_id)),
       schedule_task_(std::move(event_scheduler)),
       schedule_periodic_task_(std::move(periodic_event_scheduler)),
       cancel_task_(std::move(cancel)),
-      cancel_tasks_from_user_(std::move(cancel_tasks_from_user)),
-      connect_to_remote_(std::move(connect_to_remote)) {
+      cancel_tasks_from_user_(std::move(cancel_tasks_from_user)) {
   model_user_id_ = get_user_id_();
 }
 
@@ -184,14 +181,6 @@ void TestModel::AddLinkLayerConnection(std::shared_ptr<Device> device,
                      OnConnectionClosed(device_id, user_id);
                    });
   });
-}
-
-void TestModel::AddRemote(const std::string& server, int port, Phy::Type type) {
-  auto device = connect_to_remote_(server, port, type);
-  if (device == nullptr) {
-    return;
-  }
-  AddLinkLayerConnection(device, type);
 }
 
 PhyDevice::Identifier TestModel::AddHciConnection(

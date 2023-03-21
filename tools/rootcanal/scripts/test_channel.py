@@ -190,12 +190,6 @@ class TestChannelShell(cmd.Cmd):
     """
         self._test_channel.send_command('del_device_from_phy', args.split())
 
-    def do_add_remote(self, args):
-        """Arguments: dev_type_str Connect to a remote device at arg1@arg2.
-
-    """
-        self._test_channel.send_command('add_remote', args.split())
-
     def do_get(self, args):
         """Arguments: dev_num attr_str Get the value of the attribute attr_str from device dev_num.
 

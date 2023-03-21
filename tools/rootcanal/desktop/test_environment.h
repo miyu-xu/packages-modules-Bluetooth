@@ -50,8 +50,6 @@ class TestEnvironment {
  public:
   TestEnvironment(std::shared_ptr<AsyncDataChannelServer> test_port,
                   std::shared_ptr<AsyncDataChannelServer> hci_server_port,
-                  std::shared_ptr<AsyncDataChannelServer> link_server_port,
-                  std::shared_ptr<AsyncDataChannelServer> link_ble_server_port,
                   std::shared_ptr<AsyncDataChannelConnector> connector,
                   const std::string& controller_properties_file = "",
                   const std::string& default_commands_file = "",
@@ -61,8 +59,6 @@ class TestEnvironment {
                   bool disable_address_reuse = false)
       : test_socket_server_(test_port),
         hci_socket_server_(hci_server_port),
-        link_socket_server_(link_server_port),
-        link_ble_socket_server_(link_ble_server_port),
         connector_(connector),
         controller_properties_file_(controller_properties_file),
         default_commands_file_(default_commands_file),
@@ -82,8 +78,6 @@ class TestEnvironment {
   rootcanal::AsyncManager async_manager_;
   std::shared_ptr<AsyncDataChannelServer> test_socket_server_;
   std::shared_ptr<AsyncDataChannelServer> hci_socket_server_;
-  std::shared_ptr<AsyncDataChannelServer> link_socket_server_;
-  std::shared_ptr<AsyncDataChannelServer> link_ble_socket_server_;
   std::shared_ptr<AsyncDataChannelConnector> connector_;
   std::string controller_properties_file_;
   std::string default_commands_file_;
@@ -95,8 +89,6 @@ class TestEnvironment {
 
   void SetUpTestChannel();
   void SetUpHciServer(ConnectCallback on_connect);
-  void SetUpLinkLayerServer();
-  void SetUpLinkBleLayerServer();
   std::shared_ptr<Device> ConnectToRemoteServer(const std::string& server,
                                                 int port, Phy::Type phy_type);
 
@@ -127,10 +119,6 @@ class TestEnvironment {
 
       [this](rootcanal::AsyncTaskId task) {
         async_manager_.CancelAsyncTask(task);
-      },
-
-      [this](const std::string& server, int port, Phy::Type phy_type) {
-        return ConnectToRemoteServer(server, port, phy_type);
       }};
 
   rootcanal::TestCommandHandler test_channel_{test_model_};

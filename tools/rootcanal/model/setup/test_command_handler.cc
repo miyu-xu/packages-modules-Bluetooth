@@ -37,7 +37,6 @@ TestCommandHandler::TestCommandHandler(TestModel& test_model)
     method(param);                                                            \
   };
   SET_HANDLER("add", AddDevice);
-  SET_HANDLER("add_remote", AddRemote);
   SET_HANDLER("del", RemoveDevice);
   SET_HANDLER("add_phy", AddPhy);
   SET_HANDLER("del_phy", RemovePhy);
@@ -137,34 +136,6 @@ void TestCommandHandler::AddDevice(const vector<std::string>& args) {
   size_t dev_index = model_.AddDevice(new_dev);
   response_string_ =
       std::to_string(dev_index) + std::string(":") + new_dev->ToString();
-  send_response_(response_string_);
-}
-
-void TestCommandHandler::AddRemote(const vector<std::string>& args) {
-  if (args.size() < 3) {
-    response_string_ =
-        "TestCommandHandler usage: add_remote host port phy_type";
-    send_response_(response_string_);
-    return;
-  }
-
-  size_t port = std::stoi(args[1]);
-  Phy::Type phy_type = Phy::Type::BR_EDR;
-  if ("LOW_ENERGY" == args[2]) {
-    phy_type = Phy::Type::LOW_ENERGY;
-  }
-  if (port == 0 || port > 0xffff || args[0].size() < 2) {
-    response_string_ = "TestCommandHandler bad arguments to 'add_remote': ";
-    response_string_ += args[0];
-    response_string_ += "@";
-    response_string_ += args[1];
-    send_response_(response_string_);
-    return;
-  }
-
-  model_.AddRemote(args[0], port, phy_type);
-
-  response_string_ = args[0] + std::string("@") + std::to_string(port);
   send_response_(response_string_);
 }
 

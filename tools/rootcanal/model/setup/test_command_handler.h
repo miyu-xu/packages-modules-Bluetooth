@@ -51,9 +51,6 @@ class TestCommandHandler {
   // Add a device
   void AddDevice(const std::vector<std::string>& args);
 
-  // Add a remote device
-  void AddRemote(const std::vector<std::string>& args);
-
   // Remove devices by index
   void RemoveDevice(const std::vector<std::string>& args);
 

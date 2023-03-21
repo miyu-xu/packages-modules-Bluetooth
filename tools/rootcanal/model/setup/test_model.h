@@ -47,8 +47,6 @@ class TestModel {
           periodic_event_scheduler,
       std::function<void(AsyncUserId)> cancel_tasks_from_user,
       std::function<void(AsyncTaskId)> cancel,
-      std::function<std::shared_ptr<Device>(const std::string&, int, Phy::Type)>
-          connect_to_remote,
       std::array<uint8_t, 5> bluetooth_address_prefix = {0xda, 0x4c, 0x10, 0xde,
                                                          0x17});
   virtual ~TestModel();
@@ -90,9 +88,6 @@ class TestModel {
   // Handle closed remote connections (both hci & link layer)
   void OnConnectionClosed(PhyDevice::Identifier device_id, AsyncUserId user_id);
 
-  // Connect to a remote device
-  void AddRemote(const std::string& server, int port, Phy::Type phy_type);
-
   // Set the device's Bluetooth address
   void SetDeviceAddress(PhyDevice::Identifier device_id,
                         Address device_address);
@@ -132,8 +127,6 @@ class TestModel {
       schedule_periodic_task_;
   std::function<void(AsyncTaskId)> cancel_task_;
   std::function<void(AsyncUserId)> cancel_tasks_from_user_;
-  std::function<std::shared_ptr<Device>(const std::string&, int, Phy::Type)>
-      connect_to_remote_;
 
   AsyncUserId model_user_id_;
   AsyncTaskId timer_tick_task_{kInvalidTaskId};

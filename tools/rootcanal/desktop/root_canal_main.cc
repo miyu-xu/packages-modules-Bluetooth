@@ -121,10 +121,6 @@ int main(int argc, char** argv) {
           static_cast<int>(FLAGS_test_port), &am),
       std::make_shared<PosixAsyncSocketServer>(static_cast<int>(FLAGS_hci_port),
                                                &am),
-      std::make_shared<PosixAsyncSocketServer>(
-          static_cast<int>(FLAGS_link_port), &am),
-      std::make_shared<PosixAsyncSocketServer>(
-          static_cast<int>(FLAGS_link_ble_port), &am),
       std::make_shared<PosixAsyncSocketConnector>(&am),
       FLAGS_controller_properties_file, FLAGS_default_commands_file,
       FLAGS_enable_hci_sniffer, FLAGS_enable_baseband_sniffer,

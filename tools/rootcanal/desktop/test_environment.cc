@@ -23,7 +23,6 @@
 
 #include "log.h"  // for LOG_INFO, LOG_ERROR, LOG_WARN
 #include "model/devices/baseband_sniffer.h"
-#include "model/devices/link_layer_socket_device.h"  // for LinkLayerSocketDevice
 #include "model/hci/hci_sniffer.h"                   // for HciSniffer
 #include "model/hci/hci_socket_transport.h"          // for HciSocketTransport
 #include "net/async_data_channel.h"                  // for AsyncDataChannel
@@ -38,7 +37,6 @@ using rootcanal::BaseBandSniffer;
 using rootcanal::HciDevice;
 using rootcanal::HciSniffer;
 using rootcanal::HciSocketTransport;
-using rootcanal::LinkLayerSocketDevice;
 using rootcanal::TaskCallback;
 
 void TestEnvironment::initialize(std::promise<void> barrier) {
@@ -91,9 +89,6 @@ void TestEnvironment::initialize(std::promise<void> barrier) {
     srv->StartListening();
   });
 
-  SetUpLinkLayerServer();
-  SetUpLinkBleLayerServer();
-
   if (enable_baseband_sniffer_) {
     std::string filename = "baseband.pcap";
     for (auto i = 0; std::filesystem::exists(filename); i++) {
@@ -121,45 +116,6 @@ void TestEnvironment::SetUpHciServer(ConnectCallback on_connect) {
     LOG_ERROR("Remote HCI channel SetUp failed.");
     return;
   }
-}
-
-void TestEnvironment::SetUpLinkBleLayerServer() {
-  remote_link_layer_transport_.SetUp(
-      link_ble_socket_server_, [this](std::shared_ptr<AsyncDataChannel> socket,
-                                      AsyncDataChannelServer* srv) {
-        auto phy_type = Phy::Type::LOW_ENERGY;
-        test_model_.AddLinkLayerConnection(
-            LinkLayerSocketDevice::Create(socket, phy_type), phy_type);
-        srv->StartListening();
-      });
-
-  test_channel_.RegisterSendResponse([](const std::string& response) {
-    LOG_INFO("No LinkLayer Response channel: %s", response.c_str());
-  });
-}
-
-void TestEnvironment::SetUpLinkLayerServer() {
-  remote_link_layer_transport_.SetUp(
-      link_socket_server_, [this](std::shared_ptr<AsyncDataChannel> socket,
-                                  AsyncDataChannelServer* srv) {
-        auto phy_type = Phy::Type::BR_EDR;
-        test_model_.AddLinkLayerConnection(
-            LinkLayerSocketDevice::Create(socket, phy_type), phy_type);
-        srv->StartListening();
-      });
-
-  test_channel_.RegisterSendResponse([](const std::string& response) {
-    LOG_INFO("No LinkLayer Response channel: %s", response.c_str());
-  });
-}
-
-std::shared_ptr<Device> TestEnvironment::ConnectToRemoteServer(
-    const std::string& server, int port, Phy::Type phy_type) {
-  auto socket = connector_->ConnectToRemoteServer(server, port);
-  if (!socket->Connected()) {
-    return nullptr;
-  }
-  return LinkLayerSocketDevice::Create(socket, phy_type);
 }
 
 void TestEnvironment::SetUpTestChannel() {
