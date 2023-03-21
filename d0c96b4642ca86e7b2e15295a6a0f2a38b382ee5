@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c8fd6151_8605803c",
+        "filename": "system/rust/src/gatt/ids.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-03-21T21:54:52Z",
+      "side": 1,
+      "message": "Is this used anywhere?  Is there a test that references RESERVED?",
+      "range": {
+        "startLine": 49,
+        "startChar": 14,
+        "endLine": 49,
+        "endChar": 22
+      },
+      "revId": "d0c96b4642ca86e7b2e15295a6a0f2a38b382ee5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
