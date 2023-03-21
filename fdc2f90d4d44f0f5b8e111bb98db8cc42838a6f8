@@ -26,6 +26,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "db096680_4c934d32",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2023-03-21T03:37:01Z",
+      "side": 1,
+      "message": "Yeah. In my git, the commit is 0ad1b636ccbfab38ee958a9c86f143f1e486aff3 and I couldn\u0027t find 44daf9725f72174b7ef0ba1296f2ad5d29f4a543.",
+      "parentUuid": "600932ff_d1ebf4ce",
+      "range": {
+        "startLine": 9,
+        "startChar": 13,
+        "endLine": 9,
+        "endChar": 61
+      },
+      "revId": "fdc2f90d4d44f0f5b8e111bb98db8cc42838a6f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "fed73cb1_e803583a",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 2
@@ -98,6 +122,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9cc8609d_440b2973",
+        "filename": "system/main/shim/l2c_api.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 836,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2023-03-21T03:37:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "64717d5c_789e7a1f",
+      "range": {
+        "startLine": 836,
+        "startChar": 11,
+        "endLine": 836,
+        "endChar": 18
+      },
+      "revId": "fdc2f90d4d44f0f5b8e111bb98db8cc42838a6f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ef8d78a5_73c86173",
@@ -111,6 +159,30 @@
       "writtenOn": "2023-03-20T14:56:36Z",
       "side": 1,
       "message": "Can you use the `ADDRESS_TO_LOGGABLE_CSTR` macro ?",
+      "range": {
+        "startLine": 843,
+        "startChar": 10,
+        "endLine": 843,
+        "endChar": 39
+      },
+      "revId": "fdc2f90d4d44f0f5b8e111bb98db8cc42838a6f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "46c32fe7_1f8db726",
+        "filename": "system/main/shim/l2c_api.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 843,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2023-03-21T03:37:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ef8d78a5_73c86173",
       "range": {
         "startLine": 843,
         "startChar": 10,
@@ -144,6 +216,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "99c0225a_14a7d09c",
+        "filename": "system/stack/l2cap/l2c_api.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1000,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2023-03-21T03:37:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ad75b391_647658b7",
+      "range": {
+        "startLine": 999,
+        "startChar": 0,
+        "endLine": 1000,
+        "endChar": 1
+      },
+      "revId": "fdc2f90d4d44f0f5b8e111bb98db8cc42838a6f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0a052647_17b3d222",
@@ -157,6 +253,30 @@
       "writtenOn": "2023-03-20T14:56:36Z",
       "side": 1,
       "message": "Do not use VLOG nor full address for logging (ADDRESS_TO_LOGGABLE_STR or ADDRESS_TO_LOGGABLE_CSTR)",
+      "range": {
+        "startLine": 1018,
+        "startChar": 37,
+        "endLine": 1018,
+        "endChar": 46
+      },
+      "revId": "fdc2f90d4d44f0f5b8e111bb98db8cc42838a6f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "16a875b1_bde32b12",
+        "filename": "system/stack/l2cap/l2c_api.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1018,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2023-03-21T03:37:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0a052647_17b3d222",
       "range": {
         "startLine": 1018,
         "startChar": 37,
@@ -190,6 +310,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6a3cfaf0_40841ce1",
+        "filename": "system/stack/l2cap/l2c_api.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1096,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2023-03-21T03:37:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "aa2bddf5_4c4756b6",
+      "range": {
+        "startLine": 1096,
+        "startChar": 33,
+        "endLine": 1096,
+        "endChar": 38
+      },
+      "revId": "fdc2f90d4d44f0f5b8e111bb98db8cc42838a6f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b9a04dcf_f39f9b21",
@@ -203,6 +347,30 @@
       "writtenOn": "2023-03-20T14:56:36Z",
       "side": 1,
       "message": "is `L2CA_GetIdentifiers` supposed to do the same thing as the previously `L2CA_GetRemoteCid` ?",
+      "range": {
+        "startLine": 1112,
+        "startChar": 5,
+        "endLine": 1112,
+        "endChar": 24
+      },
+      "revId": "fdc2f90d4d44f0f5b8e111bb98db8cc42838a6f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "78f1ce45_cda8e6f1",
+        "filename": "system/stack/l2cap/l2c_api.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1112,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2023-03-21T03:37:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b9a04dcf_f39f9b21",
       "range": {
         "startLine": 1112,
         "startChar": 5,
