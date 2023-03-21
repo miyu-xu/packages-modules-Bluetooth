@@ -16,6 +16,24 @@
       "message": "Rather than this change, could we instead post the callback (just above) to run after this synchronous logic completes? So on line 437, invoke the callback using `do_on_main_thread` and then keep the CHECK as is.",
       "revId": "9de04950895df6219ccdc2e753a366507a7ae223",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8e0e43a1_0a28c069",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2023-03-21T18:15:56Z",
+      "side": 1,
+      "message": "I think you are right: We should post the callback, but without `do_on_main_thread` because the check here is added by ag/1048704 to capture the failure caused by the callback(precisely, `smp_proc_pairing_cmpl() -\u003e smp_reset_control_value() -\u003e smp_remove_fixed_channel()`). Then simply rearranging the order can solve this issue.",
+      "parentUuid": "edb4c095_e919e753",
+      "revId": "9de04950895df6219ccdc2e753a366507a7ae223",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
