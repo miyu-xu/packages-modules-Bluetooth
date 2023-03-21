@@ -94,6 +94,30 @@
       },
       "revId": "875622868a2929eeddafdcc2bac59ffbe40dc5cb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "411accc4_a3cb847c",
+        "filename": "system/stack/acl/btm_acl.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 2404,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-03-21T23:31:02Z",
+      "side": 1,
+      "message": "ACL_ReadConnectionAddress should always work / do the correct thing now.\n\nDo you have reason to believe that it doesn\u0027t work? If not, it should be fixed.",
+      "parentUuid": "b0ee7c22_5b1921c4",
+      "range": {
+        "startLine": 2404,
+        "startChar": 54,
+        "endLine": 2404,
+        "endChar": 76
+      },
+      "revId": "875622868a2929eeddafdcc2bac59ffbe40dc5cb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
