@@ -16,6 +16,24 @@
       "message": "Hi Myles, I am very sorry that I thought \"atest hci_packets_test.cc\" ran the inline tests. But I was wrong.\n\nFor the Patchset 2, I fixed your comments about my wrong inline tests. This time, I ran \"atest bluetooth_test_gd_unit\" and they all passed as:\n\nx86_64 bluetooth_test_gd_unit: Passed: 1092, Failed: 0, Ignored: 0, Assumption Failed: 0,                               \nAll tests passed!",
       "revId": "b3ed808229d9aa4046b90328d83b1085af6ed6d8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1f976b08_d89def7d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-03-21T14:47:34Z",
+      "side": 1,
+      "message": "No need to be sorry :)  I\u0027m sorry if I came across as rude.  Thanks for running and fixing the tests.",
+      "parentUuid": "5f3d52e6_4e698e64",
+      "revId": "b3ed808229d9aa4046b90328d83b1085af6ed6d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
