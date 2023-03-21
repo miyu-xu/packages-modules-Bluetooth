@@ -118,6 +118,30 @@
       },
       "revId": "875622868a2929eeddafdcc2bac59ffbe40dc5cb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "082c50dc_84e2de09",
+        "filename": "system/stack/acl/btm_acl.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 2404,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-03-21T23:34:07Z",
+      "side": 1,
+      "message": "It is ultimately populated from the advertiser address (if we are peripheral) or the initiator address (if we are central) but should always match what we are actually using.",
+      "parentUuid": "411accc4_a3cb847c",
+      "range": {
+        "startLine": 2404,
+        "startChar": 54,
+        "endLine": 2404,
+        "endChar": 76
+      },
+      "revId": "875622868a2929eeddafdcc2bac59ffbe40dc5cb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
