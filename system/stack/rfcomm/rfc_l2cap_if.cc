@@ -32,6 +32,7 @@
 #include "osi/include/allocator.h"
 #include "osi/include/log.h"
 #include "osi/include/osi.h"  // UNUSED_ATTR
+#include "osi/include/properties.h"
 #include "stack/include/bt_hdr.h"
 #include "stack/include/bt_types.h"
 #include "stack/include/l2c_api.h"
@@ -89,10 +90,13 @@ void rfcomm_l2cap_if_init(void) {
 void RFCOMM_ConnectInd(const RawAddress& bd_addr, uint16_t lcid,
                        UNUSED_ATTR uint16_t psm, uint8_t id) {
   tRFC_MCB* p_mcb = rfc_alloc_multiplexer_channel(bd_addr, false);
+  uint16_t collision_timeout = 0;
 
   if ((p_mcb) && (p_mcb->state != RFC_MX_STATE_IDLE)) {
     /* if this is collision case */
     if ((p_mcb->is_initiator) && (p_mcb->state == RFC_MX_STATE_WAIT_CONN_CNF)) {
+      collision_timeout = (uint16_t)osi_property_get_int32(
+          RFCOMM_COLLISION_TIMEOUT_PROPERTY, RFCOMM_COLLISION_DEFAULT_TIMEOUT);
       p_mcb->pending_lcid = lcid;
 
       /* wait random timeout (2 - 12) to resolve collision */
@@ -101,13 +105,12 @@ void RFCOMM_ConnectInd(const RawAddress& bd_addr, uint16_t lcid,
       /* if timeout, local device disconnects outgoing connection and continues
        * as acceptor */
       RFCOMM_TRACE_DEBUG(
-          "RFCOMM_ConnectInd start timer for collision, initiator's "
+          "RFCOMM_ConnectInd start timer for collision for %d seconds, "
+          "initiator's "
           "LCID(0x%x), acceptor's LCID(0x%x)",
-          p_mcb->lcid, p_mcb->pending_lcid);
+          collision_timeout, p_mcb->lcid, p_mcb->pending_lcid);
 
-      rfc_timer_start(
-          p_mcb,
-          (uint16_t)(bluetooth::common::time_get_os_boottime_ms() % 10 + 2));
+      rfc_timer_start(p_mcb, collision_timeout);
       return;
     } else {
       /* we cannot accept connection request from peer at this state */
