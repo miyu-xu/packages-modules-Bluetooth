@@ -64,13 +64,21 @@ public class Metadata implements Cloneable {
         if (!Objects.equals(album, m.album)) return false;
         if (!Objects.equals(trackNum, m.trackNum)) return false;
         if (!Objects.equals(numTracks, m.numTracks)) return false;
+        if (!Objects.equals(genre, m.genre)) return false;
+        if (!Objects.equals(duration, m.duration)) return false;
+        // Actual image comparisons have shown to be very expensive. Since it's rare that
+        // an application changes the cover artwork between multiple images once it's not
+        // null anymore, we just look for changes between "something" and "nothing".
+        if ((image == null && m.image != null) || (image != null && m.image == null)) {
+            return false;
+        }
         return true;
     }
 
     @Override
     public int hashCode() {
-        // Do not hash the Image as it does not implement hashCode
-        return Objects.hash(mediaId, title, artist, album, trackNum, numTracks, genre, duration);
+        return Objects.hash(mediaId, title, artist, album, trackNum, numTracks, genre, duration,
+                image);
     }
 
     @Override
@@ -78,6 +86,53 @@ public class Metadata implements Cloneable {
         return "{ mediaId=\"" + mediaId + "\" title=\"" + title + "\" artist=\"" + artist
                 + "\" album=\"" + album + "\" duration=" + duration
                 + " trackPosition=" + trackNum + "/" + numTracks + " image=" + image + " }";
+    }
+
+    /**
+     * Replaces default values by {@code filledMetadata} non default values.
+     */
+    public void replaceDefaults(Metadata filledMetadata) {
+        if (filledMetadata == null) {
+            return;
+        }
+
+        Metadata empty = Util.empty_data();
+
+        if (empty.mediaId.equals(mediaId)
+                && !empty.mediaId.equals(filledMetadata.mediaId)) {
+            mediaId = filledMetadata.mediaId;
+        }
+        if (empty.title.equals(title)
+                && !empty.title.equals(filledMetadata.title)) {
+            title = filledMetadata.title;
+        }
+        if (empty.artist.equals(artist)
+                && !empty.artist.equals(filledMetadata.artist)) {
+            artist = filledMetadata.artist;
+        }
+        if (empty.album.equals(album)
+                && !empty.album.equals(filledMetadata.album)) {
+            album = filledMetadata.album;
+        }
+        if (empty.trackNum.equals(trackNum)
+                && !empty.trackNum.equals(filledMetadata.trackNum)) {
+            trackNum = filledMetadata.trackNum;
+        }
+        if (empty.numTracks.equals(numTracks)
+                && !empty.numTracks.equals(filledMetadata.numTracks)) {
+            numTracks = filledMetadata.numTracks;
+        }
+        if (empty.genre.equals(genre)
+                && !empty.genre.equals(filledMetadata.genre)) {
+            genre = filledMetadata.genre;
+        }
+        if (empty.duration.equals(duration)
+                && !empty.duration.equals(filledMetadata.duration)) {
+            duration = filledMetadata.duration;
+        }
+        if (image == null && filledMetadata.image != null) {
+            image = filledMetadata.image;
+        }
     }
 
     /**
