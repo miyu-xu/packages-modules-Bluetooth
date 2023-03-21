@@ -22,6 +22,30 @@
       },
       "revId": "2c030234d5bf9bd614e0aba6931d4dd264e6d17d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "958b3695_a9f4875e",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1066,
+      "author": {
+        "id": 1930335
+      },
+      "writtenOn": "2023-03-21T15:16:14Z",
+      "side": 1,
+      "message": "Resolved. Please keep it is persistent or correct settings when a device boots up.",
+      "parentUuid": "7a9a00cd_bcc24b63",
+      "range": {
+        "startLine": 1066,
+        "startChar": 25,
+        "endLine": 1066,
+        "endChar": 56
+      },
+      "revId": "2c030234d5bf9bd614e0aba6931d4dd264e6d17d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
