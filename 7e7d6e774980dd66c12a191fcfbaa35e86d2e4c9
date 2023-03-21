@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "98b38434_0706607c",
+        "filename": "android/app/src/com/android/bluetooth/btservice/PhonePolicy.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-03-21T21:41:17Z",
+      "side": 1,
+      "message": "`bluetooth.auto_connect_profiles.enabled` to keep in sync with the latest version on wear.\n\nYour version is good too but it require to update the prop on wear for both bluetooth and device/clockwork.",
+      "range": {
+        "startLine": 102,
+        "startChar": 14,
+        "endLine": 102,
+        "endChar": 55
+      },
+      "revId": "7e7d6e774980dd66c12a191fcfbaa35e86d2e4c9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
