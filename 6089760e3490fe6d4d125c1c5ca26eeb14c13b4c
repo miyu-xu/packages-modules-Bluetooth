@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ca1cc28a_ab91dfc0",
+        "filename": "android/app/src/com/android/bluetooth/a2dpsink/A2dpSinkStreamHandler.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2023-03-21T19:38:50Z",
+      "side": 0,
+      "message": "Nit: I kind of liked having the current focus associated with the message being processed,because some of the events depend on the focus state. The other log below is a good one on its own too.",
+      "range": {
+        "startLine": 138,
+        "startChar": 12,
+        "endLine": 138,
+        "endChar": 56
+      },
+      "revId": "6089760e3490fe6d4d125c1c5ca26eeb14c13b4c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

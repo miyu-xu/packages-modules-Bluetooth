@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "165b527f_894420c5",
+        "filename": "android/app/src/com/android/bluetooth/a2dpsink/A2dpSinkStreamHandler.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 267,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2023-03-21T19:38:50Z",
+      "side": 1,
+      "message": "Do we not get the state change from the audio framework as a result of our request? I want to make sure we\u0027re not getting double events.\n\nAs well, I wonder if we can get a race between lines 263 and here where we gain focus from the request, the audio stack knows it, but then we quickly/immediately lose it. They invoked our listener, which puts an event on our state machine for a loss, but then we manually trigger the listener with a gain and now we *think* we have focus when we don\u0027t because we process loss, then gain, on our handler.\n\nIf that\u0027s the case, it might just be better to execute `startFlourideStreaming()` as we did, and invoked AVRCP\u0027s callback her einstead. That way we can guarantee the order of events.\n\nDefinitely set mAudioFocus first too, despite what the old code did. Starting streaming could give us a PLAYING state in AVRCP potentially before the focus is set, which could cause us to pause when we don\u0027t actually mean to.",
+      "range": {
+        "startLine": 267,
+        "startChar": 12,
+        "endLine": 267,
+        "endChar": 64
+      },
+      "revId": "62c2711e0581c7b84d4d888a2ecc636ca6e7c341",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
