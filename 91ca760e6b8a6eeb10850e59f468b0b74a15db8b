@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "43a67e6b_2c54e1dc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2023-03-21T00:16:25Z",
+      "side": 1,
+      "message": "Hi reviewers,\nThis is needed for qualification otherwise nor btclient and the UI won\u0027t receive any message to enter a pin code.\nPlease help review this, thanks.",
+      "revId": "91ca760e6b8a6eeb10850e59f468b0b74a15db8b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
