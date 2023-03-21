@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d56f2ad0_818953c8",
+        "filename": "tools/rootcanal/model/controller/link_layer_controller.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 5669,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2023-03-21T08:32:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "26a18f24_0928d18a",
+      "revId": "55375a793cedbe7020f85894de7086b4089ecfd3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e0125104_6340cefc",
@@ -31,6 +49,24 @@
       "writtenOn": "2023-03-20T18:17:38Z",
       "side": 1,
       "message": "The response should include whether the request was rejected or not, to make things easier.",
+      "revId": "55375a793cedbe7020f85894de7086b4089ecfd3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9bbd58d9_7b92ecb5",
+        "filename": "tools/rootcanal/packets/link_layer_packets.pdl",
+        "patchSetId": 7
+      },
+      "lineNbr": 466,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2023-03-21T08:32:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e0125104_6340cefc",
       "revId": "55375a793cedbe7020f85894de7086b4089ecfd3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }

@@ -215,6 +215,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0b41c6eb_14c1a7a2",
+        "filename": "tools/rootcanal/model/controller/link_layer_controller.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 4795,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2023-03-21T08:32:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4f7a445f_339a8c49",
+      "range": {
+        "startLine": 4788,
+        "startChar": 0,
+        "endLine": 4795,
+        "endChar": 3
+      },
+      "revId": "05c04738be2df8817c2af4337c091c9db2018a5b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "aed3f27d_1490f5f4",
@@ -276,6 +300,30 @@
       "side": 1,
       "message": "new_role -\u003e role",
       "parentUuid": "8f33afe9_71affe03",
+      "range": {
+        "startLine": 5650,
+        "startChar": 63,
+        "endLine": 5650,
+        "endChar": 71
+      },
+      "revId": "05c04738be2df8817c2af4337c091c9db2018a5b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ea12a3a1_4e036dbc",
+        "filename": "tools/rootcanal/model/controller/link_layer_controller.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 5650,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2023-03-21T08:32:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "951e2feb_23355657",
       "range": {
         "startLine": 5650,
         "startChar": 63,
