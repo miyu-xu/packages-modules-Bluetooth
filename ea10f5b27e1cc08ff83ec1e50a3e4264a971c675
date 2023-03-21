@@ -105,6 +105,24 @@
       "parentUuid": "e7ba77f4_37846e7b",
       "revId": "ea10f5b27e1cc08ff83ec1e50a3e4264a971c675",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a82c9575_3fcad14b",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1363,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-03-21T13:20:44Z",
+      "side": 1,
+      "message": "Updated new CL with suggested move to group - CleanupCises",
+      "parentUuid": "d351a24d_9742e7c9",
+      "revId": "ea10f5b27e1cc08ff83ec1e50a3e4264a971c675",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

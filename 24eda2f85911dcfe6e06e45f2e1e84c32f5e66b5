@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4630af94_cfa56b5c",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 2377,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-03-21T13:20:44Z",
+      "side": 1,
+      "message": "This may be still needed to get pair of ASEs. Please check new CL version",
+      "parentUuid": "959fabf9_3a43145b",
+      "revId": "24eda2f85911dcfe6e06e45f2e1e84c32f5e66b5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ae8fb620_df103a3b",
         "filename": "system/bta/le_audio/devices.h",
         "patchSetId": 6
@@ -37,6 +55,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "47efb875_15ac8220",
+        "filename": "system/bta/le_audio/devices.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-03-21T13:20:44Z",
+      "side": 1,
+      "message": "This may be still needed to get pair of ASEs. Please check new CL version",
+      "parentUuid": "ae8fb620_df103a3b",
+      "revId": "24eda2f85911dcfe6e06e45f2e1e84c32f5e66b5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "175bbc84_34be8252",
         "filename": "system/bta/le_audio/le_audio_client_test.cc",
         "patchSetId": 6
@@ -48,6 +84,24 @@
       "writtenOn": "2023-03-17T15:22:18Z",
       "side": 1,
       "message": "can we also test here that group is not active any more, and the actually group state?",
+      "revId": "24eda2f85911dcfe6e06e45f2e1e84c32f5e66b5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "780d2563_fa2e7f07",
+        "filename": "system/bta/le_audio/le_audio_client_test.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 4381,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-03-21T13:20:44Z",
+      "side": 1,
+      "message": "Group state is set in state_machine which is mocked in those tests.\n\nActive group is set by service call GroupSetActive. This should be called inside test.\n\nLooks like all those states should be \"faked\" by test, is there sense to set this fake values and check this ?",
+      "parentUuid": "175bbc84_34be8252",
       "revId": "24eda2f85911dcfe6e06e45f2e1e84c32f5e66b5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
