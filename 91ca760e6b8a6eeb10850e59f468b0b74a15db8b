@@ -16,6 +16,40 @@
       "message": "Hi reviewers,\nThis is needed for qualification otherwise nor btclient and the UI won\u0027t receive any message to enter a pin code.\nPlease help review this, thanks.",
       "revId": "91ca760e6b8a6eeb10850e59f468b0b74a15db8b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "759e44f9_81c5384b",
+        "filename": "system/gd/rust/linux/client/src/dbus_iface.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 300,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2023-03-21T15:28:17Z",
+      "side": 1,
+      "message": "nit: spaces between lines",
+      "revId": "91ca760e6b8a6eeb10850e59f468b0b74a15db8b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fba6d989_599cfa9b",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 1066,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2023-03-21T15:28:17Z",
+      "side": 1,
+      "message": "nit: can you add a bug number to this TODO",
+      "revId": "91ca760e6b8a6eeb10850e59f468b0b74a15db8b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
