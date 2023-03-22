@@ -142,6 +142,30 @@
       },
       "revId": "6ef9f51751d069928b8289643710d761964f820f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5d896336_2e1f8eb8",
+        "filename": "system/bta/gatt/bta_gattc_utils.cc",
+        "patchSetId": 22
+      },
+      "lineNbr": 379,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-03-22T11:37:29Z",
+      "side": 1,
+      "message": "an updated. After offline talk to @jpawlowski I will be changing that - so application will get true MTU.\n\nReason for that is, if GATT user, depends on MTU when deciding to use e.g. Write Command or Long Write, we need to make sure he looks at correct MTU.",
+      "parentUuid": "b82bacb3_3712bbda",
+      "range": {
+        "startLine": 376,
+        "startChar": 0,
+        "endLine": 379,
+        "endChar": 0
+      },
+      "revId": "6ef9f51751d069928b8289643710d761964f820f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
