@@ -29,6 +29,7 @@ import com.android.internal.annotations.VisibleForTesting;
 
 import com.google.common.hash.BloomFilter;
 import com.google.common.hash.Funnels;
+import com.google.common.hash.Hashing;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -292,12 +293,14 @@ public class MetricsLogger {
         if (matchedSha256 == null) {
             return false;
         }
-        statslogBluetoothDeviceNames(metricId, matchedString, matchedSha256);
+        statslogBluetoothDeviceNames(
+                metricId,
+                matchedString,
+                Hashing.sha256().hashString(matchedString, StandardCharsets.UTF_8).toString());
         return true;
     }
 
-    protected void statslogBluetoothDeviceNames(int metricId, String matchedString, byte[] sha256) {
-        String sha256String = new String(sha256);
+    protected void statslogBluetoothDeviceNames(int metricId, String matchedString, String sha256) {
         Log.d(TAG,
                 "Uploading sha256 hash of matched bluetooth device name: " + sha256String);
         BluetoothStatsLog.write(
