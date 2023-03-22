@@ -335,6 +335,24 @@
       "parentUuid": "895565aa_dcd67bd1",
       "revId": "f82e9dbc32b3258432636d428e162436011856c4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5f4cd76d_290fd3c9",
+        "filename": "system/gd/rust/linux/service/src/main.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2023-03-22T23:39:07Z",
+      "side": 1,
+      "message": "No concern. I can also help to move some of the logs from DEBUG to VERBSOE, especially those related to data routing, encoding and decoding.",
+      "parentUuid": "57fc862b_a5aaf238",
+      "revId": "f82e9dbc32b3258432636d428e162436011856c4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
