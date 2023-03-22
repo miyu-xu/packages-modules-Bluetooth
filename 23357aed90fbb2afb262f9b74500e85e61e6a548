@@ -70,6 +70,24 @@
       "parentUuid": "2e010c5d_28160a69",
       "revId": "23357aed90fbb2afb262f9b74500e85e61e6a548",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "93bbf2b4_8ae9570c",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 622,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-03-22T14:03:38Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "345e8389_bc149aa0",
+      "revId": "23357aed90fbb2afb262f9b74500e85e61e6a548",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
