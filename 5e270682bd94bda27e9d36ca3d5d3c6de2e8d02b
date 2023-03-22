@@ -50,6 +50,24 @@
       "message": "Unnecessary comment. Remove these tokens from the previous comment as well.",
       "revId": "5e270682bd94bda27e9d36ca3d5d3c6de2e8d02b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "73bd51b2_7abe6100",
+        "filename": "system/btif/src/btif_ble_scanner.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1965943
+      },
+      "writtenOn": "2023-03-22T02:26:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ae5f4643_f1a0aade",
+      "revId": "5e270682bd94bda27e9d36ca3d5d3c6de2e8d02b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
