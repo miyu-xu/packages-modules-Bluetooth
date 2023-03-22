@@ -1065,7 +1065,8 @@ struct shim::legacy::Acl::impl {
   }
 
   void accept_le_connection_from(const hci::AddressWithType& address_with_type,
-                                 bool is_direct, std::promise<bool> promise) {
+                                 bool is_direct, uint32_t connection_timeout_ms,
+                                 std::promise<bool> promise) {
     if (shadow_acceptlist_.IsFull()) {
       LOG_ERROR("Acceptlist is full preventing new Le connection");
       promise.set_value(false);
@@ -1073,11 +1074,20 @@ struct shim::legacy::Acl::impl {
     }
     shadow_acceptlist_.Add(address_with_type);
     promise.set_value(true);
-    GetAclManager()->CreateLeConnection(address_with_type, is_direct);
-    LOG_DEBUG("Allow Le connection from remote:%s",
-              ADDRESS_TO_LOGGABLE_CSTR(address_with_type));
+    GetAclManager()->CreateLeConnection(address_with_type, is_direct,
+                                        connection_timeout_ms);
+    LOG_DEBUG("Allow Le connection from remote:%s timeout_ms:%s",
+              ADDRESS_TO_LOGGABLE_CSTR(address_with_type),
+              (connection_timeout_ms == 0)
+                  ? "default"
+                  : std::to_string(connection_timeout_ms).c_str());
     BTM_LogHistory(kBtmLogTag, ToLegacyAddressWithType(address_with_type),
-                   "Allow connection from", "Le");
+                   "Allow connection from",
+                   base::StringPrintf(
+                       "Le timeout_ms:%s",
+                       (connection_timeout_ms == 0)
+                           ? "default"
+                           : std::to_string(connection_timeout_ms).c_str()));
   }
 
   void ignore_le_connection_from(
@@ -1466,11 +1476,12 @@ void shim::legacy::Acl::CancelClassicConnection(const hci::Address& address) {
 
 void shim::legacy::Acl::AcceptLeConnectionFrom(
     const hci::AddressWithType& address_with_type, bool is_direct,
-    std::promise<bool> promise) {
+    uint32_t connection_timeout_ms, std::promise<bool> promise) {
   LOG_DEBUG("AcceptLeConnectionFrom %s",
             ADDRESS_TO_LOGGABLE_CSTR(address_with_type.GetAddress()));
   handler_->CallOn(pimpl_.get(), &Acl::impl::accept_le_connection_from,
-                   address_with_type, is_direct, std::move(promise));
+                   address_with_type, is_direct, connection_timeout_ms,
+                   std::move(promise));
 }
 
 void shim::legacy::Acl::IgnoreLeConnectionFrom(

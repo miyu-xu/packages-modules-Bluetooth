@@ -51,6 +51,8 @@ bool L2CA_SetAclPriority(uint16_t, bool);
 
 namespace hci {
 
+constexpr uint32_t kDefaultLeConnectionTimeout = 0;
+
 class AclManager : public Module {
  friend class bluetooth::shim::Btm;
  friend class bluetooth::shim::legacy::Acl;
@@ -83,7 +85,8 @@ public:
  virtual void CreateConnection(Address address);
 
  // Generates OnLeConnectSuccess if connected, or OnLeConnectFail otherwise
- virtual void CreateLeConnection(AddressWithType address_with_type, bool is_direct);
+ virtual void CreateLeConnection(
+     AddressWithType address_with_type, bool is_direct, uint32_t connection_timeout_ms);
 
  // Ask the controller for specific data parameters
  virtual void SetLeSuggestedDefaultDataParameters(uint16_t octets, uint16_t time);

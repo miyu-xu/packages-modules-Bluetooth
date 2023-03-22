@@ -2815,7 +2815,8 @@ void acl_write_automatic_flush_timeout(const RawAddress& bd_addr,
 }
 
 bool acl_create_le_connection_with_id(uint8_t id, const RawAddress& bd_addr,
-                                      tBLE_ADDR_TYPE addr_type) {
+                                      tBLE_ADDR_TYPE addr_type,
+                                      uint32_t connection_timeout_ms) {
   tBLE_BD_ADDR address_with_type{
       .bda = bd_addr,
       .type = addr_type,
@@ -2823,8 +2824,11 @@ bool acl_create_le_connection_with_id(uint8_t id, const RawAddress& bd_addr,
   if (address_with_type.type == BLE_ADDR_PUBLIC) {
     gatt_find_in_device_record(bd_addr, &address_with_type);
   }
-  LOG_DEBUG("Creating le direct connection to:%s",
-            ADDRESS_TO_LOGGABLE_CSTR(address_with_type));
+  LOG_DEBUG("Creating le direct connection to:%s timeout_ms:%s",
+            ADDRESS_TO_LOGGABLE_CSTR(address_with_type),
+            (connection_timeout_ms == 0)
+                ? "default"
+                : std::to_string(connection_timeout_ms).c_str());
 
   if (address_with_type.type == BLE_ADDR_ANONYMOUS) {
     LOG_WARN(
@@ -2844,12 +2848,20 @@ bool acl_create_le_connection_with_id(uint8_t id, const RawAddress& bd_addr,
       argument_list);
 
   bluetooth::shim::ACL_AcceptLeConnectionFrom(address_with_type,
-                                              /* is_direct */ true);
+                                              /* is_direct */ true,
+                                              connection_timeout_ms);
   return true;
 }
 
 bool acl_create_le_connection_with_id(uint8_t id, const RawAddress& bd_addr) {
-  return acl_create_le_connection_with_id(id, bd_addr, BLE_ADDR_PUBLIC);
+  return acl_create_le_connection_with_id(id, bd_addr, BLE_ADDR_PUBLIC,
+                                          0UL /* default connection timeout */);
+}
+
+bool acl_create_le_connection_with_id(uint8_t id, const RawAddress& bd_addr,
+                                      tBLE_ADDR_TYPE addr_type) {
+  return acl_create_le_connection_with_id(id, bd_addr, addr_type,
+                                          0UL /* default connection timeout */);
 }
 
 bool acl_create_le_connection(const RawAddress& bd_addr) {

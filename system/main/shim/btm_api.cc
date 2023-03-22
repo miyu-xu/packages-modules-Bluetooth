@@ -1373,7 +1373,8 @@ tBTM_STATUS bluetooth::shim::BTM_AllowWakeByHid(
 
     Stack::GetInstance()->GetAcl()->AcceptLeConnectionFrom(
         ToAddressWithType(hid_address.first, hid_address.second),
-        /*is_direct=*/false, std::move(accept_promise));
+        /*is_direct=*/false, 0U /* unused timeout */,
+        std::move(accept_promise));
 
     accept_future.wait();
   }
@@ -1394,7 +1395,8 @@ tBTM_STATUS bluetooth::shim::BTM_RestoreFilterAcceptList(
 
     Stack::GetInstance()->GetAcl()->AcceptLeConnectionFrom(
         ToAddressWithType(address_pair.first, address_pair.second),
-        /*is_direct=*/false, std::move(accept_promise));
+        /*is_direct=*/false, 0U /* unused timeout */,
+        std::move(accept_promise));
 
     accept_future.wait();
   }

@@ -64,13 +64,12 @@ namespace main_shim_acl_api {
 struct ACL_AcceptLeConnectionFrom {
   static bool return_value;
   std::function<bool(const tBLE_BD_ADDR& legacy_address_with_type,
-                     bool is_direct)>
-      body{[](const tBLE_BD_ADDR& legacy_address_with_type, bool is_direct) {
-        return return_value;
-      }};
-  bool operator()(const tBLE_BD_ADDR& legacy_address_with_type,
-                  bool is_direct) {
-    return body(legacy_address_with_type, is_direct);
+                     bool is_direct, uint32_t connection_timeout_ms)>
+      body{[](const tBLE_BD_ADDR& legacy_address_with_type, bool is_direct,
+              uint32_t connection_timeout_ms) { return return_value; }};
+  bool operator()(const tBLE_BD_ADDR& legacy_address_with_type, bool is_direct,
+                  uint32_t connection_timeout_ms) {
+    return body(legacy_address_with_type, is_direct, connection_timeout_ms);
   };
 };
 extern struct ACL_AcceptLeConnectionFrom ACL_AcceptLeConnectionFrom;
