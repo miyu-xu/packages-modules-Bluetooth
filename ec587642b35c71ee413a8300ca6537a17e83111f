@@ -16,6 +16,23 @@
       "message": "thanks!",
       "revId": "ec587642b35c71ee413a8300ca6537a17e83111f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7edf6a55_3f6525c5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1998851
+      },
+      "writtenOn": "2023-03-22T20:38:52Z",
+      "side": 1,
+      "message": "Hi Abhishek, the ChromeOS LLVM roll is currently running into problems with the bindgen version here as well. Could we get this change ported back to ChromeOS to unblock that? Thanks for the help!",
+      "revId": "ec587642b35c71ee413a8300ca6537a17e83111f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
