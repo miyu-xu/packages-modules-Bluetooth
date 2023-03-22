@@ -225,6 +225,30 @@
       },
       "revId": "4da8aad839d9cfb2fe0227b36eb5b3a95f7300f4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "546d2310_a87eb5ba",
+        "filename": "system/stack/btm/btm_ble.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2023-03-22T18:37:40Z",
+      "side": 1,
+      "message": "I create a tracker: b/274790094. Will handle it when we switch the branch.",
+      "parentUuid": "4ec0407a_df42e241",
+      "range": {
+        "startLine": 67,
+        "startChar": 0,
+        "endLine": 81,
+        "endChar": 46
+      },
+      "revId": "4da8aad839d9cfb2fe0227b36eb5b3a95f7300f4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
