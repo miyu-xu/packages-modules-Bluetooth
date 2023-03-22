@@ -46,6 +46,30 @@
       },
       "revId": "4bd25c5427ba2a4271fe1da89e56f09571e99345",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e69b655c_35db987c",
+        "filename": "system/stack/rfcomm/rfc_l2cap_if.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1306903
+      },
+      "writtenOn": "2023-03-22T16:08:36Z",
+      "side": 1,
+      "message": "The problem we are seeing is that if both sides are Android devices and connect rfc to each other, the Android stack timeout at waiting for the response as the remote device is in the 2-12 seconds timer.",
+      "parentUuid": "97da59fc_fd919aa1",
+      "range": {
+        "startLine": 102,
+        "startChar": 9,
+        "endLine": 102,
+        "endChar": 36
+      },
+      "revId": "4bd25c5427ba2a4271fe1da89e56f09571e99345",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
