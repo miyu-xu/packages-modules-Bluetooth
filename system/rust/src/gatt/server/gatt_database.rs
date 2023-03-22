@@ -6,7 +6,7 @@ use std::{cell::RefCell, collections::BTreeMap, ops::RangeInclusive, rc::Rc};
 
 use anyhow::{bail, Result};
 use async_trait::async_trait;
-use log::error;
+use log::{error, warn};
 
 use crate::{
     core::{
@@ -430,6 +430,51 @@ impl AttDatabase for AttDatabaseImpl {
                     .await
             }
         }
+    }
+
+    fn write_no_response_attribute(&self, handle: AttHandle, data: AttAttributeDataView<'_>) {
+        let value = self.gatt_db.with(|gatt_db| {
+            let Some(gatt_db) = gatt_db else {
+                // db must have been closed
+                return None;
+            };
+            let services = gatt_db.schema.borrow();
+            let Some(attr) = services.attributes.get(&handle) else {
+                warn!("cannot find handle {handle:?}");
+                return None;
+            };
+            if !attr.attribute.permissions.writable_without_response() {
+                warn!("trying to write without response to {handle:?}, which doesn't support it");
+                return None;
+            }
+            Some(attr.value.clone())
+        });
+
+        let Some(value) = value else {
+            return;
+        };
+
+        match value {
+            AttAttributeBackingValue::Static(val) => {
+                error!("A static attribute {val:?} is marked as writable - ignoring it and rejecting the write...");
+            }
+            AttAttributeBackingValue::DynamicCharacteristic(datastore) => {
+                datastore.write_no_response(
+                    self.conn_id,
+                    handle,
+                    AttributeBackingType::Characteristic,
+                    data,
+                );
+            }
+            AttAttributeBackingValue::DynamicDescriptor(datastore) => {
+                datastore.write_no_response(
+                    self.conn_id,
+                    handle,
+                    AttributeBackingType::Descriptor,
+                    data,
+                );
+            }
+        };
     }
 
     fn list_attributes(&self) -> Vec<AttAttribute> {

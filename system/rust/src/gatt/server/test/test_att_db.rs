@@ -59,6 +59,16 @@ impl AttDatabase for TestAttDatabase {
             None => Err(AttErrorCode::INVALID_HANDLE),
         }
     }
+    fn write_no_response_attribute(&self, handle: AttHandle, data: AttAttributeDataView<'_>) {
+        match self.attributes.get(&handle) {
+            Some((AttAttribute { permissions, .. }, data_cell))
+                if permissions.writable_without_response() =>
+            {
+                data_cell.replace(data.get_raw_payload().collect());
+            }
+            _ => {}
+        }
+    }
     fn list_attributes(&self) -> Vec<AttAttribute> {
         self.attributes.values().map(|(att, _)| *att).collect()
     }
