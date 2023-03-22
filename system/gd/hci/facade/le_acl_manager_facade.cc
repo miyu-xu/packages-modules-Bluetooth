@@ -74,7 +74,7 @@ class LeAclManagerFacadeService : public LeAclManagerFacade::Service, public LeC
     ASSERT(Address::FromString(request->peer_address().address().address(), peer_address));
     AddressWithType peer(peer_address, static_cast<AddressType>(request->peer_address().type()));
     bool is_direct = request->is_direct();
-    acl_manager_->CreateLeConnection(peer, is_direct);
+    acl_manager_->CreateLeConnection(peer, is_direct, kDefaultLeConnectionTimeout);
 
     if (is_direct) {
       if (direct_connection_events_ != nullptr) {

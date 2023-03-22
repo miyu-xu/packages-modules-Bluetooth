@@ -211,7 +211,7 @@ bool BTM_AcceptlistAdd(const RawAddress& address) {
 
   return bluetooth::shim::ACL_AcceptLeConnectionFrom(
       convert_to_address_with_type(address, p_dev_rec),
-      /* is_direct */ false);
+      /* is_direct */ false, 0U /* unused timeout */);
 }
 
 /** Removes the device from acceptlist */
