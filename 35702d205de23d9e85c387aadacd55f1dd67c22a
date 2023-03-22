@@ -16,6 +16,23 @@
       "message": "Grzegorz, please check failing le_audio unit test..\n\nSeems to be relevant\n\n```\n[0322/144214.807878:INFO:devices.h(357)] SetTargetState target state: STREAMING (0x04) new target state: IDLE (0x00)\n\nGMOCK WARNING:\nUninteresting mock function call - taking default action specified at:\npackages/modules/Bluetooth/system/bta/le_audio/state_machine_test.cc:459:\n    Function call: GetCodecLocation()\n          Returns: 4-byte object \u003c00-00 00-00\u003e\nNOTE: You can safely ignore the above warning unless this call should not happen.  Do not suppress it by blindly adding an EXPECT_CALL() if you don\u0027t mean to enforce the call.  See https://github.com/google/googletest/blob/master/docs/gmock_cook_book.md#knowing-when-to-expect for details.\npackages/modules/Bluetooth/system/bta/le_audio/state_machine_test.cc:3036: Failure\nExpected equality of these values:\n  0\n  static_cast\u003cint\u003e(group-\u003ecises_.size())\n    Which is: 1\n\nGMOCK WARNING:\n```",
       "revId": "35702d205de23d9e85c387aadacd55f1dd67c22a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d0d25e22_e1858552",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-03-22T21:50:11Z",
+      "side": 1,
+      "message": "Presubmit failure:\n\npackages/modules/Bluetooth/system/bta/le_audio/state_machine_test.cc:3036: Failure\nExpected equality of these values:\n  0\n  static_cast\u003cint\u003e(group-\u003ecises_.size())\n    Which is: 1",
+      "revId": "35702d205de23d9e85c387aadacd55f1dd67c22a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
