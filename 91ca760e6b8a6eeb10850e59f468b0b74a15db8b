@@ -35,6 +35,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "204d4ba1_dc3ab89c",
+        "filename": "system/gd/rust/linux/client/src/dbus_iface.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 300,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2023-03-22T02:55:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "759e44f9_81c5384b",
+      "revId": "91ca760e6b8a6eeb10850e59f468b0b74a15db8b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fba6d989_599cfa9b",
@@ -48,6 +66,24 @@
       "writtenOn": "2023-03-21T15:28:17Z",
       "side": 1,
       "message": "nit: can you add a bug number to this TODO",
+      "revId": "91ca760e6b8a6eeb10850e59f468b0b74a15db8b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fa3b0995_20112ed3",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 1066,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2023-03-22T02:55:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fba6d989_599cfa9b",
       "revId": "91ca760e6b8a6eeb10850e59f468b0b74a15db8b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
