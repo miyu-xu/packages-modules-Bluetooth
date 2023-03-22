@@ -22,6 +22,30 @@
       },
       "revId": "6089760e3490fe6d4d125c1c5ca26eeb14c13b4c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "71a04a8a_c0aaf644",
+        "filename": "android/app/src/com/android/bluetooth/a2dpsink/A2dpSinkStreamHandler.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1985170
+      },
+      "writtenOn": "2023-03-22T22:37:40Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "ca1cc28a_ab91dfc0",
+      "range": {
+        "startLine": 138,
+        "startChar": 12,
+        "endLine": 138,
+        "endChar": 56
+      },
+      "revId": "6089760e3490fe6d4d125c1c5ca26eeb14c13b4c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

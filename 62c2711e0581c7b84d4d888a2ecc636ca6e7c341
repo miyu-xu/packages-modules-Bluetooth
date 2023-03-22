@@ -22,6 +22,30 @@
       },
       "revId": "62c2711e0581c7b84d4d888a2ecc636ca6e7c341",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4232ef48_92861601",
+        "filename": "android/app/src/com/android/bluetooth/a2dpsink/A2dpSinkStreamHandler.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 267,
+      "author": {
+        "id": 1985170
+      },
+      "writtenOn": "2023-03-22T22:37:40Z",
+      "side": 1,
+      "message": "If focus request result is GRANTED, then audio manager won\u0027t notify GAIN event to the focus change lister. from API 26, there is a new status AUDIOFOCUS_REQUEST_DELAYED (https://developer.android.com/reference/android/media/AudioManager#AUDIOFOCUS_REQUEST_DELAYED) which will result in audio focus gain change event being sent only if focus request had setAcceptsDelayedFocusGain to true, which is not the case here. (we should probably have an improvement task to close the gap).\n\nFir the 2nd comment, as we discussed the stream handler would receive a audio focus gain message at the front of the queue.",
+      "parentUuid": "165b527f_894420c5",
+      "range": {
+        "startLine": 267,
+        "startChar": 12,
+        "endLine": 267,
+        "endChar": 64
+      },
+      "revId": "62c2711e0581c7b84d4d888a2ecc636ca6e7c341",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
