@@ -22,6 +22,30 @@
       },
       "revId": "0e0de1251ce4d74d3b6dc98b0ed540d5725bc478",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a024cd69_8d4e6f07",
+        "filename": "android/pandora/test/AndroidTest.xml",
+        "patchSetId": 3
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1952952
+      },
+      "writtenOn": "2023-03-22T07:07:01Z",
+      "side": 1,
+      "message": "yes, we can have multiple bumble devices (in this test case, we have two)",
+      "parentUuid": "4970055a_752871eb",
+      "range": {
+        "startLine": 43,
+        "startChar": 47,
+        "endLine": 43,
+        "endChar": 54
+      },
+      "revId": "0e0de1251ce4d74d3b6dc98b0ed540d5725bc478",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
