@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d846b387_f87f5fd7",
+        "filename": "android/app/tests/myinstrumentation/AndroidTest.xml",
+        "patchSetId": 20
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1986325
+      },
+      "writtenOn": "2023-03-22T06:35:51Z",
+      "side": 1,
+      "message": "this is not the final setup, still talking to julien. please leave the setup to the last",
+      "revId": "4cb83affbe824023bbd2e61e20a56340787a532b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
