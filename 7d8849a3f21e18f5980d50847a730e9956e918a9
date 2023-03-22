@@ -16,6 +16,24 @@
       "message": "Need to map out the l2cap link state transitions",
       "revId": "7d8849a3f21e18f5980d50847a730e9956e918a9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8b0161c1_d2ad1457",
+        "filename": "system/stack/l2cap/l2c_ble.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 257,
+      "author": {
+        "id": 1965943
+      },
+      "writtenOn": "2023-03-22T03:34:52Z",
+      "side": 1,
+      "message": "l2c_link_state_map.png is uploaded on https://partnerissuetracker.corp.google.com/issues/264734928\n\nthe original problem is state just from disconnected to connected.",
+      "parentUuid": "861e45e3_5e05af4b",
+      "revId": "7d8849a3f21e18f5980d50847a730e9956e918a9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
