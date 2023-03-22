@@ -239,6 +239,7 @@ pub struct BluetoothMedia {
     avrcp_direction: BtConnectionDirection,
     a2dp_states: HashMap<RawAddress, BtavConnectionState>,
     a2dp_audio_state: HashMap<RawAddress, BtavAudioState>,
+    a2dp_has_interrupted_stream: bool, // Only used for qualification.
     hfp: Option<Hfp>,
     hfp_states: HashMap<RawAddress, BthfConnectionState>,
     hfp_audio_state: HashMap<RawAddress, BthfAudioState>,
@@ -284,6 +285,7 @@ impl BluetoothMedia {
             avrcp_direction: BtConnectionDirection::Unknown,
             a2dp_states: HashMap::new(),
             a2dp_audio_state: HashMap::new(),
+            a2dp_has_interrupted_stream: false,
             hfp: None,
             hfp_states: HashMap::new(),
             hfp_audio_state: HashMap::new(),
@@ -567,6 +569,12 @@ impl BluetoothMedia {
                     Ok(()) => (),
                     Err(e) => warn!("{}", e),
                 }
+
+                // Per MPS v1.0, on receiving a pause key through AVRCP,
+                // central should pause the A2DP stream with an AVDTP suspend command.
+                if self.phone_ops_enabled && key == 0x46 && value == 0x00 {
+                    self.suspend_audio_request_impl();
+                }
             }
             AvrcpCallbacks::AvrcpSetActiveDevice(addr) => {
                 self.uinput.set_active_device(addr.to_string());
@@ -681,6 +689,9 @@ impl BluetoothMedia {
                             self.call_list = vec![];
                             self.phone_state_change("".into());
                         }
+
+                        // Resume the A2DP stream when a phone call ended (per MPS v1.0).
+                        self.try_a2dp_resume();
                     }
                     BthfAudioState::Connecting => {
                         info!("[{}]: hfp audio connecting.", DisplayAddress(&addr));
@@ -776,6 +787,12 @@ impl BluetoothMedia {
                     return;
                 }
                 self.phone_state_change("".into());
+
+                // Try resume the A2DP stream (per MPS v1.0) on rejecting an incoming call or an
+                // outgoing call is rejected.
+                // It may fail if a SCO connection is still active (terminate call case), in that
+                // case we will retry on SCO disconnected.
+                self.try_a2dp_resume();
             }
             HfpCallbacks::DialCall(number, addr) => {
                 let number = if number == "" {
@@ -797,6 +814,7 @@ impl BluetoothMedia {
                 }
                 // Inform the LibBluetooth stack that the state has changed to dialing.
                 self.phone_state_change("".into());
+                self.try_a2dp_suspend();
                 // Change to alerting state and inform the LibBluetooth stack.
                 self.dialing_to_alerting();
                 self.phone_state_change("".into());
@@ -1180,6 +1198,50 @@ impl BluetoothMedia {
             })
             .cloned()
             .collect()
+    }
+
+    fn start_audio_request_impl(&mut self) -> bool {
+        // TODO(b/254808917): revert to debug log once fixed
+        info!("Start audio request");
+
+        match self.a2dp.as_mut() {
+            Some(a2dp) => a2dp.start_audio_request(),
+            None => {
+                warn!("Uninitialized A2DP to start audio request");
+                false
+            }
+        }
+    }
+
+    fn suspend_audio_request_impl(&mut self) {
+        match self.a2dp.as_mut() {
+            Some(a2dp) => a2dp.suspend_audio_request(),
+            None => warn!("Uninitialized A2DP to suspend audio request"),
+        };
+    }
+
+    fn try_a2dp_resume(&mut self) {
+        if !self.phone_ops_enabled {
+            return;
+        }
+        // Make sure there is no any SCO connection and then resume the A2DP stream.
+        if self.a2dp_has_interrupted_stream
+            && !self.hfp_audio_state.values().any(|state| *state == BthfAudioState::Connected)
+        {
+            self.a2dp_has_interrupted_stream = false;
+            self.start_audio_request_impl();
+        }
+    }
+
+    fn try_a2dp_suspend(&mut self) {
+        if !self.phone_ops_enabled {
+            return;
+        }
+        // Suspend the A2DP stream if there is any.
+        if self.a2dp_audio_state.values().any(|state| *state == BtavAudioState::Started) {
+            self.a2dp_has_interrupted_stream = true;
+            self.suspend_audio_request_impl();
+        }
     }
 
     fn start_sco_call_impl(
@@ -1904,16 +1966,7 @@ impl IBluetoothMedia for BluetoothMedia {
     }
 
     fn start_audio_request(&mut self) -> bool {
-        // TODO(b/254808917): revert to debug log once fixed
-        info!("Start audio request");
-
-        match self.a2dp.as_mut() {
-            Some(a2dp) => a2dp.start_audio_request(),
-            None => {
-                warn!("Uninitialized A2DP to start audio request");
-                false
-            }
-        }
+        self.start_audio_request_impl()
     }
 
     fn stop_audio_request(&mut self) {
@@ -2073,6 +2126,7 @@ impl IBluetoothTelephony for BluetoothMedia {
         self.phone_state.state = CallState::Idle;
         self.memory_dialing_number = None;
         self.last_dialing_number = None;
+        self.a2dp_has_interrupted_stream = false;
 
         if !enable {
             if self.hfp_states.values().any(|x| x == &BthfConnectionState::SlcConnected) {
@@ -2105,6 +2159,7 @@ impl IBluetoothTelephony for BluetoothMedia {
         });
         self.phone_state.state = CallState::Incoming;
         self.phone_state_change(number);
+        self.try_a2dp_resume();
         true
     }
 
@@ -2113,6 +2168,7 @@ impl IBluetoothTelephony for BluetoothMedia {
             return false;
         }
         self.phone_state_change("".into());
+        self.try_a2dp_resume();
         // Change to alerting state and inform the LibBluetooth stack.
         self.dialing_to_alerting();
         self.phone_state_change("".into());
@@ -2145,6 +2201,11 @@ impl IBluetoothTelephony for BluetoothMedia {
             return false;
         }
         self.phone_state_change("".into());
+        // Try resume the A2DP stream (per MPS v1.0) on rejecting an incoming call or an
+        // outgoing call is rejected.
+        // It may fail if a SCO connection is still active (terminate call case), in that
+        // case we will retry on SCO disconnected.
+        self.try_a2dp_resume();
         true
     }
 
