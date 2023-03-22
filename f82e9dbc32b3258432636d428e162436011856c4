@@ -74,6 +74,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "80facfad_951a0a2b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-03-22T23:50:56Z",
+      "side": 1,
+      "message": "1. On ChromeOS, we have a need to modify the log level at runtime. We want to collect different levels of log verbosity based on use case (i.e. regression testing, partner tests, feedback reports from trusted testers). At least for the `debug` log level, we need to be able to flip that on at runtime (as we only want it on when we\u0027re running tests for example).\n\n2. I actually like this approach much better. By default, tags should inherit the default log level unless overriden. Let me try to prototype this and send a review back up.",
+      "parentUuid": "bc3d3d47_22fe535f",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 0
+      },
+      "revId": "f82e9dbc32b3258432636d428e162436011856c4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "dc6e494a_4e284861",
         "filename": "system/gd/os/log.h",
         "patchSetId": 1
