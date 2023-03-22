@@ -237,11 +237,18 @@ void AclManager::CreateConnection(Address address) {
   CallOn(pimpl_->classic_impl_, &classic_impl::create_connection, address);
 }
 
-void AclManager::CreateLeConnection(AddressWithType address_with_type, bool is_direct) {
+void AclManager::CreateLeConnection(
+    AddressWithType address_with_type, bool is_direct, uint32_t connection_timeout_ms) {
   if (!is_direct) {
     CallOn(pimpl_->le_impl_, &le_impl::add_device_to_background_connection_list, address_with_type);
   }
-  CallOn(pimpl_->le_impl_, &le_impl::create_le_connection, address_with_type, true, is_direct);
+  CallOn(
+      pimpl_->le_impl_,
+      &le_impl::create_le_connection,
+      address_with_type,
+      true,
+      is_direct,
+      connection_timeout_ms);
 }
 
 void AclManager::IsOnBackgroundList(AddressWithType address_with_type, std::promise<bool> promise) {
