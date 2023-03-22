@@ -37,6 +37,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "dfe829b6_65dbbb2a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1943896
+      },
+      "writtenOn": "2023-03-22T05:36:45Z",
+      "side": 1,
+      "message": "About the first one, I agree with you, it is in the same thread.\n\nAbout the second one, I don\u0027t agree with you. Why you think encryption is slow?\n\nyou can see my provided upstreaming anlysis report and log. \n\nAfter bta_hh_le_close finished, the fd will not be released, and then into btif_hh_upstream_evt, fd will be closed in this thread\n\nbut this is new thread, this thread isn\u0027t executed, new connection had completed and bta_hh_co_open had finished.\n\nSo, btif_hh_upstream_evt will close this fd, and then result NG",
+      "parentUuid": "37250437_348cd5d9",
+      "revId": "7a5a967b1fdb20fd93ded8c7e668fdc7a944629e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0d7fe01b_60e74b23",
         "filename": "system/btif/co/bta_hh_co.cc",
         "patchSetId": 8
@@ -48,6 +66,24 @@
       "writtenOn": "2023-03-21T23:48:17Z",
       "side": 1,
       "message": "What happens the first time a HID device is connected? What if there are multiple HID connections.\n\nHas this been tested? Would you be able to attach the bugreports in the bug.",
+      "revId": "7a5a967b1fdb20fd93ded8c7e668fdc7a944629e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "328834d9_d70e6696",
+        "filename": "system/btif/co/bta_hh_co.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 364,
+      "author": {
+        "id": 1943896
+      },
+      "writtenOn": "2023-03-22T05:36:45Z",
+      "side": 1,
+      "message": "Because when system suspend,user space will be freezed firstly. \nthe disconnection event will be saved in driver and userspace can\u0027t deal with it.\n\nAfter Power-on, the kernel resume firstly and receive the remote\u0027s re-connect Adv\n\nSo, when userspace resume, the disconnect event and recoennction event will be dealed with meanwhile.",
+      "parentUuid": "0d7fe01b_60e74b23",
       "revId": "7a5a967b1fdb20fd93ded8c7e668fdc7a944629e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
