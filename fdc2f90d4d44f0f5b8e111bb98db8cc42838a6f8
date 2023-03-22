@@ -119,6 +119,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "da5d0b1f_b2e9e127",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-03-22T16:35:34Z",
+      "side": 1,
+      "message": "@aryarahul@google.com is DRI of L2cap and should be able to add some insight here",
+      "parentUuid": "af9cce05_6fdde723",
+      "revId": "fdc2f90d4d44f0f5b8e111bb98db8cc42838a6f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "64717d5c_789e7a1f",
         "filename": "system/main/shim/l2c_api.cc",
         "patchSetId": 2
