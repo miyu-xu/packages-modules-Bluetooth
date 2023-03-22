@@ -33,6 +33,24 @@
       "message": "before this read\n\nIf the address type is not random or there is a eir remote name, perform this function.\n\nWhich means before it was running this code block for the other addr types.  Now it no longer will\n\n```\n#define BLE_ADDR_PUBLIC 0x00\n#define BLE_ADDR_RANDOM 0x01\n#define BLE_ADDR_PUBLIC_ID 0x02\n#define BLE_ADDR_RANDOM_ID 0x03\n#define BLE_ADDR_ANONYMOUS 0xFF\n```\n\nYou can see we have multiple types here.  Realistically, PUBLIC will be the one used other than RANDOM.  So now you\u0027ve made it for PUBLIC address type where it will not run this block of code anymore.  The fix is supposed to be for RANDOM addresses.\n\nAdditionally, once you get doen into the code block there is another check fo EIR remote name existing which is no longer required since that is the only way to enter the block.\n\nDo you have a design or doc that explains how this solves the issue?",
       "revId": "38b65abb51a7ac4954d9f1a40e8c1b09bb9afb8f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ac556a4b_e58f6d8c",
+        "filename": "system/btif/src/btif_ble_scanner.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1965943
+      },
+      "writtenOn": "2023-03-22T02:40:16Z",
+      "side": 1,
+      "message": "Sorry, we don\u0027t describe the original problem, now modify the issue description and root cause.\nOur original problem is that some RC may send directed adv packet without name info firstly, and it then may cause upper layer can\u0027t get the name info.",
+      "parentUuid": "787dc325_45de14d4",
+      "revId": "38b65abb51a7ac4954d9f1a40e8c1b09bb9afb8f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

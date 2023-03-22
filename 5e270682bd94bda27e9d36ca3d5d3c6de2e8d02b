@@ -35,6 +35,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6de26425_5c83f27d",
+        "filename": "system/btif/src/btif_ble_scanner.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1965943
+      },
+      "writtenOn": "2023-03-22T02:40:16Z",
+      "side": 1,
+      "message": "Sorry, we don\u0027t describe the original problem, now modify the issue description and root cause.\nOur original problem is that some RC may send directed adv packet without name info firstly, and it then may cause upper layer can\u0027t get the name info.",
+      "parentUuid": "514629c6_7e3117b0",
+      "revId": "5e270682bd94bda27e9d36ca3d5d3c6de2e8d02b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ae5f4643_f1a0aade",
