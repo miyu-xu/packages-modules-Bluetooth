@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4b4bad34_a7cfd8c6",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-03-22T02:54:08Z",
+      "side": 1,
+      "message": "The intent was to use the new verbose flag (defaulted to True) to allow Android to continue to have the same behavior (enabling debug also enables verbose) but give the option of allowing debug logs without verbose.\n\ni.e. enable debug logs via tags but disable verbose logs entirely.\n\nMaybe I should rename this to `INIT_verbose_logs_disabled`?",
+      "parentUuid": "fc189ae1_dc961cb3",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 0
+      },
+      "revId": "f82e9dbc32b3258432636d428e162436011856c4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "dc6e494a_4e284861",
         "filename": "system/gd/os/log.h",
         "patchSetId": 1
@@ -77,6 +101,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8a0317c1_1d50f580",
+        "filename": "system/gd/os/log.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-03-22T02:54:08Z",
+      "side": 1,
+      "message": "Ack. Continue conversation in other comment thread.",
+      "parentUuid": "604e1b8a_afdcf637",
+      "revId": "f82e9dbc32b3258432636d428e162436011856c4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b0086f77_0e0de885",
@@ -90,6 +132,30 @@
       "writtenOn": "2023-03-21T23:40:25Z",
       "side": 1,
       "message": "shouldn\u0027t this be `||` ? or should we remove `IsDebugLoggingEnabledForTag` since this is not a debug but a verbose.\nOr should we add a `IsVerboseLoggingEnabledForTag(LOG_TAG)`",
+      "range": {
+        "startLine": 99,
+        "startChar": 73,
+        "endLine": 99,
+        "endChar": 78
+      },
+      "revId": "f82e9dbc32b3258432636d428e162436011856c4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9ef59f2c_03313cc6",
+        "filename": "system/gd/os/log.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-03-22T02:54:08Z",
+      "side": 1,
+      "message": "Logic is \"debug logging is enabled for this tag AND verbose isn\u0027t disabled\". Continue in commit message thread.",
+      "parentUuid": "b0086f77_0e0de885",
       "range": {
         "startLine": 99,
         "startChar": 73,
@@ -125,6 +191,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "91a7fcf5_3c0c8dfe",
+        "filename": "system/gd/rust/common/src/init_flags.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 249,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-03-22T02:54:08Z",
+      "side": 1,
+      "message": "Ack. I will switch to using that.",
+      "parentUuid": "6fb4b58f_178cf5ab",
+      "range": {
+        "startLine": 249,
+        "startChar": 7,
+        "endLine": 249,
+        "endChar": 33
+      },
+      "revId": "f82e9dbc32b3258432636d428e162436011856c4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "40e6ff71_5d5892bf",
         "filename": "system/gd/rust/common/src/init_flags.rs",
         "patchSetId": 1
@@ -136,6 +226,30 @@
       "writtenOn": "2023-03-21T23:40:25Z",
       "side": 1,
       "message": "Please fix this WARNING reported by If This Then That: Changes in the preceding block may need to be reflected in these files: /system/gd/common/init_flags.fbs If this does not apply, add \u0027NO_IFTTT\u003dsome reason...\u0027 to your commit message\n\nAnalyzer Description: Reminders to change files when other files change\nOwner: zachoverflow@google.com\n\nChanges in the preceding block may need to be reflected in these files: /system/gd/common/init_flags.fbs If this does not apply, add \u0027NO_IFTTT\u003dsome reason...\u0027 to your commit message",
+      "range": {
+        "startLine": 310,
+        "startChar": 0,
+        "endLine": 310,
+        "endChar": 56
+      },
+      "revId": "f82e9dbc32b3258432636d428e162436011856c4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "61cdd383_dfbb87eb",
+        "filename": "system/gd/rust/common/src/init_flags.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 310,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-03-22T02:54:08Z",
+      "side": 1,
+      "message": "Ack, in next revision",
+      "parentUuid": "40e6ff71_5d5892bf",
       "range": {
         "startLine": 310,
         "startChar": 0,
@@ -177,6 +291,24 @@
       "side": 1,
       "message": "See above comment:\nI am not sure we want to hide DEBUG log when we have the same log tag in VERBOSE",
       "parentUuid": "c22ae7b5_4d0f1b1d",
+      "revId": "f82e9dbc32b3258432636d428e162436011856c4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "57fc862b_a5aaf238",
+        "filename": "system/gd/rust/linux/service/src/main.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-03-22T02:54:08Z",
+      "side": 1,
+      "message": "I want to only allow these tags when verbose logging is enabled. Effectively, using a blocklist instead of an allowlist for tags.",
+      "parentUuid": "895565aa_dcd67bd1",
       "revId": "f82e9dbc32b3258432636d428e162436011856c4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
