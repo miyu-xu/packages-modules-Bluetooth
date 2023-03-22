@@ -374,11 +374,15 @@ static int out_set_parameters(struct audio_stream* stream,
       LOG(INFO) << __func__ << ": LeAudioSuspended true, state="
                 << out->bluetooth_output_->GetState()
                 << " stream param standby";
+      out->frames_rendered_ = 0;
       if (out->bluetooth_output_->GetState() == BluetoothStreamState::STARTED) {
         LOG(INFO) << __func__ << ": Stream is started, suspending LE Audio";
+        out->bluetooth_output_->Suspend();
+        out->bluetooth_output_->SetState(BluetoothStreamState::DISABLED);
       } else if (out->bluetooth_output_->GetState() !=
                  BluetoothStreamState::DISABLED) {
         LOG(INFO) << __func__ << ": Stream is disabled, suspending LE Audio";
+        out->bluetooth_output_->Stop();
       }
     } else {
       LOG(INFO) << __func__ << ": LeAudioSuspended false, state="
@@ -387,6 +391,7 @@ static int out_set_parameters(struct audio_stream* stream,
       if (out->bluetooth_output_->GetState() ==
           BluetoothStreamState::DISABLED) {
         LOG(INFO) << __func__ << ": Stream is disabled, unsuspending LE Audio";
+        out->bluetooth_output_->SetState(BluetoothStreamState::STANDBY);
       }
     }
   }
@@ -987,7 +992,6 @@ static int in_set_parameters(struct audio_stream* stream, const char* kvpairs) {
   int retval = 0;
 
   LOG(INFO) << __func__
-            << ": NOT HANDLED! state=" << in->bluetooth_input_->GetState()
             << ", kvpairs=[" << kvpairs << "]";
 
   std::unordered_map<std::string, std::string> params =
@@ -997,6 +1001,35 @@ static int in_set_parameters(struct audio_stream* stream, const char* kvpairs) {
 
   LOG(INFO) << __func__ << ": ParamsMap=[" << GetAudioParamString(params)
             << "]";
+
+  if (params.find("LeAudioSuspended") != params.end() &&
+      in->bluetooth_input_->IsLeAudio()) {
+    LOG(INFO) << __func__ << ": LeAudioSuspended found LEAudio="
+              << in->bluetooth_input_->IsLeAudio();
+    if (params["LeAudioSuspended"] == "true") {
+      LOG(INFO) << __func__ << ": LeAudioSuspended true, state="
+                << in->bluetooth_input_->GetState()
+                << " stream param standby";
+      if (in->bluetooth_input_->GetState() == BluetoothStreamState::STARTED) {
+        LOG(INFO) << __func__ << ": Stream is started, suspending LE Audio";
+        in->bluetooth_input_->Suspend();
+        in->bluetooth_input_->SetState(BluetoothStreamState::DISABLED);
+      } else if (in->bluetooth_input_->GetState() !=
+                 BluetoothStreamState::DISABLED) {
+        LOG(INFO) << __func__ << ": Stream is disabled, suspending LE Audio";
+        in->bluetooth_input_->Stop();
+      }
+    } else {
+      LOG(INFO) << __func__ << ": LeAudioSuspended false, state="
+                << in->bluetooth_input_->GetState()
+                << " stream param standby";
+      if (in->bluetooth_input_->GetState() ==
+          BluetoothStreamState::DISABLED) {
+        LOG(INFO) << __func__ << ": Stream is disabled, unsuspending LE Audio";
+        in->bluetooth_input_->SetState(BluetoothStreamState::STANDBY);
+      }
+    }
+  }
 
   return retval;
 }
