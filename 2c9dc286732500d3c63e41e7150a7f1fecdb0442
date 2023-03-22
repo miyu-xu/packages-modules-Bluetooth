@@ -88,6 +88,24 @@
       "parentUuid": "b224aa62_dfe66062",
       "revId": "2c9dc286732500d3c63e41e7150a7f1fecdb0442",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "31add5d2_8379edc1",
+        "filename": "system/btif/src/btif_hf_client.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1097,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-03-22T22:35:43Z",
+      "side": 1,
+      "message": "Hi, I\u0027m not aware of all the stuff that we do with the PTS but for PTS-bot, an automation of PTS we currently run it only on the Cuttlefish Android Virtual Device and so rely on modem simulator, a fake modem.\n\nWe didn\u0027t explored running the PTS physically without a SIM yet.",
+      "parentUuid": "66f773c6_0b881761",
+      "revId": "2c9dc286732500d3c63e41e7150a7f1fecdb0442",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
