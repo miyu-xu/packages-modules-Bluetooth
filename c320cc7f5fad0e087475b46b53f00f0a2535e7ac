@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c009dd2f_ee31babf",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-03-22T13:17:11Z",
+      "side": 1,
+      "message": "This can get in only if aosp/2363301 is merged",
+      "revId": "c320cc7f5fad0e087475b46b53f00f0a2535e7ac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
