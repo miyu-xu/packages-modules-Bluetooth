@@ -34,6 +34,24 @@
       "parentUuid": "8a187d73_b3aee577",
       "revId": "1445d3acf7a548c63124b0f02aa022937c3e783f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "582c15e9_81820304",
+        "filename": "android/app/src/com/android/bluetooth/mcp/MediaControlGattService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1329,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2023-03-22T09:22:03Z",
+      "side": 1,
+      "message": "Just to explain the origin of this: The service specification states that when a track is invalid, the state of the player should be INACTIVE. This code was suppose to comply with this requirement. However assumption that the unavailable track duration or track duration of 0 means that the track is invalid was indeed wrong. I think it is common for live streams to not have a track duration available or they have track duration of 0. Thanks for fixing it.",
+      "parentUuid": "685fcd84_4851332c",
+      "revId": "1445d3acf7a548c63124b0f02aa022937c3e783f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
