@@ -7,6 +7,7 @@ import asha_test
 import example
 import gatt_test
 import le_advertising_test
+import smp_test
 import logging
 import os
 import sys
@@ -20,6 +21,7 @@ _TEST_CLASSES_LIST = [
     asha_test.ASHATest,
     gatt_test.GattTest,
     le_advertising_test.LeAdvertisingTest,
+    smp_test.SMPTest,
 ]
 
 
