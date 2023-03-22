@@ -94,6 +94,30 @@
       },
       "revId": "7e6474d2e19bae30bd8da862595aa1f9e4f3fc2f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e12929fa_4342fe5f",
+        "filename": "android/app/src/com/android/bluetooth/a2dp/A2dpCodecConfig.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2023-03-22T05:29:59Z",
+      "side": 1,
+      "message": "Ohh didn\u0027t know that. Thanks  for highlighting it out.",
+      "parentUuid": "2908c4a2_00f1a93d",
+      "range": {
+        "startLine": 194,
+        "startChar": 58,
+        "endLine": 194,
+        "endChar": 61
+      },
+      "revId": "7e6474d2e19bae30bd8da862595aa1f9e4f3fc2f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
