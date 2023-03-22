@@ -33,6 +33,23 @@
       "message": "Presubmit failure:\n\npackages/modules/Bluetooth/system/bta/le_audio/state_machine_test.cc:3036: Failure\nExpected equality of these values:\n  0\n  static_cast\u003cint\u003e(group-\u003ecises_.size())\n    Which is: 1",
       "revId": "35702d205de23d9e85c387aadacd55f1dd67c22a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2e17e9a9_9e714235",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 631,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-03-22T22:27:04Z",
+      "side": 1,
+      "message": "this check is the problem. Device is not yet set as DISCONNECTED when this is check.  Removing this should help",
+      "revId": "35702d205de23d9e85c387aadacd55f1dd67c22a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
