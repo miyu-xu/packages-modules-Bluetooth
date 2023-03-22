@@ -50,6 +50,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9890a0a4_4bb16c3a",
+        "filename": "android/pandora/test/asha_dual_device_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1937985
+      },
+      "writtenOn": "2023-03-22T19:14:57Z",
+      "side": 1,
+      "message": "Can you move this into the `ASHATest` class in `asha_test.py` and use the `ref_left` instead of current `ASHATest.ref` as the default REF device ?\nThis way it would be way easier to test all ASHA at once",
+      "range": {
+        "startLine": 45,
+        "startChar": 6,
+        "endLine": 45,
+        "endChar": 24
+      },
+      "revId": "0e0de1251ce4d74d3b6dc98b0ed540d5725bc478",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "bde4269c_ccebd0b6",
         "filename": "android/pandora/test/asha_dual_device_test.py",
         "patchSetId": 3
