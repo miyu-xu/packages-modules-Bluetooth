@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "45957397_0f1d75ab",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2023-03-22T03:13:14Z",
+      "side": 1,
+      "message": "Hi Ying could you help to stamp on this? Needs your owner approve.",
+      "revId": "251804512ed0d4065db06375adcc90708e4c401b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
