@@ -431,7 +431,8 @@ struct classic_impl : public security::ISecurityManagerListener {
                 ErrorCode status,
                 std::string valid_incoming_addresses) {
               ASSERT_LOG(
-                  status == ErrorCode::UNKNOWN_CONNECTION,
+                  status == ErrorCode::UNKNOWN_CONNECTION ||
+                      status == ErrorCode::CONNECTION_TIMEOUT,
                   "No prior connection request for %s expecting:%s",
                   ADDRESS_TO_LOGGABLE_CSTR(address),
                   valid_incoming_addresses.c_str());
