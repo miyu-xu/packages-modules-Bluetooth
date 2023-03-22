@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4e290f8d_1c3c3d96",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 2355,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-03-22T11:30:33Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "a92869b2_d4092c20",
+      "range": {
+        "startLine": 2355,
+        "startChar": 12,
+        "endLine": 2355,
+        "endChar": 19
+      },
+      "revId": "84b307b8b8ba361a047897f60cb40a96b8f225d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bb9a6c8b_65d948cf",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-03-22T11:13:01Z",
       "side": 1,
       "message": "WRITE_CHARACTERISTIC",
+      "range": {
+        "startLine": 1001,
+        "startChar": 48,
+        "endLine": 1001,
+        "endChar": 67
+      },
+      "revId": "84b307b8b8ba361a047897f60cb40a96b8f225d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "65f5a275_e63ec8ce",
+        "filename": "android/app/src/com/android/bluetooth/tbs/TbsGatt.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 1001,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-03-22T11:30:33Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "bb9a6c8b_65d948cf",
       "range": {
         "startLine": 1001,
         "startChar": 48,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4393e791_6a85646e",
+        "filename": "android/app/src/com/android/bluetooth/tbs/TbsGatt.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 1031,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-03-22T11:30:33Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "ee03ed01_00dde976",
+      "range": {
+        "startLine": 1031,
+        "startChar": 48,
+        "endLine": 1031,
+        "endChar": 67
+      },
+      "revId": "84b307b8b8ba361a047897f60cb40a96b8f225d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d8565c06_00ff86ea",
@@ -93,6 +165,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "420c9ea6_770be63d",
+        "filename": "android/app/src/com/android/bluetooth/tbs/TbsGatt.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 1059,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-03-22T11:30:33Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "d8565c06_00ff86ea",
+      "range": {
+        "startLine": 1059,
+        "startChar": 48,
+        "endLine": 1059,
+        "endChar": 67
+      },
+      "revId": "84b307b8b8ba361a047897f60cb40a96b8f225d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4e91065f_a843fde4",
@@ -106,6 +202,30 @@
       "writtenOn": "2023-03-22T11:13:01Z",
       "side": 1,
       "message": "Is this still used somewhere or can it be removed?",
+      "range": {
+        "startLine": 73,
+        "startChar": 27,
+        "endLine": 73,
+        "endChar": 35
+      },
+      "revId": "84b307b8b8ba361a047897f60cb40a96b8f225d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e0cb3596_ec081d9b",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/tbs/TbsGattTest.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-03-22T11:30:33Z",
+      "side": 1,
+      "message": "seems to be no longer used. removing",
+      "parentUuid": "4e91065f_a843fde4",
       "range": {
         "startLine": 73,
         "startChar": 27,

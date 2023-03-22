@@ -22,6 +22,30 @@
       },
       "revId": "07f36586ee968a23cedbcde2b73b9928efa87c5b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4635e7d1_4708562a",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 2376,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-03-22T11:30:33Z",
+      "side": 0,
+      "message": "I don\u0027t think so. This callback is called right after service starts/bluetooth enables. All devices that were already add should be in some group.",
+      "parentUuid": "90cd20c1_19650b1d",
+      "range": {
+        "startLine": 2376,
+        "startChar": 20,
+        "endLine": 2376,
+        "endChar": 74
+      },
+      "revId": "07f36586ee968a23cedbcde2b73b9928efa87c5b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
