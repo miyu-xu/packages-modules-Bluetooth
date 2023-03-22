@@ -677,7 +677,7 @@ const char* test_flags[] = {
 TEST_F(MainShimTest, DISABLED_LeShimAclConnection_local_disconnect) {
   bluetooth::common::InitFlags::Load(test_flags);
   auto acl = MakeAcl();
-  EXPECT_CALL(*test::mock_acl_manager_, CreateLeConnection(_, _)).Times(1);
+  EXPECT_CALL(*test::mock_acl_manager_, CreateLeConnection(_, _, _)).Times(1);
 
   hci::AddressWithType local_address(
       hci::Address{{0x01, 0x02, 0x03, 0x04, 0x05, 0x6}},
@@ -689,7 +689,9 @@ TEST_F(MainShimTest, DISABLED_LeShimAclConnection_local_disconnect) {
   // Allow LE connections to be accepted
   std::promise<bool> promise;
   auto future = promise.get_future();
-  acl->AcceptLeConnectionFrom(remote_address, true, std::move(promise));
+  acl->AcceptLeConnectionFrom(remote_address, true,
+                              bluetooth::hci::kDefaultLeConnectionTimeout,
+                              std::move(promise));
   ASSERT_TRUE(future.get());
 
   // Simulate LE connection successful
