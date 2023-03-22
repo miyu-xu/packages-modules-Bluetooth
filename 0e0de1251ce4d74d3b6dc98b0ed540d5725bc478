@@ -46,6 +46,29 @@
       },
       "revId": "0e0de1251ce4d74d3b6dc98b0ed540d5725bc478",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bde4269c_ccebd0b6",
+        "filename": "android/pandora/test/asha_dual_device_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 1947747
+      },
+      "writtenOn": "2023-03-22T12:35:26Z",
+      "side": 1,
+      "message": "Is it possible for the disconnect process to be completed before the disconnection callback listener is added to the connection in `WaitDisconnection`? If so, this may cause the assertion to fail by missing the disconnection event.",
+      "range": {
+        "startLine": 165,
+        "startChar": 31,
+        "endLine": 165,
+        "endChar": 41
+      },
+      "revId": "0e0de1251ce4d74d3b6dc98b0ed540d5725bc478",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
