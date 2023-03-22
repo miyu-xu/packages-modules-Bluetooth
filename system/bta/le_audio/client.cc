@@ -1846,7 +1846,11 @@ class LeAudioClientImpl : public LeAudioClient {
   void changeMtuIfPossible(LeAudioDevice* leAudioDevice) {
     if (leAudioDevice->mtu_ == GATT_DEF_BLE_MTU_SIZE) {
       LOG(INFO) << __func__ << ", Configure MTU";
-      BtaGattQueue::ConfigureMtu(leAudioDevice->conn_id_, GATT_MAX_MTU_SIZE);
+      /* As per BAP spec MTU required is 64.
+       * But, we know GATT will request GATT_MAX_MTU_SIZE
+       * and 64 is just about what DLE is set in the controller.
+       */
+      BtaGattQueue::ConfigureMtu(leAudioDevice->conn_id_, 64);
     }
   }
 
