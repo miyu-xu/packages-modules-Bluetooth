@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "90cd20c1_19650b1d",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 2376,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2023-03-22T11:13:01Z",
+      "side": 0,
+      "message": "Could it be that the problem with unauthorized devices was caused by this check?",
+      "range": {
+        "startLine": 2376,
+        "startChar": 20,
+        "endLine": 2376,
+        "endChar": 74
+      },
+      "revId": "07f36586ee968a23cedbcde2b73b9928efa87c5b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
