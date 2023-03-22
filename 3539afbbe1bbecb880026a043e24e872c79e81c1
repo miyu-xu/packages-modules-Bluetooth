@@ -87,6 +87,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3205c4d3_e0e50d43",
+        "filename": "system/stack/l2cap/l2c_api.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 691,
+      "author": {
+        "id": 1965943
+      },
+      "writtenOn": "2023-03-22T03:39:14Z",
+      "side": 1,
+      "message": "separate done",
+      "parentUuid": "3d30ec30_e38fd53e",
+      "revId": "3539afbbe1bbecb880026a043e24e872c79e81c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b5c7a044_d354d2c3",
@@ -100,6 +118,24 @@
       "writtenOn": "2023-01-19T12:18:53Z",
       "side": 1,
       "message": "this part is probably not valid as `l2c_csm_indicate_connection_open` suppose to be called only in the non-ecoc path.\n\nPlease provide logs which would show it is not like that.\n\nThank you.",
+      "revId": "3539afbbe1bbecb880026a043e24e872c79e81c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1c115569_3e0191b3",
+        "filename": "system/stack/l2cap/l2c_csm.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1965943
+      },
+      "writtenOn": "2023-03-22T03:39:14Z",
+      "side": 1,
+      "message": "sorry, the logs are lost.",
+      "parentUuid": "b5c7a044_d354d2c3",
       "revId": "3539afbbe1bbecb880026a043e24e872c79e81c1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
