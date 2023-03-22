@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cd38104a_c237781d",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachineTest.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-03-22T00:10:57Z",
+      "side": 1,
+      "message": "This doesn\u0027t work as per https://paste.googleplex.com/6022226355683328.\n\nI will reupload another tentative to see if it change something but I didn\u0027t found this pattern anywhere",
+      "range": {
+        "startLine": 125,
+        "startChar": 9,
+        "endLine": 126,
+        "endChar": 53
+      },
+      "revId": "14d71a0f3f544447e622c818f2d3def8b9b45d56",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
