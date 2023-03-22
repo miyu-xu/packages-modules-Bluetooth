@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9d9c08b9_b5f0844c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1965943
+      },
+      "writtenOn": "2023-03-22T03:42:46Z",
+      "side": 1,
+      "message": "The problem is that output report will not be cached when BT reset.\nWe are sorry that this issue is reported from customer several years ago, and the logs are not recorded in our issue system.",
+      "parentUuid": "948084fb_8e3f2adb",
+      "revId": "9626219bb769dc1e461119aced26cddf2234b95c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4d3eb078_1889c5c5",
