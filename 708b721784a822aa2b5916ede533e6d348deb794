@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c3b6b22f_ff9c8644",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1092,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-03-22T02:10:01Z",
+      "side": 1,
+      "message": "Could you define a constant for this with a javadoc somewhere?\n\nI\u0027m not sure where the constant should be defined, but FYI, CompanionManager.java contains some property constants.",
+      "range": {
+        "startLine": 1092,
+        "startChar": 25,
+        "endLine": 1092,
+        "endChar": 58
+      },
+      "revId": "708b721784a822aa2b5916ede533e6d348deb794",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
