@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "bc3d3d47_22fe535f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-03-22T16:28:20Z",
+      "side": 1,
+      "message": "Ok let me summarize to see if I get what happen and what you want.\n\nCurrently there is:\n* `logging_debug_enabled_for_all` ⇒ That will display all logs level including verbose and for all TAG\n* `is_debug_logging_enabled_for_tag` ⇒ enabled up to verbose on a TAG bases\n\nI already see an issue since both flag are mentionnning debug as in \"this a debug flag\" while it can be understood as we enabled up to LOG_DEBUG\n\n\nWhat you would like is to keep the above behavior but to not display some LOG_VERBOSE for the TAG you mentioned. (you are not touching the LOG_DEBUG level at any moment).\n\n\n----\n\nWith my above explanation in mind I have multiple point I want to raise:\n\n1/ Why are we using feature flag for this ? It is a configuration and should be set via system property, and be persistent and settable via developpeur options.\nSorry this is more android specific I do not know how this translate in floss, and sorry I understand your change is not creating this architecture but I like to have your opinion on this\n\n2/ I think the way we are handling the configuration is errorprone and your CL is adding a new layer of complexity. I would like to propose another completely different approach:\n2.a ⇒ Set a general log level `~default_log_level\u003dLOG_INFO` that can be overrided in userdebug / eng build to be LOG_DEBUG or LOG_VERBOSE\n2.b ⇒ Set a per-Tag log level that override the above with a default value unset and then at will: `~log_level_for_tag\u003dbtm_sco:LOG_ERROR,bt_bta_av:LOG_VERBOSE`",
+      "parentUuid": "4b4bad34_a7cfd8c6",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 0
+      },
+      "revId": "f82e9dbc32b3258432636d428e162436011856c4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "dc6e494a_4e284861",
         "filename": "system/gd/os/log.h",
         "patchSetId": 1
