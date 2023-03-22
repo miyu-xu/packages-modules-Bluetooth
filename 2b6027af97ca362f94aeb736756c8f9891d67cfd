@@ -16,6 +16,29 @@
       "message": "PTAL, thanks!",
       "revId": "2b6027af97ca362f94aeb736756c8f9891d67cfd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e23bef46_3b0179ed",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 436,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2023-03-22T03:25:30Z",
+      "side": 1,
+      "message": "Maybe `DisplayAddress` on all logs?",
+      "range": {
+        "startLine": 436,
+        "startChar": 73,
+        "endLine": 436,
+        "endChar": 82
+      },
+      "revId": "2b6027af97ca362f94aeb736756c8f9891d67cfd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
