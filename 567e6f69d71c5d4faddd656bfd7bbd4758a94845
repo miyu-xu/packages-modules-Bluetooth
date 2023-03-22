@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7544262e_b592565d",
+        "filename": "system/bta/hh/bta_hh_le.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1988,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2023-03-22T17:07:11Z",
+      "side": 1,
+      "message": "The report map is read only once when connected for the first time. If the report map is found to be empty, this change only ensures that the incidence is logged. However the report map in the cache remains empty since it was never set. Whatever failure it led to previously would still be met.\nShould such remote device be removed immediately?",
+      "revId": "567e6f69d71c5d4faddd656bfd7bbd4758a94845",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
