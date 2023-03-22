@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "08fc06c8_4efe9e2d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-03-22T18:13:52Z",
+      "side": 1,
+      "message": "Please fix all the build warning issues",
+      "revId": "184321fa291e9a02c2517ff4495137091a730c4b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e0c2a9fd_92bac7eb",
+        "filename": "system/bta/le_audio/le_audio_utils.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-03-22T18:13:52Z",
+      "side": 1,
+      "message": "Please fix this WARNING reported by Build Warnings: switch has 4 consecutive identical branches [bugprone-branch-clone]\n\nAnalyzer Description: Reports warnings that originate from build.log in the build artifacts.\nOwner: farivar@google.com\n\n    switch has 4 consecutive identical branches [bugprone-branch-clone]\n        case AUDIO_USAGE_SAFETY:\n        ^\n    /b/f/w/packages/modules/Bluetooth/system/bta/le_audio/le_audio_utils.cc:88:23: note: last of these clones ends here\n          [[fallthrough]];\n                          ^\n\nThis finding was found on https://android-build.googleplex.com/builds/build-details/P52783976/targets/aosp_arm64-userdebug_tidy, but may also be present on other builds.",
+      "range": {
+        "startLine": 77,
+        "startChar": 5,
+        "endLine": 77,
+        "endChar": 28
+      },
+      "revId": "184321fa291e9a02c2517ff4495137091a730c4b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
