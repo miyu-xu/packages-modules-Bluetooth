@@ -13,17 +13,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+#include "l2cap/le/internal/link_manager.h"
+
 #include <memory>
 #include <unordered_map>
 
+#include "hci/acl_manager.h"
 #include "hci/acl_manager/le_acl_connection.h"
 #include "hci/address.h"
 #include "l2cap/internal/scheduler_fifo.h"
 #include "l2cap/le/internal/link.h"
 #include "os/handler.h"
 #include "os/log.h"
-
-#include "l2cap/le/internal/link_manager.h"
 
 namespace bluetooth {
 namespace l2cap {
@@ -80,14 +81,16 @@ void LinkManager::ConnectFixedChannelServices(hci::AddressWithType address_with_
   }
   pending_link->second.pending_fixed_channel_connections_.push_back(std::move(pending_fixed_channel_connection));
   // Then create new ACL connection
-  acl_manager_->CreateLeConnection(address_with_type, /* is_direct */ true);
+  acl_manager_->CreateLeConnection(
+      address_with_type, /* is_direct */ true, hci::kDefaultLeConnectionTimeout);
 }
 
 void LinkManager::ConnectDynamicChannelServices(
     hci::AddressWithType device, Link::PendingDynamicChannelConnection pending_dynamic_channel_connection, Psm psm) {
   auto* link = GetLink(device);
   if (link == nullptr) {
-    acl_manager_->CreateLeConnection(device, /* is_direct */ true);
+    acl_manager_->CreateLeConnection(
+        device, /* is_direct */ true, hci::kDefaultLeConnectionTimeout);
     pending_dynamic_channels_[device].push_back(std::make_pair(psm, std::move(pending_dynamic_channel_connection)));
     return;
   }

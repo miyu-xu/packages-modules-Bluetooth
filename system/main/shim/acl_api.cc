@@ -49,12 +49,13 @@ void bluetooth::shim::ACL_CancelClassicConnection(
 }
 
 bool bluetooth::shim::ACL_AcceptLeConnectionFrom(
-    const tBLE_BD_ADDR& legacy_address_with_type, bool is_direct) {
+    const tBLE_BD_ADDR& legacy_address_with_type, bool is_direct,
+    uint32_t connection_timeout_ms) {
   std::promise<bool> promise;
   auto future = promise.get_future();
   Stack::GetInstance()->GetAcl()->AcceptLeConnectionFrom(
       ToAddressWithTypeFromLegacy(legacy_address_with_type), is_direct,
-      std::move(promise));
+      connection_timeout_ms, std::move(promise));
   return future.get();
 }
 
