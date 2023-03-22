@@ -328,6 +328,30 @@
       },
       "revId": "df17313927afcbd9ca5ddc4156221107833e39d9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c7152d13_28f41a75",
+        "filename": "system/btif/avrcp/avrcp_service.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 314,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-03-22T16:58:49Z",
+      "side": 1,
+      "message": "In my mind, the JNI thread is already not a UI thread.\n\nIf you can test your change, you should be able to put a sleep(10 sec) in the cb and check if you have a UI freeze / Application Not Responding error when you hit the sleep\n\nBut I am not saying this with a lot of confidence",
+      "parentUuid": "1b497f7e_0aa9e468",
+      "range": {
+        "startLine": 306,
+        "startChar": 3,
+        "endLine": 314,
+        "endChar": 70
+      },
+      "revId": "df17313927afcbd9ca5ddc4156221107833e39d9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
