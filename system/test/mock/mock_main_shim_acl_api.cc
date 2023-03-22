@@ -44,7 +44,8 @@ void bluetooth::shim::ACL_CancelClassicConnection(
   inc_func_call_count(__func__);
 }
 bool bluetooth::shim::ACL_AcceptLeConnectionFrom(
-    const tBLE_BD_ADDR& legacy_address_with_type, bool is_direct) {
+    const tBLE_BD_ADDR& legacy_address_with_type, bool is_direct,
+    uint32_t connection_timeout_ms) {
   inc_func_call_count(__func__);
   return true;
 }

@@ -644,7 +644,7 @@ class AclManagerWithLeConnectionTest : public AclManagerWithCallbacksTest {
     Address remote_public_address = Address::FromString(kRemotePublicDeviceStringA).value();
     remote_with_type_ = AddressWithType(remote_public_address, AddressType::PUBLIC_DEVICE_ADDRESS);
     ASSERT_NO_FATAL_FAILURE(test_hci_layer_->SetCommandFuture());
-    acl_manager_->CreateLeConnection(remote_with_type_, true);
+    acl_manager_->CreateLeConnection(remote_with_type_, true, kDefaultLeConnectionTimeout);
     test_hci_layer_->GetCommand(OpCode::LE_ADD_DEVICE_TO_FILTER_ACCEPT_LIST);
     test_hci_layer_->SendIncomingEvent(LeAddDeviceToFilterAcceptListCompleteBuilder::Create(0x01, ErrorCode::SUCCESS));
     ASSERT_NO_FATAL_FAILURE(test_hci_layer_->SetCommandFuture());

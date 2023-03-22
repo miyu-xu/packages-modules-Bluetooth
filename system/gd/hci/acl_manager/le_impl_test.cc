@@ -670,7 +670,10 @@ TEST_F(LeImplTest, connection_complete_with_periperal_role) {
   // Create connection
   ASSERT_NO_FATAL_FAILURE(hci_layer_->SetCommandFuture());
   le_impl_->create_le_connection(
-      {{0x21, 0x22, 0x23, 0x24, 0x25, 0x26}, AddressType::PUBLIC_DEVICE_ADDRESS}, true, false);
+      {{0x21, 0x22, 0x23, 0x24, 0x25, 0x26}, AddressType::PUBLIC_DEVICE_ADDRESS},
+      true,
+      false,
+      kDefaultLeConnectionTimeout);
   hci_layer_->GetCommand(OpCode::LE_ADD_DEVICE_TO_FILTER_ACCEPT_LIST);
   ASSERT_NO_FATAL_FAILURE(hci_layer_->SetCommandFuture());
   hci_layer_->CommandCompleteCallback(LeAddDeviceToFilterAcceptListCompleteBuilder::Create(0x01, ErrorCode::SUCCESS));
@@ -709,7 +712,10 @@ TEST_F(LeImplTest, enhanced_connection_complete_with_periperal_role) {
   // Create connection
   ASSERT_NO_FATAL_FAILURE(hci_layer_->SetCommandFuture());
   le_impl_->create_le_connection(
-      {{0x21, 0x22, 0x23, 0x24, 0x25, 0x26}, AddressType::PUBLIC_DEVICE_ADDRESS}, true, false);
+      {{0x21, 0x22, 0x23, 0x24, 0x25, 0x26}, AddressType::PUBLIC_DEVICE_ADDRESS},
+      true,
+      false,
+      kDefaultLeConnectionTimeout);
   hci_layer_->GetCommand(OpCode::LE_ADD_DEVICE_TO_FILTER_ACCEPT_LIST);
   ASSERT_NO_FATAL_FAILURE(hci_layer_->SetCommandFuture());
   hci_layer_->CommandCompleteCallback(LeAddDeviceToFilterAcceptListCompleteBuilder::Create(0x01, ErrorCode::SUCCESS));
@@ -751,7 +757,7 @@ TEST_F(LeImplTest, connection_complete_with_central_role) {
   hci::AddressWithType address_with_type(remote_address, hci::AddressType::PUBLIC_DEVICE_ADDRESS);
   // Create connection
   ASSERT_NO_FATAL_FAILURE(hci_layer_->SetCommandFuture());
-  le_impl_->create_le_connection(address_with_type, true, false);
+  le_impl_->create_le_connection(address_with_type, true, false, kDefaultLeConnectionTimeout);
   hci_layer_->GetCommand(OpCode::LE_ADD_DEVICE_TO_FILTER_ACCEPT_LIST);
   ASSERT_NO_FATAL_FAILURE(hci_layer_->SetCommandFuture());
   hci_layer_->CommandCompleteCallback(LeAddDeviceToFilterAcceptListCompleteBuilder::Create(0x01, ErrorCode::SUCCESS));
@@ -789,7 +795,7 @@ TEST_F(LeImplTest, enhanced_connection_complete_with_central_role) {
   hci::AddressWithType address_with_type(remote_address, hci::AddressType::PUBLIC_DEVICE_ADDRESS);
   // Create connection
   ASSERT_NO_FATAL_FAILURE(hci_layer_->SetCommandFuture());
-  le_impl_->create_le_connection(address_with_type, true, false);
+  le_impl_->create_le_connection(address_with_type, true, false, kDefaultLeConnectionTimeout);
   hci_layer_->GetCommand(OpCode::LE_ADD_DEVICE_TO_FILTER_ACCEPT_LIST);
   ASSERT_NO_FATAL_FAILURE(hci_layer_->SetCommandFuture());
   hci_layer_->CommandCompleteCallback(LeAddDeviceToFilterAcceptListCompleteBuilder::Create(0x01, ErrorCode::SUCCESS));
