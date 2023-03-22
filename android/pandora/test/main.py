@@ -6,6 +6,7 @@ import argparse
 import asha_test
 import example
 import gatt_test
+import smp_test
 import logging
 import os
 import sys
@@ -14,7 +15,7 @@ from collections import OrderedDict
 from mobly import base_test, config_parser, signals, suite_runner, test_runner
 from typing import Any, List, Optional, Type
 
-_TEST_CLASSES_LIST = [example.ExampleTest, asha_test.ASHATest, gatt_test.GattTest]
+_TEST_CLASSES_LIST = [example.ExampleTest, asha_test.ASHATest, gatt_test.GattTest, smp_test.SMPTest]
 
 
 def _parse_cli_args(argv: List[str]) -> argparse.Namespace:
