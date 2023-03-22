@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e010ceb1_4f329399",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-03-22T16:44:14Z",
+      "side": 1,
+      "message": "Test is failling:\n```\njava.lang.NullPointerException: Attempt to get length of null array\n\tat com.android.bluetooth.btservice.CompanionManager.loadCompanionInfo(CompanionManager.java:180)\n\tat com.android.bluetooth.btservice.CompanionManager.isCompanionDevice(CompanionManager.java:331)\n\tat com.android.bluetooth.btservice.CompanionManager.isCompanionDevice(CompanionManager.java:315)\n\tat com.android.bluetooth.btservice.CompanionManager.getGattConnParameters(CompanionManager.java:363)\n\tat com.android.bluetooth.gatt.GattService.connectionParameterUpdate(GattService.java:4081)\n\tat com.android.bluetooth.gatt.GattServiceTest.connectionParameterUpdate(GattServiceTest.java:242)\n```",
+      "revId": "1d67f6158386aa75b9c42c525287acc05d5f22c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
