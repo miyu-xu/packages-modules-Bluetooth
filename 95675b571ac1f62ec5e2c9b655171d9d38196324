@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "49ab569c_e57e1f7c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1965943
+      },
+      "writtenOn": "2023-03-22T03:37:51Z",
+      "side": 1,
+      "message": "Some HOGP mouse once bonded, read report map may not permitted, that will cause DUT get descp len 0, so managed to avoid get descp len 0",
+      "parentUuid": "d6b0cf92_52320ff8",
+      "revId": "95675b571ac1f62ec5e2c9b655171d9d38196324",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "eea489d5_ced44563",
