@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "92fc4fd2_fdd09ae1",
+        "filename": "android/pandora/test/asha_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2023-03-22T16:24:54Z",
+      "side": 1,
+      "message": "Why don\u0027t we keep it just \"parameterized\" ?",
+      "range": {
+        "startLine": 199,
+        "startChar": 5,
+        "endLine": 199,
+        "endChar": 12
+      },
+      "revId": "0adb874040a57b8015d15a657ab87cdf68b5e3e1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
