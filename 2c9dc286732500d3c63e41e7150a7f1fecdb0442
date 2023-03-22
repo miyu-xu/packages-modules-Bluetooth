@@ -70,6 +70,24 @@
       "parentUuid": "44205939_ad12d074",
       "revId": "2c9dc286732500d3c63e41e7150a7f1fecdb0442",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "66f773c6_0b881761",
+        "filename": "system/btif/src/btif_hf_client.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1097,
+      "author": {
+        "id": 1965943
+      },
+      "writtenOn": "2023-03-22T03:44:04Z",
+      "side": 1,
+      "message": "We can see google have many PTS code, is there any plan of HFP AG part when there is no SIM inserted?",
+      "parentUuid": "b224aa62_dfe66062",
+      "revId": "2c9dc286732500d3c63e41e7150a7f1fecdb0442",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
