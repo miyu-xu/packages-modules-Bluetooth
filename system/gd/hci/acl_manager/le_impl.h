@@ -356,7 +356,7 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
                    ADDRESS_TO_LOGGABLE_CSTR(remote_address.GetAddress()));
         }
         // direct connect canceled due to connection timeout, start background connect
-        create_le_connection(remote_address, false, false);
+        create_le_connection(remote_address, false, false, 0U /* UNUSED */);
         return;
       }
 
@@ -366,7 +366,13 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
 
       if (!connect_list.empty()) {
         AddressWithType empty(Address::kEmpty, AddressType::RANDOM_DEVICE_ADDRESS);
-        handler_->Post(common::BindOnce(&le_impl::create_le_connection, common::Unretained(this), empty, false, false));
+        handler_->Post(common::BindOnce(
+            &le_impl::create_le_connection,
+            common::Unretained(this),
+            empty,
+            false,
+            false,
+            0U /* UNUSED */));
       }
 
       if (le_client_handler_ == nullptr) {
@@ -501,7 +507,7 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
                    ADDRESS_TO_LOGGABLE_CSTR(remote_address.GetAddress()));
         }
         // direct connect canceled due to connection timeout, start background connect
-        create_le_connection(remote_address, false, false);
+        create_le_connection(remote_address, false, false, 0U /* UNUSED */);
         return;
       }
 
@@ -511,7 +517,13 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
 
       if (!connect_list.empty()) {
         AddressWithType empty(Address::kEmpty, AddressType::RANDOM_DEVICE_ADDRESS);
-        handler_->Post(common::BindOnce(&le_impl::create_le_connection, common::Unretained(this), empty, false, false));
+        handler_->Post(common::BindOnce(
+            &le_impl::create_le_connection,
+            common::Unretained(this),
+            empty,
+            false,
+            false,
+            0U /* UNUSED */));
       }
 
       if (le_client_handler_ == nullptr) {
@@ -1004,7 +1016,11 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
     }
   }
 
-  void create_le_connection(AddressWithType address_with_type, bool add_to_connect_list, bool is_direct) {
+  void create_le_connection(
+      AddressWithType address_with_type,
+      bool add_to_connect_list,
+      bool is_direct,
+      uint32_t connection_timeout_ms) {
     if (le_client_callbacks_ == nullptr) {
       LOG_ERROR("No callbacks to call");
       return;
@@ -1019,18 +1035,31 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
     if (add_to_connect_list) {
       add_device_to_connect_list(address_with_type);
       if (is_direct) {
+        if (connection_timeout_ms == kDefaultLeConnectionTimeout) {
+          connection_timeout_ms =
+              os::GetSystemPropertyUint32(kPropertyDirectConnTimeout, kCreateConnectionTimeoutMs);
+          LOG_INFO(
+              "Unspecified Le create connection timeout using system default ms:%u",
+              connection_timeout_ms);
+        }
         direct_connections_.insert(address_with_type);
         if (create_connection_timeout_alarms_.find(address_with_type) == create_connection_timeout_alarms_.end()) {
           create_connection_timeout_alarms_.emplace(
               std::piecewise_construct,
-              std::forward_as_tuple(address_with_type.GetAddress(), address_with_type.GetAddressType()),
+              std::forward_as_tuple(
+                  address_with_type.GetAddress(), address_with_type.GetAddressType()),
               std::forward_as_tuple(handler_));
-          uint32_t connection_timeout =
-              os::GetSystemPropertyUint32(kPropertyDirectConnTimeout, kCreateConnectionTimeoutMs);
           create_connection_timeout_alarms_.at(address_with_type)
               .Schedule(
-                  common::BindOnce(&le_impl::on_create_connection_timeout, common::Unretained(this), address_with_type),
-                  std::chrono::milliseconds(connection_timeout));
+                  common::BindOnce(
+                      &le_impl::on_create_connection_timeout,
+                      common::Unretained(this),
+                      address_with_type),
+                  std::chrono::milliseconds(connection_timeout_ms));
+        } else {
+          LOG_WARN(
+              "Started direct connection with already existing timer peer:%s",
+              ADDRESS_TO_LOGGABLE_CSTR(address_with_type));
         }
       }
     }
