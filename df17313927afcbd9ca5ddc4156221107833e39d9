@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "12a456de_5513da8b",
+        "filename": "android/app/jni/com_android_bluetooth_avrcp_target.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 993,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-03-22T09:34:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b2ae7a3d_234d3553",
+      "range": {
+        "startLine": 993,
+        "startChar": 0,
+        "endLine": 993,
+        "endChar": 34
+      },
+      "revId": "df17313927afcbd9ca5ddc4156221107833e39d9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9b490a62_24f96309",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-03-21T17:31:36Z",
       "side": 1,
       "message": "Remove the if and move the release in above if",
+      "range": {
+        "startLine": 1030,
+        "startChar": 0,
+        "endLine": 1030,
+        "endChar": 30
+      },
+      "revId": "df17313927afcbd9ca5ddc4156221107833e39d9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2a929115_b0d59ae1",
+        "filename": "android/app/jni/com_android_bluetooth_avrcp_target.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 1030,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-03-22T09:34:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9b490a62_24f96309",
       "range": {
         "startLine": 1030,
         "startChar": 0,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ffe9308e_4f184e14",
+        "filename": "android/app/jni/com_android_bluetooth_avrcp_target.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 1090,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-03-22T09:34:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "baf5d164_0991d9a3",
+      "range": {
+        "startLine": 1082,
+        "startChar": 0,
+        "endLine": 1090,
+        "endChar": 0
+      },
+      "revId": "df17313927afcbd9ca5ddc4156221107833e39d9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "32381f1a_711bbb87",
@@ -83,6 +155,30 @@
       "writtenOn": "2023-03-21T17:31:36Z",
       "side": 1,
       "message": "bis repetita.\n\n\nBut wait a minute... We are doing this a lot. Can we have a generic / template method that take a jbyteArray and fill the vector?\n\nHere is the pseudo code that I absolutly didn\u0027t try but:\n```\ntemplate \u003ctypename T\u003e\nvoid copyJavaArraytoCppVector(const jbyteArray\u0026 jArray,\n                              size_t len,\n                              std::Vector\u003cT\u003e\u0026 cVec) {\n  jbytes* elements \u003d env-\u003eGetByteArrayElements(jArray, nullptr);\n  T* array \u003d reinterpret_cast\u003cT*\u003e(elements);\n  cVec.reserve(len);\n  std::copy(array, array + len, std::back_inserter(cVec));\n  env-\u003eReleaseByteArrayElements(jArray, elements, 0);\n}\n```",
+      "range": {
+        "startLine": 1160,
+        "startChar": 2,
+        "endLine": 1166,
+        "endChar": 3
+      },
+      "revId": "df17313927afcbd9ca5ddc4156221107833e39d9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "90ff56e2_32b9152b",
+        "filename": "android/app/jni/com_android_bluetooth_avrcp_target.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 1166,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-03-22T09:34:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "32381f1a_711bbb87",
       "range": {
         "startLine": 1160,
         "startChar": 2,
@@ -116,6 +212,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "27fc9501_255b3ae6",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/PlayerSettingsManager.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-03-22T09:34:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e39cb03a_ed5d42ee",
+      "range": {
+        "startLine": 46,
+        "startChar": 17,
+        "endLine": 46,
+        "endChar": 36
+      },
+      "revId": "df17313927afcbd9ca5ddc4156221107833e39d9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "434e2d7b_9a47651f",
@@ -139,6 +259,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8a3d5baf_2df3e60a",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/PlayerSettingsManager.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-03-22T09:34:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "434e2d7b_9a47651f",
+      "range": {
+        "startLine": 72,
+        "startChar": 56,
+        "endLine": 72,
+        "endChar": 75
+      },
+      "revId": "df17313927afcbd9ca5ddc4156221107833e39d9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b043137a_b4f6ba67",
@@ -152,6 +296,30 @@
       "writtenOn": "2023-03-21T17:31:36Z",
       "side": 1,
       "message": "Can you explain why pattern is needed ?\nWe want to call the callback from main thread after being sent to jni thread ?\n\nIt looks over-complicated (but they may be a good reason I am not aware of)",
+      "range": {
+        "startLine": 306,
+        "startChar": 3,
+        "endLine": 314,
+        "endChar": 70
+      },
+      "revId": "df17313927afcbd9ca5ddc4156221107833e39d9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1b497f7e_0aa9e468",
+        "filename": "system/btif/avrcp/avrcp_service.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 314,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-03-22T09:34:58Z",
+      "side": 1,
+      "message": "We are passing callback from native (device.cc), that will be later run, when the JNI receives the response from Java layer. Here we need to assure, that the callback will be run on the main thread. Why on the main thread: I\u0027ve read somewhere that UI related things should run on the main thread, and shuffle/repeat are UI related. \n\nThat\u0027s what I understand - it might not be right ;) Anyway, I am open to propositions, how to do it better ;)",
+      "parentUuid": "b043137a_b4f6ba67",
       "range": {
         "startLine": 306,
         "startChar": 3,
