@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "082142d8_15cee177",
+        "filename": "android/app/src/com/android/bluetooth/tbs/TbsGatt.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1127,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2023-03-22T14:09:11Z",
+      "side": 1,
+      "message": "I\u0027m just wondering if we should anonymize some of the fields.",
+      "range": {
+        "startLine": 1124,
+        "startChar": 12,
+        "endLine": 1127,
+        "endChar": 13
+      },
+      "revId": "809129ec914209736a2c1cf13367966ef0a12324",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

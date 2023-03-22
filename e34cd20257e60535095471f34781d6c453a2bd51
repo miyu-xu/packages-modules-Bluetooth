@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7768e7c6_bcc992a6",
+        "filename": "android/app/src/com/android/bluetooth/tbs/TbsGeneric.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1164,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2023-03-22T14:09:11Z",
+      "side": 1,
+      "message": "As Lukasz already mentioned, the URI and Friendly name should probably by anonymized.",
+      "range": {
+        "startLine": 1162,
+        "startChar": 0,
+        "endLine": 1164,
+        "endChar": 55
+      },
+      "revId": "e34cd20257e60535095471f34781d6c453a2bd51",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
