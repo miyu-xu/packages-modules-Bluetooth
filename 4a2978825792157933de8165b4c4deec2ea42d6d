@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e811e0e7_2ad71286",
+        "filename": "system/gd/rust/common/src/init_flags.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 292,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-03-23T15:49:52Z",
+      "side": 1,
+      "message": "Can you keep the list sorted ? same in all init_flags location (fbs / cc / ffi)",
+      "range": {
+        "startLine": 292,
+        "startChar": 0,
+        "endLine": 292,
+        "endChar": 40
+      },
+      "revId": "4a2978825792157933de8165b4c4deec2ea42d6d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
