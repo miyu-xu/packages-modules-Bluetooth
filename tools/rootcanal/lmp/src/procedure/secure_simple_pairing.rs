@@ -534,33 +534,67 @@ pub async fn respond(ctx: &impl Context, request: lmp::IoCapabilityReqPacket) ->
 
     let responder = {
         ctx.send_hci_event(hci::IoCapabilityRequestBuilder { bd_addr: ctx.peer_address() }.build());
-        let reply = ctx.receive_hci_command::<hci::IoCapabilityRequestReplyPacket>().await;
-        ctx.send_hci_event(
-            hci::IoCapabilityRequestReplyCompleteBuilder {
-                num_hci_command_packets,
-                status: hci::ErrorCode::Success,
-                bd_addr: ctx.peer_address(),
-            }
-            .build(),
-        );
+        match ctx
+                .receive_hci_command::<Either<
+                    hci::IoCapabilityRequestReplyPacket,
+                    hci::IoCapabilityRequestNegativeReplyPacket,
+                >>()
+                .await
+            {
+                Either::Left(reply) => {
+                    let status = if ctx.peer_address() == reply.get_bd_addr() {
+                        hci::ErrorCode::Success
+                    } else {
+                        hci::ErrorCode::InvalidHciCommandParameters
+                    };
 
-        ctx.send_lmp_packet(
-            lmp::IoCapabilityResBuilder {
-                transaction_id: 0,
-                io_capabilities: reply.get_io_capability().to_u8().unwrap(),
-                oob_authentication_data: reply.get_oob_present().to_u8().unwrap(),
-                authentication_requirement: reply
-                    .get_authentication_requirements()
-                    .to_u8()
-                    .unwrap(),
+                    ctx.send_hci_event(
+                        hci::IoCapabilityRequestReplyCompleteBuilder {
+                            num_hci_command_packets,
+                            status,
+                            bd_addr: reply.get_bd_addr(),
+                        }
+                        .build(),
+                    );
+                    if status != hci::ErrorCode::Success {
+                        return Err(());
+                    }
+
+                    ctx.send_lmp_packet(
+                        lmp::IoCapabilityResBuilder {
+                            transaction_id: 0,
+                            io_capabilities: reply.get_io_capability().to_u8().unwrap(),
+                            oob_authentication_data: reply.get_oob_present().to_u8().unwrap(),
+                            authentication_requirement: reply
+                                .get_authentication_requirements()
+                                .to_u8()
+                                .unwrap(),
+                        }
+                        .build(),
+                    );
+                    AuthenticationParams {
+                        io_capability: reply.get_io_capability(),
+                        oob_data_present: reply.get_oob_present(),
+                        authentication_requirements: reply.get_authentication_requirements(),
+                    }
+                }
+                Either::Right(reply) => {
+                    let status = if ctx.peer_address() == reply.get_bd_addr() {
+                        hci::ErrorCode::Success
+                    } else {
+                        hci::ErrorCode::InvalidHciCommandParameters
+                    };
+                    ctx.send_hci_event(
+                        hci::IoCapabilityRequestNegativeReplyCompleteBuilder {
+                            num_hci_command_packets,
+                            status,
+                            bd_addr: reply.get_bd_addr(),
+                        }
+                        .build(),
+                    );
+                    return Err(());
+                }
             }
-            .build(),
-        );
-        AuthenticationParams {
-            io_capability: reply.get_io_capability(),
-            oob_data_present: reply.get_oob_present(),
-            authentication_requirements: reply.get_authentication_requirements(),
-        }
     };
 
     // Public Key Exchange
