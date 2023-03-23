@@ -98,6 +98,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e75a9c44_c4b1a123",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-03-23T12:35:35Z",
+      "side": 1,
+      "message": "1.  system properties can be set at runtime on android, can you set them at runtime on chomeOs too ?",
+      "parentUuid": "80facfad_951a0a2b",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 0
+      },
+      "revId": "f82e9dbc32b3258432636d428e162436011856c4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "dc6e494a_4e284861",
         "filename": "system/gd/os/log.h",
         "patchSetId": 1
