@@ -43,8 +43,8 @@ import com.google.protobuf.ByteString
 import com.google.protobuf.Empty
 import io.grpc.Status
 import io.grpc.stub.StreamObserver
-import java.nio.ByteBuffer
 import java.io.Closeable
+import java.nio.ByteBuffer
 import java.time.Duration
 import java.util.UUID
 import kotlinx.coroutines.CoroutineScope
@@ -65,6 +65,16 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import pandora.HostGrpc.HostImplBase
 import pandora.HostProto.*
+import pandora.HostProto.DataTypes.APPEARANCE_FIELD_NUMBER
+import pandora.HostProto.DataTypes.ClassOfDeviceOneofCase.CLASS_OF_DEVICE
+import pandora.HostProto.DataTypes.ClassOfDeviceOneofCase.INCLUDE_CLASS_OF_DEVICE
+import pandora.HostProto.DataTypes.CompleteLocalNameOneofCase.COMPLETE_LOCAL_NAME
+import pandora.HostProto.DataTypes.LE_DISCOVERABILITY_MODE_FIELD_NUMBER
+import pandora.HostProto.DataTypes.PERIPHERAL_CONNECTION_INTERVAL_MAX_FIELD_NUMBER
+import pandora.HostProto.DataTypes.PERIPHERAL_CONNECTION_INTERVAL_MIN_FIELD_NUMBER
+import pandora.HostProto.DataTypes.ShortenedLocalNameOneofCase.SHORTENED_LOCAL_NAME
+import pandora.HostProto.DataTypes.TxPowerLevelOneofCase.TX_POWER_LEVEL
+import pandora.HostProto.DataTypes.URI_FIELD_NUMBER
 
 @kotlinx.coroutines.ExperimentalCoroutinesApi
 class Host(
@@ -434,6 +444,82 @@ class Host(
     return bluetoothDevice
   }
 
+  private fun checkAdvertiseDataTypes(data: DataTypes) {
+    if (data.getShortenedLocalNameOneofCase() == SHORTENED_LOCAL_NAME) {
+      Log.e(TAG, "shortened_local_name unsupported")
+      throw Status.UNKNOWN.asException()
+    }
+
+    if (data.getCompleteLocalNameOneofCase() == COMPLETE_LOCAL_NAME) {
+      Log.e(TAG, "complete_local_name unsupported")
+      throw Status.UNKNOWN.asException()
+    }
+
+    if (data.getTxPowerLevelOneofCase() == TX_POWER_LEVEL) {
+      Log.e(TAG, "tx_power_level unsupported")
+      throw Status.UNKNOWN.asException()
+    }
+
+    val classOfDeviceOneofCase = data.getClassOfDeviceOneofCase()
+    if (
+      classOfDeviceOneofCase == CLASS_OF_DEVICE || classOfDeviceOneofCase == INCLUDE_CLASS_OF_DEVICE
+    ) {
+      Log.e(TAG, "class_of_device unsupported")
+      throw Status.UNKNOWN.asException()
+    }
+
+    if (
+      data.getPeripheralConnectionIntervalMin() !=
+        PERIPHERAL_CONNECTION_INTERVAL_MIN_FIELD_NUMBER ||
+        data.getPeripheralConnectionIntervalMax() != PERIPHERAL_CONNECTION_INTERVAL_MAX_FIELD_NUMBER
+    ) {
+      Log.e(TAG, "peripheral_connection_interval unsupported")
+      throw Status.UNKNOWN.asException()
+    }
+
+    if (
+      !data.getPublicTargetAddressesList().isEmpty() ||
+        !data.getRandomTargetAddressesList().isEmpty()
+    ) {
+      Log.e(TAG, "target_addresses unsupported")
+      throw Status.UNKNOWN.asException()
+    }
+
+    if (data.getAppearance() == APPEARANCE_FIELD_NUMBER) {
+      Log.e(TAG, "appearance unsupported")
+      throw Status.UNKNOWN.asException()
+    }
+
+    if (data.hasAdvertisingInterval()) {
+      Log.e(TAG, "advertising internal unsupported")
+      throw Status.UNKNOWN.asException()
+    }
+
+    if (data.getUri() == URI_FIELD_NUMBER.toString()) {
+      Log.e(TAG, "uri unsupported")
+      throw Status.UNKNOWN.asException()
+    }
+
+    if (data.getLeSupportedFeatures() != ByteString.EMPTY) {
+      Log.e(TAG, "le_supported_feature unsupported")
+      throw Status.UNKNOWN.asException()
+    }
+
+    if (data.getLeDiscoverabilityModeValue() == LE_DISCOVERABILITY_MODE_FIELD_NUMBER) {
+      Log.e(TAG, "le_discoverability_mode unsupported")
+      throw Status.UNKNOWN.asException()
+    }
+
+    if (
+      !data.getIncompleteServiceClassUuids16List().isEmpty() or
+        !data.getIncompleteServiceClassUuids32List().isEmpty() or
+        !data.getIncompleteServiceClassUuids128List().isEmpty()
+    ) {
+      Log.e(TAG, "Incomplete Service Class Uuids not supported")
+      throw Status.UNKNOWN.asException()
+    }
+  }
+
   override fun advertise(
     request: AdvertiseRequest,
     responseObserver: StreamObserver<AdvertiseResponse>
@@ -452,15 +538,7 @@ class Host(
           }
         val advertisingDataBuilder = AdvertiseData.Builder()
         val dataTypesRequest = request.data
-
-        if (
-          !dataTypesRequest.getIncompleteServiceClassUuids16List().isEmpty() or
-            !dataTypesRequest.getIncompleteServiceClassUuids32List().isEmpty() or
-            !dataTypesRequest.getIncompleteServiceClassUuids128List().isEmpty()
-        ) {
-          Log.e(TAG, "Incomplete Service Class Uuids not supported")
-          throw Status.UNKNOWN.asException()
-        }
+        checkAdvertiseDataTypes(request.data)
 
         for (service_uuid in dataTypesRequest.getCompleteServiceClassUuids16List()) {
           val uuid16 = "0000${service_uuid}-0000-1000-8000-00805F9B34FB"
@@ -592,8 +670,7 @@ class Host(
                   .put(manufacturerSpecificDatas.get(id))
               }
               dataTypesBuilder.setManufacturerSpecificData(
-                ByteString.copyFrom(manufacturerData.array(), 0,
-                  manufacturerData.position())
+                ByteString.copyFrom(manufacturerData.array(), 0, manufacturerData.position())
               )
               val primaryPhy =
                 when (result.getPrimaryPhy()) {
