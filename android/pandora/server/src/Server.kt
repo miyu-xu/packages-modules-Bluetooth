@@ -64,6 +64,7 @@ class Server(context: Context) {
                         BluetoothProfile.HID_HOST to ::Hid,
                         BluetoothProfile.PAN to ::Pan,
                         BluetoothProfile.PBAP to ::Pbap,
+                        BluetoothProfile.LE_AUDIO to ::LeAudio,
                     )
                     .filter { bluetoothAdapter.isEnabled }
                     .filter { bluetoothAdapter.getSupportedProfiles().contains(it.key) == true }
