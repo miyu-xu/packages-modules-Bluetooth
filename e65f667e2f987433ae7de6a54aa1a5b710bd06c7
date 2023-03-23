@@ -16,6 +16,24 @@
       "message": "If I understand correctly, you want to avoid adding the device when it advertised without name. So that next time if we find the name in advertisements, we can add the device along with name.\n\n\nWe can remodel this logic to always update the name if name property is not set.\n\nif (name_found) {\n  if (device_not_added) {\n    add_device();\n    set_name_property();\n  }\n  else if (name_property_not_set) {\n    set_name_property();\n  }\n}\n\nHowever since the device is only added from this place, current change should be okay.",
       "revId": "e65f667e2f987433ae7de6a54aa1a5b710bd06c7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "544d9b51_4d2beca0",
+        "filename": "system/btif/src/btif_ble_scanner.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1965943
+      },
+      "writtenOn": "2023-03-23T01:49:38Z",
+      "side": 0,
+      "message": "yes, you are right.",
+      "parentUuid": "1de3d2f1_361331c9",
+      "revId": "e65f667e2f987433ae7de6a54aa1a5b710bd06c7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
