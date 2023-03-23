@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "327f938c_04c8f516",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-03-23T13:32:50Z",
+      "side": 1,
+      "message": "The content of the CL does not match the description.\nThe presubmit is bypassed but  because of the chain the CL cannot be merged",
+      "revId": "5aab168b49b7e1eb75456a28681e98e267a49e5e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
