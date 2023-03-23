@@ -16,6 +16,29 @@
       "message": "Hi En-Shuo and Abhisheck,\n\nThis patch is a bit tricky so please help double check whether it breaks anything. Thanks!",
       "revId": "d7aa1fb36285fa25dc1d926cf55684ca6dea3096",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "77c77d48_47c10630",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 347,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2023-03-23T00:30:39Z",
+      "side": 1,
+      "message": "Consider: Add an getter helper abstraction like `self.is_complete_profiles_required()`.",
+      "range": {
+        "startLine": 347,
+        "startChar": 15,
+        "endLine": 347,
+        "endChar": 38
+      },
+      "revId": "d7aa1fb36285fa25dc1d926cf55684ca6dea3096",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
