@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5af90128_e768d65a",
+        "filename": "tools/pdl/doc/reference.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2023-03-23T15:50:56Z",
+      "side": 1,
+      "message": "\u003e Also ranges in the protocol specifications are more likely to be presented with inclusive bounds.\n\nThat\u0027s a great argument 👍",
+      "parentUuid": "fd2246da_48b3128d",
+      "range": {
+        "startLine": 167,
+        "startChar": 69,
+        "endLine": 167,
+        "endChar": 91
+      },
+      "revId": "5e44f8498a8af1bb04f61fffeb054b379750d882",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "563df943_c062c956",
