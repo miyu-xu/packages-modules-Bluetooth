@@ -35,6 +35,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "82f7a4d1_f3d274a0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-03-23T13:17:01Z",
+      "side": 1,
+      "message": "Seems to be a already merged change that makes this test failing now. Changed to new version of CL and moved clean to Timeout handler instead of state machine.",
+      "parentUuid": "d0d25e22_e1858552",
+      "revId": "35702d205de23d9e85c387aadacd55f1dd67c22a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2e17e9a9_9e714235",
@@ -48,6 +66,24 @@
       "writtenOn": "2023-03-22T22:27:04Z",
       "side": 1,
       "message": "this check is the problem. Device is not yet set as DISCONNECTED when this is check.  Removing this should help",
+      "revId": "35702d205de23d9e85c387aadacd55f1dd67c22a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fe5902a4_0e38d92f",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 631,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-03-23T13:17:01Z",
+      "side": 1,
+      "message": "Updated with new CL version.",
+      "parentUuid": "2e17e9a9_9e714235",
       "revId": "35702d205de23d9e85c387aadacd55f1dd67c22a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
