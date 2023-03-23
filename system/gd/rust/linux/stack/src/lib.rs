@@ -115,6 +115,9 @@ pub enum Message {
     // Admin policy related
     AdminCallbackDisconnected(u32),
     HidHostEnable,
+
+    // Qualification Only
+    QaAddMediaPlayer(String, bool),
 }
 
 /// Represents suspend mode of a module.
@@ -321,6 +324,10 @@ impl Stack {
                 }
                 Message::HidHostEnable => {
                     bluetooth.lock().unwrap().enable_hidhost();
+                }
+                // Qualification Only
+                Message::QaAddMediaPlayer(name, browsing_supported) => {
+                    bluetooth_media.lock().unwrap().add_player(name, browsing_supported);
                 }
             }
         }

@@ -269,6 +269,14 @@ fn build_commands() -> HashMap<String, CommandOption> {
         },
     );
     command_options.insert(
+        String::from("qa"),
+        CommandOption {
+            rules: vec![String::from("qa add-media-player <name> <browsing_supported>")],
+            description: String::from("Methods for testing purposes"),
+            function_pointer: CommandHandler::cmd_qa,
+        },
+    );
+    command_options.insert(
         String::from("help"),
         CommandOption {
             rules: vec![String::from("help")],
@@ -1884,25 +1892,18 @@ impl CommandHandler {
         let command = get_arg(args, 0)?;
 
         match &command[..] {
-            "enable-a2dp-sink" => {
-                self.context.lock().unwrap().qa_dbus.as_mut().unwrap().enable_a2dp_sink();
-            }
-            "send-avrcp-pass-through" => {
-                let addr = String::from(get_arg(args, 1)?);
-                let key_code = String::from(get_arg(args, 2)?)
-                    .parse::<u8>()
-                    .or(Err("Failed parsing key_code"))?;
-                let key_state = String::from(get_arg(args, 3)?)
-                    .parse::<u8>()
-                    .or(Err("Failed parsing key_state"))?;
-
+            "add-media-player" => {
+                let name = String::from(get_arg(args, 1)?);
+                let browsing_supported = String::from(get_arg(args, 2)?)
+                    .parse::<bool>()
+                    .or(Err("Failed to parse browsing_supported"))?;
                 self.context
                     .lock()
                     .unwrap()
                     .qa_dbus
                     .as_mut()
                     .unwrap()
-                    .send_avrcp_pass_through(addr, key_code, key_state);
+                    .add_media_player(name, browsing_supported);
             }
             _ => return Err(CommandError::InvalidArgs),
         };

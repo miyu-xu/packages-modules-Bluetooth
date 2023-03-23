@@ -9,4 +9,9 @@ use crate::dbus_arg::DBusArg;
 struct IBluetoothQADBus {}
 
 #[generate_dbus_exporter(export_bluetooth_qa_dbus_intf, "org.chromium.bluetooth.BluetoothQA")]
-impl IBluetoothQA for IBluetoothQADBus {}
+impl IBluetoothQA for IBluetoothQADBus {
+    #[dbus_method("AddMediaPlayer")]
+    fn add_media_player(&self, name: String, browsing_supported: bool) {
+        dbus_generated!()
+    }
+}

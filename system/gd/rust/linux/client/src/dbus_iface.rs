@@ -2246,4 +2246,9 @@ impl BluetoothQADBus {
 }
 
 #[generate_dbus_interface_client]
-impl IBluetoothQA for BluetoothQADBus {}
+impl IBluetoothQA for BluetoothQADBus {
+    #[dbus_method("AddMediaPlayer")]
+    fn add_media_player(&self, name: String, browsing_supported: bool) {
+        dbus_generated!()
+    }
+}
