@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5aaf1ed8_45a4e645",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/avrcpcontroller/AvrcpControllerServiceBinderTest.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2023-03-23T00:42:12Z",
+      "side": 1,
+      "message": "I guess you can remove this change, sorry about that",
+      "revId": "c89bbc2538002121cbb5cc63c8caa82f2c8dd008",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

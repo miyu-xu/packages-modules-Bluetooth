@@ -352,6 +352,30 @@
       },
       "revId": "df17313927afcbd9ca5ddc4156221107833e39d9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ede2a586_459f776c",
+        "filename": "system/btif/avrcp/avrcp_service.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 314,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2023-03-23T00:42:12Z",
+      "side": 1,
+      "message": "This is consistent with what is actually done for Volume and Media though",
+      "parentUuid": "c7152d13_28f41a75",
+      "range": {
+        "startLine": 306,
+        "startChar": 3,
+        "endLine": 314,
+        "endChar": 70
+      },
+      "revId": "df17313927afcbd9ca5ddc4156221107833e39d9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
