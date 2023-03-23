@@ -124,6 +124,7 @@ pub enum Message {
     // QA related
     QaEnableA2dpSink,
     QaSendAvrcpPassThrough(String, u8, u8),
+    QaAddMediaPlayer(String, bool),
 }
 
 /// Represents suspend mode of a module.
@@ -346,6 +347,9 @@ impl Stack {
                         .lock()
                         .unwrap()
                         .send_pass_through_cmd(addr, key_code, key_state);
+                }
+                Message::QaAddMediaPlayer(name, browsing_supported) => {
+                    bluetooth_media.lock().unwrap().add_player(name, browsing_supported);
                 }
             }
         }

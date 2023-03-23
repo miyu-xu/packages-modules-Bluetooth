@@ -7,6 +7,7 @@ use tokio::sync::mpsc::Sender;
 pub trait IBluetoothQA {
     fn enable_a2dp_sink(&self);
     fn send_avrcp_pass_through(&self, address: String, key_code: u8, key_state: u8);
+    fn add_media_player(&self, name: String, browsing_supported: bool);
 }
 
 pub struct BluetoothQA {
@@ -31,6 +32,13 @@ impl IBluetoothQA for BluetoothQA {
         let txl = self.tx.clone();
         tokio::spawn(async move {
             let _ = txl.send(Message::QaSendAvrcpPassThrough(address, key_code, key_state)).await;
+        });
+    }
+
+    fn add_media_player(&self, name: String, browsing_supported: bool) {
+        let txl = self.tx.clone();
+        tokio::spawn(async move {
+            let _ = txl.send(Message::QaAddMediaPlayer(name, browsing_supported)).await;
         });
     }
 }

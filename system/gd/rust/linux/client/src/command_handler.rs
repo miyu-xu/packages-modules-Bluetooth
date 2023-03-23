@@ -262,6 +262,7 @@ fn build_commands() -> HashMap<String, CommandOption> {
         CommandOption {
             rules: vec![
                 String::from("qa enable-a2dp-sink"),
+                String::from("qa add-media-player <name> <browsing_supported>"),
                 String::from("qa send-avrcp-pass-through <address> <key_value> <key_code>"),
             ],
             description: String::from("Methods for testing purposes"),
@@ -1796,6 +1797,19 @@ impl CommandHandler {
         match &command[..] {
             "enable-a2dp-sink" => {
                 self.context.lock().unwrap().qa_dbus.as_mut().unwrap().enable_a2dp_sink();
+            }
+            "add-media-player" => {
+                let name = String::from(get_arg(args, 1)?);
+                let browsing_supported = String::from(get_arg(args, 2)?)
+                    .parse::<bool>()
+                    .or(Err("Failed to parse browsing_supported"))?;
+                self.context
+                    .lock()
+                    .unwrap()
+                    .qa_dbus
+                    .as_mut()
+                    .unwrap()
+                    .add_media_player(name, browsing_supported);
             }
             "send-avrcp-pass-through" => {
                 let addr = String::from(get_arg(args, 1)?);

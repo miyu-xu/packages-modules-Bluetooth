@@ -18,4 +18,8 @@ impl IBluetoothQA for IBluetoothQADBus {
     fn send_avrcp_pass_through(&self, addr: String, key_code: u8, key_state: u8) {
         dbus_generated!()
     }
+    #[dbus_method("AddMediaPlayer")]
+    fn add_media_player(&self, name: String, browsing_supported: bool) {
+        dbus_generated!()
+    }
 }
