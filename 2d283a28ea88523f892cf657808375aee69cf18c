@@ -16,6 +16,24 @@
       "message": "If I understand it correctly, the problem statement is that the HOGP host would not be able to distinguish the Output reports by report ID if there are more than one Output reports on the device.\nThis would also be true for Feature reports.\n\nHowever the correct report type is set only after the report reference descriptor is read. By default the report type is set to BTA_HH_RPTT_INPUT for Report characteristics when they are initialized (see bta_hh_uuid_to_rtp_type). So the original logic is illogical and unreachable.\n\n1. The original logic of \"break\" is unreachable code and should be removed.\n2. Whatever problem was reported would not get fixed by this change since \"break\" is unreachable.",
       "revId": "2d283a28ea88523f892cf657808375aee69cf18c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "18af5020_3e4b8d56",
+        "filename": "system/bta/hh/bta_hh_le.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 1418,
+      "author": {
+        "id": 1965943
+      },
+      "writtenOn": "2023-03-23T01:47:53Z",
+      "side": 1,
+      "message": "Yes, you are right. \nIn our case, the remote device only have input and output report, so we just do \nconservative modification.\n\nSo you suggest remove \"if (p_rpt-\u003erpt_type !\u003d BTA_HH_RPTT_INPUT) break;\" this line?",
+      "parentUuid": "7df03bec_e3b06805",
+      "revId": "2d283a28ea88523f892cf657808375aee69cf18c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
