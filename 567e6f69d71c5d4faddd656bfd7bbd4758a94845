@@ -16,6 +16,24 @@
       "message": "The report map is read only once when connected for the first time. If the report map is found to be empty, this change only ensures that the incidence is logged. However the report map in the cache remains empty since it was never set. Whatever failure it led to previously would still be met.\nShould such remote device be removed immediately?",
       "revId": "567e6f69d71c5d4faddd656bfd7bbd4758a94845",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4eda28a5_e7ca9039",
+        "filename": "system/bta/hh/bta_hh_le.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1988,
+      "author": {
+        "id": 1965943
+      },
+      "writtenOn": "2023-03-23T06:21:06Z",
+      "side": 1,
+      "message": "Thanks a lot for the question.\nWe review the patch again, and found that our engineer make a mistake in this solution.\nWe update the log and test step in https://partnerissuetracker.corp.google.com/issues/249709008.\n\nThe root cause is that when reconnect a BLE mouse, GATT will load cache while HOGP still need read GATT_UUID_HID_INFORMATION, GATT_UUID_HID_CONTROL_POINT, GATT_UUID_HID_REPORT_MAP etc. There is no guarantee of the sequence of read done and BTA_HH_OPEN_EVT. So it happens that after BTA_HH_OPEN_EVT, we want to read p_cb-\u003ehid_srvc.descriptor.dsc_list, it is not ready now, it seems that our solution is just a work around, it reuses the cache value.\n\nWe will abandon this CL. Thanks.",
+      "parentUuid": "7544262e_b592565d",
+      "revId": "567e6f69d71c5d4faddd656bfd7bbd4758a94845",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
