@@ -119,6 +119,7 @@ rust_bindgen {
         "--allowlist-function=btgatt_.*",
         "--allowlist-function=btsdp.*",
         "--allowlist-function=hal_util_.*",
+        "--allowlist-function=osi_property_get.*",
         "--allowlist-type=bt_.*",
         "--allowlist-type=bthh_.*",
         "--allowlist-type=btgatt_.*",
