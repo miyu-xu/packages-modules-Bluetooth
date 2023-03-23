@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "52da6754_242aa9a9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1581454
+      },
+      "writtenOn": "2023-03-23T19:50:47Z",
+      "side": 1,
+      "message": "Presubmit is broken. Checked with pts and automation test owners to before this bypass",
+      "revId": "41d98ac1632528f4a4aa240748773780e5236085",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
