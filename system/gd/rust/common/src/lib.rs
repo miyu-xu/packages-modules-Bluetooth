@@ -1,5 +1,7 @@
 //! Bluetooth common library
 
+use init_flags::logging_debug_enabled_for_all_is_enabled;
+
 /// Provides waking timer abstractions
 pub mod time;
 
@@ -21,11 +23,19 @@ pub mod init_flags;
 /// Provides runtime configured system properties. Stubbed for non-Android.
 pub mod sys_prop;
 
+fn get_log_level() -> log::Level {
+    if logging_debug_enabled_for_all_is_enabled() {
+        log::Level::Trace
+    } else {
+        log::Level::Info
+    }
+}
+
 /// Inits logging for Android
 #[cfg(target_os = "android")]
 pub fn init_logging() {
     android_logger::init_once(
-        android_logger::Config::default().with_tag("bt").with_min_level(log::Level::Debug),
+        android_logger::Config::default().with_tag("bt").with_min_level(get_log_level()),
     );
 }
 
@@ -33,7 +43,7 @@ pub fn init_logging() {
 #[cfg(not(target_os = "android"))]
 pub fn init_logging() {
     env_logger::Builder::new()
-        .filter(None, log::LevelFilter::Debug)
+        .filter(None, get_log_level().to_level_filter())
         .parse_default_env()
         .try_init()
         .ok();
