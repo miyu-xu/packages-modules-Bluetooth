@@ -16,6 +16,24 @@
       "message": "I\u0027m surprised that we\u0027re adding suspend without resume.  How does Android do this?",
       "revId": "8bb0d485dfb22934764d82e7b8252bfce77740aa",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "830350f1_e1dea95f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-03-23T03:34:54Z",
+      "side": 1,
+      "message": "Per AVDTP spec I think resume equals start?",
+      "parentUuid": "3741fde5_d1dcfc98",
+      "revId": "8bb0d485dfb22934764d82e7b8252bfce77740aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
