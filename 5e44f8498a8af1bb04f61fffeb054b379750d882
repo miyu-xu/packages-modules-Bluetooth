@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "fd2246da_48b3128d",
+        "filename": "tools/pdl/doc/reference.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-03-23T15:45:57Z",
+      "side": 1,
+      "message": "\u003e Have you considered making the right end exclusive?\n\nI agree that most ranges are exclusive right side. \n\nMy decision was motivated by the fact that we need to represent the max bound of the backing type:  e.g. `0..0xffff`. It is less cumbersome to ask users to use only values that can be represented on the type.\n\nAlso ranges in the protocol specifications are more likely to be presented with inclusive bounds.",
+      "parentUuid": "8bb1f780_7fa11ad2",
+      "range": {
+        "startLine": 167,
+        "startChar": 69,
+        "endLine": 167,
+        "endChar": 91
+      },
+      "revId": "5e44f8498a8af1bb04f61fffeb054b379750d882",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "563df943_c062c956",
         "filename": "tools/pdl/doc/reference.md",
         "patchSetId": 3
@@ -72,6 +96,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d3ed12c7_f24183c1",
+        "filename": "tools/pdl/src/analyzer.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-03-23T15:45:57Z",
+      "side": 1,
+      "message": "I am just using `EXX` when I don\u0027t have a short name for the error 😄\nThe value `\u003d 42` is specified to help error lookup when checking a diagnostic: the errors will be displayed as `EXX` always, and not using the tag name.",
+      "parentUuid": "6bf3380b_fd941789",
+      "range": {
+        "startLine": 137,
+        "startChar": 4,
+        "endLine": 137,
+        "endChar": 12
+      },
+      "revId": "5e44f8498a8af1bb04f61fffeb054b379750d882",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1933db58_7b71bca0",
         "filename": "tools/pdl/src/ast.rs",
         "patchSetId": 3
@@ -95,6 +143,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "253b81c9_f8589ac3",
+        "filename": "tools/pdl/src/ast.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-03-23T15:45:57Z",
+      "side": 1,
+      "message": "Did not know it existed! Neat 😊",
+      "parentUuid": "1933db58_7b71bca0",
+      "range": {
+        "startLine": 64,
+        "startChar": 59,
+        "endLine": 64,
+        "endChar": 64
+      },
+      "revId": "5e44f8498a8af1bb04f61fffeb054b379750d882",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0983161b_4be883d7",
         "filename": "tools/pdl/src/ast.rs",
         "patchSetId": 3
@@ -106,6 +178,30 @@
       "writtenOn": "2023-03-23T08:18:59Z",
       "side": 1,
       "message": "I\u0027m not sure that I love such accessors: they move a `match` expression to the accessor, but the calling code will now either use an `unwrap()` or it will have the same `match` expression (you see the `unwrap()` below).\n\nOverall, I think it\u0027s better to let the callers deal with the cases — they must know about them at some point, right?",
+      "range": {
+        "startLine": 275,
+        "startChar": 0,
+        "endLine": 275,
+        "endChar": 42
+      },
+      "revId": "5e44f8498a8af1bb04f61fffeb054b379750d882",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c9b2b911_ac2a7099",
+        "filename": "tools/pdl/src/ast.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-03-23T15:45:57Z",
+      "side": 1,
+      "message": "The accessors are there to simplify updating legacy generators (e.g. rust_no_alloc) that do not support tag ranges and will not be updated to support it.\n\nSame for your generator actually, I will be updating it in a second phase, but for now I just want it to compile :D",
+      "parentUuid": "0983161b_4be883d7",
       "range": {
         "startLine": 275,
         "startChar": 0,
