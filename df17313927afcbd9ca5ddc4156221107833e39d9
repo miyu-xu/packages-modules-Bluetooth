@@ -376,6 +376,30 @@
       },
       "revId": "df17313927afcbd9ca5ddc4156221107833e39d9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "24a1c7fa_b7ce682c",
+        "filename": "system/btif/avrcp/avrcp_service.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 314,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-03-23T14:58:40Z",
+      "side": 1,
+      "message": "Acknowledged\n\nI was just curious.\nLet\u0027s keep the same pattern (if there is an issue with it, it will be equally wrong for everyone 😊 )",
+      "parentUuid": "ede2a586_459f776c",
+      "range": {
+        "startLine": 306,
+        "startChar": 3,
+        "endLine": 314,
+        "endChar": 70
+      },
+      "revId": "df17313927afcbd9ca5ddc4156221107833e39d9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

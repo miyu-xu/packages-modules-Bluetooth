@@ -1,0 +1,234 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e966a001_d460d91b",
+        "filename": "system/packet/avrcp/Android.bp",
+        "patchSetId": 9
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-03-23T14:58:40Z",
+      "side": 1,
+      "message": "Can we sort the added item ?",
+      "range": {
+        "startLine": 33,
+        "startChar": 5,
+        "endLine": 36,
+        "endChar": 50
+      },
+      "revId": "cb9e8b81ec532b3b5bfc03a917d2b7d8484177b5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3932323e_43e891c2",
+        "filename": "system/packet/avrcp/get_current_player_application_setting_value.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-03-23T14:58:40Z",
+      "side": 1,
+      "message": "for peace of mind should we do something like:\n`attributes_.size() * sizeof(uint8_t)` ?",
+      "range": {
+        "startLine": 35,
+        "startChar": 10,
+        "endLine": 35,
+        "endChar": 26
+      },
+      "revId": "cb9e8b81ec532b3b5bfc03a917d2b7d8484177b5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "88a40c60_52376169",
+        "filename": "system/packet/avrcp/get_current_player_application_setting_value.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-03-23T14:58:40Z",
+      "side": 1,
+      "message": "This check can never be false. How it is helping to check validity ? (I may be missing something)",
+      "range": {
+        "startLine": 77,
+        "startChar": 0,
+        "endLine": 77,
+        "endChar": 40
+      },
+      "revId": "cb9e8b81ec532b3b5bfc03a917d2b7d8484177b5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3c3b2207_8686088d",
+        "filename": "system/packet/avrcp/get_current_player_application_setting_value.h",
+        "patchSetId": 9
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-03-23T14:58:40Z",
+      "side": 1,
+      "message": "Do we need to detail all the content of AvrcpPacket \u0026 VendorPacket ?\n\nIn the code bellow we are only taking the `VendorPacket::kMinSize`, I am not sure we should even mention AvrcpPacket here\n\n(same in other packet file below)",
+      "range": {
+        "startLine": 59,
+        "startChar": 6,
+        "endLine": 68,
+        "endChar": 31
+      },
+      "revId": "cb9e8b81ec532b3b5bfc03a917d2b7d8484177b5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6b24d983_f48b7325",
+        "filename": "system/packet/avrcp/get_current_player_application_setting_value.h",
+        "patchSetId": 9
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-03-23T14:58:40Z",
+      "side": 1,
+      "message": "In  GetCurrentPlayerApplicationSettingValueResponseBuilder::size() we are doing `sizeof(uint8)` can we have consistency and use sizeof here too ?",
+      "range": {
+        "startLine": 73,
+        "startChar": 73,
+        "endLine": 73,
+        "endChar": 74
+      },
+      "revId": "cb9e8b81ec532b3b5bfc03a917d2b7d8484177b5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ce84a724_faacdbf2",
+        "filename": "system/packet/avrcp/register_notification_packet.h",
+        "patchSetId": 9
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-03-23T14:58:40Z",
+      "side": 1,
+      "message": "Should we enforce this to be set to 0 somewhere ? \n\nwhen we are now doing `builder-\u003edata_[0] \u003d play_status;` I don\u0027t think it is the same as `builder-\u003edata_ \u003d play_status;` since there are the 1 to 8 index that are not initialized (cf the usage in next file)",
+      "range": {
+        "startLine": 95,
+        "startChar": 10,
+        "endLine": 95,
+        "endChar": 15
+      },
+      "revId": "cb9e8b81ec532b3b5bfc03a917d2b7d8484177b5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a7445d91_29b068ec",
+        "filename": "system/packet/avrcp/set_player_application_setting_value.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-03-23T14:58:40Z",
+      "side": 1,
+      "message": "`0` ?",
+      "range": {
+        "startLine": 40,
+        "startChar": 39,
+        "endLine": 40,
+        "endChar": 72
+      },
+      "revId": "cb9e8b81ec532b3b5bfc03a917d2b7d8484177b5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7c4531d5_76b76fee",
+        "filename": "system/packet/avrcp/set_player_application_setting_value.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-03-23T14:58:40Z",
+      "side": 1,
+      "message": "aren\u0027t we doing two incrementation on it ?",
+      "range": {
+        "startLine": 72,
+        "startChar": 2,
+        "endLine": 74,
+        "endChar": 9
+      },
+      "revId": "cb9e8b81ec532b3b5bfc03a917d2b7d8484177b5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2ade1b36_b621da6d",
+        "filename": "system/packet/avrcp/set_player_application_setting_value.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-03-23T14:58:40Z",
+      "side": 1,
+      "message": "is 2 for attributes + values ?",
+      "range": {
+        "startLine": 87,
+        "startChar": 25,
+        "endLine": 87,
+        "endChar": 26
+      },
+      "revId": "cb9e8b81ec532b3b5bfc03a917d2b7d8484177b5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "54676190_17b91901",
+        "filename": "system/packet/tests/avrcp/avrcp_test_packets.h",
+        "patchSetId": 9
+      },
+      "lineNbr": 212,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-03-23T14:58:40Z",
+      "side": 1,
+      "message": "All test in this file are new except this modification.\nJust checking if it has been done on purpose ^^",
+      "range": {
+        "startLine": 212,
+        "startChar": 10,
+        "endLine": 212,
+        "endChar": 14
+      },
+      "revId": "cb9e8b81ec532b3b5bfc03a917d2b7d8484177b5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
