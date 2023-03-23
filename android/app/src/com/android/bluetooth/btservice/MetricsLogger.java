@@ -30,6 +30,7 @@ import com.android.internal.annotations.VisibleForTesting;
 import com.google.common.hash.BloomFilter;
 import com.google.common.hash.Funnels;
 
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -43,6 +44,8 @@ import java.util.HashMap;
  */
 public class MetricsLogger {
     private static final String TAG = "BluetoothMetricsLogger";
+    private static final String BLOOMFILTER_PATH = "/data/misc/bluetooth";
+    private static final String BLOOMFILTER_FILE = "/devices_for_metrics";
     private static final String BLOOMFILTER_PATH = "/data/misc/bluetooth/metrics";
     private static final String BLOOMFILTER_FILE = "/devices";
     public static final String BLOOMFILTER_FULL_PATH = BLOOMFILTER_PATH + BLOOMFILTER_FILE;
@@ -112,9 +115,19 @@ public class MetricsLogger {
             FileInputStream in = new FileInputStream(new File(path));
             mBloomFilter = BloomFilter.readFrom(in, Funnels.byteArrayFunnel());
             mBloomFilterInitialized = true;
-        } catch (IOException e) {
-            Log.w(TAG, "MetricsLogger can't read the BloomFilter file");
-            return false;
+        } catch (IOException e1) {
+            Log.w(TAG, "MetricsLogger can't read the BloomFilter file.");
+            byte[] bloomfilterData = DeviceBloomfilterGenerator.hexStringToByteArray(
+                    DeviceBloomfilterGenerator.BLOOM_FILTER_DEFAULT);
+            try {
+                mBloomFilter = BloomFilter.readFrom(
+                        new ByteArrayInputStream(bloomfilterData), Funnels.byteArrayFunnel());
+                mBloomFilterInitialized = true;
+                Log.i(TAG, "The default bloomfilter is used");
+                return true;
+            } catch (IOException e2) {
+                Log.w(TAG, "The default bloomfilter can't be used.");
+            }
         }
         return true;
     }
@@ -253,7 +266,7 @@ public class MetricsLogger {
     }
 
     protected boolean logSanitizedBluetoothDeviceName(int metricId, String deviceName) {
-        if (!mBloomFilterInitialized) {
+        if (!mBloomFilterInitialized || deviceName == null) {
             return false;
         }
 
