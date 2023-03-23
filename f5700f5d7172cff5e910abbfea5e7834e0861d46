@@ -16,6 +16,24 @@
       "message": "This file is dead. Effective logic is in packages/modules/Bluetooth/system/main/shim/le_scanning_manager.cc. You must make similar changes there.",
       "revId": "f5700f5d7172cff5e910abbfea5e7834e0861d46",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6778e2bb_a47d5997",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1965943
+      },
+      "writtenOn": "2023-03-23T05:26:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "019d5bc9_74d1d207",
+      "revId": "f5700f5d7172cff5e910abbfea5e7834e0861d46",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
