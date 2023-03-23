@@ -94,6 +94,30 @@
       },
       "revId": "4bd25c5427ba2a4271fe1da89e56f09571e99345",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ebd7e575_ca9598d9",
+        "filename": "system/stack/rfcomm/rfc_l2cap_if.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-03-23T16:30:10Z",
+      "side": 1,
+      "message": "Do you know where the timeout is?\n\u003e Android stack timeout at waiting for the response\n\nThis timeout should be increased to \u003e12s, if this is the case.",
+      "parentUuid": "5299f4ad_d854e55f",
+      "range": {
+        "startLine": 102,
+        "startChar": 9,
+        "endLine": 102,
+        "endChar": 36
+      },
+      "revId": "4bd25c5427ba2a4271fe1da89e56f09571e99345",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
