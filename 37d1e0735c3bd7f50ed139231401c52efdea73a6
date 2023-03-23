@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6781ca73_4f9b5047",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-03-23T15:35:27Z",
+      "side": 1,
+      "message": "Once state is encapsulated and all states identified we can group all state behavior together.  Once that is done all inputs and outputs will be known and a solid test can be written",
+      "revId": "37d1e0735c3bd7f50ed139231401c52efdea73a6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
