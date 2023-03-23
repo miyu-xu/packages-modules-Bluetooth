@@ -22,6 +22,30 @@
       },
       "revId": "b355583bc0a1ed3bcfb3c5e944679ab889681770",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c22d6fb4_ecaadde2",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 799,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-03-23T05:14:15Z",
+      "side": 1,
+      "message": "In some blocks `phone_ops_enabled` is already checked in the previous `xxx_call_impl()` call so I didn\u0027t check that again.\n\nWrapped a2dp suspend/resume into helper functions and always have it checked.",
+      "parentUuid": "e6711375_54014d57",
+      "range": {
+        "startLine": 795,
+        "startChar": 19,
+        "endLine": 799,
+        "endChar": 72
+      },
+      "revId": "b355583bc0a1ed3bcfb3c5e944679ab889681770",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
