@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3d9127ca_4dd9292d",
+        "filename": "system/gd/metrics/metrics_state.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1581454
+      },
+      "writtenOn": "2023-03-23T21:32:08Z",
+      "side": 1,
+      "message": "nit, do you need \\n here? And do you want to logcat the type here?",
+      "revId": "4588aad61f925f9e52dcf8ec9f5fa4a1b9ba2551",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
