@@ -16,6 +16,24 @@
       "message": "we have in this file function getTbsService() which makes use of  mTbsService, which is visible for testing.",
       "revId": "0f7072d576daec031b3b98ac0e1ddf3485d46a56",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9a97cea7_2d2d6bb3",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 2357,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-03-23T11:10:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4f6f36a1_1a1da08d",
+      "revId": "0f7072d576daec031b3b98ac0e1ddf3485d46a56",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
