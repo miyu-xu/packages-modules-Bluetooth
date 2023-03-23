@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d8e8351f_fe657757",
+        "filename": "android/app/src/com/android/bluetooth/Utils.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 974,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-03-23T16:15:05Z",
+      "side": 1,
+      "message": "fix indent",
+      "revId": "f6719bc6a83ebc9fd13b3e42f08d51adf5aaa242",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "98025362_c6b287a4",
+        "filename": "android/app/src/com/android/bluetooth/Utils.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 979,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-03-23T16:15:05Z",
+      "side": 1,
+      "message": "Do we need a getter for this ? Can\u0027t we directly reference the static String ?",
+      "range": {
+        "startLine": 979,
+        "startChar": 0,
+        "endLine": 979,
+        "endChar": 48
+      },
+      "revId": "f6719bc6a83ebc9fd13b3e42f08d51adf5aaa242",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
