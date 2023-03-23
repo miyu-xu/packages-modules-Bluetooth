@@ -22,6 +22,30 @@
       },
       "revId": "809129ec914209736a2c1cf13367966ef0a12324",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2c82f52c_0fbac502",
+        "filename": "android/app/src/com/android/bluetooth/tbs/TbsGatt.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1127,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-03-23T11:10:51Z",
+      "side": 1,
+      "message": "This should be ok since it\u0027s characteristic name and value of CCC.",
+      "parentUuid": "082142d8_15cee177",
+      "range": {
+        "startLine": 1124,
+        "startChar": 12,
+        "endLine": 1127,
+        "endChar": 13
+      },
+      "revId": "809129ec914209736a2c1cf13367966ef0a12324",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
