@@ -1039,7 +1039,7 @@ void bta_av_disconnect_req(tBTA_AV_SCB* p_scb,
   // the same index, it should be safe to use SCB index here.
   if ((bta_av_cb.conn_lcb & (1 << p_scb->hdi)) != 0) {
     p_rcb = bta_av_get_rcb_by_shdl((uint8_t)(p_scb->hdi + 1));
-    if (p_rcb) bta_av_del_rc(p_rcb);
+    if (p_rcb && p_scb->rc_handle != BTA_AV_RC_HANDLE_NONE) bta_av_del_rc(p_rcb);
     AVDT_DisconnectReq(p_scb->PeerAddress(), &bta_av_proc_stream_evt);
   } else {
     APPL_TRACE_WARNING("%s: conn_lcb=0x%x bta_handle=0x%x (hdi=%u) no link",

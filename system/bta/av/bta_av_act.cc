@@ -1236,7 +1236,7 @@ void bta_av_conn_chg(tBTA_AV_DATA* p_data) {
                        __func__, i, bta_av_cb.rcb[i].handle,
                        bta_av_cb.rcb[i].status, bta_av_cb.rcb[i].shdl,
                        bta_av_cb.rcb[i].lidx);
-      if (bta_av_cb.rcb[i].shdl == index + 1) {
+      if ((bta_av_cb.rcb[i].shdl == index + 1) && p_scb && p_scb->rc_handle != BTA_AV_RC_HANDLE_NONE) {
         bta_av_del_rc(&bta_av_cb.rcb[i]);
         /* since the connection is already down and info was removed, clean
          * reference */
