@@ -34,6 +34,24 @@
       "parentUuid": "7df03bec_e3b06805",
       "revId": "2d283a28ea88523f892cf657808375aee69cf18c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7f72017b_5e2d3b8f",
+        "filename": "system/bta/hh/bta_hh_le.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 1418,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2023-03-23T16:24:01Z",
+      "side": 1,
+      "message": "I mean at this point, the report type would always be set to BTA_HH_RPTT_INPUT because HOGP host has not discovered the report reference descriptor yet. By default all report characteristics are assigned BTA_HH_RPTT_INPUT type. So the original statement would never trigger a break.\n\nYour diagnosis of the problem seems wrong.",
+      "parentUuid": "18af5020_3e4b8d56",
+      "revId": "2d283a28ea88523f892cf657808375aee69cf18c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
