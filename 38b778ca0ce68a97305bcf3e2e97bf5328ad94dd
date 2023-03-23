@@ -33,6 +33,24 @@
       "message": "Is this again \"lying\" to the user about what MTU they negotiated? I thought we decided to always give them the true value?",
       "revId": "38b778ca0ce68a97305bcf3e2e97bf5328ad94dd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "334d8010_4fe864d2",
+        "filename": "system/bta/gatt/bta_gattc_act.cc",
+        "patchSetId": 27
+      },
+      "lineNbr": 1151,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-03-23T13:08:52Z",
+      "side": 1,
+      "message": "you right. I missed that. Thanks!",
+      "parentUuid": "d1ebc2b5_5054ed46",
+      "revId": "38b778ca0ce68a97305bcf3e2e97bf5328ad94dd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
