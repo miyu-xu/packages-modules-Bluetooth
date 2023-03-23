@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d22d54c8_dac7182e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1874901
+      },
+      "writtenOn": "2023-03-23T23:41:01Z",
+      "side": 1,
+      "message": "There was still a build issue on patchset 1 **. I kicked off another build, which at least properly attempted to build. ++\n\n++ I manually kicked off this build:\n\nab/P53195569 \u003e https://android-build.googleplex.com/builds/pending/P53195569/floss_build/latest/view/logs/build.log:\n\n```\nFAILED: obj/bt/system/gd/metrics/BluetoothMetricsSources.utils.o \n```\n\n** The original Floss build that failed via this CL:\n\n```\nmkdir out \u0026\u0026 touch out/ninja_build\nmkdir: cannot create directory ‘out’: File exists\n```",
+      "revId": "4588aad61f925f9e52dcf8ec9f5fa4a1b9ba2551",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3d9127ca_4dd9292d",
