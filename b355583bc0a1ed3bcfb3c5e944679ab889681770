@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e6711375_54014d57",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 799,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2023-03-23T00:21:02Z",
+      "side": 1,
+      "message": "Consider adding a helper function for this for readability.\nAlso, may you explain when should we check `phone_ops_enabled`?",
+      "range": {
+        "startLine": 795,
+        "startChar": 19,
+        "endLine": 799,
+        "endChar": 72
+      },
+      "revId": "b355583bc0a1ed3bcfb3c5e944679ab889681770",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
