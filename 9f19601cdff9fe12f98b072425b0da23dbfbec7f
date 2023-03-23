@@ -35,6 +35,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "39fd0caa_62e7db99",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudio.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2023-03-23T14:08:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c9929751_de0e94e8",
+      "revId": "9f19601cdff9fe12f98b072425b0da23dbfbec7f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b67c7291_214b54ed",
@@ -66,6 +84,24 @@
       "side": 1,
       "message": "nice catch - seems same issue is in other profiles as well.",
       "parentUuid": "b67c7291_214b54ed",
+      "revId": "9f19601cdff9fe12f98b072425b0da23dbfbec7f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "81f7e3a7_a4817d56",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudio.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2023-03-23T14:08:08Z",
+      "side": 1,
+      "message": "Nice catch. I used try-finally to ensure calling super even when an exception is thrown.",
+      "parentUuid": "e4d3785c_1a484eb4",
       "revId": "9f19601cdff9fe12f98b072425b0da23dbfbec7f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
