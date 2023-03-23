@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bb2d6127_ff07a731",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-03-23T16:07:55Z",
+      "side": 1,
+      "message": "So would mean this is no a race condition in btm_scn but a overall bluetooth race condition.\n\nI see.\nI agree with Rahul comments that we should investigate in deep why there is a possible confusion but I think this fix is a valid short term fix.",
+      "parentUuid": "9ed2f7d6_6feaddf6",
+      "revId": "f75786629c0659450c74fbfc3d869af29b284785",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8635ce28_696ae53d",
