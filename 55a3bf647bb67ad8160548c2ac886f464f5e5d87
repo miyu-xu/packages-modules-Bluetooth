@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8430bc5f_0d7fad83",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2023-03-23T08:23:24Z",
+      "side": 1,
+      "message": "I believe we should just abandon this now, right? It was my attempt at making the code compatible with the old compiler, but you managed to revert enough changes to make it work differently.",
+      "revId": "55a3bf647bb67ad8160548c2ac886f464f5e5d87",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
