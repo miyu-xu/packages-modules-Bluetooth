@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "31403913_35e05b17",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1644,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2023-03-23T06:18:58Z",
+      "side": 1,
+      "message": "May I know why you choose println!() instead for Err() here? Same question for line 1654.",
+      "range": {
+        "startLine": 1644,
+        "startChar": 24,
+        "endLine": 1644,
+        "endChar": 64
+      },
+      "revId": "e71eafee218922e0c908c5a4d85b2818a615f780",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "78aca222_fa6abe68",
+        "filename": "system/gd/rust/topshim/src/profiles/sdp.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 235,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2023-03-23T06:18:58Z",
+      "side": 1,
+      "message": "If this field is expected to be big-endian, can we add a comment here?",
+      "range": {
+        "startLine": 235,
+        "startChar": 0,
+        "endLine": 235,
+        "endChar": 38
+      },
+      "revId": "e71eafee218922e0c908c5a4d85b2818a615f780",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7729c0b4_7898b28c",
+        "filename": "system/gd/rust/topshim/src/profiles/sdp.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 265,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2023-03-23T06:18:58Z",
+      "side": 1,
+      "message": "I was wondering if the underlying representation is a byte array instead of big endia integer?\nAnyway, if we decide to stick with big endian integer in libluetooth, 0b1_0101_0101_0101_u64.to_be() might be more human readable.",
+      "range": {
+        "startLine": 265,
+        "startChar": 38,
+        "endLine": 265,
+        "endChar": 56
+      },
+      "revId": "e71eafee218922e0c908c5a4d85b2818a615f780",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
