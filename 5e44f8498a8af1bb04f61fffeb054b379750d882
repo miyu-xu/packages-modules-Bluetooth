@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8bb1f780_7fa11ad2",
+        "filename": "tools/pdl/doc/reference.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2023-03-23T08:18:59Z",
+      "side": 1,
+      "message": "Have you considered making the right end exclusive? Or perhaps that just makes things confusing?\n\nIt\u0027s sometimes nice that the range 0..20 can be split cleanly into 0..10 and 10..20. That only works when the right endpoint is excluded. Similarly, `lst.split_at(10)` gives you `lst[..10]` and `lst[10..]` by a combination of counting from zero and by how the right endpoint is excluded.\n\nThose kinds of index calculations might not matter much here though since PDL is a somewhat declarative syntax.",
+      "range": {
+        "startLine": 167,
+        "startChar": 69,
+        "endLine": 167,
+        "endChar": 91
+      },
+      "revId": "5e44f8498a8af1bb04f61fffeb054b379750d882",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "563df943_c062c956",
+        "filename": "tools/pdl/doc/reference.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2023-03-23T08:18:59Z",
+      "side": 1,
+      "message": "The enum should be 4 or 5 bit wide now.",
+      "range": {
+        "startLine": 174,
+        "startChar": 21,
+        "endLine": 174,
+        "endChar": 22
+      },
+      "revId": "5e44f8498a8af1bb04f61fffeb054b379750d882",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6bf3380b_fd941789",
+        "filename": "tools/pdl/src/analyzer.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2023-03-23T08:18:59Z",
+      "side": 1,
+      "message": "Sorry, why do we need this?\n\nAlso, if the `ENN \u003d NN` lines are there to bump the discriminant, then they\u0027re not actually necessary. You can have jumps in the discriminants if you like.",
+      "range": {
+        "startLine": 137,
+        "startChar": 4,
+        "endLine": 137,
+        "endChar": 12
+      },
+      "revId": "5e44f8498a8af1bb04f61fffeb054b379750d882",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1933db58_7b71bca0",
+        "filename": "tools/pdl/src/ast.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2023-03-23T08:18:59Z",
+      "side": 1,
+      "message": "You should actually use `RangeInclusive` here to model the PDL semantics more closely.",
+      "range": {
+        "startLine": 64,
+        "startChar": 59,
+        "endLine": 64,
+        "endChar": 64
+      },
+      "revId": "5e44f8498a8af1bb04f61fffeb054b379750d882",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0983161b_4be883d7",
+        "filename": "tools/pdl/src/ast.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2023-03-23T08:18:59Z",
+      "side": 1,
+      "message": "I\u0027m not sure that I love such accessors: they move a `match` expression to the accessor, but the calling code will now either use an `unwrap()` or it will have the same `match` expression (you see the `unwrap()` below).\n\nOverall, I think it\u0027s better to let the callers deal with the cases — they must know about them at some point, right?",
+      "range": {
+        "startLine": 275,
+        "startChar": 0,
+        "endLine": 275,
+        "endChar": 42
+      },
+      "revId": "5e44f8498a8af1bb04f61fffeb054b379750d882",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
