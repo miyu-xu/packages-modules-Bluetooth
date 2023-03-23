@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "96e50ab9_2e528ddc",
+        "filename": "android/pandora/test/AndroidTest.xml",
+        "patchSetId": 3
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1952952
+      },
+      "writtenOn": "2023-03-23T08:44:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a024cd69_8d4e6f07",
+      "range": {
+        "startLine": 43,
+        "startChar": 47,
+        "endLine": 43,
+        "endChar": 54
+      },
+      "revId": "0e0de1251ce4d74d3b6dc98b0ed540d5725bc478",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9890a0a4_4bb16c3a",
@@ -71,6 +95,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6ca97a93_544dabcf",
+        "filename": "android/pandora/test/asha_dual_device_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1952952
+      },
+      "writtenOn": "2023-03-23T08:44:37Z",
+      "side": 1,
+      "message": "done. \nI keep `ASHATest.ref` but assign it to `ref_left`, the single device test cases can still use `ASHATest.ref`. \nThanks for the suggestions!",
+      "parentUuid": "9890a0a4_4bb16c3a",
+      "range": {
+        "startLine": 45,
+        "startChar": 6,
+        "endLine": 45,
+        "endChar": 24
+      },
+      "revId": "0e0de1251ce4d74d3b6dc98b0ed540d5725bc478",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bde4269c_ccebd0b6",
@@ -84,6 +132,30 @@
       "writtenOn": "2023-03-22T12:35:26Z",
       "side": 1,
       "message": "Is it possible for the disconnect process to be completed before the disconnection callback listener is added to the connection in `WaitDisconnection`? If so, this may cause the assertion to fail by missing the disconnection event.",
+      "range": {
+        "startLine": 165,
+        "startChar": 31,
+        "endLine": 165,
+        "endChar": 41
+      },
+      "revId": "0e0de1251ce4d74d3b6dc98b0ed540d5725bc478",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6308d5a8_14edb0fe",
+        "filename": "android/pandora/test/asha_dual_device_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 1952952
+      },
+      "writtenOn": "2023-03-23T08:44:37Z",
+      "side": 1,
+      "message": "Hi Angela, \nfor the `WaitDisconnection` API, I think it\u0027s possible to have the timing issue if we call `Disconnect` and `WaitDisconnection` API at the same time. But in our test case, I think it\u0027s fine since we don\u0027t use them asynchronously.\nThanks!",
+      "parentUuid": "bde4269c_ccebd0b6",
       "range": {
         "startLine": 165,
         "startChar": 31,
