@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fffc6554_dc3c502e",
+        "filename": "system/gd/rust/linux/stack/src/lib.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2023-03-23T00:10:54Z",
+      "side": 1,
+      "message": "NIT: Mark as qualification only.",
+      "revId": "79ca7891d2f3b9885db566a63514a23aea5e7861",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "531a7a8b_be3c4e67",
+        "filename": "system/gd/rust/linux/stack/src/lib.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 327,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2023-03-23T00:10:54Z",
+      "side": 1,
+      "message": "NIT: Mark as qualification only.",
+      "revId": "79ca7891d2f3b9885db566a63514a23aea5e7861",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
