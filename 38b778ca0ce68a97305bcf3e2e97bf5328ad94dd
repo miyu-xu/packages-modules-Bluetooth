@@ -16,6 +16,23 @@
       "message": "Rahul is the owner, so I\u0027ll leave +2 to him.  Thanks!",
       "revId": "38b778ca0ce68a97305bcf3e2e97bf5328ad94dd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d1ebc2b5_5054ed46",
+        "filename": "system/bta/gatt/bta_gattc_act.cc",
+        "patchSetId": 27
+      },
+      "lineNbr": 1151,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-03-23T01:49:50Z",
+      "side": 1,
+      "message": "Is this again \"lying\" to the user about what MTU they negotiated? I thought we decided to always give them the true value?",
+      "revId": "38b778ca0ce68a97305bcf3e2e97bf5328ad94dd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
