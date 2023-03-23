@@ -24,6 +24,7 @@ import grpc
 
 from mmi2grpc.a2dp import A2DPProxy
 from mmi2grpc.avrcp import AVRCPProxy
+from mmi2grpc.bap import BAPProxy
 from mmi2grpc.gatt import GATTProxy
 from mmi2grpc.gap import GAPProxy
 from mmi2grpc.hfp import HFPProxy
@@ -75,6 +76,7 @@ class IUT:
         # Profile proxies.
         self._a2dp = None
         self._avrcp = None
+        self._bap = None
         self._bnep = None
         self._gatt = None
         self._gap = None
@@ -111,6 +113,7 @@ class IUT:
 
         self._a2dp = None
         self._avrcp = None
+        self._bap = None
         self._bnep = None
         self._gatt = None
         self._gap = None
@@ -200,6 +203,11 @@ class IUT:
             if not self._avrcp:
                 self._avrcp = AVRCPProxy(grpc.insecure_channel(f"localhost:{self.pandora_server_port}"))
             return self._avrcp.interact(test, interaction, description, pts_address)
+        # Handles BAP MMIs.
+        if profile in ("BAP"):
+            if not self._bap:
+                self._bap = BAPProxy(grpc.insecure_channel(f"localhost:{self.pandora_server_port}"))
+            return self._bap.interact(test, interaction, description, pts_address)
         # Handles GATT MMIs.
         if profile in ("GATT"):
             if not self._gatt:
