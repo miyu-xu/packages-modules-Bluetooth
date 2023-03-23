@@ -16,6 +16,29 @@
       "message": "Once state is encapsulated and all states identified we can group all state behavior together.  Once that is done all inputs and outputs will be known and a solid test can be written",
       "revId": "37d1e0735c3bd7f50ed139231401c52efdea73a6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a14f52f6_e0ca11d2",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 988,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-03-23T17:09:55Z",
+      "side": 1,
+      "message": "Can we log the search state here?",
+      "range": {
+        "startLine": 988,
+        "startChar": 34,
+        "endLine": 988,
+        "endChar": 42
+      },
+      "revId": "37d1e0735c3bd7f50ed139231401c52efdea73a6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
