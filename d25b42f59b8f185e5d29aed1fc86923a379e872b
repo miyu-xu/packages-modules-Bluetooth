@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ef8a85fc_ed55690f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2023-03-23T17:39:10Z",
+      "side": 1,
+      "message": "Reports cannot be directly written into UHID from this thread. It has to be done in JNI thread.\n\nNote that the support for the Set Feature report was added in https://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/2064388.\n\nwrite_report_cb() -\u003e BTA_HH_SET_RPT_EVT --jni_thread--\u003e btif_hh_upstreams_evt() -\u003e bta_hh_co_set_rpt_rsp() -\u003e UHID_SET_REPORT_REPLY\n\n\nFor Get Report request, the real bug is that UHID_FEATURE (alias for UHID_GET_REPORT) is only allowed for the Feature reports, not for other report types. Thus HOGP host never takes any action for UHID request to get input or output reports.\nNote that the mechanism to send back the response is already there.",
+      "revId": "d25b42f59b8f185e5d29aed1fc86923a379e872b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "70156e99_6afe17c4",
+        "filename": "system/bta/hh/bta_hh_le.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1797,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2023-03-23T17:39:10Z",
+      "side": 1,
+      "message": "Responses must not be written into UHID from this thread. Reports are already passed to UHID through BTA_HH_GET_RPT_EVT sent below.",
+      "revId": "d25b42f59b8f185e5d29aed1fc86923a379e872b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "49a4334f_39741681",
+        "filename": "system/bta/hh/bta_hh_le.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1860,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2023-03-23T17:39:10Z",
+      "side": 1,
+      "message": "Responses must not be written into UHID from this thread. Reports are already passed to UHID through BTA_HH_SET_RPT_EVT sent below.",
+      "revId": "d25b42f59b8f185e5d29aed1fc86923a379e872b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
