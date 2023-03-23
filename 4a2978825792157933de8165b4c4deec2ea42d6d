@@ -22,6 +22,30 @@
       },
       "revId": "4a2978825792157933de8165b4c4deec2ea42d6d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8f02f067_55b68832",
+        "filename": "system/gd/rust/common/src/init_flags.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 292,
+      "author": {
+        "id": 1998925
+      },
+      "writtenOn": "2023-03-23T18:13:49Z",
+      "side": 1,
+      "message": "Can do. I\u0027ve made the changes in patchset 3",
+      "parentUuid": "e811e0e7_2ad71286",
+      "range": {
+        "startLine": 292,
+        "startChar": 0,
+        "endLine": 292,
+        "endChar": 40
+      },
+      "revId": "4a2978825792157933de8165b4c4deec2ea42d6d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
