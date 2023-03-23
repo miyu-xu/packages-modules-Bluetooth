@@ -106,6 +106,24 @@
       "parentUuid": "66f773c6_0b881761",
       "revId": "2c9dc286732500d3c63e41e7150a7f1fecdb0442",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e5334437_dab07f24",
+        "filename": "system/btif/src/btif_hf_client.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1097,
+      "author": {
+        "id": 1965943
+      },
+      "writtenOn": "2023-03-23T01:19:23Z",
+      "side": 1,
+      "message": "Shall we add this HFP PTS code config in bt_stack.conf, just the similar as \"PTS_AvrcpTest\u003dTrue\"? Since it is better for our product to add PTS code in BlueDroid than a extra test APK.",
+      "parentUuid": "31add5d2_8379edc1",
+      "revId": "2c9dc286732500d3c63e41e7150a7f1fecdb0442",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
