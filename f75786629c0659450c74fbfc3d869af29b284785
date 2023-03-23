@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9ed2f7d6_6feaddf6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1930335
+      },
+      "writtenOn": "2023-03-23T06:10:52Z",
+      "side": 1,
+      "message": "We think the problem is that rfcomm server reused the same channel number that was just closing and freed. This behavior might cause remote device confusing. We had verified this and it worked.",
+      "parentUuid": "8adb4aac_59bb2a9f",
+      "revId": "f75786629c0659450c74fbfc3d869af29b284785",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8635ce28_696ae53d",
@@ -35,6 +53,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a30adf6f_f26e78e9",
+        "filename": "system/stack/btm/btm_scn.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1930335
+      },
+      "writtenOn": "2023-03-23T06:10:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8635ce28_696ae53d",
+      "revId": "f75786629c0659450c74fbfc3d869af29b284785",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a421da5e_f4a2a9b6",
@@ -48,6 +84,30 @@
       "writtenOn": "2023-03-21T16:03:04Z",
       "side": 1,
       "message": "If the issue is a race condition on the `btm_cb.btm_scn[x]`, I don\u0027t think we are solving this\n\nI think that the race can still happen if the two rfcomm server enter the method at the same time and both of them will have btm_available_index set to 1. They will start iterating before updating the value.\n\n\nDon\u0027t you want to add a mutex to protect the allocation ?\n\n\n```\n  lock_guard()\n  for (x \u003d 1; x \u003c PORT_MAX_RFC_PORTS; x++) {\n    if (!btm_cb.btm_scn[x]) {\n      btm_cb.btm_scn[x] \u003d true;\n      return (x + 1);\n    }\n  }\n```",
+      "range": {
+        "startLine": 42,
+        "startChar": 13,
+        "endLine": 42,
+        "endChar": 32
+      },
+      "revId": "f75786629c0659450c74fbfc3d869af29b284785",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "23b1ad47_78b94472",
+        "filename": "system/stack/btm/btm_scn.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1930335
+      },
+      "writtenOn": "2023-03-23T06:10:52Z",
+      "side": 1,
+      "message": "We think the problem is that rfcomm server reused the same channel number that was just closing and freed. This behavior might cause remote device confusing. We had verified this and it worked.",
+      "parentUuid": "a421da5e_f4a2a9b6",
       "range": {
         "startLine": 42,
         "startChar": 13,
