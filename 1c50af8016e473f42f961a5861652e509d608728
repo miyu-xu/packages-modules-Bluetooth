@@ -16,6 +16,24 @@
       "message": "Hi please take a look at this, thanks.\n\nFor floss: we need to send confirmation when we are not bonding, so remove the state bonding check from floss stack.\n\nFor Libbluetooth: we are failed to upgrade the security because we use BTM_SEC_LE_AUTHENTICATED flag even when we are not pair in mitm in le-security.\nThis flag should only be set if we are pair in mitn.",
       "revId": "1c50af8016e473f42f961a5861652e509d608728",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "883e1582_ea27606c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2023-03-24T09:00:56Z",
+      "side": 1,
+      "message": "*For floss: we need to send confirmation when we are not bonding, so remove the state bonding check from floss stack. e.g. when peer device wants to upgrade the security level.",
+      "parentUuid": "7b9457d1_71d01c78",
+      "revId": "1c50af8016e473f42f961a5861652e509d608728",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
