@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "526a82da_cf549c7d",
+        "filename": "system/main/shim/acl.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1603,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-03-24T16:51:06Z",
+      "side": 1,
+      "message": "use `ADDRESS_TO_LOGGABLE_CSTR`",
+      "range": {
+        "startLine": 1603,
+        "startChar": 50,
+        "endLine": 1603,
+        "endChar": 65
+      },
+      "revId": "f7e1faf6819900134410372cb32bd5ed056a5f02",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
