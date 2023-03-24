@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1766c7a8_d291aa8b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-03-24T22:54:01Z",
+      "side": 1,
+      "message": "Why not embed the CoD in the `ClassicAclConnection` on Success which negates the need for all that threading ?",
+      "revId": "f7e1faf6819900134410372cb32bd5ed056a5f02",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "526a82da_cf549c7d",
