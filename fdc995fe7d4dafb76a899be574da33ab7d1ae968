@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9e78ce90_eefbef5d",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/pbapclient/PbapClientStateMachineTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2023-03-24T18:39:38Z",
+      "side": 1,
+      "message": "nit: I might leave a comment here that it appears that enter and exit can overlap sometimes when calling doQuit() once the test gets to tearDown(). I still think that\u0027s a weird behavior we should look into in the future.",
+      "range": {
+        "startLine": 94,
+        "startChar": 9,
+        "endLine": 95,
+        "endChar": 30
+      },
+      "revId": "fdc995fe7d4dafb76a899be574da33ab7d1ae968",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6006c11b_f49c1a1e",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/pbapclient/PbapClientStateMachineTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2023-03-24T18:39:38Z",
+      "side": 1,
+      "message": "There\u0027s no need to capture the argument if you\u0027re not going to assert some state against it!\n\nArguably though, we should be asserting the states of the various transitions that happen instead of just accepting _any_ broadcast.\n\nHappy to let that be a follow up though.",
+      "range": {
+        "startLine": 126,
+        "startChar": 16,
+        "endLine": 126,
+        "endChar": 31
+      },
+      "revId": "fdc995fe7d4dafb76a899be574da33ab7d1ae968",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
