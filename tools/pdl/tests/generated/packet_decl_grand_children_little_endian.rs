@@ -1,8 +1,6 @@
 // @generated rust packets from test
 
 use bytes::{Buf, BufMut, Bytes, BytesMut};
-use num_derive::{FromPrimitive, ToPrimitive};
-use num_traits::{FromPrimitive, ToPrimitive};
 use std::cell::Cell;
 use std::convert::{TryFrom, TryInto};
 use std::fmt;
@@ -10,6 +8,15 @@ use std::sync::Arc;
 use thiserror::Error;
 
 type Result<T> = std::result::Result<T, Error>;
+
+#[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord)]
+pub struct Private<T>(T);
+impl<T> std::ops::Deref for Private<T> {
+    type Target = T;
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
 
 #[derive(Debug, Error)]
 pub enum Error {
@@ -38,47 +45,30 @@ pub trait Packet {
     fn to_vec(self) -> Vec<u8>;
 }
 
-#[derive(FromPrimitive, ToPrimitive, Debug, Hash, Eq, PartialEq, Clone, Copy)]
-#[repr(u64)]
+#[derive(Debug, Clone, Copy, Hash, Eq, PartialEq)]
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
+#[cfg_attr(feature = "serde", serde(from = "u16", into = "u16"))]
 pub enum Enum16 {
-    A = 0x1,
-    B = 0x2,
+    A,
+    B,
+    Unknown(Private<u16>),
 }
-#[cfg(feature = "serde")]
-impl serde::Serialize for Enum16 {
-    fn serialize<S>(&self, serializer: S) -> std::result::Result<S::Ok, S::Error>
-    where
-        S: serde::Serializer,
-    {
-        serializer.serialize_u64(*self as u64)
-    }
-}
-#[cfg(feature = "serde")]
-struct Enum16Visitor;
-#[cfg(feature = "serde")]
-impl<'de> serde::de::Visitor<'de> for Enum16Visitor {
-    type Value = Enum16;
-    fn expecting(&self, formatter: &mut std::fmt::Formatter) -> std::fmt::Result {
-        formatter.write_str("a valid discriminant")
-    }
-    fn visit_u64<E>(self, value: u64) -> std::result::Result<Self::Value, E>
-    where
-        E: serde::de::Error,
-    {
+impl From<u16> for Enum16 {
+    fn from(value: u16) -> Self {
         match value {
-            0x1 => Ok(Enum16::A),
-            0x2 => Ok(Enum16::B),
-            _ => Err(E::custom(format!("invalid discriminant: {value}"))),
+            0x1 => Enum16::A,
+            0x2 => Enum16::B,
+            value => Enum16::Unknown(Private(value)),
         }
     }
 }
-#[cfg(feature = "serde")]
-impl<'de> serde::Deserialize<'de> for Enum16 {
-    fn deserialize<D>(deserializer: D) -> std::result::Result<Self, D::Error>
-    where
-        D: serde::Deserializer<'de>,
-    {
-        deserializer.deserialize_u64(Enum16Visitor)
+impl From<Enum16> for u16 {
+    fn from(value: Enum16) -> Self {
+        match value {
+            Enum16::A => 0x1,
+            Enum16::B => 0x2,
+            Enum16::Unknown(Private(value)) => value,
+        }
     }
 }
 

@@ -24,8 +24,6 @@ pub fn generate(path: &Path) -> String {
 
     code.push_str(&quote_block! {
         use bytes::{Buf, BufMut, Bytes, BytesMut};
-        use num_derive::{FromPrimitive, ToPrimitive};
-        use num_traits::{FromPrimitive, ToPrimitive};
         use std::convert::{TryFrom, TryInto};
         use std::cell::Cell;
         use std::fmt;
@@ -35,6 +33,18 @@ pub fn generate(path: &Path) -> String {
 
     code.push_str(&quote_block! {
         type Result<T> = std::result::Result<T, Error>;
+    });
+
+    code.push_str(&quote_block! {
+        #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord)]
+        pub struct Private<T>(T);
+
+        impl<T> std::ops::Deref for Private<T> {
+            type Target = T;
+            fn deref(&self) -> &Self::Target {
+                &self.0
+            }
+        }
     });
 
     code.push_str(&quote_block! {
