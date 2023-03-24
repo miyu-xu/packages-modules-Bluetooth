@@ -3065,12 +3065,6 @@ class LeAudioClientImpl : public LeAudioClient {
     le_audio_source_hal_client_->UpdateRemoteDelay(remote_delay_ms);
     le_audio_source_hal_client_->ConfirmStreamingRequest();
     audio_sender_state_ = AudioState::STARTED;
-    /* We update the target audio allocation before streamStarted that the
-     * offloder would know how to configure offloader encoder. We should check
-     * if we need to update the current
-     * allocation here as the target allocation and the current allocation is
-     * different */
-    updateOffloaderIfNeeded(group);
 
     return true;
   }
@@ -3129,12 +3123,6 @@ class LeAudioClientImpl : public LeAudioClient {
     le_audio_sink_hal_client_->UpdateRemoteDelay(remote_delay_ms);
     le_audio_sink_hal_client_->ConfirmStreamingRequest();
     audio_receiver_state_ = AudioState::STARTED;
-    /* We update the target audio allocation before streamStarted that the
-     * offloder would know how to configure offloader decoder. We should check
-     * if we need to update the current
-     * allocation here as the target allocation and the current allocation is
-     * different */
-    updateOffloaderIfNeeded(group);
   }
 
   void SuspendAudio(void) {
