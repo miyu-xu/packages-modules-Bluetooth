@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "caa8f64e_08cec64c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1929170
+      },
+      "writtenOn": "2023-03-24T20:14:15Z",
+      "side": 1,
+      "message": "I have a avatar test for this: aosp/2502517",
+      "parentUuid": "88df645c_aef330e5",
+      "range": {
+        "startLine": 14,
+        "startChar": 6,
+        "endLine": 14,
+        "endChar": 12
+      },
+      "revId": "8d8b7630256411455ceee884a92731540feee718",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5c33c8bb_8bd613cc",
         "filename": "android/app/src/com/android/bluetooth/btservice/AdapterProperties.java",
         "patchSetId": 4
@@ -37,6 +61,30 @@
       "writtenOn": "2023-03-23T15:56:22Z",
       "side": 1,
       "message": "Nit: you do not need to re-specify the type of list:\n```\n        List\u003cBluetoothDevice\u003e devicesToRemove \u003d new ArrayList\u003c\u003e();\n```",
+      "range": {
+        "startLine": 696,
+        "startChar": 62,
+        "endLine": 696,
+        "endChar": 77
+      },
+      "revId": "8d8b7630256411455ceee884a92731540feee718",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e01fb346_72502443",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterProperties.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 696,
+      "author": {
+        "id": 1929170
+      },
+      "writtenOn": "2023-03-24T20:14:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5c33c8bb_8bd613cc",
       "range": {
         "startLine": 696,
         "startChar": 62,
@@ -60,6 +108,24 @@
       "writtenOn": "2023-03-23T15:56:22Z",
       "side": 1,
       "message": "Can you log the device / currentDevice in the else case ?",
+      "revId": "8d8b7630256411455ceee884a92731540feee718",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "06e99efb_07a3612c",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterProperties.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 717,
+      "author": {
+        "id": 1929170
+      },
+      "writtenOn": "2023-03-24T20:14:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "81116dd0_6c5c6017",
       "revId": "8d8b7630256411455ceee884a92731540feee718",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
