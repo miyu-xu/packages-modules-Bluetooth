@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "06dfb278_7db91946",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 1440,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2023-03-24T00:33:16Z",
+      "side": 1,
+      "message": "Shouldn\u0027t this be !self.phone_ops_enabled?",
+      "range": {
+        "startLine": 1440,
+        "startChar": 8,
+        "endLine": 1440,
+        "endChar": 30
+      },
+      "revId": "77b4355467bb0743abc92ab27d3696eff315cf6e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
