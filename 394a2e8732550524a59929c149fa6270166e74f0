@@ -70,6 +70,24 @@
       "parentUuid": "a2dff974_f6f707cb",
       "revId": "394a2e8732550524a59929c149fa6270166e74f0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "513d343c_1cc94035",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 542,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-03-24T01:03:27Z",
+      "side": 0,
+      "message": "We don\u0027t ever do directed advertising. Therefore this case is impossible. I will keep the call if you\u0027d like, but I don\u0027t think you need to worry about handling that particular status.\n\nCommit message also updated.",
+      "parentUuid": "42a9633d_46ab6022",
+      "revId": "394a2e8732550524a59929c149fa6270166e74f0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
