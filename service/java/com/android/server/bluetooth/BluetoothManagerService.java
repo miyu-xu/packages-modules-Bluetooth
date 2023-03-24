@@ -1918,6 +1918,7 @@ public class BluetoothManagerService extends IBluetoothManager.Stub {
      */
     private void sendBluetoothServiceUpCallback() {
         synchronized (mCallbacks) {
+            mBluetoothLock.readLock().lock();
             try {
                 int n = mCallbacks.beginBroadcast();
                 Log.d(TAG, "Broadcasting onBluetoothServiceUp() to " + n + " receivers.");
@@ -1930,6 +1931,7 @@ public class BluetoothManagerService extends IBluetoothManager.Stub {
                 }
             } finally {
                 mCallbacks.finishBroadcast();
+                mBluetoothLock.readLock().unlock();
             }
         }
     }
@@ -2160,36 +2162,35 @@ public class BluetoothManagerService extends IBluetoothManager.Stub {
                             }
                             if (isHandled) break;
                         }
+                        mQuietEnable = (quietEnable == 1);
+                        if (mBluetooth == null) {
+                            handleEnable(mQuietEnable);
+                        } else {
+                            //
+                            // We need to wait until transitioned to STATE_OFF and
+                            // the previous Bluetooth process has exited. The
+                            // waiting period has three components:
+                            // (a) Wait until the local state is STATE_OFF. This
+                            //     is accomplished by sending delay a message
+                            //     MESSAGE_HANDLE_ENABLE_DELAYED
+                            // (b) Wait until the STATE_OFF state is updated to
+                            //     all components.
+                            // (c) Wait until the Bluetooth process exits, and
+                            //     ActivityManager detects it.
+                            // The waiting for (b) and (c) is accomplished by
+                            // delaying the MESSAGE_RESTART_BLUETOOTH_SERVICE
+                            // message. The delay time is backed off if Bluetooth
+                            // continuously failed to turn on itself.
+                            //
+                            mWaitForEnableRetry = 0;
+                            Message enableDelayedMsg =
+                                    mHandler.obtainMessage(MESSAGE_HANDLE_ENABLE_DELAYED);
+                            mHandler.sendMessageDelayed(enableDelayedMsg, ENABLE_DISABLE_DELAY_MS);
+                        }
                     } catch (RemoteException | TimeoutException e) {
                         Log.e(TAG, "", e);
                     } finally {
                         mBluetoothLock.readLock().unlock();
-                    }
-
-                    mQuietEnable = (quietEnable == 1);
-                    if (mBluetooth == null) {
-                        handleEnable(mQuietEnable);
-                    } else {
-                        //
-                        // We need to wait until transitioned to STATE_OFF and
-                        // the previous Bluetooth process has exited. The
-                        // waiting period has three components:
-                        // (a) Wait until the local state is STATE_OFF. This
-                        //     is accomplished by sending delay a message
-                        //     MESSAGE_HANDLE_ENABLE_DELAYED
-                        // (b) Wait until the STATE_OFF state is updated to
-                        //     all components.
-                        // (c) Wait until the Bluetooth process exits, and
-                        //     ActivityManager detects it.
-                        // The waiting for (b) and (c) is accomplished by
-                        // delaying the MESSAGE_RESTART_BLUETOOTH_SERVICE
-                        // message. The delay time is backed off if Bluetooth
-                        // continuously failed to turn on itself.
-                        //
-                        mWaitForEnableRetry = 0;
-                        Message enableDelayedMsg =
-                                mHandler.obtainMessage(MESSAGE_HANDLE_ENABLE_DELAYED);
-                        mHandler.sendMessageDelayed(enableDelayedMsg, ENABLE_DISABLE_DELAY_MS);
                     }
                     break;
 
@@ -2208,14 +2209,19 @@ public class BluetoothManagerService extends IBluetoothManager.Stub {
                     }
                     mHandler.removeMessages(MESSAGE_RESTART_BLUETOOTH_SERVICE);
 
-                    if (mEnable && mBluetooth != null) {
-                        mWaitForDisableRetry = 0;
-                        Message disableDelayedMsg =
-                                mHandler.obtainMessage(MESSAGE_HANDLE_DISABLE_DELAYED, 0, 0);
-                        mHandler.sendMessageDelayed(disableDelayedMsg, ENABLE_DISABLE_DELAY_MS);
-                    } else {
-                        mEnable = false;
-                        handleDisable();
+                    mBluetoothLock.readLock().lock();
+                    try {
+                        if (mEnable && mBluetooth != null) {
+                            mWaitForDisableRetry = 0;
+                            Message disableDelayedMsg =
+                                    mHandler.obtainMessage(MESSAGE_HANDLE_DISABLE_DELAYED, 0, 0);
+                            mHandler.sendMessageDelayed(disableDelayedMsg, ENABLE_DISABLE_DELAY_MS);
+                        } else {
+                            mEnable = false;
+                            handleDisable();
+                        }
+                    } finally {
+                        mBluetoothLock.readLock().unlock();
                     }
                     break;
 
