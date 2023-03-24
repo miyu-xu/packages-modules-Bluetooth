@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "486bffe2_2228508c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-03-24T16:30:33Z",
+      "side": 1,
+      "message": "Shouldn\u0027t Audio Framework mark ASHA device as inactive before it marks LE Audio device as active ?\nWould it make sense to lower the connection parameters once device becomes inactive ? It would improve connection stability for other use cases, not just LE Audio",
+      "revId": "9702d61ae7e5eb825ec5ebf5a7ba053698f5c769",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
