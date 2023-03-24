@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d7cb3125_fdfa44be",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-03-24T18:52:50Z",
+      "side": 1,
+      "message": "Lock before try/catch and unlock in finalize",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 15
+      },
+      "revId": "f04c87840de649048226c860737a1ac8ef39c0b9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4338034b_28600b4c",
+        "filename": "service/java/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-03-24T18:52:50Z",
+      "side": 1,
+      "message": "nit: can we move this above the \"GuardedBy\" line?  I think it would be nice to see the lock, then the GuardedBy statement.",
+      "range": {
+        "startLine": 231,
+        "startChar": 19,
+        "endLine": 231,
+        "endChar": 23
+      },
+      "revId": "f04c87840de649048226c860737a1ac8ef39c0b9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
