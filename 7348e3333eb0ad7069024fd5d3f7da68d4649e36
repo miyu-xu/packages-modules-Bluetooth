@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9000e330_a6457e9f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1970930
+      },
+      "writtenOn": "2023-03-24T06:20:47Z",
+      "side": 1,
+      "message": "Hi Charlie,\n\nMerge conflict is resolved.\nRequest you to provide your inputs.\n\nRegards,\nFahad",
+      "revId": "7348e3333eb0ad7069024fd5d3f7da68d4649e36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
