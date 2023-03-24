@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7c9a381a_f8cda066",
+        "filename": "android/pandora/test/asha_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1937985
+      },
+      "writtenOn": "2023-03-24T15:35:04Z",
+      "side": 1,
+      "message": "I suggest to not create this alias and modify existing tests to use `ref_left` directly.\nWhat do you think ?",
+      "range": {
+        "startLine": 58,
+        "startChar": 8,
+        "endLine": 58,
+        "endChar": 16
+      },
+      "revId": "08db0b1b2bedd3943cc2ae5d3a98d0787a3dc841",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e213963a_988346df",
+        "filename": "android/pandora/test/asha_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1937985
+      },
+      "writtenOn": "2023-03-24T15:35:04Z",
+      "side": 1,
+      "message": "I\u0027m very sorry about that, we should definitely fix the formatting conflicts. Can you use `avatar format` then push without using `repo` to avoid it to reformat ?",
+      "range": {
+        "startLine": 109,
+        "startChar": 4,
+        "endLine": 110,
+        "endChar": 94
+      },
+      "revId": "08db0b1b2bedd3943cc2ae5d3a98d0787a3dc841",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e3f3b8a0_0a27d648",
+        "filename": "android/pandora/test/asha_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 407,
+      "author": {
+        "id": 1937985
+      },
+      "writtenOn": "2023-03-24T15:35:04Z",
+      "side": 1,
+      "message": "I suggest to refactor the following by:\n- remove `advertise_and_connect` helper function\n- advertise both devices\n- connect to both devices\nI think it would be as clear and will avoid the addition of another helper function.",
+      "range": {
+        "startLine": 407,
+        "startChar": 42,
+        "endLine": 407,
+        "endChar": 63
+      },
+      "revId": "08db0b1b2bedd3943cc2ae5d3a98d0787a3dc841",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "131515e4_7e278360",
+        "filename": "android/pandora/test/avatar.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1937985
+      },
+      "writtenOn": "2023-03-24T15:35:04Z",
+      "side": 1,
+      "message": "Good catch! Thank you",
+      "range": {
+        "startLine": 15,
+        "startChar": 71,
+        "endLine": 15,
+        "endChar": 72
+      },
+      "revId": "08db0b1b2bedd3943cc2ae5d3a98d0787a3dc841",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
