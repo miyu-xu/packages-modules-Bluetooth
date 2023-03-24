@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "03af078b_c9c45c8a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-03-24T21:03:56Z",
+      "side": 1,
+      "message": "I would prefer having them in PDL sooner than that.  One reason would be for writing tests.  Then we could generate the packets in the test using PDL.",
+      "parentUuid": "9606dcb6_2499c7f3",
+      "revId": "9427b3d6ef645d6b13943aa3470e4c7ac9869099",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "77633c17_d975ca50",
         "filename": "system/btif/include/btif_bqr.h",
         "patchSetId": 2
