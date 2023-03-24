@@ -1,8 +1,6 @@
 // @generated rust packets from test
 
 use bytes::{Buf, BufMut, Bytes, BytesMut};
-use num_derive::{FromPrimitive, ToPrimitive};
-use num_traits::{FromPrimitive, ToPrimitive};
 use std::cell::Cell;
 use std::convert::{TryFrom, TryInto};
 use std::fmt;
@@ -10,6 +8,15 @@ use std::sync::Arc;
 use thiserror::Error;
 
 type Result<T> = std::result::Result<T, Error>;
+
+#[derive(Debug, Clone, Copy, Hash, PartialEq, Eq, PartialOrd, Ord)]
+pub struct Private<T>(T);
+impl<T> std::ops::Deref for Private<T> {
+    type Target = T;
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
 
 #[derive(Debug, Error)]
 pub enum Error {
@@ -38,91 +45,57 @@ pub trait Packet {
     fn to_vec(self) -> Vec<u8>;
 }
 
-#[derive(FromPrimitive, ToPrimitive, Debug, Hash, Eq, PartialEq, Clone, Copy)]
-#[repr(u64)]
+#[derive(Debug, Clone, Copy, Hash, Eq, PartialEq)]
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
+#[cfg_attr(feature = "serde", serde(from = "u8", into = "u8"))]
 pub enum Enum7 {
-    A = 0x1,
-    B = 0x2,
+    A,
+    B,
+    Unknown(Private<u8>),
 }
-#[cfg(feature = "serde")]
-impl serde::Serialize for Enum7 {
-    fn serialize<S>(&self, serializer: S) -> std::result::Result<S::Ok, S::Error>
-    where
-        S: serde::Serializer,
-    {
-        serializer.serialize_u64(*self as u64)
-    }
-}
-#[cfg(feature = "serde")]
-struct Enum7Visitor;
-#[cfg(feature = "serde")]
-impl<'de> serde::de::Visitor<'de> for Enum7Visitor {
-    type Value = Enum7;
-    fn expecting(&self, formatter: &mut std::fmt::Formatter) -> std::fmt::Result {
-        formatter.write_str("a valid discriminant")
-    }
-    fn visit_u64<E>(self, value: u64) -> std::result::Result<Self::Value, E>
-    where
-        E: serde::de::Error,
-    {
-        match value {
-            0x1 => Ok(Enum7::A),
-            0x2 => Ok(Enum7::B),
-            _ => Err(E::custom(format!("invalid discriminant: {value}"))),
+impl From<u8> for Enum7 {
+    fn from(value: u8) -> Self {
+        match value & 0x7f {
+            0x1 => Enum7::A,
+            0x2 => Enum7::B,
+            value => Enum7::Unknown(Private(value)),
         }
     }
 }
-#[cfg(feature = "serde")]
-impl<'de> serde::Deserialize<'de> for Enum7 {
-    fn deserialize<D>(deserializer: D) -> std::result::Result<Self, D::Error>
-    where
-        D: serde::Deserializer<'de>,
-    {
-        deserializer.deserialize_u64(Enum7Visitor)
+impl From<Enum7> for u8 {
+    fn from(value: Enum7) -> Self {
+        match value {
+            Enum7::A => 0x1,
+            Enum7::B => 0x2,
+            Enum7::Unknown(Private(value)) => value,
+        }
     }
 }
 
-#[derive(FromPrimitive, ToPrimitive, Debug, Hash, Eq, PartialEq, Clone, Copy)]
-#[repr(u64)]
+#[derive(Debug, Clone, Copy, Hash, Eq, PartialEq)]
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
+#[cfg_attr(feature = "serde", serde(from = "u16", into = "u16"))]
 pub enum Enum9 {
-    A = 0x1,
-    B = 0x2,
+    A,
+    B,
+    Unknown(Private<u16>),
 }
-#[cfg(feature = "serde")]
-impl serde::Serialize for Enum9 {
-    fn serialize<S>(&self, serializer: S) -> std::result::Result<S::Ok, S::Error>
-    where
-        S: serde::Serializer,
-    {
-        serializer.serialize_u64(*self as u64)
-    }
-}
-#[cfg(feature = "serde")]
-struct Enum9Visitor;
-#[cfg(feature = "serde")]
-impl<'de> serde::de::Visitor<'de> for Enum9Visitor {
-    type Value = Enum9;
-    fn expecting(&self, formatter: &mut std::fmt::Formatter) -> std::fmt::Result {
-        formatter.write_str("a valid discriminant")
-    }
-    fn visit_u64<E>(self, value: u64) -> std::result::Result<Self::Value, E>
-    where
-        E: serde::de::Error,
-    {
-        match value {
-            0x1 => Ok(Enum9::A),
-            0x2 => Ok(Enum9::B),
-            _ => Err(E::custom(format!("invalid discriminant: {value}"))),
+impl From<u16> for Enum9 {
+    fn from(value: u16) -> Self {
+        match value & 0x1ff {
+            0x1 => Enum9::A,
+            0x2 => Enum9::B,
+            value => Enum9::Unknown(Private(value)),
         }
     }
 }
-#[cfg(feature = "serde")]
-impl<'de> serde::Deserialize<'de> for Enum9 {
-    fn deserialize<D>(deserializer: D) -> std::result::Result<Self, D::Error>
-    where
-        D: serde::Deserializer<'de>,
-    {
-        deserializer.deserialize_u64(Enum9Visitor)
+impl From<Enum9> for u16 {
+    fn from(value: Enum9) -> Self {
+        match value {
+            Enum9::A => 0x1,
+            Enum9::B => 0x2,
+            Enum9::Unknown(Private(value)) => value,
+        }
     }
 }
 
@@ -166,9 +139,9 @@ impl FooData {
             });
         }
         let chunk = bytes.get_mut().get_uint_le(3) as u32;
-        let x = Enum7::from_u8((chunk & 0x7f) as u8).unwrap();
+        let x: Enum7 = ((chunk & 0x7f) as u8).into();
         let y = ((chunk >> 7) & 0x1f) as u8;
-        let z = Enum9::from_u16(((chunk >> 12) & 0x1ff) as u16).unwrap();
+        let z: Enum9 = (((chunk >> 12) & 0x1ff) as u16).into();
         let w = ((chunk >> 21) & 0x7) as u8;
         Ok(Self { x, y, z, w })
     }
@@ -179,9 +152,9 @@ impl FooData {
         if self.w > 0x7 {
             panic!("Invalid value for {}::{}: {} > {}", "Foo", "w", self.w, 0x7);
         }
-        let value = (self.x.to_u8().unwrap() as u32)
+        let value = (u8::from(self.x) as u32)
             | ((self.y as u32) << 7)
-            | ((self.z.to_u16().unwrap() as u32) << 12)
+            | ((u16::from(self.z) as u32) << 12)
             | ((self.w as u32) << 21);
         buffer.put_uint_le(value as u64, 3);
     }

@@ -156,13 +156,9 @@ impl<'a> FieldParser<'a> {
                 ast::FieldDesc::Typedef { id, type_id } => {
                     let id = format_ident!("{id}");
                     let type_id = format_ident!("{type_id}");
-                    let from_u = format_ident!("from_u{}", value_type.width);
-                    // TODO(mgeisler): Remove the `unwrap` from the
-                    // generated code and return the error to the
-                    // caller.
-                    quote! {
-                        let #id = #type_id::#from_u(#v).unwrap();
-                    }
+                    // Parsing enum values is infallible as unmatched values
+                    // are returned as the Unknown case.
+                    quote! { let #id: #type_id = (#v).into(); }
                 }
                 ast::FieldDesc::Reserved { .. } => {
                     if single_value {

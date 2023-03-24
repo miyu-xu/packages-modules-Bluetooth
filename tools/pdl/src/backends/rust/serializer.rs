@@ -91,11 +91,8 @@ impl<'a> FieldSerializer<'a> {
             ast::FieldDesc::Typedef { id, .. } => {
                 let field_name = format_ident!("{id}");
                 let field_type = types::Integer::new(width);
-                let to_u = format_ident!("to_u{}", field_type.width);
-                // TODO(mgeisler): remove `unwrap` and return error to
-                // caller in generated code.
                 self.chunk.push(BitField {
-                    value: quote!(self.#field_name.#to_u().unwrap()),
+                    value: quote!(#field_type::from(self.#field_name)),
                     field_type,
                     shift,
                 });
@@ -255,11 +252,10 @@ impl<'a> FieldSerializer<'a> {
             }
             None => {
                 if let Some(ast::DeclDesc::Enum { width, .. }) = decl.map(|decl| &decl.desc) {
-                    let field_type = types::Integer::new(*width);
-                    let to_u = format_ident!("to_u{}", field_type.width);
+                    let backing_type = types::Integer::new(*width);
                     types::put_uint(
                         self.endianness,
-                        &quote!(elem.#to_u().unwrap()),
+                        &quote!(#backing_type::from(elem)),
                         *width,
                         self.span,
                     )
