@@ -22,6 +22,29 @@
       },
       "revId": "3ab65ea124fa18759e86835a0d168e206fdf87aa",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3a814e96_4405cbdb",
+        "filename": "system/packet/avrcp/register_notification_packet.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-03-24T15:14:58Z",
+      "side": 1,
+      "message": "how is number_of_attributes guarantee to be \u003c 4 ?\n\nSince 4 attributes + 4 values + the number in iself \u003d 9 and data_ size is 9 at max",
+      "range": {
+        "startLine": 118,
+        "startChar": 22,
+        "endLine": 118,
+        "endChar": 42
+      },
+      "revId": "3ab65ea124fa18759e86835a0d168e206fdf87aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
