@@ -16,6 +16,24 @@
       "message": "Shouldn\u0027t Audio Framework mark ASHA device as inactive before it marks LE Audio device as active ?\nWould it make sense to lower the connection parameters once device becomes inactive ? It would improve connection stability for other use cases, not just LE Audio",
       "revId": "9702d61ae7e5eb825ec5ebf5a7ba053698f5c769",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "431853fb_08da8af8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-03-24T17:05:53Z",
+      "side": 1,
+      "message": "Thanks for the comments, I have thought about that! That\u0027s when `stop` command is issued, decrease connection parameter, and when `start` issued, use high connection parameter\n\nThere are 2 possible concerns:\nOne is when update to high connection parameter, it takes time and it may fail. Although there is retry for 5 seconds, but haven\u0027t thoroughly tested yet. \nWeichin suggested that we may need to test if BT controller firmware and hearing aid can work well with frequent connection parameter update.\nSo my possible idea is to let it first work for LE audio, and then possibly do a more thorough testing before let it becomes a general mechanism",
+      "parentUuid": "486bffe2_2228508c",
+      "revId": "9702d61ae7e5eb825ec5ebf5a7ba053698f5c769",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
