@@ -18,6 +18,8 @@
 
 #define LOG_TAG "bta_ag_cmd"
 
+#include <base/logging.h>
+
 #include <cstdint>
 #include <cstring>
 
@@ -26,12 +28,11 @@
 #include "bta/include/bta_ag_api.h"
 #include "bta/include/utl.h"
 #include "device/include/interop.h"
+#include "os/system_properties.h"
 #include "osi/include/compat.h"
 #include "osi/include/log.h"
 #include "osi/include/osi.h"  // UNUSED_ATTR
 #include "stack/include/port_api.h"
-
-#include <base/logging.h>
 
 /*****************************************************************************
  *  Constants
@@ -46,6 +47,10 @@
 #define BTA_AG_INVALID_CHLD 255
 
 #define COLON_IDX_4_VGSVGM 4
+
+/* System Property to indicate if the dual mode audio feature is enabled */
+static const std::string kIsDualModeAudioEnabledProperty =
+    "persist.bluetooth.enable_dual_mode_audio";
 
 /* Local events which will not trigger a higher layer callback */
 enum {
@@ -1310,7 +1315,18 @@ void bta_ag_at_hfp_cback(tBTA_AG_SCB* p_scb, uint16_t cmd, uint8_t arg_type,
         break;
       }
       bta_ag_send_ok(p_scb);
-      bta_ag_sco_open(p_scb, tBTA_AG_DATA::kEmpty);
+      if (GetSystemPropertyBool(kIsDualModeAudioEnabledProperty, false)) {
+        LOG_INFO(
+            "%s: NOT opening sco for EVT BTA_AG_LOCAL_EVT_BCC because the dual "
+            "mode audio feature is enabled",
+            __func__);
+      } else {
+        LOG_INFO(
+            "%s: Opening sco for EVT BTA_AG_LOCAL_EVT_BCC because the dual "
+            "mode audio feature is not enabled",
+            __func__);
+        bta_ag_sco_open(p_scb, tBTA_AG_DATA::kEmpty);
+      }
       break;
     }
     default:
@@ -1391,7 +1407,18 @@ static void bta_ag_hsp_result(tBTA_AG_SCB* p_scb,
         } else {
           p_scb->post_sco = BTA_AG_POST_SCO_RING;
         }
-        bta_ag_sco_open(p_scb, tBTA_AG_DATA::kEmpty);
+        if (GetSystemPropertyBool(kIsDualModeAudioEnabledProperty, false)) {
+          LOG_INFO(
+              "%s: NOT opening sco for EVT BTA_AG_IN_CALL_RES because the dual "
+              "mode audio feature is enabled",
+              __func__);
+        } else {
+          LOG_INFO(
+              "%s: Opening sco for EVT BTA_AG_IN_CALL_RES because the dual "
+              "mode audio feature is not enabled",
+              __func__);
+          bta_ag_sco_open(p_scb, tBTA_AG_DATA::kEmpty);
+        }
       }
       break;
 
@@ -1406,7 +1433,18 @@ static void bta_ag_hsp_result(tBTA_AG_SCB* p_scb,
         /* if audio connected to this scb AND sco is not opened, open sco */
         if (result.data.audio_handle == bta_ag_scb_to_idx(p_scb) &&
             !bta_ag_sco_is_open(p_scb)) {
-          bta_ag_sco_open(p_scb, tBTA_AG_DATA::kEmpty);
+          if (GetSystemPropertyBool(kIsDualModeAudioEnabledProperty, false)) {
+            LOG_INFO(
+                "%s: NOT opening sco for EVT BTA_AG_IN/OUT_CALL_ORIG_RES "
+                "because the dual mode audio feature is enabled",
+                __func__);
+          } else {
+            LOG_INFO(
+                "%s: Opening sco for EVT BTA_AG_IN/OUT_CALL_ORIG_RES "
+                "because the dual mode audio feature is not enabled",
+                __func__);
+            bta_ag_sco_open(p_scb, tBTA_AG_DATA::kEmpty);
+          }
         } else if (result.data.audio_handle == BTA_AG_HANDLE_NONE &&
                    bta_ag_sco_is_open(p_scb)) {
           /* else if no audio at call close sco */
@@ -1495,7 +1533,18 @@ static void bta_ag_hfp_result(tBTA_AG_SCB* p_scb,
         } else {
           /* else open sco, send ring after sco opened */
           p_scb->post_sco = BTA_AG_POST_SCO_RING;
-          bta_ag_sco_open(p_scb, tBTA_AG_DATA::kEmpty);
+          if (GetSystemPropertyBool(kIsDualModeAudioEnabledProperty, false)) {
+            LOG_INFO(
+                "%s: NOT opening sco for EVT BTA_AG_IN_CALL_RES because the "
+                "dual mode audio feature is enabled",
+                __func__);
+          } else {
+            LOG_INFO(
+                "%s: Opening sco for EVT BTA_AG_IN_CALL_RES because the "
+                "dual mode audio feature is not enabled",
+                __func__);
+            bta_ag_sco_open(p_scb, tBTA_AG_DATA::kEmpty);
+          }
         }
       }
       break;
@@ -1511,7 +1560,18 @@ static void bta_ag_hfp_result(tBTA_AG_SCB* p_scb,
       if (!(p_scb->features & BTA_AG_FEAT_NOSCO)) {
         if (result.data.audio_handle == bta_ag_scb_to_idx(p_scb) &&
             !bta_ag_sco_is_open(p_scb)) {
-          bta_ag_sco_open(p_scb, tBTA_AG_DATA::kEmpty);
+          if (GetSystemPropertyBool(kIsDualModeAudioEnabledProperty, false)) {
+            LOG_INFO(
+                "%s: NOT opening sco for EVT BTA_AG_IN_CALL_CONN_RES because "
+                "the dual mode audio feature is enabled",
+                __func__);
+          } else {
+            LOG_INFO(
+                "%s: Opening sco for EVT BTA_AG_IN_CALL_CONN_RES because "
+                "the dual mode audio feature is not enabled",
+                __func__);
+            bta_ag_sco_open(p_scb, tBTA_AG_DATA::kEmpty);
+          }
         } else if ((result.data.audio_handle == BTA_AG_HANDLE_NONE) &&
                    bta_ag_sco_is_open(p_scb)) {
           bta_ag_sco_close(p_scb, tBTA_AG_DATA::kEmpty);
@@ -1530,7 +1590,18 @@ static void bta_ag_hfp_result(tBTA_AG_SCB* p_scb,
       bta_ag_send_call_inds(p_scb, result.result);
       if (result.data.audio_handle == bta_ag_scb_to_idx(p_scb) &&
           !(p_scb->features & BTA_AG_FEAT_NOSCO)) {
-        bta_ag_sco_open(p_scb, tBTA_AG_DATA::kEmpty);
+        if (GetSystemPropertyBool(kIsDualModeAudioEnabledProperty, false)) {
+          LOG_INFO(
+              "%s: NOT opening sco for EVT BTA_AG_OUT_CALL_ORIG_RES because "
+              "the dual mode audio feature is enabled",
+              __func__);
+        } else {
+          LOG_INFO(
+              "%s: Opening sco for EVT BTA_AG_OUT_CALL_ORIG_RES because "
+              "the dual mode audio feature is not enabled",
+              __func__);
+          bta_ag_sco_open(p_scb, tBTA_AG_DATA::kEmpty);
+        }
       }
       break;
 
@@ -1539,7 +1610,18 @@ static void bta_ag_hfp_result(tBTA_AG_SCB* p_scb,
       bta_ag_send_call_inds(p_scb, result.result);
       if (result.data.audio_handle == bta_ag_scb_to_idx(p_scb) &&
           !(p_scb->features & BTA_AG_FEAT_NOSCO)) {
-        bta_ag_sco_open(p_scb, tBTA_AG_DATA::kEmpty);
+        if (GetSystemPropertyBool(kIsDualModeAudioEnabledProperty, false)) {
+          LOG_INFO(
+              "%s: NOT opening sco for EVT BTA_AG_OUT_CALL_ALERT_RES because "
+              "the dual mode audio feature is enabled",
+              __func__);
+        } else {
+          LOG_INFO(
+              "%s: Opening sco for EVT BTA_AG_OUT_CALL_ALERT_RES because "
+              "the dual mode audio feature is not enabled",
+              __func__);
+          bta_ag_sco_open(p_scb, tBTA_AG_DATA::kEmpty);
+        }
       }
       break;
 
@@ -1548,7 +1630,18 @@ static void bta_ag_hfp_result(tBTA_AG_SCB* p_scb,
       APPL_TRACE_DEBUG("Headset Connected in three way call");
       if (!(p_scb->features & BTA_AG_FEAT_NOSCO)) {
         if (result.data.audio_handle == bta_ag_scb_to_idx(p_scb)) {
-          bta_ag_sco_open(p_scb, tBTA_AG_DATA::kEmpty);
+          if (GetSystemPropertyBool(kIsDualModeAudioEnabledProperty, false)) {
+            LOG_INFO(
+                "%s: NOT opening sco for EVT BTA_AG_MULTI_CALL_RES because the "
+                "dual mode audio feature is enabled",
+                __func__);
+          } else {
+            LOG_INFO(
+                "%s: Opening sco for EVT BTA_AG_MULTI_CALL_RES because the "
+                "dual mode audio feature is not enabled",
+                __func__);
+            bta_ag_sco_open(p_scb, tBTA_AG_DATA::kEmpty);
+          }
         } else if (result.data.audio_handle == BTA_AG_HANDLE_NONE) {
           bta_ag_sco_close(p_scb, tBTA_AG_DATA::kEmpty);
         }
@@ -1562,7 +1655,18 @@ static void bta_ag_hfp_result(tBTA_AG_SCB* p_scb,
       /* open or close sco */
       if (!(p_scb->features & BTA_AG_FEAT_NOSCO)) {
         if (result.data.audio_handle == bta_ag_scb_to_idx(p_scb)) {
-          bta_ag_sco_open(p_scb, tBTA_AG_DATA::kEmpty);
+          if (GetSystemPropertyBool(kIsDualModeAudioEnabledProperty, false)) {
+            LOG_INFO(
+                "%s: NOT opening sco for EVT BTA_AG_OUT_CALL_CONN_RES because "
+                "the dual mode audio feature is enabled",
+                __func__);
+          } else {
+            LOG_INFO(
+                "%s: Opening sco for EVT BTA_AG_OUT_CALL_CONN_RES because "
+                "the dual mode audio feature is not enabled",
+                __func__);
+            bta_ag_sco_open(p_scb, tBTA_AG_DATA::kEmpty);
+          }
         } else if (result.data.audio_handle == BTA_AG_HANDLE_NONE) {
           bta_ag_sco_close(p_scb, tBTA_AG_DATA::kEmpty);
         }
