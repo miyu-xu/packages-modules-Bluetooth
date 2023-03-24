@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d53d3f0c_06f501d6",
+        "filename": "system/packet/avrcp/register_notification_packet.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-03-24T14:12:25Z",
+      "side": 1,
+      "message": "What is the value of `builder-\u003edata_[1] [2] [3] [4] ... [8]` here ?\nis it possible to have un-initialized value ?\n\nif yes, (cause it looks like we can have them) shouldn\u0027t we clear them ?\nBecause even if the receiver may be aware of it, I think this is error prone.\n\n---\n\nBUT \n\nThe usage of this field looks to be done in the `serialize` method in this file. \nIf this is the only usage, we should be fine.\n\n---\n\n\nBUT... (nothing is simple with me ah ah ah ah ) \nWhat do you think of replacing data_ with a union ?\nWe can then have proper field for each event ? It would be more explicit and we will always know what data we have...",
+      "range": {
+        "startLine": 80,
+        "startChar": 0,
+        "endLine": 80,
+        "endChar": 34
+      },
+      "revId": "3ab65ea124fa18759e86835a0d168e206fdf87aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

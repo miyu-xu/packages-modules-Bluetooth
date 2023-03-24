@@ -142,6 +142,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "19c17466_e88f267c",
+        "filename": "system/packet/avrcp/get_current_player_application_setting_value.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-03-24T14:12:25Z",
+      "side": 1,
+      "message": "You are right I mismatched the size() to the GetCurrentPlayerApplicationSettingValueResponseBuilder::size() in this file.\nthanks !",
+      "parentUuid": "8ea76374_9a93abb6",
+      "range": {
+        "startLine": 77,
+        "startChar": 0,
+        "endLine": 77,
+        "endChar": 40
+      },
+      "revId": "cb9e8b81ec532b3b5bfc03a917d2b7d8484177b5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3c3b2207_8686088d",
@@ -179,6 +203,30 @@
       "side": 1,
       "message": "It was done like this to be consistent with other vendor/browse packet files. Also when I first saw it in other files it was rather helpful.",
       "parentUuid": "3c3b2207_8686088d",
+      "range": {
+        "startLine": 59,
+        "startChar": 6,
+        "endLine": 68,
+        "endChar": 31
+      },
+      "revId": "cb9e8b81ec532b3b5bfc03a917d2b7d8484177b5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "06f92474_9a73e5cd",
+        "filename": "system/packet/avrcp/get_current_player_application_setting_value.h",
+        "patchSetId": 9
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-03-24T14:12:25Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "7af136a0_6fec710c",
       "range": {
         "startLine": 59,
         "startChar": 6,
@@ -273,6 +321,30 @@
       "side": 1,
       "message": "During this notification registration we simply do not use other indexes, is it bad? I am not sure if I understand",
       "parentUuid": "ce84a724_faacdbf2",
+      "range": {
+        "startLine": 95,
+        "startChar": 10,
+        "endLine": 95,
+        "endChar": 15
+      },
+      "revId": "cb9e8b81ec532b3b5bfc03a917d2b7d8484177b5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "682fd2d3_f0a6aa0b",
+        "filename": "system/packet/avrcp/register_notification_packet.h",
+        "patchSetId": 9
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-03-24T14:12:25Z",
+      "side": 1,
+      "message": "Let me put a comment on the other file to show you what I am talking about",
+      "parentUuid": "96e73144_f4134a1f",
       "range": {
         "startLine": 95,
         "startChar": 10,
@@ -379,6 +451,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3b8c43b5_c02845ac",
+        "filename": "system/packet/avrcp/set_player_application_setting_value.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-03-24T14:12:25Z",
+      "side": 1,
+      "message": "Ok, you confused me more now.\n\nyou only want the values aka from your list:\n```\nbyte 1: number of attributes   // SKIP\nbyte 2: attr1                  // SKIP\nbyte 3: val1                   // GET\nbyte 4: attr2                  // SKIP\nbyte 5: val2                   // GET\n```\n\nWith the current solution you are skipping the first 2 but not the byte 4.\n\nDon\u0027t you want something like this:\n```\n  auto it \u003d begin() + VendorPacket::kMinSize();\n  uint8_t number_attributes \u003d (it++).extract8();\n  std::vector\u003cuint8_t\u003e values_list \u003d Vector_reserver(number_attributes);\n  while (number_attributes \u003e 0) {\n     ++it; // skip attribute_header since we only want the values\n     values_list.push_back(static_cast\u003cuint8_t\u003e((it++).extract8()));\n     --number_attributes;\n  }\n\n  ASSERT(it \u003d\u003d end()); // not sure we want to assert but this should be true\n```",
+      "parentUuid": "6c05a154_6d7014c2",
+      "range": {
+        "startLine": 72,
+        "startChar": 2,
+        "endLine": 74,
+        "endChar": 9
+      },
+      "revId": "cb9e8b81ec532b3b5bfc03a917d2b7d8484177b5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2ade1b36_b621da6d",
         "filename": "system/packet/avrcp/set_player_application_setting_value.cc",
         "patchSetId": 9
@@ -414,6 +510,30 @@
       "side": 1,
       "message": "Yes",
       "parentUuid": "2ade1b36_b621da6d",
+      "range": {
+        "startLine": 87,
+        "startChar": 25,
+        "endLine": 87,
+        "endChar": 26
+      },
+      "revId": "cb9e8b81ec532b3b5bfc03a917d2b7d8484177b5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ed3d6bdf_a8dad51e",
+        "filename": "system/packet/avrcp/set_player_application_setting_value.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-03-24T14:12:25Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "6efd61c2_f17b0455",
       "range": {
         "startLine": 87,
         "startChar": 25,
@@ -461,6 +581,30 @@
       "side": 1,
       "message": "Yes, if you would want to check if the order is correct, with all zeros you wouldn\u0027t go far ;D It helped me to check, so I thought I\u0027ll leave it ;)",
       "parentUuid": "54676190_17b91901",
+      "range": {
+        "startLine": 212,
+        "startChar": 10,
+        "endLine": 212,
+        "endChar": 14
+      },
+      "revId": "cb9e8b81ec532b3b5bfc03a917d2b7d8484177b5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1d868f53_b353c8f4",
+        "filename": "system/packet/tests/avrcp/avrcp_test_packets.h",
+        "patchSetId": 9
+      },
+      "lineNbr": 212,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-03-24T14:12:25Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "0a8c0c81_18df809d",
       "range": {
         "startLine": 212,
         "startChar": 10,
