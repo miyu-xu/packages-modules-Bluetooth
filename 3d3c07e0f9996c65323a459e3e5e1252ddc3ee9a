@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7d73cb4e_b5eb8023",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-03-24T00:10:27Z",
+      "side": 1,
+      "message": "This is the first part of the direct connection timeout length injection.\n\nTwo other parts are the protos/facade for proper testing and the final threading through legacy bta/gatt",
+      "revId": "3d3c07e0f9996c65323a459e3e5e1252ddc3ee9a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
