@@ -902,6 +902,20 @@ struct btm_acl_disconnected {
   };
 };
 extern struct btm_acl_disconnected btm_acl_disconnected;
+// Name: btm_connection_request
+// Params: const RawAddress& bda, const bluetooth::types::ClassOfDevice& cod
+// Returns: void
+struct btm_connection_request {
+  std::function<void(const RawAddress& bda,
+                     const bluetooth::types::ClassOfDevice& cod)>
+      body{[](const RawAddress& bda,
+              const bluetooth::types::ClassOfDevice& cod) { ; }};
+  void operator()(const RawAddress& bda,
+                  const bluetooth::types::ClassOfDevice& cod) {
+    body(bda, cod);
+  };
+};
+extern struct btm_connection_request btm_connection_request;
 // Name: btm_acl_iso_disconnected
 // Params: uint16_t handle, tHCI_REASON reason
 // Returns: void
