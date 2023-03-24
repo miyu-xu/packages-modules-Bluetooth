@@ -39,6 +39,30 @@
       },
       "revId": "184321fa291e9a02c2517ff4495137091a730c4b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "60e106c8_048949d0",
+        "filename": "system/bta/le_audio/le_audio_utils.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2023-03-24T14:14:13Z",
+      "side": 1,
+      "message": "I\u0027m not sure how to fix that. These consecutive branches are identical as they all are [[fallthrough]] to the `AUDIO_USAGE_NOTIFICATION_EVENT` branch, where it returns \u0027LeAudioContextType::NOTIFICATIONS\u0027. How do I make the compiler happy?",
+      "parentUuid": "e0c2a9fd_92bac7eb",
+      "range": {
+        "startLine": 77,
+        "startChar": 5,
+        "endLine": 77,
+        "endChar": 28
+      },
+      "revId": "184321fa291e9a02c2517ff4495137091a730c4b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
