@@ -154,8 +154,12 @@ public class BluetoothInCallService extends InCallService {
                             setBluetoothHeadset(new BluetoothHeadsetProxy((BluetoothHeadset) proxy));
                             updateHeadsetWithCallState(true /* force */);
                         } else {
-                           setBluetoothLeCallControl(new BluetoothLeCallControlProxy((BluetoothLeCallControl) proxy));
-                           sendTbsCurrentCallsList();
+                            if ((mBluetoothLeCallControl == null) && (sInstance != null)) {
+                                setBluetoothLeCallControl(
+                                        new BluetoothLeCallControlProxy((
+                                        BluetoothLeCallControl) proxy));
+                                sendTbsCurrentCallsList();
+                            }
                         }
                     }
                 }
