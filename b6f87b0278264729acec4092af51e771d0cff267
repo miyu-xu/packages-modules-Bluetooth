@@ -62,6 +62,57 @@
       "message": "You need to send LMP_NOT_ACCEPTED to the peer to unlock the state machine.",
       "revId": "b6f87b0278264729acec4092af51e771d0cff267",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b0a272c2_0cc542f6",
+        "filename": "tools/rootcanal/lmp/src/procedure/secure_simple_pairing.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 966,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-03-24T00:46:16Z",
+      "side": 1,
+      "message": "Remove this to try with this test",
+      "revId": "b6f87b0278264729acec4092af51e771d0cff267",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b9c6ac08_5debd681",
+        "filename": "tools/rootcanal/lmp/src/procedure/secure_simple_pairing.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 975,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-03-24T00:46:16Z",
+      "side": 1,
+      "message": "Remove this to try with this test",
+      "revId": "b6f87b0278264729acec4092af51e771d0cff267",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f1c51d44_7da46350",
+        "filename": "tools/rootcanal/lmp/src/procedure/secure_simple_pairing.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 984,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-03-24T00:46:16Z",
+      "side": 1,
+      "message": "Remove this to try with this test",
+      "revId": "b6f87b0278264729acec4092af51e771d0cff267",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
