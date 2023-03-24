@@ -55,6 +55,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1fca0a7d_26c037c1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2023-03-24T19:02:57Z",
+      "side": 1,
+      "message": "Thanks for the explanation. \n\nThe order of events in the main thread is correct. This race condition happens because the last bit of disconnect event handling happens in the jni thread which connection event is handled directly in the main thread.\n\nA better solution would be to move the last bit of connection event handling as well to the jni thread. This means that we should introduce a new message to be handled in the btif_hh_upstreams_evt(). This message should open the uhid file descriptor. This would also be inline with the policy of sending messages to uhid only through jni thread.",
+      "parentUuid": "dfe829b6_65dbbb2a",
+      "revId": "7a5a967b1fdb20fd93ded8c7e668fdc7a944629e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0d7fe01b_60e74b23",
         "filename": "system/btif/co/bta_hh_co.cc",
         "patchSetId": 8
