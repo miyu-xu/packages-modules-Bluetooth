@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "03284ca7_665da379",
+        "filename": "system/rust/src/connection.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-03-24T18:04:06Z",
+      "side": 1,
+      "message": "Yes, to maintain the invariant.",
+      "parentUuid": "f042a3c5_451d4423",
+      "range": {
+        "startLine": 15,
+        "startChar": 4,
+        "endLine": 15,
+        "endChar": 34
+      },
+      "revId": "930fae87a74712a0f638f225c78de6afd864f2e8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ccd4f3e7_4c22c119",
         "filename": "system/rust/src/connection.rs",
         "patchSetId": 2
@@ -72,6 +96,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "95a526cd_977ca9ed",
+        "filename": "system/rust/src/connection.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-03-24T18:04:06Z",
+      "side": 1,
+      "message": "Note that this is an async API. So when you call `connect().await`, it will effectively \"block\" the task until the connection completes. So this is for if one task calls `connect()`, then another task cancels that connection",
+      "parentUuid": "bf2bcb43_55c7ad05",
+      "range": {
+        "startLine": 18,
+        "startChar": 4,
+        "endLine": 18,
+        "endChar": 23
+      },
+      "revId": "930fae87a74712a0f638f225c78de6afd864f2e8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "96eb3015_342b2634",
         "filename": "system/rust/src/connection.rs",
         "patchSetId": 2
@@ -83,6 +131,30 @@
       "writtenOn": "2023-03-14T08:07:30Z",
       "side": 1,
       "message": "Why not just be idempotent for cancelation ? Do you really want to handle that error in each client ?",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 23,
+        "endChar": 1
+      },
+      "revId": "930fae87a74712a0f638f225c78de6afd864f2e8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "70935e87_05358c3e",
+        "filename": "system/rust/src/connection.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-03-24T18:04:06Z",
+      "side": 1,
+      "message": "The client can just disregard it if they don\u0027t care. But since we have this information, I thought we might as well supply it.",
+      "parentUuid": "96eb3015_342b2634",
       "range": {
         "startLine": 21,
         "startChar": 0,
@@ -118,6 +190,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "66d4ae46_1dac0566",
+        "filename": "system/rust/src/connection.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-03-24T18:04:06Z",
+      "side": 1,
+      "message": "Does this actually happen in our stack?",
+      "parentUuid": "91d73694_1ee0f1d1",
+      "range": {
+        "startLine": 48,
+        "startChar": 0,
+        "endLine": 48,
+        "endChar": 67
+      },
+      "revId": "930fae87a74712a0f638f225c78de6afd864f2e8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5c937071_cfecf9af",
         "filename": "system/rust/src/connection.rs",
         "patchSetId": 2
@@ -129,6 +225,30 @@
       "writtenOn": "2023-03-14T08:07:30Z",
       "side": 1,
       "message": "can you use varargs for addresses ? i.e. LE Audio would add whole set at once.",
+      "range": {
+        "startLine": 53,
+        "startChar": 7,
+        "endLine": 53,
+        "endChar": 33
+      },
+      "revId": "930fae87a74712a0f638f225c78de6afd864f2e8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c38dfef6_e3b99627",
+        "filename": "system/rust/src/connection.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-03-24T18:04:06Z",
+      "side": 1,
+      "message": "I don\u0027t know how that would work with an async-based API. (since the idea is that once the future resolves, you get the connection back)",
+      "parentUuid": "5c937071_cfecf9af",
       "range": {
         "startLine": 53,
         "startChar": 7,
@@ -158,6 +278,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d9b27497_12e53bb6",
+        "filename": "system/rust/src/connection.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-03-24T18:04:06Z",
+      "side": 1,
+      "message": "This is an async API, not callback-based (see above).",
+      "parentUuid": "ff479fbc_f8d84fe9",
+      "revId": "930fae87a74712a0f638f225c78de6afd864f2e8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2a22edb1_82f2779c",
         "filename": "system/rust/src/connection/le_manager.rs",
         "patchSetId": 2
@@ -169,6 +307,30 @@
       "writtenOn": "2023-03-14T08:07:30Z",
       "side": 1,
       "message": "I think current accept list management isn\u0027t too efficient, why not have way to add/remove multiple devices at same device ?",
+      "range": {
+        "startLine": 18,
+        "startChar": 3,
+        "endLine": 20,
+        "endChar": 81
+      },
+      "revId": "930fae87a74712a0f638f225c78de6afd864f2e8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d11e41d4_5de4d934",
+        "filename": "system/rust/src/connection/le_manager.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-03-24T18:04:06Z",
+      "side": 1,
+      "message": "So this is to mimic the API of le_impl. FWIW, if you call add_to_direct_list multiple times, it will correctly batch the operations together, so there\u0027s no inefficiency there (just inelegance).\n\nI don\u0027t want to make major changes to le_impl at least until I get this working, then we can refactor with more confidence. In particular, I will intentionally duplicate some logic in this module first (e.g. timeouts) so then I can remove them from le_impl.",
+      "parentUuid": "2a22edb1_82f2779c",
       "range": {
         "startLine": 18,
         "startChar": 3,
