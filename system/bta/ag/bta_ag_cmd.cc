@@ -18,6 +18,8 @@
 
 #define LOG_TAG "bta_ag_cmd"
 
+#include <base/logging.h>
+
 #include <cstdint>
 #include <cstring>
 
@@ -25,13 +27,13 @@
 #include "bta/ag/bta_ag_int.h"
 #include "bta/include/bta_ag_api.h"
 #include "bta/include/utl.h"
+#include "bta/le_audio/devices.h"
 #include "device/include/interop.h"
+#include "os/system_properties.h"
 #include "osi/include/compat.h"
 #include "osi/include/log.h"
 #include "osi/include/osi.h"  // UNUSED_ATTR
 #include "stack/include/port_api.h"
-
-#include <base/logging.h>
 
 /*****************************************************************************
  *  Constants
@@ -1304,11 +1306,29 @@ void bta_ag_at_hfp_cback(tBTA_AG_SCB* p_scb, uint16_t cmd, uint8_t arg_type,
     }
     case BTA_AG_LOCAL_EVT_BCC: {
       if (!bta_ag_sco_is_active_device(p_scb->peer_addr)) {
-        LOG(WARNING) << __func__ << ": AT+BCC rejected as " << p_scb->peer_addr
-                     << " is not the active device";
+        LOG_WARN("AT+BCC rejected as %s is not the active device",
+                 p_scb->peer_addr.ToStringForLogging().c_str());
         bta_ag_send_error(p_scb, BTA_AG_ERR_OP_NOT_ALLOWED);
         break;
       }
+
+      // Reject AT+BCC if 1. the device is LEA active, 2. dual mode audio is
+      // enabled, and 3. LEA is preferred for DUPLEX
+      if (bluetooth::os::GetSystemPropertyBool(
+              bluetooth::os::kIsDualModeAudioEnabledProperty, false)) {
+        if (LeAudioClient::Get()->isDuplexPreferenceLeAudio(p_scb->peer_addr)) {
+          LOG_INFO(
+              "NOT opening sco for EVT BTA_AG_LOCAL_EVT_BCC on dual mode "
+              "device %s",
+              p_scb->peer_addr.ToStringForLogging().c_str());
+          bta_ag_send_error(p_scb, BTA_AG_ERR_OP_NOT_ALLOWED);
+          break;
+        } else {
+          LOG_INFO("Accepting AT+BCC for dual mode device %s",
+                   p_scb->peer_addr.ToStringForLogging().c_str());
+        }
+      }
+
       bta_ag_send_ok(p_scb);
       bta_ag_sco_open(p_scb, tBTA_AG_DATA::kEmpty);
       break;
@@ -1391,7 +1411,17 @@ static void bta_ag_hsp_result(tBTA_AG_SCB* p_scb,
         } else {
           p_scb->post_sco = BTA_AG_POST_SCO_RING;
         }
-        bta_ag_sco_open(p_scb, tBTA_AG_DATA::kEmpty);
+        if (bluetooth::os::GetSystemPropertyBool(
+                bluetooth::os::kIsDualModeAudioEnabledProperty, false)) {
+          LOG_INFO(
+              "NOT opening sco for EVT BTA_AG_IN_CALL_RES because the dual "
+              "mode audio feature is enabled");
+        } else {
+          LOG_INFO(
+              "Opening sco for EVT BTA_AG_IN_CALL_RES because the dual "
+              "mode audio feature is not enabled");
+          bta_ag_sco_open(p_scb, tBTA_AG_DATA::kEmpty);
+        }
       }
       break;
 
@@ -1406,7 +1436,17 @@ static void bta_ag_hsp_result(tBTA_AG_SCB* p_scb,
         /* if audio connected to this scb AND sco is not opened, open sco */
         if (result.data.audio_handle == bta_ag_scb_to_idx(p_scb) &&
             !bta_ag_sco_is_open(p_scb)) {
-          bta_ag_sco_open(p_scb, tBTA_AG_DATA::kEmpty);
+          if (bluetooth::os::GetSystemPropertyBool(
+                  bluetooth::os::kIsDualModeAudioEnabledProperty, false)) {
+            LOG_INFO(
+                "NOT opening sco for EVT BTA_AG_IN/OUT_CALL_ORIG_RES "
+                "because the dual mode audio feature is enabled");
+          } else {
+            LOG_INFO(
+                "Opening sco for EVT BTA_AG_IN/OUT_CALL_ORIG_RES "
+                "because the dual mode audio feature is not enabled");
+            bta_ag_sco_open(p_scb, tBTA_AG_DATA::kEmpty);
+          }
         } else if (result.data.audio_handle == BTA_AG_HANDLE_NONE &&
                    bta_ag_sco_is_open(p_scb)) {
           /* else if no audio at call close sco */
@@ -1495,7 +1535,17 @@ static void bta_ag_hfp_result(tBTA_AG_SCB* p_scb,
         } else {
           /* else open sco, send ring after sco opened */
           p_scb->post_sco = BTA_AG_POST_SCO_RING;
-          bta_ag_sco_open(p_scb, tBTA_AG_DATA::kEmpty);
+          if (bluetooth::os::GetSystemPropertyBool(
+                  bluetooth::os::kIsDualModeAudioEnabledProperty, false)) {
+            LOG_INFO(
+                "NOT opening sco for EVT BTA_AG_IN_CALL_RES because the "
+                "dual mode audio feature is enabled");
+          } else {
+            LOG_INFO(
+                "Opening sco for EVT BTA_AG_IN_CALL_RES because the "
+                "dual mode audio feature is not enabled");
+            bta_ag_sco_open(p_scb, tBTA_AG_DATA::kEmpty);
+          }
         }
       }
       break;
@@ -1511,7 +1561,17 @@ static void bta_ag_hfp_result(tBTA_AG_SCB* p_scb,
       if (!(p_scb->features & BTA_AG_FEAT_NOSCO)) {
         if (result.data.audio_handle == bta_ag_scb_to_idx(p_scb) &&
             !bta_ag_sco_is_open(p_scb)) {
-          bta_ag_sco_open(p_scb, tBTA_AG_DATA::kEmpty);
+          if (bluetooth::os::GetSystemPropertyBool(
+                  bluetooth::os::kIsDualModeAudioEnabledProperty, false)) {
+            LOG_INFO(
+                "NOT opening sco for EVT BTA_AG_IN_CALL_CONN_RES because "
+                "the dual mode audio feature is enabled");
+          } else {
+            LOG_INFO(
+                "Opening sco for EVT BTA_AG_IN_CALL_CONN_RES because "
+                "the dual mode audio feature is not enabled");
+            bta_ag_sco_open(p_scb, tBTA_AG_DATA::kEmpty);
+          }
         } else if ((result.data.audio_handle == BTA_AG_HANDLE_NONE) &&
                    bta_ag_sco_is_open(p_scb)) {
           bta_ag_sco_close(p_scb, tBTA_AG_DATA::kEmpty);
@@ -1530,7 +1590,17 @@ static void bta_ag_hfp_result(tBTA_AG_SCB* p_scb,
       bta_ag_send_call_inds(p_scb, result.result);
       if (result.data.audio_handle == bta_ag_scb_to_idx(p_scb) &&
           !(p_scb->features & BTA_AG_FEAT_NOSCO)) {
-        bta_ag_sco_open(p_scb, tBTA_AG_DATA::kEmpty);
+        if (bluetooth::os::GetSystemPropertyBool(
+                bluetooth::os::kIsDualModeAudioEnabledProperty, false)) {
+          LOG_INFO(
+              "NOT opening sco for EVT BTA_AG_OUT_CALL_ORIG_RES because "
+              "the dual mode audio feature is enabled");
+        } else {
+          LOG_INFO(
+              "Opening sco for EVT BTA_AG_OUT_CALL_ORIG_RES because "
+              "the dual mode audio feature is not enabled");
+          bta_ag_sco_open(p_scb, tBTA_AG_DATA::kEmpty);
+        }
       }
       break;
 
@@ -1539,7 +1609,17 @@ static void bta_ag_hfp_result(tBTA_AG_SCB* p_scb,
       bta_ag_send_call_inds(p_scb, result.result);
       if (result.data.audio_handle == bta_ag_scb_to_idx(p_scb) &&
           !(p_scb->features & BTA_AG_FEAT_NOSCO)) {
-        bta_ag_sco_open(p_scb, tBTA_AG_DATA::kEmpty);
+        if (bluetooth::os::GetSystemPropertyBool(
+                bluetooth::os::kIsDualModeAudioEnabledProperty, false)) {
+          LOG_INFO(
+              "NOT opening sco for EVT BTA_AG_OUT_CALL_ALERT_RES because "
+              "the dual mode audio feature is enabled");
+        } else {
+          LOG_INFO(
+              "Opening sco for EVT BTA_AG_OUT_CALL_ALERT_RES because "
+              "the dual mode audio feature is not enabled");
+          bta_ag_sco_open(p_scb, tBTA_AG_DATA::kEmpty);
+        }
       }
       break;
 
@@ -1548,7 +1628,17 @@ static void bta_ag_hfp_result(tBTA_AG_SCB* p_scb,
       APPL_TRACE_DEBUG("Headset Connected in three way call");
       if (!(p_scb->features & BTA_AG_FEAT_NOSCO)) {
         if (result.data.audio_handle == bta_ag_scb_to_idx(p_scb)) {
-          bta_ag_sco_open(p_scb, tBTA_AG_DATA::kEmpty);
+          if (bluetooth::os::GetSystemPropertyBool(
+                  bluetooth::os::kIsDualModeAudioEnabledProperty, false)) {
+            LOG_INFO(
+                "NOT opening sco for EVT BTA_AG_MULTI_CALL_RES because the "
+                "dual mode audio feature is enabled");
+          } else {
+            LOG_INFO(
+                "Opening sco for EVT BTA_AG_MULTI_CALL_RES because the "
+                "dual mode audio feature is not enabled");
+            bta_ag_sco_open(p_scb, tBTA_AG_DATA::kEmpty);
+          }
         } else if (result.data.audio_handle == BTA_AG_HANDLE_NONE) {
           bta_ag_sco_close(p_scb, tBTA_AG_DATA::kEmpty);
         }
@@ -1562,7 +1652,17 @@ static void bta_ag_hfp_result(tBTA_AG_SCB* p_scb,
       /* open or close sco */
       if (!(p_scb->features & BTA_AG_FEAT_NOSCO)) {
         if (result.data.audio_handle == bta_ag_scb_to_idx(p_scb)) {
-          bta_ag_sco_open(p_scb, tBTA_AG_DATA::kEmpty);
+          if (bluetooth::os::GetSystemPropertyBool(
+                  bluetooth::os::kIsDualModeAudioEnabledProperty, false)) {
+            LOG_INFO(
+                "NOT opening sco for EVT BTA_AG_OUT_CALL_CONN_RES because "
+                "the dual mode audio feature is enabled");
+          } else {
+            LOG_INFO(
+                "Opening sco for EVT BTA_AG_OUT_CALL_CONN_RES because "
+                "the dual mode audio feature is not enabled");
+            bta_ag_sco_open(p_scb, tBTA_AG_DATA::kEmpty);
+          }
         } else if (result.data.audio_handle == BTA_AG_HANDLE_NONE) {
           bta_ag_sco_close(p_scb, tBTA_AG_DATA::kEmpty);
         }
