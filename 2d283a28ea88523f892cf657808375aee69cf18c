@@ -70,6 +70,24 @@
       "parentUuid": "7f72017b_5e2d3b8f",
       "revId": "2d283a28ea88523f892cf657808375aee69cf18c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "96cc8dd5_3c46f54d",
+        "filename": "system/bta/hh/bta_hh_le.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 1418,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2023-03-24T18:51:35Z",
+      "side": 1,
+      "message": "You mean that cache had the wrong report type? And that HOGP host went on to do service discovery even after having a cache?\nI don\u0027t see any evidence of that in the logs. \nI do see that that report reference descriptor was processed for only 6 out 9 reports. There are some conditions in which report reference processing is aborted. Have we ruled out those conditions?\nI also see traces of non-aosp code in the HOGP host logs. Is this issue really reproducible with pure aosp? I don\u0027t see evidence of that in the code walk through.\nIf you think otherwise, please provide code paths which would lead to this condition.",
+      "parentUuid": "bd23601d_6853288e",
+      "revId": "2d283a28ea88523f892cf657808375aee69cf18c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
