@@ -52,6 +52,24 @@
       "parentUuid": "18af5020_3e4b8d56",
       "revId": "2d283a28ea88523f892cf657808375aee69cf18c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bd23601d_6853288e",
+        "filename": "system/bta/hh/bta_hh_le.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 1418,
+      "author": {
+        "id": 1965943
+      },
+      "writtenOn": "2023-03-24T02:25:47Z",
+      "side": 1,
+      "message": "We upload logs and analysis in\nhttps://partnerissuetracker.corp.google.com/issues/266219642.\nWhy default not always BTA_HH_RPTT_INPUT? \nSince sometimes both cache is loaded and start service discovery may be done at the same time.",
+      "parentUuid": "7f72017b_5e2d3b8f",
+      "revId": "2d283a28ea88523f892cf657808375aee69cf18c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
