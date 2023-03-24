@@ -521,6 +521,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9d8dd34a_1a69dcd4",
+        "filename": "system/packet/avrcp/set_player_application_setting_value.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-03-24T18:11:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fc983c3d_dba71e1f",
+      "range": {
+        "startLine": 72,
+        "startChar": 2,
+        "endLine": 74,
+        "endChar": 9
+      },
+      "revId": "cb9e8b81ec532b3b5bfc03a917d2b7d8484177b5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2ade1b36_b621da6d",

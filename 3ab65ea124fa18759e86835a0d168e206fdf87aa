@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "118390a2_8077e06b",
+        "filename": "system/packet/avrcp/register_notification_packet.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-03-24T18:11:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d53d3f0c_06f501d6",
+      "range": {
+        "startLine": 80,
+        "startChar": 0,
+        "endLine": 80,
+        "endChar": 34
+      },
+      "revId": "3ab65ea124fa18759e86835a0d168e206fdf87aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3a814e96_4405cbdb",
