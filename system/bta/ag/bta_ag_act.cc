@@ -29,8 +29,14 @@
 
 #include "bta/ag/bta_ag_int.h"
 #include "bta/include/bta_dm_api.h"
+
+#ifdef OS_ANDROID
+#include "bta/le_audio/devices.h"
+#endif
+
 #include "btif/include/btif_config.h"
 #include "device/include/device_iot_config.h"
+#include "os/system_properties.h"
 #include "osi/include/osi.h"  // UNUSED_ATTR
 #include "stack/include/l2c_api.h"
 #include "stack/include/port_api.h"
@@ -753,7 +759,29 @@ void bta_ag_post_sco_close(tBTA_AG_SCB* p_scb, const tBTA_AG_DATA& data) {
       if (bta_ag_inband_enabled(p_scb) &&
           !(p_scb->features & BTA_AG_FEAT_NOSCO)) {
         p_scb->post_sco = BTA_AG_POST_SCO_RING;
-        bta_ag_sco_open(p_scb, data);
+
+#ifdef OS_ANDROID
+        // Do not open SCO if 1. the device is LEA active, 2. dual mode audio
+        // is enabled, and 3. LEA is preferred for DUPLEX
+        if (bluetooth::os::GetSystemPropertyBool(
+                bluetooth::os::kIsDualModeAudioEnabledProperty, false)) {
+          if (LeAudioClient::Get()->isDuplexPreferenceLeAudio(
+                  p_scb->peer_addr)) {
+            LOG_INFO(
+                "NOT opening SCO for EVT BTA_AG_POST_SCO_CALL_END_INCALL on "
+                "dual mode "
+                "device %s",
+                p_scb->peer_addr.ToStringForLogging().c_str());
+            break;
+          } else {
+            LOG_INFO(
+                "Opening SCO for EVT BTA_AG_POST_SCO_CALL_END_INCALL on dual "
+                "mode device %s",
+                p_scb->peer_addr.ToStringForLogging().c_str());
+          }
+        }
+#endif
+        bta_ag_sco_open(p_scb, tBTA_AG_DATA::kEmpty);
       } else {
         p_scb->post_sco = BTA_AG_POST_SCO_NONE;
         bta_ag_send_ring(p_scb, data);
