@@ -34,6 +34,23 @@
       "parentUuid": "7b9457d1_71d01c78",
       "revId": "1c50af8016e473f42f961a5861652e509d608728",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2019bcf4_db164fe9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-03-24T15:59:32Z",
+      "side": 1,
+      "message": "Do we have a PTS test that should cover this behavior?",
+      "revId": "1c50af8016e473f42f961a5861652e509d608728",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
