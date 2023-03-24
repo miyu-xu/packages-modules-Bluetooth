@@ -106,6 +106,10 @@ void btm_sco_connection_failed(tHCI_STATUS hci_status, const RawAddress& bda,
 void btm_sco_disc_chk_pend_for_modechange(uint16_t hci_handle) {
   inc_func_call_count(__func__);
 }
+void btm_connection_request(const RawAddress& bda,
+                            const bluetooth::types::ClassOfDevice& cod) {
+  inc_func_call_count(__func__);
+}
 void btm_sco_on_esco_connect_request(
     const RawAddress& bda, const bluetooth::types::ClassOfDevice& cod) {
   inc_func_call_count(__func__);
