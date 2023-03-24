@@ -5,6 +5,7 @@ use heck::ToUpperCamelCase;
 use quote::{format_ident, quote};
 use std::collections::BTreeSet;
 use std::path::Path;
+use syn::LitInt;
 
 use crate::analyzer::ast as analyzer_ast;
 
@@ -658,62 +659,149 @@ fn generate_struct_decl(
     }
 }
 
-fn generate_enum_decl(id: &str, tags: &[ast::Tag]) -> proc_macro2::TokenStream {
+fn generate_enum_decl(id: &str, tags: &[ast::Tag], width: usize) -> proc_macro2::TokenStream {
+    // Determine if the enum is complete, i.e. all values in the backing
+    // integer range have a matching tag in the original declaration.
+    fn enum_is_complete(tags: &[ast::Tag], max: usize) -> bool {
+        let mut ranges = tags
+            .iter()
+            .map(|tag| match tag {
+                ast::Tag::Value(tag) => (tag.value, tag.value),
+                ast::Tag::Range(tag) => tag.range.clone().into_inner(),
+            })
+            .collect::<Vec<_>>();
+        ranges.sort();
+        ranges.first().unwrap().0 == 0
+            && ranges.last().unwrap().1 == max
+            && ranges.windows(2).all(|window| {
+                if let [left, right] = window {
+                    left.1 == right.0 - 1
+                } else {
+                    false
+                }
+            })
+    }
+
+    // Return the maximum value for the scalar type.
+    fn scalar_max(width: usize) -> usize {
+        if width >= usize::BITS as usize {
+            usize::MAX
+        } else {
+            (1 << width) - 1
+        }
+    }
+
+    // Format an enum tag identifier to rust upper caml case.
+    fn format_tag_ident(id: &str) -> proc_macro2::TokenStream {
+        let id = format_ident!("{}", id.to_upper_camel_case());
+        quote! { #id }
+    }
+
+    // Format a constant value as hexadecimal constant.
+    fn format_value(value: usize) -> LitInt {
+        syn::parse_str::<syn::LitInt>(&format!("{:#x}", value)).unwrap()
+    }
+
+    // Backing type for the enum.
+    let backing_type = types::Integer::new(width);
+    let backing_type_str = proc_macro2::Literal::string(&format!("u{}", backing_type.width));
+    let is_complete = enum_is_complete(tags, scalar_max(width));
     let name = format_ident!("{id}");
-    let variants =
-        tags.iter().map(|t| format_ident!("{}", t.id().to_upper_camel_case())).collect::<Vec<_>>();
-    let values = tags
-        .iter()
-        .map(|t| syn::parse_str::<syn::LitInt>(&format!("{:#x}", t.value().unwrap())).unwrap())
-        .collect::<Vec<_>>();
-    let visitor_name = format_ident!("{id}Visitor");
+
+    // Generate the variant cases for the enum declaration.
+    // Tags declared in ranges are flattened in the same declaration.
+    let mut variants = vec![];
+    tags.iter().for_each(|tag| match tag {
+        ast::Tag::Value(tag) => variants.push(format_tag_ident(&tag.id)),
+        ast::Tag::Range(tag) => {
+            tag.tags.iter().for_each(|tag| variants.push(format_tag_ident(&tag.id)));
+            let id = format_tag_ident(&tag.id);
+            variants.push(quote! { #id(Private<#backing_type>) })
+        }
+    });
+
+    // Generate the cases for parsing the enum value from an integer.
+    let mut from_cases = vec![];
+    tags.iter().for_each(|tag| match tag {
+        ast::Tag::Value(tag) => {
+            let id = format_tag_ident(&tag.id);
+            let value = format_value(tag.value);
+            from_cases.push(quote! { #value => #name::#id })
+        }
+        ast::Tag::Range(tag) => {
+            tag.tags.iter().for_each(|tag| {
+                let id = format_tag_ident(&tag.id);
+                let value = format_value(tag.value);
+                from_cases.push(quote! { #value => #name::#id })
+            });
+            let id = format_tag_ident(&tag.id);
+            let start = format_value(*tag.range.start());
+            let end = format_value(*tag.range.end());
+            from_cases.push(quote! { #start ..= #end => #name::#id(Private(value)) })
+        }
+    });
+
+    // Generate the cases for serializing the enum value to an integer.
+    let mut into_cases = vec![];
+    tags.iter().for_each(|tag| match tag {
+        ast::Tag::Value(tag) => {
+            let id = format_tag_ident(&tag.id);
+            let value = format_value(tag.value);
+            into_cases.push(quote! { #name::#id => #value })
+        }
+        ast::Tag::Range(tag) => {
+            tag.tags.iter().for_each(|tag| {
+                let id = format_tag_ident(&tag.id);
+                let value = format_value(tag.value);
+                into_cases.push(quote! { #name::#id => #value })
+            });
+            let id = format_tag_ident(&tag.id);
+            into_cases.push(quote! { #name::#id(Private(value)) => value })
+        }
+    });
+
+    // Generate a default case if the enum is not complete.
+    if !is_complete {
+        variants.push(quote! { Unknown(Private<#backing_type>) });
+        from_cases.push(quote! { value => #name::Unknown(Private(value)) });
+        into_cases.push(quote! { #name::Unknown(Private(value)) => value });
+    }
+
+    // Generate an unreachable case if the enum is complete but the enum size
+    // is lower than the backing type size: the value being truncated to the
+    // correct size this case is unreachable.
+    if is_complete && backing_type.width != width {
+        from_cases.push(quote! { _ => unreachable!() });
+    }
+
+    // Generate the value mask for the truncating converter from uN
+    // to the enum values.
+    let and_mask = (backing_type.width != width).then(|| {
+        let mask = format_value(scalar_max(width));
+        quote! { & #mask }
+    });
 
     quote! {
-        #[derive(FromPrimitive, ToPrimitive, Debug, Hash, Eq, PartialEq, Clone, Copy)]
-        #[repr(u64)]
+        #[derive(Debug, Clone, Copy, Hash, Eq, PartialEq)]
+        #[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
+        #[cfg_attr(feature = "serde", serde(from = #backing_type_str, into = #backing_type_str))]
         pub enum #name {
-            #(#variants = #values,)*
+            #(#variants,)*
         }
 
-        #[cfg(feature = "serde")]
-        impl serde::Serialize for #name {
-            fn serialize<S>(&self, serializer: S) -> std::result::Result<S::Ok, S::Error>
-            where
-                S: serde::Serializer,
-            {
-                serializer.serialize_u64(*self as u64)
-            }
-        }
-
-        #[cfg(feature = "serde")]
-        struct #visitor_name;
-
-        #[cfg(feature = "serde")]
-        impl<'de> serde::de::Visitor<'de> for #visitor_name {
-            type Value = #name;
-
-            fn expecting(&self, formatter: &mut std::fmt::Formatter) -> std::fmt::Result {
-                formatter.write_str("a valid discriminant")
-            }
-
-            fn visit_u64<E>(self, value: u64) -> std::result::Result<Self::Value, E>
-            where
-                E: serde::de::Error,
-            {
-                match value {
-                    #(#values => Ok(#name::#variants),)*
-                    _ => Err(E::custom(format!("invalid discriminant: {value}"))),
+        impl From<#backing_type> for #name {
+            fn from(value: #backing_type) -> Self {
+                match value #and_mask {
+                    #(#from_cases,)*
                 }
             }
         }
 
-        #[cfg(feature = "serde")]
-        impl<'de> serde::Deserialize<'de> for #name {
-            fn deserialize<D>(deserializer: D) -> std::result::Result<Self, D::Error>
-            where
-                D: serde::Deserializer<'de>,
-            {
-                deserializer.deserialize_u64(#visitor_name)
+        impl From<#name> for #backing_type {
+            fn from(value: #name) -> Self {
+                match value {
+                    #(#into_cases,)*
+                }
             }
         }
     }
@@ -736,7 +824,7 @@ fn generate_decl(
             // implement the recursive (de)serialization.
             generate_struct_decl(scope, file.endianness.value, id).to_string()
         }
-        ast::DeclDesc::Enum { id, tags, .. } => generate_enum_decl(id, tags).to_string(),
+        ast::DeclDesc::Enum { id, tags, width } => generate_enum_decl(id, tags, *width).to_string(),
         _ => todo!("unsupported Decl::{:?}", decl),
     }
 }
@@ -873,6 +961,54 @@ mod tests {
     test_pdl!(packet_decl_8bit_scalar, " packet Foo { x:  8 }");
     test_pdl!(packet_decl_24bit_scalar, "packet Foo { x: 24 }");
     test_pdl!(packet_decl_64bit_scalar, "packet Foo { x: 64 }");
+
+    test_pdl!(
+        enum_declaration,
+        r#"
+        // Should generate unknown case.
+        enum IncompleteTruncated : 3 {
+            A = 0,
+            B = 1,
+        }
+
+        // Should generate unknown case.
+        enum IncompleteTruncatedWithRange : 3 {
+            A = 0,
+            B = 1..6 {
+                X = 1,
+                Y = 2,
+            }
+        }
+
+        // Should generate unreachable case.
+        enum CompleteTruncated : 3 {
+            A = 0,
+            B = 1,
+            C = 2,
+            D = 3,
+            E = 4,
+            F = 5,
+            G = 6,
+            H = 7,
+        }
+
+        // Should generate unreachable case.
+        enum CompleteTruncatedWithRange : 3 {
+            A = 0,
+            B = 1..7 {
+                X = 1,
+                Y = 2,
+            }
+        }
+
+        // Should generate no unknown or unreachable case.
+        enum CompleteWithRange : 8 {
+            A = 0,
+            B = 1,
+            C = 2..255,
+        }
+        "#
+    );
 
     test_pdl!(
         packet_decl_simple_scalars,
