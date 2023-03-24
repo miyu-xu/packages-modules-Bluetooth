@@ -16,6 +16,24 @@
       "message": "Can you remove or rename BTM_ACCEPTLIST_BIT in\n\npackages/modules/Bluetooth/system/stack/btm/security_device_record.h\n\nI don\u0027t want someone to use it now that we\u0027re not setting it.",
       "revId": "6a3b4768feeae257aada304e5c3777bd73e970c6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "84862dd4_949c3c4a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-03-24T01:00:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ecb6845f_b4c9373a",
+      "revId": "6a3b4768feeae257aada304e5c3777bd73e970c6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
