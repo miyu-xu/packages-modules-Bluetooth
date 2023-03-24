@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c157ef53_5f7bdf89",
+        "filename": "android/pandora/test/smp_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-03-24T18:32:47Z",
+      "side": 1,
+      "message": "nit: 2023",
+      "range": {
+        "startLine": 1,
+        "startChar": 15,
+        "endLine": 1,
+        "endChar": 16
+      },
+      "revId": "8c80b58aab96181a4c206d0053ad4ae50960bdf9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "86cbe542_5006476e",
+        "filename": "android/pandora/test/smp_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-03-24T18:32:47Z",
+      "side": 1,
+      "message": "Is there no way to add a proper interface for this in bumble?",
+      "range": {
+        "startLine": 109,
+        "startChar": 8,
+        "endLine": 109,
+        "endChar": 73
+      },
+      "revId": "8c80b58aab96181a4c206d0053ad4ae50960bdf9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
