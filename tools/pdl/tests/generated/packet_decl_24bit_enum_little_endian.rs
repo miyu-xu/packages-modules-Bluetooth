@@ -1,8 +1,6 @@
 // @generated rust packets from test
 
 use bytes::{Buf, BufMut, Bytes, BytesMut};
-use num_derive::{FromPrimitive, ToPrimitive};
-use num_traits::{FromPrimitive, ToPrimitive};
 use std::cell::Cell;
 use std::convert::{TryFrom, TryInto};
 use std::fmt;
@@ -10,6 +8,15 @@ use std::sync::Arc;
 use thiserror::Error;
 
 type Result<T> = std::result::Result<T, Error>;
+
+#[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord)]
+pub struct Private<T>(T);
+impl<T> std::ops::Deref for Private<T> {
+    type Target = T;
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
 
 #[derive(Debug, Error)]
 pub enum Error {
@@ -38,47 +45,30 @@ pub trait Packet {
     fn to_vec(self) -> Vec<u8>;
 }
 
-#[derive(FromPrimitive, ToPrimitive, Debug, Hash, Eq, PartialEq, Clone, Copy)]
-#[repr(u64)]
+#[derive(Debug, Clone, Copy, Hash, Eq, PartialEq)]
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
+#[cfg_attr(feature = "serde", serde(from = "u32", into = "u32"))]
 pub enum Foo {
-    A = 0x1,
-    B = 0x2,
+    A,
+    B,
+    Unknown(Private<u32>),
 }
-#[cfg(feature = "serde")]
-impl serde::Serialize for Foo {
-    fn serialize<S>(&self, serializer: S) -> std::result::Result<S::Ok, S::Error>
-    where
-        S: serde::Serializer,
-    {
-        serializer.serialize_u64(*self as u64)
-    }
-}
-#[cfg(feature = "serde")]
-struct FooVisitor;
-#[cfg(feature = "serde")]
-impl<'de> serde::de::Visitor<'de> for FooVisitor {
-    type Value = Foo;
-    fn expecting(&self, formatter: &mut std::fmt::Formatter) -> std::fmt::Result {
-        formatter.write_str("a valid discriminant")
-    }
-    fn visit_u64<E>(self, value: u64) -> std::result::Result<Self::Value, E>
-    where
-        E: serde::de::Error,
-    {
-        match value {
-            0x1 => Ok(Foo::A),
-            0x2 => Ok(Foo::B),
-            _ => Err(E::custom(format!("invalid discriminant: {value}"))),
+impl From<u32> for Foo {
+    fn from(value: u32) -> Self {
+        match value & 0xffffff {
+            0x1 => Foo::A,
+            0x2 => Foo::B,
+            value => Foo::Unknown(Private(value)),
         }
     }
 }
-#[cfg(feature = "serde")]
-impl<'de> serde::Deserialize<'de> for Foo {
-    fn deserialize<D>(deserializer: D) -> std::result::Result<Self, D::Error>
-    where
-        D: serde::Deserializer<'de>,
-    {
-        deserializer.deserialize_u64(FooVisitor)
+impl From<Foo> for u32 {
+    fn from(value: Foo) -> Self {
+        match value {
+            Foo::A => 0x1,
+            Foo::B => 0x2,
+            Foo::Unknown(Private(value)) => value,
+        }
     }
 }
 
