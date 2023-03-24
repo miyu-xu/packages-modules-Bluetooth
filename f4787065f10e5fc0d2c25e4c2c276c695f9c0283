@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a62d139e_c89a683d",
+        "filename": "system/device/src/device_iot_config_int.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 331,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-03-24T18:31:52Z",
+      "side": 1,
+      "message": "nit: I prefer not to change this in this CL.",
+      "revId": "f4787065f10e5fc0d2c25e4c2c276c695f9c0283",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
