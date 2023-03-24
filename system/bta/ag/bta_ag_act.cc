@@ -31,6 +31,7 @@
 #include "bta/include/bta_dm_api.h"
 #include "btif/include/btif_config.h"
 #include "device/include/device_iot_config.h"
+#include "os/system_properties.h"
 #include "osi/include/osi.h"  // UNUSED_ATTR
 #include "stack/include/l2c_api.h"
 #include "stack/include/port_api.h"
@@ -753,7 +754,14 @@ void bta_ag_post_sco_close(tBTA_AG_SCB* p_scb, const tBTA_AG_DATA& data) {
       if (bta_ag_inband_enabled(p_scb) &&
           !(p_scb->features & BTA_AG_FEAT_NOSCO)) {
         p_scb->post_sco = BTA_AG_POST_SCO_RING;
-        bta_ag_sco_open(p_scb, data);
+        if (bluetooth::os::GetSystemPropertyBool(
+                bluetooth::os::kIsDualModeAudioEnabledProperty, false)) {
+          LOG_INFO(
+              "NOT opening sco for EVT BTA_AG_POST_SCO_CALL_END_INCALL "
+              "because the dual mode audio feature is enabled");
+        } else {
+          bta_ag_sco_open(p_scb, data);
+        }
       } else {
         p_scb->post_sco = BTA_AG_POST_SCO_NONE;
         bta_ag_send_ring(p_scb, data);
