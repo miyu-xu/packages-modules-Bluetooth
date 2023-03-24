@@ -576,6 +576,15 @@ typedef struct t_l2c_linkcb {
   uint16_t pending_lead_cid;
   uint16_t pending_l2cap_result;
 
+  bool read_remote_features_completed;
+  bool cached_le_connection_update_command;
+  uint16_t cached_conn_int_min;
+  uint16_t cached_conn_int_max;
+  uint16_t cached_conn_latency;
+  uint16_t cached_conn_timeout;
+  uint16_t cached_min_ce_len;
+  uint16_t cached_max_ce_len;
+
   unsigned number_of_active_dynamic_channels() const {
     unsigned cnt = 0;
     const tL2C_CCB* cur = ccb_queue.p_first_ccb;

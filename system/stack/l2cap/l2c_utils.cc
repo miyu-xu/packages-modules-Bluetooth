@@ -76,6 +76,8 @@ tL2C_LCB* l2cu_allocate_lcb(const RawAddress& p_bd_addr, bool is_bonding,
       p_lcb->info_resp_timer = alarm_new("l2c_lcb.info_resp_timer");
       p_lcb->idle_timeout = l2cb.idle_timeout;
       p_lcb->signal_id = 1; /* spec does not allow '0' */
+      p_lcb->read_remote_features_completed = false;
+      p_lcb->cached_le_connection_update_command = false;
       if (is_bonding) {
         p_lcb->SetBonding();
       } else {

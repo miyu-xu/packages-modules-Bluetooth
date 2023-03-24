@@ -2617,6 +2617,15 @@ uint16_t acl_get_supported_packet_types() {
   return btm_cb.acl_cb_.DefaultPacketTypes();
 }
 
+void acl_ble_read_remote_features_complete(uint16_t hci_handle) {
+  tACL_CONN* p_acl = internal_.acl_get_connection_from_handle(hci_handle);
+  if (p_acl == nullptr) {
+    LOG_WARN("Can't find any connection for handle:%d", hci_handle);
+    return;
+  }
+  l2cble_notify_le_read_remote_features_complete(p_acl->remote_addr);
+}
+
 bool acl_set_peer_le_features_from_handle(uint16_t hci_handle,
                                           const uint8_t* p) {
   tACL_CONN* p_acl = internal_.acl_get_connection_from_handle(hci_handle);

@@ -233,6 +233,24 @@ void l2cble_notify_le_connection(const RawAddress& bda) {
   }
 }
 
+void l2cble_notify_le_read_remote_features_complete(const RawAddress& bda) {
+  tL2C_LCB* p_lcb = l2cu_find_lcb_by_bd_addr(bda, BT_TRANSPORT_LE);
+  if (p_lcb == nullptr) {
+    LOG_WARN("Received notification for le connection but no lcb found");
+    return;
+  }
+  p_lcb->read_remote_features_completed = true;
+  if (p_lcb->cached_le_connection_update_command) {
+    LOG_INFO("Send cached LE connection update command");
+    p_lcb->cached_le_connection_update_command = false;
+    btsnd_hcic_ble_upd_ll_conn_params(
+        p_lcb->Handle(), p_lcb->cached_conn_int_min, p_lcb->cached_conn_int_max,
+        p_lcb->cached_conn_latency, p_lcb->cached_conn_timeout,
+        p_lcb->cached_min_ce_len, p_lcb->cached_max_ce_len);
+    p_lcb->conn_update_mask |= L2C_BLE_UPDATE_PENDING;
+  }
+}
+
 /** This function is called when an HCI Connection Complete event is received.
  */
 bool l2cble_conn_comp(uint16_t handle, uint8_t role, const RawAddress& bda,
@@ -366,10 +384,23 @@ static void l2cble_start_conn_update(tL2C_LCB* p_lcb) {
               acl_peer_supports_ble_connection_parameters_request(
                   p_lcb->remote_bd_addr))
       ) {
-        btsnd_hcic_ble_upd_ll_conn_params(p_lcb->Handle(), min_conn_int,
-                                          max_conn_int, peripheral_latency,
-                                          supervision_tout, 0, 0);
-        p_lcb->conn_update_mask |= L2C_BLE_UPDATE_PENDING;
+        if (p_lcb->read_remote_features_completed) {
+          btsnd_hcic_ble_upd_ll_conn_params(p_lcb->Handle(), min_conn_int,
+                                            max_conn_int, peripheral_latency,
+                                            supervision_tout, 0, 0);
+          p_lcb->conn_update_mask |= L2C_BLE_UPDATE_PENDING;
+        } else {
+          LOG_INFO(
+              "LE connection update command until LE read remote features "
+              "complete");
+          p_lcb->cached_le_connection_update_command = true;
+          p_lcb->cached_conn_int_min = min_conn_int;
+          p_lcb->cached_conn_int_max = max_conn_int;
+          p_lcb->cached_conn_latency = peripheral_latency;
+          p_lcb->cached_conn_timeout = supervision_tout;
+          p_lcb->cached_min_ce_len = 0;
+          p_lcb->cached_max_ce_len = 0;
+        }
       } else {
         l2cu_send_peer_ble_par_req(p_lcb, min_conn_int, max_conn_int,
                                    peripheral_latency, supervision_tout);
@@ -387,11 +418,24 @@ static void l2cble_start_conn_update(tL2C_LCB* p_lcb) {
               acl_peer_supports_ble_connection_parameters_request(
                   p_lcb->remote_bd_addr))
       ) {
-        btsnd_hcic_ble_upd_ll_conn_params(p_lcb->Handle(), p_lcb->min_interval,
-                                          p_lcb->max_interval, p_lcb->latency,
-                                          p_lcb->timeout, p_lcb->min_ce_len,
-                                          p_lcb->max_ce_len);
-        p_lcb->conn_update_mask |= L2C_BLE_UPDATE_PENDING;
+        if (p_lcb->read_remote_features_completed) {
+          btsnd_hcic_ble_upd_ll_conn_params(
+              p_lcb->Handle(), p_lcb->min_interval, p_lcb->max_interval,
+              p_lcb->latency, p_lcb->timeout, p_lcb->min_ce_len,
+              p_lcb->max_ce_len);
+          p_lcb->conn_update_mask |= L2C_BLE_UPDATE_PENDING;
+        } else {
+          LOG_INFO(
+              "Cache LE connection update command until LE read remote "
+              "features complete");
+          p_lcb->cached_le_connection_update_command = true;
+          p_lcb->cached_conn_int_min = p_lcb->min_interval;
+          p_lcb->cached_conn_int_max = p_lcb->max_interval;
+          p_lcb->cached_conn_latency = p_lcb->latency;
+          p_lcb->cached_conn_timeout = p_lcb->timeout;
+          p_lcb->cached_min_ce_len = p_lcb->min_ce_len;
+          p_lcb->cached_max_ce_len = p_lcb->max_ce_len;
+        }
       } else {
         l2cu_send_peer_ble_par_req(p_lcb, p_lcb->min_interval,
                                    p_lcb->max_interval, p_lcb->latency,
