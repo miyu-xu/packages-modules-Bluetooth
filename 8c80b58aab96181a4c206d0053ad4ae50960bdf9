@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "277f0641_973b3017",
+        "filename": "android/pandora/test/smp_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1929170
+      },
+      "writtenOn": "2023-03-24T20:18:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c157ef53_5f7bdf89",
+      "range": {
+        "startLine": 1,
+        "startChar": 15,
+        "endLine": 1,
+        "endChar": 16
+      },
+      "revId": "8c80b58aab96181a4c206d0053ad4ae50960bdf9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "86cbe542_5006476e",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-03-24T18:32:47Z",
       "side": 1,
       "message": "Is there no way to add a proper interface for this in bumble?",
+      "range": {
+        "startLine": 109,
+        "startChar": 8,
+        "endLine": 109,
+        "endChar": 73
+      },
+      "revId": "8c80b58aab96181a4c206d0053ad4ae50960bdf9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2fcf0afc_95bf9823",
+        "filename": "android/pandora/test/smp_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1929170
+      },
+      "writtenOn": "2023-03-24T20:18:20Z",
+      "side": 1,
+      "message": "I could not find anything in bumble. I talked to @boccongibod and they said they will add a support for this in future.",
+      "parentUuid": "86cbe542_5006476e",
       "range": {
         "startLine": 109,
         "startChar": 8,
