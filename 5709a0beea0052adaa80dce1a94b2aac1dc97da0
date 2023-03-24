@@ -70,6 +70,24 @@
       "parentUuid": "cfca1ef8_568e06f2",
       "revId": "5709a0beea0052adaa80dce1a94b2aac1dc97da0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "de7874cb_885b0b3f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-03-24T18:42:19Z",
+      "side": 1,
+      "message": "The BluetoothAdapter change was merged without issue and this change is now a no-op change.\n\nI have the [follow-up CL](https://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/2506897) that i will expect to change the boot time but I will need to investigate it more",
+      "parentUuid": "c7ff36da_4ca47a04",
+      "revId": "5709a0beea0052adaa80dce1a94b2aac1dc97da0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
