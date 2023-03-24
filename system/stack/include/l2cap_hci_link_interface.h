@@ -49,6 +49,9 @@ extern void l2cble_process_data_length_change_event(uint16_t handle,
 // Notify to L2cap layer that ACL data or remote version is received
 extern void l2cble_notify_le_connection(const RawAddress& bda);
 
+extern void l2cble_notify_le_read_remote_features_complete(
+    const RawAddress& bda);
+
 void l2cble_use_preferred_conn_params(const RawAddress& bda);
 
 extern void l2cble_process_rc_param_request_evt(uint16_t handle,

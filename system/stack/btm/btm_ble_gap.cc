@@ -3275,6 +3275,7 @@ void btm_ble_read_remote_features_complete(uint8_t* p) {
   STREAM_TO_UINT16(handle, p);
   handle = handle & 0x0FFF;  // only 12 bits meaningful
 
+  acl_ble_read_remote_features_complete(handle);
   if (status != HCI_SUCCESS) {
     if (status != HCI_ERR_UNSUPPORTED_REM_FEATURE) {
       LOG_ERROR("Failed to read remote features status:%s",

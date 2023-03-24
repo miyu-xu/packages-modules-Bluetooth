@@ -257,6 +257,8 @@ bool acl_is_role_switch_allowed();
 
 uint16_t acl_get_supported_packet_types();
 
+void acl_ble_read_remote_features_complete(uint16_t hci_handle);
+
 bool acl_set_peer_le_features_from_handle(uint16_t hci_handle,
                                           const uint8_t* p);
 

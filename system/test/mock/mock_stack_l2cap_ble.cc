@@ -52,6 +52,8 @@ struct L2CA_EnableUpdateBleConnParams L2CA_EnableUpdateBleConnParams;
 struct L2CA_ConsolidateParams L2CA_ConsolidateParams;
 struct L2CA_GetBleConnRole L2CA_GetBleConnRole;
 struct l2cble_notify_le_connection l2cble_notify_le_connection;
+struct l2cble_notify_le_read_remote_features_complete
+    l2cble_notify_le_read_remote_features_complete;
 struct l2cble_conn_comp l2cble_conn_comp;
 struct l2cble_conn_comp_from_address_with_type
     l2cble_conn_comp_from_address_with_type;
@@ -104,6 +106,11 @@ hci_role_t L2CA_GetBleConnRole(const RawAddress& bd_addr) {
 void l2cble_notify_le_connection(const RawAddress& bda) {
   inc_func_call_count(__func__);
   test::mock::stack_l2cap_ble::l2cble_notify_le_connection(bda);
+}
+void l2cble_notify_le_read_remote_features_complete(const RawAddress& bda) {
+  inc_func_call_count(__func__);
+  test::mock::stack_l2cap_ble::l2cble_notify_le_read_remote_features_complete(
+      bda);
 }
 bool l2cble_conn_comp(uint16_t handle, uint8_t role, const RawAddress& bda,
                       tBLE_ADDR_TYPE type, uint16_t conn_interval,

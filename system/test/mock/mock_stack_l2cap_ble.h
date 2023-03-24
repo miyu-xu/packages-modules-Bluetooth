@@ -108,7 +108,17 @@ struct l2cble_notify_le_connection {
   std::function<void(const RawAddress& bda)> body{[](const RawAddress& bda) {}};
   void operator()(const RawAddress& bda) { body(bda); };
 };
-extern struct l2cble_notify_le_connection l2cble_notify_le_connection;
+extern struct l2cble_notify_le_read_remote_features_complete
+    l2cble_notify_le_read_remote_features_complete;
+// Name: l2cble_notify_le_read_remote_features_complete
+// Params: const RawAddress& bda
+// Returns: void
+struct l2cble_notify_le_read_remote_features_complete {
+  std::function<void(const RawAddress& bda)> body{[](const RawAddress& bda) {}};
+  void operator()(const RawAddress& bda) { body(bda); };
+};
+extern struct l2cble_notify_le_read_remote_features_complete
+    l2cble_notify_le_read_remote_features_complete;
 // Name: l2cble_conn_comp
 // Params: uint16_t handle, uint8_t role, const RawAddress& bda, tBLE_ADDR_TYPE
 // type, uint16_t conn_interval, uint16_t conn_latency, uint16_t conn_timeout
