@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f763ef31_033d1ef9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2023-03-24T09:10:46Z",
+      "side": 1,
+      "message": "Hi Myles could you help to +1 again? The vote was removed. Thanks.",
+      "revId": "99057fb9b95f0872ba367aa8fd9d52c001086e12",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
