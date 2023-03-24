@@ -136,6 +136,13 @@ cc_library_static {
     generated_headers: [
         "LeAudioSetConfigSchemas_h",
     ],
+    target: {
+        android: {
+            whole_static_libs: [
+                "libPlatformProperties",
+            ],
+        },
+    },
     host_supported: true,
     min_sdk_version: "Tiramisu",
 }
