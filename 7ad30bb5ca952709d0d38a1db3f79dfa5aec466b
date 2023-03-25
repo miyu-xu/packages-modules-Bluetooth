@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1258d8a6_645ca0ba",
+        "filename": "system/btif/src/btif_a2dp.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-03-25T13:41:26Z",
+      "side": 1,
+      "message": "Please fix this ERROR reported by Common Typos: Common typo found: \"souce\" -- should it be \"source\"?\n\nAnalyzer Description: Linter for catching common typos motivated by go/todo-fail and go/lol-codesearch. Shared with google3 common typos library go/common-typos.\nOwner: ayeaye-team@google.com\n\nCommon typo found: \"souce\" -- should it be \"source\"?\nNote: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.",
+      "range": {
+        "startLine": 51,
+        "startChar": 47,
+        "endLine": 51,
+        "endChar": 52
+      },
+      "revId": "7ad30bb5ca952709d0d38a1db3f79dfa5aec466b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f96b118d_692f3e2b",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 564,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-03-25T13:41:26Z",
+      "side": 1,
+      "message": "__func__ is not needed in `LOG_XXX` as it is already included in the macro",
+      "range": {
+        "startLine": 564,
+        "startChar": 71,
+        "endLine": 564,
+        "endChar": 79
+      },
+      "revId": "7ad30bb5ca952709d0d38a1db3f79dfa5aec466b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
