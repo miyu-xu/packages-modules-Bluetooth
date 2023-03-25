@@ -199,6 +199,13 @@ void BTM_SetLeConnectionModeToSlow() {
 /** Adds the device into acceptlist. Returns false if acceptlist is full and
  * device can't be added, true otherwise. */
 bool BTM_AcceptlistAdd(const RawAddress& address) {
+  return BTM_AcceptlistAdd(address, false);
+}
+
+/** Adds the device into acceptlist and indicates whether to using direct
+ * connect parameters. Returns false if acceptlist is full and device can't
+ * be added, true otherwise. */
+bool BTM_AcceptlistAdd(const RawAddress& address, bool is_direct) {
   if (!controller_get_interface()->supports_ble()) {
     LOG_WARN("Controller does not support Le");
     return false;
@@ -210,8 +217,7 @@ bool BTM_AcceptlistAdd(const RawAddress& address) {
   }
 
   return bluetooth::shim::ACL_AcceptLeConnectionFrom(
-      convert_to_address_with_type(address, p_dev_rec),
-      /* is_direct */ false);
+      convert_to_address_with_type(address, p_dev_rec), is_direct);
 }
 
 /** Removes the device from acceptlist */
