@@ -96,6 +96,11 @@ bool BTM_AcceptlistAdd(const RawAddress& address) {
   inc_func_call_count(__func__);
   return test::mock::stack_btm_ble_bgconn::BTM_AcceptlistAdd(address);
 }
+bool BTM_AcceptlistAdd(const RawAddress& address, bool is_direct) {
+  inc_func_call_count(__func__);
+  return test::mock::stack_btm_ble_bgconn::BTM_AcceptlistAdd(address,
+                                                             is_direct);
+}
 void BTM_AcceptlistRemove(const RawAddress& address) {
   inc_func_call_count(__func__);
   test::mock::stack_btm_ble_bgconn::BTM_AcceptlistRemove(address);
