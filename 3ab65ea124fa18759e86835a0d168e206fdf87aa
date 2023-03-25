@@ -69,6 +69,30 @@
       },
       "revId": "3ab65ea124fa18759e86835a0d168e206fdf87aa",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c031ab59_d28b6849",
+        "filename": "system/packet/avrcp/register_notification_packet.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-03-25T00:44:01Z",
+      "side": 1,
+      "message": "Acknowledged - there is only 4 type in the attribute enum.",
+      "parentUuid": "3a814e96_4405cbdb",
+      "range": {
+        "startLine": 118,
+        "startChar": 22,
+        "endLine": 118,
+        "endChar": 42
+      },
+      "revId": "3ab65ea124fa18759e86835a0d168e206fdf87aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
