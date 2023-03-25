@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8f222c96_fdc60d76",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2023-03-25T09:07:22Z",
+      "side": 1,
+      "message": "Gentle ping. This is needed for Floss qualification. Please help review. Thanks!",
+      "revId": "bbe434d1ab7f95a1299f8e68fb65d3deb7691868",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
