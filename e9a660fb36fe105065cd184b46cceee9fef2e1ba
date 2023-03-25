@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e9ddc279_01792333",
+        "filename": "system/bta/ar/bta_ar.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1984885
+      },
+      "writtenOn": "2023-03-25T07:44:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6629a8e0_71ce5b15",
+      "range": {
+        "startLine": 55,
+        "startChar": 15,
+        "endLine": 55,
+        "endChar": 16
+      },
+      "revId": "e9a660fb36fe105065cd184b46cceee9fef2e1ba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "40cf669e_f50e9906",
@@ -94,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "76932341_d41bde2d",
+        "filename": "system/bta/ar/bta_ar.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 270,
+      "author": {
+        "id": 1984885
+      },
+      "writtenOn": "2023-03-25T07:44:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8dd863ff_0640c093",
+      "range": {
+        "startLine": 270,
+        "startChar": 5,
+        "endLine": 270,
+        "endChar": 41
+      },
+      "revId": "e9a660fb36fe105065cd184b46cceee9fef2e1ba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8d5bcfc6_8520fe15",
@@ -141,6 +189,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f9dca485_807dc8ca",
+        "filename": "system/bta/ar/bta_ar_int.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1984885
+      },
+      "writtenOn": "2023-03-25T07:44:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6a6bc534_30b7650c",
+      "range": {
+        "startLine": 47,
+        "startChar": 0,
+        "endLine": 47,
+        "endChar": 65
+      },
+      "revId": "e9a660fb36fe105065cd184b46cceee9fef2e1ba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6d460ab9_6a5bd0f5",
@@ -154,6 +226,30 @@
       "writtenOn": "2023-03-15T12:31:02Z",
       "side": 1,
       "message": "There is some format issue. Please run clang-format on the code",
+      "range": {
+        "startLine": 1177,
+        "startChar": 2,
+        "endLine": 1177,
+        "endChar": 4
+      },
+      "revId": "e9a660fb36fe105065cd184b46cceee9fef2e1ba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ae3cff08_4cb9cae1",
+        "filename": "system/bta/av/bta_av_aact.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1177,
+      "author": {
+        "id": 1984885
+      },
+      "writtenOn": "2023-03-25T07:44:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6d460ab9_6a5bd0f5",
       "range": {
         "startLine": 1177,
         "startChar": 2,
@@ -211,6 +307,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d7699bc6_07c824ab",
+        "filename": "system/bta/av/bta_av_aact.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1471,
+      "author": {
+        "id": 1984885
+      },
+      "writtenOn": "2023-03-25T07:44:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2289c47b_81a1450d",
+      "range": {
+        "startLine": 1471,
+        "startChar": 37,
+        "endLine": 1471,
+        "endChar": 69
+      },
+      "revId": "e9a660fb36fe105065cd184b46cceee9fef2e1ba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bd9c3fd5_74bf1021",
@@ -224,6 +344,30 @@
       "writtenOn": "2023-03-19T04:23:49Z",
       "side": 1,
       "message": "Can we move it inside the above is_enabled if statement.",
+      "range": {
+        "startLine": 1500,
+        "startChar": 2,
+        "endLine": 1520,
+        "endChar": 3
+      },
+      "revId": "e9a660fb36fe105065cd184b46cceee9fef2e1ba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "05dc3a35_5f71783f",
+        "filename": "system/bta/av/bta_av_aact.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1520,
+      "author": {
+        "id": 1984885
+      },
+      "writtenOn": "2023-03-25T07:44:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bd9c3fd5_74bf1021",
       "range": {
         "startLine": 1500,
         "startChar": 2,
@@ -257,6 +401,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "981b29f7_61d9897f",
+        "filename": "system/bta/av/bta_av_act.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 1984885
+      },
+      "writtenOn": "2023-03-25T07:44:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6c576236_04dff155",
+      "range": {
+        "startLine": 227,
+        "startChar": 10,
+        "endLine": 227,
+        "endChar": 19
+      },
+      "revId": "e9a660fb36fe105065cd184b46cceee9fef2e1ba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "31af69e5_724d9496",
@@ -270,6 +438,30 @@
       "writtenOn": "2023-03-15T12:31:02Z",
       "side": 1,
       "message": "We should not upstream TODO statement. Or they should reference a bug number",
+      "range": {
+        "startLine": 631,
+        "startChar": 7,
+        "endLine": 631,
+        "endChar": 21
+      },
+      "revId": "e9a660fb36fe105065cd184b46cceee9fef2e1ba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b74e2002_149fd22b",
+        "filename": "system/bta/av/bta_av_act.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 631,
+      "author": {
+        "id": 1984885
+      },
+      "writtenOn": "2023-03-25T07:44:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "31af69e5_724d9496",
       "range": {
         "startLine": 631,
         "startChar": 7,
@@ -305,6 +497,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4c8a9261_5d714937",
+        "filename": "system/bta/av/bta_av_act.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 943,
+      "author": {
+        "id": 1984885
+      },
+      "writtenOn": "2023-03-25T07:44:35Z",
+      "side": 1,
+      "message": "there is some situation such as a2dp_src_sink_coexist_is_enabled is false but only src or sink enabled, so it is necessary separate a2dp_src_sink_coexist_is_enabled  and btif_av_both_enable?",
+      "parentUuid": "5655406d_90d0c556",
+      "range": {
+        "startLine": 943,
+        "startChar": 14,
+        "endLine": 943,
+        "endChar": 33
+      },
+      "revId": "e9a660fb36fe105065cd184b46cceee9fef2e1ba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9f85d7c3_2b03d489",
         "filename": "system/bta/av/bta_av_act.cc",
         "patchSetId": 4
@@ -316,6 +532,30 @@
       "writtenOn": "2023-03-15T12:31:02Z",
       "side": 1,
       "message": "Is this a case that happen because of the src and sink coexist or is this a generic bug fix ?\nIf it is the second case, I think we should do it in a separate CL",
+      "range": {
+        "startLine": 1372,
+        "startChar": 8,
+        "endLine": 1372,
+        "endChar": 48
+      },
+      "revId": "e9a660fb36fe105065cd184b46cceee9fef2e1ba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "05d5ce93_b0772fa2",
+        "filename": "system/bta/av/bta_av_act.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1372,
+      "author": {
+        "id": 1984885
+      },
+      "writtenOn": "2023-03-25T07:44:35Z",
+      "side": 1,
+      "message": "ok, delete it right here",
+      "parentUuid": "9f85d7c3_2b03d489",
       "range": {
         "startLine": 1372,
         "startChar": 8,
@@ -349,6 +589,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "85119579_da5a46aa",
+        "filename": "system/bta/av/bta_av_act.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 2195,
+      "author": {
+        "id": 1984885
+      },
+      "writtenOn": "2023-03-25T07:44:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "57833eaf_2cb422a3",
+      "range": {
+        "startLine": 2189,
+        "startChar": 12,
+        "endLine": 2195,
+        "endChar": 51
+      },
+      "revId": "e9a660fb36fe105065cd184b46cceee9fef2e1ba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ba1450dc_de5e519a",
@@ -362,6 +626,30 @@
       "writtenOn": "2023-03-15T12:31:02Z",
       "side": 1,
       "message": "Please do not use `ToString.c_str` for address, instead use [`ADDRESS_TO_LOGGABLE_CSTR`](https://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/system/gd/os/logging/log_adapter.h;l\u003d38;drc\u003d896fe4e75dce21e8b91d6ba956a0d07121b2df50)\n\nIt adds some privacy filter (same in all the CL in the topic)",
+      "range": {
+        "startLine": 2485,
+        "startChar": 93,
+        "endLine": 2485,
+        "endChar": 101
+      },
+      "revId": "e9a660fb36fe105065cd184b46cceee9fef2e1ba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "42e4269c_0263e39e",
+        "filename": "system/bta/av/bta_av_act.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 2485,
+      "author": {
+        "id": 1984885
+      },
+      "writtenOn": "2023-03-25T07:44:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ba1450dc_de5e519a",
       "range": {
         "startLine": 2485,
         "startChar": 93,
@@ -395,6 +683,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ffa13c16_4ba28378",
+        "filename": "system/bta/av/bta_av_api.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 658,
+      "author": {
+        "id": 1984885
+      },
+      "writtenOn": "2023-03-25T07:44:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fb121321_3efdacab",
+      "range": {
+        "startLine": 658,
+        "startChar": 5,
+        "endLine": 658,
+        "endChar": 21
+      },
+      "revId": "e9a660fb36fe105065cd184b46cceee9fef2e1ba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2dc5b8dc_a64b731d",
@@ -408,6 +720,30 @@
       "writtenOn": "2023-03-15T12:31:02Z",
       "side": 1,
       "message": "The last field of BT_HDR is a flexible array length `data[]`\nThat mean that BT_HDR must be the last field of structure.\n\n\nIf you do not need to use the `data`, you can replace BT_HDR with [BT_HDR_RIGID](https://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/system/stack/include/bt_hdr.h;l\u003d35;drc\u003dda92e07730502566a44a8bb53ccb0bbeefcc4a77)",
+      "range": {
+        "startLine": 446,
+        "startChar": 2,
+        "endLine": 446,
+        "endChar": 8
+      },
+      "revId": "e9a660fb36fe105065cd184b46cceee9fef2e1ba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1dea038f_225ed461",
+        "filename": "system/bta/av/bta_av_int.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 446,
+      "author": {
+        "id": 1984885
+      },
+      "writtenOn": "2023-03-25T07:44:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2dc5b8dc_a64b731d",
       "range": {
         "startLine": 446,
         "startChar": 2,
@@ -441,6 +777,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1108f847_86f1bef6",
+        "filename": "system/bta/av/bta_av_main.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1984885
+      },
+      "writtenOn": "2023-03-25T07:44:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a6685a9d_4f37fc6d",
+      "range": {
+        "startLine": 133,
+        "startChar": 0,
+        "endLine": 133,
+        "endChar": 34
+      },
+      "revId": "e9a660fb36fe105065cd184b46cceee9fef2e1ba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4fc32fb9_c00c865f",
@@ -454,6 +814,30 @@
       "writtenOn": "2023-03-19T04:23:49Z",
       "side": 1,
       "message": "nit: p_scb \u003d\u003d nullptr",
+      "range": {
+        "startLine": 507,
+        "startChar": 10,
+        "endLine": 507,
+        "endChar": 26
+      },
+      "revId": "e9a660fb36fe105065cd184b46cceee9fef2e1ba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b2452754_7263d795",
+        "filename": "system/bta/av/bta_av_main.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 507,
+      "author": {
+        "id": 1984885
+      },
+      "writtenOn": "2023-03-25T07:44:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4fc32fb9_c00c865f",
       "range": {
         "startLine": 507,
         "startChar": 10,
@@ -511,6 +895,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4917985a_c838a974",
+        "filename": "system/bta/av/bta_av_main.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 511,
+      "author": {
+        "id": 1984885
+      },
+      "writtenOn": "2023-03-25T07:44:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a9267ab9_8bcc1f9d",
+      "range": {
+        "startLine": 507,
+        "startChar": 6,
+        "endLine": 511,
+        "endChar": 5
+      },
+      "revId": "e9a660fb36fe105065cd184b46cceee9fef2e1ba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "81fa8593_a66483c4",
@@ -524,6 +932,30 @@
       "writtenOn": "2023-03-19T04:23:49Z",
       "side": 1,
       "message": "Could you add documentation for this.",
+      "range": {
+        "startLine": 137,
+        "startChar": 12,
+        "endLine": 137,
+        "endChar": 48
+      },
+      "revId": "e9a660fb36fe105065cd184b46cceee9fef2e1ba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6ede2300_caece12f",
+        "filename": "system/bta/include/bta_ar_api.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1984885
+      },
+      "writtenOn": "2023-03-25T07:44:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "81fa8593_a66483c4",
       "range": {
         "startLine": 137,
         "startChar": 12,
