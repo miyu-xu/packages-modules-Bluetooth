@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "73185394_de34afd8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2023-03-25T09:11:14Z",
+      "side": 1,
+      "message": "This is an alternative solution for crrev/c/2319752, they are both required to pass some cert tests. Please help determine which one is better. Thanks.",
+      "revId": "925ebe4cc9cbddcfbc7dd9d24a0889cfca0e6cef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
