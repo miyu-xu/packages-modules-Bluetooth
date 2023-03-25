@@ -464,7 +464,7 @@ void wl_direct_connect_timeout_cb(uint8_t app_id, const RawAddress& address) {
   direct_connect_remove(app_id, address);
 }
 
-/** Add a device to the direcgt connection list.  Returns true if device
+/** Add a device to the direct connection list. Returns true if device
  * added to the list, false otherwise */
 bool direct_connect_add(uint8_t app_id, const RawAddress& address) {
   LOG_DEBUG("app_id=%d, address=%s", static_cast<int>(app_id),
@@ -494,7 +494,7 @@ bool direct_connect_add(uint8_t app_id, const RawAddress& address) {
   bool params_changed = BTM_SetLeConnectionModeToFast();
 
   if (!in_acceptlist) {
-    if (!BTM_AcceptlistAdd(address)) {
+    if (!BTM_AcceptlistAdd(address, true)) {
       // if we can't add to acceptlist, turn parameters back to slow.
       LOG_WARN("Unable to add le device to acceptlist");
       if (params_changed) BTM_SetLeConnectionModeToSlow();
