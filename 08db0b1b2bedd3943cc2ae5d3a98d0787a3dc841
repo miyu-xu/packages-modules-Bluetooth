@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1a579ec9_fc29943a",
+        "filename": "android/pandora/test/asha_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1952952
+      },
+      "writtenOn": "2023-03-25T06:39:11Z",
+      "side": 1,
+      "message": "It\u0027s ok for me as well, @yuyangh@google.com please let me know if you have any concerns!",
+      "parentUuid": "7c9a381a_f8cda066",
+      "range": {
+        "startLine": 58,
+        "startChar": 8,
+        "endLine": 58,
+        "endChar": 16
+      },
+      "revId": "08db0b1b2bedd3943cc2ae5d3a98d0787a3dc841",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e213963a_988346df",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a02e67c1_7061e62d",
+        "filename": "android/pandora/test/asha_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1952952
+      },
+      "writtenOn": "2023-03-25T06:39:11Z",
+      "side": 1,
+      "message": "no worries, thanks for the information!",
+      "parentUuid": "e213963a_988346df",
+      "range": {
+        "startLine": 109,
+        "startChar": 4,
+        "endLine": 110,
+        "endChar": 94
+      },
+      "revId": "08db0b1b2bedd3943cc2ae5d3a98d0787a3dc841",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e3f3b8a0_0a27d648",
@@ -60,6 +108,30 @@
       "writtenOn": "2023-03-24T15:35:04Z",
       "side": 1,
       "message": "I suggest to refactor the following by:\n- remove `advertise_and_connect` helper function\n- advertise both devices\n- connect to both devices\nI think it would be as clear and will avoid the addition of another helper function.",
+      "range": {
+        "startLine": 407,
+        "startChar": 42,
+        "endLine": 407,
+        "endChar": 63
+      },
+      "revId": "08db0b1b2bedd3943cc2ae5d3a98d0787a3dc841",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9be675a7_9df19d82",
+        "filename": "android/pandora/test/asha_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 407,
+      "author": {
+        "id": 1952952
+      },
+      "writtenOn": "2023-03-25T06:39:11Z",
+      "side": 1,
+      "message": "sounds good to me!",
+      "parentUuid": "e3f3b8a0_0a27d648",
       "range": {
         "startLine": 407,
         "startChar": 42,
