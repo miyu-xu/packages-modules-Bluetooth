@@ -73,6 +73,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b3c77b55_059f5da8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1943896
+      },
+      "writtenOn": "2023-03-25T04:19:52Z",
+      "side": 1,
+      "message": "Yes. You are right. this problem occured because of asymmetry about uhid fd\nI think your provided proposal is a good solution.\nDo you provide a change list to resolve this issue?",
+      "parentUuid": "1fca0a7d_26c037c1",
+      "revId": "7a5a967b1fdb20fd93ded8c7e668fdc7a944629e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0d7fe01b_60e74b23",
         "filename": "system/btif/co/bta_hh_co.cc",
         "patchSetId": 8
