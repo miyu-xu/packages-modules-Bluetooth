@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3b52c2ab_07795824",
+        "filename": "system/btif/avrcp/avrcp_service.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 581,
+      "author": {
+        "id": 1984885
+      },
+      "writtenOn": "2023-03-25T07:36:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0c035dd3_2f86f391",
+      "range": {
+        "startLine": 581,
+        "startChar": 31,
+        "endLine": 581,
+        "endChar": 46
+      },
+      "revId": "071498ed627cdb440a82380f3a904fa4fd38d40a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0e388302_0c1cbf3d",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-03-19T05:17:00Z",
       "side": 1,
       "message": "I am not sure if this belongs here considering the new function added is down below.",
+      "range": {
+        "startLine": 94,
+        "startChar": 0,
+        "endLine": 94,
+        "endChar": 63
+      },
+      "revId": "071498ed627cdb440a82380f3a904fa4fd38d40a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e504ba9c_19b6280f",
+        "filename": "system/btif/include/btif_av.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1984885
+      },
+      "writtenOn": "2023-03-25T07:36:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0e388302_0c1cbf3d",
       "range": {
         "startLine": 94,
         "startChar": 0,
@@ -72,6 +120,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ec262565_349c16b6",
+        "filename": "system/btif/include/btif_av.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 244,
+      "author": {
+        "id": 1984885
+      },
+      "writtenOn": "2023-03-25T07:36:59Z",
+      "side": 1,
+      "message": "teh two funx is differnet purpose, so i change the other func name ro btif_active_av_is_connected",
+      "parentUuid": "120d46d6_f6c3b58a",
+      "range": {
+        "startLine": 244,
+        "startChar": 5,
+        "endLine": 244,
+        "endChar": 25
+      },
+      "revId": "071498ed627cdb440a82380f3a904fa4fd38d40a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5f8a7abf_2eb18942",
         "filename": "system/btif/src/btif_a2dp.cc",
         "patchSetId": 4
@@ -83,6 +155,30 @@
       "writtenOn": "2023-03-15T14:05:36Z",
       "side": 1,
       "message": "`__func__` is not needed in `LOG_XXX()` macro has it is already included in it",
+      "range": {
+        "startLine": 46,
+        "startChar": 52,
+        "endLine": 46,
+        "endChar": 60
+      },
+      "revId": "071498ed627cdb440a82380f3a904fa4fd38d40a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ad532857_70cce3e3",
+        "filename": "system/btif/src/btif_a2dp.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1984885
+      },
+      "writtenOn": "2023-03-25T07:36:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5f8a7abf_2eb18942",
       "range": {
         "startLine": 46,
         "startChar": 52,
@@ -116,6 +212,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "df914d32_22597ce2",
+        "filename": "system/btif/src/btif_a2dp.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1984885
+      },
+      "writtenOn": "2023-03-25T07:36:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8510a19d_716a190f",
+      "range": {
+        "startLine": 46,
+        "startChar": 4,
+        "endLine": 52,
+        "endChar": 5
+      },
+      "revId": "071498ed627cdb440a82380f3a904fa4fd38d40a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0696f094_1a24eeb8",
@@ -129,6 +249,30 @@
       "writtenOn": "2023-03-19T05:17:00Z",
       "side": 1,
       "message": "nit: Instead of an if else block we can just return at the end of the if block.",
+      "range": {
+        "startLine": 53,
+        "startChar": 4,
+        "endLine": 53,
+        "endChar": 10
+      },
+      "revId": "071498ed627cdb440a82380f3a904fa4fd38d40a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "591af15a_4d390567",
+        "filename": "system/btif/src/btif_a2dp.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1984885
+      },
+      "writtenOn": "2023-03-25T07:36:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0696f094_1a24eeb8",
       "range": {
         "startLine": 53,
         "startChar": 4,
@@ -164,6 +308,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "43feb6c8_a009cb8c",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 415,
+      "author": {
+        "id": 1984885
+      },
+      "writtenOn": "2023-03-25T07:36:59Z",
+      "side": 1,
+      "message": "sorry for lefting out some code snippets earlier in btif_av_handle_both_peer， invalid_peer_check_  will set to true in btif_av_handle_both_peer",
+      "parentUuid": "04b88517_179ca379",
+      "range": {
+        "startLine": 415,
+        "startChar": 0,
+        "endLine": 415,
+        "endChar": 97
+      },
+      "revId": "071498ed627cdb440a82380f3a904fa4fd38d40a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "df51bc4c_0f07ac59",
         "filename": "system/btif/src/btif_av.cc",
         "patchSetId": 4
@@ -175,6 +343,30 @@
       "writtenOn": "2023-03-19T05:17:00Z",
       "side": 1,
       "message": "lets prefer using LOG_WARN here (or LOG_XXX for any newly added logs)",
+      "range": {
+        "startLine": 574,
+        "startChar": 8,
+        "endLine": 574,
+        "endChar": 32
+      },
+      "revId": "071498ed627cdb440a82380f3a904fa4fd38d40a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "628f488c_d9a3ed71",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 574,
+      "author": {
+        "id": 1984885
+      },
+      "writtenOn": "2023-03-25T07:36:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "df51bc4c_0f07ac59",
       "range": {
         "startLine": 574,
         "startChar": 8,
@@ -198,6 +390,30 @@
       "writtenOn": "2023-03-19T05:17:00Z",
       "side": 1,
       "message": "nit: peer \u003d\u003d nullptr",
+      "range": {
+        "startLine": 894,
+        "startChar": 8,
+        "endLine": 894,
+        "endChar": 23
+      },
+      "revId": "071498ed627cdb440a82380f3a904fa4fd38d40a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "68eef340_22c55ff4",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 894,
+      "author": {
+        "id": 1984885
+      },
+      "writtenOn": "2023-03-25T07:36:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b2057154_633caeba",
       "range": {
         "startLine": 894,
         "startChar": 8,
@@ -233,6 +449,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "57a04080_673f9c1f",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1172,
+      "author": {
+        "id": 1984885
+      },
+      "writtenOn": "2023-03-25T07:36:59Z",
+      "side": 1,
+      "message": "this lock is aim to protect btif_av_source.peer(), it is possible handle it in diffrent thread",
+      "parentUuid": "a54e86f1_41e9480b",
+      "range": {
+        "startLine": 1172,
+        "startChar": 47,
+        "endLine": 1172,
+        "endChar": 70
+      },
+      "revId": "071498ed627cdb440a82380f3a904fa4fd38d40a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1548f35f_1ecb851d",
         "filename": "system/btif/src/btif_av.cc",
         "patchSetId": 4
@@ -244,6 +484,30 @@
       "writtenOn": "2023-03-15T14:05:36Z",
       "side": 1,
       "message": "I understand the code is doing a pop and not a peak",
+      "range": {
+        "startLine": 1443,
+        "startChar": 26,
+        "endLine": 1443,
+        "endChar": 34
+      },
+      "revId": "071498ed627cdb440a82380f3a904fa4fd38d40a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "be2f3fa4_aa9a9cb8",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1443,
+      "author": {
+        "id": 1984885
+      },
+      "writtenOn": "2023-03-25T07:36:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1548f35f_1ecb851d",
       "range": {
         "startLine": 1443,
         "startChar": 26,
@@ -301,6 +565,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "368c9f29_46ec801e",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1626,
+      "author": {
+        "id": 1984885
+      },
+      "writtenOn": "2023-03-25T07:36:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "147bdc9d_35255201",
+      "range": {
+        "startLine": 1626,
+        "startChar": 11,
+        "endLine": 1626,
+        "endChar": 30
+      },
+      "revId": "071498ed627cdb440a82380f3a904fa4fd38d40a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "34cb7fe3_642c3f9b",
@@ -348,6 +636,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d52e90d0_becc46a2",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1633,
+      "author": {
+        "id": 1984885
+      },
+      "writtenOn": "2023-03-25T07:36:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "beda330b_e464fbe7",
+      "range": {
+        "startLine": 1629,
+        "startChar": 4,
+        "endLine": 1633,
+        "endChar": 5
+      },
+      "revId": "071498ed627cdb440a82380f3a904fa4fd38d40a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "eaf5a6db_c89622b8",
@@ -371,6 +683,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0109ae68_90f8f6cd",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1709,
+      "author": {
+        "id": 1984885
+      },
+      "writtenOn": "2023-03-25T07:36:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "eaf5a6db_c89622b8",
+      "range": {
+        "startLine": 1709,
+        "startChar": 24,
+        "endLine": 1709,
+        "endChar": 32
+      },
+      "revId": "071498ed627cdb440a82380f3a904fa4fd38d40a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6e9d3387_6a63c762",
@@ -384,6 +720,30 @@
       "writtenOn": "2023-03-15T14:05:36Z",
       "side": 1,
       "message": "remove comment",
+      "range": {
+        "startLine": 3052,
+        "startChar": 0,
+        "endLine": 3052,
+        "endChar": 53
+      },
+      "revId": "071498ed627cdb440a82380f3a904fa4fd38d40a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9ac3b3df_351c7bc8",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 3052,
+      "author": {
+        "id": 1984885
+      },
+      "writtenOn": "2023-03-25T07:36:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6e9d3387_6a63c762",
       "range": {
         "startLine": 3052,
         "startChar": 0,
@@ -419,6 +779,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7dbae21c_c93ae777",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 3169,
+      "author": {
+        "id": 1984885
+      },
+      "writtenOn": "2023-03-25T07:36:59Z",
+      "side": 1,
+      "message": "peer_sep is possible equal to invalid sep",
+      "parentUuid": "95c6dc7c_8e822462",
+      "range": {
+        "startLine": 3169,
+        "startChar": 19,
+        "endLine": 3169,
+        "endChar": 43
+      },
+      "revId": "071498ed627cdb440a82380f3a904fa4fd38d40a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "aa105034_c34938cb",
         "filename": "system/btif/src/btif_av.cc",
         "patchSetId": 4
@@ -430,6 +814,30 @@
       "writtenOn": "2023-03-19T05:17:00Z",
       "side": 1,
       "message": "nit: btif_av_both_enable()",
+      "range": {
+        "startLine": 3473,
+        "startChar": 6,
+        "endLine": 3473,
+        "endChar": 35
+      },
+      "revId": "071498ed627cdb440a82380f3a904fa4fd38d40a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b50ad689_3444eaa0",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 3473,
+      "author": {
+        "id": 1984885
+      },
+      "writtenOn": "2023-03-25T07:36:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "aa105034_c34938cb",
       "range": {
         "startLine": 3473,
         "startChar": 6,
@@ -463,6 +871,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "68e80806_792707f1",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 3481,
+      "author": {
+        "id": 1984885
+      },
+      "writtenOn": "2023-03-25T07:36:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0721844a_cc9b68c4",
+      "range": {
+        "startLine": 3481,
+        "startChar": 6,
+        "endLine": 3481,
+        "endChar": 40
+      },
+      "revId": "071498ed627cdb440a82380f3a904fa4fd38d40a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6224dbd1_76d99564",
@@ -476,6 +908,30 @@
       "writtenOn": "2023-03-19T05:17:00Z",
       "side": 1,
       "message": "nit: peer !\u003d nullptr",
+      "range": {
+        "startLine": 4181,
+        "startChar": 8,
+        "endLine": 4181,
+        "endChar": 23
+      },
+      "revId": "071498ed627cdb440a82380f3a904fa4fd38d40a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2e12e22f_b5d16b2f",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 4181,
+      "author": {
+        "id": 1984885
+      },
+      "writtenOn": "2023-03-25T07:36:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6224dbd1_76d99564",
       "range": {
         "startLine": 4181,
         "startChar": 8,
@@ -509,6 +965,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "88698ac6_924a943f",
+        "filename": "system/btif/src/btif_rc.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 3466,
+      "author": {
+        "id": 1984885
+      },
+      "writtenOn": "2023-03-25T07:36:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "613caa98_9912d50f",
+      "range": {
+        "startLine": 3466,
+        "startChar": 36,
+        "endLine": 3466,
+        "endChar": 40
+      },
+      "revId": "071498ed627cdb440a82380f3a904fa4fd38d40a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "16e7cc98_ea682400",
@@ -522,6 +1002,30 @@
       "writtenOn": "2023-03-15T14:05:36Z",
       "side": 1,
       "message": "remove comment",
+      "range": {
+        "startLine": 42,
+        "startChar": 32,
+        "endLine": 42,
+        "endChar": 55
+      },
+      "revId": "071498ed627cdb440a82380f3a904fa4fd38d40a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9f020c6f_6adb47e5",
+        "filename": "system/btif/test/btif_rc_test.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1984885
+      },
+      "writtenOn": "2023-03-25T07:36:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "16e7cc98_ea682400",
       "range": {
         "startLine": 42,
         "startChar": 32,
