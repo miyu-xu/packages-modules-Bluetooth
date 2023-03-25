@@ -45,6 +45,7 @@ int get_pts_l2cap_ecoc_initial_chan_cnt(void) { return -1; }
 bool get_pts_l2cap_ecoc_connect_remaining(void) { return false; }
 int get_pts_l2cap_ecoc_send_num_of_sdu(void) { return -1; }
 bool get_pts_l2cap_ecoc_reconfigure(void) { return false; }
+const std::string* get_pts_l2cap_etm_mode(void) { return NULL; }
 const std::string* get_pts_broadcast_audio_config_options(void) {
   return &kBroadcastAudioConfigOptions;
 }
@@ -81,6 +82,7 @@ stack_config_t mock_stack_config{
         get_pts_l2cap_ecoc_connect_remaining,
     .get_pts_l2cap_ecoc_send_num_of_sdu = get_pts_l2cap_ecoc_send_num_of_sdu,
     .get_pts_l2cap_ecoc_reconfigure = get_pts_l2cap_ecoc_reconfigure,
+    .get_pts_l2cap_etm_mode = get_pts_l2cap_etm_mode,
     .get_pts_broadcast_audio_config_options =
         get_pts_broadcast_audio_config_options,
     .get_pts_le_audio_disable_ases_before_stopping =

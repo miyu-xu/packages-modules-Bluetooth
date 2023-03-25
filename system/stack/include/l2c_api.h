@@ -116,6 +116,7 @@ typedef uint8_t tL2CAP_CHNL_DATA_RATE;
 typedef struct {
 #define L2CAP_FCR_BASIC_MODE 0x00
 #define L2CAP_FCR_ERTM_MODE 0x03
+#define L2CAP_FCR_STREAMING_MODE 0x04
 #define L2CAP_FCR_LE_COC_MODE 0x05
 
   uint8_t mode;
@@ -128,7 +129,7 @@ typedef struct {
 } tL2CAP_FCR_OPTS;
 
 /* default options for ERTM mode */
-constexpr tL2CAP_FCR_OPTS kDefaultErtmOptions = {
+tL2CAP_FCR_OPTS kDefaultFcrOptions = {
     L2CAP_FCR_ERTM_MODE,
     10,    /* Tx window size */
     20,    /* Maximum transmissions before disconnecting */

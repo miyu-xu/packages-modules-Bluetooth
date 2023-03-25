@@ -76,7 +76,7 @@ static void l2c_csm_send_config_req(tL2C_CCB* p_ccb) {
   p_ccb->max_rx_mtu = config.mtu;
   if (p_ccb->p_rcb->ertm_info.preferred_mode != L2CAP_FCR_BASIC_MODE) {
     config.fcr_present = true;
-    config.fcr = kDefaultErtmOptions;
+    config.fcr = kDefaultFcrOptions;
   }
   p_ccb->our_cfg = config;
   l2c_csm_execute(p_ccb, L2CEVT_L2CA_CONFIG_REQ, &config);

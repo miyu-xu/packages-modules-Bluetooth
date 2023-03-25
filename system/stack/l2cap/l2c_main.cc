@@ -37,6 +37,7 @@
 #include "stack/include/l2c_api.h"
 #include "stack/include/l2cdefs.h"
 #include "stack/l2cap/l2c_int.h"
+#include "stack_config.h"
 
 /******************************************************************************/
 /*            L O C A L    F U N C T I O N     P R O T O T Y P E S            */
@@ -807,6 +808,19 @@ static void process_l2cap_cmd(tL2C_LCB* p_lcb, uint8_t* p, uint16_t pkt_len) {
   }
 }
 
+static uint8_t mode_string_to_val(const std::string* mode_str) {
+  if (mode_str->compare("BASIC") == 0) {
+    return L2CAP_FCR_BASIC_MODE;
+  } else if (mode_str->compare("ERTM") == 0) {
+    return L2CAP_FCR_ERTM_MODE;
+  } else if (mode_str->compare("STREAMING") == 0) {
+    return L2CAP_FCR_STREAMING_MODE;
+  } else {
+    LOG_WARN("Unrecognized mode: '%s'. Fall back to ERTM mode");
+    return L2CAP_FCR_ERTM_MODE;
+  }
+}
+
 /*******************************************************************************
  *
  * Function         l2c_init
@@ -860,6 +874,13 @@ void l2c_init(void) {
   l2cb.l2c_ble_fixed_chnls_mask = L2CAP_FIXED_CHNL_ATT_BIT |
                                   L2CAP_FIXED_CHNL_BLE_SIG_BIT |
                                   L2CAP_FIXED_CHNL_SMP_BIT;
+
+  const std::string* pts_default_mode =
+      stack_config_get_interface()->get_pts_l2cap_etm_mode();
+
+  if (pts_default_mode != NULL) {
+    kDefaultFcrOptions.mode = mode_string_to_val(pts_default_mode);
+  }
 }
 
 void l2c_free(void) {

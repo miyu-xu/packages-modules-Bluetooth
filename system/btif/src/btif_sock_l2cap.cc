@@ -38,6 +38,7 @@
 #include "stack/btm/security_device_record.h"
 #include "stack/include/bt_hdr.h"
 #include "stack/include/bt_types.h"
+#include "stack_config.h"
 #include "types/raw_address.h"
 
 struct packet {
@@ -757,10 +758,11 @@ static void btsock_l2cap_server_listen(l2cap_socket* sock) {
 
   /* Setup ETM settings: mtu will be set below */
   std::unique_ptr<tL2CAP_CFG_INFO> cfg = std::make_unique<tL2CAP_CFG_INFO>(
-      tL2CAP_CFG_INFO{.fcr_present = true, .fcr = kDefaultErtmOptions});
+      tL2CAP_CFG_INFO{.fcr_present = true, .fcr = kDefaultFcrOptions});
 
   std::unique_ptr<tL2CAP_ERTM_INFO> ertm_info;
-  if (!sock->is_le_coc) {
+  if (stack_config_get_interface()->get_pts_l2cap_etm_mode() == NULL &&
+      !sock->is_le_coc) {
     ertm_info.reset(new tL2CAP_ERTM_INFO(obex_l2c_etm_opt));
   }
 
@@ -805,11 +807,12 @@ static bt_status_t btsock_l2cap_listen_or_connect(const char* name,
 
       /* Setup ETM settings: mtu will be set below */
       std::unique_ptr<tL2CAP_CFG_INFO> cfg = std::make_unique<tL2CAP_CFG_INFO>(
-          tL2CAP_CFG_INFO{.fcr_present = true, .fcr = kDefaultErtmOptions});
+          tL2CAP_CFG_INFO{.fcr_present = true, .fcr = kDefaultFcrOptions});
 
       std::unique_ptr<tL2CAP_ERTM_INFO> ertm_info;
-      if (!sock->is_le_coc) {
-        ertm_info.reset(new tL2CAP_ERTM_INFO(obex_l2c_etm_opt));
+      if (stack_config_get_interface()->get_pts_l2cap_etm_mode() == NULL &&
+          !sock->is_le_coc) {
+      ertm_info.reset(new tL2CAP_ERTM_INFO(obex_l2c_etm_opt));
       }
 
       BTA_JvL2capConnect(
