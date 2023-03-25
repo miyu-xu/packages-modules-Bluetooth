@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "11b47c45_cb53606b",
+        "filename": "system/stack/avct/avct_bcb_act.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 513,
+      "author": {
+        "id": 1984885
+      },
+      "writtenOn": "2023-03-25T07:28:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "96b1210e_96af647d",
+      "range": {
+        "startLine": 513,
+        "startChar": 0,
+        "endLine": 513,
+        "endChar": 12
+      },
+      "revId": "0bf61452e30eb6b50fe72624c0b654af09d0b05f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "61c1230b_9415636d",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-03-15T16:45:04Z",
       "side": 1,
       "message": "According to line 531, `p_data-\u003ep_buf` is never null. Can you remove this if ? It confused me since I was thinking p_bak_buf could be null in the next forloop but it is not the case",
+      "range": {
+        "startLine": 561,
+        "startChar": 0,
+        "endLine": 561,
+        "endChar": 24
+      },
+      "revId": "0bf61452e30eb6b50fe72624c0b654af09d0b05f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fc90eb93_aecd2e85",
+        "filename": "system/stack/avct/avct_bcb_act.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 561,
+      "author": {
+        "id": 1984885
+      },
+      "writtenOn": "2023-03-25T07:28:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "61c1230b_9415636d",
       "range": {
         "startLine": 561,
         "startChar": 0,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "63824aac_42c78ee9",
+        "filename": "system/stack/avct/avct_bcb_act.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 580,
+      "author": {
+        "id": 1984885
+      },
+      "writtenOn": "2023-03-25T07:28:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0a4aa201_5a7c6c8c",
+      "range": {
+        "startLine": 577,
+        "startChar": 10,
+        "endLine": 580,
+        "endChar": 46
+      },
+      "revId": "0bf61452e30eb6b50fe72624c0b654af09d0b05f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b541d665_38af6f29",
@@ -93,6 +165,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5431c5d7_d75a8760",
+        "filename": "system/stack/avct/avct_lcb_act.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 244,
+      "author": {
+        "id": 1984885
+      },
+      "writtenOn": "2023-03-25T07:28:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b541d665_38af6f29",
+      "range": {
+        "startLine": 244,
+        "startChar": 24,
+        "endLine": 244,
+        "endChar": 37
+      },
+      "revId": "0bf61452e30eb6b50fe72624c0b654af09d0b05f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "30d9a3de_882910f9",
@@ -106,6 +202,30 @@
       "writtenOn": "2023-03-15T16:45:04Z",
       "side": 1,
       "message": "Can you put all this in a function since this is exactly the same code as in `avct_bcb_msg_ind`",
+      "range": {
+        "startLine": 680,
+        "startChar": 4,
+        "endLine": 707,
+        "endChar": 22
+      },
+      "revId": "0bf61452e30eb6b50fe72624c0b654af09d0b05f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b7749f53_a6b82028",
+        "filename": "system/stack/avct/avct_lcb_act.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 707,
+      "author": {
+        "id": 1984885
+      },
+      "writtenOn": "2023-03-25T07:28:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "30d9a3de_882910f9",
       "range": {
         "startLine": 680,
         "startChar": 4,
