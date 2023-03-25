@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b8f71163_6b03e24e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-03-25T13:53:16Z",
+      "side": 1,
+      "message": "Can you run clang-format on all the CL in this topic ?",
+      "revId": "cbda86a97930077a4210aca517095e4cfb9024fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c2907dca_5a3d9135",
+        "filename": "system/bta/av/bta_av_aact.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 1480,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-03-25T13:53:16Z",
+      "side": 1,
+      "message": "Always true. If is not needed since we are already in the same check",
+      "range": {
+        "startLine": 1480,
+        "startChar": 0,
+        "endLine": 1480,
+        "endChar": 85
+      },
+      "revId": "cbda86a97930077a4210aca517095e4cfb9024fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "91e2850a_b8ab32fa",
+        "filename": "system/bta/av/bta_av_act.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 2176,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-03-25T13:53:16Z",
+      "side": 1,
+      "message": "Can you do the instantiation with the brace here too ?",
+      "range": {
+        "startLine": 2170,
+        "startChar": 11,
+        "endLine": 2176,
+        "endChar": 51
+      },
+      "revId": "cbda86a97930077a4210aca517095e4cfb9024fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1ce3695c_58742574",
+        "filename": "system/bta/av/bta_av_act.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 2190,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-03-25T13:53:16Z",
+      "side": 1,
+      "message": "you do not need to explicitly set them to 0 with brace-name initialization (by default all non declared field are set to 0.",
+      "range": {
+        "startLine": 2189,
+        "startChar": 1,
+        "endLine": 2190,
+        "endChar": 29
+      },
+      "revId": "cbda86a97930077a4210aca517095e4cfb9024fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a59f3559_8d2d1a1b",
+        "filename": "system/bta/av/bta_av_act.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 2491,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-03-25T13:53:16Z",
+      "side": 1,
+      "message": "Can we simplify with `p_cb-\u003erc_feat \u003d {}` ?",
+      "range": {
+        "startLine": 2487,
+        "startChar": 6,
+        "endLine": 2491,
+        "endChar": 51
+      },
+      "revId": "cbda86a97930077a4210aca517095e4cfb9024fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
