@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "47f51656_143184ac",
+        "filename": "system/profile/avrcp/connection_handler.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 1984885
+      },
+      "writtenOn": "2023-03-25T07:26:11Z",
+      "side": 1,
+      "message": "ok，remove it right here",
+      "parentUuid": "8733f467_598fb804",
+      "range": {
+        "startLine": 184,
+        "startChar": 0,
+        "endLine": 184,
+        "endChar": 24
+      },
+      "revId": "a74a0d0becdc77b56fa0beece970db916434366b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c26ed5d9_80f03bba",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bf261799_08a7da57",
+        "filename": "system/profile/avrcp/connection_handler.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 472,
+      "author": {
+        "id": 1984885
+      },
+      "writtenOn": "2023-03-25T07:26:11Z",
+      "side": 1,
+      "message": "remove it",
+      "parentUuid": "c26ed5d9_80f03bba",
+      "range": {
+        "startLine": 472,
+        "startChar": 49,
+        "endLine": 472,
+        "endChar": 62
+      },
+      "revId": "a74a0d0becdc77b56fa0beece970db916434366b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0f6d4af6_360db634",
@@ -60,6 +108,30 @@
       "writtenOn": "2023-03-15T16:50:18Z",
       "side": 1,
       "message": "A few line above you are checking for it-\u003esecond before returning a list and here we are not.\n\nIf the check is needed it should be added here as well, if it is not needed, we should removed it",
+      "range": {
+        "startLine": 655,
+        "startChar": 22,
+        "endLine": 655,
+        "endChar": 28
+      },
+      "revId": "a74a0d0becdc77b56fa0beece970db916434366b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "73e748ab_d18fa867",
+        "filename": "system/profile/avrcp/connection_handler.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 655,
+      "author": {
+        "id": 1984885
+      },
+      "writtenOn": "2023-03-25T07:26:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0f6d4af6_360db634",
       "range": {
         "startLine": 655,
         "startChar": 22,
