@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+#pragma once
+
 #include "common/contextual_callback.h"
 #include "hci/controller.h"
 #include "hci/hci_layer.h"
