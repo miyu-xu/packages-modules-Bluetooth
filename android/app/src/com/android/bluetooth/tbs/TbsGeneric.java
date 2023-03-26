@@ -1112,7 +1112,7 @@ public class TbsGeneric {
             Log.w(TAG, "mLeAudioService not available");
             return;
         }
-        mLeAudioService.setActiveDevice(device);
+        mLeAudioService.setActiveDevice(device, false);
     }
 
     private static boolean isCallStateTransitionValid(int callState, int requestedOpcode) {

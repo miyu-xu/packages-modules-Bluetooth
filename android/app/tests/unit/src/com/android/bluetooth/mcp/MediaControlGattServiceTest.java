@@ -39,7 +39,6 @@ import com.android.bluetooth.le_audio.LeAudioService;
 
 import org.junit.After;
 import org.junit.Assert;
-import org.junit.Assume;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -943,7 +942,7 @@ public class MediaControlGattServiceTest {
         mMcpService.updateSupportedOpcodesChar(Request.SupportedOpcodes.PLAY, true);
         verifyMediaControlPointRequest(service, Request.Opcodes.PLAY, null,
                 BluetoothGatt.GATT_SUCCESS, 1);
-        verify(mMockLeAudioService).setActiveDevice(any(BluetoothDevice.class));
+        verify(mMockLeAudioService).setActiveDevice(any(BluetoothDevice.class), eq(false));
     }
 
     @Test

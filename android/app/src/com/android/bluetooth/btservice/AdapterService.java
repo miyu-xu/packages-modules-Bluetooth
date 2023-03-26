@@ -5311,7 +5311,7 @@ public class AdapterService extends Service {
                 || mLeAudioService.getConnectionPolicy(device)
                 == BluetoothProfile.CONNECTION_POLICY_ALLOWED)) {
             Log.i(TAG, "setActiveDevice: Setting active Le Audio device " + device);
-            mLeAudioService.setActiveDevice(device);
+            mLeAudioService.setActiveDevice(device, true);
         }
 
         if (setA2dp && mA2dpService != null && (device == null

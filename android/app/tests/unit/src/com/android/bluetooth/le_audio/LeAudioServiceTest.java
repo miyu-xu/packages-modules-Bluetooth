@@ -291,6 +291,14 @@ public class LeAudioServiceTest {
         assertThat((BluetoothDevice)intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE)).isEqualTo(device);
         assertThat(intent.getIntExtra(BluetoothProfile.EXTRA_STATE, -1)).isEqualTo(newState);
         assertThat(intent.getIntExtra(BluetoothProfile.EXTRA_PREVIOUS_STATE, -1)).isEqualTo(prevState);
+
+        if (newState == BluetoothProfile.STATE_CONNECTED) {
+            // ActiveDeviceManager calls deviceConnected when connected.
+            mService.deviceConnected(device);
+        } else if (newState == BluetoothProfile.STATE_DISCONNECTED) {
+            // ActiveDeviceManager calls deviceDisconnected when connected.
+            mService.deviceDisconnected(device, false);
+        }
     }
 
     /**
@@ -1040,7 +1048,7 @@ public class LeAudioServiceTest {
         int availableContexts = 5 + BluetoothLeAudio.CONTEXT_TYPE_RINGTONE;
 
         // Not connected device
-        assertThat(mService.setActiveDevice(mSingleDevice)).isFalse();
+        assertThat(mService.setActiveDevice(mSingleDevice, false)).isFalse();
 
         // Connected device
         doReturn(true).when(mNativeInterface).connectLeAudio(any(BluetoothDevice.class));
@@ -1057,7 +1065,7 @@ public class LeAudioServiceTest {
         audioConfChangedEvent.valueInt5 = availableContexts;
         mService.messageFromNative(audioConfChangedEvent);
 
-        assertThat(mService.setActiveDevice(mSingleDevice)).isTrue();
+        assertThat(mService.setActiveDevice(mSingleDevice, false)).isTrue();
         verify(mNativeInterface).groupSetActive(groupId);
 
         //Set group and device as active
@@ -1070,7 +1078,7 @@ public class LeAudioServiceTest {
         verify(mTbsService).setInbandRingtoneSupport(mSingleDevice);
 
         // no active device
-        assertThat(mService.setActiveDevice(null)).isTrue();
+        assertThat(mService.setActiveDevice(null, false)).isTrue();
         verify(mNativeInterface).groupSetActive(BluetoothLeAudio.GROUP_ID_INVALID);
 
         //Set group and device as inactive active
@@ -1093,7 +1101,7 @@ public class LeAudioServiceTest {
         int availableContexts = 5;
 
         // Not connected device
-        assertThat(mService.setActiveDevice(mSingleDevice)).isFalse();
+        assertThat(mService.setActiveDevice(mSingleDevice, false)).isFalse();
 
         // Connected device
         doReturn(true).when(mNativeInterface).connectLeAudio(any(BluetoothDevice.class));
@@ -1110,7 +1118,7 @@ public class LeAudioServiceTest {
         audioConfChangedEvent.valueInt5 = availableContexts;
         mService.messageFromNative(audioConfChangedEvent);
 
-        assertThat(mService.setActiveDevice(mSingleDevice)).isTrue();
+        assertThat(mService.setActiveDevice(mSingleDevice, false)).isTrue();
         verify(mNativeInterface).groupSetActive(groupId);
 
 
@@ -1122,7 +1130,7 @@ public class LeAudioServiceTest {
         mService.messageFromNative(groupStatusChangedEvent);
 
         // no active device
-        assertThat(mService.setActiveDevice(null)).isTrue();
+        assertThat(mService.setActiveDevice(null, false)).isTrue();
         verify(mNativeInterface).groupSetActive(BluetoothLeAudio.GROUP_ID_INVALID);
 
         //Set group and device as inactive active
@@ -1158,7 +1166,7 @@ public class LeAudioServiceTest {
         nodeStatusChangedEvent.valueInt2 = nodeStatus;
         mService.messageFromNative(nodeStatusChangedEvent);
 
-        assertThat(mService.setActiveDevice(mSingleDevice)).isTrue();
+        assertThat(mService.setActiveDevice(mSingleDevice, false)).isTrue();
 
         // Add location support
         LeAudioStackEvent audioConfChangedEvent =
@@ -1424,7 +1432,7 @@ public class LeAudioServiceTest {
                 memberDevice = mRightDevice;
         }
 
-        assertThat(mService.setActiveDevice(leadDevice)).isTrue();
+        assertThat(mService.setActiveDevice(leadDevice, false)).isTrue();
 
         //Add location support
         LeAudioStackEvent audioConfChangedEvent =
@@ -1495,7 +1503,7 @@ public class LeAudioServiceTest {
                 memberDevice = mRightDevice;
         }
 
-        assertThat(mService.setActiveDevice(leadDevice)).isTrue();
+        assertThat(mService.setActiveDevice(leadDevice, false)).isTrue();
 
         //Add location support
         LeAudioStackEvent audioConfChangedEvent =
@@ -1560,7 +1568,7 @@ public class LeAudioServiceTest {
         connectTestDevice(mLeftDevice, groupId);
         connectTestDevice(mRightDevice, groupId);
 
-        assertThat(mService.setActiveDevice(mLeftDevice)).isTrue();
+        assertThat(mService.setActiveDevice(mLeftDevice, false)).isTrue();
 
         ArgumentCaptor<BluetoothProfileConnectionInfo> profileInfo =
                         ArgumentCaptor.forClass(BluetoothProfileConnectionInfo.class);
