@@ -241,7 +241,7 @@ void LeConnectHciManager::LeCancelConnection(
       LeCreateConnectionCancelBuilder::Create(),
       handler_->BindOnce(
           [](common::ContextualOnceCallback<void(ErrorCode)> on_complete,
-             CommandStatusView status) {
+             CommandCompleteView view) {
             auto complete_view = LeCreateConnectionCancelCompleteView::Create(view);
             ASSERT(complete_view.IsValid());
             on_complete.Invoke(complete_view.GetStatus());
@@ -251,7 +251,7 @@ void LeConnectHciManager::LeCancelConnection(
 
 void LeConnectHciManager::AddToFilterAcceptList(AddressWithType address) {
   le_address_manager_->AddDeviceToFilterAcceptList(
-      address.ToFilterAcceptListAddressType(), address.GetAddress())
+      address.ToFilterAcceptListAddressType(), address.GetAddress());
 }
 
 void LeConnectHciManager::RemoveFromFilterAcceptList(AddressWithType address) {
@@ -260,7 +260,7 @@ void LeConnectHciManager::RemoveFromFilterAcceptList(AddressWithType address) {
 }
 
 void LeConnectHciManager::SetSystemSuspendState(bool suspended) {
-  system_suspended_ = suspended;
+  system_suspend_ = suspended;
 }
 
 }  // namespace acl_manager
