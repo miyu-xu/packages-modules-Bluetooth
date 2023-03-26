@@ -996,7 +996,7 @@ public class MediaControlGattService implements MediaControlGattServiceInterface
             if (mLeAudioService == null) {
                 mLeAudioService = LeAudioService.getLeAudioService();
             }
-            mLeAudioService.setActiveDevice(device);
+            mLeAudioService.setActiveDevice(device, false);
         }
         mCallbacks.onMediaControlRequest(req);
 

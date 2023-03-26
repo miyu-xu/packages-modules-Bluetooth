@@ -145,7 +145,7 @@ public class LeAudioBinderTest {
         final SynchronousResultReceiver<Boolean> recv = SynchronousResultReceiver.get();
 
         mBinder.setActiveDevice(device, source, recv);
-        verify(mMockService).setActiveDevice(device);
+        verify(mMockService).setActiveDevice(device, true);
     }
 
     @Test
