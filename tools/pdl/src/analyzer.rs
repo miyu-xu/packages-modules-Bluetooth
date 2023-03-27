@@ -84,6 +84,22 @@ pub mod ast {
         }
     }
 
+    impl Size {
+        // Returns the width if the size is static.
+        pub fn static_(&self) -> Option<usize> {
+            match self {
+                Size::Static(size) => Some(*size),
+                Size::Dynamic | Size::Unknown => None,
+            }
+        }
+    }
+
+    impl DeclAnnotation {
+        pub fn total_size(&self) -> Size {
+            self.size + self.payload_size
+        }
+    }
+
     impl crate::ast::Annotation for Annotation {
         type FieldAnnotation = FieldAnnotation;
         type DeclAnnotation = DeclAnnotation;
