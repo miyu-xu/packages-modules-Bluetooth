@@ -26,6 +26,7 @@
 #include "hci/acl_manager/classic_impl.h"
 #include "hci/acl_manager/connection_management_callbacks.h"
 #include "hci/acl_manager/le_acl_connection.h"
+#include "hci/acl_manager/le_connectlist_manager.h"
 #include "hci/acl_manager/le_impl.h"
 #include "hci/acl_manager/round_robin_scheduler.h"
 #include "hci/controller.h"
@@ -50,7 +51,9 @@ using acl_manager::ConnectionCallbacks;
 
 using acl_manager::le_impl;
 using acl_manager::LeAclConnection;
+using acl_manager::LeConnectHciManager;
 using acl_manager::LeConnectionCallbacks;
+using acl_manager::LeConnectlistManager;
 
 using acl_manager::RoundRobinScheduler;
 
@@ -81,7 +84,9 @@ struct AclManager::impl {
           crash_on_unknown_handle,
           acl_scheduler_,
           remote_name_request_module_);
-      le_impl_ = new le_impl(hci_layer_, controller_, handler_, round_robin_scheduler_, crash_on_unknown_handle);
+
+      le_impl_ = new le_impl(
+          hci_layer_, controller_, handler_, round_robin_scheduler_, crash_on_unknown_handle);
     }
 
     hci_queue_end_ = hci_layer_->GetAclQueueEnd();
@@ -239,13 +244,20 @@ void AclManager::CreateConnection(Address address) {
 
 void AclManager::CreateLeConnection(AddressWithType address_with_type, bool is_direct) {
   if (!is_direct) {
-    CallOn(pimpl_->le_impl_, &le_impl::add_device_to_background_connection_list, address_with_type);
+    CallOn(
+        pimpl_->le_impl_->le_connectlist_manager_,
+        &LeConnectlistManager::AddDeviceToBackgroundConnectionList,
+        address_with_type);
   }
-  CallOn(pimpl_->le_impl_, &le_impl::create_le_connection, address_with_type, true, is_direct);
+  CallOn(pimpl_->le_impl_, &le_impl::create_le_connection, address_with_type, is_direct);
 }
 
 void AclManager::IsOnBackgroundList(AddressWithType address_with_type, std::promise<bool> promise) {
-  CallOn(pimpl_->le_impl_, &le_impl::is_on_background_connection_list, address_with_type, std::move(promise));
+  CallOn(
+      pimpl_->le_impl_->le_connectlist_manager_,
+      &LeConnectlistManager::IsOnBackgroundConnectionList,
+      address_with_type,
+      std::move(promise));
 }
 
 void AclManager::SetLeSuggestedDefaultDataParameters(uint16_t octets, uint16_t time) {
@@ -299,16 +311,25 @@ void AclManager::CancelConnect(Address address) {
 }
 
 void AclManager::CancelLeConnect(AddressWithType address_with_type) {
-  CallOn(pimpl_->le_impl_, &le_impl::remove_device_from_background_connection_list, address_with_type);
-  CallOn(pimpl_->le_impl_, &le_impl::cancel_connect, address_with_type);
+  CallOn(
+      pimpl_->le_impl_->le_connectlist_manager_,
+      &LeConnectlistManager::RemoveDeviceFromBackgroundConnectionList,
+      address_with_type);
+  CallOn(
+      pimpl_->le_impl_->le_connectlist_manager_,
+      &LeConnectlistManager::CancelConnect,
+      address_with_type);
 }
 
 void AclManager::RemoveFromBackgroundList(AddressWithType address_with_type) {
-  CallOn(pimpl_->le_impl_, &le_impl::remove_device_from_background_connection_list, address_with_type);
+  CallOn(
+      pimpl_->le_impl_->le_connectlist_manager_,
+      &LeConnectlistManager::RemoveDeviceFromBackgroundConnectionList,
+      address_with_type);
 }
 
 void AclManager::ClearFilterAcceptList() {
-  CallOn(pimpl_->le_impl_, &le_impl::clear_filter_accept_list);
+  CallOn(pimpl_->le_impl_->le_connectlist_manager_, &LeConnectlistManager::ClearFilterAcceptList);
 }
 
 void AclManager::AddDeviceToResolvingList(
@@ -426,11 +447,12 @@ AclManager::~AclManager() = default;
 void AclManager::impl::Dump(
     std::promise<flatbuffers::Offset<AclManagerData>> promise, flatbuffers::FlatBufferBuilder* fb_builder) const {
   const std::lock_guard<std::mutex> lock(dumpsys_mutex_);
-  const auto connect_list = (le_impl_ != nullptr) ? le_impl_->connect_list : std::unordered_set<AddressWithType>();
-  const auto le_connectability_state_text =
-      (le_impl_ != nullptr) ? connectability_state_machine_text(le_impl_->connectability_state_) : "INDETERMINATE";
-  const auto le_create_connection_timeout_alarms_count =
-      (le_impl_ != nullptr) ? (int)le_impl_->create_connection_timeout_alarms_.size() : 0;
+  const auto connect_list = /*(le_impl_ != nullptr) ? le_impl_->connect_list : */std::unordered_set<AddressWithType>();
+  const auto le_connectability_state_text = "DO NOT SUBMIT FIXME";
+  // (le_impl_ != nullptr) ? connectability_state_machine_text(le_impl_->connectability_state_)
+  // : "INDETERMINATE";
+  const auto le_create_connection_timeout_alarms_count = 0;
+  // (le_impl_ != nullptr) ? (int)le_impl_->create_connection_timeout_alarms_.size() : 0;
 
   auto title = fb_builder->CreateString("----- Acl Manager Dumpsys -----");
   auto le_connectability_state = fb_builder->CreateString(le_connectability_state_text);
