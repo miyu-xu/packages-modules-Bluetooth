@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "93051061_4a5c3013",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterProperties.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 701,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-03-27T23:41:41Z",
+      "side": 1,
+      "message": "Can this be null?  I don\u0027t see where getAddress() can return null.  I\u0027d prefer removing the check on line 703 if it can\u0027t be null.  If it can be null, I\u0027d rather check it before line 702.",
+      "range": {
+        "startLine": 701,
+        "startChar": 19,
+        "endLine": 701,
+        "endChar": 26
+      },
+      "revId": "2945960d5213576cec243d1979a8e1bc12f1b693",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
