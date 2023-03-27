@@ -22,6 +22,30 @@
       },
       "revId": "5895b489045659f05e3ab7fdf41028629335b2f6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d638ec2a_a50a0d0e",
+        "filename": "tools/rootcanal/lmp/src/procedure/secure_simple_pairing.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 366,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-03-27T18:44:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "33716177_ea34bace",
+      "range": {
+        "startLine": 366,
+        "startChar": 30,
+        "endLine": 366,
+        "endChar": 36
+      },
+      "revId": "5895b489045659f05e3ab7fdf41028629335b2f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
