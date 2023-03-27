@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "354ca0f1_65624316",
+        "filename": "service/java/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 2167,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-03-27T12:24:57Z",
+      "side": 1,
+      "message": "I think I found the issue.\nhandleEnable will try to promote the lock from a readLock to a writeLock and hence it will timeout. (we can downgrade the lock, not upgrade it)",
+      "range": {
+        "startLine": 2167,
+        "startChar": 28,
+        "endLine": 2167,
+        "endChar": 40
+      },
+      "revId": "8d321596c68c477ed64c9121852b36de2f642dac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
