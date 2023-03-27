@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b66cd8c5_69dd7a38",
+        "filename": "android/app/tests/myinstrumentation/AndroidTest.xml",
+        "patchSetId": 24
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1986325
+      },
+      "writtenOn": "2023-03-27T14:58:36Z",
+      "side": 1,
+      "message": "to be removed, used for checking the python version in presubmit.",
+      "revId": "8fd03acfe03a502b28e571f0680a5a5b42954efa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
