@@ -16,6 +16,24 @@
       "message": "Looks like this code is not valid for mapservice:\n\n```\n03-24 06:13:22.681  2291  2291 E AndroidRuntime: FATAL EXCEPTION: main\n03-24 06:13:22.681  2291  2291 E AndroidRuntime: Process: com.android.bluetooth, PID: 2291\n03-24 06:13:22.681  2291  2291 E AndroidRuntime: java.lang.RuntimeException: Unable to create service com.android.bluetooth.map.BluetoothMapService: java.lang.NullPointerException: Attempt to invoke virtual method \u0027android.content.res.Resources android.content.Context.getResources()\u0027 on a null object reference\n03-24 06:13:22.681  2291  2291 E AndroidRuntime: \tat android.app.ActivityThread.handleCreateService(ActivityThread.java:4512)\n03-24 06:13:22.681  2291  2291 E AndroidRuntime: \tat android.app.ActivityThread.-$$Nest$mhandleCreateService(Unknown Source:0)\n03-24 06:13:22.681  2291  2291 E AndroidRuntime: \tat android.app.ActivityThread$H.handleMessage(ActivityThread.java:2165)\n03-24 06:13:22.681  2291  2291 E AndroidRuntime: \tat android.os.Handler.dispatchMessage(Handler.java:106)\n03-24 06:13:22.681  2291  2291 E AndroidRuntime: \tat android.os.Looper.loopOnce(Looper.java:201)\n03-24 06:13:22.681  2291  2291 E AndroidRuntime: \tat android.os.Looper.loop(Looper.java:288)\n03-24 06:13:22.681  2291  2291 E AndroidRuntime: \tat android.app.ActivityThread.main(ActivityThread.java:7920)\n03-24 06:13:22.681  2291  2291 E AndroidRuntime: \tat java.lang.reflect.Method.invoke(Native Method)\n03-24 06:13:22.681  2291  2291 E AndroidRuntime: \tat com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:552)\n03-24 06:13:22.681  2291  2291 E AndroidRuntime: \tat com.android.internal.os.ZygoteInit.main(ZygoteInit.java:952)\n03-24 06:13:22.681  2291  2291 E AndroidRuntime: Caused by: java.lang.NullPointerException: Attempt to invoke virtual method \u0027android.content.res.Resources android.content.Context.getResources()\u0027 on a null object reference\n03-24 06:13:22.681  2291  2291 E AndroidRuntime: \tat android.content.ContextWrapper.getResources(ContextWrapper.java:121)\n03-24 06:13:22.681  2291  2291 E AndroidRuntime: \tat android.content.Context.getString(Context.java:762)\n03-24 06:13:22.681  2291  2291 E AndroidRuntime: \tat com.android.bluetooth.map.BluetoothMapService.\u003cinit\u003e(BluetoothMapService.java:175)\n03-24 06:13:22.681  2291  2291 E AndroidRuntime: \tat java.lang.Class.newInstance(Native Method)\n03-24 06:13:22.681  2291  2291 E AndroidRuntime: \tat android.app.AppComponentFactory.instantiateService(AppComponentFactory.java:129)\n03-24 06:13:22.681  2291  2291 E AndroidRuntime: \tat androidx.core.app.CoreComponentFactory.instantiateService(CoreComponentFactory.java:75)\n03-24 06:13:22.681  2291  2291 E AndroidRuntime: \tat android.app.ActivityThread.handleCreateService(ActivityThread.java:4481)\n03-24 06:13:22.681  2291  2291 E AndroidRuntime: \t... 9 more\n````\n\n\nMaybe calling the ressource from within the constructor is not valid here ? but i am not familiar with this",
       "revId": "095cb7a989e535aeaffea5f0c33e3478b4330e83",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "57f4aa9a_e63a0e3d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1930335
+      },
+      "writtenOn": "2023-03-27T02:58:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5e41c46b_c3c3877f",
+      "revId": "095cb7a989e535aeaffea5f0c33e3478b4330e83",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
