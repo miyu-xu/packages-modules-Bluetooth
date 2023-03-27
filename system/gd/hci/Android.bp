@@ -24,6 +24,7 @@ filegroup {
         "acl_manager/acl_scheduler.cc",
         "acl_manager/classic_acl_connection.cc",
         "acl_manager/le_acl_connection.cc",
+        "acl_manager/le_connect_hci_manager.cc",
         "acl_manager/round_robin_scheduler.cc",
         "acl_manager/acl_fragmenter.cc",
         "acl_manager.cc",
