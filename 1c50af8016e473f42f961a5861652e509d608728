@@ -51,6 +51,24 @@
       "message": "Do we have a PTS test that should cover this behavior?",
       "revId": "1c50af8016e473f42f961a5861652e509d608728",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e5100078_96ae37bf",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2023-03-27T07:20:07Z",
+      "side": 1,
+      "message": "Yes, it\u0027s GAP/SEC/AUT/BV-13-C.\n\nThis is a also known bug in the libbluetooth stack, \nwe should not set BTM_SEC_LE_AUTHENTICATED after encrypted, this flags\nis used to flag that what security properties (pairing) that we are using.",
+      "parentUuid": "2019bcf4_db164fe9",
+      "revId": "1c50af8016e473f42f961a5861652e509d608728",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
