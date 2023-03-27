@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ba695a92_42189ee4",
+        "filename": "system/bta/ag/bta_ag_act.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-03-27T20:43:54Z",
+      "side": 1,
+      "message": "I was originally thinking of doing that, but didn\u0027t because I wasn\u0027t seeing that as a pattern used elsewhere in the codebase. I\u0027ll add it to system_properties.h.",
+      "parentUuid": "ebaa0216_a5073923",
+      "range": {
+        "startLine": 52,
+        "startChar": 23,
+        "endLine": 52,
+        "endChar": 45
+      },
+      "revId": "7e4271e6947dd83ffcf838d262a6c678201b31d0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "50b70eec_fb48d575",
         "filename": "system/bta/ag/bta_ag_act.cc",
         "patchSetId": 3
@@ -37,6 +61,30 @@
       "writtenOn": "2023-03-27T20:38:17Z",
       "side": 1,
       "message": "not needed with LOG_INFO, will automatically add",
+      "range": {
+        "startLine": 766,
+        "startChar": 14,
+        "endLine": 766,
+        "endChar": 22
+      },
+      "revId": "7e4271e6947dd83ffcf838d262a6c678201b31d0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e146bff6_7f6914cb",
+        "filename": "system/bta/ag/bta_ag_act.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 766,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-03-27T20:43:54Z",
+      "side": 1,
+      "message": "Thanks, just looked at the definition of LOG_INFO, will adjust",
+      "parentUuid": "50b70eec_fb48d575",
       "range": {
         "startLine": 766,
         "startChar": 14,
