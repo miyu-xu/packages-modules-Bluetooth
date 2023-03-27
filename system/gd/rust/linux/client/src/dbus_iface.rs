@@ -1902,12 +1902,16 @@ impl IBluetoothSocketManager for BluetoothSocketManagerDBus {
     }
 
     #[dbus_method("ListenUsingInsecureL2capChannel")]
-    fn listen_using_insecure_l2cap_channel(&mut self, callback: CallbackId) -> SocketResult {
+    fn listen_using_insecure_l2cap_channel(
+        &mut self,
+        callback: CallbackId,
+        is_le: bool,
+    ) -> SocketResult {
         dbus_generated!()
     }
 
     #[dbus_method("ListenUsingL2capChannel")]
-    fn listen_using_l2cap_channel(&mut self, callback: CallbackId) -> SocketResult {
+    fn listen_using_l2cap_channel(&mut self, callback: CallbackId, is_le: bool) -> SocketResult {
         dbus_generated!()
     }
 

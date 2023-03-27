@@ -85,10 +85,13 @@ impl BluetoothServerSocket {
         }
     }
 
-    fn make_l2cap_channel(flags: i32) -> Self {
+    fn make_l2cap_channel(flags: i32, is_le: bool) -> Self {
         BluetoothServerSocket {
             id: 0,
-            sock_type: SocketType::L2cap,
+            sock_type: match is_le {
+                true => SocketType::L2capLe,
+                false => SocketType::L2cap,
+            },
             flags: flags | socket::SOCK_FLAG_NO_SDP,
             psm: Some(DYNAMIC_PSM_NO_SDP),
             channel: None,
@@ -272,7 +275,11 @@ pub trait IBluetoothSocketManager {
     ) -> CallbackId;
 
     /// Create an insecure listening L2CAP socket. PSM is dynamically assigned.
-    fn listen_using_insecure_l2cap_channel(&mut self, callback: CallbackId) -> SocketResult;
+    fn listen_using_insecure_l2cap_channel(
+        &mut self,
+        callback: CallbackId,
+        is_le: bool,
+    ) -> SocketResult;
 
     /// Create an insecure listening RFCOMM socket. Channel is dynamically assigned.
     fn listen_using_insecure_rfcomm_with_service_record(
@@ -283,7 +290,7 @@ pub trait IBluetoothSocketManager {
     ) -> SocketResult;
 
     /// Create a secure listening L2CAP socket. PSM is dynamically assigned.
-    fn listen_using_l2cap_channel(&mut self, callback: CallbackId) -> SocketResult;
+    fn listen_using_l2cap_channel(&mut self, callback: CallbackId, is_le: bool) -> SocketResult;
 
     /// Create a secure listening RFCOMM socket. Channel is dynamically assigned.
     fn listen_using_rfcomm_with_service_record(
@@ -1094,21 +1101,26 @@ impl IBluetoothSocketManager for BluetoothSocketManager {
         self.callbacks.add_callback(callback)
     }
 
-    fn listen_using_insecure_l2cap_channel(&mut self, callback: CallbackId) -> SocketResult {
+    fn listen_using_insecure_l2cap_channel(
+        &mut self,
+        callback: CallbackId,
+        is_le: bool,
+    ) -> SocketResult {
         if self.callbacks.get_by_id(callback).is_none() {
             return SocketResult::new(BtStatus::NotReady, INVALID_SOCKET_ID);
         }
 
-        let socket_info = BluetoothServerSocket::make_l2cap_channel(socket::SOCK_FLAG_NONE);
+        let socket_info = BluetoothServerSocket::make_l2cap_channel(socket::SOCK_FLAG_NONE, is_le);
         self.socket_listen(socket_info, callback)
     }
 
-    fn listen_using_l2cap_channel(&mut self, callback: CallbackId) -> SocketResult {
+    fn listen_using_l2cap_channel(&mut self, callback: CallbackId, is_le: bool) -> SocketResult {
         if self.callbacks.get_by_id(callback).is_none() {
             return SocketResult::new(BtStatus::NotReady, INVALID_SOCKET_ID);
         }
 
-        let socket_info = BluetoothServerSocket::make_l2cap_channel(socket::SOCK_META_FLAG_SECURE);
+        let socket_info =
+            BluetoothServerSocket::make_l2cap_channel(socket::SOCK_META_FLAG_SECURE, is_le);
         self.socket_listen(socket_info, callback)
     }
 

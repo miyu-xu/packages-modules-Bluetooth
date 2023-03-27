@@ -227,7 +227,7 @@ fn build_commands() -> HashMap<String, CommandOption> {
         String::from("socket"),
         CommandOption {
             rules: vec![
-                String::from("socket listen <auth-required>"),
+                String::from("socket listen <auth-required> <Bredr|LE>"),
                 String::from("socket connect <address> <l2cap|rfcomm> <psm|uuid> <auth-required>"),
                 String::from("socket disconnect <socket_id>"),
                 String::from("socket set-on-connect-schedule <send|resend|dump>"),
@@ -1363,14 +1363,21 @@ impl CommandHandler {
                 let auth_required = String::from(get_arg(args, 1)?)
                     .parse::<bool>()
                     .or(Err("Failed to parse auth-required"))?;
+                let is_le = match &get_arg(args, 2)?[..] {
+                    "LE" => true,
+                    "Bredr" => false,
+                    _ => {
+                        return Err("Failed to parse socket type".into());
+                    }
+                };
 
                 let SocketResult { status, id } = {
                     let mut context_proxy = self.context.lock().unwrap();
                     let proxy = context_proxy.socket_manager_dbus.as_mut().unwrap();
                     if auth_required {
-                        proxy.listen_using_l2cap_channel(callback_id)
+                        proxy.listen_using_l2cap_channel(callback_id, is_le)
                     } else {
-                        proxy.listen_using_insecure_l2cap_channel(callback_id)
+                        proxy.listen_using_insecure_l2cap_channel(callback_id, is_le)
                     }
                 };
 
