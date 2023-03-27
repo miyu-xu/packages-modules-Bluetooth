@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5d768a1b_094d5466",
+        "filename": "system/bta/ag/bta_ag_act.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-03-27T21:04:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ba695a92_42189ee4",
+      "range": {
+        "startLine": 52,
+        "startChar": 23,
+        "endLine": 52,
+        "endChar": 45
+      },
+      "revId": "7e4271e6947dd83ffcf838d262a6c678201b31d0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "50b70eec_fb48d575",
@@ -95,6 +119,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4980d406_afc5fee6",
+        "filename": "system/bta/ag/bta_ag_act.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 766,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-03-27T21:04:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e146bff6_7f6914cb",
+      "range": {
+        "startLine": 766,
+        "startChar": 14,
+        "endLine": 766,
+        "endChar": 22
+      },
+      "revId": "7e4271e6947dd83ffcf838d262a6c678201b31d0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8ec14adb_93387e41",
@@ -118,6 +166,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0813bed7_a2ae498a",
+        "filename": "system/bta/ag/bta_ag_cmd.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1323,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-03-27T21:04:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8ec14adb_93387e41",
+      "range": {
+        "startLine": 1323,
+        "startChar": 12,
+        "endLine": 1323,
+        "endChar": 20
+      },
+      "revId": "7e4271e6947dd83ffcf838d262a6c678201b31d0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6583e1cf_17c4e133",
@@ -131,6 +203,30 @@
       "writtenOn": "2023-03-27T20:38:17Z",
       "side": 1,
       "message": "same as above",
+      "range": {
+        "startLine": 1328,
+        "startChar": 12,
+        "endLine": 1328,
+        "endChar": 20
+      },
+      "revId": "7e4271e6947dd83ffcf838d262a6c678201b31d0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2959936b_435b58a7",
+        "filename": "system/bta/ag/bta_ag_cmd.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1328,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-03-27T21:04:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6583e1cf_17c4e133",
       "range": {
         "startLine": 1328,
         "startChar": 12,
