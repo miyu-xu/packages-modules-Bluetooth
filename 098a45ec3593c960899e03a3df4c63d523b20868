@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bf5ec10c_ef21b957",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-03-27T08:29:38Z",
+      "side": 1,
+      "message": "Rebased and also apply the change to reset_active_device",
+      "revId": "098a45ec3593c960899e03a3df4c63d523b20868",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
