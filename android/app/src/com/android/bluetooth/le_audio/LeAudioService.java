@@ -24,6 +24,7 @@ import static com.android.bluetooth.Utils.enforceBluetoothPrivilegedPermission;
 
 import android.annotation.RequiresPermission;
 import android.annotation.SuppressLint;
+import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothLeAudio;
 import android.bluetooth.BluetoothLeAudioCodecConfig;
@@ -48,6 +49,7 @@ import android.media.AudioDeviceCallback;
 import android.media.AudioDeviceInfo;
 import android.media.AudioManager;
 import android.media.BluetoothProfileConnectionInfo;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.HandlerThread;
 import android.os.Looper;
@@ -755,7 +757,34 @@ public class LeAudioService extends ProfileService {
         return result;
     }
 
-    private Integer getActiveGroupId() {
+    /**
+     * Get all the devices within a given group.
+     * @param device the device for which we want to get all devices in its group
+     * @return all devices within a given group or empty list
+     */
+    public List<BluetoothDevice> getGroupDevices(BluetoothDevice device) {
+        List<BluetoothDevice> result = new ArrayList<>();
+        int groupId = getGroupId(device);
+
+        if (groupId == LE_AUDIO_GROUP_ID_INVALID) {
+            return result;
+        }
+
+        synchronized (mGroupLock) {
+            for (Map.Entry<BluetoothDevice, LeAudioDeviceDescriptor> entry
+                    : mDeviceDescriptors.entrySet()) {
+                if (entry.getValue().mGroupId == groupId) {
+                    result.add(entry.getKey());
+                }
+            }
+        }
+        return result;
+    }
+
+    /**
+     * Get the active device group id
+     */
+    public Integer getActiveGroupId() {
         synchronized (mGroupLock) {
             for (Map.Entry<Integer, LeAudioGroupDescriptor> entry : mGroupDescriptors.entrySet()) {
                 LeAudioGroupDescriptor descriptor = entry.getValue();
@@ -1288,6 +1317,8 @@ public class LeAudioService extends ProfileService {
      * @return true on success, otherwise false
      */
     public boolean setActiveDevice(BluetoothDevice device) {
+        Log.i(TAG, "setActiveDevice: device=" + device + ", current out="
+                + mActiveAudioOutDevice + ", current in=" + mActiveAudioInDevice);
         /* Clear active group */
         if (device == null) {
             setActiveGroupWithDevice(device);
@@ -1297,6 +1328,22 @@ public class LeAudioService extends ProfileService {
             Log.e(TAG, "setActiveDevice(" + device + "): failed because group device is not "
                     + "connected");
             return false;
+        }
+
+        if (Utils.isDualModeAudioEnabled()) {
+            boolean supportedClassicAudioProfilesActive = false;
+            for (BluetoothDevice groupDevice: getGroupDevices(device)) {
+                if (mAdapterService.isAllSupportedClassicAudioProfilesActive(groupDevice)) {
+                    supportedClassicAudioProfilesActive = true;
+                }
+            }
+            if (!supportedClassicAudioProfilesActive) {
+                Log.e(TAG,
+                        "setActiveDevice(" + device
+                                + "): failed because the device is not active "
+                                + "for all supported classic audio profiles");
+                return false;
+            }
         }
         setActiveGroupWithDevice(device);
         return true;
@@ -2820,6 +2867,44 @@ public class LeAudioService extends ProfileService {
             return null;
         }
         return getConnectedGroupLeadDevice(groupId);
+    }
+
+    /**
+     * Sends the preferred audio profile change requested from a call to
+     * {@link BluetoothAdapter#setPreferredAudioProfiles(BluetoothDevice, Bundle)} to the audio
+     * framework to apply the change. The audio framework will call
+     * {@link BluetoothAdapter#notifyActiveDeviceChangeApplied(BluetoothDevice)} once the
+     * change is successfully applied.
+     *
+     * @return the number of requests sent to the audio framework
+     */
+    public int sendPreferredAudioProfileChangeToAudioFramework() {
+        if (mActiveAudioOutDevice == null && mActiveAudioInDevice == null) {
+            return 0;
+        }
+
+        int audioFrameworkCalls = 0;
+
+        if (mActiveAudioOutDevice != null) {
+            int volume = volume = getAudioDeviceGroupVolume(getGroupId(mActiveAudioOutDevice));
+            final boolean suppressNoisyIntent = mActiveAudioOutDevice != null;
+            Log.i(TAG, "Sending LE Audio Output active device changed for preferred profile "
+                    + "change with volume=" + volume + " and suppressNoisyIntent="
+                    + suppressNoisyIntent);
+            mAudioManager.handleBluetoothActiveDeviceChanged(mActiveAudioOutDevice,
+                    mActiveAudioOutDevice, getLeAudioOutputProfile(suppressNoisyIntent, volume));
+            audioFrameworkCalls++;
+        }
+
+        if (mActiveAudioInDevice != null) {
+            Log.i(TAG, "Sending LE Audio Input active device changed for audio profile change");
+            mAudioManager.handleBluetoothActiveDeviceChanged(mActiveAudioInDevice,
+                    mActiveAudioInDevice, BluetoothProfileConnectionInfo.createLeAudioInfo(false,
+                            false));
+            audioFrameworkCalls++;
+        }
+
+        return audioFrameworkCalls;
     }
 
     /**
