@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9e8015dd_dadb6265",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1644,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-03-27T08:52:28Z",
+      "side": 1,
+      "message": "Should be Err. Fixed",
+      "parentUuid": "31403913_35e05b17",
+      "range": {
+        "startLine": 1644,
+        "startChar": 24,
+        "endLine": 1644,
+        "endChar": 64
+      },
+      "revId": "e71eafee218922e0c908c5a4d85b2818a615f780",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "78aca222_fa6abe68",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "de347f5e_92fd82ec",
+        "filename": "system/gd/rust/topshim/src/profiles/sdp.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 235,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-03-27T08:52:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "78aca222_fa6abe68",
+      "range": {
+        "startLine": 235,
+        "startChar": 0,
+        "endLine": 235,
+        "endChar": 38
+      },
+      "revId": "e71eafee218922e0c908c5a4d85b2818a615f780",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7729c0b4_7898b28c",
@@ -60,6 +108,30 @@
       "writtenOn": "2023-03-23T06:18:58Z",
       "side": 1,
       "message": "I was wondering if the underlying representation is a byte array instead of big endia integer?\nAnyway, if we decide to stick with big endian integer in libluetooth, 0b1_0101_0101_0101_u64.to_be() might be more human readable.",
+      "range": {
+        "startLine": 265,
+        "startChar": 38,
+        "endLine": 265,
+        "endChar": 56
+      },
+      "revId": "e71eafee218922e0c908c5a4d85b2818a615f780",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4bad17e2_9046ffbf",
+        "filename": "system/gd/rust/topshim/src/profiles/sdp.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 265,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-03-27T08:52:28Z",
+      "side": 1,
+      "message": "[LibBluetooth API] actually accepts it as a byte array. Do you think it\u0027s better to explicitly define it as a byte array here?\n\n`0bxxxx.to_be()` -\u003e Done.\n\n[LibBluetooth API]: https://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/system/stack/include/sdp_api.h;l\u003d439;drc\u003d82acdc8ab9d7265449babc1378ce77eb586da5e3",
+      "parentUuid": "7729c0b4_7898b28c",
       "range": {
         "startLine": 265,
         "startChar": 38,
