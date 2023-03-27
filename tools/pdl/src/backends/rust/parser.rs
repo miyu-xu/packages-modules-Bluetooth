@@ -68,7 +68,7 @@ impl<'a> FieldParser<'a> {
 
     fn add_bit_field(&mut self, field: &'a analyzer_ast::Field) {
         self.chunk.push(BitField { shift: self.shift, field });
-        self.shift += self.scope.get_field_width(field, false).unwrap();
+        self.shift += field.annot.size.static_().unwrap();
         if self.shift % 8 != 0 {
             return;
         }
@@ -109,7 +109,7 @@ impl<'a> FieldParser<'a> {
                 v = quote! { (#v >> #shift) }
             }
 
-            let width = self.scope.get_field_width(field, false).unwrap();
+            let width = field.annot.size.static_().unwrap();
             let value_type = types::Integer::new(width);
             if !single_value && width < value_type.width {
                 // Mask value if we grabbed more than `width` and if
@@ -224,7 +224,7 @@ impl<'a> FieldParser<'a> {
 
         let mut offset = 0;
         for field in fields {
-            if let Some(width) = self.scope.get_field_width(field, false) {
+            if let analyzer_ast::Size::Static(width) = field.annot.size {
                 offset += width;
             } else {
                 return None;
@@ -265,7 +265,7 @@ impl<'a> FieldParser<'a> {
             Static(usize), // Static size in bytes.
             Unknown,
         }
-        let element_width = match width.or_else(|| self.scope.get_decl_width(decl?, false)) {
+        let element_width = match width.or_else(|| decl.unwrap().annot.total_size().static_()) {
             Some(w) => {
                 assert_eq!(w % 8, 0, "Array element size ({w}) is not a multiple of 8");
                 ElementWidth::Static(w / 8)
@@ -433,11 +433,11 @@ impl<'a> FieldParser<'a> {
         let id = format_ident!("{id}");
         let type_id = format_ident!("{type_id}");
 
-        match self.scope.get_decl_width(decl, true) {
-            None => self.code.push(quote! {
+        match decl.annot.size {
+            analyzer_ast::Size::Unknown | analyzer_ast::Size::Dynamic => self.code.push(quote! {
                 let #id = #type_id::parse_inner(&mut #span)?;
             }),
-            Some(width) => {
+            analyzer_ast::Size::Static(width) => {
                 assert_eq!(width % 8, 0, "Typedef field type size is not a multiple of 8");
                 let width = syn::Index::from(width / 8);
                 self.code.push(if let ast::DeclDesc::Checksum { .. } = &decl.desc {
