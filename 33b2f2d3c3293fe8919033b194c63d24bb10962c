@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "577fb67f_07d35e63",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-03-27T18:51:46Z",
+      "side": 1,
+      "message": "Hi Yun-hao, I would prefer that we do not modify the stack to be able to pass the PTS.\n\nIf we are unable to trigger a behavior tested by the PTS from our stack for me it sounds like that we don\u0027t support the feature.\n\nIf this feature is optional then we should correct our ICS to not pass this test.\nIf we missimplemented the feature then we should fix that.\nIf the test is valid but isn\u0027t applicable to our implementation we should open a bug to the SIG.",
+      "revId": "33b2f2d3c3293fe8919033b194c63d24bb10962c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
