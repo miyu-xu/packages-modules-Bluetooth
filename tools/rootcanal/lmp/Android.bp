@@ -21,6 +21,7 @@ rust_ffi {
     rustlibs: [
         "libbt_packets_nonapex",
         "libbytes",
+        "libfutures",
         "libnum_bigint",
         "libnum_integer",
         "libnum_traits",
