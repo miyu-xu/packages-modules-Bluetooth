@@ -626,10 +626,7 @@ struct le_impl {
       return;
     }
 
-      le_connectlist_manager_->CreateLeConnection(
-        address_with_type,
-        true,
-        is_direct);
+    le_connectlist_manager_->CreateLeConnection(address_with_type, true, is_direct);
   }
 
   void add_device_to_resolving_list(

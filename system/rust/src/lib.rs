@@ -36,6 +36,7 @@ pub mod core;
 pub mod gatt;
 pub mod packets;
 pub mod utils;
+pub mod connection;
 
 /// The owner of the main Rust thread on which all Rust modules run
 pub struct GlobalModuleRegistry {
