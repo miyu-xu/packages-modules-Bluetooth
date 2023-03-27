@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bb654b7e_68c97ff8",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 2224,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-03-27T04:25:30Z",
+      "side": 1,
+      "message": "shouldn\u0027t it be false?\nsince there is no fallback media device",
+      "range": {
+        "startLine": 2224,
+        "startChar": 34,
+        "endLine": 2224,
+        "endChar": 38
+      },
+      "revId": "30436f197761da04a276de2c1df3ee8caad2418c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "55534816_a3c92d36",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 2517,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-03-27T04:25:30Z",
+      "side": 1,
+      "message": "Should we check whether there are connected a2dp devices?",
+      "range": {
+        "startLine": 2517,
+        "startChar": 58,
+        "endLine": 2517,
+        "endChar": 63
+      },
+      "revId": "30436f197761da04a276de2c1df3ee8caad2418c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "97507837_3e867fae",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 2968,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-03-27T04:25:30Z",
+      "side": 1,
+      "message": "why true?",
+      "range": {
+        "startLine": 2968,
+        "startChar": 61,
+        "endLine": 2968,
+        "endChar": 65
+      },
+      "revId": "30436f197761da04a276de2c1df3ee8caad2418c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7bcb7cf5_aa7f7a3c",
+        "filename": "android/app/src/com/android/bluetooth/mcp/MediaControlGattService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 999,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-03-27T04:25:30Z",
+      "side": 1,
+      "message": "why false?",
+      "range": {
+        "startLine": 999,
+        "startChar": 52,
+        "endLine": 999,
+        "endChar": 57
+      },
+      "revId": "30436f197761da04a276de2c1df3ee8caad2418c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
