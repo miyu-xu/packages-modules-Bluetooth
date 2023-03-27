@@ -53,6 +53,8 @@ extern "C" {
 #define A2DP_AAC_OFFSET AVDT_MEDIA_OFFSET
 #endif
 
+const int NUM_AAC_ENCODERS = 4;
+
 typedef struct {
   uint32_t sample_rate;
   uint8_t channel_mode;
@@ -88,7 +90,7 @@ typedef struct {
   tA2DP_ENCODER_INIT_PEER_PARAMS peer_params;
   uint32_t timestamp;  // Timestamp for the A2DP frames
 
-  AVCodecContext* aac_context;
+  AVCodecContext* aac_contexts[NUM_AAC_ENCODERS];
 
   tA2DP_FEEDING_PARAMS feeding_params;
   tA2DP_AAC_ENCODER_PARAMS aac_encoder_params;
@@ -120,8 +122,8 @@ bool A2DP_LoadEncoderAac(void) {
 
 void A2DP_UnloadEncoderAac(void) {
   // Nothing to do - the library is statically linked
-  if (a2dp_aac_encoder_cb.aac_context)
-    avcodec_free_context(&a2dp_aac_encoder_cb.aac_context);
+  for (auto& ctx : a2dp_aac_encoder_cb.aac_contexts)
+    if (ctx) avcodec_free_context(&ctx);
   memset(&a2dp_aac_encoder_cb, 0, sizeof(a2dp_aac_encoder_cb));
 }
 
@@ -129,8 +131,8 @@ void a2dp_aac_encoder_init(const tA2DP_ENCODER_INIT_PEER_PARAMS* p_peer_params,
                            A2dpCodecConfig* a2dp_codec_config,
                            a2dp_source_read_callback_t read_callback,
                            a2dp_source_enqueue_callback_t enqueue_callback) {
-  if (a2dp_aac_encoder_cb.aac_context)
-    avcodec_free_context(&a2dp_aac_encoder_cb.aac_context);
+  for (auto& ctx : a2dp_aac_encoder_cb.aac_contexts)
+    if (ctx) avcodec_free_context(&ctx);
   memset(&a2dp_aac_encoder_cb, 0, sizeof(a2dp_aac_encoder_cb));
 
   a2dp_aac_encoder_cb.stats.session_start_us =
@@ -169,22 +171,20 @@ static void a2dp_aac_encoder_update(A2dpCodecConfig* a2dp_codec_config,
   *p_restart_output = false;
   *p_config_updated = false;
 
-  AVCodecContext* ctx = a2dp_aac_encoder_cb.aac_context;
-
   const AVCodec* codec = avcodec_find_encoder(AV_CODEC_ID_AAC);
-
-  if (!a2dp_aac_encoder_cb.aac_context) {
-    if (!codec) {
-      LOG_ERROR("%s: Codec not found.", __func__);
-      return;
-    }
-
-    ctx = avcodec_alloc_context3(codec);
-    if (!ctx) {
-      LOG_ERROR("%s: Cannot allocate codec context.", __func__);
-      return;
-    }
+  if (!codec) {
+    LOG_ERROR("%s: Codec not found.", __func__);
+    return;
   }
+
+  for (auto& ctx : a2dp_aac_encoder_cb.aac_contexts)
+    if (!ctx) {
+      ctx = avcodec_alloc_context3(codec);
+      if (!ctx) {
+        LOG_ERROR("%s: Cannot allocate codec context.", __func__);
+        return;
+      }
+    }
 
   if (!a2dp_codec_config->copyOutOtaCodecConfig(codec_info)) {
     LOG_ERROR(
@@ -218,72 +218,80 @@ static void a2dp_aac_encoder_update(A2dpCodecConfig* a2dp_codec_config,
   LOG_INFO("%s: sample_rate: %d channel_mode: %d ", __func__,
            p_encoder_params->sample_rate, p_encoder_params->channel_mode);
 
-  ctx->sample_rate = p_encoder_params->sample_rate;
+  for (auto& ctx : a2dp_aac_encoder_cb.aac_contexts)
+    ctx->sample_rate = p_encoder_params->sample_rate;
 
-  // HACK: FFmpeg's native encoder does not support true CBR, meaning that
-  // the produced frame size can have great variance. If the frame size
-  // exceeds the MTU, it can only be RTP-fragmented per RFC6416:6-2.
-  // The twist is that most headsets supporting AAC do not implement
-  // de-fragmentation. Ignoring this fact as the encoder may result in
-  // crashing the peer device (see b/274144074). To circumvent this, we
-  // exploit the observation that the peak frame size usually occurs
-  // when transitioning from/to silence. Through experiment, we know that
-  // setting the ABR to 0.4 of the ideal bit rate can make the bursts
-  // concentrate to when they may be substituted with silent frames, and
-  // AAC frames are allegedly independent w.r.t. their adjacent frames.
-  // With standard MTU sizes, the resulting bit rate could be 128kbps.
-  ctx->bit_rate = A2DP_GetBitRateAac(p_codec_info) * 0.4;
-  LOG_INFO("%s: MTU = %d Sampling Frequency = %d Bit Rate = %d", __func__,
-           a2dp_aac_encoder_cb.TxAaMtuSize, ctx->sample_rate, ctx->bit_rate);
-  if (ctx->bit_rate == -1) {
+  int ideal_br = A2DP_GetBitRateAac(p_codec_info);
+  if (ideal_br == -1) {
     LOG_ERROR("%s: invalid codec bit rate", __func__);
     return;
   }
+
+  LOG_INFO("%s: MTU = %d Sampling Frequency = %d Bit Rate = %d", __func__,
+           a2dp_aac_encoder_cb.TxAaMtuSize, p_encoder_params->sample_rate,
+           ideal_br);
+
+  // HACK: ...
+  for (auto& ctx : a2dp_aac_encoder_cb.aac_contexts) {
+    ctx->bit_rate = ideal_br;
+    ideal_br *= 0.75;
+  }
+
+  a2dp_aac_encoder_cb.aac_contexts[NUM_AAC_ENCODERS - 1]->bit_rate = 64000;
 
   p_encoder_params->input_channels_n =
       A2DP_GetTrackChannelCountAac(p_codec_info);
   if (p_encoder_params->input_channels_n == 1) {
     AVChannelLayout mono = AV_CHANNEL_LAYOUT_MONO;
-    av_channel_layout_copy(&ctx->ch_layout, &mono);
+    for (auto& ctx : a2dp_aac_encoder_cb.aac_contexts) {
+      av_channel_layout_copy(&ctx->ch_layout, &mono);
+    }
   } else if (p_encoder_params->input_channels_n == 2) {
     AVChannelLayout stereo = AV_CHANNEL_LAYOUT_STEREO;
-    av_channel_layout_copy(&ctx->ch_layout, &stereo);
+    for (auto& ctx : a2dp_aac_encoder_cb.aac_contexts) {
+      av_channel_layout_copy(&ctx->ch_layout, &stereo);
+    }
   } else {
     LOG_ERROR("%s: invalid number of channels", __func__);
     return;
   }
 
-  ctx->sample_fmt = AV_SAMPLE_FMT_FLTP;
+  for (auto& ctx : a2dp_aac_encoder_cb.aac_contexts) {
+    ctx->sample_fmt = AV_SAMPLE_FMT_FLTP;
+  }
 
-  int error = avcodec_open2(ctx, codec, NULL);
-  if (error < 0) {
-    LOG_ERROR("%s: Could not open codec: '%s'", __func__, av_err2str(error));
-    return;
+  for (auto& ctx : a2dp_aac_encoder_cb.aac_contexts) {
+    int error = avcodec_open2(ctx, codec, NULL);
+    if (error < 0) {
+      LOG_ERROR("%s: Could not open codec: '%s'", __func__, av_err2str(error));
+      return;
+    }
   }
 
   // Retrieve the encoder info so we can save the frame length
-  p_encoder_params->frame_length = ctx->frame_size;
+  p_encoder_params->frame_length =
+      a2dp_aac_encoder_cb.aac_contexts[0]->frame_size;
   LOG_INFO("%s: AAC frame_length = %u input_channels_n = %u", __func__,
            p_encoder_params->frame_length, p_encoder_params->input_channels_n);
-
-  a2dp_aac_encoder_cb.aac_context = ctx;
 
   // After encoder params ready, reset the feeding state and its interval.
   a2dp_aac_feeding_reset();
 }
 
 void a2dp_aac_encoder_cleanup(void) {
-  if (a2dp_aac_encoder_cb.aac_context)
-    avcodec_free_context(&a2dp_aac_encoder_cb.aac_context);
+  for (auto& ctx : a2dp_aac_encoder_cb.aac_contexts) {
+    avcodec_free_context(&ctx);
+  }
   memset(&a2dp_aac_encoder_cb, 0, sizeof(a2dp_aac_encoder_cb));
 }
 
 void a2dp_aac_feeding_reset(void) {
   auto frame_length = a2dp_aac_encoder_cb.aac_encoder_params.frame_length;
   auto sample_rate = a2dp_aac_encoder_cb.feeding_params.sample_rate;
-  if (a2dp_aac_encoder_cb.aac_context) {
-    a2dp_aac_encoder_cb.aac_context->sample_rate = sample_rate;
-  }
+  for (auto& ctx : a2dp_aac_encoder_cb.aac_contexts)
+    if (ctx) {
+      ctx->sample_rate = sample_rate;
+    }
   if (frame_length == 0 || sample_rate == 0) {
     LOG_WARN("%s: AAC encoder is not configured", __func__);
     a2dp_aac_encoder_interval_ms = A2DP_AAC_ENCODER_INTERVAL_MS;
@@ -391,8 +399,6 @@ static void a2dp_aac_encode_frames(uint8_t nb_frame) {
                             p_feeding_params->bits_per_sample / 8;
   CHECK(pcm_bytes_per_frame <= static_cast<int>(sizeof(read_buffer)));
 
-  AVCodecContext* ctx = a2dp_aac_encoder_cb.aac_context;
-
   uint32_t total_bytes_read = 0;
   int written = 0;
   int rc;
@@ -412,125 +418,148 @@ static void a2dp_aac_encode_frames(uint8_t nb_frame) {
       uint32_t bytes_read = 0;
       if (a2dp_aac_read_feeding(read_buffer, &bytes_read)) {
         uint8_t* packet = (uint8_t*)(p_buf + 1) + p_buf->offset + p_buf->len;
-        if (!ctx) {
-          LOG_ERROR("%s: invalid AAC handle", __func__);
-          a2dp_aac_encoder_cb.stats.media_read_total_dropped_packets++;
+        int error = 0;
+        int again = 0;
+        for (auto& ctx : a2dp_aac_encoder_cb.aac_contexts) {
+          if (!ctx) {
+            LOG_ERROR("%s: invalid AAC handle", __func__);
+            a2dp_aac_encoder_cb.stats.media_read_total_dropped_packets++;
+            ++error;
+            continue;
+          }
+
+          AVFrame* frame = av_frame_alloc();
+
+          frame->nb_samples = ctx->frame_size;
+          frame->format = ctx->sample_fmt;
+          frame->sample_rate = ctx->sample_rate;
+
+          rc = av_channel_layout_copy(&frame->ch_layout, &ctx->ch_layout);
+          if (rc < 0) {
+            LOG_ERROR("%s: failed to copy channel layout", __func__);
+            ++error;
+            continue;
+          }
+
+          if (av_frame_get_buffer(frame, 0) < 0) {
+            LOG_ERROR("%s: failed to get buffer for frame", __func__);
+            av_frame_free(&frame);
+            ++error;
+            continue;
+          }
+
+          rc = av_frame_make_writable(frame);
+          if (rc < 0) {
+            LOG_ERROR("%s: failed to make frame writable", __func__);
+            ++error;
+            continue;
+          }
+
+          const int bit_depth = p_feeding_params->bits_per_sample;
+          const int bytes_per_sample = bit_depth / 8;
+          const float scaling_factor = (float)1 / (1 << (bit_depth - 1));
+
+          uint8_t* buff = (uint8_t*)read_buffer;
+          float* data[] = {(float*)frame->data[0], (float*)frame->data[1]};
+          for (int i = 0; i < bytes_read / bytes_per_sample; ++i) {
+            if (bit_depth == 16) {
+              *(data[i & 1]++) = *((int16_t*)buff) * scaling_factor;
+            } else if (bit_depth == 32) {
+              *(data[i & 1]++) = *((int32_t*)buff) * scaling_factor;
+            } else {
+              LOG_ERROR("%s: Unsupported bit depth %d", bit_depth);
+              ++error;
+              continue;
+            }
+            buff += bytes_per_sample;
+          }
+
+          AVPacket* pkt = av_packet_alloc();
+
+          rc = avcodec_send_frame(ctx, frame);
+          if (rc < 0) {
+            LOG_ERROR("%s: send_frame: '%s'", __func__, av_err2str(rc));
+            a2dp_aac_encoder_cb.stats.media_read_total_dropped_packets++;
+            av_frame_free(&frame);
+            av_packet_free(&pkt);
+            ++error;
+            continue;
+          }
+
+          rc = avcodec_receive_packet(ctx, pkt);
+          if (rc == -EAGAIN) {
+            av_frame_free(&frame);
+            av_packet_free(&pkt);
+            ++again;
+            continue;
+          } else if (rc < 0) {
+            LOG_ERROR("%s: avcodec_receive_packet: '%s'", __func__,
+                      av_err2str(rc));
+            a2dp_aac_encoder_cb.stats.media_read_total_dropped_packets++;
+            av_frame_free(&frame);
+            av_packet_free(&pkt);
+            ++error;
+            continue;
+          }
+
+          int cap = a2dp_aac_get_effective_frame_size();
+          // 4 + 12 + 9?
+          if (written == 0 && cap >= pkt->size + 25) {
+            uint8_t* dst =
+                (uint8_t*)(p_buf + 1) + p_buf->offset + p_buf->len + 9;
+
+            int fsize = pkt->size;
+
+            while (fsize >= 255) {
+              *(dst++) = 0xff;
+              fsize -= 255;
+              ++written;
+            }
+            *(dst++) = fsize;
+            ++written;
+
+            memcpy(dst, pkt->data, pkt->size);
+            written += pkt->size;
+          }
+
+          av_frame_free(&frame);
+          av_packet_unref(pkt);
+        }
+
+        if (error) {
+          LOG_ERROR("%s: error=%d", __func__, error);
           osi_free(p_buf);
           return;
         }
 
-        AVFrame* frame = av_frame_alloc();
-
-        frame->nb_samples = ctx->frame_size;
-        frame->format = ctx->sample_fmt;
-        frame->sample_rate = ctx->sample_rate;
-
-        rc = av_channel_layout_copy(&frame->ch_layout, &ctx->ch_layout);
-        if (rc < 0) {
-          LOG_ERROR("%s: failed to copy channel layout", __func__);
-          return;
+        if (again) {
+          LOG_WARN("%s: again=%d", __func__, again);
+          break;
         }
 
-        if (av_frame_get_buffer(frame, 0) < 0) {
-          LOG_ERROR("%s: failed to get buffer for frame", __func__);
-          av_frame_free(&frame);
-          return;
-        }
-
-        rc = av_frame_make_writable(frame);
-        if (rc < 0) {
-          LOG_ERROR("%s: failed to make frame writable", __func__);
-          return;
-        }
+        uint8_t* hdr = (uint8_t*)(p_buf + 1) + p_buf->offset + p_buf->len;
 
         const int sample_rate = p_feeding_params->sample_rate;
-        const int bit_depth = p_feeding_params->bits_per_sample;
-        const int bytes_per_sample = bit_depth / 8;
-        const float scaling_factor = (float)1 / (1 << (bit_depth - 1));
-
-        uint8_t* buff = (uint8_t*)read_buffer;
-        float* data[] = {(float*)frame->data[0], (float*)frame->data[1]};
-        for (int i = 0; i < bytes_read / bytes_per_sample; ++i) {
-          if (bit_depth == 16) {
-            *(data[i & 1]++) = *((int16_t*)buff) * scaling_factor;
-          } else if (bit_depth == 32) {
-            *(data[i & 1]++) = *((int32_t*)buff) * scaling_factor;
-          } else {
-            LOG_ERROR("%s: Unsupported bit depth %d", bit_depth);
-            return;
-          }
-          buff += bytes_per_sample;
-        }
-
-        AVPacket* pkt = av_packet_alloc();
-
-        rc = avcodec_send_frame(ctx, frame);
-        if (rc < 0) {
-          LOG_ERROR("%s: send_frame: '%s'", __func__, av_err2str(rc));
-          a2dp_aac_encoder_cb.stats.media_read_total_dropped_packets++;
-          osi_free(p_buf);
-          av_frame_free(&frame);
-          av_packet_free(&pkt);
-          return;
-        }
-
-        rc = avcodec_receive_packet(ctx, pkt);
-        if (rc == -EAGAIN) {
-          av_frame_free(&frame);
-          av_packet_free(&pkt);
-          break;
-        } else if (rc < 0) {
-          LOG_ERROR("%s: avcodec_receive_packet: '%s'", __func__,
-                    av_err2str(rc));
-          a2dp_aac_encoder_cb.stats.media_read_total_dropped_packets++;
-          osi_free(p_buf);
-          av_frame_free(&frame);
-          av_packet_free(&pkt);
-          return;
-        }
-
-        uint8_t* dst = (uint8_t*)(p_buf + 1) + p_buf->offset + p_buf->len;
 
         uint8_t header[9] = {
             0x47, 0xfc, 0x00,
             0x00, 0xb0, (uint8_t)(sample_rate == 44100 ? 0x90 : 0x8c),
             0x80, 0x03, 0x00,
         };
-        memcpy(dst, header, 9);
-        dst += 9;
-        written += 9;
+        memcpy(hdr, header, 9);
 
-        int cap = a2dp_aac_get_effective_frame_size();
-        if (cap < pkt->size) {
-          LOG_WARN("%s: dropped packet: size=%d, cap=%d'", __func__, pkt->size,
-                   cap);
-          uint8_t silent_frame[6] = {
-              0x21, 0x10, 0x04, 0x60, 0x8c, 0x1c,
+        if (written == 0) {
+          LOG_WARN("%s: dropped packet", __func__);
+          uint8_t silent_frame[7] = {
+              0x06, 0x21, 0x10, 0x04, 0x60, 0x8c, 0x1c,
           };
-          memcpy(dst, silent_frame, 6);
-          dst += 6;
-          written += 6;
-        } else {
-          int fsize = pkt->size;
-
-          while (fsize >= 255) {
-            *(dst++) = 0xff;
-            fsize -= 255;
-            ++written;
-          }
-          *(dst++) = fsize;
-          ++written;
-
-          memcpy(dst, pkt->data, pkt->size);
-          written += pkt->size;
+          memcpy(hdr + 9, silent_frame, 7);
+          written = 7;
         }
-
-        av_frame_free(&frame);
-        av_packet_unref(pkt);
 
         nb_frame--;
         p_buf->layer_specific++;  // added a frame to the buffer
-        p_buf->len += written;
+        p_buf->len = 9 + written;
       } else {
         LOG_WARN("%s: underflow %d", __func__, nb_frame);
         a2dp_aac_encoder_cb.aac_feeding_state.counter +=
