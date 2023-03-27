@@ -16,6 +16,24 @@
       "message": "This is an alternative solution for crrev/c/2319752, they are both required to pass some cert tests. Please help determine which one is better. Thanks.",
       "revId": "925ebe4cc9cbddcfbc7dd9d24a0889cfca0e6cef",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "32b4912b_14434ab7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-03-27T18:54:08Z",
+      "side": 1,
+      "message": "Is crrev/c/2319752 the correct link, this point to a `termina-dlc: Automatic uprev to 86.13371.0.0.35757.` patch ?",
+      "parentUuid": "73185394_de34afd8",
+      "revId": "925ebe4cc9cbddcfbc7dd9d24a0889cfca0e6cef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
