@@ -16,6 +16,23 @@
       "message": "Please help review. Thanks!",
       "revId": "c070c3c1c977f8a0cf4e17cb9c9d2aa291b52148",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "caed01a5_b2ad02ea",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2023-03-27T15:33:49Z",
+      "side": 1,
+      "message": "Do you have the corresponding browser change for this since you\u0027re changing the API? Would it make sense to create another API to do the LE connection instead (maybe not, but wanted to get your thoughts)?",
+      "revId": "c070c3c1c977f8a0cf4e17cb9c9d2aa291b52148",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
