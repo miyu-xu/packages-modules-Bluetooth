@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e7dc8e36_6eb6a9c6",
+        "filename": "android/app/src/com/android/bluetooth/tbs/TbsCall.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-03-27T12:04:37Z",
+      "side": 1,
+      "message": "I think this would be still easy to guess.\nJust leave last 3 characters. Turn rest of letters into ****",
+      "range": {
+        "startLine": 146,
+        "startChar": 0,
+        "endLine": 168,
+        "endChar": 5
+      },
+      "revId": "b4667e1220d6b2d1560971b222376aff4d9af5cc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
