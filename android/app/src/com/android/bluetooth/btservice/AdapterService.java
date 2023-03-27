@@ -18,6 +18,7 @@
 package com.android.bluetooth.btservice;
 
 import static android.bluetooth.BluetoothDevice.TRANSPORT_AUTO;
+import static android.bluetooth.IBluetoothLeAudio.LE_AUDIO_GROUP_ID_INVALID;
 import static android.text.format.DateUtils.MINUTE_IN_MILLIS;
 import static android.text.format.DateUtils.SECOND_IN_MILLIS;
 
@@ -102,6 +103,7 @@ import android.sysprop.BluetoothProperties;
 import android.text.TextUtils;
 import android.util.Base64;
 import android.util.Log;
+import android.util.Pair;
 import android.util.SparseArray;
 
 import com.android.bluetooth.BluetoothMetricsProto;
@@ -178,6 +180,7 @@ public class AdapterService extends Service {
     private static final int MIN_OFFLOADED_SCAN_STORAGE_BYTES = 1024;
     private static final Duration PENDING_SOCKET_HANDOFF_TIMEOUT = Duration.ofMinutes(1);
     private static final Duration GENERATE_LOCAL_OOB_DATA_TIMEOUT = Duration.ofSeconds(2);
+    private static final Duration PREFERRED_AUDIO_PROFILE_CHANGE_TIMEOUT = Duration.ofSeconds(10);
 
     private final Object mEnergyInfoLock = new Object();
     private int mStackReportedState;
@@ -304,7 +307,10 @@ public class AdapterService extends Service {
             mPreferredAudioProfilesCallbacks;
     private RemoteCallbackList<IBluetoothQualityReportReadyCallback>
             mBluetoothQualityReportReadyCallbacks;
-    private Set<BluetoothDevice> mDevicesPendingAudioProfileChanges = new HashSet<>();
+    private Map<Integer, Pair<Bundle, Integer>>
+            mCsipGroupsPendingAudioProfileChanges = new HashMap<>();
+    private final Map<Integer, BluetoothDevice> mDevicesPendingPreferredAudioProfileChanges =
+            new HashMap<>();
     //Only BluetoothManagerService should be registered
     private RemoteCallbackList<IBluetoothCallback> mCallbacks;
     private int mCurrentRequestId;
@@ -406,6 +412,7 @@ public class AdapterService extends Service {
     private static final int MESSAGE_PROFILE_SERVICE_STATE_CHANGED = 1;
     private static final int MESSAGE_PROFILE_SERVICE_REGISTERED = 2;
     private static final int MESSAGE_PROFILE_SERVICE_UNREGISTERED = 3;
+    private static final int MESSAGE_PREFERRED_AUDIO_PROFILES_AUDIO_FRAMEWORK_TIMEOUT = 4;
 
     class AdapterServiceHandler extends Handler {
         @Override
@@ -424,6 +431,11 @@ public class AdapterService extends Service {
                 case MESSAGE_PROFILE_SERVICE_UNREGISTERED:
                     verboseLog("handleMessage() - MESSAGE_PROFILE_SERVICE_UNREGISTERED");
                     unregisterProfileService((ProfileService) msg.obj);
+                    break;
+                case MESSAGE_PREFERRED_AUDIO_PROFILES_AUDIO_FRAMEWORK_TIMEOUT:
+                    verboseLog("handleMessage() - "
+                            + "MESSAGE_PREFERRED_PROFILE_CHANGE_AUDIO_FRAMEWORK_TIMEOUT");
+                    removeFromPendingAudioProfileChanges((int) msg.obj);
                     break;
             }
         }
@@ -1240,40 +1252,59 @@ public class AdapterService extends Service {
      * @return {@code true} if it's a dual mode audio device, {@code false} otherwise
      */
     private boolean isDualModeAudioSinkDevice(BluetoothDevice device) {
-        return isProfileSupported(device, BluetoothProfile.LE_AUDIO)
-                && mLeAudioService != null && (isProfileSupported(device, BluetoothProfile.HEADSET)
-                || isProfileSupported(device, BluetoothProfile.A2DP));
+        if (mLeAudioService == null
+                || mLeAudioService.getGroupId(device) == LE_AUDIO_GROUP_ID_INVALID) {
+            return false;
+        }
+
+        // Check if any device in the CSIP group is a dual mode audio sink device
+        for (BluetoothDevice groupDevice: mLeAudioService.getGroupDevices(
+                mLeAudioService.getGroupId(device))) {
+            if (isProfileSupported(groupDevice, BluetoothProfile.LE_AUDIO)
+                    && (isProfileSupported(groupDevice, BluetoothProfile.HEADSET)
+                    || isProfileSupported(groupDevice, BluetoothProfile.A2DP))) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
      * Checks whether the local and remote device support a connection for duplex audio (input and
      * output) over HFP or LE Audio.
      *
-     * @param device the remote device
+     * @param groupDevices the devices in the CSIP group
      * @return {@code true} if duplex is supported on the remote device, {@code false} otherwise
      */
-    private boolean isDuplexAudioSupported(BluetoothDevice device) {
-        if (isProfileSupported(device, BluetoothProfile.HEADSET)) {
-            return true;
+    private boolean isDuplexAudioSupported(List<BluetoothDevice> groupDevices) {
+        for (BluetoothDevice device: groupDevices) {
+            if (isProfileSupported(device, BluetoothProfile.HEADSET)
+                    || (isProfileSupported(device, BluetoothProfile.LE_AUDIO)
+                    && mLeAudioService != null
+                    && mLeAudioService.isLeAudioDuplexSupported(device))) {
+                return true;
+            }
         }
-        return isProfileSupported(device, BluetoothProfile.LE_AUDIO) && mLeAudioService != null
-                && mLeAudioService.isLeAudioDuplexSupported(device);
+        return false;
     }
 
     /**
      * Checks whether the local and remote device support a connection for output only audio over
      * A2DP or LE Audio.
      *
-     * @param device the remote device
-     * @return {@code true} if output only is supported on the remote device, {@code false}
-     * otherwise
+     * @param groupDevices the devices in the CSIP group
+     * @return {@code true} if output only is supported, {@code false} otherwise
      */
-    private boolean isOutputOnlyAudioSupported(BluetoothDevice device) {
-        if (isProfileSupported(device, BluetoothProfile.A2DP)) {
-            return true;
+    private boolean isOutputOnlyAudioSupported(List<BluetoothDevice> groupDevices) {
+        for (BluetoothDevice device: groupDevices) {
+            if (isProfileSupported(device, BluetoothProfile.A2DP)
+                    || (isProfileSupported(device, BluetoothProfile.LE_AUDIO)
+                    && mLeAudioService != null
+                    && mLeAudioService.isLeAudioOutputSupported(device))) {
+                return true;
+            }
         }
-        return isProfileSupported(device, BluetoothProfile.LE_AUDIO) && mLeAudioService != null
-                && mLeAudioService.isLeAudioOutputSupported(device);
+        return false;
     }
 
     /**
@@ -4686,6 +4717,10 @@ public class AdapterService extends Service {
             }
             enforceBluetoothPrivilegedPermission(service);
 
+            // If LE only mode is enabled, the dual mode audio feature is disabled
+            if (!Utils.isDualModeAudioEnabled()) {
+                return BluetoothStatusCodes.FEATURE_NOT_SUPPORTED;
+            }
             service.mBluetoothQualityReportReadyCallbacks.register(callback);
             return BluetoothStatusCodes.SUCCESS;
         }
@@ -4765,39 +4800,55 @@ public class AdapterService extends Service {
      * @return a Bundle containing the preferred audio profiles for the device
      */
     private Bundle getPreferredAudioProfiles(BluetoothDevice device) {
-        if (mLeAudioService == null || !isDualModeAudioSinkDevice(device)) {
+        if (!Utils.isDualModeAudioEnabled() || mLeAudioService == null
+                || !isDualModeAudioSinkDevice(device)) {
             return Bundle.EMPTY;
         }
-        // Gets the lead device in the CSIP group to set the preference
-        BluetoothDevice groupLead = mLeAudioService.getLeadDevice(device);
-        if (groupLead == null) {
+        // Checks if the device is part of an LE Audio group
+        List<BluetoothDevice> groupDevices = mLeAudioService.getGroupDevices(device);
+        if (groupDevices.size() == 0) {
             return Bundle.EMPTY;
         }
 
         // If there are no preferences stored, return the defaults
-        Bundle storedBundle = mDatabaseManager.getPreferredAudioProfiles(groupLead);
+        Bundle storedBundle = Bundle.EMPTY;
+        for (BluetoothDevice groupDevice: groupDevices) {
+            Bundle groupDevicePreferences = mDatabaseManager.getPreferredAudioProfiles(groupDevice);
+            if (!groupDevicePreferences.isEmpty()) {
+                storedBundle = groupDevicePreferences;
+                break;
+            }
+        }
+
         if (storedBundle.isEmpty()) {
-            // Gets the default output only audio profile or defaults to LE_AUDIO if not present
-            int outputOnlyDefault = BluetoothProperties.getDefaultOutputOnlyAudioProfile().orElse(
-                    BluetoothProfile.LE_AUDIO);
-            if (outputOnlyDefault != BluetoothProfile.A2DP
-                    && outputOnlyDefault != BluetoothProfile.LE_AUDIO) {
-                outputOnlyDefault = BluetoothProfile.LE_AUDIO;
+            Bundle defaultPreferencesBundle = new Bundle();
+            boolean useDefaultPreferences = false;
+            if (isOutputOnlyAudioSupported(groupDevices)) {
+                // Gets the default output only audio profile or defaults to LE_AUDIO if not present
+                int outputOnlyDefault = BluetoothProperties.getDefaultOutputOnlyAudioProfile()
+                        .orElse(BluetoothProfile.LE_AUDIO);
+                if (outputOnlyDefault != BluetoothProfile.A2DP
+                        && outputOnlyDefault != BluetoothProfile.LE_AUDIO) {
+                    outputOnlyDefault = BluetoothProfile.LE_AUDIO;
+                }
+                defaultPreferencesBundle.putInt(BluetoothAdapter.AUDIO_MODE_OUTPUT_ONLY,
+                        outputOnlyDefault);
+                useDefaultPreferences = true;
+            }
+            if (isDuplexAudioSupported(groupDevices)) {
+                // Gets the default duplex audio profile or defaults to LE_AUDIO if not present
+                int duplexDefault = BluetoothProperties.getDefaultDuplexAudioProfile().orElse(
+                        BluetoothProfile.LE_AUDIO);
+                if (duplexDefault != BluetoothProfile.HEADSET
+                        && duplexDefault != BluetoothProfile.LE_AUDIO) {
+                    duplexDefault = BluetoothProfile.LE_AUDIO;
+                }
+                defaultPreferencesBundle.putInt(BluetoothAdapter.AUDIO_MODE_DUPLEX, duplexDefault);
+                useDefaultPreferences = true;
             }
 
-            // Gets the default duplex audio profile or defaults to LE_AUDIO if not present
-            int duplexDefault = BluetoothProperties.getDefaultDuplexAudioProfile().orElse(
-                    BluetoothProfile.LE_AUDIO);
-            if (duplexDefault != BluetoothProfile.HEADSET
-                    && duplexDefault != BluetoothProfile.LE_AUDIO) {
-                duplexDefault = BluetoothProfile.LE_AUDIO;
-            }
-
-            if (isOutputOnlyAudioSupported(groupLead)) {
-                storedBundle.putInt(BluetoothAdapter.AUDIO_MODE_OUTPUT_ONLY, outputOnlyDefault);
-            }
-            if (isDuplexAudioSupported(groupLead)) {
-                storedBundle.putInt(BluetoothAdapter.AUDIO_MODE_DUPLEX, duplexDefault);
+            if (useDefaultPreferences) {
+                return defaultPreferencesBundle;
             }
         }
         return storedBundle;
@@ -4812,39 +4863,169 @@ public class AdapterService extends Service {
      * @return whether the preferences were successfully requested
      */
     private int setPreferredAudioProfiles(BluetoothDevice device, Bundle modeToProfileBundle) {
+        if (!Utils.isDualModeAudioEnabled()) {
+            return BluetoothStatusCodes.FEATURE_NOT_SUPPORTED;
+        }
         if (mLeAudioService == null) {
             return BluetoothStatusCodes.ERROR_PROFILE_NOT_CONNECTED;
         }
         if (!isDualModeAudioSinkDevice(device)) {
             return BluetoothStatusCodes.ERROR_NOT_DUAL_MODE_AUDIO_DEVICE;
         }
-        // Gets the lead device in the CSIP group to set the preference
-        BluetoothDevice groupLead = mLeAudioService.getLeadDevice(device);
-        if (groupLead == null) {
+        // Checks if the device is part of an LE Audio group
+        int groupId = mLeAudioService.getGroupId(device);
+        List<BluetoothDevice> groupDevices = mLeAudioService.getGroupDevices(groupId);
+        if (groupDevices.size() == 0) {
             return BluetoothStatusCodes.ERROR_DEVICE_NOT_BONDED;
         }
 
-        synchronized (mDevicesPendingAudioProfileChanges) {
-            if (mDevicesPendingAudioProfileChanges.contains(groupLead)) {
+        // Copies relevant keys & values from modeToProfile bundle
+        Bundle strippedPreferences = new Bundle();
+        if (modeToProfileBundle.containsKey(BluetoothAdapter.AUDIO_MODE_OUTPUT_ONLY)
+                && isOutputOnlyAudioSupported(groupDevices)) {
+            int outputOnlyProfile = modeToProfileBundle.getInt(
+                    BluetoothAdapter.AUDIO_MODE_OUTPUT_ONLY);
+            if (outputOnlyProfile != BluetoothProfile.A2DP
+                    && outputOnlyProfile != BluetoothProfile.LE_AUDIO) {
+                throw new IllegalArgumentException("AUDIO_MODE_OUTPUT_ONLY has invalid value: "
+                        + outputOnlyProfile);
+            }
+            strippedPreferences.putInt(BluetoothAdapter.AUDIO_MODE_OUTPUT_ONLY,
+                    modeToProfileBundle.getInt(BluetoothAdapter.AUDIO_MODE_OUTPUT_ONLY));
+        }
+        if (modeToProfileBundle.containsKey(BluetoothAdapter.AUDIO_MODE_DUPLEX)
+                && isDuplexAudioSupported(groupDevices)) {
+            int duplexProfile = modeToProfileBundle.getInt(BluetoothAdapter.AUDIO_MODE_DUPLEX);
+            if (duplexProfile != BluetoothProfile.HEADSET
+                    && duplexProfile != BluetoothProfile.LE_AUDIO) {
+                throw new IllegalArgumentException("AUDIO_MODE_DUPLEX has invalid value: "
+                        + duplexProfile);
+            }
+            strippedPreferences.putInt(BluetoothAdapter.AUDIO_MODE_DUPLEX,
+                    modeToProfileBundle.getInt(BluetoothAdapter.AUDIO_MODE_DUPLEX));
+        }
+
+        synchronized (mCsipGroupsPendingAudioProfileChanges) {
+            if (mCsipGroupsPendingAudioProfileChanges.containsKey(groupId)) {
                 return BluetoothStatusCodes.ERROR_ANOTHER_ACTIVE_REQUEST;
             }
 
-            // Copies relevant keys & values from modeToProfile bundle
-            Bundle strippedPreferences = new Bundle();
-            if (modeToProfileBundle.containsKey(BluetoothAdapter.AUDIO_MODE_OUTPUT_ONLY)
-                    && isOutputOnlyAudioSupported(groupLead)) {
-                strippedPreferences.putInt(BluetoothAdapter.AUDIO_MODE_OUTPUT_ONLY,
-                        modeToProfileBundle.getInt(BluetoothAdapter.AUDIO_MODE_OUTPUT_ONLY));
+            Bundle currentPreferences = getPreferredAudioProfiles(device);
+
+            mDatabaseManager.setPreferredAudioProfiles(groupDevices, strippedPreferences);
+
+            // Notifies audio framework via the handler thread to avoid this blocking calls
+            mHandler.post(() -> sendPreferredAudioProfileChangeToAudioFramework(
+                    device, strippedPreferences, currentPreferences));
+            return BluetoothStatusCodes.SUCCESS;
+        }
+    }
+
+    /**
+     * Sends the updated preferred audio profiles to the audio framework.
+     *
+     * @param device is the device with updated audio preferences
+     * @param strippedPreferences is a {@link Bundle} containing the preferences
+     */
+    private void sendPreferredAudioProfileChangeToAudioFramework(BluetoothDevice device,
+            Bundle strippedPreferences, Bundle currentPreferences) {
+        int newOutput = strippedPreferences.getInt(BluetoothAdapter.AUDIO_MODE_OUTPUT_ONLY);
+        int newDuplex = strippedPreferences.getInt(BluetoothAdapter.AUDIO_MODE_DUPLEX);
+        int currentOutput = currentPreferences.getInt(BluetoothAdapter.AUDIO_MODE_OUTPUT_ONLY);
+        int currentDuplex = currentPreferences.getInt(BluetoothAdapter.AUDIO_MODE_DUPLEX);
+
+        Log.i(TAG, "sendPreferredAudioProfileChangeToAudioFramework: changing output from "
+                + BluetoothProfile.getProfileName(currentOutput) + " to "
+                + BluetoothProfile.getProfileName(newOutput));
+        Log.i(TAG, "sendPreferredAudioProfileChangeToAudioFramework: changing duplex from "
+                + BluetoothProfile.getProfileName(currentDuplex) + " to "
+                + BluetoothProfile.getProfileName(newDuplex));
+
+        // If no change from existing preferences, do not inform audio framework
+        if (currentOutput == newOutput && currentDuplex == newDuplex) {
+            Log.i(TAG, "No change to preferred audio profiles, no requests to Audio FW");
+            return;
+        }
+
+        int numRequestsToAudioFw = 0;
+
+        // Checks if the device is part of an LE Audio group
+        int groupId = mLeAudioService.getGroupId(device);
+        List<BluetoothDevice> groupDevices = mLeAudioService.getGroupDevices(groupId);
+        if (groupDevices.isEmpty()) {
+            return;
+        }
+
+        if (currentOutput != newOutput) {
+            if (newOutput == BluetoothProfile.A2DP && mA2dpService.getActiveDevice() != null
+                    && groupDevices.contains(mA2dpService.getActiveDevice())) {
+                Log.i(TAG, "Sent change for AUDIO_MODE_OUTPUT_ONLY to A2DP to Audio FW");
+                numRequestsToAudioFw +=
+                        mA2dpService.sendPreferredAudioProfileChangeToAudioFramework();
+            } else if (newOutput == BluetoothProfile.LE_AUDIO
+                    && mLeAudioService.getActiveGroupId() == groupId) {
+                Log.i(TAG, "Sent change for AUDIO_MODE_OUTPUT_ONLY to LE_AUDIO to Audio FW");
+                numRequestsToAudioFw +=
+                        mLeAudioService.sendPreferredAudioProfileChangeToAudioFramework();
             }
-            if (modeToProfileBundle.containsKey(BluetoothAdapter.AUDIO_MODE_DUPLEX)
-                    && isDuplexAudioSupported(groupLead)) {
-                strippedPreferences.putInt(BluetoothAdapter.AUDIO_MODE_DUPLEX,
-                        modeToProfileBundle.getInt(BluetoothAdapter.AUDIO_MODE_DUPLEX));
+        }
+
+        if (currentDuplex != newDuplex) {
+            if (newDuplex == BluetoothProfile.HEADSET && mHeadsetService.getActiveDevice() != null
+                    && groupDevices.contains(mHeadsetService.getActiveDevice())) {
+                Log.i(TAG, "Sent change for AUDIO_MODE_DUPLEX to HFP to Audio FW");
+                // TODO(b/275426145): Add similar method for HFP in BluetoothProfileConnectionInfo
+                numRequestsToAudioFw +=
+                        mA2dpService.sendPreferredAudioProfileChangeToAudioFramework();
+            } else if (newDuplex == BluetoothProfile.LE_AUDIO
+                    && mLeAudioService.getActiveGroupId() == groupId) {
+                Log.i(TAG, "Sent change for AUDIO_MODE_DUPLEX to LE_AUDIO to Audio FW");
+                numRequestsToAudioFw +=
+                        mLeAudioService.sendPreferredAudioProfileChangeToAudioFramework();
+            }
+        }
+
+        Log.i(TAG, "sendPreferredAudioProfileChangeToAudioFramework: sent " + numRequestsToAudioFw
+                + " request(s) to the Audio Framework for groupId: " + groupId);
+
+        if (numRequestsToAudioFw > 0) {
+            synchronized (mCsipGroupsPendingAudioProfileChanges) {
+                mCsipGroupsPendingAudioProfileChanges.put(groupId,
+                        new Pair<>(strippedPreferences, numRequestsToAudioFw));
+                mDevicesPendingPreferredAudioProfileChanges.put(groupId, device);
             }
 
-            mDevicesPendingAudioProfileChanges.add(groupLead);
-            return mDatabaseManager.setPreferredAudioProfiles(groupLead,
-                    strippedPreferences);
+            Message m = mHandler.obtainMessage(
+                    MESSAGE_PREFERRED_AUDIO_PROFILES_AUDIO_FRAMEWORK_TIMEOUT);
+            m.obj = groupId;
+            mHandler.sendMessageDelayed(m, PREFERRED_AUDIO_PROFILE_CHANGE_TIMEOUT.toMillis());
+        } else {
+            sendPreferredAudioProfilesCallbackToApps(device, strippedPreferences,
+                    BluetoothStatusCodes.SUCCESS);
+        }
+    }
+
+    private void removeFromPendingAudioProfileChanges(int groupId) {
+        Log.i(TAG, "removeFromPendingAudioProfileChanges: Timeout on change for groupId="
+                + groupId);
+        synchronized (mCsipGroupsPendingAudioProfileChanges) {
+            BluetoothDevice devicePendingChange =
+                    mDevicesPendingPreferredAudioProfileChanges.remove(groupId);
+            if (devicePendingChange == null) {
+                Log.e(TAG,
+                        "removeFromPendingAudioProfileChanges( " + groupId + ") no mapped device");
+                return;
+            }
+
+            if (!mCsipGroupsPendingAudioProfileChanges.containsKey(groupId)) {
+                Log.e(TAG, "removeFromPendingAudioProfileChanges( " + groupId + ", " + groupId
+                        + ") is not pending");
+                return;
+            }
+
+            Bundle preferences = mCsipGroupsPendingAudioProfileChanges.remove(groupId).first;
+            sendPreferredAudioProfilesCallbackToApps(devicePendingChange, preferences,
+                    BluetoothStatusCodes.ERROR_TIMEOUT);
         }
     }
 
@@ -4856,41 +5037,74 @@ public class AdapterService extends Service {
      * @param device the remote device whose preferred audio profiles have been changed
      * @return whether the Bluetooth stack acknowledged the change successfully
      */
+
     private int notifyActiveDeviceChangeApplied(BluetoothDevice device) {
-        // Gets the lead device in the CSIP group to set the preference
-        BluetoothDevice groupLead = mLeAudioService.getLeadDevice(device);
-        if (groupLead == null) {
+        if (mLeAudioService == null) {
+            Log.e(TAG, "LE Audio profile not enabled");
+            return BluetoothStatusCodes.ERROR_PROFILE_NOT_CONNECTED;
+        }
+
+        int groupId = mLeAudioService.getGroupId(device);
+        if (groupId == LE_AUDIO_GROUP_ID_INVALID) {
             return BluetoothStatusCodes.ERROR_DEVICE_NOT_BONDED;
         }
 
-        synchronized (mDevicesPendingAudioProfileChanges) {
-            if (!mDevicesPendingAudioProfileChanges.contains(groupLead)) {
+        synchronized (mCsipGroupsPendingAudioProfileChanges) {
+            if (!mCsipGroupsPendingAudioProfileChanges.containsKey(groupId)) {
                 Log.e(TAG, "notifyActiveDeviceChangeApplied, but no pending request for "
-                        + "device: " + groupLead);
+                        + "groupId: " + groupId);
                 return BluetoothStatusCodes.ERROR_UNKNOWN;
             }
 
-            if (mPreferredAudioProfilesCallbacks != null) {
-                int n = mPreferredAudioProfilesCallbacks.beginBroadcast();
-                debugLog("notifyActiveDeviceChangeApplied() - Broadcasting audio profile "
-                        + "change applied to device: " + groupLead + " to " + n + " receivers.");
-                for (int i = 0; i < n; i++) {
-                    try {
-                        mPreferredAudioProfilesCallbacks.getBroadcastItem(i)
-                                .onPreferredAudioProfilesChanged(device,
-                                        getPreferredAudioProfiles(device),
-                                        BluetoothStatusCodes.SUCCESS);
-                    } catch (RemoteException e) {
-                        debugLog("notifyActiveDeviceChangeApplied() - Callback #" + i
-                                + " failed (" + e + ")");
-                    }
+            Bundle preferences = mCsipGroupsPendingAudioProfileChanges.get(groupId).first;
+            int numRequestsToAudioFw = mCsipGroupsPendingAudioProfileChanges.get(groupId).second;
+
+            // If this is the final audio framework request, send callback to apps
+            if (numRequestsToAudioFw <= 1) {
+                mCsipGroupsPendingAudioProfileChanges.remove(groupId);
+                BluetoothDevice devicePendingChange =
+                        mDevicesPendingPreferredAudioProfileChanges.remove(groupId);
+                if (devicePendingChange == null) {
+                    Log.i(TAG, "notifyActiveDeviceChangeApplied( " + device
+                            + ") no change requested");
+                    return BluetoothStatusCodes.ERROR_UNKNOWN;
                 }
-                mPreferredAudioProfilesCallbacks.finishBroadcast();
+                sendPreferredAudioProfilesCallbackToApps(devicePendingChange, preferences,
+                        BluetoothStatusCodes.SUCCESS);
+                // Removes the timeout from the handler
+                Log.i(TAG, "notifyActiveDeviceChangeApplied: Removing timeout from handler");
+                mHandler.removeMessages(
+                        MESSAGE_PREFERRED_AUDIO_PROFILES_AUDIO_FRAMEWORK_TIMEOUT, groupId);
+            } else {
+                mCsipGroupsPendingAudioProfileChanges.put(groupId, new Pair<>(preferences,
+                        numRequestsToAudioFw - 1));
             }
-            mDevicesPendingAudioProfileChanges.remove(groupLead);
         }
 
         return BluetoothStatusCodes.SUCCESS;
+    }
+
+    private void sendPreferredAudioProfilesCallbackToApps(BluetoothDevice device,
+            Bundle preferredAudioProfiles, int status) {
+        if (mPreferredAudioProfilesCallbacks == null) {
+            return;
+        }
+
+        int n = mPreferredAudioProfilesCallbacks.beginBroadcast();
+        debugLog("sendPreferredAudioProfilesCallbackToApps() - Broadcasting audio profile "
+                + "change applied to device: " + device + " to " + n + " receivers.");
+        for (int i = 0; i < n; i++) {
+            try {
+                mPreferredAudioProfilesCallbacks.getBroadcastItem(i)
+                        .onPreferredAudioProfilesChanged(device,
+                                preferredAudioProfiles,
+                                status);
+            } catch (RemoteException e) {
+                debugLog("sendPreferredAudioProfilesCallbackToApps() - Callback #" + i
+                        + " failed (" + e + ")");
+            }
+        }
+        mPreferredAudioProfilesCallbacks.finishBroadcast();
     }
 
     // ----API Methods--------
@@ -5273,7 +5487,7 @@ public class AdapterService extends Service {
     }
 
     /**
-     * Sets device as the active devices for the profiles passed into the function
+     * Sets device as the active devices for the profiles passed into the function.
      *
      * @param device is the remote bluetooth device
      * @param profiles is a constant that references for which profiles we'll be setting the remote
@@ -5307,16 +5521,17 @@ public class AdapterService extends Service {
                 return false;
         }
 
-        if (mLeAudioService != null && (device == null
-                || mLeAudioService.getConnectionPolicy(device)
-                == BluetoothProfile.CONNECTION_POLICY_ALLOWED)) {
-            Log.i(TAG, "setActiveDevice: Setting active Le Audio device " + device);
-            mLeAudioService.setActiveDevice(device);
-        }
-
-        if (setA2dp && mA2dpService != null && (device == null
+        boolean a2dpSupported = mA2dpService != null && (device == null
                 || mA2dpService.getConnectionPolicy(device)
-                == BluetoothProfile.CONNECTION_POLICY_ALLOWED)) {
+                == BluetoothProfile.CONNECTION_POLICY_ALLOWED);
+        boolean hfpSupported = mHeadsetService != null && (device == null
+                || mHeadsetService.getConnectionPolicy(device)
+                == BluetoothProfile.CONNECTION_POLICY_ALLOWED);
+        boolean leAudioSupported = mLeAudioService != null && (device == null
+                || mLeAudioService.getConnectionPolicy(device)
+                == BluetoothProfile.CONNECTION_POLICY_ALLOWED);
+
+        if (setA2dp && a2dpSupported) {
             Log.i(TAG, "setActiveDevice: Setting active A2dp device " + device);
             if (device == null) {
                 mA2dpService.removeActiveDevice(false);
@@ -5332,13 +5547,74 @@ public class AdapterService extends Service {
             mHearingAidService.setActiveDevice(device);
         }
 
-        if (setHeadset && mHeadsetService != null && (device == null
-                || mHeadsetService.getConnectionPolicy(device)
-                == BluetoothProfile.CONNECTION_POLICY_ALLOWED)) {
+        if (setHeadset && hfpSupported) {
             Log.i(TAG, "setActiveDevice: Setting active Headset " + device);
             mHeadsetService.setActiveDevice(device);
         }
 
+        if (leAudioSupported) {
+            Log.i(TAG, "setActiveDevice: Setting active Le Audio device " + device);
+            mLeAudioService.setActiveDevice(device);
+        }
+
+        return true;
+    }
+
+    /**
+     * Checks if all supported classic audio profiles are connected to the device.
+     * @param device the remote device
+     * @return {@code true} if all supported classic audio profiles are connected, {@code false}
+     * otherwise
+     */
+    public boolean isAllSupportedClassicAudioProfilesConnected(BluetoothDevice device) {
+        boolean a2dpSupported = mA2dpService != null && (device == null
+                || mA2dpService.getConnectionPolicy(device)
+                == BluetoothProfile.CONNECTION_POLICY_ALLOWED);
+        boolean hfpSupported = mHeadsetService != null && (device == null
+                || mHeadsetService.getConnectionPolicy(device)
+                == BluetoothProfile.CONNECTION_POLICY_ALLOWED);
+
+        if (hfpSupported) {
+            List<BluetoothDevice> connectedHfpDevices = mHeadsetService.getConnectedDevices();
+            if (!connectedHfpDevices.contains(device)) {
+                return false;
+            }
+        }
+        if (a2dpSupported) {
+            List<BluetoothDevice> connectedA2dpDevices = mA2dpService.getConnectedDevices();
+            if (!connectedA2dpDevices.contains(device)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /**
+     * Checks if all supported classic audio profiles are active on this device.
+     * @param device the remote device
+     * @return {@code true} if all supported classic audio profiles are active on this device,
+     * {@code false} otherwise
+     */
+    public boolean isAllSupportedClassicAudioProfilesActive(BluetoothDevice device) {
+        boolean a2dpSupported = mA2dpService != null && (device == null
+                || mA2dpService.getConnectionPolicy(device)
+                == BluetoothProfile.CONNECTION_POLICY_ALLOWED);
+        boolean hfpSupported = mHeadsetService != null && (device == null
+                || mHeadsetService.getConnectionPolicy(device)
+                == BluetoothProfile.CONNECTION_POLICY_ALLOWED);
+
+        if (hfpSupported) {
+            BluetoothDevice activeHfpDevice = mHeadsetService.getActiveDevice();
+            if (activeHfpDevice == null || !activeHfpDevice.equals(device)) {
+                return false;
+            }
+        }
+        if (a2dpSupported) {
+            BluetoothDevice activeA2dpDevice = mA2dpService.getActiveDevice();
+            if (activeA2dpDevice == null || !activeA2dpDevice.equals(device)) {
+                return false;
+            }
+        }
         return true;
     }
 

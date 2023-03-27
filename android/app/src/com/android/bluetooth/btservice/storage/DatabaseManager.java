@@ -778,40 +778,75 @@ public class DatabaseManager {
      * Sets the preferred profile for the supplied audio modes. See
      * {@link BluetoothAdapter#setPreferredAudioProfiles(BluetoothDevice, Bundle)} for more details.
      *
-     * @param device is the remote device for which we are setting the preferred audio profiles
+     * @param groupDevices is the CSIP group for which we are setting the preferred audio profiles
      * @param modeToProfileBundle contains the preferred profile
      * @return
      */
-    public int setPreferredAudioProfiles(BluetoothDevice device, Bundle modeToProfileBundle) {
+    public int setPreferredAudioProfiles(List<BluetoothDevice> groupDevices,
+            Bundle modeToProfileBundle) {
         synchronized (mMetadataCache) {
-            if (device == null) {
-                Log.e(TAG, "setPreferredAudioProfiles: device is null");
-                throw new IllegalArgumentException("setPreferredAudioProfiles: device is null");
-            }
-
-            String address = device.getAddress();
-
-            if (!mMetadataCache.containsKey(address)) {
-                return BluetoothStatusCodes.ERROR_DEVICE_NOT_BONDED;
-            }
-
-            // Updates preferred audio profiles for the device
-            Metadata metadata = mMetadataCache.get(address);
-            int outputProfile = modeToProfileBundle.getInt(BluetoothAdapter.AUDIO_MODE_OUTPUT_ONLY);
+            int outputProfile = modeToProfileBundle.getInt(
+                    BluetoothAdapter.AUDIO_MODE_OUTPUT_ONLY);
             int duplexProfile = modeToProfileBundle.getInt(BluetoothAdapter.AUDIO_MODE_DUPLEX);
-            if (outputProfile != 0) {
-                Log.i(TAG, "setPreferredAudioProfiles: Updating output only audio profile for "
-                        + "device: " + device + " to "
-                        + BluetoothProfile.getProfileName(outputProfile));
-                metadata.preferred_output_only_profile = outputProfile;
-            }
-            if (duplexProfile != 0) {
-                Log.i(TAG, "setPreferredAudioProfiles: Updating duplex audio profile for device: "
-                        + device + " to " + BluetoothProfile.getProfileName(duplexProfile));
-                metadata.preferred_duplex_profile = duplexProfile;
+            boolean isPreferenceSet = false;
+
+            for (BluetoothDevice device: groupDevices) {
+                if (device == null) {
+                    Log.e(TAG, "setPreferredAudioProfiles: device is null");
+                    throw new IllegalArgumentException("setPreferredAudioProfiles: device is null");
+                }
+
+                String address = device.getAddress();
+                if (!mMetadataCache.containsKey(address)) {
+                    return BluetoothStatusCodes.ERROR_DEVICE_NOT_BONDED;
+                }
+
+                // Updates preferred audio profiles for the device
+                Metadata metadata = mMetadataCache.get(address);
+                if (outputProfile != 0 && metadata.preferred_output_only_profile != 0) {
+                    Log.i(TAG, "Device " + device + " from the group has an OUTPUT_ONLY "
+                            + "preference");
+                    Log.i(TAG, "setPreferredAudioProfiles: Updating output only audio profile for "
+                            + "device: " + device + " to "
+                            + BluetoothProfile.getProfileName(outputProfile));
+                    metadata.preferred_output_only_profile = outputProfile;
+                    isPreferenceSet = true;
+                }
+                if (duplexProfile != 0 && metadata.preferred_duplex_profile != 0) {
+                    Log.i(TAG, "Device " + device + " from the group has a DUPLEX preference");
+                    Log.i(TAG,
+                            "setPreferredAudioProfiles: Updating duplex audio profile for device: "
+                                    + device + " to " + BluetoothProfile.getProfileName(
+                                    duplexProfile));
+                    metadata.preferred_duplex_profile = duplexProfile;
+                    isPreferenceSet = true;
+                }
+
+                updateDatabase(metadata);
             }
 
-            updateDatabase(metadata);
+            // If no device in the group has a preference set, choose the first device in the list
+            if (!isPreferenceSet) {
+                Log.i(TAG, "No device in the group has preferred audio profiles set");
+                BluetoothDevice firstGroupDevice = groupDevices.get(0);
+                // Updates preferred audio profiles for the device
+                Metadata metadata = mMetadataCache.get(firstGroupDevice.getAddress());
+                if (outputProfile != 0) {
+                    Log.i(TAG, "setPreferredAudioProfiles: Updating output only audio profile for "
+                            + "device: " + firstGroupDevice + " to "
+                            + BluetoothProfile.getProfileName(outputProfile));
+                    metadata.preferred_output_only_profile = outputProfile;
+                }
+                if (duplexProfile != 0) {
+                    Log.i(TAG,
+                            "setPreferredAudioProfiles: Updating duplex audio profile for device: "
+                                    + firstGroupDevice + " to " + BluetoothProfile.getProfileName(
+                                    duplexProfile));
+                    metadata.preferred_duplex_profile = duplexProfile;
+                }
+
+                updateDatabase(metadata);
+            }
         }
         return BluetoothStatusCodes.SUCCESS;
     }
