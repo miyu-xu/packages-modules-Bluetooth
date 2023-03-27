@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9a371306_9a07538a",
+        "filename": "Android.bp",
+        "patchSetId": 6
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-03-27T23:26:59Z",
+      "side": 1,
+      "message": "Yep this is the correct bug",
+      "parentUuid": "475907f6_6ac3bfdd",
+      "range": {
+        "startLine": 82,
+        "startChar": 10,
+        "endLine": 82,
+        "endChar": 19
+      },
+      "revId": "13387158ef6d9833b78c9a806be5bbf0721c9ba0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "81a68ddb_b6121233",
         "filename": "Android.bp",
         "patchSetId": 6
@@ -37,6 +61,30 @@
       "writtenOn": "2023-03-27T23:02:50Z",
       "side": 1,
       "message": "The test is completly disabled on x86_64 ?\nCan\u0027t we keep the test but without asan ? something like this: (untested)\n\n```\n    target: {\n        android_x86: {\n          sanitize: {\n            address: true,\n          },            \n        },\n        android_x86_64: {\n          sanitize: {\n            address: false,\n          },  \n        },\n    },\n    sanitize: {\n      cfi: true,\n      misc_undefined: [\"bounds\"],\n    },\n```\n\nAnd remove everywhere the custom \u0027sanitize\u0027 to not override the default.",
+      "range": {
+        "startLine": 89,
+        "startChar": 8,
+        "endLine": 91,
+        "endChar": 10
+      },
+      "revId": "13387158ef6d9833b78c9a806be5bbf0721c9ba0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c2720725_b8ee025c",
+        "filename": "Android.bp",
+        "patchSetId": 6
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-03-27T23:26:59Z",
+      "side": 1,
+      "message": "\u003e The test is completly disabled on x86_64 ?\n\nNo it\u0027s not as the two ABIs are always compiled, it\u0027s just that I don\u0027t compile the `x86_64` version of the test, only the `x86` one, when you are on a `x86_64` target, I will just use the `x86` binary",
+      "parentUuid": "81a68ddb_b6121233",
       "range": {
         "startLine": 89,
         "startChar": 8,
@@ -72,6 +120,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7a6d86f7_619a153e",
+        "filename": "system/audio_hearing_aid_hw/Android.bp",
+        "patchSetId": 6
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-03-27T23:26:59Z",
+      "side": 1,
+      "message": "I\u0027m a bit against that right now as our default situation is not great and I\u0027m really afraid that we will put everything in this default.\n\nAt least here the name is so specific that it should be a red flag if you modify it.",
+      "parentUuid": "046fb770_80ace01f",
+      "range": {
+        "startLine": 46,
+        "startChar": 9,
+        "endLine": 46,
+        "endChar": 44
+      },
+      "revId": "13387158ef6d9833b78c9a806be5bbf0721c9ba0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3c0f7539_4fb3cad0",
         "filename": "system/stack/test/a2dp/AndroidTestForce32.xml",
         "patchSetId": 6
@@ -83,6 +155,30 @@
       "writtenOn": "2023-03-27T23:02:50Z",
       "side": 1,
       "message": "Not up to date ? do you mean `com.[google].android.btservices`\n\nShould this file be more semblable to the defaultTemplate ?\nI guess we can\u0027t re-use the template but I am asking anyway ... :) ?",
+      "range": {
+        "startLine": 36,
+        "startChar": 57,
+        "endLine": 36,
+        "endChar": 85
+      },
+      "revId": "13387158ef6d9833b78c9a806be5bbf0721c9ba0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1364b9fc_9f249b8a",
+        "filename": "system/stack/test/a2dp/AndroidTestForce32.xml",
+        "patchSetId": 6
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-03-27T23:26:59Z",
+      "side": 1,
+      "message": "I copied `packages/modules/Bluetooth/system/stack/test/a2dp/AndroidTest.xml` so yes it\u0027s indeed not up to date, but it\u0027s not up to date in the other file as well.\n\nI have a patch somewhere that I need to cherry pick for that 😊",
+      "parentUuid": "3c0f7539_4fb3cad0",
       "range": {
         "startLine": 36,
         "startChar": 57,
