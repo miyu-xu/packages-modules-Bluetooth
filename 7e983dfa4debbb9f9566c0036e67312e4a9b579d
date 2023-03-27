@@ -16,6 +16,24 @@
       "message": "This test doesn\u0027t seems applicable",
       "revId": "7e983dfa4debbb9f9566c0036e67312e4a9b579d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "73ba3871_ca1d3025",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-03-27T17:49:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "18d367f5_7d951b97",
+      "revId": "7e983dfa4debbb9f9566c0036e67312e4a9b579d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
