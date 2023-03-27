@@ -47,6 +47,8 @@ using ::bluetooth::packet::BitInserter;
 using ::bluetooth::packet::RawBuilder;
 using ::bluetooth::testing::LogCapture;
 
+using ::bluetooth::hci::acl_manager::LeConnectlistManager;
+
 using ::testing::_;
 using ::testing::DoAll;
 using ::testing::Eq;
@@ -480,9 +482,9 @@ class LeImplTest : public ::testing::Test {
   void TearDown() override {
     // We cannot teardown our structure without unregistering
     // from our own structure we created.
-    if (le_impl_->address_manager_registered) {
-      le_impl_->ready_to_unregister = true;
-      le_impl_->check_for_unregister();
+    if (le_impl_->le_connectlist_manager_->address_manager_registered) {
+      le_impl_->le_connectlist_manager_->ready_to_unregister = true;
+      le_impl_->le_connectlist_manager_->CheckForUnregister();
       sync_handler();
     }
 
@@ -564,10 +566,10 @@ class LeImplRegisteredWithAddressManagerTest : public LeImplTest {
     LeImplTest::SetUp();
     set_privacy_policy_for_initiator_address(fixed_address_, LeAddressManager::AddressPolicy::USE_PUBLIC_ADDRESS);
 
-    le_impl_->register_with_address_manager();
+    le_impl_->le_connectlist_manager_->RegisterWithAddressManager();
     sync_handler();  // Let |LeAddressManager::register_client| execute on handler
-    ASSERT_TRUE(le_impl_->address_manager_registered);
-    ASSERT_TRUE(le_impl_->pause_connection);
+    ASSERT_TRUE(le_impl_->le_connectlist_manager_->address_manager_registered);
+    ASSERT_TRUE(le_impl_->le_connectlist_manager_->pause_connection);
   }
 
   void TearDown() override {
@@ -619,41 +621,55 @@ class LeImplWithConnectionTest : public LeImplTest {
 };
 
 TEST_F(LeImplTest, add_device_to_connect_list) {
-  le_impl_->add_device_to_connect_list({{0x01, 0x02, 0x03, 0x04, 0x05, 0x06}, AddressType::PUBLIC_DEVICE_ADDRESS});
-  ASSERT_EQ(1UL, le_impl_->connect_list.size());
+  le_impl_->le_connectlist_manager_->AddDeviceToConnectList(
+      {{0x01, 0x02, 0x03, 0x04, 0x05, 0x06}, AddressType::PUBLIC_DEVICE_ADDRESS});
+  ASSERT_EQ(1UL, le_impl_->le_connectlist_manager_->connect_list.size());
 
-  le_impl_->add_device_to_connect_list({{0x11, 0x12, 0x13, 0x14, 0x15, 0x16}, AddressType::PUBLIC_DEVICE_ADDRESS});
-  ASSERT_EQ(2UL, le_impl_->connect_list.size());
+  le_impl_->le_connectlist_manager_->AddDeviceToConnectList(
+      {{0x11, 0x12, 0x13, 0x14, 0x15, 0x16}, AddressType::PUBLIC_DEVICE_ADDRESS});
+  ASSERT_EQ(2UL, le_impl_->le_connectlist_manager_->connect_list.size());
 
-  le_impl_->add_device_to_connect_list({{0x01, 0x02, 0x03, 0x04, 0x05, 0x06}, AddressType::PUBLIC_DEVICE_ADDRESS});
-  ASSERT_EQ(2UL, le_impl_->connect_list.size());
+  le_impl_->le_connectlist_manager_->AddDeviceToConnectList(
+      {{0x01, 0x02, 0x03, 0x04, 0x05, 0x06}, AddressType::PUBLIC_DEVICE_ADDRESS});
+  ASSERT_EQ(2UL, le_impl_->le_connectlist_manager_->connect_list.size());
 
-  le_impl_->add_device_to_connect_list({{0x11, 0x12, 0x13, 0x14, 0x15, 0x16}, AddressType::PUBLIC_DEVICE_ADDRESS});
-  ASSERT_EQ(2UL, le_impl_->connect_list.size());
+  le_impl_->le_connectlist_manager_->AddDeviceToConnectList(
+      {{0x11, 0x12, 0x13, 0x14, 0x15, 0x16}, AddressType::PUBLIC_DEVICE_ADDRESS});
+  ASSERT_EQ(2UL, le_impl_->le_connectlist_manager_->connect_list.size());
 }
 
 TEST_F(LeImplTest, remove_device_from_connect_list) {
-  le_impl_->add_device_to_connect_list({{0x01, 0x02, 0x03, 0x04, 0x05, 0x06}, AddressType::PUBLIC_DEVICE_ADDRESS});
-  le_impl_->add_device_to_connect_list({{0x11, 0x12, 0x13, 0x14, 0x15, 0x16}, AddressType::PUBLIC_DEVICE_ADDRESS});
-  le_impl_->add_device_to_connect_list({{0x21, 0x22, 0x23, 0x24, 0x25, 0x26}, AddressType::PUBLIC_DEVICE_ADDRESS});
-  le_impl_->add_device_to_connect_list({{0x31, 0x32, 0x33, 0x34, 0x35, 0x36}, AddressType::PUBLIC_DEVICE_ADDRESS});
-  ASSERT_EQ(4UL, le_impl_->connect_list.size());
+  le_impl_->le_connectlist_manager_->AddDeviceToConnectList(
+      {{0x01, 0x02, 0x03, 0x04, 0x05, 0x06}, AddressType::PUBLIC_DEVICE_ADDRESS});
+  le_impl_->le_connectlist_manager_->AddDeviceToConnectList(
+      {{0x11, 0x12, 0x13, 0x14, 0x15, 0x16}, AddressType::PUBLIC_DEVICE_ADDRESS});
+  le_impl_->le_connectlist_manager_->AddDeviceToConnectList(
+      {{0x21, 0x22, 0x23, 0x24, 0x25, 0x26}, AddressType::PUBLIC_DEVICE_ADDRESS});
+  le_impl_->le_connectlist_manager_->AddDeviceToConnectList(
+      {{0x31, 0x32, 0x33, 0x34, 0x35, 0x36}, AddressType::PUBLIC_DEVICE_ADDRESS});
+  ASSERT_EQ(4UL, le_impl_->le_connectlist_manager_->connect_list.size());
 
-  le_impl_->remove_device_from_connect_list({{0x01, 0x02, 0x03, 0x04, 0x05, 0x06}, AddressType::PUBLIC_DEVICE_ADDRESS});
-  ASSERT_EQ(3UL, le_impl_->connect_list.size());
+  le_impl_->le_connectlist_manager_->RemoveDeviceFromConnectList(
+      {{0x01, 0x02, 0x03, 0x04, 0x05, 0x06}, AddressType::PUBLIC_DEVICE_ADDRESS});
+  ASSERT_EQ(3UL, le_impl_->le_connectlist_manager_->connect_list.size());
 
-  le_impl_->remove_device_from_connect_list({{0x11, 0x12, 0x13, 0x14, 0x15, 0x16}, AddressType::PUBLIC_DEVICE_ADDRESS});
-  ASSERT_EQ(2UL, le_impl_->connect_list.size());
+  le_impl_->le_connectlist_manager_->RemoveDeviceFromConnectList(
+      {{0x11, 0x12, 0x13, 0x14, 0x15, 0x16}, AddressType::PUBLIC_DEVICE_ADDRESS});
+  ASSERT_EQ(2UL, le_impl_->le_connectlist_manager_->connect_list.size());
 
-  le_impl_->remove_device_from_connect_list({{0x11, 0x12, 0x13, 0x14, 0x15, 0x16}, AddressType::PUBLIC_DEVICE_ADDRESS});
-  ASSERT_EQ(2UL, le_impl_->connect_list.size());
+  le_impl_->le_connectlist_manager_->RemoveDeviceFromConnectList(
+      {{0x11, 0x12, 0x13, 0x14, 0x15, 0x16}, AddressType::PUBLIC_DEVICE_ADDRESS});
+  ASSERT_EQ(2UL, le_impl_->le_connectlist_manager_->connect_list.size());
 
-  le_impl_->remove_device_from_connect_list({Address::kEmpty, AddressType::PUBLIC_DEVICE_ADDRESS});
-  ASSERT_EQ(2UL, le_impl_->connect_list.size());
+  le_impl_->le_connectlist_manager_->RemoveDeviceFromConnectList(
+      {Address::kEmpty, AddressType::PUBLIC_DEVICE_ADDRESS});
+  ASSERT_EQ(2UL, le_impl_->le_connectlist_manager_->connect_list.size());
 
-  le_impl_->remove_device_from_connect_list({{0x21, 0x22, 0x23, 0x24, 0x25, 0x26}, AddressType::PUBLIC_DEVICE_ADDRESS});
-  le_impl_->remove_device_from_connect_list({{0x31, 0x32, 0x33, 0x34, 0x35, 0x36}, AddressType::PUBLIC_DEVICE_ADDRESS});
-  ASSERT_EQ(0UL, le_impl_->connect_list.size());
+  le_impl_->le_connectlist_manager_->RemoveDeviceFromConnectList(
+      {{0x21, 0x22, 0x23, 0x24, 0x25, 0x26}, AddressType::PUBLIC_DEVICE_ADDRESS});
+  le_impl_->le_connectlist_manager_->RemoveDeviceFromConnectList(
+      {{0x31, 0x32, 0x33, 0x34, 0x35, 0x36}, AddressType::PUBLIC_DEVICE_ADDRESS});
+  ASSERT_EQ(0UL, le_impl_->le_connectlist_manager_->connect_list.size());
 }
 
 TEST_F(LeImplTest, connection_complete_with_periperal_role) {
@@ -662,7 +678,7 @@ TEST_F(LeImplTest, connection_complete_with_periperal_role) {
   // Create connection
   ASSERT_NO_FATAL_FAILURE(hci_layer_->SetCommandFuture());
   le_impl_->create_le_connection(
-      {{0x21, 0x22, 0x23, 0x24, 0x25, 0x26}, AddressType::PUBLIC_DEVICE_ADDRESS}, true, false);
+      {{0x21, 0x22, 0x23, 0x24, 0x25, 0x26}, AddressType::PUBLIC_DEVICE_ADDRESS}, false);
   hci_layer_->GetCommand(OpCode::LE_ADD_DEVICE_TO_FILTER_ACCEPT_LIST);
   ASSERT_NO_FATAL_FAILURE(hci_layer_->SetCommandFuture());
   hci_layer_->CommandCompleteCallback(LeAddDeviceToFilterAcceptListCompleteBuilder::Create(0x01, ErrorCode::SUCCESS));
@@ -671,7 +687,9 @@ TEST_F(LeImplTest, connection_complete_with_periperal_role) {
   sync_handler();
 
   // Check state is ARMED
-  ASSERT_EQ(ConnectabilityState::ARMED, le_impl_->connectability_state_);
+  ASSERT_EQ(
+      LeConnectlistManager::ConnectabilityState::ARMED,
+      le_impl_->le_connectlist_manager_->connectability_state_);
 
   // Receive connection complete of incoming connection (Role::PERIPHERAL)
   hci::Address remote_address;
@@ -691,7 +709,9 @@ TEST_F(LeImplTest, connection_complete_with_periperal_role) {
   sync_handler();
 
   // Check state is still ARMED
-  ASSERT_EQ(ConnectabilityState::ARMED, le_impl_->connectability_state_);
+  ASSERT_EQ(
+      LeConnectlistManager::ConnectabilityState::ARMED,
+      le_impl_->le_connectlist_manager_->connectability_state_);
 }
 
 TEST_F(LeImplTest, enhanced_connection_complete_with_periperal_role) {
@@ -701,7 +721,7 @@ TEST_F(LeImplTest, enhanced_connection_complete_with_periperal_role) {
   // Create connection
   ASSERT_NO_FATAL_FAILURE(hci_layer_->SetCommandFuture());
   le_impl_->create_le_connection(
-      {{0x21, 0x22, 0x23, 0x24, 0x25, 0x26}, AddressType::PUBLIC_DEVICE_ADDRESS}, true, false);
+      {{0x21, 0x22, 0x23, 0x24, 0x25, 0x26}, AddressType::PUBLIC_DEVICE_ADDRESS}, false);
   hci_layer_->GetCommand(OpCode::LE_ADD_DEVICE_TO_FILTER_ACCEPT_LIST);
   ASSERT_NO_FATAL_FAILURE(hci_layer_->SetCommandFuture());
   hci_layer_->CommandCompleteCallback(LeAddDeviceToFilterAcceptListCompleteBuilder::Create(0x01, ErrorCode::SUCCESS));
@@ -710,7 +730,9 @@ TEST_F(LeImplTest, enhanced_connection_complete_with_periperal_role) {
   sync_handler();
 
   // Check state is ARMED
-  ASSERT_EQ(ConnectabilityState::ARMED, le_impl_->connectability_state_);
+  ASSERT_EQ(
+      LeConnectlistManager::ConnectabilityState::ARMED,
+      le_impl_->le_connectlist_manager_->connectability_state_);
 
   // Receive connection complete of incoming connection (Role::PERIPHERAL)
   hci::Address remote_address;
@@ -732,7 +754,9 @@ TEST_F(LeImplTest, enhanced_connection_complete_with_periperal_role) {
   sync_handler();
 
   // Check state is still ARMED
-  ASSERT_EQ(ConnectabilityState::ARMED, le_impl_->connectability_state_);
+  ASSERT_EQ(
+      LeConnectlistManager::ConnectabilityState::ARMED,
+      le_impl_->le_connectlist_manager_->connectability_state_);
 }
 
 TEST_F(LeImplTest, connection_complete_with_central_role) {
@@ -743,7 +767,7 @@ TEST_F(LeImplTest, connection_complete_with_central_role) {
   hci::AddressWithType address_with_type(remote_address, hci::AddressType::PUBLIC_DEVICE_ADDRESS);
   // Create connection
   ASSERT_NO_FATAL_FAILURE(hci_layer_->SetCommandFuture());
-  le_impl_->create_le_connection(address_with_type, true, false);
+  le_impl_->create_le_connection(address_with_type, false);
   hci_layer_->GetCommand(OpCode::LE_ADD_DEVICE_TO_FILTER_ACCEPT_LIST);
   ASSERT_NO_FATAL_FAILURE(hci_layer_->SetCommandFuture());
   hci_layer_->CommandCompleteCallback(LeAddDeviceToFilterAcceptListCompleteBuilder::Create(0x01, ErrorCode::SUCCESS));
@@ -752,7 +776,9 @@ TEST_F(LeImplTest, connection_complete_with_central_role) {
   sync_handler();
 
   // Check state is ARMED
-  ASSERT_EQ(ConnectabilityState::ARMED, le_impl_->connectability_state_);
+  ASSERT_EQ(
+      LeConnectlistManager::ConnectabilityState::ARMED,
+      le_impl_->le_connectlist_manager_->connectability_state_);
 
   // Receive connection complete of outgoing connection (Role::CENTRAL)
   EXPECT_CALL(mock_le_connection_callbacks_, OnLeConnectSuccess(address_with_type, _));
@@ -769,7 +795,9 @@ TEST_F(LeImplTest, connection_complete_with_central_role) {
   sync_handler();
 
   // Check state is DISARMED
-  ASSERT_EQ(ConnectabilityState::DISARMED, le_impl_->connectability_state_);
+  ASSERT_EQ(
+      LeConnectlistManager::ConnectabilityState::DISARMED,
+      le_impl_->le_connectlist_manager_->connectability_state_);
 }
 
 TEST_F(LeImplTest, enhanced_connection_complete_with_central_role) {
@@ -781,7 +809,7 @@ TEST_F(LeImplTest, enhanced_connection_complete_with_central_role) {
   hci::AddressWithType address_with_type(remote_address, hci::AddressType::PUBLIC_DEVICE_ADDRESS);
   // Create connection
   ASSERT_NO_FATAL_FAILURE(hci_layer_->SetCommandFuture());
-  le_impl_->create_le_connection(address_with_type, true, false);
+  le_impl_->create_le_connection(address_with_type, false);
   hci_layer_->GetCommand(OpCode::LE_ADD_DEVICE_TO_FILTER_ACCEPT_LIST);
   ASSERT_NO_FATAL_FAILURE(hci_layer_->SetCommandFuture());
   hci_layer_->CommandCompleteCallback(LeAddDeviceToFilterAcceptListCompleteBuilder::Create(0x01, ErrorCode::SUCCESS));
@@ -790,7 +818,9 @@ TEST_F(LeImplTest, enhanced_connection_complete_with_central_role) {
   sync_handler();
 
   // Check state is ARMED
-  ASSERT_EQ(ConnectabilityState::ARMED, le_impl_->connectability_state_);
+  ASSERT_EQ(
+      LeConnectlistManager::ConnectabilityState::ARMED,
+      le_impl_->le_connectlist_manager_->connectability_state_);
 
   // Receive connection complete of outgoing connection (Role::CENTRAL)
   EXPECT_CALL(mock_le_connection_callbacks_, OnLeConnectSuccess(address_with_type, _));
@@ -809,7 +839,9 @@ TEST_F(LeImplTest, enhanced_connection_complete_with_central_role) {
   sync_handler();
 
   // Check state is DISARMED
-  ASSERT_EQ(ConnectabilityState::DISARMED, le_impl_->connectability_state_);
+  ASSERT_EQ(
+      LeConnectlistManager::ConnectabilityState::DISARMED,
+      le_impl_->le_connectlist_manager_->connectability_state_);
 }
 
 // b/260917913
@@ -820,7 +852,7 @@ TEST_F(LeImplTest, DISABLED_register_with_address_manager__AddressPolicyNotSet) 
   auto future = promise.get_future();
   handler_->Post(common::BindOnce(
       [](struct le_impl* le_impl, os::Handler* handler, std::promise<void> promise) {
-        le_impl->register_with_address_manager();
+        le_impl->le_connectlist_manager_->RegisterWithAddressManager();
         handler->Post(common::BindOnce([](std::promise<void> promise) { promise.set_value(); }, std::move(promise)));
       },
       le_impl_,
@@ -833,8 +865,8 @@ TEST_F(LeImplTest, DISABLED_register_with_address_manager__AddressPolicyNotSet) 
 
   handler_->Post(common::BindOnce(
       [](struct le_impl* le_impl) {
-        ASSERT_TRUE(le_impl->address_manager_registered);
-        ASSERT_TRUE(le_impl->pause_connection);
+        ASSERT_TRUE(le_impl->le_connectlist_manager_->address_manager_registered);
+        ASSERT_TRUE(le_impl->le_connectlist_manager_->pause_connection);
       },
       le_impl_));
 
@@ -842,10 +874,10 @@ TEST_F(LeImplTest, DISABLED_register_with_address_manager__AddressPolicyNotSet) 
   auto future2 = promise2.get_future();
   handler_->Post(common::BindOnce(
       [](struct le_impl* le_impl, os::Handler* handler, std::promise<void> promise) {
-        le_impl->ready_to_unregister = true;
-        le_impl->check_for_unregister();
-        ASSERT_FALSE(le_impl->address_manager_registered);
-        ASSERT_FALSE(le_impl->pause_connection);
+        le_impl->le_connectlist_manager_->ready_to_unregister = true;
+        le_impl->le_connectlist_manager_->CheckForUnregister();
+        ASSERT_FALSE(le_impl->le_connectlist_manager_->address_manager_registered);
+        ASSERT_FALSE(le_impl->le_connectlist_manager_->pause_connection);
         handler->Post(common::BindOnce([](std::promise<void> promise) { promise.set_value(); }, std::move(promise)));
       },
       le_impl_,
@@ -869,39 +901,44 @@ TEST_F(LeImplTest, DISABLED_register_with_address_manager__AddressPolicyNotSet) 
 TEST_F(LeImplTest, DISABLED_disarm_connectability_DISARMED) {
   std::unique_ptr<LogCapture> log_capture = std::make_unique<LogCapture>();
 
-  le_impl_->connectability_state_ = ConnectabilityState::DISARMED;
-  le_impl_->disarm_connectability();
-  ASSERT_FALSE(le_impl_->disarmed_while_arming_);
+  le_impl_->le_connectlist_manager_->connectability_state_ =
+      LeConnectlistManager::ConnectabilityState::DISARMED;
+  le_impl_->le_connectlist_manager_->DisarmConnectability();
+  ASSERT_FALSE(le_impl_->le_connectlist_manager_->disarmed_while_arming_);
 
-  le_impl_->update_connectability_state_after_armed(ErrorCode::SUCCESS);
+  le_impl_->le_connectlist_manager_->UpdateConnectabilityStateAfterArmed(ErrorCode::SUCCESS);
 
   ASSERT_TRUE(log_capture->Rewind()->Find("Attempting to disarm le connection"));
-  ASSERT_TRUE(log_capture->Rewind()->Find("in unexpected state:ConnectabilityState::DISARMED"));
+  ASSERT_TRUE(log_capture->Rewind()->Find(
+      "in unexpected state:ConnectabilityState::DISARMED"));
 }
 
 // b/260917913
 TEST_F(LeImplTest, DISABLED_disarm_connectability_DISARMED_extended) {
   std::unique_ptr<LogCapture> log_capture = std::make_unique<LogCapture>();
 
-  le_impl_->connectability_state_ = ConnectabilityState::DISARMED;
-  le_impl_->disarm_connectability();
-  ASSERT_FALSE(le_impl_->disarmed_while_arming_);
+  le_impl_->le_connectlist_manager_->connectability_state_ =
+      LeConnectlistManager::ConnectabilityState::DISARMED;
+  le_impl_->le_connectlist_manager_->DisarmConnectability();
+  ASSERT_FALSE(le_impl_->le_connectlist_manager_->disarmed_while_arming_);
 
-  le_impl_->update_connectability_state_after_armed(ErrorCode::SUCCESS);
+  le_impl_->le_connectlist_manager_->UpdateConnectabilityStateAfterArmed(ErrorCode::SUCCESS);
 
   ASSERT_TRUE(log_capture->Rewind()->Find("Attempting to disarm le connection"));
-  ASSERT_TRUE(log_capture->Rewind()->Find("in unexpected state:ConnectabilityState::DISARMED"));
+  ASSERT_TRUE(log_capture->Rewind()->Find(
+      "in unexpected state:ConnectabilityState::DISARMED"));
 }
 
 // b/260917913
 TEST_F(LeImplTest, DISABLED_disarm_connectability_ARMING) {
   std::unique_ptr<LogCapture> log_capture = std::make_unique<LogCapture>();
 
-  le_impl_->connectability_state_ = ConnectabilityState::ARMING;
-  le_impl_->disarm_connectability();
-  ASSERT_TRUE(le_impl_->disarmed_while_arming_);
-  le_impl_->update_connectability_state_after_armed(ErrorCode::SUCCESS);
- 
+  le_impl_->le_connectlist_manager_->connectability_state_ =
+      LeConnectlistManager::ConnectabilityState::ARMING;
+  le_impl_->le_connectlist_manager_->DisarmConnectability();
+  ASSERT_TRUE(le_impl_->le_connectlist_manager_->disarmed_while_arming_);
+  le_impl_->le_connectlist_manager_->UpdateConnectabilityStateAfterArmed(ErrorCode::SUCCESS);
+
   ASSERT_TRUE(log_capture->Rewind()->Find("Queueing cancel connect until"));
   ASSERT_TRUE(log_capture->Rewind()->Find("Le connection state machine armed state"));
 }
@@ -910,11 +947,12 @@ TEST_F(LeImplTest, DISABLED_disarm_connectability_ARMING) {
 TEST_F(LeImplTest, DISABLED_disarm_connectability_ARMING_extended) {
   std::unique_ptr<LogCapture> log_capture = std::make_unique<LogCapture>();
 
-  le_impl_->connectability_state_ = ConnectabilityState::ARMING;
-  le_impl_->disarm_connectability();
-  ASSERT_TRUE(le_impl_->disarmed_while_arming_);
+  le_impl_->le_connectlist_manager_->connectability_state_ =
+      LeConnectlistManager::ConnectabilityState::ARMING;
+  le_impl_->le_connectlist_manager_->DisarmConnectability();
+  ASSERT_TRUE(le_impl_->le_connectlist_manager_->disarmed_while_arming_);
 
-  le_impl_->update_connectability_state_after_armed(ErrorCode::SUCCESS);
+  le_impl_->le_connectlist_manager_->UpdateConnectabilityStateAfterArmed(ErrorCode::SUCCESS);
 
   ASSERT_TRUE(log_capture->Rewind()->Find("Queueing cancel connect until"));
   ASSERT_TRUE(log_capture->Rewind()->Find("Le connection state machine armed state"));
@@ -924,11 +962,12 @@ TEST_F(LeImplTest, DISABLED_disarm_connectability_ARMING_extended) {
 TEST_F(LeImplTest, DISABLED_disarm_connectability_ARMED) {
   std::unique_ptr<LogCapture> log_capture = std::make_unique<LogCapture>();
 
-  le_impl_->connectability_state_ = ConnectabilityState::ARMED;
-  le_impl_->disarm_connectability();
-  ASSERT_FALSE(le_impl_->disarmed_while_arming_);
+  le_impl_->le_connectlist_manager_->connectability_state_ =
+      LeConnectlistManager::ConnectabilityState::ARMED;
+  le_impl_->le_connectlist_manager_->DisarmConnectability();
+  ASSERT_FALSE(le_impl_->le_connectlist_manager_->disarmed_while_arming_);
 
-  le_impl_->update_connectability_state_after_armed(ErrorCode::SUCCESS);
+  le_impl_->le_connectlist_manager_->UpdateConnectabilityStateAfterArmed(ErrorCode::SUCCESS);
 
   ASSERT_TRUE(log_capture->Rewind()->Find("Disarming LE connection state machine"));
   ASSERT_TRUE(log_capture->Rewind()->Find("Disarming LE connection state machine with create connection"));
@@ -938,11 +977,12 @@ TEST_F(LeImplTest, DISABLED_disarm_connectability_ARMED) {
 TEST_F(LeImplTest, DISABLED_disarm_connectability_ARMED_extended) {
   std::unique_ptr<LogCapture> log_capture = std::make_unique<LogCapture>();
 
-  le_impl_->connectability_state_ = ConnectabilityState::ARMED;
-  le_impl_->disarm_connectability();
-  ASSERT_FALSE(le_impl_->disarmed_while_arming_);
+  le_impl_->le_connectlist_manager_->connectability_state_ =
+      LeConnectlistManager::ConnectabilityState::ARMED;
+  le_impl_->le_connectlist_manager_->DisarmConnectability();
+  ASSERT_FALSE(le_impl_->le_connectlist_manager_->disarmed_while_arming_);
 
-  le_impl_->update_connectability_state_after_armed(ErrorCode::SUCCESS);
+  le_impl_->le_connectlist_manager_->UpdateConnectabilityStateAfterArmed(ErrorCode::SUCCESS);
 
   ASSERT_TRUE(log_capture->Rewind()->Find("Disarming LE connection state machine"));
   ASSERT_TRUE(log_capture->Rewind()->Find("Disarming LE connection state machine with create connection"));
@@ -952,28 +992,32 @@ TEST_F(LeImplTest, DISABLED_disarm_connectability_ARMED_extended) {
 TEST_F(LeImplTest, DISABLED_disarm_connectability_DISARMING) {
   std::unique_ptr<LogCapture> log_capture = std::make_unique<LogCapture>();
 
-  le_impl_->connectability_state_ = ConnectabilityState::DISARMING;
-  le_impl_->disarm_connectability();
-  ASSERT_FALSE(le_impl_->disarmed_while_arming_);
+  le_impl_->le_connectlist_manager_->connectability_state_ =
+      LeConnectlistManager::ConnectabilityState::DISARMING;
+  le_impl_->le_connectlist_manager_->DisarmConnectability();
+  ASSERT_FALSE(le_impl_->le_connectlist_manager_->disarmed_while_arming_);
 
-  le_impl_->update_connectability_state_after_armed(ErrorCode::SUCCESS);
+  le_impl_->le_connectlist_manager_->UpdateConnectabilityStateAfterArmed(ErrorCode::SUCCESS);
 
   ASSERT_TRUE(log_capture->Rewind()->Find("Attempting to disarm le connection"));
-  ASSERT_TRUE(log_capture->Rewind()->Find("in unexpected state:ConnectabilityState::DISARMING"));
+  ASSERT_TRUE(log_capture->Rewind()->Find(
+      "in unexpected state:ConnectabilityState::DISARMING"));
 }
 
 // b/260917913
 TEST_F(LeImplTest, DISABLED_disarm_connectability_DISARMING_extended) {
   std::unique_ptr<LogCapture> log_capture = std::make_unique<LogCapture>();
 
-  le_impl_->connectability_state_ = ConnectabilityState::DISARMING;
-  le_impl_->disarm_connectability();
-  ASSERT_FALSE(le_impl_->disarmed_while_arming_);
+  le_impl_->le_connectlist_manager_->connectability_state_ =
+      LeConnectlistManager::ConnectabilityState::DISARMING;
+  le_impl_->le_connectlist_manager_->DisarmConnectability();
+  ASSERT_FALSE(le_impl_->le_connectlist_manager_->disarmed_while_arming_);
 
-  le_impl_->update_connectability_state_after_armed(ErrorCode::SUCCESS);
+  le_impl_->le_connectlist_manager_->UpdateConnectabilityStateAfterArmed(ErrorCode::SUCCESS);
 
   ASSERT_TRUE(log_capture->Rewind()->Find("Attempting to disarm le connection"));
-  ASSERT_TRUE(log_capture->Rewind()->Find("in unexpected state:ConnectabilityState::DISARMING"));
+  ASSERT_TRUE(log_capture->Rewind()->Find(
+      "in unexpected state:ConnectabilityState::DISARMING"));
 }
 
 // b/260917913
@@ -982,17 +1026,17 @@ TEST_F(LeImplTest, DISABLED_register_with_address_manager__AddressPolicyPublicAd
 
   set_privacy_policy_for_initiator_address(fixed_address_, LeAddressManager::AddressPolicy::USE_PUBLIC_ADDRESS);
 
-  le_impl_->register_with_address_manager();
+  le_impl_->le_connectlist_manager_->RegisterWithAddressManager();
   sync_handler();  // Let |eAddressManager::register_client| execute on handler
-  ASSERT_TRUE(le_impl_->address_manager_registered);
-  ASSERT_TRUE(le_impl_->pause_connection);
+  ASSERT_TRUE(le_impl_->le_connectlist_manager_->address_manager_registered);
+  ASSERT_TRUE(le_impl_->le_connectlist_manager_->pause_connection);
 
-  le_impl_->ready_to_unregister = true;
+  le_impl_->le_connectlist_manager_->ready_to_unregister = true;
 
-  le_impl_->check_for_unregister();
+  le_impl_->le_connectlist_manager_->CheckForUnregister();
   sync_handler();  // Let |LeAddressManager::unregister_client| execute on handler
-  ASSERT_FALSE(le_impl_->address_manager_registered);
-  ASSERT_FALSE(le_impl_->pause_connection);
+  ASSERT_FALSE(le_impl_->le_connectlist_manager_->address_manager_registered);
+  ASSERT_FALSE(le_impl_->le_connectlist_manager_->pause_connection);
 
   ASSERT_TRUE(log_capture->Rewind()->Find("SetPrivacyPolicyForInitiatorAddress with policy 1"));
   ASSERT_TRUE(log_capture->Rewind()->Find("Client unregistered"));
@@ -1004,17 +1048,17 @@ TEST_F(LeImplTest, DISABLED_register_with_address_manager__AddressPolicyStaticAd
 
   set_privacy_policy_for_initiator_address(fixed_address_, LeAddressManager::AddressPolicy::USE_STATIC_ADDRESS);
 
-  le_impl_->register_with_address_manager();
+  le_impl_->le_connectlist_manager_->RegisterWithAddressManager();
   sync_handler();  // Let |LeAddressManager::register_client| execute on handler
-  ASSERT_TRUE(le_impl_->address_manager_registered);
-  ASSERT_TRUE(le_impl_->pause_connection);
+  ASSERT_TRUE(le_impl_->le_connectlist_manager_->address_manager_registered);
+  ASSERT_TRUE(le_impl_->le_connectlist_manager_->pause_connection);
 
-  le_impl_->ready_to_unregister = true;
+  le_impl_->le_connectlist_manager_->ready_to_unregister = true;
 
-  le_impl_->check_for_unregister();
+  le_impl_->le_connectlist_manager_->CheckForUnregister();
   sync_handler();  // Let |LeAddressManager::unregister_client| execute on handler
-  ASSERT_FALSE(le_impl_->address_manager_registered);
-  ASSERT_FALSE(le_impl_->pause_connection);
+  ASSERT_FALSE(le_impl_->le_connectlist_manager_->address_manager_registered);
+  ASSERT_FALSE(le_impl_->le_connectlist_manager_->pause_connection);
 
   ASSERT_TRUE(log_capture->Rewind()->Find("SetPrivacyPolicyForInitiatorAddress with policy 2"));
   ASSERT_TRUE(log_capture->Rewind()->Find("Client unregistered"));
@@ -1026,17 +1070,17 @@ TEST_F(LeImplTest, DISABLED_register_with_address_manager__AddressPolicyNonResol
 
   set_privacy_policy_for_initiator_address(fixed_address_, LeAddressManager::AddressPolicy::USE_NON_RESOLVABLE_ADDRESS);
 
-  le_impl_->register_with_address_manager();
+  le_impl_->le_connectlist_manager_->RegisterWithAddressManager();
   sync_handler();  // Let |LeAddressManager::register_client| execute on handler
-  ASSERT_TRUE(le_impl_->address_manager_registered);
-  ASSERT_TRUE(le_impl_->pause_connection);
+  ASSERT_TRUE(le_impl_->le_connectlist_manager_->address_manager_registered);
+  ASSERT_TRUE(le_impl_->le_connectlist_manager_->pause_connection);
 
-  le_impl_->ready_to_unregister = true;
+  le_impl_->le_connectlist_manager_->ready_to_unregister = true;
 
-  le_impl_->check_for_unregister();
+  le_impl_->le_connectlist_manager_->CheckForUnregister();
   sync_handler();  // Let |LeAddressManager::unregister_client| execute on handler
-  ASSERT_FALSE(le_impl_->address_manager_registered);
-  ASSERT_FALSE(le_impl_->pause_connection);
+  ASSERT_FALSE(le_impl_->le_connectlist_manager_->address_manager_registered);
+  ASSERT_FALSE(le_impl_->le_connectlist_manager_->pause_connection);
 
   ASSERT_TRUE(log_capture->Rewind()->Find("SetPrivacyPolicyForInitiatorAddress with policy 3"));
   ASSERT_TRUE(log_capture->Rewind()->Find("Client unregistered"));
@@ -1048,17 +1092,17 @@ TEST_F(LeImplTest, DISABLED_register_with_address_manager__AddressPolicyResolvab
 
   set_privacy_policy_for_initiator_address(fixed_address_, LeAddressManager::AddressPolicy::USE_RESOLVABLE_ADDRESS);
 
-  le_impl_->register_with_address_manager();
+  le_impl_->le_connectlist_manager_->RegisterWithAddressManager();
   sync_handler();  // Let |LeAddressManager::register_client| execute on handler
-  ASSERT_TRUE(le_impl_->address_manager_registered);
-  ASSERT_TRUE(le_impl_->pause_connection);
+  ASSERT_TRUE(le_impl_->le_connectlist_manager_->address_manager_registered);
+  ASSERT_TRUE(le_impl_->le_connectlist_manager_->pause_connection);
 
-  le_impl_->ready_to_unregister = true;
+  le_impl_->le_connectlist_manager_->ready_to_unregister = true;
 
-  le_impl_->check_for_unregister();
+  le_impl_->le_connectlist_manager_->CheckForUnregister();
   sync_handler();  // Let |LeAddressManager::unregister_client| execute on handler
-  ASSERT_FALSE(le_impl_->address_manager_registered);
-  ASSERT_FALSE(le_impl_->pause_connection);
+  ASSERT_FALSE(le_impl_->le_connectlist_manager_->address_manager_registered);
+  ASSERT_FALSE(le_impl_->le_connectlist_manager_->pause_connection);
 
   ASSERT_TRUE(log_capture->Rewind()->Find("SetPrivacyPolicyForInitiatorAddress with policy 4"));
   ASSERT_TRUE(log_capture->Rewind()->Find("Client unregistered"));
@@ -1073,10 +1117,6 @@ TEST_F(LeImplTest, DISABLED_add_device_to_resolving_list) {
 
   ASSERT_EQ(0UL, hci_layer_->NumberOfQueuedCommands());
 
-  // le_impl should not be registered with address manager
-  ASSERT_FALSE(le_impl_->address_manager_registered);
-  ASSERT_FALSE(le_impl_->pause_connection);
-
   ASSERT_EQ(0UL, le_impl_->le_address_manager_->NumberCachedCommands());
   // Acknowledge that the le_impl has quiesced all relevant controller state
   le_impl_->add_device_to_resolving_list(
@@ -1084,10 +1124,8 @@ TEST_F(LeImplTest, DISABLED_add_device_to_resolving_list) {
   ASSERT_EQ(3UL, le_impl_->le_address_manager_->NumberCachedCommands());
 
   sync_handler();  // Let |LeAddressManager::register_client| execute on handler
-  ASSERT_TRUE(le_impl_->address_manager_registered);
-  ASSERT_TRUE(le_impl_->pause_connection);
 
-  le_impl_->le_address_manager_->AckPause(le_impl_);
+  le_impl_->le_address_manager_->AckPause(le_impl_->le_connectlist_manager_);
   sync_handler();  // Allow |LeAddressManager::ack_pause| to complete
 
   ASSERT_FALSE(hci_layer_->IsPacketQueueEmpty());
@@ -1125,14 +1163,6 @@ TEST_F(LeImplTest, DISABLED_add_device_to_resolving_list) {
   sync_handler();  // |LeAddressManager::check_cached_commands|
 
   ASSERT_TRUE(hci_layer_->IsPacketQueueEmpty());
-  ASSERT_TRUE(le_impl_->address_manager_registered);
-
-  le_impl_->ready_to_unregister = true;
-
-  le_impl_->check_for_unregister();
-  sync_handler();
-  ASSERT_FALSE(le_impl_->address_manager_registered);
-  ASSERT_FALSE(le_impl_->pause_connection);
 }
 
 TEST_F(LeImplTest, add_device_to_resolving_list__SupportsBlePrivacy) {
@@ -1145,10 +1175,6 @@ TEST_F(LeImplTest, add_device_to_resolving_list__SupportsBlePrivacy) {
 
   ASSERT_EQ(0UL, hci_layer_->NumberOfQueuedCommands());
 
-  // le_impl should not be registered with address manager
-  ASSERT_FALSE(le_impl_->address_manager_registered);
-  ASSERT_FALSE(le_impl_->pause_connection);
-
   ASSERT_EQ(0UL, le_impl_->le_address_manager_->NumberCachedCommands());
   // Acknowledge that the le_impl has quiesced all relevant controller state
   le_impl_->add_device_to_resolving_list(
@@ -1156,10 +1182,8 @@ TEST_F(LeImplTest, add_device_to_resolving_list__SupportsBlePrivacy) {
   ASSERT_EQ(4UL, le_impl_->le_address_manager_->NumberCachedCommands());
 
   sync_handler();  // Let |LeAddressManager::register_client| execute on handler
-  ASSERT_TRUE(le_impl_->address_manager_registered);
-  ASSERT_TRUE(le_impl_->pause_connection);
 
-  le_impl_->le_address_manager_->AckPause(le_impl_);
+  le_impl_->le_address_manager_->AckPause(le_impl_->le_connectlist_manager_);
   sync_handler();  // Allow |LeAddressManager::ack_pause| to complete
 
   ASSERT_FALSE(hci_layer_->IsPacketQueueEmpty());
@@ -1209,23 +1233,29 @@ TEST_F(LeImplTest, add_device_to_resolving_list__SupportsBlePrivacy) {
   sync_handler();  // |LeAddressManager::check_cached_commands|
 
   ASSERT_TRUE(hci_layer_->IsPacketQueueEmpty());
-  ASSERT_TRUE(le_impl_->address_manager_registered);
-
-  le_impl_->ready_to_unregister = true;
-
-  le_impl_->check_for_unregister();
-  sync_handler();
-  ASSERT_FALSE(le_impl_->address_manager_registered);
-  ASSERT_FALSE(le_impl_->pause_connection);
 }
 
 TEST_F(LeImplTest, connectability_state_machine_text) {
   ASSERT_STREQ(
-      "ConnectabilityState::DISARMED", connectability_state_machine_text(ConnectabilityState::DISARMED).c_str());
-  ASSERT_STREQ("ConnectabilityState::ARMING", connectability_state_machine_text(ConnectabilityState::ARMING).c_str());
-  ASSERT_STREQ("ConnectabilityState::ARMED", connectability_state_machine_text(ConnectabilityState::ARMED).c_str());
+      "ConnectabilityState::DISARMED",
+      LeConnectlistManager::ConnectabilityStateMachineText(
+          LeConnectlistManager::ConnectabilityState::DISARMED)
+          .c_str());
   ASSERT_STREQ(
-      "ConnectabilityState::DISARMING", connectability_state_machine_text(ConnectabilityState::DISARMING).c_str());
+      "ConnectabilityState::ARMING",
+      LeConnectlistManager::ConnectabilityStateMachineText(
+          LeConnectlistManager::ConnectabilityState::ARMING)
+          .c_str());
+  ASSERT_STREQ(
+      "ConnectabilityState::ARMED",
+      LeConnectlistManager::ConnectabilityStateMachineText(
+          LeConnectlistManager::ConnectabilityState::ARMED)
+          .c_str());
+  ASSERT_STREQ(
+      "ConnectabilityState::DISARMING",
+      LeConnectlistManager::ConnectabilityStateMachineText(
+          LeConnectlistManager::ConnectabilityState::DISARMING)
+          .c_str());
 }
 
 TEST_F(LeImplTest, on_le_event__CONNECTION_COMPLETE_CENTRAL) {
@@ -1439,15 +1469,15 @@ TEST_F(LeImplRegisteredWithAddressManagerTest, DISABLED_clear_resolving_list) {
 }
 
 TEST_F(LeImplRegisteredWithAddressManagerTest, ignore_on_pause_on_resume_after_unregistered) {
-  le_impl_->ready_to_unregister = true;
-  le_impl_->check_for_unregister();
+  le_impl_->le_connectlist_manager_->ready_to_unregister = true;
+  le_impl_->le_connectlist_manager_->CheckForUnregister();
   // OnPause should be ignored
-  le_impl_->OnPause();
-  ASSERT_FALSE(le_impl_->pause_connection);
+  le_impl_->le_connectlist_manager_->OnPause();
+  ASSERT_FALSE(le_impl_->le_connectlist_manager_->pause_connection);
   // OnResume should be ignored
-  le_impl_->pause_connection = true;
-  le_impl_->OnResume();
-  ASSERT_TRUE(le_impl_->pause_connection);
+  le_impl_->le_connectlist_manager_->pause_connection = true;
+  le_impl_->le_connectlist_manager_->OnResume();
+  ASSERT_TRUE(le_impl_->le_connectlist_manager_->pause_connection);
 }
 
 TEST_F(LeImplWithConnectionTest, HACK_get_handle) {
@@ -1458,43 +1488,39 @@ TEST_F(LeImplWithConnectionTest, HACK_get_handle) {
 
 TEST_F(LeImplTest, on_le_connection_canceled_on_pause) {
   set_random_device_address_policy();
-  le_impl_->pause_connection = true;
-  le_impl_->on_le_connection_canceled_on_pause();
-  ASSERT_TRUE(le_impl_->arm_on_resume_);
-  ASSERT_EQ(ConnectabilityState::DISARMED, le_impl_->connectability_state_);
+  le_impl_->le_connectlist_manager_->pause_connection = true;
+  le_impl_->le_connectlist_manager_->OnLeConnectionCancelledOnPause();
+  ASSERT_TRUE(le_impl_->le_connectlist_manager_->arm_on_resume_);
+  ASSERT_EQ(
+      LeConnectlistManager::ConnectabilityState::DISARMED,
+      le_impl_->le_connectlist_manager_->connectability_state_);
 }
 
 TEST_F(LeImplTest, on_create_connection_timeout) {
   EXPECT_CALL(
       mock_le_connection_callbacks_, OnLeConnectFail(_, ErrorCode::CONNECTION_ACCEPT_TIMEOUT))
       .Times(1);
-  le_impl_->create_connection_timeout_alarms_.emplace(
+  le_impl_->le_connectlist_manager_->create_connection_timeout_alarms_.emplace(
       std::piecewise_construct,
       std::forward_as_tuple(
-          remote_public_address_with_type_.GetAddress(), remote_public_address_with_type_.GetAddressType()),
+          remote_public_address_with_type_.GetAddress(),
+          remote_public_address_with_type_.GetAddressType()),
       std::forward_as_tuple(handler_));
-  le_impl_->on_create_connection_timeout(remote_public_address_with_type_);
+  le_impl_->le_connectlist_manager_->OnCreateConnectionTimeout(remote_public_address_with_type_);
   sync_handler();
-  ASSERT_TRUE(le_impl_->create_connection_timeout_alarms_.empty());
-}
-
-// b/260917913
-TEST_F(LeImplTest, DISABLED_on_common_le_connection_complete__NoPriorConnection) {
-  auto log_capture = std::make_unique<LogCapture>();
-  le_impl_->on_common_le_connection_complete(remote_public_address_with_type_);
-  ASSERT_TRUE(le_impl_->connecting_le_.empty());
-  ASSERT_TRUE(log_capture->Rewind()->Find("No prior connection request for"));
+  ASSERT_TRUE(le_impl_->le_connectlist_manager_->create_connection_timeout_alarms_.empty());
 }
 
 TEST_F(LeImplTest, cancel_connect) {
-  le_impl_->create_connection_timeout_alarms_.emplace(
+  le_impl_->le_connectlist_manager_->create_connection_timeout_alarms_.emplace(
       std::piecewise_construct,
       std::forward_as_tuple(
-          remote_public_address_with_type_.GetAddress(), remote_public_address_with_type_.GetAddressType()),
+          remote_public_address_with_type_.GetAddress(),
+          remote_public_address_with_type_.GetAddressType()),
       std::forward_as_tuple(handler_));
-  le_impl_->cancel_connect(remote_public_address_with_type_);
+  le_impl_->le_connectlist_manager_->CancelConnect(remote_public_address_with_type_);
   sync_handler();
-  ASSERT_TRUE(le_impl_->create_connection_timeout_alarms_.empty());
+  ASSERT_TRUE(le_impl_->le_connectlist_manager_->create_connection_timeout_alarms_.empty());
 }
 
 TEST_F(LeImplTest, set_le_suggested_default_data_parameters) {
