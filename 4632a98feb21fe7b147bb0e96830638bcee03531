@@ -16,6 +16,24 @@
       "message": "Just to clarify: \"LE Audio\" profile means device exposes BAP.\n\nHAP device must have BAP, so no need to separately handle BAP, correct ?",
       "revId": "4632a98feb21fe7b147bb0e96830638bcee03531",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e3d89724_ee43af06",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-03-27T11:41:31Z",
+      "side": 1,
+      "message": "I would say in opposite - no need to separately handle HAP.\n\nHAP could be a standalone profile to control/changing profiles on server devices. This device without ASCS can\u0027t be LE Audio streaming device. HAS Along with ASCS makes a assumption that this is a LE Audio Hearing Aid device.",
+      "parentUuid": "f4d93424_3170b346",
+      "revId": "4632a98feb21fe7b147bb0e96830638bcee03531",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
