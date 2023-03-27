@@ -2,6 +2,7 @@
 
 use std::convert::TryInto;
 
+use futures::{select, FutureExt};
 use num_traits::{FromPrimitive, ToPrimitive};
 
 use crate::ec::{DhKey, PrivateKey, PublicKey};
@@ -273,7 +274,7 @@ async fn user_passkey_request(ctx: &impl Context) -> Result<(), ()> {
                 );
                 return Err(());
             }
-            Either::Right(_) => {
+            Either::Right(keypress) => {
                 ctx.send_hci_event(
                     hci::SendKeypressNotificationCompleteBuilder {
                         num_hci_command_packets,
@@ -282,7 +283,10 @@ async fn user_passkey_request(ctx: &impl Context) -> Result<(), ()> {
                     }
                     .build(),
                 );
-                // TODO: send LmpKeypressNotification
+                ctx.send_lmp_packet(lmp::KeypressNotificationBuilder {
+                    transaction_id: 0,
+                    notification_type: keypress.get_notification_type().to_u8().unwrap(),
+                })
             }
         }
     }
@@ -445,6 +449,25 @@ pub async fn initiate(ctx: &impl Context) -> Result<(), ()> {
                         }
                         .build(),
                     );
+                    let mut got_end = false;
+                    while !got_end {
+                        let keypress =
+                            ctx.receive_lmp_packet::<lmp::KeypressNotificationPacket>().await;
+                        let notification_type = hci::KeypressNotificationType::from_u8(
+                            keypress.get_notification_type(),
+                        )
+                        .unwrap();
+                        match notification_type {
+                            hci::KeypressNotificationType::EntryCompleted => {
+                                got_end = true;
+                            }
+                            _ => {}
+                        }
+                        ctx.send_hci_event(hci::KeypressNotificationBuilder {
+                            bd_addr: ctx.peer_address(),
+                            notification_type,
+                        })
+                    }
                 }
                 for _ in 0..PASSKEY_ENTRY_REPEAT_NUMBER {
                     send_commitment(ctx, false).await;
@@ -533,6 +556,31 @@ pub async fn initiate(ctx: &impl Context) -> Result<(), ()> {
     );
 
     Ok(())
+}
+
+async fn receive_multiple_commitments(ctx: &impl Context, n: usize) {
+    for _ in 0..n {
+        receive_commitment(ctx, false).await;
+    }
+}
+
+async fn respond_to_keypresses(ctx: &impl Context) {
+    let mut entry_completed = false;
+    while !entry_completed {
+        let keypress = ctx.receive_lmp_packet::<lmp::KeypressNotificationPacket>().await;
+        let notification_type =
+            hci::KeypressNotificationType::from_u8(keypress.get_notification_type()).unwrap();
+        match notification_type {
+            hci::KeypressNotificationType::EntryCompleted => {
+                entry_completed = true;
+            }
+            _ => {}
+        }
+        ctx.send_hci_event(hci::KeypressNotificationBuilder {
+            bd_addr: ctx.peer_address(),
+            notification_type,
+        })
+    }
 }
 
 pub async fn respond(ctx: &impl Context, request: lmp::IoCapabilityReqPacket) -> Result<(), ()> {
@@ -647,18 +695,27 @@ pub async fn respond(ctx: &impl Context, request: lmp::IoCapabilityReqPacket) ->
         }
         AuthenticationMethod::PasskeyEntry => {
             if responder.io_capability == hci::IoCapability::KeyboardOnly {
-                // TODO: handle error
-                let _user_passkey = user_passkey_request(ctx).await;
+                let user_passkey = user_passkey_request(ctx).await;
+                if !user_passkey.is_err() {
+                    receive_multiple_commitments(ctx, PASSKEY_ENTRY_REPEAT_NUMBER).await;
+                    false
+                } else {
+                    true
+                }
             } else {
                 ctx.send_hci_event(
                     hci::UserPasskeyNotificationBuilder { bd_addr: ctx.peer_address(), passkey: 0 }
                         .build(),
                 );
+                select! {
+                    _ = receive_multiple_commitments(ctx, PASSKEY_ENTRY_REPEAT_NUMBER).fuse() => {
+                    }
+                    _ = respond_to_keypresses(ctx).fuse() => {
+                        receive_multiple_commitments(ctx, PASSKEY_ENTRY_REPEAT_NUMBER).await;
+                    }
+                }
+                false
             }
-            for _ in 0..PASSKEY_ENTRY_REPEAT_NUMBER {
-                receive_commitment(ctx, false).await;
-            }
-            false
         }
         AuthenticationMethod::OutOfBand => {
             if responder.oob_data_present != hci::OobDataPresent::NotPresent {
@@ -1012,7 +1069,6 @@ mod tests {
     }
 
     #[test]
-    #[should_panic] // TODO: make the test pass
     fn passkey_entry_with_keypress_notification_initiator_success() {
         let context = TestContext::new();
         let procedure = initiate;
@@ -1021,7 +1077,6 @@ mod tests {
     }
 
     #[test]
-    #[should_panic] // TODO: make the test pass
     fn passkey_entry_with_keypress_notification_responder_success() {
         let context = TestContext::new();
         let procedure = respond;
