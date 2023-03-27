@@ -273,7 +273,7 @@ async fn user_passkey_request(ctx: &impl Context) -> Result<(), ()> {
                 );
                 return Err(());
             }
-            Either::Right(_) => {
+            Either::Right(keypress) => {
                 ctx.send_hci_event(
                     hci::SendKeypressNotificationCompleteBuilder {
                         num_hci_command_packets,
@@ -282,7 +282,10 @@ async fn user_passkey_request(ctx: &impl Context) -> Result<(), ()> {
                     }
                     .build(),
                 );
-                // TODO: send LmpKeypressNotification
+                ctx.send_lmp_packet(lmp::KeypressNotificationBuilder {
+                    transaction_id: 0,
+                    notification_type: keypress.get_notification_type().to_u8().unwrap(),
+                })
             }
         }
     }
@@ -1012,7 +1015,6 @@ mod tests {
     }
 
     #[test]
-    #[should_panic] // TODO: make the test pass
     fn passkey_entry_with_keypress_notification_initiator_success() {
         let context = TestContext::new();
         let procedure = initiate;
