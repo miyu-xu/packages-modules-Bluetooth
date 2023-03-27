@@ -155,14 +155,6 @@ T CreateLeEventView(std::shared_ptr<std::vector<uint8_t>> bytes) {
   return hci::CommandCompleteView::Create(hci::EventView::Create(hci::PacketView<hci::kLittleEndian>(bytes)));
 }
 
-[[maybe_unused]] hci::CommandStatusView ReturnCommandStatus(hci::OpCode op_code, hci::ErrorCode error_code) {
-  std::vector<uint8_t> success_vector{static_cast<uint8_t>(error_code)};
-  auto builder = hci::CommandStatusBuilder::Create(
-      hci::ErrorCode::SUCCESS, uint8_t{1}, op_code, std::make_unique<RawBuilder>(success_vector));
-  auto bytes = Serialize<hci::CommandStatusBuilder>(std::move(builder));
-  return hci::CommandStatusView::Create(hci::EventView::Create(hci::PacketView<hci::kLittleEndian>(bytes)));
-}
-
 }  // namespace
 
 namespace bluetooth {
@@ -881,7 +873,7 @@ TEST_F(LeImplTest, DISABLED_disarm_connectability_DISARMED) {
   le_impl_->disarm_connectability();
   ASSERT_FALSE(le_impl_->disarmed_while_arming_);
 
-  le_impl_->on_create_connection(ReturnCommandStatus(OpCode::LE_CREATE_CONNECTION, ErrorCode::SUCCESS));
+  le_impl_->update_connectability_state_after_armed(ErrorCode::SUCCESS);
 
   ASSERT_TRUE(log_capture->Rewind()->Find("Attempting to disarm le connection"));
   ASSERT_TRUE(log_capture->Rewind()->Find("in unexpected state:ConnectabilityState::DISARMED"));
@@ -895,8 +887,7 @@ TEST_F(LeImplTest, DISABLED_disarm_connectability_DISARMED_extended) {
   le_impl_->disarm_connectability();
   ASSERT_FALSE(le_impl_->disarmed_while_arming_);
 
-  le_impl_->on_extended_create_connection(
-      ReturnCommandStatus(OpCode::LE_EXTENDED_CREATE_CONNECTION, ErrorCode::SUCCESS));
+  le_impl_->update_connectability_state_after_armed(ErrorCode::SUCCESS);
 
   ASSERT_TRUE(log_capture->Rewind()->Find("Attempting to disarm le connection"));
   ASSERT_TRUE(log_capture->Rewind()->Find("in unexpected state:ConnectabilityState::DISARMED"));
@@ -909,8 +900,8 @@ TEST_F(LeImplTest, DISABLED_disarm_connectability_ARMING) {
   le_impl_->connectability_state_ = ConnectabilityState::ARMING;
   le_impl_->disarm_connectability();
   ASSERT_TRUE(le_impl_->disarmed_while_arming_);
-  le_impl_->on_create_connection(ReturnCommandStatus(OpCode::LE_CREATE_CONNECTION, ErrorCode::SUCCESS));
-
+  le_impl_->update_connectability_state_after_armed(ErrorCode::SUCCESS);
+ 
   ASSERT_TRUE(log_capture->Rewind()->Find("Queueing cancel connect until"));
   ASSERT_TRUE(log_capture->Rewind()->Find("Le connection state machine armed state"));
 }
@@ -923,8 +914,7 @@ TEST_F(LeImplTest, DISABLED_disarm_connectability_ARMING_extended) {
   le_impl_->disarm_connectability();
   ASSERT_TRUE(le_impl_->disarmed_while_arming_);
 
-  le_impl_->on_extended_create_connection(
-      ReturnCommandStatus(OpCode::LE_EXTENDED_CREATE_CONNECTION, ErrorCode::SUCCESS));
+  le_impl_->update_connectability_state_after_armed(ErrorCode::SUCCESS);
 
   ASSERT_TRUE(log_capture->Rewind()->Find("Queueing cancel connect until"));
   ASSERT_TRUE(log_capture->Rewind()->Find("Le connection state machine armed state"));
@@ -938,7 +928,7 @@ TEST_F(LeImplTest, DISABLED_disarm_connectability_ARMED) {
   le_impl_->disarm_connectability();
   ASSERT_FALSE(le_impl_->disarmed_while_arming_);
 
-  le_impl_->on_create_connection(ReturnCommandStatus(OpCode::LE_CREATE_CONNECTION, ErrorCode::SUCCESS));
+  le_impl_->update_connectability_state_after_armed(ErrorCode::SUCCESS);
 
   ASSERT_TRUE(log_capture->Rewind()->Find("Disarming LE connection state machine"));
   ASSERT_TRUE(log_capture->Rewind()->Find("Disarming LE connection state machine with create connection"));
@@ -952,8 +942,7 @@ TEST_F(LeImplTest, DISABLED_disarm_connectability_ARMED_extended) {
   le_impl_->disarm_connectability();
   ASSERT_FALSE(le_impl_->disarmed_while_arming_);
 
-  le_impl_->on_extended_create_connection(
-      ReturnCommandStatus(OpCode::LE_EXTENDED_CREATE_CONNECTION, ErrorCode::SUCCESS));
+  le_impl_->update_connectability_state_after_armed(ErrorCode::SUCCESS);
 
   ASSERT_TRUE(log_capture->Rewind()->Find("Disarming LE connection state machine"));
   ASSERT_TRUE(log_capture->Rewind()->Find("Disarming LE connection state machine with create connection"));
@@ -967,7 +956,7 @@ TEST_F(LeImplTest, DISABLED_disarm_connectability_DISARMING) {
   le_impl_->disarm_connectability();
   ASSERT_FALSE(le_impl_->disarmed_while_arming_);
 
-  le_impl_->on_create_connection(ReturnCommandStatus(OpCode::LE_CREATE_CONNECTION, ErrorCode::SUCCESS));
+  le_impl_->update_connectability_state_after_armed(ErrorCode::SUCCESS);
 
   ASSERT_TRUE(log_capture->Rewind()->Find("Attempting to disarm le connection"));
   ASSERT_TRUE(log_capture->Rewind()->Find("in unexpected state:ConnectabilityState::DISARMING"));
@@ -981,8 +970,7 @@ TEST_F(LeImplTest, DISABLED_disarm_connectability_DISARMING_extended) {
   le_impl_->disarm_connectability();
   ASSERT_FALSE(le_impl_->disarmed_while_arming_);
 
-  le_impl_->on_extended_create_connection(
-      ReturnCommandStatus(OpCode::LE_EXTENDED_CREATE_CONNECTION, ErrorCode::SUCCESS));
+  le_impl_->update_connectability_state_after_armed(ErrorCode::SUCCESS);
 
   ASSERT_TRUE(log_capture->Rewind()->Find("Attempting to disarm le connection"));
   ASSERT_TRUE(log_capture->Rewind()->Find("in unexpected state:ConnectabilityState::DISARMING"));
