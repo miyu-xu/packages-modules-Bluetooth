@@ -34,6 +34,24 @@
       "parentUuid": "85f9395b_5e55a118",
       "revId": "68ee584561fdfbd3f7c7571fca9f60e6ea13d019",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c7b1462d_b1bde422",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-03-27T18:30:31Z",
+      "side": 1,
+      "message": "Good question.  Not for this test...  I\u0027ll check if there\u0027s another test for that.",
+      "parentUuid": "85f9395b_5e55a118",
+      "revId": "68ee584561fdfbd3f7c7571fca9f60e6ea13d019",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
