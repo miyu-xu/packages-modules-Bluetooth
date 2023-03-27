@@ -87,4 +87,12 @@ bool AclConnection::HasExpired() const {
   return TimeUntilExpired() < std::chrono::steady_clock::duration::zero();
 }
 
+bool AclConnection::SetRoleSwitchAllowed(bool role_switch_allowed) {
+  return role_switch_allowed_ = role_switch_allowed;
+}
+
+bool AclConnection::GetRoleSwitchAllowed() const {
+  return role_switch_allowed_;
+}
+
 }  // namespace rootcanal

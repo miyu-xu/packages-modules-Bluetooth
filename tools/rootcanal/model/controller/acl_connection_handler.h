@@ -43,7 +43,8 @@ class AclConnectionHandler {
   void Reset(std::function<void(TaskId)> stopStream);
 
   bool CreatePendingConnection(bluetooth::hci::Address addr,
-                               bool authenticate_on_connect);
+                               bool authenticate_on_connect,
+                               bool allow_role_switch);
   bool HasPendingConnection(bluetooth::hci::Address addr) const;
   bool CancelPendingConnection(bluetooth::hci::Address addr);
   bool AuthenticatePendingConnection() const;
@@ -136,6 +137,8 @@ class AclConnectionHandler {
 
   bool HasConnectedCis(uint16_t handle) const;
 
+  bool IsRoleSwitchAllowed(uint16_t handle) const;
+
   uint16_t GetAclHandleForCisHandle(uint16_t cis_handle) const;
   uint16_t GetRemoteCisHandleForCisHandle(uint16_t cis_handle) const;
 
@@ -157,6 +160,7 @@ class AclConnectionHandler {
   std::unordered_map<uint16_t, ScoConnection> sco_connections_;
 
   bool classic_connection_pending_{false};
+  bool classic_connection_pending_allow_role_switch_{false};
   bluetooth::hci::Address pending_connection_address_{
       bluetooth::hci::Address::kEmpty};
   bool authenticate_pending_classic_connection_{false};

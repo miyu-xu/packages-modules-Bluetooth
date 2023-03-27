@@ -55,14 +55,16 @@ uint16_t AclConnectionHandler::GetUnusedHandle() {
   return unused_handle;
 }
 
-bool AclConnectionHandler::CreatePendingConnection(
-    Address addr, bool authenticate_on_connect) {
+bool AclConnectionHandler::CreatePendingConnection(Address addr,
+                                                   bool authenticate_on_connect,
+                                                   bool allow_role_switch) {
   if (classic_connection_pending_) {
     return false;
   }
   classic_connection_pending_ = true;
   pending_connection_address_ = addr;
   authenticate_pending_classic_connection_ = authenticate_on_connect;
+  classic_connection_pending_allow_role_switch_ = allow_role_switch;
   return true;
 }
 
@@ -130,6 +132,7 @@ bool AclConnectionHandler::CancelPendingLeConnection(AddressWithType addr) {
 
 uint16_t AclConnectionHandler::CreateConnection(Address addr,
                                                 Address own_addr) {
+  bool role_switch_allowed = classic_connection_pending_allow_role_switch_;
   if (CancelPendingConnection(addr)) {
     uint16_t handle = GetUnusedHandle();
     acl_connections_.emplace(
@@ -139,6 +142,7 @@ uint16_t AclConnectionHandler::CreateConnection(Address addr,
             AddressWithType{own_addr, AddressType::PUBLIC_DEVICE_ADDRESS},
             AddressWithType(), Phy::Type::BR_EDR,
             bluetooth::hci::Role::CENTRAL});
+    acl_connections_.at(handle).SetRoleSwitchAllowed(role_switch_allowed);
     return handle;
   }
   return kReservedHandle;
@@ -620,6 +624,10 @@ std::chrono::steady_clock::duration AclConnectionHandler::TimeUntilLinkExpired(
 
 bool AclConnectionHandler::HasLinkExpired(uint16_t handle) const {
   return acl_connections_.at(handle).HasExpired();
+}
+
+bool AclConnectionHandler::IsRoleSwitchAllowed(uint16_t handle) const {
+  return acl_connections_.at(handle).GetRoleSwitchAllowed();
 }
 
 }  // namespace rootcanal

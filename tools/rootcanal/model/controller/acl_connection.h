@@ -73,6 +73,10 @@ class AclConnection {
 
   bool HasExpired() const;
 
+  bool SetRoleSwitchAllowed(bool role_switch_allowed);
+
+  bool GetRoleSwitchAllowed() const;
+
  private:
   AddressWithType address_;
   AddressWithType own_address_;
@@ -89,6 +93,7 @@ class AclConnection {
   bluetooth::hci::Role role_{bluetooth::hci::Role::CENTRAL};
   std::chrono::steady_clock::time_point last_packet_timestamp_;
   std::chrono::steady_clock::duration timeout_;
+  bool role_switch_allowed_{false};
 };
 
 }  // namespace rootcanal
