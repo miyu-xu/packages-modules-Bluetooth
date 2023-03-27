@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "34b8bda3_0f7afbc9",
+        "filename": "android/app/src/com/android/bluetooth/telephony/BluetoothInCallService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-03-27T11:39:47Z",
+      "side": 1,
+      "message": "Just to be safe, should you have:\n\nif (profile \u003d\u003d BluetoothProfile.TBS) \n\ncheck here ?",
+      "revId": "b3f6d7ed2b3198f6033c2ca0a42fcc368b6a5fcb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dc523bbb_c0924391",
+        "filename": "android/app/src/com/android/bluetooth/telephony/BluetoothInCallService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-03-27T11:39:47Z",
+      "side": 1,
+      "message": "when sInstance is null, should you still set the value of mBluetoothLeCallControl , but not send TBS current list ?",
+      "range": {
+        "startLine": 157,
+        "startChar": 70,
+        "endLine": 157,
+        "endChar": 79
+      },
+      "revId": "b3f6d7ed2b3198f6033c2ca0a42fcc368b6a5fcb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "de3a6604_0f1d3cfd",
+        "filename": "android/app/src/com/android/bluetooth/telephony/BluetoothInCallService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-03-27T11:39:47Z",
+      "side": 1,
+      "message": "Same here, should we check which profile actually got disconnected ?\neven if we register for just two profiles event, it would be safer to check anyway.",
+      "range": {
+        "startLine": 172,
+        "startChar": 31,
+        "endLine": 172,
+        "endChar": 32
+      },
+      "revId": "b3f6d7ed2b3198f6033c2ca0a42fcc368b6a5fcb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
