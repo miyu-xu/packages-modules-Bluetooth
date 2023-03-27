@@ -52,6 +52,40 @@
       "parentUuid": "85f9395b_5e55a118",
       "revId": "68ee584561fdfbd3f7c7571fca9f60e6ea13d019",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "51433521_dc7d655e",
+        "filename": "tools/rootcanal/lmp/src/procedure/secure_simple_pairing.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 285,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-03-27T19:02:56Z",
+      "side": 1,
+      "message": "We need to receive this packet somewhere as well or it will stuck the LMP state machine for the other side.",
+      "revId": "68ee584561fdfbd3f7c7571fca9f60e6ea13d019",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8385bf6d_b5c128cc",
+        "filename": "tools/rootcanal/lmp/src/procedure/secure_simple_pairing.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1026,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-03-27T19:02:56Z",
+      "side": 1,
+      "message": "We should make this test pass as well.",
+      "revId": "68ee584561fdfbd3f7c7571fca9f60e6ea13d019",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
