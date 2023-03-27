@@ -34,6 +34,24 @@
       "parentUuid": "5e41c46b_c3c3877f",
       "revId": "095cb7a989e535aeaffea5f0c33e3478b4330e83",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1ea3bab4_114b5093",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-03-27T09:22:38Z",
+      "side": 1,
+      "message": "This time is in SapService:\n```\n03-27 04:20:36.760  1002  3083  3083 E AndroidRuntime: FATAL EXCEPTION: main\n03-27 04:20:36.760  1002  3083  3083 E AndroidRuntime: Process: com.google.android.bluetooth, PID: 3083\n03-27 04:20:36.760  1002  3083  3083 E AndroidRuntime: java.lang.RuntimeException: Unable to create service com.android.bluetooth.sap.SapService: java.lang.NullPointerException: Attempt to invoke virtual method \u0027android.content.res.Resources android.content.Context.getResources()\u0027 on a null object reference\n03-27 04:20:36.760  1002  3083  3083 E AndroidRuntime: \tat android.app.ActivityThread.handleCreateService(ActivityThread.java:4670)\n03-27 04:20:36.760  1002  3083  3083 E AndroidRuntime: \tat android.app.ActivityThread.-$$Nest$mhandleCreateService(Unknown Source:0)\n03-27 04:20:36.760  1002  3083  3083 E AndroidRuntime: \tat android.app.ActivityThread$H.handleMessage(ActivityThread.java:2266)\n03-27 04:20:36.760  1002  3083  3083 E AndroidRuntime: \tat android.os.Handler.dispatchMessage(Handler.java:106)\n03-27 04:20:36.760  1002  3083  3083 E AndroidRuntime: \tat android.os.Looper.loopOnce(Looper.java:205)\n03-27 04:20:36.760  1002  3083  3083 E AndroidRuntime: \tat android.os.Looper.loop(Looper.java:294)\n03-27 04:20:36.760  1002  3083  3083 E AndroidRuntime: \tat android.app.ActivityThread.main(ActivityThread.java:8185)\n03-27 04:20:36.760  1002  3083  3083 E AndroidRuntime: \tat java.lang.reflect.Method.invoke(Native Method)\n03-27 04:20:36.760  1002  3083  3083 E AndroidRuntime: \tat com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:552)\n03-27 04:20:36.760  1002  3083  3083 E AndroidRuntime: \tat com.android.internal.os.ZygoteInit.main(ZygoteInit.java:952)\n03-27 04:20:36.760  1002  3083  3083 E AndroidRuntime: Caused by: java.lang.NullPointerException: Attempt to invoke virtual method \u0027android.content.res.Resources android.content.Context.getResources()\u0027 on a null object reference\n03-27 04:20:36.760  1002  3083  3083 E AndroidRuntime: \tat android.content.ContextWrapper.getResources(ContextWrapper.java:125)\n03-27 04:20:36.760  1002  3083  3083 E AndroidRuntime: \tat android.content.Context.getString(Context.java:889)\n03-27 04:20:36.760  1002  3083  3083 E AndroidRuntime: \tat com.android.bluetooth.sap.SapService.\u003cinit\u003e(SapService.java:117)\n03-27 04:20:36.760  1002  3083  3083 E AndroidRuntime: \tat java.lang.Class.newInstance(Native Method)\n03-27 04:20:36.760  1002  3083  3083 E AndroidRuntime: \tat android.app.AppComponentFactory.instantiateService(AppComponentFactory.java:129)\n03-27 04:20:36.760  1002  3083  3083 E AndroidRuntime: \tat androidx.core.app.CoreComponentFactory.instantiateService(CoreComponentFactory.java:75)\n03-27 04:20:36.760  1002  3083  3083 E AndroidRuntime: \tat android.app.ActivityThread.handleCreateService(ActivityThread.java:4632)\n03-27 04:20:36.760  1002  3083  3083 E AndroidRuntime: \t... 9 more\n```",
+      "parentUuid": "57f4aa9a_e63a0e3d",
+      "revId": "095cb7a989e535aeaffea5f0c33e3478b4330e83",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
