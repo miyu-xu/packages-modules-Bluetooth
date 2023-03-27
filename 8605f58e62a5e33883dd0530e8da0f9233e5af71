@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "626bee19_d2d8173e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2023-03-27T13:05:50Z",
+      "side": 1,
+      "message": "Please help review, thanks!\n\nThis is just an easy way to unblock the qualification tests. We could also make it 2 commands or add argument to allow users to send a large amount of data or not but there is no such need in qualification.",
+      "revId": "8605f58e62a5e33883dd0530e8da0f9233e5af71",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
