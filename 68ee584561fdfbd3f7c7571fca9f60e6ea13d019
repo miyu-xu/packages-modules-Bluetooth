@@ -71,6 +71,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1041e6f2_b2d0f0a4",
+        "filename": "tools/rootcanal/lmp/src/procedure/secure_simple_pairing.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 285,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-03-27T19:09:22Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "51433521_dc7d655e",
+      "revId": "68ee584561fdfbd3f7c7571fca9f60e6ea13d019",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8385bf6d_b5c128cc",
@@ -84,6 +102,24 @@
       "writtenOn": "2023-03-27T19:02:56Z",
       "side": 1,
       "message": "We should make this test pass as well.",
+      "revId": "68ee584561fdfbd3f7c7571fca9f60e6ea13d019",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "448ab3c4_1c579c11",
+        "filename": "tools/rootcanal/lmp/src/procedure/secure_simple_pairing.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1026,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-03-27T19:09:22Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "8385bf6d_b5c128cc",
       "revId": "68ee584561fdfbd3f7c7571fca9f60e6ea13d019",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
