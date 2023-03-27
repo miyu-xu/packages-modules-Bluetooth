@@ -56,6 +56,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b41e47a5_b163916c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1325198
+      },
+      "writtenOn": "2023-03-27T13:54:18Z",
+      "side": 1,
+      "message": "after checked the resource, I should be able to define the PDL for the BQR packet by Q3.",
+      "parentUuid": "03af078b_c9c45c8a",
+      "revId": "9427b3d6ef645d6b13943aa3470e4c7ac9869099",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "77633c17_d975ca50",
         "filename": "system/btif/include/btif_bqr.h",
         "patchSetId": 2
