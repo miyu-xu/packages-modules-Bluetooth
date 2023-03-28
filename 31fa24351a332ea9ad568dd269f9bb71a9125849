@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1fa7a6c7_9c9064c3",
+        "filename": "android/pandora/test/smp_test.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1937985
+      },
+      "writtenOn": "2023-03-28T00:00:59Z",
+      "side": 1,
+      "message": "Please use `SmpTest` instead, we are going to follow this convention",
+      "range": {
+        "startLine": 31,
+        "startChar": 6,
+        "endLine": 31,
+        "endChar": 9
+      },
+      "revId": "31fa24351a332ea9ad568dd269f9bb71a9125849",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2f64f5b7_645e64e8",
+        "filename": "android/pandora/test/smp_test.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1937985
+      },
+      "writtenOn": "2023-03-28T00:00:59Z",
+      "side": 1,
+      "message": "Please rename to something like `dut_pair`.\nAnd change return type to `ScanningResponse`",
+      "range": {
+        "startLine": 66,
+        "startChar": 14,
+        "endLine": 66,
+        "endChar": 31
+      },
+      "revId": "31fa24351a332ea9ad568dd269f9bb71a9125849",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "09210743_b9393970",
+        "filename": "android/pandora/test/smp_test.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1937985
+      },
+      "writtenOn": "2023-03-28T00:00:59Z",
+      "side": 1,
+      "message": "I would rename to `test_le_pairing_linkkey_lost`",
+      "range": {
+        "startLine": 108,
+        "startChar": 14,
+        "endLine": 108,
+        "endChar": 53
+      },
+      "revId": "31fa24351a332ea9ad568dd269f9bb71a9125849",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "73ab52cc_dedbf6ec",
+        "filename": "android/pandora/test/smp_test.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1937985
+      },
+      "writtenOn": "2023-03-28T00:00:59Z",
+      "side": 1,
+      "message": "nit: `isinstance(command, SMP_Identity_Address_Information_Command)`",
+      "range": {
+        "startLine": 112,
+        "startChar": 15,
+        "endLine": 112,
+        "endChar": 72
+      },
+      "revId": "31fa24351a332ea9ad568dd269f9bb71a9125849",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a4694898_0d1ebc71",
+        "filename": "android/pandora/test/smp_test.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1937985
+      },
+      "writtenOn": "2023-03-28T00:00:59Z",
+      "side": 1,
+      "message": "This might need to use the previous value of `send_command` ?",
+      "range": {
+        "startLine": 118,
+        "startChar": 12,
+        "endLine": 118,
+        "endChar": 63
+      },
+      "revId": "31fa24351a332ea9ad568dd269f9bb71a9125849",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0aa579f3_310f2477",
+        "filename": "android/pandora/test/smp_test.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1937985
+      },
+      "writtenOn": "2023-03-28T00:00:59Z",
+      "side": 1,
+      "message": "I suggest to directly `ref1 \u003d await self.handle_le_pairing(...)` instead of using `asyncio.create_task`.\nSame for `ref2`",
+      "range": {
+        "startLine": 124,
+        "startChar": 21,
+        "endLine": 124,
+        "endChar": 41
+      },
+      "revId": "31fa24351a332ea9ad568dd269f9bb71a9125849",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
