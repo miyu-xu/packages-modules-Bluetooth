@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "44099052_7bc57d9b",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/MediaPlayerWrapper.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2023-03-28T16:41:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7b4a0702_69c08c33",
+      "range": {
+        "startLine": 137,
+        "startChar": 17,
+        "endLine": 137,
+        "endChar": 37
+      },
+      "revId": "26d7f70eb212a2744b9b4203405b55471ab5db0c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6b88dc3f_43407bf7",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-03-28T16:17:01Z",
       "side": 1,
       "message": "An idea, but you\u0027d have to look into it and it may not be right for now.\n\nEach object has a MediaId associated with it. I wonder if we can save string comparisons by checking the mediaIds first and doing the copy `if (q.mediaId \u003d\u003d playing.mediaId || (\u003cwhat you have now)) { ... }`",
+      "range": {
+        "startLine": 143,
+        "startChar": 20,
+        "endLine": 143,
+        "endChar": 69
+      },
+      "revId": "26d7f70eb212a2744b9b4203405b55471ab5db0c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "add7a7f4_ff9c5f3c",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/MediaPlayerWrapper.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2023-03-28T16:41:16Z",
+      "side": 1,
+      "message": "MediaIds are not the same if the Metadata is from a queue and from the controller, something like \"NowPlaying001\" for the queue, and \"currsong\" from the MediaController. I agree that\u0027s not the ideal comparison, but that\u0027s what is done in the MediaDescription equals overload.",
+      "parentUuid": "6b88dc3f_43407bf7",
       "range": {
         "startLine": 143,
         "startChar": 20,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3d8eba55_c0847b72",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/MediaPlayerWrapper.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2023-03-28T16:41:16Z",
+      "side": 1,
+      "message": "We can\u0027t, some fields (like the mediaId) are not the same as the ones from MediaController (but that was the first thing I tried :D)",
+      "parentUuid": "136a1246_07bbbb53",
+      "range": {
+        "startLine": 147,
+        "startChar": 20,
+        "endLine": 147,
+        "endChar": 67
+      },
+      "revId": "26d7f70eb212a2744b9b4203405b55471ab5db0c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a8986053_141e9a3d",
@@ -83,6 +155,30 @@
       "writtenOn": "2023-03-28T16:17:01Z",
       "side": 1,
       "message": "This currently assumes all images are the same if they\u0027re non-null and come from the same source.\n\nIn the past, we used the sameAs() function provided by the Bitmap class to compare images as fast as the framework would allow.\n\nI realize the audio_util code is _incredibly bad_ with all its comparisons of Metadata objects, which also compares images, and that that can be expensive.\n\nI would opt to make this equals() function accurate though, and solve the comparisons either in the other code by reducing how liberally we use them, or even maybe just downgrading Metadata#equals() to only look for null -\u003e something and something -\u003e null changes (with a comment of course as to why we\u0027re doing that).",
+      "range": {
+        "startLine": 275,
+        "startChar": 8,
+        "endLine": 275,
+        "endChar": 20
+      },
+      "revId": "26d7f70eb212a2744b9b4203405b55471ab5db0c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "14aaadd4_1da49a35",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/helpers/Image.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2023-03-28T16:41:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a8986053_141e9a3d",
       "range": {
         "startLine": 275,
         "startChar": 8,
@@ -116,6 +212,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2a354b96_76940e14",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/helpers/Image.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 281,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2023-03-28T16:41:16Z",
+      "side": 1,
+      "message": "We don\u0027t need it, but overriding when equals we get an errorprone error if not overriding hashcode.\nRemoved it as we don\u0027t use the equals anymore.",
+      "parentUuid": "7f4c8bb4_7e4bbaa2",
+      "range": {
+        "startLine": 281,
+        "startChar": 8,
+        "endLine": 281,
+        "endChar": 37
+      },
+      "revId": "26d7f70eb212a2744b9b4203405b55471ab5db0c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "594e697d_4792ae0d",
@@ -129,6 +249,30 @@
       "writtenOn": "2023-03-28T16:17:01Z",
       "side": 1,
       "message": "If you want to save the cost of image comparisons after you make equals() work accurately, consider making this just detect null -\u003e something and something -\u003e null changes, i.e.\n\n```\n// Actual image comparisons have shown to be very expensive. Since it\u0027s rare that\n// an application changes the cover artwork between multiple images once it\u0027s not \n// null anymore, we just look for changes between \"something\" and \"nothing.\" Use\n// .equals() in the future if you want this behavior to change. It will compare\n// the underlying bitmaps.\nif (image !\u003d null \u0026\u0026 m.image !\u003d null || image \u003d\u003d null \u0026\u0026 m.image \u003d\u003d null) {\n    return true;\n}\n```",
+      "range": {
+        "startLine": 69,
+        "startChar": 8,
+        "endLine": 69,
+        "endChar": 58
+      },
+      "revId": "26d7f70eb212a2744b9b4203405b55471ab5db0c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fcd7ac51_3c895cb3",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/helpers/Metadata.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2023-03-28T16:41:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "594e697d_4792ae0d",
       "range": {
         "startLine": 69,
         "startChar": 8,
