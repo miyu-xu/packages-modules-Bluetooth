@@ -1,17 +1,3 @@
-// Copyright 2022, The Android Open Source Project
-//
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-//
-//     http://www.apache.org/licenses/LICENSE-2.0
-//
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
-
 use crate::core::init;
 
 use cxx::{type_id, ExternType};
@@ -27,6 +13,20 @@ unsafe impl ExternType for Uuid {
 #[allow(dead_code, missing_docs)]
 #[cxx::bridge]
 mod inner {
+    #[derive(Debug)]
+    pub enum AddressTypeForFFI {
+        Public,
+        Random,
+    }
+
+    #[namespace = "bluetooth::core"]
+    #[derive(Debug)]
+    pub struct AddressWithTypeForFFI {
+        /// Stored in little-endian format
+        pub address: [u8; 16],
+        pub address_type: AddressTypeForFFI,
+    }
+
     #[namespace = "bluetooth"]
     extern "C++" {
         include!("bluetooth/uuid.h");
@@ -39,8 +39,18 @@ mod inner {
         type GattServerCallbacks = crate::gatt::GattServerCallbacks;
     }
 
+    #[namespace = "bluetooth::connection"]
+    unsafe extern "C++" {
+        type LeConnectHciManagerShim = crate::connection::LeConnectHciManagerShim;
+        type LeAddressManagerShim = crate::connection::LeAddressManagerShim;
+    }
+
     #[namespace = "bluetooth::rust_shim"]
     extern "Rust" {
-        fn init(gatt_server_callbacks: UniquePtr<GattServerCallbacks>);
+        fn init(
+            hci_connect_proxy: UniquePtr<LeConnectHciManagerShim>,
+            address_manager: UniquePtr<LeAddressManagerShim>,
+            gatt_server_callbacks: UniquePtr<GattServerCallbacks>,
+        );
     }
 }
