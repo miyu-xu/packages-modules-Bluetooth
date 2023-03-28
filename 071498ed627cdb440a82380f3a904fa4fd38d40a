@@ -497,6 +497,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "cc13e5b3_146694ef",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1172,
+      "author": {
+        "id": 1984885
+      },
+      "writtenOn": "2023-03-28T10:48:53Z",
+      "side": 1,
+      "message": "I have found the original issue, and the lock is for other special feature not for src sink coexist，so delete here",
+      "parentUuid": "ca61e1af_1463a99f",
+      "range": {
+        "startLine": 1172,
+        "startChar": 47,
+        "endLine": 1172,
+        "endChar": 70
+      },
+      "revId": "071498ed627cdb440a82380f3a904fa4fd38d40a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1548f35f_1ecb851d",
         "filename": "system/btif/src/btif_av.cc",
         "patchSetId": 4

@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0fd62e43_83a370f0",
+        "filename": "system/btif/src/btif_a2dp.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1984885
+      },
+      "writtenOn": "2023-03-28T10:48:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1258d8a6_645ca0ba",
+      "range": {
+        "startLine": 51,
+        "startChar": 47,
+        "endLine": 51,
+        "endChar": 52
+      },
+      "revId": "7ad30bb5ca952709d0d38a1db3f79dfa5aec466b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f96b118d_692f3e2b",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-03-25T13:41:26Z",
       "side": 1,
       "message": "__func__ is not needed in `LOG_XXX` as it is already included in the macro",
+      "range": {
+        "startLine": 564,
+        "startChar": 71,
+        "endLine": 564,
+        "endChar": 79
+      },
+      "revId": "7ad30bb5ca952709d0d38a1db3f79dfa5aec466b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7e9e142e_4ab6038f",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 564,
+      "author": {
+        "id": 1984885
+      },
+      "writtenOn": "2023-03-28T10:48:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f96b118d_692f3e2b",
       "range": {
         "startLine": 564,
         "startChar": 71,
