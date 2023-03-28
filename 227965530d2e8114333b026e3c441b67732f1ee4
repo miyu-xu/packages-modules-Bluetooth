@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c7fdccb1_bb58c3b7",
+        "filename": "android/app/src/com/android/bluetooth/pbapclient/PbapClientStateMachine.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 292,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-03-28T01:48:30Z",
+      "side": 1,
+      "message": "Q) Can you guess why the timeout happens?",
+      "range": {
+        "startLine": 292,
+        "startChar": 21,
+        "endLine": 292,
+        "endChar": 43
+      },
+      "revId": "227965530d2e8114333b026e3c441b67732f1ee4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
