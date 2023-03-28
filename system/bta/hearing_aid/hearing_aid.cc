@@ -25,6 +25,7 @@
 #include <base/logging.h>
 #include <base/strings/string_number_conversions.h>  // HexEncode
 
+#include <chrono>
 #include <cstdint>
 #include <mutex>
 #include <vector>
@@ -259,6 +260,9 @@ class HearingAidImpl : public HearingAid {
       "persist.bluetooth.hearing_aid_max_ce_len";
   // Record whether the connection parameter needs to update to a better one
   bool needs_parameter_update = false;
+  std::chrono::system_clock::time_point last_drop_time_point =
+      std::chrono::system_clock::now();
+  int drop_duration_threshold = 60 * 5;  // 5 min
 
  public:
   ~HearingAidImpl() override = default;
@@ -393,6 +397,15 @@ class HearingAidImpl : public HearingAid {
     L2CA_UpdateBleConnParams(address, connection_interval, connection_interval,
                              0x000A, 0x0064 /*1s*/, min_ce_len, max_ce_len);
     return connection_interval;
+  }
+
+  bool AbleToDrop(std::chrono::system_clock::time_point tp) {
+    auto duration = tp - last_drop_time_point;
+    bool droppable =
+        std::chrono::duration_cast<std::chrono::seconds>(duration).count() >
+        drop_duration_threshold;
+    LOG_INFO("AbleToDrop %d", droppable);
+    return droppable;
   }
 
   void Connect(const RawAddress& address) {
@@ -1376,6 +1389,7 @@ class HearingAidImpl : public HearingAid {
     // reallocations
     // TODO: this should basically fit the encoded data, tune the size later
     std::vector<uint8_t> encoded_data_left;
+    auto time_point = std::chrono::system_clock::now();
     if (left) {
       // TODO: instead of a magic number, we need to figure out the correct
       // buffer size
@@ -1390,7 +1404,7 @@ class HearingAidImpl : public HearingAid {
       if (packets_in_chans) {
         // Compare the two sides LE CoC credit value to confirm need to drop or
         // skip audio packet.
-        if (NeedToDropPacket(left, right)) {
+        if (NeedToDropPacket(left, right) && AbleToDrop(time_point)) {
           LOG_INFO("%s triggers dropping, %u packets in channel",
                    ADDRESS_TO_LOGGABLE_CSTR(left->address),
                    packets_in_chans);
@@ -1424,7 +1438,7 @@ class HearingAidImpl : public HearingAid {
       if (packets_in_chans) {
         // Compare the two sides LE CoC credit value to confirm need to drop or
         // skip audio packet.
-        if (NeedToDropPacket(right, left)) {
+        if (NeedToDropPacket(right, left) && AbleToDrop(time_point)) {
           LOG_INFO("%s triggers dropping, %u packets in channel",
                    ADDRESS_TO_LOGGABLE_CSTR(right->address),
                    packets_in_chans);
@@ -1450,6 +1464,7 @@ class HearingAidImpl : public HearingAid {
         CalcCompressedAudioPacketSize(codec_in_use, default_data_interval_ms);
 
     if (need_drop) {
+      last_drop_time_point = time_point;
       if (left) {
         left->audio_stats.packet_drop_count++;
       }
