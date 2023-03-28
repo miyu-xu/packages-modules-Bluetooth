@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d6e92c05_38c940d6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1306903
+      },
+      "writtenOn": "2023-03-28T11:48:50Z",
+      "side": 1,
+      "message": "Thanks for the CL. I believe the code can be further simplified with the default value in GetSystemPropertyUint32.",
+      "revId": "bd3c4aab524ecad961182ef9d10e14568d010d21",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6cdea583_8a6b687a",
+        "filename": "system/gd/hal/hci_hal_android_hidl.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 450,
+      "author": {
+        "id": 1306903
+      },
+      "writtenOn": "2023-03-28T11:48:50Z",
+      "side": 1,
+      "message": "hal_start_timeout_ms_ \u003d os::GetSystemPropertyUint32(\"bluetooth.gd.hci_hal.start_timeout\", 500);",
+      "range": {
+        "startLine": 443,
+        "startChar": 0,
+        "endLine": 450,
+        "endChar": 5
+      },
+      "revId": "bd3c4aab524ecad961182ef9d10e14568d010d21",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "186dc6ff_4cbbb202",
+        "filename": "system/gd/hal/hci_hal_android_hidl.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 530,
+      "author": {
+        "id": 1306903
+      },
+      "writtenOn": "2023-03-28T11:48:50Z",
+      "side": 1,
+      "message": "hal_start_timeout_ms_",
+      "range": {
+        "startLine": 530,
+        "startChar": 11,
+        "endLine": 530,
+        "endChar": 31
+      },
+      "revId": "bd3c4aab524ecad961182ef9d10e14568d010d21",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e311c897_24808e85",
+        "filename": "system/gd/hci/hci_layer.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 499,
+      "author": {
+        "id": 1306903
+      },
+      "writtenOn": "2023-03-28T11:48:50Z",
+      "side": 1,
+      "message": "return os::GetSystemPropertyUint32(\n        \"bluetooth.gd.hci_layer.timeout\", 2000);",
+      "range": {
+        "startLine": 491,
+        "startChar": 0,
+        "endLine": 499,
+        "endChar": 24
+      },
+      "revId": "bd3c4aab524ecad961182ef9d10e14568d010d21",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3b593eb3_ab8fc92d",
+        "filename": "system/gd/stack_manager.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1306903
+      },
+      "writtenOn": "2023-03-28T11:48:50Z",
+      "side": 1,
+      "message": "return os::GetSystemPropertyUint32(\n        is_start ? \"bluetooth.gd.start_timeout\" : \"bluetooth.gd.stop_timeout\",\n        is_start ? 3000 : 5000);",
+      "range": {
+        "startLine": 99,
+        "startChar": 0,
+        "endLine": 108,
+        "endChar": 20
+      },
+      "revId": "bd3c4aab524ecad961182ef9d10e14568d010d21",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
