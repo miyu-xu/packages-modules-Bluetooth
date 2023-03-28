@@ -18,6 +18,8 @@ java_defaults {
     ],
 
     static_libs: [
+        "android.hardware.radio-V1.0-java",
+        "android.hardware.radio.sap-V1-java",
         "androidx.media_media",
         "androidx.test.ext.truth",
         "androidx.test.rules",
