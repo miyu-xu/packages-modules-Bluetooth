@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f1728a64_743b11f5",
+        "filename": "android/app/src/com/android/bluetooth/telephony/BluetoothInCallService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-03-28T14:56:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e48f9060_210b597b",
+      "revId": "b3f6d7ed2b3198f6033c2ca0a42fcc368b6a5fcb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "dc523bbb_c0924391",
@@ -144,6 +162,30 @@
       "side": 1,
       "message": "As long as this handler is registered to only HEADSET and LE_CALL_CONTROL it\u0027s safe here.",
       "parentUuid": "de3a6604_0f1d3cfd",
+      "range": {
+        "startLine": 172,
+        "startChar": 31,
+        "endLine": 172,
+        "endChar": 32
+      },
+      "revId": "b3f6d7ed2b3198f6033c2ca0a42fcc368b6a5fcb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a8ee24e8_51deba90",
+        "filename": "android/app/src/com/android/bluetooth/telephony/BluetoothInCallService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-03-28T14:56:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ca37a940_25baa265",
       "range": {
         "startLine": 172,
         "startChar": 31,
