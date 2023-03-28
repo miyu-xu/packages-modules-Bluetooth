@@ -9,6 +9,8 @@ java_defaults {
     min_sdk_version: "Tiramisu",
     target_sdk_version: "current",
     libs: [
+        "android.hardware.radio-V1.0-java",
+        "android.hardware.radio.sap-V1-java",
         "javax.obex",
         "android.test.runner",
         "telephony-common",
