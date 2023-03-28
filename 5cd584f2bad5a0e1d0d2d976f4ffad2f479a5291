@@ -1,0 +1,211 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1e8b7d73_4676c0d0",
+        "filename": "tools/rootcanal/lmp/src/procedure/secure_simple_pairing.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-03-28T17:02:54Z",
+      "side": 1,
+      "message": "Using futures should not be necessary as the secure simple pairing procedures are designed to be linear (cf comment below)",
+      "range": {
+        "startLine": 5,
+        "startChar": 0,
+        "endLine": 5,
+        "endChar": 33
+      },
+      "revId": "5cd584f2bad5a0e1d0d2d976f4ffad2f479a5291",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "95dab952_1e400f7b",
+        "filename": "tools/rootcanal/lmp/src/procedure/secure_simple_pairing.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 468,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-03-28T17:02:54Z",
+      "side": 1,
+      "message": "cf comment below, on the initiator side, when using passkey entry and when the local iocap is not keyboard only, the initiator should send the first LMP_SIMPLE_PAIRING_CONFIRM and handle LMP_KEYPRESS_NOTIFICATION waiting for the response.",
+      "range": {
+        "startLine": 452,
+        "startChar": 0,
+        "endLine": 468,
+        "endChar": 17
+      },
+      "revId": "5cd584f2bad5a0e1d0d2d976f4ffad2f479a5291",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4952c67c_4ea2970e",
+        "filename": "tools/rootcanal/lmp/src/procedure/secure_simple_pairing.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 710,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-03-28T17:02:54Z",
+      "side": 1,
+      "message": "cd other comment. On the responder side, the lm should handle LMP_KEYPRESS_NOTIFICATIONS until receiving LMP_SIMPLE_PAIRING_CONFIRM, then continue to the commitment exchange.",
+      "range": {
+        "startLine": 700,
+        "startChar": 16,
+        "endLine": 710,
+        "endChar": 17
+      },
+      "revId": "5cd584f2bad5a0e1d0d2d976f4ffad2f479a5291",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "031c198a_795bd0a6",
+        "filename": "tools/rootcanal/lmp/src/procedure/secure_simple_pairing.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 916,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-03-28T17:02:54Z",
+      "side": 1,
+      "message": "Reenable this test if possible",
+      "range": {
+        "startLine": 916,
+        "startChar": 3,
+        "endLine": 916,
+        "endChar": 47
+      },
+      "revId": "5cd584f2bad5a0e1d0d2d976f4ffad2f479a5291",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b78c8e04_4ae82136",
+        "filename": "tools/rootcanal/lmp/src/procedure/secure_simple_pairing.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 925,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-03-28T17:02:54Z",
+      "side": 1,
+      "message": "Reenable this test if possible",
+      "range": {
+        "startLine": 925,
+        "startChar": 4,
+        "endLine": 925,
+        "endChar": 47
+      },
+      "revId": "5cd584f2bad5a0e1d0d2d976f4ffad2f479a5291",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "748feec0_1cce104c",
+        "filename": "tools/rootcanal/lmp/src/procedure/secure_simple_pairing.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 934,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-03-28T17:02:54Z",
+      "side": 1,
+      "message": "Reenable this test if possible",
+      "range": {
+        "startLine": 934,
+        "startChar": 4,
+        "endLine": 934,
+        "endChar": 47
+      },
+      "revId": "5cd584f2bad5a0e1d0d2d976f4ffad2f479a5291",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ab20b78d_5e15566e",
+        "filename": "tools/rootcanal/lmp/src/procedure/secure_simple_pairing.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 943,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-03-28T17:02:54Z",
+      "side": 1,
+      "message": "Reenable this test if possible",
+      "range": {
+        "startLine": 943,
+        "startChar": 4,
+        "endLine": 943,
+        "endChar": 47
+      },
+      "revId": "5cd584f2bad5a0e1d0d2d976f4ffad2f479a5291",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4426fd03_e9018827",
+        "filename": "tools/rootcanal/lmp/src/procedure/secure_simple_pairing.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 1082,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-03-28T17:02:54Z",
+      "side": 1,
+      "message": "Reenable this test if possible",
+      "range": {
+        "startLine": 1082,
+        "startChar": 4,
+        "endLine": 1082,
+        "endChar": 47
+      },
+      "revId": "5cd584f2bad5a0e1d0d2d976f4ffad2f479a5291",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ef6a7479_69840b89",
+        "filename": "tools/rootcanal/lmp/src/procedure/secure_simple_pairing.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 1091,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-03-28T17:02:54Z",
+      "side": 1,
+      "message": "Reenable this test if possible",
+      "range": {
+        "startLine": 1091,
+        "startChar": 4,
+        "endLine": 1091,
+        "endChar": 47
+      },
+      "revId": "5cd584f2bad5a0e1d0d2d976f4ffad2f479a5291",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
