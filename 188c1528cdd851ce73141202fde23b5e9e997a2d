@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b8d56ce0_867d34ae",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-03-28T21:43:13Z",
+      "side": 1,
+      "message": "+cmanton for inquiry changes\n+hallstrom as an FYI for LE scanning",
+      "revId": "188c1528cdd851ce73141202fde23b5e9e997a2d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
