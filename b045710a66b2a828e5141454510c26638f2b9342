@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ea582f84_1fdd4435",
+        "filename": "service/java/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 2536,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-03-28T05:02:19Z",
+      "side": 1,
+      "message": "It looks like mBluetooth is protected by mBluetooth.writeLock().lock() in other places.  Can we add that here?",
+      "range": {
+        "startLine": 2536,
+        "startChar": 24,
+        "endLine": 2536,
+        "endChar": 34
+      },
+      "revId": "b045710a66b2a828e5141454510c26638f2b9342",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
