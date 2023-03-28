@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "28420ec7_17b02d49",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1937985
+      },
+      "writtenOn": "2023-03-28T17:48:30Z",
+      "side": 1,
+      "message": "Yes exactly this one: `java -jar /google/bin/releases/kotlin-google-eng/ktfmt/ktfmt_deploy.jar --google-style`",
+      "parentUuid": "f113409c_42a5efee",
+      "revId": "db9bd58d02e910507b733c3c10c3938f4f6e71f1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f7620ca4_0636b643",
@@ -31,6 +49,30 @@
       "writtenOn": "2023-03-28T17:14:12Z",
       "side": 1,
       "message": "Is this returning a gRPC Status exception ?",
+      "range": {
+        "startLine": 122,
+        "startChar": 20,
+        "endLine": 122,
+        "endChar": 80
+      },
+      "revId": "db9bd58d02e910507b733c3c10c3938f4f6e71f1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a090f1ae_b8336538",
+        "filename": "android/pandora/server/src/com/android/pandora/Security.kt",
+        "patchSetId": 3
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1937985
+      },
+      "writtenOn": "2023-03-28T17:48:30Z",
+      "side": 1,
+      "message": "Yes it\u0027s converted using:\n```\nval sw \u003d StringWriter()\n      e.printStackTrace(PrintWriter(sw))\n      responseObserver.onError(\n        Status.UNKNOWN.withCause(e).withDescription(sw.toString()).asException()\n      )\n```\nin `Utils.kt` and `A2dp.kt`",
+      "parentUuid": "f7620ca4_0636b643",
       "range": {
         "startLine": 122,
         "startChar": 20,
