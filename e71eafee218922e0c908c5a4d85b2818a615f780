@@ -140,6 +140,30 @@
       },
       "revId": "e71eafee218922e0c908c5a4d85b2818a615f780",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f5694be6_71259c1e",
+        "filename": "system/gd/rust/topshim/src/profiles/sdp.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 265,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2023-03-28T01:49:20Z",
+      "side": 1,
+      "message": "I\u0027m not sure if these fields are defined as big-endian values in spec, but all HCI data values are in little endian unless otherwise noted (e.g. UUID). If the spec doesn\u0027t specify these fields as BE data type, using byte array is a good choice for clearness (and save us some mental burden in endianess conversion).",
+      "parentUuid": "4bad17e2_9046ffbf",
+      "range": {
+        "startLine": 265,
+        "startChar": 38,
+        "endLine": 265,
+        "endChar": 56
+      },
+      "revId": "e71eafee218922e0c908c5a4d85b2818a615f780",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
