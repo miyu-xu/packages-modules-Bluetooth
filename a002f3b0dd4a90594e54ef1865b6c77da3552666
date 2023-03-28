@@ -16,6 +16,24 @@
       "message": "Nice.  Are the alarms going to remain in this object, or will direct/bg connection timeouts/non-timeouts be done with another object ?",
       "revId": "a002f3b0dd4a90594e54ef1865b6c77da3552666",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "da6d4edf_40fa595e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-03-28T00:37:49Z",
+      "side": 1,
+      "message": "They\u0027ll be pulled out. The idea is to have one module manage the connect list + timeouts, and another handle the low-level initiation state machine. The state machine is being developed in aosp/2506194.\n\nThis way we can properly handle things like multiple simultaneous direct connections with different timeouts, cancelling a direct connection while keeping a background connection, targeted announcements, and so forth.",
+      "parentUuid": "14925a6f_2a4b13cf",
+      "revId": "a002f3b0dd4a90594e54ef1865b6c77da3552666",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
