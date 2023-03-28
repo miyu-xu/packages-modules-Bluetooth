@@ -41,10 +41,10 @@ import android.os.ParcelUuid
 import android.util.Log
 import com.google.protobuf.ByteString
 import com.google.protobuf.Empty
-import io.grpc.Status
 import io.grpc.stub.StreamObserver
-import java.nio.ByteBuffer
 import java.io.Closeable
+import java.lang.IllegalArgumentException
+import java.nio.ByteBuffer
 import java.time.Duration
 import java.util.UUID
 import kotlinx.coroutines.CoroutineScope
@@ -245,14 +245,14 @@ class Host(
     responseObserver: StreamObserver<WaitConnectionResponse>
   ) {
     grpcUnary(scope, responseObserver) {
-      if (request.address.isEmpty()) throw Status.UNKNOWN.asException()
+      if (request.address.isEmpty())
+        throw IllegalArgumentException("Request address field must be set")
       var bluetoothDevice = request.address.toBluetoothDevice(bluetoothAdapter)
 
       Log.i(TAG, "waitConnection: device=$bluetoothDevice")
 
       if (!bluetoothAdapter.isEnabled) {
-        Log.e(TAG, "Bluetooth is not enabled, cannot waitConnection")
-        throw Status.UNKNOWN.asException()
+        throw RuntimeException("Bluetooth is not enabled, cannot waitConnection")
       }
 
       if (!bluetoothDevice.isConnected() || waitedAclConnection.contains(bluetoothDevice)) {
@@ -277,8 +277,7 @@ class Host(
       val bluetoothDevice = request.connection.toBluetoothDevice(bluetoothAdapter)
       Log.i(TAG, "waitDisconnection: device=$bluetoothDevice")
       if (!bluetoothAdapter.isEnabled) {
-        Log.e(TAG, "Bluetooth is not enabled, cannot waitDisconnection")
-        throw Status.UNKNOWN.asException()
+        throw RuntimeException("Bluetooth is not enabled, cannot waitDisconnection")
       }
       if (bluetoothDevice.bondState != BluetoothDevice.BOND_NONE) {
         flow
@@ -292,6 +291,8 @@ class Host(
 
   override fun connect(request: ConnectRequest, responseObserver: StreamObserver<ConnectResponse>) {
     grpcUnary(scope, responseObserver) {
+      if (request.address.isEmpty())
+        throw IllegalArgumentException("Request address field must be set")
       val bluetoothDevice = request.address.toBluetoothDevice(bluetoothAdapter)
 
       Log.i(TAG, "connect: address=$bluetoothDevice")
@@ -325,8 +326,7 @@ class Host(
       Log.i(TAG, "disconnect: device=$bluetoothDevice")
 
       if (!bluetoothDevice.isConnected()) {
-        Log.e(TAG, "Device is not connected, cannot disconnect")
-        throw Status.UNKNOWN.asException()
+        throw RuntimeException("Device is not connected, cannot disconnect")
       }
 
       when (request.connection.transport) {
@@ -346,16 +346,14 @@ class Host(
               instance
             }
           if (gattInstance.isDisconnected()) {
-            Log.e(TAG, "Device is not connected, cannot disconnect")
-            throw Status.UNKNOWN.asException()
+            throw RuntimeException("Device is not connected, cannot disconnect")
           }
 
           bluetoothDevice.disconnect()
           gattInstance.disconnectInstance()
         }
         else -> {
-          Log.e(TAG, "Device type UNKNOWN")
-          throw Status.UNKNOWN.asException()
+          throw RuntimeException("Device type UNKNOWN")
         }
       }
       flow
@@ -377,8 +375,7 @@ class Host(
         ownAddressType != OwnAddressType.RANDOM &&
           ownAddressType != OwnAddressType.RESOLVABLE_OR_RANDOM
       ) {
-        Log.e(TAG, "connectLE: Unsupported OwnAddressType: $ownAddressType")
-        throw Status.UNKNOWN.asException()
+        throw RuntimeException("connectLE: Unsupported OwnAddressType: $ownAddressType")
       }
       val (address, type) =
         when (request.getAddressCase()!!) {
@@ -390,7 +387,8 @@ class Host(
             Pair(request.publicIdentity, BluetoothDevice.ADDRESS_TYPE_PUBLIC)
           ConnectLERequest.AddressCase.RANDOM_STATIC_IDENTITY ->
             Pair(request.randomStaticIdentity, BluetoothDevice.ADDRESS_TYPE_RANDOM)
-          ConnectLERequest.AddressCase.ADDRESS_NOT_SET -> throw Status.UNKNOWN.asException()
+          ConnectLERequest.AddressCase.ADDRESS_NOT_SET ->
+            throw IllegalArgumentException("Request address field must be set")
         }
       Log.i(TAG, "connectLE: $address")
       val bluetoothDevice = scanLeDevice(address.decodeAsMacAddressToString(), type)!!
@@ -458,8 +456,7 @@ class Host(
             !dataTypesRequest.getIncompleteServiceClassUuids32List().isEmpty() or
             !dataTypesRequest.getIncompleteServiceClassUuids128List().isEmpty()
         ) {
-          Log.e(TAG, "Incomplete Service Class Uuids not supported")
-          throw Status.UNKNOWN.asException()
+          throw RuntimeException("Incomplete Service Class Uuids not supported")
         }
 
         // Handle service uuids
@@ -619,8 +616,7 @@ class Host(
                   .put(manufacturerSpecificDatas.get(id))
               }
               dataTypesBuilder.setManufacturerSpecificData(
-                ByteString.copyFrom(manufacturerData.array(), 0,
-                  manufacturerData.position())
+                ByteString.copyFrom(manufacturerData.array(), 0, manufacturerData.position())
               )
               val primaryPhy =
                 when (result.getPrimaryPhy()) {
