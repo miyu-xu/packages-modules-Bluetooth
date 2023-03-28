@@ -89,6 +89,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9447ceee_06e36a83",
+        "filename": "android/app/tests/myinstrumentation/Android.bp",
+        "patchSetId": 26
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2023-03-28T17:42:01Z",
+      "side": 1,
+      "message": "Yep, we should keep Pandora naming for all tests which are not device specific. `BumbleBluetoothInstrumentationTests` maybe?",
+      "parentUuid": "a724d462_4aa1d6b2",
+      "range": {
+        "startLine": 43,
+        "startChar": 11,
+        "endLine": 43,
+        "endChar": 38
+      },
+      "revId": "cec905210084c61834199444ed96d470af6df6a8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "92ee454d_10b6292a",
         "filename": "android/app/tests/myinstrumentation/Android.bp",
         "patchSetId": 26
@@ -129,6 +153,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "189f4010_20cf792c",
+        "filename": "android/app/tests/myinstrumentation/AndroidTest.xml",
+        "patchSetId": 26
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2023-03-28T17:42:01Z",
+      "side": 1,
+      "message": "Let\u0027s avoid this if possible (because we won\u0027t be able to put this in CTS in this case)",
+      "parentUuid": "62ad55e2_4d27b85a",
+      "range": {
+        "startLine": 47,
+        "startChar": 7,
+        "endLine": 47,
+        "endChar": 56
+      },
+      "revId": "cec905210084c61834199444ed96d470af6df6a8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7b2aea38_6ef1bfe3",
         "filename": "android/app/tests/myinstrumentation/AndroidTest.xml",
         "patchSetId": 26
@@ -157,6 +205,24 @@
       "writtenOn": "2023-03-28T16:57:48Z",
       "side": 1,
       "message": "Should we use kotlin for this test ?\n\n@girardier@google.com thoughts ?",
+      "revId": "cec905210084c61834199444ed96d470af6df6a8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4cadd3d8_884abd6e",
+        "filename": "android/app/tests/myinstrumentation/src/com/android/bluetooth/gatt/LeAdvertisingTest.java",
+        "patchSetId": 26
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2023-03-28T17:42:01Z",
+      "side": 1,
+      "message": "Java has the advantage to be closer to the current tests. But Kotlin will be easier to write and read for asynchronous. I\u0027m fine with both, but since has been written in Java, probably easier to keep it as is 😊 I\u0027ll let Qiao decide.",
+      "parentUuid": "43597798_cc642bc3",
       "revId": "cec905210084c61834199444ed96d470af6df6a8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -329,6 +395,30 @@
       "writtenOn": "2023-03-28T16:57:48Z",
       "side": 1,
       "message": "I think we should put thoses tests inside `framework/tests/bumble` or `framework/tests/multidevice`\n\nWhat do you think @girardier@google.com ?",
+      "range": {
+        "startLine": 71,
+        "startChar": 38,
+        "endLine": 71,
+        "endChar": 73
+      },
+      "revId": "cec905210084c61834199444ed96d470af6df6a8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a9ba87bc_4b78dbfa",
+        "filename": "framework/Android.bp",
+        "patchSetId": 26
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2023-03-28T17:42:01Z",
+      "side": 1,
+      "message": "Agreed, both names are fine for me, but it\u0027s indeed better to have them in a separate folder",
+      "parentUuid": "3a5479e3_8bcc59ec",
       "range": {
         "startLine": 71,
         "startChar": 38,
