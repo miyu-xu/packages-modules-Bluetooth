@@ -47,6 +47,54 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "02355f98_43e67021",
+        "filename": "system/gd/hal/hci_hal_android_hidl.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 445,
+      "author": {
+        "id": 1901791
+      },
+      "writtenOn": "2023-03-28T11:09:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "acc4306d_f9e63641",
+      "range": {
+        "startLine": 445,
+        "startChar": 40,
+        "endLine": 445,
+        "endChar": 57
+      },
+      "revId": "8c86305ea4350b15efa3435d4f677751c7937c4a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3912f2e9_c32f87f3",
+        "filename": "system/gd/hal/hci_hal_android_hidl.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 445,
+      "author": {
+        "id": 1901791
+      },
+      "writtenOn": "2023-03-28T11:09:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fbdebeb1_814fb6a4",
+      "range": {
+        "startLine": 445,
+        "startChar": 59,
+        "endLine": 445,
+        "endChar": 96
+      },
+      "revId": "8c86305ea4350b15efa3435d4f677751c7937c4a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "be8ed78a_8d0d8f84",
@@ -93,6 +141,54 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5ddac449_e7817746",
+        "filename": "system/gd/hci/hci_layer.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 494,
+      "author": {
+        "id": 1901791
+      },
+      "writtenOn": "2023-03-28T11:09:17Z",
+      "side": 1,
+      "message": "Renamed this to \"ro.bluetooth.gd.hci_layer.timeout, this timeout is used for many hci commands.",
+      "parentUuid": "a885ac1c_dc5673ce",
+      "range": {
+        "startLine": 494,
+        "startChar": 51,
+        "endLine": 494,
+        "endChar": 84
+      },
+      "revId": "8c86305ea4350b15efa3435d4f677751c7937c4a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dbb9f867_69a3e1a2",
+        "filename": "system/gd/hci/hci_layer.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 494,
+      "author": {
+        "id": 1901791
+      },
+      "writtenOn": "2023-03-28T11:09:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "be8ed78a_8d0d8f84",
+      "range": {
+        "startLine": 494,
+        "startChar": 32,
+        "endLine": 494,
+        "endChar": 49
+      },
+      "revId": "8c86305ea4350b15efa3435d4f677751c7937c4a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8146aee3_815de289",
@@ -116,6 +212,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3d08b41e_e19df3ac",
+        "filename": "system/gd/stack_manager.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1901791
+      },
+      "writtenOn": "2023-03-28T11:09:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8146aee3_815de289",
+      "range": {
+        "startLine": 102,
+        "startChar": 31,
+        "endLine": 102,
+        "endChar": 48
+      },
+      "revId": "8c86305ea4350b15efa3435d4f677751c7937c4a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "65df96a3_92becf93",
@@ -129,6 +249,30 @@
       "writtenOn": "2023-03-28T08:42:09Z",
       "side": 1,
       "message": "Please check the Android property format here https://source.android.com/docs/core/architecture/configuration/add-system-properties#property-name\n\nAn ideal name could be something like\n\"bluetooth.gd.start_timeout\"\n\"bluetooth.gd.stop_timeout\"",
+      "range": {
+        "startLine": 103,
+        "startChar": 20,
+        "endLine": 103,
+        "endChar": 82
+      },
+      "revId": "8c86305ea4350b15efa3435d4f677751c7937c4a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bfa6e539_397e6b89",
+        "filename": "system/gd/stack_manager.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1901791
+      },
+      "writtenOn": "2023-03-28T11:09:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "65df96a3_92becf93",
       "range": {
         "startLine": 103,
         "startChar": 20,
