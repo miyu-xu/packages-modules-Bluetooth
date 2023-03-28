@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d4c1ab3a_da473cce",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1901791
+      },
+      "writtenOn": "2023-03-28T11:55:48Z",
+      "side": 1,
+      "message": "@ugoyu@google.com:\nIs it fine if we do not check the case `GetSystemPropertyUint32()` returns 0?",
+      "parentUuid": "d6e92c05_38c940d6",
+      "revId": "bd3c4aab524ecad961182ef9d10e14568d010d21",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6cdea583_8a6b687a",
         "filename": "system/gd/hal/hci_hal_android_hidl.cc",
         "patchSetId": 6
