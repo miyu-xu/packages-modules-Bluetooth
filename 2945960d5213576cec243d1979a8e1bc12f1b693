@@ -1,6 +1,29 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9e9e16f7_83695fc3",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterProperties.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 679,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-03-28T00:01:00Z",
+      "side": 1,
+      "message": "Comment removed by: Frank Piva; Reason: confidential",
+      "range": {
+        "startLine": 679,
+        "startChar": 0,
+        "endLine": 679,
+        "endChar": 54
+      },
+      "revId": "2945960d5213576cec243d1979a8e1bc12f1b693",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "93051061_4a5c3013",
@@ -19,6 +42,29 @@
         "startChar": 19,
         "endLine": 701,
         "endChar": 26
+      },
+      "revId": "2945960d5213576cec243d1979a8e1bc12f1b693",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1e97f2fe_44ab8653",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterProperties.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 712,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-03-28T00:01:00Z",
+      "side": 1,
+      "message": "would there be a java callback that trigger and intent later?",
+      "range": {
+        "startLine": 712,
+        "startChar": 25,
+        "endLine": 712,
+        "endChar": 41
       },
       "revId": "2945960d5213576cec243d1979a8e1bc12f1b693",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
