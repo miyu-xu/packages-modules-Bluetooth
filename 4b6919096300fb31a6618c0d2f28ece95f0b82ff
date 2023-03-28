@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "486618bf_bcc7340a",
+        "filename": "system/bta/ar/bta_ar.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2023-03-28T18:26:46Z",
+      "side": 1,
+      "message": "Add documentation of this as well.",
+      "range": {
+        "startLine": 54,
+        "startChar": 12,
+        "endLine": 54,
+        "endChar": 31
+      },
+      "revId": "4b6919096300fb31a6618c0d2f28ece95f0b82ff",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bb75e4af_17bcd140",
+        "filename": "system/bta/av/bta_av_aact.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 1045,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2023-03-28T18:26:46Z",
+      "side": 1,
+      "message": "is this change related to the feature? If it is a fix for something else can we send it out as a separate change.",
+      "range": {
+        "startLine": 1044,
+        "startChar": 3,
+        "endLine": 1045,
+        "endChar": 27
+      },
+      "revId": "4b6919096300fb31a6618c0d2f28ece95f0b82ff",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8a00cc1c_ddbee6e3",
+        "filename": "system/bta/av/bta_av_aact.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 3086,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2023-03-28T18:26:46Z",
+      "side": 1,
+      "message": "Is there a case where peer is sink and it can run legacy AVRCP? Feels like we are missing out  on a case here. I just wanted to ensure we aren\u0027t",
+      "range": {
+        "startLine": 3078,
+        "startChar": 8,
+        "endLine": 3086,
+        "endChar": 9
+      },
+      "revId": "4b6919096300fb31a6618c0d2f28ece95f0b82ff",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b7db56b7_3cb06066",
+        "filename": "system/bta/av/bta_av_aact.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 3411,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2023-03-28T18:26:46Z",
+      "side": 1,
+      "message": "Can we add documentation for this as well.",
+      "range": {
+        "startLine": 3411,
+        "startChar": 5,
+        "endLine": 3411,
+        "endChar": 28
+      },
+      "revId": "4b6919096300fb31a6618c0d2f28ece95f0b82ff",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
