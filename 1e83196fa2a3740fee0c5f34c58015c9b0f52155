@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "05f522fc_3b3703a1",
+        "filename": "system/profile/avrcp/connection_handler.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1984885
+      },
+      "writtenOn": "2023-03-28T10:37:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0b85c873_829b4a33",
+      "range": {
+        "startLine": 49,
+        "startChar": 0,
+        "endLine": 49,
+        "endChar": 42
+      },
+      "revId": "1e83196fa2a3740fee0c5f34c58015c9b0f52155",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f5ee7737_c7e232d7",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-03-25T13:23:30Z",
       "side": 1,
       "message": "I do not think we have support for sysprop for other target than android.\nCan you do a method like suggested by Etienne that is static and look at the sysprop only once ?\ncf btif_hf: \nhttps://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/system/btif/src/btif_hf.cc;l\u003d145-154;drc\u003d698f4dce56fc120263c944d19af60506f79d2afb",
+      "range": {
+        "startLine": 284,
+        "startChar": 11,
+        "endLine": 284,
+        "endChar": 86
+      },
+      "revId": "1e83196fa2a3740fee0c5f34c58015c9b0f52155",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f1044906_f151c295",
+        "filename": "system/profile/avrcp/connection_handler.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 284,
+      "author": {
+        "id": 1984885
+      },
+      "writtenOn": "2023-03-28T10:37:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f5ee7737_c7e232d7",
       "range": {
         "startLine": 284,
         "startChar": 11,
