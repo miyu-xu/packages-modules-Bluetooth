@@ -37,6 +37,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "11dc95bd_962d7073",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1984885
+      },
+      "writtenOn": "2023-03-28T03:21:15Z",
+      "side": 1,
+      "message": "is there any SOP to show how to run clang-format",
+      "parentUuid": "b8f71163_6b03e24e",
+      "revId": "cbda86a97930077a4210aca517095e4cfb9024fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c2907dca_5a3d9135",
         "filename": "system/bta/av/bta_av_aact.cc",
         "patchSetId": 6
