@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "df8ab0c2_6b762b3a",
+        "filename": "tools/rootcanal/lmp/src/procedure/secure_simple_pairing.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-03-28T19:49:44Z",
+      "side": 1,
+      "message": "Using receive_lmp_packet\u003cEither\u003c_, _\u003e\u003e that David introduced.\nThat should be sufficient for most use cases.",
+      "parentUuid": "993afaff_a5898d01",
+      "range": {
+        "startLine": 5,
+        "startChar": 0,
+        "endLine": 5,
+        "endChar": 33
+      },
+      "revId": "5cd584f2bad5a0e1d0d2d976f4ffad2f479a5291",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "95dab952_1e400f7b",
         "filename": "tools/rootcanal/lmp/src/procedure/secure_simple_pairing.rs",
         "patchSetId": 5
@@ -108,6 +132,30 @@
       "side": 1,
       "message": "I\u0027m not sure what cd and cf are",
       "parentUuid": "4952c67c_4ea2970e",
+      "range": {
+        "startLine": 700,
+        "startChar": 16,
+        "endLine": 710,
+        "endChar": 17
+      },
+      "revId": "5cd584f2bad5a0e1d0d2d976f4ffad2f479a5291",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0d2792e5_5c7908fb",
+        "filename": "tools/rootcanal/lmp/src/procedure/secure_simple_pairing.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 710,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-03-28T19:49:44Z",
+      "side": 1,
+      "message": "cf means confer, the other is a typo 😊",
+      "parentUuid": "7b7a6697_d53d7031",
       "range": {
         "startLine": 700,
         "startChar": 16,
