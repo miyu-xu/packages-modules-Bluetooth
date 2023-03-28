@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9eafe945_96c257c0",
+        "filename": "system/rust/src/connection.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-03-28T23:04:00Z",
+      "side": 1,
+      "message": "consider what happens if a new conn request arrives while we are disconnecting?",
+      "range": {
+        "startLine": 170,
+        "startChar": 0,
+        "endLine": 170,
+        "endChar": 38
+      },
+      "revId": "cac8de8768ffb88541520dabd5b927e62c269ed7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "96b4d1ce_3ebf7f01",
+        "filename": "system/rust/src/connection.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-03-28T23:04:00Z",
+      "side": 1,
+      "message": "from @jpawlowski: only touch accept list if we aren\u0027t remaining STOPPED",
+      "revId": "cac8de8768ffb88541520dabd5b927e62c269ed7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3ca9b081_63b229bf",
+        "filename": "system/rust/src/connection/state_machine.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-03-28T23:04:00Z",
+      "side": 1,
+      "message": "on_create_connection_status",
+      "range": {
+        "startLine": 75,
+        "startChar": 7,
+        "endLine": 75,
+        "endChar": 27
+      },
+      "revId": "cac8de8768ffb88541520dabd5b927e62c269ed7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
