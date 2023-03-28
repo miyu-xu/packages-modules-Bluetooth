@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8f4f3e14_1d93c606",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1863,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-03-28T21:08:41Z",
+      "side": 1,
+      "message": "should this be done in reverse order, i.e. put this before line 1862",
+      "range": {
+        "startLine": 1863,
+        "startChar": 0,
+        "endLine": 1863,
+        "endChar": 78
+      },
+      "revId": "d7aa2e004651e9b036b41552a9247f7108837072",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eed74620_f3c4a47a",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 2099,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-03-28T21:08:41Z",
+      "side": 1,
+      "message": "same as above",
+      "range": {
+        "startLine": 2099,
+        "startChar": 0,
+        "endLine": 2099,
+        "endChar": 82
+      },
+      "revId": "d7aa2e004651e9b036b41552a9247f7108837072",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d4ee1bb3_18c8605d",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1119,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-03-28T21:08:41Z",
+      "side": 1,
+      "message": "same as above",
+      "range": {
+        "startLine": 1119,
+        "startChar": 0,
+        "endLine": 1119,
+        "endChar": 86
+      },
+      "revId": "d7aa2e004651e9b036b41552a9247f7108837072",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
