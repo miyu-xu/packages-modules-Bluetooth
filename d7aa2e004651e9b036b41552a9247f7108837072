@@ -26,6 +26,54 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e7e9b3ff_3bd64957",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1863,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-03-28T21:45:24Z",
+      "side": 1,
+      "message": "The HAL policy should be such that it shouldn\u0027t matter which order I suspend / unsuspend in.",
+      "parentUuid": "8f4f3e14_1d93c606",
+      "range": {
+        "startLine": 1863,
+        "startChar": 0,
+        "endLine": 1863,
+        "endChar": 78
+      },
+      "revId": "d7aa2e004651e9b036b41552a9247f7108837072",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "66db3863_caf16293",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1863,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-03-28T21:45:24Z",
+      "side": 1,
+      "message": "The HAL policy should be such that it shouldn\u0027t matter which order I suspend / unsuspend in.",
+      "parentUuid": "8f4f3e14_1d93c606",
+      "range": {
+        "startLine": 1863,
+        "startChar": 0,
+        "endLine": 1863,
+        "endChar": 78
+      },
+      "revId": "d7aa2e004651e9b036b41552a9247f7108837072",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "eed74620_f3c4a47a",
         "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
         "patchSetId": 4
