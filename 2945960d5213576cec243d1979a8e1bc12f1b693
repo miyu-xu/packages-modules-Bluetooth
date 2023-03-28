@@ -49,6 +49,40 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "29cb2a1c_95e29418",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterProperties.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 706,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2023-03-28T00:20:44Z",
+      "side": 1,
+      "message": "This may not work correctly if the identity address is a static random address. It would be better to also compare address type.",
+      "revId": "2945960d5213576cec243d1979a8e1bc12f1b693",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d683f27f_97ac309c",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterProperties.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 711,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2023-03-28T00:20:44Z",
+      "side": 1,
+      "message": "I don\u0027t think we would be removing more than one record at a time. We can just remove the record in the other for loop.",
+      "revId": "2945960d5213576cec243d1979a8e1bc12f1b693",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1e97f2fe_44ab8653",
         "filename": "android/app/src/com/android/bluetooth/btservice/AdapterProperties.java",
         "patchSetId": 11
