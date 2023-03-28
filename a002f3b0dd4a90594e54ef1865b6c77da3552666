@@ -34,6 +34,57 @@
       "parentUuid": "14925a6f_2a4b13cf",
       "revId": "a002f3b0dd4a90594e54ef1865b6c77da3552666",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e19cf509_371ca5c1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-03-28T00:58:36Z",
+      "side": 1,
+      "message": "Had to reach into a previous CL for connect_hci_manager operation, but sounds like address_manager will decay effectively into a conditional variable to sync the adv/scan/conn modules.",
+      "revId": "a002f3b0dd4a90594e54ef1865b6c77da3552666",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7b2bb828_b34b9541",
+        "filename": "system/gd/hci/acl_manager/le_connectlist_manager.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-03-28T00:58:36Z",
+      "side": 1,
+      "message": "Is the contract to overwrite the previous timeout correct ?",
+      "revId": "a002f3b0dd4a90594e54ef1865b6c77da3552666",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1ce9f572_9fb73389",
+        "filename": "system/gd/hci/acl_manager/le_connectlist_manager.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-03-28T00:58:36Z",
+      "side": 1,
+      "message": "idempotent, so not a problem if none scheduled",
+      "revId": "a002f3b0dd4a90594e54ef1865b6c77da3552666",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
