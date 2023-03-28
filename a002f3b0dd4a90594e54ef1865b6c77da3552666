@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "14925a6f_2a4b13cf",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-03-28T00:35:55Z",
+      "side": 1,
+      "message": "Nice.  Are the alarms going to remain in this object, or will direct/bg connection timeouts/non-timeouts be done with another object ?",
+      "revId": "a002f3b0dd4a90594e54ef1865b6c77da3552666",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
