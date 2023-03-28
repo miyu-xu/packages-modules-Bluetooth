@@ -53,6 +53,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "527d479f_ee51606c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1984885
+      },
+      "writtenOn": "2023-03-28T10:48:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "49869ba8_700a8d22",
+      "revId": "cbda86a97930077a4210aca517095e4cfb9024fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c2907dca_5a3d9135",
@@ -100,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c34b7f39_fe1c25a7",
+        "filename": "system/bta/av/bta_av_aact.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 1480,
+      "author": {
+        "id": 1984885
+      },
+      "writtenOn": "2023-03-28T10:48:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e32df96c_1235288d",
+      "range": {
+        "startLine": 1480,
+        "startChar": 0,
+        "endLine": 1480,
+        "endChar": 85
+      },
+      "revId": "cbda86a97930077a4210aca517095e4cfb9024fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "91e2850a_b8ab32fa",
@@ -113,6 +155,30 @@
       "writtenOn": "2023-03-25T13:53:16Z",
       "side": 1,
       "message": "Can you do the instantiation with the brace here too ?",
+      "range": {
+        "startLine": 2170,
+        "startChar": 11,
+        "endLine": 2176,
+        "endChar": 51
+      },
+      "revId": "cbda86a97930077a4210aca517095e4cfb9024fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "55ff455f_93f34ac5",
+        "filename": "system/bta/av/bta_av_act.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 2176,
+      "author": {
+        "id": 1984885
+      },
+      "writtenOn": "2023-03-28T10:48:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "91e2850a_b8ab32fa",
       "range": {
         "startLine": 2170,
         "startChar": 11,
@@ -146,6 +212,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "23649963_2a2d26e0",
+        "filename": "system/bta/av/bta_av_act.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 2190,
+      "author": {
+        "id": 1984885
+      },
+      "writtenOn": "2023-03-28T10:48:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1ce3695c_58742574",
+      "range": {
+        "startLine": 2189,
+        "startChar": 1,
+        "endLine": 2190,
+        "endChar": 29
+      },
+      "revId": "cbda86a97930077a4210aca517095e4cfb9024fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a59f3559_8d2d1a1b",
@@ -169,6 +259,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3492b75c_7d197d5c",
+        "filename": "system/bta/av/bta_av_act.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 2491,
+      "author": {
+        "id": 1984885
+      },
+      "writtenOn": "2023-03-28T10:48:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a59f3559_8d2d1a1b",
+      "range": {
+        "startLine": 2487,
+        "startChar": 6,
+        "endLine": 2491,
+        "endChar": 51
+      },
+      "revId": "cbda86a97930077a4210aca517095e4cfb9024fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "091d6546_2328d4db",
@@ -182,6 +296,30 @@
       "writtenOn": "2023-03-28T00:01:32Z",
       "side": 1,
       "message": "nit: can you format this cleanly.",
+      "range": {
+        "startLine": 443,
+        "startChar": 0,
+        "endLine": 445,
+        "endChar": 28
+      },
+      "revId": "cbda86a97930077a4210aca517095e4cfb9024fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "57578556_79f776b9",
+        "filename": "system/bta/av/bta_av_int.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 445,
+      "author": {
+        "id": 1984885
+      },
+      "writtenOn": "2023-03-28T10:48:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "091d6546_2328d4db",
       "range": {
         "startLine": 443,
         "startChar": 0,
@@ -217,6 +355,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "28842e5a_aa2fb8f9",
+        "filename": "system/bta/av/bta_av_int.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 671,
+      "author": {
+        "id": 1984885
+      },
+      "writtenOn": "2023-03-28T10:48:46Z",
+      "side": 1,
+      "message": "so sorry I dont\u0027t unserstand what means",
+      "parentUuid": "060b8701_2f761826",
+      "range": {
+        "startLine": 671,
+        "startChar": 18,
+        "endLine": 671,
+        "endChar": 25
+      },
+      "revId": "cbda86a97930077a4210aca517095e4cfb9024fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6fe1ce00_350c2c54",
         "filename": "system/bta/av/bta_av_main.cc",
         "patchSetId": 6
@@ -228,6 +390,30 @@
       "writtenOn": "2023-03-28T00:01:32Z",
       "side": 1,
       "message": "nit: Sort imports",
+      "range": {
+        "startLine": 46,
+        "startChar": 0,
+        "endLine": 46,
+        "endChar": 20
+      },
+      "revId": "cbda86a97930077a4210aca517095e4cfb9024fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5aa34165_53bf2fc2",
+        "filename": "system/bta/av/bta_av_main.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1984885
+      },
+      "writtenOn": "2023-03-28T10:48:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6fe1ce00_350c2c54",
       "range": {
         "startLine": 46,
         "startChar": 0,
@@ -261,6 +447,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b6094534_498a44da",
+        "filename": "system/bta/include/bta_av_api.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 243,
+      "author": {
+        "id": 1984885
+      },
+      "writtenOn": "2023-03-28T10:48:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2f704453_fc0848a8",
+      "range": {
+        "startLine": 243,
+        "startChar": 15,
+        "endLine": 243,
+        "endChar": 18
+      },
+      "revId": "cbda86a97930077a4210aca517095e4cfb9024fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "de1e8d08_b66666aa",
@@ -274,6 +484,30 @@
       "writtenOn": "2023-03-28T00:01:32Z",
       "side": 1,
       "message": "Could you add the documentation here as well",
+      "range": {
+        "startLine": 741,
+        "startChar": 0,
+        "endLine": 741,
+        "endChar": 61
+      },
+      "revId": "cbda86a97930077a4210aca517095e4cfb9024fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c2349cc5_239bb98c",
+        "filename": "system/bta/include/bta_av_api.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 741,
+      "author": {
+        "id": 1984885
+      },
+      "writtenOn": "2023-03-28T10:48:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "de1e8d08_b66666aa",
       "range": {
         "startLine": 741,
         "startChar": 0,
