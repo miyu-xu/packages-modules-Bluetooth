@@ -145,6 +145,8 @@ android_app {
 
     jni_uses_platform_apis: true,
     libs: [
+        "android.hardware.radio-V1.0-java",
+        "android.hardware.radio.sap-V1-java",
         "app-compat-annotations",
         "framework-bluetooth-pre-jarjar",
         "framework-statsd.stubs.module_lib",
@@ -157,8 +159,6 @@ android_app {
         "error_prone_annotations",
     ],
     static_libs: [
-        "android.hardware.radio-V1.0-java",
-        "android.hardware.radio.sap-V1-java",
         "androidx.core_core",
         "androidx.media_media",
         "androidx.lifecycle_lifecycle-livedata",
