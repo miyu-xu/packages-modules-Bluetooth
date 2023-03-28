@@ -13,7 +13,7 @@ use std::path::Path;
 use syn::parse::Parser;
 use syn::punctuated::Punctuated;
 use syn::token::Comma;
-use syn::{Expr, FnArg, ImplItem, ItemImpl, ItemStruct, Meta, Pat, ReturnType, Type};
+use syn::{Expr, FnArg, Ident, ImplItem, ItemImpl, ItemStruct, Meta, Pat, ReturnType, Type};
 
 use crate::proc_macro::TokenStream;
 
@@ -694,7 +694,18 @@ pub fn dbus_proxy_obj(attr: TokenStream, item: TokenStream) -> TokenStream {
         panic!("D-Bus interface name must be specified");
     };
 
+    let rpc_trait_ident = if args.len() > 2 {
+        if let Expr::Path(p) = &args[2] {
+            Some(p.path.get_ident().unwrap())
+        } else {
+            panic!("Not a trait name");
+        }
+    } else {
+        None
+    };
+
     let mut method_impls = quote! {};
+    let mut rpc_method_impls = quote! {};
 
     let ast: ItemImpl = syn::parse(item.clone()).unwrap();
     let self_ty = ast.self_ty;
@@ -705,6 +716,9 @@ pub fn dbus_proxy_obj(attr: TokenStream, item: TokenStream) -> TokenStream {
             // If the method is not marked with #[dbus_method], just copy the
             // original method body.
             if method.attrs.len() != 1 {
+                if rpc_trait_ident.is_some() {
+                    panic!("RPC-friendly trait without dbus_method is not allowed");
+                }
                 method_impls = quote! {
                     #method_impls
                     #method
@@ -729,6 +743,22 @@ pub fn dbus_proxy_obj(attr: TokenStream, item: TokenStream) -> TokenStream {
             }
 
             let method_sig = method.sig.clone();
+
+            // For RPC-friendly method, copy the original signature but add public, async, and wrap
+            // the return with Result.
+            let mut rpc_method_sig = method_sig.clone();
+
+            let ident_orig = rpc_method_sig.ident.clone();
+            rpc_method_sig.ident = Ident::new(&format!("{}_async", ident_orig), ident_orig.span());
+            rpc_method_sig.asyncness = Some(<syn::Token![async]>::default());
+            rpc_method_sig.output = match rpc_method_sig.output {
+                syn::ReturnType::Default => {
+                    syn::parse(quote! {-> Result<(), dbus::Error>}.into()).unwrap()
+                }
+                syn::ReturnType::Type(_arrow, path) => {
+                    syn::parse(quote! {-> Result<#path, dbus::Error>}.into()).unwrap()
+                }
+            };
 
             let mut method_args = quote! {};
 
@@ -767,10 +797,30 @@ pub fn dbus_proxy_obj(attr: TokenStream, item: TokenStream) -> TokenStream {
                     });
                 }
             };
+            rpc_method_impls = quote! {
+                #rpc_method_impls
+                #[allow(unused_variables)]
+                #rpc_method_sig {
+                    let remote__ = self.remote.clone();
+                    let objpath__ = self.objpath.clone();
+                    let conn__ = self.conn.clone();
+                    let proxy = dbus::nonblock::Proxy::new(
+                        remote__,
+                        objpath__,
+                        std::time::Duration::from_secs(2),
+                        conn__,
+                    );
+                    proxy.method_call(
+                        #dbus_iface_name,
+                        #dbus_method_name,
+                        (#method_args),
+                    ).await
+                }
+            };
         }
     }
 
-    let gen = quote! {
+    let mut gen = quote! {
         #ori_item
 
         impl RPCProxy for #self_ty {}
@@ -799,30 +849,68 @@ pub fn dbus_proxy_obj(attr: TokenStream, item: TokenStream) -> TokenStream {
                 self.disconnect_watcher.lock().unwrap().remove(self.remote.clone(), id)
             }
         }
-
-        impl DBusArg for Box<dyn #trait_ + Send> {
-            type DBusType = Path<'static>;
-
-            fn from_dbus(
-                objpath__: Path<'static>,
-                conn__: Option<std::sync::Arc<dbus::nonblock::SyncConnection>>,
-                remote__: Option<dbus::strings::BusName<'static>>,
-                disconnect_watcher__: Option<std::sync::Arc<std::sync::Mutex<DisconnectWatcher>>>,
-            ) -> Result<Box<dyn #trait_ + Send>, Box<dyn std::error::Error>> {
-                Ok(Box::new(#struct_ident {
-                    conn: conn__.unwrap(),
-                    remote: remote__.unwrap(),
-                    objpath: objpath__,
-                    disconnect_watcher: disconnect_watcher__.unwrap(),
-                }))
-            }
-
-            fn to_dbus(_data: Box<dyn #trait_ + Send>) -> Result<Path<'static>, Box<dyn std::error::Error>> {
-                // This impl represents a remote DBus object, so `to_dbus` does not make sense.
-                panic!("not implemented");
-            }
-        }
     };
+
+    if let Some(rpc_trait) = rpc_trait_ident {
+        gen = quote! {
+            #gen
+
+            #[async_trait(?Send)]
+            impl #rpc_trait for #struct_ident {
+                #rpc_method_impls
+            }
+
+            impl DBusArg for Box<dyn #rpc_trait + Send> {
+                type DBusType = Path<'static>;
+
+                fn from_dbus(
+                    objpath__: Path<'static>,
+                    conn__: Option<std::sync::Arc<dbus::nonblock::SyncConnection>>,
+                    remote__: Option<dbus::strings::BusName<'static>>,
+                    disconnect_watcher__: Option<std::sync::Arc<std::sync::Mutex<DisconnectWatcher>>>,
+                ) -> Result<Box<dyn #rpc_trait + Send>, Box<dyn std::error::Error>> {
+                    Ok(Box::new(#struct_ident {
+                        conn: conn__.unwrap(),
+                        remote: remote__.unwrap(),
+                        objpath: objpath__,
+                        disconnect_watcher: disconnect_watcher__.unwrap(),
+                    }))
+                }
+
+                fn to_dbus(_data: Box<dyn #rpc_trait + Send>) -> Result<Path<'static>, Box<dyn std::error::Error>> {
+                    // This impl represents a remote DBus object, so `to_dbus` does not make sense.
+                    panic!("not implemented");
+                }
+            }
+        };
+    } else {
+        gen = quote! {
+            #gen
+
+            impl DBusArg for Box<dyn #trait_ + Send> {
+                type DBusType = Path<'static>;
+
+                fn from_dbus(
+                    objpath__: Path<'static>,
+                    conn__: Option<std::sync::Arc<dbus::nonblock::SyncConnection>>,
+                    remote__: Option<dbus::strings::BusName<'static>>,
+                    disconnect_watcher__: Option<std::sync::Arc<std::sync::Mutex<DisconnectWatcher>>>,
+                ) -> Result<Box<dyn #trait_ + Send>, Box<dyn std::error::Error>> {
+                    Ok(Box::new(#struct_ident {
+                        conn: conn__.unwrap(),
+                        remote: remote__.unwrap(),
+                        objpath: objpath__,
+                        disconnect_watcher: disconnect_watcher__.unwrap(),
+                    }))
+                }
+
+                fn to_dbus(_data: Box<dyn #trait_ + Send>) -> Result<Path<'static>, Box<dyn std::error::Error>> {
+                    // This impl represents a remote DBus object, so `to_dbus` does not make sense.
+                    panic!("not implemented");
+                }
+            }
+        };
+    }
 
     debug_output_to_file(&gen, format!("out-{}.rs", struct_ident.to_string()));
 

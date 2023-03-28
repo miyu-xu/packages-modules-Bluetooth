@@ -1,7 +1,7 @@
 use bt_topshim::profiles::a2dp::{A2dpCodecConfig, PresentationPosition};
 use bt_topshim::profiles::avrcp::PlayerMetadata;
 use bt_topshim::profiles::hfp::HfpCodecCapability;
-use btstack::bluetooth_media::{BluetoothAudioDevice, IBluetoothMedia, IBluetoothMediaCallback};
+use btstack::bluetooth_media::{BluetoothAudioDevice, IBluetoothMedia, IBluetoothMediaCallback, IBluetoothMediaCallbackRpc};
 use btstack::RPCProxy;
 
 use dbus::arg::RefArg;
@@ -14,6 +14,8 @@ use dbus_projection::DisconnectWatcher;
 use dbus_projection::{dbus_generated, impl_dbus_arg_from_into};
 
 use crate::dbus_arg::{DBusArg, DBusArgError, RefArgToRust};
+
+use async_trait::async_trait;
 
 use std::convert::{TryFrom, TryInto};
 use std::sync::Arc;
@@ -45,7 +47,7 @@ pub struct BluetoothAudioDeviceDBus {
 
 impl_dbus_arg_from_into!(HfpCodecCapability, i32);
 
-#[dbus_proxy_obj(BluetoothMediaCallback, "org.chromium.bluetooth.BluetoothMediaCallback")]
+#[dbus_proxy_obj(BluetoothMediaCallback, "org.chromium.bluetooth.BluetoothMediaCallback", IBluetoothMediaCallbackRpc)]
 impl IBluetoothMediaCallback for BluetoothMediaCallbackDBus {
     #[dbus_method("OnBluetoothAudioDeviceAdded")]
     fn on_bluetooth_audio_device_added(&self, device: BluetoothAudioDevice) {
@@ -146,7 +148,7 @@ impl DBusArg for PlayerMetadata {
 #[generate_dbus_exporter(export_bluetooth_media_dbus_intf, "org.chromium.bluetooth.BluetoothMedia")]
 impl IBluetoothMedia for IBluetoothMediaDBus {
     #[dbus_method("RegisterCallback")]
-    fn register_callback(&mut self, callback: Box<dyn IBluetoothMediaCallback + Send>) -> bool {
+    fn register_callback(&mut self, callback: Box<dyn IBluetoothMediaCallbackRpc + Send>) -> bool {
         dbus_generated!()
     }
 

@@ -27,6 +27,8 @@ use std::convert::TryFrom;
 use std::sync::Arc;
 use std::sync::Mutex;
 
+use async_trait::async_trait;
+
 use tokio::sync::mpsc::Sender;
 use tokio::task::JoinHandle;
 use tokio::time::{sleep, Duration, Instant};
@@ -63,7 +65,7 @@ const MEDIA_AUDIO_PROFILES: &[uuid::Profile] =
 
 pub trait IBluetoothMedia {
     ///
-    fn register_callback(&mut self, callback: Box<dyn IBluetoothMediaCallback + Send>) -> bool;
+    fn register_callback(&mut self, callback: Box<dyn IBluetoothMediaCallbackRpc + Send>) -> bool;
 
     /// initializes media (both A2dp and AVRCP) stack
     fn initialize(&mut self) -> bool;
@@ -156,6 +158,17 @@ pub trait IBluetoothMediaCallback: RPCProxy {
     fn on_hfp_audio_disconnected(&self, addr: String);
 }
 
+// TODO: Generate this by macro
+#[async_trait(?Send)]
+pub trait IBluetoothMediaCallbackRpc: IBluetoothMediaCallback {
+    async fn on_bluetooth_audio_device_added_async(&self, device: BluetoothAudioDevice) -> Result<(), dbus::Error>;
+    async fn on_bluetooth_audio_device_removed_async(&self, addr: String) -> Result<(), dbus::Error>;
+    async fn on_absolute_volume_supported_changed_async(&self, supported: bool) -> Result<(), dbus::Error>;
+    async fn on_absolute_volume_changed_async(&self, volume: u8) -> Result<(), dbus::Error>;
+    async fn on_hfp_volume_changed_async(&self, volume: u8, addr: String) -> Result<(), dbus::Error>;
+    async fn on_hfp_audio_disconnected_async(&self, addr: String) -> Result<(), dbus::Error>;
+}
+
 pub trait IBluetoothTelephony {
     /// Sets whether the device is connected to the cellular network.
     fn set_network_available(&mut self, network_available: bool);
@@ -234,7 +247,7 @@ pub struct BluetoothMedia {
     battery_provider_manager: Arc<Mutex<Box<BatteryProviderManager>>>,
     battery_provider_id: u32,
     initialized: bool,
-    callbacks: Arc<Mutex<Callbacks<dyn IBluetoothMediaCallback + Send>>>,
+    callbacks: Arc<Mutex<Callbacks<dyn IBluetoothMediaCallbackRpc + Send>>>,
     tx: Sender<Message>,
     adapter: Option<Arc<Mutex<Box<Bluetooth>>>>,
     a2dp: Option<A2dp>,
@@ -1052,8 +1065,8 @@ impl BluetoothMedia {
                     absolute_volume,
                 );
 
-                self.callbacks.lock().unwrap().for_all_callbacks(|callback| {
-                    callback.on_bluetooth_audio_device_added(device.clone());
+                self.callbacks.lock().unwrap().for_all_callbacks_spawn(|callback| async move {
+                    callback.on_bluetooth_audio_device_added_async(device.clone()).await;
                 });
 
                 guard.insert(addr, None);
@@ -1438,7 +1451,7 @@ fn get_hfp_dispatcher(tx: Sender<Message>) -> HfpCallbacksDispatcher {
 }
 
 impl IBluetoothMedia for BluetoothMedia {
-    fn register_callback(&mut self, callback: Box<dyn IBluetoothMediaCallback + Send>) -> bool {
+    fn register_callback(&mut self, callback: Box<dyn IBluetoothMediaCallbackRpc + Send>) -> bool {
         let _id = self.callbacks.lock().unwrap().add_callback(callback);
         true
     }

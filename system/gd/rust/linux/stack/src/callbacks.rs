@@ -1,6 +1,7 @@
 //! Provides utilities for managing callbacks.
 
 use std::collections::HashMap;
+use std::future::Future;
 use tokio::sync::mpsc::Sender;
 
 use crate::{Message, RPCProxy};
@@ -76,5 +77,19 @@ impl<T: RPCProxy + Send + ?Sized> Callbacks<T> {
         for (_, callback) in self.callbacks.iter() {
             f(&callback);
         }
+    }
+
+    /// Applies the given function on all active callbacks.
+    pub fn for_all_callbacks_spawn<F, Fut>(&self, f: F)
+    where
+        F: Fn(&Box<T>) -> Fut,
+        Fut: Future<Output = ()>,
+    {
+        let futures = self.callbacks.values().map(f).collect::<Vec<_>>();
+        tokio::spawn(async move {
+            for fut in futures.into_iter() {
+                fut.await;
+            }
+        });
     }
 }
