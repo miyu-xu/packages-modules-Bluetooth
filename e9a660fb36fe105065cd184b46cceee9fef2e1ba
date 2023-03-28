@@ -988,6 +988,30 @@
       },
       "revId": "e9a660fb36fe105065cd184b46cceee9fef2e1ba",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "86f7d410_f1b53c1f",
+        "filename": "system/bta/include/bta_ar_api.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2023-03-28T00:01:32Z",
+      "side": 1,
+      "message": "It seems like it isn\u0027t presented here or didn\u0027t get synced. Could you make sure its added here as well.",
+      "parentUuid": "6ede2300_caece12f",
+      "range": {
+        "startLine": 137,
+        "startChar": 12,
+        "endLine": 137,
+        "endChar": 48
+      },
+      "revId": "e9a660fb36fe105065cd184b46cceee9fef2e1ba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

@@ -20,6 +20,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "49869ba8_700a8d22",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2023-03-28T00:01:32Z",
+      "side": 1,
+      "message": "There seem to be multiple lint nits (Trailing whitespaces as well as lines \u003e 100 char). Could you address them as well?",
+      "revId": "cbda86a97930077a4210aca517095e4cfb9024fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c2907dca_5a3d9135",
         "filename": "system/bta/av/bta_av_aact.cc",
         "patchSetId": 6
@@ -31,6 +48,30 @@
       "writtenOn": "2023-03-25T13:53:16Z",
       "side": 1,
       "message": "Always true. If is not needed since we are already in the same check",
+      "range": {
+        "startLine": 1480,
+        "startChar": 0,
+        "endLine": 1480,
+        "endChar": 85
+      },
+      "revId": "cbda86a97930077a4210aca517095e4cfb9024fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e32df96c_1235288d",
+        "filename": "system/bta/av/bta_av_aact.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 1480,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2023-03-28T00:01:32Z",
+      "side": 1,
+      "message": "+1",
+      "parentUuid": "c2907dca_5a3d9135",
       "range": {
         "startLine": 1480,
         "startChar": 0,
@@ -105,6 +146,121 @@
         "startChar": 6,
         "endLine": 2491,
         "endChar": 51
+      },
+      "revId": "cbda86a97930077a4210aca517095e4cfb9024fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "091d6546_2328d4db",
+        "filename": "system/bta/av/bta_av_int.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 445,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2023-03-28T00:01:32Z",
+      "side": 1,
+      "message": "nit: can you format this cleanly.",
+      "range": {
+        "startLine": 443,
+        "startChar": 0,
+        "endLine": 445,
+        "endChar": 28
+      },
+      "revId": "cbda86a97930077a4210aca517095e4cfb9024fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "060b8701_2f761826",
+        "filename": "system/bta/av/bta_av_int.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 671,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2023-03-28T00:01:32Z",
+      "side": 1,
+      "message": "nit: can we can this rc_feature considering we are using the full word everywhere",
+      "range": {
+        "startLine": 671,
+        "startChar": 18,
+        "endLine": 671,
+        "endChar": 25
+      },
+      "revId": "cbda86a97930077a4210aca517095e4cfb9024fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6fe1ce00_350c2c54",
+        "filename": "system/bta/av/bta_av_main.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2023-03-28T00:01:32Z",
+      "side": 1,
+      "message": "nit: Sort imports",
+      "range": {
+        "startLine": 46,
+        "startChar": 0,
+        "endLine": 46,
+        "endChar": 20
+      },
+      "revId": "cbda86a97930077a4210aca517095e4cfb9024fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2f704453_fc0848a8",
+        "filename": "system/bta/include/bta_av_api.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 243,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2023-03-28T00:01:32Z",
+      "side": 1,
+      "message": "nit: can you remove this trailing whitespace. This is in multiple places so it would be great if you can clean it everywhere.\n\nI would ideally suggest running clang-format to make sure everything is properly formatted as well.",
+      "range": {
+        "startLine": 243,
+        "startChar": 15,
+        "endLine": 243,
+        "endChar": 18
+      },
+      "revId": "cbda86a97930077a4210aca517095e4cfb9024fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "de1e8d08_b66666aa",
+        "filename": "system/bta/include/bta_av_api.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 741,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2023-03-28T00:01:32Z",
+      "side": 1,
+      "message": "Could you add the documentation here as well",
+      "range": {
+        "startLine": 741,
+        "startChar": 0,
+        "endLine": 741,
+        "endChar": 61
       },
       "revId": "cbda86a97930077a4210aca517095e4cfb9024fc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
