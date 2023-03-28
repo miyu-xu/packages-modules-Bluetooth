@@ -33,6 +33,24 @@
       "message": "Do you have the corresponding browser change for this since you\u0027re changing the API? Would it make sense to create another API to do the LE connection instead (maybe not, but wanted to get your thoughts)?",
       "revId": "c070c3c1c977f8a0cf4e17cb9c9d2aa291b52148",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4d69e433_5597284a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-03-28T00:59:57Z",
+      "side": 1,
+      "message": "Agreed. It\u0027s probably a good idea to just duplicate the apis and just create an `l2caple` version of all the apis. It\u0027s the most backward/forward compatible.\n\ni.e.\n```\nlisten_using_insecure_l2cap_le_channel\nlisten_using_l2cap_le_channel\n```\n\nYou also need to add the corresponding `create_l2cap_le_channel` too.",
+      "parentUuid": "caed01a5_b2ad02ea",
+      "revId": "c070c3c1c977f8a0cf4e17cb9c9d2aa291b52148",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
