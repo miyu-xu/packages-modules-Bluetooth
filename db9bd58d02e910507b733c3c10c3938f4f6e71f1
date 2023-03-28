@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f113409c_42a5efee",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2023-03-28T17:14:12Z",
+      "side": 1,
+      "message": "What format tool did you used ?\nThe one needed is `ktfmt` with `--google-style` option",
+      "revId": "db9bd58d02e910507b733c3c10c3938f4f6e71f1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f7620ca4_0636b643",
+        "filename": "android/pandora/server/src/com/android/pandora/Security.kt",
+        "patchSetId": 3
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2023-03-28T17:14:12Z",
+      "side": 1,
+      "message": "Is this returning a gRPC Status exception ?",
+      "range": {
+        "startLine": 122,
+        "startChar": 20,
+        "endLine": 122,
+        "endChar": 80
+      },
+      "revId": "db9bd58d02e910507b733c3c10c3938f4f6e71f1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
