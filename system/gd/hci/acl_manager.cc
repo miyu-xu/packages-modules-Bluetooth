@@ -242,6 +242,7 @@ void AclManager::CreateConnection(Address address) {
   CallOn(pimpl_->classic_impl_, &classic_impl::create_connection, address);
 }
 
+// called from BTM_AcceptlistAdd, acl_create_le_connection_with_id, and some weird FLOSS HID stuff
 void AclManager::CreateLeConnection(AddressWithType address_with_type, bool is_direct) {
   if (!is_direct) {
     CallOn(
@@ -252,6 +253,7 @@ void AclManager::CreateLeConnection(AddressWithType address_with_type, bool is_d
   CallOn(pimpl_->le_impl_, &le_impl::create_le_connection, address_with_type, is_direct);
 }
 
+// for test only
 void AclManager::IsOnBackgroundList(AddressWithType address_with_type, std::promise<bool> promise) {
   CallOn(
       pimpl_->le_impl_->le_connectlist_manager_,
@@ -310,6 +312,7 @@ void AclManager::CancelConnect(Address address) {
   CallOn(pimpl_->classic_impl_, &classic_impl::cancel_connect, address);
 }
 
+// only called from BTM_AcceptlistRemove
 void AclManager::CancelLeConnect(AddressWithType address_with_type) {
   CallOn(
       pimpl_->le_impl_->le_connectlist_manager_,
@@ -321,6 +324,7 @@ void AclManager::CancelLeConnect(AddressWithType address_with_type) {
       address_with_type);
 }
 
+// called from hci_btsnd_hcic_disconnect
 void AclManager::RemoveFromBackgroundList(AddressWithType address_with_type) {
   CallOn(
       pimpl_->le_impl_->le_connectlist_manager_,
@@ -328,6 +332,7 @@ void AclManager::RemoveFromBackgroundList(AddressWithType address_with_type) {
       address_with_type);
 }
 
+// floss only
 void AclManager::ClearFilterAcceptList() {
   CallOn(pimpl_->le_impl_->le_connectlist_manager_, &LeConnectlistManager::ClearFilterAcceptList);
 }
