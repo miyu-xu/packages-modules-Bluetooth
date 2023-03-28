@@ -51,6 +51,24 @@
       "parentUuid": "caed01a5_b2ad02ea",
       "revId": "c070c3c1c977f8a0cf4e17cb9c9d2aa291b52148",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "820b6ee3_12a7bddb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-03-28T12:44:30Z",
+      "side": 1,
+      "message": "I need this for ARC++ integration so I go ahead and apply the suggestion.\nThanks Howard it works well for ARC++ application.",
+      "parentUuid": "4d69e433_5597284a",
+      "revId": "c070c3c1c977f8a0cf4e17cb9c9d2aa291b52148",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
