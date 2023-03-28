@@ -31,8 +31,10 @@ import android.bluetooth.le.AdvertiseData
 import android.bluetooth.le.AdvertiseSettings
 import android.bluetooth.le.AdvertisingSetParameters
 import android.bluetooth.le.ScanCallback
+import android.bluetooth.le.ScanFilter
 import android.bluetooth.le.ScanRecord
 import android.bluetooth.le.ScanResult
+import android.bluetooth.le.ScanSettings
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
@@ -753,7 +755,27 @@ class Host(
               error("scan failed")
             }
           }
-        bluetoothAdapter.bluetoothLeScanner.startScan(callback)
+        var scanFilter = ScanFilter.Builder()
+
+        if (!request.scanFilter.deviceName.isEmpty()) {
+          scanFilter.setDeviceName(request.scanFilter.deviceName)
+        }
+        if (!request.scanFilter.deviceAddress.isEmpty()) {
+          scanFilter.setDeviceAddress(request.scanFilter.deviceAddress.decodeAsMacAddressToString())
+        }
+
+        // If ScanFilter is non-empty, call BluetoothLeScanner#startScan API that accepts ScanFilter
+        // Otherwise, just call the API that takes the callback since empty ScanFilter will change
+        // behavior of the scan.
+        if (!scanFilter.build().equals(ScanFilter.Builder().build())) {
+          Log.d(TAG, "ScanFilter in request non-empty: " + request.scanFilter)
+          var scanFilterList = listOf(scanFilter.build())
+          var scanSettings = ScanSettings.Builder().build()
+          bluetoothAdapter.bluetoothLeScanner.startScan(scanFilterList, scanSettings, callback)
+        } else {
+          Log.d(TAG, "ScanFilter in request empty: " + request.scanFilter)
+          bluetoothAdapter.bluetoothLeScanner.startScan(callback)
+        }
 
         awaitClose { bluetoothAdapter.bluetoothLeScanner.stopScan(callback) }
       }
