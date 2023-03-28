@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "993afaff_a5898d01",
+        "filename": "tools/rootcanal/lmp/src/procedure/secure_simple_pairing.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-03-28T17:37:16Z",
+      "side": 1,
+      "message": "I don\u0027t know what you mean.  I don\u0027t see how it can be linear with optional sections.",
+      "parentUuid": "1e8b7d73_4676c0d0",
+      "range": {
+        "startLine": 5,
+        "startChar": 0,
+        "endLine": 5,
+        "endChar": 33
+      },
+      "revId": "5cd584f2bad5a0e1d0d2d976f4ffad2f479a5291",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "95dab952_1e400f7b",
         "filename": "tools/rootcanal/lmp/src/procedure/secure_simple_pairing.rs",
         "patchSetId": 5
@@ -72,6 +96,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7b7a6697_d53d7031",
+        "filename": "tools/rootcanal/lmp/src/procedure/secure_simple_pairing.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 710,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-03-28T17:37:16Z",
+      "side": 1,
+      "message": "I\u0027m not sure what cd and cf are",
+      "parentUuid": "4952c67c_4ea2970e",
+      "range": {
+        "startLine": 700,
+        "startChar": 16,
+        "endLine": 710,
+        "endChar": 17
+      },
+      "revId": "5cd584f2bad5a0e1d0d2d976f4ffad2f479a5291",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "031c198a_795bd0a6",
         "filename": "tools/rootcanal/lmp/src/procedure/secure_simple_pairing.rs",
         "patchSetId": 5
@@ -83,6 +131,30 @@
       "writtenOn": "2023-03-28T17:02:54Z",
       "side": 1,
       "message": "Reenable this test if possible",
+      "range": {
+        "startLine": 916,
+        "startChar": 3,
+        "endLine": 916,
+        "endChar": 47
+      },
+      "revId": "5cd584f2bad5a0e1d0d2d976f4ffad2f479a5291",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fd395ed7_2055cb80",
+        "filename": "tools/rootcanal/lmp/src/procedure/secure_simple_pairing.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 916,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-03-28T17:37:16Z",
+      "side": 1,
+      "message": "In the interest of smaller CLs, I\u0027m just fixing tests a few at a time.  These are on the list.",
+      "parentUuid": "031c198a_795bd0a6",
       "range": {
         "startLine": 916,
         "startChar": 3,
@@ -116,6 +188,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d942a630_d9f3f798",
+        "filename": "tools/rootcanal/lmp/src/procedure/secure_simple_pairing.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 925,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-03-28T17:37:16Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "b78c8e04_4ae82136",
+      "range": {
+        "startLine": 925,
+        "startChar": 4,
+        "endLine": 925,
+        "endChar": 47
+      },
+      "revId": "5cd584f2bad5a0e1d0d2d976f4ffad2f479a5291",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "748feec0_1cce104c",
@@ -129,6 +225,30 @@
       "writtenOn": "2023-03-28T17:02:54Z",
       "side": 1,
       "message": "Reenable this test if possible",
+      "range": {
+        "startLine": 934,
+        "startChar": 4,
+        "endLine": 934,
+        "endChar": 47
+      },
+      "revId": "5cd584f2bad5a0e1d0d2d976f4ffad2f479a5291",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4ce6bb47_8406469c",
+        "filename": "tools/rootcanal/lmp/src/procedure/secure_simple_pairing.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 934,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-03-28T17:37:16Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "748feec0_1cce104c",
       "range": {
         "startLine": 934,
         "startChar": 4,
@@ -162,6 +282,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d8813c73_1c00b2ae",
+        "filename": "tools/rootcanal/lmp/src/procedure/secure_simple_pairing.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 943,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-03-28T17:37:16Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "ab20b78d_5e15566e",
+      "range": {
+        "startLine": 943,
+        "startChar": 4,
+        "endLine": 943,
+        "endChar": 47
+      },
+      "revId": "5cd584f2bad5a0e1d0d2d976f4ffad2f479a5291",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4426fd03_e9018827",
@@ -185,6 +329,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a587d750_6b0eea2f",
+        "filename": "tools/rootcanal/lmp/src/procedure/secure_simple_pairing.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 1082,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-03-28T17:37:16Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "4426fd03_e9018827",
+      "range": {
+        "startLine": 1082,
+        "startChar": 4,
+        "endLine": 1082,
+        "endChar": 47
+      },
+      "revId": "5cd584f2bad5a0e1d0d2d976f4ffad2f479a5291",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ef6a7479_69840b89",
@@ -198,6 +366,30 @@
       "writtenOn": "2023-03-28T17:02:54Z",
       "side": 1,
       "message": "Reenable this test if possible",
+      "range": {
+        "startLine": 1091,
+        "startChar": 4,
+        "endLine": 1091,
+        "endChar": 47
+      },
+      "revId": "5cd584f2bad5a0e1d0d2d976f4ffad2f479a5291",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "16b01e81_81bd16d5",
+        "filename": "tools/rootcanal/lmp/src/procedure/secure_simple_pairing.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 1091,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-03-28T17:37:16Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "ef6a7479_69840b89",
       "range": {
         "startLine": 1091,
         "startChar": 4,
