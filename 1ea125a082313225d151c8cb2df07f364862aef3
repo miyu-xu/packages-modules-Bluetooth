@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "12fe5687_a242bc31",
+        "filename": "tools/rootcanal/lmp/src/procedure/secure_simple_pairing.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 567,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-03-28T16:49:41Z",
+      "side": 1,
+      "message": "The specification does not mention waiting for the completed keypress notification on the initiator side; the section 4.2.7.3.2 Authentication stage 1: Passkey Entry Authentication only describes the commitment exchange.\n\nThat will not be an issue as long as the initiator is not the NoInputNoOutput side, all three other cases (Initiator + KeyboardOnly, Responder + KeybordOnly, Responder + NoInputNoOutput) have a clear and linear state machine.\n\nTo resolve the case for the initiator as NoInputNoOutput, the initiator must send LMP_SIMPLE_PAIRING_CONFIRM, then pend for LMP_SIMPLE_PAIRING_CONFIRM response while handling LMP_KEYPRESS_NOTIFICATION in between. No LMP_KEYPRESS_NOTIFICATIONS will be expected after the LMP_SIMPLE_PAIRING_CONFIRM response.",
+      "revId": "1ea125a082313225d151c8cb2df07f364862aef3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
