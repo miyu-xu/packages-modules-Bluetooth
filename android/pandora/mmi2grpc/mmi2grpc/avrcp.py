@@ -618,6 +618,96 @@ class AVRCPProxy(ProfileProxy):
         return "OK"
 
     @assert_description
+    def TSC_AVRCP_mmi_iut_reject_list_player_application_setting_values_invalid_attribute(self, **kwargs):
+        """
+        PTS has sent a List Player Application Setting Values command with an
+        invalid Attribute Id.  The IUT must respond with the error code: Invalid
+        Parameter (0x01).
+
+        Description: Verify that the IUT can properly reject
+        a List Player Application Setting Values command that contains an
+        invalid attribute id.
+        """
+
+        return "OK"
+
+    @assert_description
+    def TSC_AVRCP_mmi_iut_reject_set_player_application_setting_value_invalid_pair(self, **kwargs):
+        """
+        PTS has sent a Set Player Application Setting Value command with an
+        invalid Attribute and Value.  The IUT must respond with the error code:
+        Invalid Parameter (0x01).
+
+        Description: Verify that the IUT can properly
+        reject a Set Player Application Setting Value command that contains an
+        invalid attribute and value.
+        """
+
+        return "OK"
+
+    @assert_description
+    def TSC_AVRCP_mmi_iut_reject_get_current_player_application_setting_value_invalid_attribute(self, **kwargs):
+        """
+        PTS has sent a Get Current Player Application Setting Value command with
+        an invalid Attribute.  The IUT must respond with the error code: Invalid
+        Parameter (0x01).
+
+        Description: Verify that the IUT can properly reject
+        an Get Current Player Application Setting Value command that contains an
+        invalid attribute.
+        """
+
+        return "OK"
+
+    @assert_description
+    def TSC_AVRCP_mmi_iut_accept_get_current_player_application_setting_value(self, **kwargs):
+        """
+        Take action to send a valid response to the [Get Current Player
+        Application Setting Value] command sent by the PTS.
+        """
+
+        self.mediaplayer.Play()
+
+        return "OK"
+
+    @assert_description
+    def TSC_AVRCP_mmi_iut_accept_list_player_application_setting_attributes(self, **kwargs):
+        """
+        Take action to send a valid response to the [List Player Application
+        Setting Attributes] command sent by the PTS.
+        """
+
+        return "OK"
+
+    @assert_description
+    def TSC_AVRCP_mmi_iut_accept_list_player_application_setting_values(self, **kwargs):
+        """
+        Take action to send a valid response to the [List Player Application
+        Setting Values] command sent by the PTS.
+        """
+
+        return "OK"
+
+    @assert_description
+    def TSC_AVRCP_mmi_iut_initiate_register_notification_changed_player_application_setting_changed(self, **kwargs):
+        """
+        Take action to trigger a [Register Notification, Changed] response for
+        <Player Application Setting Changed> to the PTS from the IUT.  This can
+        be accomplished by changing a Player Application Setting (Equalizer,
+        Repeat Mode, Shuffle, Scan) on the IUT.
+
+        Description: Verify that the
+        Implementation Under Test (IUT) can update database by sending a valid
+        Player Application Setting Changed Notification to the PTS.
+        """
+
+        self.mediaplayer.Play()
+        self.mediaplayer.Shuffle()
+
+        return "OK"
+
+
+    @assert_description
     def TSC_AVRCP_mmi_iut_reject_set_addressed_player_invalid_player_id(self, **kwargs):
         """
         PTS has sent a Set Addressed Player command with an invalid Player Id.
