@@ -1,0 +1,342 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "65af27d9_811433b2",
+        "filename": "android/app/tests/myinstrumentation/Android.bp",
+        "patchSetId": 26
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-03-28T16:57:48Z",
+      "side": 1,
+      "message": "Do we need all of that ?",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 18,
+        "endChar": 41
+      },
+      "revId": "cec905210084c61834199444ed96d470af6df6a8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "43947611_5cb37ab7",
+        "filename": "android/app/tests/myinstrumentation/Android.bp",
+        "patchSetId": 26
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-03-28T16:57:48Z",
+      "side": 1,
+      "message": "Do we need that ?",
+      "revId": "cec905210084c61834199444ed96d470af6df6a8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bb1b2510_c8490e72",
+        "filename": "android/app/tests/myinstrumentation/Android.bp",
+        "patchSetId": 26
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-03-28T16:57:48Z",
+      "side": 1,
+      "message": "nit: Add space before `[`",
+      "range": {
+        "startLine": 34,
+        "startChar": 9,
+        "endLine": 34,
+        "endChar": 10
+      },
+      "revId": "cec905210084c61834199444ed96d470af6df6a8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a724d462_4aa1d6b2",
+        "filename": "android/app/tests/myinstrumentation/Android.bp",
+        "patchSetId": 26
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-03-28T16:57:48Z",
+      "side": 1,
+      "message": "I think we should name those tests `BumbleFrameworkBluetoothTests` ?\n\nWhat do you think @girardier@google.com ?",
+      "range": {
+        "startLine": 43,
+        "startChar": 11,
+        "endLine": 43,
+        "endChar": 38
+      },
+      "revId": "cec905210084c61834199444ed96d470af6df6a8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "92ee454d_10b6292a",
+        "filename": "android/app/tests/myinstrumentation/Android.bp",
+        "patchSetId": 26
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-03-28T16:57:48Z",
+      "side": 1,
+      "message": "I don\u0027t think we need a default here as it\u0027s only used once.\nCould you inline all the properties inside the android test ?",
+      "revId": "cec905210084c61834199444ed96d470af6df6a8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "62ad55e2_4d27b85a",
+        "filename": "android/app/tests/myinstrumentation/AndroidTest.xml",
+        "patchSetId": 26
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-03-28T16:57:48Z",
+      "side": 1,
+      "message": "Is the test using hidden-api(s) ?\n\nDo we want to use hidden apis @girardier@google.com ?",
+      "range": {
+        "startLine": 47,
+        "startChar": 7,
+        "endLine": 47,
+        "endChar": 56
+      },
+      "revId": "cec905210084c61834199444ed96d470af6df6a8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7b2aea38_6ef1bfe3",
+        "filename": "android/app/tests/myinstrumentation/AndroidTest.xml",
+        "patchSetId": 26
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-03-28T16:57:48Z",
+      "side": 1,
+      "message": "Add `      \u003coption name\u003d\"mainline-module-package-name\" value\u003d\"com.google.android.btservices\" /\u003e\n` as well",
+      "revId": "cec905210084c61834199444ed96d470af6df6a8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "43597798_cc642bc3",
+        "filename": "android/app/tests/myinstrumentation/src/com/android/bluetooth/gatt/LeAdvertisingTest.java",
+        "patchSetId": 26
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-03-28T16:57:48Z",
+      "side": 1,
+      "message": "Should we use kotlin for this test ?\n\n@girardier@google.com thoughts ?",
+      "revId": "cec905210084c61834199444ed96d470af6df6a8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4b1bdf30_48734b54",
+        "filename": "android/app/tests/myinstrumentation/src/com/android/bluetooth/gatt/LeAdvertisingTest.java",
+        "patchSetId": 26
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-03-28T16:57:48Z",
+      "side": 1,
+      "message": "This should be local to the test and not global in the class",
+      "revId": "cec905210084c61834199444ed96d470af6df6a8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e6c7f158_cd71f8c7",
+        "filename": "android/app/tests/myinstrumentation/src/com/android/bluetooth/gatt/LeAdvertisingTest.java",
+        "patchSetId": 26
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-03-28T16:57:48Z",
+      "side": 1,
+      "message": "Do we really want to restart Bluetooth here ?\n\nIt would make sense to restart Bluetooth between every tests in `setUp`, but we might not want that as this is really slow.\n\nRestarting it per class however seems strange, I would prefer that either:\n- We restart it between each tests\n- We restart it before running all the tests (inside the AndroidTest.xml)",
+      "range": {
+        "startLine": 80,
+        "startChar": 8,
+        "endLine": 121,
+        "endChar": 0
+      },
+      "revId": "cec905210084c61834199444ed96d470af6df6a8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "235fb26a_2a1270fc",
+        "filename": "android/app/tests/myinstrumentation/src/com/android/bluetooth/gatt/LeAdvertisingTest.java",
+        "patchSetId": 26
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-03-28T16:57:48Z",
+      "side": 1,
+      "message": "We might want to use Kotlin and use a yield coroutine instead.\nOr if we want to stay with java, we might want to use a CompletableFuture or a Stream.",
+      "range": {
+        "startLine": 130,
+        "startChar": 0,
+        "endLine": 130,
+        "endChar": 64
+      },
+      "revId": "cec905210084c61834199444ed96d470af6df6a8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "87eb9caf_64b495b5",
+        "filename": "android/app/tests/myinstrumentation/src/com/android/bluetooth/gatt/LeAdvertisingTest.java",
+        "patchSetId": 26
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-03-28T16:57:48Z",
+      "side": 1,
+      "message": "nit: make a constant",
+      "range": {
+        "startLine": 147,
+        "startChar": 55,
+        "endLine": 147,
+        "endChar": 59
+      },
+      "revId": "cec905210084c61834199444ed96d470af6df6a8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a023db30_f999af25",
+        "filename": "android/app/tests/myinstrumentation/src/com/android/bluetooth/gatt/LeAdvertisingTest.java",
+        "patchSetId": 26
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-03-28T16:57:48Z",
+      "side": 1,
+      "message": "Could we use the `await` without timeout and instead put a timeout on the test ?",
+      "range": {
+        "startLine": 163,
+        "startChar": 36,
+        "endLine": 163,
+        "endChar": 80
+      },
+      "revId": "cec905210084c61834199444ed96d470af6df6a8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "430b60b1_ddbba29a",
+        "filename": "android/app/tests/myinstrumentation/src/com/android/bluetooth/gatt/LeAdvertisingTest.java",
+        "patchSetId": 26
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-03-28T16:57:48Z",
+      "side": 1,
+      "message": "I don\u0027t think this should go inside `setUpClass` but instead inside the test",
+      "range": {
+        "startLine": 123,
+        "startChar": 0,
+        "endLine": 166,
+        "endChar": 54
+      },
+      "revId": "cec905210084c61834199444ed96d470af6df6a8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b97e53c3_5d077a24",
+        "filename": "android/app/tests/myinstrumentation/src/com/android/bluetooth/gatt/LeAdvertisingTest.java",
+        "patchSetId": 26
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-03-28T16:57:48Z",
+      "side": 1,
+      "message": "Is there a case where this is true ?",
+      "range": {
+        "startLine": 198,
+        "startChar": 0,
+        "endLine": 198,
+        "endChar": 31
+      },
+      "revId": "cec905210084c61834199444ed96d470af6df6a8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3a5479e3_8bcc59ec",
+        "filename": "framework/Android.bp",
+        "patchSetId": 26
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-03-28T16:57:48Z",
+      "side": 1,
+      "message": "I think we should put thoses tests inside `framework/tests/bumble` or `framework/tests/multidevice`\n\nWhat do you think @girardier@google.com ?",
+      "range": {
+        "startLine": 71,
+        "startChar": 38,
+        "endLine": 71,
+        "endChar": 73
+      },
+      "revId": "cec905210084c61834199444ed96d470af6df6a8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
