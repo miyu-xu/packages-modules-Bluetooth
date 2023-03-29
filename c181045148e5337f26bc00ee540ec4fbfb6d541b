@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "da3980bf_1e49858c",
+        "filename": "system/gd/hci/acl_manager.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 320,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-03-29T16:34:05Z",
+      "side": 1,
+      "message": "My opinion is that `background` and `direct connect` terms should be retired.\n\nThey are still useful conversational phrases for a CuJ but don\u0027t reflect the implementation well.\n\nI would propose each `filter accept list` entry has an alarm associated with it, or not.\n\nIf it does have an alarm, it\u0027s a `direct connection`, otherwise it\u0027s `background`\n\nThe alarm, if any, should be passed in for testability.",
+      "parentUuid": "0127072f_6f8652b4",
+      "range": {
+        "startLine": 320,
+        "startChar": 7,
+        "endLine": 320,
+        "endChar": 27
+      },
+      "revId": "c181045148e5337f26bc00ee540ec4fbfb6d541b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ef0cb9e7_e0af258a",
         "filename": "system/gd/hci/acl_manager.cc",
         "patchSetId": 5
