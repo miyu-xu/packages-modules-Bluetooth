@@ -16,6 +16,24 @@
       "message": "Do we need it to be updatable in aosp ?\nI am not against it, but  I don\u0027t see the point.\nWe are unlikely  to ship an apex from AOSP.",
       "revId": "447b0c38b6e3c05ed7de049127516db9a853dfbb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "01b70301_08f3c2e2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-03-29T20:21:57Z",
+      "side": 1,
+      "message": "I would say that yes for multiple reasons:\n- We might want in the future to install newer AOSP apex on older AOSP platforms for testing\n- This reduce the differences (size optimisation) between the Google and the AOSP apex\n- This remove a divergence between internal branches and AOSP",
+      "parentUuid": "094d8f78_c9d0d1a6",
+      "revId": "447b0c38b6e3c05ed7de049127516db9a853dfbb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
