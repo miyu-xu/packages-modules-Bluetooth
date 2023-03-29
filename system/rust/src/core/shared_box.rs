@@ -23,6 +23,15 @@ impl<T> SharedBox<T> {
         Self(t.into())
     }
 
+    /// Construct from an Rc, assuming the Rc has exactly one strong reference
+    pub fn from_rc(rc: Rc<T>) -> Result<Self, Rc<T>> {
+        if Rc::strong_count(&rc) == 1 {
+            Ok(Self(rc))
+        } else {
+            Err(rc)
+        }
+    }
+
     /// Produce a weak reference to the contents
     pub fn downgrade(&self) -> WeakBox<T> {
         WeakBox(Rc::downgrade(&self.0))
@@ -61,6 +70,12 @@ impl<T: ?Sized> WeakBox<T> {
     /// do that!
     pub fn with<U>(&self, f: impl FnOnce(Option<WeakBoxRef<T>>) -> U) -> U {
         f(self.0.upgrade().as_deref().map(|x| WeakBoxRef(x, self.0.clone())))
+    }
+
+    /// Convert from a Weak<T>. Note that the weak pointer can potentially have
+    /// multiple strong references.
+    pub fn from_weak(weak: Weak<T>) -> Self {
+        Self(weak)
     }
 }
 

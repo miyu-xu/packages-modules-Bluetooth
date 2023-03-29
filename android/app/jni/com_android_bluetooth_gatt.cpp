@@ -30,6 +30,7 @@
 #include "hardware/bt_gatt.h"
 #include "rust/cxx.h"
 #include "rust/src/gatt/ffi/gatt_shim.h"
+#include "src/connection/ffi/connection_shim.h"
 #include "src/core/ffi.rs.h"
 #include "src/gatt/ffi.rs.h"
 #include "utils/Log.h"
@@ -1394,9 +1395,12 @@ static void initializeNative(JNIEnv* env, jobject object) {
 
   mCallbacksObj = env->NewGlobalRef(object);
 
-  auto callbacks = std::make_unique<bluetooth::gatt::GattServerCallbacks>(
+  auto gatt_callbacks = std::make_unique<bluetooth::gatt::GattServerCallbacks>(
       sGattServerCallbacks);
-  bluetooth::rust_shim::init(std::move(callbacks));
+  auto le_connection_shim =
+      std::make_unique<bluetooth::connection::LeAclManagerShim>();
+  bluetooth::rust_shim::init(std::move(gatt_callbacks),
+                             std::move(le_connection_shim));
 }
 
 static void cleanupNative(JNIEnv* env, jobject object) {
