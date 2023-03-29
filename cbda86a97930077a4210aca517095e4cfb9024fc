@@ -91,6 +91,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7c8698b0_c8bf29e2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-03-29T11:52:15Z",
+      "side": 1,
+      "message": "I usually run `git clang-format` when my code is added but not committed. or `git clang-format HEAD~1` when it is the last commit.\nI recommend doing this 1 CL at at time.\n\nI just DL the 1/5 and 2/5 CL and format is not done.",
+      "parentUuid": "ae65c998_3ee1d73e",
+      "revId": "cbda86a97930077a4210aca517095e4cfb9024fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c2907dca_5a3d9135",
         "filename": "system/bta/av/bta_av_aact.cc",
         "patchSetId": 6
