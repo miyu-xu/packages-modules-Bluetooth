@@ -22,6 +22,30 @@
       },
       "revId": "227965530d2e8114333b026e3c441b67732f1ee4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2b6e6d0f_03095cc9",
+        "filename": "android/app/src/com/android/bluetooth/pbapclient/PbapClientStateMachine.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 292,
+      "author": {
+        "id": 1979057
+      },
+      "writtenOn": "2023-03-29T20:41:07Z",
+      "side": 1,
+      "message": "A bad remote device could possibly cause this",
+      "parentUuid": "c7fdccb1_bb58c3b7",
+      "range": {
+        "startLine": 292,
+        "startChar": 21,
+        "endLine": 292,
+        "endChar": 43
+      },
+      "revId": "227965530d2e8114333b026e3c441b67732f1ee4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
