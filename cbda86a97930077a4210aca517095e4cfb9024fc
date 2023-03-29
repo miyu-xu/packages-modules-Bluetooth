@@ -377,6 +377,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bed56262_a0bd8566",
+        "filename": "system/bta/av/bta_av_int.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 671,
+      "author": {
+        "id": 1984885
+      },
+      "writtenOn": "2023-03-29T02:01:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "28842e5a_aa2fb8f9",
+      "range": {
+        "startLine": 671,
+        "startChar": 18,
+        "endLine": 671,
+        "endChar": 25
+      },
+      "revId": "cbda86a97930077a4210aca517095e4cfb9024fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6fe1ce00_350c2c54",
