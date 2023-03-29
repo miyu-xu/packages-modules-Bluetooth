@@ -43,6 +43,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "040f56ec_85ac70d8",
+        "filename": "android/pandora/test/asha_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 399,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2023-03-29T15:20:03Z",
+      "side": 1,
+      "message": "Second thought here: If we want these tests to be usable for other kind of device we should avoid android specific interfaces. Instead we might want to wait for the Audio Route to be up in the `start` method directly. cc: @uael@google.com @licorne@google.com",
+      "parentUuid": "1543d993_949d271b",
+      "range": {
+        "startLine": 399,
+        "startChar": 8,
+        "endLine": 399,
+        "endChar": 21
+      },
+      "revId": "5245fe0f05e5301bd63c46a94f264a44d58281ae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ad7407e5_e9b784f2",
         "filename": "android/pandora/test/asha_test.py",
         "patchSetId": 3
