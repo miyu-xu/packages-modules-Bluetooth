@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0032d00b_93fd6272",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-03-29T04:24:20Z",
+      "side": 1,
+      "message": "unrelated formatting changes...  did you use no-verify?",
+      "range": {
+        "startLine": 108,
+        "startChar": 0,
+        "endLine": 110,
+        "endChar": 55
+      },
+      "revId": "71dd738d4235176765934abf35d5d005e87f656c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "02188340_29f648c0",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 1108,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-03-29T04:24:20Z",
+      "side": 1,
+      "message": "This looks like it should be a FATAL in the future.",
+      "range": {
+        "startLine": 1108,
+        "startChar": 18,
+        "endLine": 1108,
+        "endChar": 26
+      },
+      "revId": "71dd738d4235176765934abf35d5d005e87f656c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8b54c00f_bba2a140",
+        "filename": "system/gd/hci/acl_manager/le_impl_test.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 904,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-03-29T04:24:20Z",
+      "side": 1,
+      "message": "Did you skip the formatter?",
+      "range": {
+        "startLine": 904,
+        "startChar": 0,
+        "endLine": 904,
+        "endChar": 1
+      },
+      "revId": "71dd738d4235176765934abf35d5d005e87f656c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
