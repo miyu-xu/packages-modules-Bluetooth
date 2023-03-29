@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a5fee961_501d6560",
+        "filename": "system/gd/hci/le_scanning_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 390,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-03-29T19:05:27Z",
+      "side": 0,
+      "message": "I can accept this patch as it reverts to the previous behavior, but this will cause regressions for the common case where legacy or extended advertising is used with Filter Accept List. In such cases the scan response will *never* be reported.\n\nPlease do create a follow up bug for cleanly integrating the Msft commands with the le_scanning_manager logic to cleanly solve this issue.",
+      "range": {
+        "startLine": 390,
+        "startChar": 8,
+        "endLine": 390,
+        "endChar": 45
+      },
+      "revId": "da82ba8bc49e630cdf77500ba3e98bd29b533454",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
