@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e09b96e2_ca91ca23",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1304,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-03-29T01:31:45Z",
+      "side": 1,
+      "message": "e -\u003e w",
+      "range": {
+        "startLine": 1304,
+        "startChar": 16,
+        "endLine": 1304,
+        "endChar": 17
+      },
+      "revId": "143f602b4bead65cf6efe96289eef6552e35ad95",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f7137eca_b53e0d36",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1305,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-03-29T01:31:45Z",
+      "side": 1,
+      "message": "What about removeActiveDevice(false)?",
+      "range": {
+        "startLine": 1305,
+        "startChar": 19,
+        "endLine": 1305,
+        "endChar": 24
+      },
+      "revId": "143f602b4bead65cf6efe96289eef6552e35ad95",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
