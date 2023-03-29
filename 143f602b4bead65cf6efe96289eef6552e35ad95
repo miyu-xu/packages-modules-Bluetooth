@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "70233777_6088c70e",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1304,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2023-03-29T04:30:21Z",
+      "side": 1,
+      "message": "Let\u0027s leave it as is, like L1308 also uses Log.e.",
+      "parentUuid": "e09b96e2_ca91ca23",
+      "range": {
+        "startLine": 1304,
+        "startChar": 16,
+        "endLine": 1304,
+        "endChar": 17
+      },
+      "revId": "143f602b4bead65cf6efe96289eef6552e35ad95",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f7137eca_b53e0d36",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-03-29T01:31:45Z",
       "side": 1,
       "message": "What about removeActiveDevice(false)?",
+      "range": {
+        "startLine": 1305,
+        "startChar": 19,
+        "endLine": 1305,
+        "endChar": 24
+      },
+      "revId": "143f602b4bead65cf6efe96289eef6552e35ad95",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e8389572_6d18e396",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1305,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2023-03-29T04:30:21Z",
+      "side": 1,
+      "message": "I think that may confuse readers about the behavior of this method. Let\u0027s leave as-is.",
+      "parentUuid": "f7137eca_b53e0d36",
       "range": {
         "startLine": 1305,
         "startChar": 19,
