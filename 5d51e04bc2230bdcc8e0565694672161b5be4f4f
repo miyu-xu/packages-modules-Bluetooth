@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "14eaee7c_85106f50",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2023-03-29T15:06:06Z",
+      "side": 1,
+      "message": "William\u0027s comments are valid too, especially now that Image#hashCode() is gone. +1 for now, William can +2 😊",
+      "revId": "5d51e04bc2230bdcc8e0565694672161b5be4f4f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e31dd1a6_ed30d8c1",
