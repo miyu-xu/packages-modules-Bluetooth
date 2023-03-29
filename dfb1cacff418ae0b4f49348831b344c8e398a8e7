@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "427572a9_800e18a9",
+        "filename": "android/pandora/test/asha_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 419,
+      "author": {
+        "id": 1937985
+      },
+      "writtenOn": "2023-03-29T23:36:11Z",
+      "side": 1,
+      "message": "`disconnect_ear`",
+      "range": {
+        "startLine": 419,
+        "startChar": 8,
+        "endLine": 419,
+        "endChar": 25
+      },
+      "revId": "dfb1cacff418ae0b4f49348831b344c8e398a8e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
