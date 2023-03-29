@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e4067b25_d99c8890",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-03-29T06:29:36Z",
+      "side": 1,
+      "message": "formatting glitches are because the line length was changed from 120 to 100, so I had to disable the autoformatter and manually fix things myself (since presubmit wanted to format more than just my changes)\n\nMoving to WIP anyway",
+      "revId": "71dd738d4235176765934abf35d5d005e87f656c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0032d00b_93fd6272",
         "filename": "system/gd/hci/acl_manager/le_impl.h",
         "patchSetId": 4
