@@ -1,5 +1,29 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bdca6972_82e9b030",
+        "filename": "system/btif/src/bluetooth.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 590,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-03-29T15:28:42Z",
+      "side": 1,
+      "message": "Rather than making copy-paste of whole btif_dm_create_bond, you could have just added the addr_type parameter to method above, create_bond. This would prevent code duplication",
+      "range": {
+        "startLine": 590,
+        "startChar": 11,
+        "endLine": 590,
+        "endChar": 25
+      },
+      "revId": "2d9e1d50c5f464b9e50fefbffddc19333734ab5d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
