@@ -53,10 +53,12 @@
 #include "main/shim/l2c_api.h"
 #include "main/shim/metrics_api.h"
 #include "main/shim/shim.h"
+#include "os/metrics.h"
 #include "osi/include/allocator.h"
 #include "osi/include/log.h"
 #include "osi/include/osi.h"  // UNUSED_ATTR
 #include "osi/include/properties.h"
+#include "rust/src/connection/ffi/connection_shim.h"
 #include "stack/acl/acl.h"
 #include "stack/acl/peer_packet_types.h"
 #include "stack/btm/btm_dev.h"
@@ -75,7 +77,6 @@
 #include "stack/include/sco_hci_link_interface.h"
 #include "types/hci_role.h"
 #include "types/raw_address.h"
-#include "os/metrics.h"
 
 #ifndef PROPERTY_LINK_SUPERVISION_TIMEOUT
 #define PROPERTY_LINK_SUPERVISION_TIMEOUT \
@@ -2843,8 +2844,10 @@ bool acl_create_le_connection_with_id(uint8_t id, const RawAddress& bd_addr,
       android::bluetooth::le::LeConnectionState::STATE_LE_ACL_START,
       argument_list);
 
-  bluetooth::shim::ACL_AcceptLeConnectionFrom(address_with_type,
-                                              /* is_direct */ true);
+  bluetooth::connection::StartDirectConnection(id, address_with_type);
+
+  // bluetooth::shim::ACL_AcceptLeConnectionFrom(address_with_type,
+  //                                             /* is_direct */ true);
   return true;
 }
 

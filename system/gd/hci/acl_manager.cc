@@ -25,6 +25,7 @@
 #include "hci/acl_manager/acl_scheduler.h"
 #include "hci/acl_manager/classic_impl.h"
 #include "hci/acl_manager/connection_management_callbacks.h"
+#include "hci/acl_manager/le_acceptlist_callbacks.h"
 #include "hci/acl_manager/le_acl_connection.h"
 #include "hci/acl_manager/le_impl.h"
 #include "hci/acl_manager/round_robin_scheduler.h"
@@ -49,6 +50,7 @@ using acl_manager::ClassicAclConnection;
 using acl_manager::ConnectionCallbacks;
 
 using acl_manager::le_impl;
+using acl_manager::LeAcceptlistCallbacks;
 using acl_manager::LeAclConnection;
 using acl_manager::LeConnectionCallbacks;
 
@@ -228,7 +230,16 @@ void AclManager::RegisterLeCallbacks(LeConnectionCallbacks* callbacks, os::Handl
       common::Unretained(handler));
 }
 
-void AclManager::UnregisterLeCallbacks(LeConnectionCallbacks* callbacks, std::promise<void> promise) {
+void AclManager::RegisterLeAcceptlistCallbacks(LeAcceptlistCallbacks* callbacks) {
+  ASSERT(callbacks != nullptr);
+  CallOn(
+      pimpl_->le_impl_,
+      &le_impl::handle_register_le_acceptlist_callbacks,
+      common::Unretained(callbacks));
+}
+
+void AclManager::UnregisterLeCallbacks(
+    LeConnectionCallbacks* callbacks, std::promise<void> promise) {
   ASSERT(callbacks != nullptr);
   CallOn(pimpl_->le_impl_, &le_impl::handle_unregister_le_callbacks, common::Unretained(callbacks), std::move(promise));
 }
@@ -237,6 +248,7 @@ void AclManager::CreateConnection(Address address) {
   CallOn(pimpl_->classic_impl_, &classic_impl::create_connection, address);
 }
 
+// called from BTM_AcceptlistAdd, acl_create_le_connection_with_id, and some weird FLOSS HID stuff
 void AclManager::CreateLeConnection(AddressWithType address_with_type, bool is_direct) {
   if (!is_direct) {
     CallOn(pimpl_->le_impl_, &le_impl::add_device_to_background_connection_list, address_with_type);
@@ -244,6 +256,7 @@ void AclManager::CreateLeConnection(AddressWithType address_with_type, bool is_d
   CallOn(pimpl_->le_impl_, &le_impl::create_le_connection, address_with_type, true, is_direct);
 }
 
+// for test only
 void AclManager::IsOnBackgroundList(AddressWithType address_with_type, std::promise<bool> promise) {
   CallOn(pimpl_->le_impl_, &le_impl::is_on_background_connection_list, address_with_type, std::move(promise));
 }
@@ -298,15 +311,18 @@ void AclManager::CancelConnect(Address address) {
   CallOn(pimpl_->classic_impl_, &classic_impl::cancel_connect, address);
 }
 
+// only called from BTM_AcceptlistRemove
 void AclManager::CancelLeConnect(AddressWithType address_with_type) {
   CallOn(pimpl_->le_impl_, &le_impl::remove_device_from_background_connection_list, address_with_type);
   CallOn(pimpl_->le_impl_, &le_impl::cancel_connect, address_with_type);
 }
 
+// called from hci_btsnd_hcic_disconnect
 void AclManager::RemoveFromBackgroundList(AddressWithType address_with_type) {
   CallOn(pimpl_->le_impl_, &le_impl::remove_device_from_background_connection_list, address_with_type);
 }
 
+// floss only
 void AclManager::ClearFilterAcceptList() {
   CallOn(pimpl_->le_impl_, &le_impl::clear_filter_accept_list);
 }

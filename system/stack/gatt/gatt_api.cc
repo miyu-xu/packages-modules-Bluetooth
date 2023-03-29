@@ -38,6 +38,7 @@
 #include "osi/include/allocator.h"
 #include "osi/include/list.h"
 #include "osi/include/log.h"
+#include "rust/src/connection/ffi/connection_shim.h"
 #include "stack/arbiter/acl_arbiter.h"
 #include "stack/btm/btm_dev.h"
 #include "stack/gatt/connection_manager.h"
@@ -1327,7 +1328,8 @@ void GATT_Deregister(tGATT_IF gatt_if) {
     }
   }
 
-  connection_manager::on_app_deregistered(gatt_if);
+  bluetooth::connection::StopAllConnectionsFromClient(gatt_if);
+  // connection_manager::on_app_deregistered(gatt_if);
 
   *p_reg = {};
 }
@@ -1444,7 +1446,10 @@ bool GATT_Connect(tGATT_IF gatt_if, const RawAddress& bd_addr,
       LOG_DEBUG("Adding to background connect to device:%s",
                 ADDRESS_TO_LOGGABLE_CSTR(bd_addr));
       if (connection_type == BTM_BLE_BKG_CONNECT_ALLOW_LIST) {
-        ret = connection_manager::background_connect_add(gatt_if, bd_addr);
+        bluetooth::connection::AddBackgroundConnection(
+            gatt_if, bluetooth::connection::ResolveRawAddress(bd_addr));
+        ret = true;
+        // ret = connection_manager::background_connect_add(gatt_if, bd_addr);
       } else {
         ret = connection_manager::background_connect_targeted_announcement_add(
             gatt_if, bd_addr);
@@ -1526,12 +1531,16 @@ bool GATT_CancelConnect(tGATT_IF gatt_if, const RawAddress& bd_addr,
     }
   }
 
-  if (!connection_manager::remove_unconditional(bd_addr)) {
-    LOG(ERROR)
-        << __func__
-        << ": no app associated with the bg device for unconditional removal";
-    return false;
-  }
+  bluetooth::connection::StopAllConnectionsToDevice(
+      bluetooth::connection::ResolveRawAddress(bd_addr));
+
+  // if (!connection_manager::remove_unconditional(bd_addr)) {
+  //   LOG(ERROR)
+  //       << __func__
+  //       << ": no app associated with the bg device for unconditional
+  //       removal";
+  //   return false;
+  // }
 
   return true;
 }
