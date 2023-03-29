@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "43dc1465_1bd8dba1",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 801,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2023-03-29T05:17:33Z",
+      "side": 1,
+      "message": "nit: We just using \"libbluetooth\" to refer to \"the LibBluetooth stack\" you mentioned here. Would you consider to revise them for consistency?",
+      "range": {
+        "startLine": 801,
+        "startChar": 26,
+        "endLine": 801,
+        "endChar": 48
+      },
+      "revId": "2f72422ddbd4187336d2908febe3355d39336397",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
