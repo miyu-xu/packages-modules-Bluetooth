@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2459b364_5815532d",
+        "filename": "system/gd/Android.bp",
+        "patchSetId": 3
+      },
+      "lineNbr": 645,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-03-29T13:37:13Z",
+      "side": 1,
+      "message": "Rust lib file MUST be the first file in the list.",
+      "range": {
+        "startLine": 644,
+        "startChar": 7,
+        "endLine": 645,
+        "endChar": 42
+      },
+      "revId": "a40c413d78f23d09b8da97962dc856b83fcc8bcf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
