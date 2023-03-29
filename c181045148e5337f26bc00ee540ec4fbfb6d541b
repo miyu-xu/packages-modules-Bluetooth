@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0127072f_6f8652b4",
+        "filename": "system/gd/hci/acl_manager.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 320,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-03-29T04:23:31Z",
+      "side": 1,
+      "message": "Is this a good time to have CancelConnect do the removal?  I don\u0027t understand the use case for a CancelConnect that doesn\u0027t do the removal.",
+      "range": {
+        "startLine": 320,
+        "startChar": 7,
+        "endLine": 320,
+        "endChar": 27
+      },
+      "revId": "c181045148e5337f26bc00ee540ec4fbfb6d541b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ef0cb9e7_e0af258a",
+        "filename": "system/gd/hci/acl_manager.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 451,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-03-29T04:23:31Z",
+      "side": 1,
+      "message": ":)",
+      "range": {
+        "startLine": 451,
+        "startChar": 44,
+        "endLine": 451,
+        "endChar": 65
+      },
+      "revId": "c181045148e5337f26bc00ee540ec4fbfb6d541b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
