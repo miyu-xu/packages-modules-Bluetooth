@@ -775,6 +775,14 @@ void BleScannerInterfaceImpl::handle_remote_properties(
     if (!address_cache_.find(bd_addr)) {
       address_cache_.add(bd_addr);
 
+<<<<<<< PATCH SET (7e7bc8 Fix upper (framework) can not get RC's name or other propert)
+      if (remote_name_len > BD_NAME_LEN + 1 ||
+          (remote_name_len == BD_NAME_LEN + 1 &&
+           p_eir_remote_name[BD_NAME_LEN] != '\0')) {
+        LOG_INFO("%s dropping invalid packet - device name too long: %d",
+                 __func__, remote_name_len);
+        return;
+=======
       if (p_eir_remote_name) {
         if (remote_name_len > BD_NAME_LEN + 1 ||
             (remote_name_len == BD_NAME_LEN + 1 &&
@@ -789,7 +797,15 @@ void BleScannerInterfaceImpl::handle_remote_properties(
           bdname.name[remote_name_len] = '\0';
         btif_dm_update_ble_remote_properties(bd_addr, bdname.name, NULL,
                                              device_type);
+>>>>>>> BASE      (7549c2 Merge "Do not expose the cordinated set status as LE audio d)
       }
+
+      bt_bdname_t bdname;
+      memcpy(bdname.name, p_eir_remote_name, remote_name_len);
+      if (remote_name_len < BD_NAME_LEN + 1)
+        bdname.name[remote_name_len] = '\0';
+
+      btif_dm_update_ble_remote_properties(bd_addr, bdname.name, device_type);
     }
   }
 
