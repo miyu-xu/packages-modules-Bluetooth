@@ -142,6 +142,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9e3caefd_369a0e57",
+        "filename": "system/btif/include/btif_av.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 244,
+      "author": {
+        "id": 1984885
+      },
+      "writtenOn": "2023-03-29T02:04:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ec262565_349c16b6",
+      "range": {
+        "startLine": 244,
+        "startChar": 5,
+        "endLine": 244,
+        "endChar": 25
+      },
+      "revId": "071498ed627cdb440a82380f3a904fa4fd38d40a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5f8a7abf_2eb18942",
@@ -320,6 +344,30 @@
       "side": 1,
       "message": "sorry for lefting out some code snippets earlier in btif_av_handle_both_peer， invalid_peer_check_  will set to true in btif_av_handle_both_peer",
       "parentUuid": "04b88517_179ca379",
+      "range": {
+        "startLine": 415,
+        "startChar": 0,
+        "endLine": 415,
+        "endChar": 97
+      },
+      "revId": "071498ed627cdb440a82380f3a904fa4fd38d40a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b75bbe4e_1a32db5a",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 415,
+      "author": {
+        "id": 1984885
+      },
+      "writtenOn": "2023-03-29T02:04:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "43feb6c8_a009cb8c",
       "range": {
         "startLine": 415,
         "startChar": 0,
