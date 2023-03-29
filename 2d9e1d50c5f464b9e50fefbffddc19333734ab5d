@@ -22,6 +22,30 @@
       },
       "revId": "2d9e1d50c5f464b9e50fefbffddc19333734ab5d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c995919b_53c337a3",
+        "filename": "system/btif/src/bluetooth.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 590,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-03-29T16:20:01Z",
+      "side": 1,
+      "message": "while adding this I had similar discussions with Myles, we were thinking that to keep it separately might avoid regression risks considering create_bond path has been used in multiple places classic and le. \nBut I do agree with you unifying could be a a better option once we carefully handled all the cases. I will do some follow-ups to see what improvement we can do around here.",
+      "parentUuid": "bdca6972_82e9b030",
+      "range": {
+        "startLine": 590,
+        "startChar": 11,
+        "endLine": 590,
+        "endChar": 25
+      },
+      "revId": "2d9e1d50c5f464b9e50fefbffddc19333734ab5d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
