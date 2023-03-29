@@ -39,6 +39,7 @@ rust_defaults {
         "libcxx",
         "libbt_common",
         "libbitflags",
+        "libscopeguard",
 
         // needed to work around duplicate symbols
         // caused by bug in Soong
@@ -103,6 +104,7 @@ cc_library_static {
     ],
     srcs: [
         "src/gatt/ffi/gatt_shim.cc",
+        "src/connection/ffi/connection_shim.cc",
     ],
     include_dirs: [
         "packages/modules/Bluetooth/system",
@@ -157,6 +159,7 @@ filegroup {
     name: "libbluetooth_core_rs_ffi",
     srcs: [
         "src/core/ffi.rs",
+        "src/connection/ffi.rs",
         "src/gatt/ffi.rs",
     ],
 }
