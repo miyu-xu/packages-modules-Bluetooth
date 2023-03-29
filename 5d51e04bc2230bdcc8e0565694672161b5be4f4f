@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e31dd1a6_ed30d8c1",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/helpers/Metadata.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-03-29T13:16:09Z",
+      "side": 1,
+      "message": "Image does not implement hashCode. I am not sure we want to add it in the hash. Do we ?",
+      "range": {
+        "startLine": 81,
+        "startChar": 16,
+        "endLine": 81,
+        "endChar": 21
+      },
+      "revId": "5d51e04bc2230bdcc8e0565694672161b5be4f4f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3fa34710_fbb597b1",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/helpers/Metadata.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-03-29T13:16:09Z",
+      "side": 1,
+      "message": "Is this the same as:\n```\nif mediaId is defaultValue {\n  mediaId \u003d filledMetadata.mediaId\n}\n```\nWhy do we need the extra:\n`\u0026\u0026 !empty.mediaId.equals(filledMetadata.mediaId)` ?\nWorst case it is equals and the assignation is no-op ?",
+      "range": {
+        "startLine": 101,
+        "startChar": 7,
+        "endLine": 104,
+        "endChar": 9
+      },
+      "revId": "5d51e04bc2230bdcc8e0565694672161b5be4f4f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
