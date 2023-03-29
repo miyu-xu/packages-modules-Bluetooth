@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "094d8f78_c9d0d1a6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-03-29T19:28:46Z",
+      "side": 1,
+      "message": "Do we need it to be updatable in aosp ?\nI am not against it, but  I don\u0027t see the point.\nWe are unlikely  to ship an apex from AOSP.",
+      "revId": "447b0c38b6e3c05ed7de049127516db9a853dfbb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
