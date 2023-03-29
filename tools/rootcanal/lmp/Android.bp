@@ -13,8 +13,8 @@ rust_ffi {
     vendor_available: true,
     crate_name: "lmp",
     srcs: [
-        "src/lib.rs",
         ":LmpGeneratedPackets_rust",
+        "src/lib.rs",
     ],
     edition: "2018",
     proc_macros: ["libnum_derive"],
@@ -24,9 +24,9 @@ rust_ffi {
         "libnum_bigint",
         "libnum_integer",
         "libnum_traits",
-        "libthiserror",
         "libpin_utils",
         "librand",
+        "libthiserror",
     ],
     include_dirs: ["include"],
 }
@@ -49,8 +49,8 @@ rust_test_host {
     name: "liblmp_tests",
     crate_name: "lmp",
     srcs: [
-        "src/lib.rs",
         ":LmpGeneratedPackets_rust",
+        "src/lib.rs",
     ],
     auto_gen_config: true,
     edition: "2018",
@@ -64,8 +64,8 @@ rust_test_host {
         "libnum_bigint",
         "libnum_integer",
         "libnum_traits",
-        "libthiserror",
         "libpin_utils",
         "librand",
+        "libthiserror",
     ],
 }
