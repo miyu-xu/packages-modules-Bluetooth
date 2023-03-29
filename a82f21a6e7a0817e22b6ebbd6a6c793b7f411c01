@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9688dd63_ff394870",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-03-29T10:16:06Z",
+      "side": 1,
+      "message": "Bypass lint, there is no test framework to test this behavior yet",
+      "revId": "a82f21a6e7a0817e22b6ebbd6a6c793b7f411c01",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
