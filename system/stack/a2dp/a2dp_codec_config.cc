@@ -33,9 +33,7 @@
 #include "a2dp_vendor_aptx.h"
 #include "a2dp_vendor_aptx_hd.h"
 #include "a2dp_vendor_ldac.h"
-#ifndef TARGET_FLOSS
 #include "a2dp_vendor_opus.h"
-#endif
 #endif
 
 #include "bta/av/bta_av_int.h"
@@ -126,6 +124,9 @@ A2dpCodecConfig* A2dpCodecConfig::createCodec(
     case BTAV_A2DP_CODEC_INDEX_SOURCE_AAC:
       codec_config = new A2dpCodecConfigAacSource(codec_priority);
       break;
+    case BTAV_A2DP_CODEC_INDEX_SINK_AAC:
+      codec_config = new A2dpCodecConfigAacSink(codec_priority);
+      break;
     case BTAV_A2DP_CODEC_INDEX_SOURCE_APTX:
       codec_config = new A2dpCodecConfigAptx(codec_priority);
       break;
@@ -135,13 +136,10 @@ A2dpCodecConfig* A2dpCodecConfig::createCodec(
     case BTAV_A2DP_CODEC_INDEX_SOURCE_LDAC:
       codec_config = new A2dpCodecConfigLdacSource(codec_priority);
       break;
-#ifndef TARGET_FLOSS
-    case BTAV_A2DP_CODEC_INDEX_SINK_AAC:
-      codec_config = new A2dpCodecConfigAacSink(codec_priority);
-      break;
     case BTAV_A2DP_CODEC_INDEX_SINK_LDAC:
       codec_config = new A2dpCodecConfigLdacSink(codec_priority);
       break;
+#ifndef TARGET_FLOSS
     case BTAV_A2DP_CODEC_INDEX_SOURCE_OPUS:
       codec_config = new A2dpCodecConfigOpusSource(codec_priority);
       break;
@@ -1481,10 +1479,8 @@ const char* A2DP_CodecIndexStr(btav_a2dp_codec_index_t codec_index) {
 #if !defined(EXCLUDE_NONSTANDARD_CODECS)
     case BTAV_A2DP_CODEC_INDEX_SOURCE_AAC:
       return A2DP_CodecIndexStrAac();
-#ifndef TARGET_FLOSS
     case BTAV_A2DP_CODEC_INDEX_SINK_AAC:
       return A2DP_CodecIndexStrAacSink();
-#endif
 #endif
     default:
       break;
@@ -1514,10 +1510,8 @@ bool A2DP_InitCodecConfig(btav_a2dp_codec_index_t codec_index,
 #if !defined(EXCLUDE_NONSTANDARD_CODECS)
     case BTAV_A2DP_CODEC_INDEX_SOURCE_AAC:
       return A2DP_InitCodecConfigAac(p_cfg);
-#ifndef TARGET_FLOSS
     case BTAV_A2DP_CODEC_INDEX_SINK_AAC:
       return A2DP_InitCodecConfigAacSink(p_cfg);
-#endif
 #endif
     default:
       break;
