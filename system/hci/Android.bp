@@ -38,13 +38,13 @@ cc_library_static {
     ],
     include_dirs: [
         "packages/modules/Bluetooth/system",
-        "packages/modules/Bluetooth/system/gd",
-        "packages/modules/Bluetooth/system/internal_include",
-        "packages/modules/Bluetooth/system/stack/include",
         "packages/modules/Bluetooth/system/bta/include",
         "packages/modules/Bluetooth/system/btif/include",
-        "system/libhwbinder/include",
+        "packages/modules/Bluetooth/system/gd",
         "packages/modules/Bluetooth/system/gd/rust/shim",
+        "packages/modules/Bluetooth/system/internal_include",
+        "packages/modules/Bluetooth/system/stack/include",
+        "system/libhwbinder/include",
     ],
     product_variables: {
         debuggable: {
@@ -72,11 +72,11 @@ cc_test {
     ],
     include_dirs: [
         "packages/modules/Bluetooth/system",
+        "packages/modules/Bluetooth/system/gd/rust/shim",
         "packages/modules/Bluetooth/system/internal_include",
         "packages/modules/Bluetooth/system/osi/test",
         "packages/modules/Bluetooth/system/stack/include",
         "system/libhwbinder/include",
-        "packages/modules/Bluetooth/system/gd/rust/shim",
     ],
     srcs: [
         "test/packet_fragmenter_test.cc",
@@ -88,8 +88,8 @@ cc_test {
     ],
     static_libs: [
         "libbluetooth-for-tests",
-        "libbtcore",
         "libbt-hci",
+        "libbtcore",
     ],
 }
 
@@ -106,8 +106,8 @@ cc_test {
     include_dirs: [
         "packages/modules/Bluetooth/system",
         "packages/modules/Bluetooth/system/gd",
-        "packages/modules/Bluetooth/system/stack/include",
         "packages/modules/Bluetooth/system/osi/test",
+        "packages/modules/Bluetooth/system/stack/include",
     ],
     srcs: [
         "src/buffer_allocator.cc",

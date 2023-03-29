@@ -32,8 +32,8 @@ cc_library {
         "com.android.btservices",
     ],
     shared_libs: [
-        "liblog",
         "libcutils",
+        "liblog",
     ],
     static_libs: [
         "libbluetooth_gd",

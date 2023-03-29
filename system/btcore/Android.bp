@@ -102,9 +102,9 @@ cc_test {
         "liblog",
     ],
     static_libs: [
+        "libbtcore",
         "libosi",
         "libosi-AllocationTestHarness",
-        "libbtcore",
     ],
     host_supported: true,
     test_options: {
