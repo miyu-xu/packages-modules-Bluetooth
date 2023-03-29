@@ -16,6 +16,24 @@
       "message": "Please define these constants. For example\n\nconst AVRC_ID_PAUSE: u32 \u003d 0x46;\nconst AVRC_STATE_PRESS: u32 \u003d 0;",
       "revId": "7105a4e66f3b9649351499ce3dbc1a2ec5e0444b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cca5e6a2_cb9fa91f",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 578,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-03-29T06:44:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4fe2bf73_f9d561e0",
+      "revId": "7105a4e66f3b9649351499ce3dbc1a2ec5e0444b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
