@@ -35,6 +35,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "93419f98_47585da7",
+        "filename": "system/btif/src/btif_ble_scanner.cc",
+        "patchSetId": 14
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1965943
+      },
+      "writtenOn": "2023-03-29T07:32:59Z",
+      "side": 1,
+      "message": "Fix it by https://android-review.googlesource.com/c/platform/packages/modules/Bluetooth/+/2513055",
+      "parentUuid": "a48cd7a3_68dcda2e",
+      "revId": "336981d02f1c8f2e5bb7953b577c12e0d3482041",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b4106a67_a12a2822",
@@ -48,6 +66,24 @@
       "writtenOn": "2023-03-27T17:36:42Z",
       "side": 1,
       "message": "Post-submit nit: We can reduce this code by one level of indentation by removing this check which now must be `true` (due to the check on line 761).",
+      "revId": "336981d02f1c8f2e5bb7953b577c12e0d3482041",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2e27d6af_714ee08b",
+        "filename": "system/main/shim/le_scanning_manager.cc",
+        "patchSetId": 14
+      },
+      "lineNbr": 765,
+      "author": {
+        "id": 1965943
+      },
+      "writtenOn": "2023-03-29T07:32:59Z",
+      "side": 1,
+      "message": "Fix it by https://android-review.googlesource.com/c/platform/packages/modules/Bluetooth/+/2513055",
+      "parentUuid": "b4106a67_a12a2822",
       "revId": "336981d02f1c8f2e5bb7953b577c12e0d3482041",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
