@@ -64,6 +64,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c6576dd1_9008eb1e",
+        "filename": "android/pandora/test/asha_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 408,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-03-29T00:17:14Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "ad7407e5_e9b784f2",
+      "range": {
+        "startLine": 408,
+        "startChar": 0,
+        "endLine": 408,
+        "endChar": 38
+      },
+      "revId": "5245fe0f05e5301bd63c46a94f264a44d58281ae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2ca9b47e_e52ab40d",
@@ -77,6 +101,30 @@
       "writtenOn": "2023-03-27T23:24:32Z",
       "side": 1,
       "message": "You want to test if a `stop` command is well sent here. You will always reach the timeout and the test will always fails since you are never sending a stop command.",
+      "range": {
+        "startLine": 479,
+        "startChar": 0,
+        "endLine": 481,
+        "endChar": 33
+      },
+      "revId": "5245fe0f05e5301bd63c46a94f264a44d58281ae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7de2893b_1b23e2c3",
+        "filename": "android/pandora/test/asha_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 481,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-03-29T00:17:14Z",
+      "side": 1,
+      "message": "Test will pass because when start completes, the audio hal will tell ASHA to send a `stop`, and the test will receive the stop command. \nI agree with you, I will add the stop",
+      "parentUuid": "2ca9b47e_e52ab40d",
       "range": {
         "startLine": 479,
         "startChar": 0,
@@ -123,6 +171,30 @@
       "writtenOn": "2023-03-27T23:24:32Z",
       "side": 1,
       "message": "Do you want to test if the `start` command is well sent after a `stop` or do you want to assert if some audio data are exchanged ? If you want to test the streaming audio we might want to to this logic in the first test `test_music_start`",
+      "range": {
+        "startLine": 537,
+        "startChar": 0,
+        "endLine": 545,
+        "endChar": 21
+      },
+      "revId": "5245fe0f05e5301bd63c46a94f264a44d58281ae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c613ea3b_86fb44ae",
+        "filename": "android/pandora/test/asha_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 545,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-03-29T00:17:14Z",
+      "side": 1,
+      "message": "test with `start` after `stop` for a restart. I will update the test",
+      "parentUuid": "8b3f6ead_4d8fe28f",
       "range": {
         "startLine": 537,
         "startChar": 0,
