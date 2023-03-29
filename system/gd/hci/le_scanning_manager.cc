@@ -386,8 +386,7 @@ struct LeScanningManager::impl : public LeAddressManagerCallback {
     // found in the report, we ignore the scan responses as we cannot be
     // certain that they will not be dropped by the filter.
     scanning_reassembler_.SetIgnoreScanResponses(
-        filter_policy_ == LeScanningFilterPolicy::FILTER_ACCEPT_LIST_ONLY &&
-        api_type_ == ScanApiType::ANDROID_HCI);
+        filter_policy_ == LeScanningFilterPolicy::FILTER_ACCEPT_LIST_ONLY);
 
     auto complete_advertising_data = scanning_reassembler_.ProcessAdvertisingReport(
         event_type, address_type, address, advertising_sid, advertising_data);
