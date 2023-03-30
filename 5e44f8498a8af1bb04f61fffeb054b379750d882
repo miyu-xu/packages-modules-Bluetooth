@@ -166,6 +166,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "65e8d942_de857110",
+        "filename": "tools/pdl/src/analyzer.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2023-03-30T13:50:34Z",
+      "side": 1,
+      "message": "Okay, I get that it\u0027s easier to grep for an error variant when the error code is listed directly... but why we have error numbers if we don\u0027t have a corresponding name for them?\n\nIn any case, the code here is fine too so feel free to submit as-is.",
+      "parentUuid": "d3ed12c7_f24183c1",
+      "range": {
+        "startLine": 137,
+        "startChar": 4,
+        "endLine": 137,
+        "endChar": 12
+      },
+      "revId": "5e44f8498a8af1bb04f61fffeb054b379750d882",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1933db58_7b71bca0",
