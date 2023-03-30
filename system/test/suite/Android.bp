@@ -122,4 +122,7 @@ cc_test {
         "gatt/gatt_test.cc",
         "gatt/gatt_unittest.cc",
     ],
+    static_libs: [
+        "android.hardware.bluetooth@1.0",
+    ],
 }

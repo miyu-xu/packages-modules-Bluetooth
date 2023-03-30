@@ -72,6 +72,9 @@ cc_library_shared {
         "libc++fs",
         "libbluetooth_core_rs_bridge",
     ],
+    shared_libs: [
+        "android.hardware.bluetooth@1.0",
+    ],
     sanitize: {
         scs: true,
     },
