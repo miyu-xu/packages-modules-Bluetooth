@@ -160,6 +160,125 @@
       },
       "revId": "1c967ac56e632426c650ee3bc38f0ccd0d5a44e7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "23ad86bd_e0b32b73",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 4894,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-03-30T23:46:12Z",
+      "side": 1,
+      "message": "Replace with outputOnlyProfile",
+      "revId": "1c967ac56e632426c650ee3bc38f0ccd0d5a44e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "586dfcf9_98ce70b5",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 4905,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-03-30T23:46:12Z",
+      "side": 1,
+      "message": "Replace with duplexProfile",
+      "revId": "1c967ac56e632426c650ee3bc38f0ccd0d5a44e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2c69f682_b523d158",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 4913,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-03-30T23:46:12Z",
+      "side": 1,
+      "message": "Rename to previousPreferences",
+      "revId": "1c967ac56e632426c650ee3bc38f0ccd0d5a44e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7255e8af_7d709543",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 4935,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-03-30T23:46:12Z",
+      "side": 1,
+      "message": "rename currentPreferences to previousPreferences",
+      "revId": "1c967ac56e632426c650ee3bc38f0ccd0d5a44e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2d91ffff_29d55b7b",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 4951,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-03-30T23:46:12Z",
+      "side": 1,
+      "message": "Send callback to apps with an error code",
+      "revId": "1c967ac56e632426c650ee3bc38f0ccd0d5a44e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "564dc938_5b3952ab",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 4960,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-03-30T23:46:12Z",
+      "side": 1,
+      "message": "Same, send callback with error code",
+      "revId": "1c967ac56e632426c650ee3bc38f0ccd0d5a44e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f0904c1a_f9520478",
+        "filename": "android/app/src/com/android/bluetooth/btservice/storage/DatabaseManager.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 807,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-03-30T23:46:12Z",
+      "side": 1,
+      "message": "If either field is set to non-0, then we should set both preferences on it",
+      "revId": "1c967ac56e632426c650ee3bc38f0ccd0d5a44e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
