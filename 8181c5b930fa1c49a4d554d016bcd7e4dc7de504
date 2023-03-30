@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f36d107c_76fd7f06",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-03-30T19:01:23Z",
+      "side": 1,
+      "message": "If we receive BTA_HH_INT_OPEN_EVT, do we want to always use BREDR, or also try HOGP? Previously we would try both, but now we will always do HID-over-classic",
+      "revId": "8181c5b930fa1c49a4d554d016bcd7e4dc7de504",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
