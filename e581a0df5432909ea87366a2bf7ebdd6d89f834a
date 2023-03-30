@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b742f8e8_6f7f7db3",
+        "filename": "tools/pdl/src/ast.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2023-03-30T12:53:43Z",
+      "side": 1,
+      "message": "When looking at this, it\u0027s not immediately clear to me what PDL syntax would map to a vector of `TagValue` here?\n\nThe new syntax is supposed to look something like this (from b/267339120):\n\n```\nenum Status : 8 {\n    Ok \u003d 0x0,\n    Err \u003d 0x1,\n    Vendor \u003d 0x0b..0x0ff,\n}\n```\n\nThere was an alternative syntax suggested (perhaps update b/267339120 to document it somewhere) which grouped the \"inner\" tags somehow. Is that where the list is coming from?\n\nCould you include a PDL snippet in the docstring for the new struct to show how it\u0027s generated?",
+      "range": {
+        "startLine": 72,
+        "startChar": 0,
+        "endLine": 72,
+        "endChar": 28
+      },
+      "revId": "e581a0df5432909ea87366a2bf7ebdd6d89f834a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
