@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0f433949_0bb52ceb",
+        "filename": "system/rust/src/gatt/server/att_database.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-03-30T20:57:07Z",
+      "side": 1,
+      "message": "I expect writable to return true when it\u0027s writable without a response.  Does this need a new name?",
+      "range": {
+        "startLine": 55,
+        "startChar": 11,
+        "endLine": 55,
+        "endChar": 19
+      },
+      "revId": "9b36d6f1fd1f5472ef391a73f8189fefac53b6b9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7a8de899_aef0ac0b",
+        "filename": "system/rust/src/gatt/server/att_server_bearer.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-03-30T20:57:07Z",
+      "side": 1,
+      "message": "I\u0027m guessing that cloning db is cheap, but is it necessary here?",
+      "range": {
+        "startLine": 80,
+        "startChar": 70,
+        "endLine": 80,
+        "endChar": 79
+      },
+      "revId": "9b36d6f1fd1f5472ef391a73f8189fefac53b6b9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "622aa714_5ef259cd",
+        "filename": "system/rust/src/gatt/server/command_handler.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-03-30T20:57:07Z",
+      "side": 1,
+      "message": "test_unsupported_command() ?",
+      "revId": "9b36d6f1fd1f5472ef391a73f8189fefac53b6b9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9e7fa13b_ad37ede3",
+        "filename": "system/rust/src/gatt/server/gatt_database.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 447,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-03-30T20:57:07Z",
+      "side": 1,
+      "message": "Should this be a warning?  Are the writes coming from the remote?  I would have expected info to be sufficient.",
+      "range": {
+        "startLine": 447,
+        "startChar": 16,
+        "endLine": 447,
+        "endChar": 20
+      },
+      "revId": "9b36d6f1fd1f5472ef391a73f8189fefac53b6b9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
