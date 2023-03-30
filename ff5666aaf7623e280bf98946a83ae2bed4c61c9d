@@ -16,6 +16,23 @@
       "message": "cmanton@ Need a OWNERS+1 for the `Android.bp` change too",
       "revId": "ff5666aaf7623e280bf98946a83ae2bed4c61c9d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "55611fd9_f4b6cd5e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-03-30T22:15:56Z",
+      "side": 1,
+      "message": "Noting here for reviewers that I have discussed the LE scan implications on this with Abhishek, and am OK with this as a temporary solution. \n\nSee internal b/276350722 for further context on the plan for longer term solution.",
+      "revId": "ff5666aaf7623e280bf98946a83ae2bed4c61c9d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
