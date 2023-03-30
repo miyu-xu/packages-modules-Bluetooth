@@ -873,12 +873,19 @@ static const btgatt_server_callbacks_t sGattServerCallbacks = {
     btgatts_subrate_change_cb,
 };
 
+std::unique_ptr<bluetooth::gatt::GattServerCallbacks> GetGattServerCallbacks() {
+  return std::make_unique<bluetooth::gatt::GattServerCallbacks>(
+      sGattServerCallbacks);
+}
+
 /**
  * GATT callbacks
  */
 
 static const btgatt_callbacks_t sGattCallbacks = {
-    sizeof(btgatt_callbacks_t), &sGattClientCallbacks, &sGattServerCallbacks,
+    sizeof(btgatt_callbacks_t),
+    &sGattClientCallbacks,
+    &sGattServerCallbacks,
     &sGattScannerCallbacks,
 };
 
@@ -1393,10 +1400,6 @@ static void initializeNative(JNIEnv* env, jobject object) {
       JniDistanceMeasurementCallbacks::GetInstance());
 
   mCallbacksObj = env->NewGlobalRef(object);
-
-  auto callbacks = std::make_unique<bluetooth::gatt::GattServerCallbacks>(
-      sGattServerCallbacks);
-  bluetooth::rust_shim::init(std::move(callbacks));
 }
 
 static void cleanupNative(JNIEnv* env, jobject object) {
