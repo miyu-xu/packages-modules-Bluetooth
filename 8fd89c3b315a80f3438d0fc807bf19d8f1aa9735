@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "db04034a_f1108553",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 395,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-03-30T19:01:24Z",
+      "side": 1,
+      "message": "do we want to set LEA as null when A2DP or HFP is not active or not connected?",
+      "range": {
+        "startLine": 395,
+        "startChar": 17,
+        "endLine": 395,
+        "endChar": 38
+      },
+      "revId": "8fd89c3b315a80f3438d0fc807bf19d8f1aa9735",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c8d2730d_80060487",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 407,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-03-30T19:01:24Z",
+      "side": 1,
+      "message": "this part is correct, but when A2DP and HFP active device is set to a different device, LE audio need to sync",
+      "range": {
+        "startLine": 407,
+        "startChar": 0,
+        "endLine": 407,
+        "endChar": 49
+      },
+      "revId": "8fd89c3b315a80f3438d0fc807bf19d8f1aa9735",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aedb0bb7_dbd5bc29",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 465,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-03-30T19:01:24Z",
+      "side": 1,
+      "message": "when HFP connection is pending or HFP is already connected and active, we should probably skip this line and set active device to new one directly.",
+      "range": {
+        "startLine": 465,
+        "startChar": 16,
+        "endLine": 465,
+        "endChar": 45
+      },
+      "revId": "8fd89c3b315a80f3438d0fc807bf19d8f1aa9735",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4adaf772_7db3bb80",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 868,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-03-30T19:01:24Z",
+      "side": 1,
+      "message": "do you also want to check if LEA is connected?",
+      "range": {
+        "startLine": 868,
+        "startChar": 34,
+        "endLine": 868,
+        "endChar": 56
+      },
+      "revId": "8fd89c3b315a80f3438d0fc807bf19d8f1aa9735",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
