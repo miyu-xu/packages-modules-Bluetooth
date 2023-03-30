@@ -16,6 +16,24 @@
       "message": "Do we know why it was added here ?",
       "revId": "6cd7123ece8cd7fc5e4a42ae09e410be297cd437",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9f5c357c_b3e9c307",
+        "filename": "system/conf/interop_database.conf",
+        "patchSetId": 1
+      },
+      "lineNbr": 798,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2023-03-30T17:17:45Z",
+      "side": 0,
+      "message": "The BMW car kit used here has interop issues with newer AVRCP versions which affects playback. It was earlier set 1.4 in aosp/1842947. However, due to more recent bugs with 1.4, and smooth behavior with 1.3 ; Limiting it to AVRCP 1.3 only",
+      "parentUuid": "9e24ef46_a25ac48e",
+      "revId": "6cd7123ece8cd7fc5e4a42ae09e410be297cd437",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
