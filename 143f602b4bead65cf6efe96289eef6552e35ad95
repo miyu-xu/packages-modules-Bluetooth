@@ -93,6 +93,30 @@
       },
       "revId": "143f602b4bead65cf6efe96289eef6552e35ad95",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0d7800fb_64feab1c",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1305,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-03-30T06:32:52Z",
+      "side": 1,
+      "message": "There can be some SWE just call setActiveDevice(null) w/o knowing about this change. What do you think?",
+      "parentUuid": "e8389572_6d18e396",
+      "range": {
+        "startLine": 1305,
+        "startChar": 19,
+        "endLine": 1305,
+        "endChar": 24
+      },
+      "revId": "143f602b4bead65cf6efe96289eef6552e35ad95",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
