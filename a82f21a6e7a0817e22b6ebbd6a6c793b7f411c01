@@ -43,6 +43,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a873868a_42200b4a",
+        "filename": "service/java/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-03-30T18:50:29Z",
+      "side": 1,
+      "message": "I do not know what is good/bad as a timer value here.\nI do not think they have a lot in commong",
+      "parentUuid": "b5d65efe_ed99c71a",
+      "range": {
+        "startLine": 130,
+        "startChar": 29,
+        "endLine": 130,
+        "endChar": 44
+      },
+      "revId": "a82f21a6e7a0817e22b6ebbd6a6c793b7f411c01",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f920f1b3_509c0c8d",
         "filename": "service/java/com/android/server/bluetooth/BluetoothManagerService.java",
         "patchSetId": 4
@@ -54,6 +78,24 @@
       "writtenOn": "2023-03-30T17:26:28Z",
       "side": 1,
       "message": "We\u0027ve been trying to be consistent about locking before a try block and unlocking in a finally block.",
+      "revId": "a82f21a6e7a0817e22b6ebbd6a6c793b7f411c01",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "050fca6f_95c36a4e",
+        "filename": "service/java/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 2536,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-03-30T18:50:29Z",
+      "side": 1,
+      "message": "I saw this but we have the exact same pattern 5 lines below in `MESSAGE_TIMEOUT_BIND`.\n\nSince no call and nothing is done beside assigning a value I didn\u0027t put a comment.\nThis is the kind of variable assignement that should go away with a proper refactor with a state machine (one day)",
+      "parentUuid": "f920f1b3_509c0c8d",
       "revId": "a82f21a6e7a0817e22b6ebbd6a6c793b7f411c01",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -71,6 +113,24 @@
       "writtenOn": "2023-03-30T17:32:23Z",
       "side": 1,
       "message": "Do we need to handle the case here where mBluetooth \u003d\u003d null \u0026\u0026 mBinding ?",
+      "revId": "a82f21a6e7a0817e22b6ebbd6a6c793b7f411c01",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7dbbda0b_167fe9b2",
+        "filename": "service/java/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 2730,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-03-30T18:50:29Z",
+      "side": 1,
+      "message": "when mBluetooth \u003d\u003d null and mBinding \u003d\u003d true that mean we have the MESSAGE_TIMEOUT_BIND in the handler queue.\n\nWe shouldn\u0027t have anything to do.",
+      "parentUuid": "ecf007ee_9719e964",
       "revId": "a82f21a6e7a0817e22b6ebbd6a6c793b7f411c01",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
