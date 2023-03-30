@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "db992936_01080742",
+        "filename": "system/rust/src/core/shared_box.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-03-30T21:11:37Z",
+      "side": 1,
+      "message": "Why do we want to allow that ?",
+      "range": {
+        "startLine": 75,
+        "startChar": 32,
+        "endLine": 76,
+        "endChar": 35
+      },
+      "revId": "06694a0d676d3e2213fdd0384a49875b93d10267",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
