@@ -151,6 +151,24 @@
       "parentUuid": "7dbbda0b_167fe9b2",
       "revId": "a82f21a6e7a0817e22b6ebbd6a6c793b7f411c01",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e99b7306_61880e81",
+        "filename": "service/java/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 2730,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-03-30T19:16:44Z",
+      "side": 1,
+      "message": "So receiving a restart timeout while holding a bind timeout should postpone the restart to after the bind timeout ?",
+      "parentUuid": "30edb9cd_0f9ffa04",
+      "revId": "a82f21a6e7a0817e22b6ebbd6a6c793b7f411c01",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
