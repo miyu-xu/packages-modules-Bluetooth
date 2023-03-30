@@ -22,6 +22,30 @@
       },
       "revId": "ec7dd69c2d2b384036aaa6dd8d926c1d6b179081",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6ce1c48b_62cfb8e0",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1054468
+      },
+      "writtenOn": "2023-03-30T17:53:41Z",
+      "side": 1,
+      "message": "The automerger handles clean merges like this without needing merged-in.\n\nThe current issue is that changes merged internally still have not propogated to master.",
+      "parentUuid": "cbc236b2_5ad98887",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 52
+      },
+      "revId": "ec7dd69c2d2b384036aaa6dd8d926c1d6b179081",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
