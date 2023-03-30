@@ -13,6 +13,7 @@ android_test {
     static_libs: [
         "androidx.test.ext.truth",
         "androidx.test.rules",
+        "androidx.core_core",
         "grpc-java-lite",
         "grpc-java-okhttp-client-lite",
         "opencensus-java-contrib-grpc-metrics",
