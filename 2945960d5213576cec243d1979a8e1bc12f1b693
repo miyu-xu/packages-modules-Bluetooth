@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a378d72f_45573fd2",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterProperties.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 679,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-03-30T23:39:58Z",
+      "side": 1,
+      "message": "Comment removed by: Frank Piva; Reason: confidential",
+      "parentUuid": "acdd7f07_558737a7",
+      "range": {
+        "startLine": 679,
+        "startChar": 0,
+        "endLine": 679,
+        "endChar": 54
+      },
+      "revId": "2945960d5213576cec243d1979a8e1bc12f1b693",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "93051061_4a5c3013",
@@ -238,6 +262,30 @@
       "side": 1,
       "message": "This is during completion of a new bonding which will send BONDED intent. Also since we are removing a bonding that will never be used, it should be fine to do it silently.",
       "parentUuid": "1e97f2fe_44ab8653",
+      "range": {
+        "startLine": 712,
+        "startChar": 25,
+        "endLine": 712,
+        "endChar": 41
+      },
+      "revId": "2945960d5213576cec243d1979a8e1bc12f1b693",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "88570b2a_7d9c043c",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterProperties.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 712,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-03-30T23:39:58Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "402d7581_8e4e9d5f",
       "range": {
         "startLine": 712,
         "startChar": 25,

@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b67cb95f_2b94d4a5",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterProperties.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 709,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-03-30T23:39:58Z",
+      "side": 1,
+      "message": "Please use Log.i or infoLog() so that this message is always there",
+      "range": {
+        "startLine": 709,
+        "startChar": 20,
+        "endLine": 709,
+        "endChar": 28
+      },
+      "revId": "5599dada1825846498bf10c49166cc9cde931b06",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aa9ef0ea_5c190882",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/AdapterPropertiesTest.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-03-30T23:39:58Z",
+      "side": 1,
+      "message": "Please fix this WARNING reported by Check Contents: Import specific classes instead of wildcard imports\n\nAnalyzer Description: Validates that changes do not have prohibited expressions in them.\nOwner: ayeaye-team@google.com\n\nImport specific classes instead of wildcard imports",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 18,
+        "endChar": 36
+      },
+      "revId": "5599dada1825846498bf10c49166cc9cde931b06",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e2f82936_537de51b",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/AdapterPropertiesTest.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-03-30T23:39:58Z",
+      "side": 1,
+      "message": "Please fix this WARNING reported by Check Contents: Use go/truth instead of junit asserts.\n\nAnalyzer Description: Validates that changes do not have prohibited expressions in them.\nOwner: ayeaye-team@google.com\n\nUse go/truth instead of junit asserts.",
+      "range": {
+        "startLine": 31,
+        "startChar": 0,
+        "endLine": 31,
+        "endChar": 23
+      },
+      "revId": "5599dada1825846498bf10c49166cc9cde931b06",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
