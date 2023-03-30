@@ -1,0 +1,188 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a0ff9c71_9de4abaf",
+        "filename": "framework/tests/bumble/src/com/android/framework/bluetooth/tests/gatt/LeAdvertisingTest.java",
+        "patchSetId": 27
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-03-30T22:04:49Z",
+      "side": 1,
+      "message": "```\nstartAdvertising()\n    .thenCompose(advAddress -\u003e scan) // or .thenCompose(scan) directly\n    .join()\n```",
+      "range": {
+        "startLine": 103,
+        "startChar": 8,
+        "endLine": 110,
+        "endChar": 64
+      },
+      "revId": "06846c8f5406369adcf8f990975c8c15f85d81fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8c4aad93_214ec889",
+        "filename": "framework/tests/bumble/src/com/android/framework/bluetooth/tests/gatt/LeAdvertisingTest.java",
+        "patchSetId": 27
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-03-30T22:04:49Z",
+      "side": 1,
+      "message": "nit: Move that into a util function",
+      "range": {
+        "startLine": 161,
+        "startChar": 16,
+        "endLine": 168,
+        "endChar": 17
+      },
+      "revId": "06846c8f5406369adcf8f990975c8c15f85d81fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "711d2fff_072dee35",
+        "filename": "framework/tests/bumble/src/com/android/framework/bluetooth/tests/gatt/LeAdvertisingTest.java",
+        "patchSetId": 27
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-03-30T22:04:49Z",
+      "side": 1,
+      "message": "Should we attach that directly to the CompletableFuture with a `\twhenComplete` ?",
+      "range": {
+        "startLine": 173,
+        "startChar": 20,
+        "endLine": 173,
+        "endChar": 52
+      },
+      "revId": "06846c8f5406369adcf8f990975c8c15f85d81fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b7c95746_e15f5be5",
+        "filename": "framework/tests/bumble/src/com/android/framework/bluetooth/tests/gatt/LeAdvertisingTest.java",
+        "patchSetId": 27
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-03-30T22:04:49Z",
+      "side": 1,
+      "message": "Use `completeExceptionally`",
+      "range": {
+        "startLine": 180,
+        "startChar": 15,
+        "endLine": 180,
+        "endChar": 36
+      },
+      "revId": "06846c8f5406369adcf8f990975c8c15f85d81fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6df6b175_54ef4c90",
+        "filename": "framework/tests/bumble/src/com/android/framework/bluetooth/tests/gatt/LeAdvertisingTest.java",
+        "patchSetId": 27
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-03-30T22:04:49Z",
+      "side": 1,
+      "message": "We might want to put an Optional into the future instead and put an empty Option, canceling the CompletableFuture here is not great",
+      "range": {
+        "startLine": 187,
+        "startChar": 16,
+        "endLine": 187,
+        "endChar": 36
+      },
+      "revId": "06846c8f5406369adcf8f990975c8c15f85d81fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "53b140f7_856a95c2",
+        "filename": "framework/tests/bumble/src/com/android/framework/bluetooth/tests/gatt/LeAdvertisingTest.java",
+        "patchSetId": 27
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-03-30T22:04:49Z",
+      "side": 1,
+      "message": "```\nwithCancellation.run(() -\u003e mHostStub.scan(request, responseObserver));\n```",
+      "range": {
+        "startLine": 192,
+        "startChar": 0,
+        "endLine": 196,
+        "endChar": 11
+      },
+      "revId": "06846c8f5406369adcf8f990975c8c15f85d81fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d272aa0a_10587816",
+        "filename": "framework/tests/bumble/src/com/android/framework/bluetooth/tests/gatt/LeAdvertisingTest.java",
+        "patchSetId": 27
+      },
+      "lineNbr": 208,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-03-30T22:04:49Z",
+      "side": 1,
+      "message": "```\n        CancellationListener cancellationListener \u003d context -\u003e future.complete(null);\n```",
+      "range": {
+        "startLine": 204,
+        "startChar": 8,
+        "endLine": 208,
+        "endChar": 10
+      },
+      "revId": "06846c8f5406369adcf8f990975c8c15f85d81fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "11fa0c4e_e0d5043c",
+        "filename": "framework/tests/bumble/src/com/android/framework/bluetooth/tests/gatt/LeAdvertisingTest.java",
+        "patchSetId": 27
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-03-30T22:04:49Z",
+      "side": 1,
+      "message": "Use https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/Executors.html to create an executor",
+      "range": {
+        "startLine": 210,
+        "startChar": 8,
+        "endLine": 215,
+        "endChar": 10
+      },
+      "revId": "06846c8f5406369adcf8f990975c8c15f85d81fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
