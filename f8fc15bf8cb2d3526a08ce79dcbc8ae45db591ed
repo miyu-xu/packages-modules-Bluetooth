@@ -39,6 +39,30 @@
       },
       "revId": "f8fc15bf8cb2d3526a08ce79dcbc8ae45db591ed",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ef54ea98_df74992c",
+        "filename": "system/gd/os/syslog.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-03-30T20:07:28Z",
+      "side": 1,
+      "message": "Yes -- actual syslog has more critical values as lower values and the actual integer values for each of these can be different based on the syslog implementation.\n\nThe LOG_TAG is used as a mapping within Bluetooth.\n\nI\u0027ve deduplicated it into a log_tags header since I can\u0027t #include \"gd/os/log.h\" here (I get duplicate definitions of `LOG_DEBUG`, etc)",
+      "parentUuid": "b2c0cc4b_8049d200",
+      "range": {
+        "startLine": 30,
+        "startChar": 0,
+        "endLine": 36,
+        "endChar": 17
+      },
+      "revId": "f8fc15bf8cb2d3526a08ce79dcbc8ae45db591ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
