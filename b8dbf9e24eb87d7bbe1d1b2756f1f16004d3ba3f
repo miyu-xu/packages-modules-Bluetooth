@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b132a93c_4799e1e3",
+        "filename": "system/gd/rust/common/src/init_flags.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 324,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-03-30T20:49:33Z",
+      "side": 1,
+      "message": "It\u0027s ugly to have to do it twice.  Is this just for the log line on 327, or are there more logs in the InitFlags process?",
+      "range": {
+        "startLine": 324,
+        "startChar": 11,
+        "endLine": 324,
+        "endChar": 23
+      },
+      "revId": "b8dbf9e24eb87d7bbe1d1b2756f1f16004d3ba3f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
