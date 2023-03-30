@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a6cd4787_3cc331bc",
+        "filename": "android/app/tests/myinstrumentation/Android.bp",
+        "patchSetId": 26
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1986325
+      },
+      "writtenOn": "2023-03-30T20:27:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "65af27d9_811433b2",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 18,
+        "endChar": 41
+      },
+      "revId": "cec905210084c61834199444ed96d470af6df6a8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "43947611_5cb37ab7",
@@ -41,6 +65,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3bfe03ae_0c980d99",
+        "filename": "android/app/tests/myinstrumentation/Android.bp",
+        "patchSetId": 26
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1986325
+      },
+      "writtenOn": "2023-03-30T20:27:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "43947611_5cb37ab7",
+      "revId": "cec905210084c61834199444ed96d470af6df6a8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bb1b2510_c8490e72",
@@ -54,6 +96,30 @@
       "writtenOn": "2023-03-28T16:57:48Z",
       "side": 1,
       "message": "nit: Add space before `[`",
+      "range": {
+        "startLine": 34,
+        "startChar": 9,
+        "endLine": 34,
+        "endChar": 10
+      },
+      "revId": "cec905210084c61834199444ed96d470af6df6a8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "934b64df_80b41f3b",
+        "filename": "android/app/tests/myinstrumentation/Android.bp",
+        "patchSetId": 26
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1986325
+      },
+      "writtenOn": "2023-03-30T20:27:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bb1b2510_c8490e72",
       "range": {
         "startLine": 34,
         "startChar": 9,
@@ -111,6 +177,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "83ef5be8_a751c159",
+        "filename": "android/app/tests/myinstrumentation/Android.bp",
+        "patchSetId": 26
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1986325
+      },
+      "writtenOn": "2023-03-30T20:27:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9447ceee_06e36a83",
+      "range": {
+        "startLine": 43,
+        "startChar": 11,
+        "endLine": 43,
+        "endChar": 38
+      },
+      "revId": "cec905210084c61834199444ed96d470af6df6a8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "92ee454d_10b6292a",
@@ -124,6 +214,24 @@
       "writtenOn": "2023-03-28T16:57:48Z",
       "side": 1,
       "message": "I don\u0027t think we need a default here as it\u0027s only used once.\nCould you inline all the properties inside the android test ?",
+      "revId": "cec905210084c61834199444ed96d470af6df6a8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9bec3be5_5831e75d",
+        "filename": "android/app/tests/myinstrumentation/Android.bp",
+        "patchSetId": 26
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1986325
+      },
+      "writtenOn": "2023-03-30T20:27:50Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "92ee454d_10b6292a",
       "revId": "cec905210084c61834199444ed96d470af6df6a8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -175,6 +283,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "23fecfbe_bbf8a851",
+        "filename": "android/app/tests/myinstrumentation/AndroidTest.xml",
+        "patchSetId": 26
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1986325
+      },
+      "writtenOn": "2023-03-30T20:27:50Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "189f4010_20cf792c",
+      "range": {
+        "startLine": 47,
+        "startChar": 7,
+        "endLine": 47,
+        "endChar": 56
+      },
+      "revId": "cec905210084c61834199444ed96d470af6df6a8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7b2aea38_6ef1bfe3",
@@ -188,6 +320,24 @@
       "writtenOn": "2023-03-28T16:57:48Z",
       "side": 1,
       "message": "Add `      \u003coption name\u003d\"mainline-module-package-name\" value\u003d\"com.google.android.btservices\" /\u003e\n` as well",
+      "revId": "cec905210084c61834199444ed96d470af6df6a8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0efb3489_12501dd2",
+        "filename": "android/app/tests/myinstrumentation/AndroidTest.xml",
+        "patchSetId": 26
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1986325
+      },
+      "writtenOn": "2023-03-30T20:27:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7b2aea38_6ef1bfe3",
       "revId": "cec905210084c61834199444ed96d470af6df6a8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -227,6 +377,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f8d3ff11_6ab5612c",
+        "filename": "android/app/tests/myinstrumentation/src/com/android/bluetooth/gatt/LeAdvertisingTest.java",
+        "patchSetId": 26
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1986325
+      },
+      "writtenOn": "2023-03-30T20:27:50Z",
+      "side": 1,
+      "message": "maybe the next sample in kt.",
+      "parentUuid": "4cadd3d8_884abd6e",
+      "revId": "cec905210084c61834199444ed96d470af6df6a8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4b1bdf30_48734b54",
@@ -244,6 +412,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "67f54938_c7a9a4fc",
+        "filename": "android/app/tests/myinstrumentation/src/com/android/bluetooth/gatt/LeAdvertisingTest.java",
+        "patchSetId": 26
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1986325
+      },
+      "writtenOn": "2023-03-30T20:27:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4b1bdf30_48734b54",
+      "revId": "cec905210084c61834199444ed96d470af6df6a8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e6c7f158_cd71f8c7",
@@ -257,6 +443,30 @@
       "writtenOn": "2023-03-28T16:57:48Z",
       "side": 1,
       "message": "Do we really want to restart Bluetooth here ?\n\nIt would make sense to restart Bluetooth between every tests in `setUp`, but we might not want that as this is really slow.\n\nRestarting it per class however seems strange, I would prefer that either:\n- We restart it between each tests\n- We restart it before running all the tests (inside the AndroidTest.xml)",
+      "range": {
+        "startLine": 80,
+        "startChar": 8,
+        "endLine": 121,
+        "endChar": 0
+      },
+      "revId": "cec905210084c61834199444ed96d470af6df6a8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "07d9f1a0_d1586318",
+        "filename": "android/app/tests/myinstrumentation/src/com/android/bluetooth/gatt/LeAdvertisingTest.java",
+        "patchSetId": 26
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1986325
+      },
+      "writtenOn": "2023-03-30T20:27:50Z",
+      "side": 1,
+      "message": "sounds good.",
+      "parentUuid": "e6c7f158_cd71f8c7",
       "range": {
         "startLine": 80,
         "startChar": 8,
@@ -290,6 +500,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4f41bb19_f863c5a0",
+        "filename": "android/app/tests/myinstrumentation/src/com/android/bluetooth/gatt/LeAdvertisingTest.java",
+        "patchSetId": 26
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1986325
+      },
+      "writtenOn": "2023-03-30T20:27:50Z",
+      "side": 1,
+      "message": "I\u0027ll try CompletableFuture.",
+      "parentUuid": "235fb26a_2a1270fc",
+      "range": {
+        "startLine": 130,
+        "startChar": 0,
+        "endLine": 130,
+        "endChar": 64
+      },
+      "revId": "cec905210084c61834199444ed96d470af6df6a8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "87eb9caf_64b495b5",
@@ -303,6 +537,30 @@
       "writtenOn": "2023-03-28T16:57:48Z",
       "side": 1,
       "message": "nit: make a constant",
+      "range": {
+        "startLine": 147,
+        "startChar": 55,
+        "endLine": 147,
+        "endChar": 59
+      },
+      "revId": "cec905210084c61834199444ed96d470af6df6a8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0760445c_e1d55d2c",
+        "filename": "android/app/tests/myinstrumentation/src/com/android/bluetooth/gatt/LeAdvertisingTest.java",
+        "patchSetId": 26
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1986325
+      },
+      "writtenOn": "2023-03-30T20:27:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "87eb9caf_64b495b5",
       "range": {
         "startLine": 147,
         "startChar": 55,
@@ -338,6 +596,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "766b1b94_d9399933",
+        "filename": "android/app/tests/myinstrumentation/src/com/android/bluetooth/gatt/LeAdvertisingTest.java",
+        "patchSetId": 26
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 1986325
+      },
+      "writtenOn": "2023-03-30T20:27:50Z",
+      "side": 1,
+      "message": "what do you think of using the timeout in `CompletableFuture.get(TIMEOUT, TIMEUNIT)` ?",
+      "parentUuid": "a023db30_f999af25",
+      "range": {
+        "startLine": 163,
+        "startChar": 36,
+        "endLine": 163,
+        "endChar": 80
+      },
+      "revId": "cec905210084c61834199444ed96d470af6df6a8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "430b60b1_ddbba29a",
         "filename": "android/app/tests/myinstrumentation/src/com/android/bluetooth/gatt/LeAdvertisingTest.java",
         "patchSetId": 26
@@ -349,6 +631,30 @@
       "writtenOn": "2023-03-28T16:57:48Z",
       "side": 1,
       "message": "I don\u0027t think this should go inside `setUpClass` but instead inside the test",
+      "range": {
+        "startLine": 123,
+        "startChar": 0,
+        "endLine": 166,
+        "endChar": 54
+      },
+      "revId": "cec905210084c61834199444ed96d470af6df6a8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f5bb9749_26f21471",
+        "filename": "android/app/tests/myinstrumentation/src/com/android/bluetooth/gatt/LeAdvertisingTest.java",
+        "patchSetId": 26
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 1986325
+      },
+      "writtenOn": "2023-03-30T20:27:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "430b60b1_ddbba29a",
       "range": {
         "startLine": 123,
         "startChar": 0,
@@ -372,6 +678,30 @@
       "writtenOn": "2023-03-28T16:57:48Z",
       "side": 1,
       "message": "Is there a case where this is true ?",
+      "range": {
+        "startLine": 198,
+        "startChar": 0,
+        "endLine": 198,
+        "endChar": 31
+      },
+      "revId": "cec905210084c61834199444ed96d470af6df6a8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e74014e3_d32806b4",
+        "filename": "android/app/tests/myinstrumentation/src/com/android/bluetooth/gatt/LeAdvertisingTest.java",
+        "patchSetId": 26
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 1986325
+      },
+      "writtenOn": "2023-03-30T20:27:50Z",
+      "side": 1,
+      "message": "I was just thinking it\u0027s a global variable, could be messed up to null maybe. better to have a check before calling it. But yes it should never be null at tearDown.",
+      "parentUuid": "b97e53c3_5d077a24",
       "range": {
         "startLine": 198,
         "startChar": 0,
@@ -419,6 +749,30 @@
       "side": 1,
       "message": "Agreed, both names are fine for me, but it\u0027s indeed better to have them in a separate folder",
       "parentUuid": "3a5479e3_8bcc59ec",
+      "range": {
+        "startLine": 71,
+        "startChar": 38,
+        "endLine": 71,
+        "endChar": 73
+      },
+      "revId": "cec905210084c61834199444ed96d470af6df6a8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e804d0e6_16a3d38e",
+        "filename": "framework/Android.bp",
+        "patchSetId": 26
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1986325
+      },
+      "writtenOn": "2023-03-30T20:27:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a9ba87bc_4b78dbfa",
       "range": {
         "startLine": 71,
         "startChar": 38,
