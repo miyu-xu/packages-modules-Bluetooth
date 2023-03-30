@@ -16,6 +16,69 @@
       "message": "@wescande@google.com could you please take a look? Thanks!",
       "revId": "03e8a06cd5f063586a6c3de81bd92d1536acacfd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c32d1477_8da576d2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-03-30T17:46:19Z",
+      "side": 1,
+      "message": "This looks like three changes to me.  Can we separate them and make sure that we understand what helps which symptoms?",
+      "revId": "03e8a06cd5f063586a6c3de81bd92d1536acacfd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "04c8593e_959479a6",
+        "filename": "system/gd/hal/hci_hal_android_hidl.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 443,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-03-30T17:46:19Z",
+      "side": 1,
+      "message": "This time shouldn\u0027t be related to firmware download.  Firmware download should happen after you call Initialize().\n\nThis is just the delay to find the HAL service, which should be started and running before Bluetooth is started.",
+      "range": {
+        "startLine": 443,
+        "startChar": 4,
+        "endLine": 443,
+        "endChar": 25
+      },
+      "revId": "03e8a06cd5f063586a6c3de81bd92d1536acacfd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e687ce5a_da5eeda3",
+        "filename": "system/gd/hci/hci_layer.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 285,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-03-30T17:46:19Z",
+      "side": 1,
+      "message": "This one could be related to firmware download if it always happens on the first reset.",
+      "range": {
+        "startLine": 285,
+        "startChar": 10,
+        "endLine": 285,
+        "endChar": 28
+      },
+      "revId": "03e8a06cd5f063586a6c3de81bd92d1536acacfd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
