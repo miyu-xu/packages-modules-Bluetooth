@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "454ed134_4de849c6",
+        "filename": "tools/rootcanal/model/controller/controller_properties.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-03-30T16:42:00Z",
+      "side": 1,
+      "message": "Should we add these bits as an enum in PDL?",
+      "range": {
+        "startLine": 144,
+        "startChar": 29,
+        "endLine": 144,
+        "endChar": 32
+      },
+      "revId": "b8350f1ac3b5c6509b5113b7a8f8ae60bd846cc0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
