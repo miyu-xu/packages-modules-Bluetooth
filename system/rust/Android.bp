@@ -118,6 +118,8 @@ cc_library_static {
         "libbluetooth-core",
         "libbt_shim_ffi",
         "libbt_shim_bridge",
+
+        "libflatbuffers-cpp",
     ],
     generated_headers: [
         "cxx-bridge-header",
