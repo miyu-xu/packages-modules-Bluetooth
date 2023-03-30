@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "739d5c70_60090b2a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-03-30T23:32:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "60d0e8ae_84f22abd",
+      "revId": "5245fe0f05e5301bd63c46a94f264a44d58281ae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1543d993_949d271b",
@@ -207,6 +225,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9412da5d_7928f6cf",
+        "filename": "android/pandora/test/asha_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 481,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-03-30T23:32:40Z",
+      "side": 1,
+      "message": "stop added",
+      "parentUuid": "56029fc1_8b1a3916",
+      "range": {
+        "startLine": 479,
+        "startChar": 0,
+        "endLine": 481,
+        "endChar": 33
+      },
+      "revId": "5245fe0f05e5301bd63c46a94f264a44d58281ae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "73f917f2_aa259086",
@@ -220,6 +262,30 @@
       "writtenOn": "2023-03-27T23:24:32Z",
       "side": 1,
       "message": "Same as above, waiting for a command which is never triggered.",
+      "range": {
+        "startLine": 520,
+        "startChar": 0,
+        "endLine": 523,
+        "endChar": 33
+      },
+      "revId": "5245fe0f05e5301bd63c46a94f264a44d58281ae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "73fcb9fc_8c8e30e9",
+        "filename": "android/pandora/test/asha_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 523,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-03-30T23:32:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "73f917f2_aa259086",
       "range": {
         "startLine": 520,
         "startChar": 0,
@@ -267,6 +333,30 @@
       "side": 1,
       "message": "test with `start` after `stop` for a restart. I will update the test",
       "parentUuid": "8b3f6ead_4d8fe28f",
+      "range": {
+        "startLine": 537,
+        "startChar": 0,
+        "endLine": 545,
+        "endChar": 21
+      },
+      "revId": "5245fe0f05e5301bd63c46a94f264a44d58281ae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3241fe69_d8f49845",
+        "filename": "android/pandora/test/asha_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 545,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-03-30T23:32:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c613ea3b_86fb44ae",
       "range": {
         "startLine": 537,
         "startChar": 0,
