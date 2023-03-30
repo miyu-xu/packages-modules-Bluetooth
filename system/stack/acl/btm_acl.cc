@@ -58,6 +58,7 @@
 #include "osi/include/log.h"
 #include "osi/include/osi.h"  // UNUSED_ATTR
 #include "osi/include/properties.h"
+#include "rust/src/connection/ffi/connection_shim.h"
 #include "stack/acl/acl.h"
 #include "stack/acl/peer_packet_types.h"
 #include "stack/btm/btm_dev.h"
@@ -201,6 +202,12 @@ static void hci_btsnd_hcic_disconnect(tACL_CONN& p_acl, tHCI_STATUS reason,
            ADDRESS_TO_LOGGABLE_CSTR(p_acl.remote_addr),
            hci_error_code_text(reason).c_str(), comment.c_str());
   p_acl.disconnect_reason = reason;
+
+  if (!p_acl.is_transport_br_edr()) {
+    bluetooth::connection::StopAllConnectionsToDevice(
+        tBLE_BD_ADDR{.bda = p_acl.active_remote_addr,
+                     .type = p_acl.active_remote_addr_type});
+  }
 
   return bluetooth::shim::ACL_Disconnect(
       p_acl.hci_handle, p_acl.is_transport_br_edr(), reason, comment);
@@ -2800,8 +2807,10 @@ bool acl_create_le_connection_with_id(uint8_t id, const RawAddress& bd_addr,
       android::bluetooth::le::LeConnectionState::STATE_LE_ACL_START,
       argument_list);
 
-  bluetooth::shim::ACL_AcceptLeConnectionFrom(address_with_type,
-                                              /* is_direct */ true);
+  bluetooth::connection::StartDirectConnection(id, address_with_type);
+
+  // bluetooth::shim::ACL_AcceptLeConnectionFrom(address_with_type,
+  //                                             /* is_direct */ true);
   return true;
 }
 
