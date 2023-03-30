@@ -122,6 +122,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d01de31e_0c5c9f6f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-03-30T18:43:14Z",
+      "side": 1,
+      "message": "We can\u0027t do this dynamically from other processes right now and we need to be able to enable debug logging for dogfooding scenarios (i.e. through browser flags). That\u0027s why sysprops doesn\u0027t work well for us (ChromeOS doesn\u0027t really support something like this).",
+      "parentUuid": "e75a9c44_c4b1a123",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 0
+      },
+      "revId": "f82e9dbc32b3258432636d428e162436011856c4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "dc6e494a_4e284861",
         "filename": "system/gd/os/log.h",
         "patchSetId": 1
@@ -285,6 +309,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5c02588b_9645694e",
+        "filename": "system/gd/rust/common/src/init_flags.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 249,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-03-30T18:43:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "91a7fcf5_3c0c8dfe",
+      "range": {
+        "startLine": 249,
+        "startChar": 7,
+        "endLine": 249,
+        "endChar": 33
+      },
+      "revId": "f82e9dbc32b3258432636d428e162436011856c4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "40e6ff71_5d5892bf",
@@ -322,6 +370,30 @@
       "side": 1,
       "message": "Ack, in next revision",
       "parentUuid": "40e6ff71_5d5892bf",
+      "range": {
+        "startLine": 310,
+        "startChar": 0,
+        "endLine": 310,
+        "endChar": 56
+      },
+      "revId": "f82e9dbc32b3258432636d428e162436011856c4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8530b8a4_b2bf2987",
+        "filename": "system/gd/rust/common/src/init_flags.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 310,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-03-30T18:43:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "61cdd383_dfbb87eb",
       "range": {
         "startLine": 310,
         "startChar": 0,
@@ -399,6 +471,24 @@
       "side": 1,
       "message": "No concern. I can also help to move some of the logs from DEBUG to VERBSOE, especially those related to data routing, encoding and decoding.",
       "parentUuid": "57fc862b_a5aaf238",
+      "revId": "f82e9dbc32b3258432636d428e162436011856c4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "52aafdfe_10a2f33b",
+        "filename": "system/gd/rust/linux/service/src/main.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-03-30T18:43:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5f4cd76d_290fd3c9",
       "revId": "f82e9dbc32b3258432636d428e162436011856c4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }

@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0e734939_efaafafb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-03-30T18:43:14Z",
+      "side": 1,
+      "message": "wescande@ PTAL at the refactor. Took your advice and ripped out the old \"INIT_debug_logging_for_all\" in favor of a `default_log_level` instead.",
+      "revId": "f8fc15bf8cb2d3526a08ce79dcbc8ae45db591ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
