@@ -174,7 +174,6 @@ android_app {
         "mmslib",
         "modules-utils-backgroundthread",
         "modules-utils-bytesmatcher",
-        "modules-utils-synchronous-result-receiver",
         "modules-utils-statemachine",
         "sap-api-java-static",
         "net-utils-services-common",
