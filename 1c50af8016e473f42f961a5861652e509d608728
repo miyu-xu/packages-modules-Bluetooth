@@ -87,6 +87,24 @@
       "parentUuid": "e5100078_96ae37bf",
       "revId": "1c50af8016e473f42f961a5861652e509d608728",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f420acfc_7d8abbf0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-03-30T21:55:08Z",
+      "side": 1,
+      "message": "I staged a CL that enables that test on top of this one.",
+      "parentUuid": "e12eb3a1_02a848e6",
+      "revId": "1c50af8016e473f42f961a5861652e509d608728",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
