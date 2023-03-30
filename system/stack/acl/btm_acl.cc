@@ -53,10 +53,12 @@
 #include "main/shim/l2c_api.h"
 #include "main/shim/metrics_api.h"
 #include "main/shim/shim.h"
+#include "os/metrics.h"
 #include "osi/include/allocator.h"
 #include "osi/include/log.h"
 #include "osi/include/osi.h"  // UNUSED_ATTR
 #include "osi/include/properties.h"
+#include "rust/src/connection/ffi/connection_shim.h"
 #include "stack/acl/acl.h"
 #include "stack/acl/peer_packet_types.h"
 #include "stack/btm/btm_dev.h"
@@ -75,7 +77,6 @@
 #include "stack/include/sco_hci_link_interface.h"
 #include "types/hci_role.h"
 #include "types/raw_address.h"
-#include "os/metrics.h"
 
 #ifndef PROPERTY_LINK_SUPERVISION_TIMEOUT
 #define PROPERTY_LINK_SUPERVISION_TIMEOUT \
@@ -201,6 +202,12 @@ static void hci_btsnd_hcic_disconnect(tACL_CONN& p_acl, tHCI_STATUS reason,
            ADDRESS_TO_LOGGABLE_CSTR(p_acl.remote_addr),
            hci_error_code_text(reason).c_str(), comment.c_str());
   p_acl.disconnect_reason = reason;
+
+  if (!p_acl.is_transport_br_edr()) {
+    bluetooth::connection::StopAllConnectionsToDevice(
+        tBLE_BD_ADDR{.bda = p_acl.active_remote_addr,
+                     .type = p_acl.active_remote_addr_type});
+  }
 
   return bluetooth::shim::ACL_Disconnect(
       p_acl.hci_handle, p_acl.is_transport_br_edr(), reason, comment);
@@ -446,11 +453,6 @@ void btm_acl_created(const RawAddress& bda, uint16_t hci_handle,
     btm_set_link_policy(p_acl, btm_cb.acl_cb_.DefaultLinkPolicy());
   }
 
-  if (transport == BT_TRANSPORT_LE) {
-    btm_ble_refresh_local_resolvable_private_addr(
-        bda, btm_cb.ble_ctr_cb.addr_mgnt_cb.private_addr);
-  }
-
   // save remote properties to iot conf file
   btm_iot_save_remote_properties(p_acl);
 
@@ -476,15 +478,6 @@ void btm_acl_created(const RawAddress& bda, uint16_t hci_handle,
 void btm_acl_create_failed(const RawAddress& bda, tBT_TRANSPORT transport,
                            tHCI_STATUS hci_status) {
   BTA_dm_acl_up_failed(bda, transport, hci_status);
-}
-
-void btm_acl_update_conn_addr(uint16_t handle, const RawAddress& address) {
-  tACL_CONN* p_acl = internal_.acl_get_connection_from_handle(handle);
-  if (p_acl == nullptr) {
-    LOG_WARN("Unable to find active acl");
-    return;
-  }
-  p_acl->conn_addr = address;
 }
 
 void btm_configure_data_path(uint8_t direction, uint8_t path_id,
@@ -2440,35 +2433,6 @@ const RawAddress acl_address_from_handle(uint16_t handle) {
   return p_acl->remote_addr;
 }
 
-/*******************************************************************************
- *
- * Function         btm_ble_refresh_local_resolvable_private_addr
- *
- * Description      This function refresh the currently used resolvable private
- *                  address for the active link to the remote device
- *
- ******************************************************************************/
-void btm_ble_refresh_local_resolvable_private_addr(
-    const RawAddress& pseudo_addr, const RawAddress& local_rpa) {
-  tACL_CONN* p_acl = internal_.btm_bda_to_acl(pseudo_addr, BT_TRANSPORT_LE);
-  if (p_acl == nullptr) {
-    LOG_WARN("Unable to find active acl");
-    return;
-  }
-
-  if (btm_cb.ble_ctr_cb.privacy_mode == BTM_PRIVACY_NONE) {
-    p_acl->conn_addr_type = BLE_ADDR_PUBLIC;
-    p_acl->conn_addr = *controller_get_interface()->get_address();
-  } else {
-    p_acl->conn_addr_type = BLE_ADDR_RANDOM;
-    if (local_rpa.IsEmpty()) {
-      p_acl->conn_addr = btm_cb.ble_ctr_cb.addr_mgnt_cb.private_addr;
-    } else {
-      p_acl->conn_addr = local_rpa;
-    }
-  }
-}
-
 bool sco_peer_supports_esco_2m_phy(const RawAddress& remote_bda) {
   uint8_t* features = BTM_ReadRemoteFeatures(remote_bda);
   if (features == nullptr) {
@@ -2843,8 +2807,10 @@ bool acl_create_le_connection_with_id(uint8_t id, const RawAddress& bd_addr,
       android::bluetooth::le::LeConnectionState::STATE_LE_ACL_START,
       argument_list);
 
-  bluetooth::shim::ACL_AcceptLeConnectionFrom(address_with_type,
-                                              /* is_direct */ true);
+  bluetooth::connection::StartDirectConnection(id, address_with_type);
+
+  // bluetooth::shim::ACL_AcceptLeConnectionFrom(address_with_type,
+  //                                             /* is_direct */ true);
   return true;
 }
 
