@@ -105,6 +105,13 @@ class MediaPlayer(val context: Context) : MediaPlayerImplBase(), Closeable {
     }
   }
 
+  override fun setShuffleMode(request: Empty, responseObserver: StreamObserver<Empty>) {
+    grpcUnary<Empty>(scope, responseObserver) {
+      MediaPlayerBrowserService.instance.setShuffleMode()
+      Empty.getDefaultInstance()
+    }
+  }
+
   override fun close() {
     // Deinit the CoroutineScope
     scope.cancel()

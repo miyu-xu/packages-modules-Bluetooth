@@ -702,7 +702,7 @@ class AVRCPProxy(ProfileProxy):
         """
 
         self.mediaplayer.Play()
-        self.mediaplayer.Shuffle()
+        self.mediaplayer.SetShuffleMode()
 
         return "OK"
 
