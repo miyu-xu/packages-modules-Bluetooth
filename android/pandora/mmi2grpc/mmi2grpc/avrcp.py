@@ -666,8 +666,6 @@ class AVRCPProxy(ProfileProxy):
         Application Setting Value] command sent by the PTS.
         """
 
-        self.mediaplayer.Play()
-
         return "OK"
 
     @assert_description
@@ -701,8 +699,7 @@ class AVRCPProxy(ProfileProxy):
         Player Application Setting Changed Notification to the PTS.
         """
 
-        self.mediaplayer.Play()
-        self.mediaplayer.Shuffle()
+        self.mediaplayer.SetShuffleMode()
 
         return "OK"
 
