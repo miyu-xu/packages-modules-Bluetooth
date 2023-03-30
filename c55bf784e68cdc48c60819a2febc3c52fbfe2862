@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fa5ae995_0261c169",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 604,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2023-03-30T07:53:03Z",
+      "side": 1,
+      "message": "Let\u0027s make the audio manager the only source of truth. We can get the mute state from there, just in case it is possible to change the volume level while keeping the stream muted.",
+      "range": {
+        "startLine": 604,
+        "startChar": 8,
+        "endLine": 604,
+        "endChar": 71
+      },
+      "revId": "c55bf784e68cdc48c60819a2febc3c52fbfe2862",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
