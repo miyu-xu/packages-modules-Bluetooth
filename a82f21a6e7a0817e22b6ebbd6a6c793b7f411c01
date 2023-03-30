@@ -133,6 +133,24 @@
       "parentUuid": "ecf007ee_9719e964",
       "revId": "a82f21a6e7a0817e22b6ebbd6a6c793b7f411c01",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "30edb9cd_0f9ffa04",
+        "filename": "service/java/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 2730,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-03-30T18:52:29Z",
+      "side": 1,
+      "message": "The problem I see is when we get a restart timeout instead of the bind timeout because they are the same.  If the bind timeout was always shorter, I would agree.",
+      "parentUuid": "7dbbda0b_167fe9b2",
+      "revId": "a82f21a6e7a0817e22b6ebbd6a6c793b7f411c01",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
