@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9e24ef46_a25ac48e",
+        "filename": "system/conf/interop_database.conf",
+        "patchSetId": 1
+      },
+      "lineNbr": 798,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-03-30T17:14:56Z",
+      "side": 0,
+      "message": "Do we know why it was added here ?",
+      "revId": "6cd7123ece8cd7fc5e4a42ae09e410be297cd437",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
