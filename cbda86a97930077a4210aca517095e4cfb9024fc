@@ -109,6 +109,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "df9cdbaf_5f7a366b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1984885
+      },
+      "writtenOn": "2023-03-30T08:29:56Z",
+      "side": 1,
+      "message": "there is error when I run git clang-format, but I have run \"clang-format --style\u003dGoogle -i file\" for every file",
+      "parentUuid": "7c8698b0_c8bf29e2",
+      "revId": "cbda86a97930077a4210aca517095e4cfb9024fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c2907dca_5a3d9135",
         "filename": "system/bta/av/bta_av_aact.cc",
         "patchSetId": 6
