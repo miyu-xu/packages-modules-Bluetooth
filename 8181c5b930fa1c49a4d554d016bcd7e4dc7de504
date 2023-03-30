@@ -16,6 +16,24 @@
       "message": "If we receive BTA_HH_INT_OPEN_EVT, do we want to always use BREDR, or also try HOGP? Previously we would try both, but now we will always do HID-over-classic",
       "revId": "8181c5b930fa1c49a4d554d016bcd7e4dc7de504",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "34d9477e_48a13929",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2023-03-30T20:09:46Z",
+      "side": 1,
+      "message": "This message is generated when BR/EDR HID reconnection is initiated by the remote device. It is not applicable for HOGP.\nhidh_l2cif_config_cfm() -\u003e HID_HDEV_EVT_OPEN -\u003e bta_hh_cback() -\u003e BTA_HH_INT_OPEN_EVT",
+      "parentUuid": "f36d107c_76fd7f06",
+      "revId": "8181c5b930fa1c49a4d554d016bcd7e4dc7de504",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
