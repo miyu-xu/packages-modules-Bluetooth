@@ -132,6 +132,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "bffe9da8_5ba29436",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterProperties.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 706,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2023-03-30T16:48:16Z",
+      "side": 1,
+      "message": "I was going to ask why we are still not comparing the address type of the identity address but then I realized that the stack wrongly assumes that the identity address is always a public address.\nUse of static random addresses is prevalent in the LE-only devices since it is very cost effective.\nChances of a static random address matching a public identity address of another device are extremely low. However if it happens, we may end up removing the security record of one of them.\nI think we should remove the address type check for now. And raise a separate bug to add the address type to the identity address.",
+      "parentUuid": "87eb4135_ecfe830d",
+      "revId": "2945960d5213576cec243d1979a8e1bc12f1b693",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d683f27f_97ac309c",
         "filename": "android/app/src/com/android/bluetooth/btservice/AdapterProperties.java",
         "patchSetId": 11
