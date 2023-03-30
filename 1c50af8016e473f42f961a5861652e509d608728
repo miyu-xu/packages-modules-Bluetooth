@@ -69,6 +69,24 @@
       "parentUuid": "2019bcf4_db164fe9",
       "revId": "1c50af8016e473f42f961a5861652e509d608728",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e12eb3a1_02a848e6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-03-30T18:15:56Z",
+      "side": 1,
+      "message": "As part of this change, it would be nice to enable that test in pts-bot.\n\npackages/modules/Bluetooth/android/pandora/server/configs/pts_bot_tests_config.json\n\nRemove it from the skipped tests and add it to passing tests.",
+      "parentUuid": "e5100078_96ae37bf",
+      "revId": "1c50af8016e473f42f961a5861652e509d608728",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
