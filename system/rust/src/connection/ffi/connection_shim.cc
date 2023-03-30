@@ -24,7 +24,11 @@
 #include "hci/hci_packets.h"
 #include "main/shim/entry.h"
 #include "src/connection/ffi.rs.h"
+#include "src/core/ffi/types.h"
 #include "stack/btm/btm_dev.h"
+
+extern const tBLE_BD_ADDR convert_to_address_with_type(
+    const RawAddress& bd_addr, const tBTM_SEC_DEV_REC* p_dev_rec);
 
 namespace bluetooth {
 namespace connection {
@@ -122,6 +126,12 @@ void RegisterRustApis(
       start_direct_connection,          stop_direct_connection,
       add_background_connection,        remove_background_connection,
       stop_all_connections_from_client, stop_all_connections_to_device};
+}
+
+core::AddressWithType ResolveRawAddress(RawAddress bd_addr) {
+  tBTM_SEC_DEV_REC* p_dev_rec = btm_find_dev(bd_addr);
+  tBLE_BD_ADDR address = convert_to_address_with_type(bd_addr, p_dev_rec);
+  return core::ToRustAddress(address);
 }
 
 }  // namespace connection
