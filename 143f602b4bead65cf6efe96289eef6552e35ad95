@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c3b4c3b0_42a970e1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2023-03-30T09:11:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f4473a1f_30995209",
+      "range": {
+        "startLine": 15,
+        "startChar": 5,
+        "endLine": 15,
+        "endChar": 14
+      },
+      "revId": "143f602b4bead65cf6efe96289eef6552e35ad95",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b1a078bf_359c5e71",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-03-30T06:39:15Z",
       "side": 1,
       "message": "Use spaces instead of tab.",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 18,
+        "endChar": 1
+      },
+      "revId": "143f602b4bead65cf6efe96289eef6552e35ad95",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2b50b657_dd1bcedd",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2023-03-30T09:11:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b1a078bf_359c5e71",
       "range": {
         "startLine": 18,
         "startChar": 0,
@@ -196,6 +244,30 @@
       "side": 1,
       "message": "+1 to keep it Nullable.\nIf we want to make it NonNull, then we should modify other Services as well.\nIt would be better to align with other Services.",
       "parentUuid": "0d7800fb_64feab1c",
+      "range": {
+        "startLine": 1305,
+        "startChar": 19,
+        "endLine": 1305,
+        "endChar": 24
+      },
+      "revId": "143f602b4bead65cf6efe96289eef6552e35ad95",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "768b98fd_34802f11",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1305,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2023-03-30T09:11:25Z",
+      "side": 1,
+      "message": "Sounds reasonable. Then I\u0027ll make it as `return removeActiveDevice(false)`, and remove @NonNull annotation.\n\nBut FYI, the A2DP service is already changed like this, and some of the other services (HearingAidService, HfpService, ...) will become like this too.\n\nI think we\u0027ll need to enforce this @NonNull to BT team sometime in future, and remove this kind of fallback code.",
+      "parentUuid": "26893733_00ca98f9",
       "range": {
         "startLine": 1305,
         "startChar": 19,
