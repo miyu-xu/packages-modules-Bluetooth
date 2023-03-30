@@ -23,6 +23,11 @@ impl<T> SharedBox<T> {
         Self(t.into())
     }
 
+    /// Constructor supplying a WeakBox<T> to the child, if T contains circular references
+    pub fn new_cyclic(f: impl FnOnce(WeakBox<T>) -> T) -> Self {
+        Self(Rc::new_cyclic(|weak| f(WeakBox(weak.clone()))))
+    }
+
     /// Produce a weak reference to the contents
     pub fn downgrade(&self) -> WeakBox<T> {
         WeakBox(Rc::downgrade(&self.0))
