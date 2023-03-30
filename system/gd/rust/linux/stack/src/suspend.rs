@@ -1,6 +1,8 @@
 //! Suspend/Resume API.
 
-use crate::bluetooth::{Bluetooth, BluetoothDevice, BtifBluetoothCallbacks, DelayedActions};
+use crate::bluetooth::{
+    Bluetooth, BluetoothDevice, BtifBluetoothCallbacks, DelayedActions, IBluetoothQA,
+};
 use crate::bluetooth_media::BluetoothMedia;
 use crate::callbacks::Callbacks;
 use crate::{BluetoothGatt, Message, RPCProxy};
@@ -185,6 +187,7 @@ impl ISuspend for Suspend {
         // Set suspend event mask
         self.intf.lock().unwrap().set_default_event_mask_except(MASKED_EVENTS_FOR_SUSPEND, 0u64);
 
+        self.bt.lock().unwrap().set_connectable(false);
         self.intf.lock().unwrap().clear_event_filter();
         self.intf.lock().unwrap().clear_filter_accept_list();
 
@@ -247,6 +250,7 @@ impl ISuspend for Suspend {
         self.intf.lock().unwrap().clear_event_filter();
         self.intf.lock().unwrap().clear_filter_accept_list();
         self.intf.lock().unwrap().restore_filter_accept_list();
+        self.bt.lock().unwrap().set_connectable(true);
 
         if !self.audio_reconnect_list.is_empty() {
             let reconnect_list = self.audio_reconnect_list.clone();
