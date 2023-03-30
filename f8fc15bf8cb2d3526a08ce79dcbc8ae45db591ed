@@ -16,6 +16,29 @@
       "message": "wescande@ PTAL at the refactor. Took your advice and ripped out the old \"INIT_debug_logging_for_all\" in favor of a `default_log_level` instead.",
       "revId": "f8fc15bf8cb2d3526a08ce79dcbc8ae45db591ed",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b2c0cc4b_8049d200",
+        "filename": "system/gd/os/syslog.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-03-30T19:14:42Z",
+      "side": 1,
+      "message": "Did you change the order value on purpose ?\nAlso this enum is defined twice (you put it in system/gd/os/log.h)",
+      "range": {
+        "startLine": 30,
+        "startChar": 0,
+        "endLine": 36,
+        "endChar": 17
+      },
+      "revId": "f8fc15bf8cb2d3526a08ce79dcbc8ae45db591ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
