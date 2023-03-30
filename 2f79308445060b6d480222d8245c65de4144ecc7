@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "98a5ecd6_d8e7f78b",
+        "filename": "tools/pdl/src/backends/rust.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 717,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-03-30T17:14:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e6041e13_dcdaaed4",
+      "range": {
+        "startLine": 717,
+        "startChar": 0,
+        "endLine": 717,
+        "endChar": 85
+      },
+      "revId": "2f79308445060b6d480222d8245c65de4144ecc7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8916d514_abb9a666",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2f1b6494_20212a12",
+        "filename": "tools/pdl/src/backends/rust.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 772,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-03-30T17:14:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8916d514_abb9a666",
+      "range": {
+        "startLine": 771,
+        "startChar": 44,
+        "endLine": 772,
+        "endChar": 44
+      },
+      "revId": "2f79308445060b6d480222d8245c65de4144ecc7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c0f49aa9_8037bf62",
@@ -60,6 +108,24 @@
       "writtenOn": "2023-03-30T13:44:43Z",
       "side": 1,
       "message": "I believe the generation of this indicates that we should use `TryFrom` and `TryInto` instead in this case.\n\nThe [`TryFrom` documentation](https://doc.rust-lang.org/std/convert/trait.TryFrom.html) says\n\n\u003e The `From` trait is intended for perfect conversions, so the `TryFrom` trait informs the programmer when a type conversion could go bad and lets them decide how to handle it.\n\nThis also matches how the standard library uses it: we have `From\u003ci8\u003e for i16`, but we have `TryFrom\u003ci16\u003e for i8`.\n\nI guess the most \"correct\" thing would be to generate `From` when the enum is complete and otherwise generate a `TryFrom` implementation.\n\nIt will probably be okay for callers: they should keep things as enums for most of the time and only convert to integers very rarely?",
+      "revId": "2f79308445060b6d480222d8245c65de4144ecc7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "49243439_6665d196",
+        "filename": "tools/pdl/src/backends/rust.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 774,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-03-30T17:14:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c0f49aa9_8037bf62",
       "revId": "2f79308445060b6d480222d8245c65de4144ecc7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -98,6 +164,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7eabe5fc_5ac7f0ab",
+        "filename": "tools/pdl/src/backends/rust/preamble.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-03-30T17:14:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2523f993_eb9b0e9c",
+      "revId": "2f79308445060b6d480222d8245c65de4144ecc7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4862c2dd_4175c248",
@@ -111,6 +195,24 @@
       "writtenOn": "2023-03-30T13:44:43Z",
       "side": 1,
       "message": "I called this `field_type` in most of the other code (as seen above, for example). Could we keep that name? Alternatively, we could rename them all -- just do it consistently.",
+      "revId": "2f79308445060b6d480222d8245c65de4144ecc7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a848ca34_3f8f54bd",
+        "filename": "tools/pdl/src/backends/rust/serializer.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-03-30T17:14:15Z",
+      "side": 1,
+      "message": "I am generating for a declaration, it looks weird to use field_type here...",
+      "parentUuid": "4862c2dd_4175c248",
       "revId": "2f79308445060b6d480222d8245c65de4144ecc7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
