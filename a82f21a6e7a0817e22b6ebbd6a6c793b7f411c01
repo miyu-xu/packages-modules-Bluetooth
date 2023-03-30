@@ -169,6 +169,24 @@
       "parentUuid": "30edb9cd_0f9ffa04",
       "revId": "a82f21a6e7a0817e22b6ebbd6a6c793b7f411c01",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "539507cc_b8c7510b",
+        "filename": "service/java/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 2730,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-03-30T21:00:39Z",
+      "side": 1,
+      "message": "I\u0027m not 100% sure.  I just feel like I don\u0027t like the race with the two timeouts set to the same time.",
+      "parentUuid": "e99b7306_61880e81",
+      "revId": "a82f21a6e7a0817e22b6ebbd6a6c793b7f411c01",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
