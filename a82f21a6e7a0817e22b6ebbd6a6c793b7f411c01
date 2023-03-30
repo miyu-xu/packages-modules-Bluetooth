@@ -16,6 +16,23 @@
       "message": "Bypass lint, there is no test framework to test this behavior yet",
       "revId": "a82f21a6e7a0817e22b6ebbd6a6c793b7f411c01",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f920f1b3_509c0c8d",
+        "filename": "service/java/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 2536,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-03-30T17:26:28Z",
+      "side": 1,
+      "message": "We\u0027ve been trying to be consistent about locking before a try block and unlocking in a finally block.",
+      "revId": "a82f21a6e7a0817e22b6ebbd6a6c793b7f411c01",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
