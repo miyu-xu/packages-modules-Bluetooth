@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "905b0295_faf51023",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 243,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-03-30T21:31:51Z",
+      "side": 1,
+      "message": "maybe add a comment here describe what is going on",
+      "range": {
+        "startLine": 243,
+        "startChar": 17,
+        "endLine": 243,
+        "endChar": 36
+      },
+      "revId": "1c967ac56e632426c650ee3bc38f0ccd0d5a44e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ee434b87_bfd62e7a",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 349,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-03-30T21:31:51Z",
+      "side": 1,
+      "message": "What if we have hearing aids that has\n* A2DP\n* HFP\n* LE Audio (BAP Unicast)\n* HAP",
+      "range": {
+        "startLine": 348,
+        "startChar": 0,
+        "endLine": 349,
+        "endChar": 41
+      },
+      "revId": "1c967ac56e632426c650ee3bc38f0ccd0d5a44e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5b057687_288a6de8",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 390,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-03-30T21:31:51Z",
+      "side": 1,
+      "message": "move this to place when A2DP is not active",
+      "range": {
+        "startLine": 387,
+        "startChar": 0,
+        "endLine": 390,
+        "endChar": 17
+      },
+      "revId": "1c967ac56e632426c650ee3bc38f0ccd0d5a44e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5ead7caa_72b5e24b",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 461,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-03-30T21:31:51Z",
+      "side": 1,
+      "message": "if you can, please add a comment",
+      "range": {
+        "startLine": 461,
+        "startChar": 0,
+        "endLine": 461,
+        "endChar": 78
+      },
+      "revId": "1c967ac56e632426c650ee3bc38f0ccd0d5a44e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "47b0ae5d_ddd57f29",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 476,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-03-30T21:31:51Z",
+      "side": 1,
+      "message": "please outline the 3 possible sequence in some comments here",
+      "range": {
+        "startLine": 476,
+        "startChar": 17,
+        "endLine": 476,
+        "endChar": 45
+      },
+      "revId": "1c967ac56e632426c650ee3bc38f0ccd0d5a44e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1823611a_2f7613b8",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 864,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-03-30T21:31:51Z",
+      "side": 1,
+      "message": "please mention the assumption on LE audio",
+      "range": {
+        "startLine": 864,
+        "startChar": 0,
+        "endLine": 864,
+        "endChar": 56
+      },
+      "revId": "1c967ac56e632426c650ee3bc38f0ccd0d5a44e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "62e5e39b_c869632d",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 874,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-03-30T21:31:51Z",
+      "side": 1,
+      "message": "did we ever check if this device is LE audio",
+      "range": {
+        "startLine": 874,
+        "startChar": 0,
+        "endLine": 874,
+        "endChar": 51
+      },
+      "revId": "1c967ac56e632426c650ee3bc38f0ccd0d5a44e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
