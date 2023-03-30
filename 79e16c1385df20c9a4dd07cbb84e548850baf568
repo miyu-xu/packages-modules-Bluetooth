@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c90af0f8_2b294cfb",
+        "filename": "system/btif/src/profile_log_levels.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-03-30T20:19:47Z",
+      "side": 1,
+      "message": "Nit:\nDoes that mean we should have something like that ?: (pseudo code)\n```\n    optional\u003cloglevel\u003e tag_lvl \u003d bluetooth::common::InitFlags::GetLogLevelForTag(functions-\u003etrc_name)\n    if (tag_lvl.has_some()) {\n      LOG_INFO(\"Set logging for %s to %s\", functions-\u003etrc_name, tag_lvl.toString().c_str());\n      functions-\u003etrace_level \u003d tag_lvl.get();\n    }\n```",
+      "revId": "79e16c1385df20c9a4dd07cbb84e548850baf568",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
