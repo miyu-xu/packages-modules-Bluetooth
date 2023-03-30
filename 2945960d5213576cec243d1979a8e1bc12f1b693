@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "acdd7f07_558737a7",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterProperties.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 679,
+      "author": {
+        "id": 1929170
+      },
+      "writtenOn": "2023-03-30T16:17:02Z",
+      "side": 1,
+      "message": "Comment removed by: Frank Piva; Reason: confidential",
+      "parentUuid": "9e9e16f7_83695fc3",
+      "range": {
+        "startLine": 679,
+        "startChar": 0,
+        "endLine": 679,
+        "endChar": 54
+      },
+      "revId": "2945960d5213576cec243d1979a8e1bc12f1b693",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "93051061_4a5c3013",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-03-27T23:41:41Z",
       "side": 1,
       "message": "Can this be null?  I don\u0027t see where getAddress() can return null.  I\u0027d prefer removing the check on line 703 if it can\u0027t be null.  If it can be null, I\u0027d rather check it before line 702.",
+      "range": {
+        "startLine": 701,
+        "startChar": 19,
+        "endLine": 701,
+        "endChar": 26
+      },
+      "revId": "2945960d5213576cec243d1979a8e1bc12f1b693",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "037307c0_1f361e26",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterProperties.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 701,
+      "author": {
+        "id": 1929170
+      },
+      "writtenOn": "2023-03-30T16:17:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "93051061_4a5c3013",
       "range": {
         "startLine": 701,
         "startChar": 19,
@@ -64,6 +112,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "87eb4135_ecfe830d",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterProperties.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 706,
+      "author": {
+        "id": 1929170
+      },
+      "writtenOn": "2023-03-30T16:17:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "29cb2a1c_95e29418",
+      "revId": "2945960d5213576cec243d1979a8e1bc12f1b693",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d683f27f_97ac309c",
@@ -81,6 +147,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4070a1a7_74238128",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterProperties.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 711,
+      "author": {
+        "id": 1929170
+      },
+      "writtenOn": "2023-03-30T16:17:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d683f27f_97ac309c",
+      "revId": "2945960d5213576cec243d1979a8e1bc12f1b693",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1e97f2fe_44ab8653",
@@ -94,6 +178,30 @@
       "writtenOn": "2023-03-28T00:01:00Z",
       "side": 1,
       "message": "would there be a java callback that trigger and intent later?",
+      "range": {
+        "startLine": 712,
+        "startChar": 25,
+        "endLine": 712,
+        "endChar": 41
+      },
+      "revId": "2945960d5213576cec243d1979a8e1bc12f1b693",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "402d7581_8e4e9d5f",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterProperties.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 712,
+      "author": {
+        "id": 1929170
+      },
+      "writtenOn": "2023-03-30T16:17:02Z",
+      "side": 1,
+      "message": "This is during completion of a new bonding which will send BONDED intent. Also since we are removing a bonding that will never be used, it should be fine to do it silently.",
+      "parentUuid": "1e97f2fe_44ab8653",
       "range": {
         "startLine": 712,
         "startChar": 25,
