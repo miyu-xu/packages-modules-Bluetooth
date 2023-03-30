@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "cb6c6e8f_b4f0879d",
+        "filename": "system/rust/src/gatt/server/att_database.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-03-30T21:17:38Z",
+      "side": 1,
+      "message": "I get WRITE and WRITE_NO_RESPONSE, but when it becomes an adjective, it makes it harder for me.",
+      "parentUuid": "b839a61d_ceb2f461",
+      "range": {
+        "startLine": 55,
+        "startChar": 11,
+        "endLine": 55,
+        "endChar": 19
+      },
+      "revId": "9b36d6f1fd1f5472ef391a73f8189fefac53b6b9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7a8de899_aef0ac0b",
         "filename": "system/rust/src/gatt/server/att_server_bearer.rs",
         "patchSetId": 3
@@ -149,6 +173,30 @@
       "side": 1,
       "message": "Coming from the remote.\n\nWhat I am doing is using:\nINFO \u003d\u003e a normal event when everything works OK, but that won\u0027t cause logspam\nWARN \u003d\u003e something unusual happened, but doesn\u0027t necessarily mean a bug on our end\nERROR \u003d\u003e we did something wrong but can recover\nFATAL \u003d\u003e crash\n\nThus I think warn is appropriate here?",
       "parentUuid": "9e7fa13b_ad37ede3",
+      "range": {
+        "startLine": 447,
+        "startChar": 16,
+        "endLine": 447,
+        "endChar": 20
+      },
+      "revId": "9b36d6f1fd1f5472ef391a73f8189fefac53b6b9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4fb281f1_83c2acff",
+        "filename": "system/rust/src/gatt/server/gatt_database.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 447,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-03-30T21:17:38Z",
+      "side": 1,
+      "message": "I would have expected INFO to be something unusual.  DEBUG sounds like everything is OK.  I know there\u0027s not an exact science here.",
+      "parentUuid": "5d26d1aa_ff411432",
       "range": {
         "startLine": 447,
         "startChar": 16,
