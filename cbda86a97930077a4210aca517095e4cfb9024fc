@@ -145,6 +145,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "724bc0d8_e6e31b33",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-03-30T10:05:57Z",
+      "side": 1,
+      "message": "you ran clang format on the whole file not just on your change.\neven if that something nice for the project, it make it harder to see what your are changing vs what you are not",
+      "parentUuid": "fe76e403_44dd84b4",
+      "revId": "cbda86a97930077a4210aca517095e4cfb9024fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c2907dca_5a3d9135",
         "filename": "system/bta/av/bta_av_aact.cc",
         "patchSetId": 6
