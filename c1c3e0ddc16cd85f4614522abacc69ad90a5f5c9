@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bcbcd0ed_65b5ef3d",
+        "filename": "framework/tests/bumble/src/com/android/framework/bluetooth/tests/PairingTest.java",
+        "patchSetId": 24
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1986325
+      },
+      "writtenOn": "2023-03-30T21:13:10Z",
+      "side": 1,
+      "message": "move to `future.get()`",
+      "revId": "c1c3e0ddc16cd85f4614522abacc69ad90a5f5c9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "41c90f96_abc2a7a5",
+        "filename": "framework/tests/bumble/src/com/android/framework/bluetooth/tests/PairingTest.java",
+        "patchSetId": 24
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1986325
+      },
+      "writtenOn": "2023-03-30T21:13:10Z",
+      "side": 1,
+      "message": "move it to local",
+      "revId": "c1c3e0ddc16cd85f4614522abacc69ad90a5f5c9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a6826a83_3c023231",
+        "filename": "framework/tests/bumble/src/com/android/framework/bluetooth/tests/PairingTest.java",
+        "patchSetId": 24
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 1986325
+      },
+      "writtenOn": "2023-03-30T21:13:10Z",
+      "side": 1,
+      "message": "waitBonded",
+      "revId": "c1c3e0ddc16cd85f4614522abacc69ad90a5f5c9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fbbd1319_d85c7781",
+        "filename": "framework/tests/bumble/src/com/android/framework/bluetooth/tests/PairingTest.java",
+        "patchSetId": 24
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 1986325
+      },
+      "writtenOn": "2023-03-30T21:13:10Z",
+      "side": 1,
+      "message": "cancel stream context",
+      "revId": "c1c3e0ddc16cd85f4614522abacc69ad90a5f5c9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
