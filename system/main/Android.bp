@@ -91,6 +91,9 @@ cc_library {
     whole_static_libs: [
         "libbluetooth_core_rs",
     ],
+    shared_libs: [
+        "android.hardware.bluetooth@1.0",
+    ],
     logtags: ["../../EventLogTags.logtags"],
     // Shared library link options.
     // References to global symbols and functions should bind to the library
