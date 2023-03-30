@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b839a61d_ceb2f461",
+        "filename": "system/rust/src/gatt/server/att_database.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-03-30T21:03:33Z",
+      "side": 1,
+      "message": "Copying from Java:  https://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/framework/java/android/bluetooth/BluetoothGattCharacteristic.java;l\u003d58?q\u003dbluetoothgattcharacter\u0026ss\u003dandroid%2Fplatform%2Fsuperproject:packages%2Fmodules%2FBluetooth%2F\n\nWe have PROPERTY_WRITE and PROPERTY_WRITE_NO_RESPONSE. So I put writable() and writable_without_response().",
+      "parentUuid": "0f433949_0bb52ceb",
+      "range": {
+        "startLine": 55,
+        "startChar": 11,
+        "endLine": 55,
+        "endChar": 19
+      },
+      "revId": "9b36d6f1fd1f5472ef391a73f8189fefac53b6b9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7a8de899_aef0ac0b",
         "filename": "system/rust/src/gatt/server/att_server_bearer.rs",
         "patchSetId": 3
@@ -37,6 +61,30 @@
       "writtenOn": "2023-03-30T20:57:07Z",
       "side": 1,
       "message": "I\u0027m guessing that cloning db is cheap, but is it necessary here?",
+      "range": {
+        "startLine": 80,
+        "startChar": 70,
+        "endLine": 80,
+        "endChar": 79
+      },
+      "revId": "9b36d6f1fd1f5472ef391a73f8189fefac53b6b9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a2381512_7f47da06",
+        "filename": "system/rust/src/gatt/server/att_server_bearer.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-03-30T21:03:33Z",
+      "side": 1,
+      "message": "It\u0027s needed, since another copy is passed into the command handler. So each handler type gets their own db copy.",
+      "parentUuid": "7a8de899_aef0ac0b",
       "range": {
         "startLine": 80,
         "startChar": 70,
@@ -77,6 +125,30 @@
       "writtenOn": "2023-03-30T20:57:07Z",
       "side": 1,
       "message": "Should this be a warning?  Are the writes coming from the remote?  I would have expected info to be sufficient.",
+      "range": {
+        "startLine": 447,
+        "startChar": 16,
+        "endLine": 447,
+        "endChar": 20
+      },
+      "revId": "9b36d6f1fd1f5472ef391a73f8189fefac53b6b9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5d26d1aa_ff411432",
+        "filename": "system/rust/src/gatt/server/gatt_database.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 447,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-03-30T21:03:33Z",
+      "side": 1,
+      "message": "Coming from the remote.\n\nWhat I am doing is using:\nINFO \u003d\u003e a normal event when everything works OK, but that won\u0027t cause logspam\nWARN \u003d\u003e something unusual happened, but doesn\u0027t necessarily mean a bug on our end\nERROR \u003d\u003e we did something wrong but can recover\nFATAL \u003d\u003e crash\n\nThus I think warn is appropriate here?",
+      "parentUuid": "9e7fa13b_ad37ede3",
       "range": {
         "startLine": 447,
         "startChar": 16,
