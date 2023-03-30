@@ -16,6 +16,24 @@
       "message": "Nit:\nDoes that mean we should have something like that ?: (pseudo code)\n```\n    optional\u003cloglevel\u003e tag_lvl \u003d bluetooth::common::InitFlags::GetLogLevelForTag(functions-\u003etrc_name)\n    if (tag_lvl.has_some()) {\n      LOG_INFO(\"Set logging for %s to %s\", functions-\u003etrc_name, tag_lvl.toString().c_str());\n      functions-\u003etrace_level \u003d tag_lvl.get();\n    }\n```",
       "revId": "79e16c1385df20c9a4dd07cbb84e548850baf568",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3a1941ee_4f019d8e",
+        "filename": "system/btif/src/profile_log_levels.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-03-30T20:33:06Z",
+      "side": 1,
+      "message": "Since the values of `tLEGACY_TRACE_LEVEL` and `LogLevels` don\u0027t match, I don\u0027t think that would work. The current way enables verbose logging if there\u0027s no saved config and the default log level is verbose (which is what the previous init flag was doing)\n\nIf we were to re-write this, I would expect to do something like this:\n```\npub LegacyTraceLevels(i32);\n\nimpl From\u003cinit_flags::LogLevels\u003e for LegacyTraceLevels {\n  ...\n}\n\nfn load_levels_from_config(...) {\n  for func in bttrc_set_level_map {\n    let value: Result\u003cLegacyTraceLevels\u003e  \u003d config_get_int(config, func.name)\n      .or_else(|| init_flags::get_log_level_for_tag(func.name).into());\n    if let Ok(v) \u003d value {\n      func.set_trace_level(v);\n    }\n  }\n}\n```",
+      "parentUuid": "c90af0f8_2b294cfb",
+      "revId": "79e16c1385df20c9a4dd07cbb84e548850baf568",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
