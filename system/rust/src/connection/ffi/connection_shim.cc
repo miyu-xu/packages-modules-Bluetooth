@@ -106,5 +106,73 @@ void LeAclManagerShim::RegisterRustCallbacks(
   pimpl_->RegisterRustCallbacks(std::move(callbacks));
 }
 
+namespace {
+struct RustConnectionManager {
+  ::rust::Fn<void(uint8_t client_id, core::AddressWithType address)>
+      start_direct_connection;
+  ::rust::Fn<void(uint8_t client_id, core::AddressWithType address)>
+      stop_direct_connection;
+  ::rust::Fn<void(uint8_t client_id, core::AddressWithType address)>
+      add_background_connection;
+  ::rust::Fn<void(uint8_t client_id, core::AddressWithType address)>
+      remove_background_connection;
+  ::rust::Fn<void(uint8_t client_id)> stop_all_connections_from_client;
+  ::rust::Fn<void(core::AddressWithType address)>
+      stop_all_connections_to_device;
+};
+
+std::optional<RustConnectionManager> connection_manager;
+
+}  // namespace
+
+void RegisterRustApis(
+    ::rust::Fn<void(uint8_t client_id, core::AddressWithType address)>
+        start_direct_connection,
+    ::rust::Fn<void(uint8_t client_id, core::AddressWithType address)>
+        stop_direct_connection,
+    ::rust::Fn<void(uint8_t client_id, core::AddressWithType address)>
+        add_background_connection,
+    ::rust::Fn<void(uint8_t client_id, core::AddressWithType address)>
+        remove_background_connection,
+    ::rust::Fn<void(uint8_t client_id)> stop_all_connections_from_client,
+    ::rust::Fn<void(core::AddressWithType address)>
+        stop_all_connections_to_device) {
+  connection_manager = {
+      start_direct_connection,          stop_direct_connection,
+      add_background_connection,        remove_background_connection,
+      stop_all_connections_from_client, stop_all_connections_to_device};
+}
+
+tBLE_BD_ADDR ResolveRawAddress(RawAddress bd_addr) {
+  tBTM_SEC_DEV_REC* p_dev_rec = btm_find_dev(bd_addr);
+  return convert_to_address_with_type(bd_addr, p_dev_rec);
+}
+
+void StartDirectConnection(uint8_t client_id, tBLE_BD_ADDR address_with_type) {
+  connection_manager->start_direct_connection(client_id,
+                                              ToRustAddress(address_with_type));
+}
+void StopDirectConnection(uint8_t client_id, tBLE_BD_ADDR address_with_type) {
+  connection_manager->stop_direct_connection(client_id,
+                                             ToRustAddress(address_with_type));
+}
+void AddBackgroundConnection(uint8_t client_id,
+                             tBLE_BD_ADDR address_with_type) {
+  connection_manager->add_background_connection(
+      client_id, ToRustAddress(address_with_type));
+}
+void RemoveBackgroundConnection(uint8_t client_id,
+                                tBLE_BD_ADDR address_with_type) {
+  connection_manager->remove_background_connection(
+      client_id, ToRustAddress(address_with_type));
+}
+void StopAllConnectionsFromClient(uint8_t client_id) {
+  connection_manager->stop_all_connections_from_client(client_id);
+}
+void StopAllConnectionsToDevice(tBLE_BD_ADDR address_with_type) {
+  connection_manager->stop_all_connections_to_device(
+      ToRustAddress(address_with_type));
+}
+
 }  // namespace connection
 }  // namespace bluetooth
