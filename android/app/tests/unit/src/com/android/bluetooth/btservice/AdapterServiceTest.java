@@ -19,7 +19,15 @@ package com.android.bluetooth.btservice;
 import static android.Manifest.permission.BLUETOOTH_SCAN;
 
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.anyInt;
+import static org.mockito.Mockito.anyString;
+import static org.mockito.Mockito.doAnswer;
+import static org.mockito.Mockito.doReturn;
+import static org.mockito.Mockito.eq;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.timeout;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 import android.app.AlarmManager;
 import android.app.admin.DevicePolicyManager;
@@ -126,6 +134,9 @@ public class AdapterServiceTest {
     private @Mock ProfileService mMockGattService;
     private @Mock ProfileService mMockService;
     private @Mock ProfileService mMockService2;
+    private @Mock A2dpService mA2dpService;
+    private @Mock HeadsetService mHeadsetService;
+    private @Mock LeAudioService mLeAudioService;
     private @Mock IBluetoothCallback mIBluetoothCallback;
     private @Mock Binder mBinder;
     private @Mock AudioManager mAudioManager;
