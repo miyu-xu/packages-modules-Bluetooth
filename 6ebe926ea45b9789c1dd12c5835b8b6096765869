@@ -22,6 +22,30 @@
       },
       "revId": "6ebe926ea45b9789c1dd12c5835b8b6096765869",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b8fc692b_f5d433cc",
+        "filename": "android/pandora/test/gatt_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-03-31T18:40:32Z",
+      "side": 1,
+      "message": "Android bug if you confirm pairing too fast. But this is already there and Abel (eventually) approved it, so not part of this CL.",
+      "parentUuid": "9e57b5f7_b42b202b",
+      "range": {
+        "startLine": 151,
+        "startChar": 4,
+        "endLine": 151,
+        "endChar": 30
+      },
+      "revId": "6ebe926ea45b9789c1dd12c5835b8b6096765869",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
