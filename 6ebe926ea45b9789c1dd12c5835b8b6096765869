@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9e57b5f7_b42b202b",
+        "filename": "android/pandora/test/gatt_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-03-31T18:38:28Z",
+      "side": 1,
+      "message": "?",
+      "range": {
+        "startLine": 151,
+        "startChar": 4,
+        "endLine": 151,
+        "endChar": 30
+      },
+      "revId": "6ebe926ea45b9789c1dd12c5835b8b6096765869",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
