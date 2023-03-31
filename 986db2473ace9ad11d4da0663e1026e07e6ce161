@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "49e4e607_e0903f67",
+        "filename": "system/rust/src/connection/ffi.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-03-31T20:17:19Z",
+      "side": 1,
+      "message": "stop_all_connections_from_client \u003d\u003e when a client is removed\nstop_all_connections_to_device \u003d\u003e when a device unbonds",
+      "parentUuid": "20079d3e_30b4b29b",
+      "range": {
+        "startLine": 74,
+        "startChar": 12,
+        "endLine": 74,
+        "endChar": 44
+      },
+      "revId": "986db2473ace9ad11d4da0663e1026e07e6ce161",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a80771c4_60a71c73",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-03-31T16:50:01Z",
       "side": 1,
       "message": "I like the name remove_client better than stop_all_connections_from_client",
+      "range": {
+        "startLine": 176,
+        "startChar": 43,
+        "endLine": 176,
+        "endChar": 56
+      },
+      "revId": "986db2473ace9ad11d4da0663e1026e07e6ce161",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dd7e4db8_b425bcf8",
+        "filename": "system/rust/src/connection/ffi.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-03-31T20:17:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a80771c4_60a71c73",
       "range": {
         "startLine": 176,
         "startChar": 43,
