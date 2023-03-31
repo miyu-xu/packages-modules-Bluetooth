@@ -140,6 +140,30 @@
       },
       "revId": "8170cd215ecbfa1effedb223730a2e2a9270a356",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f2d9a09b_c8dcc2f5",
+        "filename": "system/rust/src/connection.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-03-31T18:47:22Z",
+      "side": 1,
+      "message": "Should we improve the API now instead of waiting?\n\nThis could be on_unbond() instead, and have it cancel everything now, but do something smarter in the future.",
+      "parentUuid": "98639d6f_375e11d8",
+      "range": {
+        "startLine": 136,
+        "startChar": 11,
+        "endLine": 136,
+        "endChar": 33
+      },
+      "revId": "8170cd215ecbfa1effedb223730a2e2a9270a356",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
