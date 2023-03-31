@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a8551b53_d1166db9",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-03-31T16:35:56Z",
+      "side": 1,
+      "message": "new_cyclic utility",
+      "range": {
+        "startLine": 7,
+        "startChar": 25,
+        "endLine": 7,
+        "endChar": 34
+      },
+      "revId": "e7d212869cc05f49fa4ac5f780b51b3016dd24da",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fb6d6c8b_050570d5",
+        "filename": "system/rust/src/core/shared_box.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-03-31T16:35:56Z",
+      "side": 1,
+      "message": "The way I read this comment is that it supplies a WeakBox to the child, but only if it contains circular references.  What does it supply otherwise?",
+      "range": {
+        "startLine": 26,
+        "startChar": 55,
+        "endLine": 26,
+        "endChar": 56
+      },
+      "revId": "e7d212869cc05f49fa4ac5f780b51b3016dd24da",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
