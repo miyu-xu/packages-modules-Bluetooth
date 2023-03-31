@@ -84,6 +84,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "be8da2ac_0a5e522d",
+        "filename": "system/gd/hal/hci_hal_android_hidl.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 443,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-03-31T03:54:58Z",
+      "side": 1,
+      "message": "Yes.  The closest we have is the timeout in the VTS test.",
+      "parentUuid": "97497390_8424b026",
+      "range": {
+        "startLine": 443,
+        "startChar": 4,
+        "endLine": 443,
+        "endChar": 25
+      },
+      "revId": "03e8a06cd5f063586a6c3de81bd92d1536acacfd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e687ce5a_da5eeda3",
         "filename": "system/gd/hci/hci_layer.cc",
         "patchSetId": 7
@@ -119,6 +143,30 @@
       "side": 1,
       "message": "It might not happen if the initializationComplete never returns. I don\u0027t see this is a part of firmware download. In my understanding this is to increase the HCI timeout after Bluetooth gets turned on.",
       "parentUuid": "e687ce5a_da5eeda3",
+      "range": {
+        "startLine": 285,
+        "startChar": 10,
+        "endLine": 285,
+        "endChar": 28
+      },
+      "revId": "03e8a06cd5f063586a6c3de81bd92d1536acacfd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3c941bcb_86e9b384",
+        "filename": "system/gd/hci/hci_layer.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 285,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-03-31T03:54:58Z",
+      "side": 1,
+      "message": "If it\u0027s not about firmware download, I wouldn\u0027t increase it.  2 seconds is already an eternity, and the sooner you realize the chip isn\u0027t responding, the better chance you have to debug it.",
+      "parentUuid": "47b03c32_436ef3bf",
       "range": {
         "startLine": 285,
         "startChar": 10,
