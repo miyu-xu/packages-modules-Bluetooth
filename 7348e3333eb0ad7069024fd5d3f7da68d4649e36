@@ -16,6 +16,121 @@
       "message": "Hi Charlie,\n\nMerge conflict is resolved.\nRequest you to provide your inputs.\n\nRegards,\nFahad",
       "revId": "7348e3333eb0ad7069024fd5d3f7da68d4649e36",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dc70ad3a_39ab0ad4",
+        "filename": "android/pandora/server/src/com/android/pandora/GattInstance.kt",
+        "patchSetId": 4
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2023-03-31T00:07:31Z",
+      "side": 1,
+      "message": "I think here we should have a map where the key is the `characteristic` and the value is `isChanged`. Otherwise we can\u0027t assert if either yes or not a given characteristic has been changed.",
+      "range": {
+        "startLine": 160,
+        "startChar": 0,
+        "endLine": 167,
+        "endChar": 7
+      },
+      "revId": "7348e3333eb0ad7069024fd5d3f7da68d4649e36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5d6cbcf5_33b6c6c2",
+        "filename": "android/pandora/server/src/com/android/pandora/GattInstance.kt",
+        "patchSetId": 4
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2023-03-31T00:07:31Z",
+      "side": 1,
+      "message": "Regarding the comment on onCharacteristicChanged, we should have a characteristic as parameter and access the map accordingly",
+      "range": {
+        "startLine": 204,
+        "startChar": 2,
+        "endLine": 206,
+        "endChar": 3
+      },
+      "revId": "7348e3333eb0ad7069024fd5d3f7da68d4649e36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "77016b95_474d0d74",
+        "filename": "pandora/interfaces/pandora_experimental/gatt.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2023-03-31T00:07:31Z",
+      "side": 1,
+      "message": "Here a stream might be a better idea since we might want to wait for it directly in the test.\ncc: @licorne@google.com @uael@google.com",
+      "range": {
+        "startLine": 44,
+        "startChar": 2,
+        "endLine": 45,
+        "endChar": 143
+      },
+      "revId": "7348e3333eb0ad7069024fd5d3f7da68d4649e36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7c88044a_57f3ade5",
+        "filename": "pandora/interfaces/pandora_experimental/gatt.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2023-03-31T00:07:31Z",
+      "side": 1,
+      "message": "nit: We could provide a list of characteristic to be checked but I don\u0027t know if this is relevant in case of the pts.",
+      "range": {
+        "startLine": 145,
+        "startChar": 0,
+        "endLine": 148,
+        "endChar": 1
+      },
+      "revId": "7348e3333eb0ad7069024fd5d3f7da68d4649e36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2eb76e41_6d5bdd4f",
+        "filename": "pandora/interfaces/pandora_experimental/gatt.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2023-03-31T00:07:31Z",
+      "side": 1,
+      "message": "nit: If a list is given as input then we should also have a list here",
+      "range": {
+        "startLine": 151,
+        "startChar": 0,
+        "endLine": 154,
+        "endChar": 0
+      },
+      "revId": "7348e3333eb0ad7069024fd5d3f7da68d4649e36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
