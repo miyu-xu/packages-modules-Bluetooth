@@ -1,0 +1,418 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2825c807_9477b2b2",
+        "filename": "android/app/src/com/android/bluetooth/Utils.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-03-31T17:49:37Z",
+      "side": 1,
+      "message": "If you do not anticipate someone changes this value while BT is running, we may want to cache it and return the static cached value here",
+      "range": {
+        "startLine": 144,
+        "startChar": 0,
+        "endLine": 144,
+        "endChar": 87
+      },
+      "revId": "fd06c9f98a100afa5264129b5f0b2f0e77765c70",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "98f48675_61a8d4f8",
+        "filename": "android/app/src/com/android/bluetooth/a2dp/A2dpService.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-03-31T17:49:37Z",
+      "side": 1,
+      "message": "LGTM",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 23,
+        "endChar": 79
+      },
+      "revId": "fd06c9f98a100afa5264129b5f0b2f0e77765c70",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e9587e9b_4c38d346",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-03-31T17:49:37Z",
+      "side": 1,
+      "message": "LGTM",
+      "range": {
+        "startLine": 35,
+        "startChar": 23,
+        "endLine": 35,
+        "endChar": 35
+      },
+      "revId": "fd06c9f98a100afa5264129b5f0b2f0e77765c70",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "17c166fa_6c534afc",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 310,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-03-31T17:49:37Z",
+      "side": 1,
+      "message": "// Map\u003cgroupId, Pair\u003cSettings, NumOfCallsToAudioFwk\u003e\u003e\n\nPlease put this as a comment so that people understand",
+      "range": {
+        "startLine": 310,
+        "startChar": 4,
+        "endLine": 310,
+        "endChar": 53
+      },
+      "revId": "fd06c9f98a100afa5264129b5f0b2f0e77765c70",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f81aaedb_7dd6322b",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 313,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-03-31T17:49:37Z",
+      "side": 1,
+      "message": "// Map\u003cgroupId, deviceWhichTheRequestIdMade\u003e",
+      "range": {
+        "startLine": 312,
+        "startChar": 0,
+        "endLine": 313,
+        "endChar": 28
+      },
+      "revId": "fd06c9f98a100afa5264129b5f0b2f0e77765c70",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bc88a8f8_4e64cdb1",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 313,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-03-31T17:49:37Z",
+      "side": 1,
+      "message": "Why not just do\n\nMap\u003cInteger, Triple\u003cBundle, Integer, BluetoothDevice\u003e\u003e",
+      "range": {
+        "startLine": 311,
+        "startChar": 0,
+        "endLine": 313,
+        "endChar": 28
+      },
+      "revId": "fd06c9f98a100afa5264129b5f0b2f0e77765c70",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0657d4fd_79fe171b",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 4865,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-03-31T17:49:37Z",
+      "side": 1,
+      "message": "I would suggest keeping a ringbuffer of previous preferred audio profile changes and the caller\u0027s uid/pid if possible or let\u0027s begin with a logcat log",
+      "range": {
+        "startLine": 4865,
+        "startChar": 16,
+        "endLine": 4865,
+        "endChar": 41
+      },
+      "revId": "fd06c9f98a100afa5264129b5f0b2f0e77765c70",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d0ed7607_df28666d",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 4878,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-03-31T17:49:37Z",
+      "side": 1,
+      "message": "nit: isEmpty()",
+      "range": {
+        "startLine": 4878,
+        "startChar": 25,
+        "endLine": 4878,
+        "endChar": 29
+      },
+      "revId": "fd06c9f98a100afa5264129b5f0b2f0e77765c70",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cc243c52_1b62de6b",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 4909,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-03-31T17:49:37Z",
+      "side": 1,
+      "message": "you are checking on this thread, but the post happens in a different thread, this will lead to race conditions",
+      "range": {
+        "startLine": 4907,
+        "startChar": 12,
+        "endLine": 4909,
+        "endChar": 13
+      },
+      "revId": "fd06c9f98a100afa5264129b5f0b2f0e77765c70",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7893f794_5e304673",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 4930,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-03-31T17:49:37Z",
+      "side": 1,
+      "message": "simplify this a little bit",
+      "range": {
+        "startLine": 4930,
+        "startChar": 14,
+        "endLine": 4930,
+        "endChar": 33
+      },
+      "revId": "fd06c9f98a100afa5264129b5f0b2f0e77765c70",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dcaa8281_d929d5d2",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 5003,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-03-31T17:49:37Z",
+      "side": 1,
+      "message": "put everything in one data structure and lock it whenever you modify it",
+      "range": {
+        "startLine": 5003,
+        "startChar": 16,
+        "endLine": 5003,
+        "endChar": 59
+      },
+      "revId": "fd06c9f98a100afa5264129b5f0b2f0e77765c70",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "29ee6068_9b096270",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 5036,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-03-31T17:49:37Z",
+      "side": 1,
+      "message": "call this outside of this method to make it clear that this method only does the removal",
+      "range": {
+        "startLine": 5035,
+        "startChar": 0,
+        "endLine": 5036,
+        "endChar": 56
+      },
+      "revId": "fd06c9f98a100afa5264129b5f0b2f0e77765c70",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "db8d686e_f8d598bb",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 5049,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-03-31T17:49:37Z",
+      "side": 1,
+      "message": "how do we know if this method call correspond to an existing outgoing method call to audioManager\n\nWe need to make sure audio manager only calls this when there is a pending request from Bluetooth",
+      "range": {
+        "startLine": 5049,
+        "startChar": 16,
+        "endLine": 5049,
+        "endChar": 47
+      },
+      "revId": "fd06c9f98a100afa5264129b5f0b2f0e77765c70",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cc298796_c1726272",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 5542,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-03-31T17:49:37Z",
+      "side": 1,
+      "message": "LGTM",
+      "range": {
+        "startLine": 5532,
+        "startChar": 0,
+        "endLine": 5542,
+        "endChar": 39
+      },
+      "revId": "fd06c9f98a100afa5264129b5f0b2f0e77765c70",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5d4e9391_16dc5179",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 5577,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-03-31T17:49:37Z",
+      "side": 1,
+      "message": "please iterate through all devices in group",
+      "range": {
+        "startLine": 5577,
+        "startChar": 19,
+        "endLine": 5577,
+        "endChar": 62
+      },
+      "revId": "fd06c9f98a100afa5264129b5f0b2f0e77765c70",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c2058036_437cce77",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 5606,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-03-31T17:49:37Z",
+      "side": 1,
+      "message": "please iterate through all devices in group",
+      "range": {
+        "startLine": 5606,
+        "startChar": 19,
+        "endLine": 5606,
+        "endChar": 59
+      },
+      "revId": "fd06c9f98a100afa5264129b5f0b2f0e77765c70",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ad6461c8_77fcf26b",
+        "filename": "android/app/src/com/android/bluetooth/btservice/PhonePolicy.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-03-31T17:49:37Z",
+      "side": 1,
+      "message": "Given that we want `Utils.isDualModeAudioEnabled()` to be the solo source of truth, we should be calling `Utils.isDualModeAudioEnabled()` instead of caching it here.",
+      "range": {
+        "startLine": 113,
+        "startChar": 0,
+        "endLine": 113,
+        "endChar": 63
+      },
+      "revId": "fd06c9f98a100afa5264129b5f0b2f0e77765c70",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bc951880_70e65cbd",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 3542,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-03-31T17:49:37Z",
+      "side": 1,
+      "message": "Please add a dump for dual mode related settings\n\ne.g. isDualModeaudioEnabled, preferred audio device",
+      "range": {
+        "startLine": 3542,
+        "startChar": 0,
+        "endLine": 3542,
+        "endChar": 66
+      },
+      "revId": "fd06c9f98a100afa5264129b5f0b2f0e77765c70",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
