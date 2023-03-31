@@ -3,7 +3,9 @@
 //! avoids duplicate connections to the same devices (even with different RPAs),
 //! and retries failed connections
 
-use std::{fmt::Debug, hash::Hash, ops::Deref};
+use std::{
+    cell::RefCell, collections::HashSet, fmt::Debug, hash::Hash, ops::Deref, rc::Rc, time::Duration,
+};
 
 use crate::{
     core::{
@@ -13,14 +15,17 @@ use crate::{
     gatt::ids::ServerId,
 };
 
-use self::le_manager::{
-    ErrorCode, InactiveLeAclManager, LeAclManager, LeAclManagerConnectionCallbacks,
+use self::{
+    attempt_manager::{ConnectionAttempts, ConnectionMode},
+    le_manager::{ErrorCode, InactiveLeAclManager, LeAclManager, LeAclManagerConnectionCallbacks},
 };
 
+mod attempt_manager;
 mod ffi;
 pub mod le_manager;
 
 pub use ffi::{register_callbacks, LeAclManagerImpl, LeAclManagerShim};
+use tokio::{task::spawn_local, time::timeout};
 
 /// Possible errors returned when making a connection attempt
 #[derive(Debug)]
@@ -64,10 +69,27 @@ pub struct LeConnection {
 /// devices on the filter accept list
 #[derive(Debug)]
 pub struct ConnectionManager {
-    _le_manager: Box<dyn LeAclManager>,
+    le_manager: Box<dyn LeAclManager>,
+    state: RefCell<ConnectionManagerState>,
+}
+
+#[derive(Debug)]
+struct ConnectionManagerState {
+    /// All pending connection attempts (unresolved direct + all background)
+    attempts: ConnectionAttempts,
+    /// The addresses we are currently connected to
+    current_connections: HashSet<AddressWithType>,
+    /// The connect list in the ACL manager
+    direct_list: HashSet<AddressWithType>,
+    /// The background connect list in the ACL manager
+    background_list: HashSet<AddressWithType>,
 }
 
 struct ConnectionManagerCallbackHandler(WeakBox<ConnectionManager>);
+
+const DIRECT_CONNECTION_TIMEOUT: Duration = Duration::from_secs(
+    29, /* ugly hack to avoid fighting with le_impl timeout, until I remove that timeout */
+);
 
 impl LeAclManagerConnectionCallbacks for ConnectionManagerCallbackHandler {
     fn on_le_connect_success(&self, conn: LeConnection) {
@@ -93,67 +115,163 @@ impl ConnectionManager {
     /// Constructor
     pub fn new(le_manager: impl InactiveLeAclManager) -> SharedBox<Self> {
         SharedBox::new_cyclic(|weak| Self {
-            _le_manager: Box::new(
+            le_manager: Box::new(
                 le_manager.register_callbacks(ConnectionManagerCallbackHandler(weak)),
             ),
+            state: RefCell::new(ConnectionManagerState {
+                attempts: ConnectionAttempts::new(),
+                current_connections: HashSet::new(),
+                direct_list: HashSet::new(),
+                background_list: HashSet::new(),
+            }),
         })
     }
 
     /// Start a direct connection to a peer device from a specified client.
     pub fn start_direct_connection(
         &self,
-        _client: ConnectionManagerClient,
-        _address: AddressWithType,
+        client: ConnectionManagerClient,
+        address: AddressWithType,
     ) -> Result<(), CreateConnectionFailure> {
-        todo!()
+        let mut state = self.state.borrow_mut();
+        // if connected, this is a no-op
+        if state.current_connections.contains(&address) {
+            return Ok(());
+        }
+        // TODO(aryarahul): handle timeout callback
+        // TODO(aryarahul): update acceptlist after timeout fires
+        spawn_local(timeout(
+            DIRECT_CONNECTION_TIMEOUT,
+            state.attempts.direct_connection(client, address)?,
+        ));
+        self.reconcile_state(&mut state);
+        Ok(())
     }
 
     /// Cancel direct connection attempts from this client to the specified address.
     pub fn cancel_direct_connection(
         &self,
-        _client: ConnectionManagerClient,
-        _address: AddressWithType,
+        client: ConnectionManagerClient,
+        address: AddressWithType,
     ) -> Result<(), CancelConnectFailure> {
-        todo!()
+        let mut state = self.state.borrow_mut();
+        state.attempts.cancel_direct_connection(client, address)?;
+        self.reconcile_state(&mut state);
+        Ok(())
     }
 
     /// Start a background connection to a peer device with given parameters from a specified client.
     pub fn add_background_connection(
         &self,
-        _client: ConnectionManagerClient,
-        _address: AddressWithType,
+        client: ConnectionManagerClient,
+        address: AddressWithType,
     ) -> Result<(), CreateConnectionFailure> {
-        todo!()
+        let mut state = self.state.borrow_mut();
+        state.attempts.add_background_connection(client, address)?;
+        self.reconcile_state(&mut state);
+        Ok(())
     }
 
     /// Cancel background connection attempts from this client to the specified address.
     pub fn remove_background_connection(
         &self,
-        _client: ConnectionManagerClient,
-        _address: AddressWithType,
+        client: ConnectionManagerClient,
+        address: AddressWithType,
     ) -> Result<(), CancelConnectFailure> {
-        todo!()
+        let mut state = self.state.borrow_mut();
+        state.attempts.remove_background_connection(client, address)?;
+        self.reconcile_state(&mut state);
+        Ok(())
     }
 
     /// Cancel all connection attempts to this address
-    pub fn cancel_unconditionally(&self, _address: AddressWithType) {
-        todo!()
+    pub fn cancel_unconditionally(&self, address: AddressWithType) {
+        let mut state = self.state.borrow_mut();
+        state.attempts.remove_unconditionally(address);
+        self.reconcile_state(&mut state);
     }
 
     /// Cancel all connection attempts from this client
-    pub fn remove_client(&self, _client: ConnectionManagerClient) {
-        todo!()
+    pub fn remove_client(&self, client: ConnectionManagerClient) {
+        let mut state = self.state.borrow_mut();
+        state.attempts.remove_client(client);
+        self.reconcile_state(&mut state);
     }
 
-    fn on_le_connect_success(&self, _conn: LeConnection) {
-        todo!()
+    fn on_le_connect_success(&self, conn: LeConnection) {
+        let mut state = self.state.borrow_mut();
+        // record this connection while it exists
+        state.current_connections.insert(conn.remote_address);
+        // successful connections remove the address from the direct list
+        state.direct_list.remove(&conn.remote_address);
+        // invoke any pending callbacks, update set of attempts
+        state.attempts.process_connection(conn);
+        // update the acceptlist if needed
+        self.reconcile_state(&mut state);
     }
 
-    fn on_le_connect_fail(&self, _address: AddressWithType, _status: ErrorCode) {
-        todo!()
+    fn on_le_connect_fail(&self, address: AddressWithType, _status: ErrorCode) {
+        let mut state = self.state.borrow_mut();
+        // this should only occur in the case of an le_impl timeout
+        // after timeouts are removed, consider putting an unreachable!() here?
+        // ask @rwt first
+        if address == AddressWithType::EMPTY {
+            return;
+        }
+        // le_impl appears to pull the device out of the direct connect list (but not the background list...) on error
+        state.direct_list.remove(&address);
+
+        self.reconcile_state(&mut state);
     }
 
-    fn on_disconnect(&self, _address: AddressWithType) {
-        todo!()
+    fn on_disconnect(&self, address: AddressWithType) {
+        let mut state = self.state.borrow_mut();
+        state.current_connections.remove(&address);
+        self.reconcile_state(&mut state);
+    }
+
+    fn reconcile_state(&self, state: &mut ConnectionManagerState) {
+        // first figure out what state we need the ACL manager to be in
+        let needed_direct_connections = state
+            .attempts
+            .active_attempts()
+            .filter(|attempt| attempt.mode == ConnectionMode::Direct)
+            .map(|attempt| attempt.remote_address)
+            .collect::<HashSet<_>>();
+
+        let needed_background_connections = state
+            .attempts
+            .active_attempts()
+            .filter(|attempt| attempt.mode == ConnectionMode::Background)
+            .map(|attempt| attempt.remote_address)
+            .collect::<HashSet<_>>();
+
+        // next, pull out anything in the ACL manager that we don't need
+        // recall that cancel_connect() removes addresses from *both* lists (!)
+        for address in state.direct_list.difference(&needed_direct_connections) {
+            self.le_manager.remove_from_all_lists(*address);
+            state.background_list.remove(address);
+        }
+        state.direct_list =
+            state.direct_list.intersection(&needed_direct_connections).copied().collect();
+
+        for address in state.background_list.difference(&needed_background_connections) {
+            self.le_manager.remove_from_all_lists(*address);
+            state.direct_list.remove(address);
+        }
+        state.background_list =
+            state.background_list.intersection(&needed_background_connections).copied().collect();
+
+        // now everything extra has been removed, we can put things back in
+        for address in needed_direct_connections.difference(&state.direct_list) {
+            self.le_manager.add_to_direct_list(*address);
+        }
+        for address in needed_background_connections.difference(&state.background_list) {
+            self.le_manager.add_to_background_list(*address);
+        }
+
+        // we should now be in a consistent state!
+        state.direct_list = needed_direct_connections;
+        state.background_list = needed_background_connections;
     }
 }
