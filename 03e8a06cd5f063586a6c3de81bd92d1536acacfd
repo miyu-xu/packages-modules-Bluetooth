@@ -241,6 +241,30 @@
       },
       "revId": "03e8a06cd5f063586a6c3de81bd92d1536acacfd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "707f8552_b2bc367a",
+        "filename": "system/gd/hci/hci_layer.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 285,
+      "author": {
+        "id": 1901791
+      },
+      "writtenOn": "2023-03-31T18:05:37Z",
+      "side": 1,
+      "message": "Sorry for not being clear in comment #20. The test in comment #20, which included aosp/2507757, aosp/2516077, and excluded aosp/2516078.\n\nI think that we need all CLs in that topic.\n\nThanks,",
+      "parentUuid": "ab20cefb_f59e5a10",
+      "range": {
+        "startLine": 285,
+        "startChar": 10,
+        "endLine": 285,
+        "endChar": 28
+      },
+      "revId": "03e8a06cd5f063586a6c3de81bd92d1536acacfd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
