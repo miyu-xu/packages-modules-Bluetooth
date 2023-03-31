@@ -164,6 +164,30 @@
       },
       "revId": "8170cd215ecbfa1effedb223730a2e2a9270a356",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "95f296b0_fa43dada",
+        "filename": "system/rust/src/connection.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-03-31T20:17:04Z",
+      "side": 1,
+      "message": "Resolved offline, I think?",
+      "parentUuid": "f2d9a09b_c8dcc2f5",
+      "range": {
+        "startLine": 136,
+        "startChar": 11,
+        "endLine": 136,
+        "endChar": 33
+      },
+      "revId": "8170cd215ecbfa1effedb223730a2e2a9270a356",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
