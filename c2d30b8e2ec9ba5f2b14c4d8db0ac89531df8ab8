@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "17646f1f_be11da30",
+        "filename": "tools/rootcanal/TEST_MAPPING",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-03-31T20:08:51Z",
+      "side": 0,
+      "message": "nit: Could we also put `hwasan-presubmit` in `hardware/interfaces/bluetooth/aidl` test mapping ?",
+      "range": {
+        "startLine": 7,
+        "startChar": 2,
+        "endLine": 7,
+        "endChar": 24
+      },
+      "revId": "c2d30b8e2ec9ba5f2b14c4d8db0ac89531df8ab8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
