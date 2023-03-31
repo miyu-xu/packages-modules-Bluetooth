@@ -35,6 +35,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5cc1e632_4793c504",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1901791
+      },
+      "writtenOn": "2023-03-31T11:04:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c32d1477_8da576d2",
+      "revId": "03e8a06cd5f063586a6c3de81bd92d1536acacfd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "04c8593e_959479a6",
@@ -167,6 +185,30 @@
       "side": 1,
       "message": "If it\u0027s not about firmware download, I wouldn\u0027t increase it.  2 seconds is already an eternity, and the sooner you realize the chip isn\u0027t responding, the better chance you have to debug it.",
       "parentUuid": "47b03c32_436ef3bf",
+      "range": {
+        "startLine": 285,
+        "startChar": 10,
+        "endLine": 285,
+        "endChar": 28
+      },
+      "revId": "03e8a06cd5f063586a6c3de81bd92d1536acacfd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1b680d65_ce2a858c",
+        "filename": "system/gd/hci/hci_layer.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 285,
+      "author": {
+        "id": 1901791
+      },
+      "writtenOn": "2023-03-31T11:04:43Z",
+      "side": 1,
+      "message": "I see a crash if not apply aosp/2516078 and increase hci layer timeout.\n\nPlease take a look at b/271859293#comment20.",
+      "parentUuid": "3c941bcb_86e9b384",
       "range": {
         "startLine": 285,
         "startChar": 10,
