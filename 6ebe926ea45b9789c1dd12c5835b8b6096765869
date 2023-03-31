@@ -46,6 +46,30 @@
       },
       "revId": "6ebe926ea45b9789c1dd12c5835b8b6096765869",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fb0773e7_1605eb1d",
+        "filename": "android/pandora/test/gatt_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 1937985
+      },
+      "writtenOn": "2023-03-31T18:46:59Z",
+      "side": 1,
+      "message": "Oops my bad. But not too late to add comment, can you create bug and add a TODO above ?",
+      "parentUuid": "b8fc692b_f5d433cc",
+      "range": {
+        "startLine": 151,
+        "startChar": 4,
+        "endLine": 151,
+        "endChar": 30
+      },
+      "revId": "6ebe926ea45b9789c1dd12c5835b8b6096765869",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
