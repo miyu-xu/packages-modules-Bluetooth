@@ -26,6 +26,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "c4cea714_46c13560",
+        "filename": "android/app/src/com/android/bluetooth/Utils.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-03-31T18:50:23Z",
+      "side": 1,
+      "message": "Done, check aosp/2515979 for the change",
+      "parentUuid": "2825c807_9477b2b2",
+      "range": {
+        "startLine": 144,
+        "startChar": 0,
+        "endLine": 144,
+        "endChar": 87
+      },
+      "revId": "fd06c9f98a100afa5264129b5f0b2f0e77765c70",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "98f48675_61a8d4f8",
         "filename": "android/app/src/com/android/bluetooth/a2dp/A2dpService.java",
         "patchSetId": 11
@@ -60,6 +84,30 @@
       "writtenOn": "2023-03-31T17:49:37Z",
       "side": 1,
       "message": "LGTM",
+      "range": {
+        "startLine": 35,
+        "startChar": 23,
+        "endLine": 35,
+        "endChar": 35
+      },
+      "revId": "fd06c9f98a100afa5264129b5f0b2f0e77765c70",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "66929f43_35a1ed12",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-03-31T18:50:23Z",
+      "side": 1,
+      "message": "Moved this to aosp/2517276",
+      "parentUuid": "e9587e9b_4c38d346",
       "range": {
         "startLine": 35,
         "startChar": 23,
