@@ -16,6 +16,24 @@
       "message": "This is too much to chew. Can we simplify it as below?\n\nif (!p_flag \u0026\u0026 is_adv_connectable) {\n  uint8_t zero_flag \u003d 0;\n  p_flag \u003d \u0026zero_flag;\n}\n\nif (p_flag) {\n  device_type \u003d (BTM_BLE_BREDR_NOT_SPT \u0026 *p_flag)\n                  ? bluetooth::hci::DeviceType::LE\n                  : bluetooth::hci::DeviceType::DUAL;\n}",
       "revId": "a554f9d52e3f6d1192bbc70baf1dd849f1c75e62",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "68559f01_ebe50217",
+        "filename": "system/main/shim/le_scanning_manager.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 756,
+      "author": {
+        "id": 1929170
+      },
+      "writtenOn": "2023-03-31T21:40:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "340e920f_0b12583c",
+      "revId": "a554f9d52e3f6d1192bbc70baf1dd849f1c75e62",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
