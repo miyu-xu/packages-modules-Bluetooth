@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "58de382e_7fdb6987",
+        "filename": "system/rust/src/connection.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-03-31T17:21:52Z",
+      "side": 1,
+      "message": "Should this be an error?  Successfully cancelled nothing.",
+      "range": {
+        "startLine": 41,
+        "startChar": 4,
+        "endLine": 41,
+        "endChar": 24
+      },
+      "revId": "8170cd215ecbfa1effedb223730a2e2a9270a356",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "746ea432_6a8fad1b",
+        "filename": "system/rust/src/connection.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-03-31T17:21:52Z",
+      "side": 1,
+      "message": "Should this be LeConnection?  Might it be confusing in the future?",
+      "range": {
+        "startLine": 55,
+        "startChar": 11,
+        "endLine": 55,
+        "endChar": 21
+      },
+      "revId": "8170cd215ecbfa1effedb223730a2e2a9270a356",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "50e03101_48c94a10",
+        "filename": "system/rust/src/connection.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-03-31T17:21:52Z",
+      "side": 1,
+      "message": "What\u0027s the use case for this one?  Who calls it?  Could it be racy with another client?",
+      "range": {
+        "startLine": 136,
+        "startChar": 11,
+        "endLine": 136,
+        "endChar": 33
+      },
+      "revId": "8170cd215ecbfa1effedb223730a2e2a9270a356",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
