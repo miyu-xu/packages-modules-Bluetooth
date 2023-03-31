@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "96c62611_77ba179f",
+        "filename": "system/stack/btm/btm_ble_gap.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 509,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-03-31T07:57:36Z",
+      "side": 1,
+      "message": "Looks like this function is no longer void returning. Do you consider to correct this documentation in this CL ?",
+      "revId": "02de23fb529853edd4967bc05dd6d21039be1a21",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
