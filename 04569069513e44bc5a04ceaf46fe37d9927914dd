@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "15d938fb_da6ebd96",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 4447,
+      "author": {
+        "id": 1963846
+      },
+      "writtenOn": "2023-03-31T02:15:02Z",
+      "side": 1,
+      "message": "How about LE HID connections?",
+      "revId": "04569069513e44bc5a04ceaf46fe37d9927914dd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "90ccfcdd_20e60c2f",
+        "filename": "system/gd/rust/linux/stack/src/suspend.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 1963846
+      },
+      "writtenOn": "2023-03-31T02:15:02Z",
+      "side": 1,
+      "message": "Do we need a condition to check if there are HID connections in suspend() here and resume() below?",
+      "revId": "04569069513e44bc5a04ceaf46fe37d9927914dd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
