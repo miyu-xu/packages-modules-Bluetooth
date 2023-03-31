@@ -43,6 +43,7 @@ import androidx.test.filters.MediumTest;
 import androidx.test.runner.AndroidJUnit4;
 
 import com.android.bluetooth.TestUtils;
+import com.android.bluetooth.Utils;
 import com.android.bluetooth.a2dp.A2dpService;
 import com.android.bluetooth.btservice.storage.DatabaseManager;
 import com.android.bluetooth.hearingaid.HearingAidService;
@@ -75,12 +76,14 @@ public class ActiveDeviceManagerTest {
     private BluetoothDevice mLeAudioDevice;
     private BluetoothDevice mLeHearingAidDevice;
     private BluetoothDevice mSecondaryAudioDevice;
+    private BluetoothDevice mDualModeAudioDevice;
     private ArrayList<BluetoothDevice> mDeviceConnectionStack;
     private BluetoothDevice mMostRecentDevice;
     private ActiveDeviceManager mActiveDeviceManager;
     private long mHearingAidHiSyncId = 1010;
 
     private static final int TIMEOUT_MS = 1000;
+    private boolean mOriginalDualModeAudioState;
 
     @Mock private AdapterService mAdapterService;
     @Mock private ServiceFactory mServiceFactory;
@@ -119,8 +122,10 @@ public class ActiveDeviceManagerTest {
         mLeAudioDevice = TestUtils.getTestDevice(mAdapter, 4);
         mLeHearingAidDevice = TestUtils.getTestDevice(mAdapter, 5);
         mSecondaryAudioDevice = TestUtils.getTestDevice(mAdapter, 6);
+        mDualModeAudioDevice = TestUtils.getTestDevice(mAdapter, 7);
         mDeviceConnectionStack = new ArrayList<>();
         mMostRecentDevice = null;
+        mOriginalDualModeAudioState = Utils.isDualModeAudioEnabled();
 
         when(mA2dpService.setActiveDevice(any())).thenReturn(true);
         when(mHeadsetService.getHfpCallAudioPolicy(any())).thenReturn(
@@ -172,6 +177,7 @@ public class ActiveDeviceManagerTest {
     public void tearDown() throws Exception {
         mActiveDeviceManager.cleanup();
         TestUtils.clearAdapterService(mAdapterService);
+        Utils.setDualModeAudioStateForTesting(mOriginalDualModeAudioState);
     }
 
     @Test
@@ -691,6 +697,70 @@ public class ActiveDeviceManagerTest {
 
         hearingAidDisconnected(mHearingAidDevice);
         verify(mA2dpService, timeout(TIMEOUT_MS)).setActiveDevice(mA2dpDevice);
+    }
+
+    /**
+     * Verifies that we mutually exclude classic audio profiles (A2DP & HFP) and LE Audio when the
+     * dual mode feature is disabled.
+     */
+    @Test
+    public void dualModeAudioDeviceConnected_withDualModeFeatureDisabled() {
+        // Turn off the dual mode audio flag
+        Utils.setDualModeAudioStateForTesting(false);
+
+        // Ensure we remove the LEA active device when classic audio profiles are made active
+        a2dpConnected(mDualModeAudioDevice, true);
+        headsetConnected(mDualModeAudioDevice, true);
+        verify(mA2dpService, timeout(TIMEOUT_MS)).setActiveDevice(mDualModeAudioDevice);
+        verify(mHeadsetService, timeout(TIMEOUT_MS)).setActiveDevice(mDualModeAudioDevice);
+        verify(mLeAudioService, timeout(TIMEOUT_MS)).removeActiveDevice(true);
+        Assert.assertEquals(mDualModeAudioDevice, mActiveDeviceManager.getA2dpActiveDevice());
+        Assert.assertEquals(mDualModeAudioDevice, mActiveDeviceManager.getHfpActiveDevice());
+
+        // Ensure we make classic audio profiles inactive when LEA is made active
+        leAudioConnected(mDualModeAudioDevice);
+        verify(mA2dpService, timeout(TIMEOUT_MS)).removeActiveDevice(false);
+        verify(mHeadsetService, timeout(TIMEOUT_MS)).setActiveDevice(isNull());
+        verify(mLeAudioService, timeout(TIMEOUT_MS)).setActiveDevice(mDualModeAudioDevice);
+        Assert.assertEquals(mDualModeAudioDevice, mActiveDeviceManager.getLeAudioActiveDevice());
+    }
+
+    /**
+     * Verifies that we connect and make active both classic audio profiles (A2DP & HFP) and LE
+     * Audio when the dual mode feature is enabled.
+     */
+    @Test
+    public void dualModeAudioDeviceConnected_withDualModeFeatureEnabled() {
+        // Turn on the dual mode audio flag
+        Utils.setDualModeAudioStateForTesting(true);
+
+        when(mAdapterService.isProfileSupported(mDualModeAudioDevice, BluetoothProfile.A2DP))
+                .thenReturn(true);
+        when(mAdapterService.isProfileSupported(mDualModeAudioDevice, BluetoothProfile.HEADSET))
+                .thenReturn(true);
+
+        leAudioConnected(mDualModeAudioDevice);
+        verify(mA2dpService, never()).removeActiveDevice(false);
+        verify(mHeadsetService, never()).setActiveDevice(isNull());
+        // Verify setting LEA active fails when all supported classic audio profiles are not active
+        verify(mLeAudioService, timeout(TIMEOUT_MS)).setActiveDevice(mDualModeAudioDevice);
+        Assert.assertNull(mActiveDeviceManager.getLeAudioActiveDevice());
+
+        // Ensure we make LEA active after all supported classic profiles are active
+        a2dpConnected(mDualModeAudioDevice, true);
+        headsetConnected(mDualModeAudioDevice, true);
+        verify(mA2dpService, timeout(TIMEOUT_MS)).setActiveDevice(mDualModeAudioDevice);
+        verify(mHeadsetService, timeout(TIMEOUT_MS)).setActiveDevice(mDualModeAudioDevice);
+        verify(mLeAudioService, timeout(TIMEOUT_MS)).setActiveDevice(mDualModeAudioDevice);
+        Assert.assertEquals(mDualModeAudioDevice, mActiveDeviceManager.getA2dpActiveDevice());
+        Assert.assertEquals(mDualModeAudioDevice, mActiveDeviceManager.getHfpActiveDevice());
+        Assert.assertEquals(mDualModeAudioDevice, mActiveDeviceManager.getLeAudioActiveDevice());
+        verify(mLeAudioService, never()).removeActiveDevice(true);
+
+        // Verify LEA made inactive when a supported classic audio profile is made inactive
+        a2dpDisconnected(mDualModeAudioDevice);
+        verify(mA2dpService, timeout(TIMEOUT_MS)).removeActiveDevice(false);
+        verify(mLeAudioService, timeout(TIMEOUT_MS)).removeActiveDevice(true);
     }
 
     /**
