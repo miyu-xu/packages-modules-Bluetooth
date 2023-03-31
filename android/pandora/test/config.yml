@@ -6,10 +6,16 @@ TestBeds:
     AndroidDevice: '*'
     BumbleDevice:
     - transport: 'tcp-client:127.0.0.1:6211'
+      keystore: 'JsonKeyStore'
     - transport: 'tcp-client:127.0.0.1:6211'
+      keystore: 'JsonKeyStore'
 - Name: bumble.bumbles
   Controllers:
     BumbleDevice:
     - transport: 'tcp-client:127.0.0.1:7300'
+      keystore: 'JsonKeyStore'
+      io_capability: display_output_and_yes_no_input
     - transport: 'tcp-client:127.0.0.1:7300'
+      keystore: 'JsonKeyStore'
     - transport: 'tcp-client:127.0.0.1:7300'
+      keystore: 'JsonKeyStore'
