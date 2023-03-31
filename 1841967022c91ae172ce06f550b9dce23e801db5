@@ -1,0 +1,136 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b6977c8a_85645fa6",
+        "filename": "android/pandora/test/asha_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 496,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2023-03-31T17:48:16Z",
+      "side": 1,
+      "message": "Do you only want to assert if the `start` command is sent here ? If so then this test is enough.\n\nIf we want to match the test specification then step 2 and 3 are missing in this test.\n* Verify that DUT reads Ref ​​`ReadOnlyProperties` and `LE_PSM_OUT`.\n* Verify that DUT establishes L2CAP CoC channel to Ref using LE_PSM_OUT.\n\n\nAlso step 4 is incomplete:\n* Verify that DUT sends a correct AudioControlPoint `Start` command (codec\u003d1, audiotype\u003d0, volume\u003d\u003cvolume set on DUT\u003e, otherstate\u003d\u003cstate of Ref aux if dual devices\u003e)\n\nWe are not asserting start parameters.",
+      "range": {
+        "startLine": 496,
+        "startChar": 8,
+        "endLine": 496,
+        "endChar": 39
+      },
+      "revId": "1841967022c91ae172ce06f550b9dce23e801db5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6de5a435_7e6fe12b",
+        "filename": "android/pandora/test/asha_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 536,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2023-03-31T17:48:16Z",
+      "side": 1,
+      "message": "await directly:\n`await self.dut.aio.asha.Start()`",
+      "range": {
+        "startLine": 536,
+        "startChar": 8,
+        "endLine": 536,
+        "endChar": 59
+      },
+      "revId": "1841967022c91ae172ce06f550b9dce23e801db5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a1a77091_44512e02",
+        "filename": "android/pandora/test/asha_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 540,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2023-03-31T17:48:16Z",
+      "side": 1,
+      "message": "We need to assert the volume value is the same than the one sent.",
+      "range": {
+        "startLine": 540,
+        "startChar": 8,
+        "endLine": 540,
+        "endChar": 40
+      },
+      "revId": "1841967022c91ae172ce06f550b9dce23e801db5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9e79e8d2_9fccb948",
+        "filename": "android/pandora/test/asha_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 578,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2023-03-31T17:48:16Z",
+      "side": 1,
+      "message": "await directly:\n`await self.dut.aio.asha.Start()`",
+      "range": {
+        "startLine": 578,
+        "startChar": 7,
+        "endLine": 578,
+        "endChar": 12
+      },
+      "revId": "1841967022c91ae172ce06f550b9dce23e801db5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c0e20dbe_ae25bbba",
+        "filename": "android/pandora/test/asha_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 583,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2023-03-31T17:48:16Z",
+      "side": 1,
+      "message": "Step 3 and 4 are missing of the test specification are missing here:\n* Ref sends a successful status notification of the prior `Stop` command.\n* Verify that DUT does not send audio packets.",
+      "revId": "1841967022c91ae172ce06f550b9dce23e801db5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1c059520_7b4095c2",
+        "filename": "android/pandora/test/asha_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 622,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2023-03-31T17:48:16Z",
+      "side": 1,
+      "message": "await directly:\n`await self.dut.aio.asha.Start()`",
+      "range": {
+        "startLine": 622,
+        "startChar": 7,
+        "endLine": 622,
+        "endChar": 59
+      },
+      "revId": "1841967022c91ae172ce06f550b9dce23e801db5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
