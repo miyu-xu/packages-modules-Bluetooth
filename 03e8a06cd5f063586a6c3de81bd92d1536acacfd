@@ -217,6 +217,30 @@
       },
       "revId": "03e8a06cd5f063586a6c3de81bd92d1536acacfd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ab20cefb_f59e5a10",
+        "filename": "system/gd/hci/hci_layer.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 285,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-03-31T15:59:15Z",
+      "side": 1,
+      "message": "So is aosp/2516078 sufficient to avoid the crash, or do you need all three CLs?",
+      "parentUuid": "1b680d65_ce2a858c",
+      "range": {
+        "startLine": 285,
+        "startChar": 10,
+        "endLine": 285,
+        "endChar": 28
+      },
+      "revId": "03e8a06cd5f063586a6c3de81bd92d1536acacfd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
