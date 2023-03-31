@@ -5347,6 +5347,39 @@ public class AdapterService extends Service {
     }
 
     /**
+     * Checks if all supported classic audio profiles are active on this device.
+     * @param device the remote device
+     * @return {@code true} if all supported classic audio profiles are active on this device,
+     * {@code false} otherwise
+     */
+    public boolean isAllSupportedClassicAudioProfilesActive(BluetoothDevice device) {
+        if (mLeAudioService == null) {
+            return false;
+        }
+        boolean a2dpSupported = mA2dpService != null && (device == null
+                || mA2dpService.getConnectionPolicy(device)
+                == BluetoothProfile.CONNECTION_POLICY_ALLOWED);
+        boolean hfpSupported = mHeadsetService != null && (device == null
+                || mHeadsetService.getConnectionPolicy(device)
+                == BluetoothProfile.CONNECTION_POLICY_ALLOWED);
+
+        List<BluetoothDevice> groupDevices = mLeAudioService.getGroupDevices(device);
+        if (hfpSupported) {
+            BluetoothDevice activeHfpDevice = mHeadsetService.getActiveDevice();
+            if (activeHfpDevice == null || !groupDevices.contains(activeHfpDevice)) {
+                return false;
+            }
+        }
+        if (a2dpSupported) {
+            BluetoothDevice activeA2dpDevice = mA2dpService.getActiveDevice();
+            if (activeA2dpDevice == null || !groupDevices.contains(activeA2dpDevice)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /**
      * Get the active devices for the BluetoothProfile specified
      *
      * @param profile is the profile from which we want the active devices.
