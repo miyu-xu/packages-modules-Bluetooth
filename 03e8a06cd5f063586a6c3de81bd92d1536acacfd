@@ -60,6 +60,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "97497390_8424b026",
+        "filename": "system/gd/hal/hci_hal_android_hidl.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 443,
+      "author": {
+        "id": 1306903
+      },
+      "writtenOn": "2023-03-31T03:46:49Z",
+      "side": 1,
+      "message": "Does that mean we don\u0027t have a timer specifically for firmware downloading? I don\u0027t see a timeout for the init_promise_ in the InternalHciCallbacks. It seems now we use the future.wait_for in StackManager::StartUp for the whole stack starting BT procedure.",
+      "parentUuid": "04c8593e_959479a6",
+      "range": {
+        "startLine": 443,
+        "startChar": 4,
+        "endLine": 443,
+        "endChar": 25
+      },
+      "revId": "03e8a06cd5f063586a6c3de81bd92d1536acacfd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e687ce5a_da5eeda3",
         "filename": "system/gd/hci/hci_layer.cc",
         "patchSetId": 7
