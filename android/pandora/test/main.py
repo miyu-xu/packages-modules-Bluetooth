@@ -19,12 +19,14 @@ import asha_test
 import example
 import gatt_test
 import le_advertising_test
+import ssp_test
 
 _TEST_CLASSES_LIST = [
     example.ExampleTest,
     asha_test.ASHATest,
     gatt_test.GattTest,
     le_advertising_test.LeAdvertisingTest,
+    ssp_test.SspTest,
 ]
 
 
