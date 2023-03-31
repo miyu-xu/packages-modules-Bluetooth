@@ -103,6 +103,30 @@
       },
       "revId": "03e8a06cd5f063586a6c3de81bd92d1536acacfd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "47b03c32_436ef3bf",
+        "filename": "system/gd/hci/hci_layer.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 285,
+      "author": {
+        "id": 1306903
+      },
+      "writtenOn": "2023-03-31T03:50:05Z",
+      "side": 1,
+      "message": "It might not happen if the initializationComplete never returns. I don\u0027t see this is a part of firmware download. In my understanding this is to increase the HCI timeout after Bluetooth gets turned on.",
+      "parentUuid": "e687ce5a_da5eeda3",
+      "range": {
+        "startLine": 285,
+        "startChar": 10,
+        "endLine": 285,
+        "endChar": 28
+      },
+      "revId": "03e8a06cd5f063586a6c3de81bd92d1536acacfd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
