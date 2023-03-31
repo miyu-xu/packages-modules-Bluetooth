@@ -22,6 +22,7 @@
 #include "hci/hci_metrics_logging.h"
 #include "os/alarm.h"
 #include "os/metrics.h"
+#include "os/system_properties.h"
 #include "os/queue.h"
 #include "packet/packet_builder.h"
 #include "storage/storage_module.h"
@@ -279,7 +280,9 @@ struct HciLayer::impl {
     waiting_command_ = op_code;
     command_credits_ = 0;  // Only allow one outstanding command
     if (hci_timeout_alarm_ != nullptr) {
-      hci_timeout_alarm_->Schedule(BindOnce(&impl::on_hci_timeout, common::Unretained(this), op_code), kHciTimeoutMs);
+      hci_timeout_alarm_->Schedule(BindOnce(&impl::on_hci_timeout, common::Unretained(this),
+          op_code),
+          get_hci_timeout_ms());
     } else {
       LOG_WARN("%s sent without an hci-timeout timer", OpCodeText(op_code).c_str());
     }
@@ -483,6 +486,13 @@ struct HciLayer::hal_callbacks : public hal::HciHalCallbacks {
 HciLayer::HciLayer() : impl_(nullptr), hal_callbacks_(nullptr) {}
 
 HciLayer::~HciLayer() {}
+
+std::chrono::milliseconds HciLayer::get_hci_timeout_ms() {
+  return std::chrono::milliseconds(
+      os::GetSystemPropertyUint32(
+          "bluetooth.gd.hci_layer.timeout",
+          /* default_value = */ 2000));
+}
 
 common::BidiQueueEnd<AclBuilder, AclView>* HciLayer::GetAclQueueEnd() {
   return impl_->acl_queue_.GetUpEnd();
