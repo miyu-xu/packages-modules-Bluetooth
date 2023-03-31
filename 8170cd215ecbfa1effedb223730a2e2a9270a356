@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9ce9128c_d3abb7ea",
+        "filename": "system/rust/src/connection.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-03-31T18:39:07Z",
+      "side": 1,
+      "message": "I think it\u0027s an error you can just ignore. Calling this method is idempotent in terms of effects on the connection manager, but we are just informing the caller that this was a weird thing to do.",
+      "parentUuid": "58de382e_7fdb6987",
+      "range": {
+        "startLine": 41,
+        "startChar": 4,
+        "endLine": 41,
+        "endChar": 24
+      },
+      "revId": "8170cd215ecbfa1effedb223730a2e2a9270a356",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "746ea432_6a8fad1b",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "aae41fb2_272a3e7c",
+        "filename": "system/rust/src/connection.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-03-31T18:39:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "746ea432_6a8fad1b",
+      "range": {
+        "startLine": 55,
+        "startChar": 11,
+        "endLine": 55,
+        "endChar": 21
+      },
+      "revId": "8170cd215ecbfa1effedb223730a2e2a9270a356",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "50e03101_48c94a10",
@@ -60,6 +108,30 @@
       "writtenOn": "2023-03-31T17:21:52Z",
       "side": 1,
       "message": "What\u0027s the use case for this one?  Who calls it?  Could it be racy with another client?",
+      "range": {
+        "startLine": 136,
+        "startChar": 11,
+        "endLine": 136,
+        "endChar": 33
+      },
+      "revId": "8170cd215ecbfa1effedb223730a2e2a9270a356",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "98639d6f_375e11d8",
+        "filename": "system/rust/src/connection.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-03-31T18:39:07Z",
+      "side": 1,
+      "message": "This is called upon unbonding. It is absolutely racey - in my opinion, unbonding should not touch the autoconnect list, it should be up to profiles to figure out if they are still interested in autoconnect. We also should not touch the behavior of 3P GATT clients from Java.\n\nBut this is a separate behavioral change that might break something, so I won\u0027t touch it. I also get that in practice, if you just unbonded from a peer, you almost certainly don\u0027t want to keep autoconnecting to it.",
+      "parentUuid": "50e03101_48c94a10",
       "range": {
         "startLine": 136,
         "startChar": 11,
