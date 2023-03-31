@@ -748,7 +748,34 @@ public class LeAudioService extends ProfileService {
         return result;
     }
 
-    private Integer getActiveGroupId() {
+    /**
+     * Get all the devices within a given group.
+     * @param device the device for which we want to get all devices in its group
+     * @return all devices within a given group or empty list
+     */
+    public List<BluetoothDevice> getGroupDevices(BluetoothDevice device) {
+        List<BluetoothDevice> result = new ArrayList<>();
+        int groupId = getGroupId(device);
+
+        if (groupId == LE_AUDIO_GROUP_ID_INVALID) {
+            return result;
+        }
+
+        synchronized (mGroupLock) {
+            for (Map.Entry<BluetoothDevice, LeAudioDeviceDescriptor> entry
+                    : mDeviceDescriptors.entrySet()) {
+                if (entry.getValue().mGroupId == groupId) {
+                    result.add(entry.getKey());
+                }
+            }
+        }
+        return result;
+    }
+
+    /**
+     * Get the active device group id
+     */
+    public Integer getActiveGroupId() {
         synchronized (mGroupLock) {
             for (Map.Entry<Integer, LeAudioGroupDescriptor> entry : mGroupDescriptors.entrySet()) {
                 LeAudioGroupDescriptor descriptor = entry.getValue();
