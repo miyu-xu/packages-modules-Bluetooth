@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8f1235d0_7357de66",
+        "filename": "android/app/src/com/android/bluetooth/a2dp/A2dpService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 1687,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-03-31T00:45:49Z",
+      "side": 1,
+      "message": "We\u0027re synchronizing on mStateMachines any time we access mActiveDevice, so I just followed that pattern to ensure it won\u0027t change during this call chain.",
+      "parentUuid": "adad5ce7_6fc97022",
+      "revId": "1c967ac56e632426c650ee3bc38f0ccd0d5a44e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "905b0295_faf51023",
@@ -550,6 +568,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "66ce1aec_e68b6089",
+        "filename": "android/app/src/com/android/bluetooth/btservice/storage/DatabaseManager.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 793,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-03-31T00:45:49Z",
+      "side": 1,
+      "message": "Good call, added this!",
+      "parentUuid": "64fbcb7a_6233ca19",
+      "revId": "1c967ac56e632426c650ee3bc38f0ccd0d5a44e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f0904c1a_f9520478",
@@ -602,6 +638,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2c50bdd6_68da627e",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 2889,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-03-31T00:45:49Z",
+      "side": 1,
+      "message": "Good catch! Resolved the typo :)",
+      "parentUuid": "c6d53c8b_568943b3",
+      "revId": "1c967ac56e632426c650ee3bc38f0ccd0d5a44e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "48c318fe_b1e882a5",
@@ -615,6 +669,24 @@
       "writtenOn": "2023-03-31T00:37:59Z",
       "side": 1,
       "message": "if both mActiveAudioOutDevice and mActiveAudioInDevice are non-null, do we intend to count this as two calls?",
+      "revId": "1c967ac56e632426c650ee3bc38f0ccd0d5a44e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f6dbb3cf_777bd8e2",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 2896,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-03-31T00:45:49Z",
+      "side": 1,
+      "message": "Yes, we intend for this to be counted as 2 separate calls. Audio FWK should send 2 function calls to the BT stack if this happens.",
+      "parentUuid": "48c318fe_b1e882a5",
       "revId": "1c967ac56e632426c650ee3bc38f0ccd0d5a44e7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
