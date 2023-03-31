@@ -64,6 +64,12 @@ rust_library_rlib {
 rust_ffi_static {
     name: "libbt_shim_ffi",
     defaults: ["libbt_shim_defaults"],
+
+    // Force this library to be built with LTO to work around
+    // some missing dependencies on unused code,
+    // e.g. external/rust/crates/nix/src/sys/memfd.rs depends on
+    // memfd_create which is missing from our ancient copy of glibc.
+    flags: ["-C", "lto=thin"],
 }
 
 cc_library_static {
