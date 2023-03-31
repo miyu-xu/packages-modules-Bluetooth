@@ -22,6 +22,30 @@
       },
       "revId": "bf139c54721af19e1c2bde9d37c5b503ef91ce25",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "46c76e96_06919ff1",
+        "filename": "system/main/shim/le_scanning_manager.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 756,
+      "author": {
+        "id": 1929170
+      },
+      "writtenOn": "2023-03-31T00:55:48Z",
+      "side": 1,
+      "message": "Lets say the adv is connectable and I have no flag data, in that case this code will set device_type to DUAL. If I remove that and use has_flag_data, it won\u0027t work I think. I guess, I can refactor it to this:\n```\nif (has_flag_data) {\n    device_type \u003d (BTM_BLE_BREDR_NOT_SPT \u0026 *p_flag) \u003d\u003d 1\n                      ? bluetooth::hci::DeviceType::LE\n                      : bluetooth::hci::DeviceType::DUAL;\n}\n\n// No flag data, so device is unknown\n// check if connectable and set it to DUAL\nif(device_type \u003d\u003d bluetooth::hci::DeviceType::UNKNOWN \u0026\u0026 is_adv_connectable) {\n    device_type \u003d bluetooth::hci::DeviceType::DUAL;\n}\n```",
+      "parentUuid": "b5cbbda9_407559eb",
+      "range": {
+        "startLine": 747,
+        "startChar": 0,
+        "endLine": 756,
+        "endChar": 3
+      },
+      "revId": "bf139c54721af19e1c2bde9d37c5b503ef91ce25",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
