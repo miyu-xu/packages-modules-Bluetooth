@@ -16,6 +16,23 @@
       "message": "Please help review, thanks!",
       "revId": "59d3ceb32b7ce444698ed72ee20699c260e724d6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b26c9b93_b2ac37fc",
+        "filename": "system/stack/l2cap/l2c_csm.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-03-31T20:54:43Z",
+      "side": 1,
+      "message": "Does our state machine correctly handle multiple L2CEVT_L2CA_CONFIG_RSP events?",
+      "revId": "59d3ceb32b7ce444698ed72ee20699c260e724d6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
