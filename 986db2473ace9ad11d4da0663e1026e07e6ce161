@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "20079d3e_30b4b29b",
+        "filename": "system/rust/src/connection/ffi.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-03-31T16:50:01Z",
+      "side": 1,
+      "message": "I\u0027m fuzzy on why there are two stop_all_connections functions.  Where do these go in the C code?",
+      "range": {
+        "startLine": 74,
+        "startChar": 12,
+        "endLine": 74,
+        "endChar": 44
+      },
+      "revId": "986db2473ace9ad11d4da0663e1026e07e6ce161",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a80771c4_60a71c73",
+        "filename": "system/rust/src/connection/ffi.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-03-31T16:50:01Z",
+      "side": 1,
+      "message": "I like the name remove_client better than stop_all_connections_from_client",
+      "range": {
+        "startLine": 176,
+        "startChar": 43,
+        "endLine": 176,
+        "endChar": 56
+      },
+      "revId": "986db2473ace9ad11d4da0663e1026e07e6ce161",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
