@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "adad5ce7_6fc97022",
+        "filename": "android/app/src/com/android/bluetooth/a2dp/A2dpService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 1687,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-03-31T00:37:59Z",
+      "side": 1,
+      "message": "nit: this may not need to be guarded under \u0027synchronized (mStateMachines)\u0027?",
+      "revId": "1c967ac56e632426c650ee3bc38f0ccd0d5a44e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "905b0295_faf51023",
         "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
         "patchSetId": 8
@@ -518,6 +535,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "64fbcb7a_6233ca19",
+        "filename": "android/app/src/com/android/bluetooth/btservice/storage/DatabaseManager.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 793,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-03-31T00:37:59Z",
+      "side": 1,
+      "message": "if groupDevices is empty, should we return some error status or exception? so that line#832 will ensure firstGroupDevice is available",
+      "revId": "1c967ac56e632426c650ee3bc38f0ccd0d5a44e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f0904c1a_f9520478",
         "filename": "android/app/src/com/android/bluetooth/btservice/storage/DatabaseManager.java",
         "patchSetId": 8
@@ -547,6 +581,40 @@
       "side": 1,
       "message": "Done",
       "parentUuid": "f0904c1a_f9520478",
+      "revId": "1c967ac56e632426c650ee3bc38f0ccd0d5a44e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c6d53c8b_568943b3",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 2889,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-03-31T00:37:59Z",
+      "side": 1,
+      "message": "is this intended or typo? volume \u003d volume \u003d",
+      "revId": "1c967ac56e632426c650ee3bc38f0ccd0d5a44e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "48c318fe_b1e882a5",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 2896,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-03-31T00:37:59Z",
+      "side": 1,
+      "message": "if both mActiveAudioOutDevice and mActiveAudioInDevice are non-null, do we intend to count this as two calls?",
       "revId": "1c967ac56e632426c650ee3bc38f0ccd0d5a44e7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
