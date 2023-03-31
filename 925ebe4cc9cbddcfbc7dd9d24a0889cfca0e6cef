@@ -51,6 +51,24 @@
       "message": "Hi Yun-hao,\n\nI would prefer that we do not expand the usage of flags that alter the behavior of the stack only for testing.\n\nCould you expand more what is makes it not easy to control the etm mode in our implementation ?",
       "revId": "925ebe4cc9cbddcfbc7dd9d24a0889cfca0e6cef",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "70c439ab_e8b0c745",
+        "filename": "system/internal_include/stack_config.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2023-03-31T10:19:08Z",
+      "side": 1,
+      "message": "Thanks for the input, we decided to remove the ICS so it is no longer needed.",
+      "parentUuid": "2ecba36f_5e41949e",
+      "revId": "925ebe4cc9cbddcfbc7dd9d24a0889cfca0e6cef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
