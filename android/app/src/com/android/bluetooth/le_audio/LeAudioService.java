@@ -21,9 +21,11 @@ import static android.Manifest.permission.BLUETOOTH_CONNECT;
 import static android.bluetooth.IBluetoothLeAudio.LE_AUDIO_GROUP_ID_INVALID;
 
 import static com.android.bluetooth.Utils.enforceBluetoothPrivilegedPermission;
+import static com.android.bluetooth.Utils.isDualModeAudioEnabled;
 
 import android.annotation.RequiresPermission;
 import android.annotation.SuppressLint;
+import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothLeAudio;
 import android.bluetooth.BluetoothLeAudioCodecConfig;
@@ -48,6 +50,7 @@ import android.media.AudioDeviceCallback;
 import android.media.AudioDeviceInfo;
 import android.media.AudioManager;
 import android.media.BluetoothProfileConnectionInfo;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.HandlerThread;
 import android.os.Looper;
@@ -1326,6 +1329,9 @@ public class LeAudioService extends ProfileService {
      * @return true on success, otherwise false
      */
     public boolean setActiveDevice(BluetoothDevice device) {
+        Log.i(TAG, "setActiveDevice: device=" + device + ", current out="
+                + mActiveAudioOutDevice + ", current in=" + mActiveAudioInDevice);
+        /* Clear active group */
         if (device == null) {
             Log.e(TAG, "device should not be null!");
             return removeActiveDevice(false);
@@ -1334,6 +1340,14 @@ public class LeAudioService extends ProfileService {
             Log.e(TAG, "setActiveDevice(" + device + "): failed because group device is not "
                     + "connected");
             return false;
+        }
+
+        if (Utils.isDualModeAudioEnabled()) {
+            if (!mAdapterService.isAllSupportedClassicAudioProfilesActive(device)) {
+                Log.e(TAG, "setActiveDevice(" + device + "): failed because the device is not "
+                                + "active for all supported classic audio profiles");
+                return false;
+            }
         }
         setActiveGroupWithDevice(device, false);
         return true;
@@ -2851,6 +2865,44 @@ public class LeAudioService extends ProfileService {
     }
 
     /**
+     * Sends the preferred audio profile change requested from a call to
+     * {@link BluetoothAdapter#setPreferredAudioProfiles(BluetoothDevice, Bundle)} to the audio
+     * framework to apply the change. The audio framework will call
+     * {@link BluetoothAdapter#notifyActiveDeviceChangeApplied(BluetoothDevice)} once the
+     * change is successfully applied.
+     *
+     * @return the number of requests sent to the audio framework
+     */
+    public int sendPreferredAudioProfileChangeToAudioFramework() {
+        if (mActiveAudioOutDevice == null && mActiveAudioInDevice == null) {
+            return 0;
+        }
+
+        int audioFrameworkCalls = 0;
+
+        if (mActiveAudioOutDevice != null) {
+            int volume = getAudioDeviceGroupVolume(getGroupId(mActiveAudioOutDevice));
+            final boolean suppressNoisyIntent = mActiveAudioOutDevice != null;
+            Log.i(TAG, "Sending LE Audio Output active device changed for preferred profile "
+                    + "change with volume=" + volume + " and suppressNoisyIntent="
+                    + suppressNoisyIntent);
+            mAudioManager.handleBluetoothActiveDeviceChanged(mActiveAudioOutDevice,
+                    mActiveAudioOutDevice, getLeAudioOutputProfile(suppressNoisyIntent, volume));
+            audioFrameworkCalls++;
+        }
+
+        if (mActiveAudioInDevice != null) {
+            Log.i(TAG, "Sending LE Audio Input active device changed for audio profile change");
+            mAudioManager.handleBluetoothActiveDeviceChanged(mActiveAudioInDevice,
+                    mActiveAudioInDevice, BluetoothProfileConnectionInfo.createLeAudioInfo(false,
+                            false));
+            audioFrameworkCalls++;
+        }
+
+        return audioFrameworkCalls;
+    }
+
+    /**
      * Binder object: must be a static class or memory leak may occur
      */
     @VisibleForTesting
@@ -3485,6 +3537,7 @@ public class LeAudioService extends ProfileService {
     @Override
     public void dump(StringBuilder sb) {
         super.dump(sb);
+        ProfileService.println(sb, "isDualModeAudioEnabled: " + Utils.isDualModeAudioEnabled());
         ProfileService.println(sb, "Active Groups information: ");
         ProfileService.println(sb, "  currentlyActiveGroupId: " + getActiveGroupId());
         ProfileService.println(sb, "  mActiveAudioOutDevice: " + mActiveAudioOutDevice);
@@ -3499,16 +3552,29 @@ public class LeAudioService extends ProfileService {
                                                 : mGroupDescriptors.entrySet()) {
                 LeAudioGroupDescriptor groupDescriptor = groupEntry.getValue();
                 Integer groupId = groupEntry.getKey();
+                BluetoothDevice leadDevice = getConnectedGroupLeadDevice(groupId);
                 ProfileService.println(sb, "Group: " + groupId);
                 ProfileService.println(sb, "  isActive: " + groupDescriptor.mIsActive);
                 ProfileService.println(sb, "  isConnected: " + groupDescriptor.mIsConnected);
                 ProfileService.println(sb, "  mDirection: " + groupDescriptor.mDirection);
-                ProfileService.println(sb, "  group lead: " + getConnectedGroupLeadDevice(groupId));
+                ProfileService.println(sb, "  group lead: " + leadDevice);
                 ProfileService.println(sb, "  first device: " + getFirstDeviceFromGroup(groupId));
                 ProfileService.println(sb, "  lost lead device: "
                         + groupDescriptor.mLostLeadDeviceWhileStreaming);
                 ProfileService.println(sb, "  mInbandRingtoneEnabled: "
                         + groupDescriptor.mInbandRingtoneEnabled);
+
+                // Dump the preferred audio profiles for dual mode devices
+                if (isDualModeAudioEnabled()
+                        && mAdapterService.isDualModeAudioSinkDevice(leadDevice)) {
+                    Bundle preferredAudioProfiles = mAdapterService.getPreferredAudioProfiles(
+                            leadDevice);
+                    ProfileService.println(sb, "  preferredOutputOnlyProfile: "
+                            + preferredAudioProfiles.getInt(
+                                    BluetoothAdapter.AUDIO_MODE_OUTPUT_ONLY));
+                    ProfileService.println(sb, "  preferredDuplexProfile: "
+                            + preferredAudioProfiles.getInt(BluetoothAdapter.AUDIO_MODE_DUPLEX));
+                }
 
                 for (Map.Entry<BluetoothDevice, LeAudioDeviceDescriptor> deviceEntry
                         : mDeviceDescriptors.entrySet()) {
