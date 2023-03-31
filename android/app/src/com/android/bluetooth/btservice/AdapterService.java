@@ -18,6 +18,7 @@
 package com.android.bluetooth.btservice;
 
 import static android.bluetooth.BluetoothDevice.TRANSPORT_AUTO;
+import static android.bluetooth.IBluetoothLeAudio.LE_AUDIO_GROUP_ID_INVALID;
 import static android.text.format.DateUtils.MINUTE_IN_MILLIS;
 import static android.text.format.DateUtils.SECOND_IN_MILLIS;
 
@@ -1240,40 +1241,59 @@ public class AdapterService extends Service {
      * @return {@code true} if it's a dual mode audio device, {@code false} otherwise
      */
     private boolean isDualModeAudioSinkDevice(BluetoothDevice device) {
-        return isProfileSupported(device, BluetoothProfile.LE_AUDIO)
-                && mLeAudioService != null && (isProfileSupported(device, BluetoothProfile.HEADSET)
-                || isProfileSupported(device, BluetoothProfile.A2DP));
+        if (mLeAudioService == null
+                || mLeAudioService.getGroupId(device) == LE_AUDIO_GROUP_ID_INVALID) {
+            return false;
+        }
+
+        // Check if any device in the CSIP group is a dual mode audio sink device
+        for (BluetoothDevice groupDevice: mLeAudioService.getGroupDevices(
+                mLeAudioService.getGroupId(device))) {
+            if (isProfileSupported(groupDevice, BluetoothProfile.LE_AUDIO)
+                    && (isProfileSupported(groupDevice, BluetoothProfile.HEADSET)
+                    || isProfileSupported(groupDevice, BluetoothProfile.A2DP))) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
      * Checks whether the local and remote device support a connection for duplex audio (input and
      * output) over HFP or LE Audio.
      *
-     * @param device the remote device
+     * @param groupDevices the devices in the CSIP group
      * @return {@code true} if duplex is supported on the remote device, {@code false} otherwise
      */
-    private boolean isDuplexAudioSupported(BluetoothDevice device) {
-        if (isProfileSupported(device, BluetoothProfile.HEADSET)) {
-            return true;
+    private boolean isDuplexAudioSupported(List<BluetoothDevice> groupDevices) {
+        for (BluetoothDevice device: groupDevices) {
+            if (isProfileSupported(device, BluetoothProfile.HEADSET)
+                    || (isProfileSupported(device, BluetoothProfile.LE_AUDIO)
+                    && mLeAudioService != null
+                    && mLeAudioService.isLeAudioDuplexSupported(device))) {
+                return true;
+            }
         }
-        return isProfileSupported(device, BluetoothProfile.LE_AUDIO) && mLeAudioService != null
-                && mLeAudioService.isLeAudioDuplexSupported(device);
+        return false;
     }
 
     /**
      * Checks whether the local and remote device support a connection for output only audio over
      * A2DP or LE Audio.
      *
-     * @param device the remote device
-     * @return {@code true} if output only is supported on the remote device, {@code false}
-     * otherwise
+     * @param groupDevices the devices in the CSIP group
+     * @return {@code true} if output only is supported, {@code false} otherwise
      */
-    private boolean isOutputOnlyAudioSupported(BluetoothDevice device) {
-        if (isProfileSupported(device, BluetoothProfile.A2DP)) {
-            return true;
+    private boolean isOutputOnlyAudioSupported(List<BluetoothDevice> groupDevices) {
+        for (BluetoothDevice device: groupDevices) {
+            if (isProfileSupported(device, BluetoothProfile.A2DP)
+                    || (isProfileSupported(device, BluetoothProfile.LE_AUDIO)
+                    && mLeAudioService != null
+                    && mLeAudioService.isLeAudioOutputSupported(device))) {
+                return true;
+            }
         }
-        return isProfileSupported(device, BluetoothProfile.LE_AUDIO) && mLeAudioService != null
-                && mLeAudioService.isLeAudioOutputSupported(device);
+        return false;
     }
 
     /**
@@ -5343,6 +5363,64 @@ public class AdapterService extends Service {
             mHeadsetService.setActiveDevice(device);
         }
 
+        return true;
+    }
+
+    /**
+     * Checks if all supported classic audio profiles are connected to the device.
+     * @param device the remote device
+     * @return {@code true} if all supported classic audio profiles are connected, {@code false}
+     * otherwise
+     */
+    public boolean isAllSupportedClassicAudioProfilesConnected(BluetoothDevice device) {
+        boolean a2dpSupported = mA2dpService != null && (device == null
+                || mA2dpService.getConnectionPolicy(device)
+                == BluetoothProfile.CONNECTION_POLICY_ALLOWED);
+        boolean hfpSupported = mHeadsetService != null && (device == null
+                || mHeadsetService.getConnectionPolicy(device)
+                == BluetoothProfile.CONNECTION_POLICY_ALLOWED);
+
+        if (hfpSupported) {
+            List<BluetoothDevice> connectedHfpDevices = mHeadsetService.getConnectedDevices();
+            if (!connectedHfpDevices.contains(device)) {
+                return false;
+            }
+        }
+        if (a2dpSupported) {
+            List<BluetoothDevice> connectedA2dpDevices = mA2dpService.getConnectedDevices();
+            if (!connectedA2dpDevices.contains(device)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /**
+     * Checks if all supported classic audio profiles are active on this device.
+     * @param device the remote device
+     * @return {@code true} if all supported classic audio profiles are active on this device,
+     * {@code false} otherwise
+     */
+    public boolean isAllSupportedClassicAudioProfilesActive(BluetoothDevice device) {
+        boolean a2dpSupported = mA2dpService != null && (device == null
+                || mA2dpService.getConnectionPolicy(device)
+                == BluetoothProfile.CONNECTION_POLICY_ALLOWED);
+        boolean hfpSupported = mHeadsetService != null && (device == null
+                || mHeadsetService.getConnectionPolicy(device)
+                == BluetoothProfile.CONNECTION_POLICY_ALLOWED);
+
+        if (hfpSupported) {
+            BluetoothDevice activeHfpDevice = mHeadsetService.getActiveDevice();
+            if (activeHfpDevice == null || !activeHfpDevice.equals(device)) {
+                return false;
+            }
+        }
+        if (a2dpSupported) {
+            BluetoothDevice activeA2dpDevice = mA2dpService.getActiveDevice();
+            if (activeA2dpDevice == null || !activeA2dpDevice.equals(device)) {
+                return false;
+            }
+        }
         return true;
     }
 
