@@ -16,6 +16,23 @@
       "message": "Gentle ping. This is needed for Floss qualification. Please help review. Thanks!",
       "revId": "bbe434d1ab7f95a1299f8e68fb65d3deb7691868",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9b5d9c43_3ded8a48",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2023-03-31T10:19:57Z",
+      "side": 1,
+      "message": "We decided to remove ICS Stream mode in qualification so this is no longer needed.",
+      "revId": "bbe434d1ab7f95a1299f8e68fb65d3deb7691868",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
