@@ -26,6 +26,7 @@ import android.app.admin.DevicePolicyManager;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothManager;
+import android.bluetooth.BluetoothProfile;
 import android.bluetooth.IBluetoothCallback;
 import android.content.AttributionSource;
 import android.content.Context;
@@ -102,7 +103,9 @@ import java.io.FileDescriptor;
 import java.io.PrintWriter;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
@@ -126,6 +129,9 @@ public class AdapterServiceTest {
     private @Mock ProfileService mMockGattService;
     private @Mock ProfileService mMockService;
     private @Mock ProfileService mMockService2;
+    private @Mock A2dpService mA2dpService;
+    private @Mock HeadsetService mHeadsetService;
+    private @Mock LeAudioService mLeAudioService;
     private @Mock IBluetoothCallback mIBluetoothCallback;
     private @Mock Binder mBinder;
     private @Mock AudioManager mAudioManager;
@@ -894,6 +900,70 @@ public class AdapterServiceTest {
         Assert.assertFalse(mAdapterService.getState() == BluetoothAdapter.STATE_ON);
         int id3 = mAdapterService.getMetricId(device);
         Assert.assertEquals(id3, id1);
+    }
+
+    public void testIsAllSupportedClassicAudioProfilesActive() {
+        when(A2dpService.getA2dpService()).thenReturn(mA2dpService);
+        when(HeadsetService.getHeadsetService()).thenReturn(mHeadsetService);
+        when(LeAudioService.getLeAudioService()).thenReturn(mLeAudioService);
+        BluetoothDevice firstDevice =
+                TestUtils.getTestDevice(BluetoothAdapter.getDefaultAdapter(), 0);
+        BluetoothDevice secondDevice =
+                TestUtils.getTestDevice(BluetoothAdapter.getDefaultAdapter(), 1);
+        BluetoothDevice thirdDevice =
+                TestUtils.getTestDevice(BluetoothAdapter.getDefaultAdapter(), 2);
+
+        doEnable(0, false);
+        Assert.assertTrue(mAdapterService.getState() == BluetoothAdapter.STATE_ON);
+
+        // Sets up the LEA group devices list
+        List<BluetoothDevice> groupDevices = new ArrayList<>();
+        groupDevices.add(firstDevice);
+        groupDevices.add(secondDevice);
+        when(mLeAudioService.getGroupDevices(firstDevice)).thenReturn(groupDevices);
+        when(mLeAudioService.getGroupDevices(secondDevice)).thenReturn(groupDevices);
+
+        Assert.assertTrue(mAdapterService.isAllSupportedClassicAudioProfilesActive(null));
+
+        // Sets up classic profiles
+        when(mA2dpService.getConnectionPolicy(any())).thenReturn(
+                BluetoothProfile.CONNECTION_POLICY_ALLOWED);
+        when(mHeadsetService.getConnectionPolicy(any())).thenReturn(
+                BluetoothProfile.CONNECTION_POLICY_ALLOWED);
+        when(mA2dpService.getActiveDevice()).thenReturn(secondDevice);
+        when(mHeadsetService.getActiveDevice()).thenReturn(secondDevice);
+
+        Assert.assertTrue(mAdapterService.isAllSupportedClassicAudioProfilesActive(firstDevice));
+        Assert.assertTrue(mAdapterService.isAllSupportedClassicAudioProfilesActive(secondDevice));
+        Assert.assertFalse(mAdapterService.isAllSupportedClassicAudioProfilesActive(thirdDevice));
+
+        // Adjusts the active classic devices to match the device passed into the function
+        when(mA2dpService.getActiveDevice()).thenReturn(firstDevice);
+        when(mHeadsetService.getActiveDevice()).thenReturn(firstDevice);
+        Assert.assertTrue(mAdapterService.isAllSupportedClassicAudioProfilesActive(firstDevice));
+        Assert.assertTrue(mAdapterService.isAllSupportedClassicAudioProfilesActive(secondDevice));
+        Assert.assertFalse(mAdapterService.isAllSupportedClassicAudioProfilesActive(thirdDevice));
+
+        // Different A2DP and HFP active device
+        when(mA2dpService.getActiveDevice()).thenReturn(firstDevice);
+        when(mHeadsetService.getActiveDevice()).thenReturn(thirdDevice);
+        Assert.assertFalse(mAdapterService.isAllSupportedClassicAudioProfilesActive(firstDevice));
+        Assert.assertFalse(mAdapterService.isAllSupportedClassicAudioProfilesActive(secondDevice));
+        Assert.assertFalse(mAdapterService.isAllSupportedClassicAudioProfilesActive(thirdDevice));
+
+        // null A2DP active device
+        when(mA2dpService.getActiveDevice()).thenReturn(null);
+        when(mHeadsetService.getActiveDevice()).thenReturn(firstDevice);
+        Assert.assertFalse(mAdapterService.isAllSupportedClassicAudioProfilesActive(firstDevice));
+        Assert.assertFalse(mAdapterService.isAllSupportedClassicAudioProfilesActive(secondDevice));
+        Assert.assertFalse(mAdapterService.isAllSupportedClassicAudioProfilesActive(thirdDevice));
+
+        // null HFP active device
+        when(mA2dpService.getActiveDevice()).thenReturn(firstDevice);
+        when(mHeadsetService.getActiveDevice()).thenReturn(null);
+        Assert.assertFalse(mAdapterService.isAllSupportedClassicAudioProfilesActive(firstDevice));
+        Assert.assertFalse(mAdapterService.isAllSupportedClassicAudioProfilesActive(secondDevice));
+        Assert.assertFalse(mAdapterService.isAllSupportedClassicAudioProfilesActive(thirdDevice));
     }
 
     @Test
