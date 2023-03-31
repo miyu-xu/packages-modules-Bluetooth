@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b5cbbda9_407559eb",
+        "filename": "system/main/shim/le_scanning_manager.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 756,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-03-31T00:47:07Z",
+      "side": 1,
+      "message": "This code block seems to be equivalent to:\n```\nif (has_flag_data) {\n    device_type \u003d (BTM_BLE_BREDR_NOT_SPT \u0026 *p_flag) \u003d\u003d 1\n                      ? bluetooth::hci::DeviceType::LE\n                      : bluetooth::hci::DeviceType::DUAL;\n}\n```\nYou would not need the `event_type` then.",
+      "range": {
+        "startLine": 747,
+        "startChar": 0,
+        "endLine": 756,
+        "endChar": 3
+      },
+      "revId": "bf139c54721af19e1c2bde9d37c5b503ef91ce25",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
