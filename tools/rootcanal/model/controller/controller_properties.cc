@@ -106,7 +106,8 @@ static constexpr uint64_t LlFeatures() {
       LLFeaturesBits::EXTENDED_REJECT_INDICATION,
       LLFeaturesBits::PERIPHERAL_INITIATED_FEATURES_EXCHANGE,
       LLFeaturesBits::LE_PING,
-      // LLFeaturesBits::LL_PRIVACY,
+      LLFeaturesBits::LL_PRIVACY,
+
       LLFeaturesBits::EXTENDED_SCANNER_FILTER_POLICIES,
       LLFeaturesBits::LE_2M_PHY, LLFeaturesBits::LE_CODED_PHY,
       LLFeaturesBits::LE_EXTENDED_ADVERTISING,
