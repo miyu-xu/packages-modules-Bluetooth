@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dc283439_ffcf4db1",
+        "filename": "tools/rootcanal/model/controller/link_layer_controller.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 4353,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-04-01T00:55:32Z",
+      "side": 1,
+      "message": "Would be simpler to do `status \u003d\u003d ErrorCode::SUCCESS ? bluetooth::hci::EncryptionEnabled::ON : bluetooth::hci::EncryptionEnabled::OFF` here",
+      "range": {
+        "startLine": 4353,
+        "startChar": 26,
+        "endLine": 4353,
+        "endChar": 64
+      },
+      "revId": "251f63d583dd80b0663109074d4f89e14f90594f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
