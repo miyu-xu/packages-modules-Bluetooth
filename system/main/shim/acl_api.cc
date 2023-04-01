@@ -73,6 +73,7 @@ void bluetooth::shim::ACL_WriteData(uint16_t handle, BT_HDR* p_buf) {
 }
 
 void bluetooth::shim::ACL_ConfigureLePrivacy(bool is_le_privacy_enabled) {
+  LOG_DEBUG("ACL_ConfigureLePrivacy %d", is_le_privacy_enabled);
   hci::LeAddressManager::AddressPolicy address_policy =
       is_le_privacy_enabled
           ? hci::LeAddressManager::AddressPolicy::USE_RESOLVABLE_ADDRESS

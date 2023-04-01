@@ -61,6 +61,10 @@ void LeAddressManager::SetPrivacyPolicyForInitiatorAddress(
           this,
           &LeAddressManager::prepare_to_update_irk,
           UpdateIRKCommand{rotation_irk, minimum_rotation_time, maximum_rotation_time});
+    } else {
+      LOG_ERROR(
+          "Got unexpected repeat call to SetPrivacyPolicyForInitiatorAddress on a device that "
+          "doesn't support LE privacy");
     }
     return;
   }

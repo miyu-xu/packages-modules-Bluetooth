@@ -303,6 +303,7 @@ static void bta_gattc_explore_srvc_finished(uint16_t conn_id,
     // If robust caching is enabled, do something optimized
     Octet16 hash = p_clcb->p_srcb->gatt_database.Hash();
     bool success = bta_gattc_hash_write(hash, p_clcb->p_srcb->gatt_database);
+    bool is_bonded = btm_sec_is_a_bonded_dev(p_srvc_cb->server_bda);
 
     // If the device is trusted, link the addr file to hash file
     if (success && btm_sec_is_a_bonded_dev(p_srvc_cb->server_bda)) {
@@ -310,6 +311,13 @@ static void bta_gattc_explore_srvc_finished(uint16_t conn_id,
           "Linking db hash to address %s",
           p_clcb->p_srcb->server_bda.ToRedactedStringForLogging().c_str());
       bta_gattc_cache_link(p_clcb->p_srcb->server_bda, hash);
+    } else {
+      LOG_DEBUG(
+          "Not linking db hash to address, hash_success=%d, address=%s, "
+          "is_bonded=%d",
+          success,
+          p_srvc_cb->server_bda.ToRedactedStringForLogging().c_str(),
+          is_bonded);
     }
 
     // After success, reset the count.

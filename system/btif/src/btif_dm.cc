@@ -2266,6 +2266,8 @@ static void btif_dm_upstreams_evt(uint16_t event, char* p_param) {
                                      BTIF_DM_LE_LOCAL_KEY_IR);
       btif_storage_add_ble_local_key(ble_local_key_cb.id_keys.dhk,
                                      BTIF_DM_LE_LOCAL_KEY_DHK);
+      // we need to re-initialize the RPA if the IRK has changed
+      BTA_DmBleConfigLocalPrivacy(true);
       break;
     case BTA_DM_BLE_LOCAL_ER_EVT:
       BTIF_TRACE_DEBUG("BTA_DM_BLE_LOCAL_ER_EVT. ");
