@@ -106,7 +106,12 @@ static constexpr uint64_t LlFeatures() {
       LLFeaturesBits::EXTENDED_REJECT_INDICATION,
       LLFeaturesBits::PERIPHERAL_INITIATED_FEATURES_EXCHANGE,
       LLFeaturesBits::LE_PING,
+<<<<<<< PATCH SET (8e1a02 [RootCanal] Fix issues with LL privacy + encryption)
+      LLFeaturesBits::LL_PRIVACY,
+
+=======
       // LLFeaturesBits::LL_PRIVACY,
+>>>>>>> BASE      (36e4fb Merge "BTM: Properly merge LE scan from BTIF and CSIS")
       LLFeaturesBits::EXTENDED_SCANNER_FILTER_POLICIES,
       LLFeaturesBits::LE_2M_PHY, LLFeaturesBits::LE_CODED_PHY,
       LLFeaturesBits::LE_EXTENDED_ADVERTISING,
