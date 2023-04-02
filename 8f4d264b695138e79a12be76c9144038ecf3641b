@@ -16,6 +16,24 @@
       "message": "Do we really need the JsonKeyStore here ?",
       "revId": "8f4d264b695138e79a12be76c9144038ecf3641b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "68e6ec10_8758c9c3",
+        "filename": "android/pandora/test/config.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1937985
+      },
+      "writtenOn": "2023-04-02T02:33:32Z",
+      "side": 1,
+      "message": "We need to implement an in memory store if there is none specified, otherwise nothing is saved at all",
+      "parentUuid": "5f2a6213_c4ecb920",
+      "revId": "8f4d264b695138e79a12be76c9144038ecf3641b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
