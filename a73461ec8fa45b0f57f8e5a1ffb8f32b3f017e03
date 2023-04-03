@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "11c79be6_40e94e95",
+        "filename": "android/pandora/test/smp_test.py",
+        "patchSetId": 17
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1937985
+      },
+      "writtenOn": "2023-04-03T20:40:07Z",
+      "side": 1,
+      "message": "Missing type hint, can you run `avatar format` and `avatar lint` ?",
+      "range": {
+        "startLine": 66,
+        "startChar": 29,
+        "endLine": 66,
+        "endChar": 63
+      },
+      "revId": "a73461ec8fa45b0f57f8e5a1ffb8f32b3f017e03",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
