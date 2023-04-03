@@ -21,6 +21,7 @@ import static android.Manifest.permission.BLUETOOTH_CONNECT;
 import static android.bluetooth.IBluetoothLeAudio.LE_AUDIO_GROUP_ID_INVALID;
 
 import static com.android.bluetooth.Utils.enforceBluetoothPrivilegedPermission;
+import static com.android.bluetooth.Utils.isDualModeAudioEnabled;
 
 import android.annotation.RequiresPermission;
 import android.annotation.SuppressLint;
@@ -48,6 +49,7 @@ import android.media.AudioDeviceCallback;
 import android.media.AudioDeviceInfo;
 import android.media.AudioManager;
 import android.media.BluetoothProfileConnectionInfo;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.HandlerThread;
 import android.os.Looper;
@@ -3496,6 +3498,7 @@ public class LeAudioService extends ProfileService {
     @Override
     public void dump(StringBuilder sb) {
         super.dump(sb);
+        ProfileService.println(sb, "isDualModeAudioEnabled: " + Utils.isDualModeAudioEnabled());
         ProfileService.println(sb, "Active Groups information: ");
         ProfileService.println(sb, "  currentlyActiveGroupId: " + getActiveGroupId());
         ProfileService.println(sb, "  mActiveAudioOutDevice: " + mActiveAudioOutDevice);
@@ -3510,16 +3513,29 @@ public class LeAudioService extends ProfileService {
                                                 : mGroupDescriptors.entrySet()) {
                 LeAudioGroupDescriptor groupDescriptor = groupEntry.getValue();
                 Integer groupId = groupEntry.getKey();
+                BluetoothDevice leadDevice = getConnectedGroupLeadDevice(groupId);
                 ProfileService.println(sb, "Group: " + groupId);
                 ProfileService.println(sb, "  isActive: " + groupDescriptor.mIsActive);
                 ProfileService.println(sb, "  isConnected: " + groupDescriptor.mIsConnected);
                 ProfileService.println(sb, "  mDirection: " + groupDescriptor.mDirection);
-                ProfileService.println(sb, "  group lead: " + getConnectedGroupLeadDevice(groupId));
+                ProfileService.println(sb, "  group lead: " + leadDevice);
                 ProfileService.println(sb, "  first device: " + getFirstDeviceFromGroup(groupId));
                 ProfileService.println(sb, "  lost lead device: "
                         + groupDescriptor.mLostLeadDeviceWhileStreaming);
                 ProfileService.println(sb, "  mInbandRingtoneEnabled: "
                         + groupDescriptor.mInbandRingtoneEnabled);
+
+                // Dump the preferred audio profiles for dual mode devices
+                if (isDualModeAudioEnabled()
+                        && mAdapterService.isDualModeAudioSinkDevice(leadDevice)) {
+                    Bundle preferredAudioProfiles = mAdapterService.getPreferredAudioProfiles(
+                            leadDevice);
+                    ProfileService.println(sb, "  preferredOutputOnlyProfile: "
+                            + preferredAudioProfiles.getInt(
+                                    BluetoothAdapter.AUDIO_MODE_OUTPUT_ONLY));
+                    ProfileService.println(sb, "  preferredDuplexProfile: "
+                            + preferredAudioProfiles.getInt(BluetoothAdapter.AUDIO_MODE_DUPLEX));
+                }
 
                 for (Map.Entry<BluetoothDevice, LeAudioDeviceDescriptor> deviceEntry
                         : mDeviceDescriptors.entrySet()) {
