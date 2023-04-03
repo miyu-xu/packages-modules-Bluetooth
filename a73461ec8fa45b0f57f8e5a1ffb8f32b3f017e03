@@ -22,6 +22,29 @@
       },
       "revId": "a73461ec8fa45b0f57f8e5a1ffb8f32b3f017e03",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8d8c7c56_59256367",
+        "filename": "android/pandora/test/smp_test.py",
+        "patchSetId": 17
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1937985
+      },
+      "writtenOn": "2023-04-03T20:46:59Z",
+      "side": 1,
+      "message": "This method should not be used out of `setup_test`, you can use `host.Reset` instead, but it will not clear the bonds, if you really need to, you can then add a `security_storage.DeleteBond`",
+      "range": {
+        "startLine": 128,
+        "startChar": 8,
+        "endLine": 128,
+        "endChar": 30
+      },
+      "revId": "a73461ec8fa45b0f57f8e5a1ffb8f32b3f017e03",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
