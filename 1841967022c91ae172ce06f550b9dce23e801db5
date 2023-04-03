@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "02278a6c_72c77cf0",
+        "filename": "android/pandora/test/asha_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 496,
+      "author": {
+        "id": 1937985
+      },
+      "writtenOn": "2023-04-03T21:16:44Z",
+      "side": 1,
+      "message": "What you can do for 2 and 3:\n- Import https://github.com/google/bumble/blob/main/bumble/profiles/asha_service.py class directly into `p/m/B/pandora/server/bumble_experimental/asha.py`\n  This way no need to modify Bumble until it\u0027s finished.\n- Modify `self.read_only_properties_characteristic` and `self.le_psm_out_characteristic` to take a `CharacteristicValue` instead of the direct value, ex:\n```\nCharacteristicValue(on_read\u003don_read_only_properties_read)\n```\n- On `on_read_only_properties_read` and `on_le_psm_out_read`, emit an event on self, then return the actual value.\n- On the test, listen then, set a value to true, then after wait for `start_future`, assert the value",
+      "parentUuid": "c2c666b3_f4fb93e8",
+      "range": {
+        "startLine": 496,
+        "startChar": 8,
+        "endLine": 496,
+        "endChar": 39
+      },
+      "revId": "1841967022c91ae172ce06f550b9dce23e801db5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6de5a435_7e6fe12b",
         "filename": "android/pandora/test/asha_test.py",
         "patchSetId": 5

@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e3435237_02d92238",
+        "filename": "android/pandora/test/asha_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 503,
+      "author": {
+        "id": 1937985
+      },
+      "writtenOn": "2023-04-03T21:16:44Z",
+      "side": 1,
+      "message": "nit: add a timeout `asyncio.wait_for(start_future, timeout\u003d3.0)`\nSame for others",
+      "range": {
+        "startLine": 503,
+        "startChar": 65,
+        "endLine": 503,
+        "endChar": 77
+      },
+      "revId": "c442fd23b9b184732daa7844c927c67d0172533e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
