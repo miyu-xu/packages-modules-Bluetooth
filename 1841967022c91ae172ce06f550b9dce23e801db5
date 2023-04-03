@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c2c666b3_f4fb93e8",
+        "filename": "android/pandora/test/asha_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 496,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-04-03T20:32:47Z",
+      "side": 1,
+      "message": "There is no android API command to check `ReadOnlyProperties` and `LE_PSM_OUT `",
+      "parentUuid": "b6977c8a_85645fa6",
+      "range": {
+        "startLine": 496,
+        "startChar": 8,
+        "endLine": 496,
+        "endChar": 39
+      },
+      "revId": "1841967022c91ae172ce06f550b9dce23e801db5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6de5a435_7e6fe12b",
         "filename": "android/pandora/test/asha_test.py",
         "patchSetId": 5
@@ -37,6 +61,30 @@
       "writtenOn": "2023-03-31T17:48:16Z",
       "side": 1,
       "message": "await directly:\n`await self.dut.aio.asha.Start()`",
+      "range": {
+        "startLine": 536,
+        "startChar": 8,
+        "endLine": 536,
+        "endChar": 59
+      },
+      "revId": "1841967022c91ae172ce06f550b9dce23e801db5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "26018a4b_ff3fbb6b",
+        "filename": "android/pandora/test/asha_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 536,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-04-03T20:32:47Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "6de5a435_7e6fe12b",
       "range": {
         "startLine": 536,
         "startChar": 8,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "58d9ac31_402e2705",
+        "filename": "android/pandora/test/asha_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 540,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-04-03T20:32:47Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "a1a77091_44512e02",
+      "range": {
+        "startLine": 540,
+        "startChar": 8,
+        "endLine": 540,
+        "endChar": 40
+      },
+      "revId": "1841967022c91ae172ce06f550b9dce23e801db5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9e79e8d2_9fccb948",
@@ -83,6 +155,30 @@
       "writtenOn": "2023-03-31T17:48:16Z",
       "side": 1,
       "message": "await directly:\n`await self.dut.aio.asha.Start()`",
+      "range": {
+        "startLine": 578,
+        "startChar": 7,
+        "endLine": 578,
+        "endChar": 12
+      },
+      "revId": "1841967022c91ae172ce06f550b9dce23e801db5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c36d506a_baf85e6b",
+        "filename": "android/pandora/test/asha_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 578,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-04-03T20:32:47Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "9e79e8d2_9fccb948",
       "range": {
         "startLine": 578,
         "startChar": 7,
@@ -112,6 +208,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "63e909f2_df88d7f3",
+        "filename": "android/pandora/test/asha_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 583,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-04-03T20:32:47Z",
+      "side": 1,
+      "message": "I think for `Ref sends a successful status notification of the prior Stop command.`, this one needs to change because it is asking for `ref` behavior, and there is no android API to check notification\n\n`Verify that DUT does not send audio packets.` has been added",
+      "parentUuid": "c0e20dbe_ae25bbba",
+      "revId": "1841967022c91ae172ce06f550b9dce23e801db5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1c059520_7b4095c2",
         "filename": "android/pandora/test/asha_test.py",
         "patchSetId": 5
@@ -123,6 +237,30 @@
       "writtenOn": "2023-03-31T17:48:16Z",
       "side": 1,
       "message": "await directly:\n`await self.dut.aio.asha.Start()`",
+      "range": {
+        "startLine": 622,
+        "startChar": 7,
+        "endLine": 622,
+        "endChar": 59
+      },
+      "revId": "1841967022c91ae172ce06f550b9dce23e801db5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b75a1f76_e8a4a32f",
+        "filename": "android/pandora/test/asha_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 622,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-04-03T20:32:47Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "1c059520_7b4095c2",
       "range": {
         "startLine": 622,
         "startChar": 7,
