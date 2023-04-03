@@ -120,6 +120,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "abd4415a_22c6f2af",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterProperties.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 679,
+      "author": {
+        "id": 1929170
+      },
+      "writtenOn": "2023-04-03T19:35:08Z",
+      "side": 1,
+      "message": "Comment removed by: Frank Piva; Reason: confidential",
+      "parentUuid": "3ecbe776_111477d0",
+      "range": {
+        "startLine": 679,
+        "startChar": 0,
+        "endLine": 679,
+        "endChar": 54
+      },
+      "revId": "2945960d5213576cec243d1979a8e1bc12f1b693",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "93051061_4a5c3013",
