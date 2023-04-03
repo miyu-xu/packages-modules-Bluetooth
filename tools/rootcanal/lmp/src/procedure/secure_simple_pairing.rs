@@ -131,7 +131,14 @@ async fn receive_public_key(ctx: &impl Context, transaction_id: u8) -> PublicKey
 const COMMITMENT_VALUE_SIZE: usize = 16;
 const NONCE_SIZE: usize = 16;
 
-async fn receive_commitment(ctx: &impl Context, skip_first: bool) {
+// TODO: This should validate that the pairing confirm value was calculated with
+// the random number provided by the remote, but we don't do any crypto yet.  All
+// zeros means success.
+fn validate_nonce(nonce: &[u8; NONCE_SIZE]) -> bool {
+    nonce == &[0; NONCE_SIZE]
+}
+
+async fn receive_commitment(ctx: &impl Context, skip_first: bool) -> Result<(), ()> {
     let commitment_value = [0; COMMITMENT_VALUE_SIZE];
 
     if !skip_first {
@@ -145,27 +152,36 @@ async fn receive_commitment(ctx: &impl Context, skip_first: bool) {
         lmp::SimplePairingConfirmBuilder { transaction_id: 0, commitment_value }.build(),
     );
 
-    let _pairing_number = ctx.receive_lmp_packet::<lmp::SimplePairingNumberPacket>().await;
-    // TODO: check pairing number
-    ctx.send_lmp_packet(
-        lmp::AcceptedBuilder {
-            transaction_id: 0,
-            accepted_opcode: lmp::Opcode::SimplePairingNumber,
-        }
-        .build(),
-    );
-
     let nonce = [0; NONCE_SIZE];
 
-    // TODO: handle error
-    let _ = ctx
-        .send_accepted_lmp_packet(
+    let pairing_number = ctx.receive_lmp_packet::<lmp::SimplePairingNumberPacket>().await;
+    if validate_nonce(pairing_number.get_nonce()) {
+        ctx.send_lmp_packet(
+            lmp::AcceptedBuilder {
+                transaction_id: pairing_number.get_transaction_id(),
+                accepted_opcode: pairing_number.get_opcode(),
+            }
+            .build(),
+        );
+        ctx.send_accepted_lmp_packet(
             lmp::SimplePairingNumberBuilder { transaction_id: 0, nonce }.build(),
         )
-        .await;
+        .await
+        .map_err(|_| ())
+    } else {
+        ctx.send_lmp_packet(
+            lmp::NotAcceptedBuilder {
+                transaction_id: pairing_number.get_transaction_id(),
+                not_accepted_opcode: pairing_number.get_opcode(),
+                error_code: hci::ErrorCode::AuthenticationFailure.to_u8().unwrap(),
+            }
+            .build(),
+        );
+        Err(())
+    }
 }
 
-async fn send_commitment(ctx: &impl Context, skip_first: bool) {
+async fn send_commitment(ctx: &impl Context, skip_first: bool) -> Result<(), ()> {
     let commitment_value = [0; COMMITMENT_VALUE_SIZE];
 
     if !skip_first {
@@ -180,23 +196,33 @@ async fn send_commitment(ctx: &impl Context, skip_first: bool) {
         todo!();
     }
     let nonce = [0; NONCE_SIZE];
+    ctx.send_accepted_lmp_packet(
+        lmp::SimplePairingNumberBuilder { transaction_id: 0, nonce }.build(),
+    )
+    .await
+    .map_err(|_| ())?;
 
-    // TODO: handle error
-    let _ = ctx
-        .send_accepted_lmp_packet(
-            lmp::SimplePairingNumberBuilder { transaction_id: 0, nonce }.build(),
-        )
-        .await;
+    let pairing_number = ctx.receive_lmp_packet::<lmp::SimplePairingNumberPacket>().await;
 
-    let _pairing_number = ctx.receive_lmp_packet::<lmp::SimplePairingNumberPacket>().await;
-    // TODO: check pairing number
-    ctx.send_lmp_packet(
-        lmp::AcceptedBuilder {
-            transaction_id: 0,
-            accepted_opcode: lmp::Opcode::SimplePairingNumber,
-        }
-        .build(),
-    );
+    if validate_nonce(pairing_number.get_nonce()) {
+        ctx.send_lmp_packet(
+            lmp::AcceptedBuilder {
+                transaction_id: pairing_number.get_transaction_id(),
+                accepted_opcode: pairing_number.get_opcode(),
+            }
+            .build(),
+        );
+    } else {
+        ctx.send_lmp_packet(
+            lmp::NotAcceptedBuilder {
+                transaction_id: pairing_number.get_transaction_id(),
+                not_accepted_opcode: pairing_number.get_opcode(),
+                error_code: hci::ErrorCode::AuthenticationFailure.to_u8().unwrap(),
+            }
+            .build(),
+        );
+    }
+    Ok(())
 }
 
 async fn user_confirmation_request(ctx: &impl Context) -> Result<(), ()> {
@@ -271,6 +297,7 @@ async fn user_passkey_request(ctx: &impl Context) -> Result<(), ()> {
                     }
                     .build(),
                 );
+                ctx.send_lmp_packet(lmp::PasskeyFailedBuilder { transaction_id: 0 });
                 return Err(());
             }
             Either::Right(_) => {
@@ -383,27 +410,39 @@ pub async fn initiate(ctx: &impl Context) -> Result<(), ()> {
                 }
             }
     };
-    let responder = {
-        let response = ctx.receive_lmp_packet::<lmp::IoCapabilityResPacket>().await;
+    let responder = match ctx
+        .receive_lmp_packet::<Either<lmp::NotAcceptedExtPacket, lmp::IoCapabilityResPacket>>()
+        .await
+    {
+        Either::Left(_) => {
+            ctx.send_hci_event(
+                hci::SimplePairingCompleteBuilder {
+                    status: hci::ErrorCode::AuthenticationFailure,
+                    bd_addr: ctx.peer_address(),
+                }
+                .build(),
+            );
+            return Err(());
+        }
+        Either::Right(response) => {
+            let io_capability = hci::IoCapability::from_u8(response.get_io_capabilities()).unwrap();
+            let oob_data_present =
+                hci::OobDataPresent::from_u8(response.get_oob_authentication_data()).unwrap();
+            let authentication_requirements =
+                hci::AuthenticationRequirements::from_u8(response.get_authentication_requirement())
+                    .unwrap();
 
-        let io_capability = hci::IoCapability::from_u8(response.get_io_capabilities()).unwrap();
-        let oob_data_present =
-            hci::OobDataPresent::from_u8(response.get_oob_authentication_data()).unwrap();
-        let authentication_requirements =
-            hci::AuthenticationRequirements::from_u8(response.get_authentication_requirement())
-                .unwrap();
-
-        ctx.send_hci_event(
-            hci::IoCapabilityResponseBuilder {
-                bd_addr: ctx.peer_address(),
-                io_capability,
-                oob_data_present,
-                authentication_requirements,
-            }
-            .build(),
-        );
-
-        AuthenticationParams { io_capability, oob_data_present, authentication_requirements }
+            ctx.send_hci_event(
+                hci::IoCapabilityResponseBuilder {
+                    bd_addr: ctx.peer_address(),
+                    io_capability,
+                    oob_data_present,
+                    authentication_requirements,
+                }
+                .build(),
+            );
+            AuthenticationParams { io_capability, oob_data_present, authentication_requirements }
+        }
     };
 
     // Public Key Exchange
@@ -429,9 +468,14 @@ pub async fn initiate(ctx: &impl Context) -> Result<(), ()> {
         match auth_method {
             AuthenticationMethod::NumericComparisonJustWork
             | AuthenticationMethod::NumericComparisonUserConfirm => {
-                send_commitment(ctx, true).await;
+                send_commitment(ctx, true).await?;
 
-                user_confirmation_request(ctx).await?;
+                if user_confirmation_request(ctx).await.is_err() {
+                    ctx.send_lmp_packet(
+                        lmp::NumericComparisonFailedBuilder { transaction_id: 0 }.build(),
+                    );
+                    return Err(());
+                }
                 Ok(())
             }
             AuthenticationMethod::PasskeyEntry => {
@@ -447,7 +491,7 @@ pub async fn initiate(ctx: &impl Context) -> Result<(), ()> {
                     );
                 }
                 for _ in 0..PASSKEY_ENTRY_REPEAT_NUMBER {
-                    send_commitment(ctx, false).await;
+                    send_commitment(ctx, false).await?
                 }
                 Ok(())
             }
@@ -456,7 +500,7 @@ pub async fn initiate(ctx: &impl Context) -> Result<(), ()> {
                     remote_oob_data_request(ctx).await?;
                 }
 
-                send_commitment(ctx, false).await;
+                send_commitment(ctx, false).await?;
                 Ok(())
             }
         }
@@ -464,7 +508,6 @@ pub async fn initiate(ctx: &impl Context) -> Result<(), ()> {
     .await;
 
     if result.is_err() {
-        ctx.send_lmp_packet(lmp::NumericComparisonFailedBuilder { transaction_id: 0 }.build());
         ctx.send_hci_event(
             hci::SimplePairingCompleteBuilder {
                 status: hci::ErrorCode::AuthenticationFailure,
@@ -640,10 +683,8 @@ pub async fn respond(ctx: &impl Context, request: lmp::IoCapabilityReqPacket) ->
     let negative_user_confirmation = match auth_method {
         AuthenticationMethod::NumericComparisonJustWork
         | AuthenticationMethod::NumericComparisonUserConfirm => {
-            receive_commitment(ctx, true).await;
-
-            let user_confirmation = user_confirmation_request(ctx).await;
-            user_confirmation.is_err()
+            receive_commitment(ctx, true).await?;
+            user_confirmation_request(ctx).await.is_err()
         }
         AuthenticationMethod::PasskeyEntry => {
             if responder.io_capability == hci::IoCapability::KeyboardOnly {
@@ -656,7 +697,7 @@ pub async fn respond(ctx: &impl Context, request: lmp::IoCapabilityReqPacket) ->
                 );
             }
             for _ in 0..PASSKEY_ENTRY_REPEAT_NUMBER {
-                receive_commitment(ctx, false).await;
+                receive_commitment(ctx, false).await?;
             }
             false
         }
@@ -666,7 +707,7 @@ pub async fn respond(ctx: &impl Context, request: lmp::IoCapabilityReqPacket) ->
                 let _remote_oob_data = remote_oob_data_request(ctx).await;
             }
 
-            receive_commitment(ctx, false).await;
+            receive_commitment(ctx, false).await?;
             false
         }
     };
@@ -862,7 +903,6 @@ mod tests {
     }
 
     #[test]
-    #[should_panic] // TODO: make the test pass
     fn passkey_entry_initiator_failure_on_initiating_side() {
         let context = TestContext::new();
         let procedure = initiate;
@@ -880,7 +920,6 @@ mod tests {
     }
 
     #[test]
-    #[should_panic] // TODO: make the test pass
     fn passkey_entry_initiator_failure_on_responding_side() {
         let context = TestContext::new();
         let procedure = initiate;
@@ -1001,6 +1040,67 @@ mod tests {
         let procedure = initiate;
 
         include!("../../test/SP/BV-31-C.in");
+    }
+
+    #[test]
+    fn peer_rejects_secure_simple_pairing_initiator() {
+        let context = TestContext::new();
+        let procedure = initiate;
+
+        sequence! { procedure, context,
+            // ACL Connection Established
+            Upper Tester -> IUT: AuthenticationRequested {
+                connection_handle: context.peer_handle()
+            }
+            IUT -> Upper Tester: AuthenticationRequestedStatus {
+               num_hci_command_packets: 1,
+               status: ErrorCode::Success,
+            }
+            IUT -> Upper Tester: LinkKeyRequest {
+                bd_addr: context.peer_address(),
+            }
+            Upper Tester -> IUT: LinkKeyRequestNegativeReply {
+                bd_addr: context.peer_address(),
+            }
+            IUT -> Upper Tester: LinkKeyRequestNegativeReplyComplete {
+               num_hci_command_packets: 1,
+               status: ErrorCode::Success,
+               bd_addr: context.peer_address(),
+            }
+            IUT -> Upper Tester: IoCapabilityRequest {
+                bd_addr: context.peer_address(),
+            }
+            Upper Tester -> IUT: IoCapabilityRequestReply {
+                bd_addr: context.peer_address(),
+                io_capability: IoCapability::KeyboardOnly,
+                oob_present: OobDataPresent::NotPresent,
+                authentication_requirements: AuthenticationRequirements::NoBondingMitmProtection,
+            }
+            IUT -> Upper Tester: IoCapabilityRequestReplyComplete {
+                num_hci_command_packets: 1,
+                status: ErrorCode::Success,
+                bd_addr: context.peer_address(),
+            }
+            IUT -> Lower Tester: IoCapabilityReq {
+                transaction_id: 0,
+                io_capabilities: 0x02,
+                oob_authentication_data: 0x00,
+                authentication_requirement: 0x01,
+            }
+            Lower Tester -> IUT: NotAcceptedExt {
+                transaction_id: 0,
+                not_accepted_opcode: ExtendedOpcode::IoCapabilityReq,
+                error_code: 0x37,
+            }
+            IUT -> Upper Tester: SimplePairingComplete {
+                status: ErrorCode::AuthenticationFailure,
+                bd_addr: context.peer_address(),
+            }
+            IUT -> Upper Tester: AuthenticationComplete {
+                status: ErrorCode::AuthenticationFailure,
+                connection_handle: context.peer_handle(),
+            }
+        }
     }
 
     #[test]
