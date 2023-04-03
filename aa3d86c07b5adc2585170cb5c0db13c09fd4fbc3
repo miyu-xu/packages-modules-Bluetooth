@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "251413c7_729d7750",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 15
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2023-04-03T21:40:55Z",
+      "side": 1,
+      "message": "Can you explain the flow of events? In the description or the bug. Cursory look at the changes does not give me confidence that we have covered all the scenarios.",
+      "revId": "aa3d86c07b5adc2585170cb5c0db13c09fd4fbc3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f409da07_073cffc4",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 15
+      },
+      "lineNbr": 3856,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2023-04-03T21:40:55Z",
+      "side": 1,
+      "message": "Shouldn\u0027t we set the bonding preference here as well?",
+      "revId": "aa3d86c07b5adc2585170cb5c0db13c09fd4fbc3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ca5388bc_c0a2474d",
+        "filename": "system/stack/smp/smp_utils.cc",
+        "patchSetId": 15
+      },
+      "lineNbr": 1282,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2023-04-03T21:40:55Z",
+      "side": 1,
+      "message": "le_bonding_required was initialized as true. Here we are setting it to true again. It will never be set to false.",
+      "revId": "aa3d86c07b5adc2585170cb5c0db13c09fd4fbc3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
