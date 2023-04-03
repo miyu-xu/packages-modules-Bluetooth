@@ -163,6 +163,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "837f63d3_32a0e0fb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1984885
+      },
+      "writtenOn": "2023-04-03T03:51:13Z",
+      "side": 1,
+      "message": "when I run git clang-format after git add the change, there is pop the eror: \"cannot find executable \"clamh-format\"\",and I can\u0027t fix it.\nso, is there necessary to rerun git clang-format on patchset8?",
+      "parentUuid": "724bc0d8_e6e31b33",
+      "revId": "cbda86a97930077a4210aca517095e4cfb9024fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c2907dca_5a3d9135",
         "filename": "system/bta/av/bta_av_aact.cc",
         "patchSetId": 6
