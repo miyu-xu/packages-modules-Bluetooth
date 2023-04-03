@@ -89,6 +89,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d5a73ac0_bb288db7",
+        "filename": "pandora/interfaces/pandora_experimental/gatt.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1937985
+      },
+      "writtenOn": "2023-04-03T18:03:02Z",
+      "side": 1,
+      "message": "I suggest `WaitCharacteristicNotification` which wait for characteristic notification, and then call it with a timeout",
+      "parentUuid": "77016b95_474d0d74",
+      "range": {
+        "startLine": 44,
+        "startChar": 2,
+        "endLine": 45,
+        "endChar": 143
+      },
+      "revId": "7348e3333eb0ad7069024fd5d3f7da68d4649e36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7c88044a_57f3ade5",
         "filename": "pandora/interfaces/pandora_experimental/gatt.proto",
         "patchSetId": 4
