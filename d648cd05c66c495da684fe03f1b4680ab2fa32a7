@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a2ac8c20_1ef06b62",
+        "filename": "system/btif/src/btif_rc.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 743,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-04-03T15:39:26Z",
+      "side": 0,
+      "message": "I do not think this was intentional but it is the result of a wrong rebase.\n\nI changed the code to be simpler.",
+      "range": {
+        "startLine": 743,
+        "startChar": 0,
+        "endLine": 743,
+        "endChar": 1
+      },
+      "revId": "d648cd05c66c495da684fe03f1b4680ab2fa32a7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
