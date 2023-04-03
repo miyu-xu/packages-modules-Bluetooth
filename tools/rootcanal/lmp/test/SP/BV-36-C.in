@@ -101,7 +101,7 @@ sequence! { procedure, context,
     }
     Lower Tester -> IUT: SimplePairingNumber {
         transaction_id: 0,
-        nonce: [0; 16],
+        nonce: [3; 16],
     }
     IUT -> Lower Tester: NotAccepted {
         transaction_id: 0,
