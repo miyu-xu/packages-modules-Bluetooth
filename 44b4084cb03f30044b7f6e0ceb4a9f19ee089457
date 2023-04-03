@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "69b006a8_ea300e5e",
+        "filename": "system/bta/av/bta_av_act.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 2209,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-04-03T15:38:09Z",
+      "side": 1,
+      "message": "This was missing for rc_psm.\n\nCan you double check we need it ?\n\nI modified the code to do this check only once. Feel free to double check my edit",
+      "range": {
+        "startLine": 2209,
+        "startChar": 6,
+        "endLine": 2209,
+        "endChar": 40
+      },
+      "revId": "44b4084cb03f30044b7f6e0ceb4a9f19ee089457",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
