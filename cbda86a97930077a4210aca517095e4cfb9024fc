@@ -179,6 +179,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d7233886_01dcbb68",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-04-03T16:03:38Z",
+      "side": 1,
+      "message": "I ran clang-format and re-upload all the CL.\nI fixed the ADDRESS_TO_LOGGABLE and clean some code.\n\nPlease update your local change with this before re-uploading anything.",
+      "parentUuid": "837f63d3_32a0e0fb",
+      "revId": "cbda86a97930077a4210aca517095e4cfb9024fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c2907dca_5a3d9135",
