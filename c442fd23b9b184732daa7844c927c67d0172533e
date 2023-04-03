@@ -22,6 +22,52 @@
       },
       "revId": "c442fd23b9b184732daa7844c927c67d0172533e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c6245281_c9993ec9",
+        "filename": "android/pandora/test/asha_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 608,
+      "author": {
+        "id": 1937985
+      },
+      "writtenOn": "2023-04-03T21:20:33Z",
+      "side": 1,
+      "message": "```\nelse:\n    raise e\n```",
+      "range": {
+        "startLine": 607,
+        "startChar": 12,
+        "endLine": 608,
+        "endChar": 63
+      },
+      "revId": "c442fd23b9b184732daa7844c927c67d0172533e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7f0c39fc_5ebd5cbf",
+        "filename": "android/pandora/test/asha_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 610,
+      "author": {
+        "id": 1937985
+      },
+      "writtenOn": "2023-04-03T21:20:33Z",
+      "side": 1,
+      "message": "`finally:`",
+      "range": {
+        "startLine": 610,
+        "startChar": 8,
+        "endLine": 610,
+        "endChar": 66
+      },
+      "revId": "c442fd23b9b184732daa7844c927c67d0172533e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
