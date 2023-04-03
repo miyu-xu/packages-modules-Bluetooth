@@ -338,7 +338,7 @@ class ActiveDeviceManager {
                 setHfpActiveDevice(null);
             } else if (mPendingLeHearingAidActiveDevice.contains(device)) {
                 setLeHearingAidActiveDevice(device);
-                setHearingAidActiveDevice(null);
+                setHearingAidActiveDevice(null, true);
                 setA2dpActiveDevice(null, true);
                 setHfpActiveDevice(null);
             }
@@ -361,7 +361,7 @@ class ActiveDeviceManager {
             } else {
                 // New connected device: select it as active
                 setLeHearingAidActiveDevice(device);
-                setHearingAidActiveDevice(null);
+                setHearingAidActiveDevice(null, true);
                 setA2dpActiveDevice(null, true);
                 setHfpActiveDevice(null);
             }
@@ -404,10 +404,9 @@ class ActiveDeviceManager {
             }
             mHearingAidConnectedDevices.remove(device);
             if (mHearingAidActiveDevices.remove(device) && mHearingAidActiveDevices.isEmpty()) {
-                if (mHearingAidConnectedDevices.isEmpty()) {
-                    setHearingAidActiveDevice(null);
+                if (!setFallbackDeviceActiveLocked()) {
+                    setHearingAidActiveDevice(null, false);
                 }
-                setFallbackDeviceActiveLocked();
             }
         }
     }
@@ -456,7 +455,7 @@ class ActiveDeviceManager {
                 Log.d(TAG, "handleA2dpActiveDeviceChanged: " + device);
             }
             if (device != null && !Objects.equals(mA2dpActiveDevice, device)) {
-                setHearingAidActiveDevice(null);
+                setHearingAidActiveDevice(null, true);
                 setLeAudioActiveDevice(null, true);
             }
             if (mHfpConnectedDevices.contains(device)) {
@@ -473,7 +472,7 @@ class ActiveDeviceManager {
                 Log.d(TAG, "handleHfpActiveDeviceChanged: " + device);
             }
             if (device != null && !Objects.equals(mHfpActiveDevice, device)) {
-                setHearingAidActiveDevice(null);
+                setHearingAidActiveDevice(null, true);
                 setLeAudioActiveDevice(null, true);
             }
             if (mA2dpConnectedDevices.contains(device)) {
@@ -521,7 +520,7 @@ class ActiveDeviceManager {
             if (device != null && !Objects.equals(mLeAudioActiveDevice, device)) {
                 setA2dpActiveDevice(null, true);
                 setHfpActiveDevice(null);
-                setHearingAidActiveDevice(null);
+                setHearingAidActiveDevice(null, true);
             }
 
             if (mLeHearingAidConnectedDevices.contains(device)) {
@@ -685,18 +684,24 @@ class ActiveDeviceManager {
         }
     }
 
-    private void setHearingAidActiveDevice(BluetoothDevice device) {
+    private void setHearingAidActiveDevice(@NonNull BluetoothDevice device) {
+        setHearingAidActiveDevice(device, false);
+    }
+
+    private void setHearingAidActiveDevice(@Nullable BluetoothDevice device,
+            boolean hasFallbackDevice) {
+        if (DBG) {
+            Log.d(TAG, "setHearingAidActiveDevice(" + device + ")"
+                    + (device == null ? " hasFallbackDevice=" + hasFallbackDevice : ""));
+        }
         synchronized (mLock) {
-            if (DBG) {
-                Log.d(TAG, "setHearingAidActiveDevice(" + device + ")");
-            }
             final HearingAidService hearingAidService = mFactory.getHearingAidService();
             if (hearingAidService == null) {
                 return;
             }
 
             if (device == null) {
-                hearingAidService.setActiveDevice(null);
+                hearingAidService.removeActiveDevice(!hasFallbackDevice);
                 mHearingAidActiveDevices.clear();
                 return;
             }
@@ -801,7 +806,7 @@ class ActiveDeviceManager {
                         Log.d(TAG, "set LE hearing aid device active: " + device);
                     }
                     setLeHearingAidActiveDevice(device);
-                    setHearingAidActiveDevice(null);
+                    setHearingAidActiveDevice(null, true);
                     setA2dpActiveDevice(null, true);
                     setHfpActiveDevice(null);
                 }
@@ -847,10 +852,13 @@ class ActiveDeviceManager {
                         Log.d(TAG, "set A2DP device active: " + device);
                     }
                     setA2dpActiveDevice(device);
-                    if (headsetFallbackDevice != null) {
+                    if (Objects.equals(headsetFallbackDevice, device)) {
                         setHfpActiveDevice(device);
-                        setLeAudioActiveDevice(null, true);
+                    } else {
+                        setHfpActiveDevice(null);
                     }
+                    setLeAudioActiveDevice(null, true);
+                    setHearingAidActiveDevice(null, true);
                 } else {
                     if (DBG) {
                         Log.d(TAG, "set LE audio device active: " + device);
@@ -858,6 +866,7 @@ class ActiveDeviceManager {
                     setLeAudioActiveDevice(device);
                     setA2dpActiveDevice(null, true);
                     setHfpActiveDevice(null);
+                    setHearingAidActiveDevice(null, true);
                 }
             } else {
                 if (Objects.equals(headsetFallbackDevice, device)) {
@@ -865,10 +874,13 @@ class ActiveDeviceManager {
                         Log.d(TAG, "set HFP device active: " + device);
                     }
                     setHfpActiveDevice(device);
-                    if (a2dpFallbackDevice != null) {
+                    if (Objects.equals(a2dpFallbackDevice, device)) {
                         setA2dpActiveDevice(a2dpFallbackDevice);
-                        setLeAudioActiveDevice(null, true);
+                    } else {
+                        setA2dpActiveDevice(null, true);
                     }
+                    setLeAudioActiveDevice(null, true);
+                    setHearingAidActiveDevice(null, true);
                 } else {
                     if (DBG) {
                         Log.d(TAG, "set LE audio device active: " + device);
@@ -876,6 +888,7 @@ class ActiveDeviceManager {
                     setLeAudioActiveDevice(device);
                     setA2dpActiveDevice(null, true);
                     setHfpActiveDevice(null);
+                    setHearingAidActiveDevice(null, true);
                 }
             }
             return true;
@@ -950,7 +963,7 @@ class ActiveDeviceManager {
         }
         setA2dpActiveDevice(null, true);
         setHfpActiveDevice(null);
-        setHearingAidActiveDevice(null);
+        setHearingAidActiveDevice(null, true);
         setLeAudioActiveDevice(null, true);
     }
 }
