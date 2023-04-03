@@ -1,0 +1,106 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "02798deb_2c224a89",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1312909
+      },
+      "writtenOn": "2023-04-03T15:16:34Z",
+      "side": 1,
+      "message": "I am going through changes on high level. Have some of review comments.\nAs change is big and might take more time will keep further comments posted if nay.",
+      "revId": "693eb7d2f20ee4ab145d94901ee62d1391192225",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4043aed3_028e777e",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/PlayerSettingsManager.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1312909
+      },
+      "writtenOn": "2023-04-03T15:16:34Z",
+      "side": 1,
+      "message": "In case of player switch this class will manage but in case of active device change will we be updating player app settings of current active player?",
+      "revId": "693eb7d2f20ee4ab145d94901ee62d1391192225",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6c33b4e3_99c56bc6",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/PlayerSettingsManager.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1312909
+      },
+      "writtenOn": "2023-04-03T15:16:34Z",
+      "side": 1,
+      "message": "I hope it would work for player switch.\nBut will it also be for case where we forcefully kill a media player and relaunch it?",
+      "revId": "693eb7d2f20ee4ab145d94901ee62d1391192225",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d8807a3b_72ce8d85",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/PlayerSettingsManager.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1312909
+      },
+      "writtenOn": "2023-04-03T15:16:34Z",
+      "side": 1,
+      "message": "Could we land up in a situation where we sent this to player and player is not responsive for that and we end up not sending any response (even failed one). Should there be some command timeout also ?",
+      "revId": "693eb7d2f20ee4ab145d94901ee62d1391192225",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "83fcfe76_91bb6b86",
+        "filename": "system/include/hardware/avrcp/avrcp_common.h",
+        "patchSetId": 12
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1312909
+      },
+      "writtenOn": "2023-04-03T15:16:34Z",
+      "side": 1,
+      "message": "getplayerattribute_text 0x15\ngetplayervalue_text 0x16\n\nIs there any plan to support above 2 commands also?\nOR we plan to skip if no PTS and functionality associated with it.",
+      "revId": "693eb7d2f20ee4ab145d94901ee62d1391192225",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "52c6895f_93f90869",
+        "filename": "system/profile/avrcp/device.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 757,
+      "author": {
+        "id": 1312909
+      },
+      "writtenOn": "2023-04-03T15:16:34Z",
+      "side": 1,
+      "message": "should we add CHANGED response for Player settings application as well as per AVRCPv1.6.2 (6.9.2.2) for new player in case of player change OR it\u0027s happening from some other path already?",
+      "revId": "693eb7d2f20ee4ab145d94901ee62d1391192225",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
