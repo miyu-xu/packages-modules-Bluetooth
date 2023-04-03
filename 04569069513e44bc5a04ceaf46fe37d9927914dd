@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2eaf8292_124a8f5d",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 4447,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-04-03T17:45:30Z",
+      "side": 1,
+      "message": "This is handled by `BTM_AllowWakeByHid` which calls `AcceptLeConnectionFrom` (which goes through acl manager).",
+      "parentUuid": "15d938fb_da6ebd96",
+      "revId": "04569069513e44bc5a04ceaf46fe37d9927914dd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "90ccfcdd_20e60c2f",
@@ -31,6 +49,24 @@
       "writtenOn": "2023-03-31T02:15:02Z",
       "side": 1,
       "message": "Do we need a condition to check if there are HID connections in suspend() here and resume() below?",
+      "revId": "04569069513e44bc5a04ceaf46fe37d9927914dd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4f7cebda_c35b76cb",
+        "filename": "system/gd/rust/linux/stack/src/suspend.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-04-03T17:45:30Z",
+      "side": 1,
+      "message": "No. We need to always disable reconnections before we disconnect devices. This means clearing the accept list and disabling page scan.\n\nAfter disconnections, we conditionally allow wake by hid.",
+      "parentUuid": "90ccfcdd_20e60c2f",
       "revId": "04569069513e44bc5a04ceaf46fe37d9927914dd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
