@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5da2305b_949e2abd",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 3941,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-04-03T15:59:43Z",
+      "side": 1,
+      "message": "I removed this ifdef since this code was deleted in another [CL](https://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/2455488)\n\nI hope there aren\u0027t other merge conflict that were wrongly resolved. Please double check your commit",
+      "range": {
+        "startLine": 3941,
+        "startChar": 5,
+        "endLine": 3941,
+        "endChar": 27
+      },
+      "revId": "9724d76c94111081319173d7ff9a072a85ed00ef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
