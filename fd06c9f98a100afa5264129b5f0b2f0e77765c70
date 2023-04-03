@@ -394,6 +394,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4c1eea88_9a5ec1f7",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 5577,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-04-03T20:27:07Z",
+      "side": 1,
+      "message": "Removed this because it wasn\u0027t being used anymore.",
+      "parentUuid": "5d4e9391_16dc5179",
+      "range": {
+        "startLine": 5577,
+        "startChar": 19,
+        "endLine": 5577,
+        "endChar": 62
+      },
+      "revId": "fd06c9f98a100afa5264129b5f0b2f0e77765c70",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c2058036_437cce77",
@@ -407,6 +431,30 @@
       "writtenOn": "2023-03-31T17:49:37Z",
       "side": 1,
       "message": "please iterate through all devices in group",
+      "range": {
+        "startLine": 5606,
+        "startChar": 19,
+        "endLine": 5606,
+        "endChar": 59
+      },
+      "revId": "fd06c9f98a100afa5264129b5f0b2f0e77765c70",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1eaaa95f_d5e668a5",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 5606,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-04-03T20:27:07Z",
+      "side": 1,
+      "message": "Done and factored this out to aosp/2517276",
+      "parentUuid": "c2058036_437cce77",
       "range": {
         "startLine": 5606,
         "startChar": 19,
