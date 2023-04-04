@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2cd1c7c1_d2a08120",
+        "filename": "tools/rootcanal/lmp/src/test/sequence.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-04-04T17:02:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f96d3d87_e6eee1b5",
+      "range": {
+        "startLine": 17,
+        "startChar": 12,
+        "endLine": 17,
+        "endChar": 124
+      },
+      "revId": "0c7c0753f871d02041479c8d62c611617f54a674",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d589c9d5_f0812250",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-04-04T16:44:58Z",
       "side": 1,
       "message": "Can we do that for `IUT -\u003e Upper Tester` as well ?",
+      "range": {
+        "startLine": 67,
+        "startChar": 0,
+        "endLine": 70,
+        "endChar": 18
+      },
+      "revId": "0c7c0753f871d02041479c8d62c611617f54a674",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7b6058e6_b6204878",
+        "filename": "tools/rootcanal/lmp/src/test/sequence.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-04-04T17:02:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d589c9d5_f0812250",
       "range": {
         "startLine": 67,
         "startChar": 0,
