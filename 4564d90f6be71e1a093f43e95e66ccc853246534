@@ -16,6 +16,24 @@
       "message": "What are we using from that in our tests ?\n\nI totaly agree with removing this line, but I\u0027m concerned about changing the `instrumentation_for`",
       "revId": "4564d90f6be71e1a093f43e95e66ccc853246534",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fadb36c6_b8ecc786",
+        "filename": "android/app/tests/unit/Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-04-04T22:09:15Z",
+      "side": 0,
+      "message": "If I do not change the instrumentation_for, the app code reference the jarjar\u0027ed app and some test does not build.\n\nFor example this:\n```\npackages/modules/Bluetooth/android/app/tests/unit/src/com/android/bluetooth/sap/SapRilReceiverHidlTest.java:101: error: incompatible types: android.hardware.radio.V1_0.ISap cannot be converted to com.android.bluetooth.x.android.hardware.radio.V1_0.ISap\n        mReceiver.mSapProxy \u003d mSapProxy;\n                              ^\n```\n\nI assume this is because the test is not yet using jarjar\u0027ed code but the app is.\n\nYou can see that by looking at the way we are using the synchronousResultReceiver, we are always referencing it with the `com.android.bluetooth.x` but then that make no sens and we are adding complexity to the code. IDE will not know what data it is, code search will be lost too.\n\nThe solution is to target a non-jarjar\u0027ed app.\n\nIf there is a better solution I am willing to take it, I just didn\u0027t found one",
+      "parentUuid": "cad97bb3_981a674c",
+      "revId": "4564d90f6be71e1a093f43e95e66ccc853246534",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
