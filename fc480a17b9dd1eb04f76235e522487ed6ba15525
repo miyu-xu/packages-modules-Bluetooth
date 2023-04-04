@@ -594,6 +594,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ca1f9d0f_8e9e061b",
+        "filename": "tools/rootcanal/lmp/src/procedure/secure_simple_pairing.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 523,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-04-04T23:17:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9887a9db_b09d4531",
+      "range": {
+        "startLine": 508,
+        "startChar": 19,
+        "endLine": 523,
+        "endChar": 21
+      },
+      "revId": "fc480a17b9dd1eb04f76235e522487ed6ba15525",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ba04e4c0_4f7e94cd",
