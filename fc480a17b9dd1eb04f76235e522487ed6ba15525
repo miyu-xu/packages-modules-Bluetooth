@@ -1,0 +1,257 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2ef39790_77a04426",
+        "filename": "tools/rootcanal/lmp/src/procedure/secure_simple_pairing.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-04-04T17:17:17Z",
+      "side": 1,
+      "message": "Is the fact that you check only the first byte linked to the TODO above?\nI would expect `nonce \u003d\u003d pairing_number.get_nonce()` or equivalent",
+      "range": {
+        "startLine": 152,
+        "startChar": 7,
+        "endLine": 152,
+        "endChar": 48
+      },
+      "revId": "fc480a17b9dd1eb04f76235e522487ed6ba15525",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "40432b3e_a0553d51",
+        "filename": "tools/rootcanal/lmp/src/procedure/secure_simple_pairing.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-04-04T17:17:17Z",
+      "side": 1,
+      "message": "Please remove debug logs.",
+      "range": {
+        "startLine": 178,
+        "startChar": 8,
+        "endLine": 178,
+        "endChar": 26
+      },
+      "revId": "fc480a17b9dd1eb04f76235e522487ed6ba15525",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d5600055_0f42f180",
+        "filename": "tools/rootcanal/lmp/src/procedure/secure_simple_pairing.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-04-04T17:17:17Z",
+      "side": 1,
+      "message": "Can you move this code to the success branch of the nonce comparison to make the control flow more readable ?",
+      "range": {
+        "startLine": 171,
+        "startChar": 0,
+        "endLine": 180,
+        "endChar": 5
+      },
+      "revId": "fc480a17b9dd1eb04f76235e522487ed6ba15525",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6b6201f4_e1688185",
+        "filename": "tools/rootcanal/lmp/src/procedure/secure_simple_pairing.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-04-04T17:17:17Z",
+      "side": 1,
+      "message": "Same here for the debug log.",
+      "range": {
+        "startLine": 206,
+        "startChar": 8,
+        "endLine": 206,
+        "endChar": 26
+      },
+      "revId": "fc480a17b9dd1eb04f76235e522487ed6ba15525",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a7af9b6f_63cc7a40",
+        "filename": "tools/rootcanal/lmp/src/procedure/secure_simple_pairing.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 208,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-04-04T17:17:17Z",
+      "side": 1,
+      "message": "```\nctx.send_accepted_lmp_packet(\n    lmp::SimplePairingNumberBuilder { transaction_id: 0, nonce }.build()\n)\n.await\n.map_err(|_| ())?;\n```",
+      "range": {
+        "startLine": 200,
+        "startChar": 0,
+        "endLine": 208,
+        "endChar": 5
+      },
+      "revId": "fc480a17b9dd1eb04f76235e522487ed6ba15525",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f058ab10_f1c976f7",
+        "filename": "tools/rootcanal/lmp/src/procedure/secure_simple_pairing.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 212,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-04-04T17:17:17Z",
+      "side": 1,
+      "message": "Same question about comparing the first byte only.",
+      "range": {
+        "startLine": 212,
+        "startChar": 7,
+        "endLine": 212,
+        "endChar": 48
+      },
+      "revId": "fc480a17b9dd1eb04f76235e522487ed6ba15525",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2134b258_a573cbfe",
+        "filename": "tools/rootcanal/lmp/src/procedure/secure_simple_pairing.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 523,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-04-04T17:17:17Z",
+      "side": 1,
+      "message": "You cannot assume that the peer will send keypress notifications with Started .. Complete. I know that the LMP tests only give test cases that do, but the specification says nothing towards this.",
+      "range": {
+        "startLine": 508,
+        "startChar": 19,
+        "endLine": 523,
+        "endChar": 21
+      },
+      "revId": "fc480a17b9dd1eb04f76235e522487ed6ba15525",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ba04e4c0_4f7e94cd",
+        "filename": "tools/rootcanal/lmp/src/procedure/secure_simple_pairing.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 730,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-04-04T17:17:17Z",
+      "side": 1,
+      "message": "Can be squashed as `user_confirmation_request(ctx).await.is_err()`",
+      "range": {
+        "startLine": 726,
+        "startChar": 12,
+        "endLine": 730,
+        "endChar": 13
+      },
+      "revId": "fc480a17b9dd1eb04f76235e522487ed6ba15525",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bf0bc20c_9c93197f",
+        "filename": "tools/rootcanal/lmp/src/procedure/secure_simple_pairing.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 761,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-04-04T17:17:17Z",
+      "side": 1,
+      "message": "no need to return a value here, it will be dropped",
+      "range": {
+        "startLine": 760,
+        "startChar": 26,
+        "endLine": 761,
+        "endChar": 28
+      },
+      "revId": "fc480a17b9dd1eb04f76235e522487ed6ba15525",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a36c5636_4dc69778",
+        "filename": "tools/rootcanal/lmp/src/procedure/secure_simple_pairing.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 774,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-04-04T17:17:17Z",
+      "side": 1,
+      "message": "value is dropped",
+      "range": {
+        "startLine": 774,
+        "startChar": 24,
+        "endLine": 774,
+        "endChar": 29
+      },
+      "revId": "fc480a17b9dd1eb04f76235e522487ed6ba15525",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "359af254_794bae9b",
+        "filename": "tools/rootcanal/lmp/src/procedure/secure_simple_pairing.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 786,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-04-04T17:17:17Z",
+      "side": 1,
+      "message": "empty block",
+      "range": {
+        "startLine": 786,
+        "startChar": 18,
+        "endLine": 786,
+        "endChar": 20
+      },
+      "revId": "fc480a17b9dd1eb04f76235e522487ed6ba15525",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
