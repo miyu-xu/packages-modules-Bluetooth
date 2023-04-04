@@ -572,6 +572,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9887a9db_b09d4531",
+        "filename": "tools/rootcanal/lmp/src/procedure/secure_simple_pairing.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 523,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-04-04T22:23:14Z",
+      "side": 1,
+      "message": "It\u0027s a lot harder in respond 😞\n\nOr (just as likely) I am missing something that would simplify it.",
+      "parentUuid": "275a7e82_4a505688",
+      "range": {
+        "startLine": 508,
+        "startChar": 19,
+        "endLine": 523,
+        "endChar": 21
+      },
+      "revId": "fc480a17b9dd1eb04f76235e522487ed6ba15525",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ba04e4c0_4f7e94cd",
         "filename": "tools/rootcanal/lmp/src/procedure/secure_simple_pairing.rs",
         "patchSetId": 2
@@ -844,6 +868,30 @@
       "side": 1,
       "message": "I don\u0027t find either of those cleaner.  I don\u0027t think I know Rust well enough to appreciate the beauty or see what you want.",
       "parentUuid": "0625b87c_f2949d1b",
+      "range": {
+        "startLine": 786,
+        "startChar": 18,
+        "endLine": 786,
+        "endChar": 20
+      },
+      "revId": "fc480a17b9dd1eb04f76235e522487ed6ba15525",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a9da75c0_030c0492",
+        "filename": "tools/rootcanal/lmp/src/procedure/secure_simple_pairing.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 786,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-04-04T22:23:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3e6227e5_4d64e283",
       "range": {
         "startLine": 786,
         "startChar": 18,

@@ -47,6 +47,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "740e365b_c3a20a7c",
+        "filename": "tools/rootcanal/lmp/src/procedure/secure_simple_pairing.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 762,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-04-04T22:23:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c91b60d7_3d024369",
+      "range": {
+        "startLine": 761,
+        "startChar": 47,
+        "endLine": 762,
+        "endChar": 56
+      },
+      "revId": "2ba798416e098d4487f54f84302f6ed66fa710da",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9dcb7c66_012be0e6",
@@ -60,6 +84,30 @@
       "writtenOn": "2023-04-04T20:58:25Z",
       "side": 1,
       "message": "Could we add a note of why there is this `-1` ?",
+      "range": {
+        "startLine": 785,
+        "startChar": 80,
+        "endLine": 785,
+        "endChar": 84
+      },
+      "revId": "2ba798416e098d4487f54f84302f6ed66fa710da",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1ff0fe9a_730122f0",
+        "filename": "tools/rootcanal/lmp/src/procedure/secure_simple_pairing.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 785,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-04-04T22:23:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9dcb7c66_012be0e6",
       "range": {
         "startLine": 785,
         "startChar": 80,
