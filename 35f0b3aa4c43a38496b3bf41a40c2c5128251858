@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "670b7b08_fa17035a",
+        "filename": "android/app/Android.bp",
+        "patchSetId": 4
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 1060959
+      },
+      "writtenOn": "2023-04-04T09:40:57Z",
+      "side": 1,
+      "message": "This does not look like a healthy dep to have in `libs` as these are not BCP libraries (additionally, they\u0027re not stubs). The framework-bluetooth-pre-jarjar dep looks like the right one.\n\nDoes it not build without these 2? I think it\u0027d be best to get to the bottom of why that is rather than adding them here.",
+      "range": {
+        "startLine": 147,
+        "startChar": 11,
+        "endLine": 149,
+        "endChar": 45
+      },
+      "revId": "35f0b3aa4c43a38496b3bf41a40c2c5128251858",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
