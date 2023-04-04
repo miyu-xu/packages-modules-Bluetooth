@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cad97bb3_981a674c",
+        "filename": "android/app/tests/unit/Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-04-04T21:10:02Z",
+      "side": 0,
+      "message": "What are we using from that in our tests ?\n\nI totaly agree with removing this line, but I\u0027m concerned about changing the `instrumentation_for`",
+      "revId": "4564d90f6be71e1a093f43e95e66ccc853246534",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
