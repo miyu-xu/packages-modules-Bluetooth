@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ee56e854_c8120345",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2023-04-04T08:15:01Z",
+      "side": 1,
+      "message": "I just tried that and it\u0027s more convenient to leave it like it was. We have individual API calls for set/get volume and set/get mute. The getters would not benefit from it, and the setters would be just more complicated as you would have to deal with the existing values, providing default values for the other members, either updating what is already in the map or putting a completely new objects... while in the existing implementation you just call mMymap.put(value);\n\nWe do get mute and volume state updates when the remote device changes it, but then we can reuse the same routines the API calls use, and changing it would not benefit much as well IMO.",
+      "parentUuid": "277463d1_c96de25f",
+      "range": {
+        "startLine": 193,
+        "startChar": 2,
+        "endLine": 194,
+        "endChar": 74
+      },
+      "revId": "edad3dcaadd8cf75ffe57a24c97e3e4ea8da3317",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "37ca2c6d_98df0e95",
         "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
         "patchSetId": 4
@@ -70,6 +94,54 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6bd16111_7e95b31e",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 610,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2023-04-04T08:15:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0e98dfe4_ef336872",
+      "range": {
+        "startLine": 610,
+        "startChar": 0,
+        "endLine": 610,
+        "endChar": 42
+      },
+      "revId": "edad3dcaadd8cf75ffe57a24c97e3e4ea8da3317",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "94558631_ae71c7cd",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 610,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2023-04-04T08:15:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "37ca2c6d_98df0e95",
+      "range": {
+        "startLine": 610,
+        "startChar": 0,
+        "endLine": 610,
+        "endChar": 42
+      },
+      "revId": "edad3dcaadd8cf75ffe57a24c97e3e4ea8da3317",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "208a87b3_2c501435",
@@ -83,6 +155,30 @@
       "writtenOn": "2023-03-30T10:16:48Z",
       "side": 1,
       "message": "Would dumpsys be easier to read if we were to print volume and mute state together ?",
+      "range": {
+        "startLine": 1488,
+        "startChar": 7,
+        "endLine": 1494,
+        "endChar": 42
+      },
+      "revId": "edad3dcaadd8cf75ffe57a24c97e3e4ea8da3317",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c55ae50b_1ebee613",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1494,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2023-04-04T08:15:01Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "208a87b3_2c501435",
       "range": {
         "startLine": 1488,
         "startChar": 7,
