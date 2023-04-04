@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f3b7eca6_4db9b5f9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 21
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-04-04T06:48:29Z",
+      "side": 1,
+      "message": "If possible, please add some unit tests to verify behaviors\n\ne.g. if someone calls AdapterService#setPreferredAudioProfiles(), could we check if there would be a method call to a mocked audioManager?\n\nThen we modify the conditions to tweak and make sure you get the correct method call every time",
+      "revId": "331be484d59ac8b9efee65df1af45cbb0c03f8bf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3d7d44d7_edfd4f5f",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 5056,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-04-04T06:48:29Z",
+      "side": 1,
+      "message": "move this log line inside the synchronized block to prevent out of order log",
+      "range": {
+        "startLine": 5055,
+        "startChar": 0,
+        "endLine": 5056,
+        "endChar": 27
+      },
+      "revId": "331be484d59ac8b9efee65df1af45cbb0c03f8bf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e2e613b9_ae8c962b",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 5111,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-04-04T06:48:29Z",
+      "side": 1,
+      "message": "please print log for the \u003e1 and \u003d\u003d0 cases",
+      "range": {
+        "startLine": 5109,
+        "startChar": 15,
+        "endLine": 5111,
+        "endChar": 13
+      },
+      "revId": "331be484d59ac8b9efee65df1af45cbb0c03f8bf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9ae16c52_6a18ad9f",
+        "filename": "android/app/src/com/android/bluetooth/btservice/storage/DatabaseManager.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 819,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-04-04T06:48:29Z",
+      "side": 1,
+      "message": "could these two log lines be combined?",
+      "range": {
+        "startLine": 817,
+        "startChar": 20,
+        "endLine": 819,
+        "endChar": 46
+      },
+      "revId": "331be484d59ac8b9efee65df1af45cbb0c03f8bf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d5f95dec_d415c940",
+        "filename": "android/app/src/com/android/bluetooth/btservice/storage/DatabaseManager.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 831,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-04-04T06:48:29Z",
+      "side": 1,
+      "message": "could these two log lines be combined?",
+      "range": {
+        "startLine": 827,
+        "startChar": 20,
+        "endLine": 831,
+        "endChar": 38
+      },
+      "revId": "331be484d59ac8b9efee65df1af45cbb0c03f8bf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
