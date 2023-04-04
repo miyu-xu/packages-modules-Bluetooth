@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8a89c143_5f3e8786",
+        "filename": "framework/tests/bumble/src/com/android/framework/bluetooth/tests/gatt/LeAdvertisingTest.java",
+        "patchSetId": 27
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-04-04T21:01:40Z",
+      "side": 1,
+      "message": "Can we not put a timeout on the test instead ?",
+      "parentUuid": "10472f1c_8e8948ea",
+      "range": {
+        "startLine": 103,
+        "startChar": 8,
+        "endLine": 110,
+        "endChar": 64
+      },
+      "revId": "06846c8f5406369adcf8f990975c8c15f85d81fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8c4aad93_214ec889",
         "filename": "framework/tests/bumble/src/com/android/framework/bluetooth/tests/gatt/LeAdvertisingTest.java",
         "patchSetId": 27
