@@ -22,6 +22,30 @@
       },
       "revId": "35f0b3aa4c43a38496b3bf41a40c2c5128251858",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "147112a1_7825adff",
+        "filename": "android/app/Android.bp",
+        "patchSetId": 4
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-04-04T09:53:27Z",
+      "side": 1,
+      "message": "Indeed it does not build without this dependency.",
+      "parentUuid": "670b7b08_fa17035a",
+      "range": {
+        "startLine": 147,
+        "startChar": 11,
+        "endLine": 149,
+        "endChar": 45
+      },
+      "revId": "35f0b3aa4c43a38496b3bf41a40c2c5128251858",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
