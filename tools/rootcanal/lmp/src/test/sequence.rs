@@ -14,7 +14,7 @@ macro_rules! sequence_body {
 
             let poll = crate::test::poll($ctx.1.as_mut());
 
-            assert!($ctx.0.in_lmp_packets.borrow().is_empty(), "{} was not consumed by procedure", stringify!($packet));
+            assert!($ctx.0.in_lmp_packets.borrow().is_empty(), "Expecting IUT to call receive for {}", stringify!($packet));
 
             println!("Lower Tester -> IUT: {}", stringify!($packet));
 
@@ -34,7 +34,7 @@ macro_rules! sequence_body {
 
             let poll = crate::test::poll($ctx.1.as_mut());
 
-            assert!($ctx.0.hci_commands.borrow().is_empty(), "{} was not consumed by procedure", stringify!($packet));
+            assert!($ctx.0.hci_commands.borrow().is_empty(), "Expecting IUT to call receive for HCI {}", stringify!($packet));
 
             println!("Upper Tester -> IUT: {}", stringify!($packet));
 
@@ -46,7 +46,10 @@ macro_rules! sequence_body {
             use crate::packets::hci::*;
 
             paste! {
-                let packet: [<$packet Packet>] = $ctx.0.hci_events.borrow_mut().pop_front().expect("No hci packet").try_into().unwrap();
+                let received_packet = $ctx.0.hci_events.borrow_mut().pop_front().expect("No hci packet");
+                let Ok(packet): Result<[<$packet Packet>], _> = received_packet.clone().try_into() else {
+                    panic!("Expected the IUT to send {} (HCI event) \n   got {:?}", stringify!($packet), received_packet);
+                };
             }
 
             $(
@@ -64,7 +67,10 @@ macro_rules! sequence_body {
             use crate::packets::lmp::*;
 
             paste! {
-                let packet: [<$packet Packet>] = $ctx.0.out_lmp_packets.borrow_mut().pop_front().expect("No lmp packet").try_into().unwrap();
+                let received_packet = $ctx.0.out_lmp_packets.borrow_mut().pop_front().expect("No lmp packet");
+                let Ok(packet): Result<[<$packet Packet>], _> = received_packet.clone().try_into() else {
+                    panic!("Expected the IUT to send {} (LMP packet) \n   got {:?}", stringify!($packet), received_packet);
+                };
             }
 
             $(
