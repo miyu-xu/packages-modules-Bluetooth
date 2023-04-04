@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "dc9d1b2e_e8c95e3c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2023-04-04T20:38:31Z",
+      "side": 1,
+      "message": "Yeah you can insert new lines in it. I.e:\n```\nTest: this is a bunch of\ntext because what I did\nwas actually really\ninvolved\n```\n\nI\u0027ve seen others do this type of thing too, but I think its a bit much, personally:\n```\nTest: this is a bunch of\nTest: text because what I did\nTest: was actually really\nTest: involved\n```",
+      "parentUuid": "a78ce043_9a568ad1",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 13
+      },
+      "revId": "0aade29fead267b5ba1008b659463b04f3758732",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "56d34086_118fc6fc",
