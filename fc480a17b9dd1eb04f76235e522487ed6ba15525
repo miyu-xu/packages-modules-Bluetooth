@@ -524,6 +524,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c578ad69_ace9dc83",
+        "filename": "tools/rootcanal/lmp/src/procedure/secure_simple_pairing.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 523,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-04-04T20:52:38Z",
+      "side": 1,
+      "message": "Can we put a TODO with a bug here ? So at least it\u0027s clear for someone that come across this that it\u0027s wrong ?",
+      "parentUuid": "71b88f19_2eb65921",
+      "range": {
+        "startLine": 508,
+        "startChar": 19,
+        "endLine": 523,
+        "endChar": 21
+      },
+      "revId": "fc480a17b9dd1eb04f76235e522487ed6ba15525",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ba04e4c0_4f7e94cd",
         "filename": "tools/rootcanal/lmp/src/procedure/secure_simple_pairing.rs",
         "patchSetId": 2
