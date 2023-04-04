@@ -166,6 +166,30 @@
       },
       "revId": "35f0b3aa4c43a38496b3bf41a40c2c5128251858",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e0180de7_f93be0be",
+        "filename": "android/app/Android.bp",
+        "patchSetId": 4
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-04-04T19:18:29Z",
+      "side": 1,
+      "message": "Done\n\nSee relation chain CL that split the change needed in smallest understandable chunk",
+      "parentUuid": "d9452090_1dc9f1bc",
+      "range": {
+        "startLine": 147,
+        "startChar": 11,
+        "endLine": 149,
+        "endChar": 45
+      },
+      "revId": "35f0b3aa4c43a38496b3bf41a40c2c5128251858",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
