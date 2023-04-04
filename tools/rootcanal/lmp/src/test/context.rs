@@ -65,8 +65,11 @@ impl Context for TestContext {
     }
 
     fn poll_lmp_packet<P: TryFrom<lmp::PacketPacket>>(&self) -> Poll<P> {
-        let packet =
-            self.in_lmp_packets.borrow().front().and_then(|packet| packet.clone().try_into().ok());
+        let packet = self
+            .in_lmp_packets
+            .borrow()
+            .front()
+            .and_then(|packet| packet.clone().try_into().map_err(|_| ()).ok());
 
         if let Some(packet) = packet {
             self.in_lmp_packets.borrow_mut().pop_front();
