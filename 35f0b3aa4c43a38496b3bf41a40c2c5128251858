@@ -94,6 +94,30 @@
       },
       "revId": "35f0b3aa4c43a38496b3bf41a40c2c5128251858",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0564c430_7cd90ce2",
+        "filename": "android/app/Android.bp",
+        "patchSetId": 4
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-04-04T10:12:58Z",
+      "side": 1,
+      "message": "If you completely remove the 2 radio libs from Bluetooth app the app itself will not build:\n`m Bluetooth`\n\n\n---\n\n\nIf we try to address the jarjaring issue directly by adding:\n```\nrule android.hardware.** com.android.bluetooth.x.@0\n```\nto the [jarjar-rules.txt](https://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/framework/jarjar-rules.txt) of bluetooth, then `m BluetoothInstrumentationTests` will fail (even if you add `jarjar_rules: \":bluetooth-jarjar-rules\",` in it\u0027s [bp](https://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/android/app/tests/unit/Android.bp;l\u003d6;drc\u003d09dfc6991f76c9705ed0c59dcb30edc7e17af1f5))",
+      "parentUuid": "ed68ce20_ec3d1651",
+      "range": {
+        "startLine": 147,
+        "startChar": 11,
+        "endLine": 149,
+        "endChar": 45
+      },
+      "revId": "35f0b3aa4c43a38496b3bf41a40c2c5128251858",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
