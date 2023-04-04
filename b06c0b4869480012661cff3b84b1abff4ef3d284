@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8de3fcb2_1f994fc9",
+        "filename": "tools/rootcanal/lmp/src/procedure/secure_simple_pairing.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-04-04T23:41:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cbda970a_3e4b5099",
+      "range": {
+        "startLine": 180,
+        "startChar": 8,
+        "endLine": 180,
+        "endChar": 23
+      },
+      "revId": "b06c0b4869480012661cff3b84b1abff4ef3d284",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "246fed9a_b5bb8019",
@@ -41,6 +65,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ce536420_eeb0c93a",
+        "filename": "tools/rootcanal/lmp/src/procedure/secure_simple_pairing.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 502,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-04-04T23:41:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "246fed9a_b5bb8019",
+      "revId": "b06c0b4869480012661cff3b84b1abff4ef3d284",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8a892aa5_8631520f",
@@ -54,6 +96,30 @@
       "writtenOn": "2023-04-04T23:35:14Z",
       "side": 1,
       "message": "`pairing_failed` is more indicative",
+      "range": {
+        "startLine": 742,
+        "startChar": 20,
+        "endLine": 742,
+        "endChar": 33
+      },
+      "revId": "b06c0b4869480012661cff3b84b1abff4ef3d284",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "895b0c2e_4fc334cf",
+        "filename": "tools/rootcanal/lmp/src/procedure/secure_simple_pairing.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 742,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-04-04T23:41:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8a892aa5_8631520f",
       "range": {
         "startLine": 742,
         "startChar": 20,
