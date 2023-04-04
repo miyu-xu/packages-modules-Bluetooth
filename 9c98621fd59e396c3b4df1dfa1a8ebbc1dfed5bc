@@ -49,6 +49,54 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "db97a79f_2620ad1e",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 588,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-04-04T16:50:19Z",
+      "side": 1,
+      "message": "in btsnoop I\u0027m getting decimal thing when decoding with btmon - so this is fine for me.",
+      "parentUuid": "4b04055f_385072f1",
+      "range": {
+        "startLine": 588,
+        "startChar": 41,
+        "endLine": 588,
+        "endChar": 65
+      },
+      "revId": "9c98621fd59e396c3b4df1dfa1a8ebbc1dfed5bc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9b035379_587e6e7a",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 588,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-04-04T16:50:19Z",
+      "side": 1,
+      "message": "I sent you screenshot early, could you checkthat? BTW It is cis_handle.",
+      "parentUuid": "0aa94c0a_ee71b724",
+      "range": {
+        "startLine": 588,
+        "startChar": 33,
+        "endLine": 588,
+        "endChar": 36
+      },
+      "revId": "9c98621fd59e396c3b4df1dfa1a8ebbc1dfed5bc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e690c7ba_4747ed32",
         "filename": "system/bta/le_audio/state_machine.cc",
         "patchSetId": 3
@@ -88,6 +136,54 @@
         "startChar": 56,
         "endLine": 1461,
         "endChar": 59
+      },
+      "revId": "9c98621fd59e396c3b4df1dfa1a8ebbc1dfed5bc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bd9565d1_b323520f",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1461,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-04-04T16:50:19Z",
+      "side": 1,
+      "message": "this is acl_handle.",
+      "parentUuid": "5103e923_df054d75",
+      "range": {
+        "startLine": 1461,
+        "startChar": 56,
+        "endLine": 1461,
+        "endChar": 59
+      },
+      "revId": "9c98621fd59e396c3b4df1dfa1a8ebbc1dfed5bc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "47a12a97_62ac9bc3",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1461,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-04-04T16:50:19Z",
+      "side": 1,
+      "message": "it might be to long.",
+      "parentUuid": "e690c7ba_4747ed32",
+      "range": {
+        "startLine": 1461,
+        "startChar": 23,
+        "endLine": 1461,
+        "endChar": 26
       },
       "revId": "9c98621fd59e396c3b4df1dfa1a8ebbc1dfed5bc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
