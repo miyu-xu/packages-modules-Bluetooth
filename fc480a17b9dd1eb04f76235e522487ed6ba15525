@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8bee904f_70c7b80f",
+        "filename": "tools/rootcanal/lmp/src/procedure/secure_simple_pairing.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-04-04T17:38:43Z",
+      "side": 1,
+      "message": "\u003e Plus, nonce \u003d\u003d pairing_number.get_nonce() doesn\u0027t work since it\u0027s a byte array.\nnonce or  pairing_number.get_nonce() could be converted to a common format.\n\nEq is implemented for [u8;N] and Vec\u003cu8\u003e.\n\n\u003e You\u0027re actually supposed to do some crypto here and not just check the nonce\n\nCan you move the validation to a member function then, and leave the TODO there ?\ne.g. `compare_nonce()`.",
+      "parentUuid": "dcef3b16_649ed2dd",
+      "range": {
+        "startLine": 152,
+        "startChar": 7,
+        "endLine": 152,
+        "endChar": 48
+      },
+      "revId": "fc480a17b9dd1eb04f76235e522487ed6ba15525",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "40432b3e_a0553d51",
         "filename": "tools/rootcanal/lmp/src/procedure/secure_simple_pairing.rs",
         "patchSetId": 2
@@ -132,6 +156,30 @@
       "side": 1,
       "message": "Doesn\u0027t that just increase the nesting?",
       "parentUuid": "d5600055_0f42f180",
+      "range": {
+        "startLine": 171,
+        "startChar": 0,
+        "endLine": 180,
+        "endChar": 5
+      },
+      "revId": "fc480a17b9dd1eb04f76235e522487ed6ba15525",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7f8b2fb5_2b6f2161",
+        "filename": "tools/rootcanal/lmp/src/procedure/secure_simple_pairing.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-04-04T17:38:43Z",
+      "side": 1,
+      "message": "Not if you use map_err for handling the error.",
+      "parentUuid": "606d3ac1_f631cac1",
       "range": {
         "startLine": 171,
         "startChar": 0,
@@ -388,6 +436,30 @@
       "side": 1,
       "message": "Yes.  You can\u0027t do while(); in Rust.  You have to do while() {}",
       "parentUuid": "359af254_794bae9b",
+      "range": {
+        "startLine": 786,
+        "startChar": 18,
+        "endLine": 786,
+        "endChar": 20
+      },
+      "revId": "fc480a17b9dd1eb04f76235e522487ed6ba15525",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "820b590b_fd280eb4",
+        "filename": "tools/rootcanal/lmp/src/procedure/secure_simple_pairing.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 786,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-04-04T17:38:43Z",
+      "side": 1,
+      "message": "Ok, I just noticed that the match is not actually the while body; which serves to prove that this structure is not very readable.\nI would prefer that you convert it to a `loop { match ... }` to make the structure clearer.",
+      "parentUuid": "7dc3cac0_0f25ce98",
       "range": {
         "startLine": 786,
         "startChar": 18,
