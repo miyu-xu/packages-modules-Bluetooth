@@ -35,6 +35,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dde998e1_bd112a15",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/PlayerSettingsManager.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2023-04-04T18:05:42Z",
+      "side": 1,
+      "message": "Updates will be requested by the new active device to get the current state of the active player and register for events.",
+      "parentUuid": "4043aed3_028e777e",
+      "revId": "693eb7d2f20ee4ab145d94901ee62d1391192225",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6c33b4e3_99c56bc6",
@@ -65,6 +83,42 @@
       "writtenOn": "2023-04-03T15:16:34Z",
       "side": 1,
       "message": "Could we land up in a situation where we sent this to player and player is not responsive for that and we end up not sending any response (even failed one). Should there be some command timeout also ?",
+      "revId": "693eb7d2f20ee4ab145d94901ee62d1391192225",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "093debc3_97805158",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/PlayerSettingsManager.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2023-04-04T18:05:42Z",
+      "side": 1,
+      "message": "We are asking the MediaController not the player itself, so if the player doesn\u0027t support shuffle or repeat this will return REPEAT_MODE_NONE (or REPEAT_MODE_INVALID if the player is not ready) without blocking.",
+      "parentUuid": "d8807a3b_72ce8d85",
+      "revId": "693eb7d2f20ee4ab145d94901ee62d1391192225",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "de6fb96f_4da57239",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/PlayerSettingsManager.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2023-04-04T18:05:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6c33b4e3_99c56bc6",
       "revId": "693eb7d2f20ee4ab145d94901ee62d1391192225",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
