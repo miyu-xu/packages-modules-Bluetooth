@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "11d876cc_f598a7db",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 22
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-04-04T18:16:16Z",
+      "side": 1,
+      "message": "lgtm assuming the pending comments will be resolved by some updates.",
+      "revId": "cd83be2d833b7ec639030d694a956819ff85e5ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
