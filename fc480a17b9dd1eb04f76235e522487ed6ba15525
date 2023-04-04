@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "dcef3b16_649ed2dd",
+        "filename": "tools/rootcanal/lmp/src/procedure/secure_simple_pairing.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-04-04T17:29:26Z",
+      "side": 1,
+      "message": "You\u0027re actually supposed to do some crypto here and not just check the nonce.  I wanted it to be obvious that it\u0027s wrong.  Plus, nonce \u003d\u003d pairing_number.get_nonce() doesn\u0027t work since it\u0027s a byte array.",
+      "parentUuid": "2ef39790_77a04426",
+      "range": {
+        "startLine": 152,
+        "startChar": 7,
+        "endLine": 152,
+        "endChar": 48
+      },
+      "revId": "fc480a17b9dd1eb04f76235e522487ed6ba15525",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "40432b3e_a0553d51",
         "filename": "tools/rootcanal/lmp/src/procedure/secure_simple_pairing.rs",
         "patchSetId": 2
@@ -37,6 +61,30 @@
       "writtenOn": "2023-04-04T17:17:17Z",
       "side": 1,
       "message": "Please remove debug logs.",
+      "range": {
+        "startLine": 178,
+        "startChar": 8,
+        "endLine": 178,
+        "endChar": 26
+      },
+      "revId": "fc480a17b9dd1eb04f76235e522487ed6ba15525",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0c1f646d_a6fe3aa1",
+        "filename": "tools/rootcanal/lmp/src/procedure/secure_simple_pairing.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-04-04T17:29:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "40432b3e_a0553d51",
       "range": {
         "startLine": 178,
         "startChar": 8,
@@ -72,6 +120,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "606d3ac1_f631cac1",
+        "filename": "tools/rootcanal/lmp/src/procedure/secure_simple_pairing.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-04-04T17:29:26Z",
+      "side": 1,
+      "message": "Doesn\u0027t that just increase the nesting?",
+      "parentUuid": "d5600055_0f42f180",
+      "range": {
+        "startLine": 171,
+        "startChar": 0,
+        "endLine": 180,
+        "endChar": 5
+      },
+      "revId": "fc480a17b9dd1eb04f76235e522487ed6ba15525",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6b6201f4_e1688185",
         "filename": "tools/rootcanal/lmp/src/procedure/secure_simple_pairing.rs",
         "patchSetId": 2
@@ -83,6 +155,30 @@
       "writtenOn": "2023-04-04T17:17:17Z",
       "side": 1,
       "message": "Same here for the debug log.",
+      "range": {
+        "startLine": 206,
+        "startChar": 8,
+        "endLine": 206,
+        "endChar": 26
+      },
+      "revId": "fc480a17b9dd1eb04f76235e522487ed6ba15525",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "27b00323_5d6c7589",
+        "filename": "tools/rootcanal/lmp/src/procedure/secure_simple_pairing.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-04-04T17:29:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6b6201f4_e1688185",
       "range": {
         "startLine": 206,
         "startChar": 8,
@@ -129,6 +225,30 @@
       "writtenOn": "2023-04-04T17:17:17Z",
       "side": 1,
       "message": "Same question about comparing the first byte only.",
+      "range": {
+        "startLine": 212,
+        "startChar": 7,
+        "endLine": 212,
+        "endChar": 48
+      },
+      "revId": "fc480a17b9dd1eb04f76235e522487ed6ba15525",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "414eb7b8_58f182c4",
+        "filename": "tools/rootcanal/lmp/src/procedure/secure_simple_pairing.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 212,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-04-04T17:29:26Z",
+      "side": 1,
+      "message": "Same response.",
+      "parentUuid": "f058ab10_f1c976f7",
       "range": {
         "startLine": 212,
         "startChar": 7,
@@ -244,6 +364,30 @@
       "writtenOn": "2023-04-04T17:17:17Z",
       "side": 1,
       "message": "empty block",
+      "range": {
+        "startLine": 786,
+        "startChar": 18,
+        "endLine": 786,
+        "endChar": 20
+      },
+      "revId": "fc480a17b9dd1eb04f76235e522487ed6ba15525",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7dc3cac0_0f25ce98",
+        "filename": "tools/rootcanal/lmp/src/procedure/secure_simple_pairing.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 786,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-04-04T17:29:26Z",
+      "side": 1,
+      "message": "Yes.  You can\u0027t do while(); in Rust.  You have to do while() {}",
+      "parentUuid": "359af254_794bae9b",
       "range": {
         "startLine": 786,
         "startChar": 18,
