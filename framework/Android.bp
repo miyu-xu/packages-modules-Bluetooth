@@ -98,13 +98,16 @@ java_defaults {
     libs: [
         // order matters: classes in framework-bluetooth are resolved before framework, meaning
         // @hide APIs in framework-bluetooth are resolved before @SystemApi stubs in framework
-        "framework-bluetooth.impl",
+        "framework-bluetooth-pre-jarjar",
         "framework",
 
         // if sdk_version="" this gets automatically included, but here we need to add manually.
         "framework-res",
         "app-compat-annotations",
     ],
+
+    jarjar_rules: ":bluetooth-jarjar-rules",
+
     defaults_visibility: ["//visibility:public"],
 }
 
