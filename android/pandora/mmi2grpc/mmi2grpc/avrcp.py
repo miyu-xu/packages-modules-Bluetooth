@@ -698,6 +698,23 @@ class AVRCPProxy(ProfileProxy):
         return "OK"
 
     @assert_description
+    def TSC_AVRCP_mmi_iut_initiate_register_notification_changed_player_application_setting_changed(self, **kwargs):
+        """
+        Take action to trigger a [Register Notification, Changed] response for
+        <Player Application Setting Changed> to the PTS from the IUT.  This can
+        be accomplished by changing a Player Application Setting (Equalizer,
+        Repeat Mode, Shuffle, Scan) on the IUT.
+
+        Description: Verify that the
+        Implementation Under Test (IUT) can update database by sending a valid
+        Player Application Setting Changed Notification to the PTS.
+        """
+
+        self.mediaplayer.SetShuffleMode()
+
+        return "OK"
+
+    @assert_description
     def TSC_AVRCP_mmi_iut_reject_get_folder_items_out_of_range(self, **kwargs):
         """
         PTS has sent a Get Folder Items command with invalid values for Start
