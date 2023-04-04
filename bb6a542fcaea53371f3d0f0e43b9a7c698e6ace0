@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "71bc3bda_8f5e2ec1",
+        "filename": "tools/rootcanal/lmp/src/test/sequence.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-04-04T19:57:36Z",
+      "side": 1,
+      "message": "error[E0658]: let...else statements are unstable\n  --\u003e lmp/src/test/sequence.rs:71:17",
+      "range": {
+        "startLine": 50,
+        "startChar": 16,
+        "endLine": 50,
+        "endChar": 19
+      },
+      "revId": "bb6a542fcaea53371f3d0f0e43b9a7c698e6ace0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
