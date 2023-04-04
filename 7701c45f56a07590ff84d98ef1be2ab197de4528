@@ -22,6 +22,30 @@
       },
       "revId": "7701c45f56a07590ff84d98ef1be2ab197de4528",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f8fc422e_3825faf4",
+        "filename": "system/bta/hh/bta_hh_main.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 302,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2023-04-04T16:36:30Z",
+      "side": 1,
+      "message": "This is bta event handler so it must return boolean. Returning \"true\" means that the bta_sys will deallocate the event.\n\nhttps://cs.android.com/android/platform/superproject/+/refs/heads/master:packages/modules/Bluetooth/system/bta/sys/bta_sys_main.cc;drc\u003d7346c436e5a11ce08f6a80dcfeb8ef941ca30176;l\u003d98",
+      "parentUuid": "c323c593_6675702d",
+      "range": {
+        "startLine": 302,
+        "startChar": 0,
+        "endLine": 302,
+        "endChar": 4
+      },
+      "revId": "7701c45f56a07590ff84d98ef1be2ab197de4528",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
