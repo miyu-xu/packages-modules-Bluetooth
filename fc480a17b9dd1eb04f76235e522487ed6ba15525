@@ -74,6 +74,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7f35ef98_fb006686",
+        "filename": "tools/rootcanal/lmp/src/procedure/secure_simple_pairing.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-04-04T17:52:18Z",
+      "side": 1,
+      "message": "Interesting.  It didn\u0027t work for me.\n\ncan\u0027t compare `[{integer}; 16]` with `\u0026[u8; 16]`\nthe trait `PartialEq\u003c\u0026[u8; 16]\u003e` is not implemented for `[{integer}; 16]`\nthe following other types implement trait `PartialEq\u003cRhs\u003e`:\n\nSure.",
+      "parentUuid": "8bee904f_70c7b80f",
+      "range": {
+        "startLine": 152,
+        "startChar": 7,
+        "endLine": 152,
+        "endChar": 48
+      },
+      "revId": "fc480a17b9dd1eb04f76235e522487ed6ba15525",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "40432b3e_a0553d51",
         "filename": "tools/rootcanal/lmp/src/procedure/secure_simple_pairing.rs",
         "patchSetId": 2
@@ -343,6 +367,30 @@
       "writtenOn": "2023-04-04T17:17:17Z",
       "side": 1,
       "message": "Can be squashed as `user_confirmation_request(ctx).await.is_err()`",
+      "range": {
+        "startLine": 726,
+        "startChar": 12,
+        "endLine": 730,
+        "endChar": 13
+      },
+      "revId": "fc480a17b9dd1eb04f76235e522487ed6ba15525",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3140b8d3_f0dac650",
+        "filename": "tools/rootcanal/lmp/src/procedure/secure_simple_pairing.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 730,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-04-04T17:52:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ba04e4c0_4f7e94cd",
       "range": {
         "startLine": 726,
         "startChar": 12,
