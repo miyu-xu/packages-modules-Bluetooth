@@ -500,6 +500,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "71b88f19_2eb65921",
+        "filename": "tools/rootcanal/lmp/src/procedure/secure_simple_pairing.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 523,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-04-04T18:48:50Z",
+      "side": 1,
+      "message": "It\u0027s more correct than it was.  This CL is already large enough.",
+      "parentUuid": "60c19052_387a1359",
+      "range": {
+        "startLine": 508,
+        "startChar": 19,
+        "endLine": 523,
+        "endChar": 21
+      },
+      "revId": "fc480a17b9dd1eb04f76235e522487ed6ba15525",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ba04e4c0_4f7e94cd",
         "filename": "tools/rootcanal/lmp/src/procedure/secure_simple_pairing.rs",
         "patchSetId": 2
@@ -748,6 +772,30 @@
       "side": 1,
       "message": "`break` does not do anything inside a `match` statement, using it there will naturally escape the loop. Even if that were not the case, you would be able to do that using break labels: https://doc.rust-lang.org/rust-by-example/flow_control/loop/nested.html\nYou can also return values with the break: https://doc.rust-lang.org/rust-by-example/flow_control/loop/return.html",
       "parentUuid": "0902405b_443912bc",
+      "range": {
+        "startLine": 786,
+        "startChar": 18,
+        "endLine": 786,
+        "endChar": 20
+      },
+      "revId": "fc480a17b9dd1eb04f76235e522487ed6ba15525",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3e6227e5_4d64e283",
+        "filename": "tools/rootcanal/lmp/src/procedure/secure_simple_pairing.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 786,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-04-04T18:48:50Z",
+      "side": 1,
+      "message": "I don\u0027t find either of those cleaner.  I don\u0027t think I know Rust well enough to appreciate the beauty or see what you want.",
+      "parentUuid": "0625b87c_f2949d1b",
       "range": {
         "startLine": 786,
         "startChar": 18,
