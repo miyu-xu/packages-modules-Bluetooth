@@ -118,6 +118,30 @@
       },
       "revId": "35f0b3aa4c43a38496b3bf41a40c2c5128251858",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d1fbce94_b47ade86",
+        "filename": "android/app/Android.bp",
+        "patchSetId": 4
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 1060959
+      },
+      "writtenOn": "2023-04-04T10:25:48Z",
+      "side": 1,
+      "message": "I thought you were moving these to `libs` because they were already in `framework-bluetooth`, but it seems like they\u0027re not? If they\u0027re not, they need to remain in `static_libs`, but you also need to jarjar them.",
+      "parentUuid": "0564c430_7cd90ce2",
+      "range": {
+        "startLine": 147,
+        "startChar": 11,
+        "endLine": 149,
+        "endChar": 45
+      },
+      "revId": "35f0b3aa4c43a38496b3bf41a40c2c5128251858",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
