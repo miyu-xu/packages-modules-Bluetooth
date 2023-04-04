@@ -18,6 +18,8 @@ java_defaults {
     ],
 
     static_libs: [
+        "android.hardware.radio-V1.0-java",
+        "android.hardware.radio.sap-V1-java",
         "androidx.media_media",
         "androidx.test.ext.truth",
         "androidx.test.rules",
@@ -29,7 +31,6 @@ java_defaults {
         "mockito-target",
         "truth-prebuilt",
         "PlatformProperties",
-        "framework-bluetooth-pre-jarjar",
     ],
 
     asset_dirs: ["src/com/android/bluetooth/btservice/storage/schemas"],
