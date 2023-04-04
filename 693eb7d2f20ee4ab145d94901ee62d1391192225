@@ -88,6 +88,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2b1c61a3_0ac9ac5f",
+        "filename": "system/include/hardware/avrcp/avrcp_common.h",
+        "patchSetId": 12
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-04-04T16:38:12Z",
+      "side": 1,
+      "message": "Since current media player implementation does not support them, we skipped them",
+      "parentUuid": "83fcfe76_91bb6b86",
+      "revId": "693eb7d2f20ee4ab145d94901ee62d1391192225",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "52c6895f_93f90869",
         "filename": "system/profile/avrcp/device.cc",
         "patchSetId": 12
