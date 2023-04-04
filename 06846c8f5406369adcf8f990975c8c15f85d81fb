@@ -72,6 +72,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "366707af_0b89556f",
+        "filename": "framework/tests/bumble/src/com/android/framework/bluetooth/tests/gatt/LeAdvertisingTest.java",
+        "patchSetId": 27
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1986325
+      },
+      "writtenOn": "2023-04-04T22:05:55Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "8a89c143_5f3e8786",
+      "range": {
+        "startLine": 103,
+        "startChar": 8,
+        "endLine": 110,
+        "endChar": 64
+      },
+      "revId": "06846c8f5406369adcf8f990975c8c15f85d81fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8c4aad93_214ec889",
@@ -85,6 +109,30 @@
       "writtenOn": "2023-03-30T22:04:49Z",
       "side": 1,
       "message": "nit: Move that into a util function",
+      "range": {
+        "startLine": 161,
+        "startChar": 16,
+        "endLine": 168,
+        "endChar": 17
+      },
+      "revId": "06846c8f5406369adcf8f990975c8c15f85d81fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6616b6c5_bd5d7dd0",
+        "filename": "framework/tests/bumble/src/com/android/framework/bluetooth/tests/gatt/LeAdvertisingTest.java",
+        "patchSetId": 27
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 1986325
+      },
+      "writtenOn": "2023-04-04T22:05:55Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "8c4aad93_214ec889",
       "range": {
         "startLine": 161,
         "startChar": 16,
