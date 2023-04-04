@@ -16,6 +16,29 @@
       "message": "I would prefer for this logic be pulled out of the connection manager. I don\u0027t think LE-audio specific callbacks live in the connection manager.\n\nIs it possible to instead have a separate module scanning for GA advertisements, and then initiate a direct connection if one is detected and we are streaming to the other device in the group?",
       "revId": "fd2f292efa75ab183b851e4099b0d328b9e7fb91",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0bb4cc86_f6516482",
+        "filename": "system/stack/gatt/connection_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-04-04T23:16:56Z",
+      "side": 1,
+      "message": "Please fix this ERROR reported by Build Warnings: expected \u0027)\u0027 [clang-diagnostic-error]\n\nAnalyzer Description: Reports warnings that originate from build.log in the build artifacts.\nOwner: farivar@google.com\n\n    expected \u0027)\u0027 [clang-diagnostic-error]\n               (ta_found ? \"targeted\" : \"general\")ADDRESS_TO_LOGGABLE_CSTR(addr));\n                                                  ^\n    /mnt/disks/build-disk/src/googleplex-android/master/packages/modules/Bluetooth/system/stack/gatt/connection_manager.cc:180:3: note: to match this \u0027(\u0027\n      LOG_INFO(\"Found %s announcement for device %s\",\n      ^\n    packages/modules/Bluetooth/system/gd/os/log.h:62:32: note: expanded from macro \u0027LOG_INFO\u0027\n    #define LOG_INFO(fmt, args...) ALOGI(\"%s:%d %s: \" fmt, __FILE__, __LINE__, __func__, ##args)\n                                   ^\n    system/logging/liblog/include/log/log_main.h:241:27: note: expanded from macro \u0027ALOGI\u0027\n    #define ALOGI(...) ((void)ALOG(LOG_INFO, LOG_TAG, __VA_ARGS__))\n                              ^\n    system/logging/liblog/include/log/log_main.h:336:34: note: expanded from macro \u0027ALOG\u0027\n    #define ALOG(priority, tag, ...) LOG_PRI(ANDROID_##priority, tag, __VA_ARGS__)\n                                     ^\n    system/logging/liblog/include/log/log_main.h:94:37: note: expanded from macro \u0027LOG_PRI\u0027\n    #define LOG_PRI(priority, tag, ...) android_printLog(priority, tag, __VA_ARGS__)\n                                        ^\n    system/logging/liblog/include/log/log_main.h:85:22: note: expanded from macro \u0027android_printLog\u0027\n      __android_log_print(prio, tag, __VA_ARGS__)\n                         ^\n\nThis finding was found on https://android-build.googleplex.com/builds/build-details/P53961207/targets/aosp_arm64-userdebug_tidy, but may also be present on other builds.",
+      "range": {
+        "startLine": 181,
+        "startChar": 47,
+        "endLine": 181,
+        "endChar": 78
+      },
+      "revId": "fd2f292efa75ab183b851e4099b0d328b9e7fb91",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
