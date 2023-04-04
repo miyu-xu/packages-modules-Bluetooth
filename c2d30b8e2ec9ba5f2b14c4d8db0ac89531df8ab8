@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cb87b50c_ba0412df",
+        "filename": "tools/rootcanal/lmp/lmp_packets.pdl",
+        "patchSetId": 1
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-04-04T16:43:32Z",
+      "side": 0,
+      "message": "You don\u0027t like my little bit of french in RootCanal 🥖 ?",
+      "range": {
+        "startLine": 85,
+        "startChar": 2,
+        "endLine": 85,
+        "endChar": 28
+      },
+      "revId": "c2d30b8e2ec9ba5f2b14c4d8db0ac89531df8ab8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
