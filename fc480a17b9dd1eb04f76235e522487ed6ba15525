@@ -96,6 +96,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "41dc30e4_25baee25",
+        "filename": "tools/rootcanal/lmp/src/procedure/secure_simple_pairing.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-04-04T17:57:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7f35ef98_fb006686",
+      "range": {
+        "startLine": 152,
+        "startChar": 7,
+        "endLine": 152,
+        "endChar": 48
+      },
+      "revId": "fc480a17b9dd1eb04f76235e522487ed6ba15525",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "40432b3e_a0553d51",
@@ -204,6 +228,30 @@
       "side": 1,
       "message": "Not if you use map_err for handling the error.",
       "parentUuid": "606d3ac1_f631cac1",
+      "range": {
+        "startLine": 171,
+        "startChar": 0,
+        "endLine": 180,
+        "endChar": 5
+      },
+      "revId": "fc480a17b9dd1eb04f76235e522487ed6ba15525",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a16bdcc2_e2e80700",
+        "filename": "tools/rootcanal/lmp/src/procedure/secure_simple_pairing.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-04-04T17:57:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7f8b2fb5_2b6f2161",
       "range": {
         "startLine": 171,
         "startChar": 0,
@@ -331,6 +379,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b9dd2ca6_23a71368",
+        "filename": "tools/rootcanal/lmp/src/procedure/secure_simple_pairing.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 212,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-04-04T17:57:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "414eb7b8_58f182c4",
+      "range": {
+        "startLine": 212,
+        "startChar": 7,
+        "endLine": 212,
+        "endChar": 48
+      },
+      "revId": "fc480a17b9dd1eb04f76235e522487ed6ba15525",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2134b258_a573cbfe",
@@ -424,6 +496,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "68703ea0_b2647d52",
+        "filename": "tools/rootcanal/lmp/src/procedure/secure_simple_pairing.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 761,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-04-04T17:57:05Z",
+      "side": 1,
+      "message": "I think this is resolved with the loop misunderstanding.",
+      "parentUuid": "bf0bc20c_9c93197f",
+      "range": {
+        "startLine": 760,
+        "startChar": 26,
+        "endLine": 761,
+        "endChar": 28
+      },
+      "revId": "fc480a17b9dd1eb04f76235e522487ed6ba15525",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a36c5636_4dc69778",
@@ -437,6 +533,30 @@
       "writtenOn": "2023-04-04T17:17:17Z",
       "side": 1,
       "message": "value is dropped",
+      "range": {
+        "startLine": 774,
+        "startChar": 24,
+        "endLine": 774,
+        "endChar": 29
+      },
+      "revId": "fc480a17b9dd1eb04f76235e522487ed6ba15525",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "04de4b20_cd030820",
+        "filename": "tools/rootcanal/lmp/src/procedure/secure_simple_pairing.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 774,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-04-04T17:57:05Z",
+      "side": 1,
+      "message": "Same as above.",
+      "parentUuid": "a36c5636_4dc69778",
       "range": {
         "startLine": 774,
         "startChar": 24,
@@ -508,6 +628,30 @@
       "side": 1,
       "message": "Ok, I just noticed that the match is not actually the while body; which serves to prove that this structure is not very readable.\nI would prefer that you convert it to a `loop { match ... }` to make the structure clearer.",
       "parentUuid": "7dc3cac0_0f25ce98",
+      "range": {
+        "startLine": 786,
+        "startChar": 18,
+        "endLine": 786,
+        "endChar": 20
+      },
+      "revId": "fc480a17b9dd1eb04f76235e522487ed6ba15525",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0902405b_443912bc",
+        "filename": "tools/rootcanal/lmp/src/procedure/secure_simple_pairing.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 786,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-04-04T17:57:05Z",
+      "side": 1,
+      "message": "Do you mean:\n\nloop {\n  let please_break \u003d match {}\n  if please_break { break; }\n}\n\n?  I don\u0027t find that better.",
+      "parentUuid": "820b590b_fd280eb4",
       "range": {
         "startLine": 786,
         "startChar": 18,
