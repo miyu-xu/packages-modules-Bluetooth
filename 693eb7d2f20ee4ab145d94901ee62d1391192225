@@ -101,6 +101,24 @@
       "message": "should we add CHANGED response for Player settings application as well as per AVRCPv1.6.2 (6.9.2.2) for new player in case of player change OR it\u0027s happening from some other path already?",
       "revId": "693eb7d2f20ee4ab145d94901ee62d1391192225",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "12d74c12_fd7e0dd8",
+        "filename": "system/profile/avrcp/device.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 757,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-04-04T09:41:41Z",
+      "side": 1,
+      "message": "We send INTERIM response on this path in native:\n\u003e Device::HandleNotification\n\u003e Device::PlayerSettingChangedNotificationResponse\n\nAnd we send CHANGED response on this path in native:\n\u003e AvrcpService::SendPlayerSettingsChanged\n\u003e Device::HandlePlayerSettingChanged\n\nPlease let me know if this is what you meant and if it is correct. \nThank you",
+      "parentUuid": "52c6895f_93f90869",
+      "revId": "693eb7d2f20ee4ab145d94901ee62d1391192225",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
