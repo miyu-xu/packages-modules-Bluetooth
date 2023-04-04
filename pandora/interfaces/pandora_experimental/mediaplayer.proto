@@ -17,4 +17,5 @@ service MediaPlayer {
   rpc Backward(google.protobuf.Empty) returns (google.protobuf.Empty);
   rpc SetLargeMetadata(google.protobuf.Empty) returns (google.protobuf.Empty);
   rpc UpdateQueue(google.protobuf.Empty) returns (google.protobuf.Empty);
+  rpc SetShuffleMode(google.protobuf.Empty) returns (google.protobuf.Empty);
 }

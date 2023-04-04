@@ -82,6 +82,32 @@ class MediaPlayerBrowserService : MediaBrowserServiceCompat() {
     mediaSession.setPlaybackState(playbackStateBuilder.build())
   }
 
+  private fun startTestPlayback() {
+    if (mMediaPlayer == null) {
+      // File copied from: development/samples/ApiDemos/res/raw/test_cbr.mp3
+      // to: packages/modules/Bluetooth/android/pandora/server/res/raw/test_cbr.mp3
+      var resourceId: Int = getResources().getIdentifier("test_cbr", "raw", getPackageName());
+      mMediaPlayer = MediaPlayer.create(this, resourceId)
+      if (mMediaPlayer == null) {
+        Log.e(TAG, "Failed to create MediaPlayer.")
+        return
+      }
+    }
+
+    mMediaPlayer?.setOnCompletionListener {
+      stopTestPlayback()
+    }
+
+    mMediaPlayer?.start()
+  }
+
+  private fun stopTestPlayback() {
+    mMediaPlayer?.stop()
+    mMediaPlayer?.setOnCompletionListener(null)
+    mMediaPlayer?.release()
+    mMediaPlayer = null
+  }
+
   fun play() {
     if (currentTrack == -1 || currentTrack == QUEUE_SIZE) currentTrack = QUEUE_START_INDEX
     else currentTrack += 1
@@ -143,6 +169,18 @@ class MediaPlayerBrowserService : MediaBrowserServiceCompat() {
     mediaSession.setQueue(queue)
   }
 
+  fun setShuffleMode() {
+    startTestPlayback()
+    val controller = mediaSession.getController()
+    val transportControls = controller.getTransportControls()
+    var shuffleMode = controller.getShuffleMode()
+    when (shuffleMode) {
+      PlaybackStateCompat.SHUFFLE_MODE_NONE   -> transportControls.setShuffleMode(PlaybackStateCompat.SHUFFLE_MODE_ALL)
+      PlaybackStateCompat.SHUFFLE_MODE_ALL    -> transportControls.setShuffleMode(PlaybackStateCompat.SHUFFLE_MODE_GROUP)
+      PlaybackStateCompat.SHUFFLE_MODE_GROUP  -> transportControls.setShuffleMode(PlaybackStateCompat.SHUFFLE_MODE_ALL)
+    }
+  }
+
   private val mSessionCallback: MediaSessionCompat.Callback =
     object : MediaSessionCompat.Callback() {
       override fun onPlay() {
@@ -168,6 +206,12 @@ class MediaPlayerBrowserService : MediaBrowserServiceCompat() {
       override fun onMediaButtonEvent(mediaButtonEvent: Intent): Boolean {
         Log.i(TAG, "MediaSessionCallback——》onMediaButtonEvent $mediaButtonEvent")
         return super.onMediaButtonEvent(mediaButtonEvent)
+      }
+
+      override fun onSetShuffleMode(shuffleMode: Int) {
+        Log.i(TAG, "MediaSessionCallback——》onSetShuffleMode $shuffleMode")
+        mediaSession.setShuffleMode(shuffleMode)
+        stopTestPlayback()
       }
     }
 
