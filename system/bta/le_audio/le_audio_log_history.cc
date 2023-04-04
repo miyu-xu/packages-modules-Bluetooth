@@ -56,7 +56,7 @@ class LeAudioLogHistoryImpl;
 LeAudioLogHistoryImpl* instance;
 
 constexpr size_t kMaxLogHistoryTagLength = 14;
-constexpr size_t kMaxLogHistoryMsgLength = 34;
+constexpr size_t kMaxLogHistoryMsgLength = 44;
 const std::string kTimeFormat("%Y-%m-%d %H:%M:%S");
 
 using Record = bluetooth::common::TimestampedEntry<std::string>;
