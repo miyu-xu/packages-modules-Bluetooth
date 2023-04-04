@@ -157,6 +157,9 @@ java_defaults {
         "unsupportedappusage",
         "framework-annotations-lib",
         "error_prone_annotations",
+
+        // Need to link the class at runtime
+        "framework-bluetooth",
     ],
     static_libs: [
         "android.hardware.radio-V1.0-java",
