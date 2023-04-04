@@ -29,7 +29,6 @@ java_defaults {
         "mockito-target",
         "truth-prebuilt",
         "PlatformProperties",
-        "framework-bluetooth-pre-jarjar",
     ],
 
     asset_dirs: ["src/com/android/bluetooth/btservice/storage/schemas"],
@@ -47,7 +46,7 @@ java_defaults {
         "mts-bluetooth",
     ],
 
-    instrumentation_for: "Bluetooth",
+    instrumentation_for: "fake-Bluetooth-pre-jarjar",
 }
 
 android_test {

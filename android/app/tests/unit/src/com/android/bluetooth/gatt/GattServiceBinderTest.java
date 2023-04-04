@@ -46,7 +46,7 @@ import androidx.test.InstrumentationRegistry;
 import androidx.test.filters.SmallTest;
 import androidx.test.runner.AndroidJUnit4;
 
-import com.android.bluetooth.x.com.android.modules.utils.SynchronousResultReceiver;
+import com.android.modules.utils.SynchronousResultReceiver;
 
 import org.junit.Before;
 import org.junit.Test;

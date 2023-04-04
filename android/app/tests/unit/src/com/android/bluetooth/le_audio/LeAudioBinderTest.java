@@ -35,7 +35,7 @@ import android.os.ParcelUuid;
 import android.os.RemoteCallbackList;
 
 import com.android.bluetooth.TestUtils;
-import com.android.bluetooth.x.com.android.modules.utils.SynchronousResultReceiver;
+import com.android.modules.utils.SynchronousResultReceiver;
 
 import org.junit.After;
 import org.junit.Before;
