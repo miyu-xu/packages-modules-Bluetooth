@@ -51,6 +51,23 @@
       "parentUuid": "5108a461_031e82bc",
       "revId": "1ee0a16bf151c337cba17d6459ff2d6eb9c536cf",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9e740d62_66315c37",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-04-04T01:09:15Z",
+      "side": 1,
+      "message": "@licorne I know you have opinions on PTS-specific flags",
+      "revId": "1ee0a16bf151c337cba17d6459ff2d6eb9c536cf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
