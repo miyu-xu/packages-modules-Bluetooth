@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "814f8a1c_04e77d81",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-04-04T20:34:05Z",
+      "side": 1,
+      "message": "All presubmit failures are in areas unrelated to periodic advertising now. Ready to submit",
+      "revId": "98704e6ec70b2a4379adaaef386e16241e5b7f9d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
