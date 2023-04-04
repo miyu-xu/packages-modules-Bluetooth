@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cbda970a_3e4b5099",
+        "filename": "tools/rootcanal/lmp/src/procedure/secure_simple_pairing.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-04-04T23:35:14Z",
+      "side": 1,
+      "message": "return not necessary: `Err(())`",
+      "range": {
+        "startLine": 180,
+        "startChar": 8,
+        "endLine": 180,
+        "endChar": 23
+      },
+      "revId": "b06c0b4869480012661cff3b84b1abff4ef3d284",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "246fed9a_b5bb8019",
+        "filename": "tools/rootcanal/lmp/src/procedure/secure_simple_pairing.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 502,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-04-04T23:35:14Z",
+      "side": 1,
+      "message": "Please leave a comment to know to handle LMP keypress notifications here.",
+      "revId": "b06c0b4869480012661cff3b84b1abff4ef3d284",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8a892aa5_8631520f",
+        "filename": "tools/rootcanal/lmp/src/procedure/secure_simple_pairing.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 742,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-04-04T23:35:14Z",
+      "side": 1,
+      "message": "`pairing_failed` is more indicative",
+      "range": {
+        "startLine": 742,
+        "startChar": 20,
+        "endLine": 742,
+        "endChar": 33
+      },
+      "revId": "b06c0b4869480012661cff3b84b1abff4ef3d284",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
