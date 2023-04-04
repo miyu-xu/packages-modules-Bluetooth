@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a931ea20_21bef42d",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 968,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-04-04T06:52:29Z",
+      "side": 1,
+      "message": "LOG_WARN",
+      "range": {
+        "startLine": 968,
+        "startChar": 6,
+        "endLine": 968,
+        "endChar": 15
+      },
+      "revId": "29a7b404e3d815c2cd19f37d8f7af929fdd3e184",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1d11777a_6bbfe16d",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 973,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-04-04T06:52:29Z",
+      "side": 1,
+      "message": "LOG_WARN",
+      "range": {
+        "startLine": 973,
+        "startChar": 6,
+        "endLine": 973,
+        "endChar": 14
+      },
+      "revId": "29a7b404e3d815c2cd19f37d8f7af929fdd3e184",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
