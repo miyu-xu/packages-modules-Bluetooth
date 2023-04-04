@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c323c593_6675702d",
+        "filename": "system/bta/hh/bta_hh_main.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 302,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-04-04T00:16:22Z",
+      "side": 1,
+      "message": "can this be void now that it cannot fail?",
+      "range": {
+        "startLine": 302,
+        "startChar": 0,
+        "endLine": 302,
+        "endChar": 4
+      },
+      "revId": "7701c45f56a07590ff84d98ef1be2ab197de4528",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
