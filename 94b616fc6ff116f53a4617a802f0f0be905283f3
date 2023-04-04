@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a2cfab21_0afb4cd9",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 3519,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-04-04T06:41:07Z",
+      "side": 1,
+      "message": "else print dual mode not enabled or something like that or\n\npreferredOutputOnlyProfile: Dual mode not enabled\npreferredDuplexProfile: Dual mode not enabled\n\nto make potential dumpsys parser easier to write",
+      "range": {
+        "startLine": 3519,
+        "startChar": 0,
+        "endLine": 3519,
+        "endChar": 44
+      },
+      "revId": "94b616fc6ff116f53a4617a802f0f0be905283f3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
