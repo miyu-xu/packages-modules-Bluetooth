@@ -14,7 +14,7 @@ macro_rules! sequence_body {
 
             let poll = crate::test::poll($ctx.1.as_mut());
 
-            assert!($ctx.0.in_lmp_packets.borrow().is_empty(), "{} was not consumed by procedure", stringify!($packet));
+            assert!($ctx.0.in_lmp_packets.borrow().is_empty(), "Expecting IUT to call receive for {}", stringify!($packet));
 
             println!("Lower Tester -> IUT: {}", stringify!($packet));
 
@@ -64,7 +64,10 @@ macro_rules! sequence_body {
             use crate::packets::lmp::*;
 
             paste! {
-                let packet: [<$packet Packet>] = $ctx.0.out_lmp_packets.borrow_mut().pop_front().expect("No lmp packet").try_into().unwrap();
+                let received_packet = $ctx.0.out_lmp_packets.borrow_mut().pop_front().expect("No lmp packet");
+                let Ok(packet): Result<[<$packet Packet>], _> = received_packet.clone().try_into() else {
+                    panic!("Expected the IUT to send {} got {:?}", stringify!($packet), received_packet);
+                };
             }
 
             $(
