@@ -97,6 +97,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "90450e74_6ed9254c",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 588,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-04-04T16:54:04Z",
+      "side": 1,
+      "message": "In wireshark and other sniffers I\u0027m usually getting hex, can we do loghex() to convert handles to hex please ?",
+      "parentUuid": "db97a79f_2620ad1e",
+      "range": {
+        "startLine": 588,
+        "startChar": 41,
+        "endLine": 588,
+        "endChar": 65
+      },
+      "revId": "9c98621fd59e396c3b4df1dfa1a8ebbc1dfed5bc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e690c7ba_4747ed32",
         "filename": "system/bta/le_audio/state_machine.cc",
         "patchSetId": 3
