@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5f1e052c_6c8b4b45",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-04-04T21:32:41Z",
+      "side": 1,
+      "message": "I would prefer for this logic be pulled out of the connection manager. I don\u0027t think LE-audio specific callbacks live in the connection manager.\n\nIs it possible to instead have a separate module scanning for GA advertisements, and then initiate a direct connection if one is detected and we are streaming to the other device in the group?",
+      "revId": "fd2f292efa75ab183b851e4099b0d328b9e7fb91",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
