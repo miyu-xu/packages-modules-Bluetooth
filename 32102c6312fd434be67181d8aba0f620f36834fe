@@ -82,6 +82,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "abca7cce_00653f4b",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 817,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-04-04T20:00:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e9738e07_1e13684e",
+      "range": {
+        "startLine": 817,
+        "startChar": 0,
+        "endLine": 817,
+        "endChar": 3
+      },
+      "revId": "32102c6312fd434be67181d8aba0f620f36834fe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "92798bbb_eb17039c",
@@ -129,6 +153,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "861d0344_b83c6b04",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 834,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-04-04T20:00:30Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "649191f1_5331b853",
+      "range": {
+        "startLine": 834,
+        "startChar": 0,
+        "endLine": 834,
+        "endChar": 67
+      },
+      "revId": "32102c6312fd434be67181d8aba0f620f36834fe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6d3c1df2_d96fe981",
@@ -166,6 +214,30 @@
       "side": 1,
       "message": "I have no idea...I use an arbitrary java formatting utility that successfully passed the presubmit.\n\nI will see what others use.",
       "parentUuid": "6d3c1df2_d96fe981",
+      "range": {
+        "startLine": 1130,
+        "startChar": 19,
+        "endLine": 1131,
+        "endChar": 22
+      },
+      "revId": "32102c6312fd434be67181d8aba0f620f36834fe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f87ef259_1095b648",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 1131,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-04-04T20:00:30Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "499140a1_357a8407",
       "range": {
         "startLine": 1130,
         "startChar": 19,
