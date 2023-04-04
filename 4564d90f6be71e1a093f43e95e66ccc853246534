@@ -34,6 +34,24 @@
       "parentUuid": "cad97bb3_981a674c",
       "revId": "4564d90f6be71e1a093f43e95e66ccc853246534",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9d91cd13_f523b2c6",
+        "filename": "android/app/tests/unit/Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-04-04T22:19:08Z",
+      "side": 0,
+      "message": "About the pre-jarjar, this line is currently not used since the default is adding the framework-bluetooth.impl + framework that superseed it.\n\nI am replacing the impl by the pre-jarjar to make sure we are referencing non-jarjar\u0027ed code in the test.\n\nWe are using a ton of framework code in the test.\nFor example BluetoothDevice is in framework.\n\nIn a ideal world I would like to not reference the framework at all, neither in the test nor in the Bluetooth app. But this would be a really big refactor.",
+      "parentUuid": "fadb36c6_b8ecc786",
+      "revId": "4564d90f6be71e1a093f43e95e66ccc853246534",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
