@@ -16,6 +16,24 @@
       "message": "I don\u0027t think we should have another app target, the instrumentation tests should instrument the Bluetooth app, not another one",
       "revId": "a54a038182263bf697392eca9bf7d9043b24c3a3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "21c394bd_28202480",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-04-04T22:05:31Z",
+      "side": 1,
+      "message": "This work without issue. The fake app is never installed. It only has one purpose, allow the test to build against the non jarjar\u0027ed source of the app, then apply the jarjar on itself.\n\nIf you have a better solution I am willing to take it, but this is the only one working so far",
+      "parentUuid": "fc369365_7adac10a",
+      "revId": "a54a038182263bf697392eca9bf7d9043b24c3a3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
