@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b204ee45_68b81635",
+        "filename": "system/bta/ag/bta_ag_cmd.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 1306,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-04-04T01:30:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b9e14677_947dd2be",
+      "range": {
+        "startLine": 1306,
+        "startChar": 9,
+        "endLine": 1306,
+        "endChar": 29
+      },
+      "revId": "922e38619de4ec152939dd5dab316fbf3c02191a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3d0652e5_4e92f00e",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-03-27T23:42:47Z",
       "side": 1,
       "message": "We should also gate this by whether the currently active HFP device is an LE audio device to reduce the risk of hurting legacy HFP devices",
+      "range": {
+        "startLine": 1314,
+        "startChar": 6,
+        "endLine": 1315,
+        "endChar": 71
+      },
+      "revId": "922e38619de4ec152939dd5dab316fbf3c02191a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d049c652_788197ba",
+        "filename": "system/bta/ag/bta_ag_cmd.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 1315,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-04-04T01:30:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3d0652e5_4e92f00e",
       "range": {
         "startLine": 1314,
         "startChar": 6,
