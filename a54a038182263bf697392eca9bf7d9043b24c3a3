@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fc369365_7adac10a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-04-04T21:08:44Z",
+      "side": 1,
+      "message": "I don\u0027t think we should have another app target, the instrumentation tests should instrument the Bluetooth app, not another one",
+      "revId": "a54a038182263bf697392eca9bf7d9043b24c3a3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
