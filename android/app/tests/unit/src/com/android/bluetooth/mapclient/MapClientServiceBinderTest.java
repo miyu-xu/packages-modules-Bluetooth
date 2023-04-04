@@ -27,7 +27,7 @@ import android.net.Uri;
 import androidx.test.filters.MediumTest;
 import androidx.test.runner.AndroidJUnit4;
 
-import com.android.bluetooth.x.com.android.modules.utils.SynchronousResultReceiver;
+import com.android.modules.utils.SynchronousResultReceiver;
 
 import org.junit.Before;
 import org.junit.Test;

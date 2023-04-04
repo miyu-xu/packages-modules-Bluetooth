@@ -131,8 +131,8 @@ cc_library {
 
 // Bluetooth APK
 
-android_app {
-    name: "Bluetooth",
+java_defaults {
+    name: "Bluetooth-apk-defaults",
     defaults: ["bluetooth-module-sdk-version-defaults"],
 
     srcs: [
@@ -144,8 +144,6 @@ android_app {
         "com.android.bluetooth",
     ],
     certificate: ":com.android.bluetooth.certificate",
-
-    jarjar_rules: ":bluetooth-jarjar-rules",
 
     jni_uses_platform_apis: true,
     libs: [
@@ -206,9 +204,6 @@ android_app {
         "android.hardware.bluetooth.audio@2.1",
         "android.hardware.bluetooth.audio-V3-ndk",
     ],
-    apex_available: [
-        "com.android.btservices",
-    ],
     errorprone: {
         javacflags: [
             // "-Xep:AndroidFrameworkRequiresPermission:ERROR",
@@ -217,6 +212,23 @@ android_app {
     },
     min_sdk_version: "Tiramisu",
     sdk_version: "module_current",
+}
+
+android_app {
+    name: "Bluetooth",
+    defaults: ["Bluetooth-apk-defaults"],
+
+    jarjar_rules: ":bluetooth-jarjar-rules",
+
+    apex_available: [
+        "com.android.btservices",
+    ],
+}
+
+android_app {
+    name: "fake-Bluetooth-pre-jarjar",
+    defaults: ["Bluetooth-apk-defaults"],
+    installable: false, // This is not meant to be installed anywhere
 }
 
 java_library {
