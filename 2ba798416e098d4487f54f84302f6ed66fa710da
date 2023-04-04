@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c91b60d7_3d024369",
+        "filename": "tools/rootcanal/lmp/src/procedure/secure_simple_pairing.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 762,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-04-04T20:58:25Z",
+      "side": 1,
+      "message": "Ignoring the `_pairing_confirm` and calling `receive_commitment` seems wrong here.",
+      "range": {
+        "startLine": 761,
+        "startChar": 47,
+        "endLine": 762,
+        "endChar": 56
+      },
+      "revId": "2ba798416e098d4487f54f84302f6ed66fa710da",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9dcb7c66_012be0e6",
+        "filename": "tools/rootcanal/lmp/src/procedure/secure_simple_pairing.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 785,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-04-04T20:58:25Z",
+      "side": 1,
+      "message": "Could we add a note of why there is this `-1` ?",
+      "range": {
+        "startLine": 785,
+        "startChar": 80,
+        "endLine": 785,
+        "endChar": 84
+      },
+      "revId": "2ba798416e098d4487f54f84302f6ed66fa710da",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
