@@ -160,6 +160,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9b9b9570_6ffac868",
+        "filename": "system/include/hardware/avrcp/avrcp_common.h",
+        "patchSetId": 12
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-04-04T22:15:35Z",
+      "side": 1,
+      "message": "If this is 2 new command, we should add them in follow-up CL.\nThis change is already way too big",
+      "parentUuid": "2b1c61a3_0ac9ac5f",
+      "revId": "693eb7d2f20ee4ab145d94901ee62d1391192225",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "52c6895f_93f90869",
         "filename": "system/profile/avrcp/device.cc",
         "patchSetId": 12
