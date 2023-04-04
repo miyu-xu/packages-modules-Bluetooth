@@ -143,6 +143,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9750d7ec_25a6d192",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 588,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-04-04T19:43:31Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "9b035379_587e6e7a",
+      "range": {
+        "startLine": 588,
+        "startChar": 33,
+        "endLine": 588,
+        "endChar": 36
+      },
+      "revId": "9c98621fd59e396c3b4df1dfa1a8ebbc1dfed5bc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e690c7ba_4747ed32",
@@ -227,6 +251,30 @@
       "side": 1,
       "message": "it might be to long.",
       "parentUuid": "e690c7ba_4747ed32",
+      "range": {
+        "startLine": 1461,
+        "startChar": 23,
+        "endLine": 1461,
+        "endChar": 26
+      },
+      "revId": "9c98621fd59e396c3b4df1dfa1a8ebbc1dfed5bc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8da45533_5f12e207",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1461,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-04-04T19:43:31Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "47a12a97_62ac9bc3",
       "range": {
         "startLine": 1461,
         "startChar": 23,
