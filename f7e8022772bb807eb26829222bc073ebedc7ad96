@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9c921a99_06135658",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 5355,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-04-04T20:09:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1f310d43_f2684cfe",
+      "range": {
+        "startLine": 5355,
+        "startChar": 19,
+        "endLine": 5355,
+        "endChar": 59
+      },
+      "revId": "f7e8022772bb807eb26829222bc073ebedc7ad96",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a7f35bec_4aac06c5",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-04-04T06:39:13Z",
       "side": 1,
       "message": "nit: Add a test in LeAudioServiceTest to cover this",
+      "range": {
+        "startLine": 756,
+        "startChar": 33,
+        "endLine": 756,
+        "endChar": 48
+      },
+      "revId": "f7e8022772bb807eb26829222bc073ebedc7ad96",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bb52d672_5daea759",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 756,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-04-04T20:09:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a7f35bec_4aac06c5",
       "range": {
         "startLine": 756,
         "startChar": 33,
