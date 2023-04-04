@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0aa94c0a_ee71b724",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 588,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-04-04T16:11:42Z",
+      "side": 1,
+      "message": "Not sure how it looks in output, but conn_handle, or just handle would be much more readable, would it mess up the log ?",
+      "range": {
+        "startLine": 588,
+        "startChar": 33,
+        "endLine": 588,
+        "endChar": 36
+      },
+      "revId": "9c98621fd59e396c3b4df1dfa1a8ebbc1dfed5bc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4b04055f_385072f1",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 588,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-04-04T16:11:42Z",
+      "side": 1,
+      "message": "would formatting it as hex, 0x0060, be more readable ?",
+      "range": {
+        "startLine": 588,
+        "startChar": 41,
+        "endLine": 588,
+        "endChar": 65
+      },
+      "revId": "9c98621fd59e396c3b4df1dfa1a8ebbc1dfed5bc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e690c7ba_4747ed32",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1461,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-04-04T16:11:42Z",
+      "side": 1,
+      "message": "same as above",
+      "range": {
+        "startLine": 1461,
+        "startChar": 23,
+        "endLine": 1461,
+        "endChar": 26
+      },
+      "revId": "9c98621fd59e396c3b4df1dfa1a8ebbc1dfed5bc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5103e923_df054d75",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1461,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-04-04T16:11:42Z",
+      "side": 1,
+      "message": "same",
+      "range": {
+        "startLine": 1461,
+        "startChar": 56,
+        "endLine": 1461,
+        "endChar": 59
+      },
+      "revId": "9c98621fd59e396c3b4df1dfa1a8ebbc1dfed5bc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
