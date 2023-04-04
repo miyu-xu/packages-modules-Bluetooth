@@ -142,6 +142,30 @@
       },
       "revId": "35f0b3aa4c43a38496b3bf41a40c2c5128251858",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d9452090_1dc9f1bc",
+        "filename": "android/app/Android.bp",
+        "patchSetId": 4
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-04-04T12:08:27Z",
+      "side": 1,
+      "message": "Ack.\n\nBut then I am hitting the issue were the test does not find the class.\n\nLet me try all of this over again",
+      "parentUuid": "d1fbce94_b47ade86",
+      "range": {
+        "startLine": 147,
+        "startChar": 11,
+        "endLine": 149,
+        "endChar": 45
+      },
+      "revId": "35f0b3aa4c43a38496b3bf41a40c2c5128251858",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
