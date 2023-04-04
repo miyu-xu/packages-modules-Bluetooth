@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "a78ce043_9a568ad1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1985170
+      },
+      "writtenOn": "2023-04-04T20:33:01Z",
+      "side": 1,
+      "message": "While updating the commit, it\u0027s likely it would overflow the 72 character limit. I hope it should be ok to break it into multiple lines?",
+      "parentUuid": "9d89f5fe_f99c5b1a",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 13
+      },
+      "revId": "0aade29fead267b5ba1008b659463b04f3758732",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "56d34086_118fc6fc",
@@ -54,6 +78,30 @@
       "writtenOn": "2023-04-04T20:28:11Z",
       "side": 1,
       "message": "Please fix this WARNING reported by Check Contents: Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details. See go/ayeaye-long-lines for ayeaye-specific info.\n\nAnalyzer Description: Validates that changes do not have prohibited expressions in them.\nOwner: ayeaye-team@google.com\n\nLines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details. See go/ayeaye-long-lines for ayeaye-specific info.",
+      "range": {
+        "startLine": 64,
+        "startChar": 0,
+        "endLine": 64,
+        "endChar": 101
+      },
+      "revId": "0aade29fead267b5ba1008b659463b04f3758732",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "861a8c29_571d66b1",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/avrcpcontroller/AvrcpControllerServiceTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1985170
+      },
+      "writtenOn": "2023-04-04T20:33:01Z",
+      "side": 1,
+      "message": "Acknowledged\n\nIs there a way I can run these pre-submit hooks locally before uploading the patch?",
+      "parentUuid": "1c179309_3c91195d",
       "range": {
         "startLine": 64,
         "startChar": 0,
