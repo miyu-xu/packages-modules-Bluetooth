@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "10472f1c_8e8948ea",
+        "filename": "framework/tests/bumble/src/com/android/framework/bluetooth/tests/gatt/LeAdvertisingTest.java",
+        "patchSetId": 27
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1986325
+      },
+      "writtenOn": "2023-04-04T02:25:48Z",
+      "side": 1,
+      "message": "I wanted to use the timeout in `.get()`. Otherwise I create a separated timeout thread to cancel the future for each stage?",
+      "parentUuid": "a0ff9c71_9de4abaf",
+      "range": {
+        "startLine": 103,
+        "startChar": 8,
+        "endLine": 110,
+        "endChar": 64
+      },
+      "revId": "06846c8f5406369adcf8f990975c8c15f85d81fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8c4aad93_214ec889",
         "filename": "framework/tests/bumble/src/com/android/framework/bluetooth/tests/gatt/LeAdvertisingTest.java",
         "patchSetId": 27
@@ -70,6 +94,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1fe1c223_5e8c1a79",
+        "filename": "framework/tests/bumble/src/com/android/framework/bluetooth/tests/gatt/LeAdvertisingTest.java",
+        "patchSetId": 27
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 1986325
+      },
+      "writtenOn": "2023-04-04T02:25:48Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "711d2fff_072dee35",
+      "range": {
+        "startLine": 173,
+        "startChar": 20,
+        "endLine": 173,
+        "endChar": 52
+      },
+      "revId": "06846c8f5406369adcf8f990975c8c15f85d81fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b7c95746_e15f5be5",
@@ -83,6 +131,30 @@
       "writtenOn": "2023-03-30T22:04:49Z",
       "side": 1,
       "message": "Use `completeExceptionally`",
+      "range": {
+        "startLine": 180,
+        "startChar": 15,
+        "endLine": 180,
+        "endChar": 36
+      },
+      "revId": "06846c8f5406369adcf8f990975c8c15f85d81fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ffe51a03_4e4a120d",
+        "filename": "framework/tests/bumble/src/com/android/framework/bluetooth/tests/gatt/LeAdvertisingTest.java",
+        "patchSetId": 27
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 1986325
+      },
+      "writtenOn": "2023-04-04T02:25:48Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "b7c95746_e15f5be5",
       "range": {
         "startLine": 180,
         "startChar": 15,
@@ -116,6 +188,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c2405e92_1b8e69b0",
+        "filename": "framework/tests/bumble/src/com/android/framework/bluetooth/tests/gatt/LeAdvertisingTest.java",
+        "patchSetId": 27
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 1986325
+      },
+      "writtenOn": "2023-04-04T02:25:48Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "6df6b175_54ef4c90",
+      "range": {
+        "startLine": 187,
+        "startChar": 16,
+        "endLine": 187,
+        "endChar": 36
+      },
+      "revId": "06846c8f5406369adcf8f990975c8c15f85d81fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "53b140f7_856a95c2",
@@ -129,6 +225,30 @@
       "writtenOn": "2023-03-30T22:04:49Z",
       "side": 1,
       "message": "```\nwithCancellation.run(() -\u003e mHostStub.scan(request, responseObserver));\n```",
+      "range": {
+        "startLine": 192,
+        "startChar": 0,
+        "endLine": 196,
+        "endChar": 11
+      },
+      "revId": "06846c8f5406369adcf8f990975c8c15f85d81fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "965b35a6_9510960c",
+        "filename": "framework/tests/bumble/src/com/android/framework/bluetooth/tests/gatt/LeAdvertisingTest.java",
+        "patchSetId": 27
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 1986325
+      },
+      "writtenOn": "2023-04-04T02:25:48Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "53b140f7_856a95c2",
       "range": {
         "startLine": 192,
         "startChar": 0,
@@ -162,6 +282,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "491f4a3f_f5abaa4e",
+        "filename": "framework/tests/bumble/src/com/android/framework/bluetooth/tests/gatt/LeAdvertisingTest.java",
+        "patchSetId": 27
+      },
+      "lineNbr": 208,
+      "author": {
+        "id": 1986325
+      },
+      "writtenOn": "2023-04-04T02:25:48Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "d272aa0a_10587816",
+      "range": {
+        "startLine": 204,
+        "startChar": 8,
+        "endLine": 208,
+        "endChar": 10
+      },
+      "revId": "06846c8f5406369adcf8f990975c8c15f85d81fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "11fa0c4e_e0d5043c",
@@ -175,6 +319,30 @@
       "writtenOn": "2023-03-30T22:04:49Z",
       "side": 1,
       "message": "Use https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/Executors.html to create an executor",
+      "range": {
+        "startLine": 210,
+        "startChar": 8,
+        "endLine": 215,
+        "endChar": 10
+      },
+      "revId": "06846c8f5406369adcf8f990975c8c15f85d81fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e8adf85c_e1c98b70",
+        "filename": "framework/tests/bumble/src/com/android/framework/bluetooth/tests/gatt/LeAdvertisingTest.java",
+        "patchSetId": 27
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 1986325
+      },
+      "writtenOn": "2023-04-04T02:25:48Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "11fa0c4e_e0d5043c",
       "range": {
         "startLine": 210,
         "startChar": 8,
