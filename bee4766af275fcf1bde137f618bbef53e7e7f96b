@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "20d18baa_fca39e8a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 2001130
+      },
+      "writtenOn": "2023-04-05T03:03:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fcad5f7d_bdc77061",
+      "range": {
+        "startLine": 11,
+        "startChar": 1,
+        "endLine": 11,
+        "endChar": 54
+      },
+      "revId": "bee4766af275fcf1bde137f618bbef53e7e7f96b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3062a014_d94731ed",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-04-05T00:53:01Z",
       "side": 1,
       "message": "I think the `Change-Id` line should be at the end with an empty line between it and the manually added trailers.\nAnd could you add `Tag: #floss` to the commit message after the `Bug` line?",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 15
+      },
+      "revId": "bee4766af275fcf1bde137f618bbef53e7e7f96b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "49ad3154_74af9b40",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 2001130
+      },
+      "writtenOn": "2023-04-05T03:03:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3062a014_d94731ed",
       "range": {
         "startLine": 13,
         "startChar": 0,
