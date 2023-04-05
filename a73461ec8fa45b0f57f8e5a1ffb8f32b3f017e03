@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1566cd36_a5a1e876",
+        "filename": "android/pandora/test/smp_test.py",
+        "patchSetId": 17
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1929170
+      },
+      "writtenOn": "2023-04-05T15:02:49Z",
+      "side": 1,
+      "message": "Unable to find avatar command to format or lint.",
+      "parentUuid": "11c79be6_40e94e95",
+      "range": {
+        "startLine": 66,
+        "startChar": 29,
+        "endLine": 66,
+        "endChar": 63
+      },
+      "revId": "a73461ec8fa45b0f57f8e5a1ffb8f32b3f017e03",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8d8c7c56_59256367",
         "filename": "android/pandora/test/smp_test.py",
         "patchSetId": 17
@@ -37,6 +61,30 @@
       "writtenOn": "2023-04-03T20:46:59Z",
       "side": 1,
       "message": "This method should not be used out of `setup_test`, you can use `host.Reset` instead, but it will not clear the bonds, if you really need to, you can then add a `security_storage.DeleteBond`",
+      "range": {
+        "startLine": 128,
+        "startChar": 8,
+        "endLine": 128,
+        "endChar": 30
+      },
+      "revId": "a73461ec8fa45b0f57f8e5a1ffb8f32b3f017e03",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d5886846_996a7785",
+        "filename": "android/pandora/test/smp_test.py",
+        "patchSetId": 17
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1929170
+      },
+      "writtenOn": "2023-04-05T15:02:49Z",
+      "side": 1,
+      "message": "I want the bumble device to use a different random address. Is there a way to achieve that? I can set it directly but I am not sure what should be preferred method.",
+      "parentUuid": "8d8c7c56_59256367",
       "range": {
         "startLine": 128,
         "startChar": 8,
