@@ -16,6 +16,23 @@
       "message": "Abhishek, thanks for the explanations!",
       "revId": "e8dc46cf1c1c3e0b26b4122d788b65d065a6c06c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a37472b7_f24eae1a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-04-05T16:22:14Z",
+      "side": 1,
+      "message": "Affects floss only",
+      "revId": "e8dc46cf1c1c3e0b26b4122d788b65d065a6c06c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
