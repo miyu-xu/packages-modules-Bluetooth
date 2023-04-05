@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1f9a8e8a_aced3245",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 38
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-04-05T14:56:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cce1e735_6f2cfa8e",
+      "range": {
+        "startLine": 72,
+        "startChar": 18,
+        "endLine": 72,
+        "endChar": 25
+      },
+      "revId": "3982bd92f622bd13b7096e2b3a7e75ebdf63ba49",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "dcfda211_770d37f3",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-04-05T08:57:24Z",
       "side": 1,
       "message": "Synchronized on mSdpTracker ?",
+      "range": {
+        "startLine": 1472,
+        "startChar": 15,
+        "endLine": 1472,
+        "endChar": 26
+      },
+      "revId": "3982bd92f622bd13b7096e2b3a7e75ebdf63ba49",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "814efcd7_0270a833",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 38
+      },
+      "lineNbr": 1472,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-04-05T14:56:08Z",
+      "side": 1,
+      "message": "I didn\u0027t do that there as it is for synchronized testing only.\n\nWith @GuardedBy above this would be required.\n\nI will add it regardless.",
+      "parentUuid": "dcfda211_770d37f3",
       "range": {
         "startLine": 1472,
         "startChar": 15,
