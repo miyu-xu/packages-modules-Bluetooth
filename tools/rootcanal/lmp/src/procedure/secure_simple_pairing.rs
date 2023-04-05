@@ -104,22 +104,25 @@ async fn send_public_key(ctx: &impl Context, transaction_id: u8, public_key: Pub
     }
 }
 
-async fn receive_public_key(ctx: &impl Context, transaction_id: u8) -> PublicKey {
-    let key_size: usize =
-        ctx.receive_lmp_packet::<lmp::EncapsulatedHeaderPacket>().await.get_payload_length().into();
+async fn receive_public_key(ctx: &impl Context) -> PublicKey {
+    let header = ctx.receive_lmp_packet::<lmp::EncapsulatedHeaderPacket>().await;
+    let key_size: usize = header.get_payload_length().into();
     let mut key = PublicKey::new(key_size).unwrap();
 
     ctx.send_lmp_packet(
-        lmp::AcceptedBuilder { transaction_id, accepted_opcode: lmp::Opcode::EncapsulatedHeader }
-            .build(),
+        lmp::AcceptedBuilder {
+            transaction_id: header.get_transaction_id(),
+            accepted_opcode: header.get_opcode(),
+        }
+        .build(),
     );
     for chunk in key.as_mut_slice().chunks_mut(16) {
         let payload = ctx.receive_lmp_packet::<lmp::EncapsulatedPayloadPacket>().await;
         chunk.copy_from_slice(payload.get_data().as_slice());
         ctx.send_lmp_packet(
             lmp::AcceptedBuilder {
-                transaction_id,
-                accepted_opcode: lmp::Opcode::EncapsulatedPayload,
+                transaction_id: payload.get_transaction_id(),
+                accepted_opcode: payload.get_opcode(),
             }
             .build(),
         );
@@ -461,7 +464,7 @@ pub async fn initiate(ctx: &impl Context) -> Result<(), ()> {
         ctx.set_private_key(&private_key);
         let local_public_key = private_key.derive();
         send_public_key(ctx, 0, local_public_key).await;
-        let peer_public_key = receive_public_key(ctx, 0).await;
+        let peer_public_key = receive_public_key(ctx).await;
         private_key.shared_secret(peer_public_key)
     };
 
@@ -546,10 +549,13 @@ pub async fn initiate(ctx: &impl Context) -> Result<(), ()> {
 
     {
         // TODO: check dhkey
-        let _dhkey = ctx.receive_lmp_packet::<lmp::DhkeyCheckPacket>().await;
+        let dhkey = ctx.receive_lmp_packet::<lmp::DhkeyCheckPacket>().await;
         ctx.send_lmp_packet(
-            lmp::AcceptedBuilder { transaction_id: 0, accepted_opcode: lmp::Opcode::DhkeyCheck }
-                .build(),
+            lmp::AcceptedBuilder {
+                transaction_id: dhkey.get_transaction_id(),
+                accepted_opcode: dhkey.get_opcode(),
+            }
+            .build(),
         );
     }
 
@@ -624,7 +630,7 @@ pub async fn respond(ctx: &impl Context, request: lmp::IoCapabilityReqPacket) ->
                     );
                     ctx.send_lmp_packet(
                         lmp::IoCapabilityResBuilder {
-                            transaction_id: 0,
+                            transaction_id: request.get_transaction_id(),
                             io_capabilities: reply.get_io_capability().to_u8().unwrap(),
                             oob_authentication_data: reply.get_oob_present().to_u8().unwrap(),
                             authentication_requirement: reply
@@ -651,9 +657,9 @@ pub async fn respond(ctx: &impl Context, request: lmp::IoCapabilityReqPacket) ->
                     );
                     ctx.send_lmp_packet(
                         lmp::NotAcceptedExtBuilder {
-                            transaction_id: 0,
+                            transaction_id: request.get_transaction_id(),
                             error_code: reply.get_reason().to_u8().unwrap(),
-                            not_accepted_opcode: lmp::ExtendedOpcode::IoCapabilityReq,
+                            not_accepted_opcode: request.get_extended_opcode(),
                         }
                         .build(),
                     );
@@ -671,7 +677,7 @@ pub async fn respond(ctx: &impl Context, request: lmp::IoCapabilityReqPacket) ->
 
     // Public Key Exchange
     let dh_key = {
-        let peer_public_key = receive_public_key(ctx, 0).await;
+        let peer_public_key = receive_public_key(ctx).await;
         let private_key = match peer_public_key {
             PublicKey::P192(_) => PrivateKey::generate_p192(),
             PublicKey::P256(_) => PrivateKey::generate_p256(),
@@ -766,7 +772,7 @@ pub async fn respond(ctx: &impl Context, request: lmp::IoCapabilityReqPacket) ->
         }
     };
 
-    let _dhkey = match ctx
+    let dhkey = match ctx
         .receive_lmp_packet::<Either<lmp::NumericComparisonFailedPacket, lmp::DhkeyCheckPacket>>()
         .await
     {
@@ -787,8 +793,8 @@ pub async fn respond(ctx: &impl Context, request: lmp::IoCapabilityReqPacket) ->
     if negative_user_confirmation {
         ctx.send_lmp_packet(
             lmp::NotAcceptedBuilder {
-                transaction_id: 0,
-                not_accepted_opcode: lmp::Opcode::DhkeyCheck,
+                transaction_id: dhkey.get_transaction_id(),
+                not_accepted_opcode: dhkey.get_opcode(),
                 error_code: hci::ErrorCode::AuthenticationFailure.to_u8().unwrap(),
             }
             .build(),
@@ -807,8 +813,11 @@ pub async fn respond(ctx: &impl Context, request: lmp::IoCapabilityReqPacket) ->
     let confirmation_value = [0; CONFIRMATION_VALUE_SIZE];
 
     ctx.send_lmp_packet(
-        lmp::AcceptedBuilder { transaction_id: 0, accepted_opcode: lmp::Opcode::DhkeyCheck }
-            .build(),
+        lmp::AcceptedBuilder {
+            transaction_id: dhkey.get_transaction_id(),
+            accepted_opcode: dhkey.get_opcode(),
+        }
+        .build(),
     );
 
     // TODO: handle error
