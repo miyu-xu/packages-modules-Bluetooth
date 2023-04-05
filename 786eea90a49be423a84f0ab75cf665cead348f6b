@@ -33,6 +33,24 @@
       "message": "shouldn\u0027t we keep callbacks for all the observers?",
       "revId": "786eea90a49be423a84f0ab75cf665cead348f6b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a7a4c76f_2350a138",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 4139,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-04-05T15:16:07Z",
+      "side": 1,
+      "message": "CSIS registers it\u0027s own observer separately, so no need.\nFor BAP and TA, I assumed you are already wired somewhere else.\nDo you need separate callback ?",
+      "parentUuid": "286ee121_0b248f9e",
+      "revId": "786eea90a49be423a84f0ab75cf665cead348f6b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
