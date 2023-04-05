@@ -234,14 +234,14 @@ class BleScannerInterfaceImpl : public BleScannerInterface {
     do_in_jni_thread(Bind(
         [](bool start) {
           if (!start) {
-            do_in_main_thread(FROM_HERE,
-                              Bind(&BTA_DmBleObserve, false, 0, nullptr));
+            do_in_main_thread(FROM_HERE, Bind(&BTA_DmBleObserve, SCANNER_BTIF,
+                                              false, 0, nullptr));
             return;
           }
 
           btif_address_cache_init();
-          do_in_main_thread(
-              FROM_HERE, Bind(&BTA_DmBleObserve, true, 0, bta_scan_results_cb));
+          do_in_main_thread(FROM_HERE, Bind(&BTA_DmBleObserve, SCANNER_BTIF,
+                                            true, 0, bta_scan_results_cb));
         },
         start));
   }

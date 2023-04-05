@@ -178,19 +178,20 @@ void bta_dm_ble_get_energy_info(
   inc_func_call_count(__func__);
   test::mock::bta_dm_act::bta_dm_ble_get_energy_info(p_energy_info_cback);
 }
-void bta_dm_ble_observe(bool start, uint8_t duration,
+void bta_dm_ble_observe(uint8_t scan_src, bool start, uint8_t duration,
                         tBTA_DM_SEARCH_CBACK* p_cback) {
   inc_func_call_count(__func__);
-  test::mock::bta_dm_act::bta_dm_ble_observe(start, duration, p_cback);
+  test::mock::bta_dm_act::bta_dm_ble_observe(scan_src, start, duration,
+                                             p_cback);
 }
 void bta_dm_ble_passkey_reply(const RawAddress& bd_addr, bool accept,
                               uint32_t passkey) {
   inc_func_call_count(__func__);
   test::mock::bta_dm_act::bta_dm_ble_passkey_reply(bd_addr, accept, passkey);
 }
-void bta_dm_ble_scan(bool start, uint8_t duration_sec) {
+void bta_dm_ble_scan(uint8_t scan_src, bool start, uint8_t duration_sec) {
   inc_func_call_count(__func__);
-  test::mock::bta_dm_act::bta_dm_ble_scan(start, duration_sec);
+  test::mock::bta_dm_act::bta_dm_ble_scan(scan_src, start, duration_sec);
 }
 void bta_dm_ble_set_conn_params(const RawAddress& bd_addr,
                                 uint16_t conn_int_min, uint16_t conn_int_max,

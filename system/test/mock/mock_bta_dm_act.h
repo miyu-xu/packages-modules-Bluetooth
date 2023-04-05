@@ -267,11 +267,13 @@ extern struct bta_dm_ble_get_energy_info bta_dm_ble_get_energy_info;
 // Params: bool start, uint8_t duration, tBTA_DM_SEARCH_CBACK* p_cback
 // Return: void
 struct bta_dm_ble_observe {
-  std::function<void(bool start, uint8_t duration,
+  std::function<void(uint8_t scan_src, bool start, uint8_t duration,
                      tBTA_DM_SEARCH_CBACK* p_cback)>
-      body{[](bool start, uint8_t duration, tBTA_DM_SEARCH_CBACK* p_cback) {}};
-  void operator()(bool start, uint8_t duration, tBTA_DM_SEARCH_CBACK* p_cback) {
-    body(start, duration, p_cback);
+      body{[](uint8_t scan_src, bool start, uint8_t duration,
+              tBTA_DM_SEARCH_CBACK* p_cback) {}};
+  void operator()(uint8_t scan_src, bool start, uint8_t duration,
+                  tBTA_DM_SEARCH_CBACK* p_cback) {
+    body(scan_src, start, duration, p_cback);
   };
 };
 extern struct bta_dm_ble_observe bta_dm_ble_observe;
@@ -310,10 +312,10 @@ extern struct bta_dm_ble_passkey_reply bta_dm_ble_passkey_reply;
 // Params: bool start, uint8_t duration_sec
 // Return: void
 struct bta_dm_ble_scan {
-  std::function<void(bool start, uint8_t duration_sec)> body{
-      [](bool start, uint8_t duration_sec) {}};
-  void operator()(bool start, uint8_t duration_sec) {
-    body(start, duration_sec);
+  std::function<void(uint8_t scan_src, bool start, uint8_t duration_sec)> body{
+      [](uint8_t scan_src, bool start, uint8_t duration_sec) {}};
+  void operator()(uint8_t scan_src, bool start, uint8_t duration_sec) {
+    body(scan_src, start, duration_sec);
   };
 };
 extern struct bta_dm_ble_scan bta_dm_ble_scan;

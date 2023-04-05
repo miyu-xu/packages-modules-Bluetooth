@@ -26,7 +26,8 @@ namespace dm {
 
 class BtaDmInterface {
  public:
-  virtual void BTA_DmBleScan(bool start, uint8_t duration) = 0;
+  virtual void BTA_DmBleScan(uint8_t scan_src, bool start,
+                             uint8_t duration) = 0;
   virtual void BTA_DmBleCsisObserve(bool observe,
                                     tBTA_DM_SEARCH_CBACK* p_results_cb) = 0;
   virtual ~BtaDmInterface() = default;
@@ -34,7 +35,8 @@ class BtaDmInterface {
 
 class MockBtaDmInterface : public BtaDmInterface {
  public:
-  MOCK_METHOD((void), BTA_DmBleScan, (bool start, uint8_t duration));
+  MOCK_METHOD((void), BTA_DmBleScan,
+              (uint8_t scan_src, bool start, uint8_t duration));
   MOCK_METHOD((void), BTA_DmBleCsisObserve,
               (bool observe, tBTA_DM_SEARCH_CBACK* p_results_cb));
 };

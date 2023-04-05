@@ -80,6 +80,8 @@ using bluetooth::Uuid;
 
 namespace {
 constexpr char kBtmLogTag[] = "SDP";
+
+std::array<bool, SCANNER_MAX> scans_started;
 }
 
 void BTIF_dm_disable();
@@ -4117,28 +4119,60 @@ static void bta_dm_start_scan(uint8_t duration_sec) {
   }
 }
 
-void bta_dm_ble_observe(bool start, uint8_t duration,
+bool this_is_last_scan_stopped() {
+  for (const bool& value : scans_started) {
+    if (value) return false;
+  }
+  return true;
+}
+
+bool this_is_first_scan_started() {
+  int count_true = 0;
+  for (const bool& value : scans_started) {
+    if (value) count_true++;
+  }
+  return count_true == 1;
+}
+
+void bta_dm_ble_observe(uint8_t scan_src, bool start, uint8_t duration,
                         tBTA_DM_SEARCH_CBACK* p_cback) {
+  if (scan_src != SCANNER_BTIF) {
+    LOG_ERROR(
+        "OBSERVE should be started only by BTIF layer, you potentially messed "
+        "up p_cback!");
+  }
+
+  scans_started[scan_src] = start;
   if (!start) {
-    bta_dm_search_cb.p_scan_cback = NULL;
-    BTM_BleObserve(false, 0, NULL, NULL);
+    if (this_is_last_scan_stopped()) {
+      bta_dm_search_cb.p_scan_cback = NULL;
+      BTM_BleObserve(false, 0, NULL, NULL);
+    }
     return;
   }
 
   /*Save the  callback to be called when a scan results are available */
   bta_dm_search_cb.p_scan_cback = p_cback;
+
+  if (!this_is_first_scan_started()) {
+    return;
+  }
   bta_dm_start_scan(duration);
 }
 
-void bta_dm_ble_scan(bool start, uint8_t duration_sec) {
-  /* Start or stop only if there is no active main scanner */
-  if (bta_dm_search_cb.p_scan_cback != NULL) return;
+void bta_dm_ble_scan(uint8_t scan_src, bool start, uint8_t duration_sec) {
+  scans_started[scan_src] = start;
 
   if (!start) {
-    BTM_BleObserve(false, 0, NULL, NULL);
+    if (this_is_last_scan_stopped()) {
+      BTM_BleObserve(false, 0, NULL, NULL);
+    }
     return;
   }
 
+  if (!this_is_first_scan_started()) {
+    return;
+  }
   bta_dm_start_scan(duration_sec);
 }
 

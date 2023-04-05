@@ -580,7 +580,8 @@ void BTA_DmCloseACL(const RawAddress& bd_addr, bool remove_dev,
  * Description      This procedure keep the device listening for advertising
  *                  events from a broadcast device.
  *
- * Parameters       start: start or stop observe.
+ * Parameters       scan_src: either SCANNER_BTIF, SCNNER_CSIS, or SCANNER_TA
+ *                  start: start or stop observe.
  *
  * Returns          void
 
@@ -588,11 +589,11 @@ void BTA_DmCloseACL(const RawAddress& bd_addr, bool remove_dev,
  * Returns          void.
  *
  ******************************************************************************/
-extern void BTA_DmBleObserve(bool start, uint8_t duration,
+extern void BTA_DmBleObserve(uint8_t scan_src, bool start, uint8_t duration,
                              tBTA_DM_SEARCH_CBACK* p_results_cb) {
   APPL_TRACE_API("%s:start = %d ", __func__, start);
-  do_in_main_thread(
-      FROM_HERE, base::Bind(bta_dm_ble_observe, start, duration, p_results_cb));
+  do_in_main_thread(FROM_HERE, base::Bind(bta_dm_ble_observe, scan_src, start,
+                                          duration, p_results_cb));
 }
 
 /*******************************************************************************
@@ -602,17 +603,18 @@ extern void BTA_DmBleObserve(bool start, uint8_t duration,
  * Description      Start or stop the scan procedure if it's not already started
  *                  with BTA_DmBleObserve().
  *
- * Parameters       start: start or stop the scan procedure,
+ * Parameters       scan_src: either SCANNER_BTIF, SCNNER_CSIS, or SCANNER_TA
+ *                  start: start or stop the scan procedure,
  *                  duration_sec: Duration of the scan. Continuous scan if 0 is
  *                                passed,
  *
  * Returns          void
  *
  ******************************************************************************/
-extern void BTA_DmBleScan(bool start, uint8_t duration_sec) {
+extern void BTA_DmBleScan(uint8_t scan_src, bool start, uint8_t duration_sec) {
   APPL_TRACE_API("%s:start = %d ", __func__, start);
   do_in_main_thread(FROM_HERE,
-                    base::Bind(bta_dm_ble_scan, start, duration_sec));
+                    base::Bind(bta_dm_ble_scan, scan_src, start, duration_sec));
 }
 
 /*******************************************************************************

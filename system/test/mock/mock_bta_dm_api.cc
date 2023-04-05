@@ -101,18 +101,20 @@ void BTA_DmBleConfirmReply(const RawAddress& bd_addr, bool accept) {
   inc_func_call_count(__func__);
   test::mock::bta_dm_api::BTA_DmBleConfirmReply(bd_addr, accept);
 }
-void BTA_DmBleCsisObserve(bool observe, tBTA_DM_SEARCH_CBACK* p_results_cb) {
+void BTA_DmBleCsisObserve(uint8_t scan_src, bool observe,
+                          tBTA_DM_SEARCH_CBACK* p_results_cb) {
   inc_func_call_count(__func__);
-  test::mock::bta_dm_api::BTA_DmBleCsisObserve(observe, p_results_cb);
+  test::mock::bta_dm_api::BTA_DmBleCsisObserve(scan_src, observe, p_results_cb);
 }
 void BTA_DmBleGetEnergyInfo(tBTA_BLE_ENERGY_INFO_CBACK* p_cmpl_cback) {
   inc_func_call_count(__func__);
   test::mock::bta_dm_api::BTA_DmBleGetEnergyInfo(p_cmpl_cback);
 }
-void BTA_DmBleObserve(bool start, uint8_t duration,
+void BTA_DmBleObserve(uint8_t scan_src, bool start, uint8_t duration,
                       tBTA_DM_SEARCH_CBACK* p_results_cb) {
   inc_func_call_count(__func__);
-  test::mock::bta_dm_api::BTA_DmBleObserve(start, duration, p_results_cb);
+  test::mock::bta_dm_api::BTA_DmBleObserve(scan_src, start, duration,
+                                           p_results_cb);
 }
 void BTA_DmBlePasskeyReply(const RawAddress& bd_addr, bool accept,
                            uint32_t passkey) {
@@ -123,9 +125,9 @@ void BTA_DmBleRequestMaxTxDataLength(const RawAddress& remote_device) {
   inc_func_call_count(__func__);
   test::mock::bta_dm_api::BTA_DmBleRequestMaxTxDataLength(remote_device);
 }
-void BTA_DmBleScan(bool start, uint8_t duration) {
+void BTA_DmBleScan(uint8_t scan_src, bool start, uint8_t duration) {
   inc_func_call_count(__func__);
-  test::mock::bta_dm_api::BTA_DmBleScan(start, duration);
+  test::mock::bta_dm_api::BTA_DmBleScan(scan_src, start, duration);
 }
 void BTA_DmBleSecurityGrant(const RawAddress& bd_addr,
                             tBTA_DM_BLE_SEC_GRANT res) {

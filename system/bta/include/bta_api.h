@@ -1099,6 +1099,11 @@ extern void BTA_DmSetEncryption(const RawAddress& bd_addr,
                                 tBTA_DM_ENCRYPT_CBACK* p_callback,
                                 tBTM_BLE_SEC_ACT sec_act);
 
+constexpr uint8_t SCANNER_BTIF = 0;
+constexpr uint8_t SCANNER_CSIS = 1;
+constexpr uint8_t SCANNER_TA = 2;
+constexpr uint8_t SCANNER_MAX = 3;
+
 /*******************************************************************************
  *
  * Function         BTA_DmBleObserve
@@ -1106,7 +1111,8 @@ extern void BTA_DmSetEncryption(const RawAddress& bd_addr,
  * Description      This procedure keep the device listening for advertising
  *                  events from a broadcast device.
  *
- * Parameters       start: start or stop observe.
+ * Parameters       scan_src: either SCANNER_BTIF, SCNNER_CSIS, or SCANNER_TA
+ *                  start: start or stop observe.
  *                  duration : Duration of the scan. Continuous scan if 0 is
  *                             passed
  *                  p_results_cb: Callback to be called with scan results
@@ -1114,7 +1120,7 @@ extern void BTA_DmSetEncryption(const RawAddress& bd_addr,
  * Returns          void
  *
  ******************************************************************************/
-extern void BTA_DmBleObserve(bool start, uint8_t duration,
+extern void BTA_DmBleObserve(uint8_t scan_src, bool start, uint8_t duration,
                              tBTA_DM_SEARCH_CBACK* p_results_cb);
 
 /*******************************************************************************
@@ -1124,14 +1130,15 @@ extern void BTA_DmBleObserve(bool start, uint8_t duration,
  * Description      Start or stop the scan procedure if it's not already started
  *                  with BTA_DmBleObserve().
  *
- * Parameters       start: start or stop the scan procedure,
+ * Parameters       scan_src: either SCANNER_BTIF, SCNNER_CSIS, or SCANNER_TA
+ *                  start: start or stop the scan procedure,
  *                  duration_sec: Duration of the scan. Continuous scan if 0 is
  *                                passed,
  *
  * Returns          void
  *
  ******************************************************************************/
-extern void BTA_DmBleScan(bool start, uint8_t duration);
+extern void BTA_DmBleScan(uint8_t scan_src, bool start, uint8_t duration);
 
 /*******************************************************************************
  *
