@@ -46,6 +46,30 @@
       },
       "revId": "bcd50ce7bdedde06754a87186f148b0a68742050",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "abaf1a08_ecf378f1",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 43
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-04-05T23:53:44Z",
+      "side": 1,
+      "message": "Can we remove the null check, then?  Now that it\u0027s final, it can\u0027t be set to null, right?",
+      "parentUuid": "4495d2a2_c4e0f21c",
+      "range": {
+        "startLine": 213,
+        "startChar": 12,
+        "endLine": 213,
+        "endChar": 23
+      },
+      "revId": "bcd50ce7bdedde06754a87186f148b0a68742050",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
