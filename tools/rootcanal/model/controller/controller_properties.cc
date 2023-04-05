@@ -110,7 +110,7 @@ static constexpr uint64_t LlFeatures() {
       LLFeaturesBits::EXTENDED_SCANNER_FILTER_POLICIES,
       LLFeaturesBits::LE_2M_PHY, LLFeaturesBits::LE_CODED_PHY,
       LLFeaturesBits::LE_EXTENDED_ADVERTISING,
-      // LLFeaturesBits::LE_PERIODIC_ADVERTISING,
+      LLFeaturesBits::LE_PERIODIC_ADVERTISING,
 
       // TODO: breaks AVD boot tests with LE audio
       // LLFeaturesBits::CONNECTED_ISOCHRONOUS_STREAM_CENTRAL,
@@ -341,9 +341,9 @@ static std::array<uint8_t, 64> SupportedCommands() {
       OpCodeIndex::LE_READ_NUMBER_OF_SUPPORTED_ADVERTISING_SETS,
       OpCodeIndex::LE_REMOVE_ADVERTISING_SET,
       OpCodeIndex::LE_CLEAR_ADVERTISING_SETS,
-      // OpCodeIndex::LE_SET_PERIODIC_ADVERTISING_PARAM,
-      // OpCodeIndex::LE_SET_PERIODIC_ADVERTISING_DATA,
-      // OpCodeIndex::LE_SET_PERIODIC_ADVERTISING_ENABLE,
+      OpCodeIndex::LE_SET_PERIODIC_ADVERTISING_PARAMETERS,
+      OpCodeIndex::LE_SET_PERIODIC_ADVERTISING_DATA,
+      OpCodeIndex::LE_SET_PERIODIC_ADVERTISING_ENABLE,
       OpCodeIndex::LE_SET_EXTENDED_SCAN_PARAMETERS,
       OpCodeIndex::LE_SET_EXTENDED_SCAN_ENABLE,
       OpCodeIndex::LE_EXTENDED_CREATE_CONNECTION,
@@ -1765,7 +1765,7 @@ bool ControllerProperties::CheckSupportedCommands() const {
   check_command_(LE_SET_PATH_LOSS_REPORTING_PARAMETERS, excluded, c52);
   check_command_(LE_SET_PERIODIC_ADVERTISING_DATA, excluded, c18);
   check_command_(LE_SET_PERIODIC_ADVERTISING_ENABLE, excluded, c18);
-  check_command_(LE_SET_PERIODIC_ADVERTISING_PARAM, excluded, c18);
+  check_command_(LE_SET_PERIODIC_ADVERTISING_PARAMETERS, excluded, c18);
   // Table 3.1: Alphabetical list of commands and events (Sheet 23 of 49)
   check_command_(LE_SET_PERIODIC_ADVERTISING_RECEIVE_ENABLE, excluded, c32);
   check_command_(LE_SET_PERIODIC_ADVERTISING_SYNC_TRANSFER_PARAMETERS, excluded,
