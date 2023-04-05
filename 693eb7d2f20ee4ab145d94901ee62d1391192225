@@ -281,6 +281,24 @@
       "parentUuid": "52c6895f_93f90869",
       "revId": "693eb7d2f20ee4ab145d94901ee62d1391192225",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ff9008ff_2921c225",
+        "filename": "system/profile/avrcp/device.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 757,
+      "author": {
+        "id": 1312909
+      },
+      "writtenOn": "2023-04-05T15:19:26Z",
+      "side": 1,
+      "message": "Currently at the time of Switching Player we are sending CHANGED response of PLAY_STATUS, PLAY_POSITION, TRACK_CHANGE, NOW_PLAYING_CHANGE, ADDRESS_PLAYER_CHANGE, AVAILABLE_PLAYER_CHANGE. As part of this feature PLAYER_APPLICATION_SETTINGS change should also go if it\u0027s happening from path you mentioned then I am OK.",
+      "parentUuid": "12d74c12_fd7e0dd8",
+      "revId": "693eb7d2f20ee4ab145d94901ee62d1391192225",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
