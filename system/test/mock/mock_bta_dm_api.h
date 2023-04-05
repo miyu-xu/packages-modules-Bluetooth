@@ -128,10 +128,13 @@ extern struct BTA_DmBleConfirmReply BTA_DmBleConfirmReply;
 // Params: bool observe, tBTA_DM_SEARCH_CBACK* p_results_cb
 // Return: void
 struct BTA_DmBleCsisObserve {
-  std::function<void(bool observe, tBTA_DM_SEARCH_CBACK* p_results_cb)> body{
-      [](bool observe, tBTA_DM_SEARCH_CBACK* p_results_cb) {}};
-  void operator()(bool observe, tBTA_DM_SEARCH_CBACK* p_results_cb) {
-    body(observe, p_results_cb);
+  std::function<void(uint8_t scan_src, bool observe,
+                     tBTA_DM_SEARCH_CBACK* p_results_cb)>
+      body{[](uint8_t scan_src, bool observe,
+              tBTA_DM_SEARCH_CBACK* p_results_cb) {}};
+  void operator()(uint8_t scan_src, bool observe,
+                  tBTA_DM_SEARCH_CBACK* p_results_cb) {
+    body(scan_src, observe, p_results_cb);
   };
 };
 extern struct BTA_DmBleCsisObserve BTA_DmBleCsisObserve;
@@ -189,9 +192,11 @@ extern struct BTA_DmBleRequestMaxTxDataLength BTA_DmBleRequestMaxTxDataLength;
 // Params: bool start, uint8_t duration
 // Return: void
 struct BTA_DmBleScan {
-  std::function<void(bool start, uint8_t duration)> body{
-      [](bool start, uint8_t duration) {}};
-  void operator()(bool start, uint8_t duration) { body(start, duration); };
+  std::function<void(uint8_t scan_src, bool start, uint8_t duration)> body{
+      [](uint8_t scan_src, bool start, uint8_t duration) {}};
+  void operator()(uint8_t scan_src, bool start, uint8_t duration) {
+    body(scan_src, start, duration);
+  };
 };
 extern struct BTA_DmBleScan BTA_DmBleScan;
 
