@@ -22,21 +22,33 @@ pub async fn initiate(ctx: &impl Context) {
     // TODO: handle failure
     let _ = ctx
         .send_accepted_lmp_packet(
-            lmp::EncryptionModeReqBuilder { transaction_id: 0, encryption_mode: 0x1 }.build(),
+            lmp::EncryptionModeReqBuilder {
+                transaction_id: ctx.get_transaction_id(),
+                encryption_mode: 0x1,
+            }
+            .build(),
         )
         .await;
 
     // TODO: handle failure
     let _ = ctx
         .send_accepted_lmp_packet(
-            lmp::EncryptionKeySizeReqBuilder { transaction_id: 0, key_size: 16 }.build(),
+            lmp::EncryptionKeySizeReqBuilder {
+                transaction_id: ctx.get_transaction_id(),
+                key_size: 16,
+            }
+            .build(),
         )
         .await;
 
     // TODO: handle failure
     let _ = ctx
         .send_accepted_lmp_packet(
-            lmp::StartEncryptionReqBuilder { transaction_id: 0, random_number: [0; 16] }.build(),
+            lmp::StartEncryptionReqBuilder {
+                transaction_id: ctx.get_transaction_id(),
+                random_number: [0; 16],
+            }
+            .build(),
         )
         .await;
 
@@ -61,14 +73,17 @@ pub async fn respond(ctx: &impl Context) {
     // TODO: handle
     let _ = ctx.receive_lmp_packet::<lmp::EncryptionModeReqPacket>().await;
     ctx.send_lmp_packet(
-        lmp::AcceptedBuilder { transaction_id: 0, accepted_opcode: lmp::Opcode::EncryptionModeReq }
-            .build(),
+        lmp::AcceptedBuilder {
+            transaction_id: ctx.get_transaction_id(),
+            accepted_opcode: lmp::Opcode::EncryptionModeReq,
+        }
+        .build(),
     );
 
     let _ = ctx.receive_lmp_packet::<lmp::EncryptionKeySizeReqPacket>().await;
     ctx.send_lmp_packet(
         lmp::AcceptedBuilder {
-            transaction_id: 0,
+            transaction_id: ctx.get_transaction_id(),
             accepted_opcode: lmp::Opcode::EncryptionKeySizeReq,
         }
         .build(),
@@ -77,7 +92,7 @@ pub async fn respond(ctx: &impl Context) {
     let _ = ctx.receive_lmp_packet::<lmp::StartEncryptionReqPacket>().await;
     ctx.send_lmp_packet(
         lmp::AcceptedBuilder {
-            transaction_id: 0,
+            transaction_id: ctx.get_transaction_id(),
             accepted_opcode: lmp::Opcode::StartEncryptionReq,
         }
         .build(),

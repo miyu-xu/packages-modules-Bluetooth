@@ -91,15 +91,34 @@ pub enum LinkManagerError {
 /// Max number of Bluetooth Peers
 pub const MAX_PEER_NUMBER: usize = 7;
 
+#[derive(Debug, Default)]
+struct TransactionIdAllocator {
+    next_id: Cell<u8>,
+}
+
+impl TransactionIdAllocator {
+    pub fn next_id(&self) -> u8 {
+        let next = self.next_id.get();
+        self.next_id.set(next + 1);
+        next
+    }
+}
+
 pub struct LinkManager {
     ops: LinkManagerOps,
     links: [Link; MAX_PEER_NUMBER],
     procedures: RefCell<[Option<Pin<Box<dyn Future<Output = ()>>>>; MAX_PEER_NUMBER]>,
+    transaction_id_allocator: TransactionIdAllocator,
 }
 
 impl LinkManager {
     pub fn new(ops: LinkManagerOps) -> Self {
-        Self { ops, links: Default::default(), procedures: Default::default() }
+        Self {
+            ops,
+            links: Default::default(),
+            procedures: Default::default(),
+            transaction_id_allocator: Default::default(),
+        }
     }
 
     fn get_link(&self, peer: hci::Address) -> Option<&Link> {
@@ -359,6 +378,14 @@ impl procedure::Context for LinkContext {
             manager.ops.extended_features(features_page)
         } else {
             0
+        }
+    }
+
+    fn get_transaction_id(&self) -> u8 {
+        if let Some(manager) = self.manager.upgrade() {
+            manager.transaction_id_allocator.next_id()
+        } else {
+            unreachable!()
         }
     }
 }

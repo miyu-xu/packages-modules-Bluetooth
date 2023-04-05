@@ -79,12 +79,12 @@ fn link_key_type(auth_method: AuthenticationMethod, dh_key: DhKey) -> hci::KeyTy
     }
 }
 
-async fn send_public_key(ctx: &impl Context, transaction_id: u8, public_key: PublicKey) {
+async fn send_public_key(ctx: &impl Context, public_key: PublicKey) {
     // TODO: handle error
     let _ = ctx
         .send_accepted_lmp_packet(
             lmp::EncapsulatedHeaderBuilder {
-                transaction_id,
+                transaction_id: ctx.get_transaction_id(),
                 major_type: 1,
                 minor_type: 1,
                 payload_length: public_key.size() as u8,
@@ -97,8 +97,11 @@ async fn send_public_key(ctx: &impl Context, transaction_id: u8, public_key: Pub
         // TODO: handle error
         let _ = ctx
             .send_accepted_lmp_packet(
-                lmp::EncapsulatedPayloadBuilder { transaction_id, data: chunk.try_into().unwrap() }
-                    .build(),
+                lmp::EncapsulatedPayloadBuilder {
+                    transaction_id: ctx.get_transaction_id(),
+                    data: chunk.try_into().unwrap(),
+                }
+                .build(),
             )
             .await;
     }
@@ -152,7 +155,11 @@ async fn receive_commitment(ctx: &impl Context, skip_first: bool) -> Result<(), 
     }
 
     ctx.send_lmp_packet(
-        lmp::SimplePairingConfirmBuilder { transaction_id: 0, commitment_value }.build(),
+        lmp::SimplePairingConfirmBuilder {
+            transaction_id: ctx.get_transaction_id(),
+            commitment_value,
+        }
+        .build(),
     );
 
     let nonce = [0; NONCE_SIZE];
@@ -167,7 +174,8 @@ async fn receive_commitment(ctx: &impl Context, skip_first: bool) -> Result<(), 
             .build(),
         );
         ctx.send_accepted_lmp_packet(
-            lmp::SimplePairingNumberBuilder { transaction_id: 0, nonce }.build(),
+            lmp::SimplePairingNumberBuilder { transaction_id: ctx.get_transaction_id(), nonce }
+                .build(),
         )
         .await
         .map_err(|_| ())
@@ -189,7 +197,11 @@ async fn send_commitment(ctx: &impl Context, skip_first: bool) -> Result<(), ()>
 
     if !skip_first {
         ctx.send_lmp_packet(
-            lmp::SimplePairingConfirmBuilder { transaction_id: 0, commitment_value }.build(),
+            lmp::SimplePairingConfirmBuilder {
+                transaction_id: ctx.get_transaction_id(),
+                commitment_value,
+            }
+            .build(),
         );
     }
 
@@ -200,7 +212,7 @@ async fn send_commitment(ctx: &impl Context, skip_first: bool) -> Result<(), ()>
     }
     let nonce = [0; NONCE_SIZE];
     ctx.send_accepted_lmp_packet(
-        lmp::SimplePairingNumberBuilder { transaction_id: 0, nonce }.build(),
+        lmp::SimplePairingNumberBuilder { transaction_id: ctx.get_transaction_id(), nonce }.build(),
     )
     .await
     .map_err(|_| ())?;
@@ -300,7 +312,9 @@ async fn user_passkey_request(ctx: &impl Context) -> Result<(), ()> {
                     }
                     .build(),
                 );
-                ctx.send_lmp_packet(lmp::PasskeyFailedBuilder { transaction_id: 0 });
+                ctx.send_lmp_packet(lmp::PasskeyFailedBuilder {
+                    transaction_id: ctx.get_transaction_id(),
+                });
                 return Err(());
             }
             Either::Right(keypress) => {
@@ -313,7 +327,7 @@ async fn user_passkey_request(ctx: &impl Context) -> Result<(), ()> {
                     .build(),
                 );
                 ctx.send_lmp_packet(lmp::KeypressNotificationBuilder {
-                    transaction_id: 0,
+                    transaction_id: ctx.get_transaction_id(),
                     notification_type: keypress.get_notification_type().to_u8().unwrap(),
                 })
             }
@@ -380,7 +394,7 @@ pub async fn initiate(ctx: &impl Context) -> Result<(), ()> {
                     );
                     ctx.send_lmp_packet(
                         lmp::IoCapabilityReqBuilder {
-                            transaction_id: 0,
+                            transaction_id: ctx.get_transaction_id(),
                             io_capabilities: reply.get_io_capability().to_u8().unwrap(),
                             oob_authentication_data: reply.get_oob_present().to_u8().unwrap(),
                             authentication_requirement: reply
@@ -471,7 +485,7 @@ pub async fn initiate(ctx: &impl Context) -> Result<(), ()> {
             };
         ctx.set_private_key(&private_key);
         let local_public_key = private_key.derive();
-        send_public_key(ctx, 0, local_public_key).await;
+        send_public_key(ctx, local_public_key).await;
         let peer_public_key = receive_public_key(ctx).await;
         private_key.shared_secret(peer_public_key)
     };
@@ -486,7 +500,10 @@ pub async fn initiate(ctx: &impl Context) -> Result<(), ()> {
 
                 if user_confirmation_request(ctx).await.is_err() {
                     ctx.send_lmp_packet(
-                        lmp::NumericComparisonFailedBuilder { transaction_id: 0 }.build(),
+                        lmp::NumericComparisonFailedBuilder {
+                            transaction_id: ctx.get_transaction_id(),
+                        }
+                        .build(),
                     );
                     return Err(());
                 }
@@ -539,7 +556,11 @@ pub async fn initiate(ctx: &impl Context) -> Result<(), ()> {
 
         let result = ctx
             .send_accepted_lmp_packet(
-                lmp::DhkeyCheckBuilder { transaction_id: 0, confirmation_value }.build(),
+                lmp::DhkeyCheckBuilder {
+                    transaction_id: ctx.get_transaction_id(),
+                    confirmation_value,
+                }
+                .build(),
             )
             .await;
 
@@ -577,7 +598,7 @@ pub async fn initiate(ctx: &impl Context) -> Result<(), ()> {
 
     // Link Key Calculation
     let link_key = [0; 16];
-    let auth_result = authentication::send_challenge(ctx, 0, link_key).await;
+    let auth_result = authentication::send_challenge(ctx, link_key).await;
     authentication::receive_challenge(ctx, link_key).await;
 
     if auth_result.is_err() {
@@ -699,7 +720,7 @@ pub async fn respond(ctx: &impl Context, request: lmp::IoCapabilityReqPacket) ->
         };
         ctx.set_private_key(&private_key);
         let local_public_key = private_key.derive();
-        send_public_key(ctx, 0, local_public_key).await;
+        send_public_key(ctx, local_public_key).await;
         private_key.shared_secret(peer_public_key)
     };
 
@@ -843,7 +864,8 @@ pub async fn respond(ctx: &impl Context, request: lmp::IoCapabilityReqPacket) ->
     // TODO: handle error
     let _ = ctx
         .send_accepted_lmp_packet(
-            lmp::DhkeyCheckBuilder { transaction_id: 0, confirmation_value }.build(),
+            lmp::DhkeyCheckBuilder { transaction_id: ctx.get_transaction_id(), confirmation_value }
+                .build(),
         )
         .await;
 
@@ -858,7 +880,7 @@ pub async fn respond(ctx: &impl Context, request: lmp::IoCapabilityReqPacket) ->
     // Link Key Calculation
     let link_key = [0; 16];
     authentication::receive_challenge(ctx, link_key).await;
-    let auth_result = authentication::send_challenge(ctx, 0, link_key).await;
+    let auth_result = authentication::send_challenge(ctx, link_key).await;
 
     if auth_result.is_err() {
         return Err(());

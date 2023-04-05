@@ -8,13 +8,11 @@ use crate::procedure::legacy_pairing;
 use crate::procedure::secure_simple_pairing;
 use crate::procedure::Context;
 
-pub async fn send_challenge(
-    ctx: &impl Context,
-    transaction_id: u8,
-    _link_key: [u8; 16],
-) -> Result<(), ()> {
+pub async fn send_challenge(ctx: &impl Context, _link_key: [u8; 16]) -> Result<(), ()> {
     let random_number = [0; 16];
-    ctx.send_lmp_packet(lmp::AuRandBuilder { transaction_id, random_number }.build());
+    ctx.send_lmp_packet(
+        lmp::AuRandBuilder { transaction_id: ctx.get_transaction_id(), random_number }.build(),
+    );
 
     match ctx.receive_lmp_packet::<Either<lmp::SresPacket, lmp::NotAcceptedPacket>>().await {
         Either::Left(_response) => Ok(()),
@@ -24,7 +22,10 @@ pub async fn send_challenge(
 
 pub async fn receive_challenge(ctx: &impl Context, _link_key: [u8; 16]) {
     let _random_number = *ctx.receive_lmp_packet::<lmp::AuRandPacket>().await.get_random_number();
-    ctx.send_lmp_packet(lmp::SresBuilder { transaction_id: 0, authentication_rsp: [0; 4] }.build());
+    ctx.send_lmp_packet(
+        lmp::SresBuilder { transaction_id: ctx.get_transaction_id(), authentication_rsp: [0; 4] }
+            .build(),
+    );
 }
 
 pub async fn initiate(ctx: &impl Context) {
@@ -92,7 +93,7 @@ pub async fn respond(ctx: &impl Context) {
         Either::Left(_random_number) => {
             // TODO: Resolve authentication challenge
             // TODO: Ask for link key
-            ctx.send_lmp_packet(lmp::SresBuilder { transaction_id: 0, authentication_rsp: [0; 4] }.build());
+            ctx.send_lmp_packet(lmp::SresBuilder { transaction_id: ctx.get_transaction_id(), authentication_rsp: [0; 4] }.build());
         },
         Either::Right(pairing) => {
             let _result = match pairing {

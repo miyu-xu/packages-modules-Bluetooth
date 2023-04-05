@@ -8,7 +8,7 @@ use crate::procedure::Context;
 pub async fn initiate(ctx: &impl Context, features_page: u8) -> u64 {
     ctx.send_lmp_packet(
         lmp::FeaturesReqExtBuilder {
-            transaction_id: 0,
+            transaction_id: ctx.get_transaction_id(),
             features_page,
             max_supported_page: 1,
             extended_features: ctx.extended_features(features_page).to_le_bytes(),
@@ -27,7 +27,7 @@ pub async fn respond(ctx: &impl Context) {
 
     ctx.send_lmp_packet(
         lmp::FeaturesResExtBuilder {
-            transaction_id: 0,
+            transaction_id: ctx.get_transaction_id(),
             features_page,
             max_supported_page: 1,
             extended_features: ctx.extended_features(features_page).to_le_bytes(),

@@ -107,6 +107,10 @@ impl Context for TestContext {
     fn set_private_key(&self, key: &PrivateKey) {
         *self.private_key.borrow_mut() = Some(key.clone())
     }
+
+    fn get_transaction_id(&self) -> u8 {
+        0 // TODO: Enforce that responses match requests
+    }
 }
 
 pub fn poll(future: Pin<&mut impl Future<Output = ()>>) -> Poll<()> {

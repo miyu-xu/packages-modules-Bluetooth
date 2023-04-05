@@ -22,17 +22,21 @@ pub async fn initiate(ctx: &impl Context) -> Result<(), ()> {
     // TODO: handle result
     let _ = ctx
         .send_accepted_lmp_packet(
-            lmp::InRandBuilder { transaction_id: 0, random_number: [0; 16] }.build(),
+            lmp::InRandBuilder { transaction_id: ctx.get_transaction_id(), random_number: [0; 16] }
+                .build(),
         )
         .await;
 
-    ctx.send_lmp_packet(lmp::CombKeyBuilder { transaction_id: 0, random_number: [0; 16] }.build());
+    ctx.send_lmp_packet(
+        lmp::CombKeyBuilder { transaction_id: ctx.get_transaction_id(), random_number: [0; 16] }
+            .build(),
+    );
 
     let _ = ctx.receive_lmp_packet::<lmp::CombKeyPacket>().await;
 
     // Post pairing authentication
     let link_key = [0; 16];
-    let auth_result = authentication::send_challenge(ctx, 0, link_key).await;
+    let auth_result = authentication::send_challenge(ctx, link_key).await;
     authentication::receive_challenge(ctx, link_key).await;
 
     if auth_result.is_err() {
@@ -65,17 +69,24 @@ pub async fn respond(ctx: &impl Context, _request: lmp::InRandPacket) -> Result<
     );
 
     ctx.send_lmp_packet(
-        lmp::AcceptedBuilder { transaction_id: 0, accepted_opcode: lmp::Opcode::InRand }.build(),
+        lmp::AcceptedBuilder {
+            transaction_id: ctx.get_transaction_id(),
+            accepted_opcode: lmp::Opcode::InRand,
+        }
+        .build(),
     );
 
     let _ = ctx.receive_lmp_packet::<lmp::CombKeyPacket>().await;
 
-    ctx.send_lmp_packet(lmp::CombKeyBuilder { transaction_id: 0, random_number: [0; 16] }.build());
+    ctx.send_lmp_packet(
+        lmp::CombKeyBuilder { transaction_id: ctx.get_transaction_id(), random_number: [0; 16] }
+            .build(),
+    );
 
     // Post pairing authentication
     let link_key = [0; 16];
     authentication::receive_challenge(ctx, link_key).await;
-    let auth_result = authentication::send_challenge(ctx, 0, link_key).await;
+    let auth_result = authentication::send_challenge(ctx, link_key).await;
 
     if auth_result.is_err() {
         return Err(());

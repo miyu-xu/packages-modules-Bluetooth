@@ -16,6 +16,9 @@ pub trait Context {
     fn peer_address(&self) -> hci::Address;
     fn peer_handle(&self) -> u16;
 
+    // TODO: PDL type for transactions
+    fn get_transaction_id(&self) -> u8;
+
     fn peer_extended_features(&self, _features_page: u8) -> Option<u64> {
         None
     }
