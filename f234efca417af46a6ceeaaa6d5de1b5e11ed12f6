@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7a5a42f0_fa265d54",
+        "filename": "system/stack/gatt/connection_manager.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-04-05T10:52:48Z",
+      "side": 1,
+      "message": "is_targetted_announcement, or is_ta ?",
+      "range": {
+        "startLine": 171,
+        "startChar": 7,
+        "endLine": 171,
+        "endChar": 15
+      },
+      "revId": "f234efca417af46a6ceeaaa6d5de1b5e11ed12f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "00d60253_9940b7b4",
+        "filename": "system/stack/gatt/connection_manager.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-04-05T10:52:48Z",
+      "side": 1,
+      "message": "I know it\u0027s just for debug, but logging on every advertisement received will be a big log spam, right ?",
+      "range": {
+        "startLine": 173,
+        "startChar": 4,
+        "endLine": 174,
+        "endChar": 46
+      },
+      "revId": "f234efca417af46a6ceeaaa6d5de1b5e11ed12f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0e9e2ea4_00ce2973",
+        "filename": "system/stack/gatt/connection_manager.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-04-05T10:52:48Z",
+      "side": 1,
+      "message": "this would be much easier to read and understand, if this was called:\n\nis_active_audio_group_member, or check_active_group_member\n\n\nstream_check_callback_ doesn\u0027t explan what it\u0027s doing.",
+      "range": {
+        "startLine": 175,
+        "startChar": 36,
+        "endLine": 175,
+        "endChar": 58
+      },
+      "revId": "f234efca417af46a6ceeaaa6d5de1b5e11ed12f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "09dc22b0_bcae6034",
+        "filename": "system/stack/gatt/connection_manager.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-04-05T10:52:48Z",
+      "side": 1,
+      "message": "A line of comment above explaining what it is for please.",
+      "range": {
+        "startLine": 67,
+        "startChar": 0,
+        "endLine": 68,
+        "endChar": 48
+      },
+      "revId": "f234efca417af46a6ceeaaa6d5de1b5e11ed12f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b9a557bd_2521e8c1",
+        "filename": "system/test/mock/mock_stack_gatt_connection_manager.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-04-05T10:52:48Z",
+      "side": 1,
+      "message": "Please fix this WARNING reported by Build Warnings: the parameter \u0027cb\u0027 is copied for each invocation but only used as a const reference; consider making it a const reference [performance-unnecessary-value-param]\n\nAnalyzer Description: Reports warnings that originate from build.log in the build artifacts.\nOwner: farivar@google.com\n\n    the parameter \u0027cb\u0027 is copied for each invocation but only used as a const reference; consider making it a const reference [performance-unnecessary-value-param]\n        base::Callback\u003cbool(const RawAddress\u0026)\u003e cb) {\n                                                ^\n        const                                  \u0026\n\nThis finding was found on https://android-build.googleplex.com/builds/build-details/P53996767/targets/aosp_arm64-userdebug_tidy, but may also be present on other builds.",
+      "range": {
+        "startLine": 99,
+        "startChar": 45,
+        "endLine": 99,
+        "endChar": 49
+      },
+      "revId": "f234efca417af46a6ceeaaa6d5de1b5e11ed12f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
