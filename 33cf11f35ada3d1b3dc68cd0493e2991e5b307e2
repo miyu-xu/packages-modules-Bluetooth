@@ -16,6 +16,24 @@
       "message": "Same remark about the transaction ID values.",
       "revId": "33cf11f35ada3d1b3dc68cd0493e2991e5b307e2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0b41271e_b27c107b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-04-05T21:18:55Z",
+      "side": 1,
+      "message": "Good point. It looks like the right way to do this would be to track the role.  Either way, it was helpful for deciding which hard-coded transactions to remove.",
+      "parentUuid": "6448bb23_ead0971b",
+      "revId": "33cf11f35ada3d1b3dc68cd0493e2991e5b307e2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
