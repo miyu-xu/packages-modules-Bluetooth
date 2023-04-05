@@ -336,7 +336,10 @@ public class BluetoothManagerService extends IBluetoothManager.Stub {
                 updateOppLauncherComponentState(userHandle, newBluetoothSharingDisallowed);
             }
         } else {
-            updateOppLauncherComponentState(userHandle, newBluetoothSharingDisallowed);
+            // Disallow Bluetooth sharing when either Bluetooth is disallowed or Bluetooth sharing
+            // is disallowed
+            updateOppLauncherComponentState(userHandle, newBluetoothSharingDisallowed
+                    || newBluetoothDisallowed);
         }
     }
 
