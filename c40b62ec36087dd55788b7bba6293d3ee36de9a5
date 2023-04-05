@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3b6d2b9c_bf5e7656",
+        "filename": "tools/rootcanal/lmp/src/procedure/secure_simple_pairing.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 413,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-04-05T22:00:32Z",
+      "side": 1,
+      "message": "Remove the block",
+      "range": {
+        "startLine": 413,
+        "startChar": 20,
+        "endLine": 413,
+        "endChar": 21
+      },
+      "revId": "c40b62ec36087dd55788b7bba6293d3ee36de9a5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "353448bd_31c71376",
+        "filename": "tools/rootcanal/lmp/src/procedure/secure_simple_pairing.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 589,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-04-05T22:00:32Z",
+      "side": 1,
+      "message": "This functions seems really small and only used in one place, could we inline the content instead ?",
+      "range": {
+        "startLine": 589,
+        "startChar": 9,
+        "endLine": 589,
+        "endChar": 37
+      },
+      "revId": "c40b62ec36087dd55788b7bba6293d3ee36de9a5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "39e31e1d_aec650e1",
+        "filename": "tools/rootcanal/lmp/src/procedure/secure_simple_pairing.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 709,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-04-05T22:00:32Z",
+      "side": 1,
+      "message": "This seems wrong are we are doing it a second time 7 lines under.",
+      "range": {
+        "startLine": 707,
+        "startChar": 16,
+        "endLine": 709,
+        "endChar": 17
+      },
+      "revId": "c40b62ec36087dd55788b7bba6293d3ee36de9a5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
