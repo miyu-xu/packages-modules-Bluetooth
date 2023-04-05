@@ -96,6 +96,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a602ee95_73b21d83",
+        "filename": "android/pandora/test/smp_test.py",
+        "patchSetId": 17
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1929170
+      },
+      "writtenOn": "2023-04-05T19:01:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "317b6a3d_c7cc441f",
+      "range": {
+        "startLine": 66,
+        "startChar": 29,
+        "endLine": 66,
+        "endChar": 63
+      },
+      "revId": "a73461ec8fa45b0f57f8e5a1ffb8f32b3f017e03",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8d8c7c56_59256367",
@@ -181,6 +205,30 @@
       "side": 1,
       "message": "Then you can use `await self.ref.host.Reset()`",
       "parentUuid": "e90c64d6_5489db69",
+      "range": {
+        "startLine": 128,
+        "startChar": 8,
+        "endLine": 128,
+        "endChar": 30
+      },
+      "revId": "a73461ec8fa45b0f57f8e5a1ffb8f32b3f017e03",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5be3ae41_eac7e88e",
+        "filename": "android/pandora/test/smp_test.py",
+        "patchSetId": 17
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1929170
+      },
+      "writtenOn": "2023-04-05T19:01:40Z",
+      "side": 1,
+      "message": "`await self.ref.host.Reset()` throws coroutine errors for me. Keeping this as it is for now.",
+      "parentUuid": "65d6d863_cfd40990",
       "range": {
         "startLine": 128,
         "startChar": 8,
