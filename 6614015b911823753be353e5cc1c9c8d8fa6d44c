@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2225b804_cc8f0e84",
+        "filename": "tools/pdl/scripts/generate_cxx_backend.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-04-05T16:26:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a4a0dd82_4e6eb21e",
+      "range": {
+        "startLine": 92,
+        "startChar": 8,
+        "endLine": 92,
+        "endChar": 25
+      },
+      "revId": "6614015b911823753be353e5cc1c9c8d8fa6d44c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9914b656_35be0950",
@@ -196,6 +220,30 @@
       "side": 1,
       "message": "Missed this one 😊 I am sometimes confused as to when std::move is necessary.\nI should make a pass with clang-tidy on the generated file.",
       "parentUuid": "c6538404_379a4634",
+      "range": {
+        "startLine": 784,
+        "startChar": 15,
+        "endLine": 784,
+        "endChar": 24
+      },
+      "revId": "6614015b911823753be353e5cc1c9c8d8fa6d44c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "75a903af_a8307826",
+        "filename": "tools/pdl/scripts/generate_cxx_backend.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 784,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-04-05T16:26:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b978a83a_14dab191",
       "range": {
         "startLine": 784,
         "startChar": 15,
