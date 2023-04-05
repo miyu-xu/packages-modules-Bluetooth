@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6bdb7ccc_e027f854",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 33
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-04-05T00:24:10Z",
+      "side": 1,
+      "message": "I also think it should be a HashSet\u003cBluetoothDevice\u003e rather than ArrayList\u003cBluetoothDevice\u003e ?",
+      "revId": "4664f2222d1b2f42a6560e0b8852df9f9bb44280",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4e5d3f11_c0e24c82",
