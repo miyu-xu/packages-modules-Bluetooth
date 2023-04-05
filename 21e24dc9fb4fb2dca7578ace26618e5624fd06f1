@@ -89,6 +89,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c44d8e01_df22c517",
+        "filename": "service/java/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 330,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2023-04-05T15:59:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a34417d6_d9173531",
+      "range": {
+        "startLine": 330,
+        "startChar": 12,
+        "endLine": 330,
+        "endChar": 43
+      },
+      "revId": "21e24dc9fb4fb2dca7578ace26618e5624fd06f1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "34247f19_1f72fdd6",
@@ -173,6 +197,30 @@
       "side": 1,
       "message": "As far as I understand, DISALLOW_BLUETOOTH will always be called with owner user (along with secondary users), so sendDisableMsg() will be triggered once with the owner user id.",
       "parentUuid": "c7c2f232_ae081058",
+      "range": {
+        "startLine": 342,
+        "startChar": 23,
+        "endLine": 342,
+        "endChar": 45
+      },
+      "revId": "21e24dc9fb4fb2dca7578ace26618e5624fd06f1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d5850e9f_7573eb38",
+        "filename": "service/java/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 342,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2023-04-05T15:59:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "16fbd848_d05d0414",
       "range": {
         "startLine": 342,
         "startChar": 23,
