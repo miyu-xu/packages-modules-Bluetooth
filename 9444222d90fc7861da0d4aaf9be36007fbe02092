@@ -1,5 +1,63 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "78b1fd83_ed6265bf",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 810,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-04-05T21:31:17Z",
+      "side": 1,
+      "message": "sorry for late comment, but could you elaborate this change?\nBefore we checked if all CISes are established, and now code is satisfied if the is at least 1 CIS established.",
+      "range": {
+        "startLine": 809,
+        "startChar": 8,
+        "endLine": 810,
+        "endChar": 56
+      },
+      "revId": "9444222d90fc7861da0d4aaf9be36007fbe02092",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2ff808a1_311545b5",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 2616,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-04-05T21:31:17Z",
+      "side": 1,
+      "message": "shouldn\u0027t it be `LeAudioDeviceGroup::IsGroupStreamReady` ?",
+      "revId": "9444222d90fc7861da0d4aaf9be36007fbe02092",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5400dd06_c9c57c8c",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 2621,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-04-05T21:31:17Z",
+      "side": 1,
+      "message": "Maybe we should have method which check if there are any ases which are not in DATA_PATH_ESTABLISHED. ?\n\nOr basically allow to call PrepareDataPath(group) twice and remove assert there and call only when there is ASE which needs that.\n\nIn this way we can have solution in one place, not two.",
+      "revId": "9444222d90fc7861da0d4aaf9be36007fbe02092",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
