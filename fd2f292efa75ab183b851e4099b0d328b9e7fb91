@@ -57,6 +57,30 @@
       },
       "revId": "fd2f292efa75ab183b851e4099b0d328b9e7fb91",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b8c89d58_3dad3d23",
+        "filename": "system/stack/gatt/connection_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-04-05T07:17:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0bb4cc86_f6516482",
+      "range": {
+        "startLine": 181,
+        "startChar": 47,
+        "endLine": 181,
+        "endChar": 78
+      },
+      "revId": "fd2f292efa75ab183b851e4099b0d328b9e7fb91",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
