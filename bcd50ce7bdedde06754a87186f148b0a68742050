@@ -22,6 +22,30 @@
       },
       "revId": "bcd50ce7bdedde06754a87186f148b0a68742050",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4495d2a2_c4e0f21c",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 43
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-04-05T23:36:00Z",
+      "side": 1,
+      "message": "Synchronizing on a null value will throw a null pointer exception.\n\nThe lynchpin of this solution is `final` where the reference is write-once, so can never be null\u0027ed after initialization.",
+      "parentUuid": "29faad2f_d650ca59",
+      "range": {
+        "startLine": 213,
+        "startChar": 12,
+        "endLine": 213,
+        "endChar": 23
+      },
+      "revId": "bcd50ce7bdedde06754a87186f148b0a68742050",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
