@@ -18,6 +18,23 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bdd2b979_7dce576b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-04-05T16:46:36Z",
+      "side": 1,
+      "message": "new patch with different approach will come over here soon.",
+      "revId": "f234efca417af46a6ceeaaa6d5de1b5e11ed12f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7a5a42f0_fa265d54",
@@ -31,6 +48,30 @@
       "writtenOn": "2023-04-05T10:52:48Z",
       "side": 1,
       "message": "is_targetted_announcement, or is_ta ?",
+      "range": {
+        "startLine": 171,
+        "startChar": 7,
+        "endLine": 171,
+        "endChar": 15
+      },
+      "revId": "f234efca417af46a6ceeaaa6d5de1b5e11ed12f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "78b3b2e5_296619c2",
+        "filename": "system/stack/gatt/connection_manager.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-04-05T16:46:36Z",
+      "side": 1,
+      "message": "not valid anymore.",
+      "parentUuid": "7a5a42f0_fa265d54",
       "range": {
         "startLine": 171,
         "startChar": 7,
@@ -112,6 +153,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "478c9663_1da40ab5",
+        "filename": "system/stack/gatt/connection_manager.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-04-05T16:46:36Z",
+      "side": 1,
+      "message": "not valid anymore.",
+      "parentUuid": "f88f089c_990e08fc",
+      "range": {
+        "startLine": 173,
+        "startChar": 4,
+        "endLine": 174,
+        "endChar": 46
+      },
+      "revId": "f234efca417af46a6ceeaaa6d5de1b5e11ed12f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0e9e2ea4_00ce2973",
@@ -183,6 +248,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "31570a88_2efcd41e",
+        "filename": "system/stack/gatt/connection_manager.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-04-05T16:46:36Z",
+      "side": 1,
+      "message": "not valid anymore.",
+      "parentUuid": "091fc951_35185dd0",
+      "range": {
+        "startLine": 175,
+        "startChar": 36,
+        "endLine": 175,
+        "endChar": 58
+      },
+      "revId": "f234efca417af46a6ceeaaa6d5de1b5e11ed12f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "09dc22b0_bcae6034",
@@ -206,6 +295,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "356b8e93_68a84ac1",
+        "filename": "system/stack/gatt/connection_manager.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-04-05T16:46:36Z",
+      "side": 1,
+      "message": "not valid anymore.",
+      "parentUuid": "09dc22b0_bcae6034",
+      "range": {
+        "startLine": 67,
+        "startChar": 0,
+        "endLine": 68,
+        "endChar": 48
+      },
+      "revId": "f234efca417af46a6ceeaaa6d5de1b5e11ed12f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b9a557bd_2521e8c1",
@@ -219,6 +332,30 @@
       "writtenOn": "2023-04-05T10:52:48Z",
       "side": 1,
       "message": "Please fix this WARNING reported by Build Warnings: the parameter \u0027cb\u0027 is copied for each invocation but only used as a const reference; consider making it a const reference [performance-unnecessary-value-param]\n\nAnalyzer Description: Reports warnings that originate from build.log in the build artifacts.\nOwner: farivar@google.com\n\n    the parameter \u0027cb\u0027 is copied for each invocation but only used as a const reference; consider making it a const reference [performance-unnecessary-value-param]\n        base::Callback\u003cbool(const RawAddress\u0026)\u003e cb) {\n                                                ^\n        const                                  \u0026\n\nThis finding was found on https://android-build.googleplex.com/builds/build-details/P53996767/targets/aosp_arm64-userdebug_tidy, but may also be present on other builds.",
+      "range": {
+        "startLine": 99,
+        "startChar": 45,
+        "endLine": 99,
+        "endChar": 49
+      },
+      "revId": "f234efca417af46a6ceeaaa6d5de1b5e11ed12f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c0eaee59_b9ba0ee8",
+        "filename": "system/test/mock/mock_stack_gatt_connection_manager.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-04-05T16:46:36Z",
+      "side": 1,
+      "message": "not valid anymore.",
+      "parentUuid": "b9a557bd_2521e8c1",
       "range": {
         "startLine": 99,
         "startChar": 45,

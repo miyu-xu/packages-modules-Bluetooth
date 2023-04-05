@@ -54,6 +54,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7f37ca1d_3e633486",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-04-05T16:46:36Z",
+      "side": 1,
+      "message": "actually came up with better solution.\nWhen group is in streaming mode, leaudio code will add other non connected devices to allow list.",
+      "parentUuid": "ff2aaba0_0ba638f1",
+      "revId": "fd2f292efa75ab183b851e4099b0d328b9e7fb91",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0bb4cc86_f6516482",
