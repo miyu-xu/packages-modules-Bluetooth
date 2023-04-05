@@ -121,7 +121,6 @@ class ExtendedAdvertiser : public Advertiser {
   // Host configuration parameters. Gather the configuration from the
   // extended advertising HCI commands.
   uint8_t advertising_handle;
-  bool periodic_advertising_enable{false};
   AdvertisingEventProperties advertising_event_properties{};
   slots primary_advertising_interval{};
   uint8_t primary_advertising_channel_map{};
@@ -140,6 +139,13 @@ class ExtendedAdvertiser : public Advertiser {
   std::vector<uint8_t> scan_response_data{};
   bool partial_advertising_data{false};
   bool partial_scan_response_data{false};
+
+  // Periodic advertising configuration.
+  bool periodic_advertising_enable{false};
+  bool periodic_advertising_enable_latch{false};
+  slots periodic_advertising_interval{};
+  std::vector<uint8_t> periodic_advertising_data{};
+  bool partial_periodic_advertising_data{false};
 
   // Enabled state.
   uint8_t max_extended_advertising_events{0};
@@ -163,6 +169,11 @@ class ExtendedAdvertiser : public Advertiser {
   // Reconstitute the raw Advertising_Event_Properties bitmask.
   static uint16_t GetRawAdvertisingEventProperties(
       const AdvertisingEventProperties& properties);
+
+  // Compute the maximum periodic advertising data payload size for the
+  // selected periodic advertising interval.
+  static uint16_t GetMaxPeriodicAdvertisingDataLength(
+      slots periodic_advertising_interval);
 };
 
 }  // namespace rootcanal
