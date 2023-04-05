@@ -74,6 +74,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "317b6a3d_c7cc441f",
+        "filename": "android/pandora/test/smp_test.py",
+        "patchSetId": 17
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1937985
+      },
+      "writtenOn": "2023-04-05T16:21:44Z",
+      "side": 1,
+      "message": "You can a look at go/avatar-android, but the commands are:\n- `avatar format`\n- `avatar lint`",
+      "parentUuid": "5c9ab7ab_6cbf5a24",
+      "range": {
+        "startLine": 66,
+        "startChar": 29,
+        "endLine": 66,
+        "endChar": 63
+      },
+      "revId": "a73461ec8fa45b0f57f8e5a1ffb8f32b3f017e03",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8d8c7c56_59256367",
         "filename": "android/pandora/test/smp_test.py",
         "patchSetId": 17
@@ -133,6 +157,30 @@
       "side": 1,
       "message": "Acknowledged",
       "parentUuid": "d5886846_996a7785",
+      "range": {
+        "startLine": 128,
+        "startChar": 8,
+        "endLine": 128,
+        "endChar": 30
+      },
+      "revId": "a73461ec8fa45b0f57f8e5a1ffb8f32b3f017e03",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "65d6d863_cfd40990",
+        "filename": "android/pandora/test/smp_test.py",
+        "patchSetId": 17
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1937985
+      },
+      "writtenOn": "2023-04-05T16:21:44Z",
+      "side": 1,
+      "message": "Then you can use `await self.ref.host.Reset()`",
+      "parentUuid": "e90c64d6_5489db69",
       "range": {
         "startLine": 128,
         "startChar": 8,
