@@ -16,6 +16,24 @@
       "message": "The transaction ID is not configurable in LMP packets:\n\n\u003e The transaction ID is in the least significant bit. It shall be 0 if the PDU\n\u003e forms part of a transaction that was initiated by the Central and 1 if the\n\u003e transaction was initiated by the Peripheral.",
       "revId": "36e71ad0b6aa4aff21e7a5fdbc5c5b025050a304",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8579a572_17ad130f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-04-05T21:15:25Z",
+      "side": 1,
+      "message": "Good catch! I shouldn\u0027t have assumed that the transaction IDs were larger than that.",
+      "parentUuid": "6c6c61f4_590f7dbe",
+      "revId": "36e71ad0b6aa4aff21e7a5fdbc5c5b025050a304",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
