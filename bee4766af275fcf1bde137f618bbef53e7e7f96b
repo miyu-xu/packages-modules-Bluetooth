@@ -1,6 +1,52 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "fcad5f7d_bdc77061",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1588128
+      },
+      "writtenOn": "2023-04-05T00:53:01Z",
+      "side": 1,
+      "message": "Maybe mention this finishes the work in aosp/2403852? It changed most of the includes but maybe these are added afterwards.",
+      "range": {
+        "startLine": 11,
+        "startChar": 1,
+        "endLine": 11,
+        "endChar": 54
+      },
+      "revId": "bee4766af275fcf1bde137f618bbef53e7e7f96b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3062a014_d94731ed",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1588128
+      },
+      "writtenOn": "2023-04-05T00:53:01Z",
+      "side": 1,
+      "message": "I think the `Change-Id` line should be at the end with an empty line between it and the manually added trailers.\nAnd could you add `Tag: #floss` to the commit message after the `Bug` line?",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 15
+      },
+      "revId": "bee4766af275fcf1bde137f618bbef53e7e7f96b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "0dd85ab8_1a6d05b0",
@@ -14,6 +60,24 @@
       "writtenOn": "2023-04-04T22:14:25Z",
       "side": 1,
       "message": "Hi Grace - I haven\u0027t ever done a change in android... does this seem like what we want for b/266161904?",
+      "revId": "bee4766af275fcf1bde137f618bbef53e7e7f96b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "590131c1_6104dcc2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1588128
+      },
+      "writtenOn": "2023-04-05T00:53:01Z",
+      "side": 1,
+      "message": "LGTM with nits. Thanks for working on it!",
+      "parentUuid": "0dd85ab8_1a6d05b0",
       "revId": "bee4766af275fcf1bde137f618bbef53e7e7f96b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
