@@ -73,6 +73,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c2d56e9d_bbda783e",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/PlayerSettingsManager.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1312909
+      },
+      "writtenOn": "2023-04-05T15:14:05Z",
+      "side": 1,
+      "message": "\u003e The scenario I was referring to was Device A and Device B already connected.\n\u003e - Device A is active, B is inactive and Player X was active (Shuffle On)\n\u003e - Device B is made active player X was active (but Shuffle was made OFF) as per implementation update only sent to active devices I believe.\n\u003e - Device A is made active again should we update Device A about Shuffle OFF (in case Device A had some Player UI to refresh)",
+      "parentUuid": "a6615197_18cce621",
+      "revId": "693eb7d2f20ee4ab145d94901ee62d1391192225",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6c33b4e3_99c56bc6",
         "filename": "android/app/src/com/android/bluetooth/audio_util/PlayerSettingsManager.java",
         "patchSetId": 12
