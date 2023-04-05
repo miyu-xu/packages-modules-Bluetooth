@@ -176,6 +176,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0f872d29_04413291",
+        "filename": "system/include/hardware/avrcp/avrcp_common.h",
+        "patchSetId": 12
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1312909
+      },
+      "writtenOn": "2023-04-05T15:06:31Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "9b9b9570_6ffac868",
+      "revId": "693eb7d2f20ee4ab145d94901ee62d1391192225",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "52c6895f_93f90869",
