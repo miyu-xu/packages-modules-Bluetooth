@@ -4040,7 +4040,7 @@ packet LeClearAdvertisingSetsComplete : CommandComplete (command_op_code = LE_CL
   status : ErrorCode,
 }
 
-packet LeSetPeriodicAdvertisingParam : LeAdvertisingCommand (op_code = LE_SET_PERIODIC_ADVERTISING_PARAM) {
+packet LeSetPeriodicAdvertisingParameters : LeAdvertisingCommand (op_code = LE_SET_PERIODIC_ADVERTISING_PARAMETERS) {
   advertising_handle : 8,
   periodic_advertising_interval_min : 16, // 0x006 to 0xFFFF (7.5 ms to 82s)
   periodic_advertising_interval_max : 16, // 0x006 to 0xFFFF (7.5 ms to 82s)
@@ -4049,7 +4049,7 @@ packet LeSetPeriodicAdvertisingParam : LeAdvertisingCommand (op_code = LE_SET_PE
   _reserved_ : 9,
 }
 
-packet LeSetPeriodicAdvertisingParamComplete : CommandComplete (command_op_code = LE_SET_PERIODIC_ADVERTISING_PARAM) {
+packet LeSetPeriodicAdvertisingParametersComplete : CommandComplete (command_op_code = LE_SET_PERIODIC_ADVERTISING_PARAMETERS) {
   status : ErrorCode,
 }
 
@@ -4057,8 +4057,8 @@ packet LeSetPeriodicAdvertisingData : LeAdvertisingCommand (op_code = LE_SET_PER
   advertising_handle : 8,
   operation : Operation,
   _reserved_ : 5,
-  _size_(scan_response_data) : 8,
-  scan_response_data : GapData[],
+  _size_(advertising_data) : 8,
+  advertising_data : 8[],
 }
 
 packet LeSetPeriodicAdvertisingDataComplete : CommandComplete (command_op_code = LE_SET_PERIODIC_ADVERTISING_DATA) {
