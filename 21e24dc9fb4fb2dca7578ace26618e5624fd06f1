@@ -67,6 +67,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a34417d6_d9173531",
+        "filename": "service/java/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 330,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2023-04-05T14:32:41Z",
+      "side": 1,
+      "message": "sendEnableMsg is called separatedly in here when admin start allowing bluetooth\n\nhttps://source.corp.google.com/android-internal/packages/modules/Bluetooth/service/java/com/android/server/bluetooth/BluetoothManagerService.java;l\u003d1451;bpv\u003d1;bpt\u003d1;rcl\u003deeae447b7baf32568765801cb304d72dadfcd739",
+      "parentUuid": "a0ab7324_dd19cb68",
+      "range": {
+        "startLine": 330,
+        "startChar": 12,
+        "endLine": 330,
+        "endChar": 43
+      },
+      "revId": "21e24dc9fb4fb2dca7578ace26618e5624fd06f1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "34247f19_1f72fdd6",
         "filename": "service/java/com/android/server/bluetooth/BluetoothManagerService.java",
         "patchSetId": 1
@@ -78,6 +102,30 @@
       "writtenOn": "2023-04-05T07:52:25Z",
       "side": 1,
       "message": "Nit. I prefer to follow the code in ag/2168857.\nThat looks more readable.",
+      "range": {
+        "startLine": 332,
+        "startChar": 16,
+        "endLine": 332,
+        "endChar": 47
+      },
+      "revId": "21e24dc9fb4fb2dca7578ace26618e5624fd06f1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2d684cb7_7356ed6c",
+        "filename": "service/java/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 332,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2023-04-05T14:32:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "34247f19_1f72fdd6",
       "range": {
         "startLine": 332,
         "startChar": 16,
@@ -101,6 +149,30 @@
       "writtenOn": "2023-04-05T07:45:37Z",
       "side": 1,
       "message": "Is it okay not to sendDisableMsg() when newBluetoothDisallowed is true and userHandle !\u003d SYSTEM?",
+      "range": {
+        "startLine": 342,
+        "startChar": 23,
+        "endLine": 342,
+        "endChar": 45
+      },
+      "revId": "21e24dc9fb4fb2dca7578ace26618e5624fd06f1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "16fbd848_d05d0414",
+        "filename": "service/java/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 342,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2023-04-05T14:32:41Z",
+      "side": 1,
+      "message": "As far as I understand, DISALLOW_BLUETOOTH will always be called with owner user (along with secondary users), so sendDisableMsg() will be triggered once with the owner user id.",
+      "parentUuid": "c7c2f232_ae081058",
       "range": {
         "startLine": 342,
         "startChar": 23,
