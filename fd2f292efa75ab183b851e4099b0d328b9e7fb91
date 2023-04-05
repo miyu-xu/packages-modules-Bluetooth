@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ff2aaba0_0ba638f1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-04-05T07:24:22Z",
+      "side": 1,
+      "message": "this is connection manager where batch scan reports lands and parsing of the Annonucements is happening. \nSince, connection manager is responsible for reconnection policy, along with LeAudio special requirements on Targeted Annoucements I think it is OK to give it an additional mechanism to learn about leaudio streaming state, whenever annoucement is found.\n\nOthwerise we would have to create additional path to the scanner from le audio to receive all the batch scan reports and analyze it in to places - which I see as overkill.",
+      "parentUuid": "2b0ab258_7527693b",
+      "revId": "fd2f292efa75ab183b851e4099b0d328b9e7fb91",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0bb4cc86_f6516482",
         "filename": "system/stack/gatt/connection_manager.cc",
         "patchSetId": 1
