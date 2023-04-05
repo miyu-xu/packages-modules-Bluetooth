@@ -16,6 +16,7 @@
 
 package com.android.bluetooth.telephony;
 
+import android.annotation.NonNull;
 import android.annotation.RequiresPermission;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothHeadset;
@@ -1554,6 +1555,57 @@ public class BluetoothInCallService extends InCallService {
         @Override
         public void onPlaceCall(int requestId, UUID callId, String uri) {
             mBluetoothLeCallControl.requestResult(requestId, BluetoothLeCallControl.RESULT_ERROR_APPLICATION);
+        }
+
+        @Override
+        public void onJoinCalls(int requestId, @NonNull List<UUID> callIds) {
+            synchronized (LOCK) {
+                Log.i(TAG, "TBS - onJoinCalls");
+                int result = BluetoothLeCallControl.RESULT_SUCCESS;
+
+                try {
+                    UUID baseCallUuid = callIds.get(0);
+                    BluetoothCall baseCallInstance = mCallInfo.getCallByCallId(baseCallUuid);
+                    if (mCallInfo.isNullCall(baseCallInstance)) {
+                        result = BluetoothLeCallControl.RESULT_ERROR_UNKNOWN_CALL_ID;
+                        Log.e(TAG, "Base call is null: " + baseCallUuid);
+                    } else {
+                        int iterationIndex = 0;
+
+                        for (UUID callToJoinUuid : callIds) {
+                            BluetoothCall callToJoinInstance =
+                                    mCallInfo.getCallByCallId(callToJoinUuid);
+                            int firstElementIndex = 0;
+
+                            if (mCallInfo.isNullCall(callToJoinInstance)) {
+                                Log.w(TAG, "TBS - onJoinCalls, invalid call to join: "
+                                        + callToJoinUuid);
+                                continue;
+                            }
+
+                            /* Don't join base call to base call */
+                            if (iterationIndex != 0) {
+                                firstElementIndex = callIds.indexOf(callToJoinUuid);
+
+                                if (iterationIndex == firstElementIndex) {
+                                    Log.i(TAG, "TBS - onJoinCalls, call: " + callToJoinUuid
+                                            + ", joins base call: " + baseCallUuid);
+                                    baseCallInstance.conference(callToJoinInstance);
+                                }
+                            }
+
+                            iterationIndex++;
+                        }
+                    }
+                } catch (IndexOutOfBoundsException e) {
+                    Log.e(TAG, "TBS - onJoinCalls, invalid size of given callIds: "
+                            + callIds.size());
+                    result = BluetoothLeCallControl.RESULT_ERROR_APPLICATION;
+                    return;
+                } finally {
+                    mBluetoothLeCallControl.requestResult(requestId, result);
+                }
+            }
         }
     };
 }
