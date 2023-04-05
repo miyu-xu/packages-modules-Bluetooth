@@ -324,19 +324,16 @@ public class BluetoothManagerService extends IBluetoothManager.Stub {
     public void onUserRestrictionsChanged(UserHandle userHandle) {
         final boolean newBluetoothDisallowed = mUserManager.hasUserRestrictionForUser(
                 UserManager.DISALLOW_BLUETOOTH, userHandle);
+        // Disallow Bluetooth sharing when either Bluetooth is disallowed or Bluetooth sharing
+        // is disallowed
         boolean newBluetoothSharingDisallowed = mUserManager.hasUserRestrictionForUser(
-                UserManager.DISALLOW_BLUETOOTH_SHARING, userHandle);
+                UserManager.DISALLOW_BLUETOOTH_SHARING, userHandle) || newBluetoothDisallowed;
+        updateOppLauncherComponentState(userHandle, newBluetoothSharingDisallowed);
+
         // DISALLOW_BLUETOOTH can only be set by DO or PO on the system user.
-        if (userHandle == UserHandle.SYSTEM) {
-            if (newBluetoothDisallowed) {
-                updateOppLauncherComponentState(userHandle, true); // Sharing disallowed
-                sendDisableMsg(BluetoothProtoEnums.ENABLE_DISABLE_REASON_DISALLOWED,
-                        mContext.getPackageName());
-            } else {
-                updateOppLauncherComponentState(userHandle, newBluetoothSharingDisallowed);
-            }
-        } else {
-            updateOppLauncherComponentState(userHandle, newBluetoothSharingDisallowed);
+        if (userHandle == UserHandle.SYSTEM && newBluetoothDisallowed) {
+            sendDisableMsg(BluetoothProtoEnums.ENABLE_DISABLE_REASON_DISALLOWED,
+                    mContext.getPackageName());
         }
     }
 
