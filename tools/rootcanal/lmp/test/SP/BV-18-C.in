@@ -33,13 +33,13 @@ sequence! { procedure, context,
         bd_addr: context.peer_address(),
     }
     IUT -> Lower Tester: IoCapabilityReq {
-        transaction_id: 0,
+        transaction_id: 7,
         io_capabilities: 0x01,
         oob_authentication_data: 0x01,
         authentication_requirement: 0x01,
     }
     Lower Tester -> IUT: IoCapabilityRes {
-        transaction_id: 0,
+        transaction_id: 7,
         io_capabilities: 0x01,
         oob_authentication_data: 0x00,
         authentication_requirement: 0x01,
@@ -52,42 +52,42 @@ sequence! { procedure, context,
     }
     // Public Key Exchange
     IUT -> Lower Tester: EncapsulatedHeader {
-        transaction_id: 0,
+        transaction_id: 7,
         major_type: 1,
         minor_type: 1,
         payload_length: 48,
     }
     Lower Tester -> IUT: Accepted {
-        transaction_id: 0,
+        transaction_id: 7,
         accepted_opcode: Opcode::EncapsulatedHeader,
     }
     repeat 3 times with (part in local_p192_public_key(&context)) {
         IUT -> Lower Tester: EncapsulatedPayload {
-            transaction_id: 0,
+            transaction_id: 7,
             data: part,
         }
         Lower Tester -> IUT: Accepted {
-            transaction_id: 0,
+            transaction_id: 7,
             accepted_opcode: Opcode::EncapsulatedPayload,
         }
     }
     Lower Tester -> IUT: EncapsulatedHeader {
-        transaction_id: 0,
+        transaction_id: 7,
         major_type: 1,
         minor_type: 1,
         payload_length: 48,
     }
     IUT -> Lower Tester: Accepted {
-        transaction_id: 0,
+        transaction_id: 7,
         accepted_opcode: Opcode::EncapsulatedHeader,
     }
     repeat 3 times with (part in peer_p192_public_key()) {
         Lower Tester -> IUT: EncapsulatedPayload {
-            transaction_id: 0,
+            transaction_id: 7,
             data: part,
         }
         IUT -> Lower Tester: Accepted {
-            transaction_id: 0,
+            transaction_id: 7,
             accepted_opcode: Opcode::EncapsulatedPayload,
         }
     }
@@ -106,51 +106,51 @@ sequence! { procedure, context,
         bd_addr: context.peer_address(),
     }
     IUT -> Lower Tester: SimplePairingNumber {
-        transaction_id: 0,
+        transaction_id: 7,
         nonce: [0; 16],
     }
     Lower Tester -> IUT: Accepted {
-        transaction_id: 0,
+        transaction_id: 7,
         accepted_opcode: Opcode::SimplePairingNumber,
     }
     Lower Tester -> IUT: SimplePairingNumber {
-        transaction_id: 0,
+        transaction_id: 7,
         nonce: [0; 16],
     }
     IUT -> Lower Tester: Accepted {
-        transaction_id: 0,
+        transaction_id: 7,
         accepted_opcode: Opcode::SimplePairingNumber,
     }
     // Authentication Stage 2
     IUT -> Lower Tester: DhkeyCheck {
-        transaction_id: 0,
+        transaction_id: 7,
         confirmation_value: [0; 16],
     }
-    Lower Tester -> IUT: Accepted { transaction_id: 0, accepted_opcode: Opcode::DhkeyCheck }
+    Lower Tester -> IUT: Accepted { transaction_id: 7, accepted_opcode: Opcode::DhkeyCheck }
     Lower Tester -> IUT: DhkeyCheck {
-        transaction_id: 0,
+        transaction_id: 7,
         confirmation_value: [0; 16],
     }
-    IUT -> Lower Tester: Accepted { transaction_id: 0, accepted_opcode: Opcode::DhkeyCheck }
+    IUT -> Lower Tester: Accepted { transaction_id: 7, accepted_opcode: Opcode::DhkeyCheck }
     IUT -> Upper Tester: SimplePairingComplete {
         status: ErrorCode::Success,
         bd_addr: context.peer_address(),
     }
     // Link Key Calculation
     IUT -> Lower Tester: AuRand {
-        transaction_id: 0,
+        transaction_id: 7,
         random_number: [0; 16],
     }
     Lower Tester -> IUT: Sres {
-        transaction_id: 0,
+        transaction_id: 7,
         authentication_rsp: [0; 4],
     }
     Lower Tester -> IUT: AuRand {
-        transaction_id: 0,
+        transaction_id: 7,
         random_number: [0; 16],
     }
     IUT -> Lower Tester: Sres {
-        transaction_id: 0,
+        transaction_id: 7,
         authentication_rsp: [0; 4],
     }
     IUT -> Upper Tester: LinkKeyNotification {

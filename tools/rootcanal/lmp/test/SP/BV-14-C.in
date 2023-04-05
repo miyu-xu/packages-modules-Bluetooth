@@ -33,13 +33,13 @@ sequence! { procedure, context,
         bd_addr: context.peer_address(),
     }
     IUT -> Lower Tester: IoCapabilityReq {
-        transaction_id: 0,
+        transaction_id: 7,
         io_capabilities: 0x02,
         oob_authentication_data: 0x00,
         authentication_requirement: 0x01,
     }
     Lower Tester -> IUT: IoCapabilityRes {
-        transaction_id: 0,
+        transaction_id: 7,
         io_capabilities: 0x00,
         oob_authentication_data: 0x00,
         authentication_requirement: 0x01,
@@ -52,42 +52,42 @@ sequence! { procedure, context,
     }
     // Public Key Exchange
     IUT -> Lower Tester: EncapsulatedHeader {
-        transaction_id: 0,
+        transaction_id: 7,
         major_type: 1,
         minor_type: 1,
         payload_length: 48,
     }
     Lower Tester -> IUT: Accepted {
-        transaction_id: 0,
+        transaction_id: 7,
         accepted_opcode: Opcode::EncapsulatedHeader,
     }
     repeat 3 times with (part in local_p192_public_key(&context)) {
         IUT -> Lower Tester: EncapsulatedPayload {
-            transaction_id: 0,
+            transaction_id: 7,
             data: part,
         }
         Lower Tester -> IUT: Accepted {
-            transaction_id: 0,
+            transaction_id: 7,
             accepted_opcode: Opcode::EncapsulatedPayload,
         }
     }
     Lower Tester -> IUT: EncapsulatedHeader {
-        transaction_id: 0,
+        transaction_id: 7,
         major_type: 1,
         minor_type: 1,
         payload_length: 48,
     }
     IUT -> Lower Tester: Accepted {
-        transaction_id: 0,
+        transaction_id: 7,
         accepted_opcode: Opcode::EncapsulatedHeader,
     }
     repeat 3 times with (part in peer_p192_public_key()) {
         Lower Tester -> IUT: EncapsulatedPayload {
-            transaction_id: 0,
+            transaction_id: 7,
             data: part,
         }
         IUT -> Lower Tester: Accepted {
-            transaction_id: 0,
+            transaction_id: 7,
             accepted_opcode: Opcode::EncapsulatedPayload,
         }
     }
@@ -104,7 +104,7 @@ sequence! { procedure, context,
         bd_addr: context.peer_address(),
     }
     IUT -> Lower Tester: PasskeyFailed {
-        transaction_id: 0,
+        transaction_id: 7,
     }
     IUT -> Upper Tester: SimplePairingComplete {
         status: ErrorCode::AuthenticationFailure,

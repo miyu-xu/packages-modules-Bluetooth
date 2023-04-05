@@ -1185,13 +1185,13 @@ mod tests {
                 bd_addr: context.peer_address(),
             }
             IUT -> Lower Tester: IoCapabilityReq {
-                transaction_id: 0,
+                transaction_id: 7,
                 io_capabilities: 0x02,
                 oob_authentication_data: 0x00,
                 authentication_requirement: 0x01,
             }
             Lower Tester -> IUT: NotAcceptedExt {
-                transaction_id: 0,
+                transaction_id: 7,
                 not_accepted_opcode: ExtendedOpcode::IoCapabilityReq,
                 error_code: 0x37,
             }

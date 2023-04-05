@@ -33,13 +33,13 @@ sequence! { procedure, context,
         bd_addr: context.peer_address(),
     }
     IUT -> Lower Tester: IoCapabilityReq {
-        transaction_id: 0,
+        transaction_id: 7,
         io_capabilities: 0x01,
         oob_authentication_data: 0x00,
         authentication_requirement: 0x01,
     }
     Lower Tester -> IUT: NotAcceptedExt {
-        transaction_id: 0,
+        transaction_id: 7,
         not_accepted_opcode: ExtendedOpcode::IoCapabilityReq,
         error_code: 0x37,
     }
@@ -61,19 +61,19 @@ sequence! { procedure, context,
         bd_addr: context.peer_address(),
     }
     IUT -> Lower Tester: InRand {
-        transaction_id: 0,
+        transaction_id: 7,
         random_number: [0; 16],
     }
     Lower Tester -> IUT: Accepted {
-        transaction_id: 0,
+        transaction_id: 7,
         accepted_opcode: Opcode::InRand,
     }
     IUT -> Lower Tester: CombKey {
-        transaction_id: 0,
+        transaction_id: 7,
         random_number: [0; 16],
     }
     Lower Tester -> IUT: CombKey {
-        transaction_id: 0,
+        transaction_id: 7,
         random_number: [0; 16],
     }
     // TODO: It's also valid to send it just
@@ -84,19 +84,19 @@ sequence! { procedure, context,
         link_key: [0; 16],
     }
     IUT -> Lower Tester: AuRand {
-        transaction_id: 0,
+        transaction_id: 7,
         random_number: [0; 16],
     }
     Lower Tester -> IUT: Sres {
-        transaction_id: 0,
+        transaction_id: 7,
         authentication_rsp: [0; 4],
     }
     Lower Tester -> IUT: AuRand {
-        transaction_id: 0,
+        transaction_id: 7,
         random_number: [0; 16],
     }
     IUT -> Lower Tester: Sres {
-        transaction_id: 0,
+        transaction_id: 7,
         authentication_rsp: [0; 4],
     }
     IUT -> Upper Tester: AuthenticationComplete {

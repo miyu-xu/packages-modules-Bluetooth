@@ -9,27 +9,27 @@ sequence! { procedure, context,
        status: ErrorCode::Success,
     }
     IUT -> Lower Tester: EncryptionModeReq {
-        transaction_id: 0,
+        transaction_id: 7,
         encryption_mode: 0x01,
     }
     Lower Tester -> IUT: Accepted {
-        transaction_id: 0,
+        transaction_id: 7,
         accepted_opcode: Opcode::EncryptionModeReq,
     }
     IUT -> Lower Tester: EncryptionKeySizeReq {
-        transaction_id: 0,
+        transaction_id: 7,
         key_size: 0x10,
     }
     Lower Tester -> IUT: Accepted {
-        transaction_id: 0,
+        transaction_id: 7,
         accepted_opcode: Opcode::EncryptionKeySizeReq,
     }
     IUT -> Lower Tester: StartEncryptionReq {
-        transaction_id: 0,
+        transaction_id: 7,
         random_number: [0; 16],
     }
     Lower Tester -> IUT: Accepted {
-        transaction_id: 0,
+        transaction_id: 7,
         accepted_opcode: Opcode::StartEncryptionReq,
     }
     IUT -> Upper Tester: EncryptionChange {

@@ -109,7 +109,7 @@ impl Context for TestContext {
     }
 
     fn get_transaction_id(&self) -> u8 {
-        0 // TODO: Enforce that responses match requests
+        7 // TODO: Enforce that responses match requests
     }
 }
 
