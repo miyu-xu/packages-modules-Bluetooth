@@ -73,6 +73,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f88f089c_990e08fc",
+        "filename": "system/stack/gatt/connection_manager.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-04-05T11:09:56Z",
+      "side": 1,
+      "message": "I meant to get rid of it completly, to not blow the size of persistent logcat",
+      "parentUuid": "7455a9e7_0c581bce",
+      "range": {
+        "startLine": 173,
+        "startChar": 4,
+        "endLine": 174,
+        "endChar": 46
+      },
+      "revId": "f234efca417af46a6ceeaaa6d5de1b5e11ed12f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0e9e2ea4_00ce2973",
         "filename": "system/stack/gatt/connection_manager.cc",
         "patchSetId": 3
@@ -108,6 +132,30 @@
       "side": 1,
       "message": "active group is also something not clear.\nis_member_of_streaming_group() ?",
       "parentUuid": "0e9e2ea4_00ce2973",
+      "range": {
+        "startLine": 175,
+        "startChar": 36,
+        "endLine": 175,
+        "endChar": 58
+      },
+      "revId": "f234efca417af46a6ceeaaa6d5de1b5e11ed12f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "091fc951_35185dd0",
+        "filename": "system/stack/gatt/connection_manager.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-04-05T11:09:56Z",
+      "side": 1,
+      "message": "It\u0027s better.\nOn second look, shouldn\u0027t we switch device from TA to direct or background connection when it\u0027s member of active group ?\nWe would not need this logic modified at all.",
+      "parentUuid": "a6c39136_fbada6dc",
       "range": {
         "startLine": 175,
         "startChar": 36,
