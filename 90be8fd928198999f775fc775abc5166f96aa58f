@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "498f986f_fc0727e6",
+        "filename": "tools/pdl/src/analyzer.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 2130,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2023-04-05T15:20:09Z",
+      "side": 1,
+      "message": "This is getting too \"clever\" for my taste. Importing the enum variants and using them directly should be very nearly the same thing, no?",
+      "range": {
+        "startLine": 2130,
+        "startChar": 0,
+        "endLine": 2130,
+        "endChar": 23
+      },
+      "revId": "90be8fd928198999f775fc775abc5166f96aa58f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "474cf4a7_83e5d1b7",
+        "filename": "tools/pdl/src/analyzer.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 2186,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2023-04-05T15:20:09Z",
+      "side": 1,
+      "message": "I\u0027ve had to maintain tests with such \"helpers\" before and it turned out to be a ton of work to both understand and update them later. Can we use helper _functions_ instead to build up the values that are tested?\n\nBasically, I have no idea what is being asserted here -- I would need to basically do `cargo expand` in my head to find out and that\u0027s not a good starting point.",
+      "range": {
+        "startLine": 2186,
+        "startChar": 12,
+        "endLine": 2186,
+        "endChar": 23
+      },
+      "revId": "90be8fd928198999f775fc775abc5166f96aa58f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
