@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "026d8f0c_df3dfc1a",
+        "filename": "tools/rootcanal/lmp/src/procedure/secure_simple_pairing.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 750,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-04-05T23:08:58Z",
+      "side": 1,
+      "message": "@licorne@google.com This one is a lot uglier to me without the function.",
+      "range": {
+        "startLine": 750,
+        "startChar": 19,
+        "endLine": 750,
+        "endChar": 47
+      },
+      "revId": "9ee532c05f27f2f7fb981a6eb313aefdd59df884",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
