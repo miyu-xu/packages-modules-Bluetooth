@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bd7d15da_0d13c812",
+        "filename": "android/pandora/test/Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-04-05T23:38:16Z",
+      "side": 1,
+      "message": "Can we remove it from `required` ?",
+      "range": {
+        "startLine": 40,
+        "startChar": 10,
+        "endLine": 40,
+        "endChar": 23
+      },
+      "revId": "292c102a062c57231d6be086737b8be59d33352f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
