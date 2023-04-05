@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2fff2c08_1620f175",
+        "filename": "system/btif/src/btif_hh.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 778,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-04-05T00:10:02Z",
+      "side": 1,
+      "message": "Do we need this condition?\n\nIf we\u0027re calling disable, we should be able to reset the callbacks.",
+      "range": {
+        "startLine": 778,
+        "startChar": 6,
+        "endLine": 778,
+        "endChar": 51
+      },
+      "revId": "b03ad6608c13f02dc43a8cb27020720a2fcdc55a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
