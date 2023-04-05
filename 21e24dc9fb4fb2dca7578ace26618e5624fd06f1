@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "45fa4882_b41851ed",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2023-04-05T07:27:28Z",
+      "side": 1,
+      "message": "Hi Sungsoo,\n\nThis change fix the bug \u0026 I\u0027ve confirmed it\u0027s intended behavior.\n\nRefer to:\nFirst change that introduce DISALLOW_BLUETOOTH_SHARING and the intended behavior ag/2168857\n\nChanges that touch this code and changed to wrong behavior: ag/2484462, aosp/1957002",
+      "revId": "21e24dc9fb4fb2dca7578ace26618e5624fd06f1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
