@@ -187,6 +187,24 @@
       "parentUuid": "e99b7306_61880e81",
       "revId": "a82f21a6e7a0817e22b6ebbd6a6c793b7f411c01",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3605a91a_a76f23ec",
+        "filename": "service/java/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 2730,
+      "author": {
+        "id": 1898101
+      },
+      "writtenOn": "2023-04-05T06:53:58Z",
+      "side": 1,
+      "message": "Hi watson and Esxande , Now Presubmit-Verified -1, may you help operate it and help merge , thanks a lot",
+      "parentUuid": "539507cc_b8c7510b",
+      "revId": "a82f21a6e7a0817e22b6ebbd6a6c793b7f411c01",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
