@@ -22,6 +22,7 @@
 #include "bta/hh/bta_hh_int.h"
 #include "bta/include/bta_hh_api.h"
 #include "osi/include/allocator.h"
+#include "test/common/main_handler.h"
 #include "test/common/mock_functions.h"
 #include "test/mock/mock_osi_allocator.h"
 
@@ -104,6 +105,8 @@ TEST_F(BtaHhTest, bta_hh_ctrl_dat_act__BTA_HH_GET_RPT_EVT) {
   };
 
   bta_hh_ctrl_dat_act(&cb, &data);
+  ASSERT_EQ(cb.w4_evt, 0);
 
+  sync_main_handler();
   ASSERT_EQ(get_func_call_count("bta_hh_co_get_rpt_rsp"), 1);
 }
