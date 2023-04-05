@@ -16,6 +16,24 @@
       "message": "nit: can you leave a comment here explaining when bta_hh_cleanup_disable will be called if we go via HOGP first?",
       "revId": "7c436bc0d1caae0de2527cdabc0ac06a35ba3431",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9e6a4622_f83e975f",
+        "filename": "system/bta/hh/bta_hh_act.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2023-04-05T00:10:09Z",
+      "side": 1,
+      "message": "I mean it is already implied by the log statement above it.",
+      "parentUuid": "9de7d794_bfe20ebe",
+      "revId": "7c436bc0d1caae0de2527cdabc0ac06a35ba3431",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
