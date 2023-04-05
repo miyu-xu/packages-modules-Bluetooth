@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cce1e735_6f2cfa8e",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 38
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-04-05T08:57:24Z",
+      "side": 1,
+      "message": "Should we add a @GuardeBy annotation that self reference the mSdpTracker ?",
+      "range": {
+        "startLine": 72,
+        "startChar": 18,
+        "endLine": 72,
+        "endChar": 25
+      },
+      "revId": "3982bd92f622bd13b7096e2b3a7e75ebdf63ba49",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dcfda211_770d37f3",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 38
+      },
+      "lineNbr": 1472,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-04-05T08:57:24Z",
+      "side": 1,
+      "message": "Synchronized on mSdpTracker ?",
+      "range": {
+        "startLine": 1472,
+        "startChar": 15,
+        "endLine": 1472,
+        "endChar": 26
+      },
+      "revId": "3982bd92f622bd13b7096e2b3a7e75ebdf63ba49",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
