@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6448bb23_ead0971b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-04-05T21:06:03Z",
+      "side": 1,
+      "message": "Same remark about the transaction ID values.",
+      "revId": "33cf11f35ada3d1b3dc68cd0493e2991e5b307e2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
