@@ -50,6 +50,10 @@ static tBTA_HH_RPT_CACHE_ENTRY sReportCache[BTA_HH_NV_LOAD_MAX];
 #define THREAD_NORMAL_PRIORITY 0
 #define BT_HH_THREAD "bt_hh_thread"
 
+static const bthh_report_type_t map_rtype_uhid_hh[] = {BTHH_FEATURE_REPORT,
+                                                       BTHH_OUTPUT_REPORT,
+                                                       BTHH_INPUT_REPORT};
+
 void uhid_set_non_blocking(int fd) {
   int opts = fcntl(fd, F_GETFL);
   if (opts < 0)
@@ -62,6 +66,61 @@ void uhid_set_non_blocking(int fd) {
     APPL_TRACE_EVENT("%s() Setting non-blocking flag failed (%s)", __func__,
                      strerror(errno));
 }
+
+static bool uhid_feature_req_handler(btif_hh_device_t* p_dev,
+                                     struct uhid_feature_req& req) {
+  LOG_DEBUG("Report type = %d, id = %d", req.rtype, req.rnum);
+
+  if (req.rtype <= UHID_INPUT_REPORT) {
+    if (p_dev->get_rpt_id_queue) {
+      uint32_t* context = (uint32_t*)osi_malloc(sizeof(uint32_t));
+      *context = req.id;
+
+      if (fixed_queue_try_enqueue(p_dev->get_rpt_id_queue, (void*)context)) {
+        p_dev->get_rpt_snt++;
+        btif_hh_getreport(p_dev, map_rtype_uhid_hh[req.rtype], req.rnum, 0);
+        return true;
+      } else {
+        osi_free(context);
+        LOG_ERROR("Queue is full, dropping event %d", req.id);
+      }
+    } else {
+        LOG_ERROR("Queue is not initialized");
+    }
+  } else {
+    LOG_ERROR("Invalid report type %d", req.rtype);
+  }
+
+  return false;
+}
+
+#if ENABLE_UHID_SET_REPORT
+static bool uhid_set_report_req_handler(btif_hh_device_t* p_dev,
+                                        struct uhid_set_report_req& req) {
+  LOG_DEBUG("Report type = %d, id = %d", req.rtype, req.rnum);
+
+  if (req.rtype <= UHID_INPUT_REPORT) {
+    if (p_dev->set_rpt_id_queue) {
+      uint32_t* context = (uint32_t*)osi_malloc(sizeof(uint32_t));
+      *context = req.id;
+
+      if (fixed_queue_try_enqueue(p_dev->set_rpt_id_queue, (void*)context)) {
+        btif_hh_setreport(p_dev, map_rtype_uhid_hh[req.rtype], req.size, req.data);
+        return true;
+      } else {
+        osi_free(context);
+        LOG_ERROR("Queue is full, dropping event %d", req.id);
+      }
+    } else {
+      LOG_ERROR("Queue is not initialized");
+    }
+  } else {
+    LOG_ERROR("Invalid report type %d", req.rtype);
+  }
+
+  return false;
+}
+#endif // ENABLE_UHID_SET_REPORT
 
 /*Internal function to perform UHID write and error checking*/
 static int uhid_write(int fd, const struct uhid_event* ev) {
@@ -146,74 +205,37 @@ static int uhid_read_event(btif_hh_device_t* p_dev) {
       }
       APPL_TRACE_DEBUG("UHID_OUTPUT_EV from uhid-dev\n");
       break;
-    case UHID_FEATURE:
+
+    case UHID_FEATURE: // UHID_GET_REPORT
       if (ret < (ssize_t)(sizeof(ev.type) + sizeof(ev.u.feature))) {
-        APPL_TRACE_ERROR(
-            "%s: UHID_FEATURE: Invalid size read from uhid-dev: %zd < %zu",
-            __func__, ret, sizeof(ev.type) + sizeof(ev.u.feature));
+        LOG_ERROR("UHID_GET_REPORT: Invalid size read from uhid-dev: %zd < %zu",
+                  ret, sizeof(ev.type) + sizeof(ev.u.feature));
         return -EFAULT;
       }
-      APPL_TRACE_DEBUG("UHID_FEATURE: Report type = %d", ev.u.feature.rtype);
-      p_dev->get_rpt_snt++;
-      if (p_dev->get_rpt_id_queue) {
-        uint32_t* get_rpt_id = (uint32_t*)osi_malloc(sizeof(uint32_t));
-        *get_rpt_id = ev.u.feature.id;
-        auto ok = fixed_queue_try_enqueue(p_dev->get_rpt_id_queue, (void*)get_rpt_id);
-        if (!ok) {
-            LOG_ERROR("get_rpt_id_queue is full, dropping event %d", *get_rpt_id);
-            osi_free(get_rpt_id);
-            return -EFAULT;
-        }
+
+      if (!uhid_feature_req_handler(p_dev, ev.u.feature)) {
+        return -EFAULT;
       }
-      if (ev.u.feature.rtype == UHID_FEATURE_REPORT)
-        btif_hh_getreport(p_dev, BTHH_FEATURE_REPORT, ev.u.feature.rnum, 0);
-      else
-        APPL_TRACE_ERROR("%s: UHID_FEATURE: Invalid report type = %d", __func__,
-                         ev.u.feature.rtype);
+
       break;
+
 #if ENABLE_UHID_SET_REPORT
     case UHID_SET_REPORT: {
-      bool sent = true;
-
       if (ret < (ssize_t)(sizeof(ev.type) + sizeof(ev.u.set_report))) {
-        LOG_ERROR("Invalid size read from uhid-dev: %zd < %zu", ret,
-                  sizeof(ev.type) + sizeof(ev.u.set_report));
+        LOG_ERROR("UHID_SET_REPORT: Invalid size read from uhid-dev: %zd < %zu",
+                  ret, sizeof(ev.type) + sizeof(ev.u.set_report));
         return -EFAULT;
       }
 
-      LOG_DEBUG("UHID_SET_REPORT: Report type = %d, report_size = %d",
-                ev.u.set_report.rtype, ev.u.set_report.size);
-
-      if (ev.u.set_report.rtype == UHID_FEATURE_REPORT) {
-        btif_hh_setreport(p_dev, BTHH_FEATURE_REPORT, ev.u.set_report.size,
-                          ev.u.set_report.data);
-      } else if (ev.u.set_report.rtype == UHID_OUTPUT_REPORT) {
-        btif_hh_setreport(p_dev, BTHH_OUTPUT_REPORT, ev.u.set_report.size,
-                          ev.u.set_report.data);
-      } else if (ev.u.set_report.rtype == UHID_INPUT_REPORT) {
-        btif_hh_setreport(p_dev, BTHH_INPUT_REPORT, ev.u.set_report.size,
-                          ev.u.set_report.data);
-      } else {
-        LOG_ERROR("UHID_SET_REPORT: Invalid Report type = %d",
-                  ev.u.set_report.rtype);
-        sent = false;
-      }
-
-      if (sent && p_dev->set_rpt_id_queue) {
-        uint32_t* set_rpt_id = (uint32_t*)osi_malloc(sizeof(uint32_t));
-        *set_rpt_id = ev.u.set_report.id;
-        auto ok = fixed_queue_try_enqueue(p_dev->set_rpt_id_queue, (void*)set_rpt_id);
-        if (!ok) {
-            LOG_ERROR("set_rpt_id_queue is full, dropping event %d", *set_rpt_id);
-            osi_free(set_rpt_id);
-            return -EFAULT;
-        }
+      if (!uhid_set_report_req_handler(p_dev, ev.u.set_report)) {
+        return -EFAULT;
       }
       break;
     }
 #endif  // ENABLE_UHID_SET_REPORT
+
     default:
-      APPL_TRACE_DEBUG("Invalid event from uhid-dev: %u\n", ev.type);
+      LOG_ERROR("Invalid event from uhid-dev: %u\n", ev.type);
   }
 
   return 0;
