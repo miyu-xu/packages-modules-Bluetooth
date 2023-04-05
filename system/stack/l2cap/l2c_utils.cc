@@ -1606,6 +1606,7 @@ void l2cu_release_ccb(tL2C_CCB* p_ccb) {
   // Clear Remote CID and Local Id
   p_ccb->remote_cid = 0;
   p_ccb->local_id = 0;
+  p_ccb->chnl_state = CST_CLOSED;
 
   /* If no channels on the connection, start idle timeout */
   if ((p_lcb) && p_lcb->in_use) {
