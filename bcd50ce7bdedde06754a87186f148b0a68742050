@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "29faad2f_d650ca59",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 43
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-04-05T21:05:16Z",
+      "side": 1,
+      "message": "Can we synchronize before checking if it\u0027s null?",
+      "range": {
+        "startLine": 213,
+        "startChar": 12,
+        "endLine": 213,
+        "endChar": 23
+      },
+      "revId": "bcd50ce7bdedde06754a87186f148b0a68742050",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
