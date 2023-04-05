@@ -300,7 +300,7 @@ async fn user_passkey_request(ctx: &impl Context) -> Result<(), ()> {
                 ctx.send_lmp_packet(lmp::PasskeyFailedBuilder { transaction_id: 0 });
                 return Err(());
             }
-            Either::Right(_) => {
+            Either::Right(keypress) => {
                 ctx.send_hci_event(
                     hci::SendKeypressNotificationCompleteBuilder {
                         num_hci_command_packets,
@@ -309,7 +309,10 @@ async fn user_passkey_request(ctx: &impl Context) -> Result<(), ()> {
                     }
                     .build(),
                 );
-                // TODO: send LmpKeypressNotification
+                ctx.send_lmp_packet(lmp::KeypressNotificationBuilder {
+                    transaction_id: 0,
+                    notification_type: keypress.get_notification_type().to_u8().unwrap(),
+                })
             }
         }
     }
@@ -482,6 +485,7 @@ pub async fn initiate(ctx: &impl Context) -> Result<(), ()> {
                 if initiator.io_capability == hci::IoCapability::KeyboardOnly {
                     user_passkey_request(ctx).await?;
                 } else {
+                    // TODO: Add tests for any LMP Keypress handling that needs to be done here.
                     ctx.send_hci_event(
                         hci::UserPasskeyNotificationBuilder {
                             bd_addr: ctx.peer_address(),
@@ -688,18 +692,68 @@ pub async fn respond(ctx: &impl Context, request: lmp::IoCapabilityReqPacket) ->
         }
         AuthenticationMethod::PasskeyEntry => {
             if responder.io_capability == hci::IoCapability::KeyboardOnly {
-                // TODO: handle error
-                let _user_passkey = user_passkey_request(ctx).await;
+                user_passkey_request(ctx).await.is_ok()
             } else {
                 ctx.send_hci_event(
                     hci::UserPasskeyNotificationBuilder { bd_addr: ctx.peer_address(), passkey: 0 }
                         .build(),
                 );
+                // Handle keypresses until we get SimplePairingConfirm or PasskeyFailed
+                let non_keypress = loop {
+                    match ctx
+                        .receive_lmp_packet::<Either<
+                            lmp::KeypressNotificationPacket,
+                            Either<lmp::SimplePairingConfirmPacket, lmp::PasskeyFailedPacket>,
+                        >>()
+                        .await
+                    {
+                        Either::Left(keypress) => {
+                            ctx.send_hci_event(hci::KeypressNotificationBuilder {
+                                bd_addr: ctx.peer_address(),
+                                notification_type: hci::KeypressNotificationType::from_u8(
+                                    keypress.get_notification_type(),
+                                )
+                                .unwrap(),
+                            });
+                        }
+                        Either::Right(right) => break right,
+                    }
+                };
+                let pairing_failed = match non_keypress {
+                    Either::Left(pairing_confirm) => {
+                        let commitment_value = [0; COMMITMENT_VALUE_SIZE];
+                        if pairing_confirm.get_commitment_value() != &commitment_value {
+                            todo!();
+                        }
+                        receive_commitment(ctx, true).await.is_err()
+                    }
+                    Either::Right(_passkey_failed) => true,
+                };
+                if pairing_failed {
+                    ctx.send_hci_event(
+                        hci::SimplePairingCompleteBuilder {
+                            status: hci::ErrorCode::AuthenticationFailure,
+                            bd_addr: ctx.peer_address(),
+                        }
+                        .build(),
+                    );
+                    return Err(());
+                };
+                // First commitment is already sent, so take care of the n-1 that remain.
+                for _ in 0..PASSKEY_ENTRY_REPEAT_NUMBER - 1 {
+                    if receive_commitment(ctx, false).await.is_err() {
+                        ctx.send_hci_event(
+                            hci::SimplePairingCompleteBuilder {
+                                status: hci::ErrorCode::AuthenticationFailure,
+                                bd_addr: ctx.peer_address(),
+                            }
+                            .build(),
+                        );
+                        return Err(());
+                    }
+                }
+                false
             }
-            for _ in 0..PASSKEY_ENTRY_REPEAT_NUMBER {
-                receive_commitment(ctx, false).await?;
-            }
-            false
         }
         AuthenticationMethod::OutOfBand => {
             if responder.oob_data_present != hci::OobDataPresent::NotPresent {
@@ -911,7 +965,6 @@ mod tests {
     }
 
     #[test]
-    #[should_panic] // TODO: make the test pass
     fn passkey_entry_responder_failure_on_initiating_side() {
         let context = TestContext::new();
         let procedure = respond;
@@ -928,7 +981,6 @@ mod tests {
     }
 
     #[test]
-    #[should_panic] // TODO: make the test pass
     fn passkey_entry_responder_failure_on_responding_side() {
         let context = TestContext::new();
         let procedure = respond;
@@ -1112,7 +1164,6 @@ mod tests {
     }
 
     #[test]
-    #[should_panic] // TODO: make the test pass
     fn passkey_entry_with_keypress_notification_initiator_success() {
         let context = TestContext::new();
         let procedure = initiate;
@@ -1121,7 +1172,6 @@ mod tests {
     }
 
     #[test]
-    #[should_panic] // TODO: make the test pass
     fn passkey_entry_with_keypress_notification_responder_success() {
         let context = TestContext::new();
         let procedure = respond;
@@ -1130,7 +1180,6 @@ mod tests {
     }
 
     #[test]
-    #[should_panic] // TODO: make the test pass
     fn passkey_entry_with_keypress_notification_initiator_failure_on_responding_side() {
         let context = TestContext::new();
         let procedure = initiate;
@@ -1139,7 +1188,6 @@ mod tests {
     }
 
     #[test]
-    #[should_panic] // TODO: make the test pass
     fn passkey_entry_with_keypress_notificiation_responder_failure_on_responding_side() {
         let context = TestContext::new();
         let procedure = respond;
