@@ -69,6 +69,24 @@
       "parentUuid": "286ee121_0b248f9e",
       "revId": "786eea90a49be423a84f0ab75cf665cead348f6b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1f3efb78_921c7ffa",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 4139,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-04-05T16:26:22Z",
+      "side": 1,
+      "message": "ok so it is expected that only SCANNER_BTIF will have valid p_cback, right?\nIf so, lets make code clear about that and that should be fine.\n\nEspecially that if SCANNER_BTIF will start scan first, and the TA or CSIS will do same, the p_scan_cback will got clear.",
+      "parentUuid": "a7a4c76f_2350a138",
+      "revId": "786eea90a49be423a84f0ab75cf665cead348f6b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
