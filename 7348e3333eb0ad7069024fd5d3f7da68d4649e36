@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3f730416_e879b684",
+        "filename": "android/pandora/server/src/com/android/pandora/GattInstance.kt",
+        "patchSetId": 4
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 1970930
+      },
+      "writtenOn": "2023-04-05T09:59:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dc70ad3a_39ab0ad4",
+      "range": {
+        "startLine": 160,
+        "startChar": 0,
+        "endLine": 167,
+        "endChar": 7
+      },
+      "revId": "7348e3333eb0ad7069024fd5d3f7da68d4649e36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5d6cbcf5_33b6c6c2",
@@ -54,6 +78,30 @@
       "writtenOn": "2023-03-31T00:07:31Z",
       "side": 1,
       "message": "Regarding the comment on onCharacteristicChanged, we should have a characteristic as parameter and access the map accordingly",
+      "range": {
+        "startLine": 204,
+        "startChar": 2,
+        "endLine": 206,
+        "endChar": 3
+      },
+      "revId": "7348e3333eb0ad7069024fd5d3f7da68d4649e36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d2da6172_d7f7c11f",
+        "filename": "android/pandora/server/src/com/android/pandora/GattInstance.kt",
+        "patchSetId": 4
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 1970930
+      },
+      "writtenOn": "2023-04-05T09:59:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5d6cbcf5_33b6c6c2",
       "range": {
         "startLine": 204,
         "startChar": 2,
@@ -111,6 +159,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "438e27d4_860129ec",
+        "filename": "pandora/interfaces/pandora_experimental/gatt.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1970930
+      },
+      "writtenOn": "2023-04-05T09:59:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d5a73ac0_bb288db7",
+      "range": {
+        "startLine": 44,
+        "startChar": 2,
+        "endLine": 45,
+        "endChar": 143
+      },
+      "revId": "7348e3333eb0ad7069024fd5d3f7da68d4649e36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7c88044a_57f3ade5",
@@ -134,6 +206,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8b49b080_7eae67e9",
+        "filename": "pandora/interfaces/pandora_experimental/gatt.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1970930
+      },
+      "writtenOn": "2023-04-05T09:59:38Z",
+      "side": 1,
+      "message": "Taken care in gatt.py",
+      "parentUuid": "7c88044a_57f3ade5",
+      "range": {
+        "startLine": 145,
+        "startChar": 0,
+        "endLine": 148,
+        "endChar": 1
+      },
+      "revId": "7348e3333eb0ad7069024fd5d3f7da68d4649e36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2eb76e41_6d5bdd4f",
@@ -147,6 +243,30 @@
       "writtenOn": "2023-03-31T00:07:31Z",
       "side": 1,
       "message": "nit: If a list is given as input then we should also have a list here",
+      "range": {
+        "startLine": 151,
+        "startChar": 0,
+        "endLine": 154,
+        "endChar": 0
+      },
+      "revId": "7348e3333eb0ad7069024fd5d3f7da68d4649e36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e02417e2_f0ef11f4",
+        "filename": "pandora/interfaces/pandora_experimental/gatt.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 1970930
+      },
+      "writtenOn": "2023-04-05T09:59:38Z",
+      "side": 1,
+      "message": "Taken care in gatt.py",
+      "parentUuid": "2eb76e41_6d5bdd4f",
       "range": {
         "startLine": 151,
         "startChar": 0,
