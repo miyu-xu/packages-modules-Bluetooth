@@ -93,6 +93,30 @@
       },
       "revId": "3982bd92f622bd13b7096e2b3a7e75ebdf63ba49",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6aa21d45_8f690cc5",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 38
+      },
+      "lineNbr": 1472,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-04-06T08:27:18Z",
+      "side": 1,
+      "message": "I think it is harmless to add it, but it allow us to keep homogeneity on the code",
+      "parentUuid": "814efcd7_0270a833",
+      "range": {
+        "startLine": 1472,
+        "startChar": 15,
+        "endLine": 1472,
+        "endChar": 26
+      },
+      "revId": "3982bd92f622bd13b7096e2b3a7e75ebdf63ba49",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
