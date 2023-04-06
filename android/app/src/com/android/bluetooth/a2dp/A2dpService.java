@@ -1501,10 +1501,10 @@ public class A2dpService extends ProfileService {
                 Binder.restoreCallingIdentity(token);
             }
             if (checkPrivilegedNeeded) {
-                enforceBluetoothPrivilegedPermission(service);
-            } else if (!hasBluetoothPrivilegedPermission(service)) {
-                enforceCdmAssociation(service.mCompanionDeviceManager, service,
+                if (!hasBluetoothPrivilegedPermission(service)) {
+                    enforceCdmAssociation(service.mCompanionDeviceManager, service,
                             source.getPackageName(), Binder.getCallingUid(), device);
+                }
             }
             service.setCodecConfigPreference(device, codecConfig);
         }
