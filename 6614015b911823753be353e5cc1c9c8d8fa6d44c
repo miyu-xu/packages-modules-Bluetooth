@@ -252,6 +252,30 @@
       },
       "revId": "6614015b911823753be353e5cc1c9c8d8fa6d44c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "29deec60_499c69bd",
+        "filename": "tools/pdl/scripts/generate_cxx_backend.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 784,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2023-04-06T09:55:53Z",
+      "side": 1,
+      "message": "Yeah, it\u0027s super confusing to me too! 😊\n\nRunning clang-tidy on the generated file is a wonderful idea!",
+      "parentUuid": "75a903af_a8307826",
+      "range": {
+        "startLine": 784,
+        "startChar": 15,
+        "endLine": 784,
+        "endChar": 24
+      },
+      "revId": "6614015b911823753be353e5cc1c9c8d8fa6d44c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
