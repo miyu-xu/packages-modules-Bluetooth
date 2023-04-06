@@ -119,8 +119,6 @@ extern void btm_ble_resolving_list_init(uint8_t max_irk_list_sz);
 
 extern void btm_ble_adv_init(void);
 extern void btm_ble_multi_adv_cleanup(void);
-extern void btm_ble_batchscan_init(void);
-extern void btm_ble_adv_filter_init(void);
 extern bool btm_ble_topology_check(tBTM_BLE_STATE_MASK request);
 extern bool btm_ble_clear_topology_mask(tBTM_BLE_STATE_MASK request_state);
 extern bool btm_ble_set_topology_mask(tBTM_BLE_STATE_MASK request_state);

@@ -115,48 +115,6 @@ extern void BTM_BleGetDynamicAudioBuffer(
 
 /*******************************************************************************
  *
- * Function         BTM_BleSetStorageConfig
- *
- * Description      This function is called to setup storage configuration and
- *                  setup callbacks.
- *
- * Parameters       uint8_t batch_scan_full_max -Batch scan full maximum
-                    uint8_t batch_scan_trunc_max - Batch scan truncated value
- maximum
-                    uint8_t batch_scan_notify_threshold - Threshold value
-                    cb - Setup callback
-                    tBTM_BLE_SCAN_THRESHOLD_CBACK *p_thres_cback -Threshold
- callback
-                    void *p_ref - Reference value
- *
- *
- ******************************************************************************/
-extern void BTM_BleSetStorageConfig(
-    uint8_t batch_scan_full_max, uint8_t batch_scan_trunc_max,
-    uint8_t batch_scan_notify_threshold,
-    base::Callback<void(uint8_t /* status */)> cb,
-    tBTM_BLE_SCAN_THRESHOLD_CBACK* p_thres_cback, tBTM_BLE_REF_VALUE ref_value);
-
-/* This function is called to enable batch scan */
-extern void BTM_BleEnableBatchScan(
-    tBTM_BLE_BATCH_SCAN_MODE scan_mode, uint32_t scan_interval,
-    uint32_t scan_window, tBTM_BLE_DISCARD_RULE discard_rule,
-    tBLE_ADDR_TYPE addr_type, base::Callback<void(uint8_t /* status */)> cb);
-
-/* This function is called to disable batch scanning */
-extern void BTM_BleDisableBatchScan(
-    base::Callback<void(uint8_t /* status */)> cb);
-
-/* This function is called to read batch scan reports */
-extern void BTM_BleReadScanReports(tBLE_SCAN_MODE scan_mode,
-                                   tBTM_BLE_SCAN_REP_CBACK cb);
-
-/* This function is called to setup the callback for tracking */
-extern void BTM_BleTrackAdvertiser(tBTM_BLE_TRACK_ADV_CBACK* p_track_cback,
-                                   tBTM_BLE_REF_VALUE ref_value);
-
-/*******************************************************************************
- *
  * Function         BTM_BleObserve
  *
  * Description      This procedure keep the device listening for advertising
@@ -536,40 +494,6 @@ extern uint8_t BTM_BleMaxMultiAdvInstanceCount();
  *
  ******************************************************************************/
 extern bool BTM_UseLeLink(const RawAddress& bd_addr);
-
-/*******************************************************************************
- *
- * Function         BTM_BleAdvFilterParamSetup
- *
- * Description      This function is called to setup the adv data payload filter
- *                  condition.
- *
- ******************************************************************************/
-extern void BTM_BleAdvFilterParamSetup(
-    tBTM_BLE_SCAN_COND_OP action, tBTM_BLE_PF_FILT_INDEX filt_index,
-    std::unique_ptr<btgatt_filt_param_setup_t> p_filt_params,
-    tBTM_BLE_PF_PARAM_CB cb);
-
-/**
- * This functions are called to configure the adv data payload filter condition
- */
-extern void BTM_LE_PF_set(tBTM_BLE_PF_FILT_INDEX filt_index,
-                          std::vector<ApcfCommand> commands,
-                          tBTM_BLE_PF_CFG_CBACK cb);
-extern void BTM_LE_PF_clear(tBTM_BLE_PF_FILT_INDEX filt_index,
-                            tBTM_BLE_PF_CFG_CBACK cb);
-
-/*******************************************************************************
- *
- * Function         BTM_BleEnableDisableFilterFeature
- *
- * Description      Enable or disable the APCF feature
- *
- * Parameters       enable - true - enables APCF, false - disables APCF
- *
- ******************************************************************************/
-extern void BTM_BleEnableDisableFilterFeature(
-    uint8_t enable, tBTM_BLE_PF_STATUS_CBACK p_stat_cback);
 
 /*******************************************************************************
  *

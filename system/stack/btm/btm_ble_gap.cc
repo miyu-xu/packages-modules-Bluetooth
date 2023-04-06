@@ -67,8 +67,6 @@ extern bool btm_ble_init_pseudo_addr(tBTM_SEC_DEV_REC* p_dev_rec,
 extern bool btm_identity_addr_to_random_pseudo(RawAddress* bd_addr,
                                                tBLE_ADDR_TYPE* p_addr_type,
                                                bool refresh);
-extern void btm_ble_batchscan_init(void);
-extern void btm_ble_adv_filter_init(void);
 extern void btm_clear_all_pending_le_entry(void);
 extern const tBLE_BD_ADDR convert_to_address_with_type(
     const RawAddress& bd_addr, const tBTM_SEC_DEV_REC* p_dev_rec);
@@ -80,12 +78,6 @@ extern const tBLE_BD_ADDR convert_to_address_with_type(
   BTM_VSC_CHIP_CAPABILITY_RSP_LEN
 #define BTM_VSC_CHIP_CAPABILITY_RSP_LEN_M_RELEASE 15
 #define BTM_VSC_CHIP_CAPABILITY_RSP_LEN_S_RELEASE 25
-
-/* Sysprop paths for scan parameters */
-static const char kPropertyInquiryScanInterval[] =
-    "bluetooth.core.le.inquiry_scan_interval";
-static const char kPropertyInquiryScanWindow[] =
-    "bluetooth.core.le.inquiry_scan_window";
 
 static void btm_ble_start_scan();
 static void btm_ble_stop_scan();
@@ -273,7 +265,6 @@ static void btm_ble_stop_observe(void);
 static void btm_ble_fast_adv_timer_timeout(void* data);
 static void btm_ble_start_slow_adv(void);
 static void btm_ble_inquiry_timer_gap_limited_discovery_timeout(void* data);
-static void btm_ble_inquiry_timer_timeout(void* data);
 static void btm_ble_observer_timer_timeout(void* data);
 
 enum : uint8_t {
@@ -747,16 +738,12 @@ static void btm_ble_vendor_capability_vsc_cmpl_cback(
 
   btm_ble_adv_init();
 
-  if (btm_cb.cmn_ble_vsc_cb.max_filter > 0) btm_ble_adv_filter_init();
-
   /* VS capability included and non-4.2 device */
   if (controller_get_interface()->supports_ble() &&
       controller_get_interface()->supports_ble_privacy() &&
       btm_cb.cmn_ble_vsc_cb.max_irk_list_sz > 0 &&
       controller_get_interface()->get_ble_resolving_list_max_size() == 0)
     btm_ble_resolving_list_init(btm_cb.cmn_ble_vsc_cb.max_irk_list_sz);
-
-  if (btm_cb.cmn_ble_vsc_cb.tot_scan_results_strg > 0) btm_ble_batchscan_init();
 
   if (p_ctrl_le_feature_rd_cmpl_cback != NULL)
     p_ctrl_le_feature_rd_cmpl_cback(static_cast<tHCI_STATUS>(status));
@@ -2001,106 +1988,6 @@ void btm_send_hci_set_scan_params(uint8_t scan_type, uint16_t scan_int,
   }
 }
 
-/* Scan filter param config event */
-static void btm_ble_scan_filt_param_cfg_evt(uint8_t avbl_space,
-                                            tBTM_BLE_SCAN_COND_OP action_type,
-                                            tBTM_STATUS btm_status) {
-  if (btm_status != btm_status_value(BTM_SUCCESS)) {
-    BTM_TRACE_ERROR("%s, %d", __func__, btm_status);
-  } else {
-    BTM_TRACE_DEBUG("%s", __func__);
-  }
-}
-
-/*******************************************************************************
- *
- * Function         btm_ble_start_inquiry
- *
- * Description      This function is called to start BLE inquiry procedure.
- *                  If the duration is zero, the periodic inquiry mode is
- *                  cancelled.
- *
- * Parameters:      duration - Duration of inquiry in seconds
- *
- * Returns          BTM_CMD_STARTED if successfully started
- *                  BTM_BUSY - if an inquiry is already active
- *
- ******************************************************************************/
-tBTM_STATUS btm_ble_start_inquiry(uint8_t duration) {
-  tBTM_BLE_CB* p_ble_cb = &btm_cb.ble_ctr_cb;
-  tBTM_INQUIRY_VAR_ST* p_inq = &btm_cb.btm_inq_vars;
-
-  BTM_TRACE_DEBUG("btm_ble_start_inquiry: inq_active = 0x%02x",
-                  btm_cb.btm_inq_vars.inq_active);
-
-  /* if selective connection is active, or inquiry is already active, reject it
-   */
-  if (p_ble_cb->is_ble_inquiry_active()) {
-    BTM_TRACE_ERROR("LE Inquiry is active, can not start inquiry");
-    return (BTM_BUSY);
-  }
-
-  /* Cleanup anything remaining on index 0 */
-  BTM_BleAdvFilterParamSetup(BTM_BLE_SCAN_COND_DELETE,
-                             static_cast<tBTM_BLE_PF_FILT_INDEX>(0), nullptr,
-                             base::Bind(btm_ble_scan_filt_param_cfg_evt));
-
-  auto adv_filt_param = std::make_unique<btgatt_filt_param_setup_t>();
-  /* Add an allow-all filter on index 0*/
-  adv_filt_param->dely_mode = IMMEDIATE_DELY_MODE;
-  adv_filt_param->feat_seln = ALLOW_ALL_FILTER;
-  adv_filt_param->filt_logic_type = BTA_DM_BLE_PF_FILT_LOGIC_OR;
-  adv_filt_param->list_logic_type = BTA_DM_BLE_PF_LIST_LOGIC_OR;
-  adv_filt_param->rssi_low_thres = LOWEST_RSSI_VALUE;
-  adv_filt_param->rssi_high_thres = LOWEST_RSSI_VALUE;
-  BTM_BleAdvFilterParamSetup(BTM_BLE_SCAN_COND_ADD, static_cast<tBTM_BLE_PF_FILT_INDEX>(0),
-                 std::move(adv_filt_param), base::Bind(btm_ble_scan_filt_param_cfg_evt));
-
-  uint16_t scan_interval = osi_property_get_int32(kPropertyInquiryScanInterval,
-                                                  BTM_BLE_LOW_LATENCY_SCAN_INT);
-  uint16_t scan_window = osi_property_get_int32(kPropertyInquiryScanWindow,
-                                                BTM_BLE_LOW_LATENCY_SCAN_WIN);
-
-  if (!p_ble_cb->is_ble_scan_active()) {
-    cache.ClearAll();
-    btm_send_hci_set_scan_params(
-        BTM_BLE_SCAN_MODE_ACTI, scan_interval, scan_window,
-        btm_cb.ble_ctr_cb.addr_mgnt_cb.own_addr_type, SP_ADV_ALL);
-    p_ble_cb->inq_var.scan_type = BTM_BLE_SCAN_MODE_ACTI;
-    btm_ble_start_scan();
-  } else if ((p_ble_cb->inq_var.scan_interval != scan_interval) ||
-             (p_ble_cb->inq_var.scan_window != scan_window)) {
-    BTM_TRACE_DEBUG("%s, restart LE scan with low latency scan params",
-                    __func__);
-    btm_send_hci_scan_enable(BTM_BLE_SCAN_DISABLE, BTM_BLE_DUPLICATE_ENABLE);
-    btm_send_hci_set_scan_params(
-        BTM_BLE_SCAN_MODE_ACTI, scan_interval, scan_window,
-        btm_cb.ble_ctr_cb.addr_mgnt_cb.own_addr_type, SP_ADV_ALL);
-    btm_send_hci_scan_enable(BTM_BLE_SCAN_ENABLE, BTM_BLE_DUPLICATE_DISABLE);
-  }
-
-  p_inq->inq_active |= BTM_BLE_GENERAL_INQUIRY;
-  p_ble_cb->set_ble_inquiry_active();
-
-  BTM_TRACE_DEBUG("btm_ble_start_inquiry inq_active = 0x%02x",
-                  p_inq->inq_active);
-
-  if (duration != 0) {
-    /* start inquiry timer */
-    uint64_t duration_ms = duration * 1000;
-    alarm_set_on_mloop(p_ble_cb->inq_var.inquiry_timer, duration_ms,
-                       btm_ble_inquiry_timer_timeout, NULL);
-  }
-
-  btm_cb.neighbor.le_inquiry = {
-      .start_time_ms = timestamper_in_milliseconds.GetTimestamp(),
-      .results = 0,
-  };
-  BTM_LogHistory(kBtmLogTag, RawAddress::kEmpty, "Le inquiry started");
-
-  return BTM_CMD_STARTED;
-}
-
 /*******************************************************************************
  *
  * Function         btm_ble_read_remote_name_cmpl
@@ -3048,53 +2935,6 @@ static void btm_ble_stop_scan(void) {
 
   btm_update_scanner_filter_policy(SP_ADV_ALL);
 }
-/*******************************************************************************
- *
- * Function         btm_ble_stop_inquiry
- *
- * Description      Stop the BLE Inquiry.
- *
- * Returns          void
- *
- ******************************************************************************/
-void btm_ble_stop_inquiry(void) {
-  tBTM_INQUIRY_VAR_ST* p_inq = &btm_cb.btm_inq_vars;
-  tBTM_BLE_CB* p_ble_cb = &btm_cb.ble_ctr_cb;
-
-  alarm_cancel(p_ble_cb->inq_var.inquiry_timer);
-
-  const unsigned long long duration_timestamp =
-      timestamper_in_milliseconds.GetTimestamp() -
-      btm_cb.neighbor.le_inquiry.start_time_ms;
-  BTM_LogHistory(kBtmLogTag, RawAddress::kEmpty, "Le inquiry stopped",
-                 base::StringPrintf("duration_s:%6.3f results:%-3lu",
-                                    (double)duration_timestamp / 1000.0,
-                                    btm_cb.neighbor.le_inquiry.results));
-  p_ble_cb->reset_ble_inquiry();
-
-  /* Cleanup anything remaining on index 0 */
-  BTM_BleAdvFilterParamSetup(BTM_BLE_SCAN_COND_DELETE,
-                             static_cast<tBTM_BLE_PF_FILT_INDEX>(0), nullptr,
-                             base::Bind(btm_ble_scan_filt_param_cfg_evt));
-
-  /* If no more scan activity, stop LE scan now */
-  if (!p_ble_cb->is_ble_scan_active()) {
-    btm_ble_stop_scan();
-  } else if ((p_ble_cb->inq_var.scan_interval !=
-              BTM_BLE_LOW_LATENCY_SCAN_INT) ||
-             (p_ble_cb->inq_var.scan_window != BTM_BLE_LOW_LATENCY_SCAN_WIN)) {
-    BTM_TRACE_DEBUG("%s: setting default params for ongoing observe", __func__);
-    btm_ble_stop_scan();
-    btm_ble_start_scan();
-  }
-
-  /* If we have a callback registered for inquiry complete, call it */
-  BTM_TRACE_DEBUG("BTM Inq Compl Callback: status 0x%02x, num results %d",
-                  p_inq->inq_cmpl_info.status, p_inq->inq_cmpl_info.num_resp);
-
-  btm_process_inq_complete(
-      HCI_SUCCESS, (uint8_t)(p_inq->inqparms.mode & BTM_BLE_INQUIRY_MASK));
-}
 
 /*******************************************************************************
  *
@@ -3252,10 +3092,6 @@ static void btm_ble_inquiry_timer_gap_limited_discovery_timeout(
   btm_cb.btm_inq_vars.discoverable_mode &= ~BTM_BLE_LIMITED_DISCOVERABLE;
   btm_ble_set_adv_flag(btm_cb.btm_inq_vars.connectable_mode,
                        btm_cb.btm_inq_vars.discoverable_mode);
-}
-
-static void btm_ble_inquiry_timer_timeout(UNUSED_ATTR void* data) {
-  btm_ble_stop_inquiry();
 }
 
 static void btm_ble_observer_timer_timeout(UNUSED_ATTR void* data) {
@@ -3489,9 +3325,6 @@ void btm_ble_init(void) {
       alarm_new("btm_ble_addr.refresh_raddr_timer");
   btm_ble_pa_sync_cb = {};
   sync_timeout_alarm = alarm_new("btm.sync_start_task");
-#if (BLE_VND_INCLUDED == FALSE)
-  btm_ble_adv_filter_init();
-#endif
 }
 
 // Clean up btm ble control block

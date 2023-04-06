@@ -79,9 +79,6 @@ extern bool btm_ble_cancel_remote_name(const RawAddress& remote_bda);
 extern tBTM_STATUS btm_ble_set_discoverability(uint16_t combined_mode);
 extern tBTM_STATUS btm_ble_set_connectability(uint16_t combined_mode);
 
-extern tBTM_STATUS btm_ble_start_inquiry(uint8_t duration);
-extern void btm_ble_stop_inquiry(void);
-
 using bluetooth::Uuid;
 
 /* 3 second timeout waiting for responses */
@@ -495,44 +492,7 @@ void BTM_CancelInquiry(void) {
     return;
   }
 
-  tBTM_INQUIRY_VAR_ST* p_inq = &btm_cb.btm_inq_vars;
-  BTM_TRACE_API("BTM_CancelInquiry called");
-
-  CHECK(BTM_IsDeviceUp());
-
-  BTM_LogHistory(
-      kBtmLogTag, RawAddress::kEmpty, "Classic inquiry canceled",
-      base::StringPrintf("duration_s:%6.3f results:%lu",
-                         (timestamper_in_milliseconds.GetTimestamp() -
-                          btm_cb.neighbor.classic_inquiry.start_time_ms) /
-                             1000.0,
-                         btm_cb.neighbor.classic_inquiry.results));
-  btm_cb.neighbor.classic_inquiry = {};
-
-  /* Only cancel if not in periodic mode, otherwise the caller should call
-   * BTM_CancelPeriodicMode */
-  if ((p_inq->inq_active & BTM_INQUIRY_ACTIVE_MASK) != 0) {
-    p_inq->inq_active = BTM_INQUIRY_INACTIVE;
-    p_inq->state = BTM_INQ_INACTIVE_STATE;
-    p_inq->p_inq_results_cb = NULL; /* Do not notify caller anymore */
-    p_inq->p_inq_cmpl_cb = NULL;    /* Do not notify caller anymore */
-
-    if ((p_inq->inqparms.mode & BTM_BR_INQUIRY_MASK) != 0) {
-      bluetooth::legacy::hci::GetInterface().InquiryCancel();
-    }
-
-    if (!bluetooth::shim::is_classic_discovery_only_enabled()) {
-      if ((p_inq->inqparms.mode & BTM_BLE_INQUIRY_MASK) != 0)
-        btm_ble_stop_inquiry();
-    }
-
-    p_inq->inq_counter++;
-    btm_clr_inq_result_flt();
-  }
-}
-
-static void btm_classic_inquiry_timeout(UNUSED_ATTR void* data) {
-  btm_process_inq_complete(HCI_SUCCESS, BTM_BR_INQUIRY_MASK);
+  LOG_ASSERT("GD SHIM IS ENABLED BY DEFAULT");
 }
 
 /*******************************************************************************
@@ -575,91 +535,7 @@ tBTM_STATUS BTM_StartInquiry(tBTM_INQ_RESULTS_CB* p_results_cb,
   if (bluetooth::shim::is_gd_shim_enabled()) {
     return bluetooth::shim::BTM_StartInquiry(p_results_cb, p_cmpl_cb);
   }
-
-  /* Only one active inquiry is allowed in this implementation.
-     Also do not allow an inquiry if the inquiry filter is being updated */
-  if (btm_cb.btm_inq_vars.inq_active) {
-    LOG_WARN(
-        "Active device discovery already in progress inq_active:0x%02x"
-        " state:%hhu counter:%u",
-        btm_cb.btm_inq_vars.inq_active, btm_cb.btm_inq_vars.state,
-        btm_cb.btm_inq_vars.inq_counter);
-    return BTM_BUSY;
-  }
-
-  /*** Make sure the device is ready ***/
-  if (!BTM_IsDeviceUp()) {
-    LOG(ERROR) << __func__ << ": adapter is not up";
-    return BTM_WRONG_MODE;
-  }
-
-  BTM_LogHistory(kBtmLogTag, RawAddress::kEmpty, "Classic inquiry started",
-                 base::StringPrintf(
-                     "%s", (btm_cb.neighbor.classic_inquiry.start_time_ms == 0)
-                               ? ""
-                               : "ERROR Already in progress"));
-
-  /* Save the inquiry parameters to be used upon the completion of
-   * setting/clearing the inquiry filter */
-  tBTM_INQUIRY_VAR_ST* p_inq = &btm_cb.btm_inq_vars;
-
-  p_inq->inqparms = {};
-  p_inq->inqparms.mode = BTM_GENERAL_INQUIRY | BTM_BLE_GENERAL_INQUIRY;
-  p_inq->inqparms.duration = BTIF_DM_DEFAULT_INQ_MAX_DURATION;
-
-  /* Initialize the inquiry variables */
-  p_inq->state = BTM_INQ_ACTIVE_STATE;
-  p_inq->p_inq_cmpl_cb = p_cmpl_cb;
-  p_inq->p_inq_results_cb = p_results_cb;
-  p_inq->inq_cmpl_info.num_resp = 0; /* Clear the results counter */
-  p_inq->inq_active = p_inq->inqparms.mode;
-  btm_cb.neighbor.classic_inquiry = {
-      .start_time_ms = timestamper_in_milliseconds.GetTimestamp(),
-      .results = 0,
-  };
-
-  LOG_DEBUG("Starting device discovery inq_active:0x%02x",
-            btm_cb.btm_inq_vars.inq_active);
-
-  // Also do BLE scanning here if we aren't limiting discovery to classic only.
-  // This path does not play nicely with GD BLE scanning and may cause issues
-  // with other scanners.
-  if (!bluetooth::shim::is_classic_discovery_only_enabled()) {
-    if (controller_get_interface()->supports_ble()) {
-      btm_ble_start_inquiry(p_inq->inqparms.duration);
-    } else {
-      LOG_WARN("Trying to do LE scan on a non-LE adapter");
-      p_inq->inqparms.mode &= ~BTM_BLE_INQUIRY_MASK;
-    }
-  }
-
-  btm_acl_update_inquiry_status(BTM_INQUIRY_STARTED);
-
-  if (p_inq->inq_active & BTM_SSP_INQUIRY_ACTIVE) {
-    btm_process_inq_complete(HCI_ERR_MAX_NUM_OF_CONNECTIONS,
-                             BTM_GENERAL_INQUIRY);
-    return BTM_CMD_STARTED;
-  }
-
-  btm_clr_inq_result_flt();
-
-  /* Allocate memory to hold bd_addrs responding */
-  p_inq->p_bd_db = (tINQ_BDADDR*)osi_calloc(BT_DEFAULT_BUFFER_SIZE);
-  p_inq->max_bd_entries =
-      (uint16_t)(BT_DEFAULT_BUFFER_SIZE / sizeof(tINQ_BDADDR));
-
-  bluetooth::legacy::hci::GetInterface().StartInquiry(
-      general_inq_lap, p_inq->inqparms.duration, 0);
-
-  // If we are only doing classic discovery, we should also set a timeout for
-  // the inquiry if a duration is set.
-  if (bluetooth::shim::is_classic_discovery_only_enabled() &&
-      p_inq->inqparms.duration != 0) {
-    /* start inquiry timer */
-    uint64_t duration_ms = p_inq->inqparms.duration * 1000;
-    alarm_set_on_mloop(p_inq->classic_inquiry_timer, duration_ms,
-                       btm_classic_inquiry_timeout, NULL);
-  }
+  LOG_ASSERT("GD SHIM IS ENABLED BY DEFAULT");
 
   return BTM_CMD_STARTED;
 }
