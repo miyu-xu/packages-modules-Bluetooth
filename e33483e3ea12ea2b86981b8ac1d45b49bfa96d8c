@@ -81,6 +81,30 @@
       },
       "revId": "e33483e3ea12ea2b86981b8ac1d45b49bfa96d8c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "36796282_91f92c3d",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 51
+      },
+      "lineNbr": 931,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-04-06T20:30:32Z",
+      "side": 1,
+      "message": "Actually they are *not* sent.\n\n mSdpTracker is seeded with the `maybe` send, but it never gets sent later.\n \n The adapter, however, needs to know regardless.\n \n ```\n private void maybeSendUuidIntent(BluetoothDevice device){\n ...\n         if (mAdapterService.getState() !\u003d BluetoothAdapter.STATE_ON) {\n            warnLog(\"Bluetooth adapter disabled so skipping Uuid intent for device:\"\n                     + Utils.getLoggableAddress(device));\n            return;\n        }\n```",
+      "parentUuid": "4fcf45e1_f30d0722",
+      "range": {
+        "startLine": 931,
+        "startChar": 58,
+        "endLine": 931,
+        "endChar": 70
+      },
+      "revId": "e33483e3ea12ea2b86981b8ac1d45b49bfa96d8c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
