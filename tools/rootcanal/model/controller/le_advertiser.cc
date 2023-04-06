@@ -1834,6 +1834,7 @@ void LinkLayerController::LeAdvertising() {
               static_cast<model::packets::AddressType>(
                   advertiser.advertising_address.GetAddressType()),
               advertiser.advertising_sid, advertiser.advertising_tx_power,
+              advertiser.advertising_interval.count(),
               advertiser.periodic_advertising_data),
           advertiser.advertising_tx_power);
     }
