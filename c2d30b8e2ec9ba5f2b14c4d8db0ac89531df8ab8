@@ -22,6 +22,30 @@
       },
       "revId": "c2d30b8e2ec9ba5f2b14c4d8db0ac89531df8ab8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "050fa6fa_01d1b235",
+        "filename": "android/app/src/com/android/bluetooth/a2dp/A2dpService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1499,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2023-04-06T23:30:05Z",
+      "side": 0,
+      "message": "We don\u0027t have the V target in AOSP so we should add this check back when adding the new APIs I guess",
+      "parentUuid": "ae946ad2_2b9eaa9f",
+      "range": {
+        "startLine": 1499,
+        "startChar": 0,
+        "endLine": 1499,
+        "endChar": 99
+      },
+      "revId": "c2d30b8e2ec9ba5f2b14c4d8db0ac89531df8ab8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
