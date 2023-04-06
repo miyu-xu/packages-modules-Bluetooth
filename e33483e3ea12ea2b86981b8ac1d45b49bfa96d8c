@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d195529f_401c1d58",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 51
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-04-06T19:55:00Z",
+      "side": 1,
+      "message": "How often do we hit the 6-second wait case?",
+      "revId": "e33483e3ea12ea2b86981b8ac1d45b49bfa96d8c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f0ff2fe4_42a164b9",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 51
+      },
+      "lineNbr": 931,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-04-06T19:55:00Z",
+      "side": 1,
+      "message": "We can\u0027t send UUIDs in BLE_ON, because \"normal\" apps think that Bluetooth is off.",
+      "range": {
+        "startLine": 931,
+        "startChar": 58,
+        "endLine": 931,
+        "endChar": 70
+      },
+      "revId": "e33483e3ea12ea2b86981b8ac1d45b49bfa96d8c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
