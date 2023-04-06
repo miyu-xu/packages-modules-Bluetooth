@@ -30,7 +30,17 @@
 #include <base/task/single_thread_task_executor.h>
 #include <base/test/task_environment.h>
 #include <base/threading/thread.h>
+
+/* More recent versions of libchrome switched to Task Posting API v3 (see:
+ * crbug.com/1026641) and dropped support for v2.
+ */
+#if BASE_VER >= 1125226
+#include
+#include <base/task/single_thread_task_runner.h>
+#else
 #include <base/threading/thread_task_runner_handle.h>
+#endif
+
 #else
 #include <base/message_loop/message_loop.h>
 #include <base/threading/thread.h>
@@ -40,6 +50,21 @@ namespace btbase {
 
 #if defined(BASE_VER) && BASE_VER > 780000
 
+#if BASE_VER >= 1125226
+class AbstractMessageLoop : public base::SingleThreadTaskExecutor {
+ public:
+  static scoped_refptr<base::SingleThreadTaskRunner> current_task_runner() {
+    return base::SingleThreadTaskRunner::GetCurrentDefault();
+  }
+};
+
+class AbstractTestMessageLoop : public base::test::TaskEnvironment {
+ public:
+  static scoped_refptr<base::SingleThreadTaskRunner> current_task_runner() {
+    return base::SingleThreadTaskRunner::GetCurrentDefault();
+  }
+};
+#else
 class AbstractMessageLoop : public base::SingleThreadTaskExecutor {
  public:
   static scoped_refptr<base::SingleThreadTaskRunner> current_task_runner() {
@@ -53,6 +78,7 @@ class AbstractTestMessageLoop : public base::test::TaskEnvironment {
     return base::ThreadTaskRunnerHandle::Get();
   }
 };
+#endif
 
 // Initialize the test task environment
 #define DEFINE_TEST_TASK_ENV(var)                                \
