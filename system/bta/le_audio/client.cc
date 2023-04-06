@@ -1783,6 +1783,11 @@ class LeAudioClientImpl : public LeAudioClient {
 
     BTM_RequestPeerSCA(leAudioDevice->address_, transport);
 
+    /* Remove device from the background connect (it might be either Allow list
+     * or TA) and it will be added back on disconnection
+     */
+    BTA_GATTC_CancelOpen(gatt_if_, address, false);
+
     if (leAudioDevice->GetConnectionState() ==
         DeviceConnectState::CONNECTING_AUTOCONNECT) {
       leAudioDevice->SetConnectionState(
@@ -1939,6 +1944,34 @@ class LeAudioClientImpl : public LeAudioClient {
         &le_audio::uuid::kPublishedAudioCapabilityServiceUuid);
   }
 
+  void checkGroupDisconnectState(int group_id) {
+    auto group = aseGroups_.FindById(group_id);
+    if (group == nullptr || !group->IsStreaming()) {
+      LOG_INFO("Group %d is not streaming", group_id);
+      return;
+    }
+
+    /* if group is still streaming, make sure that other not connected
+     * set members are in the allow list for the quick reconnect.
+     * E.g. for the earbud case, probably one of the earbud is in the case now.
+     */
+    group->AddToAllowListNotConnectedGroupMembers(gatt_if_);
+  }
+
+  void scheduleGroupDisconnectCheck(int group_id) {
+    LOG_INFO("Schedule group_id %d disconnect check.", group_id);
+    do_in_main_thread_delayed(
+        FROM_HERE,
+        base::BindOnce(&LeAudioClientImpl::checkGroupDisconnectState,
+                       base::Unretained(this), group_id),
+#if BASE_VER < 931007
+        base::TimeDelta::FromMilliseconds(kGroupDisconnectWatchDelayMs)
+#else
+        base::Milliseconds(kDeviceAttachDelayMs)
+#endif
+    );
+  }
+
   void OnGattDisconnected(uint16_t conn_id, tGATT_IF client_if,
                           RawAddress address, tGATT_DISCONN_REASON reason) {
     LeAudioDevice* leAudioDevice = leAudioDevices_.FindByAddress(address);
@@ -1990,6 +2023,13 @@ class LeAudioClientImpl : public LeAudioClient {
         AddToBackgroundConnectCheckStreaming(leAudioDevice);
       } else {
         BTA_GATTC_Open(gatt_if_, address, reconnection_mode_, false);
+        if (group->IsStreaming()) {
+          /* If all set is disconnecting, let's give it some time.
+           * If not all get disconnected, and group will keep streaming
+           * we want to put disconnected devices to allow list
+           */
+          scheduleGroupDisconnectCheck(leAudioDevice->group_id_);
+        }
       }
     } else {
       leAudioDevice->SetConnectionState(DeviceConnectState::DISCONNECTED);
@@ -4852,6 +4892,7 @@ class LeAudioClientImpl : public LeAudioClient {
 
   /* Reconnection mode */
   tBTM_BLE_CONN_TYPE reconnection_mode_;
+  static constexpr uint64_t kGroupDisconnectWatchDelayMs = 500;
 
   static constexpr char kNotifyUpperLayerAboutGroupBeingInIdleDuringCall[] =
       "persist.bluetooth.leaudio.notify.idle.during.call";
