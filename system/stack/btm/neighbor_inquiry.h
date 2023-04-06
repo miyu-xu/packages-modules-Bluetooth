@@ -225,7 +225,20 @@ typedef struct {
   tINQ_BDADDR* p_bd_db;    /* Pointer to memory that holds bdaddrs */
   uint16_t num_bd_entries; /* Number of entries in database */
   uint16_t max_bd_entries; /* Maximum number of entries that can be stored */
+ private:
   tINQ_DB_ENT inq_db[BTM_INQ_DB_SIZE];
+  friend void btm_sort_inq_result(void);
+  friend tBTM_INQ_INFO* BTM_InqDbFirst(void);
+  friend tBTM_INQ_INFO* BTM_InqDbNext(tBTM_INQ_INFO* p_cur);
+  friend void btm_clear_all_pending_le_entry(void);
+  friend void btm_clr_inq_db(const RawAddress* p_bda);
+  friend tINQ_DB_ENT* btm_inq_db_find(const RawAddress& p_bda);
+  friend tINQ_DB_ENT* btm_inq_db_new(const RawAddress& p_bda);
+  friend void btm_sort_inq_result(void);
+
+ public:
+  tINQ_DB_ENT* getInqDb() { return inq_db; }
+
   tBTM_INQ_PARMS inqparms; /* Contains the parameters for the current inquiry */
   tBTM_INQUIRY_CMPL
       inq_cmpl_info; /* Status and number of responses from the last inquiry */
