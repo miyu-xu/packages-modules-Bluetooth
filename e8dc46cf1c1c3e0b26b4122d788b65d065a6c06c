@@ -33,6 +33,29 @@
       "message": "Affects floss only",
       "revId": "e8dc46cf1c1c3e0b26b4122d788b65d065a6c06c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3c5d4f12_8c0daa68",
+        "filename": "system/gd/rust/linux/stack/src/suspend.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 251,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2023-04-06T05:17:44Z",
+      "side": 1,
+      "message": "I understand the reason for enabling page scan after resume here. However, we do expose `SetConnectable` in Floss API, this fix loses the desired connectable state from the upper layer after this point. I can prepare a patch to fix it.",
+      "range": {
+        "startLine": 251,
+        "startChar": 0,
+        "endLine": 251,
+        "endChar": 63
+      },
+      "revId": "e8dc46cf1c1c3e0b26b4122d788b65d065a6c06c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
