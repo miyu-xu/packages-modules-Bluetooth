@@ -9,6 +9,7 @@ use log::warn;
 use crate::{core::address::AddressWithType, do_in_rust_thread};
 
 use super::{
+    attempt_manager::ConnectionMode,
     le_manager::{ErrorCode, InactiveLeAclManager, LeAclManager, LeAclManagerConnectionCallbacks},
     ConnectionManagerClient, LeConnection,
 };
@@ -136,7 +137,8 @@ pub fn register_callbacks() {
         |client, address| {
             let client = ConnectionManagerClient::GattClient(client);
             do_in_rust_thread(move |modules| {
-                let result = modules.connection_manager.start_direct_connection(client, address);
+                let result =
+                    modules.connection_manager.as_ref().start_direct_connection(client, address);
                 if let Err(err) = result {
                     warn!("Failed to start direct connection from {client:?} to {address:?} ({err:?})")
                 }
@@ -145,7 +147,11 @@ pub fn register_callbacks() {
         |client, address| {
             let client = ConnectionManagerClient::GattClient(client);
             do_in_rust_thread(move |modules| {
-                let result = modules.connection_manager.cancel_direct_connection(client, address);
+                let result = modules.connection_manager.cancel_connection(
+                    client,
+                    address,
+                    ConnectionMode::Direct,
+                );
                 if let Err(err) = result {
                     warn!("Failed to cancel direct connection from {client:?} to {address:?} ({err:?})")
                 }
@@ -163,8 +169,11 @@ pub fn register_callbacks() {
         |client, address| {
             let client = ConnectionManagerClient::GattClient(client);
             do_in_rust_thread(move |modules| {
-                let result =
-                    modules.connection_manager.remove_background_connection(client, address);
+                let result = modules.connection_manager.cancel_connection(
+                    client,
+                    address,
+                    ConnectionMode::Background,
+                );
                 if let Err(err) = result {
                     warn!("Failed to remove background connection from {client:?} to {address:?} ({err:?})")
                 }
