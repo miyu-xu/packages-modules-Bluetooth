@@ -17,7 +17,7 @@ use syn::{Expr, FnArg, ImplItem, ItemImpl, ItemStruct, Meta, Pat, ReturnType, Ty
 
 use crate::proc_macro::TokenStream;
 
-const OUTPUT_DEBUG: bool = false;
+const OUTPUT_DEBUG: bool = true;
 
 fn debug_output_to_file(gen: &proc_macro2::TokenStream, filename: String) {
     if !OUTPUT_DEBUG {
@@ -751,19 +751,34 @@ pub fn dbus_proxy_obj(attr: TokenStream, item: TokenStream) -> TokenStream {
                     let remote__ = self.remote.clone();
                     let objpath__ = self.objpath.clone();
                     let conn__ = self.conn.clone();
-                    tokio::spawn(async move {
-                        let proxy = dbus::nonblock::Proxy::new(
+
+                    let proxy = dbus::nonblock::Proxy::new(
                             remote__,
                             objpath__,
                             std::time::Duration::from_secs(2),
                             conn__,
                         );
-                        let future: dbus::nonblock::MethodReply<()> = proxy.method_call(
-                            #dbus_iface_name,
-                            #dbus_method_name,
-                            (#method_args),
-                        );
-                        let _result = future.await;
+                    let future: dbus::nonblock::MethodReply<()> = proxy.method_call(
+                        #dbus_iface_name,
+                        #dbus_method_name,
+                        (#method_args),
+                    );
+
+                    self.cb_futures.lock().unwrap().push(future);
+
+                    // Callbacks will await in the order they were called.
+                    let futures = self.cb_futures.clone();
+                    tokio::spawn(async move {
+                        while futures.lock().unwrap().len() > 0 {
+                            let future = {
+                                let mut guard = futures.lock().unwrap();
+                                match guard.pop() {
+                                    Some(f) => f,
+                                    None => {return;}
+                                }
+                            };
+                            let _result = future.await;
+                        }
                     });
                 }
             };
@@ -780,6 +795,23 @@ pub fn dbus_proxy_obj(attr: TokenStream, item: TokenStream) -> TokenStream {
             remote: dbus::strings::BusName<'static>,
             objpath: Path<'static>,
             disconnect_watcher: std::sync::Arc<std::sync::Mutex<DisconnectWatcher>>,
+            cb_futures: std::sync::Arc<std::sync::Mutex<Vec<dbus::nonblock::MethodReply<()>>>>,
+        }
+
+        impl #struct_ident {
+            fn new(
+                conn: std::sync::Arc<dbus::nonblock::SyncConnection>,
+                remote: dbus::strings::BusName<'static>,
+                objpath: Path<'static>,
+                disconnect_watcher: std::sync::Arc<std::sync::Mutex<DisconnectWatcher>>) -> Self {
+                Self {
+                    conn,
+                    remote,
+                    objpath,
+                    disconnect_watcher,
+                    cb_futures: std::sync::Arc::new(std::sync::Mutex::new(vec![])),
+                }
+            }
         }
 
         impl #trait_ for #struct_ident {
@@ -809,12 +841,12 @@ pub fn dbus_proxy_obj(attr: TokenStream, item: TokenStream) -> TokenStream {
                 remote__: Option<dbus::strings::BusName<'static>>,
                 disconnect_watcher__: Option<std::sync::Arc<std::sync::Mutex<DisconnectWatcher>>>,
             ) -> Result<Box<dyn #trait_ + Send>, Box<dyn std::error::Error>> {
-                Ok(Box::new(#struct_ident {
-                    conn: conn__.unwrap(),
-                    remote: remote__.unwrap(),
-                    objpath: objpath__,
-                    disconnect_watcher: disconnect_watcher__.unwrap(),
-                }))
+                Ok(Box::new(#struct_ident::new(
+                    conn__.unwrap(),
+                    remote__.unwrap(),
+                    objpath__,
+                    disconnect_watcher__.unwrap(),
+                )))
             }
 
             fn to_dbus(_data: Box<dyn #trait_ + Send>) -> Result<Path<'static>, Box<dyn std::error::Error>> {
