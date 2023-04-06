@@ -303,5 +303,7 @@ void btm_sort_inq_result(void) {
   inc_func_call_count(__func__);
   test::mock::stack_btm_inq::btm_sort_inq_result();
 }
+void btm_clear_all_pending_le_entry(void) { inc_func_call_count(__func__); }
+
 // Mocked functions complete
 // END mockcify generation
