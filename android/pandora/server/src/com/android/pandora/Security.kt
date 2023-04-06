@@ -112,12 +112,12 @@ class Security(private val context: Context) : SecurityImplBase(), Closeable {
       val bluetoothDevice = request.connection.toBluetoothDevice(bluetoothAdapter)
       val transport = request.connection.transport
       Log.i(TAG, "secure: $bluetoothDevice transport: $transport")
-      var reached =
+      val (encrypted, bonded, reached) =
         when (transport) {
           TRANSPORT_LE -> {
             check(request.getLevelCase() == SecureRequest.LevelCase.LE)
             val level = request.le
-            if (level == LE_LEVEL1) true
+            if (level == LE_LEVEL1) Triple(true, true, true)
             else if (level == LE_LEVEL4)
               throw RuntimeException("secure: Low-energy level 4 not supported")
             else {
@@ -128,7 +128,7 @@ class Security(private val context: Context) : SecurityImplBase(), Closeable {
           TRANSPORT_BREDR -> {
             check(request.getLevelCase() == SecureRequest.LevelCase.CLASSIC)
             val level = request.classic
-            if (level == LEVEL0) true
+            if (level == LEVEL0) Triple(true, true, true)
             else if (level >= LEVEL3)
               throw RuntimeException("secure: Classic level up to 3 not supported")
             else {
@@ -140,7 +140,15 @@ class Security(private val context: Context) : SecurityImplBase(), Closeable {
         }
       val secureResponseBuilder = SecureResponse.newBuilder()
       if (reached) secureResponseBuilder.setSuccess(Empty.getDefaultInstance())
-      else secureResponseBuilder.setNotReached(Empty.getDefaultInstance())
+      else {
+        when(encrypted) {
+          false -> secureResponseBuilder.setEncryptionFailure(Empty.getDefaultInstance())
+          true -> {
+            if(bonded) secureResponseBuilder.setNotReached(Empty.getDefaultInstance())
+            else secureResponseBuilder.setPairingFailure(Empty.getDefaultInstance())
+          }
+        }
+      }
       secureResponseBuilder.build()
     }
   }
@@ -156,18 +164,18 @@ class Security(private val context: Context) : SecurityImplBase(), Closeable {
   suspend fun waitBREDRSecurityLevel(
     bluetoothDevice: BluetoothDevice,
     level: SecurityLevel
-  ): Boolean {
+  ): Triple<Boolean, Boolean, Boolean> {
     Log.i(TAG, "waitBREDRSecurityLevel")
     return when (level) {
-      LEVEL0 -> true
+      LEVEL0 -> Triple(true, true, true)
       LEVEL3 -> throw RuntimeException("waitSecurity: Classic level 3 not supported")
       else -> {
         val bondState = waitBondIntent(bluetoothDevice)
         val isEncrypted = bluetoothDevice.isEncrypted()
         when (level) {
-          LEVEL1 -> !isEncrypted || bondState == BOND_BONDED
-          LEVEL2 -> isEncrypted && bondState == BOND_BONDED
-          else -> false
+          LEVEL1 -> Triple(isEncrypted, bondState == BOND_BONDED, !isEncrypted || bondState == BOND_BONDED)
+          LEVEL2 -> Triple(isEncrypted, bondState == BOND_BONDED, isEncrypted && bondState == BOND_BONDED)
+          else -> Triple(false, false, false)
         }
       }
     }
@@ -176,17 +184,17 @@ class Security(private val context: Context) : SecurityImplBase(), Closeable {
   suspend fun waitLESecurityLevel(
     bluetoothDevice: BluetoothDevice,
     level: LESecurityLevel
-  ): Boolean {
+  ): Triple<Boolean, Boolean, Boolean> {
     Log.i(TAG, "waitLESecurityLevel")
     return when (level) {
-      LE_LEVEL1 -> true
+      LE_LEVEL1 -> Triple(true, true, true)
       LE_LEVEL4 -> throw RuntimeException("waitSecurity: Low-energy level 4 not supported")
       else -> {
         val bondState = waitBondIntent(bluetoothDevice)
         val isEncrypted = bluetoothDevice.isEncrypted()
         when (level) {
-          LE_LEVEL2 -> isEncrypted
-          LE_LEVEL3 -> isEncrypted && bondState == BOND_BONDED
+          LE_LEVEL2 -> Triple(isEncrypted, isEncrypted, isEncrypted)
+          LE_LEVEL3 -> Triple(isEncrypted, bondState == BOND_BONDED, isEncrypted && bondState == BOND_BONDED)
           else -> throw RuntimeException("waitSecurity: Low-energy level 4 not supported")
         }
       }
@@ -201,7 +209,7 @@ class Security(private val context: Context) : SecurityImplBase(), Closeable {
       Log.i(TAG, "waitSecurity")
       val bluetoothDevice = request.connection.toBluetoothDevice(bluetoothAdapter)
       val transport = if (request.hasClassic()) TRANSPORT_BREDR else TRANSPORT_LE
-      val reached =
+      val (encrypted, bonded, reached) =
         when (transport) {
           TRANSPORT_LE -> {
             check(request.hasLe())
@@ -215,7 +223,14 @@ class Security(private val context: Context) : SecurityImplBase(), Closeable {
         }
       val waitSecurityBuilder = WaitSecurityResponse.newBuilder()
       if (reached) waitSecurityBuilder.setSuccess(Empty.getDefaultInstance())
-      else waitSecurityBuilder.setPairingFailure(Empty.getDefaultInstance())
+      else {
+        when(encrypted) {
+          false -> waitSecurityBuilder.setEncryptionFailure(Empty.getDefaultInstance())
+          true -> {
+            if(!bonded) waitSecurityBuilder.setPairingFailure(Empty.getDefaultInstance())
+          }
+        }
+      }
       waitSecurityBuilder.build()
     }
   }
