@@ -113,7 +113,7 @@ class ExtendedAdvertiser : public Advertiser {
   void Enable() {
     advertising_enable = true;
     periodic_advertising_enable_latch = periodic_advertising_enable;
-    next_event = std::chrono::steady_clock::now()
+    next_event = std::chrono::steady_clock::now();
   }
 
   void EnablePeriodic() {
