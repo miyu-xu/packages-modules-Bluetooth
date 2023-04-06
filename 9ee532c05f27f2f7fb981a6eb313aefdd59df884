@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "96f75ef7_5569733e",
+        "filename": "tools/rootcanal/lmp/src/procedure/secure_simple_pairing.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 750,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-04-06T17:04:48Z",
+      "side": 1,
+      "message": "The way I was trying it was much uglier :)",
+      "parentUuid": "4b436b18_ed3f072e",
+      "range": {
+        "startLine": 750,
+        "startChar": 19,
+        "endLine": 750,
+        "endChar": 47
+      },
+      "revId": "9ee532c05f27f2f7fb981a6eb313aefdd59df884",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0966bf9a_f626c16b",
@@ -61,6 +85,24 @@
       "writtenOn": "2023-04-05T23:17:17Z",
       "side": 1,
       "message": "I think this test belongs in the previous commit",
+      "revId": "9ee532c05f27f2f7fb981a6eb313aefdd59df884",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6936a62a_1ff8eb30",
+        "filename": "tools/rootcanal/lmp/src/procedure/secure_simple_pairing.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 1104,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-04-06T17:04:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0966bf9a_f626c16b",
       "revId": "9ee532c05f27f2f7fb981a6eb313aefdd59df884",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
