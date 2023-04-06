@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ae946ad2_2b9eaa9f",
+        "filename": "android/app/src/com/android/bluetooth/a2dp/A2dpService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1499,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-04-06T23:04:35Z",
+      "side": 0,
+      "message": "instead, just move this check to V",
+      "range": {
+        "startLine": 1499,
+        "startChar": 0,
+        "endLine": 1499,
+        "endChar": 99
+      },
+      "revId": "c2d30b8e2ec9ba5f2b14c4d8db0ac89531df8ab8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
