@@ -95,6 +95,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ba66d37e_f608b1c5",
+        "filename": "tools/rootcanal/lmp/src/procedure/secure_simple_pairing.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 589,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-04-06T17:05:37Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "a7a8c704_a7e85a5f",
+      "range": {
+        "startLine": 589,
+        "startChar": 9,
+        "endLine": 589,
+        "endChar": 37
+      },
+      "revId": "c40b62ec36087dd55788b7bba6293d3ee36de9a5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "39e31e1d_aec650e1",
@@ -132,6 +156,30 @@
       "side": 1,
       "message": "There are no tests that hit this case, so I\u0027m just reverting to the old TODO",
       "parentUuid": "39e31e1d_aec650e1",
+      "range": {
+        "startLine": 707,
+        "startChar": 16,
+        "endLine": 709,
+        "endChar": 17
+      },
+      "revId": "c40b62ec36087dd55788b7bba6293d3ee36de9a5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4e8b92d2_3313ebf6",
+        "filename": "tools/rootcanal/lmp/src/procedure/secure_simple_pairing.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 709,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-04-06T17:05:37Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "a7467193_550f329f",
       "range": {
         "startLine": 707,
         "startChar": 16,
