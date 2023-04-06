@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "11ec3701_4f53e2f4",
+        "filename": "framework/tests/bumble/src/com/android/framework/bluetooth/tests/Utils.java",
+        "patchSetId": 30
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1986325
+      },
+      "writtenOn": "2023-04-06T17:33:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "59ce6017_343a3416",
+      "range": {
+        "startLine": 6,
+        "startChar": 25,
+        "endLine": 6,
+        "endChar": 52
+      },
+      "revId": "8274cce5e6c79212ac2fa2bd27056b87f9a426f7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1432c16b_95544ec9",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-04-06T00:23:11Z",
       "side": 1,
       "message": "I think we should return the ScanningResponse here and assert on the test that it\u0027s not null (and remove the completeExceptionally from `onCompleted`)",
+      "range": {
+        "startLine": 150,
+        "startChar": 30,
+        "endLine": 150,
+        "endChar": 34
+      },
+      "revId": "8274cce5e6c79212ac2fa2bd27056b87f9a426f7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8b317f25_da34a5d4",
+        "filename": "framework/tests/bumble/src/com/android/framework/bluetooth/tests/gatt/LeAdvertisingTest.java",
+        "patchSetId": 30
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 1986325
+      },
+      "writtenOn": "2023-04-06T17:33:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1432c16b_95544ec9",
       "range": {
         "startLine": 150,
         "startChar": 30,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6ed43a39_61091f8b",
+        "filename": "framework/tests/bumble/src/com/android/framework/bluetooth/tests/gatt/LeAdvertisingTest.java",
+        "patchSetId": 30
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 1986325
+      },
+      "writtenOn": "2023-04-06T17:33:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0ac8cb73_dc7469b6",
+      "range": {
+        "startLine": 178,
+        "startChar": 35,
+        "endLine": 178,
+        "endChar": 49
+      },
+      "revId": "8274cce5e6c79212ac2fa2bd27056b87f9a426f7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "66769b5a_9083ce40",
@@ -83,6 +155,30 @@
       "writtenOn": "2023-04-06T00:23:11Z",
       "side": 1,
       "message": "This future is already completed, I don\u0027t think we need that",
+      "range": {
+        "startLine": 181,
+        "startChar": 0,
+        "endLine": 183,
+        "endChar": 0
+      },
+      "revId": "8274cce5e6c79212ac2fa2bd27056b87f9a426f7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "856ec64c_ab7b89c3",
+        "filename": "framework/tests/bumble/src/com/android/framework/bluetooth/tests/gatt/LeAdvertisingTest.java",
+        "patchSetId": 30
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 1986325
+      },
+      "writtenOn": "2023-04-06T17:33:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "66769b5a_9083ce40",
       "range": {
         "startLine": 181,
         "startChar": 0,
