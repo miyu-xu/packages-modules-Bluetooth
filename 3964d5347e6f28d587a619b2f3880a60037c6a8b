@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "72edc2f0_a277a678",
+        "filename": "system/rust/src/connection.rs",
+        "patchSetId": 12
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-04-06T22:43:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "97c169fc_12c0a31c",
+      "range": {
+        "startLine": 150,
+        "startChar": 0,
+        "endLine": 150,
+        "endChar": 8
+      },
+      "revId": "3964d5347e6f28d587a619b2f3880a60037c6a8b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ccf60eb7_3543fa7a",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-04-06T21:06:12Z",
       "side": 1,
       "message": "Let\u0027s just cancel it if it didn\u0027t work.  The client can try again.",
+      "range": {
+        "startLine": 317,
+        "startChar": 0,
+        "endLine": 317,
+        "endChar": 61
+      },
+      "revId": "3964d5347e6f28d587a619b2f3880a60037c6a8b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "75248d67_883411c2",
+        "filename": "system/rust/src/connection.rs",
+        "patchSetId": 12
+      },
+      "lineNbr": 317,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-04-06T22:43:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ccf60eb7_3543fa7a",
       "range": {
         "startLine": 317,
         "startChar": 0,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7ab5292e_b91227d8",
+        "filename": "system/rust/src/connection.rs",
+        "patchSetId": 12
+      },
+      "lineNbr": 331,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-04-06T22:43:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0dc87ca1_689bd58d",
+      "range": {
+        "startLine": 331,
+        "startChar": 31,
+        "endLine": 331,
+        "endChar": 37
+      },
+      "revId": "3964d5347e6f28d587a619b2f3880a60037c6a8b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a13eefee_45d14f09",
@@ -83,6 +155,24 @@
       "writtenOn": "2023-04-06T21:06:12Z",
       "side": 1,
       "message": "test_resolved_background_connection_after_disconnect as a new test?",
+      "revId": "3964d5347e6f28d587a619b2f3880a60037c6a8b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "39bf5a5b_0db7248c",
+        "filename": "system/rust/src/connection.rs",
+        "patchSetId": 12
+      },
+      "lineNbr": 372,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-04-06T22:43:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a13eefee_45d14f09",
       "revId": "3964d5347e6f28d587a619b2f3880a60037c6a8b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -110,6 +200,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "380b844a_0726b730",
+        "filename": "system/rust/src/connection/acceptlist_manager.rs",
+        "patchSetId": 12
+      },
+      "lineNbr": 286,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-04-06T22:43:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fe19cfef_ea997d94",
+      "range": {
+        "startLine": 286,
+        "startChar": 0,
+        "endLine": 286,
+        "endChar": 8
+      },
+      "revId": "3964d5347e6f28d587a619b2f3880a60037c6a8b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "058462c9_011801d5",
@@ -123,6 +237,30 @@
       "writtenOn": "2023-04-06T21:06:12Z",
       "side": 1,
       "message": "TODO: Leave the comment in GD.",
+      "range": {
+        "startLine": 14,
+        "startChar": 18,
+        "endLine": 14,
+        "endChar": 26
+      },
+      "revId": "3964d5347e6f28d587a619b2f3880a60037c6a8b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "77a80308_593a37cd",
+        "filename": "system/rust/src/connection/le_manager.rs",
+        "patchSetId": 12
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-04-06T22:43:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "058462c9_011801d5",
       "range": {
         "startLine": 14,
         "startChar": 18,
