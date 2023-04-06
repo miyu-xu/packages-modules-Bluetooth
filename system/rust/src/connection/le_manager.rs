@@ -11,6 +11,8 @@
 //!
 //! In addition to the supplied API, when a connection completes to a peer device,
 //! it is removed from the "direct" connect list (based on exact address match).
+//! Also, when we INITIATE a disconnection, we will remove the address from the
+//! background connect list.
 
 use std::fmt::Debug;
 
