@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ca79167d_49a5791b",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 1729,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-04-06T07:48:37Z",
+      "side": 1,
+      "message": "/* When group is streaming, make sure all other non connected members are\nin the allow list. This will help to quick reconnect.*/",
+      "revId": "b4b191760c6b188add0a2269062953452e59eb67",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
