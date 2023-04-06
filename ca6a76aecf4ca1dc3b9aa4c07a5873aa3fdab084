@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "913c0d69_a8156821",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-04-06T17:05:47Z",
+      "side": 1,
+      "message": "Can this check be moved into GattService or into native, rather than keeping it in the framework?\n\nChecks in the framework can be ignored by apps, whereas checks in the service cannot be bypassed. We can keep a check in the framework as well to make sure the error is reported synchronously, and have a second check in the service / deeper in the stack (e.g. in le_impl) to handle the case when apps ignore our restrictions here.\n\nPutting it in le_impl will also protect against this issue coming from other callsites.",
+      "revId": "ca6a76aecf4ca1dc3b9aa4c07a5873aa3fdab084",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
