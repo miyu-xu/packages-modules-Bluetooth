@@ -107,6 +107,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0dc7f7c5_3e3221b8",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/PlayerSettingsManager.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2023-04-06T16:29:49Z",
+      "side": 1,
+      "message": "It\u0027s already the case, the native layer doesn\u0027t use the address given and instead broadcasts the player changes to all connected devices that have registered for updates.\nThis means that even if a device is not active it will still receive the player updates and we don\u0027t need to broadcast the player settings when we switch the active device.\n\nI will remove the address parameters of the Java methods for `sendPlayerSettings`",
+      "parentUuid": "e9b562cd_e7d2e2b6",
+      "revId": "693eb7d2f20ee4ab145d94901ee62d1391192225",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6c33b4e3_99c56bc6",
