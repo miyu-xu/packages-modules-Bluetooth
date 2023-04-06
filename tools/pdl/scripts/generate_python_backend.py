@@ -9,7 +9,20 @@ from textwrap import dedent
 from typing import List, Tuple, Union, Optional
 
 from pdl import ast, core
-from pdl.utils import indent
+
+
+def indent(lines: List[str], depth: int) -> str:
+    """Indent a code block to the selected depth.
+    The first line is intentionally not indented so that
+    the caller may use it as:
+
+    '''
+    def generated():
+        {codeblock}
+    '''
+    """
+    sep = '\n' + (' ' * (depth * 4))
+    return sep.join(lines)
 
 
 def mask(width: int) -> str:
