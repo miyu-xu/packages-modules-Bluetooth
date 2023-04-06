@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "574e3a5f_103c61de",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 810,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-04-06T08:43:25Z",
+      "side": 1,
+      "message": "IsGroupStream checks if there is any active ASE with data path state different than CIS_ESTABLISHED. Already streaming device has data path \u003d `DATA_PATH_ESTABLISHED` so it was always true.\n\nIn case of only two device scenarios this is enough since it would mean that the other device is already streaming.",
+      "parentUuid": "78b1fd83_ed6265bf",
+      "range": {
+        "startLine": 809,
+        "startChar": 8,
+        "endLine": 810,
+        "endChar": 56
+      },
+      "revId": "9444222d90fc7861da0d4aaf9be36007fbe02092",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2ff808a1_311545b5",
@@ -41,6 +65,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f0bd0b34_9b7f2b3a",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 2616,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-04-06T08:43:25Z",
+      "side": 1,
+      "message": "IsGroupStreamReady is only checking if there is group with ASEs data path state set only to `CIS_ESTABLISHED`. Case is the same as for late CIS establish event. If there is any device that has still `CIS_PENDING` it means that data path will be created from cis event handler context.",
+      "parentUuid": "2ff808a1_311545b5",
+      "revId": "9444222d90fc7861da0d4aaf9be36007fbe02092",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5400dd06_c9c57c8c",
@@ -54,6 +96,24 @@
       "writtenOn": "2023-04-05T21:31:17Z",
       "side": 1,
       "message": "Maybe we should have method which check if there are any ases which are not in DATA_PATH_ESTABLISHED. ?\n\nOr basically allow to call PrepareDataPath(group) twice and remove assert there and call only when there is ASE which needs that.\n\nIn this way we can have solution in one place, not two.",
+      "revId": "9444222d90fc7861da0d4aaf9be36007fbe02092",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c0547fc5_91e71262",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 2621,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-04-06T08:43:25Z",
+      "side": 1,
+      "message": "This sounds like a cosmetic change. There is of course possibility even to have this in one line of code `if (check 1 \u0026\u0026 check 2) return`. Intention was to show two separate possible cases that may happen.",
+      "parentUuid": "5400dd06_c9c57c8c",
       "revId": "9444222d90fc7861da0d4aaf9be36007fbe02092",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
