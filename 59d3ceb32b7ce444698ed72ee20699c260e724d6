@@ -18,6 +18,23 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e5b6fe49_88016661",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2023-04-06T07:09:53Z",
+      "side": 1,
+      "message": "Thanks for the review!",
+      "revId": "59d3ceb32b7ce444698ed72ee20699c260e724d6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b26c9b93_b2ac37fc",
@@ -31,6 +48,24 @@
       "writtenOn": "2023-03-31T20:54:43Z",
       "side": 1,
       "message": "Does our state machine correctly handle multiple L2CEVT_L2CA_CONFIG_RSP events?",
+      "revId": "59d3ceb32b7ce444698ed72ee20699c260e724d6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "112aa6e8_93c638ad",
+        "filename": "system/stack/l2cap/l2c_csm.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2023-04-06T07:09:53Z",
+      "side": 1,
+      "message": "It looks correct from the btsnoop log perspective\n\n```\n\u003e ACL Data RX: Handle 50 flags 0x02 dlen 16                                                                                                                 #52 [hci0] 36.083168\n      L2CAP: Configure Request (0x04) ident 3 len 8\n        Destination CID: 64\n        Flags: 0x0001 (continuation)\n        Option: Maximum Transmission Unit (0x01) [mandatory]\n          MTU: 48\n\u003c ACL Data TX: Handle 50 flags 0x00 dlen 14                                                                                                                 #53 [hci0] 36.084639\n      L2CAP: Configure Response (0x05) ident 3 len 6\n        Source CID: 64\n        Flags: 0x0001 (continuation)\n        Result: Success (0x0000)\n\u003e HCI Event: Number of Completed Packets (0x13) plen 5                                                                                                      #54 [hci0] 36.106730\n        Num handles: 1\n        Handle: 50\n        Count: 1\n\u003e ACL Data RX: Handle 50 flags 0x02 dlen 18                                                                                                                 #55 [hci0] 36.264180\n      L2CAP: Configure Response (0x05) ident 4 len 10\n        Source CID: 64\n        Flags: 0x0000\n        Result: Success (0x0000)\n        Option: Maximum Transmission Unit (0x01) [mandatory]\n          MTU: 1024\n\u003e ACL Data RX: Handle 50 flags 0x02 dlen 16                                                                                                                 #56 [hci0] 36.407171\n      L2CAP: Configure Request (0x04) ident 4 len 8\n        Destination CID: 64\n        Flags: 0x0000\n        Option: Flush Timeout (0x02) [mandatory]\n          Flush timeout: 1000\n\u003c ACL Data TX: Handle 50 flags 0x00 dlen 14                                                                                                                 #57 [hci0] 36.408034\n      L2CAP: Configure Response (0x05) ident 4 len 6\n        Source CID: 64\n        Flags: 0x0000\n        Result: Success (0x0000)\n```",
+      "parentUuid": "b26c9b93_b2ac37fc",
       "revId": "59d3ceb32b7ce444698ed72ee20699c260e724d6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
