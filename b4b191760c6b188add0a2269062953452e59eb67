@@ -16,6 +16,24 @@
       "message": "/* When group is streaming, make sure all other non connected members are\nin the allow list. This will help to quick reconnect.*/",
       "revId": "b4b191760c6b188add0a2269062953452e59eb67",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9ba36b81_a1c6074d",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 1729,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-04-06T08:12:17Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "ca79167d_49a5791b",
+      "revId": "b4b191760c6b188add0a2269062953452e59eb67",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
