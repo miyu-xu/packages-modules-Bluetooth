@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8fc2389b_5a495996",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 5355,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-04-06T00:10:48Z",
+      "side": 1,
+      "message": "We cannot mock the profile services in AdapterServiceTest, so I am unable to add a test there. The test for ActiveDeviceManagerTest should indirectly verify that it is working properly when we try to make LEA active before all supported classic audio profiles are active",
+      "parentUuid": "9c921a99_06135658",
+      "range": {
+        "startLine": 5355,
+        "startChar": 19,
+        "endLine": 5355,
+        "endChar": 59
+      },
+      "revId": "f7e8022772bb807eb26829222bc073ebedc7ad96",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a7f35bec_4aac06c5",
