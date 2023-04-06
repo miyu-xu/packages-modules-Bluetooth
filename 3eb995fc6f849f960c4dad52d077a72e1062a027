@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "00b02beb_885f672c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-04-06T18:24:47Z",
+      "side": 1,
+      "message": "Thinking about it, I don\u0027t think transaction IDs should be handled that way. We should be able to know the transaction id based on the procedure and the role:\n\ninitiate + central: 0\nrespond + central: 1\ninitiate + peripheral: 1\nrespond + peripheral: 0",
+      "revId": "3eb995fc6f849f960c4dad52d077a72e1062a027",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
