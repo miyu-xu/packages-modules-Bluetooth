@@ -39,6 +39,30 @@
       },
       "revId": "2559e8c28598098825b550f890f0c2dde1501457",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "859f3d25_3c9a56d9",
+        "filename": "system/stack/l2cap/l2c_main.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 261,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2023-04-06T03:38:52Z",
+      "side": 1,
+      "message": "I forgot to set last_id. It is done in line 272",
+      "parentUuid": "79be6718_651ba37f",
+      "range": {
+        "startLine": 261,
+        "startChar": 71,
+        "endLine": 261,
+        "endChar": 78
+      },
+      "revId": "2559e8c28598098825b550f890f0c2dde1501457",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
