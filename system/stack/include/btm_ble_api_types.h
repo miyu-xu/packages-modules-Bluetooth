@@ -397,92 +397,9 @@ typedef struct {
   tBTM_BLE_REF_VALUE ref_value;
 } tBTM_BLE_BATCH_SCAN_CB;
 
-/* filter selection bit index  */
-#define BTM_BLE_PF_ADDR_FILTER 0
-#define BTM_BLE_PF_SRVC_DATA 1
-#define BTM_BLE_PF_SRVC_UUID 2
-#define BTM_BLE_PF_SRVC_SOL_UUID 3
-#define BTM_BLE_PF_LOCAL_NAME 4
-#define BTM_BLE_PF_MANU_DATA 5
-#define BTM_BLE_PF_SRVC_DATA_PATTERN 6
-/* when passed in payload filter type all, only clear action is applicable */
-#define BTM_BLE_PF_TYPE_ALL 7
-#define BTM_BLE_PF_TYPE_MAX 8
-
-/* max number of filter spot for different filter type */
-#ifndef BTM_BLE_MAX_UUID_FILTER
-#define BTM_BLE_MAX_UUID_FILTER 8
-#endif
-#ifndef BTM_BLE_MAX_ADDR_FILTER
-#define BTM_BLE_MAX_ADDR_FILTER 8
-#endif
-#ifndef BTM_BLE_PF_STR_COND_MAX
-#define BTM_BLE_PF_STR_COND_MAX 4 /* apply to manu data , or local name */
-#endif
-#ifndef BTM_BLE_PF_STR_LEN_MAX
-#define BTM_BLE_PF_STR_LEN_MAX 29 /* match for first 29 bytes */
-#endif
-
-typedef uint8_t tBTM_BLE_PF_COND_TYPE;
-
-#define BTM_BLE_PF_LOGIC_OR 0
-#define BTM_BLE_PF_LOGIC_AND 1
-typedef uint8_t tBTM_BLE_PF_LOGIC_TYPE;
-
-#define BTM_BLE_PF_ENABLE 1
-#define BTM_BLE_PF_CONFIG 2
-
-typedef uint8_t tBTM_BLE_PF_FILT_INDEX;
-
-enum {
-  BTM_BLE_SCAN_COND_ADD,
-  BTM_BLE_SCAN_COND_DELETE,
-  BTM_BLE_SCAN_COND_CLEAR = 2
-};
-typedef uint8_t tBTM_BLE_SCAN_COND_OP;
-
-/* BLE adv payload filtering config complete callback */
-using tBTM_BLE_PF_CFG_CBACK = base::Callback<void(
-    uint8_t /* avbl_space */, tBTM_BLE_SCAN_COND_OP /* action */,
-    tBTM_STATUS /* btm_status */)>;
-
-/* BLE adv payload filtering status setup complete callback */
-using tBTM_BLE_PF_STATUS_CBACK = base::Callback<void(
-    tBTM_BLE_SCAN_COND_OP /*action*/, tBTM_STATUS /* btm_status */)>;
-
-/* BLE adv payload filtering param setup complete callback */
-using tBTM_BLE_PF_PARAM_CB = base::Callback<void(
-    uint8_t /* avbl_space */, tBTM_BLE_SCAN_COND_OP /* action */,
-    tBTM_STATUS /* btm_status */)>;
-
 #ifndef BTM_CS_IRK_LIST_MAX
 #define BTM_CS_IRK_LIST_MAX 0x20
 #endif
-
-typedef struct {
-  bool in_use;
-  RawAddress bd_addr;
-  uint8_t pf_counter[BTM_BLE_PF_TYPE_MAX]; /* number of filter indexed by
-                                              tBTM_BLE_PF_COND_TYPE */
-} tBTM_BLE_PF_COUNT;
-
-typedef struct {
-  bool enable;
-  uint8_t op_type;
-  tBTM_BLE_PF_COUNT* p_addr_filter_count; /* per BDA filter array */
-  tBLE_BD_ADDR cur_filter_target;
-} tBTM_BLE_ADV_FILTER_CB;
-
-/* Sub codes */
-#define BTM_BLE_META_PF_ENABLE 0x00
-#define BTM_BLE_META_PF_FEAT_SEL 0x01
-#define BTM_BLE_META_PF_ADDR 0x02
-#define BTM_BLE_META_PF_UUID 0x03
-#define BTM_BLE_META_PF_SOL_UUID 0x04
-#define BTM_BLE_META_PF_LOCAL_NAME 0x05
-#define BTM_BLE_META_PF_MANU_DATA 0x06
-#define BTM_BLE_META_PF_SRVC_DATA 0x07
-#define BTM_BLE_META_PF_ALL 0x08
 
 #define ADV_INFO_PRESENT 0x00
 #define NO_ADV_INFO_PRESENT 0x01

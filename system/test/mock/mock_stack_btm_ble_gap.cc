@@ -115,10 +115,6 @@ tBTM_STATUS btm_ble_set_discoverability(uint16_t combined_mode) {
   inc_func_call_count(__func__);
   return BTM_SUCCESS;
 }
-tBTM_STATUS btm_ble_start_inquiry(uint8_t duration) {
-  inc_func_call_count(__func__);
-  return BTM_SUCCESS;
-}
 uint16_t BTM_BleReadConnectability() {
   inc_func_call_count(__func__);
   return 0;
@@ -190,7 +186,6 @@ void btm_ble_read_remote_name_cmpl(bool status, const RawAddress& bda,
 void btm_ble_set_adv_flag(uint16_t connect_mode, uint16_t disc_mode) {
   inc_func_call_count(__func__);
 }
-void btm_ble_stop_inquiry(void) { inc_func_call_count(__func__); }
 void btm_ble_update_dmt_flag_bits(uint8_t* adv_flag_value,
                                   const uint16_t connect_mode,
                                   const uint16_t disc_mode) {
