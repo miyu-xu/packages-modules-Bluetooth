@@ -49,6 +49,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0ac8cb73_dc7469b6",
+        "filename": "framework/tests/bumble/src/com/android/framework/bluetooth/tests/gatt/LeAdvertisingTest.java",
+        "patchSetId": 30
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-04-06T00:26:25Z",
+      "side": 1,
+      "message": "Could/Should we put a deadline to this call ?",
+      "range": {
+        "startLine": 178,
+        "startChar": 35,
+        "endLine": 178,
+        "endChar": 49
+      },
+      "revId": "8274cce5e6c79212ac2fa2bd27056b87f9a426f7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "66769b5a_9083ce40",
         "filename": "framework/tests/bumble/src/com/android/framework/bluetooth/tests/gatt/LeAdvertisingTest.java",
         "patchSetId": 30
