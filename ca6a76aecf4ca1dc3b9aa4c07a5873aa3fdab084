@@ -69,6 +69,24 @@
       "message": "Can you please add a test for this?",
       "revId": "ca6a76aecf4ca1dc3b9aa4c07a5873aa3fdab084",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "48afcd74_b31fa224",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-04-06T17:44:48Z",
+      "side": 1,
+      "message": "was thinking about this, ideally we should add the test to cts-\u003eBluetoothDevice, but unfortunately afaik the cts is frozen now? any suggestions?",
+      "parentUuid": "5ccb7339_4e61b3e7",
+      "revId": "ca6a76aecf4ca1dc3b9aa4c07a5873aa3fdab084",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
