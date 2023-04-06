@@ -154,5 +154,11 @@ void RegisterRustApis(
                         stop_all_connections_to_device};
 }
 
+core::AddressWithType ResolveRawAddress(RawAddress bd_addr) {
+  tBTM_SEC_DEV_REC* p_dev_rec = btm_find_dev(bd_addr);
+  tBLE_BD_ADDR address = convert_to_address_with_type(bd_addr, p_dev_rec);
+  return core::ToRustAddress(address);
+}
+
 }  // namespace connection
 }  // namespace bluetooth
