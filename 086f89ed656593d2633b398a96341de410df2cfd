@@ -45,6 +45,30 @@
       },
       "revId": "086f89ed656593d2633b398a96341de410df2cfd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cd246136_5ab234c9",
+        "filename": "service/java/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 335,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2023-04-06T06:42:26Z",
+      "side": 1,
+      "message": "Yes there is, actually when I try to run this command `adb shell dumpsys activity service com.afwsamples.testdpc set-user-restriction no_bluetooth true` to change device policy, this function is triggered 1 time for each user. \n\nFor avoid toggling Bluetooth when policy change for non-active user, I guess we should check either user `UserManager#isUserForeground()`, `UserManager#isUserVisible()` or `UserManager#isUserRunning()` depending what we want. What do you think?",
+      "parentUuid": "43c8e914_5b4caf1b",
+      "range": {
+        "startLine": 335,
+        "startChar": 12,
+        "endLine": 335,
+        "endChar": 26
+      },
+      "revId": "086f89ed656593d2633b398a96341de410df2cfd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
