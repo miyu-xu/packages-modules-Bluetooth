@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4e2f6e33_eba256dc",
+        "filename": "system/include/abstract_message_loop.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 2001130
+      },
+      "writtenOn": "2023-04-06T23:45:47Z",
+      "side": 1,
+      "message": "Grace - is this how we want to handle the libchrome uprev stuff?",
+      "revId": "87fd360e6d42711f151e15cfeb1a71593c551455",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
