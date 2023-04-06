@@ -53,10 +53,13 @@
 #include "main/shim/l2c_api.h"
 #include "main/shim/metrics_api.h"
 #include "main/shim/shim.h"
+#include "os/metrics.h"
 #include "osi/include/allocator.h"
 #include "osi/include/log.h"
 #include "osi/include/osi.h"  // UNUSED_ATTR
 #include "osi/include/properties.h"
+#include "rust/src/connection/ffi/connection_shim.h"
+#include "rust/src/core/ffi/types.h"
 #include "stack/acl/acl.h"
 #include "stack/acl/peer_packet_types.h"
 #include "stack/btm/btm_dev.h"
@@ -75,7 +78,6 @@
 #include "stack/include/sco_hci_link_interface.h"
 #include "types/hci_role.h"
 #include "types/raw_address.h"
-#include "os/metrics.h"
 
 #ifndef PROPERTY_LINK_SUPERVISION_TIMEOUT
 #define PROPERTY_LINK_SUPERVISION_TIMEOUT \
@@ -201,6 +203,16 @@ static void hci_btsnd_hcic_disconnect(tACL_CONN& p_acl, tHCI_STATUS reason,
            ADDRESS_TO_LOGGABLE_CSTR(p_acl.remote_addr),
            hci_error_code_text(reason).c_str(), comment.c_str());
   p_acl.disconnect_reason = reason;
+
+  if (bluetooth::common::init_flags::
+          use_unified_connection_manager_is_enabled()) {
+    if (!p_acl.is_transport_br_edr()) {
+      bluetooth::connection::GetConnectionManager()
+          .stop_all_connections_to_device(bluetooth::core::ToRustAddress(
+              tBLE_BD_ADDR{.bda = p_acl.active_remote_addr,
+                           .type = p_acl.active_remote_addr_type}));
+    }
+  }
 
   return bluetooth::shim::ACL_Disconnect(
       p_acl.hci_handle, p_acl.is_transport_br_edr(), reason, comment);
@@ -2809,8 +2821,14 @@ bool acl_create_le_connection_with_id(uint8_t id, const RawAddress& bd_addr,
       android::bluetooth::le::LeConnectionState::STATE_LE_ACL_START,
       argument_list);
 
-  bluetooth::shim::ACL_AcceptLeConnectionFrom(address_with_type,
-                                              /* is_direct */ true);
+  if (bluetooth::common::init_flags::
+          use_unified_connection_manager_is_enabled()) {
+    bluetooth::connection::GetConnectionManager().start_direct_connection(
+        id, bluetooth::core::ToRustAddress(address_with_type));
+  } else {
+    bluetooth::shim::ACL_AcceptLeConnectionFrom(address_with_type,
+                                                /* is_direct */ true);
+  }
   return true;
 }
 

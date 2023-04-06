@@ -71,5 +71,7 @@ struct RustConnectionManager {
 
 RustConnectionManager& GetConnectionManager();
 
+core::AddressWithType ResolveRawAddress(RawAddress bd_addr);
+
 }  // namespace connection
 }  // namespace bluetooth
