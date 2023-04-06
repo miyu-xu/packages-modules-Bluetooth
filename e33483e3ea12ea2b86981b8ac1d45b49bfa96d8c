@@ -129,6 +129,30 @@
       },
       "revId": "e33483e3ea12ea2b86981b8ac1d45b49bfa96d8c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "92223057_ed66c113",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 51
+      },
+      "lineNbr": 931,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-04-06T22:04:44Z",
+      "side": 1,
+      "message": "I\u0027m *glad* this provoked this question.\n\nI listed *all* the states b/c I also have a similar question on why this is the case.  For the sake of the CL, however, I kept the behavior consistent to prior behavior for compatibility.",
+      "parentUuid": "aa3439e2_fd2f9a7c",
+      "range": {
+        "startLine": 931,
+        "startChar": 58,
+        "endLine": 931,
+        "endChar": 70
+      },
+      "revId": "e33483e3ea12ea2b86981b8ac1d45b49bfa96d8c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
