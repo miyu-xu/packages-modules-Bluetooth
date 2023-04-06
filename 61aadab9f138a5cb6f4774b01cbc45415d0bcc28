@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "574d9a5b_4fc401a8",
+        "filename": "system/stack/acl/btm_acl.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-04-06T22:37:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1ca0add3_3aa32ef2",
+      "revId": "61aadab9f138a5cb6f4774b01cbc45415d0bcc28",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b8e0138a_a89f6e56",
@@ -31,6 +49,30 @@
       "writtenOn": "2023-04-06T20:29:56Z",
       "side": 1,
       "message": "Cancel all connections from that client to that peer when disconnect is called.",
+      "range": {
+        "startLine": 295,
+        "startChar": 0,
+        "endLine": 295,
+        "endChar": 6
+      },
+      "revId": "61aadab9f138a5cb6f4774b01cbc45415d0bcc28",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b4776de3_1ac1ba1e",
+        "filename": "system/stack/gatt/gatt_main.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 295,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-04-06T22:37:03Z",
+      "side": 1,
+      "message": "Left a note. I\u0027m pretty sure this whole thing is redundant though, but I will leave it for now to be safe.",
+      "parentUuid": "b8e0138a_a89f6e56",
       "range": {
         "startLine": 295,
         "startChar": 0,
