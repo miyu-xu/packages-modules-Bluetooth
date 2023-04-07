@@ -114,6 +114,52 @@
       },
       "revId": "cb5f0946735b22817210e3d98f1237b940a049b9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "61dc83b9_2becaf8f",
+        "filename": "framework/tests/bumble/src/com/android/framework/bluetooth/tests/gatt/LeAdvertisingTest.java",
+        "patchSetId": 34
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-04-07T15:56:11Z",
+      "side": 1,
+      "message": "nit: Remove the `m`, `m` here means `member` it\u0027s usually used for class member variables.",
+      "range": {
+        "startLine": 122,
+        "startChar": 30,
+        "endLine": 122,
+        "endChar": 32
+      },
+      "revId": "cb5f0946735b22817210e3d98f1237b940a049b9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "82447403_cc1d9100",
+        "filename": "framework/tests/bumble/src/com/android/framework/bluetooth/tests/gatt/LeAdvertisingTest.java",
+        "patchSetId": 34
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-04-07T15:56:11Z",
+      "side": 1,
+      "message": "nit: Remove the `m`",
+      "range": {
+        "startLine": 126,
+        "startChar": 31,
+        "endLine": 126,
+        "endChar": 54
+      },
+      "revId": "cb5f0946735b22817210e3d98f1237b940a049b9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
