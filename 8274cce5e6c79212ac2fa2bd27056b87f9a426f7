@@ -121,6 +121,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4e52779d_ee285848",
+        "filename": "framework/tests/bumble/src/com/android/framework/bluetooth/tests/gatt/LeAdvertisingTest.java",
+        "patchSetId": 30
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 1986325
+      },
+      "writtenOn": "2023-04-07T05:05:12Z",
+      "side": 1,
+      "message": "if scan didn\u0027t find the peer we want and stopped the streaming, the onCompleted will be called right? The stream stopped but the expected peer not found. We still need that exception.",
+      "parentUuid": "ef98a08f_1d5e7d58",
+      "range": {
+        "startLine": 150,
+        "startChar": 30,
+        "endLine": 150,
+        "endChar": 34
+      },
+      "revId": "8274cce5e6c79212ac2fa2bd27056b87f9a426f7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0ac8cb73_dc7469b6",
         "filename": "framework/tests/bumble/src/com/android/framework/bluetooth/tests/gatt/LeAdvertisingTest.java",
         "patchSetId": 30
@@ -227,6 +251,30 @@
       "side": 1,
       "message": "As the cancellationListener is now empty I think we can remove the `addListener` call altogether.",
       "parentUuid": "856ec64c_ab7b89c3",
+      "range": {
+        "startLine": 181,
+        "startChar": 0,
+        "endLine": 183,
+        "endChar": 0
+      },
+      "revId": "8274cce5e6c79212ac2fa2bd27056b87f9a426f7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4c0613c1_d9d09434",
+        "filename": "framework/tests/bumble/src/com/android/framework/bluetooth/tests/gatt/LeAdvertisingTest.java",
+        "patchSetId": 30
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 1986325
+      },
+      "writtenOn": "2023-04-07T05:05:12Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "0f8ea194_03c570d6",
       "range": {
         "startLine": 181,
         "startChar": 0,
