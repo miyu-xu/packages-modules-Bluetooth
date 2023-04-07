@@ -22,6 +22,30 @@
       },
       "revId": "e43255cabcceefe1b235e3339d42bf46db5f10f5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "14a04517_6e013ff3",
+        "filename": "system/bta/include/bta_api.h",
+        "patchSetId": 14
+      },
+      "lineNbr": 461,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-04-07T18:49:28Z",
+      "side": 1,
+      "message": "Actually the better solution is to compress the values so\n`BTA_DM_SEARCH_CANCEL_CMPL_EVT \u003d 5`\n\nI\u0027m trying to capture existing data w/out modifying it but that surfaces more inconsistencies.",
+      "parentUuid": "38b61c29_47ef2b0c",
+      "range": {
+        "startLine": 461,
+        "startChar": 2,
+        "endLine": 461,
+        "endChar": 23
+      },
+      "revId": "e43255cabcceefe1b235e3339d42bf46db5f10f5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
