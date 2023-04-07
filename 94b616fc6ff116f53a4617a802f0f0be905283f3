@@ -22,6 +22,30 @@
       },
       "revId": "94b616fc6ff116f53a4617a802f0f0be905283f3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c76003a9_370d4390",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 3519,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-04-07T00:46:27Z",
+      "side": 1,
+      "message": "Will re-add this farther up the chain. There are dependent methods that aren\u0027t in this CL.",
+      "parentUuid": "a2cfab21_0afb4cd9",
+      "range": {
+        "startLine": 3519,
+        "startChar": 0,
+        "endLine": 3519,
+        "endChar": 44
+      },
+      "revId": "94b616fc6ff116f53a4617a802f0f0be905283f3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
