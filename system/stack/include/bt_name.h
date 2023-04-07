@@ -19,6 +19,8 @@
 #ifdef __cplusplus
 #include <cstdint>
 #include <cstring>
+
+#include "osi/include/compat.h"
 #else
 #include <stdint.h>
 #include <string.h>
@@ -44,5 +46,34 @@ typedef uint8_t tBTM_BD_NAME[BTM_MAX_REM_BD_NAME_LEN + 1];
 typedef uint8_t tBTM_LOC_BD_NAME[BTM_MAX_LOC_BD_NAME_LEN + 1];
 
 #ifdef __cplusplus
+constexpr size_t kBdNameLength = static_cast<size_t>(BD_NAME_LEN);
+
 inline constexpr tBTM_BD_NAME kBtmBdNameEmpty = {};
+
+inline void bd_name_clear(BD_NAME bd_name) {
+  memset(bd_name, 0, kBdNameLength + 1);
+}
+
+inline bool bd_name_is_empty(const BD_NAME bd_name) {
+  return bd_name[0] == '\0';
+}
+
+inline void bd_name_new(BD_NAME bd_name_dest, const char* bd_name_char) {
+  if (bd_name_char != nullptr) {
+    strlcpy(reinterpret_cast<char*>(bd_name_dest), bd_name_char,
+            kBdNameLength + 1);
+  }
+}
+
+inline size_t bd_name_copy(BD_NAME bd_name_dest, const BD_NAME bd_name_src) {
+  return strlcpy(reinterpret_cast<char*>(bd_name_dest),
+                 reinterpret_cast<char*>(const_cast<uint8_t*>(bd_name_src)),
+                 kBdNameLength + 1);
+}
+
+inline bool bd_name_is_equal(const BD_NAME bd_name1, const BD_NAME bd_name2) {
+  return memcmp(reinterpret_cast<void*>(const_cast<uint8_t*>(bd_name1)),
+                reinterpret_cast<void*>(const_cast<uint8_t*>(bd_name2)),
+                kBdNameLength + 1) == 0;
+}
 #endif
