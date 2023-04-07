@@ -42,4 +42,9 @@
         <option name="mobly-test-timeout" value="1800000" />
         <option name="test-bed" value="android.bumbles" />
     </test>
+    <metrics_collector class="com.android.tradefed.device.metric.BluetoothHciSnoopLogCollector">
+        <option name="collect-on-run-ended-only" value="false" />
+        <option name="clean-up" value="true" />
+        <option name="directory-keys" value="/data/misc/bluetooth/testreporting" />
+    </metrics_collector>
 </configuration>
