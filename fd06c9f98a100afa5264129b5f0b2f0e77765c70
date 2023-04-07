@@ -400,6 +400,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "86badbd9_b9d1f695",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 4909,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-04-07T01:39:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "55b976f6_52337c76",
+      "range": {
+        "startLine": 4907,
+        "startChar": 12,
+        "endLine": 4909,
+        "endChar": 13
+      },
+      "revId": "fd06c9f98a100afa5264129b5f0b2f0e77765c70",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7893f794_5e304673",
@@ -413,6 +437,30 @@
       "writtenOn": "2023-03-31T17:49:37Z",
       "side": 1,
       "message": "simplify this a little bit",
+      "range": {
+        "startLine": 4930,
+        "startChar": 14,
+        "endLine": 4930,
+        "endChar": 33
+      },
+      "revId": "fd06c9f98a100afa5264129b5f0b2f0e77765c70",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9b61480c_f59db47a",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 4930,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-04-07T01:39:06Z",
+      "side": 1,
+      "message": "Not sure what you mean. What would you like simplified?",
+      "parentUuid": "7893f794_5e304673",
       "range": {
         "startLine": 4930,
         "startChar": 14,
@@ -530,6 +578,30 @@
       "writtenOn": "2023-03-31T17:49:37Z",
       "side": 1,
       "message": "how do we know if this method call correspond to an existing outgoing method call to audioManager\n\nWe need to make sure audio manager only calls this when there is a pending request from Bluetooth",
+      "range": {
+        "startLine": 5049,
+        "startChar": 16,
+        "endLine": 5049,
+        "endChar": 47
+      },
+      "revId": "fd06c9f98a100afa5264129b5f0b2f0e77765c70",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "722aa06d_88530e58",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 5049,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-04-07T01:39:06Z",
+      "side": 1,
+      "message": "As of now, we don\u0027t know that it corresponds to the outgoing method call. Audio Framework team wanted us to use the existing handleBluetoothActiveDeviceChanged API to inform them of these changes. Even the audio framework team isn\u0027t fully aware of all situations where this call comes from a preferred audio profile change. For example, A2DP codec changes will also be delivered through the same mechanism.\n\nThese will all tie back to calls to handleBluetoothActiveDeviceChanged which come from BT, but we just can\u0027t distinguish between calls.",
+      "parentUuid": "db8d686e_f8d598bb",
       "range": {
         "startLine": 5049,
         "startChar": 16,
