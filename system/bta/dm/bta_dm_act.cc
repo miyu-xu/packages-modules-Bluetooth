@@ -1090,60 +1090,39 @@ void bta_dm_inq_cmpl(uint8_t num) {
   }
 }
 
-/*******************************************************************************
- *
- * Function         bta_dm_rmt_name
- *
- * Description      Process the remote name result from BTM
- *
- * Returns          void
- *
- ******************************************************************************/
-void bta_dm_rmt_name(tBTA_DM_MSG* p_data) {
-  APPL_TRACE_DEBUG("bta_dm_rmt_name");
-
-  if (p_data->rem_name.result.disc_res.bd_name[0] &&
-      bta_dm_search_cb.p_btm_inq_info) {
-    bta_dm_search_cb.p_btm_inq_info->appl_knows_rem_name = true;
-  }
-
-  bta_dm_discover_device(bta_dm_search_cb.peer_bdaddr);
-}
-
-/*******************************************************************************
- *
- * Function         bta_dm_disc_rmt_name
- *
- * Description      Process the remote name result from BTM when application
- *                  wants to find the name for a bdaddr
- *
- * Returns          void
- *
- ******************************************************************************/
-void bta_dm_disc_rmt_name(tBTA_DM_MSG* p_data) {
+void bta_dm_remote_name_cmpl(tBTA_DM_MSG* p_data) {
   CHECK(p_data != nullptr);
 
-  APPL_TRACE_DEBUG("bta_dm_disc_rmt_name");
+  const tBTA_DM_DISC_RES& disc_res = p_data->rem_name.result.disc_res;
 
-  const tBTA_DM_DISC_RES* disc_res = &p_data->rem_name.result.disc_res;
-
-  BTM_LogHistory(
-      kBtmLogTag, disc_res->bd_addr, "Remote name completed",
-      base::StringPrintf(
-          "status:%s name:\"%s\" service:0x%x device_type:%s num_uuids:%zu",
-          hci_status_code_text(disc_res->hci_status).c_str(), disc_res->bd_name,
-          disc_res->services, DeviceTypeText(disc_res->device_type).c_str(),
-          disc_res->num_uuids));
-
-  tBTM_INQ_INFO* p_btm_inq_info =
-      BTM_InqDbRead(p_data->rem_name.result.disc_res.bd_addr);
-  if (p_btm_inq_info) {
-    if (p_data->rem_name.result.disc_res.bd_name[0]) {
-      p_btm_inq_info->appl_knows_rem_name = true;
-    }
+  tBTM_INQ_INFO* p_btm_inq_info = BTM_InqDbRead(disc_res.bd_addr);
+  if (disc_res.bd_name[0] != '\0' && bta_dm_search_cb.p_btm_inq_info) {
+    p_btm_inq_info->appl_knows_rem_name = true;
   }
 
-  bta_dm_discover_device(p_data->rem_name.result.disc_res.bd_addr);
+  BTM_LogHistory(
+      kBtmLogTag, disc_res.bd_addr, "Remote name completed",
+      base::StringPrintf("status:%s name:\"%s\"",
+                         hci_status_code_text(disc_res.hci_status).c_str(),
+                         disc_res.bd_name));
+
+  // Callback with this property
+  if (bta_dm_search_cb.p_search_cback != nullptr) {
+    tBTA_DM_SEARCH search_data = {
+        .disc_res =
+            {
+                .bd_addr = disc_res.bd_addr,
+            },
+    };
+    memcpy(search_data.disc_res.bd_name, disc_res.bd_name, BD_NAME_LEN);
+    bta_dm_search_cb.p_search_cback(BTA_DM_DISC_RES_EVT, &search_data);
+  }
+
+  if (bta_dm_search_cb.peer_bdaddr == disc_res.bd_addr) {
+    bta_dm_discover_device(disc_res.bd_addr);
+  } else {
+    bta_dm_discover_device(bta_dm_search_cb.peer_bdaddr);
+  }
 }
 
 static void store_avrcp_profile_feature(tSDP_DISC_REC* sdp_rec) {
