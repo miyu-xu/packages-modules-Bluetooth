@@ -16,6 +16,24 @@
       "message": "Grace - this package seems to build without this include.  Do you think it\u0027s safer to add the #ifdefs around this?",
       "revId": "f6ddaf93a2a86ff85292dd7c6e1b0121f6f63562",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "30657ff6_5f5c39e7",
+        "filename": "system/gd/rust/shim/callbacks/callbacks.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1588128
+      },
+      "writtenOn": "2023-04-07T01:26:40Z",
+      "side": 0,
+      "message": "Do you mean CrOS floss builds without this change? If that\u0027s the case likely they are not used there (even though it exists in the CrOS repo).\nI am not sure but from the build files seems like so: [Android.bp](https://source.corp.google.com/chromeos_public/src/aosp/packages/modules/Bluetooth/local/system/gd/rust/shim/Android.bp;l\u003d143;bpv\u003d1) c++ library headers has the .../callbacks directory vs [BUILD.gn](https://source.corp.google.com/chromeos_public/src/aosp/packages/modules/Bluetooth/local/system/gd/rust/shim/BUILD.gn;l\u003d59) has it empty.",
+      "parentUuid": "5e576967_2ea118d3",
+      "revId": "f6ddaf93a2a86ff85292dd7c6e1b0121f6f63562",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
