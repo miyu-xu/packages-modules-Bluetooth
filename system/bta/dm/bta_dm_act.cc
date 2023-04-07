@@ -2254,14 +2254,21 @@ static void bta_dm_remname_cback(const tBTM_REMOTE_DEV_NAME* p) {
     GAP_BleReadPeerPrefConnParams(bta_dm_search_cb.peer_bdaddr);
   }
 
-  tBTA_DM_REM_NAME* p_msg =
-      (tBTA_DM_REM_NAME*)osi_malloc(sizeof(tBTA_DM_REM_NAME));
-  p_msg->result.disc_res.hci_status = p->hci_status;
-  p_msg->result.disc_res.bd_addr = bta_dm_search_cb.peer_bdaddr;
-  strlcpy((char*)p_msg->result.disc_res.bd_name,
+  tBTA_DM_MSG* p_msg = (tBTA_DM_MSG*)osi_malloc(sizeof(tBTA_DM_MSG));
+  *p_msg = {
+      .remote_name =
+          {
+              // tBTA_DM_REMOTE_NAME
+              .hdr =
+                  {
+                      .event = BTA_DM_REMT_NAME_EVT,
+                  },
+              .hci_status = p->hci_status,
+              .bd_addr = bta_dm_search_cb.peer_bdaddr,
+          },
+  };
+  strlcpy((char*)p_msg->remote_name.bd_name,
           (char*)p_remote_name->remote_bd_name, BD_NAME_LEN + 1);
-  p_msg->hdr.event = BTA_DM_REMT_NAME_EVT;
-
   bta_sys_sendmsg(p_msg);
 }
 
