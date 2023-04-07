@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4693aa43_fbf50a70",
+        "filename": "android/pandora/test/asha_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 1952952
+      },
+      "writtenOn": "2023-04-07T02:13:12Z",
+      "side": 1,
+      "message": "@yuyangh@google.com this case did the same thing as \"test_advertising_advertisement_data\". should we remove it?",
+      "range": {
+        "startLine": 190,
+        "startChar": 14,
+        "endLine": 190,
+        "endChar": 44
+      },
+      "revId": "0ecf6ec9c79029a4474ea8cbb48cff27ca64ba13",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
