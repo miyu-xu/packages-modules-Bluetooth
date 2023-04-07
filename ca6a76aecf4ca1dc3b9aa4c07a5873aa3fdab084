@@ -105,6 +105,24 @@
       "parentUuid": "48afcd74_b31fa224",
       "revId": "ca6a76aecf4ca1dc3b9aa4c07a5873aa3fdab084",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b814c4bd_c3b6bed9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-04-07T01:10:06Z",
+      "side": 1,
+      "message": "discussed with Rahul offline, a better option could be to add this framework test in cts-\u003eBluetoothDevice from internal master branch. We can\u0027t change this on aosp due to the code freeze. Will add a separate CL for that.",
+      "parentUuid": "e20de6fd_37113ead",
+      "revId": "ca6a76aecf4ca1dc3b9aa4c07a5873aa3fdab084",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
