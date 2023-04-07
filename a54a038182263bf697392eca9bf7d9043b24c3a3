@@ -34,6 +34,24 @@
       "parentUuid": "fc369365_7adac10a",
       "revId": "a54a038182263bf697392eca9bf7d9043b24c3a3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "43afa5de_5ae6e318",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-04-07T09:03:02Z",
+      "side": 1,
+      "message": "Offline chat:\nIt is not the best solution but there is no other workaround for this. Everything else is creating bloated code or fail the StrictJavaPackagesTest",
+      "parentUuid": "21c394bd_28202480",
+      "revId": "a54a038182263bf697392eca9bf7d9043b24c3a3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
