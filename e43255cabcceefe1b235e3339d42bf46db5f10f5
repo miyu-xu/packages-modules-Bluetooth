@@ -46,6 +46,30 @@
       },
       "revId": "e43255cabcceefe1b235e3339d42bf46db5f10f5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "86b3b0bf_13b5b3a2",
+        "filename": "system/bta/include/bta_api.h",
+        "patchSetId": 14
+      },
+      "lineNbr": 461,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-04-07T19:01:37Z",
+      "side": 1,
+      "message": "That\u0027s better as long as there are no casts to this type :)",
+      "parentUuid": "14a04517_6e013ff3",
+      "range": {
+        "startLine": 461,
+        "startChar": 2,
+        "endLine": 461,
+        "endChar": 23
+      },
+      "revId": "e43255cabcceefe1b235e3339d42bf46db5f10f5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
