@@ -70,6 +70,24 @@
       "parentUuid": "61b3a499_b0f433a9",
       "revId": "f6ddaf93a2a86ff85292dd7c6e1b0121f6f63562",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "38b0bd8e_b474162c",
+        "filename": "system/gd/rust/shim/callbacks/callbacks.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 2001130
+      },
+      "writtenOn": "2023-04-07T03:02:28Z",
+      "side": 0,
+      "message": "Ah - I missed that section in the handbook.  Thanks!  Yup - this builds in CrOS with these changes (this header removed from this file), so I\u0027ll go ahead and run presubmit again.",
+      "parentUuid": "dd843810_a71c8044",
+      "revId": "f6ddaf93a2a86ff85292dd7c6e1b0121f6f63562",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
