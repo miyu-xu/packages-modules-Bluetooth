@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "62321e96_36f6a889",
+        "filename": "framework/tests/bumble/AndroidManifest.xml",
+        "patchSetId": 34
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-04-07T15:46:23Z",
+      "side": 1,
+      "message": "As you are adopting the shell identity you don\u0027t need all those permissions",
+      "range": {
+        "startLine": 6,
+        "startChar": 0,
+        "endLine": 29,
+        "endChar": 77
+      },
+      "revId": "cb5f0946735b22817210e3d98f1237b940a049b9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "26de34ec_71068dea",
+        "filename": "framework/tests/bumble/src/com/android/framework/bluetooth/tests/gatt/LeAdvertisingTest.java",
+        "patchSetId": 34
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-04-07T15:46:23Z",
+      "side": 1,
+      "message": "Place this file in the hierarchy of the package so `src/com/android/framework/bluetooth/tests/LeAdvertisingTest.java` and not `src/com/android/framework/bluetooth/tests/gatt/LeAdvertisingTest.java`\n\nnit: And the package of the framework is `android.bluetooth` not `com.android.framework.bluetooth`",
+      "range": {
+        "startLine": 1,
+        "startChar": 8,
+        "endLine": 1,
+        "endChar": 45
+      },
+      "revId": "cb5f0946735b22817210e3d98f1237b940a049b9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3f31ca66_d11f6348",
+        "filename": "framework/tests/bumble/src/com/android/framework/bluetooth/tests/gatt/LeAdvertisingTest.java",
+        "patchSetId": 34
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-04-07T15:46:23Z",
+      "side": 1,
+      "message": "nit: Remove unused imports",
+      "range": {
+        "startLine": 33,
+        "startChar": 0,
+        "endLine": 33,
+        "endChar": 38
+      },
+      "revId": "cb5f0946735b22817210e3d98f1237b940a049b9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bd8b115b_4d76b6c6",
+        "filename": "framework/tests/bumble/src/com/android/framework/bluetooth/tests/gatt/LeAdvertisingTest.java",
+        "patchSetId": 34
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-04-07T15:46:23Z",
+      "side": 1,
+      "message": "We should rename this one to make clear from the test point of view that this is Bumble that scan, something like `scanWithBumble` or `scanWithRef`",
+      "range": {
+        "startLine": 107,
+        "startChar": 65,
+        "endLine": 107,
+        "endChar": 69
+      },
+      "revId": "cb5f0946735b22817210e3d98f1237b940a049b9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8ad77860_32259b24",
+        "filename": "framework/tests/bumble/src/com/android/framework/bluetooth/tests/gatt/LeAdvertisingTest.java",
+        "patchSetId": 34
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-04-07T15:46:23Z",
+      "side": 1,
+      "message": "`assertThat(response).isNotNull()`",
+      "range": {
+        "startLine": 111,
+        "startChar": 8,
+        "endLine": 111,
+        "endChar": 36
+      },
+      "revId": "cb5f0946735b22817210e3d98f1237b940a049b9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
