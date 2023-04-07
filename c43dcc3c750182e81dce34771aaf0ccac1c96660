@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "caa59741_f8e89efe",
+        "filename": "android/pandora/server/src/com/android/pandora/Host.kt",
+        "patchSetId": 2
+      },
+      "lineNbr": 771,
+      "author": {
+        "id": 1929170
+      },
+      "writtenOn": "2023-04-07T17:02:13Z",
+      "side": 1,
+      "message": "Nit: Log.d(TAG, \"ScanFilter in request non-empty: ${request.scanFilter}\")",
+      "range": {
+        "startLine": 771,
+        "startChar": 9,
+        "endLine": 771,
+        "endChar": 78
+      },
+      "revId": "c43dcc3c750182e81dce34771aaf0ccac1c96660",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "72161b01_280a017e",
+        "filename": "android/pandora/server/src/com/android/pandora/Host.kt",
+        "patchSetId": 2
+      },
+      "lineNbr": 773,
+      "author": {
+        "id": 1929170
+      },
+      "writtenOn": "2023-04-07T17:02:13Z",
+      "side": 1,
+      "message": "Nit: Use `val` for immutable variables.",
+      "revId": "c43dcc3c750182e81dce34771aaf0ccac1c96660",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
