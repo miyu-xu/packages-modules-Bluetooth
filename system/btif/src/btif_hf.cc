@@ -1500,8 +1500,8 @@ bt_status_t HeadsetInterface::PhoneStateChange(
   return status;
 }
 
-void HeadsetInterface::Cleanup() {
-  BTIF_TRACE_EVENT("%s", __func__);
+static void btif_hf_cleanup() {
+  LOG_DEBUG("%s", __func__);
 
   btif_queue_cleanup(UUID_SERVCLASS_AG_HANDSFREE);
 
@@ -1517,6 +1517,10 @@ void HeadsetInterface::Cleanup() {
   }
 
   bt_hf_callbacks = nullptr;
+}
+
+void HeadsetInterface::Cleanup() {
+  do_in_jni_thread(base::Bind(&btif_hf_cleanup));
 }
 
 bt_status_t HeadsetInterface::SetScoOffloadEnabled(bool value) {
