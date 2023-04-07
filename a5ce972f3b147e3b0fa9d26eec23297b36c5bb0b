@@ -22,6 +22,30 @@
       },
       "revId": "a5ce972f3b147e3b0fa9d26eec23297b36c5bb0b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "df36076d_fc3858c7",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1951,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-04-07T13:11:07Z",
+      "side": 1,
+      "message": "Synced on chat on that, line 4810 takes care of that.",
+      "parentUuid": "7ce6dcdc_99548487",
+      "range": {
+        "startLine": 1951,
+        "startChar": 5,
+        "endLine": 1951,
+        "endChar": 6
+      },
+      "revId": "a5ce972f3b147e3b0fa9d26eec23297b36c5bb0b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
