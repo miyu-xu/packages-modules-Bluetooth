@@ -34,6 +34,24 @@
       "parentUuid": "00b02beb_885f672c",
       "revId": "3eb995fc6f849f960c4dad52d077a72e1062a027",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b9d0ea72_20f2eccd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-04-07T16:50:25Z",
+      "side": 1,
+      "message": "The next step would be checking the transaction ID and rejecting the request if it doesn\u0027t match the expected ID.",
+      "parentUuid": "14d5f02a_c88d9d47",
+      "revId": "3eb995fc6f849f960c4dad52d077a72e1062a027",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
