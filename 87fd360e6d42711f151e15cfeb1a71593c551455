@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5733fa43_194b337d",
+        "filename": "system/include/abstract_message_loop.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 2001130
+      },
+      "writtenOn": "2023-04-07T02:18:51Z",
+      "side": 1,
+      "message": "Oh I missed that... thanks!",
+      "parentUuid": "e72787b6_64fc8efc",
+      "revId": "87fd360e6d42711f151e15cfeb1a71593c551455",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d3d27105_fa2a0362",
@@ -49,6 +67,30 @@
       "writtenOn": "2023-04-07T01:26:40Z",
       "side": 1,
       "message": "IIUC the minimal different will be the return statement only? (The base class and return type are the same) Same for the testing class.",
+      "range": {
+        "startLine": 57,
+        "startChar": 4,
+        "endLine": 57,
+        "endChar": 61
+      },
+      "revId": "87fd360e6d42711f151e15cfeb1a71593c551455",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "621be818_01b46a1a",
+        "filename": "system/include/abstract_message_loop.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 2001130
+      },
+      "writtenOn": "2023-04-07T02:18:51Z",
+      "side": 1,
+      "message": "Yup - I\u0027ll move the #if just around the return statement.",
+      "parentUuid": "d3d27105_fa2a0362",
       "range": {
         "startLine": 57,
         "startChar": 4,
