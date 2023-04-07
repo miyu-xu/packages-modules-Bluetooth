@@ -281,6 +281,7 @@ cc_test {
         "libbt-sbc-encoder",
         "libbt-stack",
         "libbt-stack-core",
+        "libbluetooth_core_rs",
         "libFraunhoferAAC",
         "libg722codec",
         "liblc3",
