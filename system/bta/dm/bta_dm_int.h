@@ -137,6 +137,14 @@ typedef struct {
   tBTA_DM_SEARCH result;
 } tBTA_DM_REM_NAME;
 
+typedef struct {
+  BT_HDR_RIGID hdr;
+  RawAddress bd_addr;
+  BD_NAME bd_name; /* Name of peer device. */
+  tHCI_STATUS hci_status;
+  bool is_name_valid() const { return bd_name[0] != '\0'; }
+} tBTA_DM_REMOTE_NAME;
+
 /* data type for tBTA_DM_DISC_RESULT */
 typedef struct {
   BT_HDR_RIGID hdr;
@@ -188,6 +196,7 @@ typedef union {
 
   tBTA_DM_SDP_RESULT sdp_event;
 
+  tBTA_DM_REMOTE_NAME remote_name;
 } tBTA_DM_MSG;
 
 #define BTA_DM_NUM_PEER_DEVICE 7
