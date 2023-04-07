@@ -56,6 +56,30 @@
       },
       "revId": "fd6495d07022ac0ee5e3349a7c4f5298ce7e0b99",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3eebdd11_797723bb",
+        "filename": "android/pandora/server/src/com/android/pandora/Utils.kt",
+        "patchSetId": 1
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1937985
+      },
+      "writtenOn": "2023-04-07T12:15:58Z",
+      "side": 1,
+      "message": "Make sense, I opened a bug: b/277321891",
+      "parentUuid": "f930f706_9383f0a4",
+      "range": {
+        "startLine": 89,
+        "startChar": 12,
+        "endLine": 89,
+        "endChar": 65
+      },
+      "revId": "fd6495d07022ac0ee5e3349a7c4f5298ce7e0b99",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
