@@ -106,6 +106,24 @@
       "parentUuid": "38b0bd8e_b474162c",
       "revId": "f6ddaf93a2a86ff85292dd7c6e1b0121f6f63562",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8c73155f_952759f4",
+        "filename": "system/gd/rust/shim/callbacks/callbacks.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 2001130
+      },
+      "writtenOn": "2023-04-07T15:32:34Z",
+      "side": 0,
+      "message": "I did try and build floss in CrOS before I made either of these changes, and it failed on both callbacks.h and abstract_message_loop.h.  Note that when I was building floss in CrOS, I was using a libchrome where I removed the backward compatibility patch 0200 (which was used to re-introduce the header file sequenced_task_runner_handle.h).  So, without that patch, I\u0027d expect this to fail, and it did.",
+      "parentUuid": "bd25da9c_9dce3e8c",
+      "revId": "f6ddaf93a2a86ff85292dd7c6e1b0121f6f63562",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
