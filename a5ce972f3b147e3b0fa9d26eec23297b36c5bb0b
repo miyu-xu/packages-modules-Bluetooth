@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7ce6dcdc_99548487",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1951,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-04-07T12:06:30Z",
+      "side": 1,
+      "message": "Lets say this method executed once, while the group was still streaming, and we added devices to accept list.\n\nIf the group is no longer streaming now, shall we remove all members from allow list now, and add them back to TA ?",
+      "range": {
+        "startLine": 1951,
+        "startChar": 5,
+        "endLine": 1951,
+        "endChar": 6
+      },
+      "revId": "a5ce972f3b147e3b0fa9d26eec23297b36c5bb0b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
