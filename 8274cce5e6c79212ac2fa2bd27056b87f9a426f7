@@ -145,6 +145,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f2660c90_43f37fe2",
+        "filename": "framework/tests/bumble/src/com/android/framework/bluetooth/tests/gatt/LeAdvertisingTest.java",
+        "patchSetId": 30
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-04-07T05:36:53Z",
+      "side": 1,
+      "message": "Instead of completing with the exception I think we should just `complete` the future with null.\n\nAnd in the test assert that the scan response is not null.",
+      "parentUuid": "4e52779d_ee285848",
+      "range": {
+        "startLine": 150,
+        "startChar": 30,
+        "endLine": 150,
+        "endChar": 34
+      },
+      "revId": "8274cce5e6c79212ac2fa2bd27056b87f9a426f7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0ac8cb73_dc7469b6",
         "filename": "framework/tests/bumble/src/com/android/framework/bluetooth/tests/gatt/LeAdvertisingTest.java",
         "patchSetId": 30
