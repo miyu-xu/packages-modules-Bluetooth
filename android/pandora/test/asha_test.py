@@ -33,8 +33,17 @@ from typing import List, Optional, Tuple
 
 ASHA_UUID = GATT_ASHA_SERVICE.to_hex_str()
 HISYCNID: List[int] = [0x01, 0x02, 0x03, 0x04, 0x5, 0x6, 0x7, 0x8]
-CAPABILITY: int = 0x0
 COMPLETE_LOCAL_NAME: str = "Bumble"
+
+
+class Capability(enum.IntEnum):
+    """Reference capability devices type"""
+
+    LEFT = 0
+    RIGHT = 1
+
+    def __repr__(self) -> str:
+        return str(self.value)
 
 
 class Ear(enum.IntEnum):
@@ -84,7 +93,7 @@ class ASHATest(base_test.BaseTestClass):  # type: ignore[misc]
         setattr(self.ref_right.device, "io_capability", PairingDelegate.NO_OUTPUT_NO_INPUT)
 
     async def ref_advertise_asha(
-        self, ref_device: PandoraDevice, ref_address_type: OwnAddressType
+        self, ref_device: PandoraDevice, ref_address_type: OwnAddressType, capability: Capability
     ) -> AioStream[AdvertiseResponse]:
         """
         Ref device starts to advertise with service data in advertisement data.
@@ -92,7 +101,7 @@ class ASHATest(base_test.BaseTestClass):  # type: ignore[misc]
         """
         # Ref starts advertising with ASHA service data
         asha = AioAsha(ref_device.aio.channel)
-        await asha.Register(capability=CAPABILITY, hisyncid=HISYCNID)
+        await asha.Register(capability=capability, hisyncid=HISYCNID)
         return ref_device.aio.host.Advertise(
             legacy=True,
             connectable=True,
@@ -140,8 +149,16 @@ class ASHATest(base_test.BaseTestClass):  # type: ignore[misc]
             assert e.code() == grpc.StatusCode.DEADLINE_EXCEEDED  # type: ignore
             return True
 
+    @avatar.parameterized(
+        (RANDOM, Capability.LEFT),
+        (RANDOM, Capability.RIGHT),
+    )  # type: ignore[misc]
     @asynchronous
-    async def test_advertising_advertisement_data(self) -> None:
+    async def test_advertising_advertisement_data(
+        self,
+        ref_address_type: OwnAddressType,
+        capability: Capability,
+    ) -> None:
         """
         Ref starts ASHA advertisements with service data in advertisement data.
         DUT starts a service discovery.
@@ -150,7 +167,7 @@ class ASHATest(base_test.BaseTestClass):  # type: ignore[misc]
         protocol_version = 0x01
         truncated_hisyncid = HISYCNID[:4]
 
-        advertisement = await self.ref_advertise_asha(self.ref_left, RANDOM)
+        advertisement = await self.ref_advertise_asha(self.ref_left, ref_address_type, capability)
 
         # DUT starts a service discovery
         scan_result = await self.dut_scan_for_asha(dut_address_type=RANDOM)
@@ -161,7 +178,7 @@ class ASHATest(base_test.BaseTestClass):  # type: ignore[misc]
         assert_equal(type(scan_result.data.complete_local_name), str)
         expected_advertisement_data = (
             "{:02x}".format(protocol_version)
-            + "{:02x}".format(CAPABILITY)
+            + "{:02x}".format(capability)
             + "".join([("{:02x}".format(x)) for x in truncated_hisyncid])
         )
         assert_equal(
@@ -180,7 +197,7 @@ class ASHATest(base_test.BaseTestClass):  # type: ignore[misc]
         truncated_hisyncid = HISYCNID[:4]
 
         asha = AioAsha(self.ref_left.aio.channel)
-        await asha.Register(capability=CAPABILITY, hisyncid=HISYCNID)
+        await asha.Register(capability=Capability.LEFT, hisyncid=HISYCNID)
 
         # advertise with ASHA service data in scan response
         advertisement = self.ref_left.aio.host.Advertise(
@@ -198,7 +215,7 @@ class ASHATest(base_test.BaseTestClass):  # type: ignore[misc]
         assert_in(ASHA_UUID, scan_result.data.service_data_uuid16)
         expected_advertisement_data = (
             "{:02x}".format(protocol_version)
-            + "{:02x}".format(CAPABILITY)
+            + "{:02x}".format(Capability.LEFT)
             + "".join([("{:02x}".format(x)) for x in truncated_hisyncid])
         )
         assert_equal(
@@ -221,7 +238,9 @@ class ASHATest(base_test.BaseTestClass):  # type: ignore[misc]
         DUT initiates connection to Ref.
         Verify that DUT and Ref are bonded and connected.
         """
-        advertisement = await self.ref_advertise_asha(ref_device=self.ref_left, ref_address_type=ref_address_type)
+        advertisement = await self.ref_advertise_asha(
+            ref_device=self.ref_left, ref_address_type=ref_address_type, capability=Capability.LEFT
+        )
 
         ref = await self.dut_scan_for_asha(dut_address_type=dut_address_type)
 
@@ -230,10 +249,62 @@ class ASHATest(base_test.BaseTestClass):  # type: ignore[misc]
         assert dut_ref, ref_dut
 
         # DUT starts pairing with the Ref.
-        # FIXME: assert the security Level on ref side
-        secure = await self.dut.aio.security.Secure(connection=dut_ref, le=LE_LEVEL3)
+        (secure, wait_security) = await asyncio.gather(
+            self.dut.aio.security.Secure(connection=dut_ref, le=LE_LEVEL3),
+            self.ref_left.aio.security.WaitSecurity(connection=ref_dut, le=LE_LEVEL3),
+        )
 
         assert_equal(secure.result_variant(), 'success')
+        assert_equal(wait_security.result_variant(), 'success')
+
+    @avatar.parameterized(
+        (RANDOM, PUBLIC),
+        (RANDOM, RANDOM),
+    )  # type: ignore[misc]
+    @asynchronous
+    async def test_pairing_dual_device(
+        self,
+        dut_address_type: OwnAddressType,
+        ref_address_type: OwnAddressType,
+    ) -> None:
+        """
+        DUT discovers Ref.
+        DUT initiates connection to Ref.
+        Verify that DUT and Ref are bonded and connected.
+        """
+
+        advertisement_left = await self.ref_advertise_asha(
+            ref_device=self.ref_left, ref_address_type=ref_address_type, capability=Capability.LEFT
+        )
+        ref_left = await self.dut_scan_for_asha(dut_address_type=dut_address_type)
+        # DUT initiates connection to ref_left.
+        dut_ref_left, ref_left_dut = await self.dut_connect_to_ref(advertisement_left, ref_left, dut_address_type)
+        assert dut_ref_left, ref_left_dut
+
+        advertisement_right = await self.ref_advertise_asha(
+            ref_device=self.ref_right, ref_address_type=ref_address_type, capability=Capability.RIGHT
+        )
+        ref_right = await self.dut_scan_for_asha(dut_address_type=dut_address_type)
+        # DUT initiates connection to ref_right
+        dut_ref_right, ref_right_dut = await self.dut_connect_to_ref(advertisement_right, ref_right, dut_address_type)
+        assert dut_ref_right, ref_right_dut
+
+        # DUT starts pairing with the Ref.
+        (secure_left, wait_security_left) = await asyncio.gather(
+            self.dut.aio.security.Secure(connection=dut_ref_left, le=LE_LEVEL3),
+            self.ref_left.aio.security.WaitSecurity(connection=ref_left_dut, le=LE_LEVEL3),
+        )
+
+        (secure_right, wait_security_right) = await asyncio.gather(
+            self.dut.aio.security.Secure(connection=dut_ref_right, le=LE_LEVEL3),
+            self.ref_right.aio.security.WaitSecurity(connection=ref_right_dut, le=LE_LEVEL3),
+        )
+
+        assert_equal(secure_left.result_variant(), 'success')
+        assert_equal(wait_security_left.result_variant(), 'success')
+
+        assert_equal(secure_right.result_variant(), 'success')
+        assert_equal(wait_security_right.result_variant(), 'success')
 
     @avatar.parameterized(
         (RANDOM, PUBLIC),
@@ -251,7 +322,9 @@ class ASHATest(base_test.BaseTestClass):  # type: ignore[misc]
         """
         raise signals.TestSkip("TODO: update rootcanal to retry")
 
-        advertisement = await self.ref_advertise_asha(ref_device=self.ref_left, ref_address_type=ref_address_type)
+        advertisement = await self.ref_advertise_asha(
+            ref_device=self.ref_left, ref_address_type=ref_address_type, capability=Capability.LEFT
+        )
         ref = await self.dut_scan_for_asha(dut_address_type=dut_address_type)
 
         dut_ref, ref_dut = await self.dut_connect_to_ref(advertisement, ref, dut_address_type)
@@ -293,7 +366,9 @@ class ASHATest(base_test.BaseTestClass):  # type: ignore[misc]
         DUT initiates connection to Ref.
         Verify that DUT and Ref are connected.
         """
-        advertisement = await self.ref_advertise_asha(ref_device=self.ref_left, ref_address_type=ref_address_type)
+        advertisement = await self.ref_advertise_asha(
+            ref_device=self.ref_left, ref_address_type=ref_address_type, capability=Capability.LEFT
+        )
         ref = await self.dut_scan_for_asha(dut_address_type=dut_address_type)
 
         dut_ref, ref_dut = await self.dut_connect_to_ref(advertisement, ref, dut_address_type)
@@ -313,7 +388,9 @@ class ASHATest(base_test.BaseTestClass):  # type: ignore[misc]
         DUT initiates disconnection to Ref.
         Verify that DUT and Ref are disconnected.
         """
-        advertisement = await self.ref_advertise_asha(ref_device=self.ref_left, ref_address_type=ref_address_type)
+        advertisement = await self.ref_advertise_asha(
+            ref_device=self.ref_left, ref_address_type=ref_address_type, capability=Capability.LEFT
+        )
         ref = await self.dut_scan_for_asha(dut_address_type=dut_address_type)
 
         dut_ref, ref_dut = await self.dut_connect_to_ref(advertisement, ref, dut_address_type)
@@ -337,7 +414,9 @@ class ASHATest(base_test.BaseTestClass):  # type: ignore[misc]
         Ref initiates disconnection to DUT (typically when put back in its box).
         Verify that Ref is disconnected.
         """
-        advertisement = await self.ref_advertise_asha(ref_device=self.ref_left, ref_address_type=ref_address_type)
+        advertisement = await self.ref_advertise_asha(
+            ref_device=self.ref_left, ref_address_type=ref_address_type, capability=Capability.LEFT
+        )
         ref = await self.dut_scan_for_asha(dut_address_type=dut_address_type)
 
         dut_ref, ref_dut = await self.dut_connect_to_ref(advertisement, ref, dut_address_type)
@@ -368,7 +447,9 @@ class ASHATest(base_test.BaseTestClass):  # type: ignore[misc]
         """
 
         async def connect_and_disconnect() -> None:
-            advertisement = await self.ref_advertise_asha(ref_device=self.ref_left, ref_address_type=ref_address_type)
+            advertisement = await self.ref_advertise_asha(
+                ref_device=self.ref_left, ref_address_type=ref_address_type, capability=Capability.LEFT
+            )
             ref = await self.dut_scan_for_asha(dut_address_type=dut_address_type)
             dut_ref, _ = await self.dut_connect_to_ref(advertisement, ref, dut_address_type)
             await self.dut.aio.host.Disconnect(connection=dut_ref)
@@ -393,7 +474,9 @@ class ASHATest(base_test.BaseTestClass):  # type: ignore[misc]
         Ref starts sending ASHA advertisements.
         Verify that DUT auto-connects to Ref.
         """
-        advertisement = await self.ref_advertise_asha(ref_device=self.ref_left, ref_address_type=ref_address_type)
+        advertisement = await self.ref_advertise_asha(
+            ref_device=self.ref_left, ref_address_type=ref_address_type, capability=Capability.LEFT
+        )
         ref = await self.dut_scan_for_asha(dut_address_type=dut_address_type)
 
         # manually connect and not cancel advertisement
@@ -434,7 +517,9 @@ class ASHATest(base_test.BaseTestClass):  # type: ignore[misc]
            2. Verify that it is disconnected and that the other peripheral is still connected.
         """
 
-        advertisement_left = await self.ref_advertise_asha(ref_device=self.ref_left, ref_address_type=ref_address_type)
+        advertisement_left = await self.ref_advertise_asha(
+            ref_device=self.ref_left, ref_address_type=ref_address_type, capability=Capability.LEFT
+        )
         ref_left = await self.dut_scan_for_asha(dut_address_type=dut_address_type)
         dut_ref_left, ref_left_dut = await self.dut_connect_to_ref(
             advertisement=advertisement_left, ref=ref_left, dut_address_type=dut_address_type
@@ -443,7 +528,7 @@ class ASHATest(base_test.BaseTestClass):  # type: ignore[misc]
         assert dut_ref_left, ref_left_dut
 
         advertisement_right = await self.ref_advertise_asha(
-            ref_device=self.ref_right, ref_address_type=ref_address_type
+            ref_device=self.ref_right, ref_address_type=ref_address_type, capability=Capability.RIGHT
         )
         ref_right = await self.dut_scan_for_asha(dut_address_type=dut_address_type)
         dut_ref_right, ref_right_dut = await self.dut_connect_to_ref(
