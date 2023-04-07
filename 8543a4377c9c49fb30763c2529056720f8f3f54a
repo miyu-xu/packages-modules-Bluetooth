@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e8d27e3b_7b3c7ef8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-04-07T10:03:49Z",
+      "side": 1,
+      "message": "This CL fix a regression from aosp/2513901",
+      "revId": "8543a4377c9c49fb30763c2529056720f8f3f54a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
