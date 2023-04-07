@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ec5676fd_353af8b3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-04-07T18:56:52Z",
+      "side": 1,
+      "message": "This seems like mostly renaming.  I was looking for the \"SPEC compliance\" parts, maybe split the CL into renaming and compliance parts?",
+      "revId": "0404d00e7d65c26bf05764225bfa7c3815f3ab18",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
