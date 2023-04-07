@@ -16,6 +16,24 @@
       "message": "This seems like mostly renaming.  I was looking for the \"SPEC compliance\" parts, maybe split the CL into renaming and compliance parts?",
       "revId": "0404d00e7d65c26bf05764225bfa7c3815f3ab18",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1d6d7df5_626ec03d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-04-07T19:01:01Z",
+      "side": 1,
+      "message": "That\u0027s the bit field part. \nI can rename the CL to make it less ambiguous but I don\u0027t see the point to splitting it",
+      "parentUuid": "ec5676fd_353af8b3",
+      "revId": "0404d00e7d65c26bf05764225bfa7c3815f3ab18",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
