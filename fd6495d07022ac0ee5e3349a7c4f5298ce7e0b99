@@ -18,6 +18,23 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "adc5d093_fac8058e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2023-04-07T09:50:52Z",
+      "side": 1,
+      "message": "BTW, can we have the same mechanism for Bond intents?",
+      "revId": "fd6495d07022ac0ee5e3349a7c4f5298ce7e0b99",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f930f706_9383f0a4",
