@@ -16,6 +16,29 @@
       "message": "lgtm! Thanks",
       "revId": "fd6495d07022ac0ee5e3349a7c4f5298ce7e0b99",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f930f706_9383f0a4",
+        "filename": "android/pandora/server/src/com/android/pandora/Utils.kt",
+        "patchSetId": 1
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2023-04-07T09:34:57Z",
+      "side": 1,
+      "message": "It would be better here to handle transport extra, otherwise if we have sequence of:\n1. Device A BR/EDR connected\n2. Device A LE connected\n3. Device A BR/EDR disconnected\n4. Device A LE disconnected\n\nIf device A is connected with public address(or random address same as public address in some cases), flow may break.",
+      "range": {
+        "startLine": 89,
+        "startChar": 12,
+        "endLine": 89,
+        "endChar": 65
+      },
+      "revId": "fd6495d07022ac0ee5e3349a7c4f5298ce7e0b99",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
