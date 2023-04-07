@@ -335,6 +335,24 @@
       "parentUuid": "12d74c12_fd7e0dd8",
       "revId": "693eb7d2f20ee4ab145d94901ee62d1391192225",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7ded266e_172294bb",
+        "filename": "system/profile/avrcp/device.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 757,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-04-07T08:51:20Z",
+      "side": 1,
+      "message": "Yes, when player changes we send an update to registered devices.",
+      "parentUuid": "ff9008ff_2921c225",
+      "revId": "693eb7d2f20ee4ab145d94901ee62d1391192225",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
