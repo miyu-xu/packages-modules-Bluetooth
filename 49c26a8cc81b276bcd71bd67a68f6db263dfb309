@@ -16,6 +16,24 @@
       "message": "check if streaming,\nlog says \"not streaming\"",
       "revId": "49c26a8cc81b276bcd71bd67a68f6db263dfb309",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e600a4a5_b4268a97",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1950,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2023-04-07T11:27:19Z",
+      "side": 1,
+      "message": "Fixed",
+      "parentUuid": "6626e75c_e3a9558a",
+      "revId": "49c26a8cc81b276bcd71bd67a68f6db263dfb309",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
