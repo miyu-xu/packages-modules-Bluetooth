@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "10bf1ab9_c2b46f9b",
+        "filename": "android/pandora/server/src/com/android/pandora/Asha.kt",
+        "patchSetId": 14
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2023-04-07T16:53:58Z",
+      "side": 1,
+      "message": "I don\u0027t think we want to perform a \"waitConnection\" here. We want to be sure the audi route is set to the Bluetooth one. You can add your own listener:\nhttps://developer.android.com/reference/android/media/AudioRouting\n\nWe might need to assert we have the AudioRoute set to `TYPE_BLE_HEADSET`. I\u0027ll let you have a try since there are several values:\nhttps://developer.android.com/reference/android/media/AudioDeviceInfo",
+      "range": {
+        "startLine": 77,
+        "startChar": 6,
+        "endLine": 85,
+        "endChar": 7
+      },
+      "revId": "b492c6954bca5a649bec669e0e1d090357f04a1c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
