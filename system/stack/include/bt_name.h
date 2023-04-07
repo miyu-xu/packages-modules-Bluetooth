@@ -24,6 +24,8 @@
 #include <string.h>
 #endif
 
+#include "osi/include/compat.h"  // strlcpy
+
 // NOTE: Shared with internal_include/bt_target.h
 /* Maximum device name length used in btm database. */
 #ifndef BTM_MAX_REM_BD_NAME_LEN
@@ -45,4 +47,11 @@ typedef uint8_t tBTM_LOC_BD_NAME[BTM_MAX_LOC_BD_NAME_LEN + 1];
 
 #ifdef __cplusplus
 inline constexpr tBTM_BD_NAME kBtmBdNameEmpty = {};
+constexpr size_t kBdNameLength = static_cast<size_t>(BD_NAME_LEN);
+
+inline size_t bd_name_copy(BD_NAME bd_name_dest, const BD_NAME bd_name_src) {
+  return strlcpy(reinterpret_cast<char*>(bd_name_dest),
+                 reinterpret_cast<char*>(const_cast<uint8_t*>(bd_name_src)),
+                 kBdNameLength + 1);
+}
 #endif
