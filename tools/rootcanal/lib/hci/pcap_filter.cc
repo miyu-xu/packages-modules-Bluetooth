@@ -293,11 +293,11 @@ std::vector<uint8_t> PcapFilter::FilterLeSetPeriodicAdvertisingData(
       LeAdvertisingCommandView::Create(command));
   ASSERT(parameters.IsValid());
 
-  std::vector<GapData> scan_response_data = parameters.GetScanResponseData();
-  FilterGapData(scan_response_data);
+  std::vector<GapData> advertising_data = parameters.GetAdvertisingData();
+  FilterGapData(advertising_data);
   return LeSetPeriodicAdvertisingDataBuilder::Create(
              parameters.GetAdvertisingHandle(), parameters.GetOperation(),
-             scan_response_data)
+             advertising_data)
       ->SerializeToBytes();
 }
 
