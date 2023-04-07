@@ -91,7 +91,10 @@ bool bta_dm_search_sm_execute(BT_HDR_RIGID* p_msg) {
     case BTA_DM_SEARCH_ACTIVE:
       switch (p_msg->event) {
         case BTA_DM_REMT_NAME_EVT:
-          bta_dm_rmt_name(message);
+          bta_dm_remote_name_cmpl(message);
+          // Start service discovery on device using either the current
+          // service discovery request.
+          bta_dm_discover_device(bta_dm_search_cb.peer_bdaddr);
           break;
         case BTA_DM_SEARCH_CMPL_EVT:
           bta_dm_search_cmpl();
@@ -151,7 +154,9 @@ bool bta_dm_search_sm_execute(BT_HDR_RIGID* p_msg) {
     case BTA_DM_DISCOVER_ACTIVE:
       switch (p_msg->event) {
         case BTA_DM_REMT_NAME_EVT:
-          bta_dm_disc_rmt_name(message);
+          bta_dm_remote_name_cmpl(message);
+          // Start service discovery on device now that we know the name.
+          bta_dm_discover_device(message->remote_name_msg.bd_addr);
           break;
         case BTA_DM_SDP_RESULT_EVT:
           bta_dm_sdp_result(message);
