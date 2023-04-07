@@ -58,8 +58,7 @@ class ASHATest(base_test.BaseTestClass):  # type: ignore[misc]
     def setup_class(self) -> None:
         # Register experimental bumble servicers hook.
         bumble_server.register_servicer_hook(
-            lambda bumble, server: add_AshaServicer_to_server(ASHAService(bumble.device), server)
-        )
+            lambda bumble, server: add_AshaServicer_to_server(ASHAService(bumble.device), server))
 
         self.devices = PandoraDevices(self)
         self.dut, self.ref_left, self.ref_right, *_ = self.devices
@@ -83,9 +82,8 @@ class ASHATest(base_test.BaseTestClass):  # type: ignore[misc]
         setattr(self.ref_left.device, "io_capability", PairingDelegate.NO_OUTPUT_NO_INPUT)
         setattr(self.ref_right.device, "io_capability", PairingDelegate.NO_OUTPUT_NO_INPUT)
 
-    async def ref_advertise_asha(
-        self, ref_device: PandoraDevice, ref_address_type: OwnAddressType
-    ) -> AioStream[AdvertiseResponse]:
+    async def ref_advertise_asha(self, ref_device: PandoraDevice,
+                                 ref_address_type: OwnAddressType) -> AioStream[AdvertiseResponse]:
         """
         Ref device starts to advertise with service data in advertisement data.
         :return: Ref device's advertise stream
@@ -114,9 +112,8 @@ class ASHATest(base_test.BaseTestClass):  # type: ignore[misc]
         assert ref
         return ref
 
-    async def dut_connect_to_ref(
-        self, advertisement: AioStream[AdvertiseResponse], ref: ScanningResponse, dut_address_type: OwnAddressType
-    ) -> Tuple[Connection, Connection]:
+    async def dut_connect_to_ref(self, advertisement: AioStream[AdvertiseResponse], ref: ScanningResponse,
+                                 dut_address_type: OwnAddressType) -> Tuple[Connection, Connection]:
         """
         Helper method for Dut connects to Ref
         :return: a Tuple (DUT to REF connection, REF to DUT connection)
@@ -159,11 +156,8 @@ class ASHATest(base_test.BaseTestClass):  # type: ignore[misc]
         # Verify Ref is correctly discovered by DUT as a hearing aid device
         assert_in(ASHA_UUID, scan_result.data.service_data_uuid16)
         assert_equal(type(scan_result.data.complete_local_name), str)
-        expected_advertisement_data = (
-            "{:02x}".format(protocol_version)
-            + "{:02x}".format(CAPABILITY)
-            + "".join([("{:02x}".format(x)) for x in truncated_hisyncid])
-        )
+        expected_advertisement_data = ("{:02x}".format(protocol_version) + "{:02x}".format(CAPABILITY) +
+                                       "".join([("{:02x}".format(x)) for x in truncated_hisyncid]))
         assert_equal(
             expected_advertisement_data,
             (scan_result.data.service_data_uuid16[ASHA_UUID]).hex(),
@@ -196,11 +190,8 @@ class ASHATest(base_test.BaseTestClass):  # type: ignore[misc]
 
         # Verify Ref is correctly discovered by DUT as a hearing aid device.
         assert_in(ASHA_UUID, scan_result.data.service_data_uuid16)
-        expected_advertisement_data = (
-            "{:02x}".format(protocol_version)
-            + "{:02x}".format(CAPABILITY)
-            + "".join([("{:02x}".format(x)) for x in truncated_hisyncid])
-        )
+        expected_advertisement_data = ("{:02x}".format(protocol_version) + "{:02x}".format(CAPABILITY) +
+                                       "".join([("{:02x}".format(x)) for x in truncated_hisyncid]))
         assert_equal(
             expected_advertisement_data,
             (scan_result.data.service_data_uuid16[ASHA_UUID]).hex(),
@@ -269,9 +260,8 @@ class ASHATest(base_test.BaseTestClass):  # type: ignore[misc]
             await self.dut.aio.security_storage.DeleteBond(random=self.ref_left.random_address)
 
         # DUT connect to REF again
-        dut_ref = (
-            await self.dut.aio.host.ConnectLE(own_address_type=dut_address_type, **ref.address_asdict())
-        ).connection
+        dut_ref = (await self.dut.aio.host.ConnectLE(own_address_type=dut_address_type,
+                                                     **ref.address_asdict())).connection
         # TODO very likely there is a bug in android here
         logging.debug("result should come out")
 
@@ -319,9 +309,8 @@ class ASHATest(base_test.BaseTestClass):  # type: ignore[misc]
         dut_ref, ref_dut = await self.dut_connect_to_ref(advertisement, ref, dut_address_type)
         assert dut_ref, ref_dut
 
-        await asyncio.gather(
-            self.dut.aio.host.Disconnect(connection=dut_ref), self.is_device_connected(self.ref_left, ref_dut, 5)
-        )
+        await asyncio.gather(self.dut.aio.host.Disconnect(connection=dut_ref),
+                             self.is_device_connected(self.ref_left, ref_dut, 5))
 
     @avatar.parameterized(
         (RANDOM, RANDOM),
@@ -343,9 +332,8 @@ class ASHATest(base_test.BaseTestClass):  # type: ignore[misc]
         dut_ref, ref_dut = await self.dut_connect_to_ref(advertisement, ref, dut_address_type)
         assert dut_ref, ref_dut
 
-        await asyncio.gather(
-            self.ref_left.aio.host.Disconnect(connection=ref_dut), self.is_device_connected(self.dut, dut_ref, 5)
-        )
+        await asyncio.gather(self.ref_left.aio.host.Disconnect(connection=ref_dut),
+                             self.is_device_connected(self.dut, dut_ref, 5))
 
     @avatar.parameterized(
         (RANDOM, RANDOM, 0),
@@ -406,9 +394,12 @@ class ASHATest(base_test.BaseTestClass):  # type: ignore[misc]
         assert dut_ref, ref_dut
 
         # Pairing
-        # FIXME: assert that the security Level is reached on ref side
-        secure = await self.dut.aio.security.Secure(connection=dut_ref, le=LE_LEVEL3)
-        assert_equal(secure.WhichOneof("result"), "success")
+        (secure, wait_security) = await asyncio.gather(
+            self.dut.aio.security.Secure(connection=dut_ref, le=LE_LEVEL3),
+            self.ref_left.aio.security.WaitSecurity(connection=ref_dut, le=LE_LEVEL3),
+        )
+        assert_equal(secure.result_variant(), 'success')
+        assert_equal(wait_security.result_variant(), 'success')
 
         await self.ref_left.aio.host.Disconnect(connection=ref_dut)
 
@@ -436,19 +427,18 @@ class ASHATest(base_test.BaseTestClass):  # type: ignore[misc]
 
         advertisement_left = await self.ref_advertise_asha(ref_device=self.ref_left, ref_address_type=ref_address_type)
         ref_left = await self.dut_scan_for_asha(dut_address_type=dut_address_type)
-        dut_ref_left, ref_left_dut = await self.dut_connect_to_ref(
-            advertisement=advertisement_left, ref=ref_left, dut_address_type=dut_address_type
-        )
+        dut_ref_left, ref_left_dut = await self.dut_connect_to_ref(advertisement=advertisement_left,
+                                                                   ref=ref_left,
+                                                                   dut_address_type=dut_address_type)
         advertisement_left.cancel()
         assert dut_ref_left, ref_left_dut
 
-        advertisement_right = await self.ref_advertise_asha(
-            ref_device=self.ref_right, ref_address_type=ref_address_type
-        )
+        advertisement_right = await self.ref_advertise_asha(ref_device=self.ref_right,
+                                                            ref_address_type=ref_address_type)
         ref_right = await self.dut_scan_for_asha(dut_address_type=dut_address_type)
-        dut_ref_right, ref_right_dut = await self.dut_connect_to_ref(
-            advertisement=advertisement_right, ref=ref_right, dut_address_type=dut_address_type
-        )
+        dut_ref_right, ref_right_dut = await self.dut_connect_to_ref(advertisement=advertisement_right,
+                                                                     ref=ref_right,
+                                                                     dut_address_type=dut_address_type)
         advertisement_right.cancel()
         assert dut_ref_right, ref_right_dut
 
@@ -460,6 +450,86 @@ class ASHATest(base_test.BaseTestClass):  # type: ignore[misc]
             await self.ref_right.aio.host.Disconnect(connection=ref_right_dut)
             assert not await self.is_device_connected(device=self.ref_right, connection=ref_right_dut, timeout=5.0)
             assert await self.is_device_connected(device=self.ref_left, connection=ref_left_dut, timeout=5.0)
+
+    @avatar.parameterized(
+        (RANDOM, RANDOM, Ear.LEFT),
+        (RANDOM, RANDOM, Ear.RIGHT),
+        (RANDOM, PUBLIC, Ear.LEFT),
+        (RANDOM, PUBLIC, Ear.RIGHT),
+    )  # type: ignore[misc]
+    @asynchronous
+    async def test_auto_connection_dual_device(self, dut_address_type: OwnAddressType, ref_address_type: OwnAddressType,
+                                               tested_device: Ear) -> None:
+        """
+        Prerequisites: DUT and Ref are connected and bonded. Ref is a dual device.
+        Description:
+           1. One peripheral of Ref initiates disconnection to DUT.
+           2. The disconnected peripheral starts sending ASHA advertisements.
+           3. Verify that DUT auto-connects to the peripheral.
+        """
+
+        advertisement_left = await self.ref_advertise_asha(ref_device=self.ref_left, ref_address_type=ref_address_type)
+        ref_left = await self.dut_scan_for_asha(dut_address_type=dut_address_type)
+        (dut_ref_left_res, ref_left_dut_res) = await asyncio.gather(
+            self.dut.aio.host.ConnectLE(own_address_type=dut_address_type, **ref_left.address_asdict()),
+            anext(aiter(advertisement_left)),  # pytype: disable=name-error
+        )
+        assert_equal(dut_ref_left_res.result_variant(), 'connection')
+        dut_ref_left, ref_left_dut = dut_ref_left_res.connection, ref_left_dut_res.connection
+        assert dut_ref_left, ref_left_dut
+        advertisement_left.cancel()
+
+        advertisement_right = await self.ref_advertise_asha(ref_device=self.ref_right,
+                                                            ref_address_type=ref_address_type)
+        ref_right = await self.dut_scan_for_asha(dut_address_type=dut_address_type)
+        (dut_ref_right_res, ref_right_dut_res) = await asyncio.gather(
+            self.dut.aio.host.ConnectLE(own_address_type=dut_address_type, **ref_right.address_asdict()),
+            anext(aiter(advertisement_right)),  # pytype: disable=name-error
+        )
+        assert_equal(dut_ref_right_res.result_variant(), 'connection')
+        dut_ref_right, ref_right_dut = dut_ref_right_res.connection, ref_right_dut_res.connection
+        assert dut_ref_right, ref_right_dut
+        advertisement_right.cancel()
+
+        # Pairing
+        (secure_left, wait_security_left) = await asyncio.gather(
+            self.dut.aio.security.Secure(connection=dut_ref_left, le=LE_LEVEL3),
+            self.ref_left.aio.security.WaitSecurity(connection=ref_left_dut, le=LE_LEVEL3),
+        )
+        assert_equal(secure_left.result_variant(), 'success')
+        assert_equal(wait_security_left.result_variant(), 'success')
+
+        (secure_right, wait_security_right) = await asyncio.gather(
+            self.dut.aio.security.Secure(connection=dut_ref_right, le=LE_LEVEL3),
+            self.ref_right.aio.security.WaitSecurity(connection=ref_right_dut, le=LE_LEVEL3),
+        )
+        assert_equal(secure_right.result_variant(), 'success')
+        assert_equal(wait_security_right.result_variant(), 'success')
+
+        if tested_device == Ear.LEFT:
+            await asyncio.gather(
+                self.ref_left.aio.host.Disconnect(connection=ref_left_dut),
+                self.dut.aio.host.WaitDisconnection(connection=dut_ref_left),
+            )
+            assert not await self.is_device_connected(device=self.ref_left, connection=ref_left_dut, timeout=5.0)
+
+            advertisement_left = await self.ref_advertise_asha(ref_device=self.ref_left,
+                                                               ref_address_type=ref_address_type)
+            ref_left_dut = (await anext(aiter(advertisement_left))).connection
+            advertisement_left.cancel()
+            assert ref_left_dut
+        else:
+            await asyncio.gather(
+                self.ref_right.aio.host.Disconnect(connection=ref_right_dut),
+                self.dut.aio.host.WaitDisconnection(connection=dut_ref_right),
+            )
+            assert not await self.is_device_connected(device=self.ref_right, connection=ref_right_dut, timeout=5.0)
+
+            advertisement_right = await self.ref_advertise_asha(ref_device=self.ref_right,
+                                                                ref_address_type=ref_address_type)
+            ref_right_dut = (await anext(aiter(advertisement_right))).connection
+            advertisement_right.cancel()
+            assert ref_right_dut
 
 
 if __name__ == "__main__":
