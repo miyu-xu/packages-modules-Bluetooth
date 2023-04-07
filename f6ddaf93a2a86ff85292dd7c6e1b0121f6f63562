@@ -52,6 +52,24 @@
       "parentUuid": "30657ff6_5f5c39e7",
       "revId": "f6ddaf93a2a86ff85292dd7c6e1b0121f6f63562",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dd843810_a71c8044",
+        "filename": "system/gd/rust/shim/callbacks/callbacks.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1588128
+      },
+      "writtenOn": "2023-04-07T02:32:39Z",
+      "side": 0,
+      "message": "I see, basically make the change in [src/aosp/packages/modules/Bluetooth/local/](https://source.corp.google.com/chromeos_public/src/aosp/packages/modules/Bluetooth/local/?q\u003df:bluetooth%2Flocal%20p:chromeos) and build the chromeos-base/floss package. This [section](https://docs.google.com/document/d/1p-yG04I5kTj-JJzK7lrg14YgJqNvFylum5q5OVztJVA/edit?pli\u003d1#heading\u003dh.u7q17f9c0nzc) in the handbook has more details.",
+      "parentUuid": "61b3a499_b0f433a9",
+      "revId": "f6ddaf93a2a86ff85292dd7c6e1b0121f6f63562",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
