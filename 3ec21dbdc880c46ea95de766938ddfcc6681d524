@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7f4db963_474b2bf2",
+        "filename": "system/gd/rust/linux/dbus_projection/dbus_macros/src/lib.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-04-07T22:34:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "76391d63_171e7f21",
+      "revId": "3ec21dbdc880c46ea95de766938ddfcc6681d524",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "af97ad8d_6e220537",
@@ -31,6 +49,24 @@
       "writtenOn": "2023-04-07T05:01:19Z",
       "side": 1,
       "message": "I don\u0027t think this really fixes the issue if we spawn the tokio thread in every callback call.\n\nAt the point where a thread starts awaiting (line #780), the other threads are able to lock, pop, and await the next future, then we are falling back to the same problem.\n\nTo fix the problem I think we may either:\n1. Spawn at most one thread and only it can pop the cb_futures\n2. Add an \"awaiting\" lock to indicate someone is popping/awaiting a future, while it still allows the main thread to insert new futures\n\nPersonally I prefer (1) because it saves redundant spawns. But then I found it may need many changes*. So probably (2) is a better fix for now. WDYT?\n\n*To ensure we have at most one thread, the first idea that comes to my mind is to spawn a thread only when the size of cb_futures \u003d\u003d 1. However there is still an edge case because some other thread may just emptied the cb_futures and haven\u0027t yet finished the task. Thus, we still need a lock/semaphore to indicate whether there is an unfinished thread. Otherwise, we need a messages/tasks dispatching system + a forever running thread for executing futures.",
+      "revId": "3ec21dbdc880c46ea95de766938ddfcc6681d524",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4b1fbf7f_5ea6bf6c",
+        "filename": "system/gd/rust/linux/dbus_projection/dbus_macros/src/lib.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 771,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-04-07T22:34:03Z",
+      "side": 1,
+      "message": "PTAL at new changes. I did somewhat of a combination of 1+2.",
+      "parentUuid": "af97ad8d_6e220537",
       "revId": "3ec21dbdc880c46ea95de766938ddfcc6681d524",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
