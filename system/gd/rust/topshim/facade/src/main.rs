@@ -32,6 +32,8 @@ mod utils;
 // This is fine for now since bt_shim doesn't export anything
 #[allow(unused)]
 use bt_shim::*;
+#[allow(unused)]
+use bluetooth_core_rs_for_facade::*;
 
 fn main() {
     let sigint = install_sigint();

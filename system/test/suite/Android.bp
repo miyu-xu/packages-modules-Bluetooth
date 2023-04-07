@@ -66,6 +66,7 @@ cc_defaults {
         "android.system.suspend.control-V1-ndk",
         "avrcp-target-service",
         "libaudio-a2dp-hw-utils",
+        "libbluetooth_core_rs",
         "libbluetooth-dumpsys",
         "libbluetooth-types",
         "libbt-audio-hal-interface",
