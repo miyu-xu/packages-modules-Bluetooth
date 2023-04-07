@@ -88,6 +88,24 @@
       "parentUuid": "dd843810_a71c8044",
       "revId": "f6ddaf93a2a86ff85292dd7c6e1b0121f6f63562",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bd25da9c_9dce3e8c",
+        "filename": "system/gd/rust/shim/callbacks/callbacks.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1588128
+      },
+      "writtenOn": "2023-04-07T03:12:05Z",
+      "side": 0,
+      "message": "I\u0027m curious if we need the change at all in this file (system/gd/rust/shim/callbacks/callbacks.h). Would you mind rebuilding CrOS floss without touching it (system/include/abstract_message_loop.h probably is needed but worth trying if we don\u0027t know for sure).",
+      "parentUuid": "38b0bd8e_b474162c",
+      "revId": "f6ddaf93a2a86ff85292dd7c6e1b0121f6f63562",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
