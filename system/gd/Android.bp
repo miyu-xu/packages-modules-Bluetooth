@@ -427,7 +427,7 @@ cc_test {
         "libbt_callbacks_cxx",
         "libbt_shim_bridge",
         "libbt_shim_ffi",
-        "libbt-platform-protos-lite"
+        "libbt-platform-protos-lite",
     ],
     shared_libs: [
         "libcrypto",
@@ -656,27 +656,6 @@ rust_library {
     ],
     apex_available: [
         "com.android.btservices",
-    ],
-    min_sdk_version: "30",
-}
-
-rust_library {
-    name: "libbt_packets_nonapex",
-    defaults: ["gd_rust_defaults"],
-    crate_name: "bt_packets",
-    srcs: [
-        "rust/packets/lib.rs",
-        ":BluetoothGeneratedPackets_rust",
-    ],
-    edition: "2018",
-    vendor_available: true,
-    host_supported: true,
-    proc_macros: ["libnum_derive"],
-    rustlibs: [
-        "libbytes",
-        "libnum_traits",
-        "libthiserror",
-        "liblog_rust",
     ],
     min_sdk_version: "30",
 }
