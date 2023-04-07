@@ -46,9 +46,9 @@ cc_defaults {
         "libbase_headers",
     ],
     generated_headers: [
-        "RootCanalGeneratedPackets_h",
-        "RootCanalBrEdrBBGeneratedPackets_h",
-        "BluetoothGeneratedPackets_h",
+        "rootcanal_hci_packets_cxx_gen",
+        "rootcanal_link_layer_packets_cxx_gen",
+        "rootcanal_bredr_bb_packets_cxx_gen",
     ],
 }
 
@@ -112,7 +112,8 @@ cc_library_static {
         ".",
     ],
     export_generated_headers: [
-        "BluetoothGeneratedPackets_h",
+        "rootcanal_hci_packets_cxx_gen",
+        "rootcanal_link_layer_packets_cxx_gen",
     ],
     whole_static_libs: [
         "liblmp",
@@ -375,7 +376,21 @@ cc_binary_host {
 }
 
 genrule {
-    name: "RootCanalGeneratedPackets_h",
+    name: "rootcanal_hci_packets_cxx_gen",
+    tools: [
+        "bluetooth_packetgen",
+    ],
+    cmd: "$(location bluetooth_packetgen) --include=packages/modules/Bluetooth/tools/rootcanal/packets --out=$(genDir) $(in)",
+    srcs: [
+        "packets/hci/hci_packets.pdl",
+    ],
+    out: [
+        "hci/hci_packets.h",
+    ],
+}
+
+genrule {
+    name: "rootcanal_link_layer_packets_cxx_gen",
     tools: [
         "bluetooth_packetgen",
     ],
@@ -388,15 +403,8 @@ genrule {
     ],
 }
 
-filegroup {
-    name: "RootCanalLinkLayerPackets",
-    srcs: [
-        "packets/link_layer_packets.pdl",
-    ],
-}
-
 genrule {
-    name: "RootCanalBrEdrBBGeneratedPackets_h",
+    name: "rootcanal_bredr_bb_packets_cxx_gen",
     tools: [
         "bluetooth_packetgen",
     ],
@@ -406,6 +414,20 @@ genrule {
     ],
     out: [
         "bredr_bb.h",
+    ],
+}
+
+genrule {
+    name: "rootcanal_hci_packets_rust_gen",
+    tools: [
+        "bluetooth_packetgen",
+    ],
+    cmd: "$(location bluetooth_packetgen) --include=packages/modules/Bluetooth/tools/rootcanal/packets --out=$(genDir) $(in) --rust",
+    srcs: [
+        "packets/hci/hci_packets.pdl",
+    ],
+    out: [
+        "hci/hci_packets.rs",
     ],
 }
 
