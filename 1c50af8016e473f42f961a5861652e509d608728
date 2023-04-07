@@ -105,6 +105,24 @@
       "parentUuid": "e12eb3a1_02a848e6",
       "revId": "1c50af8016e473f42f961a5861652e509d608728",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7a3f817c_72980532",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2023-04-07T06:51:45Z",
+      "side": 1,
+      "message": "I met some problems when running the pts-bot and verify it locally.\nThanks for help to upstream it!",
+      "parentUuid": "f420acfc_7d8abbf0",
+      "revId": "1c50af8016e473f42f961a5861652e509d608728",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
