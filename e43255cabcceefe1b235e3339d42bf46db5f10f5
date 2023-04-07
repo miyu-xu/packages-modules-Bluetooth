@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "38b61c29_47ef2b0c",
+        "filename": "system/bta/include/bta_api.h",
+        "patchSetId": 14
+      },
+      "lineNbr": 461,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-04-07T17:57:02Z",
+      "side": 1,
+      "message": "nit: Since 5 is unknown, and you set all of these values explicitly, I would leave this out.",
+      "range": {
+        "startLine": 461,
+        "startChar": 2,
+        "endLine": 461,
+        "endChar": 23
+      },
+      "revId": "e43255cabcceefe1b235e3339d42bf46db5f10f5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
