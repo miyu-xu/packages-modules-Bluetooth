@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0774fe24_3b9d3a24",
+        "filename": "android/app/src/com/android/bluetooth/a2dp/A2dpService.java",
+        "patchSetId": 31
+      },
+      "lineNbr": 1685,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-04-08T00:30:42Z",
+      "side": 1,
+      "message": "nit: Add some log here to indicate this error branch",
+      "range": {
+        "startLine": 1685,
+        "startChar": 16,
+        "endLine": 1685,
+        "endChar": 25
+      },
+      "revId": "2c8759bf6030a251c94aacd4255bf0ac70b8d48c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7f231ac8_c786cf62",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 31
+      },
+      "lineNbr": 435,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-04-08T00:30:42Z",
+      "side": 1,
+      "message": "increase log level here since this is an error?",
+      "range": {
+        "startLine": 435,
+        "startChar": 20,
+        "endLine": 435,
+        "endChar": 30
+      },
+      "revId": "2c8759bf6030a251c94aacd4255bf0ac70b8d48c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "806b2949_dcaeb16c",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 31
+      },
+      "lineNbr": 1343,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-04-08T00:30:42Z",
+      "side": 1,
+      "message": "these can be branched off to a different change",
+      "range": {
+        "startLine": 1289,
+        "startChar": 0,
+        "endLine": 1343,
+        "endChar": 5
+      },
+      "revId": "2c8759bf6030a251c94aacd4255bf0ac70b8d48c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a82e15cb_680446aa",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 31
+      },
+      "lineNbr": 4846,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-04-08T00:30:42Z",
+      "side": 1,
+      "message": "nit: isEmpty()",
+      "range": {
+        "startLine": 4846,
+        "startChar": 25,
+        "endLine": 4846,
+        "endChar": 36
+      },
+      "revId": "2c8759bf6030a251c94aacd4255bf0ac70b8d48c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "65746b13_fc4023b3",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 31
+      },
+      "lineNbr": 4890,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-04-08T00:30:42Z",
+      "side": 1,
+      "message": "also good candidate for a different change",
+      "range": {
+        "startLine": 4844,
+        "startChar": 0,
+        "endLine": 4890,
+        "endChar": 9
+      },
+      "revId": "2c8759bf6030a251c94aacd4255bf0ac70b8d48c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bf9f0e51_d835db94",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 31
+      },
+      "lineNbr": 5608,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-04-08T00:30:42Z",
+      "side": 1,
+      "message": "another candidate for a different CL",
+      "range": {
+        "startLine": 5571,
+        "startChar": 0,
+        "endLine": 5608,
+        "endChar": 41
+      },
+      "revId": "2c8759bf6030a251c94aacd4255bf0ac70b8d48c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "44844231_7fd99b47",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 31
+      },
+      "lineNbr": 2876,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-04-08T00:30:42Z",
+      "side": 1,
+      "message": "same as above, log this error condition",
+      "range": {
+        "startLine": 2875,
+        "startChar": 0,
+        "endLine": 2876,
+        "endChar": 21
+      },
+      "revId": "2c8759bf6030a251c94aacd4255bf0ac70b8d48c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
