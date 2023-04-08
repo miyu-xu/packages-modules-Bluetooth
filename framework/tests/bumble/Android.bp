@@ -1,0 +1,24 @@
+java_test_host {
+    name: "BumbleBluetoothTests",
+    defaults: ["cts_defaults"],
+
+    libs: [
+        "cts-tradefed",
+        "tradefed",
+        "compatibility-host-util",
+    ],
+
+    // Include all test java files.
+    srcs: ["src/**/*.java"],
+
+    data: [
+        ":BumbleBluetoothTest"
+    ],
+
+    required: ["bumble_pandora_server"],
+
+    test_suites: [
+        "cts",
+        "device-tests",
+    ],
+}
