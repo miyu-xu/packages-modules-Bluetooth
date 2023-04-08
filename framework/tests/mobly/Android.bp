@@ -1,0 +1,22 @@
+python_test_host {
+    name: "hello-world-test",
+    srcs: ["hello_world_test.py"],
+    main: "hello_world_test.py",
+    data: [
+      // Snippets APK build module
+      ":mobly-bundled-snippets",
+      // Requirements file
+      "requirements.txt",
+    ],
+    test_options: {
+      unit_test: false,
+    },
+    version: {
+      py3: {
+        embedded_launcher: true,
+      },
+    },
+
+    // libs: [":some_python_lib"],
+    test_suites: ["general-tests"],
+}
