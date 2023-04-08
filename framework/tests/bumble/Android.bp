@@ -1,0 +1,21 @@
+java_test_host {
+    name: "BumbleBluetoothTests",
+
+    libs: [
+        "tradefed",
+        "compatibility-host-util",
+    ],
+
+    // Include all test java files.
+    srcs: ["src/**/*.java"],
+
+    data: [
+        ":BumbleBluetoothTest"
+    ],
+
+    required: ["bumble_pandora_server"],
+
+    test_suites: [
+        "device-tests",
+    ],
+}
