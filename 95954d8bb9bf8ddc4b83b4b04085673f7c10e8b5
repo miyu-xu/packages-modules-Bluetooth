@@ -1,0 +1,158 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "21dcbc54_1ed71024",
+        "filename": "system/bta/ag/bta_ag_cmd.cc",
+        "patchSetId": 20
+      },
+      "lineNbr": 1418,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-04-08T00:33:22Z",
+      "side": 1,
+      "message": "please also check if this is a dual mode connected device",
+      "range": {
+        "startLine": 1415,
+        "startChar": 0,
+        "endLine": 1418,
+        "endChar": 47
+      },
+      "revId": "95954d8bb9bf8ddc4b83b4b04085673f7c10e8b5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "44077331_d9681811",
+        "filename": "system/bta/ag/bta_ag_cmd.cc",
+        "patchSetId": 20
+      },
+      "lineNbr": 1441,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-04-08T00:33:22Z",
+      "side": 1,
+      "message": "same as above, please check if this is a dual mode connected device",
+      "range": {
+        "startLine": 1441,
+        "startChar": 0,
+        "endLine": 1441,
+        "endChar": 21
+      },
+      "revId": "95954d8bb9bf8ddc4b83b4b04085673f7c10e8b5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2432d69f_a29267bf",
+        "filename": "system/bta/ag/bta_ag_cmd.cc",
+        "patchSetId": 20
+      },
+      "lineNbr": 1540,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-04-08T00:33:22Z",
+      "side": 1,
+      "message": "same as above, please check if this is a dual mode connected device",
+      "range": {
+        "startLine": 1540,
+        "startChar": 0,
+        "endLine": 1540,
+        "endChar": 21
+      },
+      "revId": "95954d8bb9bf8ddc4b83b4b04085673f7c10e8b5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "63e37998_8299ab70",
+        "filename": "system/bta/ag/bta_ag_cmd.cc",
+        "patchSetId": 20
+      },
+      "lineNbr": 1568,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-04-08T00:33:22Z",
+      "side": 1,
+      "message": "same as above, please check if this is a dual mode connected device",
+      "revId": "95954d8bb9bf8ddc4b83b4b04085673f7c10e8b5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "92a7f41b_8c2b3216",
+        "filename": "system/bta/ag/bta_ag_cmd.cc",
+        "patchSetId": 20
+      },
+      "lineNbr": 1595,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-04-08T00:33:22Z",
+      "side": 1,
+      "message": "same as above, please check if this is a dual mode connected device",
+      "revId": "95954d8bb9bf8ddc4b83b4b04085673f7c10e8b5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1706fc39_80aa5617",
+        "filename": "system/bta/ag/bta_ag_cmd.cc",
+        "patchSetId": 20
+      },
+      "lineNbr": 1614,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-04-08T00:33:22Z",
+      "side": 1,
+      "message": "same as above, please check if this is a dual mode connected device",
+      "revId": "95954d8bb9bf8ddc4b83b4b04085673f7c10e8b5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d35dfb1d_95349e5c",
+        "filename": "system/bta/ag/bta_ag_cmd.cc",
+        "patchSetId": 20
+      },
+      "lineNbr": 1633,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-04-08T00:33:22Z",
+      "side": 1,
+      "message": "same as above, please check if this is a dual mode connected device",
+      "revId": "95954d8bb9bf8ddc4b83b4b04085673f7c10e8b5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d7b7e3a6_299fdf40",
+        "filename": "system/bta/ag/bta_ag_cmd.cc",
+        "patchSetId": 20
+      },
+      "lineNbr": 1657,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-04-08T00:33:22Z",
+      "side": 1,
+      "message": "same as above, please check if this is a dual mode connected device",
+      "revId": "95954d8bb9bf8ddc4b83b4b04085673f7c10e8b5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
