@@ -22,10 +22,10 @@ class FlossContainerRunner:
         [f'{SRC_MOUNT}/build.py', '--target', 'clean'],
 
         # Run normal code builder
-        [f'{SRC_MOUNT}/build.py', '--target', 'all'],
+        [f'{SRC_MOUNT}/build.py', '--target', 'all', '--no-vendored-rust'],
 
         # Run tests
-        [f'{SRC_MOUNT}/build.py', '--target', 'test'],
+        [f'{SRC_MOUNT}/build.py', '--target', 'test', '--no-vendored-rust'],
     ]
 
     def __init__(self, workdir, rootdir, image_tag, volume_name, container_name, staging_dir, use_docker,
