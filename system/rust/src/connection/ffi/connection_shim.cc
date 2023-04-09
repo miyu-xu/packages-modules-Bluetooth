@@ -98,6 +98,18 @@ struct LeAclManagerShim::impl : hci::acl_manager::LeAcceptlistCallbacks {
   }
 
   // hci::acl_manager::LeAcceptlistCallbacks
+  virtual void OnLeConnectFail(hci::AddressWithType address,
+                               hci::ErrorCode reason) {
+    callbacks_.value()->OnLeConnectFail(ToRustAddress(address),
+                                        static_cast<uint8_t>(reason));
+  }
+
+  // hci::acl_manager::LeAcceptlistCallbacks
+  virtual void OnLeDisconnection(hci::AddressWithType address) {
+    callbacks_.value()->OnLeDisconnection(ToRustAddress(address));
+  }
+
+  // hci::acl_manager::LeAcceptlistCallbacks
   virtual void OnResolvingListChange() {}
 
  private:
