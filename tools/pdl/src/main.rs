@@ -2,14 +2,7 @@
 
 use codespan_reporting::term::{self, termcolor};
 
-mod analyzer;
-mod ast;
-mod backends;
-mod lint;
-mod parser;
-#[cfg(test)]
-mod test_utils;
-mod utils;
+use pdl::*;
 
 #[derive(Copy, Clone, Debug, Eq, PartialEq)]
 enum OutputFormat {

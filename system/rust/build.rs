@@ -1,29 +1,18 @@
-use std::{
-    env,
-    fs::File,
-    path::Path,
-    process::{Command, Stdio},
-};
+use std::{env, fs::File, io::Write, path::Path};
+
+extern crate pdl;
 
 fn main() {
     let out_dir = env::var_os("OUT_DIR").unwrap();
     let dest_path = Path::new(&out_dir).join("_packets.rs");
-    let dest_file = File::create(dest_path).unwrap();
+    let mut dest_file = File::create(dest_path).unwrap();
 
-    let pdl = Command::new("pdl")
-        .args(["--output-format", "rust_no_alloc", "src/packets.pdl"])
-        .stdout(Stdio::piped())
-        .spawn()
-        .unwrap();
-
-    let mut rustfmt =
-        Command::new("rustfmt").stdin(pdl.stdout.unwrap()).stdout(dest_file).spawn().unwrap();
-
-    rustfmt.wait().unwrap();
-
-    if let Some(err) = rustfmt.stderr {
-        panic!("{err:?}");
-    }
+    let file =
+        pdl::parser::parse_file(&mut pdl::ast::SourceDatabase::new(), "src/packets.pdl".into())
+            .unwrap();
+    let schema = pdl::backends::intermediate::generate(&file).unwrap();
+    let output = pdl::backends::rust_no_allocation::generate(&file, &schema).unwrap();
+    dest_file.write_all(output.as_bytes()).unwrap();
 
     println!("cargo:rerun-if-changed=build.rs");
     println!("cargo:rerun-if-changed=src/packets.pdl");
