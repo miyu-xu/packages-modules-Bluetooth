@@ -31,6 +31,11 @@
 #include "com_android_bluetooth.h"
 #include "hardware/bt_sock.h"
 #include "os/logging/log_redaction.h"
+#include "rust/cxx.h"
+#include "rust/src/gatt/ffi/gatt_shim.h"
+#include "src/connection/ffi/connection_shim.h"
+#include "src/core/ffi.rs.h"
+#include "src/gatt/ffi.rs.h"
 #include "utils/Log.h"
 #include "utils/misc.h"
 
@@ -108,10 +113,23 @@ bool isCallbackThread() {
   return sHaveCallbackThread && pthread_equal(sCallbackThread, pthread_self());
 }
 
+// grab GATT callbacks from JNI since it starts before we do
+extern std::unique_ptr<bluetooth::gatt::GattServerCallbacks>
+GetGattServerCallbacks();
+
 static void adapter_state_change_callback(bt_state_t status) {
   CallbackEnv sCallbackEnv(__func__);
   if (!sCallbackEnv.valid()) return;
   ALOGV("%s: Status is: %d", __func__, status);
+
+  // note: we do this at JNI, for now, since the Floss build does not
+  // have Rust modules running. TODO(aryarahul) to fix that
+  if (status == bt_state_t::BT_STATE_ON) {
+    auto le_connection_shim =
+        std::make_unique<bluetooth::connection::LeAclManagerShim>();
+    bluetooth::rust_shim::init(GetGattServerCallbacks(),
+                               std::move(le_connection_shim));
+  }
 
   sCallbackEnv->CallVoidMethod(sJniCallbacksObj, method_stateChangeCallback,
                                (jint)status);
@@ -1082,6 +1100,7 @@ static jboolean enableNative(JNIEnv* env, jobject obj) {
   ALOGV("%s", __func__);
 
   if (!sBluetoothInterface) return JNI_FALSE;
+
   int ret = sBluetoothInterface->enable();
   return (ret == BT_STATUS_SUCCESS || ret == BT_STATUS_DONE) ? JNI_TRUE
                                                              : JNI_FALSE;
