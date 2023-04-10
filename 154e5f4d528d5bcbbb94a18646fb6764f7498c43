@@ -46,6 +46,30 @@
       },
       "revId": "154e5f4d528d5bcbbb94a18646fb6764f7498c43",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "15ebf3d7_cc68fa05",
+        "filename": "android/pandora/test/asha_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 529,
+      "author": {
+        "id": 1952952
+      },
+      "writtenOn": "2023-04-10T04:51:01Z",
+      "side": 1,
+      "message": "I see. I thought this is a dual device test case and we should also make sure the other device still works as expected. I\u0027m fine with it if it\u0027s not necessary, thanks for the explanation!",
+      "parentUuid": "38411c87_d30fba52",
+      "range": {
+        "startLine": 529,
+        "startChar": 66,
+        "endLine": 529,
+        "endChar": 74
+      },
+      "revId": "154e5f4d528d5bcbbb94a18646fb6764f7498c43",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
