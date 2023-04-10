@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3bb0307e_db0d345d",
+        "filename": "system/btif/src/btif_avrcp_audio_track.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2023-04-10T23:26:13Z",
+      "side": 1,
+      "message": "It *looks* like the calling file holds a lock while setting this, but I just wanted to verify this setting is thread safe!\n\nOtherwise, LGTM.",
+      "range": {
+        "startLine": 145,
+        "startChar": 4,
+        "endLine": 145,
+        "endChar": 29
+      },
+      "revId": "6f333438494bfc03c9b08e99db7aaedd7a185c14",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
