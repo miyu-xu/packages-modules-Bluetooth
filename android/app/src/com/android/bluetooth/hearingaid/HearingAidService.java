@@ -748,10 +748,16 @@ public class HearingAidService extends ProfileService {
                     if (DBG) {
                         Log.d(TAG, " onAudioDevicesRemoved: device type: " + deviceInfo.getType());
                     }
+<<<<<<< PATCH SET (2d0fea Check AudioManager is not null before calling unregisterAudi)
+                    // Skip if HearingAidService already stopped and unregistered callback.
+                    if (mAudioManager != null) {
+                        mAudioManager.unregisterAudioDeviceCallback(this);
+=======
                     if (mAudioManager != null) {
                         mAudioManager.unregisterAudioDeviceCallback(this);
                     } else {
                         Log.w(TAG, "onAudioDevicesRemoved: mAudioManager is null");
+>>>>>>> BASE      (cb1d20 Merge changes from topic "conn.min.limit_sysprop-master")
                     }
                 }
             }
@@ -768,10 +774,16 @@ public class HearingAidService extends ProfileService {
                     if (DBG) {
                         Log.d(TAG, " onAudioDevicesAdded: device type: " + deviceInfo.getType());
                     }
+<<<<<<< PATCH SET (2d0fea Check AudioManager is not null before calling unregisterAudi)
+                    // Skip if HearingAidService already stopped and unregistered callback.
+                    if (mAudioManager != null) {
+                        mAudioManager.unregisterAudioDeviceCallback(this);
+=======
                     if (mAudioManager != null) {
                         mAudioManager.unregisterAudioDeviceCallback(this);
                     } else {
                         Log.w(TAG, "onAudioDevicesAdded: mAudioManager is null");
+>>>>>>> BASE      (cb1d20 Merge changes from topic "conn.min.limit_sysprop-master")
                     }
                 }
             }
