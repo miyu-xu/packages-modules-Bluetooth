@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6596e2c6_ae93c20d",
+        "filename": "android/pandora/server/src/com/android/pandora/Host.kt",
+        "patchSetId": 2
+      },
+      "lineNbr": 771,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-04-10T21:33:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "caa59741_f8e89efe",
+      "range": {
+        "startLine": 771,
+        "startChar": 9,
+        "endLine": 771,
+        "endChar": 78
+      },
+      "revId": "c43dcc3c750182e81dce34771aaf0ccac1c96660",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "72161b01_280a017e",
@@ -37,6 +61,24 @@
       "writtenOn": "2023-04-07T17:02:13Z",
       "side": 1,
       "message": "Nit: Use `val` for immutable variables.",
+      "revId": "c43dcc3c750182e81dce34771aaf0ccac1c96660",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2d90d499_3a034984",
+        "filename": "android/pandora/server/src/com/android/pandora/Host.kt",
+        "patchSetId": 2
+      },
+      "lineNbr": 773,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-04-10T21:33:57Z",
+      "side": 1,
+      "message": "Thanks for catching! Done.",
+      "parentUuid": "72161b01_280a017e",
       "revId": "c43dcc3c750182e81dce34771aaf0ccac1c96660",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
