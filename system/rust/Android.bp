@@ -114,6 +114,7 @@ cc_library_static {
     srcs: [
         "src/core/ffi/module.cc",
         "src/gatt/ffi/gatt_shim.cc",
+        "src/connection/ffi/connection_shim.cc",
     ],
     include_dirs: [
         "packages/modules/Bluetooth/system",
@@ -129,6 +130,8 @@ cc_library_static {
         "libbluetooth-core",
         "libbt_shim_ffi",
         "libbt_shim_bridge",
+
+        "libflatbuffers-cpp",
     ],
     generated_headers: [
         "cxx-bridge-header",
@@ -169,6 +172,7 @@ filegroup {
     name: "libbluetooth_core_rs_ffi",
     srcs: [
         "src/core/ffi.rs",
+        "src/connection/ffi.rs",
         "src/gatt/ffi.rs",
     ],
 }
