@@ -1,5 +1,29 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a2bcb6db_bf0d008d",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 269,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2023-04-10T06:33:26Z",
+      "side": 1,
+      "message": "Shouldn\u0027t this also check whether the device support dual mode?",
+      "range": {
+        "startLine": 267,
+        "startChar": 20,
+        "endLine": 269,
+        "endChar": 21
+      },
+      "revId": "7cdf85a02856a1c2bd32d70c1809e40a3724f302",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
