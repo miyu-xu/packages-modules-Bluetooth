@@ -1,5 +1,46 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0463f36a_b6010942",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1096713
+      },
+      "writtenOn": "2023-04-10T22:55:19Z",
+      "side": 1,
+      "message": "I know it can be hard to tell because we get so many spurious warnings from our build/test system.  But this particular warning, use after std::move(), seems to be correct in this case, and seems like something we should fix.",
+      "revId": "c4a6ed597ab8b7587935dabc55b6200871e1d812",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5aacef1c_892e2d97",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1470,
+      "author": {
+        "id": 1096713
+      },
+      "writtenOn": "2023-04-10T22:55:19Z",
+      "side": 1,
+      "message": "Please fix this WARNING reported by Build Warnings: \u0027conn_pairs\u0027 used after it was moved [bugprone-use-after-move]\n\nAnalyzer Description: Reports warnings that originate from build.log in the build artifacts.\nOwner: farivar@google.com\n\n    \u0027conn_pairs\u0027 used after it was moved [bugprone-use-after-move]\n            kLogCisCreateOp + \"#CIS: \" + std::to_string(conn_pairs.size()),\n                                                        ^\n    /b/f/w/packages/modules/Bluetooth/system/bta/le_audio/state_machine.cc:1466:10: note: move occurred here\n            {.conn_pairs \u003d std::move(conn_pairs)});\n             ^\n\nThis finding was found on https://android-build.googleplex.com/builds/build-details/P53940220/targets/aosp_arm64-userdebug_tidy, but may also be present on other builds.",
+      "range": {
+        "startLine": 1470,
+        "startChar": 53,
+        "endLine": 1470,
+        "endChar": 71
+      },
+      "revId": "c4a6ed597ab8b7587935dabc55b6200871e1d812",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
