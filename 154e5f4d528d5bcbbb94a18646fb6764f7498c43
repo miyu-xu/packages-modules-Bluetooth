@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "355d71cd_375c70f5",
+        "filename": "android/pandora/test/asha_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 529,
+      "author": {
+        "id": 1952952
+      },
+      "writtenOn": "2023-04-10T03:27:41Z",
+      "side": 1,
+      "message": "do we need to check if ref_right still connected as well?",
+      "range": {
+        "startLine": 529,
+        "startChar": 66,
+        "endLine": 529,
+        "endChar": 74
+      },
+      "revId": "154e5f4d528d5bcbbb94a18646fb6764f7498c43",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
