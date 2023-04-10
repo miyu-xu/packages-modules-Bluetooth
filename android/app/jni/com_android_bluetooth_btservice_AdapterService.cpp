@@ -31,6 +31,10 @@
 #include "com_android_bluetooth.h"
 #include "hardware/bt_sock.h"
 #include "os/logging/log_redaction.h"
+#include "rust/cxx.h"
+#include "rust/src/gatt/ffi/gatt_shim.h"
+#include "src/core/ffi.rs.h"
+#include "src/gatt/ffi.rs.h"
 #include "utils/Log.h"
 #include "utils/misc.h"
 
@@ -108,10 +112,20 @@ bool isCallbackThread() {
   return sHaveCallbackThread && pthread_equal(sCallbackThread, pthread_self());
 }
 
+// grab GATT callbacks from JNI since it starts before we do
+extern std::unique_ptr<bluetooth::gatt::GattServerCallbacks>
+GetGattServerCallbacks();
+
 static void adapter_state_change_callback(bt_state_t status) {
   CallbackEnv sCallbackEnv(__func__);
   if (!sCallbackEnv.valid()) return;
   ALOGV("%s: Status is: %d", __func__, status);
+
+  // note: we do this at JNI, for now, since the Floss build does not
+  // have Rust modules running. TODO(b/277643360) to fix that
+  if (status == bt_state_t::BT_STATE_ON) {
+    bluetooth::rust_shim::start(GetGattServerCallbacks());
+  }
 
   sCallbackEnv->CallVoidMethod(sJniCallbacksObj, method_stateChangeCallback,
                                (jint)status);
@@ -1091,6 +1105,8 @@ static jboolean disableNative(JNIEnv* env, jobject obj) {
   ALOGV("%s", __func__);
 
   if (!sBluetoothInterface) return JNI_FALSE;
+
+  bluetooth::rust_shim::stop();
 
   int ret = sBluetoothInterface->disable();
   /* Retrun JNI_FALSE only when BTIF explicitly reports
