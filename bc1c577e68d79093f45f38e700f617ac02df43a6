@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "72a4bac0_d7c6fc8a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-04-10T05:24:47Z",
+      "side": 1,
+      "message": "Hi En-Shuo could you help test this patch? I\u0027m not sure how to reproduce the racing issue.\n\nThe patch LGTM except the Vec vs VecDeque part. +2-ed and feel free to submit after it is fixed and En-Shuo\u0027s verification.\n\nFWIW I also tried some UI tests and didn\u0027t see a performance drop.",
+      "revId": "bc1c577e68d79093f45f38e700f617ac02df43a6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e54c6e16_502aa21e",
+        "filename": "system/gd/rust/linux/dbus_projection/dbus_macros/src/lib.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 794,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-04-10T05:24:47Z",
+      "side": 1,
+      "message": "We may omit this check since we break when `Vec::pop` returns None.",
+      "range": {
+        "startLine": 794,
+        "startChar": 38,
+        "endLine": 794,
+        "endChar": 71
+      },
+      "revId": "bc1c577e68d79093f45f38e700f617ac02df43a6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3ff1fe9d_c8fbbaa1",
+        "filename": "system/gd/rust/linux/dbus_projection/dbus_macros/src/lib.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 797,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-04-10T05:24:47Z",
+      "side": 1,
+      "message": "I think we want FIFO instead of LIFO. How about using `VecDeque::pop_front`?",
+      "range": {
+        "startLine": 797,
+        "startChar": 52,
+        "endLine": 797,
+        "endChar": 55
+      },
+      "revId": "bc1c577e68d79093f45f38e700f617ac02df43a6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

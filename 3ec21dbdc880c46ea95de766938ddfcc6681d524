@@ -69,6 +69,24 @@
       "parentUuid": "af97ad8d_6e220537",
       "revId": "3ec21dbdc880c46ea95de766938ddfcc6681d524",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "312e7ae6_3a31cbac",
+        "filename": "system/gd/rust/linux/dbus_projection/dbus_macros/src/lib.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 771,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-04-10T05:24:47Z",
+      "side": 1,
+      "message": "The new approach SGTM.",
+      "parentUuid": "4b1fbf7f_5ea6bf6c",
+      "revId": "3ec21dbdc880c46ea95de766938ddfcc6681d524",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
