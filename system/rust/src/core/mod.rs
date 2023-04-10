@@ -13,12 +13,12 @@ use cxx::UniquePtr;
 
 use crate::{
     gatt::ffi::{AttTransportImpl, GattCallbacksImpl},
-    GlobalModuleRegistry,
+    GlobalModuleRegistry, MainThreadTxMessage, MAIN_THREAD_TX,
 };
 
 use self::ffi::GattServerCallbacks;
 
-fn init(gatt_server_callbacks: UniquePtr<GattServerCallbacks>) {
+fn start(gatt_server_callbacks: UniquePtr<GattServerCallbacks>) {
     if rust_event_loop_is_enabled() {
         thread::spawn(move || {
             GlobalModuleRegistry::start(
@@ -27,4 +27,8 @@ fn init(gatt_server_callbacks: UniquePtr<GattServerCallbacks>) {
             );
         });
     }
+}
+
+fn stop() {
+    let _ = MAIN_THREAD_TX.with(|tx| tx.send(MainThreadTxMessage::Stop));
 }
