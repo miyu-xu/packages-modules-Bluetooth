@@ -26,6 +26,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9bfef6eb_68938162",
+        "filename": "framework/tests/bumble/src/android/bluetooth/LeAdvertisingTest.java",
+        "patchSetId": 35
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-04-10T22:46:02Z",
+      "side": 1,
+      "message": "nit: Add space before `+`",
+      "range": {
+        "startLine": 123,
+        "startChar": 32,
+        "endLine": 123,
+        "endChar": 33
+      },
+      "revId": "3c6522e2ec84d305a7e063e018f5b0c78fa9cc1e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5e219373_9bb5a9e3",
         "filename": "framework/tests/bumble/src/android/bluetooth/LeAdvertisingTest.java",
         "patchSetId": 35
