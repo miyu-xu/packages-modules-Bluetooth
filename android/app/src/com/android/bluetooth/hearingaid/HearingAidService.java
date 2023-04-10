@@ -738,7 +738,10 @@ public class HearingAidService extends ProfileService {
                     if (DBG) {
                         Log.d(TAG, " onAudioDevicesRemoved: device type: " + deviceInfo.getType());
                     }
-                    mAudioManager.unregisterAudioDeviceCallback(this);
+                    // Skip if HearingAidService already stopped and unregistered callback.
+                    if (mAudioManager != null) {
+                        mAudioManager.unregisterAudioDeviceCallback(this);
+                    }
                 }
             }
         }
