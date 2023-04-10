@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "feb2c039_abfb1a65",
+        "filename": "system/gd/rust/linux/dbus_projection/dbus_macros/src/lib.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 794,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-04-10T16:40:50Z",
+      "side": 1,
+      "message": "Rust fails to compile if I do this:\n```\nwhile let Some(v) \u003d futures.lock().unwrap().pop()\n```\n\nLets keep this as-is.",
+      "parentUuid": "e54c6e16_502aa21e",
+      "range": {
+        "startLine": 794,
+        "startChar": 38,
+        "endLine": 794,
+        "endChar": 71
+      },
+      "revId": "bc1c577e68d79093f45f38e700f617ac02df43a6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3ff1fe9d_c8fbbaa1",
@@ -54,6 +78,30 @@
       "writtenOn": "2023-04-10T05:24:47Z",
       "side": 1,
       "message": "I think we want FIFO instead of LIFO. How about using `VecDeque::pop_front`?",
+      "range": {
+        "startLine": 797,
+        "startChar": 52,
+        "endLine": 797,
+        "endChar": 55
+      },
+      "revId": "bc1c577e68d79093f45f38e700f617ac02df43a6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "32b5e17b_51aabbb6",
+        "filename": "system/gd/rust/linux/dbus_projection/dbus_macros/src/lib.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 797,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-04-10T16:40:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3ff1fe9d_c8fbbaa1",
       "range": {
         "startLine": 797,
         "startChar": 52,
