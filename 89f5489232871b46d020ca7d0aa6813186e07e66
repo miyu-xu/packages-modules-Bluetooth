@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e261a34d_cbe65213",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1576109
+      },
+      "writtenOn": "2023-04-10T06:52:54Z",
+      "side": 1,
+      "message": "Also include the bug here\nBug: 277527568",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 1
+      },
+      "revId": "89f5489232871b46d020ca7d0aa6813186e07e66",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d82e25d5_0d685af3",
+        "filename": "android/app/src/com/android/bluetooth/hearingaid/HearingAidService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 744,
+      "author": {
+        "id": 1576109
+      },
+      "writtenOn": "2023-04-10T06:52:54Z",
+      "side": 1,
+      "message": "If callback returns after HearingAidService#stop() then does AudioManagerOnAudioDevicesAddedCallback#onAudioDevicesAdded callback also need to be treated in the same way?",
+      "range": {
+        "startLine": 742,
+        "startChar": 0,
+        "endLine": 744,
+        "endChar": 21
+      },
+      "revId": "89f5489232871b46d020ca7d0aa6813186e07e66",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
