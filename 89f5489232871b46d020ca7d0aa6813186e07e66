@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "630a3be4_b5247148",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1952952
+      },
+      "writtenOn": "2023-04-10T07:55:50Z",
+      "side": 1,
+      "message": "done, thanks for the reminding.",
+      "parentUuid": "e261a34d_cbe65213",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 1
+      },
+      "revId": "89f5489232871b46d020ca7d0aa6813186e07e66",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d82e25d5_0d685af3",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-04-10T06:52:54Z",
       "side": 1,
       "message": "If callback returns after HearingAidService#stop() then does AudioManagerOnAudioDevicesAddedCallback#onAudioDevicesAdded callback also need to be treated in the same way?",
+      "range": {
+        "startLine": 742,
+        "startChar": 0,
+        "endLine": 744,
+        "endChar": 21
+      },
+      "revId": "89f5489232871b46d020ca7d0aa6813186e07e66",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d4980ee9_2c499d4f",
+        "filename": "android/app/src/com/android/bluetooth/hearingaid/HearingAidService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 744,
+      "author": {
+        "id": 1952952
+      },
+      "writtenOn": "2023-04-10T07:55:50Z",
+      "side": 1,
+      "message": "These two callbacks are using the same logic, it should be better to add a null-checking on `onAudioDevicesAdded` too.\nThanks for the suggestion.",
+      "parentUuid": "d82e25d5_0d685af3",
       "range": {
         "startLine": 742,
         "startChar": 0,
