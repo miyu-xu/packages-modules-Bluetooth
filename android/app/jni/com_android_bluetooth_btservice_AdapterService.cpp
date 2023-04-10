@@ -33,6 +33,7 @@
 #include "os/logging/log_redaction.h"
 #include "rust/cxx.h"
 #include "rust/src/gatt/ffi/gatt_shim.h"
+#include "src/connection/ffi/connection_shim.h"
 #include "src/core/ffi.rs.h"
 #include "src/gatt/ffi.rs.h"
 #include "utils/Log.h"
@@ -122,9 +123,12 @@ static void adapter_state_change_callback(bt_state_t status) {
   ALOGV("%s: Status is: %d", __func__, status);
 
   // note: we do this at JNI, for now, since the Floss build does not
-  // have Rust modules running. TODO(b/277643360) to fix that
+  // have Rust modules running. TODO(aryarahul) to fix that
   if (status == bt_state_t::BT_STATE_ON) {
-    bluetooth::rust_shim::start(GetGattServerCallbacks());
+    auto le_connection_shim =
+        std::make_unique<bluetooth::connection::LeAclManagerShim>();
+    bluetooth::rust_shim::start(GetGattServerCallbacks(),
+                                std::move(le_connection_shim));
   }
 
   sCallbackEnv->CallVoidMethod(sJniCallbacksObj, method_stateChangeCallback,
@@ -1096,6 +1100,7 @@ static jboolean enableNative(JNIEnv* env, jobject obj) {
   ALOGV("%s", __func__);
 
   if (!sBluetoothInterface) return JNI_FALSE;
+
   int ret = sBluetoothInterface->enable();
   return (ret == BT_STATUS_SUCCESS || ret == BT_STATUS_DONE) ? JNI_TRUE
                                                              : JNI_FALSE;

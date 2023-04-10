@@ -55,6 +55,8 @@ pub struct ModuleViews<'a> {
     pub gatt_incoming_callbacks: Rc<gatt::callbacks::CallbackTransactionManager>,
     /// Proxies calls into GATT server
     pub gatt_module: &'a mut gatt::server::GattModule,
+    /// Proxies calls into connection manager
+    pub connection_manager: SharedBox<connection::ConnectionManager>,
 }
 
 static GLOBAL_MODULE_REGISTRY: Mutex<Option<GlobalModuleRegistry>> = Mutex::new(None);
@@ -67,6 +69,7 @@ impl GlobalModuleRegistry {
     pub fn start(
         gatt_callbacks: Rc<dyn GattCallbacks>,
         att_transport: Rc<dyn AttTransport>,
+        le_acl_manager: impl InactiveLeAclManager,
     ) {
         info!("starting Rust modules");
         let rt = Builder::new_current_thread()
@@ -99,6 +102,7 @@ impl GlobalModuleRegistry {
                 gatt_outgoing_callbacks: gatt_callbacks,
                 gatt_incoming_callbacks,
                 gatt_module,
+                connection_manager,
             };
 
             // This is the core event loop that serializes incoming requests into the Rust

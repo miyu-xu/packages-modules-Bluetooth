@@ -883,7 +883,9 @@ std::unique_ptr<bluetooth::gatt::GattServerCallbacks> GetGattServerCallbacks() {
  */
 
 static const btgatt_callbacks_t sGattCallbacks = {
-    sizeof(btgatt_callbacks_t), &sGattClientCallbacks, &sGattServerCallbacks,
+    sizeof(btgatt_callbacks_t),
+    &sGattClientCallbacks,
+    &sGattServerCallbacks,
     &sGattScannerCallbacks,
 };
 
