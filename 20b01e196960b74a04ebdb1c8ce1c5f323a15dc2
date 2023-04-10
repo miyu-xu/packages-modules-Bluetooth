@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1aafeff1_0366f0d6",
+        "filename": "tools/rootcanal/lmp/src/procedure/secure_simple_pairing.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 741,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-04-10T21:06:05Z",
+      "side": 1,
+      "message": "nit: Remove `:`",
+      "range": {
+        "startLine": 741,
+        "startChar": 17,
+        "endLine": 741,
+        "endChar": 18
+      },
+      "revId": "20b01e196960b74a04ebdb1c8ce1c5f323a15dc2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
