@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9cab8f8e_9e77cf7f",
+        "filename": "android/app/src/com/android/bluetooth/a2dp/A2dpService.java",
+        "patchSetId": 31
+      },
+      "lineNbr": 1685,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-04-10T20:15:41Z",
+      "side": 1,
+      "message": "Done and split this to a separate CL. See aosp/2527968",
+      "parentUuid": "0774fe24_3b9d3a24",
+      "range": {
+        "startLine": 1685,
+        "startChar": 16,
+        "endLine": 1685,
+        "endChar": 25
+      },
+      "revId": "2c8759bf6030a251c94aacd4255bf0ac70b8d48c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7f231ac8_c786cf62",
@@ -60,6 +84,30 @@
       "writtenOn": "2023-04-08T00:30:42Z",
       "side": 1,
       "message": "these can be branched off to a different change",
+      "range": {
+        "startLine": 1289,
+        "startChar": 0,
+        "endLine": 1343,
+        "endChar": 5
+      },
+      "revId": "2c8759bf6030a251c94aacd4255bf0ac70b8d48c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a548f921_b073af42",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 31
+      },
+      "lineNbr": 1343,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-04-10T20:15:41Z",
+      "side": 1,
+      "message": "Done, see aosp/2527967",
+      "parentUuid": "806b2949_dcaeb16c",
       "range": {
         "startLine": 1289,
         "startChar": 0,
@@ -139,6 +187,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "460fbeb3_2151cc59",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 31
+      },
+      "lineNbr": 5608,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-04-10T20:15:41Z",
+      "side": 1,
+      "message": "Done, see aosp/2527966",
+      "parentUuid": "bf9f0e51_d835db94",
+      "range": {
+        "startLine": 5571,
+        "startChar": 0,
+        "endLine": 5608,
+        "endChar": 41
+      },
+      "revId": "2c8759bf6030a251c94aacd4255bf0ac70b8d48c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "44844231_7fd99b47",
@@ -152,6 +224,30 @@
       "writtenOn": "2023-04-08T00:30:42Z",
       "side": 1,
       "message": "same as above, log this error condition",
+      "range": {
+        "startLine": 2875,
+        "startChar": 0,
+        "endLine": 2876,
+        "endChar": 21
+      },
+      "revId": "2c8759bf6030a251c94aacd4255bf0ac70b8d48c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b3f050f3_c9a4517e",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 31
+      },
+      "lineNbr": 2876,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-04-10T20:15:41Z",
+      "side": 1,
+      "message": "Done and split this to a separate CL. See aosp/2527968",
+      "parentUuid": "44844231_7fd99b47",
       "range": {
         "startLine": 2875,
         "startChar": 0,
