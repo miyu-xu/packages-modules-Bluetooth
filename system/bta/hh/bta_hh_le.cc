@@ -97,7 +97,7 @@ static const char* bta_hh_le_rpt_name[4] = {"UNKNOWN", "INPUT", "OUTPUT",
 static void bta_hh_le_hid_report_dbg(tBTA_HH_DEV_CB* p_cb) {
   APPL_TRACE_DEBUG("%s: HID Report DB", __func__);
 
-  if (!p_cb->hid_srvc.in_use) return;
+  if (p_cb->hid_srvc.state < BTA_HH_SERVICE_DISCOVERED) return;
 
   tBTA_HH_LE_RPT* p_rpt = &p_cb->hid_srvc.report[0];
 
@@ -318,7 +318,8 @@ static tBTA_HH_DEV_CB* bta_hh_le_find_dev_cb_by_bda(const RawAddress& bda) {
  ******************************************************************************/
 static uint8_t bta_hh_le_find_service_inst_by_battery_inst_id(
     tBTA_HH_DEV_CB* p_cb, uint8_t ba_inst_id) {
-  if (p_cb->hid_srvc.in_use && p_cb->hid_srvc.incl_srvc_inst == ba_inst_id) {
+  if (p_cb->hid_srvc.state >= BTA_HH_SERVICE_DISCOVERED &&
+      p_cb->hid_srvc.incl_srvc_inst == ba_inst_id) {
     return p_cb->hid_srvc.srvc_inst_id;
   }
   return BTA_HH_IDX_INVALID;
@@ -863,7 +864,8 @@ static void bta_hh_le_get_protocol_mode(tBTA_HH_DEV_CB* p_cb) {
   tBTA_HH_HSDATA hs_data;
   p_cb->w4_evt = BTA_HH_GET_PROTO_EVT;
 
-  if (p_cb->hid_srvc.in_use && p_cb->hid_srvc.proto_mode_handle != 0) {
+  if (p_cb->hid_srvc.state >= BTA_HH_SERVICE_DISCOVERED &&
+      p_cb->hid_srvc.proto_mode_handle != 0) {
     BtaGattQueue::ReadCharacteristic(p_cb->conn_id,
                                      p_cb->hid_srvc.proto_mode_handle,
                                      get_protocol_mode_cb, p_cb);
@@ -979,7 +981,7 @@ void bta_hh_security_cmpl(tBTA_HH_DEV_CB* p_cb,
                           UNUSED_ATTR const tBTA_HH_DATA* p_buf) {
   APPL_TRACE_DEBUG("%s", __func__);
   if (p_cb->status == BTA_HH_OK) {
-    if (!p_cb->hid_srvc.in_use) {
+    if (p_cb->hid_srvc.state < BTA_HH_SERVICE_DISCOVERED) {
       APPL_TRACE_DEBUG("bta_hh_security_cmpl no reports loaded, try to load");
 
       /* start loading the cache if not in stack */
@@ -991,7 +993,8 @@ void bta_hh_security_cmpl(tBTA_HH_DEV_CB* p_cb,
       }
     }
     /*  discovery has been done for HID service */
-    if (p_cb->app_id != 0 && p_cb->hid_srvc.in_use) {
+    if (p_cb->app_id != 0 &&
+        p_cb->hid_srvc.state >= BTA_HH_SERVICE_DISCOVERED) {
       APPL_TRACE_DEBUG("%s: discovery has been done for HID service", __func__);
       /* configure protocol mode */
       if (!bta_hh_le_set_protocol_mode(p_cb, p_cb->mode)) {
@@ -1162,6 +1165,14 @@ static void bta_hh_le_close(const tBTA_GATTC_CLOSE& gattc_data) {
              ADDRESS_TO_LOGGABLE_CSTR(gattc_data.remote_bda));
     return;
   }
+
+  if (p_cb->hid_srvc.state == BTA_HH_SERVICE_CHANGED) {
+    /* Service change would have already prompted a local disconnection */
+    LOG_WARN("Disconnected after service changed indication:%s",
+             ADDRESS_TO_LOGGABLE_CSTR(gattc_data.remote_bda));
+    return;
+  }
+
   p_cb->conn_id = GATT_INVALID_CONN_ID;
   p_cb->security_pending = false;
 
@@ -1479,7 +1490,7 @@ static void bta_hh_le_srvc_search_cmpl(tBTA_GATTC_SEARCH_CMPL* p_data) {
       have_hid = true;
 
       /* found HID primamry service */
-      p_dev_cb->hid_srvc.in_use = true;
+      p_dev_cb->hid_srvc.state = BTA_HH_SERVICE_DISCOVERED;
       p_dev_cb->hid_srvc.srvc_inst_id = service.handle;
       p_dev_cb->hid_srvc.proto_mode_handle = 0;
       p_dev_cb->hid_srvc.control_point_handle = 0;
@@ -1983,7 +1994,7 @@ void bta_hh_le_write_dev_act(tBTA_HH_DEV_CB* p_cb, const tBTA_HH_DATA* p_data) {
  *
  ******************************************************************************/
 void bta_hh_le_get_dscp_act(tBTA_HH_DEV_CB* p_cb) {
-  if (p_cb->hid_srvc.in_use) {
+  if (p_cb->hid_srvc.state >= BTA_HH_SERVICE_DISCOVERED) {
     p_cb->dscp_info.descriptor.dl_len = p_cb->hid_srvc.descriptor.dl_len;
     p_cb->dscp_info.descriptor.dsc_list = p_cb->hid_srvc.descriptor.dsc_list;
 
@@ -2081,6 +2092,62 @@ void bta_hh_le_remove_dev_bg_conn(tBTA_HH_DEV_CB* p_dev_cb) {
   bta_hh_le_deregister_input_notif(p_dev_cb);
 }
 
+static void bta_hh_le_service_changed(RawAddress remote_bda) {
+  tBTA_HH_DEV_CB* p_cb = bta_hh_le_find_dev_cb_by_bda(remote_bda);
+  if (p_cb == nullptr) {
+    LOG_WARN("Received close event with unknown device:%s",
+             ADDRESS_TO_LOGGABLE_CSTR(remote_bda));
+    return;
+  }
+
+  /* Forget the cached reports */
+  bta_hh_le_co_reset_rpt_cache(p_cb->addr, p_cb->app_id);
+  p_cb->hid_srvc.state = BTA_HH_SERVICE_CHANGED;
+  p_cb->status = BTA_HH_HS_SERVICE_CHANGED;
+
+  /* Pretend that the HOGP device disconnected so that higher layers don't
+     try to communicate with it while the GATT database is rediscovered. */
+  const tBTA_HH_DATA data = {
+      .le_close =
+          {
+              .conn_id = p_cb->conn_id,
+              .reason = GATT_CONN_OK,
+              .hdr =
+                  {
+                      .event = BTA_HH_GATT_CLOSE_EVT,
+                      .layer_specific = static_cast<uint16_t>(p_cb->hid_handle),
+                  },
+          },
+  };
+  bta_hh_sm_execute(p_cb, BTA_HH_GATT_CLOSE_EVT, &data);
+}
+
+static void bta_hh_le_service_discovery_done(RawAddress remote_bda) {
+  tBTA_HH_DEV_CB* p_cb = bta_hh_le_find_dev_cb_by_bda(remote_bda);
+  if (p_cb == nullptr) {
+    LOG_WARN("Received service discovery done event for unknown device:%s",
+             ADDRESS_TO_LOGGABLE_CSTR(remote_bda));
+    return;
+  }
+
+  if (p_cb->hid_srvc.state == BTA_HH_SERVICE_CHANGED) {
+    /* Service rediscovery completed after service change.
+       Pretend to have connected with a new HOGP device. */
+    p_cb->hid_srvc.state = BTA_HH_SERVICE_UNKNOWN;
+    const tBTA_GATTC_OPEN open = {
+        .status = GATT_SUCCESS,
+        .conn_id = p_cb->conn_id,
+        .client_if = bta_hh_cb.gatt_if,
+        .remote_bda = remote_bda,
+        .transport = BT_TRANSPORT_LE,
+        .mtu = 0,
+    };
+    bta_hh_sm_execute(p_cb, BTA_HH_GATT_OPEN_EVT, (tBTA_HH_DATA*)&open);
+  } else {
+    LOG_INFO("Discovery done, service state: %d", p_cb->hid_srvc.state);
+  }
+}
+
 /*******************************************************************************
  *
  * Function         bta_hh_gattc_callback
@@ -2122,6 +2189,14 @@ static void bta_hh_gattc_callback(tBTA_GATTC_EVT event, tBTA_GATTC* p_data) {
       bta_hh_le_input_rpt_notify(&p_data->notify);
       break;
 
+    case BTA_GATTC_SRVC_CHG_EVT:
+      bta_hh_le_service_changed(p_data->remote_bda);
+      break;
+
+    case BTA_GATTC_SRVC_DISC_DONE_EVT:
+      bta_hh_le_service_discovery_done(p_data->remote_bda);
+      break;
+
     case BTA_GATTC_ENC_CMPL_CB_EVT: /* 17 */
       p_dev_cb = bta_hh_le_find_dev_cb_by_bda(p_data->enc_cmpl.remote_bda);
       if (p_dev_cb) {
@@ -2152,7 +2227,7 @@ static void bta_hh_process_cache_rpt(tBTA_HH_DEV_CB* p_cb,
 
   if (num_rpt != 0) /* no cache is found */
   {
-    p_cb->hid_srvc.in_use = true;
+    p_cb->hid_srvc.state = BTA_HH_SERVICE_UNKNOWN;
 
     /* set the descriptor info */
     p_cb->hid_srvc.descriptor.dl_len = p_cb->dscp_info.descriptor.dl_len;
