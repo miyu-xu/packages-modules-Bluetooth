@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ff71fb22_ac38c828",
+        "filename": "android/app/src/com/android/bluetooth/hearingaid/HearingAidService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 744,
+      "author": {
+        "id": 1478537
+      },
+      "writtenOn": "2023-04-10T10:33:55Z",
+      "side": 1,
+      "message": "1. If the callback runs on a different thread than the one calling onStop, it can still have a race condition and crash. \n\n2. It\u0027s legacy code, but I don\u0027t understand why need to call the unregisterAudioDeviceCallback. The call back won\u0027t be called for the same removedDevices (so does addedDevices).",
+      "range": {
+        "startLine": 741,
+        "startChar": 0,
+        "endLine": 744,
+        "endChar": 21
+      },
+      "revId": "2d0fea299a3d1898732c851b9f3b44aec6012dd8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
