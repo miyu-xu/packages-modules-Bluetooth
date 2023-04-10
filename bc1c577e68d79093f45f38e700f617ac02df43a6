@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "845709d9_00987be6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2023-04-10T22:46:28Z",
+      "side": 1,
+      "message": "I won\u0027t be able to test the patch until next week.\n\n+Jeremy to help the verification.",
+      "parentUuid": "72a4bac0_d7c6fc8a",
+      "revId": "bc1c577e68d79093f45f38e700f617ac02df43a6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e54c6e16_502aa21e",
