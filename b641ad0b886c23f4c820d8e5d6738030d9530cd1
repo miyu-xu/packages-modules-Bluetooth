@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0dbf1806_9e51d994",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-04-10T21:14:21Z",
+      "side": 1,
+      "message": "change split from aosp/2376519. reviewed there.",
+      "revId": "b641ad0b886c23f4c820d8e5d6738030d9530cd1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
