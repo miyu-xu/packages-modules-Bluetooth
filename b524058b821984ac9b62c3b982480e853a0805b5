@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9e0a5553_63b538eb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 13
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2023-04-10T08:12:56Z",
+      "side": 1,
+      "message": "Just realized I met some mistakes in refactoring so the floss build always failed.\n\nPTAL, thanks!",
+      "revId": "b524058b821984ac9b62c3b982480e853a0805b5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
