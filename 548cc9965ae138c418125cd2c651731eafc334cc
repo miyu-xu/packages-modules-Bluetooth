@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7f7301c2_db961217",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-04-11T19:43:37Z",
+      "side": 1,
+      "message": "more important to know what you fixed than when it was broken.\n\nReturn correct error code in disconnection event?\n\nAre the tests not running in presubmit?",
+      "range": {
+        "startLine": 15,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 44
+      },
+      "revId": "548cc9965ae138c418125cd2c651731eafc334cc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "06ab7aca_39b6fd3b",
+        "filename": "tools/rootcanal/test/LL/DDI/ADV/BV_26_C.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-04-11T19:43:37Z",
+      "side": 1,
+      "message": "nit: Can we use hex here to make it easier to understand the test description?  Putting decimal in the description would also work.",
+      "range": {
+        "startLine": 49,
+        "startChar": 22,
+        "endLine": 49,
+        "endChar": 25
+      },
+      "revId": "548cc9965ae138c418125cd2c651731eafc334cc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
