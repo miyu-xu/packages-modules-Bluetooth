@@ -87,9 +87,7 @@ class PcapFilter final {
 
   // Specific filter for any Gap data array.
   // The Gap data entries are modified in place.
-  void FilterGapData(std::vector<bluetooth::hci::GapData>& gap_data);
-  void FilterLengthAndData(
-      std::vector<bluetooth::hci::LengthAndData>& gap_data);
+  void FilterGapData(std::vector<uint8_t>& gap_data);
 
   // Helpers to replace local names.
   std::array<uint8_t, 248> ChangeDeviceName(

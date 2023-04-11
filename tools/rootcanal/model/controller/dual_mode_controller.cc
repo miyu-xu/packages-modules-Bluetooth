@@ -1942,7 +1942,7 @@ void DualModeController::LeReadAdvertisingPhysicalChannelTxPower(
 }
 
 void DualModeController::LeSetAdvertisingData(CommandView command) {
-  auto command_view = bluetooth::hci::LeSetAdvertisingDataRawView::Create(
+  auto command_view = bluetooth::hci::LeSetAdvertisingDataView::Create(
       bluetooth::hci::LeAdvertisingCommandView::Create(command));
   ASSERT(command_view.IsValid());
   ErrorCode status = link_layer_controller_.LeSetAdvertisingData(
@@ -1952,7 +1952,7 @@ void DualModeController::LeSetAdvertisingData(CommandView command) {
 }
 
 void DualModeController::LeSetScanResponseData(CommandView command) {
-  auto command_view = bluetooth::hci::LeSetScanResponseDataRawView::Create(
+  auto command_view = bluetooth::hci::LeSetScanResponseDataView::Create(
       bluetooth::hci::LeAdvertisingCommandView::Create(command));
   ASSERT(command_view.IsValid());
   ErrorCode status = link_layer_controller_.LeSetScanResponseData(
@@ -2804,7 +2804,7 @@ void DualModeController::LeSetExtendedAdvertisingData(CommandView command) {
       bluetooth::hci::LeAdvertisingCommandView::Create(command));
   ASSERT(command_view.IsValid());
   auto raw_command_view =
-      bluetooth::hci::LeSetExtendedAdvertisingDataRawView::Create(
+      bluetooth::hci::LeSetExtendedAdvertisingDataView::Create(
           bluetooth::hci::LeAdvertisingCommandView::Create(command));
   ASSERT(raw_command_view.IsValid());
   ErrorCode status = link_layer_controller_.LeSetExtendedAdvertisingData(
@@ -2821,7 +2821,7 @@ void DualModeController::LeSetExtendedScanResponseData(CommandView command) {
       bluetooth::hci::LeAdvertisingCommandView::Create(command));
   ASSERT(command_view.IsValid());
   auto raw_command_view =
-      bluetooth::hci::LeSetExtendedScanResponseDataRawView::Create(
+      bluetooth::hci::LeSetExtendedScanResponseDataView::Create(
           bluetooth::hci::LeAdvertisingCommandView::Create(command));
   ASSERT(raw_command_view.IsValid());
   ErrorCode status = link_layer_controller_.LeSetExtendedScanResponseData(

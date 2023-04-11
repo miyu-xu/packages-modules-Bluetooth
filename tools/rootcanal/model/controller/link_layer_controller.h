@@ -887,8 +887,7 @@ class LinkLayerController {
   std::array<uint8_t, kLocalNameSize> local_name_{};
 
   // Extended Inquiry Response (Vol 4, Part E § 6.24).
-  std::array<uint8_t, kExtendedInquiryResponseSize>
-      extended_inquiry_response_{};
+  std::vector<uint8_t> extended_inquiry_response_{};
 
   // Class of Device (Vol 4, Part E § 6.26).
   ClassOfDevice class_of_device_{{0, 0, 0}};
