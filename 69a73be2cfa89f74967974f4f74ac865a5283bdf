@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e1662e9b_ffab66d9",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-04-11T09:57:58Z",
+      "side": 1,
+      "message": "We are doing so.\n\nOn ConnectionTimeout it is already added to allow list when group is streaming. When Disconenction reason is \"BY_REMOTE\" then we schedule the checker.",
+      "parentUuid": "f23753ee_f0c50e4e",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 25
+      },
+      "revId": "69a73be2cfa89f74967974f4f74ac865a5283bdf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8e07b831_a868b01c",
         "filename": "/COMMIT_MSG",
         "patchSetId": 5
@@ -37,6 +61,30 @@
       "writtenOn": "2023-04-11T08:52:23Z",
       "side": 1,
       "message": "3s ?",
+      "range": {
+        "startLine": 15,
+        "startChar": 12,
+        "endLine": 15,
+        "endChar": 17
+      },
+      "revId": "69a73be2cfa89f74967974f4f74ac865a5283bdf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d2771bce_2a0e00c1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-04-11T09:57:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8e07b831_a868b01c",
       "range": {
         "startLine": 15,
         "startChar": 12,
