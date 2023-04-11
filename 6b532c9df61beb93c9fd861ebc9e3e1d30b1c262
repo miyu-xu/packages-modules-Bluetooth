@@ -16,6 +16,24 @@
       "message": "Does this have any negative impact on build time ?",
       "revId": "6b532c9df61beb93c9fd861ebc9e3e1d30b1c262",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3026c64b_65e9aa60",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-04-11T20:13:12Z",
+      "side": 1,
+      "message": "No, we are just moving it from a dependency of libbluetooth to libbluetooth-core, but it has to be compiled + linked in either case.",
+      "parentUuid": "95a313ef_604ae393",
+      "revId": "6b532c9df61beb93c9fd861ebc9e3e1d30b1c262",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
