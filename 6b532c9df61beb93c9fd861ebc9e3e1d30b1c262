@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "95a313ef_604ae393",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-04-11T08:02:35Z",
+      "side": 1,
+      "message": "Does this have any negative impact on build time ?",
+      "revId": "6b532c9df61beb93c9fd861ebc9e3e1d30b1c262",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
