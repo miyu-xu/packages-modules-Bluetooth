@@ -16,6 +16,24 @@
       "message": "We should make the transport support independent of each other. So instead of \"device_type\" property, we should have two transport support properties, i.e. \"le_transport\" and \"bredr_transport\". Both these properties should have three possible values, i.e. \"unknown\", \"supported\" and \"not_supported\".\nDual mode nature should be derived from these properties.",
       "revId": "94e484ce04378401f4409110a9f7cfe20e1297c9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1f32467d_720d81ef",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929170
+      },
+      "writtenOn": "2023-04-11T20:32:16Z",
+      "side": 1,
+      "message": "Yes, I agree and that would require some more effort to figure out how we have been using device type currently and also changing things at this point can be risky. I am making this change to prevent crashes seen from automation test.",
+      "parentUuid": "d146f885_2d8edbc3",
+      "revId": "94e484ce04378401f4409110a9f7cfe20e1297c9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
