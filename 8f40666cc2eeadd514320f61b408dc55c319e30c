@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d848435e_ed6d2379",
+        "filename": "android/pandora/test/asha_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1937985
+      },
+      "writtenOn": "2023-04-11T16:42:17Z",
+      "side": 1,
+      "message": "Could you use `Ear` instead ?",
+      "range": {
+        "startLine": 39,
+        "startChar": 6,
+        "endLine": 39,
+        "endChar": 16
+      },
+      "revId": "8f40666cc2eeadd514320f61b408dc55c319e30c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4ed348b4_dcb86d68",
+        "filename": "android/pandora/test/asha_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 307,
+      "author": {
+        "id": 1937985
+      },
+      "writtenOn": "2023-04-11T16:42:17Z",
+      "side": 1,
+      "message": "I suggest to make an async function nested in `test_pairing_dual_device` like:\n```\n    def ref_pair(...):\n        adv\n        connect\n        pair\n        assert success\n \n    await asyncio.gather(ref_pair(self.ref_left), ref_pair(self.ref_right))\n```\nThis way we also test the DUT for being able to do all of this concurrently",
+      "range": {
+        "startLine": 276,
+        "startChar": 8,
+        "endLine": 307,
+        "endChar": 69
+      },
+      "revId": "8f40666cc2eeadd514320f61b408dc55c319e30c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
