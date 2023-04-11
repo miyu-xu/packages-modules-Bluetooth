@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9477a6db_860ff6a2",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 17
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-04-11T18:47:20Z",
+      "side": 1,
+      "message": "Are you planning on adding tests for these in rootcanal_hci_test?  Can they be included in this CL?",
+      "range": {
+        "startLine": 20,
+        "startChar": 12,
+        "endLine": 20,
+        "endChar": 30
+      },
+      "revId": "bec0dd253f74e6a3c1aeddd8f9ea347d63891b34",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
