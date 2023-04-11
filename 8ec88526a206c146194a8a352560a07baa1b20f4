@@ -33,6 +33,29 @@
       "message": "Note that this is only called if `INIT_classic_discovery_only` is set. We need the `BTM_BLE_INQUIRY_MASK` flag to be set in order to process BLE results. Since we don\u0027t call `btm_ble_start_scan` or `btm_ble_stop_scan`, we need to complete the BLE inquiry mask somehow and this timer will do it.",
       "revId": "8ec88526a206c146194a8a352560a07baa1b20f4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b8b57ce4_1a004528",
+        "filename": "system/stack/btm/btm_inq.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 666,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-04-11T23:06:16Z",
+      "side": 1,
+      "message": "This is where the timer is set.",
+      "range": {
+        "startLine": 666,
+        "startChar": 4,
+        "endLine": 666,
+        "endChar": 22
+      },
+      "revId": "8ec88526a206c146194a8a352560a07baa1b20f4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

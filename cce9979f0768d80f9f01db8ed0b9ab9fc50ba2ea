@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7c784b68_039aceaa",
+        "filename": "system/stack/btm/btm_inq.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1411,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-04-11T23:06:16Z",
+      "side": 0,
+      "message": "This looks unrelated to the description.\n\nIt also looks like the only place this alarm is cancelled.  If it\u0027s really unnecessary, we should remove the alarm in a separate CL.",
+      "range": {
+        "startLine": 1411,
+        "startChar": 0,
+        "endLine": 1411,
+        "endChar": 45
+      },
+      "revId": "cce9979f0768d80f9f01db8ed0b9ab9fc50ba2ea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
