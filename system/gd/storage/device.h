@@ -188,6 +188,9 @@ class Device {
   GENERATE_PROPERTY_GETTER_SETTER_REMOVER_WITH_CUSTOM_SETTER(DeviceType, hci::DeviceType, "DevType", {
     return static_cast<hci::DeviceType>(value | GetDeviceType().value_or(hci::DeviceType::UNKNOWN));
   });
+  GENERATE_PROPERTY_GETTER_SETTER_REMOVER(IsLeSupported, hci::TransportSupport, "IsLeSupported");
+  GENERATE_PROPERTY_GETTER_SETTER_REMOVER(
+      IsBrEdrSupported, hci::TransportSupport, "IsBrEdrSupported");
   GENERATE_PROPERTY_GETTER_SETTER_REMOVER(ManufacturerCode, uint16_t, "Manufacturer");
   GENERATE_PROPERTY_GETTER_SETTER_REMOVER(LmpVersion, uint8_t, "LmpVer");
   GENERATE_PROPERTY_GETTER_SETTER_REMOVER(LmpSubVersion, uint16_t, "LmpSubVer");

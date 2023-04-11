@@ -741,30 +741,37 @@ void BleScannerInterfaceImpl::handle_remote_properties(
   uint8_t flag_len;
   const uint8_t* p_flag = AdvertiseDataParser::GetFieldByType(
       advertising_data, BTM_BLE_AD_TYPE_FLAG, &flag_len);
-  auto device_type = bluetooth::hci::DeviceType::UNKNOWN;
+
+  auto is_bredr_supported = bluetooth::hci::TransportSupport::UNKNOWN;
   bool is_adv_connectable = event_type & (1 << BLE_EVT_CONNECTABLE_BIT);
-  // 1. If adv is connectable and flag data is not present, device type is
-  // DUAL mode.
+  // 1. If adv is connectable and flag data is not present, bredr is
+  // supported.
   if (is_adv_connectable && p_flag == nullptr) {
-    device_type = bluetooth::hci::DeviceType::DUAL;
+    is_bredr_supported = bluetooth::hci::TransportSupport::SUPPORTED;
   }
-  // 2. If adv is not connectable and flag data is not present, device type is
+  // 2. If adv is not connectable and flag data is not present, bredr support is
   // UNKNOWN.
   else if (!is_adv_connectable && p_flag == nullptr) {
-    device_type = bluetooth::hci::DeviceType::UNKNOWN;
+    is_bredr_supported = bluetooth::hci::TransportSupport::UNKNOWN;
   }
-  // 3. If flag data is present, use `BR/EDR Not Supported` bit to find device
-  // type.
+  // 3. If flag data is present, use `BR/EDR Not Supported` bit to find bredr
+  // support.
   else {
-    device_type = (BTM_BLE_BREDR_NOT_SPT & *p_flag)
-                      ? bluetooth::hci::DeviceType::LE
-                      : bluetooth::hci::DeviceType::DUAL;
+    is_bredr_supported = (BTM_BLE_BREDR_NOT_SPT & *p_flag)
+                             ? bluetooth::hci::TransportSupport::NOT_SUPPORTED
+                             : bluetooth::hci::TransportSupport::SUPPORTED;
   }
   LOG_DEBUG(
-      "%s event_type: %d, is_adv_connectable: %d, flag data: %d, device_type: "
+      "%s event_type: %d, is_adv_connectable: %d, flag data: %d, "
+      "is_bredr_supported: "
       "%d",
       __func__, event_type, is_adv_connectable, (p_flag ? *p_flag : 0),
-      device_type);
+      is_bredr_supported);
+
+  auto device_type = bluetooth::hci::DeviceType::LE;
+  if (is_bredr_supported == bluetooth::hci::TransportSupport::SUPPORTED) {
+    device_type = bluetooth::hci::DeviceType::DUAL;
+  }
 
   uint8_t remote_name_len;
   const uint8_t* p_eir_remote_name = AdvertiseDataParser::GetFieldByType(
@@ -805,15 +812,31 @@ void BleScannerInterfaceImpl::handle_remote_properties(
   auto mutation = storage_module->Modify();
   bluetooth::storage::Device device =
       storage_module->GetDeviceByLegacyKey(address);
-  mutation.Add(device.SetDeviceType(device_type));
+  auto device_type_is_unknown =
+      device.GetDeviceType() == bluetooth::hci::DeviceType::UNKNOWN;
+
+  // Update the device properties if device type is unknown or
+  // the property needs to be updated with new value
+  if (device_type_is_unknown || device.GetDeviceType() != device_type)
+    mutation.Add(device.SetDeviceType(device_type));
+
+  if (device_type_is_unknown ||
+      device.GetIsBrEdrSupported() != is_bredr_supported)
+    mutation.Add(device.SetIsBrEdrSupported(is_bredr_supported));
+
+  mutation.Add(
+      device.SetIsLeSupported(bluetooth::hci::TransportSupport::SUPPORTED));
   mutation.Commit();
 
   // update address type
-  auto mutation2 = storage_module->Modify();
   bluetooth::storage::LeDevice le_device = device.Le();
-  mutation2.Add(
-      le_device.SetAddressType((bluetooth::hci::AddressType)addr_type));
-  mutation2.Commit();
+  if (device_type_is_unknown ||
+      (le_device.GetAddressType() != (bluetooth::hci::AddressType)addr_type)) {
+    auto mutation2 = storage_module->Modify();
+    mutation2.Add(
+        le_device.SetAddressType((bluetooth::hci::AddressType)addr_type));
+    mutation2.Commit();
+  }
 }
 
 void BleScannerInterfaceImpl::AddressCache::add(const RawAddress& p_bda) {
