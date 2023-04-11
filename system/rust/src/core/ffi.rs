@@ -16,6 +16,7 @@ use crate::core::{start, stop};
 
 use cxx::{type_id, ExternType};
 pub use inner::*;
+use tokio::sync::oneshot;
 
 unsafe impl Send for GattServerCallbacks {}
 
@@ -60,6 +61,7 @@ mod inner {
     unsafe extern "C++" {
         include!("src/connection/ffi/connection_shim.h");
         type LeAclManagerShim = crate::connection::LeAclManagerShim;
+        type AddressResolverShim = crate::connection::AddressResolverShim;
     }
 
     #[namespace = "bluetooth::rust_shim"]
@@ -67,8 +69,26 @@ mod inner {
         fn start(
             gatt_server_callbacks: UniquePtr<GattServerCallbacks>,
             le_acl_manager: UniquePtr<LeAclManagerShim>,
+            address_resolver: SharedPtr<AddressResolverShim>,
         );
 
         fn stop();
+    }
+}
+
+/// A callback passed by mutable reference to C++ (to avoid boxing),
+/// that can only be invoked once.
+pub struct Callback<T>(Option<oneshot::Sender<T>>);
+
+impl<T> Callback<T> {
+    /// Invoke the callback. Panics if invoked more than once.
+    pub fn invoke(&mut self, val: T) {
+        let _ = self.0.take().expect("callback can only be invoked once").send(val);
+    }
+}
+
+impl<T> From<oneshot::Sender<T>> for Callback<T> {
+    fn from(tx: oneshot::Sender<T>) -> Self {
+        Self(Some(tx))
     }
 }
