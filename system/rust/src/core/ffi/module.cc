@@ -21,6 +21,7 @@
 #include "btcore/include/module.h"
 #include "osi/include/log.h"
 #ifndef TARGET_FLOSS
+#include "src/connection/ffi/connection_shim.h"
 #include "src/core/ffi.rs.h"
 #include "src/gatt/ffi.rs.h"
 #endif
@@ -44,7 +45,8 @@ future_t* Start() {
   ASSERT_LOG(bt_gatt_callbacks != nullptr, "GATT profile not started");
   bluetooth::rust_shim::start(
       std::make_unique<bluetooth::gatt::GattServerCallbacks>(
-          *bt_gatt_callbacks->server));
+          *bt_gatt_callbacks->server),
+      std::make_unique<bluetooth::connection::LeAclManagerShim>());
 
   return nullptr;
 }
