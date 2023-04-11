@@ -809,11 +809,14 @@ void BleScannerInterfaceImpl::handle_remote_properties(
   mutation.Commit();
 
   // update address type
-  auto mutation2 = storage_module->Modify();
-  bluetooth::storage::LeDevice le_device = device.Le();
-  mutation2.Add(
-      le_device.SetAddressType((bluetooth::hci::AddressType)addr_type));
-  mutation2.Commit();
+  if (device_type == bluetooth::hci::DeviceType::LE ||
+      device_type == bluetooth::hci::DeviceType::DUAL) {
+    auto mutation2 = storage_module->Modify();
+    bluetooth::storage::LeDevice le_device = device.Le();
+    mutation2.Add(
+        le_device.SetAddressType((bluetooth::hci::AddressType)addr_type));
+    mutation2.Commit();
+  }
 }
 
 void BleScannerInterfaceImpl::AddressCache::add(const RawAddress& p_bda) {
