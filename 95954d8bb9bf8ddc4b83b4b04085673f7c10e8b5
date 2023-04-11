@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "183438c9_88263746",
+        "filename": "system/bta/ag/bta_ag_cmd.cc",
+        "patchSetId": 20
+      },
+      "lineNbr": 1418,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-04-11T01:32:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "21dcbc54_1ed71024",
+      "range": {
+        "startLine": 1415,
+        "startChar": 0,
+        "endLine": 1418,
+        "endChar": 47
+      },
+      "revId": "95954d8bb9bf8ddc4b83b4b04085673f7c10e8b5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "44077331_d9681811",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-04-08T00:33:22Z",
       "side": 1,
       "message": "same as above, please check if this is a dual mode connected device",
+      "range": {
+        "startLine": 1441,
+        "startChar": 0,
+        "endLine": 1441,
+        "endChar": 21
+      },
+      "revId": "95954d8bb9bf8ddc4b83b4b04085673f7c10e8b5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4580fd48_ee96c832",
+        "filename": "system/bta/ag/bta_ag_cmd.cc",
+        "patchSetId": 20
+      },
+      "lineNbr": 1441,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-04-11T01:32:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "44077331_d9681811",
       "range": {
         "startLine": 1441,
         "startChar": 0,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5fa8b652_ab7d1ebc",
+        "filename": "system/bta/ag/bta_ag_cmd.cc",
+        "patchSetId": 20
+      },
+      "lineNbr": 1540,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-04-11T01:32:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2432d69f_a29267bf",
+      "range": {
+        "startLine": 1540,
+        "startChar": 0,
+        "endLine": 1540,
+        "endChar": 21
+      },
+      "revId": "95954d8bb9bf8ddc4b83b4b04085673f7c10e8b5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "63e37998_8299ab70",
@@ -83,6 +155,24 @@
       "writtenOn": "2023-04-08T00:33:22Z",
       "side": 1,
       "message": "same as above, please check if this is a dual mode connected device",
+      "revId": "95954d8bb9bf8ddc4b83b4b04085673f7c10e8b5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5566b3a3_a834edb8",
+        "filename": "system/bta/ag/bta_ag_cmd.cc",
+        "patchSetId": 20
+      },
+      "lineNbr": 1568,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-04-11T01:32:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "63e37998_8299ab70",
       "revId": "95954d8bb9bf8ddc4b83b4b04085673f7c10e8b5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -104,6 +194,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "af5e425f_21c9a569",
+        "filename": "system/bta/ag/bta_ag_cmd.cc",
+        "patchSetId": 20
+      },
+      "lineNbr": 1595,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-04-11T01:32:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "92a7f41b_8c2b3216",
+      "revId": "95954d8bb9bf8ddc4b83b4b04085673f7c10e8b5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1706fc39_80aa5617",
@@ -117,6 +225,24 @@
       "writtenOn": "2023-04-08T00:33:22Z",
       "side": 1,
       "message": "same as above, please check if this is a dual mode connected device",
+      "revId": "95954d8bb9bf8ddc4b83b4b04085673f7c10e8b5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "65663c81_8738635b",
+        "filename": "system/bta/ag/bta_ag_cmd.cc",
+        "patchSetId": 20
+      },
+      "lineNbr": 1614,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-04-11T01:32:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1706fc39_80aa5617",
       "revId": "95954d8bb9bf8ddc4b83b4b04085673f7c10e8b5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -138,6 +264,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "44179b69_4181499f",
+        "filename": "system/bta/ag/bta_ag_cmd.cc",
+        "patchSetId": 20
+      },
+      "lineNbr": 1633,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-04-11T01:32:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d35dfb1d_95349e5c",
+      "revId": "95954d8bb9bf8ddc4b83b4b04085673f7c10e8b5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d7b7e3a6_299fdf40",
@@ -151,6 +295,24 @@
       "writtenOn": "2023-04-08T00:33:22Z",
       "side": 1,
       "message": "same as above, please check if this is a dual mode connected device",
+      "revId": "95954d8bb9bf8ddc4b83b4b04085673f7c10e8b5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cf836b52_b25f0c31",
+        "filename": "system/bta/ag/bta_ag_cmd.cc",
+        "patchSetId": 20
+      },
+      "lineNbr": 1657,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-04-11T01:32:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d7b7e3a6_299fdf40",
       "revId": "95954d8bb9bf8ddc4b83b4b04085673f7c10e8b5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
