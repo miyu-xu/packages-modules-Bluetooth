@@ -3,6 +3,23 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "527819c0_a9fa4335",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-04-11T22:42:31Z",
+      "side": 1,
+      "message": "+myles since Chris is out.\n\nFor reference, `BTM_StartInquiry` sets both classic and LE inquiry flags in the mode. We need to complete both behind the timeout since we no longer run the BLE scanning from this path.\n\nIf I remove the LE flag from the mode, we stop processing LE results for inquiry entirely.",
+      "revId": "8ec88526a206c146194a8a352560a07baa1b20f4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "d626386b_532d200a",
         "filename": "system/stack/btm/btm_inq.cc",
         "patchSetId": 1
