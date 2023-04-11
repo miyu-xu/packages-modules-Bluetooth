@@ -22,6 +22,30 @@
       },
       "revId": "6f333438494bfc03c9b08e99db7aaedd7a185c14",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d211b3a7_88aea077",
+        "filename": "system/btif/src/btif_avrcp_audio_track.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 1985170
+      },
+      "writtenOn": "2023-04-11T02:32:34Z",
+      "side": 1,
+      "message": "Yeah, for the writes it is thread safe. However, read operation on the entire trackHolder (handle) object in BtifAvrcpAudioTrackWrite operation doesn\u0027t seem to be thread safe. https://source.corp.google.com/android-internal/packages/modules/Bluetooth/system/btif/src/btif_a2dp_sink.cc;l\u003d527;bpv\u003d1;bpt\u003d0\nSo, there is a possibility of concurrent read occurring during a simultaneous delete operation. I tried adding lock but that was probably causing deadlock. This might be a potential bug. Similarly, there is no lock during the invocation of BtifAvrcpAudioTrackStart (even though the comment mentions to take a lock :) ).",
+      "parentUuid": "3bb0307e_db0d345d",
+      "range": {
+        "startLine": 145,
+        "startChar": 4,
+        "endLine": 145,
+        "endChar": 29
+      },
+      "revId": "6f333438494bfc03c9b08e99db7aaedd7a185c14",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
