@@ -41,6 +41,10 @@ use crate::uuid;
 use crate::uuid::Profile;
 use crate::{Message, RPCProxy};
 
+// Highest priority that can be assigned to a codec.
+// Use this to override default priority order.
+const CODEC_PRIORITY_HIGHEST: i32 = 1000 * 1000;
+
 // The timeout we have to wait for all supported profiles to connect after we
 // receive the first profile connected event. The host shall disconnect the
 // device after this many seconds of timeout.
@@ -86,6 +90,8 @@ pub trait IBluetoothMedia {
 
     fn set_audio_config(
         &mut self,
+        address: String,
+        codec_type: i32,
         sample_rate: i32,
         bits_per_sample: i32,
         channel_mode: i32,
@@ -2121,10 +2127,20 @@ impl IBluetoothMedia for BluetoothMedia {
 
     fn set_audio_config(
         &mut self,
+        address: String,
+        codec_type: i32,
         sample_rate: i32,
         bits_per_sample: i32,
         channel_mode: i32,
     ) -> bool {
+        let addr = match RawAddress::from_string(address.clone()) {
+            None => {
+                warn!("Invalid device address {}", address);
+                return false;
+            }
+            Some(addr) => addr,
+        };
+
         if !A2dpCodecSampleRate::validate_bits(sample_rate)
             || !A2dpCodecBitsPerSample::validate_bits(bits_per_sample)
             || !A2dpCodecChannelMode::validate_bits(channel_mode)
@@ -2134,8 +2150,39 @@ impl IBluetoothMedia for BluetoothMedia {
 
         match self.a2dp.as_mut() {
             Some(a2dp) => {
-                a2dp.set_audio_config(sample_rate, bits_per_sample, channel_mode);
-                true
+                let caps = self.a2dp_caps.get(&addr).unwrap_or(&Vec::new()).to_vec();
+
+                for cap in &caps {
+                    if cap.codec_type == codec_type {
+                        if (cap.sample_rate & sample_rate) != sample_rate {
+                            warn!("Unsupported sample rate {}", sample_rate);
+                            return false;
+                        }
+                        if (cap.bits_per_sample & bits_per_sample) != bits_per_sample {
+                            warn!("Unsupported bit depth {}", bits_per_sample);
+                            return false;
+                        }
+                        if (cap.channel_mode & channel_mode) != channel_mode {
+                            warn!("Unsupported channel mode {}", channel_mode);
+                            return false;
+                        }
+
+                        let config = vec![A2dpCodecConfig {
+                            codec_type,
+                            codec_priority: CODEC_PRIORITY_HIGHEST,
+                            sample_rate,
+                            bits_per_sample,
+                            channel_mode,
+                            ..Default::default()
+                        }];
+
+                        a2dp.config_codec(addr, config);
+                        return true;
+                    }
+                }
+
+                warn!("Unsupported codec type {}", codec_type);
+                false
             }
             None => {
                 warn!("Uninitialized A2DP to set audio config");
