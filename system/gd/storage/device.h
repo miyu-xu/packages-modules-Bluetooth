@@ -188,6 +188,21 @@ class Device {
   GENERATE_PROPERTY_GETTER_SETTER_REMOVER_WITH_CUSTOM_SETTER(DeviceType, hci::DeviceType, "DevType", {
     return static_cast<hci::DeviceType>(value | GetDeviceType().value_or(hci::DeviceType::UNKNOWN));
   });
+  GENERATE_PROPERTY_GETTER_SETTER_REMOVER_WITH_CUSTOM_SETTER(
+      IsLeSupported, hci::LE_TRANSPORT, "IsLeSupported", {
+        return static_cast<hci::LE_TRANSPORT>(
+            value | GetIsLeSupported().value_or(hci::LE_TRANSPORT::UNKNOWN));
+      });
+  GENERATE_PROPERTY_GETTER_SETTER_REMOVER_WITH_CUSTOM_SETTER(
+      IsLeSupported, hci::LE_TRANSPORT, "IsLeSupported", {
+        return static_cast<hci::LE_TRANSPORT>(
+            value | GetIsLeSupported().value_or(hci::LE_TRANSPORT::UNKNOWN));
+      });
+  GENERATE_PROPERTY_GETTER_SETTER_REMOVER_WITH_CUSTOM_SETTER(
+      IsBrEdrSupported, hci::BREDR_TRANSPORT, "IsBrEdrSupported", {
+        return static_cast<hci::BREDR_TRANSPORT>(
+            value | GetIsBrEdrSupported().value_or(hci::BREDR_TRANSPORT::UNKNOWN));
+      });
   GENERATE_PROPERTY_GETTER_SETTER_REMOVER(ManufacturerCode, uint16_t, "Manufacturer");
   GENERATE_PROPERTY_GETTER_SETTER_REMOVER(LmpVersion, uint8_t, "LmpVer");
   GENERATE_PROPERTY_GETTER_SETTER_REMOVER(LmpSubVersion, uint16_t, "LmpSubVer");

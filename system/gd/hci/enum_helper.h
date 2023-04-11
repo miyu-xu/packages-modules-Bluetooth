@@ -27,6 +27,15 @@ namespace hci {
 // Must be 0b00, 0b01, 0b10, and 0b11 as this is a bit mask
 enum DeviceType { UNKNOWN = 0, BR_EDR = 1, LE = 2, DUAL = 3 };
 
+enum TRANSPORT {
+  UNKNOWN = 0,
+  SUPPORTED = 1,
+  NOT_SUPPORTED = 2,
+};
+
+typedef TRANSPORT LE_TRANSPORT;
+typedef TRANSPORT BREDR_TRANSPORT;
+
 // Scan mode from legacy stack, which is different from hci::ScanEnable
 enum LegacyScanMode { BT_SCAN_MODE_NONE = 0, BT_SCAN_MODE_CONNECTABLE = 1, BT_SCAN_MODE_CONNECTABLE_DISCOVERABLE = 2 };
 
