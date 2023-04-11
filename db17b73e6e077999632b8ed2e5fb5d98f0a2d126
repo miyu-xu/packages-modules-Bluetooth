@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "24355fee_e84db2f5",
+        "filename": "framework/tests/bumble/AndroidTest.xml",
+        "patchSetId": 37
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-04-11T21:45:13Z",
+      "side": 1,
+      "message": "Remove this",
+      "revId": "db17b73e6e077999632b8ed2e5fb5d98f0a2d126",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
