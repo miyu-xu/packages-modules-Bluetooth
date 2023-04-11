@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4abc683d_70135eed",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 1855,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-04-11T15:11:10Z",
+      "side": 1,
+      "message": "Thanks for pointing that out!",
+      "parentUuid": "2657dcc2_e4cd64cf",
+      "range": {
+        "startLine": 1855,
+        "startChar": 52,
+        "endLine": 1855,
+        "endChar": 58
+      },
+      "revId": "47d73164170dca41ad32aadc98a8477d379ce27a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0961c10a_d4da79bd",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-04-11T10:02:16Z",
       "side": 1,
       "message": "Here as well - isn\u0027t that supposed to be peer_. instead of peer-\u003e ?",
+      "range": {
+        "startLine": 2068,
+        "startChar": 52,
+        "endLine": 2068,
+        "endChar": 58
+      },
+      "revId": "47d73164170dca41ad32aadc98a8477d379ce27a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "687a2e2a_afd698fc",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 2068,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-04-11T15:11:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0961c10a_d4da79bd",
       "range": {
         "startLine": 2068,
         "startChar": 52,
