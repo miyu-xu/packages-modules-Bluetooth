@@ -52,6 +52,24 @@
       "parentUuid": "31a2df90_214c65b2",
       "revId": "57253d08e4fe9a45c0356a97d73f607ca4f0e6c1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8c7a87aa_54c315e6",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/PlayerSettingsManager.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 1312909
+      },
+      "writtenOn": "2023-04-11T07:04:51Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "ebb8a386_29b18b73",
+      "revId": "57253d08e4fe9a45c0356a97d73f607ca4f0e6c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

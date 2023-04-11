@@ -353,6 +353,24 @@
       "parentUuid": "ff9008ff_2921c225",
       "revId": "693eb7d2f20ee4ab145d94901ee62d1391192225",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5537d82d_89f62600",
+        "filename": "system/profile/avrcp/device.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 757,
+      "author": {
+        "id": 1312909
+      },
+      "writtenOn": "2023-04-11T07:04:51Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "7ded266e_172294bb",
+      "revId": "693eb7d2f20ee4ab145d94901ee62d1391192225",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
