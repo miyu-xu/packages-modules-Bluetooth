@@ -31,6 +31,7 @@
 #include "com_android_bluetooth.h"
 #include "hardware/bt_sock.h"
 #include "os/logging/log_redaction.h"
+#include "rust/cxx.h"
 #include "utils/Log.h"
 #include "utils/misc.h"
 
