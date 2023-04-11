@@ -70,6 +70,30 @@
       },
       "revId": "cce9979f0768d80f9f01db8ed0b9ab9fc50ba2ea",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b4824e66_cbb1116c",
+        "filename": "system/stack/btm/btm_inq.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1411,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-04-11T23:41:33Z",
+      "side": 0,
+      "message": "Tests I\u0027ve done:\n\n* Start discovery and let it naturally expire.\n* Start discovery, cancel discovery, start discovery and let it expire.\n* Start discovery, cancel discovery, wait for a while for timer to expire.\n\nAll work as expected wrt/ the state machine. After either the cancel_discovery is run OR the timer expires, `p_inq-\u003einq_active` is set to `BTM_INQUIRY_INACTIVE` and we hit the `else` block below (LOG_ERROR(\"Received inquiry complete when no inquiry was active\")). If the controller runs `inquiry complete` correctly, we never hit that error message.",
+      "parentUuid": "beb4cbd6_a16593b1",
+      "range": {
+        "startLine": 1411,
+        "startChar": 0,
+        "endLine": 1411,
+        "endChar": 45
+      },
+      "revId": "cce9979f0768d80f9f01db8ed0b9ab9fc50ba2ea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
