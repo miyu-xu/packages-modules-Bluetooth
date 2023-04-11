@@ -168,11 +168,14 @@ bool bta_dm_search_sm_execute(BT_HDR_RIGID* p_msg) {
         case BTA_DM_API_DISCOVER_EVT:
           bta_dm_queue_disc(message);
           break;
+<<<<<<< HEAD   (6f2f31 Merge "[BP CLEANUP] Format bpfmt -s in system/*")
         case BTA_DM_API_SEARCH_CANCEL_EVT:
           bta_dm_search_clear_queue();
           bta_dm_search_set_state(BTA_DM_SEARCH_CANCELLING);
           bta_dm_search_cancel_notify();
           break;
+=======
+>>>>>>> BRANCH (9b7145 Merge cherrypicks of ['googleplex-android-review.googlesourc)
         case BTA_DM_DISC_CLOSE_TOUT_EVT:
           if (bluetooth::common::init_flags::
                   bta_dm_clear_conn_id_on_client_close_is_enabled()) {
