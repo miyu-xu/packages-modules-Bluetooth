@@ -30,6 +30,12 @@ enum DeviceType { UNKNOWN = 0, BR_EDR = 1, LE = 2, DUAL = 3 };
 // Scan mode from legacy stack, which is different from hci::ScanEnable
 enum LegacyScanMode { BT_SCAN_MODE_NONE = 0, BT_SCAN_MODE_CONNECTABLE = 1, BT_SCAN_MODE_CONNECTABLE_DISCOVERABLE = 2 };
 
+enum class TransportSupport {
+  NOT_SUPPORTED = 0,
+  SUPPORTED = 1,
+  UNKNOWN = 2,
+};
+
 }  // namespace hci
 
 // Must be defined in bluetooth namespace
@@ -43,6 +49,22 @@ std::optional<hci::DeviceType> FromLegacyConfigString(const std::string& str) {
     return std::nullopt;
   }
   return static_cast<hci::DeviceType>(*raw_value);
+}
+
+template <
+    typename T,
+    typename std::enable_if<std::is_same_v<T, hci::TransportSupport>, int>::type = 0>
+std::optional<hci::TransportSupport> FromLegacyConfigString(const std::string& str) {
+  auto raw_value = common::Int64FromString(str);
+  if (!raw_value) {
+    return std::nullopt;
+  }
+  auto not_supported = static_cast<int>(hci::TransportSupport::NOT_SUPPORTED);
+  auto unknown = static_cast<int>(hci::TransportSupport::UNKNOWN);
+  if (*raw_value < not_supported || *raw_value > unknown) {
+    return std::nullopt;
+  }
+  return static_cast<hci::TransportSupport>(*raw_value);
 }
 
 // Must be defined in bluetooth namespace
