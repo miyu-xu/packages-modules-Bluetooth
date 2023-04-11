@@ -52,6 +52,24 @@
       "parentUuid": "14d5f02a_c88d9d47",
       "revId": "3eb995fc6f849f960c4dad52d077a72e1062a027",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "973126ea_7781e0f5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-04-11T03:23:05Z",
+      "side": 1,
+      "message": "\u003e The next step would be checking the transaction ID and rejecting the request if it doesn\u0027t match the expected ID.\n\nI don\u0027t think it is necessary to go so far; the responder is always using the same implementation of SSP.",
+      "parentUuid": "b9d0ea72_20f2eccd",
+      "revId": "3eb995fc6f849f960c4dad52d077a72e1062a027",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
