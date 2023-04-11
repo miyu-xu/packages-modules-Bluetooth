@@ -495,6 +495,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "11598aae_d25304b8",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 4930,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-04-11T01:07:03Z",
+      "side": 1,
+      "message": "I\u0027ll stick with the current one in that case",
+      "parentUuid": "a212888e_a530a020",
+      "range": {
+        "startLine": 4930,
+        "startChar": 14,
+        "endLine": 4930,
+        "endChar": 33
+      },
+      "revId": "fd06c9f98a100afa5264129b5f0b2f0e77765c70",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "dcaa8281_d929d5d2",
