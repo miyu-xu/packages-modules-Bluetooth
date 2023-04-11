@@ -8,8 +8,9 @@ use tokio::sync::oneshot;
 use crate::core::address::AddressWithType;
 
 use super::{
-    le_manager::ErrorCode, CancelConnectFailure, ConnectionFailure, ConnectionManagerClient,
-    CreateConnectionFailure, LeConnection,
+    le_manager::{AddressResolver, ErrorCode, CanonicalAddress},
+    CancelConnectFailure, ConnectionFailure, ConnectionManagerClient, CreateConnectionFailure,
+    LeConnection,
 };
 
 #[derive(Debug, PartialEq, Eq, Clone, Copy, Hash)]
@@ -168,19 +169,17 @@ impl ConnectionAttempts {
     }
 
     /// Handle a successful connection by notifying clients and resolving direct connect attempts
-    pub fn process_connection(
+    pub async fn process_connection(
         &mut self,
-        address: AddressWithType,
+        canonical_address: CanonicalAddress,
+        address_resolver: &dyn AddressResolver,
         result: Result<LeConnection, ErrorCode>,
     ) {
-        let interested_clients = self
-            .attempts
-            .keys()
-            .filter(|attempt| attempt.remote_address == address)
-            .copied()
-            .collect::<Vec<_>>();
-
-        for attempt in interested_clients {
+        for attempt in self.attempts.keys().copied().collect::<Vec<_>>() {
+            if canonical_address != address_resolver.resolve_address(attempt.remote_address).await {
+                // unrelated, ignore
+                continue;
+            }
             if attempt.mode == ConnectionMode::Direct {
                 // TODO(aryarahul): clean up these unwraps
                 let _ = self.attempts.remove(&attempt).unwrap().conn_tx.unwrap().send(result);

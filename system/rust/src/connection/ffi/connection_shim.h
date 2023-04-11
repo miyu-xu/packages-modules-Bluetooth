@@ -37,12 +37,28 @@ class LeAclManagerShim {
   void CancelLeConnect(core::AddressWithType address) const;
 
 #ifndef TARGET_FLOSS
+  void ResolveAddress(core::AddressWithType address,
+                      ResolveAddressCallback& on_resolved) const;
+
   void RegisterRustCallbacks(::rust::Box<LeAclManagerCallbackShim> callbacks);
 #endif
 
  private:
   struct impl;
   std::unique_ptr<impl> pimpl_;
+};
+
+struct ResolveAddressCallback;
+
+class AddressResolver {
+ public:
+  AddressResolver();
+  ~AddressResolver();
+
+#ifndef TARGET_FLOSS
+  void ResolveAddress(core::AddressWithType address,
+                      ResolveAddressCallback& on_resolved) const;
+#endif
 };
 
 void RegisterRustApis(

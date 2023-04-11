@@ -3,37 +3,41 @@
 
 use std::collections::HashSet;
 
+use futures::future::join_all;
 use log::info;
 
 use crate::core::address::AddressWithType;
 
 use super::{
     attempt_manager::{ConnectionAttempt, ConnectionMode},
-    le_manager::LeAclManager,
+    le_manager::{LeAclManager, CanonicalAddress, AddressResolver},
 };
 
 /// This struct represents the target state of the LeManager based on the
-/// set of all active connection attempts
+/// set of all active connection attempts. Only canonical addresses can be
+/// placed here. However, this module uses raw AddressWithTypes when interacting
+/// with the LeAclManager, since we may need to remove an address that has ceased
+/// to be canonical.
 pub struct TargetState {
     /// These addresses should go to the LE background connect list
-    pub background_list: HashSet<AddressWithType>,
+    pub background_list: HashSet<CanonicalAddress>,
     /// These addresses should go to the direct list (we are not connected to any of them)
-    pub direct_list: HashSet<AddressWithType>,
+    pub direct_list: HashSet<CanonicalAddress>,
 }
 
 /// Takes a list of connection attempts, and determines the target state of the LE ACL manager
-pub fn determine_target_state(attempts: &[ConnectionAttempt]) -> TargetState {
-    let background_list = attempts
+pub async fn determine_target_state(attempts: &[ConnectionAttempt], resolver: &(impl AddressResolver + ?Sized)) -> TargetState {
+    let background_list = join_all(attempts
         .iter()
         .filter(|attempt| attempt.mode == ConnectionMode::Background)
         .map(|attempt| attempt.remote_address)
-        .collect();
+        .map(|addr| resolver.resolve_address(addr))).await.into_iter().collect();
 
-    let direct_list = attempts
+    let direct_list = join_all(attempts
         .iter()
         .filter(|attempt| attempt.mode == ConnectionMode::Direct)
         .map(|attempt| attempt.remote_address)
-        .collect();
+        .map(|addr| resolver.resolve_address(addr))).await.into_iter().collect();
 
     TargetState { background_list, direct_list }
 }
@@ -71,36 +75,39 @@ impl LeAcceptlistManager {
 
     /// Drive the state of the connect list to the target state
     pub fn drive_to_state(&mut self, target: TargetState) {
+        let target_direct_list = target.direct_list.iter().map(CanonicalAddress::addr).collect();
+        let target_background_list = target.background_list.iter().map(CanonicalAddress::addr).collect();
+
         // First, pull out anything in the ACL manager that we don't need
         // recall that cancel_connect() removes addresses from *both* lists (!)
-        for address in self.direct_list.difference(&target.direct_list) {
+        for address in self.direct_list.difference(&target_direct_list) {
             info!("Cancelling connection attempt to {address:?}");
             self.le_manager.remove_from_all_lists(*address);
             self.background_list.remove(address);
         }
-        self.direct_list = self.direct_list.intersection(&target.direct_list).copied().collect();
+        self.direct_list = self.direct_list.intersection(&target_direct_list).copied().collect();
 
-        for address in self.background_list.difference(&target.background_list) {
+        for address in self.background_list.difference(&target_background_list) {
             info!("Cancelling connection attempt to {address:?}");
             self.le_manager.remove_from_all_lists(*address);
             self.direct_list.remove(address);
         }
         self.background_list =
-            self.background_list.intersection(&target.background_list).copied().collect();
+            self.background_list.intersection(&target_background_list).copied().collect();
 
         // now everything extra has been removed, we can put things back in
-        for address in target.direct_list.difference(&self.direct_list) {
+        for address in target_direct_list.difference(&self.direct_list) {
             info!("Starting direct connection to {address:?}");
             self.le_manager.add_to_direct_list(*address);
         }
-        for address in target.background_list.difference(&self.background_list) {
+        for address in target_background_list.difference(&self.background_list) {
             info!("Starting background connection to {address:?}");
             self.le_manager.add_to_background_list(*address);
         }
 
         // we should now be in a consistent state!
-        self.direct_list = target.direct_list;
-        self.background_list = target.background_list;
+        self.direct_list = target_direct_list;
+        self.background_list = target_background_list;
     }
 }
 

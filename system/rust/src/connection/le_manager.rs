@@ -14,6 +14,8 @@
 
 use std::fmt::Debug;
 
+use async_trait::async_trait;
+
 use crate::core::address::AddressWithType;
 
 use super::LeConnection;
@@ -39,6 +41,25 @@ pub trait InactiveLeAclManager {
     ) -> Self::ActiveManager;
 }
 
+/// This address represents a resolved address produced by the AddressResolver.
+/// It SHOULD NOT be stored ANYWHERE, since address resolution can change over
+/// time, so a canonical address may no longer be canonical.
+#[derive(Copy, Clone, Debug, Hash, PartialEq, Eq)]
+pub struct CanonicalAddress(AddressWithType);
+
+impl CanonicalAddress {
+    /// Constructor. Use ONLY if implementing AddresResolver, otherwise you
+    /// almost certainly have a bug.
+    pub fn new(addr: AddressWithType) -> Self {
+        Self(addr)
+    }
+
+    /// Retrieve the contained address
+    pub fn addr(&self) -> AddressWithType {
+        self.0
+    }
+}
+
 /// The operations provided by GD AclManager to the connection manager
 pub trait LeAclManager: Debug {
     /// Adds an address to the direct connect list, if not already connected.
@@ -60,4 +81,16 @@ pub trait LeAclManagerConnectionCallbacks {
     /// Invoked when a peer device disconnects from us. The address must match the address
     /// supplied on the initial connection.
     fn on_disconnect(&self, address: AddressWithType);
+    /// Invoked whenever the resolving list has changed, so addresses may become / are no
+    /// longer equivalent to the controller.
+    fn on_resolving_list_change(&self);
+}
+
+/// Address resolution for RPAs
+#[async_trait(?Send)]
+pub trait AddressResolver: Debug {
+    /// Resolve an address into "canonical form", that can be passed to the add_to_*_list()
+    /// methods of the LeAclManager. The exact means of resolution is implementation-defined
+    /// (i.e. it could be the identity address, or the pseudo-address, or anything else)
+    async fn resolve_address(&self, address: AddressWithType) -> CanonicalAddress;
 }
