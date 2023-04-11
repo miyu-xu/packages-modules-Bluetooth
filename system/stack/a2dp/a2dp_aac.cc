@@ -53,6 +53,7 @@ static bool aac_source_caps_configured = false;
 static tA2DP_AAC_CIE a2dp_aac_source_caps = {};
 
 /* AAC Source codec capabilities */
+#ifndef TARGET_FLOSS
 static const tA2DP_AAC_CIE a2dp_aac_cbr_source_caps = {
     // objectType
     A2DP_AAC_OBJECT_TYPE_MPEG2_LC,
@@ -67,6 +68,21 @@ static const tA2DP_AAC_CIE a2dp_aac_cbr_source_caps = {
     A2DP_AAC_DEFAULT_BITRATE,
     // bits_per_sample
     BTAV_A2DP_CODEC_BITS_PER_SAMPLE_16};
+#else
+static const tA2DP_AAC_CIE a2dp_aac_cbr_source_caps = {
+    // objectType
+    A2DP_AAC_OBJECT_TYPE_MPEG2_LC,
+    // sampleRate
+    A2DP_AAC_SAMPLING_FREQ_44100 | A2DP_AAC_SAMPLING_FREQ_48000,
+    // channelMode
+    A2DP_AAC_CHANNEL_MODE_STEREO,
+    // variableBitRateSupport
+    A2DP_AAC_VARIABLE_BIT_RATE_DISABLED,
+    // bitRate
+    A2DP_AAC_DEFAULT_BITRATE,
+    // bits_per_sample
+    BTAV_A2DP_CODEC_BITS_PER_SAMPLE_16};
+#endif
 
 /* AAC Source codec capabilities */
 static const tA2DP_AAC_CIE a2dp_aac_vbr_source_caps = {
