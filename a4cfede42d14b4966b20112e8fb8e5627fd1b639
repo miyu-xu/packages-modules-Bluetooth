@@ -16,6 +16,24 @@
       "message": "Looks like netsim needs help.\n\nerror: tools/netsim/Android.bp:281:1: \"lib-netsim-frontend-client\" depends on undefined module \"RootCanalGeneratedPackets_h\"\nerror: tools/netsim/Android.bp:281:1: \"lib-netsim-frontend-client\" depends on undefined module \"RootCanalBrEdrBBGeneratedPackets_h\"",
       "revId": "a4cfede42d14b4966b20112e8fb8e5627fd1b639",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8056b4a5_aef530c1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-04-11T21:40:07Z",
+      "side": 1,
+      "message": "That looks like an automerger issue; the patch for this was just merged in the previous topic.",
+      "parentUuid": "d265caca_6a7382d6",
+      "revId": "a4cfede42d14b4966b20112e8fb8e5627fd1b639",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
