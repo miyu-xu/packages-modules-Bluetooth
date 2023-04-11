@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d265caca_6a7382d6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-04-11T21:38:53Z",
+      "side": 1,
+      "message": "Looks like netsim needs help.\n\nerror: tools/netsim/Android.bp:281:1: \"lib-netsim-frontend-client\" depends on undefined module \"RootCanalGeneratedPackets_h\"\nerror: tools/netsim/Android.bp:281:1: \"lib-netsim-frontend-client\" depends on undefined module \"RootCanalBrEdrBBGeneratedPackets_h\"",
+      "revId": "a4cfede42d14b4966b20112e8fb8e5627fd1b639",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
