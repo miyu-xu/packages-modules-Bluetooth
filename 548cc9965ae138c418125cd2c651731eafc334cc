@@ -45,6 +45,30 @@
       },
       "revId": "548cc9965ae138c418125cd2c651731eafc334cc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5f9abed5_619e6da2",
+        "filename": "tools/rootcanal/test/LL/DDI/ADV/BV_26_C.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-04-11T20:39:44Z",
+      "side": 1,
+      "message": "This value is a length, as seen from the declaration of TestRound, but not the maximum advertising data length.",
+      "parentUuid": "06ab7aca_39b6fd3b",
+      "range": {
+        "startLine": 49,
+        "startChar": 22,
+        "endLine": 49,
+        "endChar": 25
+      },
+      "revId": "548cc9965ae138c418125cd2c651731eafc334cc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
