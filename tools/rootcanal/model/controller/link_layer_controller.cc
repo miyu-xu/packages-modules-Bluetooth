@@ -1553,7 +1553,7 @@ void LinkLayerController::SetLocalName(std::vector<uint8_t> const& local_name) {
 void LinkLayerController::SetExtendedInquiryResponse(
     std::vector<uint8_t> const& extended_inquiry_response) {
   ASSERT(extended_inquiry_response.size() <= extended_inquiry_response_.size());
-  extended_inquiry_response_.fill(0);
+  extended_inquiry_response_.clear();
   std::copy(extended_inquiry_response.begin(), extended_inquiry_response.end(),
             extended_inquiry_response_.begin());
 }
@@ -2443,7 +2443,7 @@ void LinkLayerController::IncomingInquiryResponsePacket(
               basic_inquiry_response);
       ASSERT(inquiry_response.IsValid());
 
-      send_event_(bluetooth::hci::ExtendedInquiryResultRawBuilder::Create(
+      send_event_(bluetooth::hci::ExtendedInquiryResultBuilder::Create(
           inquiry_response.GetSourceAddress(),
           static_cast<bluetooth::hci::PageScanRepetitionMode>(
               inquiry_response.GetPageScanRepetitionMode()),
@@ -6386,7 +6386,7 @@ void LinkLayerController::Reset() {
   default_link_policy_settings_ = 0x0000;
   sco_flow_control_enable_ = false;
   local_name_.fill(0);
-  extended_inquiry_response_.fill(0);
+  extended_inquiry_response_.clear();
   class_of_device_ = 0;
   min_encryption_key_size_ = 16;
   event_mask_ = 0x00001fffffffffff;
