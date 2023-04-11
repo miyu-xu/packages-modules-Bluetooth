@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d2445068_23ffc971",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-04-11T18:13:54Z",
+      "side": 1,
+      "message": "nit: a local",
+      "range": {
+        "startLine": 7,
+        "startChar": 16,
+        "endLine": 7,
+        "endChar": 19
+      },
+      "revId": "9d5fce7023914c8a3c383a921c90adfc46d9607c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "337d8005_38405d7c",
         "filename": "tools/rootcanal/packets/hci/hci_packets.pdl",
         "patchSetId": 7
