@@ -56,6 +56,30 @@
       },
       "revId": "8ec88526a206c146194a8a352560a07baa1b20f4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "28b5eb57_6d7b6e4f",
+        "filename": "system/stack/btm/btm_inq.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 666,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-04-11T23:18:35Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "b8b57ce4_1a004528",
+      "range": {
+        "startLine": 666,
+        "startChar": 4,
+        "endLine": 666,
+        "endChar": 22
+      },
+      "revId": "8ec88526a206c146194a8a352560a07baa1b20f4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

@@ -22,6 +22,30 @@
       },
       "revId": "cce9979f0768d80f9f01db8ed0b9ab9fc50ba2ea",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2d06b0c8_45107d93",
+        "filename": "system/stack/btm/btm_inq.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1411,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-04-11T23:18:35Z",
+      "side": 0,
+      "message": "This alarm is what actually completes the BLE mask so it shouldn\u0027t be cancelled. This function also gets called by the `Inquiry Complete` command handler. Previously I thought the reason discovery wasn\u0027t completing was due to a missing `Inquiry Complete` but that wasn\u0027t the case.\n\nWe always want the timer running to completion (though removing it when we cancel inquiry may be ok; we handle it via `if (p_inq-\u003einq_active)` below).",
+      "parentUuid": "7c784b68_039aceaa",
+      "range": {
+        "startLine": 1411,
+        "startChar": 0,
+        "endLine": 1411,
+        "endChar": 45
+      },
+      "revId": "cce9979f0768d80f9f01db8ed0b9ab9fc50ba2ea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
