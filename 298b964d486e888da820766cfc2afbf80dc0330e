@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "817d45e1_887b2fef",
+        "filename": "android/app/src/com/android/bluetooth/hearingaid/HearingAidService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 633,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-04-11T05:02:27Z",
+      "side": 1,
+      "message": "true by default?",
+      "range": {
+        "startLine": 633,
+        "startChar": 38,
+        "endLine": 633,
+        "endChar": 43
+      },
+      "revId": "298b964d486e888da820766cfc2afbf80dc0330e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "14c3d909_0eee2337",
+        "filename": "android/app/src/com/android/bluetooth/hearingaid/HearingAidService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 812,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-04-11T05:02:27Z",
+      "side": 1,
+      "message": "false?",
+      "range": {
+        "startLine": 812,
+        "startChar": 24,
+        "endLine": 812,
+        "endChar": 28
+      },
+      "revId": "298b964d486e888da820766cfc2afbf80dc0330e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5b9704b3_33a1c10b",
+        "filename": "android/app/src/com/android/bluetooth/hearingaid/HearingAidService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 813,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-04-11T05:02:27Z",
+      "side": 1,
+      "message": "Let check follows:\n```\nif (device \u003d\u003d null \u0026\u0026 connectedHearingAid !\u003d null \u0026\u0026 stopAudio) {\n    Log.e(TAG, \"...\");\n    stopAudio \u003d false;\n}\n```",
+      "revId": "298b964d486e888da820766cfc2afbf80dc0330e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
