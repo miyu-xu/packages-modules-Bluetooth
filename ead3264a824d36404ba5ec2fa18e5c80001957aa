@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5f6aca6b_2e7bee79",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-04-11T17:14:21Z",
+      "side": 1,
+      "message": "Can you also upload a CL that makes these same changes (or most of them) to the hci_packets.pdl in the stack?",
+      "revId": "ead3264a824d36404ba5ec2fa18e5c80001957aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0fd649da_16f92bd2",
+        "filename": "tools/rootcanal/lib/hci/pcap_filter.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 288,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-04-11T17:14:21Z",
+      "side": 1,
+      "message": "update comment as well?",
+      "range": {
+        "startLine": 288,
+        "startChar": 62,
+        "endLine": 288,
+        "endChar": 76
+      },
+      "revId": "ead3264a824d36404ba5ec2fa18e5c80001957aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
