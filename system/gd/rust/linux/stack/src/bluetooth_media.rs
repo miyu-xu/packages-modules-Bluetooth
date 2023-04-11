@@ -41,6 +41,10 @@ use crate::uuid;
 use crate::uuid::Profile;
 use crate::{Message, RPCProxy};
 
+// Highest priority that can be assigned to a codec.
+// Use this to override default priority order.
+const CODEC_PRIORITY_HIGHEST: i32 = 1000 * 1000;
+
 // The timeout we have to wait for all supported profiles to connect after we
 // receive the first profile connected event. The host shall disconnect the
 // device after this many seconds of timeout.
@@ -86,6 +90,8 @@ pub trait IBluetoothMedia {
 
     fn set_audio_config(
         &mut self,
+        address: String,
+        codec_type: i32,
         sample_rate: i32,
         bits_per_sample: i32,
         channel_mode: i32,
@@ -107,6 +113,8 @@ pub trait IBluetoothMedia {
     /// Returns the negotiated codec (CVSD=1, mSBC=2, LC3=4) to use if HFP audio has started.
     /// Returns 0 if HFP audio hasn't started.
     fn get_hfp_audio_final_codecs(&mut self, address: String) -> u8;
+
+    fn get_a2dp_audio_final_config(&mut self, address: String) -> A2dpCodecConfig;
 
     fn get_presentation_position(&mut self) -> PresentationPosition;
 
@@ -248,6 +256,7 @@ pub struct BluetoothMedia {
     hfp_states: HashMap<RawAddress, BthfConnectionState>,
     hfp_audio_state: HashMap<RawAddress, BthfAudioState>,
     a2dp_caps: HashMap<RawAddress, Vec<A2dpCodecConfig>>,
+    a2dp_latest_config: HashMap<RawAddress, A2dpCodecConfig>,
     hfp_cap: HashMap<RawAddress, HfpCodecCapability>,
     fallback_tasks: Arc<Mutex<HashMap<RawAddress, Option<(JoinHandle<()>, Instant)>>>>,
     absolute_volume: bool,
@@ -295,6 +304,7 @@ impl BluetoothMedia {
             hfp_states: HashMap::new(),
             hfp_audio_state: HashMap::new(),
             a2dp_caps: HashMap::new(),
+            a2dp_latest_config: HashMap::new(),
             hfp_cap: HashMap::new(),
             fallback_tasks: Arc::new(Mutex::new(HashMap::new())),
             absolute_volume: false,
@@ -456,6 +466,7 @@ impl BluetoothMedia {
                         info!("[{}]: a2dp disconnected.", DisplayAddress(&addr));
                         self.a2dp_states.remove(&addr);
                         self.a2dp_caps.remove(&addr);
+                        self.a2dp_latest_config.remove(&addr);
                         self.a2dp_audio_state.remove(&addr);
                         self.rm_connected_profile(addr, uuid::Profile::A2dpSink, true);
                         if self.is_complete_profiles_required() {
@@ -470,8 +481,9 @@ impl BluetoothMedia {
             A2dpCallbacks::AudioState(addr, state) => {
                 self.a2dp_audio_state.insert(addr, state);
             }
-            A2dpCallbacks::AudioConfig(addr, _config, _local_caps, a2dp_caps) => {
+            A2dpCallbacks::AudioConfig(addr, config, _local_caps, a2dp_caps) => {
                 debug!("[{}]: a2dp updated audio config: {:?}", DisplayAddress(&addr), a2dp_caps);
+                self.a2dp_latest_config.insert(addr, config);
                 self.a2dp_caps.insert(addr, a2dp_caps);
             }
             A2dpCallbacks::MandatoryCodecPreferred(_addr) => {}
@@ -2059,10 +2071,20 @@ impl IBluetoothMedia for BluetoothMedia {
 
     fn set_audio_config(
         &mut self,
+        address: String,
+        codec_type: i32,
         sample_rate: i32,
         bits_per_sample: i32,
         channel_mode: i32,
     ) -> bool {
+        let addr = match RawAddress::from_string(address.clone()) {
+            None => {
+                warn!("Invalid device address {}", address);
+                return false;
+            }
+            Some(addr) => addr,
+        };
+
         if !A2dpCodecSampleRate::validate_bits(sample_rate)
             || !A2dpCodecBitsPerSample::validate_bits(bits_per_sample)
             || !A2dpCodecChannelMode::validate_bits(channel_mode)
@@ -2072,8 +2094,39 @@ impl IBluetoothMedia for BluetoothMedia {
 
         match self.a2dp.as_mut() {
             Some(a2dp) => {
-                a2dp.set_audio_config(sample_rate, bits_per_sample, channel_mode);
-                true
+                let caps = self.a2dp_caps.get(&addr).unwrap_or(&Vec::new()).to_vec();
+
+                for cap in &caps {
+                    if cap.codec_type == codec_type {
+                        if (cap.sample_rate & sample_rate) != sample_rate {
+                            warn!("Unsupported sample rate {}", sample_rate);
+                            return false;
+                        }
+                        if (cap.bits_per_sample & bits_per_sample) != bits_per_sample {
+                            warn!("Unsupported bit depth {}", bits_per_sample);
+                            return false;
+                        }
+                        if (cap.channel_mode & channel_mode) != channel_mode {
+                            warn!("Unsupported channel mode {}", channel_mode);
+                            return false;
+                        }
+
+                        let config = vec![A2dpCodecConfig {
+                            codec_type,
+                            codec_priority: CODEC_PRIORITY_HIGHEST,
+                            sample_rate,
+                            bits_per_sample,
+                            channel_mode,
+                            ..Default::default()
+                        }];
+
+                        a2dp.config_codec(addr, config);
+                        return true;
+                    }
+                }
+
+                warn!("Unsupported code type {}", codec_type);
+                false
             }
             None => {
                 warn!("Uninitialized A2DP to set audio config");
@@ -2169,6 +2222,30 @@ impl IBluetoothMedia for BluetoothMedia {
         match self.a2dp_audio_state.get(&addr) {
             Some(BtavAudioState::Started) => true,
             _ => false,
+        }
+    }
+
+    fn get_a2dp_audio_final_config(&mut self, address: String) -> A2dpCodecConfig {
+        let addr = match RawAddress::from_string(address.clone()) {
+            None => {
+                warn!("Invalid device address {}", address);
+                return A2dpCodecConfig { ..Default::default() };
+            }
+            Some(addr) => addr,
+        };
+
+        match self.a2dp_audio_state.get(&addr) {
+            Some(BtavAudioState::Started) => match self.a2dp_latest_config.get(&addr) {
+                Some(config) => config.clone(),
+                None => {
+                    warn!("[{}]: Latest A2DP config is empty", address);
+                    A2dpCodecConfig { ..Default::default() }
+                }
+            },
+            _ => {
+                warn!("[{}]: A2DP has not started.", address);
+                A2dpCodecConfig { ..Default::default() }
+            }
         }
     }
 
