@@ -16,6 +16,24 @@
       "message": "Want to move right above the `self.callbacks.for_all_callbacks` so you don\u0027t do it unless all the `let` guards are successful?",
       "revId": "9359efdfe9b5af9adfc6659a26ccd12095bc3338",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "929d2ddb_625d328f",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 2373,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2023-04-11T23:20:36Z",
+      "side": 1,
+      "message": "I moved it up here because uuid gets changed and forgot to move it back. Thanks!",
+      "parentUuid": "c4afe890_39dffddf",
+      "revId": "9359efdfe9b5af9adfc6659a26ccd12095bc3338",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
