@@ -2370,6 +2370,20 @@ impl BtifSdpCallbacks for Bluetooth {
         _count: i32,
         records: Vec<BtSdpRecord>,
     ) {
+        let mut records = records;
+        records.iter_mut().for_each(|record| {
+            match record {
+                BtSdpRecord::HeaderOverlay(header) => header.uuid = uuid.clone(),
+                BtSdpRecord::MapMas(record) => record.hdr.uuid = uuid.clone(),
+                BtSdpRecord::MapMns(record) => record.hdr.uuid = uuid.clone(),
+                BtSdpRecord::PbapPse(record) => record.hdr.uuid = uuid.clone(),
+                BtSdpRecord::PbapPce(record) => record.hdr.uuid = uuid.clone(),
+                BtSdpRecord::OppServer(record) => record.hdr.uuid = uuid.clone(),
+                BtSdpRecord::SapServer(record) => record.hdr.uuid = uuid.clone(),
+                BtSdpRecord::Dip(record) => record.hdr.uuid = uuid.clone(),
+                BtSdpRecord::Mps(record) => record.hdr.uuid = uuid.clone(),
+            };
+        });
         let uuid = match UuidHelper::from_string(uuid.to_string()) {
             Some(uu) => uu,
             None => return,
