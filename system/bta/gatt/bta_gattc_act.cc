@@ -846,6 +846,18 @@ void bta_gattc_start_discover(tBTA_GATTC_CLCB* p_clcb,
         p_clcb->p_srcb->srvc_hdl_db_hash = false;
       }
 
+      // Some LMP 5.2 devices also don't support robust caching. This workaround
+      // conditionally disables the feature based on a combination of LMP
+      // version and OUI prefix.
+      if (lmp_version < 0x0c &&
+          interop_match_addr(INTEROP_DISABLE_ROBUST_CACHING, &p_clcb->bda)) {
+        LOG_WARN(
+            "Device LMP version 0x%02x <= Bluetooth 5.2 and MAC addr on "
+            "interop list, skipping robust caching",
+            lmp_version);
+        p_clcb->p_srcb->srvc_hdl_db_hash = false;
+      }
+
       /* read db hash if db hash characteristic exists */
       if (bta_gattc_is_robust_caching_enabled() &&
           p_clcb->p_srcb->srvc_hdl_db_hash &&

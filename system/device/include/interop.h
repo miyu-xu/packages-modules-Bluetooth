@@ -268,6 +268,7 @@ typedef enum {
   // which causes an HFP profile connection failure
   INTEROP_SLC_SKIP_BIND_COMMAND,
 
+<<<<<<< HEAD   (6f2f31 Merge "[BP CLEANUP] Format bpfmt -s in system/*")
   // Few remote devices do not understand AVRCP version greater than 1.3. For
   // these devices, we would like to denylist them and advertise AVRCP version
   // as 1.3
@@ -328,6 +329,17 @@ typedef enum {
 
   INTEROP_HFP_1_7_ALLOWLIST,
   END_OF_INTEROP_LIST
+=======
+  // Respond AVRCP profile version only 1.3 for some device.
+  INTEROP_AVRCP_1_3_ONLY,
+
+  // Some remote devices have LMP version in[5.0, 5.2] but do not support
+  // robust
+  // caching or correctly response with an error. We disable the
+  // database hash
+  // lookup for such devices.
+  INTEROP_DISABLE_ROBUST_CACHING,
+>>>>>>> BRANCH (9b7145 Merge cherrypicks of ['googleplex-android-review.googlesourc)
 } interop_feature_t;
 
 // Check if a given |addr| matches a known interoperability workaround as
