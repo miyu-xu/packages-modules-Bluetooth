@@ -684,6 +684,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "b34a5e88_f4dad33f",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 5049,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-04-11T01:38:31Z",
+      "side": 1,
+      "message": "It\u0027s definitely a gray area because this exact device can become active at the time of a preferred audio profile change. We can circle back with Eric about this, but right now, I don\u0027t see any way for us or audio framework to distinguish.",
+      "parentUuid": "a45f4b41_e281fa26",
+      "range": {
+        "startLine": 5049,
+        "startChar": 16,
+        "endLine": 5049,
+        "endChar": 47
+      },
+      "revId": "fd06c9f98a100afa5264129b5f0b2f0e77765c70",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "cc298796_c1726272",
