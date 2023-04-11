@@ -2505,6 +2505,8 @@ impl IBluetoothMedia for BluetoothMediaDBus {
     #[dbus_method("SetAudioConfig")]
     fn set_audio_config(
         &mut self,
+        address: String,
+        codec_type: i32,
         sample_rate: i32,
         bits_per_sample: i32,
         channel_mode: i32,
