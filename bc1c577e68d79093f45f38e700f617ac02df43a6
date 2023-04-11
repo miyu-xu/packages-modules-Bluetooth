@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e215761b_b570a8e9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2023-04-11T02:42:18Z",
+      "side": 1,
+      "message": "Confirmed the callbacks are consistently in order (device added -\u003e HFP vol -\u003e AVRCP vol) with aosp/2473604.",
+      "parentUuid": "845709d9_00987be6",
+      "revId": "bc1c577e68d79093f45f38e700f617ac02df43a6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e54c6e16_502aa21e",
