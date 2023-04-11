@@ -21,23 +21,21 @@ import android.bluetooth.BluetoothHearingAid
 import android.bluetooth.BluetoothManager
 import android.bluetooth.BluetoothProfile
 import android.content.Context
-import android.content.Intent
-import android.content.IntentFilter
+import android.media.AudioDeviceInfo
 import android.media.AudioManager
+import android.media.AudioRouting
 import android.media.AudioTrack
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import io.grpc.Status
 import io.grpc.stub.StreamObserver
 import java.io.Closeable
+import java.util.concurrent.CountDownLatch
+import java.util.concurrent.TimeUnit
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.cancel
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.SharingStarted
-import kotlinx.coroutines.flow.filter
-import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.flow.shareIn
 import pandora.asha.AshaGrpc.AshaImplBase
 import pandora.asha.AshaProto.*
 
@@ -46,7 +44,6 @@ import pandora.asha.AshaProto.*
 class Asha(val context: Context) : AshaImplBase(), Closeable {
   private val TAG = "PandoraAsha"
   private val scope: CoroutineScope
-  private val flow: Flow<Intent>
 
   private val bluetoothManager =
     context.getSystemService(Context.BLUETOOTH_SERVICE) as BluetoothManager
@@ -60,9 +57,6 @@ class Asha(val context: Context) : AshaImplBase(), Closeable {
   init {
     // Init the CoroutineScope
     scope = CoroutineScope(Dispatchers.Default)
-    val intentFilter = IntentFilter()
-    intentFilter.addAction(BluetoothHearingAid.ACTION_CONNECTION_STATE_CHANGED)
-    flow = intentFlow(context, intentFilter).shareIn(scope, SharingStarted.Eagerly)
   }
 
   override fun close() {
@@ -74,21 +68,31 @@ class Asha(val context: Context) : AshaImplBase(), Closeable {
     grpcUnary<StartResponse>(scope, responseObserver){
       Log.i(TAG, "play")
 
-      val device = request.connection.toBluetoothDevice(bluetoothAdapter)
-      if (bluetoothHearingAid.getConnectionState(device) != BluetoothProfile.STATE_CONNECTED) {
-        flow
-          .filter { it.getAction() == BluetoothHearingAid.ACTION_CONNECTION_STATE_CHANGED }
-          .filter { it.getBluetoothDeviceExtra() == device }
-          .map { it.getIntExtra(BluetoothProfile.EXTRA_STATE, BluetoothAdapter.ERROR) }
-          .filter { it == BluetoothProfile.STATE_CONNECTED }
-          .first()
-      }
+      val latch = CountDownLatch(1) // Signal the count down latch
 
       if (audioTrack == null) {
         audioTrack = buildAudioTrack()
         Log.i(TAG, "buildAudioTrack")
       }
       audioTrack!!.play()
+
+      val audioRoutingListener = AudioRouting.OnRoutingChangedListener {
+        Log.i(TAG,"OnRoutingChangedListener triggered")
+        if(it?.routedDevice?.type == AudioDeviceInfo.TYPE_HEARING_AID){
+          latch.countDown()
+        }
+      }
+
+      // wait for audio routing
+      if (audioTrack!!.routedDevice?.type != AudioDeviceInfo.TYPE_HEARING_AID) {
+        audioTrack!!.addOnRoutingChangedListener(
+          audioRoutingListener,
+          Handler(Looper.getMainLooper())
+        )
+        latch.await(10, TimeUnit.SECONDS) // Wait until the count down latch has been signaled
+        audioTrack!!.removeOnRoutingChangedListener(audioRoutingListener)
+      }
+
       val minVolume = audioManager.getStreamMinVolume(AudioManager.STREAM_MUSIC)
       audioManager.setStreamVolume(
         AudioManager.STREAM_MUSIC,
