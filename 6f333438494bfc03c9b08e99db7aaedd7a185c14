@@ -46,6 +46,30 @@
       },
       "revId": "6f333438494bfc03c9b08e99db7aaedd7a185c14",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "77797a0d_25a07625",
+        "filename": "system/btif/src/btif_avrcp_audio_track.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2023-04-11T02:58:30Z",
+      "side": 1,
+      "message": "Of course... future problem to solve in aa refactor I suppose :)",
+      "parentUuid": "d211b3a7_88aea077",
+      "range": {
+        "startLine": 145,
+        "startChar": 4,
+        "endLine": 145,
+        "endChar": 29
+      },
+      "revId": "6f333438494bfc03c9b08e99db7aaedd7a185c14",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
