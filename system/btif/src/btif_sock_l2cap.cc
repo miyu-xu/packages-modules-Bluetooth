@@ -279,7 +279,7 @@ static l2cap_socket* btsock_l2cap_alloc_l(const char* name,
   if (flags & BTSOCK_FLAG_AUTH_16_DIGIT)
     security |= BTM_SEC_IN_MIN_16_DIGIT_PIN;
 
-  if (socketpair(AF_LOCAL, SOCK_SEQPACKET, 0, fds)) {
+  if (socketpair(AF_LOCAL, SOCK_STREAM, 0, fds)) {
     LOG_ERROR("socketpair failed:%s", strerror(errno));
     goto fail_sockpair;
   }
