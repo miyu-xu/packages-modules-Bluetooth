@@ -239,6 +239,10 @@
 #define DISABLE_WBS FALSE
 #endif
 
+#ifndef DISABLE_SWB
+#define DISABLE_SWB FALSE
+#endif
+
 /*  This is used to work around a controller bug that doesn't like Disconnect
  *  issued while there is a role switch in progress
 */
