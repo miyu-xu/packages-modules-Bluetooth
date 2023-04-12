@@ -57,6 +57,30 @@
       },
       "revId": "94e484ce04378401f4409110a9f7cfe20e1297c9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "80e9769a_1246b45a",
+        "filename": "system/main/shim/le_scanning_manager.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 819,
+      "author": {
+        "id": 1929170
+      },
+      "writtenOn": "2023-04-12T21:57:26Z",
+      "side": 1,
+      "message": "Discussed offline in core stack meeting.",
+      "parentUuid": "3a474212_9ec82be6",
+      "range": {
+        "startLine": 812,
+        "startChar": 0,
+        "endLine": 819,
+        "endChar": 3
+      },
+      "revId": "94e484ce04378401f4409110a9f7cfe20e1297c9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
