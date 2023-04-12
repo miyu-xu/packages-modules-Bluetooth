@@ -133,13 +133,13 @@ const stack_config_t* stack_config_get_interface(void) {
  * MSB on the right.
  */
 
-extern Octet16 smp_gen_p1_4_confirm(tSMP_CB* p_cb,
+Octet16 smp_gen_p1_4_confirm(tSMP_CB* p_cb,
                                     tBLE_ADDR_TYPE remote_bd_addr_type);
 
-extern Octet16 smp_gen_p2_4_confirm(tSMP_CB* p_cb,
+Octet16 smp_gen_p2_4_confirm(tSMP_CB* p_cb,
                                     const RawAddress& remote_bda);
 
-extern tSMP_STATUS smp_calculate_comfirm(tSMP_CB* p_cb, const Octet16& rand,
+tSMP_STATUS smp_calculate_comfirm(tSMP_CB* p_cb, const Octet16& rand,
                                          Octet16* output);
 
 namespace testing {

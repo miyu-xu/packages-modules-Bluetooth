@@ -44,7 +44,7 @@
  * Returns          void
  *
  ******************************************************************************/
-extern void bta_dm_ci_rmt_oob(bool accept, const RawAddress& bd_addr,
+void bta_dm_ci_rmt_oob(bool accept, const RawAddress& bd_addr,
                               const Octet16& c, const Octet16& r);
 /*******************************************************************************
  *
@@ -56,6 +56,6 @@ extern void bta_dm_ci_rmt_oob(bool accept, const RawAddress& bd_addr,
  * Returns          void
  *
  ******************************************************************************/
-extern void bta_dm_sco_ci_data_ready(uint16_t event, uint16_t sco_handle);
+void bta_dm_sco_ci_data_ready(uint16_t event, uint16_t sco_handle);
 
 #endif

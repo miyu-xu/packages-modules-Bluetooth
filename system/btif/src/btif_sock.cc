@@ -44,9 +44,9 @@
 #include "types/bluetooth/uuid.h"
 #include "types/raw_address.h"
 
-extern bool btif_get_address_type(const RawAddress& bda,
+bool btif_get_address_type(const RawAddress& bda,
                                   tBLE_ADDR_TYPE* p_addr_type);
-extern bool btif_get_device_type(const RawAddress& bda, int* p_device_type);
+bool btif_get_device_type(const RawAddress& bda, int* p_device_type);
 
 using bluetooth::Uuid;
 

@@ -173,7 +173,7 @@ void bta_gatts_add_service_impl(tGATT_IF server_if,
  *                  service cannot be added.
  *
  ******************************************************************************/
-extern void BTA_GATTS_AddService(tGATT_IF server_if,
+void BTA_GATTS_AddService(tGATT_IF server_if,
                                  std::vector<btgatt_db_element_t> service,
                                  BTA_GATTS_AddServiceCb cb) {
   do_in_main_thread(FROM_HERE,

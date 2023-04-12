@@ -98,7 +98,7 @@ typedef void(tHID_HOST_DEV_CALLBACK)(
  * Returns          tHID_STATUS
  *
  ******************************************************************************/
-extern tHID_STATUS HID_HostGetSDPRecord(const RawAddress& addr,
+tHID_STATUS HID_HostGetSDPRecord(const RawAddress& addr,
                                         tSDP_DISCOVERY_DB* p_db,
                                         uint32_t db_len,
                                         tHID_HOST_SDP_CALLBACK* sdp_cback);
@@ -112,7 +112,7 @@ extern tHID_STATUS HID_HostGetSDPRecord(const RawAddress& addr,
  * Returns          tHID_STATUS
  *
  ******************************************************************************/
-extern tHID_STATUS HID_HostRegister(tHID_HOST_DEV_CALLBACK* dev_cback);
+tHID_STATUS HID_HostRegister(tHID_HOST_DEV_CALLBACK* dev_cback);
 
 /*******************************************************************************
  *
@@ -123,7 +123,7 @@ extern tHID_STATUS HID_HostRegister(tHID_HOST_DEV_CALLBACK* dev_cback);
  * Returns          tHID_STATUS
  *
  ******************************************************************************/
-extern tHID_STATUS HID_HostDeregister(void);
+tHID_STATUS HID_HostDeregister(void);
 
 /*******************************************************************************
  *
@@ -134,7 +134,7 @@ extern tHID_STATUS HID_HostDeregister(void);
  * Returns          tHID_STATUS
  *
  ******************************************************************************/
-extern tHID_STATUS HID_HostAddDev(const RawAddress& addr, uint16_t attr_mask,
+tHID_STATUS HID_HostAddDev(const RawAddress& addr, uint16_t attr_mask,
                                   uint8_t* handle);
 
 /*******************************************************************************
@@ -147,7 +147,7 @@ extern tHID_STATUS HID_HostAddDev(const RawAddress& addr, uint16_t attr_mask,
  * Returns          tHID_STATUS
  *
  ******************************************************************************/
-extern tHID_STATUS HID_HostRemoveDev(uint8_t dev_handle);
+tHID_STATUS HID_HostRemoveDev(uint8_t dev_handle);
 
 /*******************************************************************************
  *
@@ -159,7 +159,7 @@ extern tHID_STATUS HID_HostRemoveDev(uint8_t dev_handle);
  * Returns          void
  *
  ******************************************************************************/
-extern tHID_STATUS HID_HostOpenDev(uint8_t dev_handle);
+tHID_STATUS HID_HostOpenDev(uint8_t dev_handle);
 
 /*******************************************************************************
  *
@@ -170,7 +170,7 @@ extern tHID_STATUS HID_HostOpenDev(uint8_t dev_handle);
  * Returns          void
  *
  ******************************************************************************/
-extern tHID_STATUS HID_HostWriteDev(uint8_t dev_handle, uint8_t t_type,
+tHID_STATUS HID_HostWriteDev(uint8_t dev_handle, uint8_t t_type,
                                     uint8_t param, uint16_t data,
                                     uint8_t report_id, BT_HDR* pbuf);
 
@@ -183,7 +183,7 @@ extern tHID_STATUS HID_HostWriteDev(uint8_t dev_handle, uint8_t t_type,
  * Returns          void
  *
  ******************************************************************************/
-extern tHID_STATUS HID_HostCloseDev(uint8_t dev_handle);
+tHID_STATUS HID_HostCloseDev(uint8_t dev_handle);
 
 /*******************************************************************************
  * Function         HID_HostInit
@@ -192,7 +192,7 @@ extern tHID_STATUS HID_HostCloseDev(uint8_t dev_handle);
  *
  * Returns          void
  ******************************************************************************/
-extern void HID_HostInit(void);
+void HID_HostInit(void);
 
 /*******************************************************************************
  *
@@ -204,6 +204,6 @@ extern void HID_HostInit(void);
  * Returns          the new (current) trace level
  *
  ******************************************************************************/
-extern uint8_t HID_HostSetTraceLevel(uint8_t new_level);
+uint8_t HID_HostSetTraceLevel(uint8_t new_level);
 
 #endif /* HIDH_API_H */

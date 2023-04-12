@@ -55,7 +55,7 @@
  * Returns          void.
  *
  ******************************************************************************/
-extern void bta_dm_co_io_req(const RawAddress& bd_addr, tBTM_IO_CAP* p_io_cap,
+void bta_dm_co_io_req(const RawAddress& bd_addr, tBTM_IO_CAP* p_io_cap,
                              tBTM_OOB_DATA* p_oob_data,
                              tBTM_AUTH_REQ* p_auth_req, bool is_orig);
 
@@ -76,7 +76,7 @@ extern void bta_dm_co_io_req(const RawAddress& bd_addr, tBTM_IO_CAP* p_io_cap,
  * Returns          void.
  *
  ******************************************************************************/
-extern void bta_dm_co_io_rsp(const RawAddress& bd_addr, tBTM_IO_CAP io_cap,
+void bta_dm_co_io_rsp(const RawAddress& bd_addr, tBTM_IO_CAP io_cap,
                              tBTM_OOB_DATA oob_data, tBTM_AUTH_REQ auth_req);
 
 /*******************************************************************************
@@ -93,7 +93,7 @@ extern void bta_dm_co_io_rsp(const RawAddress& bd_addr, tBTM_IO_CAP io_cap,
  * Returns          void.
  *
  ******************************************************************************/
-extern void bta_dm_co_loc_oob(bool valid, const Octet16& c, const Octet16& r);
+void bta_dm_co_loc_oob(bool valid, const Octet16& c, const Octet16& r);
 
 /*******************************************************************************
  *
@@ -107,7 +107,7 @@ extern void bta_dm_co_loc_oob(bool valid, const Octet16& c, const Octet16& r);
  * Returns          void.
  *
  ******************************************************************************/
-extern void bta_dm_co_rmt_oob(const RawAddress& bd_addr);
+void bta_dm_co_rmt_oob(const RawAddress& bd_addr);
 
 /*******************************************************************************
  *
@@ -119,7 +119,7 @@ extern void bta_dm_co_rmt_oob(const RawAddress& bd_addr);
  * Returns          void
  *
  ******************************************************************************/
-extern void bta_dm_sco_co_open(uint16_t handle, uint8_t pkt_size,
+void bta_dm_sco_co_open(uint16_t handle, uint8_t pkt_size,
                                uint16_t event);
 
 /*******************************************************************************
@@ -132,7 +132,7 @@ extern void bta_dm_sco_co_open(uint16_t handle, uint8_t pkt_size,
  * Returns          void
  *
  ******************************************************************************/
-extern void bta_dm_sco_co_close(void);
+void bta_dm_sco_co_close(void);
 
 /*******************************************************************************
  *
@@ -143,7 +143,7 @@ extern void bta_dm_sco_co_close(void);
  * Returns          void
  *
  ******************************************************************************/
-extern void bta_dm_sco_co_out_data(BT_HDR** p_buf);
+void bta_dm_sco_co_out_data(BT_HDR** p_buf);
 
 /*******************************************************************************
  *
@@ -155,7 +155,7 @@ extern void bta_dm_sco_co_out_data(BT_HDR** p_buf);
  * Returns          void
  *
  ******************************************************************************/
-extern void bta_dm_sco_co_in_data(BT_HDR* p_buf, tBTM_SCO_DATA_FLAG status);
+void bta_dm_sco_co_in_data(BT_HDR* p_buf, tBTM_SCO_DATA_FLAG status);
 
 /*******************************************************************************
  *
@@ -177,7 +177,7 @@ extern void bta_dm_sco_co_in_data(BT_HDR* p_buf, tBTM_SCO_DATA_FLAG status);
  * Returns          void.
  *
  ******************************************************************************/
-extern void bta_dm_co_ble_io_req(
+void bta_dm_co_ble_io_req(
     const RawAddress& bd_addr, tBTM_IO_CAP* p_io_cap, tBTM_OOB_DATA* p_oob_data,
     tBTM_LE_AUTH_REQ* p_auth_req, uint8_t* p_max_key_size,
     tBTM_LE_KEY_TYPE* p_init_key, tBTM_LE_KEY_TYPE* p_resp_key);
@@ -194,7 +194,7 @@ extern void bta_dm_co_ble_io_req(
  * Returns          void.
  *
  ******************************************************************************/
-extern void bta_dm_co_ble_load_local_keys(
+void bta_dm_co_ble_load_local_keys(
     tBTA_DM_BLE_LOCAL_KEY_MASK* p_key_mask, Octet16* p_er,
     tBTA_BLE_LOCAL_ID_KEYS* p_id_keys);
 

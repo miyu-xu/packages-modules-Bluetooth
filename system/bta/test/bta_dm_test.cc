@@ -311,7 +311,7 @@ TEST_F(BtaDmTest, bta_dm_set_encryption) {
   BTA_DM_ENCRYPT_CBACK_queue = {};
 }
 
-extern void bta_dm_encrypt_cback(const RawAddress* bd_addr,
+void bta_dm_encrypt_cback(const RawAddress* bd_addr,
                                  tBT_TRANSPORT transport,
                                  UNUSED_ATTR void* p_ref_data,
                                  tBTM_STATUS result);
