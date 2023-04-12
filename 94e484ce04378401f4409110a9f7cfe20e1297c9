@@ -34,6 +34,29 @@
       "parentUuid": "d146f885_2d8edbc3",
       "revId": "94e484ce04378401f4409110a9f7cfe20e1297c9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3a474212_9ec82be6",
+        "filename": "system/main/shim/le_scanning_manager.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 819,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-04-12T08:28:38Z",
+      "side": 1,
+      "message": "I\u0027m wondering why this logic is here in first place.\nWe need to store the address type just once when we find device.\nUpdating/changing it seems like security issue\n\nWhy would remote, or us, ever want to change the address type for exsiting record ? Especially bonded one ?",
+      "range": {
+        "startLine": 812,
+        "startChar": 0,
+        "endLine": 819,
+        "endChar": 3
+      },
+      "revId": "94e484ce04378401f4409110a9f7cfe20e1297c9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
