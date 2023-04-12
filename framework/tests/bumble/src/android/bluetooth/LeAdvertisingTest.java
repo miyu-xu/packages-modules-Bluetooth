@@ -90,6 +90,7 @@ public class LeAdvertisingTest {
 
     @After
     public void tearDown() throws Exception {
+        assertThat(mChannel).isNotNull();
         // terminate the channel
         mChannel.shutdown().awaitTermination(1, TimeUnit.SECONDS);
     }
