@@ -56,7 +56,8 @@ future_t* Start() {
   bluetooth::rust_shim::start(
       std::make_unique<bluetooth::gatt::GattServerCallbacks>(
           *bt_gatt_callbacks->server),
-      std::make_unique<bluetooth::connection::LeAclManagerShim>(), *fut);
+      std::make_unique<bluetooth::connection::LeAclManagerShim>(),
+      std::make_unique<bluetooth::connection::AddressResolverShim>(), *fut);
 
   return fut;
 }
