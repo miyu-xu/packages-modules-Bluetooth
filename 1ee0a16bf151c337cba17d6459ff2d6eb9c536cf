@@ -68,6 +68,23 @@
       "message": "@licorne I know you have opinions on PTS-specific flags",
       "revId": "1ee0a16bf151c337cba17d6459ff2d6eb9c536cf",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6b9c94ed_93c81ceb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2023-04-12T04:38:34Z",
+      "side": 1,
+      "message": "a friendly ping for review",
+      "revId": "1ee0a16bf151c337cba17d6459ff2d6eb9c536cf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
