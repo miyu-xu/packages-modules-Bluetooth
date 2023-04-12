@@ -27,6 +27,7 @@
 
 #include <cstdint>
 
+#include "device/include/controller.h"
 #include "device/include/device_iot_config.h"
 #include "main/shim/l2c_api.h"
 #include "main/shim/shim.h"
@@ -942,12 +943,12 @@ void l2c_link_check_send_pkts(tL2C_LCB* p_lcb, uint16_t local_cid,
       if (p_lcb == &l2cb.lcb_pool[MAX_L2CAP_LINKS]) p_lcb = &l2cb.lcb_pool[0];
 
       /* If controller window is full, nothing to do */
-      if (((l2cb.controller_xmit_window == 0 ||
+      if (((l2cb.controller_xmit_window <= 0 ||
             (l2cb.round_robin_unacked >= l2cb.round_robin_quota)) &&
            (p_lcb->transport == BT_TRANSPORT_BR_EDR)) ||
           (p_lcb->transport == BT_TRANSPORT_LE &&
            (l2cb.ble_round_robin_unacked >= l2cb.ble_round_robin_quota ||
-            l2cb.controller_le_xmit_window == 0))) {
+            l2cb.controller_le_xmit_window <= 0))) {
         LOG_DEBUG("Skipping lcb %d due to controller window full", xx);
         continue;
       }
@@ -1006,9 +1007,9 @@ void l2c_link_check_send_pkts(tL2C_LCB* p_lcb, uint16_t local_cid,
         p_lcb->link_xmit_quota);
 
     /* See if we can send anything from the link queue */
-    while (((l2cb.controller_xmit_window != 0 &&
+    while (((l2cb.controller_xmit_window > 0 &&
              (p_lcb->transport == BT_TRANSPORT_BR_EDR)) ||
-            (l2cb.controller_le_xmit_window != 0 &&
+            (l2cb.controller_le_xmit_window > 0 &&
              (p_lcb->transport == BT_TRANSPORT_LE))) &&
            (p_lcb->sent_not_acked < p_lcb->link_xmit_quota)) {
       if (list_is_empty(p_lcb->link_xmit_data_q)) {
@@ -1024,9 +1025,9 @@ void l2c_link_check_send_pkts(tL2C_LCB* p_lcb, uint16_t local_cid,
     if (!single_write) {
       /* See if we can send anything for any channel */
       LOG_VERBOSE("Trying to send other data when single_write is false");
-      while (((l2cb.controller_xmit_window != 0 &&
+      while (((l2cb.controller_xmit_window > 0 &&
                (p_lcb->transport == BT_TRANSPORT_BR_EDR)) ||
-              (l2cb.controller_le_xmit_window != 0 &&
+              (l2cb.controller_le_xmit_window > 0 &&
                (p_lcb->transport == BT_TRANSPORT_LE))) &&
              (p_lcb->sent_not_acked < p_lcb->link_xmit_quota)) {
         p_buf = l2cu_get_next_buffer_to_send(p_lcb);
@@ -1072,12 +1073,20 @@ void l2c_OnHciModeChangeSendPendingPackets(RawAddress remote) {
 static void l2c_link_send_to_lower_br_edr(tL2C_LCB* p_lcb, BT_HDR* p_buf) {
   const uint16_t link_xmit_quota = p_lcb->link_xmit_quota;
 
+  const uint16_t acl_data_size_classic =
+      controller_get_interface()->get_acl_data_size_classic();
+
+  uint16_t num_segs =
+      (p_buf->len - HCI_DATA_PREAMBLE_SIZE + acl_data_size_classic - 1) /
+      acl_data_size_classic;
+
   if (link_xmit_quota == 0) {
     l2cb.round_robin_unacked++;
+    num_segs = 1;
   }
-  p_lcb->sent_not_acked++;
+  p_lcb->sent_not_acked += num_segs;
   p_buf->layer_specific = 0;
-  l2cb.controller_xmit_window--;
+  l2cb.controller_xmit_window -= num_segs;
 
   acl_send_data_packet_br_edr(p_lcb->remote_bd_addr, p_buf);
   LOG_VERBOSE("TotalWin=%d,Hndl=0x%x,Quota=%d,Unack=%d,RRQuota=%d,RRUnack=%d",
@@ -1089,12 +1098,20 @@ static void l2c_link_send_to_lower_br_edr(tL2C_LCB* p_lcb, BT_HDR* p_buf) {
 static void l2c_link_send_to_lower_ble(tL2C_LCB* p_lcb, BT_HDR* p_buf) {
   const uint16_t link_xmit_quota = p_lcb->link_xmit_quota;
 
+  const uint16_t acl_data_size_ble =
+      controller_get_interface()->get_acl_data_size_ble();
+
+  uint16_t num_segs =
+      (p_buf->len - HCI_DATA_PREAMBLE_SIZE + acl_data_size_ble - 1) /
+      acl_data_size_ble;
+
   if (link_xmit_quota == 0) {
     l2cb.ble_round_robin_unacked++;
+    num_segs = 1;
   }
-  p_lcb->sent_not_acked++;
+  p_lcb->sent_not_acked += num_segs;
   p_buf->layer_specific = 0;
-  l2cb.controller_le_xmit_window--;
+  l2cb.controller_le_xmit_window -= num_segs;
 
   acl_send_data_packet_ble(p_lcb->remote_bd_addr, p_buf);
   LOG_DEBUG("TotalWin=%d,Hndl=0x%x,Quota=%d,Unack=%d,RRQuota=%d,RRUnack=%d",

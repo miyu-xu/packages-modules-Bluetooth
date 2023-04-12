@@ -167,12 +167,14 @@ void l2cu_release_lcb(tL2C_LCB* p_lcb) {
   if (p_lcb->sent_not_acked > 0) {
     if (p_lcb->transport == BT_TRANSPORT_LE) {
       l2cb.controller_le_xmit_window += p_lcb->sent_not_acked;
-      if (l2cb.controller_le_xmit_window > l2cb.num_lm_ble_bufs) {
+      if (l2cb.controller_le_xmit_window > 0 &&
+          l2cb.controller_le_xmit_window > l2cb.num_lm_ble_bufs) {
         l2cb.controller_le_xmit_window = l2cb.num_lm_ble_bufs;
       }
     } else {
       l2cb.controller_xmit_window += p_lcb->sent_not_acked;
-      if (l2cb.controller_xmit_window > l2cb.num_lm_acl_bufs) {
+      if (l2cb.controller_xmit_window > 0 &&
+          l2cb.controller_xmit_window > l2cb.num_lm_acl_bufs) {
         l2cb.controller_xmit_window = l2cb.num_lm_acl_bufs;
       }
     }
