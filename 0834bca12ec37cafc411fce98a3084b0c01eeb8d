@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8897e9b8_5ce2513d",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1675,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-04-12T08:55:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f5ad4f78_affa0a55",
+      "range": {
+        "startLine": 1675,
+        "startChar": 24,
+        "endLine": 1675,
+        "endChar": 55
+      },
+      "revId": "0834bca12ec37cafc411fce98a3084b0c01eeb8d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a4d09d55_d442286f",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-04-12T02:49:19Z",
       "side": 1,
       "message": "I preferred to use scanner of the DefaultAdapter\nBluetoothAdapter.getDefaultAdapter().getBluetoothLeScanner();",
+      "range": {
+        "startLine": 1688,
+        "startChar": 35,
+        "endLine": 1688,
+        "endChar": 96
+      },
+      "revId": "0834bca12ec37cafc411fce98a3084b0c01eeb8d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bc9869d6_a23c23da",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1688,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-04-12T08:55:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a4d09d55_d442286f",
       "range": {
         "startLine": 1688,
         "startChar": 35,
