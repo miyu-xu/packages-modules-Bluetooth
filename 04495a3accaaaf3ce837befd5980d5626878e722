@@ -22,6 +22,30 @@
       },
       "revId": "04495a3accaaaf3ce837befd5980d5626878e722",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d0a8b050_17f901b2",
+        "filename": "system/btif/src/stack_manager.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 355,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-04-12T08:09:57Z",
+      "side": 1,
+      "message": "Profiles are started only after the main stack starts up (including Rust + GATT). So I don\u0027t think anything should be lost. At least in my testing, autoconnect of bonded HID devices continues to work.",
+      "parentUuid": "88ffd88d_8b85dec4",
+      "range": {
+        "startLine": 355,
+        "startChar": 2,
+        "endLine": 355,
+        "endChar": 49
+      },
+      "revId": "04495a3accaaaf3ce837befd5980d5626878e722",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
