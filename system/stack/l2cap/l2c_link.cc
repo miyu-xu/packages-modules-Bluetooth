@@ -27,6 +27,7 @@
 
 #include <cstdint>
 
+#include "device/include/controller.h"
 #include "device/include/device_iot_config.h"
 #include "main/shim/l2c_api.h"
 #include "main/shim/shim.h"
@@ -1080,12 +1081,20 @@ void l2c_OnHciModeChangeSendPendingPackets(RawAddress remote) {
 static void l2c_link_send_to_lower_br_edr(tL2C_LCB* p_lcb, BT_HDR* p_buf) {
   const uint16_t link_xmit_quota = p_lcb->link_xmit_quota;
 
+  const uint16_t acl_data_size_classic =
+      controller_get_interface()->get_acl_data_size_classic();
+
+  uint16_t num_segs =
+      (p_buf->len - HCI_DATA_PREAMBLE_SIZE + acl_data_size_classic - 1) /
+      acl_data_size_classic;
+
   if (link_xmit_quota == 0) {
     l2cb.round_robin_unacked++;
+    num_segs = 1;
   }
-  p_lcb->sent_not_acked++;
+  p_lcb->sent_not_acked += num_segs;
   p_buf->layer_specific = 0;
-  l2cb.controller_xmit_window--;
+  l2cb.controller_xmit_window -= num_segs;
 
   acl_send_data_packet_br_edr(p_lcb->remote_bd_addr, p_buf);
   LOG_VERBOSE("TotalWin=%d,Hndl=0x%x,Quota=%d,Unack=%d,RRQuota=%d,RRUnack=%d",
@@ -1097,12 +1106,20 @@ static void l2c_link_send_to_lower_br_edr(tL2C_LCB* p_lcb, BT_HDR* p_buf) {
 static void l2c_link_send_to_lower_ble(tL2C_LCB* p_lcb, BT_HDR* p_buf) {
   const uint16_t link_xmit_quota = p_lcb->link_xmit_quota;
 
+  const uint16_t acl_data_size_ble =
+      controller_get_interface()->get_acl_data_size_ble();
+
+  uint16_t num_segs =
+      (p_buf->len - HCI_DATA_PREAMBLE_SIZE + acl_data_size_ble - 1) /
+      acl_data_size_ble;
+
   if (link_xmit_quota == 0) {
     l2cb.ble_round_robin_unacked++;
+    num_segs = 1;
   }
-  p_lcb->sent_not_acked++;
+  p_lcb->sent_not_acked += num_segs;
   p_buf->layer_specific = 0;
-  l2cb.controller_le_xmit_window--;
+  l2cb.controller_le_xmit_window -= num_segs;
 
   acl_send_data_packet_ble(p_lcb->remote_bd_addr, p_buf);
   LOG_DEBUG("TotalWin=%d,Hndl=0x%x,Quota=%d,Unack=%d,RRQuota=%d,RRUnack=%d",
