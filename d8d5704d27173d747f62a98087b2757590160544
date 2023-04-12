@@ -1,0 +1,130 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9eda36ec_3bca57f9",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 497,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-04-12T12:36:02Z",
+      "side": 1,
+      "message": "\u003e\u003d 1 ?",
+      "range": {
+        "startLine": 497,
+        "startChar": 42,
+        "endLine": 497,
+        "endChar": 43
+      },
+      "revId": "d8d5704d27173d747f62a98087b2757590160544",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "141af5cc_db31b43a",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 1140,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-04-12T12:36:02Z",
+      "side": 1,
+      "message": "Add a comment explaining native will handle scan results.",
+      "range": {
+        "startLine": 1140,
+        "startChar": 11,
+        "endLine": 1140,
+        "endChar": 32
+      },
+      "revId": "d8d5704d27173d747f62a98087b2757590160544",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "75f40900_0c5ffa06",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 1154,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-04-12T12:36:02Z",
+      "side": 1,
+      "message": "This looks like a possible endless loop if something prevents your scan from working.\n\nMaybe limit retry attempts to 5, and add 1s delay between retries ?",
+      "range": {
+        "startLine": 1153,
+        "startChar": 19,
+        "endLine": 1154,
+        "endChar": 54
+      },
+      "revId": "d8d5704d27173d747f62a98087b2757590160544",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "59fbb914_7aa731aa",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 1679,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-04-12T12:36:02Z",
+      "side": 1,
+      "message": "if we were to cache , mAudioServersScanner \u003d null ?\nBut we don\u0027t want to cache, just getBluetoothLeScanner() again",
+      "revId": "d8d5704d27173d747f62a98087b2757590160544",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "123258b1_7554bdea",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 1686,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-04-12T12:36:02Z",
+      "side": 1,
+      "message": "Maybe check value of mBluetoothEnabled here again, in case it changes between retries ?",
+      "revId": "d8d5704d27173d747f62a98087b2757590160544",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "639808e0_cca4e863",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 1688,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-04-12T12:36:02Z",
+      "side": 1,
+      "message": "return value from getBluetoothLeScanner is not something you want to cache.",
+      "range": {
+        "startLine": 1688,
+        "startChar": 12,
+        "endLine": 1688,
+        "endChar": 32
+      },
+      "revId": "d8d5704d27173d747f62a98087b2757590160544",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
