@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "94f925d5_c70fa698",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-04-12T07:04:30Z",
+      "side": 1,
+      "message": "Doesn\u0027t work yet, must rewrite BTM_StartInqiry before getting rid of this legacy code",
+      "revId": "84b7ad1593975bdef48d2901c813090c568c3714",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
