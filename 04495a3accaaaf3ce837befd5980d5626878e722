@@ -46,6 +46,30 @@
       },
       "revId": "04495a3accaaaf3ce837befd5980d5626878e722",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "015e6445_6331d43f",
+        "filename": "system/btif/src/stack_manager.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 355,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-04-12T08:13:36Z",
+      "side": 1,
+      "message": "That is true for Java Profiles.\nHow about ASHA and LE Audio, which load which devices to auto connect from config file ?",
+      "parentUuid": "d0a8b050_17f901b2",
+      "range": {
+        "startLine": 355,
+        "startChar": 2,
+        "endLine": 355,
+        "endChar": 49
+      },
+      "revId": "04495a3accaaaf3ce837befd5980d5626878e722",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
