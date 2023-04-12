@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d88c3256_9fc1c714",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 358,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-04-12T13:27:01Z",
+      "side": 1,
+      "message": "Should we also stop when someone forgets all bonded LE Audio devices ?",
+      "range": {
+        "startLine": 358,
+        "startChar": 4,
+        "endLine": 358,
+        "endChar": 41
+      },
+      "revId": "5913328fdd428e750930f04995ab0b9e1f37e6ce",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
