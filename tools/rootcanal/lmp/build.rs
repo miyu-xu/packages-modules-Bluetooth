@@ -18,37 +18,24 @@ use std::path::{Path, PathBuf};
 use std::process::Command;
 
 fn main() {
-    install_generated_module(
-        "lmp_packets.rs",
-        "LMP_PACKETS_PREBUILT",
-        &PathBuf::from("lmp_packets.pdl").canonicalize().unwrap(),
-    );
-    install_generated_module(
-        "hci_packets.rs",
-        "HCI_PACKETS_PREBUILT",
-        &PathBuf::from("../packets/hci/hci_packets.pdl").canonicalize().unwrap(),
-    );
-}
-
-fn install_generated_module(module_name: &str, prebuilt_var: &str, pdl_name: &PathBuf) {
-    let module_prebuilt = match env::var(prebuilt_var) {
+    let packets_prebuilt = match env::var("LMP_PACKETS_PREBUILT") {
         Ok(dir) => PathBuf::from(dir),
-        Err(_) => PathBuf::from(module_name),
+        Err(_) => PathBuf::from("lmp_packets.rs"),
     };
-
-    if Path::new(module_prebuilt.as_os_str()).exists() {
+    if Path::new(packets_prebuilt.as_os_str()).exists() {
         let out_dir = PathBuf::from(env::var("OUT_DIR").unwrap());
+        let outputted = out_dir.join("lmp_packets.rs");
         std::fs::copy(
-            module_prebuilt.as_os_str().to_str().unwrap(),
-            out_dir.join(module_name).as_os_str().to_str().unwrap(),
+            packets_prebuilt.as_os_str().to_str().unwrap(),
+            out_dir.join(outputted.file_name().unwrap()).as_os_str().to_str().unwrap(),
         )
         .unwrap();
     } else {
-        generate_module(pdl_name);
+        generate_packets();
     }
 }
 
-fn generate_module(pdl_name: &PathBuf) {
+fn generate_packets() {
     let out_dir = PathBuf::from(env::var("OUT_DIR").unwrap());
 
     // Find the packetgen tool. Expecting it at CARGO_HOME/bin
@@ -59,17 +46,17 @@ fn generate_module(pdl_name: &PathBuf) {
 
     if !Path::new(packetgen.as_os_str()).exists() {
         panic!(
-            "bluetooth_packetgen not found in the current environment: {:?}",
+            "Unable to locate bluetooth packet generator:{:?}",
             packetgen.as_os_str().to_str().unwrap()
         );
     }
 
-    println!("cargo:rerun-if-changed={}", pdl_name.display());
+    println!("cargo:rerun-if-changed=lmp_packets.pdl");
     let output = Command::new(packetgen.as_os_str().to_str().unwrap())
         .arg("--out=".to_owned() + out_dir.as_os_str().to_str().unwrap())
-        .arg("--include=".to_owned() + pdl_name.parent().unwrap().as_os_str().to_str().unwrap())
+        .arg("--include=.")
         .arg("--rust")
-        .arg(pdl_name)
+        .arg("lmp_packets.pdl")
         .output()
         .unwrap();
 
@@ -79,6 +66,4 @@ fn generate_module(pdl_name: &PathBuf) {
         String::from_utf8_lossy(output.stdout.as_slice()),
         String::from_utf8_lossy(output.stderr.as_slice())
     );
-
-    assert!(output.status.success());
 }
