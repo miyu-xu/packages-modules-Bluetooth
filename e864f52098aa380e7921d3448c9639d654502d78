@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "396361a9_511f077b",
+        "filename": "system/rust/src/connection/ffi.rs",
+        "patchSetId": 27
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-04-12T13:14:21Z",
+      "side": 1,
+      "message": "We have HCI interface in rust, right ? So you should be able to send HCI commands directly, without talking to C++\n\nShould be much simpler than talking through FFI",
+      "range": {
+        "startLine": 33,
+        "startChar": 44,
+        "endLine": 33,
+        "endChar": 60
+      },
+      "revId": "e864f52098aa380e7921d3448c9639d654502d78",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
