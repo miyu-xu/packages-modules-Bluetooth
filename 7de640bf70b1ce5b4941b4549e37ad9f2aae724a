@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e06ead09_8cfdd25b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-04-12T21:43:50Z",
+      "side": 1,
+      "message": "the gd/rust/shim is also an includePath in a lot of places, can that be removed too? (either here or in another CL)",
+      "revId": "7de640bf70b1ce5b4941b4549e37ad9f2aae724a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
