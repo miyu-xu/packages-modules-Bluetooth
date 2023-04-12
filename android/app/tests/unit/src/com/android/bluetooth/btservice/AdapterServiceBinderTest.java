@@ -185,20 +185,6 @@ public class AdapterServiceBinderTest {
     }
 
     @Test
-    public void setIoCapability() {
-        int capability = BluetoothAdapter.IO_CAPABILITY_MAX - 1;
-        mBinder.setIoCapability(capability, mAttributionSource, SynchronousResultReceiver.get());
-        verify(mService.mAdapterProperties).setIoCapability(capability);
-    }
-
-    @Test
-    public void setLeIoCapability() {
-        int capability = BluetoothAdapter.IO_CAPABILITY_MAX - 1;
-        mBinder.setLeIoCapability(capability, mAttributionSource, SynchronousResultReceiver.get());
-        verify(mService.mAdapterProperties).setLeIoCapability(capability);
-    }
-
-    @Test
     public void stopRfcommListener() {
         ParcelUuid uuid = ParcelUuid.fromString("0000110A-0000-1000-8000-00805F9B34FB");
         mBinder.stopRfcommListener(uuid, mAttributionSource, SynchronousResultReceiver.get());

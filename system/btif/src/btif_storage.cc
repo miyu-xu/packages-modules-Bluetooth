@@ -84,8 +84,6 @@ using bluetooth::Uuid;
 #define BTIF_STORAGE_PATH_REMOTE_ALIASE "Aliase"
 #define BTIF_STORAGE_KEY_ADAPTER_NAME "Name"
 #define BTIF_STORAGE_KEY_ADAPTER_SCANMODE "ScanMode"
-#define BTIF_STORAGE_KEY_LOCAL_IO_CAPS "LocalIOCaps"
-#define BTIF_STORAGE_KEY_LOCAL_IO_CAPS_BLE "LocalIOCapsBLE"
 #define BTIF_STORAGE_KEY_ADAPTER_DISC_TIMEOUT "DiscoveryTimeout"
 #define BTIF_STORAGE_KEY_GATT_CLIENT_SUPPORTED "GattClientSupportedFeatures"
 #define BTIF_STORAGE_KEY_GATT_CLIENT_DB_HASH "GattClientDatabaseHash"
@@ -172,14 +170,6 @@ static int prop2cfg(const RawAddress* remote_bd_addr, bt_property_t* prop) {
       break;
     case BT_PROPERTY_ADAPTER_SCAN_MODE:
       btif_config_set_int("Adapter", BTIF_STORAGE_KEY_ADAPTER_SCANMODE,
-                          *(int*)prop->val);
-      break;
-    case BT_PROPERTY_LOCAL_IO_CAPS:
-      btif_config_set_int("Adapter", BTIF_STORAGE_KEY_LOCAL_IO_CAPS,
-                          *(int*)prop->val);
-      break;
-    case BT_PROPERTY_LOCAL_IO_CAPS_BLE:
-      btif_config_set_int("Adapter", BTIF_STORAGE_KEY_LOCAL_IO_CAPS_BLE,
                           *(int*)prop->val);
       break;
     case BT_PROPERTY_ADAPTER_DISCOVERABLE_TIMEOUT:
@@ -297,17 +287,6 @@ static int cfg2prop(const RawAddress* remote_bd_addr, bt_property_t* prop) {
     case BT_PROPERTY_ADAPTER_SCAN_MODE:
       if (prop->len >= (int)sizeof(int))
         ret = btif_config_get_int("Adapter", BTIF_STORAGE_KEY_ADAPTER_SCANMODE,
-                                  (int*)prop->val);
-      break;
-
-    case BT_PROPERTY_LOCAL_IO_CAPS:
-      if (prop->len >= (int)sizeof(int))
-        ret = btif_config_get_int("Adapter", BTIF_STORAGE_KEY_LOCAL_IO_CAPS,
-                                  (int*)prop->val);
-      break;
-    case BT_PROPERTY_LOCAL_IO_CAPS_BLE:
-      if (prop->len >= (int)sizeof(int))
-        ret = btif_config_get_int("Adapter", BTIF_STORAGE_KEY_LOCAL_IO_CAPS_BLE,
                                   (int*)prop->val);
       break;
 
@@ -571,57 +550,6 @@ size_t btif_split_uuids_string(const char* str, bluetooth::Uuid* p_uuid,
   }
 
   return num_uuids;
-}
-
-/**
- * Helper function for fetching a local Input/Output capability property. If not
- * set, it returns the default value.
- */
-static uint8_t btif_storage_get_io_cap_property(bt_property_type_t type,
-                                                uint8_t default_value) {
-  char buf[sizeof(int)];
-
-  bt_property_t property;
-  property.type = type;
-  property.val = (void*)buf;
-  property.len = sizeof(int);
-
-  bt_status_t ret = btif_storage_get_adapter_property(&property);
-
-  return (ret == BT_STATUS_SUCCESS) ? (uint8_t)(*(int*)property.val)
-                                    : default_value;
-}
-
-/*******************************************************************************
- *
- * Function         btif_storage_get_io_caps
- *
- * Description      BTIF storage API - Fetches the local Input/Output
- *                  capabilities of the device.
- *
- * Returns          Returns local IO Capability of device. If not stored,
- *                  returns BTM_LOCAL_IO_CAPS.
- *
- ******************************************************************************/
-uint8_t btif_storage_get_local_io_caps() {
-  return btif_storage_get_io_cap_property(BT_PROPERTY_LOCAL_IO_CAPS,
-                                          BTM_LOCAL_IO_CAPS);
-}
-
-/*******************************************************************************
- *
- * Function         btif_storage_get_io_caps_ble
- *
- * Description      BTIF storage API - Fetches the local Input/Output
- *                  capabilities of the BLE device.
- *
- * Returns          Returns local IO Capability of BLE device. If not stored,
- *                  returns BTM_LOCAL_IO_CAPS_BLE.
- *
- ******************************************************************************/
-uint8_t btif_storage_get_local_io_caps_ble() {
-  return btif_storage_get_io_cap_property(BT_PROPERTY_LOCAL_IO_CAPS_BLE,
-                                          BTM_LOCAL_IO_CAPS_BLE);
 }
 
 /** Helper function for fetching a bt_property of the adapter. */
