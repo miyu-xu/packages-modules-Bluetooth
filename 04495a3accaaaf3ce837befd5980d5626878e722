@@ -70,6 +70,30 @@
       },
       "revId": "04495a3accaaaf3ce837befd5980d5626878e722",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "164dac75_fbbb5aa4",
+        "filename": "system/btif/src/stack_manager.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 355,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-04-12T18:43:47Z",
+      "side": 1,
+      "message": "They are still also started from Java (see the JNI entrypoint here: https://source.corp.google.com/android-internal/packages/modules/Bluetooth/android/app/jni/com_android_bluetooth_le_audio.cpp;l\u003d332?q\u003d%22jobjectArray%20codecOffloadingArray%22)\n\nThe startup flow of the stack is (1) GATT profile starts, (2) the core stack starts, including GD and now Rust, (3) all other profiles are started.\n\n(1) and (2) remain active for stack lifetime, (3) can be stopped and restarted as we move between ON and BLE_ON states.",
+      "parentUuid": "015e6445_6331d43f",
+      "range": {
+        "startLine": 355,
+        "startChar": 2,
+        "endLine": 355,
+        "endChar": 49
+      },
+      "revId": "04495a3accaaaf3ce837befd5980d5626878e722",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
