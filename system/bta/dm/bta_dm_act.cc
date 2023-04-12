@@ -38,7 +38,6 @@
 #include "bta_sdp_api.h"
 #include "btif/include/btif_config.h"
 #include "btif/include/btif_dm.h"
-#include "btif/include/btif_storage.h"
 #include "btif/include/stack_manager.h"
 #include "device/include/controller.h"
 #include "device/include/interop.h"
@@ -276,17 +275,12 @@ const tBTM_APPL_INFO bta_security = {
 #define MAX_DISC_RAW_DATA_BUF (4096)
 uint8_t g_disc_raw_data_buf[MAX_DISC_RAW_DATA_BUF];
 
-// Stores the local Input/Output Capabilities of the Bluetooth device.
-static uint8_t btm_local_io_caps;
-
 /** Initialises the BT device manager */
 void bta_dm_enable(tBTA_DM_SEC_CBACK* p_sec_cback) {
   /* make sure security callback is saved - if no callback, do not erase the
   previous one,
   it could be an error recovery mechanism */
   if (p_sec_cback != NULL) bta_dm_cb.p_sec_cback = p_sec_cback;
-
-  btm_local_io_caps = btif_storage_get_local_io_caps();
 }
 
 void bta_dm_search_set_state(tBTA_DM_STATE state) {
@@ -2469,19 +2463,15 @@ static tBTM_STATUS bta_dm_sp_cback(tBTM_SP_EVT event,
   /* TODO_SP */
   switch (event) {
     case BTM_SP_IO_REQ_EVT:
-      if (btm_local_io_caps != BTM_IO_CAP_NONE) {
-        /* translate auth_req */
-        btif_dm_set_oob_for_io_req(&p_data->io_req.oob_data);
-        btif_dm_proc_io_req(&p_data->io_req.auth_req, p_data->io_req.is_orig);
-      }
+      /* translate auth_req */
+      btif_dm_set_oob_for_io_req(&p_data->io_req.oob_data);
+      btif_dm_proc_io_req(&p_data->io_req.auth_req, p_data->io_req.is_orig);
       APPL_TRACE_EVENT("io mitm: %d oob_data:%d", p_data->io_req.auth_req,
                        p_data->io_req.oob_data);
       break;
     case BTM_SP_IO_RSP_EVT:
-      if (btm_local_io_caps != BTM_IO_CAP_NONE) {
-        btif_dm_proc_io_rsp(p_data->io_rsp.bd_addr, p_data->io_rsp.io_cap,
-                            p_data->io_rsp.oob_data, p_data->io_rsp.auth_req);
-      }
+      btif_dm_proc_io_rsp(p_data->io_rsp.bd_addr, p_data->io_rsp.io_cap,
+                          p_data->io_rsp.oob_data, p_data->io_rsp.auth_req);
       break;
 
     case BTM_SP_CFM_REQ_EVT:
@@ -2498,12 +2488,6 @@ static tBTM_STATUS bta_dm_sp_cback(tBTM_SP_EVT event,
         unlikely to receive key request, so skip this event */
     /*case BTM_SP_KEY_REQ_EVT: */
     case BTM_SP_KEY_NOTIF_EVT:
-      if (btm_local_io_caps == BTM_IO_CAP_NONE &&
-          BTM_SP_KEY_NOTIF_EVT == event) {
-        status = BTM_NOT_AUTHORIZED;
-        break;
-      }
-
       bta_dm_cb.num_val = sec_event.key_notif.passkey =
           p_data->key_notif.passkey;
 
@@ -3777,8 +3761,6 @@ static void ble_io_req(const RawAddress& bd_addr, tBTM_IO_CAP* p_io_cap,
                        tBTM_OOB_DATA* p_oob_data, tBTM_LE_AUTH_REQ* p_auth_req,
                        uint8_t* p_max_key_size, tBTM_LE_KEY_TYPE* p_init_key,
                        tBTM_LE_KEY_TYPE* p_resp_key) {
-  bte_appl_cfg.ble_io_cap = btif_storage_get_local_io_caps_ble();
-
   /* Retrieve the properties from file system if possible */
   tBTE_APPL_CFG nv_config;
   if (btif_dm_get_smp_config(&nv_config)) bte_appl_cfg = nv_config;
