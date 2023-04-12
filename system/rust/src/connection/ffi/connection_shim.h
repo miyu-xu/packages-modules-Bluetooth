@@ -45,6 +45,19 @@ class LeAclManagerShim {
   std::unique_ptr<impl> pimpl_;
 };
 
+struct ResolveAddressCallback;
+
+class AddressResolverShim {
+ public:
+  AddressResolverShim();
+  ~AddressResolverShim();
+
+#ifndef TARGET_FLOSS
+  void ResolveAddress(core::AddressWithType address,
+                      ResolveAddressCallback& on_resolved) const;
+#endif
+};
+
 void RegisterRustApis(
     ::rust::Fn<void(uint8_t client_id, core::AddressWithType address)>
         start_direct_connection,
