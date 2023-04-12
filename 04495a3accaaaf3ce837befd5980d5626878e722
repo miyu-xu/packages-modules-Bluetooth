@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "88ffd88d_8b85dec4",
+        "filename": "system/btif/src/stack_manager.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 355,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-04-12T07:54:46Z",
+      "side": 1,
+      "message": "Connection manager will be rewritten to Rust.\nSo if rust starts as last, what will happen to all the connect request ?\n\nI mean when HID,or LE Audio starts up, it will load config file, with list of devices to auto-connect. Profiles will start sending connect requests immediately, will these get lost until rust starts up ?",
+      "range": {
+        "startLine": 355,
+        "startChar": 2,
+        "endLine": 355,
+        "endChar": 49
+      },
+      "revId": "04495a3accaaaf3ce837befd5980d5626878e722",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
