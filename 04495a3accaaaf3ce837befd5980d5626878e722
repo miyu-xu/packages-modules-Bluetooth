@@ -94,6 +94,30 @@
       },
       "revId": "04495a3accaaaf3ce837befd5980d5626878e722",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "23f5d54b_6e4c755f",
+        "filename": "system/btif/src/stack_manager.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 355,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-04-12T18:45:19Z",
+      "side": 1,
+      "message": "LeAudioService.java is the corresponding part in Java layer, that starts the native component (which does autoconnect, in btif_le_audio.cc:109)",
+      "parentUuid": "164dac75_fbbb5aa4",
+      "range": {
+        "startLine": 355,
+        "startChar": 2,
+        "endLine": 355,
+        "endChar": 49
+      },
+      "revId": "04495a3accaaaf3ce837befd5980d5626878e722",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
