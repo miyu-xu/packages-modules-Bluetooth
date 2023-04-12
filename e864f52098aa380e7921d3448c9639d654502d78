@@ -22,6 +22,30 @@
       },
       "revId": "e864f52098aa380e7921d3448c9639d654502d78",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4d93efa5_1c912886",
+        "filename": "system/rust/src/connection/ffi.rs",
+        "patchSetId": 27
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-04-12T20:42:24Z",
+      "side": 1,
+      "message": "HCI in Rust is not enabled, and I don\u0027t want to do so since it likely will introduce regressions fixed only in C++. We can\u0027t run both Rust + C++ HCI layers simultaneously.",
+      "parentUuid": "396361a9_511f077b",
+      "range": {
+        "startLine": 33,
+        "startChar": 44,
+        "endLine": 33,
+        "endChar": 60
+      },
+      "revId": "e864f52098aa380e7921d3448c9639d654502d78",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
