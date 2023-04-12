@@ -734,6 +734,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "c4893fef_08e4bc23",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 5049,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-04-12T00:18:55Z",
+      "side": 1,
+      "message": "Assume that audio fwk calls notifyActiveDeviceChangeApplied on the same thread when they calls getPreferredAudioProfile. \n\nThen, even if the callback comes in early due to a unreleated request, audio fwk will still be reading the latest information from us",
+      "parentUuid": "616a8b9d_5fddb3b4",
+      "range": {
+        "startLine": 5049,
+        "startChar": 16,
+        "endLine": 5049,
+        "endChar": 47
+      },
+      "revId": "fd06c9f98a100afa5264129b5f0b2f0e77765c70",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "cc298796_c1726272",
         "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
         "patchSetId": 11
