@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cc5136c6_0b11d957",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-04-12T17:41:47Z",
+      "side": 1,
+      "message": "I think we should do something similar as the [AirplaneModeListenerTest](https://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/service/tests/src/com/android/server/bluetooth/BluetoothAirplaneModeListenerTest.java) to test the satelliteModeListener",
+      "revId": "cfc147fbd93957730e7ddcd1d9216adb9faae17a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1be4deae_708da3a2",
+        "filename": "service/java/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 540,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-04-12T17:41:47Z",
+      "side": 1,
+      "message": "We need to add this to protoEnum.\n@cncn@google.com can you help with that ?",
+      "range": {
+        "startLine": 540,
+        "startChar": 47,
+        "endLine": 540,
+        "endChar": 83
+      },
+      "revId": "cfc147fbd93957730e7ddcd1d9216adb9faae17a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "da63087e_69592c9f",
+        "filename": "service/java/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 556,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-04-12T17:41:47Z",
+      "side": 1,
+      "message": "I was looking at the code and maybe we want to check this instead:\n```\nif (isAirplaneModeOn() \u0026\u0026 !isBluetoothPersistedStateOnAirplane() {\n  ...\n}\n```\n\nWhat do you think?",
+      "range": {
+        "startLine": 556,
+        "startChar": 34,
+        "endLine": 556,
+        "endChar": 52
+      },
+      "revId": "cfc147fbd93957730e7ddcd1d9216adb9faae17a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "90bdfbe6_512b5417",
+        "filename": "service/java/com/android/server/bluetooth/SatelliteModeListener.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-04-12T17:41:47Z",
+      "side": 1,
+      "message": "We do not need this if we are using the constant from BluetoothManagerService.",
+      "range": {
+        "startLine": 34,
+        "startChar": 1,
+        "endLine": 43,
+        "endChar": 90
+      },
+      "revId": "cfc147fbd93957730e7ddcd1d9216adb9faae17a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
