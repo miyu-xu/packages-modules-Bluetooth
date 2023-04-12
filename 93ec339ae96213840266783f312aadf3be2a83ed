@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5f84272b_7e42c12c",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 1148,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-04-12T19:59:19Z",
+      "side": 1,
+      "message": "yes, native register filter for CAP and BAP announcements and does filtering and reconnnection handling. What we need is a scan beeing enabled, and since for now it is ScanManager handling that, LeAUdioService register its own client.",
+      "parentUuid": "635ec0f1_7ea6e318",
+      "range": {
+        "startLine": 1144,
+        "startChar": 12,
+        "endLine": 1148,
+        "endChar": 14
+      },
+      "revId": "93ec339ae96213840266783f312aadf3be2a83ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "45d80292_6c29f0f8",
         "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
         "patchSetId": 8
@@ -49,6 +73,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0b44c467_682e1401",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 1714,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-04-12T19:59:19Z",
+      "side": 1,
+      "message": "it is still handled in native.\nLater, we could use this filter to present non connected audio devices available around.",
+      "parentUuid": "45d80292_6c29f0f8",
+      "range": {
+        "startLine": 1710,
+        "startChar": 7,
+        "endLine": 1714,
+        "endChar": 31
+      },
+      "revId": "93ec339ae96213840266783f312aadf3be2a83ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a334e9a0_7feb5694",
         "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
         "patchSetId": 8
@@ -60,6 +108,30 @@
       "writtenOn": "2023-04-12T19:01:53Z",
       "side": 1,
       "message": "nit:  isEmpty()",
+      "range": {
+        "startLine": 2133,
+        "startChar": 35,
+        "endLine": 2133,
+        "endChar": 46
+      },
+      "revId": "93ec339ae96213840266783f312aadf3be2a83ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "26de028b_1dabe514",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 2133,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-04-12T19:59:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a334e9a0_7feb5694",
       "range": {
         "startLine": 2133,
         "startChar": 35,
