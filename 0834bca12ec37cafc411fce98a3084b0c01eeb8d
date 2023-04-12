@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a4d09d55_d442286f",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1688,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2023-04-12T02:49:19Z",
+      "side": 1,
+      "message": "I preferred to use scanner of the DefaultAdapter\nBluetoothAdapter.getDefaultAdapter().getBluetoothLeScanner();",
+      "range": {
+        "startLine": 1688,
+        "startChar": 35,
+        "endLine": 1688,
+        "endChar": 96
+      },
+      "revId": "0834bca12ec37cafc411fce98a3084b0c01eeb8d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
