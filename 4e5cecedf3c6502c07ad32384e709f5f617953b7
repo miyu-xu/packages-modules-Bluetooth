@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9399507a_b973388a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2023-04-12T16:27:11Z",
+      "side": 1,
+      "message": "LGTM but I\u0027ll let @yuyangh@google.com approve too",
+      "revId": "4e5cecedf3c6502c07ad32384e709f5f617953b7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
