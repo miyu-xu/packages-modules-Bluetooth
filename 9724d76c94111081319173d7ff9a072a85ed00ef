@@ -22,6 +22,30 @@
       },
       "revId": "9724d76c94111081319173d7ff9a072a85ed00ef",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8f1f0a4c_6391ab2f",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 3941,
+      "author": {
+        "id": 1984885
+      },
+      "writtenOn": "2023-04-12T00:51:43Z",
+      "side": 1,
+      "message": "I agree with you， it exactly need to be deleted here",
+      "parentUuid": "5da2305b_949e2abd",
+      "range": {
+        "startLine": 3941,
+        "startChar": 5,
+        "endLine": 3941,
+        "endChar": 27
+      },
+      "revId": "9724d76c94111081319173d7ff9a072a85ed00ef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
