@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a18316e2_3b00a329",
+        "filename": "system/btif/src/stack_manager.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 355,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-04-12T00:20:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1b7eaec0_0eab68c5",
+      "range": {
+        "startLine": 355,
+        "startChar": 2,
+        "endLine": 355,
+        "endChar": 13
+      },
+      "revId": "c0ae5dccde2b7ac5d978ab7f835b9b5b18dc09ba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d6abe236_f50333bf",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-04-12T00:04:49Z",
       "side": 1,
       "message": "Is your Start getting called?  See earlier comment.",
+      "range": {
+        "startLine": 60,
+        "startChar": 42,
+        "endLine": 60,
+        "endChar": 47
+      },
+      "revId": "c0ae5dccde2b7ac5d978ab7f835b9b5b18dc09ba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d830e760_9260b1a4",
+        "filename": "system/rust/src/core/ffi/module.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-04-12T00:20:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d6abe236_f50333bf",
       "range": {
         "startLine": 60,
         "startChar": 42,
