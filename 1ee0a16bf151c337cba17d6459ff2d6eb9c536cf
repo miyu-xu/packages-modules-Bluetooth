@@ -1,6 +1,29 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "4ca39e47_d7e3401c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-04-12T21:09:03Z",
+      "side": 1,
+      "message": "Looking at the bug this seems to be about GAP/BOND/BON/BV-01-C PTS test.\n\nFrom the Test Suite document.\n\n```\nIf the IUT supports security mode 1, then the Lower Tester starts the encryption procedure with the\npreviously distributed LTK from the IUT.\nIf the IUT supports security mode 2, then the IUT sends signed data with the previously distributed\nCSRK.\n```\n\nI\u0027m not sure to understand why the PTS thinks we are in security mode 2 as if the stack encrypts the link it\u0027s in security mode 1.",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 28
+      },
+      "revId": "1ee0a16bf151c337cba17d6459ff2d6eb9c536cf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "085a0798_4ad92a8e",
