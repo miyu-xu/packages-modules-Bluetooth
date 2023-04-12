@@ -233,6 +233,30 @@
       },
       "revId": "d8d5704d27173d747f62a98087b2757590160544",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ab9f4a8c_62f7266d",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 1688,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-04-12T12:49:20Z",
+      "side": 1,
+      "message": "Since you do it from withing BT stack you might be actually safe here.\nIf it was regular app, and BluetoothAdapter instance changes i.e. due to crash or BT restart, your instance would be invalid, and calling methods on it would cause crash.\n\nBut you are inside BT stack, so if we crash, or get disabled, your Service will be down too.\n\nIn general using PendingIntent based API is recommended, you can then just cancel pending intent to stop scan, without worrying about the BluetoothLeScanner instance.",
+      "parentUuid": "06e8cbcc_73118d96",
+      "range": {
+        "startLine": 1688,
+        "startChar": 12,
+        "endLine": 1688,
+        "endChar": 32
+      },
+      "revId": "d8d5704d27173d747f62a98087b2757590160544",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
