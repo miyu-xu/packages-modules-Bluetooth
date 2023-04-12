@@ -18,6 +18,23 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7aa5c736_51a01cd6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2023-04-12T07:16:19Z",
+      "side": 1,
+      "message": "Hi, I think this can be abandoned, as an alternative solution which uses mutual exclusion at unicast client dump level was merged.",
+      "revId": "54820e17eeaca463efd9383302fb4828e970a566",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "67768248_498a422d",
