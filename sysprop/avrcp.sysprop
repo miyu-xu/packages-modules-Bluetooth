@@ -7,5 +7,6 @@ prop {
     scope: Internal
     access: Readonly
     prop_name: "bluetooth.avrcp.absolute_volume.enabled"
+    # default_value: "true"
 }
 

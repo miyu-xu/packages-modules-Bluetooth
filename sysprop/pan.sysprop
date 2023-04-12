@@ -7,4 +7,5 @@ prop {
     scope: Internal
     access: Readonly
     prop_name: "bluetooth.pan.nap.enabled"
+    # default_value: "true"
 }
