@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a4ad1c76_04b45023",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 41
+      },
+      "lineNbr": 438,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-04-12T00:29:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c56c3c55_61114e79",
+      "range": {
+        "startLine": 438,
+        "startChar": 0,
+        "endLine": 438,
+        "endChar": 66
+      },
+      "revId": "0e743e00ecc624b791604c0c4a102e5dc4d2c28e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c20be039_eddfee89",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cf751bb0_c531b252",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 41
+      },
+      "lineNbr": 529,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-04-12T00:29:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c20be039_eddfee89",
+      "range": {
+        "startLine": 529,
+        "startChar": 0,
+        "endLine": 529,
+        "endChar": 43
+      },
+      "revId": "0e743e00ecc624b791604c0c4a102e5dc4d2c28e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "baad50a8_562927a4",
@@ -60,6 +108,30 @@
       "writtenOn": "2023-04-11T20:51:42Z",
       "side": 1,
       "message": "use Objects.requireNonNull() to auto throw NPE so that we can tell the difference between null and empty",
+      "range": {
+        "startLine": 792,
+        "startChar": 8,
+        "endLine": 794,
+        "endChar": 9
+      },
+      "revId": "0e743e00ecc624b791604c0c4a102e5dc4d2c28e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a5b72ddd_7a9126cb",
+        "filename": "android/app/src/com/android/bluetooth/btservice/storage/DatabaseManager.java",
+        "patchSetId": 41
+      },
+      "lineNbr": 794,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-04-12T00:29:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "baad50a8_562927a4",
       "range": {
         "startLine": 792,
         "startChar": 8,

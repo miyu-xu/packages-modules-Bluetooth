@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "05ce56ae_3ab77cb2",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 42
+      },
+      "lineNbr": 4991,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-04-12T00:29:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c4790f1e_58ec39dd",
+      "range": {
+        "startLine": 4986,
+        "startChar": 0,
+        "endLine": 4991,
+        "endChar": 62
+      },
+      "revId": "b249bc79f47a5a1c83ec7bb2954de37ed02dc996",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9a1c6045_73b7ac9d",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9bd054ef_fd7a2790",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 42
+      },
+      "lineNbr": 5026,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-04-12T00:29:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a1c6045_73b7ac9d",
+      "range": {
+        "startLine": 5018,
+        "startChar": 0,
+        "endLine": 5026,
+        "endChar": 9
+      },
+      "revId": "b249bc79f47a5a1c83ec7bb2954de37ed02dc996",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9f10916c_3a3c45b4",
@@ -60,6 +108,30 @@
       "writtenOn": "2023-04-12T00:18:55Z",
       "side": 1,
       "message": "you want to make sure the send part is in the same critical section as the notify part",
+      "range": {
+        "startLine": 5033,
+        "startChar": 1,
+        "endLine": 5039,
+        "endChar": 90
+      },
+      "revId": "b249bc79f47a5a1c83ec7bb2954de37ed02dc996",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3cd115ed_81d1d67e",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 42
+      },
+      "lineNbr": 5039,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-04-12T00:29:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9f10916c_3a3c45b4",
       "range": {
         "startLine": 5033,
         "startChar": 1,
