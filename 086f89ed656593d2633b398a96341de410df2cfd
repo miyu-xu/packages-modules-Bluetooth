@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "da3f4561_b9db49f7",
+        "filename": "service/java/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 324,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2023-04-12T18:43:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fdf98109_8b850aa4",
+      "range": {
+        "startLine": 324,
+        "startChar": 16,
+        "endLine": 324,
+        "endChar": 41
+      },
+      "revId": "086f89ed656593d2633b398a96341de410df2cfd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "43c8e914_5b4caf1b",
@@ -61,6 +85,30 @@
       "side": 1,
       "message": "Yes there is, actually when I try to run this command `adb shell dumpsys activity service com.afwsamples.testdpc set-user-restriction no_bluetooth true` to change device policy, this function is triggered 1 time for each user. \n\nFor avoid toggling Bluetooth when policy change for non-active user, I guess we should check either user `UserManager#isUserForeground()`, `UserManager#isUserVisible()` or `UserManager#isUserRunning()` depending what we want. What do you think?",
       "parentUuid": "43c8e914_5b4caf1b",
+      "range": {
+        "startLine": 335,
+        "startChar": 12,
+        "endLine": 335,
+        "endChar": 26
+      },
+      "revId": "086f89ed656593d2633b398a96341de410df2cfd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7ed0099c_786cec27",
+        "filename": "service/java/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 335,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2023-04-12T18:43:33Z",
+      "side": 1,
+      "message": "Acutally we have to toggle Bluetooth for all users when system user received it (by definition in here: https://source.corp.google.com/android-internal/frameworks/base/core/java/android/os/UserManager.java;l\u003d579?q\u003dDISALLOW_BLUETOOTH\n\nDone",
+      "parentUuid": "cd246136_5ab234c9",
       "range": {
         "startLine": 335,
         "startChar": 12,
