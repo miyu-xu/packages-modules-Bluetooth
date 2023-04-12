@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f72cb751_c4870990",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-04-12T08:08:35Z",
+      "side": 1,
+      "message": "This won\u0027t work until BTM_StartInqiry is rewritten in GD",
+      "revId": "6f79568c4b14480384543460ba57a65ae779a995",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
