@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "02f5b041_c0df65cb",
+        "filename": "android/pandora/server/src/com/android/pandora/Asha.kt",
+        "patchSetId": 16
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1937985
+      },
+      "writtenOn": "2023-04-12T01:12:42Z",
+      "side": 1,
+      "message": "nit: reformat the file using ktfmt",
+      "range": {
+        "startLine": 81,
+        "startChar": 8,
+        "endLine": 81,
+        "endChar": 71
+      },
+      "revId": "305251e463b1bb4d203941b6ffaf72f0d4d023db",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b1efa4df_52b6e541",
+        "filename": "android/pandora/test/asha_test.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1937985
+      },
+      "writtenOn": "2023-04-12T01:12:42Z",
+      "side": 1,
+      "message": "Unused import, could you run `avatar format` and `avatar lint` ?",
+      "range": {
+        "startLine": 20,
+        "startChar": 7,
+        "endLine": 20,
+        "endChar": 11
+      },
+      "revId": "305251e463b1bb4d203941b6ffaf72f0d4d023db",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d2a8471d_37c6715b",
+        "filename": "android/pandora/test/asha_test.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 536,
+      "author": {
+        "id": 1937985
+      },
+      "writtenOn": "2023-04-12T01:12:42Z",
+      "side": 1,
+      "message": "I suggest to either:\n- remove all listener (start, le_psm_out, ..) with correct `try finally` blocks\n- not remove any since we factory reset between tests, which is completely fine\n\nSame for other tests",
+      "range": {
+        "startLine": 536,
+        "startChar": 8,
+        "endLine": 536,
+        "endChar": 68
+      },
+      "revId": "305251e463b1bb4d203941b6ffaf72f0d4d023db",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
