@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c8ba8534_65a60a8b",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 497,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-04-12T12:40:58Z",
+      "side": 1,
+      "message": "no, we just want to start, when first device is added.",
+      "parentUuid": "9eda36ec_3bca57f9",
+      "range": {
+        "startLine": 497,
+        "startChar": 42,
+        "endLine": 497,
+        "endChar": 43
+      },
+      "revId": "d8d5704d27173d747f62a98087b2757590160544",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "141af5cc_db31b43a",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-04-12T12:36:02Z",
       "side": 1,
       "message": "Add a comment explaining native will handle scan results.",
+      "range": {
+        "startLine": 1140,
+        "startChar": 11,
+        "endLine": 1140,
+        "endChar": 32
+      },
+      "revId": "d8d5704d27173d747f62a98087b2757590160544",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a9652984_42fd70f3",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 1140,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-04-12T12:40:58Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "141af5cc_db31b43a",
       "range": {
         "startLine": 1140,
         "startChar": 11,
@@ -87,6 +135,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "264338c3_c0270e72",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 1679,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-04-12T12:40:58Z",
+      "side": 1,
+      "message": "it is removed in line 359.",
+      "parentUuid": "59fbb914_7aa731aa",
+      "revId": "d8d5704d27173d747f62a98087b2757590160544",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "123258b1_7554bdea",
@@ -104,6 +170,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0f33e47f_d5229642",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 1686,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-04-12T12:40:58Z",
+      "side": 1,
+      "message": "I will check in the callback then. Idea is that this is called when bt is on",
+      "parentUuid": "123258b1_7554bdea",
+      "revId": "d8d5704d27173d747f62a98087b2757590160544",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "639808e0_cca4e863",
@@ -117,6 +201,30 @@
       "writtenOn": "2023-04-12T12:36:02Z",
       "side": 1,
       "message": "return value from getBluetoothLeScanner is not something you want to cache.",
+      "range": {
+        "startLine": 1688,
+        "startChar": 12,
+        "endLine": 1688,
+        "endChar": 32
+      },
+      "revId": "d8d5704d27173d747f62a98087b2757590160544",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "06e8cbcc_73118d96",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 1688,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-04-12T12:40:58Z",
+      "side": 1,
+      "message": "could you elaborate why?",
+      "parentUuid": "639808e0_cca4e863",
       "range": {
         "startLine": 1688,
         "startChar": 12,
