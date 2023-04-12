@@ -16,6 +16,24 @@
       "message": "Do you want to add a check here to only resume if we have some bonded LE Audio devices?\n\nOtherwise there is a race where we startScan() -\u003e stopScan() -\u003e get onScanFailed() -\u003e startScan(), if the scan fails before the stop scan request is processed.",
       "revId": "db8e1306e20135cef1d7d864dfd0868cb2a63cb6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a786e5dc_c6c417ae",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 1166,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-04-12T20:59:39Z",
+      "side": 1,
+      "message": "Or the check could belong in startAudioServersBackgroundScan",
+      "parentUuid": "1ec53754_82e93929",
+      "revId": "db8e1306e20135cef1d7d864dfd0868cb2a63cb6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
