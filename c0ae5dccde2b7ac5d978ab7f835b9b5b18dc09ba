@@ -72,6 +72,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "290990a5_f8d9e2fc",
+        "filename": "system/btif/src/stack_manager.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 355,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-04-12T00:25:54Z",
+      "side": 1,
+      "message": "\\_()_/  Sorry about that...",
+      "parentUuid": "9dcb718f_9c86d031",
+      "range": {
+        "startLine": 355,
+        "startChar": 2,
+        "endLine": 355,
+        "endChar": 13
+      },
+      "revId": "c0ae5dccde2b7ac5d978ab7f835b9b5b18dc09ba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d6abe236_f50333bf",
