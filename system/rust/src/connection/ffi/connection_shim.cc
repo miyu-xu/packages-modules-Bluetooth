@@ -23,6 +23,7 @@
 #include "hci/address_with_type.h"
 #include "hci/hci_packets.h"
 #include "main/shim/entry.h"
+#include "stack/include/btu.h"  // do_in_main_thread
 #ifndef TARGET_FLOSS
 #include "src/connection/ffi.rs.h"
 #endif
@@ -31,6 +32,9 @@
 
 extern const tBLE_BD_ADDR convert_to_address_with_type(
     const RawAddress& bd_addr, const tBTM_SEC_DEV_REC* p_dev_rec);
+
+extern tBTM_SEC_DEV_REC* btm_ble_resolve_random_addr(
+    const RawAddress& random_bda);
 
 namespace bluetooth {
 namespace connection {
@@ -134,6 +138,34 @@ void LeAclManagerShim::CancelLeConnect(core::AddressWithType address) const {
 void LeAclManagerShim::RegisterRustCallbacks(
     BoxedLeAclManagerCallbackShim callbacks) {
   pimpl_->RegisterRustCallbacks(std::move(callbacks));
+}
+#endif
+
+AddressResolverShim::AddressResolverShim() = default;
+AddressResolverShim::~AddressResolverShim() = default;
+
+#ifndef TARGET_FLOSS
+void AddressResolverShim::ResolveAddress(
+    core::AddressWithType address, ResolveAddressCallback& on_resolved) const {
+  do_in_main_thread(
+      FROM_HERE,
+      base::BindOnce(
+          [](core::AddressWithType original_address,
+             ResolveAddressCallback* on_resolved) {
+            if (original_address.address_type == core::AddressType::Public) {
+              on_resolved->Invoke(original_address);
+              return;
+            }
+            auto* p_dev_rec =
+                btm_ble_resolve_random_addr(original_address.address);
+            if (p_dev_rec == nullptr || !p_dev_rec->is_device_type_has_ble()) {
+              on_resolved->Invoke(original_address);
+              return;
+            }
+            on_resolved->Invoke(
+                core::ToRustAddress(p_dev_rec->ble.identity_address_with_type));
+          },
+          address, base::Unretained(&on_resolved)));
 }
 #endif
 
