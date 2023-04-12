@@ -23,6 +23,7 @@ cxxbridge_libheader("cxxlibheader") {
 static_library("core_rs") {
   sources = [
     "src/core/ffi/module.cc",
+    "src/connection/ffi/connection_shim.cc",
     "src/gatt/ffi/gatt_shim.cc",
   ]
 
