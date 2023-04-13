@@ -2,28 +2,38 @@
 
 use std::fmt::Debug;
 
-use cxx::UniquePtr;
+use async_trait::async_trait;
+use cxx::{SharedPtr, UniquePtr};
 pub use inner::*;
 use log::warn;
 use tokio::{
-    sync::mpsc::{unbounded_channel, UnboundedSender},
+    sync::{mpsc::{unbounded_channel, UnboundedSender}},
     task::spawn_local,
 };
 
-use crate::{core::address::AddressWithType, do_in_rust_thread};
+use crate::{
+    core::{address::AddressWithType, Callback},
+    do_in_rust_thread,
+};
 
 use super::{
     attempt_manager::ConnectionMode,
-    le_manager::{ErrorCode, InactiveLeAclManager, LeAclManager, LeAclManagerConnectionCallbacks},
+    le_manager::{
+        AddressResolver, CanonicalAddress, ErrorCode, InactiveLeAclManager, LeAclManager,
+        LeAclManagerConnectionCallbacks,
+    },
     ConnectionManagerClient, LeConnection,
 };
 
 unsafe impl Send for LeAclManagerShim {}
+unsafe impl Send for AddressResolverShim {}
+unsafe impl Sync for AddressResolverShim {}
 
 const _: () = {
     const fn enforce_requirements()
     where
         Box<LeAclManagerCallbackShim>: Send,
+        &'static mut ResolveAddressCallback: Send,
     {
     }
 
@@ -36,6 +46,7 @@ const _: () = {
 #[allow(missing_docs)]
 mod inner {
     impl UniquePtr<LeAclManagerShim> {}
+    impl SharedPtr<AddressResolverShim> {}
 
     #[namespace = "bluetooth::core"]
     extern "C++" {
@@ -67,6 +78,32 @@ mod inner {
 
     #[namespace = "bluetooth::connection"]
     extern "Rust" {
+        type ResolveAddressCallback;
+
+        #[cxx_name = "Invoke"]
+        fn invoke(&mut self, address: AddressWithType);
+    }
+
+    #[namespace = "bluetooth::connection"]
+    unsafe extern "C++" {
+        include!("src/connection/ffi/connection_shim.h");
+
+        /// This lets us resolve RPAs to an identity address, using the security database
+        type AddressResolverShim;
+
+        /// Resolve an address into "canonical form", that can be passed to the create/cancel
+        /// callbacks. The exact means of resolution is implementation-defined (i.e. it could
+        /// be the identity address, or the pseudo-address, or anything else)
+        #[cxx_name = "ResolveAddress"]
+        fn resolve_address(
+            &self,
+            address: AddressWithType,
+            on_resolved: &mut ResolveAddressCallback,
+        );
+    }
+
+    #[namespace = "bluetooth::connection"]
+    extern "Rust" {
         type LeAclManagerCallbackShim;
         #[cxx_name = "OnLeConnectSuccess"]
         fn on_le_connect_success(&self, address: AddressWithType);
@@ -74,6 +111,8 @@ mod inner {
         fn on_le_connect_fail(&self, address: AddressWithType, status: u8);
         #[cxx_name = "OnLeDisconnection"]
         fn on_disconnect(&self, address: AddressWithType);
+        #[cxx_name = "OnResolvingListChange"]
+        fn on_resolving_list_change(&self);
     }
 
     #[namespace = "bluetooth::connection"]
@@ -117,6 +156,12 @@ impl LeAclManagerCallbackShim {
             callback.on_disconnect(address);
         }));
     }
+
+    fn on_resolving_list_change(&self) {
+        let _ = self.0.send(Box::new(move |callback| {
+            callback.on_resolving_list_change();
+        }));
+    }
 }
 
 impl InactiveLeAclManager for LeAclManagerImpl {
@@ -139,6 +184,8 @@ impl InactiveLeAclManager for LeAclManagerImpl {
     }
 }
 
+type ResolveAddressCallback = Callback<AddressWithType>;
+
 impl LeAclManager for LeAclManagerImpl {
     fn add_to_direct_list(&self, address: AddressWithType) {
         self.0.create_le_connection(address, /* is_direct= */ true)
@@ -159,63 +206,96 @@ impl Debug for LeAclManagerImpl {
     }
 }
 
+/// Implementation of AddressResolver wrapping the corresponding C++ methods
+#[derive(Clone)]
+pub struct AddressResolverImpl(pub SharedPtr<AddressResolverShim>);
+
+#[async_trait(?Send)]
+impl AddressResolver for AddressResolverImpl {
+    async fn resolve_address(&self, _address: AddressWithType) -> CanonicalAddress {
+        let (tx, rx) = oneshot::channel();
+        self.0.resolve_address(address, &mut tx.into());
+        CanonicalAddress::new(rx.await.unwrap())
+    }
+}
+
+impl Debug for AddressResolverImpl {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        f.debug_tuple("AddressResolverImpl").finish()
+    }
+}
+
 /// Registers all connection-manager callbacks into C++ dependencies
 pub fn register_callbacks() {
     RegisterRustApis(
         |client, address| {
             let client = ConnectionManagerClient::GattClient(client);
             do_in_rust_thread(move |modules| {
-                let result =
-                    modules.connection_manager.as_ref().start_direct_connection(client, address);
-                if let Err(err) = result {
-                    warn!("Failed to start direct connection from {client:?} to {address:?} ({err:?})")
-                }
+                let connection_manager = modules.connection_manager.clone();
+                spawn_local(async move {
+                    let result = connection_manager.start_direct_connection(client, address).await;
+                    if let Err(err) = result {
+                        warn!("Failed to start direct connection from {client:?} to {address:?} ({err:?})")
+                    }
+                });
             });
         },
         |client, address| {
             let client = ConnectionManagerClient::GattClient(client);
             do_in_rust_thread(move |modules| {
-                let result = modules.connection_manager.cancel_connection(
-                    client,
-                    address,
-                    ConnectionMode::Direct,
-                );
-                if let Err(err) = result {
-                    warn!("Failed to cancel direct connection from {client:?} to {address:?} ({err:?})")
-                }
+                let connection_manager = modules.connection_manager.clone();
+                spawn_local(async move {
+                    let result = connection_manager
+                        .cancel_connection(client, address, ConnectionMode::Direct)
+                        .await;
+                    if let Err(err) = result {
+                        warn!("Failed to cancel direct connection from {client:?} to {address:?} ({err:?})")
+                    }
+                });
             })
         },
         |client, address| {
             let client = ConnectionManagerClient::GattClient(client);
             do_in_rust_thread(move |modules| {
-                let result = modules.connection_manager.add_background_connection(client, address);
-                if let Err(err) = result {
-                    warn!("Failed to add background connection from {client:?} to {address:?} ({err:?})")
-                }
+                let connection_manager = modules.connection_manager.clone();
+                spawn_local(async move {
+                    let result =
+                        connection_manager.add_background_connection(client, address).await;
+                    if let Err(err) = result {
+                        warn!("Failed to add background connection from {client:?} to {address:?} ({err:?})")
+                    }
+                });
             })
         },
         |client, address| {
             let client = ConnectionManagerClient::GattClient(client);
             do_in_rust_thread(move |modules| {
-                let result = modules.connection_manager.cancel_connection(
-                    client,
-                    address,
-                    ConnectionMode::Background,
-                );
-                if let Err(err) = result {
-                    warn!("Failed to remove background connection from {client:?} to {address:?} ({err:?})")
-                }
+                let connection_manager = modules.connection_manager.clone();
+                spawn_local(async move {
+                    let result = connection_manager
+                        .cancel_connection(client, address, ConnectionMode::Background)
+                        .await;
+                    if let Err(err) = result {
+                        warn!("Failed to remove background connection from {client:?} to {address:?} ({err:?})")
+                    }
+                });
             })
         },
         |client| {
             let client = ConnectionManagerClient::GattClient(client);
             do_in_rust_thread(move |modules| {
-                modules.connection_manager.remove_client(client);
+                let connection_manager = modules.connection_manager.clone();
+                spawn_local(async move {
+                    connection_manager.remove_client(client).await;
+                });
             })
         },
         |address| {
             do_in_rust_thread(move |modules| {
-                modules.connection_manager.cancel_unconditionally(address);
+                let connection_manager = modules.connection_manager.clone();
+                spawn_local(async move {
+                    connection_manager.cancel_unconditionally(address).await;
+                });
             })
         },
     )
