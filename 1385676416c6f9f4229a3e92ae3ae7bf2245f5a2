@@ -69,6 +69,24 @@
       "parentUuid": "784860a8_1885d49b",
       "revId": "1385676416c6f9f4229a3e92ae3ae7bf2245f5a2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4098b522_b32798c6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 18
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929395
+      },
+      "writtenOn": "2023-04-13T21:35:06Z",
+      "side": 1,
+      "message": "Thanks William, that makes sense to me. From my point of view both solutions (the one implemented by this CL and the one you propose) are fine and address the original issue.\nI\u0027ll let Bidhya comment on what solutions were discussed and the motivations for choosing this solution",
+      "parentUuid": "73c45e47_03895dd2",
+      "revId": "1385676416c6f9f4229a3e92ae3ae7bf2245f5a2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
