@@ -1,7 +1,6 @@
 little_endian_packets
 
 custom_field Address : 48 "hci/"
-custom_field ClassOfDevice : 24 "hci/"
 
 enum Enable : 8 {
   DISABLED = 0x00,
@@ -1815,8 +1814,8 @@ packet SetEventFilterInquiryResultAllDevices : SetEventFilterInquiryResult (filt
 }
 
 packet SetEventFilterInquiryResultClassOfDevice : SetEventFilterInquiryResult (filter_condition_type = CLASS_OF_DEVICE) {
-  class_of_device : ClassOfDevice,
-  class_of_device_mask : ClassOfDevice,
+  class_of_device : 24,
+  class_of_device_mask : 24,
 }
 
 packet SetEventFilterInquiryResultAddress : SetEventFilterInquiryResult (filter_condition_type = ADDRESS) {
@@ -1839,8 +1838,8 @@ packet SetEventFilterConnectionSetupAllDevices : SetEventFilterConnectionSetup (
 }
 
 packet SetEventFilterConnectionSetupClassOfDevice : SetEventFilterConnectionSetup (filter_condition_type = CLASS_OF_DEVICE) {
-  class_of_device : ClassOfDevice,
-  class_of_device_mask : ClassOfDevice,
+  class_of_device : 24,
+  class_of_device_mask : 24,
   auto_accept_flag : AutoAcceptFlag,
 }
 
@@ -2092,11 +2091,11 @@ packet ReadClassOfDevice : DiscoveryCommand (op_code = READ_CLASS_OF_DEVICE) {
 
 packet ReadClassOfDeviceComplete : CommandComplete (command_op_code = READ_CLASS_OF_DEVICE) {
   status : ErrorCode,
-  class_of_device : ClassOfDevice,
+  class_of_device : 24,
 }
 
 packet WriteClassOfDevice : DiscoveryCommand (op_code = WRITE_CLASS_OF_DEVICE) {
-  class_of_device : ClassOfDevice,
+  class_of_device : 24,
 }
 
 packet WriteClassOfDeviceComplete : CommandComplete (command_op_code = WRITE_CLASS_OF_DEVICE) {
@@ -5285,7 +5284,7 @@ struct InquiryResponse {
   page_scan_repetition_mode : PageScanRepetitionMode,
   _reserved_ : 8,
   _reserved_ : 8,
-  class_of_device : ClassOfDevice,
+  class_of_device : 24,
   clock_offset : 15,
   _reserved_ : 1,
 }
@@ -5318,7 +5317,7 @@ enum ConnectionRequestLinkType : 8 {
 
 packet ConnectionRequest : Event (event_code = CONNECTION_REQUEST) {
   bd_addr : Address,
-  class_of_device : ClassOfDevice,
+  class_of_device : 24,
   link_type : ConnectionRequestLinkType,
 }
 
@@ -5522,7 +5521,7 @@ struct InquiryResponseWithRssi {
   address : Address,
   page_scan_repetition_mode : PageScanRepetitionMode,
   _reserved_ : 8,
-  class_of_device : ClassOfDevice,
+  class_of_device : 24,
   clock_offset : 15,
   _reserved_ : 1,
   rssi : 8,
@@ -5609,7 +5608,7 @@ packet ExtendedInquiryResult : Event (event_code = EXTENDED_INQUIRY_RESULT) {
   address : Address,
   page_scan_repetition_mode : PageScanRepetitionMode,
   _reserved_ : 8,
-  class_of_device : ClassOfDevice,
+  class_of_device : 24,
   clock_offset : 15,
   _reserved_ : 1,
   rssi : 8,
@@ -5625,7 +5624,7 @@ packet ExtendedInquiryResultRaw : Event (event_code = EXTENDED_INQUIRY_RESULT) {
   address : Address,
   page_scan_repetition_mode : PageScanRepetitionMode,
   _reserved_ : 8,
-  class_of_device : ClassOfDevice,
+  class_of_device : 24,
   clock_offset : 15,
   _reserved_ : 1,
   rssi : 8,
