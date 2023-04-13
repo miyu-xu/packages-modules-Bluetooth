@@ -71,6 +71,29 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "a3894093_b99d5894",
+        "filename": "system/bta/ag/bta_ag_sco.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 403,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2023-04-13T10:02:03Z",
+      "side": 1,
+      "message": "If `!DISABLE_SWB` but LC3 isn\u0027t supported by either side, I think we still need to try mSBC.",
+      "range": {
+        "startLine": 403,
+        "startChar": 1,
+        "endLine": 403,
+        "endChar": 5
+      },
+      "revId": "2b1cf8103baf7a4bc009abe47d511fc85e331543",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "50689f9e_12558fd5",
