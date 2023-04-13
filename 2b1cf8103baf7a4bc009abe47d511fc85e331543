@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a314c930_7e24f01f",
+        "filename": "system/bta/ag/bta_ag_sco.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2023-04-13T08:58:34Z",
+      "side": 1,
+      "message": "NIT: CVSD\"",
+      "range": {
+        "startLine": 217,
+        "startChar": 62,
+        "endLine": 217,
+        "endChar": 66
+      },
+      "revId": "2b1cf8103baf7a4bc009abe47d511fc85e331543",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "54aa2903_d7d2bd8b",
+        "filename": "system/bta/ag/bta_ag_sco.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2023-04-13T08:58:34Z",
+      "side": 1,
+      "message": "I think it\u0027s better to structure this in a more symmetric fashion. This looks like LC3T1 failing doesn\u0027t get to set `codec_fallback`.",
+      "range": {
+        "startLine": 231,
+        "startChar": 36,
+        "endLine": 231,
+        "endChar": 50
+      },
+      "revId": "2b1cf8103baf7a4bc009abe47d511fc85e331543",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "50689f9e_12558fd5",
+        "filename": "system/bta/ag/bta_ag_sco.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 498,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2023-04-13T08:58:34Z",
+      "side": 1,
+      "message": "IMO it\u0027s slightly inaccurate to use this type as it is \"HFP peer supported codec masks\", while the UUIDs are 1,2,3, unlike the BTM types that served as bitmasks.\n\nBTM values and UUID values have been used interchangeably just because the first two codecs happened to coincide but it\u0027s error-prone to do that now.",
+      "range": {
+        "startLine": 498,
+        "startChar": 2,
+        "endLine": 498,
+        "endChar": 20
+      },
+      "revId": "2b1cf8103baf7a4bc009abe47d511fc85e331543",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
