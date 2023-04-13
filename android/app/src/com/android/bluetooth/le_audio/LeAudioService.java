@@ -1137,10 +1137,21 @@ public class LeAudioService extends ProfileService {
             return false;
         }
 
-        if (DBG) {
-            Log.d(TAG, "isScannerNeeded: true");
+        for (Map.Entry<BluetoothDevice, LeAudioDeviceDescriptor> deviceEntry
+                        : mDeviceDescriptors.entrySet()) {
+            BluetoothDevice dev = deviceEntry.getKey();
+            if (!dev.isConnected()) {
+                if (DBG) {
+                    Log.d(TAG, "isScannerNeeded: true, device: " + dev.getAnonymizedAddress());
+                }
+                return true;
+            }
         }
-        return true;
+
+        if (DBG) {
+            Log.d(TAG, "isScannerNeeded: false, all devices connected.");
+        }
+        return false;
     }
 
     private class AudioServerScanCallback extends ScanCallback {
