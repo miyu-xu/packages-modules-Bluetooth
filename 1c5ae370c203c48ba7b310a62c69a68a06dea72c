@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "877e220c_0ba8d8e7",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-04-13T20:11:26Z",
+      "side": 1,
+      "message": "Please add a comment to mScanCallback indicating that its nullity corresponds to whether or not the scanner is running.\n\n(since `mAudioServersScanner` is nulled out only at the beginning, while `mScanCallback` is nulled out whenever scanning stops)",
+      "revId": "1c5ae370c203c48ba7b310a62c69a68a06dea72c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3ceef1e8_c4329975",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 1172,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-04-13T20:11:26Z",
+      "side": 1,
+      "message": "Would it be simpler to null out `mScanningCallback` here, and then remove the `retry` argument?",
+      "revId": "1c5ae370c203c48ba7b310a62c69a68a06dea72c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e5c70421_723f264c",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 2602,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-04-13T20:11:26Z",
+      "side": 1,
+      "message": "If you decide to keep the `retry` argument, please comment it like\n\n```\nstartXYZ(/* retry \u003d */ false)\n```",
+      "range": {
+        "startLine": 2602,
+        "startChar": 44,
+        "endLine": 2602,
+        "endChar": 49
+      },
+      "revId": "1c5ae370c203c48ba7b310a62c69a68a06dea72c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
