@@ -87,6 +87,24 @@
       "parentUuid": "73c45e47_03895dd2",
       "revId": "1385676416c6f9f4229a3e92ae3ae7bf2245f5a2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "095a0d0a_bcb493a4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 18
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929170
+      },
+      "writtenOn": "2023-04-13T21:44:04Z",
+      "side": 1,
+      "message": "1. The solution currently implemented removes a bonding for a device which is being paired again. The stack does not recognize the device, because it rotates its RPA. So we need to wait until we bond to find out the identity address.\n\n2. Correct me if I am wrong but what William is proposing is: Let the user remove the bonding and when doing so remove all the duplicate bonding for the device. I think this solution is a lot safer. But only thing is that the user needs to delete bond manually (which will delete all the duplicate bond)\n\nMarco, do you think solution 2 is fine for your use case?",
+      "parentUuid": "4098b522_b32798c6",
+      "revId": "1385676416c6f9f4229a3e92ae3ae7bf2245f5a2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
