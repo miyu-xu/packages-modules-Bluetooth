@@ -33,6 +33,24 @@
       "message": "lgtm, but I am not so much familiar with le device.\nDeleting the bond seems risky. Was there any QA testing performed ?\nWhat is the consequence from a bluetooth point of view of having / not having the bonding on random address ? Why do we store it at all ?\n\n\nInstead of deleting the bond the initial issue is about seeing the device multiple time in the UI. I would assume it is simpler to filter the bonded device and only display one device by identity address",
       "revId": "1385676416c6f9f4229a3e92ae3ae7bf2245f5a2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "784860a8_1885d49b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 18
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929395
+      },
+      "writtenOn": "2023-04-13T21:04:58Z",
+      "side": 1,
+      "message": "If we do as you proposed, does it mean the \"hidden\" devices (the ones bonded with different RPA/IRK) will remain in the database of bonded devices, without a way to be deleted by the user -- since the BT Settings UI would not show previously paired devices that match the identity address of the latest paired device?\n\nMy next question is: is there a limit of total bonded devices that the stack supports? If so, does that mean when this limit is reached we\u0027d only show 1 device in the list, although many are bonded and hidden, causing new devices to fail bonding (but user will only see 1 bonded device in the list)",
+      "parentUuid": "c2b47657_27044899",
+      "revId": "1385676416c6f9f4229a3e92ae3ae7bf2245f5a2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
