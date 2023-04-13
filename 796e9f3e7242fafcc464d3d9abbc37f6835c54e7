@@ -16,6 +16,29 @@
       "message": "Add `btif_av_src_sink_coexist_enabled` and `btif_active_av_is_connected` too to resolve build errors? Note that `btif_active_av_is_connected` isn\u0027t declared extern in btif_av.h",
       "revId": "796e9f3e7242fafcc464d3d9abbc37f6835c54e7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dbdc6a79_5458eefc",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 4000,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2023-04-13T20:25:46Z",
+      "side": 1,
+      "message": "This change is also required in packages/modules/Bluetooth/system/btif/include/btif_av.h.\n\nAlso can we not rename an existing interface but instead find a different name for the newly added `btif_av_is_connected`.",
+      "range": {
+        "startLine": 4000,
+        "startChar": 5,
+        "endLine": 4000,
+        "endChar": 32
+      },
+      "revId": "796e9f3e7242fafcc464d3d9abbc37f6835c54e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
