@@ -16,6 +16,23 @@
       "message": "Move to a +1 to wait for prebuilt",
       "revId": "1385676416c6f9f4229a3e92ae3ae7bf2245f5a2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c2b47657_27044899",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 18
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-04-13T20:58:55Z",
+      "side": 1,
+      "message": "lgtm, but I am not so much familiar with le device.\nDeleting the bond seems risky. Was there any QA testing performed ?\nWhat is the consequence from a bluetooth point of view of having / not having the bonding on random address ? Why do we store it at all ?\n\n\nInstead of deleting the bond the initial issue is about seeing the device multiple time in the UI. I would assume it is simpler to filter the bonded device and only display one device by identity address",
+      "revId": "1385676416c6f9f4229a3e92ae3ae7bf2245f5a2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
