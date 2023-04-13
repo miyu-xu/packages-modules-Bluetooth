@@ -20,7 +20,7 @@ use self::le_manager::{
 mod ffi;
 pub mod le_manager;
 
-pub use ffi::{LeAclManagerImpl, LeAclManagerShim};
+pub use ffi::{register_callbacks, LeAclManagerImpl, LeAclManagerShim};
 
 /// Possible errors returned when making a connection attempt
 #[derive(Debug)]
