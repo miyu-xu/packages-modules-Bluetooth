@@ -241,7 +241,6 @@ android_add_library(
       emulator/src/log.cc
       lib/crypto/crypto.cc
       lib/hci/address.cc
-      lib/hci/class_of_device.cc
       lib/hci/pcap_filter.cc
       model/controller/acl_connection.cc
       model/controller/acl_connection_handler.cc
