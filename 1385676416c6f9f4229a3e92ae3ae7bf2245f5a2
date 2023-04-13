@@ -105,6 +105,24 @@
       "parentUuid": "4098b522_b32798c6",
       "revId": "1385676416c6f9f4229a3e92ae3ae7bf2245f5a2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e7fe6947_66c818c6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 18
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929395
+      },
+      "writtenOn": "2023-04-13T21:50:39Z",
+      "side": 1,
+      "message": "I think William\u0027s proposal is as you summarized in the two bullet points above, but with the additional feature of showing in the UI only the last device (latest paired device) and hide from the UI any device that was previously paired with matching Identity Address.\n\nThis way, in the case a device (with different RPA/IRK) is paired multiple times, the user would see the new device replace the old device upon bonding completion. The old device would still be there in the database of paired devices, but now shown in the UI.\n\nThen when user manually \"forgets\" the device in the UI, all the other devices in the database with matching Identity Address will also be deleted at the same time.",
+      "parentUuid": "095a0d0a_bcb493a4",
+      "revId": "1385676416c6f9f4229a3e92ae3ae7bf2245f5a2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
