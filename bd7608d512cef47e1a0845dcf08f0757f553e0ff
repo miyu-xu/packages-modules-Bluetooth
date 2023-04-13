@@ -22,6 +22,30 @@
       },
       "revId": "bd7608d512cef47e1a0845dcf08f0757f553e0ff",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b2211f2f_1db7adec",
+        "filename": "system/gd/rust/linux/stack/src/dis.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-04-13T21:38:51Z",
+      "side": 1,
+      "message": "From commit message:\n```\nThis will eventually move out of Floss and into libbluetooth in the future.\n```\n\nAndroid should also be emitting this but gatt server isn\u0027t really multiplexed correctly in libbluetooth yet. There\u0027s a bit of work necessary before we get there but we need this to launch Floss.",
+      "parentUuid": "b901297b_b6457c14",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 52
+      },
+      "revId": "bd7608d512cef47e1a0845dcf08f0757f553e0ff",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
