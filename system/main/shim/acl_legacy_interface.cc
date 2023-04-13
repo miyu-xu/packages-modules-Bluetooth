@@ -25,6 +25,7 @@
 struct tBTM_ESCO_DATA;
 void gatt_notify_phy_updated(tGATT_STATUS status, uint16_t handle,
                              uint8_t tx_phy, uint8_t rx_phy);
+<<<<<<< HEAD   (13a420 Merge "Floss: enabling logger earlier")
 void gatt_notify_subrate_change(uint16_t handle, uint16_t subrate_factor,
                                 uint16_t latency, uint16_t cont_num,
                                 uint16_t timeout, uint8_t status);
@@ -41,6 +42,8 @@ static void on_le_subrate_change(uint16_t handle, uint16_t subrate_factor,
   gatt_notify_subrate_change(handle & 0x0FFF, subrate_factor, latency, cont_num,
                              timeout, status);
 }
+=======
+>>>>>>> BRANCH (88ba81 Merge cherrypicks of ['ag/20918628'] into tm-qpr1-release.)
 
 namespace bluetooth {
 namespace shim {
@@ -100,7 +103,10 @@ const acl_interface_t& GetAclInterface() {
       .link.le.on_read_remote_version_information_complete =
           btm_read_remote_version_complete,
       .link.le.on_phy_update = gatt_notify_phy_updated,
+<<<<<<< HEAD   (13a420 Merge "Floss: enabling logger earlier")
       .link.le.on_le_subrate_change = on_le_subrate_change,
+=======
+>>>>>>> BRANCH (88ba81 Merge cherrypicks of ['ag/20918628'] into tm-qpr1-release.)
   };
   return acl_interface;
 }

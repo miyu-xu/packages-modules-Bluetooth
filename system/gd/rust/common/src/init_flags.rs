@@ -334,6 +334,7 @@ init_flags!(
         gd_hal_snoop_logger_filtering = true,
         gd_l2cap,
         gd_link_policy,
+<<<<<<< HEAD   (13a420 Merge "Floss: enabling logger earlier")
         gd_remote_name_request,
         gd_rust,
         gd_security,
@@ -374,6 +375,11 @@ init_flags!(
         "INIT_logging_debug_disabled_for_tags" => parse_debug_logging_tag(_, _, false),
         "--hci" => parse_hci_adapter(_, _),
     }
+=======
+        irk_rotation,
+        pass_phy_update_callback
+    },
+>>>>>>> BRANCH (88ba81 Merge cherrypicks of ['ag/20918628'] into tm-qpr1-release.)
     dependencies: {
         always_use_private_gatt_for_debugging => private_gatt,
         private_gatt => rust_event_loop,

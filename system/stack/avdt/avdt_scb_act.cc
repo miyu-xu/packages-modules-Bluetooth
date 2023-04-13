@@ -261,7 +261,12 @@ void avdt_scb_hdl_pkt_no_frag(AvdtpScb* p_scb, tAVDT_SCB_EVT* p_data) {
     p += ex_len * 4;
   }
 
+<<<<<<< HEAD   (13a420 Merge "Floss: enabling logger earlier")
   if ((p - p_start) > len) {
+=======
+  if ((p - p_start) >= len) {
+    android_errorWriteLog(0x534e4554, "142546355");
+>>>>>>> BRANCH (88ba81 Merge cherrypicks of ['ag/20918628'] into tm-qpr1-release.)
     osi_free_and_reset((void**)&p_data->p_pkt);
     return;
   }
@@ -270,11 +275,11 @@ void avdt_scb_hdl_pkt_no_frag(AvdtpScb* p_scb, tAVDT_SCB_EVT* p_data) {
   /* adjust length for any padding at end of packet */
   if (o_p) {
     /* padding length in last byte of packet */
-    pad_len = *(p_start + len);
+    pad_len = *(p_start + len - 1);
   }
 
   /* do sanity check */
-  if (pad_len > (len - offset)) {
+  if (pad_len >= (len - offset)) {
     AVDT_TRACE_WARNING("Got bad media packet");
     osi_free_and_reset((void**)&p_data->p_pkt);
   }
