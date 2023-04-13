@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b901297b_b6457c14",
+        "filename": "system/gd/rust/linux/stack/src/dis.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-04-13T21:37:21Z",
+      "side": 1,
+      "message": "What is temporary in this implementation ? Is this because some callback are not handled (or are they unhandled on purpose)?",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 52
+      },
+      "revId": "bd7608d512cef47e1a0845dcf08f0757f553e0ff",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
