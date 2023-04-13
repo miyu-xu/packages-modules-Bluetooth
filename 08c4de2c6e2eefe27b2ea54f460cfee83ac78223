@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e7785159_30217cca",
+        "filename": "system/rust/Android.bp",
+        "patchSetId": 34
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-04-13T18:14:50Z",
+      "side": 1,
+      "message": "Please sort",
+      "range": {
+        "startLine": 117,
+        "startChar": 0,
+        "endLine": 117,
+        "endChar": 48
+      },
+      "revId": "08c4de2c6e2eefe27b2ea54f460cfee83ac78223",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "26260c09_ab474ea9",
+        "filename": "system/rust/Android.bp",
+        "patchSetId": 34
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-04-13T18:14:50Z",
+      "side": 1,
+      "message": "Why the empty line ?",
+      "revId": "08c4de2c6e2eefe27b2ea54f460cfee83ac78223",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2b282c39_be391f68",
+        "filename": "system/rust/Android.bp",
+        "patchSetId": 34
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-04-13T18:14:50Z",
+      "side": 1,
+      "message": "Please sort",
+      "range": {
+        "startLine": 174,
+        "startChar": 0,
+        "endLine": 174,
+        "endChar": 32
+      },
+      "revId": "08c4de2c6e2eefe27b2ea54f460cfee83ac78223",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "040750d1_5eff5ac9",
+        "filename": "system/rust/BUILD.gn",
+        "patchSetId": 34
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-04-13T18:14:50Z",
+      "side": 1,
+      "message": "please sort",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 26,
+        "endChar": 44
+      },
+      "revId": "08c4de2c6e2eefe27b2ea54f460cfee83ac78223",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
