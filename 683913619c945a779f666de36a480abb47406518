@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f540f37e_103fd603",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 37
+      },
+      "lineNbr": 960,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-04-13T07:44:24Z",
+      "side": 1,
+      "message": "This seems to be not related to this patch. SCO part should be separate patch and this is something else.\n\nAlso, for this preference, we already have information provided to Java layer about the available directions here:\n\nhttps://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/system/bta/le_audio/client.cc;l\u003d504?q\u003dle_audio%2Fclient.cc",
+      "revId": "683913619c945a779f666de36a480abb47406518",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
