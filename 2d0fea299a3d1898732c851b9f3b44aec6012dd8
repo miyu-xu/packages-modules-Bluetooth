@@ -46,6 +46,30 @@
       },
       "revId": "2d0fea299a3d1898732c851b9f3b44aec6012dd8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9a9977b3_d66b1603",
+        "filename": "android/app/src/com/android/bluetooth/hearingaid/HearingAidService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 744,
+      "author": {
+        "id": 1952952
+      },
+      "writtenOn": "2023-04-13T04:43:23Z",
+      "side": 1,
+      "message": "Calling HearingAidService.onStop() and \"receiving \"MSG_DEVICES_DEVICES_REMOVED\" to trigger onAudioDevicesRemoved\" in a short period of time can cause a timing issue that triggers a null pointer exception if onStop() is called first and sets mAudioManager to null.\n\nFor 1, they\u0027re running on the same thread, I think it should be fine for the race condition. Thanks for the reminding.\n\nFor 2, If another device is added afterwards, the callback will be registered again in the reportActiveDevice() function.",
+      "parentUuid": "a6886a52_6591eb55",
+      "range": {
+        "startLine": 741,
+        "startChar": 0,
+        "endLine": 744,
+        "endChar": 21
+      },
+      "revId": "2d0fea299a3d1898732c851b9f3b44aec6012dd8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
