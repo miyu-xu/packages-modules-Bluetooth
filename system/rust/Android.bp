@@ -38,6 +38,7 @@ rust_defaults {
         "libbitflags",
         "libbt_common",
         "libcxx",
+        "libfutures",
         "liblog_rust",
         "libscopeguard",
 
