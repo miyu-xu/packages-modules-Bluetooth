@@ -31,6 +31,7 @@ mod ffi {
         fn get_log_level_for_tag(tag: &str) -> i32;
         fn hfp_dynamic_version_is_enabled() -> bool;
         fn irk_rotation_is_enabled() -> bool;
+<<<<<<< HEAD   (13a420 Merge "Floss: enabling logger earlier")
         fn leaudio_targeted_announcement_reconnection_mode_is_enabled() -> bool;
         fn pass_phy_update_callback_is_enabled() -> bool;
         fn pbap_pse_dynamic_version_upgrade_is_enabled() -> bool;
@@ -46,6 +47,9 @@ mod ffi {
         fn set_min_encryption_is_enabled() -> bool;
         fn subrating_is_enabled() -> bool;
         fn trigger_advertising_callbacks_on_first_resume_after_pause_is_enabled() -> bool;
+=======
+        fn pass_phy_update_callback_is_enabled() -> bool;
+>>>>>>> BRANCH (88ba81 Merge cherrypicks of ['ag/20918628'] into tm-qpr1-release.)
     }
 }
 
