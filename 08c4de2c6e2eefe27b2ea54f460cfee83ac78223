@@ -151,6 +151,30 @@
       },
       "revId": "08c4de2c6e2eefe27b2ea54f460cfee83ac78223",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "17c79a93_2ea6b774",
+        "filename": "system/rust/BUILD.gn",
+        "patchSetId": 34
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-04-13T20:14:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "040750d1_5eff5ac9",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 26,
+        "endChar": 44
+      },
+      "revId": "08c4de2c6e2eefe27b2ea54f460cfee83ac78223",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
