@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "854b8200_6d7338a8",
+        "filename": "system/rust/Android.bp",
+        "patchSetId": 34
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-04-13T20:14:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e7785159_30217cca",
+      "range": {
+        "startLine": 117,
+        "startChar": 0,
+        "endLine": 117,
+        "endChar": 48
+      },
+      "revId": "08c4de2c6e2eefe27b2ea54f460cfee83ac78223",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "26260c09_ab474ea9",
@@ -41,6 +65,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "29a5fc18_bee08e69",
+        "filename": "system/rust/Android.bp",
+        "patchSetId": 34
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-04-13T20:14:33Z",
+      "side": 1,
+      "message": "I want to separate out \"internal\" dependencies (other libraries from the stack) from \"external\" dependencies, just to make it more understandable.",
+      "parentUuid": "26260c09_ab474ea9",
+      "revId": "08c4de2c6e2eefe27b2ea54f460cfee83ac78223",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2b282c39_be391f68",
@@ -54,6 +96,30 @@
       "writtenOn": "2023-04-13T18:14:50Z",
       "side": 1,
       "message": "Please sort",
+      "range": {
+        "startLine": 174,
+        "startChar": 0,
+        "endLine": 174,
+        "endChar": 32
+      },
+      "revId": "08c4de2c6e2eefe27b2ea54f460cfee83ac78223",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a5069300_1d62b66f",
+        "filename": "system/rust/Android.bp",
+        "patchSetId": 34
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-04-13T20:14:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2b282c39_be391f68",
       "range": {
         "startLine": 174,
         "startChar": 0,
