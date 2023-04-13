@@ -37,6 +37,10 @@ constexpr bool kDefaultVendorCapabilitiesEnabled = true;
 static const std::string kPropertyVendorCapabilitiesEnabled =
     "bluetooth.core.le.vendor_capabilities.enabled";
 
+constexpr bool kDefaultErroneousDataReportingEnabled = false;
+static const std::string kPropertyErroneousDataReportingEnabled =
+    "bluetooth.sco.erroneous_data_reporting.enabled";
+
 using os::Handler;
 
 struct Controller::impl {
@@ -179,11 +183,20 @@ struct Controller::impl {
           handler->BindOnceOn(this, &Controller::impl::le_set_host_feature_handler));
     }
 
-    if (is_supported(OpCode::READ_DEFAULT_ERRONEOUS_DATA_REPORTING)) {
-      hci_->EnqueueCommand(
-          ReadDefaultErroneousDataReportingBuilder::Create(),
-          handler->BindOnceOn(
-              this, &Controller::impl::read_default_erroneous_data_reporting_handler));
+    // Erroneous Data Reporting should not be enabled unless it is enabled in
+    // sysprops. This feature should be disabled by default on Android devices
+    // because some devices, such as mokey_go32, may claim to support it but do
+    // not actually do so (b/277589118).
+    if (os::GetSystemPropertyBool(
+            kPropertyErroneousDataReportingEnabled, kDefaultErroneousDataReportingEnabled)) {
+      if (is_supported(OpCode::READ_DEFAULT_ERRONEOUS_DATA_REPORTING)) {
+        hci_->EnqueueCommand(
+            ReadDefaultErroneousDataReportingBuilder::Create(),
+            handler->BindOnceOn(
+                this, &Controller::impl::read_default_erroneous_data_reporting_handler));
+      }
+    } else {
+      LOG_INFO("READ_DEFAULT_ERRONEOUS_DATA_REPORTING not enabled, defaulting to false");
     }
 
     // Skip vendor capabilities check if configured.

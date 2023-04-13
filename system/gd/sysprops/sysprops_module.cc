@@ -100,6 +100,7 @@ void SyspropsModule::parse_config(std::string file_path) {
       "bluetooth.core.le.vendor_capabilities.enabled",
       // SCO
       "bluetooth.sco.disable_enhanced_connection",
+      "bluetooth.sco.erroneous_data_reporting.enabled",
       // Profile
       "persist.bluetooth.avrcpcontrolversion",
   };
