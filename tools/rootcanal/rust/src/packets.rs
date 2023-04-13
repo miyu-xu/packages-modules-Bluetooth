@@ -53,43 +53,6 @@ pub mod hci {
         }
     }
 
-    #[derive(Clone, Eq, Copy, PartialEq, Hash, Ord, PartialOrd, Debug)]
-    pub struct ClassOfDevice {
-        pub bytes: [u8; 3],
-    }
-
-    impl fmt::Display for ClassOfDevice {
-        fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-            write!(
-                f,
-                "{:03X}-{:01X}-{:02X}",
-                ((self.bytes[2] as u16) << 4) | ((self.bytes[1] as u16) >> 4),
-                self.bytes[1] & 0x0F,
-                self.bytes[0]
-            )
-        }
-    }
-
-    #[derive(Debug, Clone)]
-    pub struct InvalidClassOfDeviceError;
-
-    impl TryFrom<&[u8]> for ClassOfDevice {
-        type Error = InvalidClassOfDeviceError;
-
-        fn try_from(slice: &[u8]) -> std::result::Result<Self, Self::Error> {
-            match <[u8; 3]>::try_from(slice) {
-                Ok(bytes) => Ok(Self { bytes }),
-                Err(_) => Err(InvalidClassOfDeviceError),
-            }
-        }
-    }
-
-    impl From<ClassOfDevice> for [u8; 3] {
-        fn from(cod: ClassOfDevice) -> [u8; 3] {
-            cod.bytes
-        }
-    }
-
     include!(concat!(env!("OUT_DIR"), "/hci_packets.rs"));
 
     pub fn command_remote_device_address(command: &CommandPacket) -> Option<Address> {
