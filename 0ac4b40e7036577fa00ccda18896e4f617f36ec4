@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3e53f9e5_71b483be",
+        "filename": "system/bta/gatt/bta_gattc_act.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 1929170
+      },
+      "writtenOn": "2023-04-13T15:52:06Z",
+      "side": 1,
+      "message": "When if condition is met, we will perform double deregister?? Should be in else branch??",
+      "revId": "0ac4b40e7036577fa00ccda18896e4f617f36ec4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
