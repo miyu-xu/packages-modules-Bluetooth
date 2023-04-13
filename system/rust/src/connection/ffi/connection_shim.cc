@@ -23,11 +23,11 @@
 #include "hci/address_with_type.h"
 #include "hci/hci_packets.h"
 #include "main/shim/entry.h"
+#ifndef TARGET_FLOSS
 #include "src/connection/ffi.rs.h"
+#endif
+#include "src/core/ffi/types.h"
 #include "stack/btm/btm_dev.h"
-
-extern const tBLE_BD_ADDR convert_to_address_with_type(
-    const RawAddress& bd_addr, const tBTM_SEC_DEV_REC* p_dev_rec);
 
 namespace bluetooth {
 namespace connection {
@@ -64,13 +64,6 @@ hci::AddressWithType ToCppAddress(core::AddressWithType address) {
 core::AddressWithType ToRustAddress(hci::AddressWithType address) {
   return core::AddressWithType{address.GetAddress().address,
                                (core::AddressType)address.GetAddressType()};
-}
-core::AddressWithType ToRustAddress(tBLE_BD_ADDR address) {
-  auto array = address.bda.ToArray();
-  std::reverse(std::begin(array), std::end(array));
-  return core::AddressWithType{array, address.IsPublic()
-                                          ? core::AddressType::Public
-                                          : core::AddressType::Random};
 }
 
 }  // namespace
@@ -128,6 +121,36 @@ void LeAclManagerShim::RegisterRustCallbacks(
   pimpl_->RegisterRustCallbacks(std::move(callbacks));
 }
 #endif
+
+namespace {
+
+std::optional<RustConnectionManager> connection_manager;
+
+}  // namespace
+
+RustConnectionManager& GetConnectionManager() {
+  return connection_manager.value();
+}
+
+void RegisterRustApis(
+    ::rust::Fn<void(uint8_t client_id, core::AddressWithType address)>
+        start_direct_connection,
+    ::rust::Fn<void(uint8_t client_id, core::AddressWithType address)>
+        stop_direct_connection,
+    ::rust::Fn<void(uint8_t client_id, core::AddressWithType address)>
+        add_background_connection,
+    ::rust::Fn<void(uint8_t client_id, core::AddressWithType address)>
+        remove_background_connection,
+    ::rust::Fn<void(uint8_t client_id)> remove_client,
+    ::rust::Fn<void(core::AddressWithType address)>
+        stop_all_connections_to_device) {
+  connection_manager = {start_direct_connection,
+                        stop_direct_connection,
+                        add_background_connection,
+                        remove_background_connection,
+                        remove_client,
+                        stop_all_connections_to_device};
+}
 
 }  // namespace connection
 }  // namespace bluetooth
