@@ -37,6 +37,10 @@ constexpr bool kDefaultVendorCapabilitiesEnabled = true;
 static const std::string kPropertyVendorCapabilitiesEnabled =
     "bluetooth.core.le.vendor_capabilities.enabled";
 
+constexpr bool kDefaultErroneousDataReportingEnabled = false;
+static const std::string kPropertyErroneousDataReportingEnabled =
+    "bluetooth.sco.erroneous_data_reporting.enabled";
+
 using os::Handler;
 
 struct Controller::impl {
@@ -179,11 +183,20 @@ struct Controller::impl {
           handler->BindOnceOn(this, &Controller::impl::le_set_host_feature_handler));
     }
 
-    if (is_supported(OpCode::READ_DEFAULT_ERRONEOUS_DATA_REPORTING)) {
-      hci_->EnqueueCommand(
-          ReadDefaultErroneousDataReportingBuilder::Create(),
-          handler->BindOnceOn(
-              this, &Controller::impl::read_default_erroneous_data_reporting_handler));
+    // Erroneous Data Reporting should not be enabled unless it is enabled in
+    // sysprops. This feature should be disabled by default on Android devices
+    // because some devices, such as mokey_go32, may claim to support it but do
+    // not actually do so (b/277589118).
+    if (os::GetSystemPropertyBool(
+            kPropertyErroneousDataReportingEnabled, kDefaultErroneousDataReportingEnabled)) {
+      if (is_supported(OpCode::READ_DEFAULT_ERRONEOUS_DATA_REPORTING)) {
+        hci_->EnqueueCommand(
+            ReadDefaultErroneousDataReportingBuilder::Create(),
+            handler->BindOnceOn(
+                this, &Controller::impl::read_default_erroneous_data_reporting_handler));
+      }
+    } else {
+      LOG_INFO("READ_DEFAULT_ERRONEOUS_DATA_REPORTING not enabled, defaulting to false");
     }
 
     // Skip vendor capabilities check if configured.
@@ -393,10 +406,16 @@ struct Controller::impl {
     auto complete_view = ReadDefaultErroneousDataReportingCompleteView::Create(view);
     ASSERT(complete_view.IsValid());
     ErrorCode status = complete_view.GetStatus();
-    ASSERT_LOG(
-        status == ErrorCode::SUCCESS, "Status 0x%02hhx, %s", status, ErrorCodeText(status).c_str());
+
+    // This is an optional feature to enhance audio quality. It is okay
+    // to just return if the status is not SUCCESS.
+    if (status != ErrorCode::SUCCESS) {
+      LOG_ERROR("Unexpected status: %s", ErrorCodeText(status).c_str());
+      return;
+    }
+
     Enable erroneous_data_reporting = complete_view.GetErroneousDataReporting();
-    LOG_INFO("read default erroneous data reporting: %hhu", erroneous_data_reporting);
+    LOG_INFO("erroneous data reporting: %hhu", erroneous_data_reporting);
 
     // Enable Erroneous Data Reporting if it is disabled and the write command is supported.
     if (erroneous_data_reporting == Enable::DISABLED &&
@@ -414,8 +433,13 @@ struct Controller::impl {
     auto complete_view = WriteDefaultErroneousDataReportingCompleteView::Create(view);
     ASSERT(complete_view.IsValid());
     ErrorCode status = complete_view.GetStatus();
-    ASSERT_LOG(
-        status == ErrorCode::SUCCESS, "Status 0x%02hhx, %s", status, ErrorCodeText(status).c_str());
+
+    // This is an optional feature to enhance audio quality. It is okay
+    // to just return if the status is not SUCCESS.
+    if (status != ErrorCode::SUCCESS) {
+      LOG_ERROR("Unexpected status: %s", ErrorCodeText(status).c_str());
+      return;
+    }
   }
 
   void le_read_local_supported_features_handler(CommandCompleteView view) {
