@@ -9,19 +9,22 @@ pub mod uuid;
 use std::{pin::Pin, rc::Rc, thread};
 
 use bt_common::init_flags::rust_event_loop_is_enabled;
-use cxx::UniquePtr;
+use cxx::{SharedPtr, UniquePtr};
 
 use crate::{
-    connection::{LeAclManagerImpl, LeAclManagerShim},
+    connection::{AddressResolverImpl, AddressResolverShim, LeAclManagerImpl, LeAclManagerShim},
     gatt::ffi::{AttTransportImpl, GattCallbacksImpl},
     GlobalModuleRegistry, MainThreadTxMessage, GLOBAL_MODULE_REGISTRY,
 };
 
 use self::ffi::{future_ready, Future, GattServerCallbacks};
 
+pub use ffi::{Callback, invoke_callback};
+
 fn start(
     gatt_server_callbacks: UniquePtr<GattServerCallbacks>,
     le_acl_manager: UniquePtr<LeAclManagerShim>,
+    address_resolver: SharedPtr<AddressResolverShim>,
     on_started: Pin<&'static mut Future>,
 ) {
     if rust_event_loop_is_enabled() {
@@ -30,6 +33,7 @@ fn start(
                 Rc::new(GattCallbacksImpl(gatt_server_callbacks)),
                 Rc::new(AttTransportImpl()),
                 LeAclManagerImpl(le_acl_manager),
+                AddressResolverImpl(address_resolver),
                 || {
                     future_ready(on_started);
                 },
