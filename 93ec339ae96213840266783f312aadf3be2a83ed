@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0c20bd03_8fe26cb4",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 1148,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-04-13T16:09:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5f84272b_7e42c12c",
+      "range": {
+        "startLine": 1144,
+        "startChar": 12,
+        "endLine": 1148,
+        "endChar": 14
+      },
+      "revId": "93ec339ae96213840266783f312aadf3be2a83ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "45d80292_6c29f0f8",
@@ -133,6 +157,30 @@
       "side": 1,
       "message": "OR you make a filter that is impossible to be matched so that only the native filter is working\n\nAlso, in native, you did not filter for bonded MAC address, this would wake up the phone with ANY Targeted Announcements. \n\nShould we also filter for MAC addresses in native or here?",
       "parentUuid": "82c15c7d_79680b77",
+      "range": {
+        "startLine": 1710,
+        "startChar": 7,
+        "endLine": 1714,
+        "endChar": 31
+      },
+      "revId": "93ec339ae96213840266783f312aadf3be2a83ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "66e66ba2_b7b2174b",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 1714,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-04-13T16:09:11Z",
+      "side": 1,
+      "message": "as agreed, we do here a filter which will not match and will be just a ON/OFF trigger for the APCF filtering started by native.\n\nAlso, native will handle more sophisticated filtering for the bonded devices as a separate CL.",
+      "parentUuid": "6d11ac1f_d19b1aa8",
       "range": {
         "startLine": 1710,
         "startChar": 7,
