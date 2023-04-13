@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b81d983e_ddc4687e",
+        "filename": "system/rust/src/connection/ffi.rs",
+        "patchSetId": 35
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-04-13T20:30:38Z",
+      "side": 1,
+      "message": "What is that doing ?",
+      "range": {
+        "startLine": 21,
+        "startChar": 1,
+        "endLine": 29,
+        "endChar": 2
+      },
+      "revId": "75f0de283745d14d648cb14b510b79bd20a5fc1d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
