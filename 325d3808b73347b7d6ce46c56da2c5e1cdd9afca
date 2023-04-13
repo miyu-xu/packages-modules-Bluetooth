@@ -22,6 +22,30 @@
       },
       "revId": "325d3808b73347b7d6ce46c56da2c5e1cdd9afca",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "95197575_d0fc3b92",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-04-13T21:19:05Z",
+      "side": 1,
+      "message": "Artifact of crappy clipboard management on Linux. Will fix.",
+      "parentUuid": "093edbac_01da7fa6",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 14
+      },
+      "revId": "325d3808b73347b7d6ce46c56da2c5e1cdd9afca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
