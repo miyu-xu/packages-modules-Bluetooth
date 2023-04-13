@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "157bf3c4_4a997dd9",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 817,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2023-04-13T20:23:29Z",
+      "side": 1,
+      "message": "Add `btif_av_src_sink_coexist_enabled` and `btif_active_av_is_connected` too to resolve build errors? Note that `btif_active_av_is_connected` isn\u0027t declared extern in btif_av.h",
+      "revId": "796e9f3e7242fafcc464d3d9abbc37f6835c54e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
