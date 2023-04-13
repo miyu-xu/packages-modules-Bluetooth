@@ -47,6 +47,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "ba891369_a115679f",
+        "filename": "system/bta/ag/bta_ag_sco.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 1958755
+      },
+      "writtenOn": "2023-04-13T09:26:06Z",
+      "side": 1,
+      "message": "Agree with you, I did not notice this case, will update.",
+      "parentUuid": "54aa2903_d7d2bd8b",
+      "range": {
+        "startLine": 231,
+        "startChar": 36,
+        "endLine": 231,
+        "endChar": 50
+      },
+      "revId": "2b1cf8103baf7a4bc009abe47d511fc85e331543",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "50689f9e_12558fd5",
