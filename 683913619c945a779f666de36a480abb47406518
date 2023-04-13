@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "739d82a2_5838ae9e",
+        "filename": "system/bta/ag/bta_ag_act.cc",
+        "patchSetId": 37
+      },
+      "lineNbr": 768,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-04-13T07:48:14Z",
+      "side": 1,
+      "message": "we don\u0027t want to open SCO from native dispite dual mode configuration.\nIt is also a problem when we have two different devices BR/EDR and LE Audio as some controllers have a problem creating SCO and CIS at the same time.\n\nThis is why we want to have control on that in the Java. For this reason we have aosp/2411577",
+      "revId": "683913619c945a779f666de36a480abb47406518",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f540f37e_103fd603",
         "filename": "system/bta/le_audio/client.cc",
         "patchSetId": 37
