@@ -1,5 +1,23 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "65d4db38_e3785118",
+        "filename": "framework/tests/bumble/Android.bp",
+        "patchSetId": 38
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1002751
+      },
+      "writtenOn": "2023-04-13T05:18:06Z",
+      "side": 1,
+      "message": "This broke the git_master_throttled com_android_runtime_host-linux_bionic build: https://android-build.googleplex.com/builds/submitted/9930710/com_android_runtime_host-linux_bionic/latest/view/logs/build_error.log\n\nThis works in most builds because the `data` property will work as long as the target module has only a single variant.  The linux_bionic build has a host glibc and a host bionic variant, and the `data` property doesn\u0027t know which of those to pick.\n\nIncluding a host binary into a device test isn\u0027t a pattern I\u0027ve seen before, and isn\u0027t something that Soong has support for.  I\u0027d suggest filing a go/soong-bug.\n\nAnother way to structure this that would match the way most Android testing works is to have a host test that sets up the server and then installs and runs the device tests.",
+      "revId": "0fed2ae88794c52461f00cb474159ba44bd39ede",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
