@@ -16,6 +16,24 @@
       "message": "Could we instead properly handle the `Status: Unknown HCI Command` when sending the `READ_DEFAULT_ERRONEOUS_DATA_REPORTING` instead of introducing a new sysprop ?",
       "revId": "d7d00bc3fd80ed89a836c17fa1a7ab4f3e0f8e5f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8286e0dd_102daed3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-04-13T18:58:09Z",
+      "side": 1,
+      "message": "Another way would be put a workaround inside `mokey` Bluetooth HAL to fixup the `Read Local Supported Commands Command Complete`",
+      "parentUuid": "54e366b4_f64e74f0",
+      "revId": "d7d00bc3fd80ed89a836c17fa1a7ab4f3e0f8e5f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
