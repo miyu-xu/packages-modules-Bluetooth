@@ -26,6 +26,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "a2d06959_c53c3223",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2023-04-13T05:01:01Z",
+      "side": 1,
+      "message": "Good point. \n\nI not sure about this part, but I guess they use the distributed key to decide which security mode we used. Since we distribute the encKey and signKey by default , they think we are in security mode 2. \n\nWhen the gatt link disconnect and reconnect, we immediately send a security request. However, they think we are in mode 2 and won\u0027t reply it.\n\nAfter search and update to the latest PTS Release (8.3 -\u003e 8.4) the test passed without the patch. it seems that they will response to our security request in this case and the test can pass without the patch now. Thanks.",
+      "parentUuid": "4ca39e47_d7e3401c",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 28
+      },
+      "revId": "1ee0a16bf151c337cba17d6459ff2d6eb9c536cf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "085a0798_4ad92a8e",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 1
