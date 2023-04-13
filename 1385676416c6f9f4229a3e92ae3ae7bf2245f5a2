@@ -51,6 +51,24 @@
       "parentUuid": "c2b47657_27044899",
       "revId": "1385676416c6f9f4229a3e92ae3ae7bf2245f5a2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "73c45e47_03895dd2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 18
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-04-13T21:28:32Z",
+      "side": 1,
+      "message": "My thought are naive on this topic and a LE Expert should definitively take position, but here are my guess:\n\u003e does it mean the \"hidden\" devices will remain in the database of bonded devices\n\nI would say if the user unbond a device, we should unbond all device that match it\u0027s identity address. (and not silently unbound some when we bound other device)\n\n\u003e is there a limit of total bonded devices that the stack supports?\n\nI don\u0027t think so. We are just storing the key + some metadata in a file on disk and in a database.",
+      "parentUuid": "784860a8_1885d49b",
+      "revId": "1385676416c6f9f4229a3e92ae3ae7bf2245f5a2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
