@@ -34,6 +34,24 @@
       "parentUuid": "54e366b4_f64e74f0",
       "revId": "d7d00bc3fd80ed89a836c17fa1a7ab4f3e0f8e5f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2b892a47_1d817429",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1963846
+      },
+      "writtenOn": "2023-04-14T05:55:57Z",
+      "side": 1,
+      "message": "Done. The new patch set handles the unsuccessful command status properly.\n\nAndroid devices are less likely to use this feature because the audio stream is handled directly by the controller, rather than by the software stack as on ChromeOS devices. Therefore, it is sensible to disable this feature on Android devices to reduce interference.",
+      "parentUuid": "8286e0dd_102daed3",
+      "revId": "d7d00bc3fd80ed89a836c17fa1a7ab4f3e0f8e5f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
