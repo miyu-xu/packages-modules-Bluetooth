@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b48fb4b9_aa77fda9",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 817,
+      "author": {
+        "id": 1984885
+      },
+      "writtenOn": "2023-04-14T08:25:17Z",
+      "side": 1,
+      "message": "I have modify here and build pass",
+      "parentUuid": "157bf3c4_4a997dd9",
+      "revId": "796e9f3e7242fafcc464d3d9abbc37f6835c54e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "dbdc6a79_5458eefc",
         "filename": "system/btif/src/btif_av.cc",
         "patchSetId": 13
@@ -31,6 +49,30 @@
       "writtenOn": "2023-04-13T20:25:46Z",
       "side": 1,
       "message": "This change is also required in packages/modules/Bluetooth/system/btif/include/btif_av.h.\n\nAlso can we not rename an existing interface but instead find a different name for the newly added `btif_av_is_connected`.",
+      "range": {
+        "startLine": 4000,
+        "startChar": 5,
+        "endLine": 4000,
+        "endChar": 32
+      },
+      "revId": "796e9f3e7242fafcc464d3d9abbc37f6835c54e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d043264a_f17ae2db",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 4000,
+      "author": {
+        "id": 1984885
+      },
+      "writtenOn": "2023-04-14T08:25:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dbdc6a79_5458eefc",
       "range": {
         "startLine": 4000,
         "startChar": 5,

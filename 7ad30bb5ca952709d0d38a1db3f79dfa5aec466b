@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4b516b0f_d335f613",
+        "filename": "system/btif/avrcp/avrcp_service.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1984885
+      },
+      "writtenOn": "2023-04-14T08:25:17Z",
+      "side": 1,
+      "message": "There is indentation in newest patchset",
+      "parentUuid": "8c640eb6_c449561c",
+      "range": {
+        "startLine": 109,
+        "startChar": 2,
+        "endLine": 109,
+        "endChar": 8
+      },
+      "revId": "7ad30bb5ca952709d0d38a1db3f79dfa5aec466b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "dde3e05d_f11ade9a",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3fd8f410_4e57b250",
+        "filename": "system/btif/avrcp/avrcp_service.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 576,
+      "author": {
+        "id": 1984885
+      },
+      "writtenOn": "2023-04-14T08:25:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dde3e05d_f11ade9a",
+      "range": {
+        "startLine": 576,
+        "startChar": 23,
+        "endLine": 576,
+        "endChar": 25
+      },
+      "revId": "7ad30bb5ca952709d0d38a1db3f79dfa5aec466b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fb0bb8d4_ad682dc2",
@@ -60,6 +108,30 @@
       "writtenOn": "2023-04-13T20:25:46Z",
       "side": 1,
       "message": "nit: rm",
+      "range": {
+        "startLine": 79,
+        "startChar": 28,
+        "endLine": 79,
+        "endChar": 31
+      },
+      "revId": "7ad30bb5ca952709d0d38a1db3f79dfa5aec466b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f1a305ab_4b75bb1a",
+        "filename": "system/btif/avrcp/avrcp_service.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1984885
+      },
+      "writtenOn": "2023-04-14T08:25:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fb0bb8d4_ad682dc2",
       "range": {
         "startLine": 79,
         "startChar": 28,
