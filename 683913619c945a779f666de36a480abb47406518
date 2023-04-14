@@ -20,6 +20,52 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "89b13ea0_b192402b",
+        "filename": "system/bta/ag/bta_ag_act.cc",
+        "patchSetId": 37
+      },
+      "lineNbr": 784,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-04-14T01:07:58Z",
+      "side": 1,
+      "message": "Maybe for not dual mode case, we keep the `data` as the parameter?",
+      "range": {
+        "startLine": 784,
+        "startChar": 31,
+        "endLine": 784,
+        "endChar": 51
+      },
+      "revId": "683913619c945a779f666de36a480abb47406518",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e3265cac_dada44cc",
+        "filename": "system/bta/ag/bta_ag_cmd.cc",
+        "patchSetId": 37
+      },
+      "lineNbr": 1438,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-04-14T01:07:58Z",
+      "side": 1,
+      "message": "nit: I feel those condition check code are similar, the difference is the event\u0027s name in logging. Maybe we can extract those lines into helper method with event name [bta_ag_result_text](https://source.corp.google.com/h/android/platform/superproject/+/refs/heads/master:packages/modules/Bluetooth/system/bta/include/bta_ag_api.h;l\u003d146;drc\u003d7346c436e5a11ce08f6a80dcfeb8ef941ca30176)",
+      "range": {
+        "startLine": 1422,
+        "startChar": 8,
+        "endLine": 1438,
+        "endChar": 9
+      },
+      "revId": "683913619c945a779f666de36a480abb47406518",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f540f37e_103fd603",
         "filename": "system/bta/le_audio/client.cc",
         "patchSetId": 37
