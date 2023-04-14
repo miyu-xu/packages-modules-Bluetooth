@@ -93,6 +93,30 @@
       },
       "revId": "e4ea75129708b629e3476000ea656ff4be41e565",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "42d2c5e2_4d7c18f1",
+        "filename": "system/bta/csis/csis_client.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1906,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-04-14T19:05:20Z",
+      "side": 1,
+      "message": "We start encryption in onGattConnected - no matter if encryption is enabled or not. \n\nActually this code could be simplified with just calling onEncrypted() - but  this is improvement for future.",
+      "parentUuid": "de1d18de_2a07f983",
+      "range": {
+        "startLine": 1901,
+        "startChar": 4,
+        "endLine": 1906,
+        "endChar": 5
+      },
+      "revId": "e4ea75129708b629e3476000ea656ff4be41e565",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
