@@ -21,12 +21,15 @@ import android.bluetooth.BluetoothHearingAid
 import android.bluetooth.BluetoothManager
 import android.bluetooth.BluetoothProfile
 import android.content.Context
+import android.content.Intent
+import android.content.IntentFilter
 import android.media.AudioDeviceInfo
 import android.media.AudioManager
 import android.media.AudioRouting
 import android.media.AudioTrack
 import android.os.Handler
 import android.os.Looper
+import android.provider.MediaStore.Audio
 import android.util.Log
 import io.grpc.Status
 import io.grpc.stub.StreamObserver
@@ -36,14 +39,20 @@ import java.util.concurrent.TimeUnit
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.cancel
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.filter
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.shareIn
 import pandora.asha.AshaGrpc.AshaImplBase
 import pandora.asha.AshaProto.*
-
 
 @kotlinx.coroutines.ExperimentalCoroutinesApi
 class Asha(val context: Context) : AshaImplBase(), Closeable {
   private val TAG = "PandoraAsha"
   private val scope: CoroutineScope
+  private val flow: Flow<Intent>
 
   private val bluetoothManager =
     context.getSystemService(Context.BLUETOOTH_SERVICE) as BluetoothManager
@@ -57,6 +66,9 @@ class Asha(val context: Context) : AshaImplBase(), Closeable {
   init {
     // Init the CoroutineScope
     scope = CoroutineScope(Dispatchers.Default)
+    val intentFilter = IntentFilter()
+    intentFilter.addAction(BluetoothHearingAid.ACTION_CONNECTION_STATE_CHANGED)
+    flow = intentFlow(context, intentFilter).shareIn(scope, SharingStarted.Eagerly)
   }
 
   override fun close() {
@@ -64,11 +76,20 @@ class Asha(val context: Context) : AshaImplBase(), Closeable {
     scope.cancel()
   }
 
-  override fun start(request: StartRequest,responseObserver: StreamObserver<StartResponse>) {
-    grpcUnary<StartResponse>(scope, responseObserver){
+  override fun start(request: StartRequest, responseObserver: StreamObserver<StartResponse>) {
+    grpcUnary<StartResponse>(scope, responseObserver) {
       Log.i(TAG, "play")
 
-      val latch = CountDownLatch(1) // Signal the count down latch
+      val device = request.connection.toBluetoothDevice(bluetoothAdapter)
+      if (bluetoothHearingAid.getConnectionState(device) != BluetoothProfile.STATE_CONNECTED) {
+        Log.i(TAG, "wait for connecting to bluetoothHearingAid profile")
+        flow
+          .filter { it.getAction() == BluetoothHearingAid.ACTION_CONNECTION_STATE_CHANGED }
+          .filter { it.getBluetoothDeviceExtra() == device }
+          .map { it.getIntExtra(BluetoothProfile.EXTRA_STATE, BluetoothAdapter.ERROR) }
+          .filter { it == BluetoothProfile.STATE_CONNECTED }
+          .first()
+      }
 
       if (audioTrack == null) {
         audioTrack = buildAudioTrack()
@@ -76,12 +97,25 @@ class Asha(val context: Context) : AshaImplBase(), Closeable {
       }
       audioTrack!!.play()
 
-      val audioRoutingListener = AudioRouting.OnRoutingChangedListener {
-        Log.i(TAG,"OnRoutingChangedListener triggered")
-        if(it?.routedDevice?.type == AudioDeviceInfo.TYPE_HEARING_AID){
-          latch.countDown()
+      val latch = CountDownLatch(1) // Signal the count down latch
+
+      val audioRoutingListener =
+        AudioRouting.OnRoutingChangedListener {
+          Log.i(TAG, "OnRoutingChangedListener triggered, routed device type: ${it?.routedDevice?.type}")
+          if (it?.routedDevice?.type == AudioDeviceInfo.TYPE_HEARING_AID) {
+            latch.countDown()
+          }else{
+            val devices = audioManager.getDevices(AudioManager.GET_DEVICES_OUTPUTS)
+            for(device in devices){
+              Log.i(TAG,"available device in listener:${device.type}")
+              if(device.type ==AudioDeviceInfo.TYPE_HEARING_AID){
+                val result = it?.setPreferredDevice(device)
+                Log.i(TAG,"setPreferredDevice result:$result")
+                latch.countDown()
+              }
+            }
+          }
         }
-      }
 
       // wait for audio routing
       if (audioTrack!!.routedDevice?.type != AudioDeviceInfo.TYPE_HEARING_AID) {
@@ -89,31 +123,50 @@ class Asha(val context: Context) : AshaImplBase(), Closeable {
           audioRoutingListener,
           Handler(Looper.getMainLooper())
         )
-        latch.await(10, TimeUnit.SECONDS) // Wait until the count down latch has been signaled
+
+        var devices = audioManager.getDevices(AudioManager.GET_DEVICES_OUTPUTS)
+        for(device in devices){
+          Log.i(TAG,"available device before wait for listener:${device.type}")
+        }
+
+        val routeBeforeTimeOut = latch.await(10, TimeUnit.SECONDS) // Wait until the count down latch has been signaled
+
+        devices = audioManager.getDevices(AudioManager.GET_DEVICES_OUTPUTS)
+        for(device in devices){
+          Log.i(TAG,"available device after wait for listener:${device.type}")
+          if(device.type ==AudioDeviceInfo.TYPE_HEARING_AID){
+            audioTrack!!.setPreferredDevice(device)
+          }
+        }
+
+        Log.i(TAG,"routeBeforeTimeOut:$routeBeforeTimeOut")
+        Log.i(TAG,"preferred device ${audioTrack?.preferredDevice?.type}")
+        Log.i(TAG,"routed device ${audioTrack?.routedDevice?.type}")
+
+
         audioTrack!!.removeOnRoutingChangedListener(audioRoutingListener)
       }
 
       val minVolume = audioManager.getStreamMinVolume(AudioManager.STREAM_MUSIC)
-      audioManager.setStreamVolume(
-        AudioManager.STREAM_MUSIC,
-        minVolume,
-        AudioManager.FLAG_SHOW_UI
-      )
+      audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, minVolume, AudioManager.FLAG_SHOW_UI)
 
       StartResponse.getDefaultInstance()
     }
   }
 
   override fun stop(request: StopRequest, responseObserver: StreamObserver<StopResponse>) {
-    grpcUnary<StopResponse>(scope, responseObserver){
+    grpcUnary<StopResponse>(scope, responseObserver) {
       Log.i(TAG, "stop")
       audioTrack!!.pause()
+      audioTrack!!.flush()
 
       StopResponse.getDefaultInstance()
     }
   }
 
-  override fun playbackAudio(responseObserver: StreamObserver<PlaybackAudioResponse>):StreamObserver<PlaybackAudioRequest>{
+  override fun playbackAudio(
+    responseObserver: StreamObserver<PlaybackAudioResponse>
+  ): StreamObserver<PlaybackAudioRequest> {
     Log.i(TAG, "playbackAudio")
     if (audioTrack!!.getPlayState() != AudioTrack.PLAYSTATE_PLAYING) {
       responseObserver.onError(
@@ -140,10 +193,10 @@ class Asha(val context: Context) : AshaImplBase(), Closeable {
     return object : StreamObserver<PlaybackAudioRequest> {
       override fun onNext(request: PlaybackAudioRequest) {
         val data = request.data.toByteArray()
-        Log.d(TAG,"audio track writes data=$data")
+        Log.d(TAG, "audio track writes data=$data")
         val written = synchronized(audioTrack!!) { audioTrack!!.write(data, 0, data.size) }
         if (written != data.size) {
-          Log.e(TAG,"AudioTrack write failed")
+          Log.e(TAG, "AudioTrack write failed")
           responseObserver.onError(
             Status.UNKNOWN.withDescription("AudioTrack write failed").asException()
           )

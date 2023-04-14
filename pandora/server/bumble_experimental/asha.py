@@ -18,30 +18,25 @@ import logging
 import struct
 
 from avatar.bumble_server import utils
-from bumble.device import Connection as BumbleConnection, Device
-from google.protobuf.empty_pb2 import Empty  # pytype: disable=pyi-error
-from pandora_experimental.asha_grpc_aio import AshaServicer
-from pandora_experimental.asha_pb2 import (
-    CaptureAudioRequest,
-    CaptureAudioResponse,
-    RegisterRequest,
-)
-from typing import AsyncGenerator, List, Optional
-
 from bumble.core import AdvertisingData
-from bumble.device import Device, Connection
+from bumble.device import Connection, Connection as BumbleConnection, Device
 from bumble.gatt import (
-    GATT_ASHA_SERVICE,
-    GATT_ASHA_READ_ONLY_PROPERTIES_CHARACTERISTIC,
     GATT_ASHA_AUDIO_CONTROL_POINT_CHARACTERISTIC,
     GATT_ASHA_AUDIO_STATUS_CHARACTERISTIC,
-    GATT_ASHA_VOLUME_CHARACTERISTIC,
     GATT_ASHA_LE_PSM_OUT_CHARACTERISTIC,
-    TemplateService,
+    GATT_ASHA_READ_ONLY_PROPERTIES_CHARACTERISTIC,
+    GATT_ASHA_SERVICE,
+    GATT_ASHA_VOLUME_CHARACTERISTIC,
     Characteristic,
     CharacteristicValue,
+    TemplateService,
 )
+from bumble.l2cap import Channel
 from bumble.utils import AsyncRunner
+from google.protobuf.empty_pb2 import Empty  # pytype: disable=pyi-error
+from pandora_experimental.asha_grpc_aio import AshaServicer
+from pandora_experimental.asha_pb2 import CaptureAudioRequest, CaptureAudioResponse, RegisterRequest
+from typing import AsyncGenerator, List, Optional
 
 
 class AshaGattService(TemplateService):
@@ -56,22 +51,23 @@ class AshaGattService(TemplateService):
     SUPPORTED_CODEC_ID = [0x02, 0x01]  # Codec IDs [G.722 at 16 kHz]
     RENDER_DELAY = [00, 00]
 
-    def __init__(self, capability: int, hisyncid: List[int], device: Device, psm=0):
+    def __init__(self, capability: int, hisyncid: List[int], device: Device, psm: int = 0) -> None:
         self.hisyncid = hisyncid
         self.capability = capability  # Device Capabilities [Left, Monaural]
         self.device = device
         self.audio_out_data = b""
-        self.psm = psm  # a non-zero psm is mainly for testing purpose
+        self.psm: int = psm  # a non-zero psm is mainly for testing purpose
 
         logger = logging.getLogger(__name__)
 
         # Handler for volume control
-        def on_volume_write(connection, value):
+        def on_volume_write(connection: Connection, value: bytes) -> None:
             logger.info(f"--- VOLUME Write:{value[0]}")
             self.emit("volume", connection, value[0])
 
         # Handler for audio control commands
-        def on_audio_control_point_write(connection: Connection, value):
+        def on_audio_control_point_write(connection: Connection, value: bytes) -> None:
+            logger.info(f"type {type(value)}")
             logger.info(f"--- AUDIO CONTROL POINT Write:{value.hex()}")
             opcode = value[0]
             if opcode == AshaGattService.OPCODE_START:
@@ -101,13 +97,9 @@ class AshaGattService(TemplateService):
 
             # OPCODE_STATUS does not need audio status point update
             if opcode != AshaGattService.OPCODE_STATUS:
-                AsyncRunner.spawn(
-                    device.notify_subscribers(
-                        self.audio_status_characteristic, force=True
-                    )
-                )
+                AsyncRunner.spawn(device.notify_subscribers(self.audio_status_characteristic, force=True))  # type: ignore[no-untyped-call]
 
-        def on_read_only_properties_read(connection):
+        def on_read_only_properties_read(connection: Connection) -> bytes:
             value = (
                 bytes(
                     [
@@ -124,7 +116,7 @@ class AshaGattService(TemplateService):
             self.emit("read_only_properties", connection, value)
             return value
 
-        def on_le_psm_out_read(connection):
+        def on_le_psm_out_read(connection: Connection) -> bytes:
             self.emit("le_psm_out", connection, self.psm)
             return struct.pack("<H", self.psm)
 
@@ -132,14 +124,14 @@ class AshaGattService(TemplateService):
             GATT_ASHA_READ_ONLY_PROPERTIES_CHARACTERISTIC,
             Characteristic.READ,
             Characteristic.READABLE,
-            CharacteristicValue(read=on_read_only_properties_read),
+            CharacteristicValue(read=on_read_only_properties_read),  # type: ignore[no-untyped-call]
         )
 
         self.audio_control_point_characteristic = Characteristic(
             GATT_ASHA_AUDIO_CONTROL_POINT_CHARACTERISTIC,
             Characteristic.WRITE | Characteristic.WRITE_WITHOUT_RESPONSE,
             Characteristic.WRITEABLE,
-            CharacteristicValue(write=on_audio_control_point_write),
+            CharacteristicValue(write=on_audio_control_point_write),  # type: ignore[no-untyped-call]
         )
         self.audio_status_characteristic = Characteristic(
             GATT_ASHA_AUDIO_STATUS_CHARACTERISTIC,
@@ -151,26 +143,26 @@ class AshaGattService(TemplateService):
             GATT_ASHA_VOLUME_CHARACTERISTIC,
             Characteristic.WRITE_WITHOUT_RESPONSE,
             Characteristic.WRITEABLE,
-            CharacteristicValue(write=on_volume_write),
+            CharacteristicValue(write=on_volume_write),  # type: ignore[no-untyped-call]
         )
 
         # Register an L2CAP CoC server
-        def on_coc(channel):
-            def on_data(data):
-                logging.debug(f"<<< data received:{data}")
+        def on_coc(channel: Channel) -> None:
+            def on_data(data: bytes) -> None:
+                logging.debug(f"data received:{data.hex()}")
 
                 self.emit("data", channel.connection, data)
                 self.audio_out_data += data
 
-            channel.sink = on_data
+            channel.sink = on_data  # type: ignore[no-untyped-call]
 
         # let the server find a free PSM
-        self.psm = self.device.register_l2cap_channel_server(self.psm, on_coc, 8)
+        self.psm = self.device.register_l2cap_channel_server(self.psm, on_coc, 8)  # type: ignore[no-untyped-call]
         self.le_psm_out_characteristic = Characteristic(
             GATT_ASHA_LE_PSM_OUT_CHARACTERISTIC,
             Characteristic.READ,
             Characteristic.READABLE,
-            CharacteristicValue(read=on_le_psm_out_read),
+            CharacteristicValue(read=on_le_psm_out_read),  # type: ignore[no-untyped-call]
         )
 
         characteristics = [
@@ -181,9 +173,9 @@ class AshaGattService(TemplateService):
             self.le_psm_out_characteristic,
         ]
 
-        super().__init__(characteristics)
+        super().__init__(characteristics)  # type: ignore[no-untyped-call]
 
-    def get_advertising_data(self):
+    def get_advertising_data(self) -> bytes:
         # Advertisement only uses 4 least significant bytes of the HiSyncId.
         return bytes(
             AdvertisingData(
@@ -209,21 +201,15 @@ class AshaService(AshaServicer):
     asha_service: Optional[AshaGattService]
 
     def __init__(self, device: Device) -> None:
-        self.log = utils.BumbleServerLoggerAdapter(
-            logging.getLogger(), {"service_name": "Asha", "device": device}
-        )
+        self.log = utils.BumbleServerLoggerAdapter(logging.getLogger(), {"service_name": "Asha", "device": device})
         self.device = device
         self.asha_service = None
 
     @utils.rpc
-    async def Register(
-        self, request: RegisterRequest, context: grpc.ServicerContext
-    ) -> Empty:
+    async def Register(self, request: RegisterRequest, context: grpc.ServicerContext) -> Empty:
         logging.info("Register")
         # asha service from bumble profile
-        self.asha_service = AshaGattService(
-            request.capability, request.hisyncid, self.device
-        )
+        self.asha_service = AshaGattService(request.capability, request.hisyncid, self.device)
         self.device.add_service(self.asha_service)  # type: ignore[no-untyped-call]
         return Empty()
 
@@ -235,9 +221,7 @@ class AshaService(AshaServicer):
         logging.info(f"CaptureAudioData connection_handle:{connection_handle}")
 
         if not (connection := self.device.lookup_connection(connection_handle)):
-            raise RuntimeError(
-                f"Unknown connection for connection_handle:{connection_handle}"
-            )
+            raise RuntimeError(f"Unknown connection for connection_handle:{connection_handle}")
 
         queue: asyncio.Queue[bytes] = asyncio.Queue()
 
