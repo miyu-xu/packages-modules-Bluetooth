@@ -52,6 +52,24 @@
       "parentUuid": "8286e0dd_102daed3",
       "revId": "d7d00bc3fd80ed89a836c17fa1a7ab4f3e0f8e5f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a730ba37_b03ceebc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-04-14T18:14:36Z",
+      "side": 1,
+      "message": "\u003e The new patch set handles the unsuccessful command status properly.\n\nI don\u0027t think this is completely solved, looking at the bug we where hitting `ASSERT(complete_view.IsValid());` which makes me think that we will only check the status if we have the correct return parameters, which I don\u0027t expect to happens with `Unknown HCI Command`\n\n\u003e Therefore, it is sensible to disable this feature on Android devices to reduce interference.\n\nYes but this comes with the tradeoff of adding a runtime flag, and let OEMs on Android control this behaviour and I don\u0027t think we want that as this means more possible configuration to test (controller A with flag On, controller A with flag Off, ... instead of just controller A). We should be able to deduce the support from the controller.",
+      "parentUuid": "2b892a47_1d817429",
+      "revId": "d7d00bc3fd80ed89a836c17fa1a7ab4f3e0f8e5f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
