@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "987a6f3f_d84957e5",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 348,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-04-14T18:45:39Z",
+      "side": 1,
+      "message": "Please add a bug number with this todo",
+      "range": {
+        "startLine": 348,
+        "startChar": 15,
+        "endLine": 348,
+        "endChar": 19
+      },
+      "revId": "fb9e25255bee287e643402103b9f8ada64ac15f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
