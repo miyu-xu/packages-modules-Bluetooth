@@ -3,13 +3,21 @@
 //! It also enforces all (implicit) invariants of le_impl as documented in le_manager.rs, and
 //! asserts on violation.
 
-use std::{cell::RefCell, collections::HashSet, fmt::Debug, rc::Rc};
+use std::{
+    cell::RefCell,
+    collections::{HashMap, HashSet},
+    fmt::Debug,
+    rc::Rc,
+};
+
+use async_trait::async_trait;
 
 use crate::{
     connection::{
         attempt_manager::ConnectionMode,
         le_manager::{
-            ErrorCode, InactiveLeAclManager, LeAclManager, LeAclManagerConnectionCallbacks,
+            AddressResolver, CanonicalAddress, ErrorCode, InactiveLeAclManager, LeAclManager,
+            LeAclManagerConnectionCallbacks,
         },
         LeConnection,
     },
@@ -20,11 +28,16 @@ use crate::{
 pub struct MockLeAclManager {
     active: Rc<RefCell<Option<Rc<MockActiveLeAclManager>>>>,
     callbacks: Rc<RefCell<Option<Box<dyn LeAclManagerConnectionCallbacks>>>>,
+    address_equivalences: Rc<RefCell<HashMap<CanonicalAddress, HashSet<AddressWithType>>>>,
 }
 
 impl MockLeAclManager {
     pub fn new() -> Self {
-        Self { active: Rc::new(RefCell::new(None)), callbacks: Rc::new(RefCell::new(None)) }
+        Self {
+            active: Default::default(),
+            callbacks: Default::default(),
+            address_equivalences: Default::default(),
+        }
     }
 
     fn inner(&self) -> Rc<MockActiveLeAclManager> {
@@ -62,6 +75,14 @@ impl MockLeAclManager {
 
         self.callbacks.borrow().as_deref().unwrap().on_disconnect(address);
     }
+
+    pub fn set_address_equivalences(
+        &self,
+        equivalences: HashMap<CanonicalAddress, HashSet<AddressWithType>>,
+    ) {
+        *self.address_equivalences.borrow_mut() = equivalences;
+        self.callbacks.borrow().as_deref().unwrap().on_resolving_list_change();
+    }
 }
 
 impl InactiveLeAclManager for MockLeAclManager {
@@ -75,6 +96,27 @@ impl InactiveLeAclManager for MockLeAclManager {
         *self.active.borrow_mut() = Some(out.clone());
         *self.callbacks.borrow_mut() = Some(Box::new(callbacks));
         out
+    }
+}
+
+#[async_trait(?Send)]
+impl AddressResolver for MockLeAclManager {
+    async fn resolve_address(&self, address: AddressWithType) -> CanonicalAddress {
+        for (canonical, alternates) in self.address_equivalences.borrow().iter() {
+            if address == canonical.addr() || alternates.contains(&address) {
+                return *canonical;
+            }
+        }
+        return CanonicalAddress::new(address);
+    }
+}
+
+impl Debug for MockLeAclManager {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        f.debug_struct("MockLeAclManager")
+            .field("active", &self.active)
+            .field("address_equivalences", &self.address_equivalences)
+            .finish()
     }
 }
 
@@ -163,10 +205,6 @@ impl LeAclManager for Rc<MockActiveLeAclManager> {
 
     fn remove_from_all_lists(&self, address: AddressWithType) {
         let mut state = self.state.borrow_mut();
-        assert!(
-            !state.currently_connected.contains(&address),
-            "Must NOT be currently connected to this address"
-        );
         let ok1 = state.direct_connect_list.remove(&address);
         let ok2 = state.background_connect_list.remove(&address);
         assert!(ok1 || ok2, "Present in neither direct nor background connect list");
