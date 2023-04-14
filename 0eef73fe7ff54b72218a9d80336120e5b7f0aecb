@@ -16,6 +16,24 @@
       "message": "nit: Could you add more context in the commit message on why we need that.",
       "revId": "0eef73fe7ff54b72218a9d80336120e5b7f0aecb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "da1ee9b2_210a8823",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-04-14T18:17:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "54b3a1a8_f2acdf8d",
+      "revId": "0eef73fe7ff54b72218a9d80336120e5b7f0aecb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
