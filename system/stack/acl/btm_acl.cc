@@ -2786,11 +2786,21 @@ bool acl_create_le_connection_with_id(uint8_t id, const RawAddress& bd_addr,
       .bda = bd_addr,
       .type = addr_type,
   };
-  if (address_with_type.type == BLE_ADDR_PUBLIC) {
-    gatt_find_in_device_record(bd_addr, &address_with_type);
+
+  // Check if the address type first before fetching from dev record
+  if (address_with_type.type != BLE_ADDR_PUBLIC) {
+    LOG_DEBUG("Le connect with non-default address type:%s",
+              AddressTypeText(addr_type).c_str());
   }
-  LOG_DEBUG("Creating le direct connection to:%s",
-            ADDRESS_TO_LOGGABLE_CSTR(address_with_type));
+
+  // If upper layer initiates connection with specified random address type
+  // without bonding We will still fetch from device record since it's been
+  // added from btif_gattc_open_impl()
+  gatt_find_in_device_record(bd_addr, &address_with_type);
+
+  LOG_DEBUG("Creating le direct connection to:%s type:%s",
+            ADDRESS_TO_LOGGABLE_CSTR(address_with_type),
+            AddressTypeText(addr_type).c_str());
 
   if (address_with_type.type == BLE_ADDR_ANONYMOUS) {
     LOG_WARN(
