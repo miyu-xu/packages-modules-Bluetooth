@@ -1,0 +1,211 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "65711be1_27cb5f03",
+        "filename": "system/bta/hh/bta_hh_le.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 1780,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-04-14T19:13:18Z",
+      "side": 1,
+      "message": "This will create a use after-free crash.\n\nYou are freeing the structure assigned to `hs_data.rsp_data.p_rpt_data` but then the `hs_data` is sent to the callback.\n\nI understand you read the code by thinking the p_buf was no longer used so instead you can do this modification to prevent any futur mis-interpretation:\n\n```\nif (p_rpt !\u003d nullptr \u0026\u0026 len) {\n  hs_data.rsp_data.p_rpt_data \u003d (BT_HDR*)osi_malloc(sizeof(BT_HDR) + len + 1);\n  const BT_HDR* p_buf \u003d \u0026hs_data.rsp_data.p_rpt_data;\n\n  [... use p_buf as before without freeing]\n}\n\n(*bta_hh_cb.p_cback)(BTA_HH_GET_RPT_EVT, (tBTA_HH*)\u0026hs_data);\nosi_free_and_reset((void**)\u0026hs_data.rsp_data.p_rpt_data);\n```",
+      "range": {
+        "startLine": 1780,
+        "startChar": 0,
+        "endLine": 1780,
+        "endChar": 22
+      },
+      "revId": "dbeb9e1f16e083e2c978ced8256625178868d353",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "44ffa93a_bde997d5",
+        "filename": "system/btif/co/bta_hh_co.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-04-14T19:13:18Z",
+      "side": 1,
+      "message": "Please use early return",
+      "range": {
+        "startLine": 80,
+        "startChar": 5,
+        "endLine": 89,
+        "endChar": 3
+      },
+      "revId": "dbeb9e1f16e083e2c978ced8256625178868d353",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c7a8f269_0594737b",
+        "filename": "system/btif/co/bta_hh_co.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-04-14T19:13:18Z",
+      "side": 1,
+      "message": "What is enabling this ? for which target ? don\u0027t you want to use sysprop to dynamically switch the feature ?\n\nI see this defined exist elsewhere but it would be good to understand it\u0027s usecase",
+      "range": {
+        "startLine": 94,
+        "startChar": 4,
+        "endLine": 94,
+        "endChar": 26
+      },
+      "revId": "dbeb9e1f16e083e2c978ced8256625178868d353",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9d1e0d37_53d4af29",
+        "filename": "system/btif/co/bta_hh_co.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-04-14T19:13:18Z",
+      "side": 1,
+      "message": "please use early return",
+      "range": {
+        "startLine": 108,
+        "startChar": 6,
+        "endLine": 117,
+        "endChar": 3
+      },
+      "revId": "dbeb9e1f16e083e2c978ced8256625178868d353",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7e0d9246_6c6f4de0",
+        "filename": "system/btif/co/bta_hh_co.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-04-14T19:13:18Z",
+      "side": 1,
+      "message": "I do not understand this.\nIs the FEATURE alwasy a get ? shouldn\u0027t we rename it then ?",
+      "range": {
+        "startLine": 207,
+        "startChar": 0,
+        "endLine": 207,
+        "endChar": 42
+      },
+      "revId": "dbeb9e1f16e083e2c978ced8256625178868d353",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b8277a11_3e811749",
+        "filename": "system/btif/co/bta_hh_co.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 661,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-04-14T19:13:18Z",
+      "side": 1,
+      "message": "early return",
+      "range": {
+        "startLine": 656,
+        "startChar": 9,
+        "endLine": 661,
+        "endChar": 3
+      },
+      "revId": "dbeb9e1f16e083e2c978ced8256625178868d353",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "721e3f32_91b6b6f3",
+        "filename": "system/btif/co/bta_hh_co.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 710,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-04-14T19:13:18Z",
+      "side": 1,
+      "message": "You can fully commit to brace initialization with something like this:\n```\nstruct uhid_event ev \u003d {\n .type \u003d UHID_FEATURE_ANSWER,\n .u \u003d {\n   .feature_answer \u003d {\n     .id \u003d *context,\n     .err \u003d status;\n     .size \u003d len;\n   },\n },\n};\n```",
+      "range": {
+        "startLine": 705,
+        "startChar": 13,
+        "endLine": 710,
+        "endChar": 37
+      },
+      "revId": "dbeb9e1f16e083e2c978ced8256625178868d353",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "43b065f4_711a3cd9",
+        "filename": "system/btif/co/bta_hh_co.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 711,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-04-14T19:13:18Z",
+      "side": 1,
+      "message": "Can you explain why you changed from `p_rpt + GET_RPT_RSP_OFFSET,` to  `p_rpt` ?",
+      "range": {
+        "startLine": 711,
+        "startChar": 39,
+        "endLine": 711,
+        "endChar": 44
+      },
+      "revId": "dbeb9e1f16e083e2c978ced8256625178868d353",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cda79352_7fa3c352",
+        "filename": "system/btif/co/bta_hh_co.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 720,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-04-14T19:13:18Z",
+      "side": 1,
+      "message": "can you move to early return instead ?\n```\nif (!) {\n  LOG_WARN(...)\n  return;\n}\n[continue code]...\n```",
+      "range": {
+        "startLine": 715,
+        "startChar": 3,
+        "endLine": 720,
+        "endChar": 3
+      },
+      "revId": "dbeb9e1f16e083e2c978ced8256625178868d353",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
