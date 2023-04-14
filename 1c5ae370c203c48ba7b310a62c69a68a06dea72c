@@ -35,6 +35,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1d6614fd_2170c835",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 1172,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-04-14T10:26:03Z",
+      "side": 1,
+      "message": "then we would lose retry mechanism as retry counter is in the callback class.",
+      "parentUuid": "3ceef1e8_c4329975",
+      "revId": "1c5ae370c203c48ba7b310a62c69a68a06dea72c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e5c70421_723f264c",
@@ -48,6 +66,30 @@
       "writtenOn": "2023-04-13T20:11:26Z",
       "side": 1,
       "message": "If you decide to keep the `retry` argument, please comment it like\n\n```\nstartXYZ(/* retry \u003d */ false)\n```",
+      "range": {
+        "startLine": 2602,
+        "startChar": 44,
+        "endLine": 2602,
+        "endChar": 49
+      },
+      "revId": "1c5ae370c203c48ba7b310a62c69a68a06dea72c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "59773bec_083ed075",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 2602,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-04-14T10:26:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e5c70421_723f264c",
       "range": {
         "startLine": 2602,
         "startChar": 44,
