@@ -74,6 +74,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a4d1a666_ad4f2759",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 817,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-04-14T20:26:48Z",
+      "side": 1,
+      "message": "You can test it by building `net_test_btif_rc`",
+      "parentUuid": "08fb39f6_d79aa0f9",
+      "revId": "796e9f3e7242fafcc464d3d9abbc37f6835c54e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "dbdc6a79_5458eefc",
         "filename": "system/btif/src/btif_av.cc",
         "patchSetId": 13
