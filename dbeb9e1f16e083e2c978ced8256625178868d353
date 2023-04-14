@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "11ad3e12_b325b9aa",
+        "filename": "system/bta/hh/bta_hh_le.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 1780,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2023-04-14T22:35:01Z",
+      "side": 1,
+      "message": "Good catch",
+      "parentUuid": "65711be1_27cb5f03",
+      "range": {
+        "startLine": 1780,
+        "startChar": 0,
+        "endLine": 1780,
+        "endChar": 22
+      },
+      "revId": "dbeb9e1f16e083e2c978ced8256625178868d353",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "44ffa93a_bde997d5",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-04-14T19:13:18Z",
       "side": 1,
       "message": "Please use early return",
+      "range": {
+        "startLine": 80,
+        "startChar": 5,
+        "endLine": 89,
+        "endChar": 3
+      },
+      "revId": "dbeb9e1f16e083e2c978ced8256625178868d353",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2e38b705_920ed0d4",
+        "filename": "system/btif/co/bta_hh_co.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2023-04-14T22:35:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "44ffa93a_bde997d5",
       "range": {
         "startLine": 80,
         "startChar": 5,
@@ -70,6 +118,54 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "68356c06_67e0a789",
+        "filename": "system/btif/co/bta_hh_co.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2023-04-14T22:35:01Z",
+      "side": 1,
+      "message": "Preexisting, out of scope of this bug.",
+      "parentUuid": "c7a8f269_0594737b",
+      "range": {
+        "startLine": 94,
+        "startChar": 4,
+        "endLine": 94,
+        "endChar": 26
+      },
+      "revId": "dbeb9e1f16e083e2c978ced8256625178868d353",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "526f5aa6_6ccbb7dc",
+        "filename": "system/btif/co/bta_hh_co.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2023-04-14T22:35:01Z",
+      "side": 1,
+      "message": "Pre-existing, out of scope of this bug",
+      "parentUuid": "c7a8f269_0594737b",
+      "range": {
+        "startLine": 94,
+        "startChar": 4,
+        "endLine": 94,
+        "endChar": 26
+      },
+      "revId": "dbeb9e1f16e083e2c978ced8256625178868d353",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9d1e0d37_53d4af29",
@@ -83,6 +179,30 @@
       "writtenOn": "2023-04-14T19:13:18Z",
       "side": 1,
       "message": "please use early return",
+      "range": {
+        "startLine": 108,
+        "startChar": 6,
+        "endLine": 117,
+        "endChar": 3
+      },
+      "revId": "dbeb9e1f16e083e2c978ced8256625178868d353",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "603ccd75_620b23a0",
+        "filename": "system/btif/co/bta_hh_co.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2023-04-14T22:35:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9d1e0d37_53d4af29",
       "range": {
         "startLine": 108,
         "startChar": 6,
@@ -116,6 +236,54 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e53e470e_0b080d0e",
+        "filename": "system/btif/co/bta_hh_co.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2023-04-14T22:35:01Z",
+      "side": 1,
+      "message": "UHID_FEATURE is the old identifier which has been replaced with a more appropriately named UHID_GET_REPORT. However this identifier is not supported on all platforms. Presubmits fail all over the place if we use the modern one.\nI added this comment to make it easier to relate to modern identifiers.",
+      "parentUuid": "7e0d9246_6c6f4de0",
+      "range": {
+        "startLine": 207,
+        "startChar": 0,
+        "endLine": 207,
+        "endChar": 42
+      },
+      "revId": "dbeb9e1f16e083e2c978ced8256625178868d353",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5f1c7c5b_1a9e6393",
+        "filename": "system/btif/co/bta_hh_co.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2023-04-14T22:35:01Z",
+      "side": 1,
+      "message": "UHID_FEATURE is the old identifier which has been replaced with a more appropriately named UHID_GET_REPORT. However this identifier is not supported on all platforms. Presubmits fail all over the place if we use UHID_GET_REPORT.\n\nI added this comment to make it easier to relate to UHID_GET_REPORT.",
+      "parentUuid": "7e0d9246_6c6f4de0",
+      "range": {
+        "startLine": 207,
+        "startChar": 0,
+        "endLine": 207,
+        "endChar": 42
+      },
+      "revId": "dbeb9e1f16e083e2c978ced8256625178868d353",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b8277a11_3e811749",
@@ -129,6 +297,30 @@
       "writtenOn": "2023-04-14T19:13:18Z",
       "side": 1,
       "message": "early return",
+      "range": {
+        "startLine": 656,
+        "startChar": 9,
+        "endLine": 661,
+        "endChar": 3
+      },
+      "revId": "dbeb9e1f16e083e2c978ced8256625178868d353",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8e4a0569_892d1f99",
+        "filename": "system/btif/co/bta_hh_co.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 661,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2023-04-14T22:35:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b8277a11_3e811749",
       "range": {
         "startLine": 656,
         "startChar": 9,
@@ -162,6 +354,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c0ff476a_ba3ced48",
+        "filename": "system/btif/co/bta_hh_co.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 710,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2023-04-14T22:35:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "721e3f32_91b6b6f3",
+      "range": {
+        "startLine": 705,
+        "startChar": 13,
+        "endLine": 710,
+        "endChar": 37
+      },
+      "revId": "dbeb9e1f16e083e2c978ced8256625178868d353",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "43b065f4_711a3cd9",
@@ -185,6 +401,54 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "08f93af4_6ccfd52e",
+        "filename": "system/btif/co/bta_hh_co.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 711,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2023-04-14T22:35:01Z",
+      "side": 1,
+      "message": "Callers are not going to use the complete HCI packet, instead they would be using just the payload.",
+      "parentUuid": "43b065f4_711a3cd9",
+      "range": {
+        "startLine": 711,
+        "startChar": 39,
+        "endLine": 711,
+        "endChar": 44
+      },
+      "revId": "dbeb9e1f16e083e2c978ced8256625178868d353",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b4a84b03_5e071315",
+        "filename": "system/btif/co/bta_hh_co.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 711,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2023-04-14T22:35:01Z",
+      "side": 1,
+      "message": "Callers are not going to use the complete HCI packet, instead would be using just the payload.",
+      "parentUuid": "43b065f4_711a3cd9",
+      "range": {
+        "startLine": 711,
+        "startChar": 39,
+        "endLine": 711,
+        "endChar": 44
+      },
+      "revId": "dbeb9e1f16e083e2c978ced8256625178868d353",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cda79352_7fa3c352",
@@ -198,6 +462,30 @@
       "writtenOn": "2023-04-14T19:13:18Z",
       "side": 1,
       "message": "can you move to early return instead ?\n```\nif (!) {\n  LOG_WARN(...)\n  return;\n}\n[continue code]...\n```",
+      "range": {
+        "startLine": 715,
+        "startChar": 3,
+        "endLine": 720,
+        "endChar": 3
+      },
+      "revId": "dbeb9e1f16e083e2c978ced8256625178868d353",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ac8af5b5_e556260e",
+        "filename": "system/btif/co/bta_hh_co.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 720,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2023-04-14T22:35:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cda79352_7fa3c352",
       "range": {
         "startLine": 715,
         "startChar": 3,
