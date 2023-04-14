@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "894b0b12_0a0bd256",
+        "filename": "system/btif/co/bta_hh_co.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-04-14T22:45:26Z",
+      "side": 1,
+      "message": "nit: we could propagate the error from btif_hh_setreport by changing it\u0027s return type",
+      "range": {
+        "startLine": 120,
+        "startChar": 9,
+        "endLine": 120,
+        "endChar": 13
+      },
+      "revId": "0112cbd5908691d0618a9ffceadb9aad55672865",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ac8e723f_f0599016",
+        "filename": "system/btif/co/bta_hh_co.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 715,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-04-14T22:45:26Z",
+      "side": 1,
+      "message": "`if (len \u003d\u003d 0 || len \u003e UHID_DATA_MAX) {`",
+      "range": {
+        "startLine": 715,
+        "startChar": 16,
+        "endLine": 715,
+        "endChar": 17
+      },
+      "revId": "0112cbd5908691d0618a9ffceadb9aad55672865",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
