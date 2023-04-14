@@ -22,6 +22,30 @@
       },
       "revId": "6cd77606d18f9d2469ac99deecf5fdb60d96eb97",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b7443f2d_9c67c70f",
+        "filename": "system/gd/hci/fuzz/acl_manager_fuzz_test.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1890836
+      },
+      "writtenOn": "2023-04-14T08:36:20Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "dfbceb62_fca2a83f",
+      "range": {
+        "startLine": 60,
+        "startChar": 0,
+        "endLine": 60,
+        "endChar": 118
+      },
+      "revId": "6cd77606d18f9d2469ac99deecf5fdb60d96eb97",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
