@@ -56,6 +56,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "08fb39f6_d79aa0f9",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 817,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-04-14T20:26:15Z",
+      "side": 1,
+      "message": "The build error is in test.\nThere were some mock missing. I think it will fail again",
+      "parentUuid": "157bf3c4_4a997dd9",
+      "revId": "796e9f3e7242fafcc464d3d9abbc37f6835c54e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "dbdc6a79_5458eefc",
         "filename": "system/btif/src/btif_av.cc",
         "patchSetId": 13
