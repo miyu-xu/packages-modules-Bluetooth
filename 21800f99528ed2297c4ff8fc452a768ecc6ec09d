@@ -51,6 +51,24 @@
       "parentUuid": "8bd81903_c1e45635",
       "revId": "21800f99528ed2297c4ff8fc452a768ecc6ec09d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7622bdd6_87c11fe8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-04-14T20:31:12Z",
+      "side": 1,
+      "message": "Those properties are based on advertisement data and only used during scanning. It won\u0027t be used after scanning, so I think it\u0027s fine to not stored in DB",
+      "parentUuid": "9a83d321_23233ed5",
+      "revId": "21800f99528ed2297c4ff8fc452a768ecc6ec09d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
