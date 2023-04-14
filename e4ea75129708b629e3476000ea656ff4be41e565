@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "de1d18de_2a07f983",
+        "filename": "system/bta/csis/csis_client.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1906,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2023-04-14T13:53:14Z",
+      "side": 1,
+      "message": "out of topic question: If the service was not yet validated, are we going to figure out the encryption state eventually?",
+      "range": {
+        "startLine": 1901,
+        "startChar": 4,
+        "endLine": 1906,
+        "endChar": 5
+      },
+      "revId": "e4ea75129708b629e3476000ea656ff4be41e565",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
