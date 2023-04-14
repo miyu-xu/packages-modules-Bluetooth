@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f4dac2a8_ed6feab4",
+        "filename": "system/stack/btm/btm_sco_hfp_hal.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-04-14T18:48:19Z",
+      "side": 1,
+      "message": "Is this sysprop modifiable with developer settings ? I think not since it is `.supported` and not `.enabled`. I don\u0027t think we should add `persist` then.",
+      "range": {
+        "startLine": 53,
+        "startChar": 32,
+        "endLine": 53,
+        "endChar": 67
+      },
+      "revId": "ab4e427652dd15f17eca5c82981f3f45a47c9147",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
