@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "27399921_9e479d64",
+        "filename": "system/stack/btm/btm_sco_hfp_hal.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-04-14T18:52:24Z",
+      "side": 1,
+      "message": "I think you need to add a mock of this method if you want to build the test.",
+      "range": {
+        "startLine": 52,
+        "startChar": 5,
+        "endLine": 52,
+        "endChar": 22
+      },
+      "revId": "ab4e427652dd15f17eca5c82981f3f45a47c9147",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f4dac2a8_ed6feab4",
         "filename": "system/stack/btm/btm_sco_hfp_hal.cc",
         "patchSetId": 5
