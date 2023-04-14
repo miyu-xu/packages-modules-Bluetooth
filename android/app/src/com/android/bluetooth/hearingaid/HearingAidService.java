@@ -748,7 +748,9 @@ public class HearingAidService extends ProfileService {
                     if (DBG) {
                         Log.d(TAG, " onAudioDevicesRemoved: device type: " + deviceInfo.getType());
                     }
-                    mAudioManager.unregisterAudioDeviceCallback(this);
+                    if (mAudioManager != null) {
+                        mAudioManager.unregisterAudioDeviceCallback(this);
+                    }
                 }
             }
         }
@@ -764,7 +766,9 @@ public class HearingAidService extends ProfileService {
                     if (DBG) {
                         Log.d(TAG, " onAudioDevicesAdded: device type: " + deviceInfo.getType());
                     }
-                    mAudioManager.unregisterAudioDeviceCallback(this);
+                    if (mAudioManager != null) {
+                        mAudioManager.unregisterAudioDeviceCallback(this);
+                    }
                 }
             }
         }
