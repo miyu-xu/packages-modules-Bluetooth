@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6bfa2485_d53a8bee",
+        "filename": "android/pandora/server/src/com/android/pandora/Asha.kt",
+        "patchSetId": 16
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-04-14T23:53:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "02f5b041_c0df65cb",
+      "range": {
+        "startLine": 81,
+        "startChar": 8,
+        "endLine": 81,
+        "endChar": 71
+      },
+      "revId": "305251e463b1bb4d203941b6ffaf72f0d4d023db",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "378b3e71_8818019a",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-04-13T16:50:03Z",
       "side": 1,
       "message": "Could you please use the flow instead of the latch ?",
+      "range": {
+        "startLine": 82,
+        "startChar": 10,
+        "endLine": 82,
+        "endChar": 27
+      },
+      "revId": "305251e463b1bb4d203941b6ffaf72f0d4d023db",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c652fbf2_5810181e",
+        "filename": "android/pandora/server/src/com/android/pandora/Asha.kt",
+        "patchSetId": 16
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-04-14T23:53:35Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "378b3e71_8818019a",
       "range": {
         "startLine": 82,
         "startChar": 10,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "de5f3855_2900f408",
+        "filename": "android/pandora/test/asha_test.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-04-14T23:53:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b1efa4df_52b6e541",
+      "range": {
+        "startLine": 20,
+        "startChar": 7,
+        "endLine": 20,
+        "endChar": 11
+      },
+      "revId": "305251e463b1bb4d203941b6ffaf72f0d4d023db",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d2a8471d_37c6715b",
@@ -83,6 +155,30 @@
       "writtenOn": "2023-04-12T01:12:42Z",
       "side": 1,
       "message": "I suggest to either:\n- remove all listener (start, le_psm_out, ..) with correct `try finally` blocks\n- not remove any since we factory reset between tests, which is completely fine\n\nSame for other tests",
+      "range": {
+        "startLine": 536,
+        "startChar": 8,
+        "endLine": 536,
+        "endChar": 68
+      },
+      "revId": "305251e463b1bb4d203941b6ffaf72f0d4d023db",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6f3503e3_48e879cf",
+        "filename": "android/pandora/test/asha_test.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 536,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-04-14T23:53:35Z",
+      "side": 1,
+      "message": "done",
+      "parentUuid": "d2a8471d_37c6715b",
       "range": {
         "startLine": 536,
         "startChar": 8,
