@@ -92,6 +92,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "753b149b_8bd71e4c",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 817,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2023-04-14T21:03:35Z",
+      "side": 1,
+      "message": "William is right you will also probably need to add these in `btif_rc_test.cc`",
+      "parentUuid": "08fb39f6_d79aa0f9",
+      "revId": "796e9f3e7242fafcc464d3d9abbc37f6835c54e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "dbdc6a79_5458eefc",
         "filename": "system/btif/src/btif_av.cc",
         "patchSetId": 13
