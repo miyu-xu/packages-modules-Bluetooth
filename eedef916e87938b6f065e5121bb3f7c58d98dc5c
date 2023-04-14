@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a2e5ebf8_77899a0c",
+        "filename": "system/gd/hci/controller.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 439,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-04-14T23:14:15Z",
+      "side": 1,
+      "message": "I think probably this check should happen before parsing into the XYZCompleteView?",
+      "revId": "eedef916e87938b6f065e5121bb3f7c58d98dc5c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
