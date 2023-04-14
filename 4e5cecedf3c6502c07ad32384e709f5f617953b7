@@ -16,6 +16,52 @@
       "message": "LGTM but I\u0027ll let @yuyangh@google.com approve too",
       "revId": "4e5cecedf3c6502c07ad32384e709f5f617953b7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ed2a0b87_c1fcd16a",
+        "filename": "system/btif/src/btif_hf.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 1504,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-04-14T17:37:23Z",
+      "side": 1,
+      "message": "nit:[LOG_DEBUG](https://source.corp.google.com/aosp-master/packages/modules/Bluetooth/system/gd/os/log.h;l\u003d55;bpv\u003d1;bpt\u003d1;rcl\u003d7346c436e5a11ce08f6a80dcfeb8ef941ca30176) will have the function name, so maybe empty LOG_DEBUG will be enough",
+      "range": {
+        "startLine": 1504,
+        "startChar": 2,
+        "endLine": 1504,
+        "endChar": 11
+      },
+      "revId": "4e5cecedf3c6502c07ad32384e709f5f617953b7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "62051461_37acd9b7",
+        "filename": "system/btif/src/btif_hf.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 1523,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-04-14T17:37:23Z",
+      "side": 1,
+      "message": "I saw many other cleanup are `do_in_main_thread`, like [btif_csis_client.cc](https://source.corp.google.com/android-internal/packages/modules/Bluetooth/system/btif/src/btif_csis_client.cc;l\u003d132;bpv\u003d0;bpt\u003d1) and [btif_hearing_aid.cc](https://source.corp.google.com/android-internal/packages/modules/Bluetooth/system/btif/src/btif_hearing_aid.cc;l\u003d124;bpv\u003d0;bpt\u003d1)\nLet me confirm with our team about which thread to use",
+      "range": {
+        "startLine": 1523,
+        "startChar": 2,
+        "endLine": 1523,
+        "endChar": 18
+      },
+      "revId": "4e5cecedf3c6502c07ad32384e709f5f617953b7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
