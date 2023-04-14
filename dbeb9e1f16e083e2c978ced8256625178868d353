@@ -475,6 +475,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "36a0415a_31dd5bd1",
+        "filename": "system/btif/co/bta_hh_co.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 711,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2023-04-14T23:16:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d647b09d_725c56cc",
+      "range": {
+        "startLine": 711,
+        "startChar": 39,
+        "endLine": 711,
+        "endChar": 44
+      },
+      "revId": "dbeb9e1f16e083e2c978ced8256625178868d353",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "cda79352_7fa3c352",
         "filename": "system/btif/co/bta_hh_co.cc",
         "patchSetId": 9

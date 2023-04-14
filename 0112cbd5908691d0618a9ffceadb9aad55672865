@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a7aac1c0_452c6fba",
+        "filename": "system/btif/co/bta_hh_co.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2023-04-14T23:16:47Z",
+      "side": 1,
+      "message": "btif_hh_setreport() will fail only if it could not allocate in which case it would crash somewhere else beforehand.",
+      "parentUuid": "894b0b12_0a0bd256",
+      "range": {
+        "startLine": 120,
+        "startChar": 9,
+        "endLine": 120,
+        "endChar": 13
+      },
+      "revId": "0112cbd5908691d0618a9ffceadb9aad55672865",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ac8e723f_f0599016",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-04-14T22:45:26Z",
       "side": 1,
       "message": "`if (len \u003d\u003d 0 || len \u003e UHID_DATA_MAX) {`",
+      "range": {
+        "startLine": 715,
+        "startChar": 16,
+        "endLine": 715,
+        "endChar": 17
+      },
+      "revId": "0112cbd5908691d0618a9ffceadb9aad55672865",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fa8c9af2_8863a72d",
+        "filename": "system/btif/co/bta_hh_co.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 715,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2023-04-14T23:16:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ac8e723f_f0599016",
       "range": {
         "startLine": 715,
         "startChar": 16,
