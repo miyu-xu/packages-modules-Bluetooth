@@ -29,6 +29,7 @@
 #include "module.h"
 #include "os/handler.h"
 #include "os/log.h"
+#include "os/system_properties.h"
 #include "storage/storage_module.h"
 
 namespace bluetooth {
@@ -48,6 +49,9 @@ constexpr uint8_t kDirectedBit = 2;
 constexpr uint8_t kScanResponseBit = 3;
 constexpr uint8_t kLegacyBit = 4;
 constexpr uint8_t kDataStatusBits = 5;
+
+// system properties
+const std::string kLeRxPathLossCompProperty = "bluetooth.hardware.le_rx_path_loss_comp_db";
 
 const ModuleFactory LeScanningManager::Factory = ModuleFactory([]() { return new LeScanningManager(); });
 
@@ -212,6 +216,7 @@ struct LeScanningManager::impl : public LeAddressManagerCallback {
     }
     batch_scan_config_.current_state = BatchScanState::DISABLED_STATE;
     batch_scan_config_.ref_value = kInvalidScannerId;
+    le_rx_path_loss_comp_ = get_rx_path_loss_compensation();
   }
 
   void stop() {
@@ -276,6 +281,25 @@ struct LeScanningManager::impl : public LeAddressManagerCallback {
     bool continuing{false};
     bool truncated{false};
   };
+
+  int8_t get_rx_path_loss_compensation() {
+    int8_t compensation = 0;
+    auto compensation_prop = os::GetSystemProperty(kLeRxPathLossCompProperty);
+    if (compensation_prop) {
+      auto compensation_number = common::Int64FromString(compensation_prop.value());
+      if (compensation_number) {
+        compensation = compensation_number.value();
+      }
+    }
+    LOG_INFO("rx path loss compensation: %d", compensation);
+    return compensation;
+  }
+
+  int8_t get_rssi_with_compensation(int8_t rssi) {
+    int8_t comp_rssi = rssi + le_rx_path_loss_comp_;
+    LOG_INFO("rssi: %d, comp_rssi: %d", rssi, comp_rssi);
+    return comp_rssi;
+  }
 
   uint16_t transform_to_extended_event_type(ExtendedEventTypeOptions o) {
     return (o.connectable ? 0x0001 << 0 : 0) | (o.scannable ? 0x0001 << 1 : 0) |
@@ -414,7 +438,7 @@ struct LeScanningManager::impl : public LeAddressManagerCallback {
           secondary_phy,
           advertising_sid,
           tx_power,
-          rssi,
+          get_rssi_with_compensation(rssi),
           periodic_advertising_interval,
           complete_advertising_data.value());
     }
@@ -1584,6 +1608,7 @@ struct LeScanningManager::impl : public LeAddressManagerCallback {
   std::map<ScannerId, std::vector<uint8_t>> batch_scan_result_cache_;
   std::unordered_map<uint8_t, ScannerId> tracker_id_map_;
   uint16_t total_num_of_advt_tracked_ = 0x00;
+  int8_t le_rx_path_loss_comp_ = 0;
 
   static void check_status(CommandCompleteView view) {
     switch (view.GetCommandOpCode()) {
