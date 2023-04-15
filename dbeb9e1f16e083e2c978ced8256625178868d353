@@ -497,6 +497,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bfe8fd07_6249f243",
+        "filename": "system/btif/co/bta_hh_co.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 711,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-04-15T00:45:33Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "36a0415a_31dd5bd1",
+      "range": {
+        "startLine": 711,
+        "startChar": 39,
+        "endLine": 711,
+        "endChar": 44
+      },
+      "revId": "dbeb9e1f16e083e2c978ced8256625178868d353",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cda79352_7fa3c352",
