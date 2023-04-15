@@ -19,6 +19,7 @@
 #include <mutex>
 
 #include "common/init_flags.h"
+#include "common/strings.h"
 #include "hci/acl_manager.h"
 #include "hci/controller.h"
 #include "hci/hci_layer.h"
@@ -36,6 +37,9 @@ namespace hci {
 const ModuleFactory LeAdvertisingManager::Factory = ModuleFactory([]() { return new LeAdvertisingManager(); });
 constexpr int kIdLocal = 0xff;  // Id for advertiser not register from Java layer
 constexpr uint16_t kLenOfFlags = 0x03;
+
+// system properties
+const std::string kLeTxPathLossCompProperty = "bluetooth.hardware.le_tx_path_loss_comp_db";
 
 enum class AdvertisingApiType {
   LEGACY = 1,
@@ -149,6 +153,26 @@ struct LeAdvertisingManager::impl : public bluetooth::hci::LeAddressManagerCallb
     for (size_t i = 0; i < enabled_sets_.size(); i++) {
       enabled_sets_[i].advertising_handle_ = kInvalidHandle;
     }
+    le_tx_path_loss_comp_ = get_tx_path_loss_compensation();
+  }
+
+  int8_t get_tx_path_loss_compensation() {
+    int8_t compensation = 0;
+    auto compensation_prop = os::GetSystemProperty(kLeTxPathLossCompProperty);
+    if (compensation_prop) {
+      auto compensation_number = common::Int64FromString(compensation_prop.value());
+      if (compensation_number) {
+        compensation = compensation_number.value();
+      }
+    }
+    LOG_INFO("tx path loss compensation: %d", compensation);
+    return compensation;
+  }
+
+  int8_t get_tx_power_with_compensation(int8_t tx_power) {
+    int8_t comp_tx_power = tx_power + le_tx_path_loss_comp_;
+    LOG_INFO("tx_power: %d, comp_tx_power: %d", tx_power, comp_tx_power);
+    return comp_tx_power;
   }
 
   size_t GetNumberOfAdvertisingInstances() const {
@@ -630,6 +654,7 @@ struct LeAdvertisingManager::impl : public bluetooth::hci::LeAddressManagerCallb
   }
 
   void set_parameters(AdvertiserId advertiser_id, AdvertisingConfig config) {
+    config.tx_power = get_tx_power_with_compensation(static_cast<int8_t>(config.tx_power));
     advertising_sets_[advertiser_id].connectable = config.connectable;
     advertising_sets_[advertiser_id].discoverable = config.discoverable;
     advertising_sets_[advertiser_id].tx_power = config.tx_power;
@@ -1251,6 +1276,7 @@ struct LeAdvertisingManager::impl : public bluetooth::hci::LeAddressManagerCallb
   hci::Controller* controller_;
   uint16_t le_maximum_advertising_data_length_;
   int8_t le_physical_channel_tx_power_ = 0;
+  int8_t le_tx_path_loss_comp_ = 0;
   hci::LeAdvertisingInterface* le_advertising_interface_;
   std::map<AdvertiserId, Advertiser> advertising_sets_;
   hci::LeAddressManager* le_address_manager_;
