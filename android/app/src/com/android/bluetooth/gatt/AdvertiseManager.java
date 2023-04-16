@@ -219,6 +219,19 @@ public class AdvertiseManager {
             throw new IllegalArgumentException("Can't link to advertiser's death");
         }
 
+        // If we are using an isolated server, force usage of an NRPA
+        if (serverIf != 0
+                && parameters.getOwnAddressType()
+                        != AdvertisingSetParameters.ADDRESS_TYPE_RANDOM_NON_RESOLVABLE) {
+            try {
+                binder.unlinkToDeath(deathRecipient, 0);
+                callback.onAdvertisingSetStarted(
+                        0x00, 0x00, AdvertiseCallback.ADVERTISE_FAILED_INTERNAL_ERROR);
+            } catch (RemoteException exception) {
+                Log.e(TAG, "Failed to callback:" + Log.getStackTraceString(exception));
+            }
+        }
+
         String deviceName = AdapterService.getAdapterService().getName();
         try {
             byte[] advDataBytes = AdvertiseHelper.advertiseDataToBytes(advertiseData, deviceName);
