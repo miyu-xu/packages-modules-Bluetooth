@@ -5011,11 +5011,15 @@ void btm_sec_clear_ble_keys(tBTM_SEC_DEV_REC* p_dev_rec) {
 bool btm_sec_is_a_bonded_dev(const RawAddress& bda) {
   tBTM_SEC_DEV_REC* p_dev_rec = btm_find_dev(bda);
   bool is_bonded = false;
-
-  if (p_dev_rec && ((p_dev_rec->ble.key_type &&
-                     (p_dev_rec->sec_flags & BTM_SEC_LE_LINK_KEY_KNOWN)) ||
-                    (p_dev_rec->sec_flags & BTM_SEC_LINK_KEY_KNOWN))) {
-    is_bonded = true;
+  if (p_dev_rec) {
+    if (p_dev_rec->is_device_type_dual_mode()) {
+      is_bonded =
+          p_dev_rec->is_le_link_key_known() && p_dev_rec->is_link_key_known();
+    } else if (p_dev_rec->is_device_type_br_edr()) {
+      is_bonded = p_dev_rec->is_link_key_known();
+    } else if (p_dev_rec->is_device_type_ble()) {
+      is_bonded = p_dev_rec->is_le_link_key_known();
+    }
   }
   LOG_DEBUG("Device record bonded check peer:%s is_bonded:%s",
             ADDRESS_TO_LOGGABLE_CSTR(bda), logbool(is_bonded).c_str());
