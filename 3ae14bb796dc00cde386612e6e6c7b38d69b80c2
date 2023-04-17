@@ -1,0 +1,245 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d3c0b3e6_447e7d9d",
+        "filename": "service/java/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 304,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-04-17T03:08:45Z",
+      "side": 1,
+      "message": "If you use proxy properly, these might not need to be VisibleForTesting.",
+      "range": {
+        "startLine": 301,
+        "startChar": 0,
+        "endLine": 304,
+        "endChar": 36
+      },
+      "revId": "3ae14bb796dc00cde386612e6e6c7b38d69b80c2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "83c7fa79_ddc9964d",
+        "filename": "service/java/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 574,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-04-17T03:08:45Z",
+      "side": 1,
+      "message": "Using proxy for this as well would be better.",
+      "range": {
+        "startLine": 574,
+        "startChar": 38,
+        "endLine": 574,
+        "endChar": 51
+      },
+      "revId": "3ae14bb796dc00cde386612e6e6c7b38d69b80c2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e0ee3e0e_8401a77d",
+        "filename": "service/java/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 577,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-04-17T03:08:45Z",
+      "side": 1,
+      "message": "createBluetoothHandler(Looper)",
+      "range": {
+        "startLine": 577,
+        "startChar": 54,
+        "endLine": 577,
+        "endChar": 73
+      },
+      "revId": "3ae14bb796dc00cde386612e6e6c7b38d69b80c2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a19eb629_b87ce749",
+        "filename": "service/java/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 656,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-04-17T03:08:45Z",
+      "side": 1,
+      "message": "Please remove unrelated chages.",
+      "revId": "3ae14bb796dc00cde386612e6e6c7b38d69b80c2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3b78c556_bdf49a17",
+        "filename": "service/java/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1403,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-04-17T03:08:45Z",
+      "side": 1,
+      "message": "ditto",
+      "revId": "3ae14bb796dc00cde386612e6e6c7b38d69b80c2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6f7f96fe_451e2233",
+        "filename": "service/java/com/android/server/bluetooth/BluetoothServerProxy.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-04-17T03:08:45Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 2,
+        "startChar": 13,
+        "endLine": 2,
+        "endChar": 17
+      },
+      "revId": "3ae14bb796dc00cde386612e6e6c7b38d69b80c2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "800b4493_108b3f3f",
+        "filename": "service/tests/src/com/android/server/bluetooth/BluetoothManagerServiceTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-04-17T03:08:45Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 2,
+        "startChar": 13,
+        "endLine": 2,
+        "endChar": 17
+      },
+      "revId": "3ae14bb796dc00cde386612e6e6c7b38d69b80c2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "80f07140_fa0e6a30",
+        "filename": "service/tests/src/com/android/server/bluetooth/BluetoothManagerServiceTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-04-17T03:08:45Z",
+      "side": 1,
+      "message": "This test is not very readable.\n\nPlease make it more readable w/o much knowledge of BluetoothManagerService.",
+      "range": {
+        "startLine": 51,
+        "startChar": 13,
+        "endLine": 51,
+        "endChar": 40
+      },
+      "revId": "3ae14bb796dc00cde386612e6e6c7b38d69b80c2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "83e1f2bf_4326232e",
+        "filename": "service/tests/src/com/android/server/bluetooth/BluetoothManagerServiceTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-04-17T03:08:45Z",
+      "side": 1,
+      "message": "Why don\u0027t you just mock UserManager?\nIt looks you can make userManager return true when hasUserRestrictionForUser called.",
+      "range": {
+        "startLine": 82,
+        "startChar": 20,
+        "endLine": 82,
+        "endChar": 31
+      },
+      "revId": "3ae14bb796dc00cde386612e6e6c7b38d69b80c2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7f9c0fd1_ce32219b",
+        "filename": "service/tests/src/com/android/server/bluetooth/BluetoothManagerServiceTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-04-17T03:08:45Z",
+      "side": 1,
+      "message": "do you mean any()?",
+      "range": {
+        "startLine": 85,
+        "startChar": 52,
+        "endLine": 87,
+        "endChar": 18
+      },
+      "revId": "3ae14bb796dc00cde386612e6e6c7b38d69b80c2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "98fb80bb_56dadbe9",
+        "filename": "service/tests/src/com/android/server/bluetooth/BluetoothManagerServiceTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-04-17T03:08:45Z",
+      "side": 1,
+      "message": "This may causes test failure since mHandler could be used with unexpected events.",
+      "range": {
+        "startLine": 92,
+        "startChar": 33,
+        "endLine": 92,
+        "endChar": 41
+      },
+      "revId": "3ae14bb796dc00cde386612e6e6c7b38d69b80c2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

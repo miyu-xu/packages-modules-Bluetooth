@@ -117,6 +117,29 @@
       },
       "revId": "086f89ed656593d2633b398a96341de410df2cfd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "39f8099e_76ad70ef",
+        "filename": "service/java/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 802,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-04-17T03:08:45Z",
+      "side": 1,
+      "message": "why should it be a package private?",
+      "range": {
+        "startLine": 802,
+        "startChar": 4,
+        "endLine": 802,
+        "endChar": 11
+      },
+      "revId": "086f89ed656593d2633b398a96341de410df2cfd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
