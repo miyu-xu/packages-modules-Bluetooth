@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b128bf9a_8533195a",
+        "filename": "system/main/shim/le_scanning_manager.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 816,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2023-04-17T23:17:19Z",
+      "side": 1,
+      "message": "We should check if we know this device already. If the device is already known, update only the missing information.",
+      "revId": "13904e1cb6c2f69d23c2ed910bb51dbca9acb065",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
