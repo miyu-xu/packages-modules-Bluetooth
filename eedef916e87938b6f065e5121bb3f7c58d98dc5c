@@ -3,6 +3,52 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "401973bf_78c39a1a",
+        "filename": "system/gd/hci/controller.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 407,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-04-17T18:03:08Z",
+      "side": 1,
+      "message": "// Check to see that the opcode was correct.\nASSERT(view.GetOpcode() \u003d\u003d OpCode::READ_DEFAULT_ERRONEOUS_DATA_REPORTING);\nif (!complete_view.IsValid()) {\n  // LOG and return\n}\n\nThe check you added on 410 makes sense to me.",
+      "range": {
+        "startLine": 407,
+        "startChar": 4,
+        "endLine": 407,
+        "endChar": 10
+      },
+      "revId": "eedef916e87938b6f065e5121bb3f7c58d98dc5c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9595c7ba_e3cff3a8",
+        "filename": "system/gd/hci/controller.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 434,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-04-17T18:03:08Z",
+      "side": 1,
+      "message": "This can be converted to if as well.",
+      "range": {
+        "startLine": 434,
+        "startChar": 4,
+        "endLine": 434,
+        "endChar": 10
+      },
+      "revId": "eedef916e87938b6f065e5121bb3f7c58d98dc5c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a2e5ebf8_77899a0c",
         "filename": "system/gd/hci/controller.cc",
         "patchSetId": 2
@@ -14,6 +60,24 @@
       "writtenOn": "2023-04-14T23:14:15Z",
       "side": 1,
       "message": "I think probably this check should happen before parsing into the XYZCompleteView?",
+      "revId": "eedef916e87938b6f065e5121bb3f7c58d98dc5c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "92270c26_8e37af6f",
+        "filename": "system/gd/hci/controller.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 439,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-04-17T18:03:08Z",
+      "side": 1,
+      "message": "The problem is that there is no status in a CommandCompleteView in the spec 😞",
+      "parentUuid": "a2e5ebf8_77899a0c",
       "revId": "eedef916e87938b6f065e5121bb3f7c58d98dc5c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
