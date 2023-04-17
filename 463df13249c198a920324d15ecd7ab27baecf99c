@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0e097e39_20793dc6",
+        "filename": "android/pandora/server/src/com/android/pandora/MediaPlayerBrowserService.kt",
+        "patchSetId": 1
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2023-04-17T17:15:51Z",
+      "side": 1,
+      "message": "Do we want to stop the MediaPlayer when the test is done?",
+      "revId": "463df13249c198a920324d15ecd7ab27baecf99c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
