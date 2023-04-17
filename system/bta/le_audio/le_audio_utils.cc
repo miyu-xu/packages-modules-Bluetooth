@@ -220,9 +220,9 @@ AudioContexts GetAllowedAudioContextsFromSinkMetadata(
         "sink device. This may result in voice back channel malfunction.");
   }
 
-  LOG_DEBUG("Allowed contexts from sink metadata: %s (0x%08hx)",
-            bluetooth::common::ToString(all_track_contexts).c_str(),
-            all_track_contexts.value());
+  LOG_INFO("Allowed contexts from sink metadata: %s (0x%08hx)",
+           bluetooth::common::ToString(all_track_contexts).c_str(),
+           all_track_contexts.value());
   return all_track_contexts;
 }
 
