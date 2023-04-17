@@ -222,6 +222,10 @@ impl BtSocket {
     pub fn request_max_tx_data_length(&self, addr: RawAddress) {
         ccall!(self, request_max_tx_data_length, &addr);
     }
+
+    pub fn send_msc(&self, dlci: u8, addr: RawAddress) -> BtStatus {
+        ccall!(self, send_msc, dlci, &addr).into()
+    }
 }
 
 #[cfg(test)]
