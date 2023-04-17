@@ -123,6 +123,9 @@ pub enum Message {
 
     // Dis callbacks
     Dis(ServiceCallbacks),
+
+    // Qualification only
+    QaRfcommStartControlRequest(u8, String),
 }
 
 /// Represents suspend mode of a module.
@@ -341,6 +344,9 @@ impl Stack {
                 }
                 Message::Dis(callback) => {
                     bluetooth_dis.lock().unwrap().handle_callbacks(&callback);
+                }
+                Message::QaRfcommStartControlRequest(dlci, addr) => {
+                    bluetooth_socketmgr.lock().unwrap().rfcomm_start_control_request(dlci, addr);
                 }
             }
         }
