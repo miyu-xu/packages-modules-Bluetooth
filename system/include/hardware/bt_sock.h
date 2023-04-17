@@ -90,6 +90,14 @@ typedef struct {
    */
   void (*request_max_tx_data_length)(const RawAddress& bd_addr);
 
+  /**
+   * Send the MSC command to the peer. ONLY for Qualification use.
+   * RFCOMM layer starts the control request only when it is the client.
+   * This interface allows the host to start the control request while it works
+   * as a RFCOMM server.
+   */
+  bt_status_t (*control_req)(uint8_t dlci, const RawAddress& bd_addr);
+
 } btsock_interface_t;
 
 __END_DECLS

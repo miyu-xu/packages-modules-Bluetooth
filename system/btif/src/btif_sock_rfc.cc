@@ -47,6 +47,7 @@
 #include "stack/include/btm_api.h"
 #include "stack/include/btm_api_types.h"
 #include "stack/include/port_api.h"
+#include "stack/rfcomm/rfc_int.h"  // RFCOMM_ControlReq
 #include "types/bluetooth/uuid.h"
 #include "types/raw_address.h"
 
@@ -263,6 +264,21 @@ static rfc_slot_t* create_srv_accept_rfc_slot(rfc_slot_t* srv_rs,
   srv_rs->id = new_listen_id;
 
   return accept_rs;
+}
+
+bt_status_t btsock_rfc_control_req(uint8_t dlci, const RawAddress& bd_addr) {
+  tRFC_MCB* p_mcb = port_find_mcb(bd_addr);
+  if (!p_mcb) {
+    LOG_WARN("%s: RFC_MCB not found", __func__);
+    return BT_STATUS_FAIL;
+  }
+  tPORT* p_port = port_find_mcb_dlci_port(p_mcb, dlci);
+  if (!p_port) {
+    LOG_WARN("%s: PORT not found", __func__);
+    return BT_STATUS_FAIL;
+  }
+  RFCOMM_ControlReq(p_mcb, dlci, &p_port->local_ctrl);
+  return BT_STATUS_SUCCESS;
 }
 
 bt_status_t btsock_rfc_listen(const char* service_name,
