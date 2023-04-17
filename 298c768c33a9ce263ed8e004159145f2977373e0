@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0cffa763_1c3f3775",
+        "filename": "android/pandora/server/src/com/android/pandora/Asha.kt",
+        "patchSetId": 18
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-04-17T18:35:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5efa85ba_38447f8a",
+      "revId": "298c768c33a9ce263ed8e004159145f2977373e0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "69a2f1b4_585a29d1",
@@ -31,6 +49,30 @@
       "writtenOn": "2023-04-17T17:32:58Z",
       "side": 1,
       "message": "We need to check the device\u0027s address as well to assert it is the right device.",
+      "range": {
+        "startLine": 109,
+        "startChar": 15,
+        "endLine": 109,
+        "endChar": 75
+      },
+      "revId": "298c768c33a9ce263ed8e004159145f2977373e0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ada77c69_a3b3ea9d",
+        "filename": "android/pandora/server/src/com/android/pandora/Asha.kt",
+        "patchSetId": 18
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-04-17T18:35:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "69a2f1b4_585a29d1",
       "range": {
         "startLine": 109,
         "startChar": 15,
