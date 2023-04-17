@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "07f06b6c_eddb29e6",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-04-17T20:57:20Z",
+      "side": 1,
+      "message": "nit:\n\nShorter first line, no period at the end.  Explain what the CL does, not what it fixes.\n\nSomething like:\n\nExplicitly return a reference in mocks\n\nAvoid returning a copy of the data from the mocks by setting an explicit return type before returning the static variable.",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 62
+      },
+      "revId": "feb1ccac9e2a007fe1aa1bb889a53c67c0f9a16e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
