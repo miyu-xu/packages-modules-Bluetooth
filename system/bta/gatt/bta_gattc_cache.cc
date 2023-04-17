@@ -63,8 +63,7 @@ static void bta_gattc_explore_srvc_finished(uint16_t conn_id,
                                             tBTA_GATTC_SERV* p_srvc_cb);
 
 static void bta_gattc_read_db_hash_cmpl(tBTA_GATTC_CLCB* p_clcb,
-                                        const tBTA_GATTC_OP_CMPL* p_data,
-                                        bool is_svc_chg);
+                                        const tBTA_GATTC_OP_CMPL* p_data);
 
 static void bta_gattc_read_ext_prop_desc_cmpl(tBTA_GATTC_CLCB* p_clcb,
                                               const tBTA_GATTC_OP_CMPL* p_data);
@@ -456,11 +455,8 @@ void bta_gattc_op_cmpl_during_discovery(tBTA_GATTC_CLCB* p_clcb,
       bta_gattc_read_ext_prop_desc_cmpl(p_clcb, &p_data->op_cmpl);
       break;
     case BTA_GATTC_DISCOVER_REQ_READ_DB_HASH:
-    case BTA_GATTC_DISCOVER_REQ_READ_DB_HASH_FOR_SVC_CHG:
       if (bta_gattc_is_robust_caching_enabled()) {
-        bool is_svc_chg = (p_clcb->request_during_discovery ==
-                           BTA_GATTC_DISCOVER_REQ_READ_DB_HASH_FOR_SVC_CHG);
-        bta_gattc_read_db_hash_cmpl(p_clcb, &p_data->op_cmpl, is_svc_chg);
+        bta_gattc_read_db_hash_cmpl(p_clcb, &p_data->op_cmpl);
       } else {
         // it is not possible here if flag is off, but just in case
         p_clcb->request_during_discovery = BTA_GATTC_DISCOVER_REQ_NONE;
@@ -707,7 +703,7 @@ const Characteristic* bta_gattc_get_owning_characteristic(uint16_t conn_id,
 }
 
 /* request reading database hash */
-bool bta_gattc_read_db_hash(tBTA_GATTC_CLCB* p_clcb, bool is_svc_chg) {
+bool bta_gattc_read_db_hash(tBTA_GATTC_CLCB* p_clcb) {
   tGATT_READ_PARAM read_param;
   memset(&read_param, 0, sizeof(tGATT_READ_BY_TYPE));
 
@@ -720,20 +716,14 @@ bool bta_gattc_read_db_hash(tBTA_GATTC_CLCB* p_clcb, bool is_svc_chg) {
 
   if (status != GATT_SUCCESS) return false;
 
-  if (is_svc_chg) {
-    p_clcb->request_during_discovery =
-        BTA_GATTC_DISCOVER_REQ_READ_DB_HASH_FOR_SVC_CHG;
-  } else {
-    p_clcb->request_during_discovery = BTA_GATTC_DISCOVER_REQ_READ_DB_HASH;
-  }
+  p_clcb->request_during_discovery = BTA_GATTC_DISCOVER_REQ_READ_DB_HASH;
 
   return true;
 }
 
 /* handle response of reading database hash */
 static void bta_gattc_read_db_hash_cmpl(tBTA_GATTC_CLCB* p_clcb,
-                                        const tBTA_GATTC_OP_CMPL* p_data,
-                                        bool is_svc_chg) {
+                                        const tBTA_GATTC_OP_CMPL* p_data) {
   uint8_t op = (uint8_t)p_data->op_code;
   if (op != GATTC_OPTYPE_READ) {
     VLOG(1) << __func__ << ": op = " << +p_data->hdr.layer_specific;
@@ -773,21 +763,6 @@ static void bta_gattc_read_db_hash_cmpl(tBTA_GATTC_CLCB* p_clcb,
           bta_gattc_cache_link(p_clcb->p_srcb->server_bda, remote_hash);
         }
       }
-    }
-  } else {
-    // Only load cache for trusted device if no database hash on server side.
-    // If is_svc_chg is true, do not read the existing cache.
-    bool is_a_bonded_dev = btm_sec_is_a_bonded_dev(p_clcb->p_srcb->server_bda);
-    if (!is_svc_chg && is_a_bonded_dev) {
-      gatt::Database db = bta_gattc_cache_load(p_clcb->p_srcb->server_bda);
-      if (!db.IsEmpty()) {
-        p_clcb->p_srcb->gatt_database = db;
-        found = true;
-      }
-      LOG_DEBUG("load cache directly, result=%d", found);
-    } else {
-      LOG_DEBUG("skip read cache, is_svc_chg=%d, is_a_bonded_dev=%d",
-                is_svc_chg, is_a_bonded_dev);
     }
   }
 
