@@ -4203,10 +4203,10 @@ class LeAudioClientImpl : public LeAudioClient {
       new_configuration_context = configuration_context_type_;
     }
 
-    LOG_DEBUG("metadata_context_types_.sink= %s",
-              ToString(metadata_context_types_.sink).c_str());
-    LOG_DEBUG("metadata_context_types_.source= %s",
-              ToString(metadata_context_types_.source).c_str());
+    LOG_INFO("metadata_context_types_.sink= %s",
+             ToString(metadata_context_types_.sink).c_str());
+    LOG_INFO("metadata_context_types_.source= %s",
+             ToString(metadata_context_types_.source).c_str());
     ReconfigureOrUpdateMetadata(group, new_configuration_context);
   }
 
@@ -4264,8 +4264,7 @@ class LeAudioClientImpl : public LeAudioClient {
              AudioContexts(LeAudioContextType::UNSPECIFIED))) {
           LOG_DEBUG(
               "Other direction is streaming. Aligning remote source metadata "
-              "to "
-              "match the sink context: %s",
+              "to match the sink context: %s",
               ToString(metadata_context_types_.sink).c_str());
           metadata_context_types_.source = metadata_context_types_.sink;
         }
@@ -4276,9 +4275,9 @@ class LeAudioClientImpl : public LeAudioClient {
       }
     }
 
-    LOG_DEBUG("Metadata audio context: sink=%s, source=%s",
-              ToString(metadata_context_types_.sink).c_str(),
-              ToString(metadata_context_types_.source).c_str());
+    LOG_INFO("Metadata audio context: sink=%s, source=%s",
+             ToString(metadata_context_types_.sink).c_str(),
+             ToString(metadata_context_types_.source).c_str());
   }
 
   void OnLocalAudioSinkMetadataUpdate(
@@ -4445,7 +4444,7 @@ class LeAudioClientImpl : public LeAudioClient {
             group, le_audio::types::kLeAudioDirectionSource) &&
         (group->GetState() == AseState::BTA_LE_AUDIO_ASE_STATE_STREAMING);
     if (has_audio_source_configured) {
-      LOG_DEBUG(
+      LOG_INFO(
           "Audio source is already available in the current configuration "
           "context in %s. Not switching to %s right now.",
           ToString(configuration_context_type_).c_str(),
@@ -4453,19 +4452,19 @@ class LeAudioClientImpl : public LeAudioClient {
       new_configuration_context = configuration_context_type_;
     }
 
-    LOG_DEBUG("metadata_context_types_.sink= %s",
-              ToString(metadata_context_types_.sink).c_str());
-    LOG_DEBUG("metadata_context_types_.source= %s",
-              ToString(metadata_context_types_.source).c_str());
+    LOG_INFO("metadata_context_types_.sink= %s",
+             ToString(metadata_context_types_.sink).c_str());
+    LOG_INFO("metadata_context_types_.source= %s",
+             ToString(metadata_context_types_.source).c_str());
     ReconfigureOrUpdateMetadata(group, new_configuration_context);
   }
 
   void ReconfigureOrUpdateMetadata(
       LeAudioDeviceGroup* group, LeAudioContextType new_configuration_context) {
     if (new_configuration_context != configuration_context_type_) {
-      LOG_DEBUG("Changing configuration context from %s to %s",
-                ToString(configuration_context_type_).c_str(),
-                ToString(new_configuration_context).c_str());
+      LOG_INFO("Checking whether to change configuration context from %s to %s",
+               ToString(configuration_context_type_).c_str(),
+               ToString(new_configuration_context).c_str());
 
       LeAudioLogHistory::Get()->AddLogHistory(
           kLogAfCallBt, active_group_id_, RawAddress::kEmpty,
@@ -4475,12 +4474,13 @@ class LeAudioClientImpl : public LeAudioClient {
 
       if (SetConfigurationAndStopStreamWhenNeeded(group,
                                                   new_configuration_context)) {
+        LOG_INFO("Changed the configuration");
         return;
       }
     }
 
     if (group->GetTargetState() == AseState::BTA_LE_AUDIO_ASE_STATE_STREAMING) {
-      LOG_DEBUG(
+      LOG_INFO(
           "The %s configuration did not change. Updating the metadata to "
           "sink=%s, source=%s",
           ToString(configuration_context_type_).c_str(),
