@@ -723,6 +723,23 @@ impl Bluetooth {
         )) == 0
     }
 
+    /// Returns adapter's discoverable mode.
+    pub(crate) fn get_discoverable_mode(&self) -> BtDiscMode {
+        let off_mode = BtDiscMode::NonDiscoverable;
+
+        match self.properties.get(&BtPropertyType::AdapterScanMode) {
+            Some(prop) => match prop {
+                BluetoothProperty::AdapterScanMode(mode) => match *mode {
+                    BtScanMode::ConnectableDiscoverable => BtDiscMode::GeneralDiscoverable,
+                    BtScanMode::ConnectableLimitedDiscoverable => BtDiscMode::LimitedDiscoverable,
+                    _ => off_mode,
+                },
+                _ => off_mode,
+            },
+            _ => off_mode,
+        }
+    }
+
     /// Returns all bonded and connected devices.
     pub(crate) fn get_bonded_and_connected_devices(&mut self) -> Vec<BluetoothDevice> {
         self.bonded_devices
