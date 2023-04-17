@@ -70,6 +70,24 @@
       "parentUuid": "2b892a47_1d817429",
       "revId": "d7d00bc3fd80ed89a836c17fa1a7ab4f3e0f8e5f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "879b2b09_b925d89f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-04-17T18:04:22Z",
+      "side": 1,
+      "message": "I agree that we can remove the flag.",
+      "parentUuid": "a730ba37_b03ceebc",
+      "revId": "d7d00bc3fd80ed89a836c17fa1a7ab4f3e0f8e5f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
