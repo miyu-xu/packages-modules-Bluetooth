@@ -72,6 +72,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "eea3c1a4_906001cd",
+        "filename": "system/rust/src/gatt/server/att_database.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-04-17T17:29:22Z",
+      "side": 1,
+      "message": "Renamed in followup to keep Cl smaller.",
+      "parentUuid": "cb6c6e8f_b4f0879d",
+      "range": {
+        "startLine": 55,
+        "startChar": 11,
+        "endLine": 55,
+        "endChar": 19
+      },
+      "revId": "9b36d6f1fd1f5472ef391a73f8189fefac53b6b9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7a8de899_aef0ac0b",
@@ -132,6 +156,24 @@
       "writtenOn": "2023-03-30T20:57:07Z",
       "side": 1,
       "message": "test_unsupported_command() ?",
+      "revId": "9b36d6f1fd1f5472ef391a73f8189fefac53b6b9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ca2b5031_62e1c380",
+        "filename": "system/rust/src/gatt/server/command_handler.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-04-17T17:29:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "622aa714_5ef259cd",
       "revId": "9b36d6f1fd1f5472ef391a73f8189fefac53b6b9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
