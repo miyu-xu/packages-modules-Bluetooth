@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "03c6303c_78fb5c17",
+        "filename": "system/gd/rust/linux/stack/src/suspend.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-04-17T21:07:50Z",
+      "side": 1,
+      "message": "I was trying to avoid depending on the QA trait. Can we just make an internal func and access directly via `Bluetooth` instead of `IBluetoothQA`?",
+      "revId": "92a854ad745f156c27765374749dd4874d7cb1fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
