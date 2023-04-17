@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f451eb8b_641acd33",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 37
+      },
+      "lineNbr": 4975,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-04-17T09:00:14Z",
+      "side": 1,
+      "message": "Should the preference be set per context type, or usage, rather than per profile ?\n\nSome manufacturers might like to use LE Audio just for Gaming, but not for Conversational, but both are equivalent to duplex, or HFP in Classic.",
+      "range": {
+        "startLine": 4973,
+        "startChar": 11,
+        "endLine": 4975,
+        "endChar": 67
+      },
+      "revId": "683913619c945a779f666de36a480abb47406518",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "739d82a2_5838ae9e",
         "filename": "system/bta/ag/bta_ag_act.cc",
         "patchSetId": 37
