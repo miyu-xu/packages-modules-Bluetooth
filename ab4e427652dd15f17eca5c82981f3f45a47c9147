@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2e243f44_b192897a",
+        "filename": "system/stack/btm/btm_sco_hfp_hal.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1958755
+      },
+      "writtenOn": "2023-04-17T11:31:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "27399921_9e479d64",
+      "range": {
+        "startLine": 52,
+        "startChar": 5,
+        "endLine": 52,
+        "endChar": 22
+      },
+      "revId": "ab4e427652dd15f17eca5c82981f3f45a47c9147",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f4dac2a8_ed6feab4",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-04-14T18:48:19Z",
       "side": 1,
       "message": "Is this sysprop modifiable with developer settings ? I think not since it is `.supported` and not `.enabled`. I don\u0027t think we should add `persist` then.",
+      "range": {
+        "startLine": 53,
+        "startChar": 32,
+        "endLine": 53,
+        "endChar": 67
+      },
+      "revId": "ab4e427652dd15f17eca5c82981f3f45a47c9147",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "92f40a70_8af1d5f3",
+        "filename": "system/stack/btm/btm_sco_hfp_hal.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1958755
+      },
+      "writtenOn": "2023-04-17T11:31:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f4dac2a8_ed6feab4",
       "range": {
         "startLine": 53,
         "startChar": 32,
