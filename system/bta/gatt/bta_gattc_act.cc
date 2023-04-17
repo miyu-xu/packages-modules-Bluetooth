@@ -825,11 +825,6 @@ void bta_gattc_start_discover(tBTA_GATTC_CLCB* p_clcb,
       /* set all srcb related clcb into discovery ST */
       bta_gattc_set_discover_st(p_clcb->p_srcb);
 
-      // Before clear mask, set is_svc_chg to
-      // 1. true, invoked by service changed indication
-      // 2. false, invoked by connect API
-      bool is_svc_chg = p_clcb->p_srcb->srvc_hdl_chg;
-
       /* clear the service change mask */
       p_clcb->p_srcb->srvc_hdl_chg = false;
       p_clcb->p_srcb->update_count = 0;
@@ -844,8 +839,7 @@ void bta_gattc_start_discover(tBTA_GATTC_CLCB* p_clcb,
 
       /* read db hash if db hash characteristic exists */
       if (bta_gattc_is_robust_caching_enabled() &&
-          p_clcb->p_srcb->srvc_hdl_db_hash &&
-          bta_gattc_read_db_hash(p_clcb, is_svc_chg)) {
+          p_clcb->p_srcb->srvc_hdl_db_hash && bta_gattc_read_db_hash(p_clcb)) {
         LOG(INFO) << __func__
                   << ": pending service discovery, read db hash first";
         p_clcb->p_srcb->srvc_hdl_db_hash = false;
