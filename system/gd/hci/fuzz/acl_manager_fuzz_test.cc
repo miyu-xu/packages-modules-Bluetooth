@@ -57,7 +57,8 @@ extern "C" int LLVMFuzzerTestOneInput(const uint8_t* data, size_t size) {
 
     switch (action) {
       case 1: {
-        uint64_t advanceTime = dataProvider.ConsumeIntegralInRange<uint64_t>(kMinTimeAdvanced, kMaxTotalTimeAdvanced);
+        uint64_t advanceTime =
+            dataProvider.ConsumeIntegralInRange<uint64_t>(kMinTimeAdvanced, kMaxTotalTimeAdvanced);
         totalAdvanceTime += advanceTime;
         if (totalAdvanceTime < kMaxTotalTimeAdvanced) {
           fake_timerfd_advance(advanceTime);
