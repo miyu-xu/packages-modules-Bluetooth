@@ -732,7 +732,9 @@ struct LeScanningManager::impl : public LeAddressManagerCallback {
               filter.tds_flags,
               filter.tds_flags_mask,
               filter.data,
-              filter.data_mask);
+              filter.data_mask,
+              filter.meta_data_type,
+              filter.meta_data);
           break;
         }
         case ApcfFilterType::AD_TYPE: {
@@ -936,7 +938,9 @@ struct LeScanningManager::impl : public LeAddressManagerCallback {
       uint8_t tds_flags,
       uint8_t tds_flags_mask,
       std::vector<uint8_t> transport_data,
-      std::vector<uint8_t> transport_data_mask) {
+      std::vector<uint8_t> transport_data_mask,
+      uint8_t meta_data_type,
+      std::vector<uint8_t> meta_data) {
     std::vector<uint8_t> combined_data = {};
 
     LocalVersionInformation local_version_information = controller_->GetLocalVersionInformation();
@@ -953,30 +957,40 @@ struct LeScanningManager::impl : public LeAddressManagerCallback {
       combined_data.push_back((uint8_t)org_id);
       combined_data.push_back((uint8_t)tds_flags);
       combined_data.push_back((uint8_t)tds_flags_mask);
-      if (transport_data.size() != 0) {
-        // 0x02 Wi�Fi Alliance Neighbor Awareness Networking
-        if (org_id == 0x02) {
-          // Transport data contains WIFI NAN hash, reverse it before sending controller.
-          std::reverse(transport_data.begin(), transport_data.end());
-        }
+      // For future version , controller may also filter using transport data
+      // & transport data mask for non WIFI NAN org id.
+      if (is_transport_discovery_data_filter_supported_ && (transport_data.size() != 0)) {
+        combined_data.push_back((uint8_t)transport_data.size());
         combined_data.insert(combined_data.end(), transport_data.begin(), transport_data.end());
-        // For future version , controller may also filter using transport data
-        // & transport data mask for non WIFI NAN id.
-        if (is_transport_discovery_data_filter_supported_ && org_id != 0x02) {
-          combined_data.insert(
-              combined_data.end(), transport_data_mask.begin(), transport_data_mask.end());
+        combined_data.insert(
+            combined_data.end(), transport_data_mask.begin(), transport_data_mask.end());
+      }
+
+      if (meta_data_type != 0xFF && meta_data.size() != 0) {
+        if (is_transport_discovery_data_filter_supported_) {
+          combined_data.push_back((uint8_t)meta_data_type);    // type
+          combined_data.push_back((uint8_t)meta_data.size());  // len
+        }
+        // 0x02 Wi-Fi Alliance Neighbor Awareness Networking & meta_data_type is 0x00 for NAN Hash.
+        if (org_id == 0x02 && meta_data_type == 0x00) {
+          // meta data contains WIFI NAN hash, reverse it before sending controller.
+          std::reverse(meta_data.begin(), meta_data.end());
+          combined_data.insert(combined_data.end(), meta_data.begin(), meta_data.end());  // value
         }
       }
     }
 
     LOG_INFO(
         "org id: %d, tds_flags: %d, tds_flags_mask = %d,"
-        "transport_data size: %zu, transport_data_mask size: %zu",
+        "transport_data size: %zu, transport_data_mask size: %zu"
+        "meta_data_type: %d, meta_data size: %zu",
         org_id,
         tds_flags,
         tds_flags_mask,
         transport_data.size(),
-        transport_data_mask.size());
+        transport_data_mask.size(),
+        meta_data_type,
+        meta_data.size());
 
     le_scanning_interface_->EnqueueCommand(
         LeAdvFilterTransportDiscoveryDataBuilder::Create(action, filter_index, combined_data),
