@@ -16,6 +16,23 @@
       "message": "Gentle ping, thanks!",
       "revId": "55dfbf837c7ef52eb75329a60934ea1e28755723",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b9e67686_7d5d421a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2023-04-17T12:53:00Z",
+      "side": 1,
+      "message": "Hi, please take a look, thanks!",
+      "revId": "55dfbf837c7ef52eb75329a60934ea1e28755723",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
