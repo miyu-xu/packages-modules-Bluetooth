@@ -1126,7 +1126,7 @@ tINQ_DB_ENT* btm_inq_db_find(const RawAddress& p_bda) {
  * Function         btm_inq_db_new
  *
  * Description      This function looks through the inquiry database for an
- *                  unused entry. If no entry is free, it allocates the oldest
+ *                  unused entry. If no entry is free, it allocates the farthest
  *                  entry.
  *
  * Returns          pointer to entry
@@ -1135,8 +1135,8 @@ tINQ_DB_ENT* btm_inq_db_find(const RawAddress& p_bda) {
 tINQ_DB_ENT* btm_inq_db_new(const RawAddress& p_bda) {
   uint16_t xx;
   tINQ_DB_ENT* p_ent = btm_cb.btm_inq_vars.inq_db;
-  tINQ_DB_ENT* p_old = btm_cb.btm_inq_vars.inq_db;
-  uint64_t ot = UINT64_MAX;
+  tINQ_DB_ENT* p_far = btm_cb.btm_inq_vars.inq_db;
+  int8_t i_rssi = 0;
 
   for (xx = 0; xx < BTM_INQ_DB_SIZE; xx++, p_ent++) {
     if (!p_ent->in_use) {
@@ -1147,19 +1147,19 @@ tINQ_DB_ENT* btm_inq_db_new(const RawAddress& p_bda) {
       return (p_ent);
     }
 
-    if (p_ent->time_of_resp < ot) {
-      p_old = p_ent;
-      ot = p_ent->time_of_resp;
+    if (p_ent->inq_info.results.rssi < i_rssi) {
+      p_far = p_ent;
+      i_rssi = p_ent->inq_info.results.rssi;
     }
   }
 
-  /* If here, no free entry found. Return the oldest. */
+  /* If here, no free entry found. Return the farthest. */
 
-  memset(p_old, 0, sizeof(tINQ_DB_ENT));
-  p_old->inq_info.results.remote_bd_addr = p_bda;
-  p_old->in_use = true;
+  memset(p_far, 0, sizeof(tINQ_DB_ENT));
+  p_far->inq_info.results.remote_bd_addr = p_bda;
+  p_far->in_use = true;
 
-  return (p_old);
+  return (p_far);
 }
 
 /*******************************************************************************
