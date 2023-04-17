@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4fde3e3c_109cbea6",
+        "filename": "system/bta/gatt/bta_gattc_cache.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 778,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-04-17T03:09:05Z",
+      "side": 0,
+      "message": "For more context, this code is meant to handle the case when we do initial service discovery, read the db hash, the read fails, and we fall back to the cache for a bonded device.\n\nBut now, when connecting to a bonded device, we either (1) don\u0027t do discovery at all, if we don\u0027t think it supports robust caching, or (2) do a full discovery, if we think that it does (early-exiting if we get a hash match). So we never want to *just* read the database hash and early-exit if it fails.\n\nThus we can remove this logic.",
+      "revId": "e1f17e0676f6bcd520d660aed6696ebea24ef05a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
