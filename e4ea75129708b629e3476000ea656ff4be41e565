@@ -74,6 +74,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "80e47bda_a8aad820",
+        "filename": "system/bta/csis/csis_client.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1753,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-04-17T09:32:46Z",
+      "side": 1,
+      "message": "Sorry you are right, I looked at bad columns in diff...",
+      "parentUuid": "69c0ba5f_17e8f0fe",
+      "range": {
+        "startLine": 1753,
+        "startChar": 66,
+        "endLine": 1753,
+        "endChar": 74
+      },
+      "revId": "e4ea75129708b629e3476000ea656ff4be41e565",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "de1d18de_2a07f983",
         "filename": "system/bta/csis/csis_client.cc",
         "patchSetId": 3
