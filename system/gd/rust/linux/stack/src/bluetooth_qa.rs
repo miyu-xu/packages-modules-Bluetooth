@@ -6,6 +6,7 @@ use tokio::sync::mpsc::Sender;
 /// Defines the Qualification API
 pub trait IBluetoothQA {
     fn add_media_player(&self, name: String, browsing_supported: bool);
+    fn rfcomm_start_control_request(&self, dlci: u8, addr: String);
 }
 
 pub struct BluetoothQA {
@@ -23,6 +24,12 @@ impl IBluetoothQA for BluetoothQA {
         let txl = self.tx.clone();
         tokio::spawn(async move {
             let _ = txl.send(Message::QaAddMediaPlayer(name, browsing_supported)).await;
+        });
+    }
+    fn rfcomm_start_control_request(&self, dlci: u8, addr: String) {
+        let txl = self.tx.clone();
+        tokio::spawn(async move {
+            let _ = txl.send(Message::QaRfcommStartControlRequest(dlci, addr)).await;
         });
     }
 }
