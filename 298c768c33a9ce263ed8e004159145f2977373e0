@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5efa85ba_38447f8a",
+        "filename": "android/pandora/server/src/com/android/pandora/Asha.kt",
+        "patchSetId": 18
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2023-04-17T17:32:58Z",
+      "side": 1,
+      "message": "It would be preferable to throw an error if the profile is not connected at this point and add a \"waitSink\" method, regarding the wording in the spec.\nhttps://source.corp.google.com/h/android/platform/superproject/+/master:packages/modules/Bluetooth/android/pandora/server/src/com/android/pandora/A2dp.kt;l\u003d148-150?q\u003dA2dp.kt\u0026sq\u003drepo:android%2Fplatform%2Fsuperproject%20branch:master\n\nLike that we could properly wait for the profile to be connected before calling start and we will not have hidden behavior.",
+      "revId": "298c768c33a9ce263ed8e004159145f2977373e0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "69a2f1b4_585a29d1",
+        "filename": "android/pandora/server/src/com/android/pandora/Asha.kt",
+        "patchSetId": 18
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2023-04-17T17:32:58Z",
+      "side": 1,
+      "message": "We need to check the device\u0027s address as well to assert it is the right device.",
+      "range": {
+        "startLine": 109,
+        "startChar": 15,
+        "endLine": 109,
+        "endChar": 75
+      },
+      "revId": "298c768c33a9ce263ed8e004159145f2977373e0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
