@@ -236,7 +236,8 @@ fn build_commands() -> HashMap<String, CommandOption> {
         String::from("socket"),
         CommandOption {
             rules: vec![
-                String::from("socket listen <auth-required> <Bredr|LE>"),
+                String::from("socket l2cap-listen <auth-required> <Bredr|LE>"),
+                String::from("socket rfcomm-listen <name> <uuid>"),
                 String::from(
                     "socket connect <address> <l2cap|rfcomm> <psm|uuid> <auth-required> <Bredr|LE>",
                 ),
@@ -1416,7 +1417,7 @@ impl CommandHandler {
 
                 self.context.lock().unwrap().socket_test_schedule = Some(schedule);
             }
-            "listen" => {
+            "l2cap-listen" => {
                 let auth_required = String::from(get_arg(args, 1)?)
                     .parse::<bool>()
                     .or(Err("Failed to parse auth-required"))?;
@@ -1454,6 +1455,30 @@ impl CommandHandler {
                     .into());
                 }
                 print_info!("Requested for listening using l2cap channel on socket {}", id);
+            }
+            "rfcomm-listen" => {
+                let name = String::from(get_arg(args, 1)?);
+                let uuid = match UuidHelper::parse_string(get_arg(args, 2)?) {
+                    Some(uu) => uu,
+                    None => {
+                        return Err(CommandError::Failed(format!("Could not parse given uuid.")));
+                    }
+                };
+
+                let SocketResult { status, id } = {
+                    let mut context_proxy = self.context.lock().unwrap();
+                    let proxy = context_proxy.socket_manager_dbus.as_mut().unwrap();
+                    proxy.listen_using_rfcomm_with_service_record(callback_id, name, uuid)
+                };
+
+                if status != BtStatus::Success {
+                    return Err(format!(
+                        "Failed to request for listening using rfcomm channel, status = {:?}",
+                        status,
+                    )
+                    .into());
+                }
+                print_info!("Requested for listening using rfcomm channel on socket {}", id);
             }
             "connect" => {
                 let (addr, sock_type, psm_or_uuid) =
