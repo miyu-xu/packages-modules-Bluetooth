@@ -106,6 +106,10 @@ int RFCOMM_CreateConnectionWithSecurity(uint16_t uuid, uint8_t scn,
   inc_func_call_count(__func__);
   return 0;
 }
+int RFCOMM_SendMsc(uint8_t dlci, const RawAddress& bd_addr) {
+  inc_func_call_count(__func__);
+  return 0;
+}
 int RFCOMM_RemoveConnection(uint16_t handle) {
   inc_func_call_count(__func__);
   return 0;

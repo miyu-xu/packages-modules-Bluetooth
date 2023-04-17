@@ -235,6 +235,32 @@ int RFCOMM_CreateConnectionWithSecurity(uint16_t uuid, uint8_t scn,
 
 /*******************************************************************************
  *
+ * Function         RFCOMM_SendMsc
+ *
+ * Description      Send MSC command to the peer. ONLY FOR QUALIFICATION USE.
+ *                  RFCOMM layer starts the control request only when it is the
+ *                  client. This API allows the host to start the control
+ *                  request while it works as a RFCOMM server.
+ *
+ * Parameters:      dlci    - the DLCI to send the MSC command
+ *                  bd_addr - bd_addr of the peer
+ *
+ ******************************************************************************/
+int RFCOMM_SendMsc(uint8_t dlci, const RawAddress& bd_addr) {
+  tRFC_MCB* p_mcb = port_find_mcb(bd_addr);
+  if (!p_mcb) {
+    return PORT_BAD_BD_ADDR;
+  }
+  tPORT* p_port = port_find_mcb_dlci_port(p_mcb, dlci);
+  if (!p_port) {
+    return PORT_NOT_OPENED;
+  }
+  RFCOMM_ControlReq(p_mcb, dlci, &p_port->local_ctrl);
+  return PORT_SUCCESS;
+}
+
+/*******************************************************************************
+ *
  * Function         RFCOMM_RemoveConnection
  *
  * Description      This function is called to close the specified connection.

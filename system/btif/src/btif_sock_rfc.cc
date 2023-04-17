@@ -265,6 +265,15 @@ static rfc_slot_t* create_srv_accept_rfc_slot(rfc_slot_t* srv_rs,
   return accept_rs;
 }
 
+bt_status_t btsock_rfc_send_msc(uint8_t dlci, const RawAddress& bd_addr) {
+  int status = RFCOMM_SendMsc(dlci, bd_addr);
+  if (status != PORT_SUCCESS) {
+    LOG_WARN("failed to send MSC, status=%d", status);
+    return BT_STATUS_FAIL;
+  }
+  return BT_STATUS_SUCCESS;
+}
+
 bt_status_t btsock_rfc_listen(const char* service_name,
                               const Uuid* service_uuid, int channel,
                               int* sock_fd, int flags, int app_uid) {
