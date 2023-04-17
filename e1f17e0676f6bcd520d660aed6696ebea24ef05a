@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "60bab029_5bf3a418",
+        "filename": "android/app/src/com/android/bluetooth/gatt/AdvertiseManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-04-17T21:40:23Z",
+      "side": 1,
+      "message": "Can\u0027t we skip the deathRecipient completly and move this if above ?\n\nIt seems wrong to :\n```\nAdvertisingSetDeathRecipient deathRecipient \u003d new AdvertisingSetDeathRecipient(callback);\nIBinder binder \u003d toBinder(callback);\nbinder.linkToDeath(deathRecipient, 0);\nbinder.unlinkToDeath(deathRecipient, 0);\n```",
+      "range": {
+        "startLine": 227,
+        "startChar": 37,
+        "endLine": 227,
+        "endChar": 51
+      },
+      "revId": "e1f17e0676f6bcd520d660aed6696ebea24ef05a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
