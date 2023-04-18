@@ -369,9 +369,10 @@ class LeAudioDeviceGroup {
   }
 
   inline types::AseState GetTargetState(void) const { return target_state_; }
-  void SetTargetState(types::AseState state) {
+  void SetTargetState(base::Location location, types::AseState state) {
     LOG(INFO) << __func__ << " target state: " << target_state_
-              << " new target state: " << state;
+              << " new target state: " << state
+              << " set from: " << location.ToString();
     LeAudioLogHistory::Get()->AddLogHistory(
         kLogStateMachineTag, group_id_, RawAddress::kEmpty,
         kLogTargetStateChangedOp,
