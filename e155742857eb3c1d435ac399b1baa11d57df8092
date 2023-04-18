@@ -16,6 +16,24 @@
       "message": "What about bonded devices that are dual mode capable, but can\u0027t do CTKD ?\nWe would never consider them bonded ? If that\u0027s the case, we might break some older devices.",
       "revId": "e155742857eb3c1d435ac399b1baa11d57df8092",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "36b26761_40b3d1e4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2023-04-18T19:00:13Z",
+      "side": 1,
+      "message": "+1\nBonded devices need not necessarily be bonded for both transports.",
+      "parentUuid": "614281ef_5aa47681",
+      "revId": "e155742857eb3c1d435ac399b1baa11d57df8092",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
