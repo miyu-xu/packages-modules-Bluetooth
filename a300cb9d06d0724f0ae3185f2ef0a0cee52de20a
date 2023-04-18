@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "07a2b551_b4d1fc0a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-04-18T18:36:08Z",
+      "side": 1,
+      "message": "nit: `log` ?",
+      "range": {
+        "startLine": 7,
+        "startChar": 17,
+        "endLine": 7,
+        "endChar": 20
+      },
+      "revId": "a300cb9d06d0724f0ae3185f2ef0a0cee52de20a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
