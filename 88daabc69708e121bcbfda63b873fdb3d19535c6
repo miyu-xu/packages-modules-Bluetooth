@@ -94,6 +94,30 @@
       },
       "revId": "88daabc69708e121bcbfda63b873fdb3d19535c6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6dd8a0fd_a00cea22",
+        "filename": "android/app/Android.bp",
+        "patchSetId": 10
+      },
+      "lineNbr": 208,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-04-18T22:27:57Z",
+      "side": 0,
+      "message": "\u003e Should we add that inside the APEX as native library ?\n\nNo we should not as this is an HIDL or AIDL library that is guaranted to provide (backward) protocol compatibility so the HAL and the APEX are allowed to not use the same version.",
+      "parentUuid": "a11c5234_f2df6728",
+      "range": {
+        "startLine": 204,
+        "startChar": 8,
+        "endLine": 208,
+        "endChar": 41
+      },
+      "revId": "88daabc69708e121bcbfda63b873fdb3d19535c6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
