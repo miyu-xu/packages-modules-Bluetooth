@@ -98,6 +98,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4a28b3fa_4ec2bf78",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 773,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2023-04-18T23:52:26Z",
+      "side": 1,
+      "message": "I think this refers to using `if let Some(hfp_cur_cap) \u003d hfp_cap.get_mut(\u0026addr)` which is a sugar syntax to retrieve the value while checking the condition.",
+      "parentUuid": "a1b0a9c1_913e70b4",
+      "range": {
+        "startLine": 773,
+        "startChar": 16,
+        "endLine": 773,
+        "endChar": 54
+      },
+      "revId": "abb1432f567f11c8211ed78551878add919abdc0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "72fcb894_a0f84f78",
         "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
         "patchSetId": 2
@@ -109,6 +133,30 @@
       "writtenOn": "2023-04-18T14:49:44Z",
       "side": 1,
       "message": "Do we also need to cover the `wbs_supported \u003d\u003d  false` case?",
+      "range": {
+        "startLine": 780,
+        "startChar": 20,
+        "endLine": 780,
+        "endChar": 86
+      },
+      "revId": "abb1432f567f11c8211ed78551878add919abdc0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "91956c72_2f68339e",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 780,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2023-04-18T23:52:26Z",
+      "side": 1,
+      "message": "+1 I think we should negate the value here.\n\nPer the spec, it\u0027s possible that the peer revokes its claimed capabilities (over `AT+BAC` which will update with this function).",
+      "parentUuid": "72fcb894_a0f84f78",
       "range": {
         "startLine": 780,
         "startChar": 20,
@@ -178,6 +226,30 @@
       "writtenOn": "2023-04-18T14:49:44Z",
       "side": 1,
       "message": "May we separate the enablement of this to a follow up CL? This will may break ChromeOS that hasn\u0027t enabled the SWB support.",
+      "range": {
+        "startLine": 2185,
+        "startChar": 16,
+        "endLine": 2185,
+        "endChar": 96
+      },
+      "revId": "abb1432f567f11c8211ed78551878add919abdc0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fb3b5dfb_45779528",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 2185,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2023-04-18T23:52:26Z",
+      "side": 1,
+      "message": "At this point if this could be `true` (even without the added code), that would have had broken ChromeOS without SWB support because the codec selection is delegated to Floss, and the audio server will still expect something else.\n\nOne critical flag to block the enablement is probably via hal::get_swb_supported, so that during codec negotiation SWB is completely ignored. I\u0027m not sure if that function is implemented in this patch series (note ChromeOS uses `system/stack/btm/btm_sco_hfp_hal_linux.cc`, which is different from Android\u0027s `system/stack/btm/btm_sco_hfp_hal.cc`).\n\nOtherwise this patch LGTM, but FYI this only affects ChromeOS so it\u0027s OK to hold.",
+      "parentUuid": "a965ea1a_854e1f58",
       "range": {
         "startLine": 2185,
         "startChar": 16,
