@@ -65,6 +65,7 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 import java.io.File;
+import java.io.IOException;
 
 @MediumTest
 @RunWith(AndroidJUnit4.class)
@@ -77,7 +78,7 @@ public class BluetoothOppLauncherActivityTest {
     BluetoothOppManager mBluetoothOppManager;
 
     @Before
-    public void setUp() {
+    public void setUp() throws IOException {
         MockitoAnnotations.initMocks(this);
         mTargetContext = spy(new ContextWrapper(
                 ApplicationProvider.getApplicationContext()));
@@ -88,6 +89,8 @@ public class BluetoothOppLauncherActivityTest {
         mIntent.setClass(mTargetContext, BluetoothOppLauncherActivity.class);
 
         BluetoothOppTestUtils.enableOppActivities(true, mTargetContext);
+        BluetoothOppTestUtils.unlockAndTurnOnScreen();
+
         BluetoothOppManager.setInstance(mBluetoothOppManager);
         Intents.init();
     }

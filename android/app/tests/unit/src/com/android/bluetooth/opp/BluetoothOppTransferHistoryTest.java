@@ -56,6 +56,7 @@ import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.mockito.Spy;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -75,7 +76,7 @@ public class BluetoothOppTransferHistoryTest {
     Context mTargetContext;
 
     @Before
-    public void setUp() {
+    public void setUp() throws IOException {
         MockitoAnnotations.initMocks(this);
         mBluetoothMethodProxy = Mockito.spy(BluetoothMethodProxy.getInstance());
         BluetoothMethodProxy.setInstanceForTesting(mBluetoothMethodProxy);
@@ -118,6 +119,7 @@ public class BluetoothOppTransferHistoryTest {
         ));
 
         BluetoothOppTestUtils.enableOppActivities(true, mTargetContext);
+        BluetoothOppTestUtils.unlockAndTurnOnScreen();
     }
 
     @After

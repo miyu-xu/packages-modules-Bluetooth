@@ -46,19 +46,22 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.MockitoAnnotations;
 
+import java.io.IOException;
+
 public class BluetoothOppBtEnableActivityTest {
 
     Intent mIntent;
     Context mTargetContext;
 
     @Before
-    public void setUp() {
+    public void setUp() throws IOException {
         MockitoAnnotations.initMocks(this);
         mTargetContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
         mIntent = new Intent();
         mIntent.setClass(mTargetContext, BluetoothOppBtEnableActivity.class);
         Intents.init();
         BluetoothOppTestUtils.enableOppActivities(true, mTargetContext);
+        BluetoothOppTestUtils.unlockAndTurnOnScreen();
     }
 
     @After

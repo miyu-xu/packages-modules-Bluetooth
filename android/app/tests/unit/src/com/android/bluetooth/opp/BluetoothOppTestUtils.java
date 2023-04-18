@@ -16,21 +16,29 @@
 
 package com.android.bluetooth.opp;
 
+import static android.content.pm.ActivityInfo.FLAG_TURN_SCREEN_ON;
 import static android.content.pm.PackageManager.COMPONENT_ENABLED_STATE_DEFAULT;
 import static android.content.pm.PackageManager.COMPONENT_ENABLED_STATE_ENABLED;
 import static android.content.pm.PackageManager.DONT_KILL_APP;
+import static android.view.WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD;
+import static android.view.WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON;
 
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.doAnswer;
 import static org.mockito.Mockito.doReturn;
 
+import android.app.KeyguardManager;
 import android.content.ComponentName;
 import android.content.Context;
 import android.database.Cursor;
 
+import androidx.test.platform.app.InstrumentationRegistry;
+import androidx.test.uiautomator.UiDevice;
+
 import org.mockito.internal.util.MockUtil;
 
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -144,6 +152,12 @@ public class BluetoothOppTestUtils {
                     activityName, enabledState, DONT_KILL_APP);
         });
 
+    }
+
+    public static void unlockAndTurnOnScreen() throws IOException {
+        final UiDevice device = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());
+        device.executeShellCommand("input keyevent KEYCODE_WAKEUP");
+        device.executeShellCommand("wm dismiss-keyguard");
     }
 }
 
