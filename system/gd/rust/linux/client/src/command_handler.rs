@@ -478,6 +478,7 @@ impl CommandHandler {
                 let is_connectable = qa_legacy_dbus.get_connectable();
                 let alias = qa_legacy_dbus.get_alias();
                 let modalias = qa_legacy_dbus.get_modalias();
+                let discoverable_mode = qa_legacy_dbus.get_discoverable_mode();
                 let discoverable_timeout = adapter_dbus.get_discoverable_timeout();
                 let cod = adapter_dbus.get_bluetooth_class();
                 let multi_adv_supported = adapter_dbus.is_multi_advertisement_supported();
@@ -501,6 +502,7 @@ impl CommandHandler {
                 print_info!("Modalias: {}", modalias);
                 print_info!("State: {}", if enabled { "enabled" } else { "disabled" });
                 print_info!("Discoverable: {}", is_discoverable);
+                print_info!("Discoverable mode: {:?}", discoverable_mode);
                 print_info!("DiscoverableTimeout: {}s", discoverable_timeout);
                 print_info!("Connectable: {}", is_connectable);
                 print_info!("Class: {:#06x}", cod);

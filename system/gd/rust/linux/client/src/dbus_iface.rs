@@ -898,6 +898,11 @@ impl IBluetoothQALegacy for BluetoothQALegacyDBus {
         dbus_generated!()
     }
 
+    #[dbus_method("GetDiscoverableMode")]
+    fn get_discoverable_mode(&self) -> BtDiscMode {
+        dbus_generated!()
+    }
+
     #[dbus_method("SetConnectable")]
     fn set_connectable(&mut self, mode: bool) -> bool {
         dbus_generated!()

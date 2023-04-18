@@ -219,6 +219,8 @@ pub trait IBluetoothQALegacy {
     /// Returns whether the adapter is connectable.
     fn get_connectable(&self) -> bool;
 
+    fn get_discoverable_mode(&self) -> BtDiscMode;
+
     /// Sets connectability. Returns true on success, false otherwise.
     fn set_connectable(&mut self, mode: bool) -> bool;
 
@@ -738,7 +740,7 @@ impl Bluetooth {
     }
 
     /// Returns adapter's discoverable mode.
-    pub(crate) fn get_discoverable_mode(&self) -> BtDiscMode {
+    pub(crate) fn get_discoverable_mode_internal(&self) -> BtDiscMode {
         let off_mode = BtDiscMode::NonDiscoverable;
 
         match self.properties.get(&BtPropertyType::AdapterScanMode) {
@@ -2518,6 +2520,10 @@ impl BtifHHCallbacks for Bluetooth {
 impl IBluetoothQALegacy for Bluetooth {
     fn get_connectable(&self) -> bool {
         self.get_connectable_internal()
+    }
+
+    fn get_discoverable_mode(&self) -> BtDiscMode {
+        self.get_discoverable_mode_internal()
     }
 
     fn set_connectable(&mut self, mode: bool) -> bool {
