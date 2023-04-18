@@ -460,7 +460,7 @@ class LeAudioClientImpl : public LeAudioClient {
         "target state: %s",
         group_id, ToString(group->GetState()).c_str(),
         ToString(group->GetTargetState()).c_str());
-    group->SetTargetState(AseState::BTA_LE_AUDIO_ASE_STATE_IDLE);
+    group->SetTargetState(FROM_HERE, AseState::BTA_LE_AUDIO_ASE_STATE_IDLE);
     group->CigClearCis();
     group->PrintDebugState();
 
@@ -917,7 +917,7 @@ class LeAudioClientImpl : public LeAudioClient {
       return;
     }
 
-    groupStateMachine_->StopStream(group);
+    groupStateMachine_->StopStream(FROM_HERE, group);
   }
 
   void GroupDestroy(const int group_id) override {
@@ -1379,7 +1379,7 @@ class LeAudioClientImpl : public LeAudioClient {
             group->GetState() ==
                 le_audio::types::AseState::BTA_LE_AUDIO_ASE_STATE_STREAMING) {
           leAudioDevice->closing_stream_for_disconnection_ = true;
-          groupStateMachine_->StopStream(group);
+          groupStateMachine_->StopStream(FROM_HERE, group);
           return;
         }
       }
@@ -2668,7 +2668,7 @@ class LeAudioClientImpl : public LeAudioClient {
       /* Reconfigure if newly connected member device cannot support current
        * codec configuration */
       group->SetPendingConfiguration();
-      groupStateMachine_->StopStream(group);
+      groupStateMachine_->StopStream(FROM_HERE, group);
       stream_setup_start_timestamp_ =
           bluetooth::common::time_get_os_boottime_us();
       return;
@@ -4050,7 +4050,7 @@ class LeAudioClientImpl : public LeAudioClient {
 
     /* Need to reconfigure stream */
     group->SetPendingConfiguration();
-    groupStateMachine_->StopStream(group);
+    groupStateMachine_->StopStream(FROM_HERE, group);
     return true;
   }
 
@@ -4824,7 +4824,7 @@ class LeAudioClientImpl : public LeAudioClient {
               ToString(group->GetConfigurationContextType()).c_str(),
               ToString(configuration_context_type_).c_str());
           group->SetPendingConfiguration();
-          groupStateMachine_->StopStream(group);
+          groupStateMachine_->StopStream(FROM_HERE, group);
           stream_setup_start_timestamp_ =
               bluetooth::common::time_get_os_boottime_us();
           return;

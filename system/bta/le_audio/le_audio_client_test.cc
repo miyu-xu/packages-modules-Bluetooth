@@ -695,6 +695,7 @@ class UnicastTestNoInit : public Test {
 
               // Inject the state
               group->SetTargetState(
+                  FROM_HERE,
                   types::AseState::BTA_LE_AUDIO_ASE_STATE_CODEC_CONFIGURED);
               group->SetState(group->GetTargetState());
               group->ClearPendingConfiguration();
@@ -998,7 +999,7 @@ class UnicastTestNoInit : public Test {
 
           // Inject the state
           group->SetTargetState(
-              types::AseState::BTA_LE_AUDIO_ASE_STATE_STREAMING);
+              FROM_HERE, types::AseState::BTA_LE_AUDIO_ASE_STATE_STREAMING);
           group->SetState(group->GetTargetState());
           streaming_groups[group->group_id_] = group;
 
@@ -1034,6 +1035,7 @@ class UnicastTestNoInit : public Test {
 
           // Inject the state
           group->SetTargetState(
+              FROM_HERE,
               types::AseState::BTA_LE_AUDIO_ASE_STATE_QOS_CONFIGURED);
           group->SetState(group->GetTargetState());
           state_machine_callbacks_->StatusReportCb(
@@ -1177,8 +1179,9 @@ class UnicastTestNoInit : public Test {
               group->CigUnassignCis(leAudioDevice);
             });
 
-    ON_CALL(mock_state_machine_, StopStream(_))
-        .WillByDefault([this](LeAudioDeviceGroup* group) {
+    ON_CALL(mock_state_machine_, StopStream(_, _))
+        .WillByDefault([this](base::Location location,
+                              LeAudioDeviceGroup* group) {
           for (LeAudioDevice* device = group->GetFirstDevice();
                device != nullptr; device = group->GetNextDevice(device)) {
             /* Invalidate stream configuration if needed */
@@ -1250,7 +1253,8 @@ class UnicastTestNoInit : public Test {
           }
 
           // Inject the state
-          group->SetTargetState(types::AseState::BTA_LE_AUDIO_ASE_STATE_IDLE);
+          group->SetTargetState(FROM_HERE,
+                                types::AseState::BTA_LE_AUDIO_ASE_STATE_IDLE);
           group->SetState(group->GetTargetState());
           state_machine_callbacks_->StatusReportCb(
               group->group_id_, GroupStreamStatus::RELEASING);
@@ -2987,7 +2991,7 @@ TEST_F(UnicastTest, RemoveNodeWhileStreaming) {
 
   EXPECT_CALL(mock_groups_module_, RemoveDevice(test_address0, group_id))
       .Times(1);
-  EXPECT_CALL(mock_state_machine_, StopStream(_)).Times(1);
+  EXPECT_CALL(mock_state_machine_, StopStream(_, _)).Times(1);
   EXPECT_CALL(mock_state_machine_, ProcessHciNotifAclDisconnected(_, _))
       .Times(0);
   EXPECT_CALL(
@@ -4067,7 +4071,7 @@ TEST_F(UnicastTest, TwoEarbuds2ndDisconnected) {
   TestAudioDataTransfer(group_id, cis_count_out, cis_count_in, 1920);
 
   // Disconnect one device and expect the group to keep on streaming
-  EXPECT_CALL(mock_state_machine_, StopStream(_)).Times(0);
+  EXPECT_CALL(mock_state_machine_, StopStream(_, _)).Times(0);
   auto device = group->GetFirstDevice();
   for (auto& ase : device->ases_) {
     InjectCisDisconnected(group_id, ase.cis_conn_hdl);
@@ -4153,7 +4157,7 @@ TEST_F(UnicastTest, TwoEarbudsStreamingProfileDisconnect) {
   TestAudioDataTransfer(group_id, cis_count_out, cis_count_in, 1920);
 
   // Disconnect one device and expect the group to keep on streaming
-  EXPECT_CALL(mock_state_machine_, StopStream(_)).Times(1);
+  EXPECT_CALL(mock_state_machine_, StopStream(_, _)).Times(1);
   EXPECT_CALL(mock_gatt_interface_, Open(_, _, _, _)).Times(0);
 
   DisconnectLeAudio(test_address0, 1);
@@ -4342,7 +4346,7 @@ TEST_F(UnicastTest, UpdateNotSupportedContextType) {
   /* We should stay on the existing configuration as there is no GAME
    * context available on the remote device.
    */
-  EXPECT_CALL(mock_state_machine_, StopStream(_)).Times(0);
+  EXPECT_CALL(mock_state_machine_, StopStream(_, _)).Times(0);
   types::BidirectionalPair<types::AudioContexts> contexts = {
       .sink = types::AudioContexts(types::LeAudioContextType::UNSPECIFIED),
       .source = types::AudioContexts(types::LeAudioContextType::UNSPECIFIED)};
