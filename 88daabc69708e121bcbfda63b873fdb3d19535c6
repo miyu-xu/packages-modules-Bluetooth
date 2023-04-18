@@ -46,6 +46,30 @@
       },
       "revId": "88daabc69708e121bcbfda63b873fdb3d19535c6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d752e105_8e3042a6",
+        "filename": "android/app/Android.bp",
+        "patchSetId": 10
+      },
+      "lineNbr": 208,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-04-18T22:26:26Z",
+      "side": 0,
+      "message": "Should we add that inside the APEX as native library ?",
+      "parentUuid": "3d8952b0_80a1852e",
+      "range": {
+        "startLine": 204,
+        "startChar": 8,
+        "endLine": 208,
+        "endChar": 41
+      },
+      "revId": "88daabc69708e121bcbfda63b873fdb3d19535c6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
