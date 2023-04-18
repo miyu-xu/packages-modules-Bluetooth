@@ -16,6 +16,69 @@
       "message": "Do we want to stop the MediaPlayer when the test is done?",
       "revId": "463df13249c198a920324d15ecd7ab27baecf99c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "35c689ba_718c206c",
+        "filename": "android/pandora/server/src/com/android/pandora/MediaPlayerBrowserService.kt",
+        "patchSetId": 1
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-04-18T00:44:37Z",
+      "side": 1,
+      "message": "From where does this file comes from ?",
+      "revId": "463df13249c198a920324d15ecd7ab27baecf99c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4f5c6291_fdbe0a25",
+        "filename": "android/pandora/server/src/com/android/pandora/MediaPlayerBrowserService.kt",
+        "patchSetId": 1
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-04-18T00:44:37Z",
+      "side": 1,
+      "message": "SHUFFLE_MODE_NONE ?",
+      "range": {
+        "startLine": 168,
+        "startChar": 102,
+        "endLine": 168,
+        "endChar": 118
+      },
+      "revId": "463df13249c198a920324d15ecd7ab27baecf99c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2c4aff1e_42964966",
+        "filename": "pandora/interfaces/pandora_experimental/mediaplayer.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-04-18T00:44:37Z",
+      "side": 1,
+      "message": "Should we take the ShuffleMode as input ?",
+      "range": {
+        "startLine": 20,
+        "startChar": 6,
+        "endLine": 20,
+        "endChar": 20
+      },
+      "revId": "463df13249c198a920324d15ecd7ab27baecf99c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
