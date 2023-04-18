@@ -16,6 +16,24 @@
       "message": "Put a TODO(...) here about switching this to SOCK_SEQPACKET please",
       "revId": "f71f283f51935a25bdcb0e8cbcf6d8ca5a11e003",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2418482e_20e3d223",
+        "filename": "system/btif/src/btif_sock_l2cap.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 283,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-04-18T10:40:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d852fb78_b3056634",
+      "revId": "f71f283f51935a25bdcb0e8cbcf6d8ca5a11e003",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
