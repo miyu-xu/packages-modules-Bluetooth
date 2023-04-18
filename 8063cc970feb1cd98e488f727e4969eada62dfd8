@@ -34,6 +34,24 @@
       "parentUuid": "d2777444_ebc86338",
       "revId": "8063cc970feb1cd98e488f727e4969eada62dfd8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7a98423f_60d8e31f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-04-18T09:02:25Z",
+      "side": 1,
+      "message": "in addition - those information are stored in bt_config.conf",
+      "parentUuid": "7eea4434_345e3a6f",
+      "revId": "8063cc970feb1cd98e488f727e4969eada62dfd8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
