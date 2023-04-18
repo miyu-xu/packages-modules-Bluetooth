@@ -46,6 +46,30 @@
       },
       "revId": "f7056b5f478204f3f24193f0ff37887312074e88",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "66eaa6be_bac983e9",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/MediaPlayerWrapper.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-04-18T18:39:15Z",
+      "side": 1,
+      "message": "but can the album be null but not the title and artist ?",
+      "parentUuid": "9d0962cd_c2496d7f",
+      "range": {
+        "startLine": 147,
+        "startChar": 20,
+        "endLine": 147,
+        "endChar": 42
+      },
+      "revId": "f7056b5f478204f3f24193f0ff37887312074e88",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
