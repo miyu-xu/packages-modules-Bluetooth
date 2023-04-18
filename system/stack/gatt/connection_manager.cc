@@ -290,6 +290,10 @@ bool background_connect_add(uint8_t app_id, const RawAddress& address) {
       LOG_DEBUG("app_id=%d, address=%s, already in accept list",
                 static_cast<int>(app_id), ADDRESS_TO_LOGGABLE_CSTR(address));
       in_acceptlist = true;
+    } else if (BTM_AcceptlistContains(address)) {
+      LOG_DEBUG("app_id=%d, address=%s, already in accept list",
+                static_cast<int>(app_id), ADDRESS_TO_LOGGABLE_CSTR(address));
+      in_acceptlist = true;
     } else {
       is_targeted_announcement_enabled =
           !it->second.doing_targeted_announcements_conn.empty();

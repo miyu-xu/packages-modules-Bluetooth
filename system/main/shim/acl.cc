@@ -1066,6 +1066,12 @@ struct shim::legacy::Acl::impl {
     }
   }
 
+  void is_accepting_le_connection_from(
+      const hci::AddressWithType& address_with_type,
+      std::promise<bool> promise) {
+    GetAclManager()->IsOnBackgroundList(address_with_type, std::move(promise));
+  }
+
   void accept_le_connection_from(const hci::AddressWithType& address_with_type,
                                  bool is_direct, std::promise<bool> promise) {
     if (shadow_acceptlist_.IsFull()) {
@@ -1455,6 +1461,14 @@ void shim::legacy::Acl::CancelClassicConnection(const hci::Address& address) {
             ADDRESS_TO_LOGGABLE_CSTR(address));
   BTM_LogHistory(kBtmLogTag, ToRawAddress(address), "Cancelled connection",
                  "classic");
+}
+
+void shim::legacy::Acl::IsAcceptingLeConnectionFrom(
+    const hci::AddressWithType& address_with_type, std::promise<bool> promise) {
+  LOG_DEBUG("IsAcceptingLeConnectionFrom %s",
+            ADDRESS_TO_LOGGABLE_CSTR(address_with_type.GetAddress()));
+  handler_->CallOn(pimpl_.get(), &Acl::impl::is_accepting_le_connection_from,
+                   address_with_type, std::move(promise));
 }
 
 void shim::legacy::Acl::AcceptLeConnectionFrom(

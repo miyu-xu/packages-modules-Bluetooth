@@ -170,6 +170,18 @@ bool BTM_BackgroundConnectAddressKnown(const RawAddress& address) {
   return false;
 }
 
+bool BTM_AcceptlistContains(const RawAddress& address) {
+  if (!controller_get_interface()->supports_ble()) {
+    LOG_WARN("Controller does not support Le");
+    return false;
+  }
+
+  tBTM_SEC_DEV_REC* p_dev_rec = btm_find_dev(address);
+
+  return bluetooth::shim::ACL_IsAcceptingLeConnectionFrom(
+      convert_to_address_with_type(address, p_dev_rec));
+}
+
 /** Adds the device into acceptlist. Returns false if acceptlist is full and
  * device can't be added, true otherwise. */
 bool BTM_AcceptlistAdd(const RawAddress& address) {

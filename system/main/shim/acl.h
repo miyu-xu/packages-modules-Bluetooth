@@ -77,6 +77,9 @@ class Acl : public hci::acl_manager::ConnectionCallbacks,
   // LinkConnectionInterface
   void CreateClassicConnection(const hci::Address& address) override;
   void CancelClassicConnection(const hci::Address& address) override;
+  void IsAcceptingLeConnectionFrom(
+      const hci::AddressWithType& address_with_type,
+      std::promise<bool> promise) override;
   void AcceptLeConnectionFrom(const hci::AddressWithType& address_with_type,
                               bool is_direct,
                               std::promise<bool> promise) override;
