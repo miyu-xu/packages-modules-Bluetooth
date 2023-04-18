@@ -123,6 +123,24 @@
       "parentUuid": "095a0d0a_bcb493a4",
       "revId": "1385676416c6f9f4229a3e92ae3ae7bf2245f5a2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "381aa52a_93dce0b5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 18
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929170
+      },
+      "writtenOn": "2023-04-18T16:42:50Z",
+      "side": 1,
+      "message": "I don\u0027t think we store bond creation timestamp and without that we would not know which is the latest bond record for a device with multiple bond records. This solution would thus require more work than the timeline would allow.",
+      "parentUuid": "e7fe6947_66c818c6",
+      "revId": "1385676416c6f9f4229a3e92ae3ae7bf2245f5a2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
