@@ -107,6 +107,42 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f2aa7077_d0197089",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-04-18T22:01:14Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "f9e11f1a_80c4aefa",
+      "revId": "8063cc970feb1cd98e488f727e4969eada62dfd8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d2b10e4a_68a1d524",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-04-18T22:01:14Z",
+      "side": 1,
+      "message": "if RPA was used during pairing, this RPA will be set as pseudo_addr, and RANDOM type will be set in bt_config.conf as AddrType.\nIdentity Address is also in bt_config.conf, but it is embedded in other proprietary .",
+      "parentUuid": "00554459_0ae214d0",
+      "revId": "8063cc970feb1cd98e488f727e4969eada62dfd8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f662d199_7de64142",
@@ -120,6 +156,24 @@
       "writtenOn": "2023-04-18T16:15:21Z",
       "side": 1,
       "message": "can we add some log print before and after this call? so it\u0027s more easier to debug this behavior next time. like, aosp/2537597",
+      "revId": "8063cc970feb1cd98e488f727e4969eada62dfd8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "19b10262_f5274c3d",
+        "filename": "system/stack/acl/btm_acl.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 2789,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-04-18T22:01:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f662d199_7de64142",
       "revId": "8063cc970feb1cd98e488f727e4969eada62dfd8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
