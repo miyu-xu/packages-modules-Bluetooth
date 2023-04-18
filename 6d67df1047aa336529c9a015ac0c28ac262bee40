@@ -20,6 +20,23 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "8ba7f95c_c6246caa",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-04-18T11:00:00Z",
+      "side": 1,
+      "message": "LGTM but I have syntactic question.",
+      "revId": "6d67df1047aa336529c9a015ac0c28ac262bee40",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "40f74c17_c28eed8d",
         "filename": "system/gd/rust/linux/stack/src/socket_manager.rs",
         "patchSetId": 2
@@ -31,6 +48,52 @@
       "writtenOn": "2023-04-17T21:06:08Z",
       "side": 1,
       "message": "TIL: https://doc.rust-lang.org/std/keyword.self.html\n\n```\nIn paths, self can be used to refer to the current module, either in a use statement or in a path to access an element:\n```",
+      "revId": "6d67df1047aa336529c9a015ac0c28ac262bee40",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0631a119_77310170",
+        "filename": "system/gd/rust/linux/stack/src/socket_manager.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 1175,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-04-18T11:00:00Z",
+      "side": 1,
+      "message": "Sorry, noob rustacean here. Will this be OK when uuid is empty?",
+      "range": {
+        "startLine": 1175,
+        "startChar": 76,
+        "endLine": 1175,
+        "endChar": 87
+      },
+      "revId": "6d67df1047aa336529c9a015ac0c28ac262bee40",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "30185b32_9be252e8",
+        "filename": "system/gd/rust/linux/stack/src/socket_manager.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 1175,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-04-18T11:00:00Z",
+      "side": 1,
+      "message": "Looks like `is_service_allowed` will always return bool. Can we skip putting it into `Some()` and immediately unwrap it?",
+      "range": {
+        "startLine": 1175,
+        "startChar": 57,
+        "endLine": 1175,
+        "endChar": 75
+      },
       "revId": "6d67df1047aa336529c9a015ac0c28ac262bee40",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
