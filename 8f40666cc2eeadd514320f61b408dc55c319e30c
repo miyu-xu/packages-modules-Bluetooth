@@ -93,6 +93,30 @@
       },
       "revId": "8f40666cc2eeadd514320f61b408dc55c319e30c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e4966f01_d81f2e5e",
+        "filename": "android/pandora/test/asha_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 307,
+      "author": {
+        "id": 1952952
+      },
+      "writtenOn": "2023-04-18T02:03:15Z",
+      "side": 1,
+      "message": "@uael@google.com If we paired two devices concurrently, we will get a \"BT_STATUS_BUSY\" error when creating bond. I moved the pair part outside of this function, please let me know if you have any concerns, thanks!",
+      "parentUuid": "fdacd89c_88725bb4",
+      "range": {
+        "startLine": 276,
+        "startChar": 8,
+        "endLine": 307,
+        "endChar": 69
+      },
+      "revId": "8f40666cc2eeadd514320f61b408dc55c319e30c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
