@@ -145,6 +145,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "41b3bda8_3e3369fc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-04-18T22:02:03Z",
+      "side": 1,
+      "message": "*\"property\" :)",
+      "parentUuid": "d2b10e4a_68a1d524",
+      "revId": "8063cc970feb1cd98e488f727e4969eada62dfd8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f662d199_7de64142",
         "filename": "system/stack/acl/btm_acl.cc",
         "patchSetId": 1
