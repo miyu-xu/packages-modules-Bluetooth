@@ -133,6 +133,30 @@
       },
       "revId": "cfc147fbd93957730e7ddcd1d9216adb9faae17a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "58ac81a4_54d0ef27",
+        "filename": "service/java/com/android/server/bluetooth/SatelliteModeListener.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1934235
+      },
+      "writtenOn": "2023-04-18T18:58:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "90bdfbe6_512b5417",
+      "range": {
+        "startLine": 34,
+        "startChar": 1,
+        "endLine": 43,
+        "endChar": 90
+      },
+      "revId": "cfc147fbd93957730e7ddcd1d9216adb9faae17a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
