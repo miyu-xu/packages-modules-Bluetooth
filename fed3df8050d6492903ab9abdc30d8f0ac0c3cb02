@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "feec4d8d_9e5ea37b",
+        "filename": "service/tests/src/com/android/server/bluetooth/BluetoothManagerServiceTest.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-04-18T07:14:51Z",
+      "side": 1,
+      "message": "Could you define this as a static const variable?",
+      "range": {
+        "startLine": 97,
+        "startChar": 18,
+        "endLine": 97,
+        "endChar": 25
+      },
+      "revId": "fed3df8050d6492903ab9abdc30d8f0ac0c3cb02",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
