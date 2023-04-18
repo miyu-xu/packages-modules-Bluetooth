@@ -22,6 +22,30 @@
       },
       "revId": "0101af780a97c4a3a04e3cbb81da4521429e8490",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ed5e98dd_db21740c",
+        "filename": "system/bta/Android.bp",
+        "patchSetId": 4
+      },
+      "lineNbr": 1010,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-04-18T05:08:13Z",
+      "side": 1,
+      "message": "Acknowledged\nchanged my mind",
+      "parentUuid": "33eebcc6_35d7283f",
+      "range": {
+        "startLine": 1010,
+        "startChar": 8,
+        "endLine": 1010,
+        "endChar": 17
+      },
+      "revId": "0101af780a97c4a3a04e3cbb81da4521429e8490",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
