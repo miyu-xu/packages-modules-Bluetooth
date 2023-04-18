@@ -16,6 +16,24 @@
       "message": "Do you know why the address type is wrong in the config in the first place? This to me seems like it is working around the underlying issue",
       "revId": "8063cc970feb1cd98e488f727e4969eada62dfd8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7eea4434_345e3a6f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-04-18T09:01:38Z",
+      "side": 1,
+      "message": "it is not wrong.\nDevice type is correct. Please remember that Java layer is using Pseudo address (which is the address which we connect during bonding), along with its original address type. Later we use security record to resolve the identity address.",
+      "parentUuid": "d2777444_ebc86338",
+      "revId": "8063cc970feb1cd98e488f727e4969eada62dfd8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
