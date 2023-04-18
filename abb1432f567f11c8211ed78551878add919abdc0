@@ -74,6 +74,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a1b0a9c1_913e70b4",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 773,
+      "author": {
+        "id": 1958755
+      },
+      "writtenOn": "2023-04-18T16:31:15Z",
+      "side": 1,
+      "message": "I think we cannot use `cur_hfp_cap` here as it is a local variable defined in other function `notify_media_capability_updated`?",
+      "parentUuid": "29063d3e_e3219ff9",
+      "range": {
+        "startLine": 773,
+        "startChar": 16,
+        "endLine": 773,
+        "endChar": 54
+      },
+      "revId": "abb1432f567f11c8211ed78551878add919abdc0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "72fcb894_a0f84f78",
         "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
         "patchSetId": 2
