@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e04f656a_f8549b27",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1059936
+      },
+      "writtenOn": "2023-04-18T22:02:08Z",
+      "side": 1,
+      "message": "Puzzlingly, the tests are legitimately failing with this fix.  I\u0027m going to abandon this CL and file a bug on the BT team to follow up.",
+      "revId": "02473dd0b121c56f3177cca094c2e4f5e781b9be",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
