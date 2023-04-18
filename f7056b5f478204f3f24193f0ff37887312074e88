@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "483b6228_fe2bd052",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/MediaPlayerWrapper.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-04-18T18:30:21Z",
+      "side": 1,
+      "message": "Is it possible that both the `metadata.title` and the `mediaPlayingMetadata.title` be null at the same time ?\nIf so, shouldn\u0027t we simply change the equals with:\n`Object.equals(metadata.title, mediaPlayingMetadata.title)`",
+      "range": {
+        "startLine": 147,
+        "startChar": 20,
+        "endLine": 147,
+        "endChar": 42
+      },
+      "revId": "f7056b5f478204f3f24193f0ff37887312074e88",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
