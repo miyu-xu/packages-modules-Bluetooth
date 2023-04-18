@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f0d846a0_9fdce131",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 773,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2023-04-18T14:49:44Z",
+      "side": 1,
+      "message": "Can we direct use `if let Some(hfp_cur_cap) \u003d hfp_cap.get_mut(\u0026addr)` here and update the hfp_cur_cap if true? I think it\u0027s more readable and can save a hfp_cap check.",
+      "range": {
+        "startLine": 773,
+        "startChar": 16,
+        "endLine": 773,
+        "endChar": 54
+      },
+      "revId": "abb1432f567f11c8211ed78551878add919abdc0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "72fcb894_a0f84f78",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 780,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2023-04-18T14:49:44Z",
+      "side": 1,
+      "message": "Do we also need to cover the `wbs_supported \u003d\u003d  false` case?",
+      "range": {
+        "startLine": 780,
+        "startChar": 20,
+        "endLine": 780,
+        "endChar": 86
+      },
+      "revId": "abb1432f567f11c8211ed78551878add919abdc0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cef546ce_2e2f2c73",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 784,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2023-04-18T14:49:44Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 784,
+        "startChar": 16,
+        "endLine": 784,
+        "endChar": 54
+      },
+      "revId": "abb1432f567f11c8211ed78551878add919abdc0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d4eeb901_28900e1b",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 791,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2023-04-18T14:49:44Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 791,
+        "startChar": 20,
+        "endLine": 791,
+        "endChar": 85
+      },
+      "revId": "abb1432f567f11c8211ed78551878add919abdc0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a965ea1a_854e1f58",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 2185,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2023-04-18T14:49:44Z",
+      "side": 1,
+      "message": "May we separate the enablement of this to a follow up CL? This will may break ChromeOS that hasn\u0027t enabled the SWB support.",
+      "range": {
+        "startLine": 2185,
+        "startChar": 16,
+        "endLine": 2185,
+        "endChar": 96
+      },
+      "revId": "abb1432f567f11c8211ed78551878add919abdc0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
