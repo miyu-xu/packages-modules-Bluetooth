@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8e081c57_6eaa24e8",
+        "filename": "service/java/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 537,
+      "author": {
+        "id": 1581454
+      },
+      "writtenOn": "2023-04-18T19:03:06Z",
+      "side": 1,
+      "message": "Why metrics proto is used if you are not logging metrics?",
+      "revId": "85f66bf6ad43932b1248868089db80535db7fb78",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
