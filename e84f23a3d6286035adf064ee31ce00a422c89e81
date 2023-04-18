@@ -16,6 +16,23 @@
       "message": "This is interesting...too many LE adverts prevent classic from proceeding.  This requires more review.",
       "revId": "e84f23a3d6286035adf064ee31ce00a422c89e81",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5bf49bb9_ccc21cd4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-04-18T18:35:32Z",
+      "side": 1,
+      "message": "I\u0027ve identified a threaded race condition where classic accesses the database via the Main thread, but the le accesses the database via another reactor thread.\n\nI believe this to be the source of the issue as I was unable to repro this with a reasonable dataset.  Certainly a Denial of Service could be attempted given enough unique LE devices to drown out any classic devices, but this would hold true for any given device regardless of transport.",
+      "revId": "e84f23a3d6286035adf064ee31ce00a422c89e81",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
