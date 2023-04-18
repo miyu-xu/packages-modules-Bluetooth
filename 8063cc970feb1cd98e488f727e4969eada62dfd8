@@ -87,6 +87,23 @@
       "message": "thanks for fixing this, actually we noticed this issue and I made similar fix last week aosp/2537597. Since our fixes are the same in acl, i can abandon mine and this fix looks good to me.",
       "revId": "8063cc970feb1cd98e488f727e4969eada62dfd8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f662d199_7de64142",
+        "filename": "system/stack/acl/btm_acl.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 2789,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-04-18T16:15:21Z",
+      "side": 1,
+      "message": "can we add some log print before and after this call? so it\u0027s more easier to debug this behavior next time. like, aosp/2537597",
+      "revId": "8063cc970feb1cd98e488f727e4969eada62dfd8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
