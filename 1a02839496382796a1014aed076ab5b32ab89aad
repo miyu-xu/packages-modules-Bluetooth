@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7274be1f_a4f72cf5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1895200
+      },
+      "writtenOn": "2023-04-18T19:19:03Z",
+      "side": 1,
+      "message": "Hi Daniel, we have tested the patch in Android S build.  Could you please help to integrate it into master branch?  Thanks.",
+      "revId": "1a02839496382796a1014aed076ab5b32ab89aad",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
