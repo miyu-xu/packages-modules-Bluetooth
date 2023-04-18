@@ -16,6 +16,24 @@
       "message": "Why metrics proto is used if you are not logging metrics?",
       "revId": "85f66bf6ad43932b1248868089db80535db7fb78",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0352aaa5_3ca382ad",
+        "filename": "service/java/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 537,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-04-18T21:24:43Z",
+      "side": 1,
+      "message": "It is using metric:\nhttps://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/service/java/com/android/server/bluetooth/BluetoothManagerService.java;l\u003d281;drc\u003d6db105a764b9ffb8506cf7e4443675e85ba16a5e\n\nIf that is not the case I would gladly remove all reference to BluetoothProtoEnums from this code to remove the need of this dependency.",
+      "parentUuid": "8e081c57_6eaa24e8",
+      "revId": "85f66bf6ad43932b1248868089db80535db7fb78",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
