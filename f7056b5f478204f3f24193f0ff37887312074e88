@@ -22,6 +22,30 @@
       },
       "revId": "f7056b5f478204f3f24193f0ff37887312074e88",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9d0962cd_c2496d7f",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/MediaPlayerWrapper.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2023-04-18T18:35:23Z",
+      "side": 1,
+      "message": "If it\u0027s null we don\u0027t want to copy the data, if you look at the comment just under this line, we need these informations to be able to compare the media",
+      "parentUuid": "483b6228_fe2bd052",
+      "range": {
+        "startLine": 147,
+        "startChar": 20,
+        "endLine": 147,
+        "endChar": 42
+      },
+      "revId": "f7056b5f478204f3f24193f0ff37887312074e88",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
