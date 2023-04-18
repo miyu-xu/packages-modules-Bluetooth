@@ -208,8 +208,14 @@ void gatt_find_in_device_record(const RawAddress& bd_addr,
 
   if (p_dev_rec->device_type & BT_DEVICE_TYPE_BLE) {
     if (p_dev_rec->ble.identity_address_with_type.bda.IsEmpty()) {
-      *address_with_type = {.type = p_dev_rec->ble.AddressType(),
-                            .bda = bd_addr};
+      /* If the caller knows a proper type, lets use it.
+       * Otherwise, lets try to find it out
+       */
+      tBLE_ADDR_TYPE addr_type = (*address_with_type).type;
+      if (addr_type == BLE_ADDR_ANONYMOUS) {
+        addr_type = p_dev_rec->ble.AddressType();
+      }
+      *address_with_type = {.type = addr_type, .bda = bd_addr};
       return;
     }
     *address_with_type = p_dev_rec->ble.identity_address_with_type;
