@@ -22,6 +22,30 @@
       },
       "revId": "88daabc69708e121bcbfda63b873fdb3d19535c6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3d8952b0_80a1852e",
+        "filename": "android/app/Android.bp",
+        "patchSetId": 10
+      },
+      "lineNbr": 208,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-04-18T22:25:49Z",
+      "side": 0,
+      "message": "They are not installed on the device, the APEX bring it\u0027s own version and the HAL as well",
+      "parentUuid": "d0788d91_7c01f90c",
+      "range": {
+        "startLine": 204,
+        "startChar": 8,
+        "endLine": 208,
+        "endChar": 41
+      },
+      "revId": "88daabc69708e121bcbfda63b873fdb3d19535c6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
