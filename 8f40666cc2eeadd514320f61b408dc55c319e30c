@@ -117,6 +117,30 @@
       },
       "revId": "8f40666cc2eeadd514320f61b408dc55c319e30c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d26fdb1c_fdcd86c6",
+        "filename": "android/pandora/test/asha_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 307,
+      "author": {
+        "id": 1937985
+      },
+      "writtenOn": "2023-04-18T14:39:05Z",
+      "side": 1,
+      "message": "Sounds good to me! Pairing concurrently should be supported but it\u0027s out of the scope of this CL 👍",
+      "parentUuid": "e4966f01_d81f2e5e",
+      "range": {
+        "startLine": 276,
+        "startChar": 8,
+        "endLine": 307,
+        "endChar": 69
+      },
+      "revId": "8f40666cc2eeadd514320f61b408dc55c319e30c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
