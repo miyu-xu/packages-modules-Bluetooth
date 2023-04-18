@@ -16,6 +16,24 @@
       "message": "I don\u0027t think we should do a `java_test_host` here,\n\nThe issue that we had was with soong, not tradefed.\nWe should be able to keep our old tradefed config and run the test the same way as before, however we should expose that to soong as a host test.\n\nI think we should transform our old `android_test` into a `android_test_helper_app` and create an empty `java_test_host` or `python_test_host` with the `BumbleBluetoothTest` as data and `bumble_pandora_server` as required and keep the same AndroidTest config as before",
       "revId": "3edab4859b92245489fa523a0343dd0800c10cfb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "eb1ca477_0c0d7dc7",
+        "filename": "framework/tests/bumble/Android.bp",
+        "patchSetId": 5
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1986325
+      },
+      "writtenOn": "2023-04-18T23:53:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ef409c6c_66df31ac",
+      "revId": "3edab4859b92245489fa523a0343dd0800c10cfb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
