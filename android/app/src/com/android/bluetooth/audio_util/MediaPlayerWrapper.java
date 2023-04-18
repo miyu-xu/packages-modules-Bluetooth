@@ -142,7 +142,8 @@ public class MediaPlayerWrapper {
 
         // The queue metadata is built with QueueId in place of MediaId, so we can't compare it.
         // MediaDescription is usually compared via its title, artist and album.
-        if (mediaPlayingMetadata != null) {
+        if (mediaPlayingMetadata != null && metadata.title != null
+                && metadata.artist != null && metadata.album != null) {
             for (Metadata metadata : mCurrentData.queue) {
                 if (metadata.title.equals(mediaPlayingMetadata.title)
                         && metadata.artist.equals(mediaPlayingMetadata.artist)
