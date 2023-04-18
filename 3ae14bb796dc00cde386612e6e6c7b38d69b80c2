@@ -402,6 +402,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "766657aa_5a57691c",
+        "filename": "service/tests/src/com/android/server/bluetooth/BluetoothManagerServiceTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-04-18T01:45:57Z",
+      "side": 1,
+      "message": "For Unit tests, using mock would be better than spy if not necessary. Since we want to test the class or method independently.",
+      "parentUuid": "519c334c_a8c46a5d",
+      "range": {
+        "startLine": 82,
+        "startChar": 20,
+        "endLine": 82,
+        "endChar": 31
+      },
+      "revId": "3ae14bb796dc00cde386612e6e6c7b38d69b80c2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7f9c0fd1_ce32219b",
         "filename": "service/tests/src/com/android/server/bluetooth/BluetoothManagerServiceTest.java",
         "patchSetId": 3
