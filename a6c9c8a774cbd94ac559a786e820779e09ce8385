@@ -16,6 +16,23 @@
       "message": "Hi Charlie,\n\nSubmitted 9 Test cases: 4 A2DP, 4 AVDTP and 1 HID/HOS test cases for review.\nRequest you to provide your inputs.\n\nRegards,\nFahad",
       "revId": "a6c9c8a774cbd94ac559a786e820779e09ce8385",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5b3c95f9_2551a20e",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/a2dp.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 444,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-04-18T15:35:56Z",
+      "side": 1,
+      "message": "Could we assert the value based on if the test name contains `SRC` or `SNK` ?",
+      "revId": "a6c9c8a774cbd94ac559a786e820779e09ce8385",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
