@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ec269d00_c51b1322",
+        "filename": "service/tests/src/com/android/server/bluetooth/BluetoothManagerServiceTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2023-04-18T06:30:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c241970f_cbca51a2",
+      "range": {
+        "startLine": 112,
+        "startChar": 40,
+        "endLine": 112,
+        "endChar": 44
+      },
+      "revId": "d001bbcdf43764d180ae0e0fe28ff7f38425d267",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "920427e6_c8e65384",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-04-18T01:45:57Z",
       "side": 1,
       "message": "What about this?\n```\nmManagerService.onUserRestrictionsChanged(UserHandle.CURRENT);\nverify(mBluetoothServiceProxy, timeout(TIMEOUT_MS).never()).handlerSendWhatMessage(mHandler, MESSAGE_DISABLE);\n\nmManagerService.onUserRestrictionsChanged(UserHandle.SYSTEM);\nverify(mBluetoothServiceProxy, timeout(TIMEOUT_MS)).handlerSendWhatMessage(mHandler, MESSAGE_DISABLE);\n```",
+      "range": {
+        "startLine": 101,
+        "startChar": 0,
+        "endLine": 116,
+        "endChar": 79
+      },
+      "revId": "d001bbcdf43764d180ae0e0fe28ff7f38425d267",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d60aad6c_755d0aae",
+        "filename": "service/tests/src/com/android/server/bluetooth/BluetoothManagerServiceTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2023-04-18T06:30:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "920427e6_c8e65384",
       "range": {
         "startLine": 101,
         "startChar": 0,
