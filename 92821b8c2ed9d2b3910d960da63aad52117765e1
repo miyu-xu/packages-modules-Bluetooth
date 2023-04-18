@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f56abd6a_f26c0829",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-04-18T20:51:41Z",
+      "side": 1,
+      "message": "I think it would be great to have this in hci_packets.pdl.  Eventually, hcidefs.h will be deprecated and removed, but for now, this is the correct place.",
+      "revId": "92821b8c2ed9d2b3910d960da63aad52117765e1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
