@@ -16,6 +16,24 @@
       "message": "Looking at the specification, the terminology would be more `waitPeripheral` than `waitSink`.\nhttps://source.android.com/docs/core/connect/bluetooth/asha#terminology",
       "revId": "01249f0c54bb761c25a35a9a98cb7614cc858935",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "04c25a6e_84928c5d",
+        "filename": "pandora/interfaces/pandora_experimental/asha.proto",
+        "patchSetId": 19
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-04-18T16:07:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "48d93e20_bc1e455b",
+      "revId": "01249f0c54bb761c25a35a9a98cb7614cc858935",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
