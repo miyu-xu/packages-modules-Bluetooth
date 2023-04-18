@@ -37,6 +37,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6e51e2cf_7010db22",
+        "filename": "android/pandora/server/src/com/android/pandora/MediaPlayerBrowserService.kt",
+        "patchSetId": 1
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2023-04-18T00:50:05Z",
+      "side": 1,
+      "message": "We\u0027re adding it. In order for the shuffle and repeat calls to work we need to have a media actually playing, otherwise the calls are ignored.",
+      "parentUuid": "35c689ba_718c206c",
+      "revId": "463df13249c198a920324d15ecd7ab27baecf99c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "db0a4dc9_368b7bc2",
         "filename": "android/pandora/server/src/com/android/pandora/MediaPlayerBrowserService.kt",
         "patchSetId": 1
