@@ -2211,7 +2211,7 @@ TEST_F(StateMachineTest, testReleaseSingle) {
                              bluetooth::le_audio::GroupStreamStatus::IDLE));
 
   // Stop the stream
-  LeAudioGroupStateMachine::Get()->StopStream(group);
+  LeAudioGroupStateMachine::Get()->StopStream(FROM_HERE, group);
 
   // Check if group has transitioned to a proper state
   ASSERT_EQ(group->GetState(), types::AseState::BTA_LE_AUDIO_ASE_STATE_IDLE);
@@ -2284,7 +2284,7 @@ TEST_F(StateMachineTest, testReleaseCachingSingle) {
   reset_mock_function_count_map();
 
   // Stop the stream
-  LeAudioGroupStateMachine::Get()->StopStream(group);
+  LeAudioGroupStateMachine::Get()->StopStream(FROM_HERE, group);
 
   // Check if group has transitioned to a proper state
   ASSERT_EQ(group->GetState(),
@@ -2367,7 +2367,7 @@ TEST_F(StateMachineTest,
   reset_mock_function_count_map();
 
   // Stop the stream
-  LeAudioGroupStateMachine::Get()->StopStream(group);
+  LeAudioGroupStateMachine::Get()->StopStream(FROM_HERE, group);
 
   // Check if group has transitioned to a proper state
   ASSERT_EQ(group->GetState(),
@@ -2478,7 +2478,7 @@ TEST_F(StateMachineTest,
   reset_mock_function_count_map();
 
   // Stop the stream
-  LeAudioGroupStateMachine::Get()->StopStream(group);
+  LeAudioGroupStateMachine::Get()->StopStream(FROM_HERE, group);
 
   // Check if group has transitioned to a proper state
   ASSERT_EQ(group->GetState(),
@@ -2570,7 +2570,7 @@ TEST_F(StateMachineTest, testReleaseMultiple) {
       .Times(0);
 
   // Stop the stream
-  LeAudioGroupStateMachine::Get()->StopStream(group);
+  LeAudioGroupStateMachine::Get()->StopStream(FROM_HERE, group);
 
   // Check if group has transitioned to a proper state
   ASSERT_EQ(group->GetState(), types::AseState::BTA_LE_AUDIO_ASE_STATE_IDLE);
@@ -2651,7 +2651,7 @@ TEST_F(StateMachineTest, testReleaseMultiple_DeviceDisconnectedDuringRelease) {
       .Times(0);
 
   // Stop the stream
-  LeAudioGroupStateMachine::Get()->StopStream(group);
+  LeAudioGroupStateMachine::Get()->StopStream(FROM_HERE, group);
 
   testing::Mock::VerifyAndClearExpectations(&mock_iso_manager_);
 
@@ -2710,7 +2710,7 @@ TEST_F(StateMachineTest, testReleaseBidirectional) {
   reset_mock_function_count_map();
 
   // Stop the stream
-  LeAudioGroupStateMachine::Get()->StopStream(group);
+  LeAudioGroupStateMachine::Get()->StopStream(FROM_HERE, group);
 
   // Check if group has transitioned to a proper state
   ASSERT_EQ(group->GetState(), types::AseState::BTA_LE_AUDIO_ASE_STATE_IDLE);
@@ -2763,7 +2763,7 @@ TEST_F(StateMachineTest, testDisableAndReleaseBidirectional) {
   LeAudioGroupStateMachine::Get()->SuspendStream(group);
 
   // Stop the stream
-  LeAudioGroupStateMachine::Get()->StopStream(group);
+  LeAudioGroupStateMachine::Get()->StopStream(FROM_HERE, group);
 
   // Check if group has transitioned to a proper state
   ASSERT_EQ(group->GetState(), types::AseState::BTA_LE_AUDIO_ASE_STATE_IDLE);
@@ -3668,7 +3668,7 @@ TEST_F(StateMachineTest, StartStreamCachedConfig) {
           leaudio_group_id,
           bluetooth::le_audio::GroupStreamStatus::CONFIGURED_AUTONOMOUS));
   // Start the configuration and stream Media content
-  LeAudioGroupStateMachine::Get()->StopStream(group);
+  LeAudioGroupStateMachine::Get()->StopStream(FROM_HERE, group);
 
   testing::Mock::VerifyAndClearExpectations(&mock_callbacks_);
 
@@ -3768,7 +3768,7 @@ TEST_F(StateMachineTest, BoundedHeadphonesConversationalToMediaChannelCount_2) {
           leaudio_group_id,
           bluetooth::le_audio::GroupStreamStatus::CONFIGURED_AUTONOMOUS));
   // Start the configuration and stream Media content
-  LeAudioGroupStateMachine::Get()->StopStream(group);
+  LeAudioGroupStateMachine::Get()->StopStream(FROM_HERE, group);
 
   testing::Mock::VerifyAndClearExpectations(&mock_callbacks_);
 
@@ -3867,7 +3867,7 @@ TEST_F(StateMachineTest, BoundedHeadphonesConversationalToMediaChannelCount_1) {
           leaudio_group_id,
           bluetooth::le_audio::GroupStreamStatus::CONFIGURED_AUTONOMOUS));
   // Start the configuration and stream Media content
-  LeAudioGroupStateMachine::Get()->StopStream(group);
+  LeAudioGroupStateMachine::Get()->StopStream(FROM_HERE, group);
 
   testing::Mock::VerifyAndClearExpectations(&mock_callbacks_);
   ASSERT_EQ(1, get_func_call_count("alarm_cancel"));
@@ -3960,7 +3960,7 @@ TEST_F(StateMachineTest, lateCisDisconnectedEvent_ConfiguredByUser) {
                   leaudio_group_id,
                   bluetooth::le_audio::GroupStreamStatus::CONFIGURED_BY_USER))
       .Times(0);
-  LeAudioGroupStateMachine::Get()->StopStream(group);
+  LeAudioGroupStateMachine::Get()->StopStream(FROM_HERE, group);
 
   testing::Mock::VerifyAndClearExpectations(&mock_callbacks_);
 
@@ -4048,7 +4048,7 @@ TEST_F(StateMachineTest, lateCisDisconnectedEvent_AutonomousConfigured) {
       .Times(0);
 
   // Stop the stream
-  LeAudioGroupStateMachine::Get()->StopStream(group);
+  LeAudioGroupStateMachine::Get()->StopStream(FROM_HERE, group);
 
   // Check if group has transitioned to a proper state
   ASSERT_EQ(group->GetState(),
@@ -4138,7 +4138,7 @@ TEST_F(StateMachineTest, lateCisDisconnectedEvent_Idle) {
       .Times(0);
 
   // Stop the stream
-  LeAudioGroupStateMachine::Get()->StopStream(group);
+  LeAudioGroupStateMachine::Get()->StopStream(FROM_HERE, group);
 
   // Check if group has transitioned to a proper state
   ASSERT_EQ(group->GetState(), types::AseState::BTA_LE_AUDIO_ASE_STATE_IDLE);

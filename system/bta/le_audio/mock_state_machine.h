@@ -45,7 +45,9 @@ class MockLeAudioGroupStateMachine : public le_audio::LeAudioGroupStateMachine {
            metadata_context_types,
        le_audio::types::BidirectionalPair<std::vector<uint8_t>> ccid_lists),
       (override));
-  MOCK_METHOD((void), StopStream, (le_audio::LeAudioDeviceGroup * group),
+  MOCK_METHOD((void), StopStream,
+              (const base::Location& location,
+               le_audio::LeAudioDeviceGroup* group),
               (override));
   MOCK_METHOD((void), ProcessGattNotifEvent,
               (uint8_t * value, uint16_t len, le_audio::types::ase* ase,
