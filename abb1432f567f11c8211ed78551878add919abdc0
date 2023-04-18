@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "73151cdc_21b72c90",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 773,
+      "author": {
+        "id": 1958755
+      },
+      "writtenOn": "2023-04-18T15:55:46Z",
+      "side": 1,
+      "message": "Noted. I have a question, I think we still need to update `hfp_cap` map right?",
+      "parentUuid": "f0d846a0_9fdce131",
+      "range": {
+        "startLine": 773,
+        "startChar": 16,
+        "endLine": 773,
+        "endChar": 54
+      },
+      "revId": "abb1432f567f11c8211ed78551878add919abdc0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "72fcb894_a0f84f78",
         "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
         "patchSetId": 2
