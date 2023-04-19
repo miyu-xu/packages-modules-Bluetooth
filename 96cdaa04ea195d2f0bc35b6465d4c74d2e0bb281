@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1ed559c1_45d1e1d7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 19
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2023-04-19T04:18:10Z",
+      "side": 1,
+      "message": "The new addition of `SendPlayerSettingsChanged` in AOSP\u0027s `MediaCallbacks` is causing a build error in `btif_rc_test.cc` as it should be added under `SendActiveDeviceChanged`",
+      "revId": "96cdaa04ea195d2f0bc35b6465d4c74d2e0bb281",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
