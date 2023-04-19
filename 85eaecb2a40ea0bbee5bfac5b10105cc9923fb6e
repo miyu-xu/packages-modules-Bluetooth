@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4394080c_be427866",
+        "filename": "android/app/src/com/android/bluetooth/opp/BluetoothOppIncomingFileConfirmActivity.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 234,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-04-19T08:11:08Z",
+      "side": 1,
+      "message": "Can we spy this instead?",
+      "range": {
+        "startLine": 234,
+        "startChar": 26,
+        "endLine": 234,
+        "endChar": 41
+      },
+      "revId": "85eaecb2a40ea0bbee5bfac5b10105cc9923fb6e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e2fd8ac4_24fff4df",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/IncomingFileConfirmActivityTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-04-19T08:11:08Z",
+      "side": 1,
+      "message": "You are not verifying finish.\nPlease rename it accordingly.",
+      "range": {
+        "startLine": 186,
+        "startChar": 70,
+        "endLine": 186,
+        "endChar": 90
+      },
+      "revId": "85eaecb2a40ea0bbee5bfac5b10105cc9923fb6e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9a7507b2_5afc831b",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/IncomingFileConfirmActivityTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-04-19T08:11:08Z",
+      "side": 1,
+      "message": "DISMISS_TIMEOUT_DIALOG_VALUE",
+      "range": {
+        "startLine": 197,
+        "startChar": 47,
+        "endLine": 197,
+        "endChar": 59
+      },
+      "revId": "85eaecb2a40ea0bbee5bfac5b10105cc9923fb6e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
