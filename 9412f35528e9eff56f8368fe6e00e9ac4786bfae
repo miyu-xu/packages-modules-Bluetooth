@@ -51,6 +51,23 @@
       "parentUuid": "9f90c6c0_d35ec01c",
       "revId": "9412f35528e9eff56f8368fe6e00e9ac4786bfae",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1911fe8c_d3d0ec91",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 18
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2023-04-19T01:09:18Z",
+      "side": 1,
+      "message": "Build is also failing for `net_test_avrcp`.\n\n```\nFAILED: out/soong/.intermediates/packages/modules/Bluetooth/system/profile/avrcp/net_test_avrcp/android_arm64_armv8-a/unstripped/net_test_avrcp64\n...memtag-heap -fno-sanitize-link-runtime -Wl,--exclude-libs\u003dlibclang_rt.builtins-aarch64-android.a -Wl,--exclude-libs\u003dlibclang_rt.ubsan_minimal-aarch64-android.a -Wl,-dynamic-linker,/system/bin/linker64\nld.lld: error: undefined symbol: btif_av_src_sink_coexist_enabled()\n\u003e\u003e\u003e referenced by device.cc:133 (packages/modules/Bluetooth/system/profile/avrcp/device.cc:133)\n...hared_ptr\u003cbluetooth::avrcp::VendorPacket\u003e)) in archive out/soong/.intermediates/packages/modules/Bluetooth/system/profile/avrcp/avrcp-target-service/android_arm64_armv8-a_static/avrcp-target-service.a\n\u003e\u003e\u003e referenced by device.cc:134 (packages/modules/Bluetooth/system/profile/avrcp/device.cc:134)\n...hared_ptr\u003cbluetooth::avrcp::VendorPacket\u003e)) in archive out/soong/.intermediates/packages/modules/Bluetooth/system/profile/avrcp/avrcp-target-service/android_arm64_armv8-a_static/avrcp-target-service.a\n\u003e\u003e\u003e referenced by connection_handler.cc:280 (packages/modules/Bluetooth/system/profile/avrcp/connection_handler.cc:280)\n...d char, unsigned short, RawAddress const*)) in archive out/soong/.intermediates/packages/modules/Bluetooth/system/profile/avrcp/avrcp-target-service/android_arm64_armv8-a_static/avrcp-target-service.a\n\u003e\u003e\u003e referenced 5 more times\n\nld.lld: error: undefined symbol: btif_av_peer_is_connected_sink(RawAddress const\u0026)\n\u003e\u003e\u003e referenced by connection_handler.cc:282 (packages/modules/Bluetooth/system/profile/avrcp/connection_handler.cc:282)\n...d char, unsigned short, RawAddress const*)) in archive out/soong/.intermediates/packages/modules/Bluetooth/system/profile/avrcp/avrcp-target-service/android_arm64_armv8-a_static/avrcp-target-service.a\n\u003e\u003e\u003e referenced by connection_handler.cc:385 (packages/modules/Bluetooth/system/profile/avrcp/connection_handler.cc:385)\n...ned short, unsigned short, unsigned short)) in archive out/soong/.intermediates/packages/modules/Bluetooth/system/profile/avrcp/avrcp-target-service/android_arm64_armv8-a_static/avrcp-target-service.a\n\nld.lld: error: undefined symbol: btif_av_peer_is_connected_source(RawAddress const\u0026)\n\u003e\u003e\u003e referenced by connection_handler.cc:343 (packages/modules/Bluetooth/system/profile/avrcp/connection_handler.cc:343)\n...d char, unsigned short, RawAddress const*)) in archive out/soong/.intermediates/packages/modules/Bluetooth/system/profile/avrcp/avrcp-target-service/android_arm64_armv8-a_static/avrcp-target-service.a\n\nld.lld: error: undefined symbol: btif_av_both_enable()\n\u003e\u003e\u003e referenced by connection_handler.cc:451 (packages/modules/Bluetooth/system/profile/avrcp/connection_handler.cc:451)\n... unsigned char, unsigned char, tAVRC_MSG*)) in archive out/soong/.intermediates/packages/modules/Bluetooth/system/profile/avrcp/avrcp-target-service/android_arm64_armv8-a_static/avrcp-target-service.a\nclang-17: error: linker command failed with exit code 1 (use -v to see invocation)\n```",
+      "revId": "9412f35528e9eff56f8368fe6e00e9ac4786bfae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
