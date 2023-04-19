@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1a45a96a_f9dc00f5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-04-19T10:17:01Z",
+      "side": 1,
+      "message": "Hi Ying and Archie, since Abhishek and Jesse (RFCOMM members) are both OOO, could you help take a look?",
+      "revId": "8b1e63a2f8fb4d7a467195c5b2ee48293b8bce04",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
