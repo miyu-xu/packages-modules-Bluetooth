@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "18fde241_830fdbf2",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-04-19T07:16:55Z",
+      "side": 1,
+      "message": "seems to be error in commit message.",
+      "revId": "71f34a96245b815ee89824b3ca94ed4bceb21f78",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
