@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f69518a8_c26ad054",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1994610
+      },
+      "writtenOn": "2023-04-19T14:56:44Z",
+      "side": 1,
+      "message": "Bid,\n\nWhat do we think about taking this change?\n\nThe issue is that many test environments have too many devices, which overwhelms the picker.\n\nI can imagine 2 regressions from taking this as-is:\n\n1) Eventually the device list is dominated by a few strong but old signals\n2) Pairing to a weak device in the presence of many strong ones will be difficult",
+      "revId": "aaa20c1704847b1d5b98438d18594f163e6b473a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
