@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ae655335_633a5ce0",
+        "filename": "android/pandora/test/asha_test.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 334,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-04-19T17:13:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "36dcf122_584f711d",
+      "range": {
+        "startLine": 334,
+        "startChar": 22,
+        "endLine": 334,
+        "endChar": 34
+      },
+      "revId": "87bf9a23d6d86b40521b785eb0590fceb39f90fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5f69d5aa_7f0509ca",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-04-19T16:34:27Z",
       "side": 1,
       "message": "Why skip this one ? (if needed use `TestSkip` instead)",
+      "range": {
+        "startLine": 725,
+        "startChar": 8,
+        "endLine": 725,
+        "endChar": 91
+      },
+      "revId": "87bf9a23d6d86b40521b785eb0590fceb39f90fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ef4df143_284b7ac1",
+        "filename": "android/pandora/test/asha_test.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 725,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-04-19T17:13:37Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "5f69d5aa_7f0509ca",
       "range": {
         "startLine": 725,
         "startChar": 8,
