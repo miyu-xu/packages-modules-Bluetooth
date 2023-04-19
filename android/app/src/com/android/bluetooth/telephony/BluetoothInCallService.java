@@ -1471,7 +1471,7 @@ public class BluetoothInCallService extends InCallService {
         String uri = addressUri == null ? null : addressUri.toString();
         int callFlags = call.isIncoming() ? 0 : BluetoothLeCall.FLAG_OUTGOING_CALL;
 
-        return new BluetoothLeCall(call.getTbsCallId(), uri, call.getCallerDisplayName(), state,
+        return new BluetoothLeCall(call.getTbsCallId(), uri, call.getContactDisplayName(), state,
                        callFlags);
     }
 
