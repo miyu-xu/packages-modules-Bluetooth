@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2804736c_edbdf334",
+        "filename": "android/app/src/com/android/bluetooth/opp/BluetoothOppIncomingFileConfirmActivity.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 234,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2023-04-19T08:58:29Z",
+      "side": 1,
+      "message": "Most of the time spying handler doesn\u0027t work (e.g. message object obtained from verify has been resetted). We should either spy something inside it or using proxy like I did",
+      "parentUuid": "4394080c_be427866",
+      "range": {
+        "startLine": 234,
+        "startChar": 26,
+        "endLine": 234,
+        "endChar": 41
+      },
+      "revId": "85eaecb2a40ea0bbee5bfac5b10105cc9923fb6e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e2fd8ac4_24fff4df",
