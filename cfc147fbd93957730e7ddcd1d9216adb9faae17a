@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ac8e46be_00410584",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-04-19T22:05:01Z",
+      "side": 1,
+      "message": "Could be done in follow-up change",
+      "parentUuid": "cc5136c6_0b11d957",
+      "revId": "cfc147fbd93957730e7ddcd1d9216adb9faae17a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1be4deae_708da3a2",
         "filename": "service/java/com/android/server/bluetooth/BluetoothManagerService.java",
         "patchSetId": 7
