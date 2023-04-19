@@ -13,11 +13,13 @@
 # limitations under the License.
 
 import asyncio
-import bumble.device
 import itertools
+import logging
 
 from avatar import BumblePandoraDevice, PandoraDevice, PandoraDevices, asynchronous, parameterized
+from avatar.pandora_client import Address as PandoraAddress
 from bumble.core import BT_BR_EDR_TRANSPORT
+from bumble.device import Connection as BumbleConnection
 from bumble.hci import HCI_CENTRAL_ROLE, HCI_PERIPHERAL_ROLE, Address as BumbleAddress
 from bumble.smp import PairingDelegate
 from concurrent import futures
@@ -27,7 +29,7 @@ from mobly import base_test
 from mobly.asserts import assert_equal, assert_in, assert_is_not_none, fail
 from pandora.host_pb2 import PUBLIC, RANDOM, Connection, DataTypes, OwnAddressType
 from pandora.security_pb2 import LEVEL2, PairingEventAnswer
-from typing import NoReturn, Optional
+from typing import NoReturn, Optional, Tuple
 
 
 class BumbleAddressWrapper(BumbleAddress):
@@ -35,16 +37,17 @@ class BumbleAddressWrapper(BumbleAddress):
 
     def __init__(
         self,
-        address: BumbleAddress.ANY,
+        address: PandoraAddress,
         address_type: int = BumbleAddress.PUBLIC_DEVICE_ADDRESS,
         bytes_endian: str = 'little',
     ):
-        if isinstance(address, bytes):
-            if bytes_endian == 'big':
-                address = bytes(reversed(address))
-            elif bytes_endian != 'little':
-                raise ValueError("byteorder must be either 'little' or 'big'")
-        super().__init__(address, address_type)
+        if bytes_endian == 'big':
+            new_address = bytes(reversed(address))
+            super().__init__(new_address, address_type)
+        elif bytes_endian == 'little':
+            super().__init__(address, address_type)
+        else:
+            raise ValueError("byteorder must be either 'little' or 'big'")
 
 
 class ClassicSspTests(base_test.BaseTestClass):  # type: ignore[misc]
@@ -56,7 +59,7 @@ class ClassicSspTests(base_test.BaseTestClass):  # type: ignore[misc]
 
     def setup_class(self) -> None:
         self.devices = PandoraDevices(self)
-        self.dut, self.ref, *_ = self.devices
+        self.dut, self.ref, *_ = self.devices  # type: ignore[assignment]
 
         # Enable BR/EDR mode for Bumble devices.
         for device in self.devices:
@@ -72,7 +75,8 @@ class ClassicSspTests(base_test.BaseTestClass):  # type: ignore[misc]
     async def setup_test(self) -> None:
         await asyncio.gather(self.dut.reset(), self.ref.reset())
 
-    async def connect_le(self, dut_address_type: OwnAddressType, ref_address_type: OwnAddressType) -> None:
+    async def make_incoming_le_connection(self, dut_address_type: OwnAddressType,
+                                          ref_address_type: OwnAddressType) -> None:
         advertisement = self.dut.aio.host.Advertise(
             legacy=True,
             connectable=True,
@@ -142,40 +146,72 @@ class ClassicSspTests(base_test.BaseTestClass):  # type: ignore[misc]
             ref_pairing_stream.cancel()
             dut_pairing_stream.cancel()
 
+    async def make_incoming_classic_connection(self, ref_role: int) -> Tuple[Connection, Connection]:
+        (dut_ref_res, ref_dut_res) = await asyncio.gather(
+            self.dut.aio.host.WaitConnection(address=self.ref.address),
+            self.ref.aio.host.Connect(address=self.dut.address),
+        )
+        assert_equal(ref_dut_res.result_variant(), 'connection')
+        assert_equal(dut_ref_res.result_variant(), 'connection')
+        ref_dut = ref_dut_res.connection
+        dut_ref = dut_ref_res.connection
+        assert ref_dut is not None and dut_ref is not None
+        assert_is_not_none(ref_dut)
+        assert_is_not_none(dut_ref)
+
+        ref_dut_raw = self.ref.device.find_connection_by_bd_addr(
+            BumbleAddressWrapper(self.dut.address, bytes_endian='big'), BT_BR_EDR_TRANSPORT)
+        assert isinstance(ref_dut_raw, BumbleConnection)
+        assert_is_not_none(ref_dut_raw)
+
+        if ref_dut_raw.role != ref_role:
+            await ref_dut_raw.switch_role(ref_role)
+
+        return (ref_dut, dut_ref)
+
+    async def make_outgoing_classic_connection(self, ref_role: int) -> Tuple[Connection, Connection]:
+        (dut_ref_res, ref_dut_raw) = await asyncio.gather(
+            self.dut.aio.host.Connect(address=self.ref.address),
+            self.ref.device.accept(
+                peer_address=BumbleAddressWrapper(self.dut.address, bytes_endian='big'),
+                role=ref_role,
+            ),
+        )
+        ref_dut = Connection(cookie=any_pb2.Any(value=ref_dut_raw.handle.to_bytes(4, 'big')))
+
+        assert_equal(dut_ref_res.result_variant(), 'connection')
+        dut_ref = dut_ref_res.connection
+        assert ref_dut is not None and dut_ref is not None
+        assert_is_not_none(ref_dut)
+        assert_is_not_none(dut_ref)
+        return (ref_dut, dut_ref)
+
     @parameterized(*itertools.product(
-        (PairingDelegate.NO_OUTPUT_NO_INPUT,),
-        (HCI_CENTRAL_ROLE,),
-        (RANDOM,),
+        (
+            PairingDelegate.NO_OUTPUT_NO_INPUT,
+            PairingDelegate.KEYBOARD_INPUT_ONLY,
+            PairingDelegate.DISPLAY_OUTPUT_ONLY,
+            PairingDelegate.DISPLAY_OUTPUT_AND_YES_NO_INPUT,
+        ),
+        (HCI_CENTRAL_ROLE, HCI_PERIPHERAL_ROLE),
+        (
+            None,
+            RANDOM,
+            PUBLIC,
+        ),
     ))  # type: ignore[misc]
     @asynchronous
     async def test_classic_pairing_incoming(self, ref_io_capability: int, ref_role: int,
-                                            ref_le_addr_type: OwnAddressType) -> None:
+                                            ref_le_addr_type: Optional[OwnAddressType]) -> None:
         # override reference device IO capability
         setattr(self.ref.device, 'io_capability', ref_io_capability)
 
         pairing = asyncio.create_task(self.handle_pairing_events())
 
         if ref_le_addr_type is not None:
-            await self.connect_le(RANDOM, ref_le_addr_type)
+            await self.make_incoming_le_connection(RANDOM, ref_le_addr_type)
 
-        (dut_ref_res, ref_dut_res) = await asyncio.gather(
-            self.dut.aio.host.WaitConnection(address=self.ref.address),
-            self.ref.aio.host.Connect(address=self.dut.address),
-        )
-
-        assert_equal(ref_dut_res.result_variant(), 'connection')
-        assert_equal(dut_ref_res.result_variant(), 'connection')
-        ref_dut = ref_dut_res.connection
-        dut_ref = dut_ref_res.connection
-        assert_is_not_none(ref_dut)
-        assert_is_not_none(dut_ref)
-
-        ref_dut_raw = self.ref.device.find_connection_by_bd_addr(
-            BumbleAddressWrapper(self.dut.address, bytes_endian='big'), BT_BR_EDR_TRANSPORT)
-        assert_is_not_none(ref_dut_raw)
-
-        if ref_dut_raw.role != ref_role:
-            await ref_dut_raw.switch_role(ref_role)
+        ref_dut, dut_ref = await self.make_incoming_classic_connection(ref_role=ref_role)
 
         (secure, wait_security) = await asyncio.gather(
             self.ref.aio.security.Secure(connection=ref_dut, classic=LEVEL2),
@@ -188,6 +224,51 @@ class ClassicSspTests(base_test.BaseTestClass):  # type: ignore[misc]
 
         assert_equal(secure.result_variant(), 'success')
         assert_equal(wait_security.result_variant(), 'success')
+
+        await asyncio.gather(
+            self.dut.aio.host.WaitDisconnection(connection=dut_ref),
+            self.ref.aio.host.Disconnect(connection=ref_dut),
+        )
+
+    @parameterized(*itertools.product(
+        (
+            PairingDelegate.NO_OUTPUT_NO_INPUT,
+            PairingDelegate.KEYBOARD_INPUT_ONLY,
+            PairingDelegate.DISPLAY_OUTPUT_ONLY,
+            PairingDelegate.DISPLAY_OUTPUT_AND_YES_NO_INPUT,
+        ),
+        (HCI_CENTRAL_ROLE, HCI_PERIPHERAL_ROLE),
+        (
+            None,
+            RANDOM,
+            PUBLIC,
+        ),
+    ))  # type: ignore[misc]
+    @asynchronous
+    async def test_classic_pairing_outgoing(self, ref_io_capability: int, ref_role: int,
+                                            ref_le_addr_type: Optional[OwnAddressType]) -> None:
+        # override reference device IO capability
+        setattr(self.ref.device, 'io_capability', ref_io_capability)
+
+        pairing = asyncio.create_task(self.handle_pairing_events())
+
+        if ref_le_addr_type is not None:
+            await self.make_incoming_le_connection(RANDOM, ref_le_addr_type)
+
+        ref_dut, dut_ref = await self.make_outgoing_classic_connection(ref_role=ref_role)
+
+        (ref_dut_security, dut_ref_security) = await asyncio.gather(
+            self.ref.aio.security.WaitSecurity(connection=ref_dut, classic=LEVEL2),
+            # Android connect() creates an auth request, so here we don't secure()
+            self.dut.aio.security.WaitSecurity(connection=dut_ref, classic=LEVEL2),
+        )
+
+        pairing.cancel()
+        with suppress(asyncio.CancelledError, futures.CancelledError):
+            await pairing
+
+        assert_equal(ref_dut_security.result_variant(), 'success')
+        assert_equal(dut_ref_security.result_variant(), 'success')
 
         await asyncio.gather(
             self.dut.aio.host.WaitDisconnection(connection=dut_ref),
