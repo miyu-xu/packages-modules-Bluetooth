@@ -46,6 +46,6 @@ java_test_host {
     required: ["bumble_pandora_server"],
 
     test_suites: [
-        "device-tests",
+        "general-tests",
     ],
 }
