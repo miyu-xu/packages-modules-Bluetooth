@@ -47,6 +47,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "58e1c44a_8481d755",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/IncomingFileConfirmActivityTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2023-04-19T08:56:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e2fd8ac4_24fff4df",
+      "range": {
+        "startLine": 186,
+        "startChar": 70,
+        "endLine": 186,
+        "endChar": 90
+      },
+      "revId": "85eaecb2a40ea0bbee5bfac5b10105cc9923fb6e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9a7507b2_5afc831b",
@@ -60,6 +84,30 @@
       "writtenOn": "2023-04-19T08:11:08Z",
       "side": 1,
       "message": "DISMISS_TIMEOUT_DIALOG_VALUE",
+      "range": {
+        "startLine": 197,
+        "startChar": 47,
+        "endLine": 197,
+        "endChar": 59
+      },
+      "revId": "85eaecb2a40ea0bbee5bfac5b10105cc9923fb6e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f378a052_28975424",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/IncomingFileConfirmActivityTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2023-04-19T08:56:27Z",
+      "side": 1,
+      "message": "eq(DISMISS_TIMEOUT_DIALOG_VALUE) cause eq() to think it should use eq(int) \u003d\u003e mockito error because it expects long",
+      "parentUuid": "9a7507b2_5afc831b",
       "range": {
         "startLine": 197,
         "startChar": 47,
