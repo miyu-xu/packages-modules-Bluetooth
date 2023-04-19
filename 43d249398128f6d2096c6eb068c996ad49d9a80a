@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "280f8f1a_39de62b3",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 558,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-04-19T07:54:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e770e511_1b6bc0e0",
+      "revId": "43d249398128f6d2096c6eb068c996ad49d9a80a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "75f53ccd_064b0754",
@@ -31,6 +49,24 @@
       "writtenOn": "2023-04-19T07:27:28Z",
       "side": 1,
       "message": "missing state change.",
+      "revId": "43d249398128f6d2096c6eb068c996ad49d9a80a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9c8064b3_4f50dd51",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 3199,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-04-19T07:54:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "75f53ccd_064b0754",
       "revId": "43d249398128f6d2096c6eb068c996ad49d9a80a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
