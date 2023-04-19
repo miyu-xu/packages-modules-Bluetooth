@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4a216780_f12369f7",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 3802,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-04-19T21:00:19Z",
+      "side": 1,
+      "message": "Should we keep check like this then ? It will always be true",
+      "range": {
+        "startLine": 3802,
+        "startChar": 6,
+        "endLine": 3802,
+        "endChar": 34
+      },
+      "revId": "c55db5d8ff6db786a9818f61956f6fc5c4cb5726",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
