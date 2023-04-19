@@ -98,6 +98,54 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0ec8f2f2_8cbf6573",
+        "filename": "system/gd/rust/linux/stack/src/socket_manager.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 1175,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2023-04-19T06:08:01Z",
+      "side": 1,
+      "message": "The uuid comes from socket_info, which is only created from `make_l2cap_channel` or `make_rfcomm_channel`. For l2cap, the uuid is none which is blocked in and_then function. For rfcomm, the uuid should be protected by the complex dbus macro and be only valid if it success in try_from[1]. So I think the uuid shouldn\u0027t be empty here.\n\n\n[1]https://source.corp.google.com/chromeos_public/src/aosp/packages/modules/Bluetooth/upstream/system/gd/rust/topshim/src/btif.rs;l\u003d369?q\u003dsystem%2Fgd%2Frust%2Ftopshim%2Fsrc%2Fbtif.rs\u0026ss\u003dpiper%2FGoogle%2Fchromeos_public:src%2Faosp%2Fpackages%2Fmodules%2FBluetooth%2Fupstream%2F",
+      "parentUuid": "0631a119_77310170",
+      "range": {
+        "startLine": 1175,
+        "startChar": 76,
+        "endLine": 1175,
+        "endChar": 87
+      },
+      "revId": "6d67df1047aa336529c9a015ac0c28ac262bee40",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cf6e3638_eef8df55",
+        "filename": "system/gd/rust/linux/stack/src/socket_manager.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 1175,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2023-04-19T06:08:01Z",
+      "side": 1,
+      "message": "This is required by `and_then` function, it explicitly required the inner closure to return `Option\u003cT\u003e` so I can\u0027t skip the `Some` here.\n\n\nhttps://doc.rust-lang.org/std/option/enum.Option.html#method.and_then",
+      "parentUuid": "30185b32_9be252e8",
+      "range": {
+        "startLine": 1175,
+        "startChar": 57,
+        "endLine": 1175,
+        "endChar": 75
+      },
+      "revId": "6d67df1047aa336529c9a015ac0c28ac262bee40",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2a7bb717_a3051712",
@@ -111,6 +159,24 @@
       "writtenOn": "2023-04-17T21:06:08Z",
       "side": 1,
       "message": "Also include `uuid` since that\u0027s probably useful for debugging",
+      "revId": "6d67df1047aa336529c9a015ac0c28ac262bee40",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "01383951_b8846bfe",
+        "filename": "system/gd/rust/linux/stack/src/socket_manager.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 1185,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2023-04-19T06:08:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2a7bb717_a3051712",
       "revId": "6d67df1047aa336529c9a015ac0c28ac262bee40",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
