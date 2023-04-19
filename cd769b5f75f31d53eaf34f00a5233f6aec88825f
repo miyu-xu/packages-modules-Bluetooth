@@ -16,6 +16,24 @@
       "message": "thinking this twice, probably we should revert the whole change in this file or change it to (addr_type !\u003d BLE_ADDR_RANDOM).\n\notherwise, this change will cause some issue with Public address type. Currently the upper layer is still passing Public type as the default, and we\u0027d prefer to overwrite/correct it here by fetching from the security record. \n\nAnd if we revert this change, it should also be fine for my previous use case that app is passing static random to force the direct connection, because we will still add it to security record first by btif_gattc_open_impl -\u003e BTA_DmAddBleDevice. So if you fetch it again, it should still have the random type.",
       "revId": "cd769b5f75f31d53eaf34f00a5233f6aec88825f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bceae372_f8b74e82",
+        "filename": "system/stack/gatt/gatt_main.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-04-19T06:44:22Z",
+      "side": 1,
+      "message": "We should be good with this.\nI know, that Java code can use PUBLIC even for RPA addresses, but this is something we handle in btif_gatt_client\n\nhttps://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/system/btif/src/btif_gatt_client.cc;l\u003d290;bpv\u003d1;bpt\u003d1?q\u003dbtif_gatt_c\n\nWhat is happening there, we look into bt_config.conf if Java used PUBLIC and make sure that this match the address type we have there.\n\nIf device is known, we overwrite the type.\n\nThis code is looking into security record which is another state.\n\nSo what is happening here, if this function is called for the device which is unknown for us, we just use provided address type - which seems to be fine.\n\nbtw: in the comment here: https://b.corp.google.com/issues/278199753#comment5, I showed logs for the case where Java calls connect using pseudo address (which is RPA but used with type PUBLIC)",
+      "parentUuid": "5a5116c8_8c4387f5",
+      "revId": "cd769b5f75f31d53eaf34f00a5233f6aec88825f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
