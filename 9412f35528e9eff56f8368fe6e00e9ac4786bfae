@@ -33,6 +33,24 @@
       "message": "`net_test_btif_rc32` is failing:\n\n```\nFAILED: out/soong/.intermediates/packages/modules/Bluetooth/system/btif/net_test_btif_rc/linux_glibc_x86_asan/net_test_btif_rc32\n..../lib -Wl,-rpath,\\$ORIGIN/../../lib -Wl,-rpath,\\$ORIGIN/../../../lib  -pie -Wl,-u,__asan_preinit -Wl,--no-as-needed -fsanitize\u003dbounds,address -Wl,--exclude-libs\u003dlibclang_rt.builtins-i386.a -nostdlib++\n...dPlayerSettingsChanged(std::__1::vector\u003cbluetooth::avrcp::PlayerAttribute, std::__1::allocator\u003cbluetooth::avrcp::PlayerAttribute\u003e\u003e, std::__1::vector\u003cunsigned char, std::__1::allocator\u003cunsigned char\u003e\u003e)\n\u003e\u003e\u003e referenced by btif_rc_test.cc\n...g/.intermediates/packages/modules/Bluetooth/system/btif/net_test_btif_rc/linux_glibc_x86_asan/obj/packages/modules/Bluetooth/system/btif/test/btif_rc_test.o:(vtable for bluetooth::avrcp::AvrcpService)\nclang-17: error: linker command failed with exit code 1 (use -v to see invocation)\n```",
       "revId": "9412f35528e9eff56f8368fe6e00e9ac4786bfae",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bbfcdea3_0a5dc48a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 18
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2023-04-19T01:07:27Z",
+      "side": 1,
+      "message": "Can you fix `net_test_btif_rc`? `m net_test_btif_rc` must build for presubmit tests to pass",
+      "parentUuid": "9f90c6c0_d35ec01c",
+      "revId": "9412f35528e9eff56f8368fe6e00e9ac4786bfae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
