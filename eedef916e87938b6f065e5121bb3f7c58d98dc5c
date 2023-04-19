@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fc36e0d2_dd000e5e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1963846
+      },
+      "writtenOn": "2023-04-19T09:53:35Z",
+      "side": 1,
+      "message": "Thank you for spending time on reviewing the patches! Since the original patches were reverted, I have to revert this patch accordingly and resubmit patches per the comments here for review. Thanks all!",
+      "revId": "eedef916e87938b6f065e5121bb3f7c58d98dc5c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "401973bf_78c39a1a",
