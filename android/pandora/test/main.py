@@ -13,9 +13,9 @@ from typing import List, Tuple
 
 _BUMBLE_BTSNOOP_FMT = 'bumble_btsnoop_{pid}_{instance}.log'
 
-
 # Import test modules.
 import asha_test
+import classic_ssp_pairing_test
 import example
 import gatt_test
 import le_advertising_test
@@ -25,6 +25,7 @@ _TEST_CLASSES_LIST = [
     asha_test.ASHATest,
     gatt_test.GattTest,
     le_advertising_test.LeAdvertisingTest,
+    classic_ssp_pairing_test.ClassicSspTests,
 ]
 
 
@@ -40,7 +41,7 @@ if __name__ == "__main__":
     # This is a hack for `tradefed` because of `b/166468397`.
     if '--' in sys.argv:
         index = sys.argv.index('--')
-        sys.argv = sys.argv[:1] + sys.argv[index + 1 :]
+        sys.argv = sys.argv[:1] + sys.argv[index + 1:]
 
     # Enable bumble snoop logger.
     ns, argv = _parse_cli_args()
