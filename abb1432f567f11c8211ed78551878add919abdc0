@@ -354,6 +354,30 @@
       },
       "revId": "abb1432f567f11c8211ed78551878add919abdc0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "46549f79_2b84384b",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 2185,
+      "author": {
+        "id": 1958755
+      },
+      "writtenOn": "2023-04-19T10:58:10Z",
+      "side": 1,
+      "message": "in hal interface inside ChromeOS, we return false for `get_swb_supported` in this patch series, so here we would not select LC3 as final codec here `get_hfp_audio_final_codecs` as `SwbCapsUpdate` would not be triggered.",
+      "parentUuid": "fb3b5dfb_45779528",
+      "range": {
+        "startLine": 2185,
+        "startChar": 16,
+        "endLine": 2185,
+        "endChar": 96
+      },
+      "revId": "abb1432f567f11c8211ed78551878add919abdc0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
