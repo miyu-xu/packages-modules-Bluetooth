@@ -487,7 +487,6 @@ public class AdapterService extends Service {
                         updateUuids();
                         setBluetoothClassFromConfig();
                         initProfileServices();
-                        getAdapterPropertyNative(AbstractionLayer.BT_PROPERTY_LOCAL_IO_CAPS);
                         getAdapterPropertyNative(AbstractionLayer.BT_PROPERTY_DYNAMIC_AUDIO_BUFFER);
                         mAdapterStateMachine.sendMessage(AdapterState.BREDR_STARTED);
                         mBtCompanionManager.loadCompanionInfo();
@@ -2204,57 +2203,6 @@ public class AdapterService extends Service {
                     service.getContentResolver(),
                     Settings.Global.BLUETOOTH_CLASS_OF_DEVICE,
                     bluetoothClass.getClassOfDevice());
-        }
-
-        @Override
-        public void getIoCapability(AttributionSource source, SynchronousResultReceiver receiver) {
-            try {
-                receiver.send(getIoCapability(source));
-            } catch (RuntimeException e) {
-                receiver.propagateException(e);
-            }
-        }
-        @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)
-        private int getIoCapability(AttributionSource attributionSource) {
-            AdapterService service = getService();
-            if (service == null
-                    || !callerIsSystemOrActiveOrManagedUser(service, TAG, "getIoCapability")
-                    || !Utils.checkConnectPermissionForDataDelivery(
-                            service, attributionSource, "AdapterService getIoCapability")) {
-                return BluetoothAdapter.IO_CAPABILITY_UNKNOWN;
-            }
-
-            return service.mAdapterProperties.getIoCapability();
-        }
-
-        @Override
-        public void setIoCapability(int capability, AttributionSource source,
-                SynchronousResultReceiver receiver) {
-            try {
-                receiver.send(setIoCapability(capability, source));
-            } catch (RuntimeException e) {
-                receiver.propagateException(e);
-            }
-        }
-        @RequiresPermission(allOf = {
-                android.Manifest.permission.BLUETOOTH_CONNECT,
-                android.Manifest.permission.BLUETOOTH_PRIVILEGED,
-        })
-        private boolean setIoCapability(int capability, AttributionSource source) {
-            AdapterService service = getService();
-            if (service == null
-                    || !callerIsSystemOrActiveOrManagedUser(service, TAG, "setIoCapability")
-                    || !Utils.checkConnectPermissionForDataDelivery(service, source, TAG)) {
-                return false;
-            }
-
-            enforceBluetoothPrivilegedPermission(service);
-
-            if (!isValidIoCapability(capability)) {
-              return false;
-            }
-
-            return service.mAdapterProperties.setIoCapability(capability);
         }
 
         @Override
@@ -5152,16 +5100,6 @@ public class AdapterService extends Service {
 
     public int getNameLengthForAdvertise() {
         return mAdapterProperties.getName().length();
-    }
-
-    @VisibleForTesting
-    static boolean isValidIoCapability(int capability) {
-        if (capability < 0 || capability >= BluetoothAdapter.IO_CAPABILITY_MAX) {
-            Log.e(TAG, "Invalid IO capability value - " + capability);
-            return false;
-        }
-
-        return true;
     }
 
     ArrayList<DiscoveringPackage> getDiscoveringPackages() {

@@ -32,7 +32,6 @@
 #include <frameworks/proto_logging/stats/enums/bluetooth/hci/enums.pb.h>
 #include <string.h>
 
-#include "btif/include/btif_storage.h"
 #include "common/metrics.h"
 #include "common/time_util.h"
 #include "device/include/controller.h"
@@ -2166,7 +2165,7 @@ void btm_sec_check_pending_reqs(void) {
 void btm_sec_dev_reset(void) {
   if (controller_get_interface()->supports_simple_pairing()) {
     /* set the default IO capabilities */
-    btm_cb.devcb.loc_io_caps = btif_storage_get_local_io_caps();
+    btm_cb.devcb.loc_io_caps = BTM_IO_CAP_IO;
     /* add mx service to use no security */
     BTM_SetSecurityLevel(false, "RFC_MUX", BTM_SEC_SERVICE_RFC_MUX,
                          BTM_SEC_NONE, BT_PSM_RFCOMM, BTM_SEC_PROTO_RFCOMM, 0);
