@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d243d28f_99b367f7",
+        "filename": "android/pandora/server/configs/pts_bot_tests_config.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 429,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-04-19T15:21:41Z",
+      "side": 1,
+      "message": "The tests are failing in presubmit",
+      "revId": "2643ec16e302b1568dab9a2ff377f21b2e72032d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
