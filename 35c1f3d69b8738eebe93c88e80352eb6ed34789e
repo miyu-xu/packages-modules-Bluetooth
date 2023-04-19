@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f016fed4_916dcc5c",
+        "filename": "framework/tests/bumble/Android.bp",
+        "patchSetId": 2
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-04-19T22:08:38Z",
+      "side": 1,
+      "message": "nit: Should we remove this one ?",
+      "revId": "35c1f3d69b8738eebe93c88e80352eb6ed34789e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
