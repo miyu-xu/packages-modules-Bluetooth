@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "062becdf_7eff8a63",
+        "filename": "framework/tests/bumble/Android.bp",
+        "patchSetId": 6
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1986325
+      },
+      "writtenOn": "2023-04-19T07:25:47Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "79383159_27c952ce",
+      "revId": "13de1a3599314482bd226823a5adf77a6a8adf8c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "06052863_838d3a0e",
@@ -31,6 +49,30 @@
       "writtenOn": "2023-04-19T06:01:23Z",
       "side": 1,
       "message": "Should not be needed anymore",
+      "range": {
+        "startLine": 4,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 6
+      },
+      "revId": "13de1a3599314482bd226823a5adf77a6a8adf8c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "87112ce0_e2b19cdc",
+        "filename": "framework/tests/bumble/Android.bp",
+        "patchSetId": 6
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1986325
+      },
+      "writtenOn": "2023-04-19T07:25:47Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "06052863_838d3a0e",
       "range": {
         "startLine": 4,
         "startChar": 0,
@@ -64,6 +106,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "97da656a_70848751",
+        "filename": "framework/tests/bumble/Android.bp",
+        "patchSetId": 6
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1986325
+      },
+      "writtenOn": "2023-04-19T07:25:47Z",
+      "side": 1,
+      "message": "tradefed cannot be removed :(",
+      "parentUuid": "a10b05cd_33b69f41",
+      "range": {
+        "startLine": 9,
+        "startChar": 3,
+        "endLine": 11,
+        "endChar": 0
+      },
+      "revId": "13de1a3599314482bd226823a5adf77a6a8adf8c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9942bd0c_1d584e67",
@@ -87,6 +153,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "77304527_3c4e0fae",
+        "filename": "framework/tests/bumble/app/Android.bp",
+        "patchSetId": 6
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1986325
+      },
+      "writtenOn": "2023-04-19T07:25:47Z",
+      "side": 1,
+      "message": "indeed, make sense.",
+      "parentUuid": "9942bd0c_1d584e67",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 23
+      },
+      "revId": "13de1a3599314482bd226823a5adf77a6a8adf8c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "df32b2a6_92685f8c",
@@ -100,6 +190,30 @@
       "writtenOn": "2023-04-19T06:01:23Z",
       "side": 1,
       "message": "nit: `BumbleBluetoothTestsApp` ?",
+      "range": {
+        "startLine": 2,
+        "startChar": 11,
+        "endLine": 2,
+        "endChar": 30
+      },
+      "revId": "13de1a3599314482bd226823a5adf77a6a8adf8c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "db142b22_882d6413",
+        "filename": "framework/tests/bumble/app/Android.bp",
+        "patchSetId": 6
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1986325
+      },
+      "writtenOn": "2023-04-19T07:25:47Z",
+      "side": 1,
+      "message": "sure",
+      "parentUuid": "df32b2a6_92685f8c",
       "range": {
         "startLine": 2,
         "startChar": 11,
