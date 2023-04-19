@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "79383159_27c952ce",
+        "filename": "framework/tests/bumble/Android.bp",
+        "patchSetId": 6
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-04-19T06:01:23Z",
+      "side": 1,
+      "message": "Add a comment on why we need this `java_test_host`",
+      "revId": "13de1a3599314482bd226823a5adf77a6a8adf8c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "06052863_838d3a0e",
+        "filename": "framework/tests/bumble/Android.bp",
+        "patchSetId": 6
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-04-19T06:01:23Z",
+      "side": 1,
+      "message": "Should not be needed anymore",
+      "range": {
+        "startLine": 4,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 6
+      },
+      "revId": "13de1a3599314482bd226823a5adf77a6a8adf8c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a10b05cd_33b69f41",
+        "filename": "framework/tests/bumble/Android.bp",
+        "patchSetId": 6
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-04-19T06:01:23Z",
+      "side": 1,
+      "message": "Should not be needed anymore",
+      "range": {
+        "startLine": 9,
+        "startChar": 3,
+        "endLine": 11,
+        "endChar": 0
+      },
+      "revId": "13de1a3599314482bd226823a5adf77a6a8adf8c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9942bd0c_1d584e67",
+        "filename": "framework/tests/bumble/app/Android.bp",
+        "patchSetId": 6
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-04-19T06:01:23Z",
+      "side": 1,
+      "message": "Can we remove the `app` folder and put everything in `framework/tests/bumble` ?\nAnd put the `java_test_host` and the `android_test_helper_app` in the same bp ?",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 23
+      },
+      "revId": "13de1a3599314482bd226823a5adf77a6a8adf8c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "df32b2a6_92685f8c",
+        "filename": "framework/tests/bumble/app/Android.bp",
+        "patchSetId": 6
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-04-19T06:01:23Z",
+      "side": 1,
+      "message": "nit: `BumbleBluetoothTestsApp` ?",
+      "range": {
+        "startLine": 2,
+        "startChar": 11,
+        "endLine": 2,
+        "endChar": 30
+      },
+      "revId": "13de1a3599314482bd226823a5adf77a6a8adf8c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
