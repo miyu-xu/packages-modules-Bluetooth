@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d75b1621_c47f8bf8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1970930
+      },
+      "writtenOn": "2023-04-19T09:05:19Z",
+      "side": 1,
+      "message": "Hi Charlie/David,\n\nSubmitted the changes as per review comments.\nRequest you to provide your inputs.\n\nRegards,\nFahad",
+      "revId": "4e53e736e6d61ae1882ad866bb5408d302c30654",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
