@@ -738,7 +738,7 @@ impl Bluetooth {
     }
 
     /// Returns adapter's discoverable mode.
-    pub(crate) fn get_discoverable_mode(&self) -> BtDiscMode {
+    pub(crate) fn get_discoverable_mode_internal(&self) -> BtDiscMode {
         let off_mode = BtDiscMode::NonDiscoverable;
 
         match self.properties.get(&BtPropertyType::AdapterScanMode) {
@@ -1217,6 +1217,20 @@ impl BtifBluetoothCallbacks for Bluetooth {
                     });
                 }
                 BluetoothProperty::AdapterScanMode(mode) => {
+                    let disc_mode = match mode {
+                        BtScanMode::ConnectableDiscoverable => BtDiscMode::GeneralDiscoverable,
+                        BtScanMode::ConnectableLimitedDiscoverable => {
+                            BtDiscMode::LimitedDiscoverable
+                        }
+                        _ => BtDiscMode::NonDiscoverable,
+                    };
+
+                    // Inform the qa dbus to cache the scan mode
+                    let txl = self.tx.clone();
+                    tokio::spawn(async move {
+                        let _ = txl.send(Message::QaOnDiscoverableModeChanged(disc_mode)).await;
+                    });
+
                     self.callbacks.for_all_callbacks(|callback| {
                         callback
                             .on_discoverable_changed(*mode == BtScanMode::ConnectableDiscoverable);
