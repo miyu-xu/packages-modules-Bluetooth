@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5a5116c8_8c4387f5",
+        "filename": "system/stack/gatt/gatt_main.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-04-19T00:07:49Z",
+      "side": 1,
+      "message": "thinking this twice, probably we should revert the whole change in this file or change it to (addr_type !\u003d BLE_ADDR_RANDOM).\n\notherwise, this change will cause some issue with Public address type. Currently the upper layer is still passing Public type as the default, and we\u0027d prefer to overwrite/correct it here by fetching from the security record. \n\nAnd if we revert this change, it should also be fine for my previous use case that app is passing static random to force the direct connection, because we will still add it to security record first by btif_gattc_open_impl -\u003e BTA_DmAddBleDevice. So if you fetch it again, it should still have the random type.",
+      "revId": "cd769b5f75f31d53eaf34f00a5233f6aec88825f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
