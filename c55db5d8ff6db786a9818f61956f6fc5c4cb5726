@@ -46,6 +46,30 @@
       },
       "revId": "c55db5d8ff6db786a9818f61956f6fc5c4cb5726",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7a38ff69_bc656bcd",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 3802,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-04-19T21:58:45Z",
+      "side": 1,
+      "message": "I agree with you, however this change was not part of https://r.android.com/661667, the commit I\u0027m reverting, so I have no idea on why this is here and so I prefer to not modify it unless needed.\n\nTrying to blame this seems to have been here forever as the history stops at the snapshot of AOSP of 2012.\n\nSo I prefer to really not touch it.",
+      "parentUuid": "b12e92bd_4b5a73e1",
+      "range": {
+        "startLine": 3802,
+        "startChar": 6,
+        "endLine": 3802,
+        "endChar": 34
+      },
+      "revId": "c55db5d8ff6db786a9818f61956f6fc5c4cb5726",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
