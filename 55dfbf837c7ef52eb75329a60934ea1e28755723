@@ -56,6 +56,54 @@
       },
       "revId": "55dfbf837c7ef52eb75329a60934ea1e28755723",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2ee845cb_e98e375d",
+        "filename": "system/stack/l2cap/l2c_fcr.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1807,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2023-04-19T02:59:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3d4cb5e2_1bfc2ac6",
+      "range": {
+        "startLine": 1807,
+        "startChar": 33,
+        "endLine": 1807,
+        "endChar": 52
+      },
+      "revId": "55dfbf837c7ef52eb75329a60934ea1e28755723",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e240ca8c_55e15b9b",
+        "filename": "system/stack/l2cap/l2c_fcr.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1807,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2023-04-19T02:59:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3d4cb5e2_1bfc2ac6",
+      "range": {
+        "startLine": 1807,
+        "startChar": 33,
+        "endLine": 1807,
+        "endChar": 52
+      },
+      "revId": "55dfbf837c7ef52eb75329a60934ea1e28755723",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
