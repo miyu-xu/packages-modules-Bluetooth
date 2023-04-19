@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "021ac19f_55cd30e4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1963846
+      },
+      "writtenOn": "2023-04-19T09:56:34Z",
+      "side": 1,
+      "message": "These 2 patches are modified per all of the comments in (go/aog/2535959). PTAL. Thanks!",
+      "revId": "1766b81560bdea6ee03e514c20e2a186d68a96aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
