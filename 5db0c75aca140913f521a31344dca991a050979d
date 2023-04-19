@@ -16,6 +16,29 @@
       "message": "Hi please take a look at this, thanks!",
       "revId": "5db0c75aca140913f521a31344dca991a050979d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "afc802f4_02d500a2",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 2525,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2023-04-19T04:42:40Z",
+      "side": 1,
+      "message": "Please try to add it into BluetoothQA and don\u0027t add more APIs into BluetoothQALegacy if possible.",
+      "range": {
+        "startLine": 2525,
+        "startChar": 7,
+        "endLine": 2525,
+        "endChar": 28
+      },
+      "revId": "5db0c75aca140913f521a31344dca991a050979d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
