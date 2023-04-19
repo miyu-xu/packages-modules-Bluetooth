@@ -97,7 +97,6 @@ class AdapterProperties {
     private volatile int mScanMode;
     private volatile int mDiscoverableTimeout;
     private volatile ParcelUuid[] mUuids;
-    private volatile int mLocalIOCapability = BluetoothAdapter.IO_CAPABILITY_UNKNOWN;
 
     private CopyOnWriteArrayList<BluetoothDevice> mBondedDevices =
             new CopyOnWriteArrayList<BluetoothDevice>();
@@ -341,28 +340,6 @@ class AdapterProperties {
                             Utils.truncateStringForUtf8Storage(
                                             name, BLUETOOTH_NAME_MAX_LENGTH_BYTES)
                                     .getBytes());
-        }
-    }
-
-    boolean setIoCapability(int capability) {
-        synchronized (mObject) {
-            boolean result =
-                    mService.getNative()
-                            .setAdapterProperty(
-                                    AbstractionLayer.BT_PROPERTY_LOCAL_IO_CAPS,
-                                    Utils.intToByteArray(capability));
-
-            if (result) {
-                mLocalIOCapability = capability;
-            }
-
-            return result;
-        }
-    }
-
-    int getIoCapability() {
-        synchronized (mObject) {
-            return mLocalIOCapability;
         }
     }
 
@@ -1094,11 +1071,6 @@ class AdapterProperties {
 
                     case AbstractionLayer.BT_PROPERTY_DYNAMIC_AUDIO_BUFFER:
                         updateDynamicAudioBufferSupport(val);
-                        break;
-
-                    case AbstractionLayer.BT_PROPERTY_LOCAL_IO_CAPS:
-                        mLocalIOCapability = Utils.byteArrayToInt(val);
-                        debugLog("mLocalIOCapability set to " + mLocalIOCapability);
                         break;
 
                     case AbstractionLayer.BT_PROPERTY_WL_MEDIA_PLAYERS_LIST:
