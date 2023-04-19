@@ -260,6 +260,149 @@ class ClassicSspTests(base_test.BaseTestClass):  # type: ignore[misc]
             self.ref.aio.host.Disconnect(connection=ref_dut),
         )
 
+    # TODO(b/273423167): BR/EDR role is not fully supported on Bumble and RootCanal
+    # Enable these tests when requirements are fulfilled.
+    @parameterized(*itertools.product(
+        (PairingDelegate.DISPLAY_OUTPUT_AND_YES_NO_INPUT,),
+        (
+            HCI_CENTRAL_ROLE,
+            HCI_PERIPHERAL_ROLE,
+        ),
+    ))  # type: ignore[misc]
+    @asynchronous
+    async def test_classic_pairing_outgoing_ctkd(self, ref_io_capability: int, ref_role: int) -> None:
+        # override reference device IO capability
+        setattr(self.ref.device, 'io_capability', ref_io_capability)
+
+        pairing = asyncio.create_task(self.handle_pairing_events())
+        dut_address_in_bumble = BumbleAddressWrapper(self.dut.address, bytes_endian='big')
+        (dut_ref_res, ref_dut_raw) = await asyncio.gather(
+            self.dut.aio.host.Connect(address=self.ref.address),
+            self.ref.device.accept(
+                peer_address=dut_address_in_bumble,
+                role=ref_role,
+            ),
+        )
+        ref_dut = Connection(cookie=any_pb2.Any(value=ref_dut_raw.handle.to_bytes(4, 'big')))
+
+        assert_equal(dut_ref_res.result_variant(), 'connection')
+        dut_ref = dut_ref_res.connection
+        assert_is_not_none(ref_dut)
+        assert_is_not_none(dut_ref)
+
+        pending_le_pairing = asyncio.get_running_loop().create_future()
+
+        def on_pairing(keys):
+            pending_le_pairing.set_result(keys)
+
+        ref_dut_raw.on('pairing', on_pairing)
+
+        (ref_dut_security, dut_ref_security) = await asyncio.gather(
+            self.ref.aio.security.WaitSecurity(connection=ref_dut, classic=LEVEL2),
+            # Android connect() creates an auth request, so here we don't secure()
+            self.dut.aio.security.WaitSecurity(connection=dut_ref, classic=LEVEL2),
+        )
+        await pending_le_pairing
+
+        ref_dut_keys = await self.ref.device.keystore.get(str(dut_address_in_bumble))
+
+        # TODO(b/273423167): Try LE connect using RPA
+        assert_is_not_none(ref_dut_keys.ltk)
+        assert_is_not_none(ref_dut_keys.irk)
+
+        pairing.cancel()
+        with suppress(asyncio.CancelledError, futures.CancelledError):
+            await pairing
+
+        assert_equal(ref_dut_security.result_variant(), 'success')
+        assert_equal(dut_ref_security.result_variant(), 'success')
+
+        await asyncio.gather(
+            # TODO(b/272193402): Android doesn't broadcast intents on reconnection
+            self.dut.aio.host.WaitDisconnection(connection=dut_ref),
+            self.ref.aio.host.Disconnect(connection=ref_dut),
+        )
+
+    KEY_DIST_DEFAULT = SMP_SIGN_KEY_DISTRIBUTION_FLAG | SMP_ID_KEY_DISTRIBUTION_FLAG | SMP_ENC_KEY_DISTRIBUTION_FLAG
+    KEY_DIST_NO_CSRK = SMP_ID_KEY_DISTRIBUTION_FLAG | SMP_ENC_KEY_DISTRIBUTION_FLAG
+
+    @parameterized(*itertools.product(
+        (PairingDelegate.DISPLAY_OUTPUT_AND_YES_NO_INPUT,),
+        (
+            HCI_CENTRAL_ROLE,
+            HCI_PERIPHERAL_ROLE,
+        ),
+        (KEY_DIST_DEFAULT, KEY_DIST_NO_CSRK),
+        (KEY_DIST_DEFAULT, KEY_DIST_NO_CSRK),
+    ))  # type: ignore[misc]
+    @asynchronous
+    async def test_classic_pairing_incoming_ctkd(
+        self,
+        ref_io_capability: int,
+        ref_role: int,
+        ref_initiator_key_dist: int,
+        ref_responder_key_dist: int,
+    ) -> None:
+        # override reference device IO capability
+        self.overwrite_ref_pairing_capability(
+            ref_io_capability,
+            ref_initiator_key_dist,
+            ref_responder_key_dist,
+        )
+        dut_address_in_bumble = BumbleAddressWrapper(self.dut.address, bytes_endian='big')
+        pairing = asyncio.create_task(self.handle_pairing_events())
+        (dut_ref_res, ref_dut_res) = await asyncio.gather(
+            self.dut.aio.host.WaitConnection(address=self.ref.address),
+            self.ref.aio.host.Connect(address=self.dut.address),
+        )
+
+        assert_equal(ref_dut_res.result_variant(), 'connection')
+        assert_equal(dut_ref_res.result_variant(), 'connection')
+        ref_dut = ref_dut_res.connection
+        dut_ref = dut_ref_res.connection
+        assert ref_dut and dut_ref
+
+        if ref_role == HCI_CENTRAL_ROLE:
+            # Switch role => Dut=Central, Ref=Peripheral
+            await self.ref.device.send_command(
+                HCI_Switch_Role_Command(
+                    bd_addr=BumbleAddressWrapper(self.dut.address, bytes_endian='big'),
+                    role=HCI_PERIPHERAL_ROLE,
+                ))
+
+        async def ref_dut_pair():
+            classic_pairing_result = await self.ref.aio.security.Secure(connection=ref_dut, classic=LEVEL2)
+            ref_dut_connection_raw = self.ref.device.find_connection_by_bd_addr(dut_address_in_bumble,
+                                                                                BT_BR_EDR_TRANSPORT)
+            assert_is_not_none(ref_dut_connection_raw)
+            await ref_dut_connection_raw.pair()
+            return classic_pairing_result
+
+        (ref_dut_security, dut_ref_security) = await asyncio.gather(
+            ref_dut_pair(),
+            # Android connect() creates an auth request, so here we don't secure()
+            self.dut.aio.security.WaitSecurity(connection=dut_ref, classic=LEVEL2),
+        )
+
+        ref_dut_keys = await self.ref.device.keystore.get(str(dut_address_in_bumble))
+
+        pairing.cancel()
+        with suppress(asyncio.CancelledError, futures.CancelledError):
+            await pairing
+
+        assert_equal(ref_dut_security.result_variant(), 'success')
+        assert_equal(dut_ref_security.result_variant(), 'success')
+
+        # TODO(b/273423167): Try LE connect using RPA
+        assert_is_not_none(ref_dut_keys.ltk)
+        assert_is_not_none(ref_dut_keys.irk)
+
+        await asyncio.gather(
+            # TODO(b/272193402): Android doesn't broadcast intents on reconnection
+            self.dut.aio.host.WaitDisconnection(connection=dut_ref),
+            self.ref.aio.host.Disconnect(connection=ref_dut),
+        )
+
 
 if __name__ == '__main__':
     logging.basicConfig(level=logging.DEBUG)
