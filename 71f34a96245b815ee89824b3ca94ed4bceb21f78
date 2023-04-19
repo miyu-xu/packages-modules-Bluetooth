@@ -16,6 +16,24 @@
       "message": "seems to be error in commit message.",
       "revId": "71f34a96245b815ee89824b3ca94ed4bceb21f78",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "18ba1968_664ccf3c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-04-19T07:35:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "18fde241_830fdbf2",
+      "revId": "71f34a96245b815ee89824b3ca94ed4bceb21f78",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
