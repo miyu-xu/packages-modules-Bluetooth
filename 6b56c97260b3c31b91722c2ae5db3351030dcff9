@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4b360a3e_f4e90fbb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2023-04-19T11:35:16Z",
+      "side": 1,
+      "message": "These cases now fail because Bumble allows CTKD even if `classic_sc_enabled` is False(my bad), so please wait for the fix in Bumble before merge.",
+      "revId": "6b56c97260b3c31b91722c2ae5db3351030dcff9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
