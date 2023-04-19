@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e01465cf_9d09e5bd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1081938
+      },
+      "writtenOn": "2023-04-19T20:27:01Z",
+      "side": 1,
+      "message": "Won\u0027t this break message boundaries with LE L2CAP CoC SDUs? The CoC feature is supposed to be message based (SDUs), not byte based like TCP. With SOCK_SEQPACKET, the message boundaries are correctly preserved even up to the public Java layer. I\u0027m pretty sure SOCK_STREAM would break this.",
+      "revId": "885cb100d803f552315e70993374e1dfd0aa3ecf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
