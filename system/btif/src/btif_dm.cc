@@ -1598,12 +1598,12 @@ static bool btif_is_interesting_le_service(bluetooth::Uuid uuid) {
           uuid == UUID_BATTERY);
 }
 
-static void btif_get_existing_uuids(RawAddress* bd_addr, Uuid* existing_uuids) {
+static bool btif_get_existing_uuids(RawAddress* bd_addr, Uuid* existing_uuids) {
   bt_property_t tmp_prop;
   BTIF_STORAGE_FILL_PROPERTY(&tmp_prop, BT_PROPERTY_UUIDS,
                              sizeof(existing_uuids), existing_uuids);
 
-  btif_storage_get_remote_device_property(bd_addr, &tmp_prop);
+  return btif_storage_get_remote_device_property(bd_addr, &tmp_prop);
 }
 
 static bool btif_should_ignore_uuid(const Uuid& uuid) {
@@ -1668,6 +1668,9 @@ static void btif_dm_search_services_evt(tBTA_DM_SEARCH_EVT event,
           uuids.insert(*uuid);
         }
 
+        LOG_INFO("**** bd_addr=%s", bd_addr.ToString().c_str());
+        LOG_INFO("**** pairing_cb.static_bdaddr=%s", pairing_cb.static_bdaddr.ToString().c_str());
+        LOG_INFO("**** pairing_cb.bd_addr=%s", pairing_cb.bd_addr.ToString().c_str());
         Uuid existing_uuids[BT_MAX_NUM_UUIDS] = {};
         btif_get_existing_uuids(&bd_addr, existing_uuids);
 
@@ -1682,6 +1685,7 @@ static void btif_dm_search_services_evt(tBTA_DM_SEARCH_EVT event,
             uuids.insert(uuid);
           }
         }
+
         for (auto& uuid : uuids) {
           auto uuid_128bit = uuid.To128BitBE();
           property_value.insert(property_value.end(), uuid_128bit.begin(),
@@ -1708,6 +1712,7 @@ static void btif_dm_search_services_evt(tBTA_DM_SEARCH_EVT event,
               btif_dm_pairing_cb_t::ServiceDiscoveryState::FINISHED &&
           (check_cod_le_audio(bd_addr) ||
            metadata_cb.le_audio_cache.contains(bd_addr) ||
+           metadata_cb.le_audio_cache.contains(pairing_cb.bd_addr) ||
            BTA_DmCheckLeAudioCapable(bd_addr))) {
         skip_reporting_wait_for_le = true;
       }
@@ -1748,10 +1753,13 @@ static void btif_dm_search_services_evt(tBTA_DM_SEARCH_EVT event,
             prop.len = Uuid::kNumBytes128;
           }
         }
-        // Both SDP and bonding are done, clear pairing control block in case
-        // it is not already cleared
-        pairing_cb = {};
-        LOG_INFO("clearing btif pairing_cb");
+
+        if (!skip_reporting_wait_for_le) {
+          // Both SDP and bonding are done, clear pairing control block in case
+          // it is not already cleared
+          pairing_cb = {};
+          LOG_INFO("clearing btif pairing_cb");
+        }
       }
 
       const tBTA_STATUS bta_status = p_data->disc_res.result;
@@ -1801,6 +1809,7 @@ static void btif_dm_search_services_evt(tBTA_DM_SEARCH_EVT event,
       std::vector<uint8_t> property_value;
       std::set<Uuid> uuids;
       RawAddress& bd_addr = p_data->disc_ble_res.bd_addr;
+      RawAddress static_addr_copy = pairing_cb.static_bdaddr;
 
       if (event == BTA_DM_GATT_OVER_LE_RES_EVT) {
         LOG_INFO("New GATT over LE UUIDs for %s:",
@@ -1846,8 +1855,19 @@ static void btif_dm_search_services_evt(tBTA_DM_SEARCH_EVT event,
         return;
       }
 
+      LOG_INFO("**** bd_addr=%s", bd_addr.ToString().c_str());
+      LOG_INFO("**** pairing_cb.static_bdaddr=%s", static_addr_copy.ToString().c_str());
       Uuid existing_uuids[BT_MAX_NUM_UUIDS] = {};
-      btif_get_existing_uuids(&bd_addr, existing_uuids);
+      bool existing_lookup_result = btif_get_existing_uuids(&bd_addr, existing_uuids);
+      if (existing_lookup_result == BT_STATUS_FAIL && bd_addr != static_addr_copy) {
+        LOG_INFO("Had to look up existing UUIDs by static address %s",
+                 ADDRESS_TO_LOGGABLE_CSTR(static_addr_copy));
+        existing_lookup_result = btif_get_existing_uuids(&static_addr_copy, existing_uuids);
+        if (existing_lookup_result != BT_STATUS_FAIL) {
+          LOG_INFO("Got some existing UUIDs by static address %s",
+                ADDRESS_TO_LOGGABLE_CSTR(static_addr_copy));
+        }
+      }
       for (int i = 0; i < BT_MAX_NUM_UUIDS; i++) {
         Uuid uuid = existing_uuids[i];
         if (uuid.IsEmpty()) {
@@ -1878,6 +1898,9 @@ static void btif_dm_search_services_evt(tBTA_DM_SEARCH_EVT event,
         prop[1].val = p_data->disc_ble_res.bd_name;
         prop[1].len = strnlen((char*)p_data->disc_ble_res.bd_name, BD_NAME_LEN);
 
+        if (!static_addr_copy.IsEmpty()) {
+          ret = btif_storage_set_remote_device_property(&static_addr_copy, &prop[1]);
+        }
         ret = btif_storage_set_remote_device_property(&bd_addr, &prop[1]);
         ASSERTC(ret == BT_STATUS_SUCCESS,
                 "failed to save remote device property", ret);
@@ -1890,6 +1913,10 @@ static void btif_dm_search_services_evt(tBTA_DM_SEARCH_EVT event,
         return;
       }
 
+      if (!static_addr_copy.IsEmpty()) {
+        GetInterfaceToProfiles()->events->invoke_remote_device_properties_cb(
+            BT_STATUS_SUCCESS, static_addr_copy, num_properties, prop);
+      }
       /* Send the event to the BTIF */
       GetInterfaceToProfiles()->events->invoke_remote_device_properties_cb(
           BT_STATUS_SUCCESS, bd_addr, num_properties, prop);
