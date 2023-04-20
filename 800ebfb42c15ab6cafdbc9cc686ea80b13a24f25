@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "81f2d00b_cf28789e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-04-20T15:31:16Z",
+      "side": 1,
+      "message": "Solution to utilizing clock offset for RNR.  Add additional layer if clock offset is not available to use a stored one for that device, if available.",
+      "revId": "800ebfb42c15ab6cafdbc9cc686ea80b13a24f25",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
