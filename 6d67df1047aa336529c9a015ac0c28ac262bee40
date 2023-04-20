@@ -148,6 +148,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e01482fa_2e395d4f",
+        "filename": "system/gd/rust/linux/stack/src/socket_manager.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 1175,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-04-20T04:26:06Z",
+      "side": 1,
+      "message": "Thanks! I understand what you are trying to do now.\nBut perhaps the function you are looking for is map_or?\nhttps://doc.rust-lang.org/std/option/enum.Option.html#method.map_or\n\n```\nsock.uuid\n    .map_or(false, |uuid| !self.admin...is_service_allowed(uuid.into()))\n```",
+      "parentUuid": "cf6e3638_eef8df55",
+      "range": {
+        "startLine": 1175,
+        "startChar": 57,
+        "endLine": 1175,
+        "endChar": 75
+      },
+      "revId": "6d67df1047aa336529c9a015ac0c28ac262bee40",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2a7bb717_a3051712",
         "filename": "system/gd/rust/linux/stack/src/socket_manager.rs",
         "patchSetId": 2
