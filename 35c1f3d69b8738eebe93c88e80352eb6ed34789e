@@ -16,6 +16,24 @@
       "message": "nit: Should we remove this one ?",
       "revId": "35c1f3d69b8738eebe93c88e80352eb6ed34789e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "543b959f_72626d5a",
+        "filename": "framework/tests/bumble/Android.bp",
+        "patchSetId": 2
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1986325
+      },
+      "writtenOn": "2023-04-20T22:32:22Z",
+      "side": 1,
+      "message": "https://android-build.googleplex.com/builds/abtd/run/L85100000960064612\n\nStill cannot find the file. They are physically inside the general-tests.zip in target `test_suites_x86_64`. How do atest know from which target should take the zip?",
+      "parentUuid": "f016fed4_916dcc5c",
+      "revId": "35c1f3d69b8738eebe93c88e80352eb6ed34789e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
