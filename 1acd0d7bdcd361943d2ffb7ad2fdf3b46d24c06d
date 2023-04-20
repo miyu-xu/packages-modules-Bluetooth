@@ -159,6 +159,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "07a91c7a_1c4d9baf",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_qa.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2023-04-20T08:41:57Z",
+      "side": 1,
+      "message": "Hi Ying, we cached it because we don\u0027t need to read it from the bluetooth properties every time when the user call get_discoverable.",
+      "parentUuid": "0c00d606_4a16b903",
+      "revId": "1acd0d7bdcd361943d2ffb7ad2fdf3b46d24c06d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "613543af_e2cc19f3",
