@@ -396,6 +396,7 @@ public class LeAudioService extends ProfileService {
 
         mActiveAudioOutDevice = null;
         mActiveAudioInDevice = null;
+        mExposedActiveDevice = null;
         mLeAudioCodecConfig = null;
 
         // Set the service and BLE devices as inactive
@@ -1311,6 +1312,7 @@ public class LeAudioService extends ProfileService {
              * When adding new device, wait with notification until AudioManager is ready
              * with adding the device.
              */
+            mExposedActiveDevice = null;
             notifyActiveDeviceChanged(null);
         }
 
