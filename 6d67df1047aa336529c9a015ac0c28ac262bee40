@@ -170,6 +170,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dafff793_d60af8ec",
+        "filename": "system/gd/rust/linux/stack/src/socket_manager.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 1175,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2023-04-20T05:58:13Z",
+      "side": 1,
+      "message": "This looks more elegant! Done.",
+      "parentUuid": "e01482fa_2e395d4f",
+      "range": {
+        "startLine": 1175,
+        "startChar": 57,
+        "endLine": 1175,
+        "endChar": 75
+      },
+      "revId": "6d67df1047aa336529c9a015ac0c28ac262bee40",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2a7bb717_a3051712",
