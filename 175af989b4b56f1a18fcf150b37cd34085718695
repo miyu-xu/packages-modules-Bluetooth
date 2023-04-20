@@ -16,6 +16,23 @@
       "message": "Hi Myles, friendly ping for review.",
       "revId": "175af989b4b56f1a18fcf150b37cd34085718695",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "65af6a49_4167c192",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-04-20T05:26:45Z",
+      "side": 1,
+      "message": "As discussed, not sure if sending MSC on accepting connection is optional or required.\nBlueZ seems to always do that, and at a glance they don\u0027t have a \"conflict prevention\" mechanism, meaning it\u0027s likely OK for both sides sending MSC.\n\nIf it\u0027s optional (Myles, do you have any idea?) this looks correct.\nLGTM if Myles approves.",
+      "revId": "175af989b4b56f1a18fcf150b37cd34085718695",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
