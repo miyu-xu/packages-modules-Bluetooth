@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8fa39513_683ba2dd",
+        "filename": "android/app/src/com/android/bluetooth/opp/BluetoothOppIncomingFileConfirmActivity.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 234,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-04-20T02:00:33Z",
+      "side": 1,
+      "message": "Verifying method call looks like working.\nAnd using argumentCaptor looks like working as well if you want to check the message.\n\nhttps://source.corp.google.com/android/vendor/samsung_slsi/telephony/s5300/shannon-ims/ImsService/app/src/test/java/com/shannon/imsservice/call/ImsCallManagerTest.java;l\u003d1446?q\u003dverify.*sendMessageDelayed\u0026ct\u003dos\u0026sq\u003dpackage:%5Eandroid$%7C%5Eaosp-androidx$",
+      "parentUuid": "2804736c_edbdf334",
+      "range": {
+        "startLine": 234,
+        "startChar": 26,
+        "endLine": 234,
+        "endChar": 41
+      },
+      "revId": "85eaecb2a40ea0bbee5bfac5b10105cc9923fb6e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e2fd8ac4_24fff4df",
         "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/IncomingFileConfirmActivityTest.java",
         "patchSetId": 2
@@ -132,6 +156,30 @@
       "side": 1,
       "message": "eq(DISMISS_TIMEOUT_DIALOG_VALUE) cause eq() to think it should use eq(int) \u003d\u003e mockito error because it expects long",
       "parentUuid": "9a7507b2_5afc831b",
+      "range": {
+        "startLine": 197,
+        "startChar": 47,
+        "endLine": 197,
+        "endChar": 59
+      },
+      "revId": "85eaecb2a40ea0bbee5bfac5b10105cc9923fb6e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "376160cd_2df87459",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/IncomingFileConfirmActivityTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-04-20T02:00:33Z",
+      "side": 1,
+      "message": "eq((long)DISMISS_TIMEOUT_DIALOG_VALUE))?",
+      "parentUuid": "f378a052_28975424",
       "range": {
         "startLine": 197,
         "startChar": 47,

@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aa35cb99_fe762924",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/IncomingFileConfirmActivityTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-04-20T02:00:33Z",
+      "side": 1,
+      "message": "Could you define a static constant for this?",
+      "range": {
+        "startLine": 196,
+        "startChar": 46,
+        "endLine": 196,
+        "endChar": 50
+      },
+      "revId": "cccd229d3434662598b162275f5e33fbdec0e667",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
