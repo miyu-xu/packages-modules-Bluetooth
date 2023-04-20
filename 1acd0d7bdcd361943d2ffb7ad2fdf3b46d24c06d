@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "db018e8e_364c40fc",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2023-04-20T03:04:04Z",
+      "side": 1,
+      "message": "nit: should be clearer to mention that this is tested by btclient command",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 54
+      },
+      "revId": "1acd0d7bdcd361943d2ffb7ad2fdf3b46d24c06d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8f595ea4_e57d13ad",
+        "filename": "system/gd/rust/linux/service/src/main.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 423,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2023-04-20T03:04:04Z",
+      "side": 1,
+      "message": "I\u0027d prefer moving this into a Bluetooth method",
+      "range": {
+        "startLine": 417,
+        "startChar": 8,
+        "endLine": 423,
+        "endChar": 11
+      },
+      "revId": "1acd0d7bdcd361943d2ffb7ad2fdf3b46d24c06d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2a4f16f4_860a9e17",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 1228,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2023-04-20T03:04:04Z",
+      "side": 1,
+      "message": "nit: discoverable",
+      "range": {
+        "startLine": 1228,
+        "startChar": 55,
+        "endLine": 1228,
+        "endChar": 59
+      },
+      "revId": "1acd0d7bdcd361943d2ffb7ad2fdf3b46d24c06d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "613543af_e2cc19f3",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_qa.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2023-04-20T03:04:04Z",
+      "side": 1,
+      "message": "nit: handle_discoverable_mode_changed(...",
+      "range": {
+        "startLine": 25,
+        "startChar": 11,
+        "endLine": 25,
+        "endChar": 42
+      },
+      "revId": "1acd0d7bdcd361943d2ffb7ad2fdf3b46d24c06d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "50a9eab0_b3a7574f",
+        "filename": "system/gd/rust/linux/stack/src/lib.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 356,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2023-04-20T03:04:04Z",
+      "side": 1,
+      "message": "nit: remove the line",
+      "revId": "1acd0d7bdcd361943d2ffb7ad2fdf3b46d24c06d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
