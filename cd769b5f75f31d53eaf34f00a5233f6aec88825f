@@ -34,6 +34,24 @@
       "parentUuid": "5a5116c8_8c4387f5",
       "revId": "cd769b5f75f31d53eaf34f00a5233f6aec88825f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "eb0a2ecd_aace6c56",
+        "filename": "system/stack/gatt/gatt_main.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-04-20T10:54:08Z",
+      "side": 1,
+      "message": "Ok, after offline discussion, lets remove the change in gatt_main.cc.",
+      "parentUuid": "bceae372_f8b74e82",
+      "revId": "cd769b5f75f31d53eaf34f00a5233f6aec88825f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
