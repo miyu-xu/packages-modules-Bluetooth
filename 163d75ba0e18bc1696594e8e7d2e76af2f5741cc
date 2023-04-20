@@ -54,6 +54,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "3eac1b00_5014fa45",
+        "filename": "system/bta/hh/bta_hh_le.cc",
+        "patchSetId": 19
+      },
+      "lineNbr": 1785,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-04-20T20:33:36Z",
+      "side": 1,
+      "message": "This osi_free is freeing p_buf",
+      "parentUuid": "1cff52ac_d34fc14d",
+      "revId": "163d75ba0e18bc1696594e8e7d2e76af2f5741cc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "9abfb038_9ccf2e1a",
         "filename": "system/bta/test/bta_hh_test.cc",
         "patchSetId": 19
@@ -98,6 +116,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "beaff60e_1b02855f",
+        "filename": "system/btif/co/bta_hh_co.cc",
+        "patchSetId": 19
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-04-20T20:33:36Z",
+      "side": 1,
+      "message": "When dequeued, line 668 | 732 of this file",
+      "parentUuid": "0fd8c931_a456dc69",
+      "range": {
+        "startLine": 82,
+        "startChar": 12,
+        "endLine": 82,
+        "endChar": 19
+      },
+      "revId": "163d75ba0e18bc1696594e8e7d2e76af2f5741cc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f023de90_fbc788c3",
@@ -111,6 +153,24 @@
       "writtenOn": "2023-04-20T20:24:09Z",
       "side": 1,
       "message": "same here, where is context freed?",
+      "revId": "163d75ba0e18bc1696594e8e7d2e76af2f5741cc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "448f9da9_4b78a69c",
+        "filename": "system/btif/co/bta_hh_co.cc",
+        "patchSetId": 19
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-04-20T20:33:36Z",
+      "side": 1,
+      "message": "When dequeued, line 668 | 732 of this file",
+      "parentUuid": "f023de90_fbc788c3",
       "revId": "163d75ba0e18bc1696594e8e7d2e76af2f5741cc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
