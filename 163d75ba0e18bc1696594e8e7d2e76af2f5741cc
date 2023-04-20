@@ -18,6 +18,23 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2a7742cd_9ae37595",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 19
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2023-04-20T20:36:11Z",
+      "side": 1,
+      "message": "As we discussed offline, I only reviewed this change from the perspective of security, e.g., memory alloc/free, boundary checks and +1ed.\n\nI did not rigorously verify the logic of this change,",
+      "revId": "163d75ba0e18bc1696594e8e7d2e76af2f5741cc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "73428e2c_f7e6f01a",
