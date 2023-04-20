@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "54168335_e2d3bee0",
+        "filename": "system/stack/btm/btm_dev.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2023-04-20T13:36:36Z",
+      "side": 1,
+      "message": "Hi, Chris:\n\nDo you think it is a better idea to change `osi_free` to `osi_free_and_reset` in the following line?\nThe idea is to reset the variable holding the pointer to NULL when it is freed.\nBut I am not clear about the side effect.\n\nhttps://source.corp.google.com/android-internal/packages/modules/Bluetooth/system/stack/btm/btm_int_types.h;l\u003d354;rcl\u003deeae447b7baf32568765801cb304d72dadfcd739",
+      "revId": "3098c359c75442b36ddb1c6678dbb7067506fd55",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
