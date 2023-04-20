@@ -39,6 +39,30 @@
       },
       "revId": "4787cdf9e8fe0a850f5cdd6b79797a2fe38d3f12",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "391c6530_756620e0",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 3070,
+      "author": {
+        "id": 1875587
+      },
+      "writtenOn": "2023-04-20T09:28:04Z",
+      "side": 1,
+      "message": "Acknowledged\n\nI will have a follow up patch for the review comment. Let\u0027s check the state via Bug: 278988087",
+      "parentUuid": "bf974b04_dc991d25",
+      "range": {
+        "startLine": 3070,
+        "startChar": 8,
+        "endLine": 3070,
+        "endChar": 42
+      },
+      "revId": "4787cdf9e8fe0a850f5cdd6b79797a2fe38d3f12",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
