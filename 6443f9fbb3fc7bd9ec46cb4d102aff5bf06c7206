@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fdecc2a8_34d27198",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2023-04-20T02:15:54Z",
+      "side": 1,
+      "message": "A2DP_HFP_SYNC_CONNECTION_TIMEOUT_MS?",
+      "range": {
+        "startLine": 119,
+        "startChar": 29,
+        "endLine": 119,
+        "endChar": 50
+      },
+      "revId": "6443f9fbb3fc7bd9ec46cb4d102aff5bf06c7206",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "27a6e7dc_b4f65073",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 286,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2023-04-20T02:15:54Z",
+      "side": 1,
+      "message": "Can we add log in this `else` block and also in this runnable for future debugging?",
+      "range": {
+        "startLine": 286,
+        "startChar": 20,
+        "endLine": 286,
+        "endChar": 80
+      },
+      "revId": "6443f9fbb3fc7bd9ec46cb4d102aff5bf06c7206",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fa555ca0_1ea31fd3",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 325,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2023-04-20T02:15:54Z",
+      "side": 1,
+      "message": "not needed?",
+      "range": {
+        "startLine": 325,
+        "startChar": 31,
+        "endLine": 325,
+        "endChar": 32
+      },
+      "revId": "6443f9fbb3fc7bd9ec46cb4d102aff5bf06c7206",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3a7896c8_70a43bc1",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 336,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2023-04-20T02:15:54Z",
+      "side": 1,
+      "message": "Same as L286",
+      "range": {
+        "startLine": 336,
+        "startChar": 20,
+        "endLine": 336,
+        "endChar": 79
+      },
+      "revId": "6443f9fbb3fc7bd9ec46cb4d102aff5bf06c7206",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "20a60857_eecf35c0",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/ActiveDeviceManagerTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2023-04-20T02:15:54Z",
+      "side": 1,
+      "message": "ditto (or using @VisibleForTesting in the production code?)",
+      "range": {
+        "startLine": 88,
+        "startChar": 29,
+        "endLine": 88,
+        "endChar": 50
+      },
+      "revId": "6443f9fbb3fc7bd9ec46cb4d102aff5bf06c7206",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
