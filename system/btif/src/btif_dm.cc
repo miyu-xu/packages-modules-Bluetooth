@@ -1598,12 +1598,12 @@ static bool btif_is_interesting_le_service(bluetooth::Uuid uuid) {
           uuid == UUID_BATTERY);
 }
 
-static void btif_get_existing_uuids(RawAddress* bd_addr, Uuid* existing_uuids) {
+static bool btif_get_existing_uuids(RawAddress* bd_addr, Uuid* existing_uuids) {
   bt_property_t tmp_prop;
   BTIF_STORAGE_FILL_PROPERTY(&tmp_prop, BT_PROPERTY_UUIDS,
                              sizeof(existing_uuids), existing_uuids);
 
-  btif_storage_get_remote_device_property(bd_addr, &tmp_prop);
+  return btif_storage_get_remote_device_property(bd_addr, &tmp_prop);
 }
 
 static bool btif_should_ignore_uuid(const Uuid& uuid) {
@@ -1847,7 +1847,12 @@ static void btif_dm_search_services_evt(tBTA_DM_SEARCH_EVT event,
       }
 
       Uuid existing_uuids[BT_MAX_NUM_UUIDS] = {};
-      btif_get_existing_uuids(&bd_addr, existing_uuids);
+      bool existing_lookup_result = btif_get_existing_uuids(&bd_addr, existing_uuids);
+      if (existing_lookup_result == BT_STATUS_FAIL && bd_addr != pairing_cb.static_bdaddr) {
+        LOG_INFO("Had to look up existing UUIDs by static address %s",
+                 ADDRESS_TO_LOGGABLE_CSTR(pairing_cb.static_bdaddr));
+        existing_lookup_result = btif_get_existing_uuids(&pairing_cb.static_bdaddr, existing_uuids);
+      }
       for (int i = 0; i < BT_MAX_NUM_UUIDS; i++) {
         Uuid uuid = existing_uuids[i];
         if (uuid.IsEmpty()) {
