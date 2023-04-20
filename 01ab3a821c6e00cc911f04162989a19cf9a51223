@@ -51,6 +51,24 @@
       "message": "I think adding here this cleanup would be enough.\n\n`mExposedActiveDevice \u003d null;`\n\nSince this is the place that the AudioServer informs that the device is removed from its list.",
       "revId": "01ab3a821c6e00cc911f04162989a19cf9a51223",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b01bd8e6_84945794",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1246,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2023-04-20T10:05:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cacd75cc_7f1b8d99",
+      "revId": "01ab3a821c6e00cc911f04162989a19cf9a51223",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
