@@ -17,15 +17,16 @@ import logging
 
 from avatar import BumblePandoraDevice, PandoraDevice, PandoraDevices
 from avatar.aio import asynchronous
+from bumble import smp
 from bumble.hci import Address
-from bumble.smp import Session, SMP_Identity_Address_Information_Command
 from concurrent import futures
 from contextlib import suppress
-from mobly import base_test, test_runner
+from mobly import base_test, signals, test_runner
 from mobly.asserts import assert_equal  # type: ignore
-from pandora.host_pb2 import RANDOM, DataTypes, ScanningResponse, OwnAddressType
+from pandora.host_pb2 import RANDOM, DataTypes, OwnAddressType, ScanningResponse
 from pandora.security_pb2 import LE_LEVEL3, PairingEventAnswer
-from typing import Any, NoReturn, Optional
+from typing import NoReturn, Optional
+from types import MethodType
 
 
 class SmpTest(base_test.BaseTestClass):  # type: ignore[misc]
@@ -108,18 +109,22 @@ class SmpTest(base_test.BaseTestClass):  # type: ignore[misc]
 
     @asynchronous
     async def test_le_pairing_delete_dup_bond_record(self) -> None:
+        if not isinstance(self.ref, BumblePandoraDevice):
+            raise signals.TestSkip('Test require Bumble as reference device(s)')
 
-        # Hack to send same identity address from ref during both pairing
-        def send_command(self: Any, command: Any) -> None:
-            if isinstance(command, SMP_Identity_Address_Information_Command):
-                random_identity_address = Address('F6:F7:F8:F9:FA:FB', Address.RANDOM_IDENTITY_ADDRESS)
-                command = SMP_Identity_Address_Information_Command(  # type: ignore[no-untyped-call]
-                    addr_type=random_identity_address.address_type,
-                    bd_addr=random_identity_address,
-                )
-            self.manager.send_command(self.connection, command)
+        def smp_session_proxy(session: smp.Session) -> smp.Session:
+            # Hack to send same identity address from ref during both pairing
+            def send_command(self: smp.Session, command: smp.SMP_Command) -> None:
+                if isinstance(command, smp.SMP_Identity_Address_Information_Command):
+                    random_identity_address = Address('F6:F7:F8:F9:FA:FB', Address.RANDOM_IDENTITY_ADDRESS)
+                    command.addr_type = random_identity_address.address_type
+                    command.bd_addr = random_identity_address
+                self.manager.send_command(self.connection, command)
 
-        setattr(Session, 'send_command', send_command)
+            session.send_command = MethodType(send_command, session)  # type: ignore[method-assign]
+            return session
+
+        self.ref.device.smp_session_proxy = smp_session_proxy
 
         # Pair with same device 2 times.
         # Ref device advertises with different random address but uses same identity address
