@@ -316,7 +316,7 @@ TEST_F(StackBtmWithInitFreeTest, btm_sec_encrypt_change) {
   ASSERT_EQ(BTM_SEC_IN_USE, device_record->sec_flags);
   device_record->sec_flags = BTM_SEC_IN_USE;
 
-  wipe_secrets_and_remove(device_record);
+  wipe_secrets_and_remove(&device_record);
 }
 
 TEST_F(StackBtmWithInitFreeTest, BTM_SetEncryption) {
@@ -338,7 +338,7 @@ TEST_F(StackBtmWithInitFreeTest, BTM_SetEncryption) {
   ASSERT_EQ(BTM_WRONG_MODE, BTM_SetEncryption(bd_addr, transport, p_callback,
                                               nullptr, sec_act));
 
-  wipe_secrets_and_remove(device_record);
+  wipe_secrets_and_remove(&device_record);
 }
 
 TEST_F(StackBtmTest, sco_state_text) {
@@ -437,4 +437,23 @@ TEST_F(StackBtmTest, bond_type_text) {
                bond_type_text(static_cast<tBTM_SEC_DEV_REC::tBTM_BOND_TYPE>(
                                   std::numeric_limits<std::uint8_t>::max()))
                    .c_str());
+}
+
+TEST_F(StackBtmWithInitFreeTest, wipe_secrets_and_remove) {
+  bluetooth::common::InitFlags::SetAllForTesting();
+
+  RawAddress bd_addr = RawAddress({0xA1, 0xA2, 0xA3, 0xA4, 0xA5, 0xA6});
+  const uint16_t classic_handle = 0x1234;
+  const uint16_t ble_handle = 0x9876;
+
+  // Setup device
+  tBTM_SEC_DEV_REC* device_record = btm_sec_allocate_dev_rec();
+  ASSERT_NE(nullptr, device_record);
+  ASSERT_EQ(BTM_SEC_IN_USE, device_record->sec_flags);
+  device_record->bd_addr = bd_addr;
+  device_record->hci_handle = classic_handle;
+  device_record->ble_hci_handle = ble_handle;
+
+  wipe_secrets_and_remove(&device_record);
+  ASSERT_EQ(nullptr, device_record);
 }
