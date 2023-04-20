@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7146073a_9a3a843a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-04-20T01:57:36Z",
+      "side": 1,
+      "message": "```\nld.lld: error: undefined symbol: le_audio::CodecManager::GetAidlVersionInUsed() const\n\u003e\u003e\u003e referenced by mock_codec_manager.cc\n\u003e\u003e\u003e               out/soong/.intermediates/packages/modules/Bluetooth/system/bta/bluetooth_le_audio_test/linux_glibc_x86/obj/packages/modules/Bluetooth/system/bta/le_audio/mock_codec_manager.o:(vtable for le_audio::CodecManager)\nclang-17: error: linker command failed with exit code 1 (use -v to see invocation)\n```\n\nIt does not build",
+      "revId": "08cd92ae75f5e575bce000aea12cc69aaa33a39a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
