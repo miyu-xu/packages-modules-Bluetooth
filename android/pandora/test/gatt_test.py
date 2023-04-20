@@ -18,7 +18,7 @@ import logging
 
 from avatar import BumblePandoraDevice, PandoraDevice, PandoraDevices, bumble_server
 from bumble.gatt import Characteristic, Service
-from bumble.smp import PairingConfig
+from bumble.pairing import PairingConfig
 from bumble_experimental.gatt import GATTService
 from mobly import base_test, signals, test_runner
 from pandora.host_pb2 import RANDOM, Connection, DataTypes

@@ -20,7 +20,7 @@ import logging
 
 from avatar import BumblePandoraDevice, PandoraDevice, PandoraDevices, asynchronous, bumble_server
 from bumble.gatt import GATT_ASHA_SERVICE
-from bumble.smp import PairingDelegate
+from bumble.pairing import PairingConfig, PairingDelegate
 from bumble_experimental.asha import ASHAService
 from mobly import base_test, signals, test_runner
 from mobly.asserts import assert_equal  # type: ignore
@@ -79,9 +79,12 @@ class ASHATest(base_test.BaseTestClass):  # type: ignore[misc]
         if not isinstance(self.ref_right, BumblePandoraDevice):
             raise signals.TestSkip('Test require Bumble as reference device(s)')
 
+        def set_no_output_no_input(config: PairingConfig) -> None:
+            config.delegate.io_capability = PairingDelegate.NO_OUTPUT_NO_INPUT
+
         # ASHA hearing aid's IO capability is NO_OUTPUT_NO_INPUT
-        setattr(self.ref_left.device, "io_capability", PairingDelegate.NO_OUTPUT_NO_INPUT)
-        setattr(self.ref_right.device, "io_capability", PairingDelegate.NO_OUTPUT_NO_INPUT)
+        for ref in (self.ref_left, self.ref_right):
+            ref.device.pairing_config_factory = avatar.proxy(ref.device.pairing_config_factory, set_no_output_no_input)
 
     async def ref_advertise_asha(
         self, ref_device: PandoraDevice, ref_address_type: OwnAddressType
