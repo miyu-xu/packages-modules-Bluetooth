@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7ddb5993_53c1fcf1",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 37
+      },
+      "lineNbr": 4975,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-04-20T00:21:41Z",
+      "side": 1,
+      "message": "We\u0027re only allowing this to be set at the profile level at the moment per partner request. The BT stack is not going to manage context based switching because this becomes complicated when we consider BT classic.",
+      "parentUuid": "f451eb8b_641acd33",
+      "range": {
+        "startLine": 4973,
+        "startChar": 11,
+        "endLine": 4975,
+        "endChar": 67
+      },
+      "revId": "683913619c945a779f666de36a480abb47406518",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "739d82a2_5838ae9e",
@@ -37,6 +61,24 @@
       "writtenOn": "2023-04-13T07:48:14Z",
       "side": 1,
       "message": "we don\u0027t want to open SCO from native dispite dual mode configuration.\nIt is also a problem when we have two different devices BR/EDR and LE Audio as some controllers have a problem creating SCO and CIS at the same time.\n\nThis is why we want to have control on that in the Java. For this reason we have aosp/2411577",
+      "revId": "683913619c945a779f666de36a480abb47406518",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bd7597d5_17310b5e",
+        "filename": "system/bta/ag/bta_ag_act.cc",
+        "patchSetId": 37
+      },
+      "lineNbr": 768,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-04-20T00:21:41Z",
+      "side": 1,
+      "message": "I spoke to Jack and we want aosp/2411577 to be a follow-up CL that makes this change.",
+      "parentUuid": "739d82a2_5838ae9e",
       "revId": "683913619c945a779f666de36a480abb47406518",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -64,6 +106,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "72cccb2c_3b4e4b60",
+        "filename": "system/bta/ag/bta_ag_act.cc",
+        "patchSetId": 37
+      },
+      "lineNbr": 784,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-04-20T00:21:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "89b13ea0_b192402b",
+      "range": {
+        "startLine": 784,
+        "startChar": 31,
+        "endLine": 784,
+        "endChar": 51
+      },
+      "revId": "683913619c945a779f666de36a480abb47406518",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e3265cac_dada44cc",
@@ -77,6 +143,30 @@
       "writtenOn": "2023-04-14T01:07:58Z",
       "side": 1,
       "message": "nit: I feel those condition check code are similar, the difference is the event\u0027s name in logging. Maybe we can extract those lines into helper method with event name [bta_ag_result_text](https://source.corp.google.com/h/android/platform/superproject/+/refs/heads/master:packages/modules/Bluetooth/system/bta/include/bta_ag_api.h;l\u003d146;drc\u003d7346c436e5a11ce08f6a80dcfeb8ef941ca30176)",
+      "range": {
+        "startLine": 1422,
+        "startChar": 8,
+        "endLine": 1438,
+        "endChar": 9
+      },
+      "revId": "683913619c945a779f666de36a480abb47406518",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c4f24343_3045b92e",
+        "filename": "system/bta/ag/bta_ag_cmd.cc",
+        "patchSetId": 37
+      },
+      "lineNbr": 1438,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-04-20T00:21:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e3265cac_dada44cc",
       "range": {
         "startLine": 1422,
         "startChar": 8,
