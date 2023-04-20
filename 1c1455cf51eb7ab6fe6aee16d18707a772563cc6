@@ -22,6 +22,30 @@
       },
       "revId": "1c1455cf51eb7ab6fe6aee16d18707a772563cc6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "441c87bc_23a920bd",
+        "filename": "system/bta/le_audio/devices.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 280,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-04-20T22:13:32Z",
+      "side": 1,
+      "message": "Nope no way to directly use that and we don\u0027t mirror those constants in native. I\u0027ll add a comment indicating it refers to that constant though",
+      "parentUuid": "4cd8206a_408e6d67",
+      "range": {
+        "startLine": 280,
+        "startChar": 36,
+        "endLine": 280,
+        "endChar": 38
+      },
+      "revId": "1c1455cf51eb7ab6fe6aee16d18707a772563cc6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
