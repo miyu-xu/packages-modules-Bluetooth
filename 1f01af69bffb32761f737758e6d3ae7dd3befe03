@@ -16,6 +16,24 @@
       "message": "For HFP we do something like this.\nShouldn\u0027t we have similar for TBS?",
       "revId": "1f01af69bffb32761f737758e6d3ae7dd3befe03",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "75cf3d37_224c91c7",
+        "filename": "android/app/src/com/android/bluetooth/telephony/BluetoothInCallService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 987,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-04-20T11:20:45Z",
+      "side": 1,
+      "message": "This is what exactly was implemented and it doesn\u0027t work \u003d always return empty string.\n\nbtw. Caller is a role who initiates call. TBS specifies that Friendly name should be of device which is incomming/outgoing call TBS 3.16.1\nCall Friendly Name behavior `This characteristic is populated by the server when there is an incoming or outgoing call and a Call State\nmember is created`",
+      "parentUuid": "9303088f_5f650dfc",
+      "revId": "1f01af69bffb32761f737758e6d3ae7dd3befe03",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
