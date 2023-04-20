@@ -16,6 +16,24 @@
       "message": "Bluetoothclass is a parcelable, you can  remove the getter \u0026 directly write the class on the BluetoothQUalityReport.java",
       "revId": "a98141270b6bab0bcd2ccfcbb2028b6d8ef8dd03",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c863afc8_98ef9baf",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-04-20T04:57:07Z",
+      "side": 1,
+      "message": "The getClassOfDevice was used for metrics as well so I just kept it",
+      "parentUuid": "83c298e3_fcf8e186",
+      "revId": "a98141270b6bab0bcd2ccfcbb2028b6d8ef8dd03",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
