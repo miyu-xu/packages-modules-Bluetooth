@@ -4,22 +4,21 @@
 //! and retries failed connections
 
 use std::{
-    cell::RefCell, collections::HashSet, fmt::Debug, future::Future, hash::Hash, ops::Deref,
+    collections::HashSet,
+    fmt::Debug,
+    future::Future,
+    hash::Hash,
+    rc::{Rc, Weak},
     time::Duration,
 };
 
-use crate::{
-    core::{
-        address::AddressWithType,
-        shared_box::{SharedBox, WeakBox, WeakBoxRef},
-    },
-    gatt::ids::ServerId,
-};
+use crate::{core::address::AddressWithType, gatt::ids::ServerId};
 
 use self::{
-    acceptlist_manager::{determine_target_state, LeAcceptlistManager},
+    acceptlist_manager::LeAcceptlistManager,
     attempt_manager::{ConnectionAttempts, ConnectionMode},
     le_manager::{ErrorCode, InactiveLeAclManager, LeAclManagerConnectionCallbacks},
+    target_state::determine_target_state,
 };
 
 mod acceptlist_manager;
@@ -27,11 +26,12 @@ mod attempt_manager;
 mod ffi;
 pub mod le_manager;
 mod mocks;
+pub mod target_state;
 
 pub use ffi::{register_callbacks, LeAclManagerImpl, LeAclManagerShim};
 use log::info;
 use scopeguard::ScopeGuard;
-use tokio::{task::spawn_local, time::timeout};
+use tokio::{sync::Mutex, task::spawn_local, time::timeout};
 
 /// Possible errors returned when making a connection attempt
 #[derive(Debug, PartialEq, Eq)]
@@ -67,7 +67,7 @@ pub enum ConnectionManagerClient {
 }
 
 /// An active connection
-#[derive(Copy, Clone, Debug, PartialEq, Eq)]
+#[derive(Copy, Clone, Debug, PartialEq, Eq, Hash)]
 pub struct LeConnection {
     /// The address of the peer device, as reported in the connection complete event
     /// This is guaranteed to be unique across active connections, so we can implement
@@ -79,7 +79,8 @@ pub struct LeConnection {
 /// devices on the filter accept list
 #[derive(Debug)]
 pub struct ConnectionManager {
-    state: RefCell<ConnectionManagerState>,
+    /// Internal state
+    state: Mutex<ConnectionManagerState>,
 }
 
 #[derive(Debug)]
@@ -93,7 +94,7 @@ struct ConnectionManagerState {
     acceptlist_manager: LeAcceptlistManager,
 }
 
-struct ConnectionManagerCallbackHandler(WeakBox<ConnectionManager>);
+struct ConnectionManagerCallbackHandler(Weak<ConnectionManager>);
 
 const DIRECT_CONNECTION_TIMEOUT: Duration = Duration::from_secs(
     29, /* ugly hack to avoid fighting with le_impl timeout, until I remove that timeout */
@@ -101,51 +102,54 @@ const DIRECT_CONNECTION_TIMEOUT: Duration = Duration::from_secs(
 
 impl LeAclManagerConnectionCallbacks for ConnectionManagerCallbackHandler {
     fn on_le_connect(&self, address: AddressWithType, result: Result<LeConnection, ErrorCode>) {
-        self.with_manager(|manager| manager.on_le_connect(address, result))
+        self.send_to_manager(
+            move |manager| async move { manager.on_le_connect(address, result).await },
+        );
     }
 
     fn on_disconnect(&self, address: AddressWithType) {
-        self.with_manager(|manager| manager.on_disconnect(address))
+        self.send_to_manager(move |manager| async move { manager.on_disconnect(address).await });
     }
 }
 
 impl ConnectionManagerCallbackHandler {
-    fn with_manager(&self, f: impl FnOnce(&ConnectionManager)) {
-        self.0.with(|manager| f(manager.expect("got connection event after stack died").deref()))
+    fn send_to_manager<F>(&self, f: impl FnOnce(Rc<ConnectionManager>) -> F + 'static)
+    where
+        F: Future,
+    {
+        self.0.upgrade().map(|manager| {
+            spawn_local(async move {
+                f(manager.clone()).await;
+            })
+        });
     }
 }
 
 impl ConnectionManager {
     /// Constructor
-    pub fn new(le_manager: impl InactiveLeAclManager) -> SharedBox<Self> {
-        SharedBox::new_cyclic(|weak| Self {
-            state: RefCell::new(ConnectionManagerState {
+    pub fn new(le_manager: impl InactiveLeAclManager) -> Rc<Self> {
+        Rc::new_cyclic(|weak| Self {
+            state: Mutex::new(ConnectionManagerState {
                 attempts: ConnectionAttempts::new(),
                 current_connections: HashSet::new(),
                 acceptlist_manager: LeAcceptlistManager::new(
-                    le_manager.register_callbacks(ConnectionManagerCallbackHandler(weak)),
+                    le_manager.register_callbacks(ConnectionManagerCallbackHandler(weak.clone())),
                 ),
             }),
         })
     }
-}
 
-/// Make the state of the LeAcceptlistManager consistent with the attempts tracked in ConnectionAttempts
-fn reconcile_state(state: &mut ConnectionManagerState) {
-    state
-        .acceptlist_manager
-        .drive_to_state(determine_target_state(&state.attempts.active_attempts()));
-}
-
-impl WeakBoxRef<'_, ConnectionManager> {
     /// Start a direct connection to a peer device from a specified client. If the peer
     /// is connected, immediately resolve the attempt.
-    pub fn start_direct_connection(
-        &self,
+    pub async fn start_direct_connection(
+        self: &Rc<Self>,
         client: ConnectionManagerClient,
         address: AddressWithType,
     ) -> Result<(), CreateConnectionFailure> {
-        spawn_local(timeout(DIRECT_CONNECTION_TIMEOUT, self.direct_connection(client, address)?));
+        spawn_local(timeout(
+            DIRECT_CONNECTION_TIMEOUT,
+            self.direct_connection(client, address).await?,
+        ));
         Ok(())
     }
 
@@ -154,15 +158,16 @@ impl WeakBoxRef<'_, ConnectionManager> {
     /// # Cancellation Safety
     /// If this future is dropped, the connection attempt will be cancelled. It can also be cancelled
     /// from the separate API ConnectionManager#cancel_connection.
-    fn direct_connection(
-        &self,
+    async fn direct_connection(
+        self: &Rc<Self>,
         client: ConnectionManagerClient,
         address: AddressWithType,
     ) -> Result<
         impl Future<Output = Result<LeConnection, ConnectionFailure>>,
         CreateConnectionFailure,
     > {
-        let mut state = self.state.borrow_mut();
+        info!("Client {client:?} starting direct connection to {address:?}");
+        let mut state = self.state.lock().await;
 
         // if connected, this is a no-op
         let attempt_and_guard = if state.current_connections.contains(&address) {
@@ -170,18 +175,16 @@ impl WeakBoxRef<'_, ConnectionManager> {
         } else {
             let pending_attempt = state.attempts.register_direct_connection(client, address)?;
             let attempt_id = pending_attempt.id;
-            reconcile_state(&mut state);
+            self.reconcile_state(&mut state).await;
             Some((
                 pending_attempt,
-                scopeguard::guard(self.downgrade(), move |this| {
-                    // remove the attempt after we are cancelled
-                    this.with(|this| {
-                        this.map(|this| {
-                            info!("Cancelling attempt {attempt_id:?}");
-                            let mut state = this.state.borrow_mut();
-                            state.attempts.cancel_attempt_with_id(attempt_id);
-                            reconcile_state(&mut state);
-                        })
+                scopeguard::guard(self.clone(), move |this| {
+                    spawn_local(async move {
+                        // remove the attempt after we are cancelled
+                        info!("Cancelling connection attempt {attempt_id:?} to {address:?}");
+                        let mut state = this.state.lock().await;
+                        state.attempts.cancel_attempt_with_id(attempt_id);
+                        this.reconcile_state(&mut state).await;
                     });
                 }),
             ))
@@ -189,6 +192,7 @@ impl WeakBoxRef<'_, ConnectionManager> {
 
         Ok(async move {
             let Some((attempt, guard)) = attempt_and_guard else {
+                info!("Already connected to {address:?}");
                 // if we did not make an attempt, the connection must be ready
                 return Ok(LeConnection { remote_address: address })
             };
@@ -199,64 +203,79 @@ impl WeakBoxRef<'_, ConnectionManager> {
             ret
         })
     }
-}
 
-impl ConnectionManager {
     /// Start a background connection to a peer device with given parameters from a specified client.
-    pub fn add_background_connection(
+    pub async fn add_background_connection(
         &self,
         client: ConnectionManagerClient,
         address: AddressWithType,
     ) -> Result<(), CreateConnectionFailure> {
-        let mut state = self.state.borrow_mut();
+        info!("Client {client:?} starting background connection to {address:?}");
+        let mut state = self.state.lock().await;
         state.attempts.register_background_connection(client, address)?;
-        reconcile_state(&mut state);
+        self.reconcile_state(&mut state).await;
         Ok(())
     }
 
     /// Cancel connection attempt from this client to the specified address with the specified mode.
-    pub fn cancel_connection(
+    pub async fn cancel_connection(
         &self,
         client: ConnectionManagerClient,
         address: AddressWithType,
         mode: ConnectionMode,
     ) -> Result<(), CancelConnectFailure> {
-        let mut state = self.state.borrow_mut();
+        info!("Client {client:?} cancelling connection attempt to {address:?} (mode={mode:?})");
+        let mut state = self.state.lock().await;
         state.attempts.cancel_attempt(client, address, mode)?;
-        reconcile_state(&mut state);
+        self.reconcile_state(&mut state).await;
         Ok(())
     }
 
     /// Cancel all connection attempts to this address
-    pub fn cancel_unconditionally(&self, address: AddressWithType) {
-        let mut state = self.state.borrow_mut();
+    pub async fn cancel_unconditionally(&self, address: AddressWithType) {
+        info!("Cancelling all connection attempts to {address:?}");
+        let mut state = self.state.lock().await;
         state.attempts.remove_unconditionally(address);
-        reconcile_state(&mut state);
+        self.reconcile_state(&mut state).await;
     }
 
     /// Cancel all connection attempts from this client
-    pub fn remove_client(&self, client: ConnectionManagerClient) {
-        let mut state = self.state.borrow_mut();
+    pub async fn remove_client(&self, client: ConnectionManagerClient) {
+        info!("Removing all connection attempts from {client:?}");
+        let mut state = self.state.lock().await;
         state.attempts.remove_client(client);
-        reconcile_state(&mut state);
+        self.reconcile_state(&mut state).await;
     }
 
-    fn on_le_connect(&self, address: AddressWithType, result: Result<LeConnection, ErrorCode>) {
-        let mut state = self.state.borrow_mut();
+    async fn on_le_connect(
+        &self,
+        address: AddressWithType,
+        result: Result<LeConnection, ErrorCode>,
+    ) {
+        let mut state = self.state.lock().await;
         // record this connection while it exists
-        state.current_connections.insert(address);
+        if result.is_ok() {
+            state.current_connections.insert(address);
+        }
         // all completed connections remove the address from the direct list
         state.acceptlist_manager.on_connect_complete(address);
         // invoke any pending callbacks, update set of attempts
-        state.attempts.process_connection(address, result);
+        state.attempts.process_connection(address, result).await;
         // update the acceptlist
-        reconcile_state(&mut state);
+        self.reconcile_state(&mut state).await;
     }
 
-    fn on_disconnect(&self, address: AddressWithType) {
-        let mut state = self.state.borrow_mut();
+    async fn on_disconnect(&self, address: AddressWithType) {
+        let mut state = self.state.lock().await;
         state.current_connections.remove(&address);
-        reconcile_state(&mut state);
+        self.reconcile_state(&mut state).await;
+    }
+
+    /// Make the state of the LeAcceptlistManager consistent with the attempts tracked in ConnectionAttempts
+    async fn reconcile_state(&self, state: &mut ConnectionManagerState) {
+        state
+            .acceptlist_manager
+            .drive_to_state(determine_target_state(&state.attempts.active_attempts()).await);
     }
 }
 
@@ -274,6 +293,10 @@ mod test {
 
     const ERROR: ErrorCode = ErrorCode(1);
 
+    async fn handle_events() {
+        tokio::time::sleep(Duration::from_secs(1)).await;
+    }
+
     #[test]
     fn test_single_direct_connection() {
         block_on_locally(async {
@@ -282,7 +305,7 @@ mod test {
             let connection_manager = ConnectionManager::new(mock_le_manager.clone());
 
             // act: initiate a direct connection
-            connection_manager.as_ref().start_direct_connection(CLIENT_1, ADDRESS_1).unwrap();
+            connection_manager.start_direct_connection(CLIENT_1, ADDRESS_1).await.unwrap();
 
             // assert: the direct connection is pending
             assert_eq!(mock_le_manager.current_connection_mode(), Some(ConnectionMode::Direct));
@@ -297,7 +320,7 @@ mod test {
             // arrange: one pending direct connection
             let mock_le_manager = MockLeAclManager::new();
             let connection_manager = ConnectionManager::new(mock_le_manager.clone());
-            connection_manager.as_ref().start_direct_connection(CLIENT_1, ADDRESS_1).unwrap();
+            connection_manager.start_direct_connection(CLIENT_1, ADDRESS_1).await.unwrap();
 
             // act: the connection attempt fails
             mock_le_manager.on_le_connect(ADDRESS_1, ERROR);
@@ -315,7 +338,7 @@ mod test {
             let connection_manager = ConnectionManager::new(mock_le_manager.clone());
 
             // act: initiate a background connection
-            connection_manager.as_ref().add_background_connection(CLIENT_1, ADDRESS_1).unwrap();
+            connection_manager.add_background_connection(CLIENT_1, ADDRESS_1).await.unwrap();
 
             // assert: the background connection is pending
             assert_eq!(mock_le_manager.current_connection_mode(), Some(ConnectionMode::Background));
@@ -332,7 +355,7 @@ mod test {
             let connection_manager = ConnectionManager::new(mock_le_manager.clone());
 
             // act: initiate a direct connection, that succeeds
-            connection_manager.as_ref().start_direct_connection(CLIENT_1, ADDRESS_1).unwrap();
+            connection_manager.start_direct_connection(CLIENT_1, ADDRESS_1).await.unwrap();
             mock_le_manager.on_le_connect(ADDRESS_1, ErrorCode::SUCCESS);
 
             // assert: no connection is pending
@@ -348,7 +371,11 @@ mod test {
             let connection_manager = ConnectionManager::new(mock_le_manager.clone());
 
             // act: initiate a background connection, that succeeds
-            connection_manager.as_ref().add_background_connection(CLIENT_1, ADDRESS_1).unwrap();
+            connection_manager
+                .as_ref()
+                .add_background_connection(CLIENT_1, ADDRESS_1)
+                .await
+                .unwrap();
             mock_le_manager.on_le_connect(ADDRESS_1, ErrorCode::SUCCESS);
 
             // assert: no connection is pending
@@ -364,7 +391,7 @@ mod test {
             let connection_manager = ConnectionManager::new(mock_le_manager.clone());
 
             // act: initiate a direct connection, that succeeds, then disconnects
-            connection_manager.as_ref().start_direct_connection(CLIENT_1, ADDRESS_1).unwrap();
+            connection_manager.start_direct_connection(CLIENT_1, ADDRESS_1).await.unwrap();
             mock_le_manager.on_le_connect(ADDRESS_1, ErrorCode::SUCCESS);
             mock_le_manager.on_le_disconnect(ADDRESS_1);
 
@@ -381,11 +408,27 @@ mod test {
             let connection_manager = ConnectionManager::new(mock_le_manager.clone());
 
             // act: initiate a background connection, that succeeds, then disconnects
-            connection_manager.as_ref().add_background_connection(CLIENT_1, ADDRESS_1).unwrap();
+            connection_manager.add_background_connection(CLIENT_1, ADDRESS_1).await.unwrap();
             mock_le_manager.on_le_connect(ADDRESS_1, ErrorCode::SUCCESS);
             mock_le_manager.on_le_disconnect(ADDRESS_1);
 
             // assert: the background connection has resumed
+            assert_eq!(mock_le_manager.current_connection_mode(), Some(ConnectionMode::Background));
+        });
+    }
+
+    #[test]
+    fn test_background_connection_after_failing() {
+        block_on_locally(async {
+            // arrange
+            let mock_le_manager = MockLeAclManager::new();
+            let connection_manager = ConnectionManager::new(mock_le_manager.clone());
+
+            // act: initiate a background connection that fails
+            connection_manager.add_background_connection(CLIENT_1, ADDRESS_1).await.unwrap();
+            mock_le_manager.on_le_connect(ADDRESS_1, ErrorCode(1));
+
+            // assert: the background connection has not stopped
             assert_eq!(mock_le_manager.current_connection_mode(), Some(ConnectionMode::Background));
         });
     }
@@ -396,7 +439,7 @@ mod test {
             // arrange: a pending direct connection
             let mock_le_manager = MockLeAclManager::new();
             let connection_manager = ConnectionManager::new(mock_le_manager.clone());
-            connection_manager.as_ref().start_direct_connection(CLIENT_1, ADDRESS_1).unwrap();
+            connection_manager.start_direct_connection(CLIENT_1, ADDRESS_1).await.unwrap();
 
             // act: let it timeout
             tokio::time::sleep(DIRECT_CONNECTION_TIMEOUT).await;
@@ -417,15 +460,32 @@ mod test {
             let connection_manager = ConnectionManager::new(mock_le_manager.clone());
 
             // act: start a direct connection
-            connection_manager.as_ref().start_direct_connection(CLIENT_1, ADDRESS_1).unwrap();
+            connection_manager.start_direct_connection(CLIENT_1, ADDRESS_1).await.unwrap();
             tokio::time::sleep(DIRECT_CONNECTION_TIMEOUT * 3 / 4).await;
             // act: after some time, start a second one
-            connection_manager.as_ref().start_direct_connection(CLIENT_2, ADDRESS_1).unwrap();
+            connection_manager.start_direct_connection(CLIENT_2, ADDRESS_1).await.unwrap();
             // act: wait for the first one (but not the second) to time out
             tokio::time::sleep(DIRECT_CONNECTION_TIMEOUT * 3 / 4).await;
 
             // assert: we are still doing a direct connection
             assert_eq!(mock_le_manager.current_connection_mode(), Some(ConnectionMode::Direct));
+        });
+    }
+
+    #[test]
+    fn test_direct_connection_to_already_connected() {
+        block_on_locally(async {
+            // arrange: an existing connection
+            let mock_le_manager = MockLeAclManager::new();
+            let connection_manager = ConnectionManager::new(mock_le_manager.clone());
+            mock_le_manager.on_le_connect(ADDRESS_1, ErrorCode::SUCCESS);
+            handle_events().await;
+
+            // act: start a direct connection to the same address
+            connection_manager.start_direct_connection(CLIENT_1, ADDRESS_1).await.unwrap();
+
+            // assert: we don't do anything with the accept list
+            assert_eq!(mock_le_manager.current_connection_mode(), None);
         });
     }
 }

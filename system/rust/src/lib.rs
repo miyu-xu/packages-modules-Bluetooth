@@ -21,7 +21,6 @@ use gatt::{channel::AttTransport, GattCallbacks};
 use log::{info, warn};
 use tokio::task::LocalSet;
 
-use self::core::shared_box::SharedBox;
 use std::{rc::Rc, sync::Mutex};
 use tokio::runtime::Builder;
 
@@ -56,7 +55,7 @@ pub struct ModuleViews<'a> {
     /// Proxies calls into GATT server
     pub gatt_module: &'a mut gatt::server::GattModule,
     /// Proxies calls into connection manager
-    pub connection_manager: SharedBox<connection::ConnectionManager>,
+    pub connection_manager: Rc<connection::ConnectionManager>,
 }
 
 static GLOBAL_MODULE_REGISTRY: Mutex<Option<GlobalModuleRegistry>> = Mutex::new(None);

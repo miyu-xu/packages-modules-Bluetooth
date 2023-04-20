@@ -168,7 +168,7 @@ impl ConnectionAttempts {
     }
 
     /// Handle a successful connection by notifying clients and resolving direct connect attempts
-    pub fn process_connection(
+    pub async fn process_connection(
         &mut self,
         address: AddressWithType,
         result: Result<LeConnection, ErrorCode>,
@@ -348,7 +348,7 @@ mod test {
             let pending_conn = attempts.register_direct_connection(CLIENT_1, ADDRESS_1).unwrap();
 
             // act: resolve with an incoming connection
-            attempts.process_connection(ADDRESS_1, Ok(CONNECTION_1));
+            attempts.process_connection(ADDRESS_1, Ok(CONNECTION_1)).await;
 
             // assert: the attempt is resolved and is no longer active
             assert_eq!(pending_conn.await.unwrap(), CONNECTION_1);
@@ -364,7 +364,7 @@ mod test {
             let pending_conn = attempts.register_direct_connection(CLIENT_1, ADDRESS_1).unwrap();
 
             // act: resolve with an incoming connection
-            attempts.process_connection(ADDRESS_1, Err(ErrorCode(1)));
+            attempts.process_connection(ADDRESS_1, Err(ErrorCode(1))).await;
 
             // assert: the attempt is resolved and is no longer active
             assert_eq!(pending_conn.await, Err(ConnectionFailure::Error(ErrorCode(1))));
@@ -380,7 +380,7 @@ mod test {
             attempts.register_background_connection(CLIENT_1, ADDRESS_1).unwrap();
 
             // act: resolve with an incoming connection
-            attempts.process_connection(ADDRESS_1, Ok(CONNECTION_1));
+            attempts.process_connection(ADDRESS_1, Ok(CONNECTION_1)).await;
 
             // assert: the attempt is still active
             assert_eq!(attempts.active_attempts().len(), 1);
@@ -395,7 +395,7 @@ mod test {
             let pending_conn = attempts.register_direct_connection(CLIENT_1, ADDRESS_1).unwrap();
 
             // act: an incoming connection arrives to a different address
-            attempts.process_connection(ADDRESS_2, Ok(CONNECTION_2));
+            attempts.process_connection(ADDRESS_2, Ok(CONNECTION_2)).await;
 
             // assert: the attempt is still pending
             assert!(try_await(pending_conn).await.is_err());
@@ -414,7 +414,7 @@ mod test {
             attempts.register_background_connection(CLIENT_1, ADDRESS_2).unwrap();
 
             // act: an incoming connection arrives to the first address
-            attempts.process_connection(ADDRESS_1, Ok(CONNECTION_1));
+            attempts.process_connection(ADDRESS_1, Ok(CONNECTION_1)).await;
 
             // assert: one direct attempt is completed, one is still pending
             assert_eq!(pending_conn_1.await, Ok(CONNECTION_1));

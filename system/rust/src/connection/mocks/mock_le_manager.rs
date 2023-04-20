@@ -163,10 +163,6 @@ impl LeAclManager for Rc<MockActiveLeAclManager> {
 
     fn remove_from_all_lists(&self, address: AddressWithType) {
         let mut state = self.state.borrow_mut();
-        assert!(
-            !state.currently_connected.contains(&address),
-            "Must NOT be currently connected to this address"
-        );
         let ok1 = state.direct_connect_list.remove(&address);
         let ok2 = state.background_connect_list.remove(&address);
         assert!(ok1 || ok2, "Present in neither direct nor background connect list");
