@@ -16,6 +16,24 @@
       "message": "Hi, Chris:\n\nDo you think it is a better idea to change `osi_free` to `osi_free_and_reset` in the following line?\nThe idea is to reset the variable holding the pointer to NULL when it is freed.\nBut I am not clear about the side effect.\n\nhttps://source.corp.google.com/android-internal/packages/modules/Bluetooth/system/stack/btm/btm_int_types.h;l\u003d354;rcl\u003deeae447b7baf32568765801cb304d72dadfcd739",
       "revId": "3098c359c75442b36ddb1c6678dbb7067506fd55",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "949e9ac8_c6aa7ba1",
+        "filename": "system/stack/btm/btm_dev.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-04-20T15:11:07Z",
+      "side": 1,
+      "message": "I agree the osi_free_and_reset is intended to address this issue. \n\nLooking at the git history, this function was added much later to address this exact issue, but curiously has been slow to adopt much within the current code base. (Introduced 2016)\n\negrep -r osi_free * | egrep -v osi_free_and_reset |  wc -l\n566\negrep -r osi_free_and_reset * | wc -l\n148\n\nI also am not sure of all the side effects of putting this in the core library...as I\u0027m not sure how we could test all the code paths \n\nI might examine using move semantics to make it clear, plus there are compiler/lint checks around move syntax.",
+      "parentUuid": "54168335_e2d3bee0",
+      "revId": "3098c359c75442b36ddb1c6678dbb7067506fd55",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
