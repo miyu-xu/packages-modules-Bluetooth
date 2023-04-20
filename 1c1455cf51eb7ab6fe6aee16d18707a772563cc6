@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4cd8206a_408e6d67",
+        "filename": "system/bta/le_audio/devices.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 280,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-04-20T20:31:05Z",
+      "side": 1,
+      "message": "nit: I guess this points to LE_AUDIO profile. I am not sure whether there is anyway to use this variable [int LE_AUDIO \u003d 22;](https://source.corp.google.com/h/android/platform/superproject/+/refs/heads/master:packages/modules/Bluetooth/framework/java/android/bluetooth/BluetoothProfile.java;l\u003d218;drc\u003d7346c436e5a11ce08f6a80dcfeb8ef941ca30176;bpv\u003d1;bpt\u003d1). or maybe just add in comment :)",
+      "range": {
+        "startLine": 280,
+        "startChar": 36,
+        "endLine": 280,
+        "endChar": 38
+      },
+      "revId": "1c1455cf51eb7ab6fe6aee16d18707a772563cc6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
