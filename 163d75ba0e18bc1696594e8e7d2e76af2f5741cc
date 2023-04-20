@@ -35,6 +35,23 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "1cff52ac_d34fc14d",
+        "filename": "system/bta/hh/bta_hh_le.cc",
+        "patchSetId": 19
+      },
+      "lineNbr": 1785,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2023-04-20T20:24:09Z",
+      "side": 1,
+      "message": "where is p_buf freed?",
+      "revId": "163d75ba0e18bc1696594e8e7d2e76af2f5741cc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "9abfb038_9ccf2e1a",
@@ -54,6 +71,46 @@
         "endLine": 107,
         "endChar": 26
       },
+      "revId": "163d75ba0e18bc1696594e8e7d2e76af2f5741cc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0fd8c931_a456dc69",
+        "filename": "system/btif/co/bta_hh_co.cc",
+        "patchSetId": 19
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2023-04-20T20:24:09Z",
+      "side": 1,
+      "message": "where is context freed?",
+      "range": {
+        "startLine": 82,
+        "startChar": 12,
+        "endLine": 82,
+        "endChar": 19
+      },
+      "revId": "163d75ba0e18bc1696594e8e7d2e76af2f5741cc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f023de90_fbc788c3",
+        "filename": "system/btif/co/bta_hh_co.cc",
+        "patchSetId": 19
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2023-04-20T20:24:09Z",
+      "side": 1,
+      "message": "same here, where is context freed?",
       "revId": "163d75ba0e18bc1696594e8e7d2e76af2f5741cc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
