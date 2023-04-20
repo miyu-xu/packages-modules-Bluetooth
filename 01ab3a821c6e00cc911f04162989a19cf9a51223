@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0a82c6ba_f4e550e6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-04-20T08:24:28Z",
+      "side": 1,
+      "message": "This CL is OK but I don\u0027t think that this gives any value other that just clean up of code.\n\nmExposedActiveDevice is a variable which is guarding to not re-expose to AudioServer a LE Audio type device which has been already exposed.\n\nRegards,\nGrzegorz",
+      "revId": "01ab3a821c6e00cc911f04162989a19cf9a51223",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
