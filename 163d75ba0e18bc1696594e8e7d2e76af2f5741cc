@@ -35,6 +35,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "712225c8_2273acfc",
+        "filename": "system/bta/hh/bta_hh_le.cc",
+        "patchSetId": 19
+      },
+      "lineNbr": 1763,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2023-04-20T20:33:37Z",
+      "side": 1,
+      "message": "Didn\u0027t touch this statement. Just reduced the scope of the variable.\nIgnoring because nit.",
+      "parentUuid": "73428e2c_f7e6f01a",
+      "revId": "163d75ba0e18bc1696594e8e7d2e76af2f5741cc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1cff52ac_d34fc14d",
@@ -65,6 +83,24 @@
       "writtenOn": "2023-04-20T20:33:36Z",
       "side": 1,
       "message": "This osi_free is freeing p_buf",
+      "parentUuid": "1cff52ac_d34fc14d",
+      "revId": "163d75ba0e18bc1696594e8e7d2e76af2f5741cc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3a8096c1_f5b24c48",
+        "filename": "system/bta/hh/bta_hh_le.cc",
+        "patchSetId": 19
+      },
+      "lineNbr": 1785,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2023-04-20T20:33:37Z",
+      "side": 1,
+      "message": "p_buf memory ownership has been passed to p_rpt_data which gets deallocated at the end of the function.",
       "parentUuid": "1cff52ac_d34fc14d",
       "revId": "163d75ba0e18bc1696594e8e7d2e76af2f5741cc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
@@ -140,6 +176,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "69105731_6c2c57e0",
+        "filename": "system/btif/co/bta_hh_co.cc",
+        "patchSetId": 19
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2023-04-20T20:33:37Z",
+      "side": 1,
+      "message": "context is saved into the save queue. It is later deallocated in bta_hh_co_get_rpt_rsp() when it popped out of the queue.",
+      "parentUuid": "0fd8c931_a456dc69",
+      "range": {
+        "startLine": 82,
+        "startChar": 12,
+        "endLine": 82,
+        "endChar": 19
+      },
+      "revId": "163d75ba0e18bc1696594e8e7d2e76af2f5741cc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f023de90_fbc788c3",
@@ -170,6 +230,24 @@
       "writtenOn": "2023-04-20T20:33:36Z",
       "side": 1,
       "message": "When dequeued, line 668 | 732 of this file",
+      "parentUuid": "f023de90_fbc788c3",
+      "revId": "163d75ba0e18bc1696594e8e7d2e76af2f5741cc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ce30e9e4_43ad023c",
+        "filename": "system/btif/co/bta_hh_co.cc",
+        "patchSetId": 19
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2023-04-20T20:33:37Z",
+      "side": 1,
+      "message": "context is saved into the save queue. It is later deallocated in bta_hh_co_set_rpt_rsp() when it popped out of the queue.",
       "parentUuid": "f023de90_fbc788c3",
       "revId": "163d75ba0e18bc1696594e8e7d2e76af2f5741cc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
