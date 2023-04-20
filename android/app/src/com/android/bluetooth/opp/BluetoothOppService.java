@@ -37,6 +37,7 @@ import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothDevicePicker;
 import android.bluetooth.BluetoothSocket;
 import android.content.BroadcastReceiver;
+import android.content.ContentProviderClient;
 import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
@@ -1115,9 +1116,12 @@ public class BluetoothOppService extends ProfileService implements IObexConnecti
 
     // Run in a background thread at boot.
     private static void trimDatabase(ContentResolver contentResolver) {
-        if (contentResolver.acquireContentProviderClient(BluetoothShare.CONTENT_URI) == null) {
-            Log.w(TAG, "ContentProvider doesn't exist");
-            return;
+        try (ContentProviderClient client =
+                     contentResolver.acquireContentProviderClient(BluetoothShare.CONTENT_URI)) {
+            if (client == null) {
+                Log.w(TAG, "ContentProvider doesn't exist");
+                return;
+            }
         }
 
         // remove the invisible/unconfirmed inbound shares
