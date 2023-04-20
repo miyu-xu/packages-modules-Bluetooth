@@ -18,6 +18,23 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "73428e2c_f7e6f01a",
+        "filename": "system/bta/hh/bta_hh_le.cc",
+        "patchSetId": 19
+      },
+      "lineNbr": 1763,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-04-20T18:36:56Z",
+      "side": 1,
+      "message": "nit: declare and initialize here? So `tBTA_HH_LE_RPT* p_rpt \u003d bta_hh(...)`",
+      "revId": "163d75ba0e18bc1696594e8e7d2e76af2f5741cc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "9abfb038_9ccf2e1a",
