@@ -4866,6 +4866,11 @@ class LeAudioClientImpl : public LeAudioClient {
          */
         FALLTHROUGH;
       case GroupStreamStatus::IDLE: {
+        sw_enc_left.release();
+        sw_enc_right.release();
+        sw_dec_left.release();
+        sw_dec_right.release();
+
         if (group && group->IsPendingConfiguration()) {
           SuspendedForReconfiguration();
           BidirectionalPair<std::vector<uint8_t>> ccids = {
