@@ -17,7 +17,7 @@ use crate::{core::address::AddressWithType, gatt::ids::ServerId};
 
 use self::{
     acceptlist_manager::LeAcceptlistManager,
-    attempt_manager::{ConnectionAttempts, ConnectionMode},
+    attempt_manager::{ConnectionAttempts, ConnectionMode, LastSeen},
     le_manager::{
         AddressResolver, ErrorCode, InactiveLeAclManager, LeAclManagerConnectionCallbacks,
     },
@@ -123,6 +123,10 @@ impl LeAclManagerConnectionCallbacks for ConnectionManagerCallbackHandler {
         self.send_to_manager(
             move |manager| async move { manager.on_resolving_list_change().await },
         );
+    }
+
+    fn on_scan_result(&self, address: AddressWithType) {
+        self.send_to_manager(move |manager| async move { manager.on_scan_result(address).await });
     }
 }
 
@@ -330,16 +334,29 @@ impl ConnectionManager {
         self.reconcile_state(state).await;
     }
 
+    async fn on_scan_result(self: &Rc<Self>, address: AddressWithType) {
+        let mut state = self.state.lock().await;
+        let canonical_address = self.address_resolver.resolve_address(address).await;
+        state.attempts.process_scan_result(canonical_address, self.address_resolver.deref()).await;
+        // the scan result will go stale after a timeout, so schedule a state update afterwards to check
+        // if it has indeed become stale
+        let this = self.clone();
+        spawn_local(async move {
+            tokio::time::sleep(LastSeen::DURATION).await;
+            this.reconcile_state(this.state.lock().await.deref_mut()).await;
+        });
+    }
+
     /// Make the state of the LeAcceptlistManager consistent with the attempts tracked in ConnectionAttempts
     async fn reconcile_state(&self, state: &mut ConnectionManagerState) {
-        state.acceptlist_manager.drive_to_state(
-            determine_target_state(
-                &state.attempts.active_attempts(),
-                self.address_resolver.as_ref(),
-                state.current_connections.iter().copied(),
-            )
-            .await,
-        );
+        let target = determine_target_state(
+            &state.attempts.active_attempts(),
+            self.address_resolver.as_ref(),
+            state.current_connections.iter().copied(),
+        )
+        .await;
+
+        state.acceptlist_manager.drive_to_state(target.target_acceptlist_state);
     }
 }
 
