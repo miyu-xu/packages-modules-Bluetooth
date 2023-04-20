@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c3e16a66_e726e05e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 19
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-04-20T00:39:02Z",
+      "side": 1,
+      "message": "Please confirm the \"manual\" test has been diligently done and include spatial audio testing.\n\nI would love to see some more unit test added but I have to admit I do not know where to start for this stack area",
+      "revId": "163d75ba0e18bc1696594e8e7d2e76af2f5741cc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9abfb038_9ccf2e1a",
+        "filename": "system/bta/test/bta_hh_test.cc",
+        "patchSetId": 19
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-04-20T00:39:02Z",
+      "side": 1,
+      "message": "I don\u0027t see the value of this assert. shouldn\u0027t we just remove it ?\n\nSince with current code, all the branch of `bta_hh_ctrl_dat_act` are setting `w4_evt` to 0.\nAnd the callback is currently always called since it depend of `data32.size()`",
+      "range": {
+        "startLine": 107,
+        "startChar": 2,
+        "endLine": 107,
+        "endChar": 26
+      },
+      "revId": "163d75ba0e18bc1696594e8e7d2e76af2f5741cc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
