@@ -116,6 +116,8 @@ mod inner {
         fn on_disconnect(&self, address: AddressWithType);
         #[cxx_name = "OnResolvingListChange"]
         fn on_resolving_list_change(&self);
+        #[cxx_name = "OnScanResult"]
+        fn on_scan_result(&self, address: AddressWithType);
     }
 
     #[namespace = "bluetooth::connection"]
@@ -178,6 +180,12 @@ impl LeAclManagerCallbackShim {
     fn on_resolving_list_change(&self) {
         let _ = self.0.send(Box::new(move |callback| {
             callback.on_resolving_list_change();
+        }));
+    }
+
+    fn on_scan_result(&self, address: AddressWithType) {
+        let _ = self.0.send(Box::new(move |callback| {
+            callback.on_scan_result(address);
         }));
     }
 }
