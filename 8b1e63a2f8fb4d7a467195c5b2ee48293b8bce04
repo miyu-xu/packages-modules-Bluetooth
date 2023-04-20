@@ -16,6 +16,69 @@
       "message": "Hi Ying and Archie, since Abhishek and Jesse (RFCOMM members) are both OOO, could you help take a look?",
       "revId": "8b1e63a2f8fb4d7a467195c5b2ee48293b8bce04",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ca90f0dd_e4528f61",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-04-20T04:48:00Z",
+      "side": 1,
+      "message": "LGTM, some nits. Thanks!",
+      "revId": "8b1e63a2f8fb4d7a467195c5b2ee48293b8bce04",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a8766396_d4e8e920",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 241,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-04-20T04:48:00Z",
+      "side": 1,
+      "message": "Is it csn or scn? Looks like csn is not a common abbreviation.\nSimilarly for other csn below.",
+      "range": {
+        "startLine": 241,
+        "startChar": 52,
+        "endLine": 241,
+        "endChar": 55
+      },
+      "revId": "8b1e63a2f8fb4d7a467195c5b2ee48293b8bce04",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "62877e63_082ec82a",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-04-20T04:48:00Z",
+      "side": 1,
+      "message": "Maybe use `address` so it can perform the autocomplete?",
+      "range": {
+        "startLine": 242,
+        "startChar": 54,
+        "endLine": 242,
+        "endChar": 58
+      },
+      "revId": "8b1e63a2f8fb4d7a467195c5b2ee48293b8bce04",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
