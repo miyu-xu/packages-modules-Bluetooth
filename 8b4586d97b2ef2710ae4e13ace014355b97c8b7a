@@ -22,6 +22,30 @@
       },
       "revId": "8b4586d97b2ef2710ae4e13ace014355b97c8b7a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6bf694ab_44ade762",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-04-20T21:26:35Z",
+      "side": 1,
+      "message": "https://source.corp.google.com/android/cts/hostsidetests/multidevices/bluetooth/bluetooth_multi_devices_test.py?q\u003dbluetooth%20cts%20multi%20device",
+      "parentUuid": "ed8471c9_98f63c59",
+      "range": {
+        "startLine": 13,
+        "startChar": 6,
+        "endLine": 13,
+        "endChar": 20
+      },
+      "revId": "8b4586d97b2ef2710ae4e13ace014355b97c8b7a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
