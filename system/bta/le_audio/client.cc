@@ -5186,6 +5186,12 @@ class LeAudioClientImpl : public LeAudioClient {
          */
         FALLTHROUGH;
       case GroupStreamStatus::IDLE: {
+        if (sw_enc_left) sw_enc_left.reset();
+        if (sw_enc_right) sw_enc_right.reset();
+        if (sw_dec_left) sw_dec_left.reset();
+        if (sw_dec_right) sw_dec_right.reset();
+        CleanCachedMicrophoneData();
+
         if (group && group->IsPendingConfiguration()) {
           SuspendedForReconfiguration();
           auto remote_direction =
