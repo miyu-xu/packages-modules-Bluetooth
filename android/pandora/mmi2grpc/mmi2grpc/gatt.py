@@ -62,15 +62,15 @@ MMI_SERVER = {
 }
 
 # These UUIDs are used as reference for GATT server tests
-BASE_READ_WRITE_SERVICE_UUID = "0000fffe-0000-1000-8000-00805f9b34fb"
-BASE_READ_CHARACTERISTIC_UUID = "0000ffd-0000-1000-8000-00805f9b34fb"
-BASE_WRITE_CHARACTERISTIC_UUID = "0000fffa-0000-1000-8000-00805f9b34fb"
-BASE_READ_WRITE_ENCRYPTED_CHARACTERISTIC_UUID = "0000fff9-0000-1000-8000-00805f9b34fb"
-BASE_READ_WRITE_ENCRYPTED_MITM_CHARACTERISTIC_UUID = "0000fff8-0000-1000-8000-00805f9b34fb"
-BASE_READ_DESCRIPTOR_UUID = "0000fff7-0000-1000-8000-00805f9b34fb"
-BASE_WRITE_DESCRIPTOR_UUID = "0000fff6-0000-1000-8000-00805f9b34fb"
-CUSTOM_SERVICE_UUID = "0000fff5-0000-1000-8000-00805f9b34fb"
-CUSTOM_CHARACTERISTIC_UUID = "0000fff4-0000-1000-8000-00805f9b34fb"
+BASE_READ_WRITE_SERVICE_UUID = "0000FFFE-0000-1000-8000-00805F9B34FB"
+BASE_READ_CHARACTERISTIC_UUID = "0000FFD-0000-1000-8000-00805F9B34FB"
+BASE_WRITE_CHARACTERISTIC_UUID = "0000FFFA-0000-1000-8000-00805F9B34FB"
+BASE_READ_WRITE_ENCRYPTED_CHARACTERISTIC_UUID = "0000FFF9-0000-1000-8000-00805F9B34FB"
+BASE_READ_WRITE_ENCRYPTED_MITM_CHARACTERISTIC_UUID = "0000FFF8-0000-1000-8000-00805F9B34FB"
+BASE_READ_DESCRIPTOR_UUID = "0000FFF7-0000-1000-8000-00805F9B34FB"
+BASE_WRITE_DESCRIPTOR_UUID = "0000FFF6-0000-1000-8000-00805F9B34FB"
+CUSTOM_SERVICE_UUID = "0000FFF5-0000-1000-8000-00805F9B34FB"
+CUSTOM_CHARACTERISTIC_UUID = "0000FFF4-0000-1000-8000-00805F9B34FB"
 
 
 class GATTProxy(ProfileProxy):
@@ -1325,9 +1325,9 @@ def formatUuid(uuid: str):
     """
     uuid_len = len(uuid)
     if uuid_len == 4:
-        return common_uuid.replace(common_uuid[4:8], uuid.lower())
+        return common_uuid.replace(common_uuid[4:8], uuid.upper())
     elif uuid_len == 32 or uuid_len == 39:
-        uuidCharList = list(uuid.replace('-', '').lower())
+        uuidCharList = list(uuid.replace('-', '').upper())
         uuidCharList.insert(20, '-')
         uuidCharList.insert(16, '-')
         uuidCharList.insert(12, '-')
@@ -1341,7 +1341,7 @@ def formatUuid(uuid: str):
 def formatSdpUuid(uuid: str):
     if uuid[3] == '1':
         uuid = uuid[:3] + 'f'
-    return common_uuid.replace(common_uuid[4:8], uuid.lower())
+    return common_uuid.replace(common_uuid[4:8], uuid.upper())
 
 
 def compareIncludedServices(service, service_handle, included_handle, included_uuid):
