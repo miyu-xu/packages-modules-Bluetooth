@@ -140,10 +140,12 @@ bool BTM_SecAddDevice(const RawAddress& bd_addr, DEV_CLASS dev_class,
   return true;
 }
 
-void wipe_secrets_and_remove(tBTM_SEC_DEV_REC* p_dev_rec) {
+void wipe_secrets_and_remove(std::unique_ptr<tBTM_SEC_DEV_REC> p_dev_rec) {
   p_dev_rec->link_key.fill(0);
   memset(&p_dev_rec->ble.keys, 0, sizeof(tBTM_SEC_BLE_KEYS));
-  list_remove(btm_cb.sec_dev_rec, p_dev_rec);
+  tBTM_SEC_DEV_REC* raw_ptr = p_dev_rec.get();
+  p_dev_rec.release();
+  list_remove(btm_cb.sec_dev_rec, raw_ptr);
 }
 
 /** Removes the device from acceptlist */
@@ -191,7 +193,7 @@ bool BTM_SecDeleteDevice(const RawAddress& bd_addr) {
 
     /* Clear out any saved BLE keys */
     btm_sec_clear_ble_keys(p_dev_rec);
-    wipe_secrets_and_remove(p_dev_rec);
+    wipe_secrets_and_remove(std::unique_ptr<tBTM_SEC_DEV_REC>(p_dev_rec));
     /* Tell controller to get rid of the link key, if it has one stored */
     BTM_DeleteStoredLinkKey(&bda, NULL);
     LOG_INFO("%s %s complete", __func__, ADDRESS_TO_LOGGABLE_CSTR(bd_addr));
@@ -459,7 +461,7 @@ void btm_consolidate_dev(tBTM_SEC_DEV_REC* p_target_rec) {
       p_target_rec->bond_type = temp_rec.bond_type;
 
       /* remove the combined record */
-      wipe_secrets_and_remove(p_dev_rec);
+      wipe_secrets_and_remove(std::unique_ptr<tBTM_SEC_DEV_REC>(p_dev_rec));
       // p_dev_rec gets freed in list_remove, we should not  access it further
       continue;
     }
@@ -471,7 +473,7 @@ void btm_consolidate_dev(tBTM_SEC_DEV_REC* p_target_rec) {
         p_target_rec->device_type |= p_dev_rec->device_type;
 
         /* remove the combined record */
-        wipe_secrets_and_remove(p_dev_rec);
+        wipe_secrets_and_remove(std::unique_ptr<tBTM_SEC_DEV_REC>(p_dev_rec));
       }
     }
   }
@@ -515,7 +517,7 @@ void btm_dev_consolidate_existing_connections(const RawAddress& bd_addr) {
       if (p_dev_rec->ble_hci_handle == HCI_INVALID_HANDLE) {
         LOG_INFO("already disconnected - erasing entry %s",
                  ADDRESS_TO_LOGGABLE_CSTR(p_dev_rec->bd_addr));
-        wipe_secrets_and_remove(p_dev_rec);
+        wipe_secrets_and_remove(std::unique_ptr<tBTM_SEC_DEV_REC>(p_dev_rec));
         continue;
       }
 
@@ -527,7 +529,7 @@ void btm_dev_consolidate_existing_connections(const RawAddress& bd_addr) {
       p_target_rec->ble_hci_handle = p_dev_rec->ble_hci_handle;
 
       /* remove the old LE record */
-      wipe_secrets_and_remove(p_dev_rec);
+      wipe_secrets_and_remove(std::unique_ptr<tBTM_SEC_DEV_REC>(p_dev_rec));
 
       btm_acl_consolidate(bd_addr, ble_conn_addr);
       L2CA_Consolidate(bd_addr, ble_conn_addr);
@@ -628,7 +630,7 @@ tBTM_SEC_DEV_REC* btm_sec_allocate_dev_rec(void) {
 
   if (list_length(btm_cb.sec_dev_rec) > BTM_SEC_MAX_DEVICE_RECORDS) {
     p_dev_rec = btm_find_oldest_dev_rec();
-    wipe_secrets_and_remove(p_dev_rec);
+    wipe_secrets_and_remove(std::unique_ptr<tBTM_SEC_DEV_REC>(p_dev_rec));
   }
 
   p_dev_rec =
