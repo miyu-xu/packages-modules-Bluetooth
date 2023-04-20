@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "66617205_50648c96",
+        "filename": "system/bta/le_audio/codec_interface.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-04-20T16:19:51Z",
+      "side": 1,
+      "message": "A comment would be nice, especially if you see more than one instance ever.",
+      "range": {
+        "startLine": 27,
+        "startChar": 6,
+        "endLine": 27,
+        "endChar": 20
+      },
+      "revId": "eafff55aa6a184a433cda1fa7a307ea22ae3948f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "83b9918e_8eccf28e",
+        "filename": "system/bta/le_audio/codec_interface.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-04-20T16:19:51Z",
+      "side": 1,
+      "message": "You are limiting to HAL definitions here.\nWouldn\u0027t it be easier to just pass the PAC record to Codec to ask if it supports given configuration ?\nOr just pass the PAC to createInstance and grab codec already properly configured ?",
+      "range": {
+        "startLine": 43,
+        "startChar": 5,
+        "endLine": 44,
+        "endChar": 51
+      },
+      "revId": "eafff55aa6a184a433cda1fa7a307ea22ae3948f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3aede428_e879b1a6",
+        "filename": "system/bta/le_audio/codec_interface.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-04-20T16:19:51Z",
+      "side": 1,
+      "message": "Why encode() accept output buffer, and this one returns through getDecodedSamples() ?",
+      "revId": "eafff55aa6a184a433cda1fa7a307ea22ae3948f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9591150d_fb0335cd",
+        "filename": "system/bta/le_audio/codec_interface.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-04-20T16:19:51Z",
+      "side": 1,
+      "message": "Some codec configuration want to use 24 bit samples.\nAlso can you please clarify the ownership of the decoded samples ?",
+      "range": {
+        "startLine": 56,
+        "startChar": 22,
+        "endLine": 56,
+        "endChar": 29
+      },
+      "revId": "eafff55aa6a184a433cda1fa7a307ea22ae3948f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
