@@ -52,6 +52,24 @@
       "parentUuid": "75cf3d37_224c91c7",
       "revId": "1f01af69bffb32761f737758e6d3ae7dd3befe03",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "29a4b516_4993c26a",
+        "filename": "android/app/src/com/android/bluetooth/telephony/BluetoothInCallService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 987,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-04-20T13:31:50Z",
+      "side": 1,
+      "message": "Ok, let\u0027s do this as for HFP. I\u0027ll try in meantime get information about this API from author.",
+      "parentUuid": "2cfa4190_c1876452",
+      "revId": "1f01af69bffb32761f737758e6d3ae7dd3befe03",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
