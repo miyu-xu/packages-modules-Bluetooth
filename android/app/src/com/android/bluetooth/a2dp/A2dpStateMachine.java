@@ -141,6 +141,11 @@ final class A2dpStateMachine extends StateMachine {
             broadcastAudioState(BluetoothA2dp.STATE_NOT_PLAYING,
                                 BluetoothA2dp.STATE_PLAYING);
         }
+        if (mLastConnectionState != -1
+                && mLastConnectionState != BluetoothProfile.STATE_DISCONNECTED) {
+            // Don't broadcast during startup or if already disconnected
+            broadcastConnectionState(BluetoothProfile.STATE_DISCONNECTED, mLastConnectionState);
+        }
         quitNow();
     }
 
