@@ -885,6 +885,10 @@ final class RemoteDevices {
                                 debugLog("Skip class update for " + bdDevice);
                                 break;
                             }
+
+                            Log.d("XXX", "device class is updated! name=" + deviceProperties.getName() + " addr=" + bdDevice);
+                            Log.d("XXX", "  -- class=" + Integer.toHexString(deviceProperties.getBluetoothClass()));
+
                             deviceProperties.setBluetoothClass(newBluetoothClass);
                             intent = new Intent(BluetoothDevice.ACTION_CLASS_CHANGED);
                             intent.putExtra(BluetoothDevice.EXTRA_DEVICE, bdDevice);
@@ -964,6 +968,9 @@ final class RemoteDevices {
             debugLog("Device name is null or empty: " + device);
             return;
         }
+
+        Log.d("XXX", "device is found! name=" + deviceProp.getName() + " addr=" + device);
+        Log.d("XXX", "  -- class=" + Integer.toHexString(deviceProp.getBluetoothClass()));
 
         Intent intent = new Intent(BluetoothDevice.ACTION_FOUND);
         intent.putExtra(BluetoothDevice.EXTRA_DEVICE, device);
