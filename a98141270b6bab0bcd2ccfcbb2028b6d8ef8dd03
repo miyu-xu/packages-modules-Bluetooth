@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "83c298e3_fcf8e186",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-04-20T04:34:19Z",
+      "side": 1,
+      "message": "Bluetoothclass is a parcelable, you can  remove the getter \u0026 directly write the class on the BluetoothQUalityReport.java",
+      "revId": "a98141270b6bab0bcd2ccfcbb2028b6d8ef8dd03",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
