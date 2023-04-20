@@ -72,6 +72,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9cd0cdf2_ec5484be",
+        "filename": "android/app/src/com/android/bluetooth/opp/BluetoothOppIncomingFileConfirmActivity.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 234,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2023-04-20T15:45:24Z",
+      "side": 1,
+      "message": "Thanks for pointing that out. \nI\u0027ve just realize spying handler still require proxying since the handler is final",
+      "parentUuid": "8fa39513_683ba2dd",
+      "range": {
+        "startLine": 234,
+        "startChar": 26,
+        "endLine": 234,
+        "endChar": 41
+      },
+      "revId": "85eaecb2a40ea0bbee5bfac5b10105cc9923fb6e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e2fd8ac4_24fff4df",
@@ -180,6 +204,30 @@
       "side": 1,
       "message": "eq((long)DISMISS_TIMEOUT_DIALOG_VALUE))?",
       "parentUuid": "f378a052_28975424",
+      "range": {
+        "startLine": 197,
+        "startChar": 47,
+        "endLine": 197,
+        "endChar": 59
+      },
+      "revId": "85eaecb2a40ea0bbee5bfac5b10105cc9923fb6e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b20532ad_b6080cf2",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/IncomingFileConfirmActivityTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2023-04-20T15:45:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "376160cd_2df87459",
       "range": {
         "startLine": 197,
         "startChar": 47,
