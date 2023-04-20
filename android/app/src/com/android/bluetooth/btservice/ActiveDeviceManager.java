@@ -22,6 +22,7 @@ import android.annotation.RequiresPermission;
 import android.annotation.SuppressLint;
 import android.bluetooth.BluetoothA2dp;
 import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothClass;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothHapClient;
 import android.bluetooth.BluetoothHeadset;
@@ -297,6 +298,23 @@ class ActiveDeviceManager {
         synchronized (mLock) {
             if (DBG) {
                 Log.d(TAG, "handleHfpConnected: " + device);
+                if (device != null) {
+                    BluetoothClass deviceClass = device.getBluetoothClass();
+                    Log.d(TAG, "  -- MajorClass=" + Integer.toHexString(deviceClass.getMajorDeviceClass()));
+                    Log.d(TAG, "  -- MajorAndMinorClass=" + Integer.toHexString(deviceClass.getDeviceClass()));
+
+                    // TODO: Need null check for deviceClass.
+                    boolean isWatchFromClass = deviceClass.getDeviceClass()
+                            == BluetoothClass.Device.WEARABLE_WRIST_WATCH;
+                    Log.d(TAG, " isWatchFromClass=" + isWatchFromClass);
+
+                    byte[] deviceType = mAdapterService.getDatabase().getCustomMeta(device, BluetoothDevice.METADATA_DEVICE_TYPE);
+                    String deviceTypeStr = deviceType == null ? "[deviceType is null!]" : new String(deviceType);
+                    boolean isWatchFromDeviceType = deviceType != null
+                            && BluetoothDevice.DEVICE_TYPE_WATCH.equals(deviceTypeStr);
+                    Log.d(TAG, " isWatchFromDeviceType=" + isWatchFromDeviceType + ", deviceTypeStr=" + deviceTypeStr);
+                }
+
             }
             if (mHfpConnectedDevices.contains(device)) {
                 return;      // The device is already connected
