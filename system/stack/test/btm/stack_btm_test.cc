@@ -22,6 +22,7 @@
 #include <iomanip>
 #include <iostream>
 #include <map>
+#include <memory>
 #include <sstream>
 #include <vector>
 
@@ -316,7 +317,7 @@ TEST_F(StackBtmWithInitFreeTest, btm_sec_encrypt_change) {
   ASSERT_EQ(BTM_SEC_IN_USE, device_record->sec_flags);
   device_record->sec_flags = BTM_SEC_IN_USE;
 
-  wipe_secrets_and_remove(device_record);
+  wipe_secrets_and_remove(std::unique_ptr<tBTM_SEC_DEV_REC>(device_record));
 }
 
 TEST_F(StackBtmWithInitFreeTest, BTM_SetEncryption) {
@@ -338,7 +339,7 @@ TEST_F(StackBtmWithInitFreeTest, BTM_SetEncryption) {
   ASSERT_EQ(BTM_WRONG_MODE, BTM_SetEncryption(bd_addr, transport, p_callback,
                                               nullptr, sec_act));
 
-  wipe_secrets_and_remove(device_record);
+  wipe_secrets_and_remove(std::unique_ptr<tBTM_SEC_DEV_REC>(device_record));
 }
 
 TEST_F(StackBtmTest, sco_state_text) {
@@ -454,5 +455,5 @@ TEST_F(StackBtmWithInitFreeTest, wipe_secrets_and_remove) {
   device_record->hci_handle = classic_handle;
   device_record->ble_hci_handle = ble_handle;
 
-  wipe_secrets_and_remove(device_record);
+  wipe_secrets_and_remove(std::unique_ptr<tBTM_SEC_DEV_REC>(device_record));
 }

@@ -15,6 +15,7 @@
  */
 
 #include <functional>
+#include <memory>
 
 #include "osi/include/log.h"
 #include "stack/btm/btm_ble_int.h"
@@ -23,7 +24,7 @@
 #include "stack/include/bt_octets.h"
 #include "types/raw_address.h"
 
-void wipe_secrets_and_remove(tBTM_SEC_DEV_REC* p_dev_rec);
+void wipe_secrets_and_remove(std::unique_ptr<tBTM_SEC_DEV_REC> p_dev_rec);
 
 /** Free resources associated with the device associated with |bd_addr| address.
  *
