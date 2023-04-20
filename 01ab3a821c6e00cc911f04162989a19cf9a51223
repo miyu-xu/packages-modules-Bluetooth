@@ -16,6 +16,41 @@
       "message": "This CL is OK but I don\u0027t think that this gives any value other that just clean up of code.\n\nmExposedActiveDevice is a variable which is guarding to not re-expose to AudioServer a LE Audio type device which has been already exposed.\n\nRegards,\nGrzegorz",
       "revId": "01ab3a821c6e00cc911f04162989a19cf9a51223",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "439868bf_0bcaecff",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-04-20T09:15:28Z",
+      "side": 1,
+      "message": "Ops, I\u0027ve missed that there were no set to null this mExposedActiveDevice at all...\n\nOk now I see the problem.",
+      "parentUuid": "0a82c6ba_f4e550e6",
+      "revId": "01ab3a821c6e00cc911f04162989a19cf9a51223",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cacd75cc_7f1b8d99",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1246,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-04-20T09:15:28Z",
+      "side": 1,
+      "message": "I think adding here this cleanup would be enough.\n\n`mExposedActiveDevice \u003d null;`\n\nSince this is the place that the AudioServer informs that the device is removed from its list.",
+      "revId": "01ab3a821c6e00cc911f04162989a19cf9a51223",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
