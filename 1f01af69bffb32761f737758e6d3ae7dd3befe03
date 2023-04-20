@@ -34,6 +34,24 @@
       "parentUuid": "9303088f_5f650dfc",
       "revId": "1f01af69bffb32761f737758e6d3ae7dd3befe03",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2cfa4190_c1876452",
+        "filename": "android/app/src/com/android/bluetooth/telephony/BluetoothInCallService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 987,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-04-20T12:18:27Z",
+      "side": 1,
+      "message": "hmm, before always getCallerDisplayName(); was used.\n\nhere, for HFP, for some reason, when getCallerDisplayName(); is empty fallback to getContactDisplayName(); is done.\n\nFix you are proposing is to always use getContactDisplayName();\n\nMy questions is, if we should not follow what HFP does, because for some reason getCallerDisplayName() is checked here in the first place.\n\nI\u0027m not familiar with this API - but having same for TBS will at least make us 100% compatible what HFP does.",
+      "parentUuid": "75cf3d37_224c91c7",
+      "revId": "1f01af69bffb32761f737758e6d3ae7dd3befe03",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
