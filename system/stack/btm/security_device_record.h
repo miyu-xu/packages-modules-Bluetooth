@@ -466,6 +466,11 @@ struct tBTM_SEC_DEV_REC {
         (remote_supports_secure_connections) ? 'T' : 'F',
         PRIVATE_NAME(sec_bd_name));
   }
+
+  tBTM_SEC_DEV_REC() { *this = {}; }
+  tBTM_SEC_DEV_REC(const tBTM_SEC_DEV_REC& sec_dev_rec) { *this = sec_dev_rec; }
+  tBTM_SEC_DEV_REC& operator=(tBTM_SEC_DEV_REC other) { return *this; }
+  tBTM_SEC_DEV_REC(tBTM_SEC_DEV_REC&& sec_dev_rec) = default;
 };
 
 inline std::string bond_type_text(

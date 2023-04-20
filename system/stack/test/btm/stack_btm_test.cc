@@ -23,6 +23,7 @@
 #include <iostream>
 #include <map>
 #include <sstream>
+#include <utility>
 #include <vector>
 
 #include "btif/include/btif_hh.h"
@@ -316,7 +317,7 @@ TEST_F(StackBtmWithInitFreeTest, btm_sec_encrypt_change) {
   ASSERT_EQ(BTM_SEC_IN_USE, device_record->sec_flags);
   device_record->sec_flags = BTM_SEC_IN_USE;
 
-  wipe_secrets_and_remove(device_record);
+  wipe_secrets_and_remove(std::move(*device_record));
 }
 
 TEST_F(StackBtmWithInitFreeTest, BTM_SetEncryption) {
