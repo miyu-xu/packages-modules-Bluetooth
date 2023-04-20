@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1c56893a_717ed2fd",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/a2dp.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 1970930
+      },
+      "writtenOn": "2023-04-20T12:01:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "237e9ff6_e3771474",
+      "range": {
+        "startLine": 188,
+        "startChar": 8,
+        "endLine": 188,
+        "endChar": 45
+      },
+      "revId": "4e53e736e6d61ae1882ad866bb5408d302c30654",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e8a2cf29_bb85e0fa",
@@ -54,6 +78,30 @@
       "writtenOn": "2023-04-19T16:51:51Z",
       "side": 1,
       "message": "`the IUT may break the ACL` did you had an issue with the old implementation ?\n\nI would prefer to keep the disconnect if possible",
+      "range": {
+        "startLine": 46,
+        "startChar": 0,
+        "endLine": 51,
+        "endChar": 41
+      },
+      "revId": "4e53e736e6d61ae1882ad866bb5408d302c30654",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "eb91714b_48d8dafd",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/hid.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1970930
+      },
+      "writtenOn": "2023-04-20T12:01:40Z",
+      "side": 1,
+      "message": "With old implementation HID/HOS/HCR/BV-01-I test fails. Failure reason in PTS log: HID disconnect request received from IUT while virtual cable still active.\nWith new implementation HID/HOS/HCR/BV-01-I test Passed. \"TSC_MMI_iut_release_connection\" MMI is applicable only to HID/HOS/HCR/BV-01-I test.",
+      "parentUuid": "e8a2cf29_bb85e0fa",
       "range": {
         "startLine": 46,
         "startChar": 0,
