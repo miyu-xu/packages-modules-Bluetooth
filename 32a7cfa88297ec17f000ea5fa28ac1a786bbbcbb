@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a9e08f94_f6e9da44",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 21
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2023-04-20T00:30:31Z",
+      "side": 1,
+      "message": "Some AOSP test suites are broken with this change, I would recommend running the following tests to check for build errors:\n`atest bt_host_test_bta`\n`atest net_test_btif_hh`\n`atest avrcp_device_fuzz`\n`atest net_test_btif_stack`\n`atest net_test_avrcp`\n`atest net_test_btif_rc`\n\nThere also is a floss build error, probably an include missing:\n```\n../../../staging/bt/system/profile/avrcp/connection_handler.cc:177:8: error: no member named \u0027lock_guard\u0027 in namespace \u0027std\u0027\nstd::lock_guard\u003cstd::mutex\u003e lock(device_map_lock);\n~~~~~^\n../../../staging/bt/system/profile/avrcp/connection_handler.cc:177:24: error: no member named \u0027mutex\u0027 in namespace \u0027std\u0027\nstd::lock_guard\u003cstd::mutex\u003e lock(device_map_lock);\n~~~~~^\n```\n\nPlease let us know if we can help. Thank you",
+      "revId": "32a7cfa88297ec17f000ea5fa28ac1a786bbbcbb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
