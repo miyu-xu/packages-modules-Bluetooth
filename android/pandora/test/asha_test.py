@@ -20,7 +20,7 @@ import logging
 
 from avatar import BumblePandoraDevice, PandoraDevice, PandoraDevices, asynchronous, bumble_server
 from bumble.gatt import GATT_ASHA_SERVICE
-from bumble.smp import PairingDelegate
+from bumble.pairing import PairingDelegate
 from bumble_experimental.asha import ASHAService
 from mobly import base_test, signals, test_runner
 from mobly.asserts import assert_equal  # type: ignore
@@ -31,7 +31,7 @@ from pandora.security_pb2 import LE_LEVEL3, LESecurityLevel
 from pandora_experimental.asha_grpc_aio import Asha as AioAsha, add_AshaServicer_to_server
 from typing import List, Optional, Tuple
 
-ASHA_UUID = GATT_ASHA_SERVICE.to_hex_str()
+ASHA_UUID = repr(GATT_ASHA_SERVICE)
 HISYCNID: List[int] = [0x01, 0x02, 0x03, 0x04, 0x5, 0x6, 0x7, 0x8]
 CAPABILITY: int = 0x0
 COMPLETE_LOCAL_NAME: str = "Bumble"
@@ -42,9 +42,6 @@ class Ear(enum.IntEnum):
 
     LEFT = 0
     RIGHT = 1
-
-    def __repr__(self) -> str:
-        return str(self.value)
 
 
 class ASHATest(base_test.BaseTestClass):  # type: ignore[misc]
@@ -58,7 +55,7 @@ class ASHATest(base_test.BaseTestClass):  # type: ignore[misc]
     def setup_class(self) -> None:
         # Register experimental bumble servicers hook.
         bumble_server.register_servicer_hook(
-            lambda bumble, server: add_AshaServicer_to_server(ASHAService(bumble.device), server)
+            lambda bumble, _, server: add_AshaServicer_to_server(ASHAService(bumble.device), server)
         )
 
         self.devices = PandoraDevices(self)
@@ -80,8 +77,8 @@ class ASHATest(base_test.BaseTestClass):  # type: ignore[misc]
             raise signals.TestSkip('Test require Bumble as reference device(s)')
 
         # ASHA hearing aid's IO capability is NO_OUTPUT_NO_INPUT
-        setattr(self.ref_left.device, "io_capability", PairingDelegate.NO_OUTPUT_NO_INPUT)
-        setattr(self.ref_right.device, "io_capability", PairingDelegate.NO_OUTPUT_NO_INPUT)
+        self.ref_left.server_config.io_capability = PairingDelegate.NO_OUTPUT_NO_INPUT
+        self.ref_right.server_config.io_capability = PairingDelegate.NO_OUTPUT_NO_INPUT
 
     async def ref_advertise_asha(
         self, ref_device: PandoraDevice, ref_address_type: OwnAddressType
