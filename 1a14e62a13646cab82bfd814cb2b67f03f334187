@@ -16,6 +16,23 @@
       "message": "Hi Charlie/David,\n\nSubmitted the changes as per comments.\nRequest you to provide your inputs.\n\nregards,\nFahad",
       "revId": "1a14e62a13646cab82bfd814cb2b67f03f334187",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ba559f8b_e473052d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2023-04-20T23:41:13Z",
+      "side": 1,
+      "message": "Could you add \"Bug: 279070490\" to the description?",
+      "revId": "1a14e62a13646cab82bfd814cb2b67f03f334187",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
