@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "677306c8_61075d2b",
+        "filename": "system/audio_hal_interface/aidl/le_audio_software_aidl.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 635,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2023-04-20T09:00:31Z",
+      "side": 0,
+      "message": "Could you please have the follow-up refactor to put all the interface handle inside audio_hal_interface layer?\n\n1. Check the interface is hidl/aidl in le_audio_software.cc\n2. Add the new version in hal_version_manager.cc?",
+      "range": {
+        "startLine": 635,
+        "startChar": 0,
+        "endLine": 635,
+        "endChar": 62
+      },
+      "revId": "08cd92ae75f5e575bce000aea12cc69aaa33a39a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
