@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9303088f_5f650dfc",
+        "filename": "android/app/src/com/android/bluetooth/telephony/BluetoothInCallService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 987,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-04-20T10:57:14Z",
+      "side": 1,
+      "message": "For HFP we do something like this.\nShouldn\u0027t we have similar for TBS?",
+      "revId": "1f01af69bffb32761f737758e6d3ae7dd3befe03",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
