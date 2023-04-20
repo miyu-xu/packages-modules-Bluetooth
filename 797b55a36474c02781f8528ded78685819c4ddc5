@@ -16,6 +16,24 @@
       "message": "This should be fixed with proper usage of the le create connection rather than this workaround.",
       "revId": "797b55a36474c02781f8528ded78685819c4ddc5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "95ccb16d_e1e9a3c7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-04-20T22:58:55Z",
+      "side": 1,
+      "message": "+1",
+      "parentUuid": "cdfcaa7f_f8bb945e",
+      "revId": "797b55a36474c02781f8528ded78685819c4ddc5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
