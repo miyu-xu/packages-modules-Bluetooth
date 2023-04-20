@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cda30d94_34a63197",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2023-04-20T23:42:31Z",
+      "side": 1,
+      "message": "aosp use:\n```\nBug:264969525\n```",
+      "revId": "f6f12758c64953d6cd0ce9f83dca7eee94376410",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
