@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "26c47a6b_56aa7676",
+        "filename": "system/audio_hal_interface/aidl/client_interface_aidl.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 262,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2023-04-20T04:05:47Z",
+      "side": 1,
+      "message": "Could you define the invalid version instead of returning value to increase the readability?",
+      "range": {
+        "startLine": 262,
+        "startChar": 21,
+        "endLine": 262,
+        "endChar": 23
+      },
+      "revId": "23688ae6d1fe329c97b78898a11964b1b7904991",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d43bef1d_f45fff6d",
+        "filename": "system/bta/le_audio/codec_manager.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 457,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2023-04-20T04:05:47Z",
+      "side": 1,
+      "message": "Please define the error",
+      "range": {
+        "startLine": 457,
+        "startChar": 11,
+        "endLine": 457,
+        "endChar": 13
+      },
+      "revId": "23688ae6d1fe329c97b78898a11964b1b7904991",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2f58754b_1086be99",
+        "filename": "system/bta/le_audio/codec_manager.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2023-04-20T04:05:47Z",
+      "side": 1,
+      "message": "Could we remove the aidl api with the codec manager in the follow-up refactor?",
+      "range": {
+        "startLine": 73,
+        "startChar": 2,
+        "endLine": 73,
+        "endChar": 47
+      },
+      "revId": "23688ae6d1fe329c97b78898a11964b1b7904991",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
