@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "93500ba8_207a2b23",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-04-20T19:56:00Z",
+      "side": 1,
+      "message": "The linked bug is marked as fixed and it\u0027s not clear to me from the bug why this is needed. \n\nCan you please clarify the need for this change? Thanks!",
+      "revId": "5f730b1b294b0ba54c829e64b05e2ce509c4bc48",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4b1e642c_9a9af3cd",
+        "filename": "system/stack/btm/btm_ble_gap.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 3278,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-04-20T19:56:00Z",
+      "side": 1,
+      "message": "Should this be called if status !\u003d HCI_SUCCESS?\n\nAlso do we clean up the cached command on failure or disconnect?",
+      "range": {
+        "startLine": 3278,
+        "startChar": 2,
+        "endLine": 3278,
+        "endChar": 48
+      },
+      "revId": "5f730b1b294b0ba54c829e64b05e2ce509c4bc48",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
