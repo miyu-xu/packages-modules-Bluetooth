@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "567dc96d_eea75dbc",
+        "filename": "system/bta/ag/bta_ag_cmd.cc",
+        "patchSetId": 39
+      },
+      "lineNbr": 1838,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-04-20T23:02:01Z",
+      "side": 1,
+      "message": "I think it might be better not to in this case as it would necessitate defining a new string for each case",
+      "parentUuid": "3daf4461_df751954",
+      "range": {
+        "startLine": 1838,
+        "startChar": 52,
+        "endLine": 1838,
+        "endChar": 75
+      },
+      "revId": "2337ab8bd63ea759529652dd87d684fa105c546a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e60ac96a_55f9e656",
         "filename": "system/bta/ag/bta_ag_cmd.cc",
         "patchSetId": 39
@@ -37,6 +61,30 @@
       "writtenOn": "2023-04-20T20:18:11Z",
       "side": 1,
       "message": "I think maybe this part should be left outside the function, because right now it is only used in `BTA_AG_AT_CHUP_EVT` and `BTA_AG_LOCAL_EVT_BCC`. Open to others\u0027 opinions as well",
+      "range": {
+        "startLine": 1839,
+        "startChar": 2,
+        "endLine": 1843,
+        "endChar": 3
+      },
+      "revId": "2337ab8bd63ea759529652dd87d684fa105c546a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c7c8750f_0f1bad42",
+        "filename": "system/bta/ag/bta_ag_cmd.cc",
+        "patchSetId": 39
+      },
+      "lineNbr": 1843,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-04-20T23:02:01Z",
+      "side": 1,
+      "message": "Whoops, didn\u0027t realize it was isolated to that. Moved it back to just BTA_AG_LOCAL_EVT_BCC",
+      "parentUuid": "e60ac96a_55f9e656",
       "range": {
         "startLine": 1839,
         "startChar": 2,
