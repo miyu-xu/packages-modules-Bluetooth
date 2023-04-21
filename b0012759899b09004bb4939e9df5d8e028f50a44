@@ -16,6 +16,24 @@
       "message": "-2 since I want BCST test result on this CL before submitting.\nBut I would still appreciate early review from you",
       "revId": "b0012759899b09004bb4939e9df5d8e028f50a44",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "baf90e21_40230cfd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-04-21T01:04:52Z",
+      "side": 1,
+      "message": "No issue on local test.",
+      "parentUuid": "32cb8158_5851b196",
+      "revId": "b0012759899b09004bb4939e9df5d8e028f50a44",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
