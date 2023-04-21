@@ -58,6 +58,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b477425b_bf8e3ead",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 241,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-04-21T04:21:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a8766396_d4e8e920",
+      "range": {
+        "startLine": 241,
+        "startChar": 52,
+        "endLine": 241,
+        "endChar": 55
+      },
+      "revId": "8b1e63a2f8fb4d7a467195c5b2ee48293b8bce04",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "62877e63_082ec82a",
@@ -71,6 +95,30 @@
       "writtenOn": "2023-04-20T04:48:00Z",
       "side": 1,
       "message": "Maybe use `address` so it can perform the autocomplete?",
+      "range": {
+        "startLine": 242,
+        "startChar": 54,
+        "endLine": 242,
+        "endChar": 58
+      },
+      "revId": "8b1e63a2f8fb4d7a467195c5b2ee48293b8bce04",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9ec19fc9_948241e6",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-04-21T04:21:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "62877e63_082ec82a",
       "range": {
         "startLine": 242,
         "startChar": 54,
