@@ -62,6 +62,30 @@
       },
       "revId": "4e5cecedf3c6502c07ad32384e709f5f617953b7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c05d1533_0e3e72d5",
+        "filename": "system/btif/src/btif_hf.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 1523,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-04-21T04:11:12Z",
+      "side": 1,
+      "message": "After discussion with the team, do_in_main_thread is supposed to use based on structure design, but based on current code, do_in_jni_thread should be used.",
+      "parentUuid": "62051461_37acd9b7",
+      "range": {
+        "startLine": 1523,
+        "startChar": 2,
+        "endLine": 1523,
+        "endChar": 18
+      },
+      "revId": "4e5cecedf3c6502c07ad32384e709f5f617953b7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
