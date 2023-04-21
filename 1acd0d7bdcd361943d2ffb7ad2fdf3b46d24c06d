@@ -179,6 +179,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "96aef669_4f661915",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_qa.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2023-04-21T02:27:04Z",
+      "side": 1,
+      "message": "In my opinion, reading from bluetooth properties is not a problem. You may split patch like this into two ones next time.",
+      "parentUuid": "07a91c7a_1c4d9baf",
+      "revId": "1acd0d7bdcd361943d2ffb7ad2fdf3b46d24c06d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "613543af_e2cc19f3",
         "filename": "system/gd/rust/linux/stack/src/bluetooth_qa.rs",
         "patchSetId": 3
