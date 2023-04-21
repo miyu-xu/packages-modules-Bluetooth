@@ -213,6 +213,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f1f168b5_4e26c0d4",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_qa.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2023-04-21T07:13:03Z",
+      "side": 1,
+      "message": "It makes sense to cache disc_mode for new QA interface then. Thanks for the clarification.",
+      "parentUuid": "b9f60c9f_2d32cd4f",
+      "revId": "1acd0d7bdcd361943d2ffb7ad2fdf3b46d24c06d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "613543af_e2cc19f3",
