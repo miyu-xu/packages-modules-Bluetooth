@@ -741,7 +741,7 @@ impl Bluetooth {
     }
 
     /// Returns adapter's discoverable mode.
-    pub fn get_discoverable_mode(&self) -> BtDiscMode {
+    pub fn get_discoverable_mode_internal(&self) -> BtDiscMode {
         let off_mode = BtDiscMode::NonDiscoverable;
 
         match self.properties.get(&BtPropertyType::AdapterScanMode) {
@@ -759,7 +759,7 @@ impl Bluetooth {
 
     /// Caches the discoverable mode into BluetoothQA.
     pub fn cache_discoverable_mode_into_qa(&self) {
-        let disc_mode = self.get_discoverable_mode();
+        let disc_mode = self.get_discoverable_mode_internal();
 
         let txl = self.tx.clone();
         tokio::spawn(async move {

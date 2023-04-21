@@ -7,6 +7,9 @@ use tokio::sync::mpsc::Sender;
 /// Defines the Qualification API
 pub trait IBluetoothQA {
     fn add_media_player(&self, name: String, browsing_supported: bool);
+
+    /// Returns adapter's discoverable mode.
+    fn get_discoverable_mode(&self) -> BtDiscMode;
 }
 
 pub struct BluetoothQA {
@@ -30,5 +33,9 @@ impl IBluetoothQA for BluetoothQA {
         tokio::spawn(async move {
             let _ = txl.send(Message::QaAddMediaPlayer(name, browsing_supported)).await;
         });
+    }
+
+    fn get_discoverable_mode(&self) -> BtDiscMode {
+        self.disc_mode.clone()
     }
 }

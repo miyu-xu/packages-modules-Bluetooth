@@ -2269,4 +2269,9 @@ impl IBluetoothQA for BluetoothQADBus {
     fn add_media_player(&self, name: String, browsing_supported: bool) {
         dbus_generated!()
     }
+
+    #[dbus_method("GetDiscoverableMode")]
+    fn get_discoverable_mode(&self) -> BtDiscMode {
+        dbus_generated!()
+    }
 }
