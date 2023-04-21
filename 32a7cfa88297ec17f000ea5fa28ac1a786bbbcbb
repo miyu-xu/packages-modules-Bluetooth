@@ -52,6 +52,24 @@
       "parentUuid": "52619323_a9e8a560",
       "revId": "32a7cfa88297ec17f000ea5fa28ac1a786bbbcbb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "96848eb4_fab98c5b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 21
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1984885
+      },
+      "writtenOn": "2023-04-21T02:55:14Z",
+      "side": 1,
+      "message": "ok, please modify the floss build error on your side, thanks so much\n\n\nAnd I have run the atest you mentioned above, there are some doubt, and I need your help：\n1.atest avrcp_device_fuzz run fail and hint ：“No test found for: avrcp_device_fuzz”，and I have check the .bp file，the module avrcp_device_fuzz is cc_fuzz. Is not using atest, but other cmd\n2.when I run atest net_test_btif_rc, there are some error,and I donn\u0027t known how to fix it:\nld.lld: error: undefined symbol: google::protobuf::internal::ArenaStringPtr::Set(std::__1::basic_string\u003cchar, std::__1::char_traits\u003cchar\u003e, std::__1::allocator\u003cchar\u003e\u003e const\u0026, google::protobuf::Arena*)\nld.lld: error: undefined symbol: google::protobuf::internal::ThreadSafeArena::~ThreadSafeArena()\nld.lld: error: undefined symbol: vtable for google::protobuf::MessageLite\nld.lld: error: undefined symbol: google::protobuf::internal::RepeatedPtrFieldBase::DestroyProtos()\n...",
+      "parentUuid": "f92f4215_1541c4f2",
+      "revId": "32a7cfa88297ec17f000ea5fa28ac1a786bbbcbb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
