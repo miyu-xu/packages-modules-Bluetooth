@@ -86,6 +86,24 @@
       "message": "Resolve the presubmit then ping me for approvals",
       "revId": "cc9efc262bfa9532133313ae827139ea494f6f43",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "16659763_afb8708a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-04-21T17:43:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c54b4055_fe7fa0b1",
+      "revId": "cc9efc262bfa9532133313ae827139ea494f6f43",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
