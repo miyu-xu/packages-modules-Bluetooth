@@ -16,6 +16,24 @@
       "message": "aosp use:\n```\nBug:264969525\n```",
       "revId": "f6f12758c64953d6cd0ce9f83dca7eee94376410",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2eb4bb05_6568ecd2",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1963520
+      },
+      "writtenOn": "2023-04-21T17:38:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cda30d94_34a63197",
+      "revId": "f6f12758c64953d6cd0ce9f83dca7eee94376410",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
