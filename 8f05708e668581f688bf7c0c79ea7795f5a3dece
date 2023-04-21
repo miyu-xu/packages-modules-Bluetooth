@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "25c4b544_2a861b57",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1970930
+      },
+      "writtenOn": "2023-04-21T05:05:03Z",
+      "side": 1,
+      "message": "Hi Thomas,\n\nUpdated description with Bug id.\n\nregards,\nFahad",
+      "revId": "8f05708e668581f688bf7c0c79ea7795f5a3dece",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
