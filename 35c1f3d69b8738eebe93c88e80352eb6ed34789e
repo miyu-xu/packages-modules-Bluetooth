@@ -34,6 +34,24 @@
       "parentUuid": "f016fed4_916dcc5c",
       "revId": "35c1f3d69b8738eebe93c88e80352eb6ed34789e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "96528afd_deb67a66",
+        "filename": "framework/tests/bumble/Android.bp",
+        "patchSetId": 2
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1986325
+      },
+      "writtenOn": "2023-04-21T17:43:36Z",
+      "side": 1,
+      "message": "While running the test, I listed all files on disk, the bin file is not there.\n\n```\n./tmp/tf-workfolder14805350782444527066/tests-zip_3385212068347195058/host/testcases/bumble_pandora_server:\ntotal 4\n-rw-r--r-- 1 shell root 973 Apr 21 09:55 bumble_pandora_server.config\n```",
+      "parentUuid": "543b959f_72626d5a",
+      "revId": "35c1f3d69b8738eebe93c88e80352eb6ed34789e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
