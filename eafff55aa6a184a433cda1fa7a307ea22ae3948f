@@ -49,6 +49,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "47676456_cd9ec302",
+        "filename": "system/bta/le_audio/codec_interface.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2023-04-21T08:59:37Z",
+      "side": 1,
+      "message": "The idea was to create just a thin abstraction layer wrapping the encoder and nothing more - single responsibility. I consider it as a first step and any additional logic like selecting codec configurations based on PACs, calling in the configuration provider for the possible configuration from json file, etc. should be done on top of that I think.\n\nNote that we also have the CodecManager, which we could maybe eventually connect with this CodecInterface and build the logic you\u0027ve mentioned here.\n\nI\u0027m not saying this API is final. Quite the opposite, I think we will change it once we know the requirements for other codecs, but it would be nice to focus only on the codec abstraction with this one, and build additional logic around it rather than into it. I hope that makes sense. I\u0027m still open for other opinions though. We can discuss this further.",
+      "parentUuid": "83b9918e_8eccf28e",
+      "range": {
+        "startLine": 43,
+        "startChar": 5,
+        "endLine": 44,
+        "endChar": 51
+      },
+      "revId": "eafff55aa6a184a433cda1fa7a307ea22ae3948f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3aede428_e879b1a6",
         "filename": "system/bta/le_audio/codec_interface.h",
         "patchSetId": 1
@@ -66,6 +90,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6845da20_16c6c04e",
+        "filename": "system/bta/le_audio/codec_interface.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2023-04-21T08:59:37Z",
+      "side": 1,
+      "message": "They can both return through getDecodedSampled() and the output buffer parameter is optional. The idea was to eliminate the hassle of buffer management from the clients. For encoding two channels, we need two codec instances. However for encoding two channels for a single CIS use case, it is optimal to output the encoded data directly into the same ISO data buffer but with an offset to avoid additional memcpy. Therefore encode() has the optional output buffer and the offset parameter, which can be used instead of the internal one.",
+      "parentUuid": "3aede428_e879b1a6",
+      "revId": "eafff55aa6a184a433cda1fa7a307ea22ae3948f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9591150d_fb0335cd",
         "filename": "system/bta/le_audio/codec_interface.h",
         "patchSetId": 1
@@ -77,6 +119,30 @@
       "writtenOn": "2023-04-20T16:19:51Z",
       "side": 1,
       "message": "Some codec configuration want to use 24 bit samples.\nAlso can you please clarify the ownership of the decoded samples ?",
+      "range": {
+        "startLine": 56,
+        "startChar": 22,
+        "endLine": 56,
+        "endChar": 29
+      },
+      "revId": "eafff55aa6a184a433cda1fa7a307ea22ae3948f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d0756193_adcc5d8c",
+        "filename": "system/bta/le_audio/codec_interface.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2023-04-21T08:59:37Z",
+      "side": 1,
+      "message": "Hmm, ok then maybe we should have a uint8_t buffer. But then we probably still need to think about the memory alignment. Let me think about it.\n\nWhat do you exactly mean by `clarify the ownership`? This method returns the buffer reference, which I think implies that the buffer ownership is not transferred. The caller owns just the encoder instance for each channel, managed via unique_ptr, seems hassle-free and straight forward I think.\n\nIf the caller decides to provide the encode() method with the optional output buffer parameter, it is of course the caller who should make sure the buffer life time is correct (either managing the buffer itself, or managing the life time of the other codec instance from whom the output buffer was taken from).",
+      "parentUuid": "9591150d_fb0335cd",
       "range": {
         "startLine": 56,
         "startChar": 22,
