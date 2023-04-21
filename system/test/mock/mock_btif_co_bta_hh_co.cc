@@ -57,7 +57,7 @@ void bta_hh_co_get_rpt_rsp(uint8_t dev_handle, uint8_t status,
                            const uint8_t* p_rpt, uint16_t len) {
   inc_func_call_count(__func__);
 }
-void bta_hh_co_open(uint8_t dev_handle, uint8_t sub_class,
+bool bta_hh_co_open(uint8_t dev_handle, uint8_t sub_class,
                     tBTA_HH_ATTR_MASK attr_mask, uint8_t app_id) {
   inc_func_call_count(__func__);
 }
