@@ -3289,7 +3289,7 @@ static void btif_dm_ble_key_notif_evt(tBTA_DM_SP_KEY_NOTIF* p_ssp_key_notif) {
     dev_type = BT_DEVICE_TYPE_BLE;
   }
   btif_dm_update_ble_remote_properties(p_ssp_key_notif->bd_addr,
-                                       p_ssp_key_notif->bd_name,
+                                       p_ssp_key_notif->bd_name, NULL,
                                        (tBT_DEVICE_TYPE)dev_type);
   bd_addr = p_ssp_key_notif->bd_addr;
   memcpy(bd_name.name, p_ssp_key_notif->bd_name, BD_NAME_LEN);
@@ -3523,7 +3523,7 @@ static void btif_dm_ble_sec_req_evt(tBTA_DM_BLE_SEC_REQ* p_ble_req,
     dev_type = BT_DEVICE_TYPE_BLE;
   }
   btif_dm_update_ble_remote_properties(p_ble_req->bd_addr, p_ble_req->bd_name,
-                                       (tBT_DEVICE_TYPE)dev_type);
+                                       NULL, (tBT_DEVICE_TYPE)dev_type);
 
   RawAddress bd_addr = p_ble_req->bd_addr;
   memcpy(bd_name.name, p_ble_req->bd_name, BD_NAME_LEN);
@@ -3562,7 +3562,7 @@ static void btif_dm_ble_passkey_req_evt(tBTA_DM_PIN_REQ* p_pin_req) {
     dev_type = BT_DEVICE_TYPE_BLE;
   }
   btif_dm_update_ble_remote_properties(p_pin_req->bd_addr, p_pin_req->bd_name,
-                                       (tBT_DEVICE_TYPE)dev_type);
+                                       NULL, (tBT_DEVICE_TYPE)dev_type);
 
   RawAddress bd_addr = p_pin_req->bd_addr;
   memcpy(bd_name.name, p_pin_req->bd_name, BD_NAME_LEN);
@@ -3691,9 +3691,9 @@ static void btif_dm_ble_sc_oob_req_evt(tBTA_DM_SP_RMT_OOB* req_oob_type) {
 }
 
 void btif_dm_update_ble_remote_properties(const RawAddress& bd_addr,
-                                          BD_NAME bd_name,
+                                          BD_NAME bd_name, DEV_CLASS dev_class,
                                           tBT_DEVICE_TYPE dev_type) {
-  btif_update_remote_properties(bd_addr, bd_name, NULL, dev_type);
+  btif_update_remote_properties(bd_addr, bd_name, dev_class, dev_type);
 }
 
 void btif_dm_on_disable() {
