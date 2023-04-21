@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "de1286d9_a089ff44",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 3230,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2023-04-21T09:12:01Z",
+      "side": 1,
+      "message": "We should clear the dangling cached_channel pointer.",
+      "range": {
+        "startLine": 3227,
+        "startChar": 0,
+        "endLine": 3230,
+        "endChar": 43
+      },
+      "revId": "eafff55aa6a184a433cda1fa7a307ea22ae3948f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "66617205_50648c96",
         "filename": "system/bta/le_audio/codec_interface.h",
         "patchSetId": 1
