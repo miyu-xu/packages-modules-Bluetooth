@@ -62,11 +62,16 @@ void bta_hh_co_data(uint8_t dev_handle, uint8_t* p_rpt, uint16_t len,
  *                  opened, and application may do some device specific
  *                  initialization.
  *
- * Returns          void.
+ * Returns          True if platform specific initialization is successful
  *
  ******************************************************************************/
+<<<<<<< PATCH SET (eee714 Race condition in opening/closing of uhid file descriptor)
+extern bool bta_hh_co_open(uint8_t dev_handle, uint8_t sub_class,
+                           uint16_t attr_mask, uint8_t app_id);
+=======
 void bta_hh_co_open(uint8_t dev_handle, uint8_t sub_class, uint16_t attr_mask,
                     uint8_t app_id);
+>>>>>>> BASE      (9b5613 Merge "Handle service changed indication in HOGP host")
 
 /*******************************************************************************
  *
