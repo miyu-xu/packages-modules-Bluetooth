@@ -20,6 +20,8 @@ pub mod socket_manager;
 pub mod suspend;
 pub mod uuid;
 
+use bluetooth_qa::BluetoothQA;
+use bt_topshim::btif::BtDiscMode;
 use log::debug;
 use num_derive::{FromPrimitive, ToPrimitive};
 use std::sync::{Arc, Mutex};
@@ -127,6 +129,7 @@ pub enum Message {
 
     // Qualification Only
     QaAddMediaPlayer(String, bool),
+    QaOnDiscoverableModeChanged(BtDiscMode),
 }
 
 /// Represents suspend mode of a module.
@@ -163,6 +166,7 @@ impl Stack {
         bluetooth_socketmgr: Arc<Mutex<Box<BluetoothSocketManager>>>,
         bluetooth_admin: Arc<Mutex<Box<BluetoothAdmin>>>,
         bluetooth_dis: Arc<Mutex<Box<DeviceInformation>>>,
+        bluetooth_qa: Arc<Mutex<Box<BluetoothQA>>>,
     ) {
         loop {
             let m = rx.recv().await;
@@ -352,6 +356,9 @@ impl Stack {
                 // Qualification Only
                 Message::QaAddMediaPlayer(name, browsing_supported) => {
                     bluetooth_media.lock().unwrap().add_player(name, browsing_supported);
+                }
+                Message::QaOnDiscoverableModeChanged(mode) => {
+                    bluetooth_qa.lock().unwrap().handle_discoverable_mode_changed(mode);
                 }
             }
         }
