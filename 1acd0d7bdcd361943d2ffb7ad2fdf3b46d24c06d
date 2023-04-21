@@ -231,6 +231,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3167db69_a353adea",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_qa.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2023-04-21T08:22:49Z",
+      "side": 1,
+      "message": "Thanks, I\u0027ll go to abandon this one, please also help to +2 https://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/2554251 instead.",
+      "parentUuid": "f1f168b5_4e26c0d4",
+      "revId": "1acd0d7bdcd361943d2ffb7ad2fdf3b46d24c06d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "613543af_e2cc19f3",
