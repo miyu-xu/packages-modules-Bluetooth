@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7f324ce9_d220760c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-04-21T20:41:58Z",
+      "side": 1,
+      "message": "It was my understanding that any JNI call was coming from the same Java thread.\n\nIf we need to post all jni call on the jni thread, we have much more bigger issue than the cleanup.",
+      "range": {
+        "startLine": 10,
+        "startChar": 17,
+        "endLine": 10,
+        "endChar": 37
+      },
+      "revId": "f7afa641d3dc65faaa7a55c13b090537f169f79f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
