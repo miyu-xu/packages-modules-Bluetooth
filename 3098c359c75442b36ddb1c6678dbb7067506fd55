@@ -34,6 +34,24 @@
       "parentUuid": "54168335_e2d3bee0",
       "revId": "3098c359c75442b36ddb1c6678dbb7067506fd55",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "69c2131e_9768f614",
+        "filename": "system/stack/btm/btm_dev.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-04-21T16:01:55Z",
+      "side": 1,
+      "message": "Actually, I don\u0027t think that will work, as that will just clear out the *copy* of the pointer, not the actual one on the working scope.",
+      "parentUuid": "949e9ac8_c6aa7ba1",
+      "revId": "3098c359c75442b36ddb1c6678dbb7067506fd55",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
