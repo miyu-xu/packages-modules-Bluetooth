@@ -197,6 +197,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b9f60c9f_2d32cd4f",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_qa.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2023-04-21T06:10:43Z",
+      "side": 1,
+      "message": "Sorry, I split them into 2 patches and please take a look, thanks.\n\nAnother reason I cache it is because the new QA interface\u0027s message\nsystem does not return the return value. Therefore, it cannot be implemented in the same way as the legacy QA. What do you think in this case?\n\nCaches the discoverable mode\n: https://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/2554231\n\nAdds get_discoverable_mode into BluetoothQA: https://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/2554251",
+      "parentUuid": "96aef669_4f661915",
+      "revId": "1acd0d7bdcd361943d2ffb7ad2fdf3b46d24c06d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "613543af_e2cc19f3",
         "filename": "system/gd/rust/linux/stack/src/bluetooth_qa.rs",
         "patchSetId": 3
