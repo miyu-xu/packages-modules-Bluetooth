@@ -3510,19 +3510,29 @@ public class LeAudioService extends ProfileService {
         @Override
         public void startBroadcast(
                 BluetoothLeBroadcastSettings broadcastSettings, AttributionSource source) {
-            LeAudioService service = getService(source);
-            if (service != null) {
-                enforceBluetoothPrivilegedPermission(service);
-                service.createBroadcast(broadcastSettings);
+            try {
+                LeAudioService service = getService(source);
+                if (service != null) {
+                    enforceBluetoothPrivilegedPermission(service);
+                    service.createBroadcast(broadcastSettings);
+                }
+            } catch (SecurityException ex) {
+                Log.w(TAG, "startBroadcast - permission check failed!");
+                throw ex;
             }
         }
 
         @Override
         public void stopBroadcast(int broadcastId, AttributionSource source) {
-            LeAudioService service = getService(source);
-            if (service != null) {
-                enforceBluetoothPrivilegedPermission(service);
-                service.stopBroadcast(broadcastId);
+            try {
+                LeAudioService service = getService(source);
+                if (service != null) {
+                    enforceBluetoothPrivilegedPermission(service);
+                    service.stopBroadcast(broadcastId);
+                }
+            } catch (SecurityException ex) {
+                Log.w(TAG, "stopBroadcast - permission check failed!");
+                throw ex;
             }
         }
 
@@ -3531,10 +3541,15 @@ public class LeAudioService extends ProfileService {
                 int broadcastId,
                 BluetoothLeBroadcastSettings broadcastSettings,
                 AttributionSource source) {
-            LeAudioService service = getService(source);
-            if (service != null) {
-                enforceBluetoothPrivilegedPermission(service);
-                service.updateBroadcast(broadcastId, broadcastSettings);
+            try {
+                LeAudioService service = getService(source);
+                if (service != null) {
+                    enforceBluetoothPrivilegedPermission(service);
+                    service.updateBroadcast(broadcastId, broadcastSettings);
+                }
+            } catch (SecurityException ex) {
+                Log.w(TAG, "updateBroadcast - permission check failed!");
+                throw ex;
             }
         }
 
