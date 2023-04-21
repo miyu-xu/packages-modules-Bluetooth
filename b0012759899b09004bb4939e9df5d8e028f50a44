@@ -34,6 +34,23 @@
       "parentUuid": "32cb8158_5851b196",
       "revId": "b0012759899b09004bb4939e9df5d8e028f50a44",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "37f66372_616891e0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-04-21T23:36:42Z",
+      "side": 1,
+      "message": "I ran:\n```\nwhile adb shell am switch-user 0 \u0026\u0026 echo \"0\"; do sleep 1 \u0026\u0026 adb shell am switch-user 10 \u0026\u0026 echo \"10\" \u0026\u0026 sleep 1; done\n```\nduring 30 min without issue.\n\nI test with a 5 sec sleep too during ~15 min\n\n\nThe only crash was in cpuMonitorService \n\nI am confident enough to merge this CL and to use the BCST setup to check for regression",
+      "revId": "b0012759899b09004bb4939e9df5d8e028f50a44",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
