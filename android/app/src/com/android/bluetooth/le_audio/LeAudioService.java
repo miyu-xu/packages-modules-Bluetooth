@@ -3509,20 +3509,34 @@ public class LeAudioService extends ProfileService {
 
         @Override
         public void startBroadcast(
-                BluetoothLeBroadcastSettings broadcastSettings, AttributionSource source) {
-            LeAudioService service = getService(source);
-            if (service != null) {
-                enforceBluetoothPrivilegedPermission(service);
-                service.createBroadcast(broadcastSettings);
+                BluetoothLeBroadcastSettings broadcastSettings, AttributionSource source,
+                SynchronousResultReceiver receiver) {
+            try {
+                LeAudioService service = getService(source);
+                if (service != null) {
+                    enforceBluetoothPrivilegedPermission(service);
+                    service.createBroadcast(broadcastSettings);
+                }
+                receiver.send(null);
+            } catch (RuntimeException ex) {
+                Log.i(TAG, "startBroadcast - permission check failed!");
+                receiver.propagateException(ex);
             }
         }
 
         @Override
-        public void stopBroadcast(int broadcastId, AttributionSource source) {
-            LeAudioService service = getService(source);
-            if (service != null) {
-                enforceBluetoothPrivilegedPermission(service);
-                service.stopBroadcast(broadcastId);
+        public void stopBroadcast(int broadcastId, AttributionSource source,
+                SynchronousResultReceiver receiver) {
+            try {
+                LeAudioService service = getService(source);
+                if (service != null) {
+                    enforceBluetoothPrivilegedPermission(service);
+                    service.stopBroadcast(broadcastId);
+                }
+                receiver.send(null);
+            } catch (RuntimeException ex) {
+                Log.i(TAG, "stopBroadcast - permission check failed!");
+                receiver.propagateException(ex);
             }
         }
 
@@ -3530,11 +3544,18 @@ public class LeAudioService extends ProfileService {
         public void updateBroadcast(
                 int broadcastId,
                 BluetoothLeBroadcastSettings broadcastSettings,
-                AttributionSource source) {
-            LeAudioService service = getService(source);
-            if (service != null) {
-                enforceBluetoothPrivilegedPermission(service);
-                service.updateBroadcast(broadcastId, broadcastSettings);
+                AttributionSource source,
+                SynchronousResultReceiver receiver) {
+            try {
+                LeAudioService service = getService(source);
+                if (service != null) {
+                    enforceBluetoothPrivilegedPermission(service);
+                    service.updateBroadcast(broadcastId, broadcastSettings);
+                }
+                receiver.send(null);
+            } catch (RuntimeException ex) {
+                Log.i(TAG, "updateBroadcast - permission check failed!");
+                receiver.propagateException(ex);
             }
         }
 
