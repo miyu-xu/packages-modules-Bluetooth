@@ -21,6 +21,7 @@ filegroup {
     srcs: [
         ":statslog-bluetooth-java-gen",
         "src/**/*.java",
+        "src/**/*.kt",
     ],
     exclude_srcs: [
         "src/com/android/server/bluetooth/ChangeIds.java",
