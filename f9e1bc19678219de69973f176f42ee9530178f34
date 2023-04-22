@@ -46,6 +46,30 @@
       },
       "revId": "f9e1bc19678219de69973f176f42ee9530178f34",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f271dc95_e89264bc",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 6471,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-04-22T01:17:46Z",
+      "side": 1,
+      "message": "I think we should keep this one yes.",
+      "parentUuid": "71004158_80c08576",
+      "range": {
+        "startLine": 6471,
+        "startChar": 16,
+        "endLine": 6471,
+        "endChar": 69
+      },
+      "revId": "f9e1bc19678219de69973f176f42ee9530178f34",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
