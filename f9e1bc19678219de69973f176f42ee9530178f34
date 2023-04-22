@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a7ff0284_b796b0a6",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 6471,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-04-22T00:19:14Z",
+      "side": 1,
+      "message": "If we are STATE_TURNING_OFF shouldn\u0027t we be able to do it ? We have plenty of time since we need to hit BLE_ON then BLE_TURNING_OFF then STATE_OFF before there is nothing to call.\n\nOr is there some case where we are skipping this flow ?",
+      "range": {
+        "startLine": 6471,
+        "startChar": 16,
+        "endLine": 6471,
+        "endChar": 69
+      },
+      "revId": "f9e1bc19678219de69973f176f42ee9530178f34",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
