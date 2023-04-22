@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "770e89de_16d1791c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-04-22T18:10:35Z",
+      "side": 1,
+      "message": "I would prefer to send the MSC if the remote does not send it, instead of forcing an upper layer to send it.\n\nI\u0027m adding +1 for an owner\u0027s vote to give the DRI (Rahul) the choice of what to do.  The way this is done won\u0027t fix the pts-bot tests without more work.",
+      "revId": "50e8bd83a2f62ab097029fd75e2d0a9654e7400c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
