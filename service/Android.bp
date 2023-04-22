@@ -20,7 +20,10 @@ filegroup {
     name: "services.bluetooth-sources",
     srcs: [
         ":statslog-bluetooth-java-gen",
-        "java/**/*.java",
+        "src/**/*.java",
+    ],
+    exclude_srcs: [
+        "src/com/android/server/bluetooth/ChangeIds.java",
     ],
     visibility: [
         "//frameworks/base/services",
