@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9bf1e11b_89b37eb3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-04-23T02:55:22Z",
+      "side": 1,
+      "message": "Why are we wrapping a pointer in a unique_ptr only to immediately unwrap it in the inner function",
+      "revId": "24fd38c63199b8838027557d75edfe003360c156",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
