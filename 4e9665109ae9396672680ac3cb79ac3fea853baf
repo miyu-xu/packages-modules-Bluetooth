@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8fe754c4_125e52de",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 2004310
+      },
+      "writtenOn": "2023-04-23T04:55:42Z",
+      "side": 1,
+      "message": "\"Creative Commons License\": \n\u003ca rel\u003d\"license\" href\u003d\"http://creativecommons.org/licenses/by/4.0/\"\u003e\u003cimg alt\u003d\"Creative Commons License\" style\u003d\"border-width:0\" src\u003d\"https://i.creativecommons.org/l/by/4.0/88x31.png\" /\u003e\u003c/a\u003e\u003cbr /\u003eThis work is licensed under a \u003ca rel\u003d\"license\" href\u003d\"http://creativecommons.org/licenses/by/4.0/\"\u003eCreative Commons Attribution 4.0 International License\u003c/a\u003e. \n --\u003e",
+      "revId": "4e9665109ae9396672680ac3cb79ac3fea853baf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
