@@ -162,14 +162,14 @@ void BleScannerInterfaceImpl::Unregister(int scanner_id) {
 void BleScannerInterfaceImpl::Scan(bool start) {
   LOG(INFO) << __func__ << " in shim layer " <<  ((start) ? "started" : "stopped");
   bluetooth::shim::GetScanning()->Scan(start);
-  if (start && !btm_cb.ble_ctr_cb.is_ble_observe_active()) {
+  if (start && !btm_cb.ble_ctr_cb.is_ble_scan_active()) {
     btm_cb.neighbor.le_scan = {
         .start_time_ms = timestamper_in_milliseconds.GetTimestamp(),
         .results = 0,
     };
     BTM_LogHistory(kBtmLogTag, RawAddress::kEmpty, "Le scan started");
     btm_cb.ble_ctr_cb.set_ble_observe_active();
-  } else if (!start && btm_cb.ble_ctr_cb.is_ble_observe_active()) {
+  } else if (!start && btm_cb.ble_ctr_cb.is_ble_scan_active()) {
     // stopped
     const unsigned long long duration_timestamp =
         timestamper_in_milliseconds.GetTimestamp() -
@@ -182,7 +182,7 @@ void BleScannerInterfaceImpl::Scan(bool start) {
     btm_cb.neighbor.le_scan = {};
   } else {
     LOG_WARN("Invalid state: start:%d, current scan state: %d", start,
-             btm_cb.ble_ctr_cb.is_ble_observe_active());
+             btm_cb.ble_ctr_cb.is_ble_scan_active());
     return;
   }
 
