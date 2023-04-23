@@ -16,6 +16,23 @@
       "message": "Why are we wrapping a pointer in a unique_ptr only to immediately unwrap it in the inner function",
       "revId": "24fd38c63199b8838027557d75edfe003360c156",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f1d8f95b_af738fe7",
+        "filename": "system/stack/btm/btm_dev.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2023-04-23T16:02:29Z",
+      "side": 1,
+      "message": "Sorry that I was a lille confused, reset my review here.\n\nWith this way of change you have the same issue, as you mentioned,\nI think `release` only clears the copy of pointer saved internal `unique_ptr`.\n\nI am a little confused on what you want to do.",
+      "revId": "24fd38c63199b8838027557d75edfe003360c156",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
