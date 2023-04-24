@@ -46,6 +46,30 @@
       },
       "revId": "2320be8828f5a34573505c70396c7d2a7446e911",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ff8b1e42_6ff1653f",
+        "filename": "tools/rootcanal/config.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-04-24T21:43:06Z",
+      "side": 1,
+      "message": "That\u0027s one way to do it.  The reason I asked is because I could also imagine configuring and connecting until you had enough controllers.\n\nOne port:\n- Configure\n- Connect\n- Configure\n- Connect\n...\n\nI\u0027m wondering what the benefit of multiple ports is, compared to that.\n\nI\u0027m thinking about GRPC-based connections as well.",
+      "parentUuid": "fe9d8281_de27cdde",
+      "range": {
+        "startLine": 33,
+        "startChar": 17,
+        "endLine": 33,
+        "endChar": 25
+      },
+      "revId": "2320be8828f5a34573505c70396c7d2a7446e911",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
