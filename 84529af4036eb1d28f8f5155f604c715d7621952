@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "88448946_9659e9d8",
+        "filename": "system/stack/btm/btm_ble_gap.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 2267,
+      "author": {
+        "id": 1973670
+      },
+      "writtenOn": "2023-04-24T09:25:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5765c527_ad50334d",
+      "revId": "84529af4036eb1d28f8f5155f604c715d7621952",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a296c268_c69041f0",
@@ -41,6 +59,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ff58a3d1_38626ff9",
+        "filename": "system/stack/btm/btm_ble_gap.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 2408,
+      "author": {
+        "id": 1973670
+      },
+      "writtenOn": "2023-04-24T09:25:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a296c268_c69041f0",
+      "range": {
+        "startLine": 2403,
+        "startChar": 0,
+        "endLine": 2408,
+        "endChar": 19
+      },
+      "revId": "84529af4036eb1d28f8f5155f604c715d7621952",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "21e287bd_df68c1c3",
@@ -54,6 +96,30 @@
       "writtenOn": "2023-04-21T15:48:35Z",
       "side": 1,
       "message": "nit: supports",
+      "range": {
+        "startLine": 2423,
+        "startChar": 30,
+        "endLine": 2423,
+        "endChar": 37
+      },
+      "revId": "84529af4036eb1d28f8f5155f604c715d7621952",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "956a89c6_f3e99473",
+        "filename": "system/stack/btm/btm_ble_gap.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 2423,
+      "author": {
+        "id": 1973670
+      },
+      "writtenOn": "2023-04-24T09:25:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "21e287bd_df68c1c3",
       "range": {
         "startLine": 2423,
         "startChar": 30,
