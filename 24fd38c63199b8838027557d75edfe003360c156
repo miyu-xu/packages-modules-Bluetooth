@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d58b0752_1a1dcc6e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-04-24T16:22:53Z",
+      "side": 1,
+      "message": "To inform the reader that the pointer is consumed.\n\nI will revert to the original address of pointer to inform the reader the pointer is consumed.",
+      "parentUuid": "9bf1e11b_89b37eb3",
+      "revId": "24fd38c63199b8838027557d75edfe003360c156",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f1d8f95b_af738fe7",
@@ -31,6 +49,24 @@
       "writtenOn": "2023-04-23T16:02:29Z",
       "side": 1,
       "message": "Sorry that I was a lille confused, reset my review here.\n\nWith this way of change you have the same issue, as you mentioned,\nI think `release` only clears the copy of pointer saved internal `unique_ptr`.\n\nI am a little confused on what you want to do.",
+      "revId": "24fd38c63199b8838027557d75edfe003360c156",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "eaac9914_175035ee",
+        "filename": "system/stack/btm/btm_dev.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-04-24T16:22:53Z",
+      "side": 1,
+      "message": "```\nReleases the ownership of the managed object, if any.\n\nget() returns nullptr after the call.\n\nThe caller is responsible for deleting the object.\n```\n\nThis is exactly what I want.  Then `list_remove` will free the memory as `the caller responsible for deleting the object`",
+      "parentUuid": "f1d8f95b_af738fe7",
       "revId": "24fd38c63199b8838027557d75edfe003360c156",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
