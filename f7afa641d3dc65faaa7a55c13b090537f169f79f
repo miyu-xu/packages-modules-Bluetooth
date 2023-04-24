@@ -22,6 +22,30 @@
       },
       "revId": "f7afa641d3dc65faaa7a55c13b090537f169f79f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "993d250a_626d0593",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2023-04-24T10:45:40Z",
+      "side": 1,
+      "message": "This is a sample fix for this issue. Please feel free to propose solutions to fix the race condition here.",
+      "parentUuid": "7f324ce9_d220760c",
+      "range": {
+        "startLine": 10,
+        "startChar": 17,
+        "endLine": 10,
+        "endChar": 37
+      },
+      "revId": "f7afa641d3dc65faaa7a55c13b090537f169f79f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
