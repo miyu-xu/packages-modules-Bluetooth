@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1609cc6e_87954160",
+        "filename": "android/pandora/server/src/com/android/pandora/MediaPlayerBrowserService.kt",
+        "patchSetId": 1
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-04-24T12:44:10Z",
+      "side": 1,
+      "message": "Yes, thank you ; )",
+      "parentUuid": "0e097e39_20793dc6",
+      "revId": "463df13249c198a920324d15ecd7ab27baecf99c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "35c689ba_718c206c",
         "filename": "android/pandora/server/src/com/android/pandora/MediaPlayerBrowserService.kt",
         "patchSetId": 1
@@ -73,6 +91,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5c7c44b0_5623c4b0",
+        "filename": "android/pandora/server/src/com/android/pandora/MediaPlayerBrowserService.kt",
+        "patchSetId": 1
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-04-24T12:44:10Z",
+      "side": 1,
+      "message": "I copied it from here:\nhttps://cs.android.com/android/platform/superproject/+/master:development/samples/ApiDemos/res/raw/test_cbr.mp3.\nAdded a comment in the code.",
+      "parentUuid": "0ca794d9_d94f2293",
+      "revId": "463df13249c198a920324d15ecd7ab27baecf99c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "db0a4dc9_368b7bc2",
         "filename": "android/pandora/server/src/com/android/pandora/MediaPlayerBrowserService.kt",
         "patchSetId": 1
@@ -84,6 +120,30 @@
       "writtenOn": "2023-04-18T00:45:16Z",
       "side": 1,
       "message": "Could we move that to `play` ?",
+      "range": {
+        "startLine": 161,
+        "startChar": 4,
+        "endLine": 161,
+        "endChar": 21
+      },
+      "revId": "463df13249c198a920324d15ecd7ab27baecf99c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "faca08f7_d46113ce",
+        "filename": "android/pandora/server/src/com/android/pandora/MediaPlayerBrowserService.kt",
+        "patchSetId": 1
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-04-24T12:44:10Z",
+      "side": 1,
+      "message": "I tried doing it like that, but it broke some other tests. Also the mp3 playback is only required in one test, so it may not be necessary to play it each time \"Play\" is invoked.",
+      "parentUuid": "db0a4dc9_368b7bc2",
       "range": {
         "startLine": 161,
         "startChar": 4,
@@ -119,6 +179,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1ef50dac_5903030a",
+        "filename": "android/pandora/server/src/com/android/pandora/MediaPlayerBrowserService.kt",
+        "patchSetId": 1
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-04-24T12:44:10Z",
+      "side": 1,
+      "message": "It is done like this just for the test purpose as the test does not rely on any specific setting - just the change of this setting. Here it is some kind of mechanism to always set something different then there already is to assure that the setting change will be propagated properly to the end. \n\nFor example: I read mode ALL -\u003e I set GROUP, I read NONE -\u003e I set ALL (or could be whatever). If I read mode ALL and tried to set mode ALL, the setting would not change and would silently return.\n\nIt might not be the best approach, let me know if you would have done it differently ;)",
+      "parentUuid": "4f5c6291_fdbe0a25",
+      "range": {
+        "startLine": 168,
+        "startChar": 102,
+        "endLine": 168,
+        "endChar": 118
+      },
+      "revId": "463df13249c198a920324d15ecd7ab27baecf99c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2c4aff1e_42964966",
         "filename": "pandora/interfaces/pandora_experimental/mediaplayer.proto",
         "patchSetId": 1
@@ -130,6 +214,30 @@
       "writtenOn": "2023-04-18T00:44:37Z",
       "side": 1,
       "message": "Should we take the ShuffleMode as input ?",
+      "range": {
+        "startLine": 20,
+        "startChar": 6,
+        "endLine": 20,
+        "endChar": 20
+      },
+      "revId": "463df13249c198a920324d15ecd7ab27baecf99c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a9686583_07018d24",
+        "filename": "pandora/interfaces/pandora_experimental/mediaplayer.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-04-24T12:44:10Z",
+      "side": 1,
+      "message": "As in the comment above",
+      "parentUuid": "2c4aff1e_42964966",
       "range": {
         "startLine": 20,
         "startChar": 6,
