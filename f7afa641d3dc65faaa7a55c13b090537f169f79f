@@ -46,6 +46,30 @@
       },
       "revId": "f7afa641d3dc65faaa7a55c13b090537f169f79f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e18ef8c2_4d3be64c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-04-24T18:44:34Z",
+      "side": 1,
+      "message": "It looks like a lot of the code is done in the jni_thread instead of the main_thread. This looks wrong since we are cleaning native code.\n\nI would prefer the code to be updated to change this.",
+      "parentUuid": "993d250a_626d0593",
+      "range": {
+        "startLine": 10,
+        "startChar": 17,
+        "endLine": 10,
+        "endChar": 37
+      },
+      "revId": "f7afa641d3dc65faaa7a55c13b090537f169f79f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
