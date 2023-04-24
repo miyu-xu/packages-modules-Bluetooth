@@ -52,6 +52,24 @@
       "parentUuid": "543b959f_72626d5a",
       "revId": "35c1f3d69b8738eebe93c88e80352eb6ed34789e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3694ab9c_64f00157",
+        "filename": "framework/tests/bumble/Android.bp",
+        "patchSetId": 2
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1986325
+      },
+      "writtenOn": "2023-04-24T17:02:04Z",
+      "side": 1,
+      "message": "https://android-build.googleplex.com/builds/abtd/run/L66800000960109270\n\n\nThe file is in the device-tests.zip and general-tests.zip, but while listing the working directory, the bumble_pandora_server binary is not there.",
+      "parentUuid": "96528afd_deb67a66",
+      "revId": "35c1f3d69b8738eebe93c88e80352eb6ed34789e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
