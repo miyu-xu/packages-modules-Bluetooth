@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f438a194_91ba6d4f",
+        "filename": "service/src/com/android/server/bluetooth/ChangeIds.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-04-24T23:38:47Z",
+      "side": 1,
+      "message": "nit: No (C) in the latest copyright notices",
+      "range": {
+        "startLine": 2,
+        "startChar": 13,
+        "endLine": 2,
+        "endChar": 16
+      },
+      "revId": "b9ab2dde3d9b8480c59fb58a5f902a27e5b36ec9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
