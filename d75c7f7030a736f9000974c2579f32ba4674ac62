@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3b6937bd_5f08962e",
+        "filename": "tools/ktfmt",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-04-24T22:01:22Z",
+      "side": 1,
+      "message": "shouldn\u0027t we use `REPO_ROOT` variable ? and do we need to put it in a external file ?",
+      "range": {
+        "startLine": 5,
+        "startChar": 1,
+        "endLine": 5,
+        "endChar": 5
+      },
+      "revId": "d75c7f7030a736f9000974c2579f32ba4674ac62",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
