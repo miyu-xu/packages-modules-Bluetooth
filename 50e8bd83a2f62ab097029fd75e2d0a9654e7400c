@@ -16,6 +16,24 @@
       "message": "I would prefer to send the MSC if the remote does not send it, instead of forcing an upper layer to send it.\n\nI\u0027m adding +1 for an owner\u0027s vote to give the DRI (Rahul) the choice of what to do.  The way this is done won\u0027t fix the pts-bot tests without more work.",
       "revId": "50e8bd83a2f62ab097029fd75e2d0a9654e7400c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b4392925_a150ac81",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-04-24T03:11:50Z",
+      "side": 1,
+      "message": "Hi @mylesgw@google.com, thanks for your comment. Currently it is used for passing PTS tests and verified locally. To make pts-bot work, we may add a follow-up fix later.\n\nHi @aryarahul@google.com, the qualification deadline is approaching so we would like to land it as early as possible. Thanks for your help!",
+      "parentUuid": "770e89de_16d1791c",
+      "revId": "50e8bd83a2f62ab097029fd75e2d0a9654e7400c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
