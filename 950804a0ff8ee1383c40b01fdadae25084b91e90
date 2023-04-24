@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a44242a9_69fd68bc",
+        "filename": "system/btif/src/btif_rc.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 5275,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-04-24T18:01:47Z",
+      "side": 1,
+      "message": "Please use brace initialization:\n```\ntransaction_set-\u003etransaction[lbl] \u003d  {\n    .label \u003d lbl\n    .in_use \u003d false,\n    .context \u003d {\n      .label \u003d MAX_LABEL,\n      .opcode \u003d AVRC_OP_INVALID,\n      .command \u003d {0},\n     }\n    .timer \u003d nullptr;\n};\n```",
+      "range": {
+        "startLine": 5269,
+        "startChar": 3,
+        "endLine": 5275,
+        "endChar": 54
+      },
+      "revId": "950804a0ff8ee1383c40b01fdadae25084b91e90",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "43b9b623_8ba39e69",
+        "filename": "system/btif/src/btif_rc.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 5563,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-04-24T18:01:47Z",
+      "side": 1,
+      "message": "Please use language idioms to initialize or assign:\n```\ntBTA_AV_META_MSG meta_msg \u003d { .rc_handle \u003d p_dev-\u003erc_handle };\n```\n\nSame above",
+      "range": {
+        "startLine": 5563,
+        "startChar": 2,
+        "endLine": 5563,
+        "endChar": 9
+      },
+      "revId": "950804a0ff8ee1383c40b01fdadae25084b91e90",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
