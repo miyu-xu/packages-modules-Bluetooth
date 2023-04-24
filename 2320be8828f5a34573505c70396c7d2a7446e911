@@ -67,6 +67,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5fc62a9b_b2d58067",
+        "filename": "tools/rootcanal/config.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-04-24T22:10:03Z",
+      "side": 1,
+      "message": "When it\u0027s a broken address, why let it have that quirk?\n\nbb:aa:dd:bb:aa:dd is my favorite :)",
+      "parentUuid": "29946be6_18960c90",
+      "range": {
+        "startLine": 24,
+        "startChar": 7,
+        "endLine": 24,
+        "endChar": 33
+      },
+      "revId": "2320be8828f5a34573505c70396c7d2a7446e911",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "01afeb02_3971e3c8",
         "filename": "tools/rootcanal/config.proto",
         "patchSetId": 3
@@ -208,6 +232,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "013b35d9_a52d0753",
+        "filename": "tools/rootcanal/config.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-04-24T22:10:03Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "a557ac99_3226f801",
+      "range": {
+        "startLine": 33,
+        "startChar": 17,
+        "endLine": 33,
+        "endChar": 25
+      },
+      "revId": "2320be8828f5a34573505c70396c7d2a7446e911",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "01d78a55_d4118890",
@@ -239,6 +287,24 @@
       "side": 1,
       "message": "I could add that to the quirks for commands that we want enabled / disabled individually. I don\u0027t think we want to add a generic way of configuring this.",
       "parentUuid": "01d78a55_d4118890",
+      "revId": "2320be8828f5a34573505c70396c7d2a7446e911",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e75e2f96_64c78615",
+        "filename": "tools/rootcanal/config.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-04-24T22:10:03Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "c2f151ba_f0a7c144",
       "revId": "2320be8828f5a34573505c70396c7d2a7446e911",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
