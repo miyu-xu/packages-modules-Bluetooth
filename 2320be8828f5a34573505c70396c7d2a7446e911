@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "01afeb02_3971e3c8",
+        "filename": "tools/rootcanal/config.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-04-24T21:34:11Z",
+      "side": 1,
+      "message": "Does each connection to this port give you a controller of this type, or are we changing things so that you need a port per controller?",
+      "range": {
+        "startLine": 33,
+        "startChar": 17,
+        "endLine": 33,
+        "endChar": 25
+      },
+      "revId": "2320be8828f5a34573505c70396c7d2a7446e911",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
