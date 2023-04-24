@@ -22,6 +22,30 @@
       },
       "revId": "ce9fb217f31257e81213e3ebbae63babea3c58eb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "75127c35_9ed149bd",
+        "filename": "android/app/src/com/android/bluetooth/opp/BluetoothOppService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 366,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2023-04-24T09:00:01Z",
+      "side": 1,
+      "message": "It\u0027s sent from either BluetoothAdapter state receiver or when service stop. The purpose is to stop the listener, which was started in here\nhttps://source.corp.google.com/android-internal/packages/modules/Bluetooth/android/app/src/com/android/bluetooth/opp/BluetoothOppService.java;bpv\u003d1;bpt\u003d1;rcl\u003deeae447b7baf32568765801cb304d72dadfcd739;l\u003d575\n\nSo we should stop it even if the service is not started",
+      "parentUuid": "9ac16a71_703ad60c",
+      "range": {
+        "startLine": 366,
+        "startChar": 21,
+        "endLine": 366,
+        "endChar": 34
+      },
+      "revId": "ce9fb217f31257e81213e3ebbae63babea3c58eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
