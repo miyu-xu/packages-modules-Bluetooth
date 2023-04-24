@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4b2ee23a_864d7a84",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/IncomingFileConfirmActivityTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-04-24T05:58:42Z",
+      "side": 1,
+      "message": "all upercase for the constants.\n\nTIMEOUT_MS?\n\nand make it 3_000",
+      "range": {
+        "startLine": 82,
+        "startChar": 21,
+        "endLine": 82,
+        "endChar": 33
+      },
+      "revId": "3814d1c6008c176b1c39902bc6d80885a9413cc4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
