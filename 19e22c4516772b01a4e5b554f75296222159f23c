@@ -16,6 +16,24 @@
       "message": "If I remember correctly `${REPO_ROOT}/external/ktfmt/ktfmt.py --check ${PREUPLOAD_FILES}` doesn\u0027t propose the option to reformat which is bit anoying.\n\nWe should either fix it or maybe use my workaround https://r.android.com/2511636",
       "revId": "19e22c4516772b01a4e5b554f75296222159f23c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "154c6353_bea4e7bf",
+        "filename": "PREUPLOAD.cfg",
+        "patchSetId": 2
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-04-24T22:04:16Z",
+      "side": 1,
+      "message": "Also there is a builtin ktfmt hook, we should use that instead of a custom hook script.",
+      "parentUuid": "d0429f73_5903d860",
+      "revId": "19e22c4516772b01a4e5b554f75296222159f23c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
