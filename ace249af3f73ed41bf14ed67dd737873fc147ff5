@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b39dbad7_a842e6a0",
+        "filename": "service/Android.bp",
+        "patchSetId": 3
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-04-24T23:43:15Z",
+      "side": 1,
+      "message": "This feels like it should have been done earlier in the patch set.",
+      "revId": "ace249af3f73ed41bf14ed67dd737873fc147ff5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
