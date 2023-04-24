@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "af602c91_d3402758",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 2199,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-04-24T22:24:18Z",
+      "side": 1,
+      "message": "can we remove the cast while we\u0027re here?  I don\u0027t see why we\u0027re removing the const.\n\nIt\u0027s fine for it to be another CL.",
+      "range": {
+        "startLine": 2199,
+        "startChar": 41,
+        "endLine": 2199,
+        "endChar": 61
+      },
+      "revId": "e72fc3cf1757f9b38ee0fa8908e0c30bb6ef8aa3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
