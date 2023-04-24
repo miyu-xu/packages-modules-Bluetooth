@@ -1424,62 +1424,62 @@ public class AdapterService extends Service {
      * @return true if any profile is enabled, false otherwise
      */
     @RequiresPermission(android.Manifest.permission.BLUETOOTH_PRIVILEGED)
-    boolean isAnyProfileEnabled(BluetoothDevice device) {
+    boolean isAnyProfileNotUnknown(BluetoothDevice device) {
         if (mA2dpService != null && mA2dpService.getConnectionPolicy(device)
-                > BluetoothProfile.CONNECTION_POLICY_FORBIDDEN) {
+                != BluetoothProfile.CONNECTION_POLICY_UNKNOWN) {
             return true;
         }
         if (mA2dpSinkService != null && mA2dpSinkService.getConnectionPolicy(device)
-                > BluetoothProfile.CONNECTION_POLICY_FORBIDDEN) {
+                != BluetoothProfile.CONNECTION_POLICY_UNKNOWN) {
             return true;
         }
         if (mHeadsetService != null && mHeadsetService.getConnectionPolicy(device)
-                > BluetoothProfile.CONNECTION_POLICY_FORBIDDEN) {
+                != BluetoothProfile.CONNECTION_POLICY_UNKNOWN) {
             return true;
         }
         if (mHeadsetClientService != null && mHeadsetClientService.getConnectionPolicy(device)
-                > BluetoothProfile.CONNECTION_POLICY_FORBIDDEN) {
+                != BluetoothProfile.CONNECTION_POLICY_UNKNOWN) {
             return true;
         }
         if (mMapClientService != null && mMapClientService.getConnectionPolicy(device)
-                > BluetoothProfile.CONNECTION_POLICY_FORBIDDEN) {
+                != BluetoothProfile.CONNECTION_POLICY_UNKNOWN) {
             return true;
         }
         if (mHidHostService != null && mHidHostService.getConnectionPolicy(device)
-                > BluetoothProfile.CONNECTION_POLICY_FORBIDDEN) {
+                != BluetoothProfile.CONNECTION_POLICY_UNKNOWN) {
             return true;
         }
         if (mPanService != null && mPanService.getConnectionPolicy(device)
-                > BluetoothProfile.CONNECTION_POLICY_FORBIDDEN) {
+                != BluetoothProfile.CONNECTION_POLICY_UNKNOWN) {
             return true;
         }
         if (mPbapClientService != null && mPbapClientService.getConnectionPolicy(device)
-                > BluetoothProfile.CONNECTION_POLICY_FORBIDDEN) {
+                != BluetoothProfile.CONNECTION_POLICY_UNKNOWN) {
             return true;
         }
         if (mHearingAidService != null && mHearingAidService.getConnectionPolicy(device)
-                > BluetoothProfile.CONNECTION_POLICY_FORBIDDEN) {
+                != BluetoothProfile.CONNECTION_POLICY_UNKNOWN) {
             return true;
         }
         if (mHapClientService != null && mHapClientService.getConnectionPolicy(device)
-                > BluetoothProfile.CONNECTION_POLICY_FORBIDDEN) {
+                != BluetoothProfile.CONNECTION_POLICY_UNKNOWN) {
             return true;
         }
         if (mVolumeControlService != null && mVolumeControlService.getConnectionPolicy(device)
-                > BluetoothProfile.CONNECTION_POLICY_FORBIDDEN) {
+                != BluetoothProfile.CONNECTION_POLICY_UNKNOWN) {
             return true;
         }
         if (mCsipSetCoordinatorService != null
                 && mCsipSetCoordinatorService.getConnectionPolicy(device)
-                        > BluetoothProfile.CONNECTION_POLICY_FORBIDDEN) {
+                        != BluetoothProfile.CONNECTION_POLICY_UNKNOWN) {
             return true;
         }
         if (mLeAudioService != null && mLeAudioService.getConnectionPolicy(device)
-                > BluetoothProfile.CONNECTION_POLICY_FORBIDDEN) {
+                != BluetoothProfile.CONNECTION_POLICY_UNKNOWN) {
             return true;
         }
         if (mBassClientService != null && mBassClientService.getConnectionPolicy(device)
-                 > BluetoothProfile.CONNECTION_POLICY_FORBIDDEN) {
+                 != BluetoothProfile.CONNECTION_POLICY_UNKNOWN) {
             return true;
         }
         return false;
@@ -5622,8 +5622,8 @@ public class AdapterService extends Service {
             return BluetoothStatusCodes.ERROR_BLUETOOTH_NOT_ENABLED;
         }
 
-        // Checks if any profiles are enabled and if so, only connect enabled profiles
-        if (isAnyProfileEnabled(device)) {
+        // Checks if any profiles are not unknown and if so, only connect enabled profiles
+        if (isAnyProfileNotUnknown(device)) {
             return connectEnabledProfiles(device);
         }
 
