@@ -23,7 +23,7 @@ from concurrent import futures
 from contextlib import suppress
 from mobly import base_test, test_runner
 from mobly.asserts import assert_equal  # type: ignore
-from pandora.host_pb2 import RANDOM, DataTypes, ScanningResponse, OwnAddressType
+from pandora.host_pb2 import RANDOM, DataTypes, OwnAddressType, ScanningResponse
 from pandora.security_pb2 import LE_LEVEL3, PairingEventAnswer
 from typing import Any, NoReturn, Optional
 
@@ -56,12 +56,10 @@ class SmpTest(base_test.BaseTestClass):  # type: ignore[misc]
         try:
             while True:
                 dut_pairing_event = await (anext(dut_pairing_stream))
-                dut_pairing_stream.send_nowait(
-                    PairingEventAnswer(
-                        event=dut_pairing_event,
-                        confirm=True,
-                    )
-                )
+                dut_pairing_stream.send_nowait(PairingEventAnswer(
+                    event=dut_pairing_event,
+                    confirm=True,
+                ))
         finally:
             dut_pairing_stream.cancel()
 
