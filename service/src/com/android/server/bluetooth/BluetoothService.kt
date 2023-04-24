@@ -53,11 +53,11 @@ class BluetoothService(context: Context) : SystemService(context) {
         if (!mInitialized) {
             initialize()
         } else {
-            mBluetoothManagerService.handleOnSwitchUser(to.getUserHandle())
+            mBluetoothManagerService.handleOnSwitchUser(to.userHandle)
         }
     }
 
     override fun onUserUnlocking(user: TargetUser) {
-        mBluetoothManagerService.handleOnUnlockUser(user.getUserHandle())
+        mBluetoothManagerService.handleOnUnlockUser(user.userHandle)
     }
 }
