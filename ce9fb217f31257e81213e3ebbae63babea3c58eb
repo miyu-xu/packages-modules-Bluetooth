@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9ac16a71_703ad60c",
+        "filename": "android/app/src/com/android/bluetooth/opp/BluetoothOppService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 366,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-04-24T06:02:56Z",
+      "side": 1,
+      "message": "Did you consider why this is sent? and do you know which is better between this CL vs. preventing to send STOP_LISTENER message.",
+      "range": {
+        "startLine": 366,
+        "startChar": 21,
+        "endLine": 366,
+        "endChar": 34
+      },
+      "revId": "ce9fb217f31257e81213e3ebbae63babea3c58eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
