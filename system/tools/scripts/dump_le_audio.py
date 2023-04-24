@@ -548,7 +548,7 @@ def convert_time_str(timestamp):
 def dump_cis_audio_data_to_file(acl_handle):
     if debug_enable:
         connection_map[acl_handle].dump()
-    file_name = ""
+    file_name = "{0}_".format(connection_map[acl_handle].cis_handle)
     context_case = {
         CONTEXT_TYPE_CONVERSATIONAL: "Conversational",
         CONTEXT_TYPE_MEDIA: "Media",
