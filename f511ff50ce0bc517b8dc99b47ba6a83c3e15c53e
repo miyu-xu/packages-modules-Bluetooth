@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "986a2fb3_5371b4ab",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 1766,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-04-24T22:31:32Z",
+      "side": 1,
+      "message": "If we remove the default, won\u0027t we get a warning about unused cases when a new state is added?\n\nI\u0027d rather either remove the default or remove the other two cases.",
+      "range": {
+        "startLine": 1764,
+        "startChar": 0,
+        "endLine": 1766,
+        "endChar": 12
+      },
+      "revId": "f511ff50ce0bc517b8dc99b47ba6a83c3e15c53e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
