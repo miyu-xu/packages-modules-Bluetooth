@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "20eb2c67_55dbda50",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1430,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-04-24T23:29:35Z",
+      "side": 1,
+      "message": "I am worried about this because it changes the function of connectAllEnabledProfiles. The idea was that we connect any profiles that are enabled by the user. If none are enabled, we try to connect everything. This changes it so that if I disable all profiles, the next call will not try to connect every supported profile.",
+      "revId": "9b7f81f0b60242bc65b3e099b937d1c43ff46727",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
