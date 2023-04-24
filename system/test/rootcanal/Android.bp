@@ -47,7 +47,7 @@ cc_binary {
         "libhidlbase",
         "libjsoncpp",
         "liblog",
-        "libprotobuf-cpp-lite",
+        "libprotobuf-cpp-full",
         "libutils",
     ],
     cflags: [
@@ -62,7 +62,7 @@ cc_binary {
     static_libs: [
         "android.hardware.bluetooth-async",
         "android.hardware.bluetooth-hci",
-        "libscriptedbeaconpayload-protos-lite",
+        "libscriptedbeaconpayload-protos",
     ],
     include_dirs: [
         "packages/modules/Bluetooth/system",
@@ -96,7 +96,7 @@ cc_library_shared {
         "libhidlbase",
         "libjsoncpp",
         "liblog",
-        "libprotobuf-cpp-lite",
+        "libprotobuf-cpp-full",
         "libutils",
     ],
     generated_headers: [
@@ -108,7 +108,7 @@ cc_library_shared {
     static_libs: [
         "android.hardware.bluetooth-async",
         "android.hardware.bluetooth-hci",
-        "libscriptedbeaconpayload-protos-lite",
+        "libscriptedbeaconpayload-protos",
     ],
     include_dirs: [
         "packages/modules/Bluetooth/system",

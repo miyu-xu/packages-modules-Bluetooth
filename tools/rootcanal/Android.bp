@@ -115,6 +115,7 @@ cc_library_static {
     ],
     whole_static_libs: [
         "liblmp",
+        "librootcanal_config",
     ],
     shared_libs: [
         "libbase",
@@ -122,8 +123,20 @@ cc_library_static {
     ],
     static_libs: [
         "libjsoncpp",
-        "libscriptedbeaconpayload-protos-lite",
+        "libscriptedbeaconpayload-protos",
     ],
+}
+
+// This library contains the generated headers for the
+// RootCanal configuration file / parameter.
+cc_library_static {
+    name: "librootcanal_config",
+    host_supported: true,
+    vendor_available: true,
+    proto: {
+        export_proto_headers: true,
+    },
+    srcs: ["config.proto"],
 }
 
 // This library implements a foreigh function interface over DualModeController
@@ -200,12 +213,11 @@ genrule {
 }
 
 cc_library_static {
-    name: "libscriptedbeaconpayload-protos-lite",
+    name: "libscriptedbeaconpayload-protos",
     host_supported: true,
     proprietary: true,
     proto: {
         export_proto_headers: true,
-        type: "lite",
     },
     srcs: ["model/devices/scripted_beacon_ble_payload.proto"],
 }
@@ -357,8 +369,8 @@ cc_binary_host {
         "libcrypto",
         "libgflags",
         "libjsoncpp",
-        "libprotobuf-cpp-lite",
-        "libscriptedbeaconpayload-protos-lite",
+        "libprotobuf-cpp-full",
+        "libscriptedbeaconpayload-protos",
     ],
     sanitize: {
         address: true,
