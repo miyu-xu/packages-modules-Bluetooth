@@ -70,6 +70,24 @@
       "parentUuid": "f92f4215_1541c4f2",
       "revId": "32a7cfa88297ec17f000ea5fa28ac1a786bbbcbb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "73b4ed36_a895f2c9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 21
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2023-04-24T21:28:43Z",
+      "side": 1,
+      "message": "You can leave `avrcp_device_fuzz` we\u0027ll check it along with the floss build error",
+      "parentUuid": "96848eb4_fab98c5b",
+      "revId": "32a7cfa88297ec17f000ea5fa28ac1a786bbbcbb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
