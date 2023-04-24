@@ -22,6 +22,47 @@
       },
       "revId": "d75c7f7030a736f9000974c2579f32ba4674ac62",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9a858ad4_978908bc",
+        "filename": "tools/ktfmt",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-04-24T23:30:20Z",
+      "side": 1,
+      "message": "Offline chat.",
+      "parentUuid": "3b6937bd_5f08962e",
+      "range": {
+        "startLine": 5,
+        "startChar": 1,
+        "endLine": 5,
+        "endChar": 5
+      },
+      "revId": "d75c7f7030a736f9000974c2579f32ba4674ac62",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "61b39c84_5900b54b",
+        "filename": "tools/ktfmt",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-04-24T23:30:20Z",
+      "side": 1,
+      "message": "Please modify to use proper quoting:\n```\nROOT\u003d$(dirname \"$(realpath \"$0\")\")/../../../../\n\n\"$ROOT/prebuilts/jdk/jdk17/linux-x86/bin/java\" -jar \"$ROOT/prebuilts/build-tools/common/framework/ktfmt.jar\" \"$@\"\n```",
+      "revId": "d75c7f7030a736f9000974c2579f32ba4674ac62",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
