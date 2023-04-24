@@ -118,6 +118,7 @@ cc_library_static {
     ],
     whole_static_libs: [
         "liblmp",
+        "librootcanal_config",
     ],
     shared_libs: [
         "libbase",
@@ -127,6 +128,19 @@ cc_library_static {
         "libjsoncpp",
         "libscriptedbeaconpayload-protos-lite",
     ],
+}
+
+// This library contains the generated headers for the
+// RootCanal configuration file / parameter.
+cc_library_static {
+    name: "librootcanal_config",
+    host_supported: true,
+    vendor_available: true,
+    proto: {
+        export_proto_headers: true,
+        type: "lite",
+    },
+    srcs: ["config.proto"],
 }
 
 // This library implements a foreigh function interface over DualModeController
