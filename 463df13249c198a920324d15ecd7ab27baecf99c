@@ -107,6 +107,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b1ff80e2_e2287c2c",
+        "filename": "android/pandora/server/src/com/android/pandora/MediaPlayerBrowserService.kt",
+        "patchSetId": 1
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-04-24T18:48:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5c7c44b0_5623c4b0",
+      "revId": "463df13249c198a920324d15ecd7ab27baecf99c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "db0a4dc9_368b7bc2",
@@ -156,6 +174,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "db1af018_41211c29",
+        "filename": "android/pandora/server/src/com/android/pandora/MediaPlayerBrowserService.kt",
+        "patchSetId": 1
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-04-24T18:48:49Z",
+      "side": 1,
+      "message": "Pandora APIs are not only made to pass the PTS, so I would prefer that we extract this side effect somewhere else, either into Play if possible or by adding a new method",
+      "parentUuid": "faca08f7_d46113ce",
+      "range": {
+        "startLine": 161,
+        "startChar": 4,
+        "endLine": 161,
+        "endChar": 21
+      },
+      "revId": "463df13249c198a920324d15ecd7ab27baecf99c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4f5c6291_fdbe0a25",
         "filename": "android/pandora/server/src/com/android/pandora/MediaPlayerBrowserService.kt",
         "patchSetId": 1
@@ -191,6 +233,30 @@
       "side": 1,
       "message": "It is done like this just for the test purpose as the test does not rely on any specific setting - just the change of this setting. Here it is some kind of mechanism to always set something different then there already is to assure that the setting change will be propagated properly to the end. \n\nFor example: I read mode ALL -\u003e I set GROUP, I read NONE -\u003e I set ALL (or could be whatever). If I read mode ALL and tried to set mode ALL, the setting would not change and would silently return.\n\nIt might not be the best approach, let me know if you would have done it differently ;)",
       "parentUuid": "4f5c6291_fdbe0a25",
+      "range": {
+        "startLine": 168,
+        "startChar": 102,
+        "endLine": 168,
+        "endChar": 118
+      },
+      "revId": "463df13249c198a920324d15ecd7ab27baecf99c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6374cd8b_087231aa",
+        "filename": "android/pandora/server/src/com/android/pandora/MediaPlayerBrowserService.kt",
+        "patchSetId": 1
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-04-24T18:48:49Z",
+      "side": 1,
+      "message": "I would prefer that take the shuffle mode as an argument to `SetShuffleMode` so it can be useful to build other tests, and provide the correct ShuffleMode from mmi2grpc",
+      "parentUuid": "1ef50dac_5903030a",
       "range": {
         "startLine": 168,
         "startChar": 102,
