@@ -41,6 +41,28 @@ using rootcanal::HciSocketTransport;
 using rootcanal::LinkLayerSocketDevice;
 using rootcanal::TaskCallback;
 
+TestEnvironment::TestEnvironment(
+    std::function<std::shared_ptr<AsyncDataChannelServer>(AsyncManager*, int)>
+        open_server,
+    std::function<std::shared_ptr<AsyncDataChannelConnector>(AsyncManager*)>
+        open_connector,
+    int test_port, int hci_port, int link_port, int link_ble_port,
+    const std::string& config_str, const std::string& default_commands_file,
+    bool enable_hci_sniffer, bool enable_baseband_sniffer,
+    bool enable_pcap_filter, bool disable_address_reuse)
+    : default_commands_file_(default_commands_file),
+      enable_hci_sniffer_(enable_hci_sniffer),
+      enable_baseband_sniffer_(enable_baseband_sniffer),
+      enable_pcap_filter_(enable_pcap_filter) {
+  test_socket_server_ = open_server(&async_manager_, test_port);
+  link_socket_server_ = open_server(&async_manager_, link_port);
+  link_ble_socket_server_ = open_server(&async_manager_, link_ble_port);
+  connector_ = open_connector(&async_manager_);
+  test_model_.SetReuseDeviceIds(!disable_address_reuse);
+
+  // hci_socket_server_(hci_server_port);
+}
+
 void TestEnvironment::initialize(std::promise<void> barrier) {
   LOG_INFO("Initialized barrier");
 
