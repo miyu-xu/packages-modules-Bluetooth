@@ -118,6 +118,30 @@
       },
       "revId": "2320be8828f5a34573505c70396c7d2a7446e911",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a557ac99_3226f801",
+        "filename": "tools/rootcanal/config.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-04-24T21:53:47Z",
+      "side": 1,
+      "message": "Yes, but I will also add the option to pass it directly on the command line, it would be simpler for cuttlefish or avatar.",
+      "parentUuid": "ffcd6ee8_a6e0fcf2",
+      "range": {
+        "startLine": 33,
+        "startChar": 17,
+        "endLine": 33,
+        "endChar": 25
+      },
+      "revId": "2320be8828f5a34573505c70396c7d2a7446e911",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
