@@ -24,6 +24,53 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b85e735f_8f30a997",
+        "filename": "system/btif/src/btif_rc.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 5275,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2023-04-24T19:23:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a44242a9_69fd68bc",
+      "range": {
+        "startLine": 5269,
+        "startChar": 3,
+        "endLine": 5275,
+        "endChar": 54
+      },
+      "revId": "950804a0ff8ee1383c40b01fdadae25084b91e90",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f8b93cad_169a890c",
+        "filename": "system/btif/src/btif_rc.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 5476,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2023-04-24T19:23:48Z",
+      "side": 1,
+      "message": "Done",
+      "range": {
+        "startLine": 5476,
+        "startChar": 2,
+        "endLine": 5476,
+        "endChar": 8
+      },
+      "revId": "950804a0ff8ee1383c40b01fdadae25084b91e90",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "43b9b623_8ba39e69",
@@ -37,6 +84,30 @@
       "writtenOn": "2023-04-24T18:01:47Z",
       "side": 1,
       "message": "Please use language idioms to initialize or assign:\n```\ntBTA_AV_META_MSG meta_msg \u003d { .rc_handle \u003d p_dev-\u003erc_handle };\n```\n\nSame above",
+      "range": {
+        "startLine": 5563,
+        "startChar": 2,
+        "endLine": 5563,
+        "endChar": 9
+      },
+      "revId": "950804a0ff8ee1383c40b01fdadae25084b91e90",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dbfd54df_34b4e769",
+        "filename": "system/btif/src/btif_rc.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 5563,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2023-04-24T19:23:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "43b9b623_8ba39e69",
       "range": {
         "startLine": 5563,
         "startChar": 2,
