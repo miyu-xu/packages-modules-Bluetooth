@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5ba5c68a_5271e9ab",
+        "filename": "tools/rootcanal/lmp/CMakeLists.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-04-24T17:50:25Z",
+      "side": 1,
+      "message": "nit: I\u0027d prefer to document this in a bug.  This seems easy to recreate.",
+      "range": {
+        "startLine": 3,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 15
+      },
+      "revId": "2b0a12a4559572c19e3a03d849ede913839a7733",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
