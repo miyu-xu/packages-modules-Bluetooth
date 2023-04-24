@@ -106,6 +106,24 @@
       "parentUuid": "73b4ed36_a895f2c9",
       "revId": "32a7cfa88297ec17f000ea5fa28ac1a786bbbcbb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c21355d6_e2153f94",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 21
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2023-04-24T23:15:47Z",
+      "side": 1,
+      "message": "This type of errors happen when `libbt-protos-lite` is missing in some of the dependencies. I see it included as static lib for `net_test_btif_rc` however so I\u0027m unsure of what the issue is.",
+      "parentUuid": "7b8392c1_4bbb8de2",
+      "revId": "32a7cfa88297ec17f000ea5fa28ac1a786bbbcbb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
