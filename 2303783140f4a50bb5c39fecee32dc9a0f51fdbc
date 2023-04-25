@@ -22,6 +22,30 @@
       },
       "revId": "2303783140f4a50bb5c39fecee32dc9a0f51fdbc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5dab9e31_6c7bb065",
+        "filename": "system/stack/btm/btm_dev.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-04-25T17:42:19Z",
+      "side": 1,
+      "message": "Agreed.  This is likely the best solution.\n\nHowever, I don\u0027t have a test for all possible solutions.\n\nIt will revisited in an upcoming release and/or rewrite.",
+      "parentUuid": "151eb4cb_48883390",
+      "range": {
+        "startLine": 148,
+        "startChar": 3,
+        "endLine": 148,
+        "endChar": 12
+      },
+      "revId": "2303783140f4a50bb5c39fecee32dc9a0f51fdbc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
