@@ -94,6 +94,30 @@
       },
       "revId": "f7afa641d3dc65faaa7a55c13b090537f169f79f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2210c8a2_43cd5405",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-04-25T21:16:49Z",
+      "side": 1,
+      "message": "As far as I understand we have this two possibility:\n* `do_in_main_thread` for java → stack\n* `do_in_jni_thread` for stack → java\n\nThis CL is about a java → stack call and you are adding a `do_in_jni_thread`\nIt\u0027s either:\n* not fixing the issue (since we are already from jni) \n* fixing it, meaning that \"multiple JNI thread are talking to the native\" ⇒ This would be a critical issue to address in priority.\n\n\nBut since we are in native stack, I do not think code should be executed in jni thread. Looking at `btif_hf.cc`, it is doing a lot of stuff in jni thread and that looks wrong.\nFor example the [transfer context](https://cs.android.com/android/platform/superproject/+/refs/heads/master:packages/modules/Bluetooth/system/btif/src/btif_hf.cc;l\u003d710;drc\u003d7346c436e5a11ce08f6a80dcfeb8ef941ca30176) in `bte_hf_evt` looks really error-prone.\n\nPlease let me know what your think.\nI will let the area owner decide what he want to do with this but I feel like we are going in the wrong direction",
+      "parentUuid": "2dcd8cb4_9b35a6e2",
+      "range": {
+        "startLine": 10,
+        "startChar": 17,
+        "endLine": 10,
+        "endChar": 37
+      },
+      "revId": "f7afa641d3dc65faaa7a55c13b090537f169f79f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
