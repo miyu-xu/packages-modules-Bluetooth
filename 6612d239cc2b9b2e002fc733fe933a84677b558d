@@ -39,6 +39,30 @@
       },
       "revId": "6612d239cc2b9b2e002fc733fe933a84677b558d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3a4af804_76f6c24e",
+        "filename": "system/profile/avrcp/device.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-04-25T18:43:44Z",
+      "side": 1,
+      "message": "Let\u0027s merge this and track floss implementation with b/279620724",
+      "parentUuid": "66011a16_708551f6",
+      "range": {
+        "startLine": 217,
+        "startChar": 10,
+        "endLine": 217,
+        "endChar": 36
+      },
+      "revId": "6612d239cc2b9b2e002fc733fe933a84677b558d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
