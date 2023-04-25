@@ -22,6 +22,30 @@
       },
       "revId": "e72fc3cf1757f9b38ee0fa8908e0c30bb6ef8aa3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "68cfa3cd_44228fa9",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 2199,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-04-25T17:48:41Z",
+      "side": 1,
+      "message": "Agreed.  This was previous behavior.  What likely happened was that the structure changed from void* to a defined type.\n\n\nWill do.\n\n\nb/279612452",
+      "parentUuid": "af602c91_d3402758",
+      "range": {
+        "startLine": 2199,
+        "startChar": 41,
+        "endLine": 2199,
+        "endChar": 61
+      },
+      "revId": "e72fc3cf1757f9b38ee0fa8908e0c30bb6ef8aa3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
