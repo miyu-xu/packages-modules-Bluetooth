@@ -214,12 +214,14 @@ void Device::VendorPacketHandler(uint8_t label,
     } break;
 
     case CommandPdu::LIST_PLAYER_APPLICATION_SETTING_ATTRIBUTES: {
+      if (player_settings_interface_ == nullptr) return;
       player_settings_interface_->ListPlayerSettings(
           base::Bind(&Device::ListPlayerApplicationSettingAttributesResponse,
                      weak_ptr_factory_.GetWeakPtr(), label));
     } break;
 
     case CommandPdu::LIST_PLAYER_APPLICATION_SETTING_VALUES: {
+      if (player_settings_interface_ == nullptr) return;
       auto list_player_setting_values_request =
           Packet::Specialize<ListPlayerApplicationSettingValuesRequest>(pkt);
 
@@ -250,6 +252,7 @@ void Device::VendorPacketHandler(uint8_t label,
     } break;
 
     case CommandPdu::GET_CURRENT_PLAYER_APPLICATION_SETTING_VALUE: {
+      if (player_settings_interface_ == nullptr) return;
       auto get_current_player_setting_value_request =
           Packet::Specialize<GetCurrentPlayerApplicationSettingValueRequest>(
               pkt);
@@ -283,6 +286,7 @@ void Device::VendorPacketHandler(uint8_t label,
     } break;
 
     case CommandPdu::SET_PLAYER_APPLICATION_SETTING_VALUE: {
+      if (player_settings_interface_ == nullptr) return;
       auto set_player_setting_value_request =
           Packet::Specialize<SetPlayerApplicationSettingValueRequest>(pkt);
 
@@ -434,6 +438,7 @@ void Device::HandleNotification(
     } break;
 
     case Event::PLAYER_APPLICATION_SETTING_CHANGED: {
+      if (player_settings_interface_ == nullptr) return;
       std::vector<PlayerAttribute> attributes = {
           PlayerAttribute::EQUALIZER, PlayerAttribute::REPEAT,
           PlayerAttribute::SHUFFLE, PlayerAttribute::SCAN};
