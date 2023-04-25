@@ -257,6 +257,8 @@ static void init_stack_internal(bluetooth::core::CoreInterface* interface) {
 
   module_management_start();
 
+  main_thread_start_up();
+
   module_init(get_local_module(DEVICE_IOT_CONFIG_MODULE));
   module_init(get_local_module(OSI_MODULE));
   module_start_up(get_local_module(GD_IDLE_MODULE));
@@ -331,8 +333,6 @@ static void event_start_up_stack(bluetooth::core::CoreInterface* interface,
   bta_sys_init();
 
   module_init(get_local_module(BTE_LOGMSG_MODULE));
-
-  main_thread_start_up();
 
   btif_init_ok();
   BTA_dm_init();
