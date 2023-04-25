@@ -16,6 +16,24 @@
       "message": "This feels like it should have been done earlier in the patch set.",
       "revId": "ace249af3f73ed41bf14ed67dd737873fc147ff5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e1b1fd21_1b4f2704",
+        "filename": "service/Android.bp",
+        "patchSetId": 3
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-04-25T00:15:30Z",
+      "side": 1,
+      "message": "Moving file into its own folder make this comment obsolete. (cf aosp/2559371)",
+      "parentUuid": "b39dbad7_a842e6a0",
+      "revId": "ace249af3f73ed41bf14ed67dd737873fc147ff5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
