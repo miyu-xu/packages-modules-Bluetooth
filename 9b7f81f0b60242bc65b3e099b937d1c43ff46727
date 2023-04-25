@@ -34,6 +34,24 @@
       "parentUuid": "20eb2c67_55dbda50",
       "revId": "9b7f81f0b60242bc65b3e099b937d1c43ff46727",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "506051ba_6f0e1884",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1430,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2023-04-25T01:10:36Z",
+      "side": 1,
+      "message": "Correct the msg I response above, the phone still connect the profile is enabled only. \n\nI suppose if the connection policy keep as unknown after connection, it mean the device didn\u0027t support the profile. Otherwise it would be set ALLOWED as connectionAllEnabledProfiles function.",
+      "parentUuid": "93f18c87_78d3b903",
+      "revId": "9b7f81f0b60242bc65b3e099b937d1c43ff46727",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
