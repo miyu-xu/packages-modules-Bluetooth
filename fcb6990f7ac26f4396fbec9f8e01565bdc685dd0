@@ -18,6 +18,23 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "261e3ec7_8bf2bd36",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-04-25T17:58:03Z",
+      "side": 1,
+      "message": "Your points are valid and this code path has some other flaws, as you know from another review to invalidate the actual pointer.\n\nThe intent of this CL is specific to only not access a free\u0027ed piece of memory.",
+      "revId": "fcb6990f7ac26f4396fbec9f8e01565bdc685dd0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1671ea06_a0b3660a",
@@ -41,6 +58,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b8764b6f_81312b21",
+        "filename": "system/stack/test/btm/stack_btm_test.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 456,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-04-25T17:58:03Z",
+      "side": 1,
+      "message": "They are not, as the record is \"cleaned\" after the `wipe_secrets_and_remove()`",
+      "parentUuid": "1671ea06_a0b3660a",
+      "range": {
+        "startLine": 453,
+        "startChar": 0,
+        "endLine": 456,
+        "endChar": 0
+      },
+      "revId": "fcb6990f7ac26f4396fbec9f8e01565bdc685dd0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "01d60a23_170a7f28",
@@ -54,6 +95,24 @@
       "writtenOn": "2023-04-25T17:54:20Z",
       "side": 1,
       "message": "After wiping, can we do a lookup to verify it is gone?",
+      "revId": "fcb6990f7ac26f4396fbec9f8e01565bdc685dd0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bf694607_19c692b9",
+        "filename": "system/stack/test/btm/stack_btm_test.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 458,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-04-25T17:58:03Z",
+      "side": 1,
+      "message": "That should be done for sure, but is out of scope of this CL.",
+      "parentUuid": "01d60a23_170a7f28",
       "revId": "fcb6990f7ac26f4396fbec9f8e01565bdc685dd0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
