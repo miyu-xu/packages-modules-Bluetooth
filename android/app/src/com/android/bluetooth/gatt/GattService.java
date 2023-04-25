@@ -3641,6 +3641,11 @@ public class GattService extends ProfileService {
                     + opportunistic + ", phy=" + phy);
         }
         statsLogAppPackage(address, attributionSource.getUid(), clientIf);
+        if (isDirect) {
+          MetricsLogger.getInstance().count(BluetoothProtoEnums.BLUETOOTH_GATT_CLIENT_CONNECT_IS_DIRECT, 1);
+        } else {
+          MetricsLogger.getInstance().count(BluetoothProtoEnums.BLUETOOTH_GATT_CLIENT_CONNECT_IS_INDIRECT, 1);
+        }
         statsLogGattConnectionStateChange(
                 BluetoothProfile.GATT, address, clientIf,
                 BluetoothProtoEnums.CONNECTION_STATE_CONNECTING, -1);
@@ -4533,6 +4538,11 @@ public class GattService extends ProfileService {
 
         if (DBG) {
             Log.d(TAG, "serverConnect() - address=" + address);
+        }
+        if (isDirect) {
+          MetricsLogger.getInstance().count(BluetoothProtoEnums.BLUETOOTH_GATT_SERVER_CONNECT_IS_DIRECT, 1);
+        } else {
+          MetricsLogger.getInstance().count(BluetoothProtoEnums.BLUETOOTH_GATT_SERVER_CONNECT_IS_INDIRECT, 1);
         }
         mNativeInterface.gattServerConnect(serverIf, address, isDirect, transport);
     }
