@@ -16,6 +16,46 @@
       "message": "Fixes use after free issue",
       "revId": "fcb6990f7ac26f4396fbec9f8e01565bdc685dd0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1671ea06_a0b3660a",
+        "filename": "system/stack/test/btm/stack_btm_test.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 456,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2023-04-25T17:54:20Z",
+      "side": 1,
+      "message": "Not sure whether these lines are needed or not",
+      "range": {
+        "startLine": 453,
+        "startChar": 0,
+        "endLine": 456,
+        "endChar": 0
+      },
+      "revId": "fcb6990f7ac26f4396fbec9f8e01565bdc685dd0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "01d60a23_170a7f28",
+        "filename": "system/stack/test/btm/stack_btm_test.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 458,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2023-04-25T17:54:20Z",
+      "side": 1,
+      "message": "After wiping, can we do a lookup to verify it is gone?",
+      "revId": "fcb6990f7ac26f4396fbec9f8e01565bdc685dd0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
