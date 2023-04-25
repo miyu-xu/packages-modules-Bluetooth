@@ -260,6 +260,106 @@ class ClassicSspTests(base_test.BaseTestClass):  # type: ignore[misc]
             self.ref.aio.host.Disconnect(connection=ref_dut),
         )
 
+    @parameterized(*itertools.product(
+        (
+            PairingDelegate.NO_OUTPUT_NO_INPUT,
+            PairingDelegate.KEYBOARD_INPUT_ONLY,
+            PairingDelegate.DISPLAY_OUTPUT_ONLY,
+            PairingDelegate.DISPLAY_OUTPUT_AND_YES_NO_INPUT,
+        ),
+        (HCI_CENTRAL_ROLE, HCI_PERIPHERAL_ROLE),
+        (
+            None,
+            RANDOM,
+            PUBLIC,
+        ),
+    ))  # type: ignore[misc]
+    @asynchronous
+    async def test_classic_pairing_incoming_disconnected(self, ref_io_capability: int, ref_role: int,
+                                                         ref_le_addr_type: OwnAddressType) -> None:
+        # override reference device IO capability
+        setattr(self.ref.device, 'io_capability', ref_io_capability)
+
+        if ref_le_addr_type is not None:
+            await self.connect_le(RANDOM, ref_le_addr_type)
+
+        (dut_ref_res, ref_dut_res) = await asyncio.gather(
+            self.dut.aio.host.WaitConnection(address=self.ref.address),
+            self.ref.aio.host.Connect(address=self.dut.address),
+        )
+
+        assert_equal(ref_dut_res.result_variant(), 'connection')
+        assert_equal(dut_ref_res.result_variant(), 'connection')
+        ref_dut = ref_dut_res.connection
+        dut_ref = dut_ref_res.connection
+        assert_is_not_none(ref_dut)
+        assert_is_not_none(dut_ref)
+
+        ref_dut_raw = self.ref.device.find_connection_by_bd_addr(
+            BumbleAddressWrapper(self.dut.address, bytes_endian='big'), BT_BR_EDR_TRANSPORT)
+        assert_is_not_none(ref_dut_raw)
+
+        if ref_dut_raw.role != ref_role:
+            await ref_dut_raw.switch_role(ref_role)
+
+        ref_dut_sec_task = self.ref.aio.security.Secure(connection=ref_dut, classic=LEVEL2)
+        dut_ref_sec_task = self.dut.aio.security.WaitSecurity(connection=dut_ref, classic=LEVEL2)
+
+        await self.ref.aio.host.Disconnect(connection=ref_dut)
+
+        (ref_dut_sec, dut_ref_sec) = await asyncio.gather(ref_dut_sec_task, dut_ref_sec_task)
+
+        assert_equal(ref_dut_sec.result_variant(), 'failure')
+        assert_equal(dut_ref_sec.result_variant(), 'failure')
+
+    @parameterized(*itertools.product(
+        (
+            PairingDelegate.NO_OUTPUT_NO_INPUT,
+            PairingDelegate.KEYBOARD_INPUT_ONLY,
+            PairingDelegate.DISPLAY_OUTPUT_ONLY,
+            PairingDelegate.DISPLAY_OUTPUT_AND_YES_NO_INPUT,
+        ),
+        (HCI_CENTRAL_ROLE, HCI_PERIPHERAL_ROLE),
+        (
+            None,
+            RANDOM,
+            PUBLIC,
+        ),
+    ))  # type: ignore[misc]
+    @asynchronous
+    async def test_classic_pairing_outgoing(self, ref_io_capability: int, ref_role: int,
+                                            ref_le_addr_type: OwnAddressType) -> None:
+        # override reference device IO capability
+        setattr(self.ref.device, 'io_capability', ref_io_capability)
+
+        if ref_le_addr_type is not None:
+            await self.connect_le(RANDOM, ref_le_addr_type)
+
+        (dut_ref_res, ref_dut_raw) = await asyncio.gather(
+            self.dut.aio.host.Connect(address=self.ref.address),
+            self.ref.device.accept(
+                peer_address=BumbleAddressWrapper(self.dut.address, bytes_endian='big'),
+                role=ref_role,
+            ),
+        )
+        ref_dut = Connection(cookie=any_pb2.Any(value=ref_dut_raw.handle.to_bytes(4, 'big')))
+
+        assert_equal(dut_ref_res.result_variant(), 'connection')
+        dut_ref = dut_ref_res.connection
+        assert_is_not_none(ref_dut)
+        assert_is_not_none(dut_ref)
+
+        ref_dut_sec_task = self.ref.aio.security.WaitSecurity(connection=ref_dut, classic=LEVEL2)
+        # Android connect() creates an auth request, so here we don't secure()
+        dut_ref_sec_task = self.dut.aio.security.WaitSecurity(connection=dut_ref, classic=LEVEL2)
+
+        await self.ref.aio.host.Disconnect(connection=ref_dut)
+
+        (ref_dut_security, dut_ref_security) = await asyncio.gather(ref_dut_sec_task, dut_ref_sec_task)
+
+        assert_equal(ref_dut_security.result_variant(), 'failure')
+        assert_equal(dut_ref_security.result_variant(), 'failure')
+
 
 if __name__ == '__main__':
     logging.basicConfig(level=logging.DEBUG)
