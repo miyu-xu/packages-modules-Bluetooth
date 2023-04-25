@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1c59287f_6d66d7d7",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-04-25T12:29:48Z",
+      "side": 1,
+      "message": "nit: I would add here information that with this patch supported features are adjusted according to what user registered.\n\nAlso you could add information about what should be registered to enabled feature.",
+      "range": {
+        "startLine": 9,
+        "startChar": 6,
+        "endLine": 9,
+        "endChar": 12
+      },
+      "revId": "7759bb983b5d8c5fbeba0ff8579b0d2fd857e41e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c5c9d67c_9683ad0b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-04-25T12:29:48Z",
+      "side": 1,
+      "message": "looks good",
+      "revId": "7759bb983b5d8c5fbeba0ff8579b0d2fd857e41e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
