@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "66011a16_708551f6",
+        "filename": "system/profile/avrcp/device.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-04-25T16:31:19Z",
+      "side": 1,
+      "message": "Does that mean floss is not supporting this feature and the `player_settings_interface_` will be null ?",
+      "range": {
+        "startLine": 217,
+        "startChar": 10,
+        "endLine": 217,
+        "endChar": 36
+      },
+      "revId": "6612d239cc2b9b2e002fc733fe933a84677b558d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
