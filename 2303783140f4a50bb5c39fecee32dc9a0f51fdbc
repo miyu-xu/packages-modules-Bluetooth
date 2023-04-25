@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "151eb4cb_48883390",
+        "filename": "system/stack/btm/btm_dev.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2023-04-25T16:45:51Z",
+      "side": 1,
+      "message": "`p_dev_rec` becomes inaccissble after the execution goes out of scope of functions calling `wipe_secrets_and_remove` (`btm_sec_allocate_dev_rec` and etc) where the pointers are defined.\nI am not sure whether this clean up is needed or not.\n\nIf the pointer is saved in some global variables, properly setting it to null after free is a good option for me. But here `p_dev_rec`  is a local variable.",
+      "range": {
+        "startLine": 148,
+        "startChar": 3,
+        "endLine": 148,
+        "endChar": 12
+      },
+      "revId": "2303783140f4a50bb5c39fecee32dc9a0f51fdbc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
