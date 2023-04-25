@@ -16,6 +16,24 @@
       "message": "I thought these tests are using credit-based flow control. Then why are we using the MSC at all?\n\nThe TS says that FC\u003d0 for these MSC commands, and we should use them only to send V.24 signals.",
       "revId": "afc82b8e8548af260fcc3dd930e1435da380a9e9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9962a6da_c5e932a0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-04-25T05:00:08Z",
+      "side": 1,
+      "message": "Per offline chat we decide to wire the full API (RFCOMM_ControlReq) to btif which enables the APPs to send the complete V.24 signals.\n\nDone.",
+      "parentUuid": "41bea8c2_2e439cfc",
+      "revId": "afc82b8e8548af260fcc3dd930e1435da380a9e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
