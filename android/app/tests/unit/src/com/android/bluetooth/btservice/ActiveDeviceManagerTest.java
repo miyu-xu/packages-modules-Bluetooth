@@ -769,6 +769,53 @@ public class ActiveDeviceManagerTest {
     }
 
     /**
+     * Verifies that other profiles do not have their active device cleared when we fail to make
+     * a newly connected device active.
+     */
+    @Test
+    public void setActiveDeviceFailsUponConnection() {
+        Utils.setDualModeAudioStateForTesting(false);
+        leAudioConnected(mDualModeAudioDevice);
+        verify(mLeAudioService, timeout(TIMEOUT_MS)).setActiveDevice(mDualModeAudioDevice);
+        leAudioActiveDeviceChanged(mDualModeAudioDevice);
+
+        when(mHeadsetService.setActiveDevice(any())).thenReturn(false);
+        when(mA2dpService.setActiveDevice(any())).thenReturn(false);
+        when(mHearingAidService.setActiveDevice(any())).thenReturn(false);
+        when(mLeAudioService.setActiveDevice(any())).thenReturn(false);
+
+        a2dpConnected(mA2dpDevice, false);
+        verify(mA2dpService, timeout(TIMEOUT_MS)).setActiveDevice(mA2dpDevice);
+        verify(mLeAudioService, never()).removeActiveDevice(anyBoolean());
+
+        a2dpConnected(mA2dpHeadsetDevice, true);
+        verify(mA2dpService, timeout(TIMEOUT_MS)).setActiveDevice(mA2dpHeadsetDevice);
+        verify(mHeadsetService, timeout(TIMEOUT_MS)).setActiveDevice(mA2dpHeadsetDevice);
+        verify(mLeAudioService, never()).removeActiveDevice(anyBoolean());
+
+        headsetConnected(mHeadsetDevice, false);
+        verify(mHeadsetService, timeout(TIMEOUT_MS)).setActiveDevice(mHeadsetDevice);
+        verify(mLeAudioService, never()).removeActiveDevice(anyBoolean());
+
+        headsetConnected(mA2dpHeadsetDevice, true);
+        verify(mA2dpService, timeout(TIMEOUT_MS)).setActiveDevice(mA2dpHeadsetDevice);
+        verify(mHeadsetService, timeout(TIMEOUT_MS)).setActiveDevice(mA2dpHeadsetDevice);
+        verify(mLeAudioService, never()).removeActiveDevice(anyBoolean());
+
+        hearingAidConnected(mHearingAidDevice);
+        verify(mHearingAidService, timeout(TIMEOUT_MS)).setActiveDevice(mHearingAidDevice);
+        verify(mLeAudioService, never()).removeActiveDevice(anyBoolean());
+        verify(mA2dpService, never()).removeActiveDevice(anyBoolean());
+        verify(mHeadsetService, never()).setActiveDevice(null);
+
+        leHearingAidConnected(mLeHearingAidDevice);
+        verify(mLeAudioService, timeout(TIMEOUT_MS)).setActiveDevice(mLeHearingAidDevice);
+        verify(mA2dpService, never()).removeActiveDevice(anyBoolean());
+        verify(mHeadsetService, never()).setActiveDevice(null);
+        verify(mHearingAidService, never()).removeActiveDevice(anyBoolean());
+    }
+
+    /**
      * A wired audio device is connected. Then all active devices are set to null.
      */
     @Test
