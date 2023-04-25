@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "175d5398_0d7c675e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2023-04-25T16:39:21Z",
+      "side": 1,
+      "message": "I tested Patchset 4 with `bluetooth_AdapterAUHealth.au_avrcp_command_test.floss` and `bluetooth_AdapterAUHealth.au_a2dp_test.floss` and both are now passing. Thanks for fixing.",
+      "revId": "6612d239cc2b9b2e002fc733fe933a84677b558d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "66011a16_708551f6",
