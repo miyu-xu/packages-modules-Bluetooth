@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3c35d211_f005b33b",
+        "filename": "android/pandora/test/asha_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 280,
+      "author": {
+        "id": 1937985
+      },
+      "writtenOn": "2023-04-25T14:08:27Z",
+      "side": 0,
+      "message": "Is a assert missing somewhere then ?",
+      "range": {
+        "startLine": 280,
+        "startChar": 12,
+        "endLine": 280,
+        "endChar": 69
+      },
+      "revId": "5a1a64d76c1b1444f07b24dc12d7e0da4118b0c3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
