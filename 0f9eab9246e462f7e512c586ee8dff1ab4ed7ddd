@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "09b15a0d_06e45d28",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2023-04-25T01:25:08Z",
+      "side": 1,
+      "message": "Christine, we have a patch for the CTSV Secure Client test on Floss (context: go/floss-rpa-without-offload ): aosp/2543490.\n\nHere are reasons we would like to land it before RPA offloading is ready on Floss.\n1. It addresses the risk of enabling LLPrivacy\n2. Host has already resolved random address correctly after RPA rotate:\nWhen LLPrivacy disabled, current libbluetooth implementation can resolve the random address after disconnecting with a BLE peer device. It also works fine when the peer device power cycles.\n3. Connecting with the current Random Address solves the problem:\nBlueZ also connects with the current Random Address for 2nd and later connection with a BLE peer device. So, we expect either Bluetooth host or controller maps the identity address to current address, and connect with the BLE peer with its current Random Address.\n4. It’s the minimal patch required for Floss to initiate LE connection after RA rotates before we have a proper fix\n5. It doesn’t break Floss CUJ\n\nAny feedback or advice about this patch is welcome.",
+      "revId": "0f9eab9246e462f7e512c586ee8dff1ab4ed7ddd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
