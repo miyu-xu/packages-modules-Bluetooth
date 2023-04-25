@@ -70,6 +70,30 @@
       },
       "revId": "f7afa641d3dc65faaa7a55c13b090537f169f79f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2dcd8cb4_9b35a6e2",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2023-04-25T07:58:36Z",
+      "side": 1,
+      "message": "Okay, one issue is that upstream is stack-\u003eJava, but cleanup is Java-\u003estack, so this makes they must be in the different thread ideally.\nAnother solution here is using a mutex to blocking the usage of callbacks.",
+      "parentUuid": "e18ef8c2_4d3be64c",
+      "range": {
+        "startLine": 10,
+        "startChar": 17,
+        "endLine": 10,
+        "endChar": 37
+      },
+      "revId": "f7afa641d3dc65faaa7a55c13b090537f169f79f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
