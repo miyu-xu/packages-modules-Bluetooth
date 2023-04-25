@@ -84,6 +84,7 @@ import com.android.bluetooth.Utils;
 import com.android.bluetooth.btservice.AbstractionLayer;
 import com.android.bluetooth.btservice.AdapterService;
 import com.android.bluetooth.btservice.BluetoothAdapterProxy;
+import com.android.bluetooth.btservice.MetricsLogger;
 import com.android.bluetooth.btservice.CompanionManager;
 import com.android.bluetooth.btservice.ProfileService;
 import com.android.bluetooth.util.NumberUtils;
@@ -3641,6 +3642,11 @@ public class GattService extends ProfileService {
                     + opportunistic + ", phy=" + phy);
         }
         statsLogAppPackage(address, attributionSource.getUid(), clientIf);
+        if (isDirect) {
+          MetricsLogger.getInstance().count(BluetoothProtoEnums.GATT_CLIENT_CONNECT_IS_DIRECT, 1);
+        } else {
+          MetricsLogger.getInstance().count(BluetoothProtoEnums.GATT_CLIENT_CONNECT_IS_AUTOCONNECT, 1);
+        }
         statsLogGattConnectionStateChange(
                 BluetoothProfile.GATT, address, clientIf,
                 BluetoothProtoEnums.CONNECTION_STATE_CONNECTING, -1);
@@ -4533,6 +4539,11 @@ public class GattService extends ProfileService {
 
         if (DBG) {
             Log.d(TAG, "serverConnect() - address=" + address);
+        }
+        if (isDirect) {
+          MetricsLogger.getInstance().count(BluetoothProtoEnums.GATT_SERVER_CONNECT_IS_DIRECT, 1);
+        } else {
+          MetricsLogger.getInstance().count(BluetoothProtoEnums.GATT_SERVER_CONNECT_IS_AUTOCONNECT, 1);
         }
         mNativeInterface.gattServerConnect(serverIf, address, isDirect, transport);
     }
