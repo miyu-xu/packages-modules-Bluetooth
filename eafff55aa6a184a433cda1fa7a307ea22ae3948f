@@ -71,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5b81a2a7_02409625",
+        "filename": "system/bta/le_audio/codec_interface.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2023-04-25T08:25:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "66617205_50648c96",
+      "range": {
+        "startLine": 27,
+        "startChar": 6,
+        "endLine": 27,
+        "endChar": 20
+      },
+      "revId": "eafff55aa6a184a433cda1fa7a307ea22ae3948f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "83b9918e_8eccf28e",
