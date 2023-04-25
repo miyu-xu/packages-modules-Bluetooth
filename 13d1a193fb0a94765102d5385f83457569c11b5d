@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e227ff84_6bb2c577",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2023-04-25T08:25:07Z",
+      "side": 1,
+      "message": "These cases are blocked because Android Pandora server doesn\u0027t support pairing rejection",
+      "revId": "13d1a193fb0a94765102d5385f83457569c11b5d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
