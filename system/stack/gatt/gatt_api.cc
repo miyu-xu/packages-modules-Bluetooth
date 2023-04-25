@@ -560,6 +560,11 @@ tGATT_STATUS GATTS_HandleValueNotification(uint16_t conn_id,
     return GATT_ILLEGAL_PARAMETER;
   }
 
+  if (val_len > GATT_MAX_ATTR_LEN) {
+    LOG(ERROR) << __func__ << "Too long val_len: " << val_len;
+    return GATT_INVALID_ATTR_LEN;
+  }
+
 #if (GATT_UPPER_TESTER_MULT_VARIABLE_LENGTH_NOTIF == TRUE)
   /* Upper tester for Multiple Value length notifications */
   if (stack_config_get_interface()->get_pts_force_eatt_for_notifications() &&
