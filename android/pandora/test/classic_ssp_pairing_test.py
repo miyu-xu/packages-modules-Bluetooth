@@ -57,6 +57,9 @@ class ClassicSspTests(base_test.BaseTestClass):  # type: ignore[misc]
     dut: PandoraDevice
     ref: BumblePandoraDevice
 
+    ref_pairing_answers: asyncio.Queue[bool]
+    dut_pairing_answers: asyncio.Queue[bool]
+
     def setup_class(self) -> None:
         self.devices = PandoraDevices(self)
         self.dut, self.ref, *_ = self.devices  # type: ignore[assignment]
@@ -74,6 +77,8 @@ class ClassicSspTests(base_test.BaseTestClass):  # type: ignore[misc]
     @asynchronous
     async def setup_test(self) -> None:
         await asyncio.gather(self.dut.reset(), self.ref.reset())
+        self.ref_pairing_answers = asyncio.Queue()
+        self.dut_pairing_answers = asyncio.Queue()
 
     async def make_incoming_le_connection(self, dut_address_type: OwnAddressType,
                                           ref_address_type: OwnAddressType) -> None:
@@ -117,28 +122,22 @@ class ClassicSspTests(base_test.BaseTestClass):  # type: ignore[misc]
                         ref_pairing_event.method_variant(),
                         ('numeric_comparison', 'just_works'),
                     )
-                    dut_pairing_stream.send_nowait(PairingEventAnswer(
-                        event=dut_pairing_event,
-                        confirm=True,
-                    ))
-                    ref_pairing_stream.send_nowait(PairingEventAnswer(
-                        event=ref_pairing_event,
-                        confirm=True,
-                    ))
+                    dut_pairing_stream.send_nowait(
+                        PairingEventAnswer(event=dut_pairing_event, confirm=self.dut_pairing_answers.get_nowait()))
+                    ref_pairing_stream.send_nowait(
+                        PairingEventAnswer(event=ref_pairing_event, confirm=self.ref_pairing_answers.get_nowait()))
                 elif dut_pairing_event.method_variant() == 'passkey_entry_notification':
                     assert_equal(ref_pairing_event.method_variant(), 'passkey_entry_request')
-                    ref_pairing_stream.send_nowait(
-                        PairingEventAnswer(
-                            event=ref_pairing_event,
-                            passkey=dut_pairing_event.passkey_entry_notification,
-                        ))
+                    ref_answer = PairingEventAnswer(event=ref_pairing_event)
+                    if self.ref_pairing_answers.get_nowait():
+                        ref_answer.passkey = dut_pairing_event.passkey_entry_notification
+                    ref_pairing_stream.send_nowait(ref_answer)
                 elif dut_pairing_event.method_variant() == 'passkey_entry_request':
                     assert_equal(ref_pairing_event.method_variant(), 'passkey_entry_notification')
-                    dut_pairing_stream.send_nowait(
-                        PairingEventAnswer(
-                            event=dut_pairing_event,
-                            passkey=ref_pairing_event.passkey_entry_notification,
-                        ))
+                    dut_answer = PairingEventAnswer(event=dut_pairing_event)
+                    if self.dut_pairing_answers.get_nowait():
+                        dut_answer.passkey = ref_pairing_event.passkey_entry_notification
+                    dut_pairing_stream.send_nowait(dut_answer)
                 else:
                     fail('unreachable')
 
@@ -201,11 +200,13 @@ class ClassicSspTests(base_test.BaseTestClass):  # type: ignore[misc]
         ),
     ))  # type: ignore[misc]
     @asynchronous
-    async def test_classic_pairing_incoming(self, ref_io_capability: int, ref_role: int,
-                                            ref_le_addr_type: Optional[OwnAddressType]) -> None:
+    async def test_classic_pairing_incoming_accept(self, ref_io_capability: int, ref_role: int,
+                                                   ref_le_addr_type: Optional[OwnAddressType]) -> None:
         # override reference device IO capability
         setattr(self.ref.device, 'io_capability', ref_io_capability)
 
+        self.ref_pairing_answers.put_nowait(True)
+        self.dut_pairing_answers.put_nowait(True)
         pairing = asyncio.create_task(self.handle_pairing_events())
 
         if ref_le_addr_type is not None:
@@ -245,11 +246,13 @@ class ClassicSspTests(base_test.BaseTestClass):  # type: ignore[misc]
         ),
     ))  # type: ignore[misc]
     @asynchronous
-    async def test_classic_pairing_outgoing(self, ref_io_capability: int, ref_role: int,
-                                            ref_le_addr_type: Optional[OwnAddressType]) -> None:
+    async def test_classic_pairing_outgoing_accept(self, ref_io_capability: int, ref_role: int,
+                                                   ref_le_addr_type: Optional[OwnAddressType]) -> None:
         # override reference device IO capability
         setattr(self.ref.device, 'io_capability', ref_io_capability)
 
+        self.ref_pairing_answers.put_nowait(True)
+        self.dut_pairing_answers.put_nowait(True)
         pairing = asyncio.create_task(self.handle_pairing_events())
 
         if ref_le_addr_type is not None:
@@ -345,6 +348,99 @@ class ClassicSspTests(base_test.BaseTestClass):  # type: ignore[misc]
 
         assert_equal(ref_dut_security.result_variant(), 'failure')
         assert_equal(dut_ref_security.result_variant(), 'failure')
+
+    @parameterized(*itertools.product(
+        (
+            PairingDelegate.NO_OUTPUT_NO_INPUT,
+            PairingDelegate.KEYBOARD_INPUT_ONLY,
+            PairingDelegate.DISPLAY_OUTPUT_ONLY,
+            PairingDelegate.DISPLAY_OUTPUT_AND_YES_NO_INPUT,
+        ),
+        (HCI_CENTRAL_ROLE, HCI_PERIPHERAL_ROLE),
+        (
+            None,
+            RANDOM,
+            PUBLIC,
+        ),
+    ))  # type: ignore[misc]
+    @asynchronous
+    async def test_classic_pairing_incoming_reject(self, ref_io_capability: int, ref_role: int,
+                                                   ref_le_addr_type: Optional[OwnAddressType]) -> None:
+        # override reference device IO capability
+        setattr(self.ref.device, 'io_capability', ref_io_capability)
+
+        self.ref_pairing_answers.put_nowait(False)
+        self.dut_pairing_answers.put_nowait(False)
+        pairing = asyncio.create_task(self.handle_pairing_events())
+
+        if ref_le_addr_type is not None:
+            await self.make_incoming_le_connection(RANDOM, ref_le_addr_type)
+
+        ref_dut, dut_ref = await self.make_incoming_classic_connection(ref_role=ref_role)
+
+        (secure, wait_security) = await asyncio.gather(
+            self.ref.aio.security.Secure(connection=ref_dut, classic=LEVEL2),
+            self.dut.aio.security.WaitSecurity(connection=dut_ref, classic=LEVEL2),
+        )
+
+        pairing.cancel()
+        with suppress(asyncio.CancelledError, futures.CancelledError):
+            await pairing
+
+        assert_equal(secure.result_variant(), 'failure')
+        assert_equal(wait_security.result_variant(), 'failure')
+
+        await asyncio.gather(
+            self.dut.aio.host.WaitDisconnection(connection=dut_ref),
+            self.ref.aio.host.Disconnect(connection=ref_dut),
+        )
+
+    @parameterized(*itertools.product(
+        (
+            PairingDelegate.NO_OUTPUT_NO_INPUT,
+            PairingDelegate.KEYBOARD_INPUT_ONLY,
+            PairingDelegate.DISPLAY_OUTPUT_ONLY,
+            PairingDelegate.DISPLAY_OUTPUT_AND_YES_NO_INPUT,
+        ),
+        (HCI_CENTRAL_ROLE, HCI_PERIPHERAL_ROLE),
+        (
+            None,
+            RANDOM,
+            PUBLIC,
+        ),
+    ))  # type: ignore[misc]
+    @asynchronous
+    async def test_classic_pairing_outgoing_reject(self, ref_io_capability: int, ref_role: int,
+                                                   ref_le_addr_type: Optional[OwnAddressType]) -> None:
+        # override reference device IO capability
+        setattr(self.ref.device, 'io_capability', ref_io_capability)
+
+        self.ref_pairing_answers.put_nowait(False)
+        self.dut_pairing_answers.put_nowait(False)
+        pairing = asyncio.create_task(self.handle_pairing_events())
+
+        if ref_le_addr_type is not None:
+            await self.make_incoming_le_connection(RANDOM, ref_le_addr_type)
+
+        ref_dut, dut_ref = await self.make_outgoing_classic_connection(ref_role=ref_role)
+
+        (ref_dut_security, dut_ref_security) = await asyncio.gather(
+            self.ref.aio.security.WaitSecurity(connection=ref_dut, classic=LEVEL2),
+            # Android connect() creates an auth request, so here we don't secure()
+            self.dut.aio.security.WaitSecurity(connection=dut_ref, classic=LEVEL2),
+        )
+
+        pairing.cancel()
+        with suppress(asyncio.CancelledError, futures.CancelledError):
+            await pairing
+
+        assert_equal(ref_dut_security.result_variant(), 'failure')
+        assert_equal(dut_ref_security.result_variant(), 'failure')
+
+        await asyncio.gather(
+            self.dut.aio.host.WaitDisconnection(connection=dut_ref),
+            self.ref.aio.host.Disconnect(connection=ref_dut),
+        )
 
 
 if __name__ == '__main__':
