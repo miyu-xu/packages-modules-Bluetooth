@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9b47275d_2e4808b5",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2023-04-26T00:26:03Z",
+      "side": 1,
+      "message": "Added an atest instead.",
+      "parentUuid": "57c7cc39_3b9dd3a7",
+      "range": {
+        "startLine": 11,
+        "startChar": 6,
+        "endLine": 11,
+        "endChar": 19
+      },
+      "revId": "899e676613ae200486c74b22c01863824cc058ab",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b677e1df_c82a26cb",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-04-26T00:13:44Z",
       "side": 1,
       "message": "we should instead do:\n```\nif mConnectionState !\u003d STATE_DISCONNECTED {\n  broadcastConnectionState(BluetoothProfile.STATE_DISCONNECTED, mConnectionState);\n}\n```",
+      "range": {
+        "startLine": 145,
+        "startChar": 19,
+        "endLine": 145,
+        "endChar": 39
+      },
+      "revId": "899e676613ae200486c74b22c01863824cc058ab",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "26734f14_83d8715d",
+        "filename": "android/app/src/com/android/bluetooth/a2dp/A2dpStateMachine.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2023-04-26T00:26:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b677e1df_c82a26cb",
       "range": {
         "startLine": 145,
         "startChar": 19,
