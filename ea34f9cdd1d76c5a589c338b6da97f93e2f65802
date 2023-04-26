@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "da0308e3_d71ba1b5",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1434,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-04-26T19:03:32Z",
+      "side": 1,
+      "message": "I\u0027d recommend introducing this as a change based on target sdk version to avoid breaking callers (which are probably plentiful). You can use CompatChanges.isChangeEnabled similar to how it\u0027s used here: https://source.corp.google.com/h/googleplex-android/platform/superproject/+/master:packages/modules/Bluetooth/framework/java/android/bluetooth/BluetoothDevice.java;drc\u003dca6a76aecf4ca1dc3b9aa4c07a5873aa3fdab084;l\u003d1459",
+      "revId": "ea34f9cdd1d76c5a589c338b6da97f93e2f65802",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
