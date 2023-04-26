@@ -22,6 +22,29 @@
       },
       "revId": "899e676613ae200486c74b22c01863824cc058ab",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b677e1df_c82a26cb",
+        "filename": "android/app/src/com/android/bluetooth/a2dp/A2dpStateMachine.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-04-26T00:13:44Z",
+      "side": 1,
+      "message": "we should instead do:\n```\nif mConnectionState !\u003d STATE_DISCONNECTED {\n  broadcastConnectionState(BluetoothProfile.STATE_DISCONNECTED, mConnectionState);\n}\n```",
+      "range": {
+        "startLine": 145,
+        "startChar": 19,
+        "endLine": 145,
+        "endChar": 39
+      },
+      "revId": "899e676613ae200486c74b22c01863824cc058ab",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
