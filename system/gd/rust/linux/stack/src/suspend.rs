@@ -318,7 +318,6 @@ impl ISuspend for Suspend {
                 let _result = tx.send(Message::ResumeReady(suspend_id)).await;
             });
         }));
-
         true
     }
 }

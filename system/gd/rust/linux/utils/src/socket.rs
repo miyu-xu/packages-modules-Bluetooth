@@ -73,9 +73,17 @@ impl MgmtPacket {
     }
 }
 
+impl MgmtPacket {
+    pub fn write_data(&mut self, len: u16, data: Vec<u8>) {
+        self.len = len;
+        self.data = data;
+    }
+}
+
 #[derive(FromPrimitive, ToPrimitive)]
 pub enum MgmtCommandOpcode {
     ReadIndexList = 0x3,
+    FlossNotifySuspendState = 0x103,
 }
 
 impl From<MgmtCommandOpcode> for u16 {
@@ -97,6 +105,7 @@ impl TryFrom<u16> for MgmtCommandOpcode {
 
 pub enum MgmtCommand {
     ReadIndexList,
+    FlossNotifySuspendState,
 }
 
 impl From<MgmtCommand> for MgmtPacket {
@@ -107,6 +116,12 @@ impl From<MgmtCommand> for MgmtPacket {
                 index: HCI_DEV_NONE,
                 len: 0,
                 data: Vec::new(),
+            },
+            MgmtCommand::FlossNotifySuspendState => MgmtPacket {
+                opcode: MgmtCommandOpcode::FlossNotifySuspendState.into(),
+                index: HCI_DEV_NONE,
+                len: MgmtNotifySuspendStateSize,
+                data: MgmtCpNotifySuspendState::new(0, 1).To_data(),
             },
         }
     }
@@ -149,6 +164,27 @@ pub enum MgmtEvent {
 
     /// HCI device was removed.
     IndexRemoved(u16),
+}
+
+#[derive(Debug)]
+pub struct MgmtCpNotifySuspendState {
+    hci_id: u16,
+    val: u8,
+}
+
+pub const MgmtNotifySuspendStateSize: u16 = 0x3;
+
+impl MgmtCpNotifySuspendState {
+    pub fn new(hci_id: u16, val: u8) -> Self {
+        MgmtCpNotifySuspendState { hci_id: hci_id, val: val }
+    }
+
+    pub fn To_data(&self) -> Vec<u8> {
+        let mut v: Vec<u8> = Vec::new();
+        v.extend_from_slice(self.hci_id.to_le_bytes().as_slice());
+        v.extend_from_slice(self.val.to_le_bytes().as_slice());
+        v
+    }
 }
 
 impl TryFrom<MgmtPacket> for MgmtEvent {
@@ -199,6 +235,9 @@ impl TryFrom<MgmtPacket> for MgmtEvent {
                                     .collect();
 
                                 MgmtCommandResponse::ReadIndexList { num_intf: len, interfaces }
+                            }
+                            MgmtCommandOpcode::FlossNotifySuspendState => {
+                                MgmtCommandResponse::DataUnused
                             }
                         }
                     } else {
