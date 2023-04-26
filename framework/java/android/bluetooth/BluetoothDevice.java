@@ -57,6 +57,7 @@ import java.io.UnsupportedEncodingException;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.util.List;
+import java.util.Objects;
 import java.util.UUID;
 import java.util.concurrent.TimeoutException;
 
@@ -1429,14 +1430,15 @@ public final class BluetoothDevice implements Parcelable, Attributable {
     @Override
     public boolean equals(@Nullable Object o) {
         if (o instanceof BluetoothDevice) {
-            return mAddress.equals(((BluetoothDevice) o).getAddress());
+            return mAddress.equals(((BluetoothDevice) o).getAddress())
+                    && mAddressType == ((BluetoothDevice) o).getAddressType();
         }
         return false;
     }
 
     @Override
     public int hashCode() {
-        return mAddress.hashCode();
+        return Objects.hash(mAddress, mAddressType);
     }
 
     /**
