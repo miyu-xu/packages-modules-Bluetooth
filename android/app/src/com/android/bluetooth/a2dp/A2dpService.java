@@ -66,6 +66,7 @@ import com.android.modules.utils.SynchronousResultReceiver;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
@@ -200,6 +201,17 @@ public class A2dpService extends ProfileService {
         if (sA2dpService == null) {
             Log.w(TAG, "stop() called before start()");
             return true;
+        }
+
+        // Step 10: Disconnects A2dp for all sinks that aren't in a disconnected state
+        synchronized (mStateMachines) {
+            for (Map.Entry<BluetoothDevice, A2dpStateMachine> entry : mStateMachines.entrySet()) {
+                BluetoothDevice sink = entry.getKey();
+                A2dpStateMachine sm = entry.getValue();
+                if (sm != null && sm.getConnectionState() != BluetoothProfile.STATE_DISCONNECTED) {
+                    disconnect(sink);
+                }
+            }
         }
 
         // Step 9: Clear active device and stop playing audio
@@ -1142,6 +1154,10 @@ public class A2dpService extends ProfileService {
                 Log.w(TAG, "removeStateMachine: device " + device
                         + " does not have a state machine");
                 return;
+            }
+            // Disconnect A2DP for the device if it isn't in a disconnected state.
+            if (sm.getConnectionState() != BluetoothProfile.STATE_DISCONNECTED) {
+                disconnect(device);
             }
             Log.i(TAG, "removeStateMachine: removing state machine for device: " + device);
             sm.doQuit();
