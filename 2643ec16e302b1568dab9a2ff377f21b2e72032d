@@ -36,6 +36,23 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0b1d90ed_50682d7a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2023-04-26T09:56:24Z",
+      "side": 1,
+      "message": "FYI: Floss also found these tests cannot pass without https://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/2564614",
+      "revId": "2643ec16e302b1568dab9a2ff377f21b2e72032d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d243d28f_99b367f7",
