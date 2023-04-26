@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a08548b7_36d03a59",
+        "filename": "android/app/src/com/android/bluetooth/btservice/PhonePolicy.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 835,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-04-26T20:24:02Z",
+      "side": 1,
+      "message": "add some warning or info log for the uuid \u003d\u003d null case",
+      "revId": "bcc03d6bd02acab98423e30365c9a0e27fd95b84",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
