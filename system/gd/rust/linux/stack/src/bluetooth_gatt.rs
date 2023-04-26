@@ -12,7 +12,6 @@ use bt_topshim::profiles::gatt::{
     GattScannerInbandCallbacks, GattScannerInbandCallbacksDispatcher, GattServerCallbacks,
     GattServerCallbacksDispatcher, GattStatus, LePhy, MsftAdvMonitor, MsftAdvMonitorPattern,
 };
-use bt_topshim::sysprop;
 use bt_topshim::topstack;
 use bt_utils::adv_parser;
 use bt_utils::array_utils;
@@ -1748,31 +1747,6 @@ impl BluetoothGatt {
         }
 
         self.advertisers.set_suspend_mode(SuspendMode::Normal);
-    }
-
-    /// Start an active scan on given scanner id. This will look up and assign
-    /// the correct ScanSettings for it as well.
-    pub(crate) fn start_active_scan(&mut self, scanner_id: u8) -> BtStatus {
-        let interval: u16 = sysprop::get_i32(sysprop::PropertyI32::LeInquiryScanInterval)
-            .try_into()
-            .expect("Bad value configured for LeInquiryScanInterval");
-        let window: u16 = sysprop::get_i32(sysprop::PropertyI32::LeInquiryScanWindow)
-            .try_into()
-            .expect("Bad value configured for LeInquiryScanWindow");
-
-        self.gatt
-            .as_ref()
-            .unwrap()
-            .lock()
-            .unwrap()
-            .scanner
-            .set_scan_parameters(scanner_id, interval, window);
-
-        self.start_scan(scanner_id, ScanSettings::default(), /*filter=*/ None)
-    }
-
-    pub(crate) fn stop_active_scan(&mut self, scanner_id: u8) -> BtStatus {
-        self.stop_scan(scanner_id)
     }
 }
 

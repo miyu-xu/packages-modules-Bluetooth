@@ -18,9 +18,13 @@ pub mod btif;
 
 /// Helper module for the topshim facade.
 pub mod controller;
+
 pub mod metrics;
+
 pub mod profiles;
+
 pub mod sysprop;
+
 pub mod topstack;
 
 mod utils;

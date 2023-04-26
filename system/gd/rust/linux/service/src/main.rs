@@ -131,9 +131,6 @@ fn main() -> Result<(), Box<dyn Error>> {
     init_flags.push(format!("--hci={}", hci_index));
     let logging = Arc::new(Mutex::new(Box::new(BluetoothLogging::new(is_debug, log_output))));
 
-    // Always treat discovery as classic only
-    init_flags.push(String::from("INIT_classic_discovery_only=true"));
-
     let (tx, rx) = Stack::create_channel();
     let sig_notifier = Arc::new((Mutex::new(false), Condvar::new()));
 
@@ -163,11 +160,10 @@ fn main() -> Result<(), Box<dyn Error>> {
     let bluetooth = Arc::new(Mutex::new(Box::new(Bluetooth::new(
         adapter_index,
         tx.clone(),
-        sig_notifier.clone(),
         intf.clone(),
-        bluetooth_admin.clone(),
-        bluetooth_gatt.clone(),
         bluetooth_media.clone(),
+        sig_notifier.clone(),
+        bluetooth_admin.clone(),
     ))));
     let suspend = Arc::new(Mutex::new(Box::new(Suspend::new(
         bluetooth.clone(),
