@@ -67,6 +67,7 @@
 #include "stack/include/btm_client_interface.h"
 #include "stack/include/btm_log_history.h"
 #include "stack/include/btu.h"       // do_in_main_thread
+#include "stack/include/sdp_api.h"
 #include "stack/include/srvc_api.h"  // DIS_ReadDISInfo
 #include "stack/sdp/sdpint.h"
 #include "types/bluetooth/uuid.h"
@@ -76,6 +77,7 @@
 #include "gap_api.h"
 #endif
 
+using namespace bluetooth::legacy::stack::sdp;
 using bluetooth::Uuid;
 
 namespace {
@@ -1148,7 +1150,8 @@ void bta_dm_disc_rmt_name(tBTA_DM_MSG* p_data) {
 
 static void store_avrcp_profile_feature(tSDP_DISC_REC* sdp_rec) {
   tSDP_DISC_ATTR* p_attr =
-      SDP_FindAttributeInRec(sdp_rec, ATTR_ID_SUPPORTED_FEATURES);
+      get_legacy_stack_sdp_api()->record.SDP_FindAttributeInRec(
+          sdp_rec, ATTR_ID_SUPPORTED_FEATURES);
   if (p_attr == NULL) {
     return;
   }
@@ -1188,17 +1191,18 @@ static void bta_dm_store_audio_profiles_version() {
   }};
 
   for (const auto& audio_profile : audio_profiles) {
-    tSDP_DISC_REC* sdp_rec = SDP_FindServiceInDb(
+    tSDP_DISC_REC* sdp_rec = get_legacy_stack_sdp_api()->db.SDP_FindServiceInDb(
         bta_dm_search_cb.p_sdp_db, audio_profile.servclass_uuid, NULL);
     if (sdp_rec == NULL) continue;
 
-    if (SDP_FindAttributeInRec(sdp_rec, ATTR_ID_BT_PROFILE_DESC_LIST) == NULL)
+    if (get_legacy_stack_sdp_api()->record.SDP_FindAttributeInRec(
+            sdp_rec, ATTR_ID_BT_PROFILE_DESC_LIST) == NULL)
       continue;
 
     uint16_t profile_version = 0;
     /* get profile version (if failure, version parameter is not updated) */
-    SDP_FindProfileVersionInRec(sdp_rec, audio_profile.btprofile_uuid,
-                                &profile_version);
+    get_legacy_stack_sdp_api()->record.SDP_FindProfileVersionInRec(
+        sdp_rec, audio_profile.btprofile_uuid, &profile_version);
     if (profile_version != 0) {
       if (btif_config_set_bin(sdp_rec->remote_bd_addr.ToString().c_str(),
                               audio_profile.profile_key,
@@ -1241,16 +1245,17 @@ void bta_dm_sdp_result(tBTA_DM_MSG* p_data) {
     do {
       p_sdp_rec = NULL;
       if (bta_dm_search_cb.service_index == (BTA_USER_SERVICE_ID + 1)) {
-        if (p_sdp_rec && SDP_FindProtocolListElemInRec(
-                             p_sdp_rec, UUID_PROTOCOL_RFCOMM, &pe)) {
+        if (p_sdp_rec &&
+            get_legacy_stack_sdp_api()->record.SDP_FindProtocolListElemInRec(
+                p_sdp_rec, UUID_PROTOCOL_RFCOMM, &pe)) {
           bta_dm_search_cb.peer_scn = (uint8_t)pe.params[0];
           scn_found = true;
         }
       } else {
         service =
             bta_service_id_to_uuid_lkup_tbl[bta_dm_search_cb.service_index - 1];
-        p_sdp_rec =
-            SDP_FindServiceInDb(bta_dm_search_cb.p_sdp_db, service, p_sdp_rec);
+        p_sdp_rec = get_legacy_stack_sdp_api()->db.SDP_FindServiceInDb(
+            bta_dm_search_cb.p_sdp_db, service, p_sdp_rec);
       }
       /* finished with BR/EDR services, now we check the result for GATT based
        * service UUID */
@@ -1261,11 +1266,12 @@ void bta_dm_sdp_result(tBTA_DM_MSG* p_data) {
 
         do {
           /* find a service record, report it */
-          p_sdp_rec =
-              SDP_FindServiceInDb(bta_dm_search_cb.p_sdp_db, 0, p_sdp_rec);
+          p_sdp_rec = get_legacy_stack_sdp_api()->db.SDP_FindServiceInDb(
+              bta_dm_search_cb.p_sdp_db, 0, p_sdp_rec);
           if (p_sdp_rec) {
             Uuid service_uuid;
-            if (SDP_FindServiceUUIDInRec(p_sdp_rec, &service_uuid)) {
+            if (get_legacy_stack_sdp_api()->record.SDP_FindServiceUUIDInRec(
+                    p_sdp_rec, &service_uuid)) {
               gatt_uuids.push_back(service_uuid);
             }
           }
@@ -1319,12 +1325,14 @@ void bta_dm_sdp_result(tBTA_DM_MSG* p_data) {
       p_sdp_rec = NULL;
       do {
         /* find a service record, report it */
-        p_sdp_rec =
-            SDP_FindServiceInDb_128bit(bta_dm_search_cb.p_sdp_db, p_sdp_rec);
+        p_sdp_rec = get_legacy_stack_sdp_api()->db.SDP_FindServiceInDb_128bit(
+            bta_dm_search_cb.p_sdp_db, p_sdp_rec);
         if (p_sdp_rec) {
           // SDP_FindServiceUUIDInRec_128bit is used only once, refactor?
           Uuid temp_uuid;
-          if (SDP_FindServiceUUIDInRec_128bit(p_sdp_rec, &temp_uuid)) {
+          if (get_legacy_stack_sdp_api()
+                  ->record.SDP_FindServiceUUIDInRec_128bit(p_sdp_rec,
+                                                           &temp_uuid)) {
             uuid_list.push_back(temp_uuid);
           }
         }
@@ -1339,8 +1347,8 @@ void bta_dm_sdp_result(tBTA_DM_MSG* p_data) {
 
 #if TARGET_FLOSS
     tSDP_DI_GET_RECORD di_record;
-    if (SDP_GetDiRecord(1, &di_record, bta_dm_search_cb.p_sdp_db) ==
-        SDP_SUCCESS) {
+    if (get_legacy_stack_sdp_api()->local.SDP_GetDiRecord(
+            1, &di_record, bta_dm_search_cb.p_sdp_db) == SDP_SUCCESS) {
       tBTA_DM_SEARCH result;
       result.did_res.bd_addr = bta_dm_search_cb.peer_bdaddr;
       result.did_res.vendor_id_src = di_record.rec.vendor_id_source;
@@ -1807,16 +1815,17 @@ static void bta_dm_find_services(const RawAddress& bd_addr) {
       }
 
       LOG_INFO("%s search UUID = %s", __func__, uuid.ToString().c_str());
-      SDP_InitDiscoveryDb(bta_dm_search_cb.p_sdp_db, BTA_DM_SDP_DB_SIZE, 1,
-                          &uuid, 0, NULL);
+      get_legacy_stack_sdp_api()->service.SDP_InitDiscoveryDb(
+          bta_dm_search_cb.p_sdp_db, BTA_DM_SDP_DB_SIZE, 1, &uuid, 0, NULL);
 
       memset(g_disc_raw_data_buf, 0, sizeof(g_disc_raw_data_buf));
       bta_dm_search_cb.p_sdp_db->raw_data = g_disc_raw_data_buf;
 
       bta_dm_search_cb.p_sdp_db->raw_size = MAX_DISC_RAW_DATA_BUF;
 
-      if (!SDP_ServiceSearchAttributeRequest(bd_addr, bta_dm_search_cb.p_sdp_db,
-                                             &bta_dm_sdp_callback)) {
+      if (!get_legacy_stack_sdp_api()
+               ->service.SDP_ServiceSearchAttributeRequest(
+                   bd_addr, bta_dm_search_cb.p_sdp_db, &bta_dm_sdp_callback)) {
         /*
          * If discovery is not successful with this device, then
          * proceed with the next one.
