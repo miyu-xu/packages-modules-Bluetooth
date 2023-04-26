@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "652e2b8e_cb85fa54",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-04-26T19:39:41Z",
+      "side": 1,
+      "message": "Would it be possible to also add coverage for GattService#serverConnect? Either here or in a different CL?",
+      "revId": "9e0e2fb3e323616d151c7a9504501183aad15f7a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
