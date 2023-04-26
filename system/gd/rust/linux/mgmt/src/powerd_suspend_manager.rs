@@ -9,6 +9,12 @@ use protobuf::{CodedInputStream, CodedOutputStream, Message};
 use std::sync::{Arc, Mutex};
 use std::time::Duration;
 
+use bt_utils::socket::{
+    BtSocket, HciChannels, MgmtCommand, MgmtCpNotifySuspendState, MgmtNotifySuspendStateSize,
+    MgmtPacket, HCI_DEV_NONE,
+};
+use tokio::io::unix::AsyncFd;
+
 use crate::dbus_iface::{export_suspend_callback_dbus_intf, SuspendDBus};
 use crate::service_watcher::ServiceWatcher;
 use crate::suspend::{
@@ -77,6 +83,48 @@ fn generate_proto_bytes<T: protobuf::Message>(request: &T) -> Option<Vec<u8>> {
     Some(proto_bytes)
 }
 
+fn notify_suspend_state(suspended: bool) {
+    let mut btsock = BtSocket::new();
+    match btsock.open() {
+        -1 => {
+            panic!(
+                "Bluetooth socket unavailable (errno {}). Try loading the kernel module first.",
+                std::io::Error::last_os_error().raw_os_error().unwrap_or(0)
+            );
+        }
+        x => log::debug!("notify suspend Socket open at fd: {}", x),
+    }
+    // Bind to control channel (which is used for mgmt commands). We provide
+    // HCI_DEV_NONE because we don't actually need a valid HCI dev for some MGMT commands.
+    match btsock.bind_channel(HciChannels::Control, HCI_DEV_NONE) {
+        -1 => {
+            panic!(
+                "Failed to bind control channel with errno={}",
+                std::io::Error::last_os_error().raw_os_error().unwrap_or(0)
+            );
+        }
+        _ => (),
+    };
+    tokio::spawn(async move {
+        // Make this into an AsyncFD and start using it for IO
+        let mut hci_afd = AsyncFd::new(btsock).expect("Failed to add async fd for BT socket.");
+        match hci_afd.writable_mut().await {
+            Ok(mut guard) => {
+                let _ = guard.try_io(|sock| {
+                    let command = MgmtCommand::FlossNotifySuspendState;
+                    let mut cmd_pkt: MgmtPacket = command.into();
+                    let cmd_data: MgmtCpNotifySuspendState =
+                        MgmtCpNotifySuspendState::new(0, u8::from(suspended));
+                    cmd_pkt.write_data(MgmtNotifySuspendStateSize, cmd_data.To_data());
+                    sock.get_mut().write_mgmt_packet(cmd_pkt);
+                    Ok(())
+                });
+            }
+            Err(e) => log::error!("Failed to write to hci socket: {:?}", e),
+        };
+    });
+}
+
 // Convenient function to call HandleSuspendReadiness to powerd when we want to tell it that
 // Bluetooth is ready to suspend.
 fn send_handle_suspend_readiness(
@@ -137,6 +185,7 @@ impl ISuspendCallback for SuspendCallback {
                 log::warn!("Suspend ready but no SuspendImminent signal or powerd session");
             }
         }
+        notify_suspend_state(true);
     }
 
     fn on_resumed(&mut self, suspend_id: i32) {
@@ -481,7 +530,7 @@ impl PowerdSuspendManager {
     fn on_suspend_done(&mut self, suspend_done: SuspendDone) {
         // powerd is telling us that suspend is done (system has resumed), so we tell btadapterd
         // to resume too.
-
+        notify_suspend_state(false);
         log::debug!("SuspendDone received: {:?}", suspend_done);
 
         if self.context.lock().unwrap().pending_suspend_imminent.is_none() {
