@@ -16,6 +16,24 @@
       "message": "add some warning or info log for the uuid \u003d\u003d null case",
       "revId": "bcc03d6bd02acab98423e30365c9a0e27fd95b84",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "75841f33_8bb5484b",
+        "filename": "android/app/src/com/android/bluetooth/btservice/PhonePolicy.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 835,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-04-26T21:55:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a08548b7_36d03a59",
+      "revId": "bcc03d6bd02acab98423e30365c9a0e27fd95b84",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
