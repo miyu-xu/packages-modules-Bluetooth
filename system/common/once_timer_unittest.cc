@@ -1,3 +1,5 @@
+<<<<<<< PATCH SET (45a22a Remove common::once_timer)
+=======
 /*
  * Copyright 2018 The Android Open Source Project
  *
@@ -271,3 +273,4 @@ TEST_F(OnceTimerTest, reschedule_task_when_firing_must_schedule_new_task) {
   ASSERT_EQ(std::future_status::ready, future.wait_for(kFutureWaitTimeout));
   ASSERT_EQ(name, my_name);
 }
+>>>>>>> BASE      (8e9591 Merge "Revert^2 "Adds screen on/off event counter"")
