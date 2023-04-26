@@ -12,6 +12,10 @@ use num_derive::{FromPrimitive, ToPrimitive};
 use std::sync::{Arc, Mutex};
 use tokio::sync::mpsc::Sender;
 
+use bt_utils::socket::{BtSocket, HciChannels, MgmtCommand, HCI_DEV_NONE};
+
+use tokio::io::unix::AsyncFd;
+
 /// Defines the Suspend/Resume API.
 ///
 /// This API is exposed by `btadapterd` and independent of the suspend/resume detection mechanism
@@ -62,6 +66,48 @@ const MASKED_EVENTS_FOR_SUSPEND: u64 = (1u64 << 4) | (1u64 << 19);
 /// When we resume, we will want to reconnect audio devices that were previously connected.
 /// However, we will need to delay a few seconds to avoid co-ex issues with Wi-Fi reconnection.
 const RECONNECT_AUDIO_ON_RESUME_DELAY_MS: u64 = 3000;
+
+/// Default address for a virtual uhid device.
+const BD_ADDR_DEFAULT: &str = "00:00:00:00:00:00";
+
+fn notify_suspend_state(hci_index: u16, suspended: bool) {
+    log::debug!("Notify kernel suspend status: {} for hci{}", suspended, hci_index);
+    let mut btsock = BtSocket::new();
+    match btsock.open() {
+        -1 => {
+            panic!(
+                "Bluetooth socket unavailable (errno {}). Try loading the kernel module first.",
+                std::io::Error::last_os_error().raw_os_error().unwrap_or(0)
+            );
+        }
+        x => log::debug!("notify suspend Socket open at fd: {}", x),
+    }
+    // Bind to control channel (which is used for mgmt commands). We provide
+    // HCI_DEV_NONE because we don't actually need a valid HCI dev for some MGMT commands.
+    match btsock.bind_channel(HciChannels::Control, HCI_DEV_NONE) {
+        -1 => {
+            panic!(
+                "Failed to bind control channel with errno={}",
+                std::io::Error::last_os_error().raw_os_error().unwrap_or(0)
+            );
+        }
+        _ => (),
+    };
+    tokio::spawn(async move {
+        // Make this into an AsyncFD and start using it for IO
+        let mut hci_afd = AsyncFd::new(btsock).expect("Failed to add async fd for BT socket.");
+        match hci_afd.writable_mut().await {
+            Ok(mut guard) => {
+                let _ = guard.try_io(|sock| {
+                    let command = MgmtCommand::FlossNotifySuspendState(hci_index, suspended);
+                    sock.get_mut().write_mgmt_packet(command.into());
+                    Ok(())
+                });
+            }
+            Err(e) => log::error!("Failed to write to hci socket: {:?}", e),
+        };
+    });
+}
 
 #[derive(FromPrimitive, ToPrimitive)]
 #[repr(u32)]
@@ -238,6 +284,8 @@ impl ISuspend for Suspend {
             self.suspend_timeout_joinhandle = None;
         }
 
+        let hci_index = self.bt.lock().unwrap().get_hci_index();
+
         let tx = self.tx.clone();
         let suspend_state = self.suspend_state.clone();
         self.suspend_timeout_joinhandle = Some(tokio::spawn(async move {
@@ -250,6 +298,7 @@ impl ISuspend for Suspend {
             tokio::spawn(async move {
                 let _result = tx.send(Message::SuspendReady(suspend_id)).await;
             });
+            notify_suspend_state(hci_index, true);
         }));
     }
 
@@ -306,6 +355,8 @@ impl ISuspend for Suspend {
         self.suspend_state.lock().unwrap().resume_expected = true;
         self.bt.lock().unwrap().le_rand();
 
+        let hci_index = self.bt.lock().unwrap().get_hci_index();
+
         let tx = self.tx.clone();
         let suspend_state = self.suspend_state.clone();
         let suspend_id = self.suspend_state.lock().unwrap().suspend_id.unwrap();
@@ -318,6 +369,7 @@ impl ISuspend for Suspend {
             tokio::spawn(async move {
                 let _result = tx.send(Message::ResumeReady(suspend_id)).await;
             });
+            notify_suspend_state(hci_index, false);
         }));
 
         true
@@ -340,6 +392,7 @@ impl BtifBluetoothCallbacks for Suspend {
         }
 
         let suspend_id = self.suspend_state.lock().unwrap().suspend_id.unwrap();
+        let hci_index = self.bt.lock().unwrap().get_hci_index();
 
         if self.suspend_state.lock().unwrap().suspend_expected {
             self.suspend_state.lock().unwrap().suspend_expected = false;
@@ -347,6 +400,7 @@ impl BtifBluetoothCallbacks for Suspend {
             tokio::spawn(async move {
                 let _result = tx.send(Message::SuspendReady(suspend_id)).await;
             });
+            notify_suspend_state(hci_index, true);
         }
 
         self.suspend_state.lock().unwrap().suspend_id = Some(suspend_id);
@@ -356,6 +410,7 @@ impl BtifBluetoothCallbacks for Suspend {
             tokio::spawn(async move {
                 let _result = tx.send(Message::ResumeReady(suspend_id)).await;
             });
+            notify_suspend_state(hci_index, false);
         }
     }
 }
