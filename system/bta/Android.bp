@@ -203,6 +203,7 @@ cc_test {
         ":TestCommonMockFunctions",
         ":TestMockBtif",
         ":TestMockStackBtm",
+        ":TestMockStackSdp",
         "test/bta_dip_test.cc",
         "test/bta_dm_cust_uuid_test.cc",
         "test/bta_hf_client_add_record_test.cc",
