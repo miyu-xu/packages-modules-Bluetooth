@@ -891,6 +891,7 @@ cc_test {
         ":TestCommonMockFunctions",
         ":TestMockRustFfi",
         ":TestMockStackBtm",
+        ":TestMockStackSdp",
         "gatt/gatt_db.cc",
         "gatt/gatt_sr_hash.cc",
         "gatt/gatt_utils.cc",
