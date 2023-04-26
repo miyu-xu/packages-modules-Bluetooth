@@ -1,0 +1,50 @@
+From 213e9eac02d1fea447a9ec2551e6b9534a709529 Mon Sep 17 00:00:00 2001
+From: Ying Hsu <yinghsu@google.com>
+Date: Wed, 26 Apr 2023 13:42:08 +0000
+Subject: [PATCH] floss: Fix RNR Command Disallowed error in discovery classic
+ only mode
+
+Bluetooth controller would reject Remote Name Request if it's in
+inquiry mode. This patch fixes the duration of classic_inquiry_timer
+and waits for the Inquiry Complete event before starting RNR.
+
+Bug: 277977567
+Tag: #floss
+Test: Manual - No Command Disallowed error for RNR
+Change-Id: Ibe3c757d3ac8733a41ac6431867279cba44bfb60
+---
+ system/stack/btm/btm_inq.cc | 10 ++++++----
+ 1 file changed, 6 insertions(+), 4 deletions(-)
+
+diff --git a/system/stack/btm/btm_inq.cc b/system/stack/btm/btm_inq.cc
+index 372067b41d..3bc1704ea6 100644
+--- a/system/stack/btm/btm_inq.cc
++++ b/system/stack/btm/btm_inq.cc
+@@ -535,10 +535,12 @@ void BTM_CancelInquiry(void) {
+ }
+ 
+ static void btm_classic_inquiry_timeout(UNUSED_ATTR void* data) {
+-  // We mark both classic inquiry and BLE inquiry complete so that we stop
+-  // processing BLE results as inquiry results.
++  // When the Inquiry Complete event is received, the classic inquiry
++  // will be marked as completed. Therefore, we only need to mark
++  // the BLE inquiry as completed here to stop processing BLE results
++  // as inquiry results.
+   btm_process_inq_complete(HCI_SUCCESS,
+-                           (BTM_BR_INQUIRY_MASK | BTM_BLE_INQUIRY_MASK));
++                           BTM_BLE_INQUIRY_MASK);
+ }
+ 
+ /*******************************************************************************
+@@ -665,7 +667,7 @@ tBTM_STATUS BTM_StartInquiry(tBTM_INQ_RESULTS_CB* p_results_cb,
+   if (bluetooth::shim::is_classic_discovery_only_enabled() &&
+       btm_cb.btm_inq_vars.inqparms.duration != 0) {
+     /* start inquiry timer */
+-    uint64_t duration_ms = btm_cb.btm_inq_vars.inqparms.duration * 1000;
++    uint64_t duration_ms = btm_cb.btm_inq_vars.inqparms.duration * 1280;
+     alarm_set_on_mloop(btm_cb.btm_inq_vars.classic_inquiry_timer, duration_ms,
+                        btm_classic_inquiry_timeout, NULL);
+   }
+-- 
+2.40.1.495.gc816e09b53d-goog
+
