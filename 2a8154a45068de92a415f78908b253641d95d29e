@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "745f78c6_fb53367c",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 3038,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-04-26T22:48:56Z",
+      "side": 1,
+      "message": "remove \u0027*\u0027",
+      "range": {
+        "startLine": 3038,
+        "startChar": 25,
+        "endLine": 3038,
+        "endChar": 26
+      },
+      "revId": "2a8154a45068de92a415f78908b253641d95d29e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
