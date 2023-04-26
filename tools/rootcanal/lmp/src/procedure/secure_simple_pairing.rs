@@ -106,7 +106,7 @@ async fn send_public_key(ctx: &impl Context, transaction_id: u8, public_key: Pub
 
 async fn receive_public_key(ctx: &impl Context, transaction_id: u8) -> PublicKey {
     let key_size: usize =
-        ctx.receive_lmp_packet::<lmp::EncapsulatedHeader>().await.get_payload_length().into();
+        ctx.receive_lmp_packet::<lmp::EncapsulatedHeaderPacket>().await.get_payload_length().into();
     let mut key = PublicKey::new(key_size).unwrap();
 
     ctx.send_lmp_packet(
@@ -114,7 +114,7 @@ async fn receive_public_key(ctx: &impl Context, transaction_id: u8) -> PublicKey
             .build(),
     );
     for chunk in key.as_mut_slice().chunks_mut(16) {
-        let payload = ctx.receive_lmp_packet::<lmp::EncapsulatedPayload>().await;
+        let payload = ctx.receive_lmp_packet::<lmp::EncapsulatedPayloadPacket>().await;
         chunk.copy_from_slice(payload.get_data().as_slice());
         ctx.send_lmp_packet(
             lmp::AcceptedBuilder {
@@ -135,7 +135,7 @@ async fn receive_commitment(ctx: &impl Context, skip_first: bool) {
     let commitment_value = [0; COMMITMENT_VALUE_SIZE];
 
     if !skip_first {
-        let confirm = ctx.receive_lmp_packet::<lmp::SimplePairingConfirm>().await;
+        let confirm = ctx.receive_lmp_packet::<lmp::SimplePairingConfirmPacket>().await;
         if confirm.get_commitment_value() != &commitment_value {
             todo!();
         }
@@ -145,7 +145,7 @@ async fn receive_commitment(ctx: &impl Context, skip_first: bool) {
         lmp::SimplePairingConfirmBuilder { transaction_id: 0, commitment_value }.build(),
     );
 
-    let _pairing_number = ctx.receive_lmp_packet::<lmp::SimplePairingNumber>().await;
+    let _pairing_number = ctx.receive_lmp_packet::<lmp::SimplePairingNumberPacket>().await;
     // TODO: check pairing number
     ctx.send_lmp_packet(
         lmp::AcceptedBuilder {
@@ -174,7 +174,7 @@ async fn send_commitment(ctx: &impl Context, skip_first: bool) {
         );
     }
 
-    let confirm = ctx.receive_lmp_packet::<lmp::SimplePairingConfirm>().await;
+    let confirm = ctx.receive_lmp_packet::<lmp::SimplePairingConfirmPacket>().await;
 
     if confirm.get_commitment_value() != &commitment_value {
         todo!();
@@ -188,7 +188,7 @@ async fn send_commitment(ctx: &impl Context, skip_first: bool) {
         )
         .await;
 
-    let _pairing_number = ctx.receive_lmp_packet::<lmp::SimplePairingNumber>().await;
+    let _pairing_number = ctx.receive_lmp_packet::<lmp::SimplePairingNumberPacket>().await;
     // TODO: check pairing number
     ctx.send_lmp_packet(
         lmp::AcceptedBuilder {
@@ -384,7 +384,7 @@ pub async fn initiate(ctx: &impl Context) -> Result<(), ()> {
             }
     };
     let responder = {
-        let response = ctx.receive_lmp_packet::<lmp::IoCapabilityRes>().await;
+        let response = ctx.receive_lmp_packet::<lmp::IoCapabilityResPacket>().await;
 
         let io_capability = hci::IoCapability::from_u8(response.get_io_capabilities()).unwrap();
         let oob_data_present =
@@ -499,7 +499,7 @@ pub async fn initiate(ctx: &impl Context) -> Result<(), ()> {
 
     {
         // TODO: check dhkey
-        let _dhkey = ctx.receive_lmp_packet::<lmp::DhkeyCheck>().await;
+        let _dhkey = ctx.receive_lmp_packet::<lmp::DhkeyCheckPacket>().await;
         ctx.send_lmp_packet(
             lmp::AcceptedBuilder { transaction_id: 0, accepted_opcode: lmp::Opcode::DhkeyCheck }
                 .build(),
@@ -535,7 +535,7 @@ pub async fn initiate(ctx: &impl Context) -> Result<(), ()> {
     Ok(())
 }
 
-pub async fn respond(ctx: &impl Context, request: lmp::IoCapabilityReq) -> Result<(), ()> {
+pub async fn respond(ctx: &impl Context, request: lmp::IoCapabilityReqPacket) -> Result<(), ()> {
     let initiator = {
         let io_capability = hci::IoCapability::from_u8(request.get_io_capabilities()).unwrap();
         let oob_data_present =
@@ -672,7 +672,7 @@ pub async fn respond(ctx: &impl Context, request: lmp::IoCapabilityReq) -> Resul
     };
 
     let _dhkey = match ctx
-        .receive_lmp_packet::<Either<lmp::NumericComparisonFailed, lmp::DhkeyCheck>>()
+        .receive_lmp_packet::<Either<lmp::NumericComparisonFailedPacket, lmp::DhkeyCheckPacket>>()
         .await
     {
         Either::Left(_) => {
