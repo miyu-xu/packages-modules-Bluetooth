@@ -23,6 +23,7 @@ import androidx.test.InstrumentationRegistry;
 import androidx.test.filters.MediumTest;
 import androidx.test.runner.AndroidJUnit4;
 
+import com.android.bluetooth.TestUtils;
 import com.android.bluetooth.Utils;
 import com.android.bluetooth.bas.BatteryService;
 import com.android.bluetooth.btservice.RemoteDevices.DeviceProperties;
@@ -94,6 +95,7 @@ public class RemoteDevicesTest {
 
         // Verify that executing that message results in a broadcast intent
         mTestLooperManager.execute(msg);
+        TestUtils.waitForLooperToFinishScheduledTask(mHandlerThread.getLooper());
         verify(mAdapterService).sendBroadcast(any(), anyString(), any());
         verifyNoMoreInteractions(mAdapterService);
     }
