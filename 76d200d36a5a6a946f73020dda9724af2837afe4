@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e76ba6bf_5b40a826",
+        "filename": "android/app/src/com/android/bluetooth/a2dp/A2dpStateMachine.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-04-26T00:46:11Z",
+      "side": 1,
+      "message": "if mConnectionState is not STATE_DISCONNECTED that mean mLastConnectionState is not -1. We can remove this check",
+      "range": {
+        "startLine": 144,
+        "startChar": 12,
+        "endLine": 144,
+        "endChar": 32
+      },
+      "revId": "76d200d36a5a6a946f73020dda9724af2837afe4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
