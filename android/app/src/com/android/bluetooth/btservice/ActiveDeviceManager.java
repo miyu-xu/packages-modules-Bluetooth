@@ -22,6 +22,7 @@ import android.annotation.RequiresPermission;
 import android.annotation.SuppressLint;
 import android.bluetooth.BluetoothA2dp;
 import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothClass;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothHapClient;
 import android.bluetooth.BluetoothHeadset;
@@ -754,9 +755,20 @@ class ActiveDeviceManager {
                 return false;
             }
             BluetoothSinkAudioPolicy audioPolicy = headsetService.getHfpCallAudioPolicy(device);
-            if (audioPolicy != null && audioPolicy.getActiveDevicePolicyAfterConnection()
-                    == BluetoothSinkAudioPolicy.POLICY_NOT_ALLOWED) {
-                return false;
+            if (audioPolicy != null) {
+                int activeDevicePolicy = audioPolicy.getActiveDevicePolicyAfterConnection();
+                if (activeDevicePolicy == BluetoothSinkAudioPolicy.POLICY_NOT_ALLOWED) {
+                    return false;
+                }
+
+                // Watches are not made active by default unless they have sink POLICY_ALLOWED
+                if (activeDevicePolicy == BluetoothSinkAudioPolicy.POLICY_UNCONFIGURED) {
+                    BluetoothClass deviceClass = device.getBluetoothClass();
+                    if (deviceClass != null && deviceClass.getDeviceClass()
+                            == BluetoothClass.Device.WEARABLE_WRIST_WATCH) {
+                        return false;
+                    }
+                }
             }
             if (!headsetService.setActiveDevice(device)) {
                 return false;
