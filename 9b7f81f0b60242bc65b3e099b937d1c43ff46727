@@ -52,6 +52,23 @@
       "parentUuid": "93f18c87_78d3b903",
       "revId": "9b7f81f0b60242bc65b3e099b937d1c43ff46727",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fb63fd95_3ceda6c0",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 5633,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-04-26T07:16:22Z",
+      "side": 1,
+      "message": "with this patch we get in this point (line: 5633) not when all toggles are disabled, but when we do have any profile with unknown state.\n\nShould we then still try to connect to all the supported profiles? Or maybe just to those enabled and unknown ?",
+      "revId": "9b7f81f0b60242bc65b3e099b937d1c43ff46727",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
