@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "546d5e70_b74f426e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-04-26T22:30:18Z",
+      "side": 1,
+      "message": "Erwin has already staged reverts for these CLs.",
+      "revId": "97d92447502ea8e39e0f8d62932c1073c20deb7f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
