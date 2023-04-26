@@ -9,6 +9,10 @@ use protobuf::{CodedInputStream, CodedOutputStream, Message};
 use std::sync::{Arc, Mutex};
 use std::time::Duration;
 
+use bt_utils::socket::{BtSocket, HciChannels, MgmtCommand, HCI_DEV_NONE};
+
+use tokio::io::unix::AsyncFd;
+
 use crate::dbus_iface::{export_suspend_callback_dbus_intf, SuspendDBus};
 use crate::service_watcher::ServiceWatcher;
 use crate::suspend::{
@@ -45,6 +49,13 @@ struct PowerdSession {
     powerd_proxy: dbus::nonblock::Proxy<'static, Arc<SyncConnection>>,
 }
 
+#[derive(PartialEq, Debug)]
+enum NotifyState {
+    Expected,
+    Sent,
+    NoNeed,
+}
+
 /// Callback container for suspend interface callbacks.
 pub(crate) struct SuspendCallback {
     objpath: String,
@@ -53,6 +64,8 @@ pub(crate) struct SuspendCallback {
     dbus_crossroads: Arc<Mutex<Crossroads>>,
 
     context: Arc<Mutex<SuspendManagerContext>>,
+
+    notify_state: Arc<Mutex<NotifyState>>,
 }
 
 impl SuspendCallback {
@@ -62,7 +75,13 @@ impl SuspendCallback {
         dbus_crossroads: Arc<Mutex<Crossroads>>,
         context: Arc<Mutex<SuspendManagerContext>>,
     ) -> Self {
-        Self { objpath, dbus_connection, dbus_crossroads, context }
+        Self {
+            objpath,
+            dbus_connection,
+            dbus_crossroads,
+            context,
+            notify_state: Arc::new(Mutex::new(NotifyState::NoNeed)),
+        }
     }
 }
 
@@ -75,6 +94,45 @@ fn generate_proto_bytes<T: protobuf::Message>(request: &T) -> Option<Vec<u8>> {
         return None;
     }
     Some(proto_bytes)
+}
+
+fn notify_suspend_state(hci_index: u16, suspended: bool) {
+    log::debug!("Notify kernel suspend status: {} for hci{}", suspended, hci_index);
+    let mut btsock = BtSocket::new();
+    match btsock.open() {
+        -1 => {
+            panic!(
+                "Bluetooth socket unavailable (errno {}). Try loading the kernel module first.",
+                std::io::Error::last_os_error().raw_os_error().unwrap_or(0)
+            );
+        }
+        x => log::debug!("notify suspend Socket open at fd: {}", x),
+    }
+    // Bind to control channel (which is used for mgmt commands). We provide
+    // HCI_DEV_NONE because we don't actually need a valid HCI dev for some MGMT commands.
+    match btsock.bind_channel(HciChannels::Control, HCI_DEV_NONE) {
+        -1 => {
+            panic!(
+                "Failed to bind control channel with errno={}",
+                std::io::Error::last_os_error().raw_os_error().unwrap_or(0)
+            );
+        }
+        _ => (),
+    };
+    tokio::spawn(async move {
+        // Make this into an AsyncFD and start using it for IO
+        let mut hci_afd = AsyncFd::new(btsock).expect("Failed to add async fd for BT socket.");
+        match hci_afd.writable_mut().await {
+            Ok(mut guard) => {
+                let _ = guard.try_io(|sock| {
+                    let command = MgmtCommand::FlossNotifySuspendState(hci_index, suspended);
+                    sock.get_mut().write_mgmt_packet(command.into());
+                    Ok(())
+                });
+            }
+            Err(e) => log::error!("Failed to write to hci socket: {:?}", e),
+        };
+    });
 }
 
 // Convenient function to call HandleSuspendReadiness to powerd when we want to tell it that
@@ -137,12 +195,30 @@ impl ISuspendCallback for SuspendCallback {
                 log::warn!("Suspend ready but no SuspendImminent signal or powerd session");
             }
         }
+
+        // set notification expected
+        *self.notify_state.lock().unwrap() = NotifyState::Expected;
+        let notify_state = self.notify_state.clone();
+
+        tokio::spawn(async move {
+            tokio::time::sleep(tokio::time::Duration::from_millis(200)).await;
+            log::debug!("Wait 200 ms to notify kernel suspend ready.");
+
+            if *notify_state.lock().unwrap() == NotifyState::Expected {
+                *notify_state.lock().unwrap() = NotifyState::Sent;
+                notify_suspend_state(0, true);
+            }
+        });
     }
 
     fn on_resumed(&mut self, suspend_id: i32) {
         // Received when adapter is ready to suspend. This is just for our information and powerd
         // doesn't need to know about this.
         log::debug!("Suspend resumed, adapter suspend_id = {}", suspend_id);
+        {
+            *self.notify_state.lock().unwrap() = NotifyState::NoNeed;
+            notify_suspend_state(0, false);
+        }
     }
 }
 
