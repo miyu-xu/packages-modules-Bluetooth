@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a5c811e0_0f40bf44",
+        "filename": "system/stack/btm/btm_inq.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 538,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2023-04-27T16:13:18Z",
+      "side": 1,
+      "message": "This comment is assuming reader have prior knowledge of why there is a timer and why we need mark event complete with different mask. \n\nNeed a longer and detailed explanation on why we need manually set the event complete first.",
+      "revId": "ef5ae50deead4860df3bb26e3468fbe3f73cea12",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
