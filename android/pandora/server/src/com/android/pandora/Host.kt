@@ -117,6 +117,8 @@ class Host(
 
   private val advertisers = mutableMapOf<UUID, AdvertiseCallback>()
 
+  private val MAX_RETRY = 5
+
   init {
     scope = CoroutineScope(Dispatchers.Default)
 
@@ -229,7 +231,13 @@ class Host(
       )
 
     if (pairingVariant in confirmationCases) {
-      bluetoothDevice.setPairingConfirmation(true)
+      var retry = 0
+      while (retry < MAX_RETRY) {
+        when (bluetoothDevice.setPairingConfirmation(true)) {
+          true -> break
+          false -> retry += 1
+        }
+      }
     }
   }
 
