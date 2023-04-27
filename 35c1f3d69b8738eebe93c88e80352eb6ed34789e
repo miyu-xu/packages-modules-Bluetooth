@@ -70,6 +70,24 @@
       "parentUuid": "96528afd_deb67a66",
       "revId": "35c1f3d69b8738eebe93c88e80352eb6ed34789e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e1c7d48a_514616c2",
+        "filename": "framework/tests/bumble/Android.bp",
+        "patchSetId": 2
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1986325
+      },
+      "writtenOn": "2023-04-27T15:22:27Z",
+      "side": 1,
+      "message": "friendly reminder :)",
+      "parentUuid": "3694ab9c_64f00157",
+      "revId": "35c1f3d69b8738eebe93c88e80352eb6ed34789e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
