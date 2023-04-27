@@ -52,6 +52,24 @@
       "parentUuid": "6b279c46_fd33aaaa",
       "revId": "9e0e2fb3e323616d151c7a9504501183aad15f7a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "081d644d_bbfacf09",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-04-27T17:31:43Z",
+      "side": 1,
+      "message": "Thanks for the links! Sure, we can discuss further offline or on those CLs. \n\nI took a look back at nRF Connect and I\u0027m not sure they exercise that API despite having support for GATT server so we might have to try a different way. I\u0027ll take a closer look when I have some time.",
+      "parentUuid": "f1233c4f_10477ea5",
+      "revId": "9e0e2fb3e323616d151c7a9504501183aad15f7a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
