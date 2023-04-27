@@ -34,6 +34,24 @@
       "parentUuid": "b0eca97f_d6e6a956",
       "revId": "77b476fe6b3e65241b3d2246335fcb1915e68006",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "658708b9_b4a12451",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1936191
+      },
+      "writtenOn": "2023-04-27T23:43:46Z",
+      "side": 1,
+      "message": "AAOS currently allows media apps to define MBS and auto generate launcher icons. Given non media apps like video ( https://developer.android.com/training/cars/video ) can also be published to AAOS via play we need a way for some MBS services to be opted in to have launcher icons. \n\nWe are streamlining this with a new process that tells apps to provide this flag for MBS they need to surface in launcher; especially if they are not a typical media app on AAOS ( no launcher activity and category\u003daudio)",
+      "parentUuid": "b0eca97f_d6e6a956",
+      "revId": "77b476fe6b3e65241b3d2246335fcb1915e68006",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
