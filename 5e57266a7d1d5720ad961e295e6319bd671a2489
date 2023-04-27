@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "80af51e5_25cb6e86",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-04-27T05:51:39Z",
+      "side": 1,
+      "message": "nit: add a blank line to separate subject and body",
+      "revId": "5e57266a7d1d5720ad961e295e6319bd671a2489",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3ec1223f_b8acba90",
         "filename": "android/pandora/server/src/com/android/pandora/GattInstance.kt",
         "patchSetId": 3
