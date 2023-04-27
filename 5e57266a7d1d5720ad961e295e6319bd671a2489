@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cbb4686a_6cf090f7",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1952952
+      },
+      "writtenOn": "2023-04-27T06:05:29Z",
+      "side": 1,
+      "message": "done, thanks for the reminding :)",
+      "parentUuid": "80af51e5_25cb6e86",
+      "revId": "5e57266a7d1d5720ad961e295e6319bd671a2489",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3ec1223f_b8acba90",
@@ -31,6 +49,30 @@
       "writtenOn": "2023-04-27T05:38:09Z",
       "side": 1,
       "message": "How about we name it as `clearAllInstances()` to make it more clear about the purpose?",
+      "range": {
+        "startLine": 76,
+        "startChar": 4,
+        "endLine": 76,
+        "endChar": 17
+      },
+      "revId": "5e57266a7d1d5720ad961e295e6319bd671a2489",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0e45aa32_d7b9ba93",
+        "filename": "android/pandora/server/src/com/android/pandora/GattInstance.kt",
+        "patchSetId": 3
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1952952
+      },
+      "writtenOn": "2023-04-27T06:05:29Z",
+      "side": 1,
+      "message": "sounds good, thanks for the suggestion!",
+      "parentUuid": "3ec1223f_b8acba90",
       "range": {
         "startLine": 76,
         "startChar": 4,
