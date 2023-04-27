@@ -119,6 +119,6 @@ public class BluetoothManagerServiceTest {
                     return new ComponentName(mTargetContext, NeverBoundService.class);
                 });
         service.handleOnBootPhase();
-        service.enable(AttributionSource.myAttributionSource());
+        service.enable(AttributionSource.myAttributionSource().getPackageName());
     }
 }
