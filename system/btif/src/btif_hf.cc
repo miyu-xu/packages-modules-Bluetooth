@@ -1535,8 +1535,17 @@ void HeadsetInterface::Cleanup() {
       btif_disable_service(BTA_HSP_SERVICE_ID);
     }
   }
+<<<<<<< PATCH SET (e169d6 Revert "Cleanup hfp callback during cleanup call")
+#else
+  if ((mask & (1 << BTA_HSP_SERVICE_ID)) != 0) {
+    btif_disable_service(BTA_HSP_SERVICE_ID);
+  }
+#endif
+  do_in_jni_thread(FROM_HERE, base::Bind([]() { bt_hf_callbacks = nullptr; }));
+=======
 
   bt_hf_callbacks = nullptr;
+>>>>>>> BASE      (0a912f Merge changes Ic7aaa7ed,I6edac61f)
 }
 
 bt_status_t HeadsetInterface::SetScoOffloadEnabled(bool value) {
