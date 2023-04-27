@@ -16,6 +16,24 @@
       "message": "Would it be possible to also add coverage for GattService#serverConnect? Either here or in a different CL?",
       "revId": "9e0e2fb3e323616d151c7a9504501183aad15f7a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6b279c46_fd33aaaa",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1938031
+      },
+      "writtenOn": "2023-04-27T12:55:49Z",
+      "side": 1,
+      "message": "I have added the coverage in the following CL\u0027s - aosp/2568110, aosp/2568130. But I am not able to reproduce the test scenario with nRF Connect, can you help me there?",
+      "parentUuid": "652e2b8e_cb85fa54",
+      "revId": "9e0e2fb3e323616d151c7a9504501183aad15f7a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
