@@ -101,6 +101,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "38ccc984_31d9580e",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1430,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-04-27T01:12:16Z",
+      "side": 1,
+      "message": "I think this is fine, just note there will be a functional change. Today, if I go to settings, disable all profiles, then click \"connect\", then all profiles are connected. This will change it so that no profiles are connected in this situation. I think this is a rare circumstance, so this is fine.",
+      "parentUuid": "506051ba_6f0e1884",
+      "revId": "9b7f81f0b60242bc65b3e099b937d1c43ff46727",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fb63fd95_3ceda6c0",
