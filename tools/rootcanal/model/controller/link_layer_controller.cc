@@ -2667,7 +2667,6 @@ void LinkLayerController::IncomingInquiryPacket(
               static_cast<uint8_t>(GetPageScanRepetitionMode()),
               class_of_device_, GetClockOffset(), rssi,
               extended_inquiry_response_));
-
     } break;
     default:
       LOG_WARN("Unhandled Incoming Inquiry of type %d",
@@ -2735,13 +2734,13 @@ void LinkLayerController::IncomingInquiryResponsePacket(
               basic_inquiry_response);
       ASSERT(inquiry_response.IsValid());
 
-      send_event_(bluetooth::hci::ExtendedInquiryResultRawBuilder::Create(
+      send_event_(bluetooth::hci::ExtendedInquiryResultBuilder::Create(
           inquiry_response.GetSourceAddress(),
           static_cast<bluetooth::hci::PageScanRepetitionMode>(
               inquiry_response.GetPageScanRepetitionMode()),
           inquiry_response.GetClassOfDevice(),
           inquiry_response.GetClockOffset(), inquiry_response.GetRssi(),
-          extended_inquiry_response_));
+          inquiry_response.GetExtendedInquiryResponse()));
     } break;
     default:
       LOG_WARN("Unhandled Incoming Inquiry Response of type %d",
@@ -3157,7 +3156,7 @@ void LinkLayerController::ScanIncomingLeLegacyAdvertisingPdu(
   if (LegacyAdvertising() && should_send_advertising_report &&
       !should_send_directed_advertising_report &&
       IsLeEventUnmasked(SubeventCode::ADVERTISING_REPORT)) {
-    bluetooth::hci::LeAdvertisingResponseRaw response;
+    bluetooth::hci::LeAdvertisingResponse response;
     response.address_type_ = resolved_advertising_address.GetAddressType();
     response.address_ = resolved_advertising_address.GetAddress();
     response.advertising_data_ = advertising_data;
@@ -3181,14 +3180,13 @@ void LinkLayerController::ScanIncomingLeLegacyAdvertisingPdu(
         break;
     }
 
-    send_event_(
-        bluetooth::hci::LeAdvertisingReportRawBuilder::Create({response}));
+    send_event_(bluetooth::hci::LeAdvertisingReportBuilder::Create({response}));
   }
 
   // Extended scanning.
   if (ExtendedAdvertising() && should_send_advertising_report &&
       IsLeEventUnmasked(SubeventCode::EXTENDED_ADVERTISING_REPORT)) {
-    bluetooth::hci::LeExtendedAdvertisingResponseRaw response;
+    bluetooth::hci::LeExtendedAdvertisingResponse response;
     response.connectable_ = connectable_advertising;
     response.scannable_ = scannable_advertising;
     response.directed_ = directed_advertising;
@@ -3217,8 +3215,8 @@ void LinkLayerController::ScanIncomingLeLegacyAdvertisingPdu(
     }
     response.advertising_data_ = advertising_data;
 
-    send_event_(bluetooth::hci::LeExtendedAdvertisingReportRawBuilder::Create(
-        {response}));
+    send_event_(
+        bluetooth::hci::LeExtendedAdvertisingReportBuilder::Create({response}));
   }
 
   // Did the user enable Active scanning ?
@@ -3611,7 +3609,7 @@ void LinkLayerController::ScanIncomingLeExtendedAdvertisingPdu(
 
   if (should_send_advertising_report &&
       IsLeEventUnmasked(SubeventCode::EXTENDED_ADVERTISING_REPORT)) {
-    bluetooth::hci::LeExtendedAdvertisingResponseRaw response;
+    bluetooth::hci::LeExtendedAdvertisingResponse response;
     response.connectable_ = connectable_advertising;
     response.scannable_ = scannable_advertising;
     response.directed_ = directed_advertising;
@@ -3656,7 +3654,7 @@ void LinkLayerController::ScanIncomingLeExtendedAdvertisingPdu(
           std::vector(advertising_data.begin() + offset,
                       advertising_data.begin() + offset + fragment_size);
       offset += fragment_size;
-      send_event_(bluetooth::hci::LeExtendedAdvertisingReportRawBuilder::Create(
+      send_event_(bluetooth::hci::LeExtendedAdvertisingReportBuilder::Create(
           {response}));
     } while (offset < advertising_data.size());
   }
@@ -5015,19 +5013,18 @@ void LinkLayerController::IncomingLeScanResponsePacket(
 
   if (LegacyAdvertising() && should_send_advertising_report &&
       IsLeEventUnmasked(SubeventCode::ADVERTISING_REPORT)) {
-    bluetooth::hci::LeAdvertisingResponseRaw response;
+    bluetooth::hci::LeAdvertisingResponse response;
     response.event_type_ = bluetooth::hci::AdvertisingEventType::SCAN_RESPONSE;
     response.address_ = resolved_advertising_address.GetAddress();
     response.address_type_ = resolved_advertising_address.GetAddressType();
     response.advertising_data_ = scan_response.GetScanResponseData();
     response.rssi_ = rssi;
-    send_event_(
-        bluetooth::hci::LeAdvertisingReportRawBuilder::Create({response}));
+    send_event_(bluetooth::hci::LeAdvertisingReportBuilder::Create({response}));
   }
 
   if (ExtendedAdvertising() && should_send_advertising_report &&
       IsLeEventUnmasked(SubeventCode::EXTENDED_ADVERTISING_REPORT)) {
-    bluetooth::hci::LeExtendedAdvertisingResponseRaw response;
+    bluetooth::hci::LeExtendedAdvertisingResponse response;
     response.address_ = resolved_advertising_address.GetAddress();
     response.address_type_ =
         static_cast<bluetooth::hci::DirectAdvertisingAddressType>(
@@ -5041,8 +5038,8 @@ void LinkLayerController::IncomingLeScanResponsePacket(
     response.tx_power_ = 0x7F;
     response.advertising_data_ = scan_response.GetScanResponseData();
     response.rssi_ = rssi;
-    send_event_(bluetooth::hci::LeExtendedAdvertisingReportRawBuilder::Create(
-        {response}));
+    send_event_(
+        bluetooth::hci::LeExtendedAdvertisingReportBuilder::Create({response}));
   }
 }
 
