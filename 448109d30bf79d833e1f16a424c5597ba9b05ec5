@@ -16,6 +16,24 @@
       "message": "nit: change to isAllProfilesUnknown",
       "revId": "448109d30bf79d833e1f16a424c5597ba9b05ec5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2b4e8be2_4d1af5ca",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1428,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2023-04-27T01:14:38Z",
+      "side": 1,
+      "message": "Sure. Let me do it with the follow-up CL. Thanks.",
+      "parentUuid": "1212e2e3_408db9e5",
+      "revId": "448109d30bf79d833e1f16a424c5597ba9b05ec5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
