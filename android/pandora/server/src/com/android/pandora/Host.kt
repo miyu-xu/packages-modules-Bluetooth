@@ -173,6 +173,7 @@ class Host(
       waitedAclConnection.clear()
       waitedAclDisconnection.clear()
 
+
       bluetoothAdapter.clearBluetooth()
 
       stateFlow.filter { it == BluetoothAdapter.STATE_ON }.first()
