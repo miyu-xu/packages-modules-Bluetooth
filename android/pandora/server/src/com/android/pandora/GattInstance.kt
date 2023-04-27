@@ -62,6 +62,7 @@ class GattInstance(val mDevice: BluetoothDevice, val mTransport: Int, val mConte
   private var mGattInstanceValueWrote = GattInstanceValueWrote(null, 0, AttStatusCode.UNKNOWN_ERROR)
 
   companion object GattManager {
+    const val TAG = "GattInstance.GattManager"
     val gattInstances: MutableMap<String, GattInstance> = mutableMapOf<String, GattInstance>()
     fun get(address: String): GattInstance {
       val instance = gattInstances.get(address)
@@ -72,6 +73,13 @@ class GattInstance(val mDevice: BluetoothDevice, val mTransport: Int, val mConte
       val instance = gattInstances.get(address.toByteArray().decodeToString())
       requireNotNull(instance) { "Unable to find GATT instance for $address" }
       return instance
+    }
+    fun clearAllInstances() {
+        var size = gattInstances.count()
+        if (size > 0) {
+            Log.w(TAG, "clear $size instances")
+            gattInstances.clear()
+        }
     }
   }
 
