@@ -250,7 +250,12 @@ public class DatabaseManager {
                 return true;
             }
             logManufacturerInfo(device, key, newValue);
-            logMetadataChange(data, "setCustomMeta key=" + key);
+
+            if (key != BluetoothDevice.METADATA_GTBS_CCCD
+                    && key != BluetoothDevice.METADATA_GMCS_CCCD) {
+                logMetadataChange(data, "setCustomMeta key=" + key);
+            }
+
             data.setCustomizedMeta(key, newValue);
 
             updateDatabase(data);
