@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9bacb182_70374abf",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-04-27T06:47:57Z",
+      "side": 1,
+      "message": "Hi Myles and Rahul, ping for review.",
+      "revId": "0df47eaf129c6c2081b5dbe98f702d3c5a404092",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
