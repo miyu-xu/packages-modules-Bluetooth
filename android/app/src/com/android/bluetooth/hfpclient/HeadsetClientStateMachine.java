@@ -188,8 +188,6 @@ public class HeadsetClientStateMachine extends StateMachine {
 
     private final boolean mClccPollDuringCall;
 
-    private static final int CALL_AUDIO_POLICY_FEATURE_ID = 1;
-
     public int mAudioPolicyRemoteSupported;
     private BluetoothSinkAudioPolicy mHsClientAudioPolicy;
     private final int mConnectingTimePolicyProperty;
@@ -2224,7 +2222,7 @@ public class HeadsetClientStateMachine extends StateMachine {
 
     private String createMaskString(BluetoothSinkAudioPolicy policies) {
         StringBuilder mask = new StringBuilder();
-        mask.append(Integer.toString(CALL_AUDIO_POLICY_FEATURE_ID));
+        mask.append(BluetoothSinkAudioPolicy.HFP_SET_SINK_AUDIO_POLICY_ID);
         mask.append("," + policies.getCallEstablishPolicy());
         mask.append("," + policies.getActiveDevicePolicyAfterConnection());
         mask.append("," + policies.getInBandRingtonePolicy());
