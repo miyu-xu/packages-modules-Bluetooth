@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "84d13b20_3357ac0a",
+        "filename": "system/stack/btm/btm_ble_gap.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 2405,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-04-27T08:30:13Z",
+      "side": 1,
+      "message": "Fluoride :)",
+      "range": {
+        "startLine": 2405,
+        "startChar": 18,
+        "endLine": 2405,
+        "endChar": 27
+      },
+      "revId": "5ceef08f021f02a195e62ad4ce744ffff5106eb4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5693ff02_84bf4520",
+        "filename": "system/stack/btm/btm_ble_gap.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 2415,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-04-27T08:30:13Z",
+      "side": 1,
+      "message": "else not needed since return in 2414",
+      "range": {
+        "startLine": 2415,
+        "startChar": 4,
+        "endLine": 2415,
+        "endChar": 8
+      },
+      "revId": "5ceef08f021f02a195e62ad4ce744ffff5106eb4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
