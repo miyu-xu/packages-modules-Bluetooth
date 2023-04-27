@@ -38,31 +38,39 @@ class Server(context: Context) {
     val bluetoothAdapter = context.getSystemService(BluetoothManager::class.java)!!.adapter
 
     val security = Security(context)
-    services =
-      listOf(
-        security,
-        Host(context, security, this),
-        L2cap(context),
-        MediaPlayer(context),
-        Rfcomm(context),
-        SecurityStorage(context),
-        AndroidInternal(context),
-      ) +
-        mapOf(
-            BluetoothProfile.A2DP to ::A2dp,
-            BluetoothProfile.A2DP_SINK to ::A2dpSink,
-            BluetoothProfile.HEARING_AID to ::Asha,
-            BluetoothProfile.AVRCP to ::Avrcp,
-            BluetoothProfile.GATT to ::Gatt,
-            BluetoothProfile.HEADSET to ::Hfp,
-            BluetoothProfile.HEADSET_CLIENT to ::HfpHandsfree,
-            BluetoothProfile.HID_HOST to ::Hid,
-            BluetoothProfile.PAN to ::Pan,
-            BluetoothProfile.PBAP to ::Pbap,
-          )
-          .filter { bluetoothAdapter.getSupportedProfiles().contains(it.key) == true }
-          .map { it.value(context) }
 
+    // If Bluetooth is turned off, the server will try to get the available profiles,
+    // but they will be null. This will cause the server to crash.
+    // To avoid this, only the host should be available. This will allow the user to
+    // perform a factory reset to turn Bluetooth back on.
+    if (!bluetoothAdapter.isEnabled) {
+      services = listOf(Host(context, security, this))
+    } else {
+      services =
+        listOf(
+          security,
+          Host(context, security, this),
+          L2cap(context),
+          MediaPlayer(context),
+          Rfcomm(context),
+          SecurityStorage(context),
+          AndroidInternal(context),
+        ) +
+          mapOf(
+              BluetoothProfile.A2DP to ::A2dp,
+              BluetoothProfile.A2DP_SINK to ::A2dpSink,
+              BluetoothProfile.HEARING_AID to ::Asha,
+              BluetoothProfile.AVRCP to ::Avrcp,
+              BluetoothProfile.GATT to ::Gatt,
+              BluetoothProfile.HEADSET to ::Hfp,
+              BluetoothProfile.HEADSET_CLIENT to ::HfpHandsfree,
+              BluetoothProfile.HID_HOST to ::Hid,
+              BluetoothProfile.PAN to ::Pan,
+              BluetoothProfile.PBAP to ::Pbap,
+            )
+            .filter { bluetoothAdapter.getSupportedProfiles().contains(it.key) == true }
+            .map { it.value(context) }
+    }
     val grpcServerBuilder = NettyServerBuilder.forPort(GRPC_PORT)
 
     services.forEach { grpcServerBuilder.addService(it) }
