@@ -74,9 +74,9 @@ public class BluetoothManagerServiceTest {
         doReturn("name")
                 .when(mBluetoothServerProxy)
                 .settingsSecureGetString(any(), eq(Settings.Secure.BLUETOOTH_NAME));
-        doReturn("00:11:22:33:44:55").when(mBluetoothServerProxy).settingsSecureGetString(any(),
-                eq(Settings.Secure.BLUETOOTH_ADDRESS));
-
+        doReturn("00:11:22:33:44:55")
+                .when(mBluetoothServerProxy)
+                .settingsSecureGetString(any(), eq(Settings.Secure.BLUETOOTH_ADDRESS));
     }
 
     @After
@@ -89,12 +89,6 @@ public class BluetoothManagerServiceTest {
             throws InterruptedException {
         doReturn(mock(Intent.class)).when(mContext).registerReceiverForAllUsers(any(), any(),
                 eq(null), eq(null));
-
-        // Mock these functions so security errors won't throw
-        doReturn("name").when(mBluetoothServerProxy).settingsSecureGetString(any(),
-                eq(Settings.Secure.BLUETOOTH_NAME));
-        doReturn("00:11:22:33:44:55").when(mBluetoothServerProxy).settingsSecureGetString(any(),
-                eq(Settings.Secure.BLUETOOTH_ADDRESS));
 
         // Spy UserManager so we can mimic the case when restriction settings changed
         UserManager userManager = mock(UserManager.class);
@@ -161,8 +155,8 @@ public class BluetoothManagerServiceTest {
                         any(UserHandle.class));
         handler.handleMessage(handler.obtainMessage(MESSAGE_ENABLE));
         assertThat(service.mEnable).isTrue();
-        assertThat(service.mBinding.isTrue());
-        assertThat(handler.hasMessages(MESSAGE_TIMEOUT_BIND).isTrue());
+        assertThat(service.mBinding).isTrue();
+        assertThat(handler.hasMessages(MESSAGE_TIMEOUT_BIND)).isTrue();
         // Force handling the message now without waiting for the timeout to fire
         handler.removeMessages(MESSAGE_TIMEOUT_BIND);
         handler.handleMessage(handler.obtainMessage(MESSAGE_TIMEOUT_BIND));
