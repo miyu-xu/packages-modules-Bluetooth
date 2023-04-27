@@ -4537,6 +4537,12 @@ public class GattService extends ProfileService {
             return;
         }
 
+        if (isDirect) {
+          MetricsLogger.getInstance().count(BluetoothProtoEnums.GATT_SERVER_CONNECT_IS_DIRECT, 1);
+        } else {
+          MetricsLogger.getInstance().count(BluetoothProtoEnums.GATT_SERVER_CONNECT_IS_AUTOCONNECT, 1);
+        }
+
         if (DBG) {
             Log.d(TAG, "serverConnect() - address=" + address);
         }
