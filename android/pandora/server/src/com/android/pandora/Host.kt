@@ -181,6 +181,9 @@ class Host(
       Log.i(TAG, "Shutdown the gRPC Server")
       server.shutdown()
 
+      // Clear existing Gatt instance to fix flakiness: b/279599889
+      GattInstance.clear()
+
       // The last expression is the return value.
       Empty.getDefaultInstance()
     }
