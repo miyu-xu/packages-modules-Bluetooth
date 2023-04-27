@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "14c967dc_89037838",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-04-27T17:53:48Z",
+      "side": 1,
+      "message": "This looks like it\u0027s 2 patches.\n1) lengthening the timeout to align with the more natural scan timeout\n2) Removing the BREDR flag for the inquiry result",
+      "revId": "ef5ae50deead4860df3bb26e3468fbe3f73cea12",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a5c811e0_0f40bf44",
