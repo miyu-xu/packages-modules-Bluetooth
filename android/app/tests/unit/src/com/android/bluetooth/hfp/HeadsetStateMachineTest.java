@@ -1436,19 +1436,56 @@ public class HeadsetStateMachineTest {
         mHeadsetStateMachine.dump(sb);
     }
 
-    /**
-     * A test to validate received Android AT commands and processing
-     */
     @Test
     public void testProcessAndroidAt() {
-        setUpConnectedState();
+        // Commands that will be handled
+        Assert.assertTrue(mHeadsetStateMachine.checkAndProcessAndroidAt(
+            "+ANDROID=?" , mTestDevice));
+        Assert.assertTrue(mHeadsetStateMachine.checkAndProcessAndroidAt(
+            "+ANDROID=1,1,1,1" , mTestDevice));
+        Assert.assertTrue(mHeadsetStateMachine.checkAndProcessAndroidAt(
+            "+ANDROID=100,1,1,1" , mTestDevice));
+
+        // Commands with correct format but will not be handled
+        Assert.assertFalse(mHeadsetStateMachine.checkAndProcessAndroidAt(
+            "+ANDROID=" , mTestDevice));
+        Assert.assertFalse(mHeadsetStateMachine.checkAndProcessAndroidAt(
+            "+ANDROID: PROBE,1,\"`AB\"" , mTestDevice));
+        Assert.assertFalse(mHeadsetStateMachine.checkAndProcessAndroidAt(
+            "+ANDROID= PROBE,1,\"`AB\"" , mTestDevice));
+        Assert.assertFalse(mHeadsetStateMachine.checkAndProcessAndroidAt(
+            "AT+ANDROID=PROBE,1,1,\"PQGHRSBCTU__\"" , mTestDevice));
+
+        // Incorrect format AT command
+        Assert.assertFalse(mHeadsetStateMachine.checkAndProcessAndroidAt(
+            "RANDOM FORMAT" , mTestDevice));
+    }
+
+    /**
+     * A end to end test to validate received Android AT commands and processing
+     */
+    @Test
+    public void testProcessAndroidAtFromStateMachine() {
+        // setAudioPolicyMetadata is invoked in HeadsetStateMachine.init() so start from 1
+        int expectCallTimes = 1;
+
         // setup Audio Policy Feature
+        setUpConnectedState();
+
         setUpAudioPolicy();
         // receive and set android policy
         mHeadsetStateMachine.sendMessage(HeadsetStateMachine.STACK_EVENT,
                 new HeadsetStackEvent(HeadsetStackEvent.EVENT_TYPE_UNKNOWN_AT,
                         "+ANDROID=1,1,1,1", mTestDevice));
-        verify(mDatabaseManager, timeout(ASYNC_CALL_TIMEOUT_MILLIS))
+        expectCallTimes++;
+        verify(mDatabaseManager, timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(expectCallTimes))
+                .setAudioPolicyMetadata(anyObject(), anyObject());
+
+        // receive and not set android policy
+        mHeadsetStateMachine.sendMessage(HeadsetStateMachine.STACK_EVENT,
+                new HeadsetStackEvent(HeadsetStackEvent.EVENT_TYPE_UNKNOWN_AT,
+                        "AT+ANDROID=PROBE,1,1,\"PQGHRSBCTU__\"", mTestDevice));
+        verify(mDatabaseManager, timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(expectCallTimes))
                 .setAudioPolicyMetadata(anyObject(), anyObject());
     }
 

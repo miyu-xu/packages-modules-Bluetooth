@@ -1966,14 +1966,21 @@ public class HeadsetStateMachine extends StateMachine {
     }
 
     /**
-     * Process Android specific AT commands.
+     * Look for Android specific AT command starts with AT+ANDROID and try to process it
      *
-     * @param atString AT command after the "AT+" prefix. Starts with "ANDROID"
+     * @param atString AT command in string
      * @param device Remote device that has sent this command
+     * @return true if the command is processed, false if not.
      */
-    private void processAndroidAt(String atString, BluetoothDevice device) {
-        log("processAndroidSpecificAt - atString = " + atString);
+    @VisibleForTesting
+    boolean checkAndProcessAndroidAt(String atString, BluetoothDevice device) {
+        log("checkAndProcessAndroidAt - atString = " + atString);
 
+        if (!atString.startsWith("+ANDROID")) {
+            return false;
+        }
+
+        Log.d(TAG, "Try to process ANDROID command: " + atString);
         if (atString.equals("+ANDROID=?")) {
             // feature request type command
             processAndroidAtFeatureRequest(device);
@@ -1983,17 +1990,15 @@ public class HeadsetStateMachine extends StateMachine {
             String arg = atString.substring(equalIndex + 1);
 
             if (arg.isEmpty()) {
-                Log.e(TAG, "Command Invalid!");
-                mNativeInterface.atResponseCode(device, HeadsetHalConstants.AT_RESPONSE_ERROR, 0);
-                return;
+                Log.i(TAG, "AT+ANDROID command does not have \"=\" or is empty");
+                return false;
             }
 
             Object[] args = generateArgs(arg);
 
             if (!(args[0] instanceof Integer)) {
-                Log.e(TAG, "Type ID is invalid");
-                mNativeInterface.atResponseCode(device, HeadsetHalConstants.AT_RESPONSE_ERROR, 0);
-                return;
+                Log.i(TAG, "Not supported AT+ANDROID command format");
+                return false;
             }
 
             int type = (Integer) args[0];
@@ -2001,16 +2006,18 @@ public class HeadsetStateMachine extends StateMachine {
             if (type == HFP_SET_AUDIO_POLICY) {
                 processAndroidAtSetAudioPolicy(args, device);
             } else {
-                Log.w(TAG, "Undefined AT+ANDROID command");
+                Log.w(TAG, "Undefined AT+ANDROID command type");
+                // Reply ERROR AT command to the remote as we believe it is using a supported
+                // ANDROID AT command but with an unsupported type.
                 mNativeInterface.atResponseCode(device, HeadsetHalConstants.AT_RESPONSE_ERROR, 0);
-                return;
+                return true;
             }
         } else {
-            Log.e(TAG, "Undefined AT+ANDROID command");
-            mNativeInterface.atResponseCode(device, HeadsetHalConstants.AT_RESPONSE_ERROR, 0);
-            return;
+            Log.i(TAG, "Not supported AT+ANDROID Command");
+            return false;
         }
         mNativeInterface.atResponseCode(device, HeadsetHalConstants.AT_RESPONSE_OK, 0);
+        return true;
     }
 
     private void processAndroidAtFeatureRequest(BluetoothDevice device) {
@@ -2129,8 +2136,8 @@ public class HeadsetStateMachine extends StateMachine {
             processAtCpbs(atCommand.substring(5), commandType, device);
         } else if (atCommand.startsWith("+CPBR")) {
             processAtCpbr(atCommand.substring(5), commandType, device);
-        } else if (atCommand.startsWith("+ANDROID")) {
-            processAndroidAt(atCommand, device);
+        } else if (checkAndProcessAndroidAt(atCommand, device)) {
+            // Do nothing
         } else {
             processVendorSpecificAt(atCommand, device);
         }
