@@ -187,6 +187,8 @@ void smp_send_app_cback(tSMP_CB* p_cb, tSMP_INT_DATA* p_data) {
                 "SMP Unable to determine remote security authentication "
                 "remote_lmp_version:%hu",
                 remote_lmp_version);
+          } else if (remote_lmp_version < HCI_PROTO_VERSION_4_2) {
+            p_cb->loc_auth_req &= ~SMP_SC_SUPPORT_BIT;
           }
 
           LOG_DEBUG(
