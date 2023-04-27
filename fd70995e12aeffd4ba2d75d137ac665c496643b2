@@ -1,5 +1,23 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "99a96f13_182fda99",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121388
+      },
+      "writtenOn": "2023-04-27T00:38:10Z",
+      "side": 1,
+      "message": "Shall we merge this CL since emu-master-dev targets are red for some time ?",
+      "revId": "fd70995e12aeffd4ba2d75d137ac665c496643b2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
