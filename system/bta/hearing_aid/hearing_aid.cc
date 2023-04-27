@@ -680,11 +680,17 @@ class HearingAidImpl : public HearingAid {
                ADDRESS_TO_LOGGABLE_CSTR(hearingDevice->address));
       return;
     }
-    LOG_INFO(
-        "%s phy update successful but not target phy, try again. tx_phys: "
-        "%u,rx_phys: %u",
-        ADDRESS_TO_LOGGABLE_CSTR(hearingDevice->address), tx_phys, rx_phys);
-    BTM_BleSetPhy(hearingDevice->address, PHY_LE_2M, PHY_LE_2M, 0);
+
+    if (hearingDevice->phy_update_retry_remain > 0) {
+      LOG_INFO(
+          "%s phy update successful but not target phy, try again. tx_phys: "
+          "%u,rx_phys: %u",
+          ADDRESS_TO_LOGGABLE_CSTR(hearingDevice->address), tx_phys, rx_phys);
+      BTM_BleSetPhy(hearingDevice->address, PHY_LE_2M, PHY_LE_2M, 0);
+      hearingDevice->phy_update_retry_remain--;
+    } else {
+      LOG_INFO("no more phy update after %d retry", PHY_UPDATE_RETRY_LIMIT);
+    }
   }
 
   void OnServiceChangeEvent(const RawAddress& address) {
