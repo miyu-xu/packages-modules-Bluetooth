@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "698a86f2_a8057297",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-04-27T00:24:53Z",
+      "side": 1,
+      "message": "Instead of doing all the cleanup in jni_thread, reverting this CL that is the culprit of the issue to make thing back to what they were.\n\nThe situation is still not ideal since do_in_jni_thread is called for executing stack code instead of doing JNI, but it looks like it was initially implemented like this.\n\nI still strongly advise to track a bug to clean the do_in_jni_thread code across the stack",
+      "revId": "9e25364dfa6e2d32d385848f10666aa58a9b7150",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
