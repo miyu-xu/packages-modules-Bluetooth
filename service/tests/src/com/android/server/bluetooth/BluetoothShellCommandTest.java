@@ -21,10 +21,12 @@ import static com.google.common.truth.Truth.assertThat;
 import static org.junit.Assert.assertThrows;
 import static org.mockito.ArgumentMatchers.anyBoolean;
 import static org.mockito.Mockito.any;
+import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.eq;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.when;
 
 import android.bluetooth.BluetoothAdapter;
@@ -39,6 +41,7 @@ import com.android.server.bluetooth.BluetoothShellCommand.BluetoothCommand;
 
 import com.google.common.truth.Expect;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -58,6 +61,9 @@ public class BluetoothShellCommandTest {
     BluetoothManagerService mManagerService;
 
     @Mock
+    BluetoothServiceBinder mBinder;
+
+    @Mock
     Context mContext;
 
     BluetoothShellCommand mShellCommand;
@@ -65,10 +71,19 @@ public class BluetoothShellCommandTest {
     @Before
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
+        doReturn(mBinder).when(mManagerService).getBinder();
+
         mShellCommand = new BluetoothShellCommand(mManagerService, mContext);
         mShellCommand.init(
                 mock(Binder.class), mock(FileDescriptor.class), mock(FileDescriptor.class),
                 mock(FileDescriptor.class), new String[0], -1);
+    }
+
+
+    @After
+    public void tearDown() {
+        verifyNoMoreInteractions(mBinder);
+        // verifyNoMoreInteractions(mManagerService); // TODO(b/280518177): Apply after cleanup
     }
 
     @Test
@@ -79,8 +94,9 @@ public class BluetoothShellCommandTest {
         assertThat(enableCmd.getName()).isEqualTo(cmdName);
         assertThat(enableCmd.isMatch(cmdName)).isTrue();
         assertThat(enableCmd.isPrivileged()).isFalse();
-        when(mManagerService.enable(any())).thenReturn(true);
+        when(mBinder.enable(any())).thenReturn(true);
         assertThat(enableCmd.exec(cmdName)).isEqualTo(0);
+        verify(mBinder).enable(any());
     }
 
     @Test
@@ -91,8 +107,9 @@ public class BluetoothShellCommandTest {
         assertThat(disableCmd.getName()).isEqualTo(cmdName);
         assertThat(disableCmd.isMatch(cmdName)).isTrue();
         assertThat(disableCmd.isPrivileged()).isFalse();
-        when(mManagerService.disable(any(), anyBoolean())).thenReturn(true);
+        when(mBinder.disable(any(), anyBoolean())).thenReturn(true);
         assertThat(disableCmd.exec(cmdName)).isEqualTo(0);
+        verify(mBinder).disable(any(), anyBoolean());
     }
 
     @Test
@@ -147,6 +164,7 @@ public class BluetoothShellCommandTest {
         mShellCommand.onCommand("enable");
 
         verify(enableCmd).exec(eq("enable"));
+        verify(mBinder).enable(any());
     }
 
     @Test
