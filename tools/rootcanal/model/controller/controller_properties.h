@@ -22,6 +22,7 @@
 #include <string>
 #include <vector>
 
+#include "config.pb.h"
 #include "hci/address.h"
 #include "hci/hci_packets.h"
 
@@ -39,7 +40,10 @@ using bluetooth::hci::LmpVersion;
 // Controller. The Host device cannot modify any of these parameters.
 struct ControllerProperties {
  public:
-  explicit ControllerProperties(const std::string& file_name = "");
+  ControllerProperties();
+  ControllerProperties(rootcanal::configuration::Controller const&);
+  ControllerProperties(ControllerProperties const&) = default;
+  ControllerProperties(ControllerProperties&&) = default;
   ~ControllerProperties() = default;
 
   // Perform a bitwise and operation on the supported commands mask;
@@ -51,7 +55,8 @@ struct ControllerProperties {
   bool CheckSupportedFeatures() const;
 
   // Check if the supported command mask is valid according to the
-  // specification.
+  // specification. If fixup is true, then the mask is updated instead of
+  // returning an error.
   bool CheckSupportedCommands() const;
 
   // Local Version Information (Vol 4, Part E § 7.4.1).
@@ -66,14 +71,14 @@ struct ControllerProperties {
   bool le_supported{true};
 
   // Local Supported Commands (Vol 4, Part E § 7.4.2).
-  std::array<uint8_t, 64> supported_commands;
+  std::array<uint8_t, 64> supported_commands{};
 
   // Local Supported Features (Vol 4, Part E § 7.4.3) and
   // Local Extended Features (Vol 4, Part E § 7.4.3).
-  std::array<uint64_t, 3> lmp_features;
+  std::array<uint64_t, 3> lmp_features{};
 
   // LE Local Supported Features (Vol 4, Part E § 7.8.3).
-  uint64_t le_features;
+  uint64_t le_features{0};
 
   // Buffer Size (Vol 4, Part E § 7.4.5).
   uint16_t acl_data_packet_length{1024};
