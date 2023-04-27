@@ -474,7 +474,7 @@ public class HeadsetClientStateMachineTest {
         verify(mNativeInterface).sendAndroidAt(mTestDevice, "+ANDROID=?");
         if (androidAtSupported) {
             StackEvent unknownEvt = new StackEvent(StackEvent.EVENT_TYPE_UNKNOWN_EVENT);
-            unknownEvt.valueString = "+ANDROID: 1";
+            unknownEvt.valueString = "+ANDROID: SINKAUDIOPOLICY";
             unknownEvt.device = mTestDevice;
             mHeadsetClientStateMachine.sendMessage(StackEvent.STACK_EVENT, unknownEvt);
             TestUtils.waitForLooperToFinishScheduledTask(mHandlerThread.getLooper());
@@ -849,23 +849,23 @@ public class HeadsetClientStateMachineTest {
         // Expect: Should not send +ANDROID to remote
         mHeadsetClientStateMachine.mCurrentDevice = mTestDevice;
         mHeadsetClientStateMachine.setAudioPolicyRemoteSupported(false);
-        verify(mNativeInterface, never()).sendAndroidAt(mTestDevice, "+ANDROID=1,1,0,0");
+        verify(mNativeInterface, never()).sendAndroidAt(mTestDevice, "+ANDROID=SINKAUDIOPOLICY,1,0,0");
 
         // Case 2: if remote is supported and mForceSetAudioPolicyProperty is false
-        // Expect: Should send +ANDROID:1,1,0,0 to remote
+        // Expect: Should send +ANDROID=SINKAUDIOPOLICY,1,0,0 to remote
         mHeadsetClientStateMachine.setAudioPolicyRemoteSupported(true);
         mHeadsetClientStateMachine.setForceSetAudioPolicyProperty(false);
         mHeadsetClientStateMachine.setAudioRouteAllowed(true);
-        verify(mNativeInterface).sendAndroidAt(mTestDevice, "+ANDROID=1,1,0,0");
+        verify(mNativeInterface).sendAndroidAt(mTestDevice, "+ANDROID=SINKAUDIOPOLICY,1,0,0");
 
         mHeadsetClientStateMachine.setAudioRouteAllowed(false);
-        verify(mNativeInterface).sendAndroidAt(mTestDevice, "+ANDROID=1,2,0,0");
+        verify(mNativeInterface).sendAndroidAt(mTestDevice, "+ANDROID=SINKAUDIOPOLICY,2,0,0");
 
         // Case 3: if remote is supported and mForceSetAudioPolicyProperty is true
-        // Expect: Should send +ANDROID:1,1,2,1 to remote
+        // Expect: Should send +ANDROID=SINKAUDIOPOLICY,1,2,1 to remote
         mHeadsetClientStateMachine.setForceSetAudioPolicyProperty(true);
         mHeadsetClientStateMachine.setAudioRouteAllowed(true);
-        verify(mNativeInterface).sendAndroidAt(mTestDevice, "+ANDROID=1,1,2,1");
+        verify(mNativeInterface).sendAndroidAt(mTestDevice, "+ANDROID=SINKAUDIOPOLICY,1,2,1");
     }
 
     @Test
@@ -1105,7 +1105,7 @@ public class HeadsetClientStateMachineTest {
 
         BluetoothSinkAudioPolicy dummyAudioPolicy = new BluetoothSinkAudioPolicy.Builder().build();
         mHeadsetClientStateMachine.setAudioPolicy(dummyAudioPolicy);
-        verify(mNativeInterface, never()).sendAndroidAt(mTestDevice, "+ANDROID:1,0,0,0");
+        verify(mNativeInterface, never()).sendAndroidAt(mTestDevice, "+ANDROID:SINKAUDIOPOLICY,0,0,0");
     }
 
     @SmallTest
@@ -1129,13 +1129,13 @@ public class HeadsetClientStateMachineTest {
         // Test if not support audio policy feature
         mHeadsetClientStateMachine.setAudioPolicyRemoteSupported(false);
         mHeadsetClientStateMachine.setAudioPolicy(dummyAudioPolicy);
-        verify(mNativeInterface, never()).sendAndroidAt(mTestDevice, "+ANDROID=1,1,2,1");
+        verify(mNativeInterface, never()).sendAndroidAt(mTestDevice, "+ANDROID=SINKAUDIOPOLICY,1,2,1");
         Assert.assertEquals(0, mHeadsetClientStateMachine.mQueuedActions.size());
 
         // Test setAudioPolicy
         mHeadsetClientStateMachine.setAudioPolicyRemoteSupported(true);
         mHeadsetClientStateMachine.setAudioPolicy(dummyAudioPolicy);
-        verify(mNativeInterface).sendAndroidAt(mTestDevice, "+ANDROID=1,1,2,1");
+        verify(mNativeInterface).sendAndroidAt(mTestDevice, "+ANDROID=SINKAUDIOPOLICY,1,2,1");
         Assert.assertEquals(1, mHeadsetClientStateMachine.mQueuedActions.size());
         mHeadsetClientStateMachine.mQueuedActions.clear();
 
@@ -1261,7 +1261,7 @@ public class HeadsetClientStateMachineTest {
 
     @Test
     public void testProcessStackEvent_Unknown_onConnectingState() {
-        String atCommand = "+ANDROID: 1";
+        String atCommand = "+ANDROID: SINKAUDIOPOLICY";
 
         initToConnectingState();
         StackEvent event = new StackEvent(StackEvent.EVENT_TYPE_UNKNOWN_EVENT);
@@ -1406,7 +1406,7 @@ public class HeadsetClientStateMachineTest {
     }
 
     private void initToConnectedState() {
-        String atCommand = "+ANDROID: 1";
+        String atCommand = "+ANDROID: SINKAUDIOPOLICY";
         initToConnectingState();
         StackEvent event = new StackEvent(StackEvent.EVENT_TYPE_UNKNOWN_EVENT);
         event.valueString = atCommand;
