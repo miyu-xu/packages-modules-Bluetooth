@@ -122,6 +122,24 @@
       "parentUuid": "61701d20_d8eac11d",
       "revId": "ef5ae50deead4860df3bb26e3468fbe3f73cea12",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b84e6d3e_11f93405",
+        "filename": "system/stack/btm/btm_inq.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 542,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2023-04-28T16:44:34Z",
+      "side": 1,
+      "message": "Got it. I\u0027ll try to decouple them in another change.",
+      "parentUuid": "d26cea26_65e4c4d1",
+      "revId": "ef5ae50deead4860df3bb26e3468fbe3f73cea12",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
