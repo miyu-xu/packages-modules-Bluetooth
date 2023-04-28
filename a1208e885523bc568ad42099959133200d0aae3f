@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3cd0c501_76185c51",
+        "filename": "system/stack/smp/smp_act.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 1003366
+      },
+      "writtenOn": "2023-04-28T16:23:05Z",
+      "side": 1,
+      "message": "Thanks for the patch. I tried it and found SC flag is not enough to make the pairing work.\nI have to set another 3 flags false, then the pairing works.\n\n+            p_cb-\u003eloc_auth_req \u0026\u003d ~SMP_H7_SUPPORT_BIT;\n+            p_cb-\u003elocal_i_key \u0026\u003d ~SMP_SEC_KEY_TYPE_LK;\n+            p_cb-\u003elocal_r_key \u0026\u003d ~SMP_SEC_KEY_TYPE_LK;\n\nThe AuthReq looks like the Android 12 behavior.\nSent Pairing Request: AuthReq: Bonding, MITM | Initiator Key(s): LTK, IRK, CSRK | Responder Key(s): LTK, IRK, CSRK\n\nVS Android 13:\n\nSent Pairing Request: AuthReq: Bonding, MITM, SecureConnection, Reserved | Initiator Key(s): LTK, IRK, CSRK, Linkkey | Responder Key(s): LTK, IRK, CSRK, Linkkey",
+      "revId": "a1208e885523bc568ad42099959133200d0aae3f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
