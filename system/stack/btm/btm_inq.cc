@@ -534,13 +534,6 @@ void BTM_CancelInquiry(void) {
   }
 }
 
-static void btm_classic_inquiry_timeout(UNUSED_ATTR void* data) {
-  // We mark both classic inquiry and BLE inquiry complete so that we stop
-  // processing BLE results as inquiry results.
-  btm_process_inq_complete(HCI_SUCCESS,
-                           (BTM_BR_INQUIRY_MASK | BTM_BLE_INQUIRY_MASK));
-}
-
 /*******************************************************************************
  *
  * Function         BTM_StartInquiry
@@ -609,7 +602,7 @@ tBTM_STATUS BTM_StartInquiry(tBTM_INQ_RESULTS_CB* p_results_cb,
    * setting/clearing the inquiry filter */
   btm_cb.btm_inq_vars.inqparms = {
       // tBTM_INQ_PARMS
-      .mode = BTM_GENERAL_INQUIRY | BTM_BLE_GENERAL_INQUIRY,
+      .mode = BTM_GENERAL_INQUIRY,
       .duration = BTIF_DM_DEFAULT_INQ_MAX_DURATION,
   };
 
@@ -633,6 +626,7 @@ tBTM_STATUS BTM_StartInquiry(tBTM_INQ_RESULTS_CB* p_results_cb,
   // with other scanners.
   if (!bluetooth::shim::is_classic_discovery_only_enabled()) {
     if (controller_get_interface()->supports_ble()) {
+      btm_cb.btm_inq_vars.inqparms.mode |= BTM_BLE_GENERAL_INQUIRY;
       btm_ble_start_inquiry(btm_cb.btm_inq_vars.inqparms.duration);
     } else {
       LOG_WARN("Trying to do LE scan on a non-LE adapter");
@@ -659,16 +653,6 @@ tBTM_STATUS BTM_StartInquiry(tBTM_INQ_RESULTS_CB* p_results_cb,
 
   bluetooth::legacy::hci::GetInterface().StartInquiry(
       general_inq_lap, btm_cb.btm_inq_vars.inqparms.duration, 0);
-
-  // If we are only doing classic discovery, we should also set a timeout for
-  // the inquiry if a duration is set.
-  if (bluetooth::shim::is_classic_discovery_only_enabled() &&
-      btm_cb.btm_inq_vars.inqparms.duration != 0) {
-    /* start inquiry timer */
-    uint64_t duration_ms = btm_cb.btm_inq_vars.inqparms.duration * 1000;
-    alarm_set_on_mloop(btm_cb.btm_inq_vars.classic_inquiry_timer, duration_ms,
-                       btm_classic_inquiry_timeout, NULL);
-  }
 
   return BTM_CMD_STARTED;
 }
