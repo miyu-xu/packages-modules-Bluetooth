@@ -34,6 +34,23 @@
       "parentUuid": "d978657d_c88c2d01",
       "revId": "71978b58077f463a4640fdeec79664c6bf966252",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "93f0bf4b_2b107619",
+        "filename": "android/pandora/server/src/com/android/pandora/Host.kt",
+        "patchSetId": 5
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-04-28T15:52:42Z",
+      "side": 1,
+      "message": "This is really strange that `clearBluetooth` doesn\u0027t cleanup gatt properly already 🤔\n\nI think we should fix clearBluetooth instead.",
+      "revId": "71978b58077f463a4640fdeec79664c6bf966252",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
