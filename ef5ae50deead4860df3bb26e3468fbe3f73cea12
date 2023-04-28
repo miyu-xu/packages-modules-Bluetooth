@@ -104,6 +104,24 @@
       "parentUuid": "56443372_d8d66f0e",
       "revId": "ef5ae50deead4860df3bb26e3468fbe3f73cea12",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d26cea26_65e4c4d1",
+        "filename": "system/stack/btm/btm_inq.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 542,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-04-28T02:52:53Z",
+      "side": 1,
+      "message": "I like the idea of decoupling the `BTM_BLE_GENERAL_INQUIRY` from the classic inquiry `BTM_GENERAL_INQUIRY` as the LE portion doesn\u0027t really mean anything.\n\nAt one point the LE \"scanning\" was combined with classic in ways that made the abstraction almost not workable.\n\nNow that LE has a pretty solid external implementation, it would be better to defer all the LE scanning to the LE portion.\n\nI think the timer was used for the LE side which is not really necessary anymore, as the LE (I think) has it\u0027s own mechanism to handle now.\n\n```\n  Stack::GetInstance()-\u003eGetBtm()-\u003eStartActiveScanning();\n  if (inqparms.duration !\u003d 0) {\n    Stack::GetInstance()-\u003eGetBtm()-\u003eSetScanningTimer(\n        inqparms.duration * 1000, common::BindOnce([]() {\n          LOG_INFO(\"%s scanning timeout popped\", __func__);\n          std::lock_guard\u003cstd::mutex\u003e lock(btm_cb_mutex_);\n          Stack::GetInstance()-\u003eGetBtm()-\u003eStopActiveScanning();\n        }));\n  }\n  ```",
+      "parentUuid": "61701d20_d8eac11d",
+      "revId": "ef5ae50deead4860df3bb26e3468fbe3f73cea12",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
