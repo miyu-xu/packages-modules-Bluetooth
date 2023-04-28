@@ -69,6 +69,23 @@
       "parentUuid": "a5c811e0_0f40bf44",
       "revId": "ef5ae50deead4860df3bb26e3468fbe3f73cea12",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "56443372_d8d66f0e",
+        "filename": "system/stack/btm/btm_inq.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 542,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-04-28T00:32:40Z",
+      "side": 1,
+      "message": "It looks like the flag updates the state that the processing has ended.  It seems like the flag should be swapped ?  \n\nThat is, if inquiry times out then we return `BTM_BR_INQUIRY_MASK` to be canceled.  Then, if the mode is zero (LE was already cleared) the callback would be sent.",
+      "revId": "ef5ae50deead4860df3bb26e3468fbe3f73cea12",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
