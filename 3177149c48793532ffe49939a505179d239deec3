@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a6e16817_6c2ef8fc",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 906,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-04-28T16:29:16Z",
+      "side": 1,
+      "message": "It looks like these are only set in one place\n\nBTA_DmSearch\n\nI\u0027d rather check the parameters there, so we give an earlier signal.",
+      "range": {
+        "startLine": 901,
+        "startChar": 0,
+        "endLine": 906,
+        "endChar": 3
+      },
+      "revId": "3177149c48793532ffe49939a505179d239deec3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ae6e9034_3a464b88",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 929,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-04-28T16:29:16Z",
+      "side": 1,
+      "message": "This eventually calls the callback, so if it was null, we\u0027ll get a crash.",
+      "range": {
+        "startLine": 929,
+        "startChar": 6,
+        "endLine": 929,
+        "endChar": 24
+      },
+      "revId": "3177149c48793532ffe49939a505179d239deec3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
