@@ -651,7 +651,7 @@ impl CommandHandler {
                 let success = self
                     .lock_context()
                     .adapter_dbus
-                    .as_ref()
+                    .as_mut()
                     .unwrap()
                     .create_bond(device.clone(), BtTransport::Auto);
 

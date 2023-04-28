@@ -502,7 +502,7 @@ impl IBluetooth for IBluetoothDBus {
     }
 
     #[dbus_method("CreateBond")]
-    fn create_bond(&self, device: BluetoothDevice, transport: BtTransport) -> bool {
+    fn create_bond(&mut self, device: BluetoothDevice, transport: BtTransport) -> bool {
         dbus_generated!()
     }
 

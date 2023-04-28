@@ -130,7 +130,7 @@ pub trait IBluetooth {
     fn get_discovery_end_millis(&self) -> u64;
 
     /// Initiates pairing to a remote device. Triggers connection if not already started.
-    fn create_bond(&self, device: BluetoothDevice, transport: BtTransport) -> bool;
+    fn create_bond(&mut self, device: BluetoothDevice, transport: BtTransport) -> bool;
 
     /// Cancels any pending bond attempt on given device.
     fn cancel_bond_process(&self, device: BluetoothDevice) -> bool;
@@ -1366,6 +1366,7 @@ impl BtifBluetoothCallbacks for Bluetooth {
             self.found_devices
                 .entry(address.clone())
                 .and_modify(|d| d.bond_state = bond_state.clone());
+            self.discovery_exit_suspend();
         }
         // We will only insert into the bonded list after bonding is complete
         else if &bond_state == &BtBondState::Bonded && !self.bonded_devices.contains_key(&address)
@@ -1392,6 +1393,7 @@ impl BtifBluetoothCallbacks for Bluetooth {
             device.services_resolved = false;
             self.bonded_devices.insert(address.clone(), device);
             self.fetch_remote_uuids(device_info);
+            self.discovery_exit_suspend();
         } else {
             // If we're bonding, we need to update the found devices list
             self.found_devices
@@ -1841,7 +1843,7 @@ impl IBluetooth for Bluetooth {
         }
     }
 
-    fn create_bond(&self, device: BluetoothDevice, transport: BtTransport) -> bool {
+    fn create_bond(&mut self, device: BluetoothDevice, transport: BtTransport) -> bool {
         let addr = RawAddress::from_string(device.address.clone());
 
         if addr.is_none() {
@@ -1869,8 +1871,7 @@ impl IBluetooth for Bluetooth {
         metrics::bond_create_attempt(address, device_type.clone());
 
         // BREDR connection won't work when Inquiry is in progress.
-        self.cancel_discovery();
-
+        self.discovery_enter_suspend();
         let status = self.intf.lock().unwrap().create_bond(&address, transport);
 
         if status != 0 {
@@ -2233,8 +2234,8 @@ impl IBluetooth for Bluetooth {
             metrics::acl_connect_attempt(addr, BtAclState::Connected);
         }
 
-        // Cancel discovery before attempting to connect (or we'll get connection failures).
-        self.cancel_discovery();
+        // Pause discovery before attempting to connect (or we'll get connection failures).
+        self.discovery_enter_suspend();
 
         // Check all remote uuids to see if they match enabled profiles and connect them.
         let mut has_enabled_uuids = false;
@@ -2311,6 +2312,8 @@ impl IBluetooth for Bluetooth {
                 _ => {}
             }
         }
+
+        self.discovery_exit_suspend();
 
         // If SDP isn't completed yet, we wait for it to complete and retry the connection again.
         // Otherwise, this connection request is done, no retry is required.
