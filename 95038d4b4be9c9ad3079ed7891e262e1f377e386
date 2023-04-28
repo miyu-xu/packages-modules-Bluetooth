@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "08d93e99_7d24bc2c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-04-28T01:11:14Z",
+      "side": 1,
+      "message": "nit: deprecated",
+      "range": {
+        "startLine": 9,
+        "startChar": 42,
+        "endLine": 9,
+        "endChar": 52
+      },
+      "revId": "95038d4b4be9c9ad3079ed7891e262e1f377e386",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
