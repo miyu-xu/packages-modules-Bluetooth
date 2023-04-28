@@ -16,6 +16,24 @@
       "message": "I suggest to move this line after other clears at line 175",
       "revId": "71978b58077f463a4640fdeec79664c6bf966252",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0b8badaf_ee7c707a",
+        "filename": "android/pandora/server/src/com/android/pandora/Host.kt",
+        "patchSetId": 5
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 1952952
+      },
+      "writtenOn": "2023-04-28T15:28:55Z",
+      "side": 1,
+      "message": "Hi Abel, thanks for your suggestion.\nActually I added after clearBluetooth and server.shutdown on purpose, just thinking it can also let us know if there still have some address left in GattInstance.\nWhat do you think?",
+      "parentUuid": "d978657d_c88c2d01",
+      "revId": "71978b58077f463a4640fdeec79664c6bf966252",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
