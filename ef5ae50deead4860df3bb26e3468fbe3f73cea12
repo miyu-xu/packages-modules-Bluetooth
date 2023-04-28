@@ -86,6 +86,24 @@
       "message": "It looks like the flag updates the state that the processing has ended.  It seems like the flag should be swapped ?  \n\nThat is, if inquiry times out then we return `BTM_BR_INQUIRY_MASK` to be canceled.  Then, if the mode is zero (LE was already cleared) the callback would be sent.",
       "revId": "ef5ae50deead4860df3bb26e3468fbe3f73cea12",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "61701d20_d8eac11d",
+        "filename": "system/stack/btm/btm_inq.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 542,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2023-04-28T01:50:02Z",
+      "side": 1,
+      "message": "Setting BTM_BR_INQURY_MASK here lead to a situation that RNR starts earlier than the time controller actually ends the BR Inquiry process. Even though we fix the duration of timer, there could be a tens of ms period where RNR always fails with \"Command Disallowed\" error.\n\nIn the original design, the BR inquiry process is marked as completed either the controller indicates an Inquiry Complete event to host or someone cancels the BR inquiry. Using this timer to manage BR inquiry states makes things complicated. When classic_discovery_only\u003dtrue, we\u0027d better minimize the interference in the classic discovery path. \n\nSo, this fix is to have the timer only updates LE scanning state as the LE scanning is managed by Floss daemon [1] when class_discovery_only\u003dtrue. The other way to fix this problem seems to be more intrusive, such as modifying the logic in BTM_StartInquiry by setting btm_cb.btm_inq_vars.inqparms.mode to BTM_GENERAL_INQUIRY only [2] and remove the timer. What do you think?\n\n[1] https://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/system/gd/rust/linux/stack/src/bluetooth.rs;l\u003d1304?q\u003dbluetooth.rs\n[2] https://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/system/stack/btm/btm_inq.cc;l\u003d612?q\u003dBTM_StartInquiry",
+      "parentUuid": "56443372_d8d66f0e",
+      "revId": "ef5ae50deead4860df3bb26e3468fbe3f73cea12",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
