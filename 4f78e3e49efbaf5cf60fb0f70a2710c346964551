@@ -16,6 +16,23 @@
       "message": "Verified patcheset 6",
       "revId": "4f78e3e49efbaf5cf60fb0f70a2710c346964551",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ac9e67a0_45196104",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2023-04-28T21:42:02Z",
+      "side": 1,
+      "message": "This change effectively brings back the IOP fix from aosp/557339 after it was inadvertently lost due to aosp/1491499 and aosp/1889220.",
+      "revId": "4f78e3e49efbaf5cf60fb0f70a2710c346964551",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
