@@ -16,6 +16,24 @@
       "message": "Could we keep this tag here and add a new `GattInstance.GattManager` tag in GattManager?",
       "revId": "0a912f1620e0b2d68b11fe81b66b8c6bf1a55dbd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b3ab87a3_bc1a9a66",
+        "filename": "android/pandora/server/src/com/android/pandora/GattInstance.kt",
+        "patchSetId": 4
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1952952
+      },
+      "writtenOn": "2023-04-28T02:14:00Z",
+      "side": 0,
+      "message": "done, thanks for the suggestion.",
+      "parentUuid": "f7cdd574_24ec8533",
+      "revId": "0a912f1620e0b2d68b11fe81b66b8c6bf1a55dbd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
