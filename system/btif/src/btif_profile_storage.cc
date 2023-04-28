@@ -66,7 +66,6 @@ using bluetooth::groups::DeviceGroups;
  ******************************************************************************/
 #define BTIF_STORAGE_PATH_REMOTE_DEVCLASS "DevClass"
 
-#define BTIF_STORAGE_CSIS_AUTOCONNECT "CsisAutoconnect"
 #define BTIF_STORAGE_CSIS_SET_INFO_BIN "CsisSetInfoBin"
 #define BTIF_STORAGE_LEAUDIO_AUTOCONNECT "LeAudioAutoconnect"
 #define BTIF_STORAGE_LEAUDIO_HANDLES_BIN "LeAudioHandlesBin"
@@ -948,19 +947,6 @@ void btif_storage_load_bonded_groups(void) {
   }
 }
 
-void btif_storage_set_csis_autoconnect(const RawAddress& addr,
-                                       bool autoconnect) {
-  do_in_jni_thread(FROM_HERE, Bind(
-                                  [](const RawAddress& addr, bool autoconnect) {
-                                    std::string bdstr = addr.ToString();
-                                    VLOG(2) << "Storing CSIS device: "
-                                            << ADDRESS_TO_LOGGABLE_CSTR(addr);
-                                    btif_config_set_int(
-                                        bdstr, BTIF_STORAGE_CSIS_AUTOCONNECT,
-                                        autoconnect);
-                                    btif_config_save();
-                                  },
-                                  addr, autoconnect));
 }
 
 /** Stores information about the bonded CSIS device */
@@ -989,11 +975,6 @@ void btif_storage_load_bonded_csis_devices(void) {
     BTIF_TRACE_DEBUG("Loading CSIS device:%s",
                      ADDRESS_TO_LOGGABLE_CSTR(bd_addr));
 
-    int value;
-    bool autoconnect = false;
-    if (btif_config_get_int(name, BTIF_STORAGE_CSIS_AUTOCONNECT, &value))
-      autoconnect = !!value;
-
     size_t buffer_size =
         btif_config_get_bin_length(name, BTIF_STORAGE_CSIS_SET_INFO_BIN);
     std::vector<uint8_t> in(buffer_size);
@@ -1001,16 +982,14 @@ void btif_storage_load_bonded_csis_devices(void) {
       btif_config_get_bin(name, BTIF_STORAGE_CSIS_SET_INFO_BIN, in.data(),
                           &buffer_size);
 
-    if (buffer_size != 0 || autoconnect)
-      do_in_main_thread(FROM_HERE, Bind(&CsisClient::AddFromStorage, bd_addr,
-                                        std::move(in), autoconnect));
+    do_in_main_thread(
+        FROM_HERE, Bind(&CsisClient::AddFromStorage, bd_addr, std::move(in)));
   }
 }
 
 /** Removes information about the bonded CSIS device */
 void btif_storage_remove_csis_device(const RawAddress& address) {
   std::string addrstr = address.ToString();
-  btif_config_remove(addrstr, BTIF_STORAGE_CSIS_AUTOCONNECT);
   btif_config_remove(addrstr, BTIF_STORAGE_CSIS_SET_INFO_BIN);
   btif_config_save();
 }
