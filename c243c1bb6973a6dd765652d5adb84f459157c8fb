@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a04eed8c_a795f6b9",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2023-04-28T03:44:10Z",
+      "side": 1,
+      "message": "I guess Arita is saying about using BluetoothDevice as token:\n\nhttps://developer.android.com/reference/android/os/Handler?hl\u003den#postDelayed(java.lang.Runnable,%20java.lang.Object,%20long)",
+      "parentUuid": "ea7d1fbb_ddf74d80",
+      "range": {
+        "startLine": 153,
+        "startChar": 12,
+        "endLine": 153,
+        "endChar": 20
+      },
+      "revId": "c243c1bb6973a6dd765652d5adb84f459157c8fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "cc3a2068_df33d3fa",
         "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
         "patchSetId": 2
