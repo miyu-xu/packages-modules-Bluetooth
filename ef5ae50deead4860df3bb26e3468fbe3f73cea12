@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4d3dee77_de8acd70",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2023-04-28T00:15:39Z",
+      "side": 1,
+      "message": "We found that Inquiry Complete sometimes happens a few milliseconds earlier than the callback, which leads to RNR failure with the error \"command disallowed\". We believe that these two changes will align the length of Inquiry and the behavior of RNR to that of the previous version (before classi_discovery_mechanism is enabled).",
+      "parentUuid": "14c967dc_89037838",
+      "revId": "ef5ae50deead4860df3bb26e3468fbe3f73cea12",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a5c811e0_0f40bf44",
@@ -31,6 +49,24 @@
       "writtenOn": "2023-04-27T16:13:18Z",
       "side": 1,
       "message": "This comment is assuming reader have prior knowledge of why there is a timer and why we need mark event complete with different mask. \n\nNeed a longer and detailed explanation on why we need manually set the event complete first.",
+      "revId": "ef5ae50deead4860df3bb26e3468fbe3f73cea12",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "642c02ab_ed5459d5",
+        "filename": "system/stack/btm/btm_inq.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 538,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2023-04-28T00:15:39Z",
+      "side": 1,
+      "message": "ACK. Line 664 explains this but the classic_discovery_only mechanism also involves the floss daemon. We can follow up this with another document.",
+      "parentUuid": "a5c811e0_0f40bf44",
       "revId": "ef5ae50deead4860df3bb26e3468fbe3f73cea12",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
