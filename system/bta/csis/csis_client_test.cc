@@ -432,14 +432,28 @@ class CsisClientTest : public ::testing::Test {
     Mock::VerifyAndClearExpectations(&btm_interface);
   }
 
+  void TestRemove(const RawAddress& address, uint16_t conn_id) {
+    EXPECT_CALL(gatt_interface, CancelOpen(gatt_if, address, false));
+    if (conn_id != GATT_INVALID_CONN_ID) {
+      EXPECT_CALL(gatt_interface, Close(conn_id));
+    } else {
+      EXPECT_CALL(gatt_interface, Close(conn_id)).Times(0);
+    }
+
+    EXPECT_CALL(*callbacks,
+                OnConnectionState(test_address, ConnectionState::DISCONNECTED));
+    CsisClient::Get()->RemoveDevice(address);
+  }
+
   void TestDisconnect(const RawAddress& address, uint16_t conn_id) {
     if (conn_id != GATT_INVALID_CONN_ID) {
       EXPECT_CALL(gatt_interface, Close(conn_id));
-      EXPECT_CALL(*callbacks, OnConnectionState(test_address,
-                                                ConnectionState::DISCONNECTED));
     } else {
-      EXPECT_CALL(gatt_interface, CancelOpen(_, address, _));
+      EXPECT_CALL(gatt_interface, Close(conn_id)).Times(0);
     }
+
+    EXPECT_CALL(*callbacks,
+                OnConnectionState(test_address, ConnectionState::DISCONNECTED));
     CsisClient::Get()->Disconnect(address);
   }
 
@@ -450,14 +464,14 @@ class CsisClientTest : public ::testing::Test {
         .Times(1);
     EXPECT_CALL(*callbacks, OnDeviceAvailable(address, _, _, _, _)).Times(1);
     EXPECT_CALL(gatt_interface,
-                Open(gatt_if, address, BTM_BLE_BKG_CONNECT_ALLOW_LIST, _))
+                Open(gatt_if, address, BTM_BLE_DIRECT_CONNECTION, true))
         .WillOnce(Invoke([this, conn_id](tGATT_IF client_if,
                                          const RawAddress& remote_bda,
                                          bool is_direct, bool opportunistic) {
           InjectConnectedEvent(remote_bda, conn_id);
           GetSearchCompleteEvent(conn_id);
         }));
-    CsisClient::AddFromStorage(address, storage_buf, true);
+    CsisClient::AddFromStorage(address, storage_buf);
   }
 
   void InjectEncryptionEvent(const RawAddress& test_address, uint16_t conn_id) {
@@ -621,6 +635,22 @@ TEST_F(CsisClientTest, test_app_registration) {
 TEST_F(CsisClientTest, test_connect) {
   TestAppRegister();
   TestConnect(GetTestAddress(0));
+  TestAppUnregister();
+}
+
+TEST_F(CsisClientTest, test_remove_non_connected) {
+  TestAppRegister();
+  TestConnect(test_address);
+  TestRemove(test_address, GATT_INVALID_CONN_ID);
+  TestAppUnregister();
+}
+
+TEST_F(CsisClientTest, test_remove_connected) {
+  TestAppRegister();
+  TestConnect(test_address);
+  InjectConnectedEvent(test_address, 1);
+  TestRemove(test_address, 1);
+  InjectDisconnectedEvent(test_address, 1);
   TestAppUnregister();
 }
 
@@ -1047,11 +1077,9 @@ TEST_F(CsisClientTest, test_storage_calls) {
   ASSERT_EQ(1, get_func_call_count("btif_storage_load_bonded_csis_devices"));
 
   ASSERT_EQ(0, get_func_call_count("btif_storage_update_csis_info"));
-  ASSERT_EQ(0, get_func_call_count("btif_storage_set_csis_autoconnect"));
   TestConnect(test_address);
   InjectConnectedEvent(test_address, 1);
   GetSearchCompleteEvent(1);
-  ASSERT_EQ(1, get_func_call_count("btif_storage_set_csis_autoconnect"));
   ASSERT_EQ(1, get_func_call_count("btif_storage_update_csis_info"));
 
   ASSERT_EQ(0, get_func_call_count("btif_storage_remove_csis_device"));
