@@ -22,6 +22,30 @@
       },
       "revId": "8cdfbb620855b3a23acdefc065f5082df8d495a9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fa16144f_e25689ae",
+        "filename": "system/bta/hearing_aid/hearing_aid.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 690,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-04-28T00:13:25Z",
+      "side": 1,
+      "message": "added",
+      "parentUuid": "598a43ee_925b5173",
+      "range": {
+        "startLine": 690,
+        "startChar": 6,
+        "endLine": 690,
+        "endChar": 47
+      },
+      "revId": "8cdfbb620855b3a23acdefc065f5082df8d495a9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
