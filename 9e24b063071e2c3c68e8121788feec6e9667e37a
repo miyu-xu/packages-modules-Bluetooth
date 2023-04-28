@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cd9502f9_01756a3e",
+        "filename": "system/stack/smp/smp_act.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 1929170
+      },
+      "writtenOn": "2023-04-28T19:37:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0eee13ae_21c0d53d",
+      "revId": "9e24b063071e2c3c68e8121788feec6e9667e37a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "492ec137_d1802c48",
@@ -31,6 +49,24 @@
       "writtenOn": "2023-04-28T18:41:47Z",
       "side": 1,
       "message": "We should also check if the device is in the Secure Connections Only mode before resetting the SC support bit.",
+      "revId": "9e24b063071e2c3c68e8121788feec6e9667e37a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1dd3f065_504b821e",
+        "filename": "system/stack/smp/smp_act.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 1929170
+      },
+      "writtenOn": "2023-04-28T19:37:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "492ec137_d1802c48",
       "revId": "9e24b063071e2c3c68e8121788feec6e9667e37a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
