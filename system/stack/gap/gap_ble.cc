@@ -286,7 +286,7 @@ void cl_op_cmpl(tGAP_CLCB& clcb, bool status, uint16_t len, uint8_t* p_name) {
   }
 
   /* if no further activity is requested in callback, drop the link */
-  if (clcb.connected) {
+  if (clcb.connected && clcb.cl_op_uuid != 0) {
     if (!send_cl_read_request(clcb)) {
       GATT_Disconnect(clcb.conn_id);
       clcb_dealloc(clcb);
