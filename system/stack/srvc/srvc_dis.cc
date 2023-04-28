@@ -434,6 +434,7 @@ tDIS_STATUS DIS_SrUpdate(tDIS_ATTR_BIT dis_attr_bit, tDIS_ATTR* p_info) {
 bool DIS_ReadDISInfo(const RawAddress& peer_bda, tDIS_READ_CBACK* p_cback,
                      tDIS_ATTR_MASK mask) {
   uint16_t conn_id;
+  bool is_connected;
 
   /* Initialize the DIS client if it hasn't been initialized already. */
   srvc_eng_init();
@@ -453,13 +454,13 @@ bool DIS_ReadDISInfo(const RawAddress& peer_bda, tDIS_READ_CBACK* p_cback,
           << StringPrintf(" cl_read_uuid: 0x%04x",
                           dis_attr_uuid[dis_cb.dis_read_uuid_idx]);
 
-  GATT_GetConnIdIfConnected(srvc_eng_cb.gatt_if, peer_bda, &conn_id,
-                            BT_TRANSPORT_LE);
+  is_connected = GATT_GetConnIdIfConnected(srvc_eng_cb.gatt_if, peer_bda,
+                                           &conn_id, BT_TRANSPORT_LE);
 
   /* need to enhance it as multiple service is needed */
   srvc_eng_request_channel(peer_bda, SRVC_ID_DIS);
 
-  if (conn_id == GATT_INVALID_CONN_ID) {
+  if (!is_connected || conn_id == GATT_INVALID_CONN_ID) {
     return GATT_Connect(srvc_eng_cb.gatt_if, peer_bda,
                         BTM_BLE_DIRECT_CONNECTION, BT_TRANSPORT_LE, false);
   }
