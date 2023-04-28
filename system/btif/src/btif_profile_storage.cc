@@ -763,7 +763,6 @@ void btif_storage_remove_leaudio(const RawAddress& address) {
   btif_config_set_int(addrstr, BTIF_STORAGE_LEAUDIO_AUTOCONNECT, false);
 }
 
-constexpr char HAS_IS_ACCEPTLISTED[] = "LeAudioHasIsAcceptlisted";
 constexpr char HAS_FEATURES[] = "LeAudioHasFlags";
 constexpr char HAS_ACTIVE_PRESET[] = "LeAudioHasActivePreset";
 constexpr char HAS_SERIALIZED_PRESETS[] = "LeAudioHasSerializedPresets";
@@ -784,7 +783,6 @@ void btif_storage_add_leaudio_has_device(const RawAddress& address,
             btif_config_set_bin(name, HAS_SERIALIZED_PRESETS,
                                 presets_bin.data(), presets_bin.size());
 
-            btif_config_set_int(name, HAS_IS_ACCEPTLISTED, true);
             btif_config_save();
           },
           address, std::move(presets_bin), features, active_preset));
@@ -832,21 +830,15 @@ void btif_storage_load_bonded_leaudio_has_devices() {
   for (const auto& bd_addr : btif_config_get_paired_devices()) {
     const std::string& name = bd_addr.ToString();
 
-    if (!btif_config_exist(name, HAS_IS_ACCEPTLISTED) &&
-        !btif_config_exist(name, HAS_FEATURES))
-      continue;
+    if (!btif_config_exist(name, HAS_FEATURES)) continue;
 
 #ifndef TARGET_FLOSS
-    int value;
-    uint16_t is_acceptlisted = 0;
-    if (btif_config_get_int(name, HAS_IS_ACCEPTLISTED, &value))
-      is_acceptlisted = value;
-
     uint8_t features = 0;
+    int value;
     if (btif_config_get_int(name, HAS_FEATURES, &value)) features = value;
 
     do_in_main_thread(FROM_HERE, Bind(&le_audio::has::HasClient::AddFromStorage,
-                                      bd_addr, features, is_acceptlisted));
+                                      bd_addr, features));
 #else
     ASSERT_LOG(false, "TODO - Fix LE audio build.");
 #endif
@@ -855,18 +847,9 @@ void btif_storage_load_bonded_leaudio_has_devices() {
 
 void btif_storage_remove_leaudio_has(const RawAddress& address) {
   std::string addrstr = address.ToString();
-  btif_config_remove(addrstr, HAS_IS_ACCEPTLISTED);
   btif_config_remove(addrstr, HAS_FEATURES);
   btif_config_remove(addrstr, HAS_ACTIVE_PRESET);
   btif_config_remove(addrstr, HAS_SERIALIZED_PRESETS);
-  btif_config_save();
-}
-
-void btif_storage_set_leaudio_has_acceptlist(const RawAddress& address,
-                                             bool add_to_acceptlist) {
-  std::string addrstr = address.ToString();
-
-  btif_config_set_int(addrstr, HAS_IS_ACCEPTLISTED, add_to_acceptlist);
   btif_config_save();
 }
 

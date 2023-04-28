@@ -146,8 +146,16 @@ class HasClientImpl : public HasClient {
 
   ~HasClientImpl() override = default;
 
+  void StartOpportunisticConnect(const RawAddress& address) {
+    /* Oportunistic works only for direct connect,
+     * but in fact this is background connect
+     */
+    LOG_INFO(": %s ", ADDRESS_TO_LOGGABLE_CSTR(address));
+    BTA_GATTC_Open(gatt_if_, address, BTM_BLE_DIRECT_CONNECTION, true);
+  }
+
   void Connect(const RawAddress& address) override {
-    DLOG(INFO) << __func__ << ": " <<  ADDRESS_TO_LOGGABLE_STR(address);
+    LOG_INFO(": %s ", ADDRESS_TO_LOGGABLE_CSTR(address));
 
     std::vector<RawAddress> addresses = {address};
     auto csis_api = CsisClient::Get();
@@ -169,37 +177,34 @@ class HasClientImpl : public HasClient {
                                  HasDevice::MatchAddress(addr));
       if (device == devices_.end()) {
         devices_.emplace_back(addr, true);
-        BTA_GATTC_Open(gatt_if_, addr, BTM_BLE_DIRECT_CONNECTION, false);
-
+        StartOpportunisticConnect(addr);
       } else {
         device->is_connecting_actively = true;
-        if (!device->IsConnected())
-          BTA_GATTC_Open(gatt_if_, addr, BTM_BLE_DIRECT_CONNECTION, false);
+        if (!device->IsConnected()) {
+          StartOpportunisticConnect(addr);
+        } else {
+          callbacks_->OnConnectionState(ConnectionState::CONNECTED, addr);
+        }
       }
     }
   }
 
-  void AddFromStorage(const RawAddress& address, uint8_t features,
-                      uint16_t is_acceptlisted) {
-    DLOG(INFO) << __func__ << ": " << ADDRESS_TO_LOGGABLE_STR(address)
-               << ", features=" << loghex(features)
-               << ", isAcceptlisted=" << is_acceptlisted;
+  void AddFromStorage(const RawAddress& address, uint8_t features) {
+    LOG_INFO("%s: features = 0x%02x", ADDRESS_TO_LOGGABLE_CSTR(address),
+             features);
 
     /* Notify upper layer about the device */
     callbacks_->OnDeviceAvailable(address, features);
-    if (is_acceptlisted) {
-      auto device = std::find_if(devices_.begin(), devices_.end(),
-                                 HasDevice::MatchAddress(address));
-      if (device == devices_.end())
-        devices_.push_back(HasDevice(address, features));
+    auto device = std::find_if(devices_.begin(), devices_.end(),
+                               HasDevice::MatchAddress(address));
+    if (device == devices_.end())
+      devices_.push_back(HasDevice(address, features));
 
-      /* Connect in background */
-      BTA_GATTC_Open(gatt_if_, address, BTM_BLE_BKG_CONNECT_ALLOW_LIST, false);
-    }
+    StartOpportunisticConnect(address);
   }
 
   void Disconnect(const RawAddress& address) override {
-    DLOG(INFO) << __func__ << ": " << ADDRESS_TO_LOGGABLE_STR(address);
+    LOG_INFO(": %s ", ADDRESS_TO_LOGGABLE_CSTR(address));
 
     std::vector<RawAddress> addresses = {address};
     auto csis_api = CsisClient::Get();
@@ -235,14 +240,19 @@ class HasClientImpl : public HasClient {
       } else {
         /* Removes active connection. */
         if (is_connecting_actively) {
-          BTA_GATTC_CancelOpen(gatt_if_, addr, true);
           callbacks_->OnConnectionState(ConnectionState::DISCONNECTED, addr);
         }
       }
-
-      /* Removes all registrations for connection. */
-      BTA_GATTC_CancelOpen(0, addr, false);
     }
+  }
+
+  void Remove(const RawAddress& address) override {
+    LOG_INFO(": %s", ADDRESS_TO_LOGGABLE_CSTR(address));
+
+    /* Removes all registrations for connection. */
+    BTA_GATTC_CancelOpen(gatt_if_, address, false);
+
+    Disconnect(address);
   }
 
   void UpdateJournalOpEntryStatus(HasDevice& device, HasGattOpContext context,
@@ -1900,14 +1910,7 @@ class HasClientImpl : public HasClient {
       callbacks_->OnConnectionState(ConnectionState::DISCONNECTED,
                                     evt.remote_bda);
 
-    auto peer_disconnected = (evt.reason == GATT_CONN_TIMEOUT) ||
-                             (evt.reason == GATT_CONN_TERMINATE_PEER_USER);
-    DoDisconnectCleanUp(*device, peer_disconnected ? false : true);
-
-    /* Connect in background - is this ok? */
-    if (peer_disconnected)
-      BTA_GATTC_Open(gatt_if_, device->addr, BTM_BLE_BKG_CONNECT_ALLOW_LIST,
-                     false);
+    DoDisconnectCleanUp(*device, false);
   }
 
   void OnGattServiceSearchComplete(const tBTA_GATTC_SEARCH_CMPL& evt) {
@@ -2121,13 +2124,12 @@ HasClient* HasClient::Get(void) {
   return instance;
 };
 
-void HasClient::AddFromStorage(const RawAddress& addr, uint8_t features,
-                               uint16_t is_acceptlisted) {
+void HasClient::AddFromStorage(const RawAddress& addr, uint8_t features) {
   if (!instance) {
     LOG(ERROR) << "Not initialized yet";
   }
 
-  instance->AddFromStorage(addr, features, is_acceptlisted);
+  instance->AddFromStorage(addr, features);
 };
 
 void HasClient::CleanUp() {
