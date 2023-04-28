@@ -124,6 +124,24 @@
       "parentUuid": "7b8392c1_4bbb8de2",
       "revId": "32a7cfa88297ec17f000ea5fa28ac1a786bbbcbb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2bfae19a_a1fe703d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 21
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2023-04-28T00:36:15Z",
+      "side": 1,
+      "message": "I fixed the merge conflicts on the topic, and started looking at the libbt-protos-lite presubmit error. In btif_rc_test, the calls that generate this error are:\n`init_ctrl`\n`handle_rc_ctrl_features`\n`handle_rc_browse_connect`\n`btif_rc_check_pending_cmd`\n`btif_rc_handler`\n\nWhen commenting out these calls there are no errors.",
+      "parentUuid": "c21355d6_e2153f94",
+      "revId": "32a7cfa88297ec17f000ea5fa28ac1a786bbbcbb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
