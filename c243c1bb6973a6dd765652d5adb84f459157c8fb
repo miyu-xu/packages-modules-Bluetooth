@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ea7d1fbb_ddf74d80",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-04-28T02:06:38Z",
+      "side": 1,
+      "message": "mHandler in this file only takes runnable not the message.\n\nRenamed.",
+      "parentUuid": "335bf55f_b63c09d0",
+      "range": {
+        "startLine": 153,
+        "startChar": 12,
+        "endLine": 153,
+        "endChar": 20
+      },
+      "revId": "c243c1bb6973a6dd765652d5adb84f459157c8fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cc3a2068_df33d3fa",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-04-24T18:44:07Z",
       "side": 1,
       "message": "nit: mAudioManager.getMode() \u003d\u003d AudioManager.MODE_NORMAL\n\n(I conventionally prefer to have the constant on the right and the getter() on the left)",
+      "range": {
+        "startLine": 280,
+        "startChar": 27,
+        "endLine": 280,
+        "endChar": 78
+      },
+      "revId": "c243c1bb6973a6dd765652d5adb84f459157c8fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d8e5e8ea_1cc508eb",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 280,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-04-28T02:06:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cc3a2068_df33d3fa",
       "range": {
         "startLine": 280,
         "startChar": 27,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a855c715_0dbe9acb",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 294,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-04-28T02:06:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d228a7aa_26c0ba68",
+      "range": {
+        "startLine": 294,
+        "startChar": 32,
+        "endLine": 294,
+        "endChar": 33
+      },
+      "revId": "c243c1bb6973a6dd765652d5adb84f459157c8fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "324dcb5c_af614942",
@@ -83,6 +155,30 @@
       "writtenOn": "2023-04-24T18:44:07Z",
       "side": 1,
       "message": "same. Can this be a warning log?",
+      "range": {
+        "startLine": 353,
+        "startChar": 28,
+        "endLine": 353,
+        "endChar": 33
+      },
+      "revId": "c243c1bb6973a6dd765652d5adb84f459157c8fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4b7b537c_0ae31e42",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 353,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-04-28T02:06:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "324dcb5c_af614942",
       "range": {
         "startLine": 353,
         "startChar": 28,
