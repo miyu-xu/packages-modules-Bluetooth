@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4af61ccf_c1231477",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2023-04-28T18:09:20Z",
+      "side": 1,
+      "message": "Myles, can you please help to go through this patch as Chris is OOO? \n\nPrevious discussion can be found here: https://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/2565091/comment/56443372_d8d66f0e/",
+      "revId": "a3463202b0c6eb8858085bd7f6977a414bb308cf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
