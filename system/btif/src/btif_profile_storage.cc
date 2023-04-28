@@ -36,6 +36,7 @@
 #include "bta_hearing_aid_api.h"
 #include "bta_hh_api.h"
 #include "bta_le_audio_api.h"
+#include "bta_vc_api.h"
 #include "btif_api.h"
 #include "btif_config.h"
 #include "btif_hd.h"
@@ -930,6 +931,18 @@ void btif_storage_load_bonded_groups(void) {
   }
 }
 
+}
+
+/** Loads information about bonded group devices */
+void btif_storage_load_bonded_volume_control_devices(void) {
+  for (const auto& bd_addr : btif_config_get_paired_devices()) {
+    auto device = bd_addr.ToString();
+    if (btif_device_supports_profile(
+            device, Uuid::From16Bit(UUID_SERVCLASS_VOLUME_CONTROL_SERVER))) {
+      do_in_main_thread(FROM_HERE,
+                        Bind(&VolumeControl::AddFromStorage, bd_addr));
+    }
+  }
 }
 
 /** Stores information about the bonded CSIS device */
