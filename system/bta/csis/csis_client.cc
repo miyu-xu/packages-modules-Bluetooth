@@ -232,23 +232,29 @@ class CsisClientImpl : public CsisClient {
                                   csis_instance->GetRank(), uuid);
   }
 
+  void StartOpportunisticConnect(const RawAddress& address) {
+    /* Oportunistic works only for direct connect,
+     * but in fact this is background connect
+     */
+    LOG_INFO(": %s ", ADDRESS_TO_LOGGABLE_CSTR(address));
+    BTA_GATTC_Open(gatt_if_, address, BTM_BLE_DIRECT_CONNECTION, true);
+  }
+
   void Connect(const RawAddress& address) override {
-    DLOG(INFO) << __func__ << ": " << ADDRESS_TO_LOGGABLE_STR(address);
+    LOG_INFO(": %s", ADDRESS_TO_LOGGABLE_CSTR(address));
 
     auto device = FindDeviceByAddress(address);
     if (device == nullptr) {
       devices_.emplace_back(std::make_shared<CsisDevice>(address, true));
+      BTA_GATTC_Open(gatt_if_, address, BTM_BLE_DIRECT_CONNECTION, false);
     } else {
       device->connecting_actively = true;
+      StartOpportunisticConnect(address);
     }
-
-    BTA_GATTC_Open(gatt_if_, address, BTM_BLE_DIRECT_CONNECTION, false);
   }
 
   void Disconnect(const RawAddress& addr) override {
-    DLOG(INFO) << __func__ << ": " << ADDRESS_TO_LOGGABLE_STR(addr);
-
-    btif_storage_set_csis_autoconnect(addr, false);
+    LOG_INFO(": %s", ADDRESS_TO_LOGGABLE_CSTR(addr));
 
     auto device = FindDeviceByAddress(addr);
     if (device == nullptr) {
@@ -262,14 +268,18 @@ class CsisClientImpl : public CsisClient {
     if (device->IsConnected()) {
       BTA_GATTC_Close(device->conn_id);
     } else {
-      BTA_GATTC_CancelOpen(gatt_if_, addr, false);
+      if (device->connecting_actively) {
+        BTA_GATTC_CancelOpen(gatt_if_, addr, true);
+      }
       DoDisconnectCleanUp(device);
       callbacks_->OnConnectionState(addr, ConnectionState::DISCONNECTED);
     }
   }
 
   void RemoveDevice(const RawAddress& addr) override {
-    DLOG(INFO) << __func__ << ": " << ADDRESS_TO_LOGGABLE_STR(addr);
+    LOG_INFO("%s : ", ADDRESS_TO_LOGGABLE_CSTR(addr));
+
+    BTA_GATTC_CancelOpen(gatt_if_, addr, false);
 
     auto device = FindDeviceByAddress(addr);
     if (!device) return;
@@ -643,8 +653,7 @@ class CsisClientImpl : public CsisClient {
     return group_rank_map;
   }
 
-  void AddFromStorage(const RawAddress& addr, const std::vector<uint8_t>& in,
-                      bool autoconnect) {
+  void AddFromStorage(const RawAddress& addr, const std::vector<uint8_t>& in) {
     auto group_rank_map = DeserializeSets(addr, in);
 
     auto device = FindDeviceByAddress(addr);
@@ -652,6 +661,8 @@ class CsisClientImpl : public CsisClient {
       device = std::make_shared<CsisDevice>(addr, false);
       devices_.push_back(device);
     }
+
+    StartOpportunisticConnect(device->addr);
 
     for (const auto& csis_group : csis_groups_) {
       if (!csis_group->IsDeviceInTheGroup(device)) continue;
@@ -667,10 +678,6 @@ class CsisClientImpl : public CsisClient {
                                       csis_group->GetDesiredSize(), rank,
                                       csis_group->GetUuid());
       }
-    }
-
-    if (autoconnect) {
-      BTA_GATTC_Open(gatt_if_, addr, BTM_BLE_BKG_CONNECT_ALLOW_LIST, false);
     }
   }
 
@@ -843,7 +850,6 @@ class CsisClientImpl : public CsisClient {
 
     if (device->first_connection) {
       device->first_connection = false;
-      btif_storage_set_csis_autoconnect(device->addr, true);
     }
   }
 
@@ -1788,6 +1794,7 @@ class CsisClientImpl : public CsisClient {
     }
 
     DoDisconnectCleanUp(device);
+    StartOpportunisticConnect(evt.remote_bda);
   }
 
   void OnGattServiceSearchComplete(const tBTA_GATTC_SEARCH_CMPL& evt) {
@@ -2061,14 +2068,13 @@ CsisClient* CsisClient::Get(void) {
 }
 
 void CsisClient::AddFromStorage(const RawAddress& addr,
-                                const std::vector<uint8_t>& in,
-                                bool autoconnect) {
+                                const std::vector<uint8_t>& in) {
   if (!instance) {
     LOG(ERROR) << __func__ << ": Not initialized yet!";
     return;
   }
 
-  instance->AddFromStorage(addr, in, autoconnect);
+  instance->AddFromStorage(addr, in);
 }
 
 bool CsisClient::GetForStorage(const RawAddress& addr,
