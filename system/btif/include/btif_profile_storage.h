@@ -134,10 +134,6 @@ void btif_storage_load_bonded_leaudio_has_devices(void);
 /** Deletes the bonded HAS device info from NVRAM */
 void btif_storage_remove_leaudio_has(const RawAddress& address);
 
-/** Set/Unset the HAS device acceptlist flag. */
-void btif_storage_set_leaudio_has_acceptlist(const RawAddress& address,
-                                             bool add_to_acceptlist);
-
 void btif_storage_add_groups(const RawAddress& addr);
 void btif_storage_load_bonded_groups(void);
 void btif_storage_remove_groups(const RawAddress& address);
