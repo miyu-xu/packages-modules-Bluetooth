@@ -118,10 +118,10 @@ pub trait IBluetooth {
     fn is_le_extended_advertising_supported(&self) -> bool;
 
     /// Starts BREDR Inquiry.
-    fn start_discovery(&self) -> bool;
+    fn start_discovery(&mut self) -> bool;
 
     /// Cancels BREDR Inquiry.
-    fn cancel_discovery(&self) -> bool;
+    fn cancel_discovery(&mut self) -> bool;
 
     /// Checks if discovery is started.
     fn is_discovering(&self) -> bool;
@@ -130,7 +130,7 @@ pub trait IBluetooth {
     fn get_discovery_end_millis(&self) -> u64;
 
     /// Initiates pairing to a remote device. Triggers connection if not already started.
-    fn create_bond(&self, device: BluetoothDevice, transport: BtTransport) -> bool;
+    fn create_bond(&mut self, device: BluetoothDevice, transport: BtTransport) -> bool;
 
     /// Cancels any pending bond attempt on given device.
     fn cancel_bond_process(&self, device: BluetoothDevice) -> bool;
@@ -459,8 +459,10 @@ pub struct Bluetooth {
     is_connectable: bool,
     is_discovering: bool,
     is_discovering_before_suspend: bool,
+    is_discovery_paused: bool,
     discovery_suspend_mode: SuspendMode,
     local_address: Option<RawAddress>,
+    pending_discovery: bool,
     properties: HashMap<BtPropertyType, BluetoothProperty>,
     profiles_ready: bool,
     found_devices: HashMap<String, BluetoothDeviceContext>,
@@ -505,8 +507,10 @@ impl Bluetooth {
             is_connectable: false,
             is_discovering: false,
             is_discovering_before_suspend: false,
+            is_discovery_paused: false,
             discovery_suspend_mode: SuspendMode::Normal,
             local_address: None,
+            pending_discovery: false,
             properties: HashMap::new(),
             profiles_ready: false,
             found_devices: HashMap::new(),
@@ -990,6 +994,21 @@ impl Bluetooth {
 
         return BtStatus::Success;
     }
+
+    /// Remove the paused flag to allow clients to begin discovery, and if there is already a
+    /// pending request, start discovery.
+    fn pause_discovery(&mut self) {
+        self.cancel_discovery();
+        self.is_discovery_paused = true;
+    }
+
+    fn resume_discovery(&mut self) {
+        if self.pending_discovery {
+            self.pending_discovery = false;
+            self.start_discovery();
+        }
+        self.is_discovery_paused = false;
+    }
 }
 
 #[btif_callbacks_dispatcher(dispatch_base_callbacks, BaseCallbacks)]
@@ -1366,6 +1385,7 @@ impl BtifBluetoothCallbacks for Bluetooth {
             self.found_devices
                 .entry(address.clone())
                 .and_modify(|d| d.bond_state = bond_state.clone());
+            self.resume_discovery();
         }
         // We will only insert into the bonded list after bonding is complete
         else if &bond_state == &BtBondState::Bonded && !self.bonded_devices.contains_key(&address)
@@ -1392,6 +1412,7 @@ impl BtifBluetoothCallbacks for Bluetooth {
             device.services_resolved = false;
             self.bonded_devices.insert(address.clone(), device);
             self.fetch_remote_uuids(device_info);
+            self.resume_discovery();
         } else {
             // If we're bonding, we need to update the found devices list
             self.found_devices
@@ -1788,9 +1809,16 @@ impl IBluetooth for Bluetooth {
         }
     }
 
-    fn start_discovery(&self) -> bool {
+    fn start_discovery(&mut self) -> bool {
         // Short-circuit to avoid sending multiple start discovery calls.
         if self.is_discovering {
+            return true;
+        }
+
+        // Short-circuit if paused and add the discovery intent to the queue.
+        if self.is_discovery_paused {
+            self.pending_discovery = true;
+            debug!("Queue the discovery request during paused state");
             return true;
         }
 
@@ -1805,7 +1833,13 @@ impl IBluetooth for Bluetooth {
         self.intf.lock().unwrap().start_discovery() == 0
     }
 
-    fn cancel_discovery(&self) -> bool {
+    fn cancel_discovery(&mut self) -> bool {
+        // Client no longer want to discover, clear the request
+        if self.is_discovery_paused {
+            self.pending_discovery = false;
+            debug!("Cancel the discovery request during paused state");
+        }
+
         // Reject the cancel discovery request if the underlying stack is not in a discovering
         // state. For example, previous start discovery was enqueued for ongoing discovery.
         if !self.is_discovering {
@@ -1841,7 +1875,7 @@ impl IBluetooth for Bluetooth {
         }
     }
 
-    fn create_bond(&self, device: BluetoothDevice, transport: BtTransport) -> bool {
+    fn create_bond(&mut self, device: BluetoothDevice, transport: BtTransport) -> bool {
         let addr = RawAddress::from_string(device.address.clone());
 
         if addr.is_none() {
@@ -1869,8 +1903,7 @@ impl IBluetooth for Bluetooth {
         metrics::bond_create_attempt(address, device_type.clone());
 
         // BREDR connection won't work when Inquiry is in progress.
-        self.cancel_discovery();
-
+        self.pause_discovery();
         let status = self.intf.lock().unwrap().create_bond(&address, transport);
 
         if status != 0 {
@@ -2233,8 +2266,8 @@ impl IBluetooth for Bluetooth {
             metrics::acl_connect_attempt(addr, BtAclState::Connected);
         }
 
-        // Cancel discovery before attempting to connect (or we'll get connection failures).
-        self.cancel_discovery();
+        // Pause discovery before attempting to connect (or we'll get connection failures).
+        self.pause_discovery();
 
         // Check all remote uuids to see if they match enabled profiles and connect them.
         let mut has_enabled_uuids = false;
@@ -2311,6 +2344,8 @@ impl IBluetooth for Bluetooth {
                 _ => {}
             }
         }
+
+        self.resume_discovery();
 
         // If SDP isn't completed yet, we wait for it to complete and retry the connection again.
         // Otherwise, this connection request is done, no retry is required.
