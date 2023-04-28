@@ -178,6 +178,24 @@
       "parentUuid": "2d6ea2e1_576fc003",
       "revId": "32a7cfa88297ec17f000ea5fa28ac1a786bbbcbb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "59f632a0_87299081",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 21
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1984885
+      },
+      "writtenOn": "2023-04-28T10:52:42Z",
+      "side": 1,
+      "message": "It is strange that I run the newest patchset on the new code base, and there is no error about libbt-protos-lite presubmit error, so I\u0027m not sure the error whether exist.",
+      "parentUuid": "9e5058b4_85bd78cb",
+      "revId": "32a7cfa88297ec17f000ea5fa28ac1a786bbbcbb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
