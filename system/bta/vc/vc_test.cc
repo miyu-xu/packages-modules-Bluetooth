@@ -336,8 +336,7 @@ class VolumeControlTest : public ::testing::Test {
     ON_CALL(btm_interface, BTM_IsEncrypted(address, _))
         .WillByDefault(DoAll(Return(true)));
 
-    EXPECT_CALL(gatt_interface,
-                Open(gatt_if, address, BTM_BLE_DIRECT_CONNECTION, _));
+    EXPECT_CALL(gatt_interface, Open(gatt_if, address, BTM_BLE_OPPORTUNISTIC));
     VolumeControl::Get()->Connect(address);
     Mock::VerifyAndClearExpectations(&gatt_interface);
   }
@@ -368,8 +367,7 @@ class VolumeControlTest : public ::testing::Test {
     ON_CALL(btm_interface, BTM_IsEncrypted(address, _))
         .WillByDefault(DoAll(Return(true)));
 
-    EXPECT_CALL(gatt_interface,
-                Open(gatt_if, address, BTM_BLE_DIRECT_CONNECTION, true));
+    EXPECT_CALL(gatt_interface, Open(gatt_if, address, BTM_BLE_OPPORTUNISTIC));
 
     VolumeControl::Get()->AddFromStorage(address);
   }
