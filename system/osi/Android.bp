@@ -181,3 +181,10 @@ cc_test {
         cfi: false,
     },
 }
+
+filegroup {
+    name: "LegacyOsiStrlcpy",
+    srcs: [
+        "src/compat.cc",
+    ],
+}
