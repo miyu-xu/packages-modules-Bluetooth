@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "22a02a39_e8740890",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-04-29T02:12:32Z",
+      "side": 1,
+      "message": "Sorry for review, but this is an old CL not ready and already deleted.",
+      "revId": "3177149c48793532ffe49939a505179d239deec3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a6e16817_6c2ef8fc",
@@ -24,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5d24a7e5_19ba98a5",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 906,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-04-29T02:12:32Z",
+      "side": 1,
+      "message": "Yes, unfortunately I went in a different direction for this and this s/b deleted.",
+      "parentUuid": "a6e16817_6c2ef8fc",
+      "range": {
+        "startLine": 901,
+        "startChar": 0,
+        "endLine": 906,
+        "endChar": 3
+      },
+      "revId": "3177149c48793532ffe49939a505179d239deec3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ae6e9034_3a464b88",
@@ -37,6 +78,30 @@
       "writtenOn": "2023-04-28T16:29:16Z",
       "side": 1,
       "message": "This eventually calls the callback, so if it was null, we\u0027ll get a crash.",
+      "range": {
+        "startLine": 929,
+        "startChar": 6,
+        "endLine": 929,
+        "endChar": 24
+      },
+      "revId": "3177149c48793532ffe49939a505179d239deec3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8c042f75_23d646f6",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 929,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-04-29T02:12:32Z",
+      "side": 1,
+      "message": "see above comment",
+      "parentUuid": "ae6e9034_3a464b88",
       "range": {
         "startLine": 929,
         "startChar": 6,
