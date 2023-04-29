@@ -1224,6 +1224,7 @@ class LeAudioClientImpl : public LeAudioClient {
   }
 
   void RemoveDevice(const RawAddress& address) override {
+    LOG_INFO(": %s ", ADDRESS_TO_LOGGABLE_CSTR(address));
     LeAudioDevice* leAudioDevice = leAudioDevices_.FindByAddress(address);
     if (!leAudioDevice) {
       return;
@@ -1275,6 +1276,8 @@ class LeAudioClientImpl : public LeAudioClient {
   }
 
   void Connect(const RawAddress& address) override {
+    LOG_INFO(": %s ", ADDRESS_TO_LOGGABLE_CSTR(address));
+
     LeAudioDevice* leAudioDevice = leAudioDevices_.FindByAddress(address);
     if (!leAudioDevice) {
       leAudioDevices_.Add(address, DeviceConnectState::CONNECTING_BY_USER);
@@ -1457,6 +1460,7 @@ class LeAudioClientImpl : public LeAudioClient {
   }
 
   void Disconnect(const RawAddress& address) override {
+    LOG_INFO(": %s ", ADDRESS_TO_LOGGABLE_CSTR(address));
     LeAudioDevice* leAudioDevice = leAudioDevices_.FindByAddress(address);
 
     if (!leAudioDevice) {
