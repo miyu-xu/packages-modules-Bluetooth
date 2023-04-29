@@ -83,6 +83,9 @@ class CsisClientInterface {
   /** Disconnect from Csis Client */
   virtual void Disconnect(const RawAddress& addr) = 0;
 
+  /** Disable/Enable profile */
+  virtual void SetEnableState(const RawAddress& addr, bool enabled) = 0;
+
   /** Lock/Unlock Csis group */
   virtual void LockGroup(int group_id, bool lock) = 0;
 

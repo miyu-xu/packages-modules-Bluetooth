@@ -87,6 +87,21 @@ class CsipSetCoordinatorServiceInterfaceImpl : public CsisClientInterface,
                                       Unretained(CsisClient::Get()), addr));
   }
 
+  void SetEnableState(const RawAddress& addr, bool enabled) override {
+    if (!initialized || !CsisClient::IsCsisClientRunning()) {
+      DVLOG(2) << __func__
+               << " call ignored, due to already started cleanup procedure or "
+                  "service being not read";
+      return;
+    }
+
+    DVLOG(2) << __func__ << " addr: " << ADDRESS_TO_LOGGABLE_STR(addr)
+             << ", enabled: " << enabled;
+    do_in_main_thread(FROM_HERE,
+                      Bind(&CsisClient::SetEnableState,
+                           Unretained(CsisClient::Get()), addr, enabled));
+  }
+
   void RemoveDevice(const RawAddress& addr) override {
     if (!initialized || !CsisClient::IsCsisClientRunning()) {
       DVLOG(2) << __func__
