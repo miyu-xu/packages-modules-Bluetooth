@@ -43,6 +43,7 @@
 #include "stack/include/sec_hci_link_interface.h"
 #include "stack/l2cap/l2c_int.h"
 #include "test/common/mock_functions.h"
+#include "test/fake/fake_osi.h"
 #include "test/mock/mock_device_iot_config.h"
 #include "test/mock/mock_osi_list.h"
 #include "test/mock/mock_stack_hcic_hcicmds.h"
@@ -92,8 +93,12 @@ std::string Hex16(int n) {
 class StackBtmTest : public Test {
  public:
  protected:
-  void SetUp() override { reset_mock_function_count_map(); }
+  void SetUp() override {
+    reset_mock_function_count_map();
+    fake_osi_ = std::make_unique<test::fake::FakeOsi>();
+  }
   void TearDown() override {}
+  std::unique_ptr<test::fake::FakeOsi> fake_osi_;
 };
 
 class StackBtmWithInitFreeTest : public StackBtmTest {
