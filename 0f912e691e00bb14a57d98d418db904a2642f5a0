@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2154fa14_11af4fdc",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapSettingsTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2023-04-29T04:00:22Z",
+      "side": 1,
+      "message": "For all test files, Please do this at the first line of setUp (before sending intent for launching activity)",
+      "range": {
+        "startLine": 62,
+        "startChar": 8,
+        "endLine": 62,
+        "endChar": 45
+      },
+      "revId": "0f912e691e00bb14a57d98d418db904a2642f5a0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
