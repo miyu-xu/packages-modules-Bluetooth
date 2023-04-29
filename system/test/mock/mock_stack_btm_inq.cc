@@ -143,7 +143,6 @@ void BTM_AddEirService(uint32_t* p_eir_uuid, uint16_t uuid16) {
 void BTM_CancelInquiry(void) { inc_func_call_count(__func__); }
 void BTM_EnableInterlacedInquiryScan() { inc_func_call_count(__func__); }
 void BTM_EnableInterlacedPageScan() { inc_func_call_count(__func__); }
-void btm_clr_inq_db(const RawAddress* p_bda) { inc_func_call_count(__func__); }
 void btm_clr_inq_result_flt(void) { inc_func_call_count(__func__); }
 void btm_inq_clear_ssp(void) { inc_func_call_count(__func__); }
 void btm_inq_db_free(void) { inc_func_call_count(__func__); }
