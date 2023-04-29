@@ -505,6 +505,17 @@ public class LeAudioService extends ProfileService {
         return descriptor;
     }
 
+    private void setEnabledState(BluetoothDevice device, boolean enabled) {
+        if (DBG) {
+            Log.d(TAG, "setEnabledState: address:" + device + " enabled: " + enabled);
+        }
+        if (!mLeAudioNativeIsInitialized) {
+            Log.e(TAG, "setEnabledState, mLeAudioNativeIsInitialized is not initialized");
+            return;
+        }
+        mLeAudioNativeInterface.setEnableState(device, enabled);
+    }
+
     public boolean connect(BluetoothDevice device) {
         if (DBG) {
             Log.d(TAG, "connect(): " + device);
@@ -2414,11 +2425,15 @@ public class LeAudioService extends ProfileService {
                 connectionPolicy)) {
             return false;
         }
+
         if (connectionPolicy == BluetoothProfile.CONNECTION_POLICY_ALLOWED) {
+            setEnabledState(device, /* enabled = */ true);
             connect(device);
         } else if (connectionPolicy == BluetoothProfile.CONNECTION_POLICY_FORBIDDEN) {
+            setEnabledState(device, /* enabled = */ false);
             disconnect(device);
         }
+
         return true;
     }
 
@@ -2435,8 +2450,12 @@ public class LeAudioService extends ProfileService {
      * @hide
      */
     public int getConnectionPolicy(BluetoothDevice device) {
-        return mDatabaseManager
+        int connection_policy = mDatabaseManager
                 .getProfileConnectionPolicy(device, BluetoothProfile.LE_AUDIO);
+        if (DBG) {
+            Log.d(TAG, device + " connection policy = " + connection_policy);
+        }
+        return connection_policy;
     }
 
     /**
