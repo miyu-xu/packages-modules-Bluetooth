@@ -426,7 +426,7 @@ class CsisClientTest : public ::testing::Test {
             DoAll(SetArgPointee<1>(BTM_SEC_FLAG_ENCRYPTED), Return(true)));
 
     EXPECT_CALL(gatt_interface,
-                Open(gatt_if, address, BTM_BLE_DIRECT_CONNECTION, _));
+                Open(gatt_if, address, BTM_BLE_DIRECT_CONNECTION));
     CsisClient::Get()->Connect(address);
     Mock::VerifyAndClearExpectations(&gatt_interface);
     Mock::VerifyAndClearExpectations(&btm_interface);
@@ -463,11 +463,10 @@ class CsisClientTest : public ::testing::Test {
                 OnConnectionState(address, ConnectionState::CONNECTED))
         .Times(1);
     EXPECT_CALL(*callbacks, OnDeviceAvailable(address, _, _, _, _)).Times(1);
-    EXPECT_CALL(gatt_interface,
-                Open(gatt_if, address, BTM_BLE_DIRECT_CONNECTION, true))
+    EXPECT_CALL(gatt_interface, Open(gatt_if, address, BTM_BLE_OPPORTUNISTIC))
         .WillOnce(Invoke([this, conn_id](tGATT_IF client_if,
                                          const RawAddress& remote_bda,
-                                         bool is_direct, bool opportunistic) {
+                                         bool is_direct) {
           InjectConnectedEvent(remote_bda, conn_id);
           GetSearchCompleteEvent(conn_id);
         }));
@@ -552,7 +551,7 @@ class CsisClientTest : public ::testing::Test {
   void SetEncryptionResult(const RawAddress& address, uint16_t conn_id,
                            bool success) {
     ON_CALL(btm_interface, BTM_IsEncrypted(address, _))
-        .WillByDefault(DoAll(Return(success)));
+        .WillByDefault(Return(success));
 
     ON_CALL(btm_interface, SetEncryption(address, _, _, _, _))
         .WillByDefault(

@@ -237,7 +237,7 @@ class CsisClientImpl : public CsisClient {
      * but in fact this is background connect
      */
     LOG_INFO(": %s ", ADDRESS_TO_LOGGABLE_CSTR(address));
-    BTA_GATTC_Open(gatt_if_, address, BTM_BLE_DIRECT_CONNECTION, true);
+    BTA_GATTC_Open(gatt_if_, address, BTM_BLE_OPPORTUNISTIC);
   }
 
   void Connect(const RawAddress& address) override {
@@ -246,7 +246,7 @@ class CsisClientImpl : public CsisClient {
     auto device = FindDeviceByAddress(address);
     if (device == nullptr) {
       devices_.emplace_back(std::make_shared<CsisDevice>(address, true));
-      BTA_GATTC_Open(gatt_if_, address, BTM_BLE_DIRECT_CONNECTION, false);
+      BTA_GATTC_Open(gatt_if_, address, BTM_BLE_DIRECT_CONNECTION);
     } else {
       device->connecting_actively = true;
       StartOpportunisticConnect(address);
