@@ -525,6 +525,13 @@ filegroup {
     ],
 }
 
+filegroup {
+    name: "TestFakeThread",
+    srcs: [
+        "fake/fake_thread.cc",
+    ],
+}
+
 cc_defaults {
     name: "mts_defaults",
     target: {
