@@ -43,6 +43,7 @@
 #include "stack/include/sec_hci_link_interface.h"
 #include "stack/l2cap/l2c_int.h"
 #include "test/common/mock_functions.h"
+#include "test/fake/fake_osi.h"
 #include "test/mock/mock_device_iot_config.h"
 #include "test/mock/mock_osi_list.h"
 #include "test/mock/mock_stack_hcic_hcicmds.h"
@@ -92,8 +93,12 @@ std::string Hex16(int n) {
 class StackBtmTest : public Test {
  public:
  protected:
-  void SetUp() override { reset_mock_function_count_map(); }
+  void SetUp() override {
+    reset_mock_function_count_map();
+    fake_osi_ = std::make_unique<test::fake::FakeOsi>();
+  }
   void TearDown() override {}
+  std::unique_ptr<test::fake::FakeOsi> fake_osi_;
 };
 
 class StackBtmWithInitFreeTest : public StackBtmTest {
@@ -204,6 +209,8 @@ TEST_F(StackBtmTest, change_packet_type) {
 }
 
 TEST(ScoTest, make_sco_packet) {
+  std::unique_ptr<test::fake::FakeOsi> fake_osi =
+      std::make_unique<test::fake::FakeOsi>();
   std::vector<uint8_t> data = {10, 20, 30};
   uint16_t handle = 0xab;
   BT_HDR* p = btm_sco_make_packet(data, handle);
@@ -233,6 +240,8 @@ struct {
 } btm_test;
 
 TEST(SecTest, btm_sec_rmt_name_request_complete) {
+  std::unique_ptr<test::fake::FakeOsi> fake_osi =
+      std::make_unique<test::fake::FakeOsi>();
   bluetooth::common::InitFlags::SetAllForTesting();
   btm_cb.Init(0);
 
