@@ -266,6 +266,26 @@ static jboolean disconnectNative(JNIEnv* env, jobject object,
   return JNI_TRUE;
 }
 
+static jboolean setEnableStateNative(JNIEnv* env, jobject object,
+                                     jbyteArray address, jboolean enabled) {
+  std::shared_lock<std::shared_timed_mutex> lock(interface_mutex);
+  if (!sCsisClientInterface) {
+    LOG(ERROR) << __func__ << ": Failed to get the Csis Client Interface";
+    return JNI_FALSE;
+  }
+
+  jbyte* addr = env->GetByteArrayElements(address, nullptr);
+  if (!addr) {
+    jniThrowIOException(env, EINVAL);
+    return JNI_FALSE;
+  }
+
+  RawAddress* tmpraw = (RawAddress*)addr;
+  sCsisClientInterface->SetEnableState(*tmpraw, enabled);
+  env->ReleaseByteArrayElements(address, addr, 0);
+  return JNI_TRUE;
+}
+
 static void groupLockSetNative(JNIEnv* env, jobject object, jint group_id,
                                jboolean lock) {
   LOG(INFO) << __func__;
@@ -285,6 +305,7 @@ static JNINativeMethod sMethods[] = {
     {"cleanupNative", "()V", (void*)cleanupNative},
     {"connectNative", "([B)Z", (void*)connectNative},
     {"disconnectNative", "([B)Z", (void*)disconnectNative},
+    {"setEnableStateNative", "([BZ)Z", (void*)setEnableStateNative},
     {"groupLockSetNative", "(IZ)V", (void*)groupLockSetNative},
 };
 

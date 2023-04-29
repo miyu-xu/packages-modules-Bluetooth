@@ -98,6 +98,7 @@ class GattServiceDevice {
   uint16_t conn_id = GATT_INVALID_CONN_ID;
   uint16_t service_handle = GAP_INVALID_HANDLE;
   bool is_gatt_service_valid = false;
+  bool enabled = true;
 
   GattServiceDevice(const RawAddress& addr, bool first_connection)
       : addr(addr), first_connection(first_connection) {}
@@ -105,6 +106,8 @@ class GattServiceDevice {
   GattServiceDevice() : GattServiceDevice(RawAddress::kEmpty, false) {}
 
   bool IsConnected() const { return (conn_id != GATT_INVALID_CONN_ID); }
+  bool IsEnabled() const { return enabled; }
+  void SetEnableState(bool enable) { enabled = enable; }
 
   class MatchAddress {
    private:

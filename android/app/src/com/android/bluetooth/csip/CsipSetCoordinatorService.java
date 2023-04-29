@@ -266,6 +266,17 @@ public class CsipSetCoordinatorService extends ProfileService {
         sCsipSetCoordinatorService = instance;
     }
 
+    private void setEnableState(BluetoothDevice device, boolean enabled) {
+        if (DBG) {
+            Log.d(TAG, "setEnableState: device:" + device + " enabled: " + enabled);
+        }
+        if (mCsipSetCoordinatorNativeInterface == null) {
+            Log.e(TAG, "setEnableState, mCsipSetCoordinatorNativeInterface is not initialized");
+            return;
+        }
+        mCsipSetCoordinatorNativeInterface.setEnableState(device, enabled);
+    }
+
     /**
      * Connect the given Bluetooth device.
      *
@@ -362,6 +373,7 @@ public class CsipSetCoordinatorService extends ProfileService {
         } else if (connectionPolicy != BluetoothProfile.CONNECTION_POLICY_UNKNOWN
                 && connectionPolicy != BluetoothProfile.CONNECTION_POLICY_ALLOWED) {
             // Otherwise, reject the connection if connectionPolicy is not valid.
+            setEnableState(device, /*enabled =*/ false);
             Log.w(TAG, "okToConnect: return false, connectionPolicy=" + connectionPolicy);
             return false;
         }
@@ -485,8 +497,10 @@ public class CsipSetCoordinatorService extends ProfileService {
         mDatabaseManager.setProfileConnectionPolicy(
                 device, BluetoothProfile.CSIP_SET_COORDINATOR, connectionPolicy);
         if (connectionPolicy == BluetoothProfile.CONNECTION_POLICY_ALLOWED) {
+            setEnableState(device, /* enabled = */ true);
             connect(device);
         } else if (connectionPolicy == BluetoothProfile.CONNECTION_POLICY_FORBIDDEN) {
+            setEnableState(device, /*enabled = */ false);
             disconnect(device);
         }
         return true;

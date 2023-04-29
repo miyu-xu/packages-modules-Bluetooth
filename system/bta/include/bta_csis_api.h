@@ -41,6 +41,7 @@ class CsisClient {
   static bool IsCsisClientRunning();
   virtual void Connect(const RawAddress& addr) = 0;
   virtual void Disconnect(const RawAddress& addr) = 0;
+  virtual void SetEnableState(const RawAddress& addr, bool enabled) = 0;
   virtual void RemoveDevice(const RawAddress& address) = 0;
   virtual int GetGroupId(
       const RawAddress& addr,

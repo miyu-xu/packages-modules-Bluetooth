@@ -26,6 +26,8 @@ class MockCsisClient : public bluetooth::csis::CsisClient {
   MOCK_METHOD((void), Connect, (const RawAddress& addr), (override));
   MOCK_METHOD((void), Disconnect, (const RawAddress& addr), (override));
   MOCK_METHOD((void), RemoveDevice, (const RawAddress& address), (override));
+  MOCK_METHOD((void), SetEnableState, (const RawAddress& address, bool enabled),
+              (override));
   MOCK_METHOD((int), GetGroupId, (const RawAddress& addr, bluetooth::Uuid uuid),
               (override));
   MOCK_METHOD((void), LockGroup,
