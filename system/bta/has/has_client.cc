@@ -151,7 +151,7 @@ class HasClientImpl : public HasClient {
      * but in fact this is background connect
      */
     LOG_INFO(": %s ", ADDRESS_TO_LOGGABLE_CSTR(address));
-    BTA_GATTC_Open(gatt_if_, address, BTM_BLE_DIRECT_CONNECTION, true);
+    BTA_GATTC_Open(gatt_if_, address, BTM_BLE_OPPORTUNISTIC);
   }
 
   void Connect(const RawAddress& address) override {

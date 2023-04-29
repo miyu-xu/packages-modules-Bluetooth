@@ -1196,23 +1196,18 @@ void GATT_StartIf(tGATT_IF gatt_if);
  *                  connection_type: connection type
  *                  transport : Physical transport for GATT connection
  *                              (BR/EDR or LE)
- *                  opportunistic: will not keep device connected if other apps
- *                      disconnect, will not update connected apps counter, when
- *                      disconnected won't cause physical disconnection.
  *
  * Returns          true if connection started; else false
  *
  ******************************************************************************/
 bool GATT_Connect(tGATT_IF gatt_if, const RawAddress& bd_addr,
-                  tBTM_BLE_CONN_TYPE connection_type, tBT_TRANSPORT transport,
-                  bool opportunistic);
+                  tBTM_BLE_CONN_TYPE connection_type, tBT_TRANSPORT transport);
 bool GATT_Connect(tGATT_IF gatt_if, const RawAddress& bd_addr,
                   tBTM_BLE_CONN_TYPE connection_type, tBT_TRANSPORT transport,
-                  bool opportunistic, uint8_t initiating_phys);
+                  uint8_t initiating_phys);
 bool GATT_Connect(tGATT_IF gatt_if, const RawAddress& bd_addr,
                   tBLE_ADDR_TYPE addr_type, tBTM_BLE_CONN_TYPE connection_type,
-                  tBT_TRANSPORT transport, bool opportunistic,
-                  uint8_t initiating_phys);
+                  tBT_TRANSPORT transport, uint8_t initiating_phys);
 
 /*******************************************************************************
  *
