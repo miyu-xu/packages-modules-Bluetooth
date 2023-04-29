@@ -102,6 +102,18 @@ public class CsipSetCoordinatorNativeInterface {
     }
 
     /**
+     * Set enable/disable state CsipSetCoordinator for a remote device.
+     *
+     * @param device the remote device
+     * @param enabled true if enabled, false otherwise
+     * @return true on success, otherwise false.
+     */
+    @VisibleForTesting(visibility = VisibleForTesting.Visibility.PACKAGE)
+    public boolean setEnableState(BluetoothDevice device, boolean enabled) {
+        return setEnableStateNative(getByteAddress(device), enabled);
+    }
+
+    /**
      * Get the device by the address
      *
      * @return the device
@@ -221,5 +233,6 @@ public class CsipSetCoordinatorNativeInterface {
     private native void cleanupNative();
     private native boolean connectNative(byte[] address);
     private native boolean disconnectNative(byte[] address);
+    private native boolean setEnableStateNative(byte[] address, boolean enabled);
     private native void groupLockSetNative(int groupId, boolean lock);
 }
