@@ -1306,7 +1306,7 @@ class LeAudioClientImpl : public LeAudioClient {
           le_audio::ConnectionStatus::SUCCESS);
     }
 
-    BTA_GATTC_Open(gatt_if_, address, BTM_BLE_DIRECT_CONNECTION, false);
+    BTA_GATTC_Open(gatt_if_, address, BTM_BLE_DIRECT_CONNECTION);
   }
 
   std::vector<RawAddress> GetGroupDevices(const int group_id) override {
@@ -1452,8 +1452,7 @@ class LeAudioClientImpl : public LeAudioClient {
 
     leAudioDevice->SetConnectionState(
         DeviceConnectState::CONNECTING_AUTOCONNECT);
-    BTA_GATTC_Open(gatt_if_, leAudioDevice->address_, reconnection_mode_,
-                   false);
+    BTA_GATTC_Open(gatt_if_, leAudioDevice->address_, reconnection_mode_);
   }
 
   void Disconnect(const RawAddress& address) override {
@@ -1880,13 +1879,13 @@ class LeAudioClientImpl : public LeAudioClient {
                leAudioDevice->group_id_, ADDRESS_TO_LOGGABLE_CSTR(address));
       /* Make sure TA is canceled before adding to allow list */
       BTA_GATTC_CancelOpen(gatt_if_, address, false);
-      BTA_GATTC_Open(gatt_if_, address, BTM_BLE_BKG_CONNECT_ALLOW_LIST, false);
+      BTA_GATTC_Open(gatt_if_, address, BTM_BLE_BKG_CONNECT_ALLOW_LIST);
     } else {
       LOG_INFO(
           "Adding %s to backgroud connect (default reconnection_mode "
           "(0x%02x))",
           ADDRESS_TO_LOGGABLE_CSTR(address), reconnection_mode_);
-      BTA_GATTC_Open(gatt_if_, address, reconnection_mode_, false);
+      BTA_GATTC_Open(gatt_if_, address, reconnection_mode_);
     }
   }
 
@@ -2156,7 +2155,7 @@ class LeAudioClientImpl : public LeAudioClient {
     if (group != nullptr) {
       leAudioDevice->SetConnectionState(
           DeviceConnectState::CONNECTING_AUTOCONNECT);
-      BTA_GATTC_Open(gatt_if_, address, BTM_BLE_DIRECT_CONNECTION, false);
+      BTA_GATTC_Open(gatt_if_, address, BTM_BLE_DIRECT_CONNECTION);
     } else {
       leAudioDevice->SetConnectionState(DeviceConnectState::DISCONNECTED);
     }
@@ -2247,9 +2246,9 @@ class LeAudioClientImpl : public LeAudioClient {
           DeviceConnectState::CONNECTING_AUTOCONNECT);
       if (reason == GATT_CONN_TIMEOUT) {
         /* If timeout try to reconnect for 30 sec.*/
-        BTA_GATTC_Open(gatt_if_, address, BTM_BLE_DIRECT_CONNECTION, false);
+        BTA_GATTC_Open(gatt_if_, address, BTM_BLE_DIRECT_CONNECTION);
       } else {
-        BTA_GATTC_Open(gatt_if_, address, reconnection_mode_, false);
+        BTA_GATTC_Open(gatt_if_, address, reconnection_mode_);
         if (group->IsAnyDeviceConnected()) {
           /* If all set is disconnecting, let's give it some time.
            * If not all get disconnected, and there will be group member
