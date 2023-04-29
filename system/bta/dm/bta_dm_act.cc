@@ -4331,10 +4331,10 @@ void btm_dm_start_gatt_discovery(const RawAddress& bd_addr) {
   } else {
     if (BTM_IsAclConnectionUp(bd_addr, BT_TRANSPORT_LE)) {
       BTA_GATTC_Open(bta_dm_search_cb.client_if, bd_addr,
-                     BTM_BLE_DIRECT_CONNECTION, true);
+                     BTM_BLE_OPPORTUNISTIC);
     } else {
       BTA_GATTC_Open(bta_dm_search_cb.client_if, bd_addr,
-                     BTM_BLE_DIRECT_CONNECTION, false);
+                     BTM_BLE_DIRECT_CONNECTION);
     }
   }
 }
