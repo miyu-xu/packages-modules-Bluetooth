@@ -1389,32 +1389,34 @@ void GATT_StartIf(tGATT_IF gatt_if) {
  * Description      This function initiate a connecttion to a remote device on
  *                  GATT channel.
  *
- * Parameters       gatt_if: applicaiton interface
+ * Parameters       gatt_if: application interface
  *                  bd_addr: peer device address.
  *                  connection_type: is a direct conenection or a background
- *                  auto connection or targeted announcements
+ *                  auto connection or targeted announcements or opportunistic
  *
  * Returns          true if connection started; false if connection start
  *                  failure.
  *
  ******************************************************************************/
 bool GATT_Connect(tGATT_IF gatt_if, const RawAddress& bd_addr,
-                  tBTM_BLE_CONN_TYPE connection_type, tBT_TRANSPORT transport,
-                  bool opportunistic) {
+                  tBTM_BLE_CONN_TYPE connection_type, tBT_TRANSPORT transport) {
   uint8_t phy = controller_get_interface()->get_le_all_initiating_phys();
-  return GATT_Connect(gatt_if, bd_addr, connection_type, transport,
-                      opportunistic, phy);
+  return GATT_Connect(gatt_if, bd_addr, connection_type, transport, phy);
 }
 
 bool GATT_Connect(tGATT_IF gatt_if, const RawAddress& bd_addr,
                   tBLE_ADDR_TYPE addr_type, tBTM_BLE_CONN_TYPE connection_type,
-                  tBT_TRANSPORT transport, bool opportunistic,
-                  uint8_t initiating_phys) {
+                  tBT_TRANSPORT transport, uint8_t initiating_phys) {
   /* Make sure app is registered */
   tGATT_REG* p_reg = gatt_get_regcb(gatt_if);
   if (!p_reg) {
     LOG_ERROR("Unable to find registered app gatt_if=%d", +gatt_if);
     return false;
+  }
+
+  if (connection_type == BTM_BLE_OPPORTUNISTIC) {
+    LOG_INFO("Registered for opportunistic connection gatt_if=%d", +gatt_if);
+    return true;
   }
 
   bool is_direct = (connection_type == BTM_BLE_DIRECT_CONNECTION);
@@ -1423,11 +1425,6 @@ bool GATT_Connect(tGATT_IF gatt_if, const RawAddress& bd_addr,
     LOG_WARN("Unsupported transport for background connection gatt_if=%d",
              +gatt_if);
     return false;
-  }
-
-  if (opportunistic) {
-    LOG_INFO("Registered for opportunistic connection gatt_if=%d", +gatt_if);
-    return true;
   }
 
   bool ret;
@@ -1489,9 +1486,9 @@ bool GATT_Connect(tGATT_IF gatt_if, const RawAddress& bd_addr,
 
 bool GATT_Connect(tGATT_IF gatt_if, const RawAddress& bd_addr,
                   tBTM_BLE_CONN_TYPE connection_type, tBT_TRANSPORT transport,
-                  bool opportunistic, uint8_t initiating_phys) {
+                  uint8_t initiating_phys) {
   return GATT_Connect(gatt_if, bd_addr, BLE_ADDR_PUBLIC, connection_type,
-                      transport, opportunistic, initiating_phys);
+                      transport, initiating_phys);
 }
 
 /*******************************************************************************
