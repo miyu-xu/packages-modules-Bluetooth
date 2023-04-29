@@ -19,7 +19,9 @@
 
 #include <cstdint>
 
+#include "include/btm_ble_api_types.h"
 #include "osi/include/osi.h"  // UNUSED_ATTR
+#include "stack/include/hci_error_code.h"
 #include "types/ble_address_with_type.h"
 #include "types/raw_address.h"
 
