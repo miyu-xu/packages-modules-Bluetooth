@@ -22,6 +22,30 @@
       },
       "revId": "0f912e691e00bb14a57d98d418db904a2642f5a0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6390c747_9112e8e7",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapSettingsTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2023-04-29T06:56:26Z",
+      "side": 1,
+      "message": "Only in MapSettings that the activity was launched in setup. For other files turning it on last is okay.",
+      "parentUuid": "2154fa14_11af4fdc",
+      "range": {
+        "startLine": 62,
+        "startChar": 8,
+        "endLine": 62,
+        "endChar": 45
+      },
+      "revId": "0f912e691e00bb14a57d98d418db904a2642f5a0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
