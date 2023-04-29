@@ -253,6 +253,30 @@ class CsisClientImpl : public CsisClient {
     }
   }
 
+  void SetEnableState(const RawAddress& address, bool enable) override {
+    LOG_INFO(": %s", ADDRESS_TO_LOGGABLE_CSTR(address));
+
+    auto device = FindDeviceByAddress(address);
+    if (device == nullptr) {
+      LOG_WARN("%s: is unknown", ADDRESS_TO_LOGGABLE_CSTR(address));
+      return;
+    }
+
+    if (device->IsEnabled() == enable) {
+      LOG_INFO(": %s already in enabled = %d",
+               ADDRESS_TO_LOGGABLE_CSTR(address), enable);
+      return;
+    }
+
+    device->SetEnableState(enable);
+
+    if (enable) {
+      StartOpportunisticConnect(address);
+    } else {
+      BTA_GATTC_CancelOpen(gatt_if_, address, false);
+    }
+  }
+
   void Disconnect(const RawAddress& addr) override {
     LOG_INFO(": %s", ADDRESS_TO_LOGGABLE_CSTR(addr));
 
@@ -733,6 +757,11 @@ class CsisClientImpl : public CsisClient {
         } else {
           stream << "        Connected conn_id = "
                  << std::to_string(device->conn_id) << "\n";
+        }
+        if (device->IsEnabled()) {
+          stream << "        Enabled\n";
+        } else {
+          stream << "        Disabled\n";
         }
       }
     }
