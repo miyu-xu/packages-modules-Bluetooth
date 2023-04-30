@@ -1057,6 +1057,7 @@ cc_test {
         ":TestCommonMainHandler",
         ":TestCommonMockFunctions",
         ":TestCommonStackConfig",
+        ":TestFakeLooper",
         ":TestFakeOsi",
         ":TestMockBta",
         ":TestMockBtif",

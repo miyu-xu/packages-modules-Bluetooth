@@ -532,6 +532,13 @@ filegroup {
     ],
 }
 
+filegroup {
+    name: "TestFakeLooper",
+    srcs: [
+        "fake/fake_looper.cc",
+    ],
+}
+
 cc_defaults {
     name: "mts_defaults",
     target: {
