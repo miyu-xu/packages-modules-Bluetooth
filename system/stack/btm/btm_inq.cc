@@ -2071,3 +2071,11 @@ void btm_set_eir_uuid(const uint8_t* p_eir, tBTM_INQ_RESULTS* p_results) {
     }
   }
 }
+
+namespace bluetooth {
+namespace legacy {
+namespace testing {
+void btm_clr_inq_db(const RawAddress* p_bda) { ::btm_clr_inq_db(p_bda); }
+}  // namespace testing
+}  // namespace legacy
+}  // namespace bluetooth
