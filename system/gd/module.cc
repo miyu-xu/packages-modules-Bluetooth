@@ -16,8 +16,8 @@
 #define LOG_TAG "BtGdModule"
 
 #include "module.h"
+
 #include "common/init_flags.h"
-#include "dumpsys/init_flags.h"
 #include "os/wakelock_manager.h"
 
 using ::bluetooth::os::Handler;
@@ -140,7 +140,11 @@ void ModuleDumper::DumpState(std::string* output) const {
   flatbuffers::FlatBufferBuilder builder(1024);
   auto title = builder.CreateString(title_);
 
-  auto init_flags_offset = dumpsys::InitFlags::Dump(&builder);
+  common::InitFlagsDataBuilder init_flags_builder(builder);
+  init_flags_builder.add_title(builder.CreateString("----- Init Flags -----"));
+  init_flags_builder.add_contents(builder.CreateString(std::string(common::init_flags::dump())));
+  auto init_flags_offset = init_flags_builder.Finish();
+
   auto wakelock_offset = WakelockManager::Get().GetDumpsysData(&builder);
 
   std::queue<DumpsysDataFinisher> queue;
