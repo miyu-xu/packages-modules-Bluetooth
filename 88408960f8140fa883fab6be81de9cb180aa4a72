@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a230da4a_a54e9508",
+        "filename": "system/bta/include/bta_hh_co.h",
+        "patchSetId": 8
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-05-01T22:27:04Z",
+      "side": 1,
+      "message": "nit: true if ....",
+      "range": {
+        "startLine": 65,
+        "startChar": 20,
+        "endLine": 65,
+        "endChar": 24
+      },
+      "revId": "88408960f8140fa883fab6be81de9cb180aa4a72",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
