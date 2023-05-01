@@ -186,10 +186,11 @@ genrule {
     out: ["bridge.cc"],
 }
 
-rust_test_host {
+rust_test {
     name: "libbt_common_inline_tests",
     defaults: ["gd_rust_defaults"],
     srcs: ["src/lib.rs"],
+    host_supported: true,
     test_suites: ["general-tests"],
     auto_gen_config: true,
     rustlibs: [
