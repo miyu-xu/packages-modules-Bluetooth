@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5c5f82b9_30d87253",
+        "filename": "system/gd/os/log.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-05-01T22:45:54Z",
+      "side": 1,
+      "message": "The PDL packets that are being used in hardware/interfaces/bluetooth/aidl have __ANDROID__ defined, but don\u0027t have a way to get to init_flags.",
+      "range": {
+        "startLine": 34,
+        "startChar": 12,
+        "endLine": 34,
+        "endChar": 23
+      },
+      "revId": "ea21f12161f82ad2c800cf9311a0c2783aa2cf73",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
