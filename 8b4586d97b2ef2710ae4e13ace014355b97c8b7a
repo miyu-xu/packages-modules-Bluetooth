@@ -46,6 +46,29 @@
       },
       "revId": "8b4586d97b2ef2710ae4e13ace014355b97c8b7a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1b13c7ff_3ad68afe",
+        "filename": "android/app/src/com/android/bluetooth/gatt/AdvertiseManager.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 220,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-05-01T21:35:13Z",
+      "side": 1,
+      "message": "Can we add a log line here telling the caller why, since \"Internal Error\" is pretty vague?",
+      "range": {
+        "startLine": 220,
+        "startChar": 54,
+        "endLine": 220,
+        "endChar": 85
+      },
+      "revId": "8b4586d97b2ef2710ae4e13ace014355b97c8b7a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
