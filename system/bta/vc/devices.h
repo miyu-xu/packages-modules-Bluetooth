@@ -61,6 +61,9 @@ class VolumeControlDevice : public bluetooth::common::IRedactableLoggable {
    * notifications */
   bool device_ready;
 
+  /* If profile is enabled */
+  bool enabled = true;
+
   VolumeControlDevice(const RawAddress& address, bool connecting_actively)
       : address(address),
         connecting_actively(connecting_actively),
@@ -95,6 +98,12 @@ class VolumeControlDevice : public bluetooth::common::IRedactableLoggable {
     stream << "   == device address: " << ADDRESS_TO_LOGGABLE_STR(address)
            << " == \n";
 
+    if (IsEnabled()) {
+      stream << "    Enabled\n";
+    } else {
+      stream << "    Disabled\n";
+    }
+
     if (connection_id == GATT_INVALID_CONN_ID)
       stream << "    Not connected\n";
     else
@@ -111,6 +120,8 @@ class VolumeControlDevice : public bluetooth::common::IRedactableLoggable {
   }
 
   bool IsConnected() { return connection_id != GATT_INVALID_CONN_ID; }
+  bool IsEnabled() const { return enabled; }
+  void SetEnableState(bool enable) { enabled = enable; }
 
   void Disconnect(tGATT_IF gatt_if);
 

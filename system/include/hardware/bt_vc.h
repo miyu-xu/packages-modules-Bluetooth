@@ -80,6 +80,9 @@ class VolumeControlInterface {
   /** Disconnect from Volume Control */
   virtual void Disconnect(const RawAddress& address) = 0;
 
+  /** Disable/Enable profile */
+  virtual void SetEnableState(const RawAddress& address, bool enabled) = 0;
+
   /** Called when Volume control devices is unbonded */
   virtual void RemoveDevice(const RawAddress& address) = 0;
 

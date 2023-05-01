@@ -327,6 +327,26 @@ static jboolean disconnectVolumeControlNative(JNIEnv* env, jobject object,
   return JNI_TRUE;
 }
 
+static jboolean setEnableStateNative(JNIEnv* env, jobject object,
+                                     jbyteArray address, jboolean enabled) {
+  std::shared_lock<std::shared_timed_mutex> lock(interface_mutex);
+  if (!sVolumeControlInterface) {
+    LOG(ERROR) << __func__ << ": Failed to get the Csis Client Interface";
+    return JNI_FALSE;
+  }
+
+  jbyte* addr = env->GetByteArrayElements(address, nullptr);
+  if (!addr) {
+    jniThrowIOException(env, EINVAL);
+    return JNI_FALSE;
+  }
+
+  RawAddress* tmpraw = (RawAddress*)addr;
+  sVolumeControlInterface->SetEnableState(*tmpraw, enabled);
+  env->ReleaseByteArrayElements(address, addr, 0);
+  return JNI_TRUE;
+}
+
 static void setVolumeNative(JNIEnv* env, jobject object, jbyteArray address,
                             jint volume) {
   if (!sVolumeControlInterface) {
@@ -546,6 +566,7 @@ static JNINativeMethod sMethods[] = {
     {"connectVolumeControlNative", "([B)Z", (void*)connectVolumeControlNative},
     {"disconnectVolumeControlNative", "([B)Z",
      (void*)disconnectVolumeControlNative},
+    {"setEnableStateNative", "([BZ)Z", (void*)setEnableStateNative},
     {"setVolumeNative", "([BI)V", (void*)setVolumeNative},
     {"setGroupVolumeNative", "(II)V", (void*)setGroupVolumeNative},
     {"muteNative", "([B)V", (void*)muteNative},
