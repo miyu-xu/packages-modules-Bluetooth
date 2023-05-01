@@ -3,6 +3,7 @@ import collections
 import enum
 import hci_packets as hci
 import link_layer_packets as ll
+import llcp_packets as llcp
 import py.bluetooth
 import sys
 import typing
@@ -113,6 +114,16 @@ class Controller:
     def send_ll(self, pdu: ll.LinkLayerPacket, phy: Phy = Phy.LowEnergy, rssi: int = -90):
         print(f"--> sending LL pdu {pdu.__class__.__name__}")
         data = pdu.serialize()
+        rootcanal.ffi_controller_receive_ll(c_void_p(self.instance), c_char_p(data), c_int(len(data)), c_int(phy),
+                                            c_int(rssi))
+
+    def send_llcp(self, source_address: hci.Address, destination_address: hci.Address,
+                  pdu: llcp.LlcpPacket, phy: Phy = Phy.LowEnergy, rssi: int = -90):
+        print(f"--> sending LLCP pdu {pdu.__class__.__name__}")
+        ll_pdu = ll.Llcp(source_address=source_address,
+                         destination_address=destination_address,
+                         payload=pdu.serialize())
+        data = ll_pdu.serialize()
         rootcanal.ffi_controller_receive_ll(c_void_p(self.instance), c_char_p(data), c_int(len(data)), c_int(phy),
                                             c_int(rssi))
 
@@ -251,6 +262,31 @@ class ControllerTest(unittest.IsolatedAsyncioTestCase):
                 expected_pdu.show()
 
         self.assertTrue(False)
+
+    async def expect_llcp(self,
+                          source_address: hci.Address,
+                          destination_address: hci.Address,
+                          expected_pdu: llcp.LlcpPacket,
+                          timeout: int = 3) -> int:
+        packet = await asyncio.wait_for(self.controller.receive_ll(), timeout=timeout)
+        pdu = ll.LinkLayerPacket.parse_all(packet)
+
+        if (not isinstance(pdu, ll.Llcp) ||
+            pdu.source_address != source_address ||
+            pdu.destination_address != destination_address):
+            print("received unexpected pdu:")
+            pdu.show()
+            print(f"expected pdu: {source_address} -> {destination_address}")
+            expected_pdu.show()
+            self.assertTrue(False)
+
+        pdu = llcp.LlcpPacket.parse_all(pdu.payload)
+        if pdu != expected_pdu:
+            print("received unexpected pdu:")
+            pdu.show()
+            print("expected pdu:")
+            expected_pdu.show()
+            self.assertTrue(False)
 
     def tearDown(self):
         self.controller.stop()
