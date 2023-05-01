@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4c2ecd03_985a26c6",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2420,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2023-05-01T23:52:39Z",
+      "side": 1,
+      "message": "It seems change previous design for the authorized condition. Previously, it was set to true as GroupNodeAdded, and false as GroupNodeRemoved. \n\nWith the patch, the authorization would be true even group node haven\u0027t been added. Is it intended?",
+      "range": {
+        "startLine": 2420,
+        "startChar": 12,
+        "endLine": 2420,
+        "endChar": 61
+      },
+      "revId": "fb9ad9f3a728bbefc3be8bfb0b27cd62f74ca1f1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
