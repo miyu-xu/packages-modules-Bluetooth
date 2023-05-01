@@ -31,7 +31,7 @@ static_assert(LOG_TAG != nullptr, "LOG_TAG should never be NULL");
 #include "os/log_tags.h"
 #include "os/logging/log_adapter.h"
 
-#if defined(OS_ANDROID)
+#if defined(__ANDROID__)
 
 #include <log/log.h>
 #include <log/log_event_list.h>
@@ -185,7 +185,7 @@ static_assert(LOG_TAG != nullptr, "LOG_TAG is null after header inclusion");
   } while (false)
 #endif
 
-#endif /* defined(OS_ANDROID) */
+#endif /* defined(__ANDROID__) */
 
 #define ASSERT(condition)                                    \
   do {                                                       \
