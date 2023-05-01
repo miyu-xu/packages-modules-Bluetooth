@@ -93,6 +93,30 @@
       },
       "revId": "c9b43a6b41821b5cbb168133936756fb6db21873",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "91c6062e_71417464",
+        "filename": "system/gd/rust/common/src/init_flags.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-05-01T20:59:44Z",
+      "side": 1,
+      "message": "What about this:\n\n```suggestion\n            #[cfg_attr(test, allow(unused))]\n```\n\n\nI would like to do something like this but I do not know if this syntax works:\n```\n#![cfg_attr(test, allow(unused))]\n```",
+      "parentUuid": "28a215a9_b8f7cab3",
+      "range": {
+        "startLine": 152,
+        "startChar": 0,
+        "endLine": 152,
+        "endChar": 28
+      },
+      "revId": "c9b43a6b41821b5cbb168133936756fb6db21873",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
