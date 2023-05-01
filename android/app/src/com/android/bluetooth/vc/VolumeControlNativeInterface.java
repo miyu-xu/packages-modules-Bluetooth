@@ -98,6 +98,18 @@ public class VolumeControlNativeInterface {
     }
 
     /**
+     * Set enable/disable state VolumeControl for a remote device.
+     *
+     * @param device the remote device
+     * @param enabled true if enabled, false otherwise
+     * @return true on success, otherwise false.
+     */
+    @VisibleForTesting(visibility = VisibleForTesting.Visibility.PACKAGE)
+    public boolean setEnableState(BluetoothDevice device, boolean enabled) {
+        return setEnableStateNative(getByteAddress(device), enabled);
+    }
+
+    /**
      * Sets the VolumeControl volume
      * @param device
      * @param volume
@@ -379,6 +391,7 @@ public class VolumeControlNativeInterface {
     private native void cleanupNative();
     private native boolean connectVolumeControlNative(byte[] address);
     private native boolean disconnectVolumeControlNative(byte[] address);
+    private native boolean setEnableStateNative(byte[] address, boolean enabled);
     private native void setVolumeNative(byte[] address, int volume);
     private native void setGroupVolumeNative(int groupId, int volume);
     private native void muteNative(byte[] address);

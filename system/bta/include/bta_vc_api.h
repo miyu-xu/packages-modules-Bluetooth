@@ -38,6 +38,7 @@ class VolumeControl {
   /* Volume Control Server (VCS) */
   virtual void Connect(const RawAddress& address) = 0;
   virtual void Disconnect(const RawAddress& address) = 0;
+  virtual void SetEnableState(const RawAddress& address, bool enabled) = 0;
   virtual void Remove(const RawAddress& address) = 0;
   virtual void SetVolume(std::variant<RawAddress, int> addr_or_group_id,
                          uint8_t volume) = 0;
