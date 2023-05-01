@@ -122,6 +122,9 @@ cc_library_static {
         "libhidlbase",
         "libutils",
     ],
+    static_libs: [
+        "libbt_shim_bridge",
+    ],
     apex_available: [
         "com.android.btservices",
     ],
