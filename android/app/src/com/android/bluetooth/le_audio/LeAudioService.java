@@ -2413,9 +2413,15 @@ public class LeAudioService extends ProfileService {
                 connectionPolicy)) {
             return false;
         }
+
+        List<BluetoothDevice> groupDevices = getGroupDevices(device);
         if (connectionPolicy == BluetoothProfile.CONNECTION_POLICY_ALLOWED) {
+            // Authorizes LEA GATT server services (e.g. MCS, TBS) for the device
+            setAuthorizationForRelatedProfiles(device, true);
             connect(device);
         } else if (connectionPolicy == BluetoothProfile.CONNECTION_POLICY_FORBIDDEN) {
+            // Remove authorization for LEA GATT server services (e.g. MCS, TBS) for the device
+            setAuthorizationForRelatedProfiles(device, false);
             disconnect(device);
         }
         return true;
@@ -2555,7 +2561,9 @@ public class LeAudioService extends ProfileService {
 
         synchronized (mGroupLock) {
             for (BluetoothDevice device : mDeviceDescriptors.keySet()) {
-                setAuthorizationForRelatedProfiles(device, true);
+                if (getConnectionPolicy(device) != BluetoothProfile.CONNECTION_POLICY_FORBIDDEN) {
+                    setAuthorizationForRelatedProfiles(device, true);
+                }
             }
         }
 
