@@ -162,6 +162,21 @@ class VolumeControlInterfaceImpl : public VolumeControlInterface,
                            Unretained(VolumeControl::Get()), address));
   }
 
+  void SetEnableState(const RawAddress& addr, bool enabled) override {
+    if (!initialized || !VolumeControl::IsVolumeControlRunning()) {
+      DVLOG(2) << __func__
+               << " call ignored, due to already started cleanup procedure or "
+                  "service being not read";
+      return;
+    }
+
+    DVLOG(2) << __func__ << " addr: " << ADDRESS_TO_LOGGABLE_STR(addr)
+             << ", enabled: " << enabled;
+    do_in_main_thread(FROM_HERE,
+                      Bind(&VolumeControl::SetEnableState,
+                           Unretained(VolumeControl::Get()), addr, enabled));
+  }
+
   void SetVolume(std::variant<RawAddress, int> addr_or_group_id,
                  uint8_t volume) override {
     DVLOG(2) << __func__ << " volume: " << volume;
