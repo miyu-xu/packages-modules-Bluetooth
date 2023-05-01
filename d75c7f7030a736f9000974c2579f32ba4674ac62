@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "091ecb45_3957ae26",
+        "filename": "PREUPLOAD.cfg",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-05-01T23:01:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ab8e6b72_0eda36f9",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 26,
+        "endChar": 19
+      },
+      "revId": "d75c7f7030a736f9000974c2579f32ba4674ac62",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3b6937bd_5f08962e",
@@ -84,6 +108,24 @@
       "writtenOn": "2023-04-24T23:30:20Z",
       "side": 1,
       "message": "Please modify to use proper quoting:\n```\nROOT\u003d$(dirname \"$(realpath \"$0\")\")/../../../../\n\n\"$ROOT/prebuilts/jdk/jdk17/linux-x86/bin/java\" -jar \"$ROOT/prebuilts/build-tools/common/framework/ktfmt.jar\" \"$@\"\n```",
+      "revId": "d75c7f7030a736f9000974c2579f32ba4674ac62",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "78dceb39_0b21be4c",
+        "filename": "tools/ktfmt",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-05-01T23:01:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "61b39c84_5900b54b",
       "revId": "d75c7f7030a736f9000974c2579f32ba4674ac62",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
