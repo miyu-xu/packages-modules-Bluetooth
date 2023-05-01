@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f5013c27_8962d3a8",
+        "filename": "system/bta/hearing_aid/hearing_aid.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1700,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-05-01T20:37:47Z",
+      "side": 1,
+      "message": "I am not sure whether this change will break something, because in aosp/879633, it was changed from `gatt_if` to 0. \nFor the worry that ASHA impacts LE audio background connection, in aosp/2553050, I fix it by if HAP is present, then ASHA profile won\u0027t be added or activated. \nmaybe we need a real device testing?",
+      "range": {
+        "startLine": 1700,
+        "startChar": 4,
+        "endLine": 1700,
+        "endChar": 50
+      },
+      "revId": "c2eebd234c51f303d034122042cc646dd58f7fa1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
