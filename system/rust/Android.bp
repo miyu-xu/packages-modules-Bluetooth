@@ -98,8 +98,9 @@ rust_ffi_static {
     host_supported: true,
 }
 
-rust_test_host {
+rust_test {
     name: "libbluetooth_core_rs_test",
+    host_supported: true,
     defaults: ["libbluetooth_core_rs_defaults"],
     rustlibs: [
         "libtokio_for_test",
