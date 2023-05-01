@@ -35,6 +35,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cb0ed2c6_cbbfaf2f",
+        "filename": "system/gd/hci/controller.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 398,
+      "author": {
+        "id": 1963846
+      },
+      "writtenOn": "2023-05-01T10:54:58Z",
+      "side": 1,
+      "message": "Done. Thank you for catching it!",
+      "parentUuid": "06a990eb_93a02543",
+      "revId": "1766b81560bdea6ee03e514c20e2a186d68a96aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a0c9a006_b57beb18",
@@ -48,6 +66,24 @@
       "writtenOn": "2023-04-26T19:03:57Z",
       "side": 1,
       "message": "nit: Move this line to before creating the `complete_view`",
+      "revId": "1766b81560bdea6ee03e514c20e2a186d68a96aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2b4d246a_93767c8e",
+        "filename": "system/gd/hci/controller.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 433,
+      "author": {
+        "id": 1963846
+      },
+      "writtenOn": "2023-05-01T10:54:58Z",
+      "side": 1,
+      "message": "Done. Thank you for catching it!",
+      "parentUuid": "a0c9a006_b57beb18",
       "revId": "1766b81560bdea6ee03e514c20e2a186d68a96aa",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
