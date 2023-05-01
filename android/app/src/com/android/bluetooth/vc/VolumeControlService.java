@@ -358,6 +358,17 @@ public class VolumeControlService extends ProfileService {
         sVolumeControlService = instance;
     }
 
+    private void setEnableState(BluetoothDevice device, boolean enabled) {
+        if (DBG) {
+            Log.d(TAG, "setEnableState: device:" + device + " enabled: " + enabled);
+        }
+        if (mVolumeControlNativeInterface == null) {
+            Log.e(TAG, "setEnableState, mVolumeControlNativeInterface is not initialized");
+            return;
+        }
+        mVolumeControlNativeInterface.setEnableState(device, enabled);
+    }
+
     @RequiresPermission(android.Manifest.permission.BLUETOOTH_PRIVILEGED)
     public boolean connect(BluetoothDevice device) {
         enforceCallingOrSelfPermission(BLUETOOTH_PRIVILEGED,
@@ -456,6 +467,7 @@ public class VolumeControlService extends ProfileService {
         } else if (connectionPolicy != BluetoothProfile.CONNECTION_POLICY_UNKNOWN
                 && connectionPolicy != BluetoothProfile.CONNECTION_POLICY_ALLOWED) {
             // Otherwise, reject the connection if connectionPolicy is not valid.
+            setEnableState(device, /* enabled =*/ false);
             Log.w(TAG, "okToConnect: return false, connectionPolicy=" + connectionPolicy);
             return false;
         }
@@ -550,8 +562,10 @@ public class VolumeControlService extends ProfileService {
         mDatabaseManager.setProfileConnectionPolicy(device, BluetoothProfile.VOLUME_CONTROL,
                         connectionPolicy);
         if (connectionPolicy == BluetoothProfile.CONNECTION_POLICY_ALLOWED) {
+            setEnableState(device, /* enabled =*/ true);
             connect(device);
         } else if (connectionPolicy == BluetoothProfile.CONNECTION_POLICY_FORBIDDEN) {
+            setEnableState(device, /* enabled =*/ false);
             disconnect(device);
         }
         return true;
