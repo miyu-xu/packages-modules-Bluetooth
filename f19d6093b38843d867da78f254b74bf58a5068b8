@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "16c3c08c_21696e5e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-05-01T16:07:57Z",
+      "side": 1,
+      "message": "Why move lmp/ to rust/?  RootCanal is being re-implemented in Rust.",
+      "revId": "f19d6093b38843d867da78f254b74bf58a5068b8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
