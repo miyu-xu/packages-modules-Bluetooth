@@ -117,6 +117,30 @@
       },
       "revId": "c9b43a6b41821b5cbb168133936756fb6db21873",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "88b112bf_bbd33e61",
+        "filename": "system/gd/rust/common/src/init_flags.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-05-01T22:53:13Z",
+      "side": 1,
+      "message": "Obsolete comment",
+      "parentUuid": "91c6062e_71417464",
+      "range": {
+        "startLine": 152,
+        "startChar": 0,
+        "endLine": 152,
+        "endChar": 28
+      },
+      "revId": "c9b43a6b41821b5cbb168133936756fb6db21873",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
