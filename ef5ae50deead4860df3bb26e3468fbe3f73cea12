@@ -140,6 +140,24 @@
       "parentUuid": "d26cea26_65e4c4d1",
       "revId": "ef5ae50deead4860df3bb26e3468fbe3f73cea12",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fab44b72_6b23795a",
+        "filename": "system/stack/btm/btm_inq.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 542,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-05-02T03:20:15Z",
+      "side": 1,
+      "message": "FYI, that code is behind `gd_core` and `gd_core` is a dead path (can\u0027t be enabled). \n\nYou still need the `BTM_BLE_INQUIRY_MASK` flag otherwise BLE devices will not result in the `device_found_cb` being called.\n\nPatchset 3 here is the most correct solution for dealing with the legacy stack.",
+      "parentUuid": "b84e6d3e_11f93405",
+      "revId": "ef5ae50deead4860df3bb26e3468fbe3f73cea12",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
