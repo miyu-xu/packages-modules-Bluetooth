@@ -72,6 +72,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "30b90843_2debb998",
+        "filename": "system/stack/btm/btm_inq.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 655,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-05-02T21:22:20Z",
+      "side": 1,
+      "message": "This effort provides symmetry with the function `btm_clr_inq_result_flt` and `btm_clr_inq_result_flt`",
+      "parentUuid": "79490867_a9e9601d",
+      "range": {
+        "startLine": 652,
+        "startChar": 0,
+        "endLine": 655,
+        "endChar": 28
+      },
+      "revId": "066fd03f7b5f58cbf98ed4b63b1173618ffbbe51",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0e6841fb_a943460d",
