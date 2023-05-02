@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1e0811b5_b5bb8af8",
+        "filename": "android/pandora/server/src/com/android/pandora/Gatt.kt",
+        "patchSetId": 9
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2023-05-02T20:09:59Z",
+      "side": 1,
+      "message": "I think you will need to adapt `mmi2grpc/` as well.",
+      "range": {
+        "startLine": 162,
+        "startChar": 22,
+        "endLine": 162,
+        "endChar": 53
+      },
+      "revId": "5520e128658400da525d6865f57b268a20408ac8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
