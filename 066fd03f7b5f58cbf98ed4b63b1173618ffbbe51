@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "79490867_a9e9601d",
+        "filename": "system/stack/btm/btm_inq.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 655,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-05-02T16:56:51Z",
+      "side": 1,
+      "message": "My worry is that encapsulating it here makes it harder to see what\u0027s happening.  Once tests are written for these functions, will anyone want to say, \"why do we have this function anyway?\" ?",
+      "parentUuid": "f0b83655_6fb3f227",
+      "range": {
+        "startLine": 652,
+        "startChar": 0,
+        "endLine": 655,
+        "endChar": 28
+      },
+      "revId": "066fd03f7b5f58cbf98ed4b63b1173618ffbbe51",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0e6841fb_a943460d",
@@ -85,6 +109,30 @@
       "side": 1,
       "message": "Same.  No logic modified from previous file.  Pulled out inquiry address db to be testable in subsequent CLs at the API level then the impl may be changed.",
       "parentUuid": "0e6841fb_a943460d",
+      "range": {
+        "startLine": 1063,
+        "startChar": 31,
+        "endLine": 1063,
+        "endChar": 53
+      },
+      "revId": "066fd03f7b5f58cbf98ed4b63b1173618ffbbe51",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "44ba6768_bffeffe2",
+        "filename": "system/stack/btm/btm_inq.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1063,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-05-02T16:56:51Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "626e11d0_c99c5085",
       "range": {
         "startLine": 1063,
         "startChar": 31,
