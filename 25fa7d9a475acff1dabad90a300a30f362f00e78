@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a03eefa1_74c01e28",
+        "filename": "tools/pdl/src/backends/rust.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 637,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-05-02T15:39:37Z",
+      "side": 1,
+      "message": "`Self::new(Arc::new(data))`, no need to wrap in Ok anymore 😊",
+      "range": {
+        "startLine": 637,
+        "startChar": 16,
+        "endLine": 637,
+        "endChar": 46
+      },
+      "revId": "25fa7d9a475acff1dabad90a300a30f362f00e78",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
