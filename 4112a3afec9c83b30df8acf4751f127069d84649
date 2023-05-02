@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f6b8fb0d_ed2d238b",
+        "filename": "system/gd/hci/hci_packets.pdl",
+        "patchSetId": 9
+      },
+      "lineNbr": 4020,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-05-02T16:08:16Z",
+      "side": 1,
+      "message": "PeerAddressType",
+      "range": {
+        "startLine": 4020,
+        "startChar": 22,
+        "endLine": 4020,
+        "endChar": 33
+      },
+      "revId": "4112a3afec9c83b30df8acf4751f127069d84649",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4750b772_c6e83d2e",
         "filename": "tools/rootcanal/test/controller/le/le_set_extended_scan_enable_test.cc",
         "patchSetId": 9
