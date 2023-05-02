@@ -34,6 +34,24 @@
       "parentUuid": "4b360a3e_f4e90fbb",
       "revId": "6b56c97260b3c31b91722c2ae5db3351030dcff9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8c837a7c_dec85e68",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2023-05-02T07:21:34Z",
+      "side": 1,
+      "message": "I guess you already fix it? If there is no such pattern of log then it should be:\n```\n[android.bumbles] 04-27 18:03:48.798 INFO [bumble.Security:17:03] Authenticated\n[android.bumbles] 04-27 18:03:48.798 INFO [bumble.Security:17:03] Encrypt...\n[android.bumbles] 04-27 18:03:48.886 INFO [bumble.Security:17:03] Encrypted\n[android.bumbles] 04-27 18:03:49.027 ERROR Task exception was never retrieved\nfuture: \u003cTask finished name\u003d\u0027Task-96\u0027 coro\u003d\u003cSession.on_pairing() done, defined at /tmp/Soong.python_1acdr3pd/bumble/smp.py:1199\u003e exception\u003dAssertionError()\u003e\nTraceback (most recent call last):\n  File \"/tmp/Soong.python_1acdr3pd/bumble/smp.py\", line 1218, in on_pairing\n    await self.ctkd_task\n  File \"/tmp/Soong.python_1acdr3pd/bumble/smp.py\", line 998, in derive_ltk\n    assert link_key is not None\nAssertionError\n[android.bumbles] 04-27 18:03:49.482 INFO [bumble.Host:17:03] Disconnect: 3839\n[android.bumbles] 04-27 18:03:49.482 INFO [bumble.Host:17:03] Disconnecting...\n[android.bumbles] 04-27 18:03:49.547 INFO [bumble.Host:17:03] Disconnected\n[android.bumbles] 04-27 18:03:49.548 INFO [Test] test_classic_pairing_incoming_accept(0,0,0) PASS\n\n```",
+      "parentUuid": "53abbc74_70f88005",
+      "revId": "6b56c97260b3c31b91722c2ae5db3351030dcff9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
