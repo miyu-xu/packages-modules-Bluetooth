@@ -6,6 +6,7 @@ import tempfile
 import unittest
 
 tests = [
+    'LL.CIS.CEN.BV_01_C',
     'LL.DDI.ADV.BV_01_C',
     'LL.DDI.ADV.BV_02_C',
     'LL.DDI.ADV.BV_03_C',
