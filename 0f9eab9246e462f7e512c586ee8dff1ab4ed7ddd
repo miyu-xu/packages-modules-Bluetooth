@@ -34,6 +34,24 @@
       "parentUuid": "09b15a0d_06e45d28",
       "revId": "0f9eab9246e462f7e512c586ee8dff1ab4ed7ddd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ca32f473_1bc635bc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-05-02T03:11:25Z",
+      "side": 1,
+      "message": "I originally -2 this because it didn\u0027t seem like the right solution with LL privacy enabled. However, I would defer to Rahul on this topic since he\u0027s working on the connection manager refactor.\n\nThis is ok as a short term solution until we properly enable LL privacy however since this is scoped to only Floss. The long term solution for us will be probably to pick up the newly refactored Connection Manager.",
+      "parentUuid": "461a67cf_dad83e79",
+      "revId": "0f9eab9246e462f7e512c586ee8dff1ab4ed7ddd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
