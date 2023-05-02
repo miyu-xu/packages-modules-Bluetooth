@@ -22,6 +22,30 @@
       },
       "revId": "fb9ad9f3a728bbefc3be8bfb0b27cd62f74ca1f1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f2b76795_0a7cd71f",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2420,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-05-02T08:46:18Z",
+      "side": 1,
+      "message": "Yeah, this is reasonable comment Alice - thank you. A device which is added to group is considered as connected and ready to react in term of CCP/MCP.\n\nI understand that in this case there is an problem with disabling this when using classic profiles.\n\nMaybe it\u0027ll be good to use connection policy as a one of those two factors:\n- Device Added to group \u0026\u0026 Connection policy allowed \u003d\u003d device authorized\n- Device Not add to group || Connection policy not allowed \u003d\u003d device not authorized\n\nWith this we\u0027ll follow previous design with update for Classic profile switching.",
+      "parentUuid": "4c2ecd03_985a26c6",
+      "range": {
+        "startLine": 2420,
+        "startChar": 12,
+        "endLine": 2420,
+        "endChar": 61
+      },
+      "revId": "fb9ad9f3a728bbefc3be8bfb0b27cd62f74ca1f1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
