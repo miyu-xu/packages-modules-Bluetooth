@@ -16,6 +16,24 @@
       "message": "@chharry@google.com - Please review for MPS",
       "revId": "1855b9422194c8a12de7a05800a8ff5af078f1ce",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "118462db_01b5ec4c",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 2003,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-05-02T03:49:47Z",
+      "side": 0,
+      "message": "LGTM since https://crrev.com/c/4179673 has landed.",
+      "parentUuid": "94b4974a_1a034157",
+      "revId": "1855b9422194c8a12de7a05800a8ff5af078f1ce",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
