@@ -668,8 +668,7 @@ tBTM_STATUS BTM_SetBleDataLength(const RawAddress& bd_addr,
 
   uint16_t tx_time = BTM_BLE_DATA_TX_TIME_MAX_LEGACY;
 
-  if (controller_get_interface()->get_bt_version()->hci_version >=
-      HCI_PROTO_VERSION_5_0)
+  if (controller_get_interface()->supports_ble_coded_phy())
     tx_time = BTM_BLE_DATA_TX_TIME_MAX;
 
   if (!BTM_IsAclConnectionUp(bd_addr, BT_TRANSPORT_LE)) {
