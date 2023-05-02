@@ -3,6 +3,7 @@ import collections
 import enum
 import hci_packets as hci
 import link_layer_packets as ll
+import llcp_packets as llcp
 import py.bluetooth
 import sys
 import typing
@@ -110,9 +111,28 @@ class Controller:
         data = cmd.serialize()
         rootcanal.ffi_controller_receive_hci(c_void_p(self.instance), c_int(Idc.Cmd), c_char_p(data), c_int(len(data)))
 
+    def send_iso(self, iso: hci.Iso):
+        print(f"--> sending HCI iso pdu data={len(iso.payload)}[..]")
+        data = iso.serialize()
+        rootcanal.ffi_controller_receive_hci(c_void_p(self.instance), c_int(Idc.Iso), c_char_p(data), c_int(len(data)))
+
     def send_ll(self, pdu: ll.LinkLayerPacket, phy: Phy = Phy.LowEnergy, rssi: int = -90):
         print(f"--> sending LL pdu {pdu.__class__.__name__}")
         data = pdu.serialize()
+        rootcanal.ffi_controller_receive_ll(c_void_p(self.instance), c_char_p(data), c_int(len(data)), c_int(phy),
+                                            c_int(rssi))
+
+    def send_llcp(self,
+                  source_address: hci.Address,
+                  destination_address: hci.Address,
+                  pdu: llcp.LlcpPacket,
+                  phy: Phy = Phy.LowEnergy,
+                  rssi: int = -90):
+        print(f"--> sending LLCP pdu {pdu.__class__.__name__}")
+        ll_pdu = ll.Llcp(source_address=source_address,
+                         destination_address=destination_address,
+                         payload=pdu.serialize())
+        data = ll_pdu.serialize()
         rootcanal.ffi_controller_receive_ll(c_void_p(self.instance), c_char_p(data), c_int(len(data)), c_int(phy),
                                             c_int(rssi))
 
@@ -167,11 +187,25 @@ class Controller:
         return self.ll_queue.popleft()
 
 
+class Any:
+    """Helper class that will match all other values.
+       Use an element of this class in expected packets to match any value
+      returned by the Controller stack."""
+
+    def __eq__(self, other) -> bool:
+        return True
+
+    def __format__(self, format_spec: str) -> str:
+        return "_"
+
+
 class ControllerTest(unittest.IsolatedAsyncioTestCase):
     """Helper class for writing controller tests using the python bindings.
     The test setups the controller sending the Reset command and configuring
     the event masks to allow all events. The local device address is
     always configured as 11:11:11:11:11:11."""
+
+    Any = Any()
 
     def setUp(self):
         self.controller = Controller(hci.Address('11:11:11:11:11:11'))
@@ -251,6 +285,32 @@ class ControllerTest(unittest.IsolatedAsyncioTestCase):
                 expected_pdu.show()
 
         self.assertTrue(False)
+
+    async def expect_llcp(self,
+                          source_address: hci.Address,
+                          destination_address: hci.Address,
+                          expected_pdu: llcp.LlcpPacket,
+                          timeout: int = 3) -> llcp.LlcpPacket:
+        packet = await asyncio.wait_for(self.controller.receive_ll(), timeout=timeout)
+        pdu = ll.LinkLayerPacket.parse_all(packet)
+
+        if (pdu.type != ll.PacketType.LLCP or pdu.source_address != source_address or
+                pdu.destination_address != destination_address):
+            print("received unexpected pdu:")
+            pdu.show()
+            print(f"expected pdu: {source_address} -> {destination_address}")
+            expected_pdu.show()
+            self.assertTrue(False)
+
+        pdu = llcp.LlcpPacket.parse_all(pdu.payload)
+        if pdu != expected_pdu:
+            print("received unexpected pdu:")
+            pdu.show()
+            print("expected pdu:")
+            expected_pdu.show()
+            self.assertTrue(False)
+
+        return pdu
 
     def tearDown(self):
         self.controller.stop()
