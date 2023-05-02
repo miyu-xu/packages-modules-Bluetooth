@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "37bd329d_77c846f6",
+        "filename": "android/pandora/server/src/com/android/pandora/GattInstance.kt",
+        "patchSetId": 5
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1937985
+      },
+      "writtenOn": "2023-05-02T05:44:23Z",
+      "side": 1,
+      "message": "I don\u0027t think it\u0027s worth it, what do you think ?",
+      "parentUuid": "4c8dbbd6_5bd9a2c8",
+      "revId": "71978b58077f463a4640fdeec79664c6bf966252",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d978657d_c88c2d01",
         "filename": "android/pandora/server/src/com/android/pandora/Host.kt",
         "patchSetId": 5
@@ -137,6 +155,42 @@
       "side": 1,
       "message": "Hi David, thanks for your suggestion.\nMay I confirm the Gatt.close() will always be called during the factoryReset?\nIf yes, I will move it into Gatt.close(), thanks.",
       "parentUuid": "3a302d8e_641e7b06",
+      "revId": "71978b58077f463a4640fdeec79664c6bf966252",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d06378e5_e27b7572",
+        "filename": "android/pandora/server/src/com/android/pandora/Host.kt",
+        "patchSetId": 5
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 1937985
+      },
+      "writtenOn": "2023-05-02T05:44:23Z",
+      "side": 1,
+      "message": "With David suggestion this will be removed -\u003e resolved 😊",
+      "parentUuid": "0b8badaf_ee7c707a",
+      "revId": "71978b58077f463a4640fdeec79664c6bf966252",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1ee02d39_a233af13",
+        "filename": "android/pandora/server/src/com/android/pandora/Host.kt",
+        "patchSetId": 5
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 1937985
+      },
+      "writtenOn": "2023-05-02T05:44:23Z",
+      "side": 1,
+      "message": "I can confirm that the close is called on factory reset, sounds like the right solution to me too then",
+      "parentUuid": "3b5ed238_488efc01",
       "revId": "71978b58077f463a4640fdeec79664c6bf966252",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
