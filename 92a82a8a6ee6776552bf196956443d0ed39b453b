@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "82d85a4b_e7822cca",
+        "filename": "tools/pdl/src/backends/rust.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 695,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2023-05-02T08:13:55Z",
+      "side": 0,
+      "message": "Hey Henri, we lost the `#[repr(u64)]` here. I\u0027m surprised this wasn\u0027t caught in our tests since I added a test for this here: https://android.googlesource.com/platform/packages/modules/Bluetooth/+/refs/heads/master/tools/pdl/tests/canonical/le_rust_test_file.pdl#5\n\nI found this by generating the canonical tests locally and running them with `cargo test`. However, the error is not caught by `atest` so there is a subtle difference in how we run our tests.",
+      "revId": "92a82a8a6ee6776552bf196956443d0ed39b453b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
