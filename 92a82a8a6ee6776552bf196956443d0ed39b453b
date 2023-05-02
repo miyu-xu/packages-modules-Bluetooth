@@ -34,6 +34,24 @@
       "parentUuid": "82d85a4b_e7822cca",
       "revId": "92a82a8a6ee6776552bf196956443d0ed39b453b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9b6efbf8_37f3fcda",
+        "filename": "tools/pdl/src/backends/rust.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 695,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2023-05-02T08:45:49Z",
+      "side": 0,
+      "message": "Fix for the missing `repr(u64)` coming in https://r.android.com/2575770.",
+      "parentUuid": "33b98e1b_524b14cd",
+      "revId": "92a82a8a6ee6776552bf196956443d0ed39b453b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
