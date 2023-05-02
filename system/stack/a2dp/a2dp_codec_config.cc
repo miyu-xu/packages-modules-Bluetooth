@@ -136,6 +136,7 @@ A2dpCodecConfig* A2dpCodecConfig::createCodec(
     case BTAV_A2DP_CODEC_INDEX_SOURCE_LDAC:
       codec_config = new A2dpCodecConfigLdacSource(codec_priority);
       break;
+#ifndef TARGET_FLOSS
     case BTAV_A2DP_CODEC_INDEX_SINK_LDAC:
       codec_config = new A2dpCodecConfigLdacSink(codec_priority);
       break;
@@ -145,6 +146,7 @@ A2dpCodecConfig* A2dpCodecConfig::createCodec(
     case BTAV_A2DP_CODEC_INDEX_SINK_OPUS:
       codec_config = new A2dpCodecConfigOpusSink(codec_priority);
       break;
+#endif
 #endif
     case BTAV_A2DP_CODEC_INDEX_MAX:
     default:
