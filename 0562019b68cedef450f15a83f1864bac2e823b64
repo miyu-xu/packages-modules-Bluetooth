@@ -16,6 +16,24 @@
       "message": "What about making p_db use long form as well?\n\nuint16_t index;\n\n...\n\n  for (index \u003d 0; index \u003c btm_cb.btm_inq_vars.num_bd_entries; index++) {\n    if (btm_cb.btm_inq_vars.p_bd_db[index].bd_addr \u003d\u003d p_bda \u0026\u0026\n        btm_cb.btm_inq_vars.p_bd_db[index].inq_count \u003d\u003d btm_cb.btm_inq_vars.inq_counter)\n      return true;\n  }",
       "revId": "0562019b68cedef450f15a83f1864bac2e823b64",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "751206c0_c0a6cd4b",
+        "filename": "system/stack/btm/btm_inq.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1082,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-05-02T15:03:03Z",
+      "side": 1,
+      "message": "Sure...many ways to do this.  \n\nThis is all part of isolating related changes as we move away from static memory into a container approach combined with minimizing current logic changes for ease of review/merging/patching.",
+      "parentUuid": "11c47a20_e6121a80",
+      "revId": "0562019b68cedef450f15a83f1864bac2e823b64",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
