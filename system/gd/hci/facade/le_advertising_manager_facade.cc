@@ -229,7 +229,10 @@ class LeAdvertisingManagerFacadeService : public LeAdvertisingManagerFacade::Ser
       return ::grpc::Status(::grpc::StatusCode::INVALID_ARGUMENT, "Error while parsing advertising config");
     }
     LeAdvertiser le_advertiser(config);
-    auto advertiser_id = le_advertising_manager_->ExtendedCreateAdvertiser(
+
+    pending_advertiser_id_ = std::promise<AdvertiserId>();
+    auto future = pending_advertiser_id_->get_future();
+    le_advertising_manager_->ExtendedCreateAdvertiser(
         0,
         config,
         common::Bind(&LeAdvertiser::ScanCallback, common::Unretained(&le_advertiser)),
@@ -237,6 +240,8 @@ class LeAdvertisingManagerFacadeService : public LeAdvertisingManagerFacade::Ser
         0,
         0,
         facade_handler_);
+
+    auto advertiser_id = future.get();
     if (advertiser_id != LeAdvertisingManager::kInvalidId) {
       le_advertiser.SetAdvertiserId(advertiser_id);
       le_advertisers_.push_back(le_advertiser);
@@ -257,7 +262,9 @@ class LeAdvertisingManagerFacadeService : public LeAdvertisingManagerFacade::Ser
       return ::grpc::Status(::grpc::StatusCode::INVALID_ARGUMENT, "Error while parsing advertising config");
     }
     LeAdvertiser le_advertiser(config);
-    auto advertiser_id = le_advertising_manager_->ExtendedCreateAdvertiser(
+    pending_advertiser_id_ = std::promise<AdvertiserId>();
+    auto future = pending_advertiser_id_->get_future();
+    le_advertising_manager_->ExtendedCreateAdvertiser(
         0,
         config,
         common::Bind(&LeAdvertiser::ScanCallback, common::Unretained(&le_advertiser)),
@@ -265,6 +272,8 @@ class LeAdvertisingManagerFacadeService : public LeAdvertisingManagerFacade::Ser
         0,
         0,
         facade_handler_);
+
+    auto advertiser_id = future.get();
     if (advertiser_id != LeAdvertisingManager::kInvalidId) {
       le_advertiser.SetAdvertiserId(advertiser_id);
       le_advertisers_.push_back(le_advertiser);
@@ -389,6 +398,10 @@ class LeAdvertisingManagerFacadeService : public LeAdvertisingManagerFacade::Ser
   }
 
   void OnAdvertisingSetStarted(int reg_id, uint8_t advertiser_id, int8_t tx_power, AdvertisingStatus status) {
+    if (pending_advertiser_id_.has_value()) {
+      pending_advertiser_id_->set_value(advertiser_id);
+      pending_advertiser_id_.reset();
+    }
     AdvertisingCallbackMsg msg;
     msg.set_message_type(AdvertisingCallbackMsgType::ADVERTISING_SET_STARTED);
     msg.set_advertiser_id(advertiser_id);
@@ -469,6 +482,7 @@ class LeAdvertisingManagerFacadeService : public LeAdvertisingManagerFacade::Ser
 
   std::vector<LeAdvertiser> le_advertisers_;
   LeAdvertisingManager* le_advertising_manager_;
+  std::optional<std::promise<AdvertiserId>> pending_advertiser_id_;
   os::Handler* facade_handler_;
   ::bluetooth::grpc::GrpcEventQueue<AdvertisingCallbackMsg> callback_events_{"callback events"};
   ::bluetooth::grpc::GrpcEventQueue<AddressMsg> address_events_{"address events"};
