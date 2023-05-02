@@ -46,6 +46,30 @@
       },
       "revId": "fb9ad9f3a728bbefc3be8bfb0b27cd62f74ca1f1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a1af63c7_2cb13abf",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2420,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-05-02T17:34:12Z",
+      "side": 1,
+      "message": "Yeah, I agree with both of you Alice and Grzegorz. I like the design suggested by Grzegorz and will implement this in a new patchset.",
+      "parentUuid": "f2b76795_0a7cd71f",
+      "range": {
+        "startLine": 2420,
+        "startChar": 12,
+        "endLine": 2420,
+        "endChar": 61
+      },
+      "revId": "fb9ad9f3a728bbefc3be8bfb0b27cd62f74ca1f1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
