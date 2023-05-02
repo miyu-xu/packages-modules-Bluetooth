@@ -52,6 +52,24 @@
       "parentUuid": "33b98e1b_524b14cd",
       "revId": "92a82a8a6ee6776552bf196956443d0ed39b453b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "58e2403c_25f8deaa",
+        "filename": "tools/pdl/src/backends/rust.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 695,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-05-02T15:30:19Z",
+      "side": 0,
+      "message": "That was intentionally removed, I did not realize it would be causing issues for large enum cases. Commented on the fix CL to add `repr(u64)` only when required.",
+      "parentUuid": "9b6efbf8_37f3fcda",
+      "revId": "92a82a8a6ee6776552bf196956443d0ed39b453b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
