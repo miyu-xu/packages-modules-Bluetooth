@@ -857,6 +857,7 @@ fn generate_enum_decl(
     let derived_into_types = derived_signed_into_types.chain(derived_unsigned_into_types);
 
     quote! {
+        #[repr(u64)]
         #[derive(Debug, Clone, Copy, Hash, Eq, PartialEq)]
         #[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
         #[cfg_attr(feature = "serde", serde(try_from = #backing_type_str, into = #backing_type_str))]
