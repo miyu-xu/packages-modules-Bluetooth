@@ -196,6 +196,24 @@
       "parentUuid": "9e5058b4_85bd78cb",
       "revId": "32a7cfa88297ec17f000ea5fa28ac1a786bbbcbb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4c485a3d_0ce93114",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 21
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2023-05-02T21:23:57Z",
+      "side": 1,
+      "message": "Hi Jinyao, we are still seeing errors in the `btif_rc_test`. Have you been able to look into it?",
+      "parentUuid": "59f632a0_87299081",
+      "revId": "32a7cfa88297ec17f000ea5fa28ac1a786bbbcbb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
