@@ -54,6 +54,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "da8cee1f_09b16fc9",
+        "filename": "android/pandora/server/src/com/android/pandora/GattInstance.kt",
+        "patchSetId": 5
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1952952
+      },
+      "writtenOn": "2023-05-02T08:57:01Z",
+      "side": 1,
+      "message": "I\u0027m ok with that, removed!",
+      "parentUuid": "37bd329d_77c846f6",
+      "revId": "71978b58077f463a4640fdeec79664c6bf966252",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d978657d_c88c2d01",
@@ -191,6 +209,24 @@
       "side": 1,
       "message": "I can confirm that the close is called on factory reset, sounds like the right solution to me too then",
       "parentUuid": "3b5ed238_488efc01",
+      "revId": "71978b58077f463a4640fdeec79664c6bf966252",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c3921753_c90f2c15",
+        "filename": "android/pandora/server/src/com/android/pandora/Host.kt",
+        "patchSetId": 5
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 1952952
+      },
+      "writtenOn": "2023-05-02T08:57:01Z",
+      "side": 1,
+      "message": "Thanks for the confirming!",
+      "parentUuid": "1ee02d39_a233af13",
       "revId": "71978b58077f463a4640fdeec79664c6bf966252",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
