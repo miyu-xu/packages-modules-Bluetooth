@@ -37,7 +37,9 @@ import com.android.bluetooth.R;
 import com.android.bluetooth.TestUtils;
 import com.android.bluetooth.Utils;
 import com.android.bluetooth.btservice.AdapterService;
+import com.android.bluetooth.btservice.ServiceFactory;
 import com.android.bluetooth.btservice.storage.DatabaseManager;
+import com.android.bluetooth.le_audio.LeAudioService;
 
 import java.util.HashMap;
 import java.util.List;
@@ -53,6 +55,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.mockito.Spy;
 
 @MediumTest
 @RunWith(AndroidJUnit4.class)
@@ -73,6 +76,9 @@ public class CsipSetCoordinatorServiceTest {
     private static final int TIMEOUT_MS = 1000;
 
     @Mock private AdapterService mAdapterService;
+    @Mock private LeAudioService mLeAudioService;
+    @Spy
+    private ServiceFactory mServiceFactory = new ServiceFactory();
     @Mock private DatabaseManager mDatabaseManager;
     @Mock private CsipSetCoordinatorNativeInterface mCsipSetCoordinatorNativeInterface;
     @Mock private IBluetoothCsipSetCoordinatorLockCallback mCsipSetCoordinatorLockCallback;
@@ -100,6 +106,8 @@ public class CsipSetCoordinatorServiceTest {
 
         startService();
         mService.mCsipSetCoordinatorNativeInterface = mCsipSetCoordinatorNativeInterface;
+        mService.mServiceFactory = mServiceFactory;
+        when(mServiceFactory.getLeAudioService()).thenReturn(mLeAudioService);
 
         // Override the timeout value to speed up the test
         CsipSetCoordinatorStateMachine.sConnectTimeoutMs = TIMEOUT_MS; // 1s
@@ -476,6 +484,8 @@ public class CsipSetCoordinatorServiceTest {
         long uuidMsb = 0x01;
         UUID uuid = new UUID(uuidMsb, uuidLsb);
 
+        when(mLeAudioService.getConnectionPolicy(any())).thenReturn(
+                BluetoothProfile.CONNECTION_POLICY_FORBIDDEN);
         doCallRealMethod()
                 .when(mCsipSetCoordinatorNativeInterface)
                 .onDeviceAvailable(any(byte[].class), anyInt(), anyInt(), anyInt(), anyLong(),
@@ -500,9 +510,31 @@ public class CsipSetCoordinatorServiceTest {
         mCsipSetCoordinatorNativeInterface.onDeviceAvailable(
                 getByteAddress(mTestDevice2), group_id, group_size, 0x01, uuidLsb, uuidMsb);
 
+        // When LEA is FORBIDDEN, verify we don't disable CSIP until all set devices are available
+        verify(mDatabaseManager, never()).setProfileConnectionPolicy(mTestDevice,
+                BluetoothProfile.CSIP_SET_COORDINATOR,
+                BluetoothProfile.CONNECTION_POLICY_FORBIDDEN);
+        verify(mDatabaseManager, never()).setProfileConnectionPolicy(mTestDevice2,
+                BluetoothProfile.CSIP_SET_COORDINATOR,
+                BluetoothProfile.CONNECTION_POLICY_FORBIDDEN);
+        verify(mDatabaseManager, never()).setProfileConnectionPolicy(mTestDevice3,
+                BluetoothProfile.CSIP_SET_COORDINATOR,
+                BluetoothProfile.CONNECTION_POLICY_FORBIDDEN);
+
         // Yet another device with the lowest rank
         mCsipSetCoordinatorNativeInterface.onDeviceAvailable(
                 getByteAddress(mTestDevice3), group_id, group_size, 0x03, uuidLsb, uuidMsb);
+
+        // When LEA is FORBIDDEN, verify we disable CSIP once all set devices are available
+        verify(mDatabaseManager, times(1)).setProfileConnectionPolicy(mTestDevice,
+                BluetoothProfile.CSIP_SET_COORDINATOR,
+                BluetoothProfile.CONNECTION_POLICY_FORBIDDEN);
+        verify(mDatabaseManager, times(1)).setProfileConnectionPolicy(mTestDevice2,
+                BluetoothProfile.CSIP_SET_COORDINATOR,
+                BluetoothProfile.CONNECTION_POLICY_FORBIDDEN);
+        verify(mDatabaseManager, times(1)).setProfileConnectionPolicy(mTestDevice3,
+                BluetoothProfile.CSIP_SET_COORDINATOR,
+                BluetoothProfile.CONNECTION_POLICY_FORBIDDEN);
 
         // Verify if the list of devices is sorted, with the lowest rank value devices first
         List<BluetoothDevice> devices = mService.getGroupDevicesOrdered(group_id);
