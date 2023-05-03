@@ -174,6 +174,7 @@ class PowerTelemetry {
   uint32_t cmd_count_ = 0, event_count_ = 0;
   bool scan_timer_started_ = false;
   bool log_per_channel_ = false;
+  bool power_telemerty_enabled_ = false;
 };
 
 PowerTelemetry* GetInstance();
