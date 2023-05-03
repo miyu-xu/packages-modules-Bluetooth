@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "85873343_fd6d668a",
+        "filename": "system/stack/btm/btm_inq.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1404,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-05-03T00:05:18Z",
+      "side": 1,
+      "message": "lock before touching inq_db_?",
+      "range": {
+        "startLine": 1404,
+        "startChar": 23,
+        "endLine": 1404,
+        "endChar": 30
+      },
+      "revId": "376c9d36c47e8550a23cb68e57febad0e5cf86ee",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
