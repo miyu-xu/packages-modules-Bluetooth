@@ -22,6 +22,30 @@
       },
       "revId": "ea21f12161f82ad2c800cf9311a0c2783aa2cf73",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "54339040_a7e10a53",
+        "filename": "system/gd/os/log.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-05-03T09:00:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5c5f82b9_30d87253",
+      "range": {
+        "startLine": 34,
+        "startChar": 12,
+        "endLine": 34,
+        "endChar": 23
+      },
+      "revId": "ea21f12161f82ad2c800cf9311a0c2783aa2cf73",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
