@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8dc81883_254d7565",
+        "filename": "framework/java/android/bluetooth/BluetoothLeBroadcast.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 544,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-05-03T22:02:18Z",
+      "side": 1,
+      "message": "we should also enforce this",
+      "range": {
+        "startLine": 544,
+        "startChar": 0,
+        "endLine": 544,
+        "endChar": 67
+      },
+      "revId": "9d5f34119ddbd3d5c0ea696c2bc6e8302855bae1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "60dc552f_c3597b0d",
+        "filename": "framework/java/android/bluetooth/BluetoothLeBroadcast.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 584,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-05-03T22:02:18Z",
+      "side": 1,
+      "message": "there should be a test case for this",
+      "range": {
+        "startLine": 584,
+        "startChar": 0,
+        "endLine": 584,
+        "endChar": 67
+      },
+      "revId": "9d5f34119ddbd3d5c0ea696c2bc6e8302855bae1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
