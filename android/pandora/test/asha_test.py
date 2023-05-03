@@ -903,6 +903,81 @@ class ASHATest(base_test.BaseTestClass):  # type: ignore[misc]
         logging.info(f"start_result:{start_result}")
         assert start_result is not None
 
+    @avatar.parameterized(
+        (RANDOM, RANDOM),
+    )  # type: ignore[misc]
+    @asynchronous
+    async def test_pairing_with_asha(
+        self,
+        dut_address_type: OwnAddressType,
+        ref_address_type: OwnAddressType,
+    ) -> None:
+        """
+        DUT discovers Ref.
+        DUT initiates connection to Ref.
+        Verify that DUT and Ref are bonded and connected.
+        """
+        # advertisement = await self.ref_advertise_asha(
+        #     ref_device=self.ref_left, ref_address_type=ref_address_type, ear=Ear.LEFT
+        # )
+
+        # ref = await self.dut_scan_for_asha(dut_address_type=dut_address_type, ear=Ear.LEFT)
+
+        # # DUT initiates connection to Ref.
+        # dut_ref, ref_dut = await self.dut_connect_to_ref(advertisement, ref, dut_address_type)
+        # assert dut_ref, ref_dut
+
+
+        asha = AioAsha(self.ref_left.aio.channel)
+        await asha.Register(capability=Ear.LEFT, hisyncid=HISYCNID)
+        advertisement = self.ref_left.aio.host.Advertise(
+            legacy=True,
+            connectable=True,
+            own_address_type=ref_address_type,
+            data=DataTypes(manufacturer_specific_data=b'pause cafe'),
+        )
+
+        scan = self.dut.aio.host.Scan(own_address_type=dut_address_type)
+        ref = await anext(
+            (x async for x in scan if b'pause cafe' in x.data.manufacturer_specific_data)
+        )  # pytype: disable=name-error
+        scan.cancel()
+        assert ref
+
+        # pairing = asyncio.create_task(self.handle_pairing_events())
+        (dut_ref_res, ref_dut_res) = await asyncio.gather(
+            self.dut.aio.host.ConnectLE(own_address_type=dut_address_type, **ref.address_asdict()),
+            anext(aiter(advertisement)),  # pytype: disable=name-error
+        )
+
+        advertisement.cancel()
+        ref_dut, dut_ref = ref_dut_res.connection, dut_ref_res.connection
+        assert ref_dut and dut_ref
+
+
+
+        # DUT starts pairing with the Ref.
+        (secure, wait_security) = await asyncio.gather(
+            self.dut.aio.security.Secure(connection=dut_ref, le=LE_LEVEL3),
+            self.ref_left.aio.security.WaitSecurity(connection=ref_dut, le=LE_LEVEL3),
+        )
+
+        assert_equal(secure.result_variant(), 'success')
+        assert_equal(wait_security.result_variant(), 'success')
+
+        # await asyncio.gather(
+        #     self.ref_left.aio.host.Disconnect(connection=ref_dut),
+        #     self.dut.aio.host.WaitDisconnection(connection=dut_ref),
+        # )
+        # print("sleep 60 sec start")
+        # await asyncio.sleep(1)
+        # print("sleep 60 sec end")
+        await self.dut.aio.host.Disconnect(connection=dut_ref)
+        # await asyncio.gather(
+        #     self.dut.aio.host.Disconnect(connection=dut_ref),
+        #     self.ref_left.aio.host.WaitDisconnection(connection=ref_dut),
+        # )
+
 
 if __name__ == "__main__":
     logging.basicConfig(level=logging.DEBUG)
