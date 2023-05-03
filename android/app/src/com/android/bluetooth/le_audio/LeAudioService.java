@@ -2456,7 +2456,10 @@ public class LeAudioService extends ProfileService {
         if (mCsipSetCoordinatorService == null) {
             mCsipSetCoordinatorService = mServiceFactory.getCsipSetCoordinatorService();
         }
-        if (mCsipSetCoordinatorService != null) {
+
+        // Disallow setting CSIP to forbidden until characteristic reads are complete
+        if (mCsipSetCoordinatorService != null
+                && connectionPolicy != BluetoothProfile.CONNECTION_POLICY_FORBIDDEN) {
             mCsipSetCoordinatorService.setConnectionPolicy(device, connectionPolicy);
         }
     }
