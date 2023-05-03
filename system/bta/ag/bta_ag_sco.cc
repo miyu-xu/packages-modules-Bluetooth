@@ -766,7 +766,13 @@ static void bta_ag_sco_event(tBTA_AG_SCB* p_scb, uint8_t event) {
           break;
 
         case BTA_AG_SCO_CLOSE_E:
-          /* sco open is not started yet. just go back to listening */
+          /* remove listening connection */
+          bta_ag_remove_sco(p_scb, false);
+
+          if (p_scb == p_sco->p_curr_scb) p_sco->p_curr_scb = nullptr;
+
+          /* sco open is not started yet, go back to listening */
+          bta_ag_create_sco(p_scb, false);
           p_sco->state = BTA_AG_SCO_LISTEN_ST;
           break;
 
