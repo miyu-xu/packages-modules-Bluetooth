@@ -74,6 +74,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a08bbd89_88c99be1",
+        "filename": "android/pandora/test/asha_test.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1892475
+      },
+      "writtenOn": "2023-05-03T16:56:21Z",
+      "side": 1,
+      "message": "If we know for sure that we want just the UUID with \u0027-\u0027 here, then `to_hex_str(separator\u003d\u0027-\u0027)` would be the right method to call, because `repr` doesn\u0027t guarantee that format (even if it actually does currently, it could change).",
+      "parentUuid": "d4fecc88_757ef3d7",
+      "range": {
+        "startLine": 35,
+        "startChar": 12,
+        "endLine": 35,
+        "endChar": 17
+      },
+      "revId": "59de4954aea0cc9764ed20b053ca4b51e5774279",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6461b31e_45181293",
         "filename": "android/pandora/test/asha_test.py",
         "patchSetId": 13
