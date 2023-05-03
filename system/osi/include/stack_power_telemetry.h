@@ -23,8 +23,7 @@
 using namespace std;
 
 #define LOG_DATA_ENTRIES_IN_MEMORY 15
-#define LOG_DATA_FILE "/data/misc/bluetooth/logs/power_telemetry.txt"
-#define LOG_DATA_FILE_SIZE_LIMIT 20480
+#define ENABLED_POWER_TELEMETRY_PROPERTY "bluetooth.powertelemetry.enabled"
 #define LOG_PER_CHANNEL_PROPERTY \
   "bluetooth.powertelemetry.log_per_channel.enabled"
 extern long GetCurrentTimeSec();
@@ -131,14 +130,14 @@ class PowerTelemetry {
     traffic_logged_ts_ = GetCurrentTimeSec();
     LogDataContainer* ldc = new LogDataContainer();
     log_data_containers_.push_back(ldc);
-    log_file_.open(LOG_DATA_FILE, ios::app);
     log_per_channel_ = osi_property_get_bool(LOG_PER_CHANNEL_PROPERTY, false);
+    power_telemerty_enabled_ =
+        osi_property_get_bool(ENABLED_POWER_TELEMETRY_PROPERTY, false);
   }
   ~PowerTelemetry() {
     for (auto ldc : log_data_containers_) {
       delete (ldc);
     }
-    log_file_.close();
   }
   static PowerTelemetry* GetInstance();
   LogDataContainer* GetCurrentLogDataContainer();
@@ -167,9 +166,8 @@ class PowerTelemetry {
   void LogTxPower(void* res);
   void LogTrafficData();
 
- private:
+ protected:
   list<LogDataContainer*> log_data_containers_;
-  ofstream log_file_;
   const long kTrafficLogTime = 120;  // 120seconds
   long traffic_logged_ts_ = 0;
   long l2c_tx_bytes_ = 0;
@@ -183,4 +181,5 @@ class PowerTelemetry {
   uint32_t cmd_count_ = 0, event_count_ = 0;
   bool scan_timer_started_ = false;
   bool log_per_channel_ = false;
+  bool power_telemerty_enabled_ = false;
 };
