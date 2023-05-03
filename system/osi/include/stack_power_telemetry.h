@@ -31,56 +31,56 @@ extern long GetCurrentTimeSec();
 class LinkDetails {
  public:
   RawAddress bdaddr;
-  string connectedTs;
-  string disconnectedTs;
+  string connected_ts;
+  string disconnected_ts;
   uint16_t handle;
-  uint8_t txPowerLevel;
-  LinkDetails() { handle = txPowerLevel = 0; }
+  uint8_t tx_power_level;
+  LinkDetails() { handle = tx_power_level = 0; }
 };
 class ChannelDetails {
  public:
-  int channelType;
-  int srcId;
-  int dstId;
-  RawAddress remoteAddr;
-  long txBytes;
-  long rxBytes;
+  int channel_type;
+  int src_id;
+  int dst_id;
+  RawAddress remote_addr;
+  long tx_bytes;
+  long rx_bytes;
   int state;
-  string connTimeStamp;
-  string disConnTimeStamp;
-  string lastTxTimeStamp;
-  string lastRxTimeStamp;
+  string conn_time_stamp;
+  string disconn_time_stamp;
+  string last_tx_time_stamp;
+  string last_rx_time_stamp;
   int psm;
 
   ChannelDetails() {
-    channelType = 0;
+    channel_type = 0;
     state = 0;
-    srcId = 0;
-    dstId = 0;
-    txBytes = 0;
-    rxBytes = 0;
+    src_id = 0;
+    dst_id = 0;
+    tx_bytes = 0;
+    rx_bytes = 0;
     psm = 0;
   }
 };
 
 class AclPktDetails {
  public:
-  uint32_t txPktCount;
-  long txTotalBytes;
-  uint32_t rxPktCount;
-  long rxTotalBytes;
+  uint32_t tx_pkt_count;
+  long tx_total_bytes;
+  uint32_t rx_pkt_count;
+  long rx_total_bytes;
 
   AclPktDetails() {
-    txPktCount = rxPktCount = 0;
-    txTotalBytes = rxTotalBytes = 0;
+    tx_pkt_count = rx_pkt_count = 0;
+    tx_total_bytes = rx_total_bytes = 0;
   }
 };
 
 class AdvDetails {
  public:
-  string startTimeStamp;
-  string endTimeStamp;
-  AdvDetails() { startTimeStamp = endTimeStamp = ""; }
+  string start_time_stamp;
+  string end_time_stamp;
+  AdvDetails() { start_time_stamp = end_time_stamp = ""; }
 };
 
 class ScanDetails {
@@ -90,58 +90,58 @@ class ScanDetails {
 };
 class TrafficData {
  public:
-  long txBytes;
-  long rxBytes;
+  long tx_bytes;
+  long rx_bytes;
 };
 
 class SniffData {
  public:
   RawAddress bdaddr;
-  uint32_t sniffCount, activeCount;
-  long sniffDuration, activeDuration;
-  long lastModeChangeTs;
+  uint32_t sniff_count, active_count;
+  long sniff_duration, active_duration;
+  long last_mode_change_ts;
   SniffData() {
-    sniffCount = activeCount = 0;
-    sniffDuration = activeDuration = 0;
-    lastModeChangeTs = GetCurrentTimeSec();
+    sniff_count = active_count = 0;
+    sniff_duration = active_duration = 0;
+    last_mode_change_ts = GetCurrentTimeSec();
   }
 };
 
 class LogDataContainer {
  public:
-  string startTimeStamp;
-  string endTimeStamp;
-  map<RawAddress, list<ChannelDetails>> channelMap;
-  list<ScanDetails> scanLeList;
-  TrafficData l2cData, rfcData;
-  map<uint16_t, SniffData> sniffActivityMap;
-  map<uint16_t, LinkDetails> aclLinkMap;
-  map<uint16_t, LinkDetails> scoLinkMap;
-  list<LinkDetails> aclLinkList;
-  list<LinkDetails> scoLinkList;
-  list<AdvDetails> advList;
-  ScanDetails scanDs, inqScanDs;
-  AclPktDetails aclPktDs, hciCmdEvtDs;
+  string start_time_stamp;
+  string end_time_stamp;
+  map<RawAddress, list<ChannelDetails>> channel_map;
+  list<ScanDetails> scan_le_list;
+  TrafficData l2c_data, rfc_data;
+  map<uint16_t, SniffData> sniff_activity_map;
+  map<uint16_t, LinkDetails> acl_link_map;
+  map<uint16_t, LinkDetails> sco_link_map;
+  list<LinkDetails> acl_link_list;
+  list<LinkDetails> sco_link_list;
+  list<AdvDetails> adv_list;
+  ScanDetails scan_ds, inq_scan_ds;
+  AclPktDetails acl_pkt_ds, hci_cmd_evt_ds;
 };
 
 class PowerTelemetry {
  public:
   PowerTelemetry() {
-    trafficLoggedTs = GetCurrentTimeSec();
+    traffic_logged_ts_ = GetCurrentTimeSec();
     LogDataContainer* ldc = new LogDataContainer();
-    logDataContainers.push_back(ldc);
-    logFile.open(LOG_DATA_FILE, ios::app);
-    logPerChannel = osi_property_get_bool(LOG_PER_CHANNEL_PROPERTY, false);
+    log_data_containers_.push_back(ldc);
+    log_file_.open(LOG_DATA_FILE, ios::app);
+    log_per_channel_ = osi_property_get_bool(LOG_PER_CHANNEL_PROPERTY, false);
   }
   ~PowerTelemetry() {
-    for (auto ldc : logDataContainers) {
+    for (auto ldc : log_data_containers_) {
       delete (ldc);
     }
-    logFile.close();
+    log_file_.close();
   }
   static PowerTelemetry* GetInstance();
-  LogDataContainer* getCurrentLogDataContainer();
-  void recordLogDataContainer();
+  LogDataContainer* GetCurrentLogDataContainer();
+  void RecordLogDataContainer();
   void LogScanStarted();
   void LogScanEnded();
   void LogLeScanStarted();
@@ -167,19 +167,19 @@ class PowerTelemetry {
   void LogTrafficData();
 
  private:
-  list<LogDataContainer*> logDataContainers;
-  ofstream logFile;
-  const long TRAFFIC_LOG_TIME = 120;  // 120seconds
-  long trafficLoggedTs = 0;
-  long l2cTxBytes = 0;
-  long rfcTxBytes = 0;
-  long l2cRxBytes = 0;
-  long rfcRxBytes = 0;
-  uint32_t aclRxPkt = 0, aclTxPkt = 0;
-  long aclTxLen = 0, aclRxLen = 0;
-  std::mutex dumpsys_mutex;
-  uint16_t scanCount = 0, inqScanCount = 0, bleAdvCount = 0;
-  uint32_t cmdCount = 0, eventCount = 0;
-  bool scanTimerStarted = false;
-  bool logPerChannel = false;
+  list<LogDataContainer*> log_data_containers_;
+  ofstream log_file_;
+  const long kTrafficLogTime = 120;  // 120seconds
+  long traffic_logged_ts_ = 0;
+  long l2c_tx_bytes_ = 0;
+  long rfc_tx_bytes_ = 0;
+  long l2c_rx_bytes_ = 0;
+  long rfc_rx_bytes_ = 0;
+  uint32_t acl_rx_pkt_ = 0, acl_tx_pkt_ = 0;
+  long acl_tx_len_ = 0, acl_rx_len_ = 0;
+  std::mutex dumpsys_mutex_;
+  uint16_t scan_count_ = 0, inq_scan_count_ = 0, ble_adv_count_ = 0;
+  uint32_t cmd_count_ = 0, event_count_ = 0;
+  bool scan_timer_started_ = false;
+  bool log_per_channel_ = false;
 };
