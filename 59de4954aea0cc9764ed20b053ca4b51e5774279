@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bb80af1f_2708e01f",
+        "filename": "android/pandora/test/asha_test.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-05-03T09:20:43Z",
+      "side": 1,
+      "message": "nit: to_hex_str seemed more descriptive.\n\nAlso looking at the `repr` implementation in Bumble this doesn\u0027t seems to be doing the same thing\n\nhttps://github.com/google/bumble/blob/ca063eda0b84640e69f066160aa3564474b0b628/bumble/core.py#L268\n\nAs ASHA is a 16 bit UUID, I expect this to be giving `UUID-16:FDF0`\n\nLooking at bit more it seems that if the UUID has a name it gives it\u0027s name instead.\n\n```\nGATT_ASHA_SERVICE \u003d UUID.from_16_bits(0xFDF0, \u0027Audio Streaming for Hearing Aid\u0027)\n```\n\nSo for me `repr(GATT_ASHA_SERVICE)` gives you `Audio Streaming for Hearing Aid` which seems even more wrong.\n\nWhat am I missing here ?",
+      "range": {
+        "startLine": 35,
+        "startChar": 12,
+        "endLine": 35,
+        "endChar": 17
+      },
+      "revId": "59de4954aea0cc9764ed20b053ca4b51e5774279",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6461b31e_45181293",
+        "filename": "android/pandora/test/asha_test.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-05-03T09:20:43Z",
+      "side": 1,
+      "message": "This change doesn\u0027t seems mentioned in the commit message.\n\nLooking at `TestAbortClass` this seems to make sense to change `TestAbortAll` to that.\n\nAlso which searching `TestAbortClass` in mobly, I found `abort_class_if`\nhttps://github.com/google/mobly/blob/master/mobly/asserts.py#L413, do we want to use that ?",
+      "range": {
+        "startLine": 67,
+        "startChar": 0,
+        "endLine": 71,
+        "endChar": 86
+      },
+      "revId": "59de4954aea0cc9764ed20b053ca4b51e5774279",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d5a41905_54768563",
+        "filename": "android/pandora/test/classic_ssp_test.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-05-03T09:20:43Z",
+      "side": 1,
+      "message": "Why are we changing the `assert_in` to that ?",
+      "range": {
+        "startLine": 94,
+        "startChar": 19,
+        "endLine": 94,
+        "endChar": 101
+      },
+      "revId": "59de4954aea0cc9764ed20b053ca4b51e5774279",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e51b4fd6_c1e637c9",
+        "filename": "android/pandora/test/classic_ssp_test.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-05-03T09:20:43Z",
+      "side": 1,
+      "message": "Why are we changing the asserts ?",
+      "range": {
+        "startLine": 116,
+        "startChar": 20,
+        "endLine": 116,
+        "endChar": 26
+      },
+      "revId": "59de4954aea0cc9764ed20b053ca4b51e5774279",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c171270f_526261ff",
+        "filename": "android/pandora/test/main.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-05-03T09:20:43Z",
+      "side": 1,
+      "message": "nit: Do we want this space ?",
+      "range": {
+        "startLine": 46,
+        "startChar": 52,
+        "endLine": 46,
+        "endChar": 53
+      },
+      "revId": "59de4954aea0cc9764ed20b053ca4b51e5774279",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
