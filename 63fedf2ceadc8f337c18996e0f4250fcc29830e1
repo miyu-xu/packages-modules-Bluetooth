@@ -46,6 +46,30 @@
       },
       "revId": "63fedf2ceadc8f337c18996e0f4250fcc29830e1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "72210a06_bb468c20",
+        "filename": "system/stack/btm/btm_inq.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 2110,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-05-03T19:50:40Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "2a3f71f9_e3211b23",
+      "range": {
+        "startLine": 2110,
+        "startChar": 9,
+        "endLine": 2110,
+        "endChar": 31
+      },
+      "revId": "63fedf2ceadc8f337c18996e0f4250fcc29830e1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
