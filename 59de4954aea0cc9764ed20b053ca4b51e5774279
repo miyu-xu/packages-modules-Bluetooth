@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2878ce5f_8d3cc16d",
+        "filename": "android/pandora/test/asha_test.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-05-03T09:24:32Z",
+      "side": 1,
+      "message": "\u003e What am I missing here ?\n\nThat you made a PR to bumble to change that 😅\n\nhttps://github.com/google/bumble/pull/178/commits/4bc55939c11571ba7382be42a2f21408711ae991\n\nHowever I still don\u0027t understand why we want to use `repr` here instead of `to_hex_str`",
+      "parentUuid": "bb80af1f_2708e01f",
+      "range": {
+        "startLine": 35,
+        "startChar": 12,
+        "endLine": 35,
+        "endChar": 17
+      },
+      "revId": "59de4954aea0cc9764ed20b053ca4b51e5774279",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6461b31e_45181293",
         "filename": "android/pandora/test/asha_test.py",
         "patchSetId": 13
