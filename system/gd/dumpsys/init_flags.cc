@@ -64,7 +64,6 @@ flatbuffers::Offset<bluetooth::common::InitFlagsData> bluetooth::dumpsys::InitFl
   builder.add_gd_link_policy_is_enabled(initFlags::gd_link_policy_is_enabled());
   builder.add_gd_remote_name_request_is_enabled(initFlags::gd_remote_name_request_is_enabled());
   builder.add_gd_rust_is_enabled(initFlags::gd_rust_is_enabled());
-  builder.add_gd_security_is_enabled(initFlags::gd_security_is_enabled());
   builder.add_get_default_log_level(initFlags::get_default_log_level());
   builder.add_get_hci_adapter(initFlags::get_hci_adapter());
   // get_log_level_for_tag -- skipped in dumpsys
