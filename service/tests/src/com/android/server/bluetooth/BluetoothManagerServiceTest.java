@@ -45,7 +45,6 @@ import org.mockito.MockitoAnnotations;
 @RunWith(AndroidJUnit4.class)
 public class BluetoothManagerServiceTest {
     static int sTimeout = 3000;
-    BluetoothManagerService mManagerService;
     Context mContext;
     @Mock
     BluetoothServerProxy mBluetoothServerProxy;
@@ -90,18 +89,18 @@ public class BluetoothManagerServiceTest {
                 eq(UserManager.DISALLOW_BLUETOOTH), any());
         doReturn(false).when(userManager).hasUserRestrictionForUser(
                 eq(UserManager.DISALLOW_BLUETOOTH_SHARING), any());
-        mManagerService = new BluetoothManagerService(mContext);
+        BluetoothManagerService managerService = new BluetoothManagerService(mContext);
 
         // Check if disable message sent once for system user only
         // Since Message object is recycled after processed, use proxy function to get what value
 
         // test run on user -1, should not turning Bluetooth off
-        mManagerService.onUserRestrictionsChanged(UserHandle.CURRENT);
+        managerService.onUserRestrictionsChanged(UserHandle.CURRENT);
         verify(mBluetoothServerProxy, timeout(sTimeout).times(0)).handlerSendWhatMessage(mHandler,
                 BluetoothManagerService.MESSAGE_DISABLE);
 
         // called from SYSTEM user, should try to toggle Bluetooth off
-        mManagerService.onUserRestrictionsChanged(UserHandle.SYSTEM);
+        managerService.onUserRestrictionsChanged(UserHandle.SYSTEM);
         verify(mBluetoothServerProxy, timeout(sTimeout)).handlerSendWhatMessage(mHandler,
                 BluetoothManagerService.MESSAGE_DISABLE);
     }
