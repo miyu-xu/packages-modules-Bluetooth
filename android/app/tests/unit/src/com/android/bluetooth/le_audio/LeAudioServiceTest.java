@@ -963,7 +963,7 @@ public class LeAudioServiceTest {
         // Verify connection policy for CSIP and VCP are also set
         verify(mVolumeControlService, times(1)).setConnectionPolicy(
                 mSingleDevice, BluetoothProfile.CONNECTION_POLICY_FORBIDDEN);
-        verify(mCsipSetCoordinatorService, times(1)).setConnectionPolicy(
+        verify(mCsipSetCoordinatorService, never()).setConnectionPolicy(
                 mSingleDevice, BluetoothProfile.CONNECTION_POLICY_FORBIDDEN);
 
         // Verify the connection state broadcast, and that we are in Connecting state
