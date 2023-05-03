@@ -22,6 +22,30 @@
       },
       "revId": "ca1fc18d08b5e0658a9e287ac8dd52b69c828f14",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "69bd085d_0a986df6",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-05-03T22:58:08Z",
+      "side": 1,
+      "message": "Downstream change prevents clean merge of patch",
+      "parentUuid": "39eab99b_f9987109",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 30
+      },
+      "revId": "ca1fc18d08b5e0658a9e287ac8dd52b69c828f14",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
