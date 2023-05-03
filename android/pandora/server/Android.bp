@@ -61,6 +61,7 @@ android_test {
         ":PandoraServer",
         ":mmi2grpc",
         "configs/pts_bot_tests_config.json",
+        "configs/acloud-pull-logs.sh",
     ],
     test_suites: ["device-tests"],
     min_sdk_version: "Tiramisu",
