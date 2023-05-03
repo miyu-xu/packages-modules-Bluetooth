@@ -1,0 +1,24 @@
+#!/usr/bin/expect
+
+log_file -noappend [lindex $argv 0]
+spawn acloud pull --yes
+# Extract the "for all" option from acloud pull.
+# Multiple log files detected, choose any one to proceed:
+# [0] to exit.
+# ...
+# [23] for all.
+# Enter your choice[0-23]:
+expect -re ".(\[0-9\]\+). for all."
+set for_all_index $expect_out(1,string)
+# Select the option "for all".
+send "$for_all_index\n"
+# Increase the timeout to pull all files (acloud pull for a full PtsBotTest.xml run can take ~ 12 minutes).
+set timeout 900s
+
+# Sample output:
+# Download logs to folder: /tmp/ins-f8a61b52-9920406-aosp-cf-x86-64-phone-userdebug
+# You can look into log files to check AVD issues.
+expect -re "Download logs to folder: (.*?)\n"
+set download_dir "$expect_out(1,string)"
+send_log "acloud-pull output dir: $download_dir"
+
