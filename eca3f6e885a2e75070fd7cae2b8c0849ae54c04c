@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4c66bc3a_cf3a00c9",
+        "filename": "tools/rootcanal/model/controller/controller_properties.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1877,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-05-03T21:16:55Z",
+      "side": 1,
+      "message": "nit: At some point we should revisit this one.  It seems like it won\u0027t be needed anymore.",
+      "range": {
+        "startLine": 1874,
+        "startChar": 0,
+        "endLine": 1877,
+        "endChar": 5
+      },
+      "revId": "eca3f6e885a2e75070fd7cae2b8c0849ae54c04c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
