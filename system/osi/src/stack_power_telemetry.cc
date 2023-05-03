@@ -53,21 +53,14 @@ LogDataContainer* PowerTelemetry::GetCurrentLogDataContainer() {
 }
 
 void PowerTelemetry::RecordLogDataContainer() {
-  struct stat log_file_stat;
-  LogDataContainer* ldc = GetCurrentLogDataContainer();
-  log_file_.write((char*)ldc, sizeof(*ldc));
-  log_file_.flush();
-
-  if (stat(LOG_DATA_FILE, &log_file_stat) == -1) {
+  if (!power_telemerty_enabled_) {
     return;
   }
-  if (log_file_stat.st_size >= LOG_DATA_FILE_SIZE_LIMIT) {
-    string last_file_name = LOG_DATA_FILE;
-    last_file_name += ".last";
-    log_file_.close();
-    rename(LOG_DATA_FILE, last_file_name.c_str());
-    log_file_.open(LOG_DATA_FILE, ios::app);
-  }
+  LogDataContainer* ldc = GetCurrentLogDataContainer();
+
+  LOG_INFO("bt_power: scan: %d, inqScan: %d, aclTx: %d, aclRx: %d",
+           ldc->scan_ds.count, ldc->inq_scan_ds.count,
+           ldc->acl_pkt_ds.tx_pkt_count, ldc->acl_pkt_ds.rx_pkt_count);
 
   if (log_data_containers_.size() == LOG_DATA_ENTRIES_IN_MEMORY) {
     ldc = (LogDataContainer*)log_data_containers_.front();
@@ -80,6 +73,9 @@ void PowerTelemetry::RecordLogDataContainer() {
 }
 
 void PowerTelemetry::LogInqScanDetails(bool started) {
+  if (!power_telemerty_enabled_) {
+    return;
+  }
   std::lock_guard<std::mutex> lock(dumpsys_mutex_);
   if (started) {
     inq_scan_count_++;
@@ -91,6 +87,9 @@ void PowerTelemetry::LogInqScanDetails(bool started) {
 }
 
 void PowerTelemetry::LogBleAdvDetails(bool started) {
+  if (!power_telemerty_enabled_) {
+    return;
+  }
   std::lock_guard<std::mutex> lock(dumpsys_mutex_);
   LogDataContainer* ldc = GetCurrentLogDataContainer();
   AdvDetails adv_details;
@@ -98,6 +97,10 @@ void PowerTelemetry::LogBleAdvDetails(bool started) {
     adv_details.start_time_stamp = GetCurrentTimeString();
     ldc->adv_list.push_back(adv_details);
   } else {
+    if (ldc->adv_list.size() == 0) {
+      LOG_WARN("Empty advList. Skip LogBleAdvDetails.");
+      return;
+    }
     adv_details = ldc->adv_list.back();
     adv_details.end_time_stamp = GetCurrentTimeString();
     ldc->adv_list.pop_back();
@@ -110,6 +113,9 @@ void LogTxPower_cb(void* res) {
 }
 
 void PowerTelemetry::LogTxPower(void* res) {
+  if (!power_telemerty_enabled_) {
+    return;
+  }
   std::lock_guard<std::mutex> lock(dumpsys_mutex_);
   tBTM_TX_POWER_RESULT* result = (tBTM_TX_POWER_RESULT*)res;
   LogDataContainer* ldc = GetCurrentLogDataContainer();
@@ -133,6 +139,9 @@ void PowerTelemetry::LogTxPower(void* res) {
 }
 void PowerTelemetry::LogAclLinkDetails(uint16_t handle, RawAddress bdaddr,
                                        bool is_connected) {
+  if (!power_telemerty_enabled_) {
+    return;
+  }
   std::lock_guard<std::mutex> lock(dumpsys_mutex_);
   LinkDetails link_details;
   LogDataContainer* ldc = GetCurrentLogDataContainer();
@@ -141,11 +150,11 @@ void PowerTelemetry::LogAclLinkDetails(uint16_t handle, RawAddress bdaddr,
     link_details = ldc->acl_link_map[handle];
   }
 
-  if (is_connected == false) {
+  if (is_connected == false && ldc->acl_link_map.count(handle) > 0) {
     link_details.disconnected_ts = GetCurrentTimeString();
     ldc->acl_link_list.push_back(link_details);
     ldc->acl_link_map.erase(handle);
-  } else {
+  } else if (is_connected == true) {
     link_details.bdaddr = bdaddr;
     link_details.handle = handle;
     link_details.connected_ts = GetCurrentTimeString();
@@ -169,6 +178,9 @@ void PowerTelemetry::LogAclLinkDetails(uint16_t handle, RawAddress bdaddr,
 
 void PowerTelemetry::LogScoLinkDetails(uint16_t handle, RawAddress bdaddr,
                                        bool is_connected) {
+  if (!power_telemerty_enabled_) {
+    return;
+  }
   std::lock_guard<std::mutex> lock(dumpsys_mutex_);
   LinkDetails link_details;
   LogDataContainer* ldc = GetCurrentLogDataContainer();
@@ -182,10 +194,10 @@ void PowerTelemetry::LogScoLinkDetails(uint16_t handle, RawAddress bdaddr,
   (is_connected) ? link_details.connected_ts = GetCurrentTimeString()
                  : link_details.disconnected_ts = GetCurrentTimeString();
 
-  if (is_connected == false) {
+  if (is_connected == false && ldc->sco_link_map.count(handle) != 0) {
     ldc->sco_link_list.push_back(link_details);
     ldc->sco_link_map.erase(handle);
-  } else {
+  } else if (is_connected == true) {
     ldc->sco_link_map[handle] = link_details;
   }
   if ((GetCurrentTimeSec() - traffic_logged_ts_) >= kTrafficLogTime) {
@@ -194,6 +206,9 @@ void PowerTelemetry::LogScoLinkDetails(uint16_t handle, RawAddress bdaddr,
 }
 
 void PowerTelemetry::LogHciCmdEvtDetails(int type) {
+  if (!power_telemerty_enabled_) {
+    return;
+  }
   std::lock_guard<std::mutex> lock(dumpsys_mutex_);
   if (type == DUMP_HCI_CMD) {
     cmd_count_++;
@@ -207,6 +222,9 @@ void PowerTelemetry::LogHciCmdEvtDetails(int type) {
 
 void PowerTelemetry::LogSniffActivity(uint16_t handle, RawAddress bdaddr,
                                       bool sniff_entered) {
+  if (!power_telemerty_enabled_) {
+    return;
+  }
   std::lock_guard<std::mutex> lock(dumpsys_mutex_);
   SniffData sniff_data;
   long current_timestamp = GetCurrentTimeSec();
@@ -234,6 +252,9 @@ void PowerTelemetry::LogSniffActivity(uint16_t handle, RawAddress bdaddr,
 }
 
 void PowerTelemetry::LogTrafficData() {
+  if (!power_telemerty_enabled_) {
+    return;
+  }
   LogDataContainer* ldc = GetCurrentLogDataContainer();
 
   if ((l2c_rx_bytes_ != 0) || (l2c_tx_bytes_ != 0)) {
@@ -280,6 +301,9 @@ void PowerTelemetry::LogTrafficData() {
 }
 
 void PowerTelemetry::LogScanStarted() {
+  if (!power_telemerty_enabled_) {
+    return;
+  }
   std::lock_guard<std::mutex> lock(dumpsys_mutex_);
   scan_count_++;
   if ((GetCurrentTimeSec() - traffic_logged_ts_) >= kTrafficLogTime) {
@@ -290,6 +314,9 @@ void PowerTelemetry::LogScanStarted() {
 void PowerTelemetry::LogScanEnded() {}
 
 void PowerTelemetry::LogAclPktDetails(int type, uint16_t len) {
+  if (!power_telemerty_enabled_) {
+    return;
+  }
   std::lock_guard<std::mutex> lock(dumpsys_mutex_);
   if (type == ACL_PKT_TX) {
     acl_tx_pkt_++;
@@ -304,6 +331,9 @@ void PowerTelemetry::LogAclPktDetails(int type, uint16_t len) {
 }
 
 void PowerTelemetry::LogLeScanStarted() {
+  if (!power_telemerty_enabled_) {
+    return;
+  }
   std::lock_guard<std::mutex> lock(dumpsys_mutex_);
   LogDataContainer* ldc = GetCurrentLogDataContainer();
   ScanDetails scan_details;
@@ -311,6 +341,9 @@ void PowerTelemetry::LogLeScanStarted() {
 }
 
 void PowerTelemetry::LogLeScanEnded() {
+  if (!power_telemerty_enabled_) {
+    return;
+  }
   std::lock_guard<std::mutex> lock(dumpsys_mutex_);
   LogDataContainer* ldc = GetCurrentLogDataContainer();
   if (ldc->scan_le_list.size() > 0) {
@@ -323,6 +356,9 @@ void PowerTelemetry::LogLeScanEnded() {
 void PowerTelemetry::LogChannelConnected(int channel_type, int src_id,
                                          int dst_id, RawAddress bdaddr,
                                          int psm) {
+  if (!power_telemerty_enabled_) {
+    return;
+  }
   std::lock_guard<std::mutex> lock(dumpsys_mutex_);
   list<ChannelDetails> channel_details_list;
   LogDataContainer* ldc = GetCurrentLogDataContainer();
@@ -350,6 +386,9 @@ void PowerTelemetry::LogChannelConnected(int channel_type, int src_id,
 
 void PowerTelemetry::LogChannelDisconnected(int channel_type, int src_id,
                                             int dst_id, RawAddress bdaddr) {
+  if (!power_telemerty_enabled_) {
+    return;
+  }
   std::lock_guard<std::mutex> lock(dumpsys_mutex_);
   list<ChannelDetails> channel_details_list;
   list<ChannelDetails>::iterator itr;
@@ -376,6 +415,9 @@ void PowerTelemetry::LogChannelDisconnected(int channel_type, int src_id,
 
 void PowerTelemetry::LogTxBytes(int channel_type, int src_id, int dst_id,
                                 RawAddress bdaddr, int num_bytes) {
+  if (!power_telemerty_enabled_) {
+    return;
+  }
   std::lock_guard<std::mutex> lock(dumpsys_mutex_);
   if (log_per_channel_ == true) {
     list<ChannelDetails> channel_details_list;
@@ -410,6 +452,9 @@ void PowerTelemetry::LogTxBytes(int channel_type, int src_id, int dst_id,
 
 void PowerTelemetry::LogRxBytes(int channel_type, int src_id, int dst_id,
                                 RawAddress bdaddr, int num_bytes) {
+  if (!power_telemerty_enabled_) {
+    return;
+  }
   std::lock_guard<std::mutex> lock(dumpsys_mutex_);
   if (log_per_channel_ == true) {
     list<ChannelDetails> channel_details_list;
@@ -443,6 +488,9 @@ void PowerTelemetry::LogRxBytes(int channel_type, int src_id, int dst_id,
 }
 
 void PowerTelemetry::PowerTelemetryDump(int fd) {
+  if (!power_telemerty_enabled_) {
+    return;
+  }
   std::lock_guard<std::mutex> lock(dumpsys_mutex_);
   RecordLogDataContainer();
 
