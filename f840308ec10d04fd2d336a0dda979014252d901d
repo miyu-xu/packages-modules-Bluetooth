@@ -1,0 +1,107 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "229cd53c_9eaaf551",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 3292,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-05-03T07:06:10Z",
+      "side": 1,
+      "message": "nit: Please use nullptr with comments like\n\nnullptr /* dev_class */",
+      "revId": "f840308ec10d04fd2d336a0dda979014252d901d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a713bd12_ab9dc6a0",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 3526,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-05-03T07:06:10Z",
+      "side": 1,
+      "message": "nit: Please use nullptr with comments like\n\nnullptr /* dev_class */",
+      "revId": "f840308ec10d04fd2d336a0dda979014252d901d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "abd291d0_0261958d",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 3565,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-05-03T07:06:10Z",
+      "side": 1,
+      "message": "nit: Please use nullptr with comments like\n\n`nullptr /* dev_class */`",
+      "range": {
+        "startLine": 3565,
+        "startChar": 39,
+        "endLine": 3565,
+        "endChar": 43
+      },
+      "revId": "f840308ec10d04fd2d336a0dda979014252d901d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c635437c_7fa1a013",
+        "filename": "system/main/shim/le_scanning_manager.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 765,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-05-03T07:06:10Z",
+      "side": 1,
+      "message": "just want to double check, \n\nname[249]\n\nwould `.name\u003d \u0027\\0\u0027` only initialize the 1st byte?\n\nshould these be \n\nbt_bdname_t bdname \u003d {};\n\nand set default init to zero `name`?",
+      "range": {
+        "startLine": 765,
+        "startChar": 24,
+        "endLine": 765,
+        "endChar": 36
+      },
+      "revId": "f840308ec10d04fd2d336a0dda979014252d901d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d9c7bc56_59b4cd3b",
+        "filename": "system/stack/btm/btm_ble_gap.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 2424,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-05-03T07:06:10Z",
+      "side": 1,
+      "message": "nit\n\nfor (uint8_t i \u003d 0; xxxx)\n\navoid separate line for declaration",
+      "range": {
+        "startLine": 2423,
+        "startChar": 2,
+        "endLine": 2424,
+        "endChar": 40
+      },
+      "revId": "f840308ec10d04fd2d336a0dda979014252d901d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
