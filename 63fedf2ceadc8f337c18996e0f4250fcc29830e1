@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e07480d3_4332f77b",
+        "filename": "system/stack/btm/btm_inq.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 2110,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-05-03T18:55:06Z",
+      "side": 1,
+      "message": "nit: Is this needed in the future?  It\u0027s unused.",
+      "range": {
+        "startLine": 2110,
+        "startChar": 9,
+        "endLine": 2110,
+        "endChar": 31
+      },
+      "revId": "63fedf2ceadc8f337c18996e0f4250fcc29830e1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
