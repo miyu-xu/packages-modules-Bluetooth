@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7db32093_a8ae0f98",
+        "filename": "system/btif/src/btif_profile_storage.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 384,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-05-03T18:47:46Z",
+      "side": 1,
+      "message": "nit: can this be constexpr?",
+      "range": {
+        "startLine": 384,
+        "startChar": 4,
+        "endLine": 384,
+        "endChar": 7
+      },
+      "revId": "e7e6a6d73375172f8b18b8349aefe8b9e6f557b7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
