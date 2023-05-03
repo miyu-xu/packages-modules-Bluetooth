@@ -22,6 +22,30 @@
       },
       "revId": "5520e128658400da525d6865f57b268a20408ac8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1f9fe6fb_c333f414",
+        "filename": "android/pandora/server/src/com/android/pandora/Gatt.kt",
+        "patchSetId": 9
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 1937985
+      },
+      "writtenOn": "2023-05-03T04:42:17Z",
+      "side": 1,
+      "message": "I did a rapid check and it should be ok, I\u0027m waiting for the pts-bot presubmit to be sure",
+      "parentUuid": "1e0811b5_b5bb8af8",
+      "range": {
+        "startLine": 162,
+        "startChar": 22,
+        "endLine": 162,
+        "endChar": 53
+      },
+      "revId": "5520e128658400da525d6865f57b268a20408ac8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
