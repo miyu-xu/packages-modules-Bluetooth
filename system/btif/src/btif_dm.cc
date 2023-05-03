@@ -659,12 +659,10 @@ static void btif_update_remote_properties(const RawAddress& bdaddr,
   if (strlen((const char*)bd_name)) {
     BTIF_STORAGE_FILL_PROPERTY(&properties[num_properties], BT_PROPERTY_BDNAME,
                                strlen((char*)bd_name), bd_name);
-    if (!bluetooth::shim::is_gd_security_enabled()) {
-      status = btif_storage_set_remote_device_property(
-          &bdaddr, &properties[num_properties]);
-      ASSERTC(status == BT_STATUS_SUCCESS, "failed to save remote device name",
-              status);
-    }
+    status = btif_storage_set_remote_device_property(
+        &bdaddr, &properties[num_properties]);
+    ASSERTC(status == BT_STATUS_SUCCESS, "failed to save remote device name",
+            status);
     num_properties++;
   }
 
@@ -689,12 +687,10 @@ static void btif_update_remote_properties(const RawAddress& bdaddr,
   BTIF_STORAGE_FILL_PROPERTY(&properties[num_properties],
                              BT_PROPERTY_CLASS_OF_DEVICE, sizeof(cod), &cod);
 
-  if (!bluetooth::shim::is_gd_security_enabled()) {
-    status = btif_storage_set_remote_device_property(
-        &bdaddr, &properties[num_properties]);
-    ASSERTC(status == BT_STATUS_SUCCESS, "failed to save remote device class",
-            status);
-  }
+  status = btif_storage_set_remote_device_property(&bdaddr,
+                                                   &properties[num_properties]);
+  ASSERTC(status == BT_STATUS_SUCCESS, "failed to save remote device class",
+          status);
   num_properties++;
 
   /* device type */
@@ -712,12 +708,10 @@ static void btif_update_remote_properties(const RawAddress& bdaddr,
   BTIF_STORAGE_FILL_PROPERTY(&properties[num_properties],
                              BT_PROPERTY_TYPE_OF_DEVICE, sizeof(dev_type),
                              &dev_type);
-  if (!bluetooth::shim::is_gd_security_enabled()) {
-    status = btif_storage_set_remote_device_property(
-        &bdaddr, &properties[num_properties]);
-    ASSERTC(status == BT_STATUS_SUCCESS, "failed to save remote device type",
-            status);
-  }
+  status = btif_storage_set_remote_device_property(&bdaddr,
+                                                   &properties[num_properties]);
+  ASSERTC(status == BT_STATUS_SUCCESS, "failed to save remote device type",
+          status);
   num_properties++;
 
   GetInterfaceToProfiles()->events->invoke_remote_device_properties_cb(
@@ -1159,9 +1153,7 @@ static void btif_dm_auth_cmpl_evt(tBTA_DM_AUTH_CMPL* p_auth_cmpl) {
       return;
     }
 
-    if (!bluetooth::shim::is_gd_security_enabled()) {
-      btif_storage_set_remote_addr_type(&bd_addr, p_auth_cmpl->addr_type);
-    }
+    btif_storage_set_remote_addr_type(&bd_addr, p_auth_cmpl->addr_type);
 
     int dev_type;
     if (BTM_GetPeerDeviceTypeFromFeatures(bd_addr) == BT_DEVICE_TYPE_DUMO) {
