@@ -27,6 +27,8 @@ constexpr uint8_t kStateConnected{1};
 constexpr uint8_t kStateDisconnected{0};
 constexpr std::string_view kLogPerChannelProperty =
     "bluetooth.powertelemetry.log_per_channel.enabled";
+constexpr std::string_view kEnabledPowerTelemetryProperty =
+    "bluetooth.powertelemetry.enabled";
 
 struct LinkDetails {
   RawAddress bdaddr;
@@ -101,6 +103,8 @@ class PowerTelemetry {
     traffic_logged_ts_ = time(0);
     log_per_channel_ = osi_property_get_bool(
         std::string(kLogPerChannelProperty).c_str(), false);
+    power_telemerty_enabled_ = osi_property_get_bool(
+        std::string(kEnabledPowerTelemetryProperty).c_str(), false);
   }
   LogDataContainer& GetCurrentLogDataContainer();
   void RecordLogDataContainer();
@@ -142,6 +146,7 @@ class PowerTelemetry {
   uint32_t cmd_count_ = 0, event_count_ = 0;
   bool scan_timer_started_ = false;
   bool log_per_channel_ = false;
+  bool power_telemerty_enabled_ = false;
 };
 
 PowerTelemetry& GetInstance();
