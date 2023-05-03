@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d4fecc88_757ef3d7",
+        "filename": "android/pandora/test/asha_test.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1937985
+      },
+      "writtenOn": "2023-05-03T16:16:34Z",
+      "side": 1,
+      "message": "I find `to_hex_str(separator\u003d\u0027-\u0027)` to be very long, but if you think it\u0027s better I\u0027m totally OK with changing all `repr` to it 👍",
+      "parentUuid": "2878ce5f_8d3cc16d",
+      "range": {
+        "startLine": 35,
+        "startChar": 12,
+        "endLine": 35,
+        "endChar": 17
+      },
+      "revId": "59de4954aea0cc9764ed20b053ca4b51e5774279",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6461b31e_45181293",
         "filename": "android/pandora/test/asha_test.py",
         "patchSetId": 13
@@ -61,6 +85,30 @@
       "writtenOn": "2023-05-03T09:20:43Z",
       "side": 1,
       "message": "This change doesn\u0027t seems mentioned in the commit message.\n\nLooking at `TestAbortClass` this seems to make sense to change `TestAbortAll` to that.\n\nAlso which searching `TestAbortClass` in mobly, I found `abort_class_if`\nhttps://github.com/google/mobly/blob/master/mobly/asserts.py#L413, do we want to use that ?",
+      "range": {
+        "startLine": 67,
+        "startChar": 0,
+        "endLine": 71,
+        "endChar": 86
+      },
+      "revId": "59de4954aea0cc9764ed20b053ca4b51e5774279",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1776e7c0_41a64229",
+        "filename": "android/pandora/test/asha_test.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1937985
+      },
+      "writtenOn": "2023-05-03T16:16:34Z",
+      "side": 1,
+      "message": "Will add to the commit message.\n`abort_class_if` does not work well with the linter",
+      "parentUuid": "6461b31e_45181293",
       "range": {
         "startLine": 67,
         "startChar": 0,
@@ -96,6 +144,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4867f654_a0aad65d",
+        "filename": "android/pandora/test/classic_ssp_test.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1937985
+      },
+      "writtenOn": "2023-05-03T16:16:34Z",
+      "side": 1,
+      "message": "I want to remove most usage of them; For the linter to work properly we do `assert` optional values, and I prefer to always use assert `instead` of a mix which is more confusing.\nWhat do you think ?",
+      "parentUuid": "d5a41905_54768563",
+      "range": {
+        "startLine": 94,
+        "startChar": 19,
+        "endLine": 94,
+        "endChar": 101
+      },
+      "revId": "59de4954aea0cc9764ed20b053ca4b51e5774279",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e51b4fd6_c1e637c9",
         "filename": "android/pandora/test/classic_ssp_test.py",
         "patchSetId": 13
@@ -119,6 +191,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b068d0ac_2e7e27ec",
+        "filename": "android/pandora/test/classic_ssp_test.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1937985
+      },
+      "writtenOn": "2023-05-03T16:16:34Z",
+      "side": 1,
+      "message": "Same as previous",
+      "parentUuid": "e51b4fd6_c1e637c9",
+      "range": {
+        "startLine": 116,
+        "startChar": 20,
+        "endLine": 116,
+        "endChar": 26
+      },
+      "revId": "59de4954aea0cc9764ed20b053ca4b51e5774279",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c171270f_526261ff",
         "filename": "android/pandora/test/main.py",
         "patchSetId": 13
@@ -130,6 +226,30 @@
       "writtenOn": "2023-05-03T09:20:43Z",
       "side": 1,
       "message": "nit: Do we want this space ?",
+      "range": {
+        "startLine": 46,
+        "startChar": 52,
+        "endLine": 46,
+        "endChar": 53
+      },
+      "revId": "59de4954aea0cc9764ed20b053ca4b51e5774279",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5c3280b3_59dcb245",
+        "filename": "android/pandora/test/main.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1937985
+      },
+      "writtenOn": "2023-05-03T16:16:34Z",
+      "side": 1,
+      "message": "That\u0027s what the formater do 😕",
+      "parentUuid": "c171270f_526261ff",
       "range": {
         "startLine": 46,
         "startChar": 52,
