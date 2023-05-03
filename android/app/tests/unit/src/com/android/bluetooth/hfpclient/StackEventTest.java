@@ -24,6 +24,8 @@ import androidx.test.runner.AndroidJUnit4;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import java.lang.reflect.Field;
+
 @SmallTest
 @RunWith(AndroidJUnit4.class)
 public class StackEventTest {
@@ -87,5 +89,27 @@ public class StackEventTest {
                 "EVENT_TYPE_RING_INDICATION");
         assertThat(StackEvent.eventTypeToString(invalidType)).isEqualTo(
                 "EVENT_TYPE_UNKNOWN:" + invalidType);
+    }
+
+    @Test
+    public void testAllEventFields() throws IllegalAccessException {
+        Class<StackEvent> stackEventClass = StackEvent.class;
+        Field[] fields = stackEventClass.getFields();
+        for (Field field : fields) {
+            Class<?> t = field.getType();
+            String fieldName = field.getName();
+            if (fieldName.startsWith("EVENT_TYPE")) {
+                if (t == int.class) {
+                    int stackEventType = field.getInt(null);
+                    if (fieldName.equals("EVENT_TYPE_UNKNOWN_EVENT")) {
+                        assertThat(StackEvent.eventTypeToString(stackEventType)).isEqualTo(
+                                "EVENT_TYPE_UNKNOWN:" + stackEventType);
+                    } else {
+                        String eventTypeToString = StackEvent.eventTypeToString(stackEventType);
+                        assertThat(eventTypeToString).isEqualTo(fieldName);
+                    }
+                }
+            }
+        }
     }
 }
