@@ -16,6 +16,24 @@
       "message": "We could remove the setting part with this patch. Add songferng here.",
       "revId": "2795a10c41045f204759ada72be8ea92281f30f5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9315cef2_23ab2c14",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-05-03T17:17:30Z",
+      "side": 1,
+      "message": "Yup, I wanted to do this in a topic, but I didn\u0027t do it because we need to wait for the BT prebuilt with this change to drop. Until that happens, we need to keep it in settings.",
+      "parentUuid": "eade0e86_b5ad3489",
+      "revId": "2795a10c41045f204759ada72be8ea92281f30f5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
