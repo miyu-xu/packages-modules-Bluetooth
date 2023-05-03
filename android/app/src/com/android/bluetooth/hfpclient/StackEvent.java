@@ -122,6 +122,8 @@ public class StackEvent {
                 return "EVENT_TYPE_RESP_AND_HOLD";
             case EVENT_TYPE_RING_INDICATION:
                 return "EVENT_TYPE_RING_INDICATION";
+            case EVENT_TYPE_IN_BAND_RINGTONE:
+                return "EVENT_TYPE_IN_BAND_RINGTONE";
             default:
                 return "EVENT_TYPE_UNKNOWN:" + type;
         }
