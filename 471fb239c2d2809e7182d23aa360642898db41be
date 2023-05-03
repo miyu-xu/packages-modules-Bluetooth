@@ -22,6 +22,30 @@
       },
       "revId": "471fb239c2d2809e7182d23aa360642898db41be",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "357b2b38_71861a40",
+        "filename": "system/btif/src/bluetooth.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 376,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-05-03T16:19:56Z",
+      "side": 1,
+      "message": "Yes, I updated the commit message to explain why.\n\nThis code doesn\u0027t exist anymore in internal. It should have been imported into AOSP as part of QPR2 upstream, but somehow it wasn\u0027t, I filled b/280533897 for that, this code will be removed when this bug will be fixed.",
+      "parentUuid": "c7dd7182_1c63c812",
+      "range": {
+        "startLine": 376,
+        "startChar": 7,
+        "endLine": 376,
+        "endChar": 17
+      },
+      "revId": "471fb239c2d2809e7182d23aa360642898db41be",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
