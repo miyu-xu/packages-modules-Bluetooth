@@ -23,6 +23,8 @@ constexpr uint8_t STATE_CONNECTED{1};
 constexpr uint8_t STATE_DISCONNECTED{0};
 constexpr std::string_view LOG_PER_CHANNEL_PROPERTY =
     "bluetooth.powertelemetry.log_per_channel.enabled";
+constexpr std::string_view ENABLED_POWER_TELEMETRY_PROPERTY =
+    "bluetooth.powertelemetry.enabled";
 extern int64_t GetCurrentTimeSec();
 
 namespace power_telemetry {
@@ -131,6 +133,8 @@ class PowerTelemetry {
     log_data_containers_.push_back(std::move(ldc));
     log_per_channel_ = osi_property_get_bool(
         std::string(LOG_PER_CHANNEL_PROPERTY).c_str(), false);
+    power_telemerty_enabled_ = osi_property_get_bool(
+        std::string(ENABLED_POWER_TELEMETRY_PROPERTY).c_str(), false);
   }
   std::unique_ptr<LogDataContainer>& GetCurrentLogDataContainer();
   void RecordLogDataContainer();
@@ -174,6 +178,7 @@ class PowerTelemetry {
   uint32_t cmd_count_ = 0, event_count_ = 0;
   bool scan_timer_started_ = false;
   bool log_per_channel_ = false;
+  bool power_telemerty_enabled_ = false;
 };
 
 PowerTelemetry* GetInstance();
