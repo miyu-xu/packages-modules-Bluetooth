@@ -186,52 +186,13 @@ Btm::Btm(os::Handler* handler, neighbor::InquiryModule* inquiry)
   inquiry->RegisterCallbacks(std::move(inquiry_callbacks));
 }
 
-void Btm::OnInquiryResult(bluetooth::hci::InquiryResultView view) {
-  for (auto& response : view.GetResponses()) {
-    btm_api_process_inquiry_result(
-        ToRawAddress(response.bd_addr_),
-        static_cast<uint8_t>(response.page_scan_repetition_mode_),
-        response.class_of_device_.data(), response.clock_offset_);
-  }
-}
+void Btm::OnInquiryResult(bluetooth::hci::InquiryResultView view) {}
 
 void Btm::OnInquiryResultWithRssi(
-    bluetooth::hci::InquiryResultWithRssiView view) {
-  for (auto& response : view.GetResponses()) {
-    btm_api_process_inquiry_result_with_rssi(
-        ToRawAddress(response.address_),
-        static_cast<uint8_t>(response.page_scan_repetition_mode_),
-        response.class_of_device_.data(), response.clock_offset_,
-        response.rssi_);
-  }
-}
+    bluetooth::hci::InquiryResultWithRssiView view) {}
 
 void Btm::OnExtendedInquiryResult(
-    bluetooth::hci::ExtendedInquiryResultView view) {
-  constexpr size_t kMaxExtendedInquiryResponse = 240;
-  uint8_t gap_data_buffer[kMaxExtendedInquiryResponse];
-  uint8_t* data = nullptr;
-  size_t data_len = 0;
-
-  if (!view.GetExtendedInquiryResponse().empty()) {
-    bzero(gap_data_buffer, sizeof(gap_data_buffer));
-    uint8_t* p = gap_data_buffer;
-    for (auto gap_data : view.GetExtendedInquiryResponse()) {
-      *p++ = gap_data.data_.size() + sizeof(gap_data.data_type_);
-      *p++ = static_cast<uint8_t>(gap_data.data_type_);
-      p = (uint8_t*)memcpy(p, &gap_data.data_[0], gap_data.data_.size()) +
-          gap_data.data_.size();
-    }
-    data = gap_data_buffer;
-    data_len = p - data;
-  }
-
-  btm_api_process_extended_inquiry_result(
-      ToRawAddress(view.GetAddress()),
-      static_cast<uint8_t>(view.GetPageScanRepetitionMode()),
-      view.GetClassOfDevice().data(), view.GetClockOffset(), view.GetRssi(),
-      data, data_len);
-}
+    bluetooth::hci::ExtendedInquiryResultView view) {}
 
 void Btm::OnInquiryComplete(bluetooth::hci::ErrorCode status) {
   limited_inquiry_active_ = false;
