@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "61352a1a_cbdd2104",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 871,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-05-04T22:10:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "00744680_09ed28e7",
+      "revId": "3e04150fd50ceb20e4bd451205eec5f423df52c6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1cb57f6c_ad7b3d66",
@@ -35,6 +53,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8894294a_14668aeb",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 898,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-05-04T22:10:00Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "1cb57f6c_ad7b3d66",
+      "revId": "3e04150fd50ceb20e4bd451205eec5f423df52c6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c044c8a2_dc660500",
@@ -48,6 +84,30 @@
       "writtenOn": "2023-05-04T20:51:37Z",
       "side": 1,
       "message": "I don\u0027t think we should ignore this result.  I think it means we should ignore the RSSI inside that result.\n\nDo we need to keep the counts separate?  My vote is to simplify this and have a single count unless we need more granularity...  0x7f doesn\u0027t work too well for the index.",
+      "range": {
+        "startLine": 1318,
+        "startChar": 15,
+        "endLine": 1318,
+        "endChar": 38
+      },
+      "revId": "3e04150fd50ceb20e4bd451205eec5f423df52c6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "131ff606_1d35068b",
+        "filename": "system/stack/btm/btm_inq.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1318,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-05-04T22:10:00Z",
+      "side": 1,
+      "message": "The main premise of this effort is to understand the older devices that do not use extended responses.  The STANDARD and RSSI induce additional paths through the stack which we are trying to capture.\n\nWe already have a single count for all results per scan session.\n\nThis function is only called from a single spot `stack/btu/btu_hcif` with only the first 3 enum values possible.  It is unfortunate the authors extended this to add an additional value for this case.\n\nThe proper way to do this would be to `switch` on the result type and return a bool if rssi is avail or not.\n\nI would expect a future CL to do provide an `is_rssi_valid()` option rather than manufacturing one.  Then `BTM_INQ_RES_IGNORE_RSSI` will be removed from the enum and the balance of sanity is restored.\n\ne.g.\n```\n    /* keep updating RSSI to have latest value */\n    if (inq_res_mode !\u003d BTM_INQ_RESULT_STANDARD)\n      p_i-\u003einq_info.results.rssi \u003d (int8_t)rssi;\n    else\n      p_i-\u003einq_info.results.rssi \u003d BTM_INQ_RES_IGNORE_RSSI;\n```",
+      "parentUuid": "c044c8a2_dc660500",
       "range": {
         "startLine": 1318,
         "startChar": 15,
