@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "41fe65c7_e7266bce",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 3292,
+      "author": {
+        "id": 1973670
+      },
+      "writtenOn": "2023-05-04T08:27:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "229cd53c_9eaaf551",
+      "revId": "f840308ec10d04fd2d336a0dda979014252d901d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a713bd12_ab9dc6a0",
@@ -35,6 +53,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8c766ba8_cbd9979f",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 3526,
+      "author": {
+        "id": 1973670
+      },
+      "writtenOn": "2023-05-04T08:27:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a713bd12_ab9dc6a0",
+      "revId": "f840308ec10d04fd2d336a0dda979014252d901d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "abd291d0_0261958d",
@@ -48,6 +84,30 @@
       "writtenOn": "2023-05-03T07:06:10Z",
       "side": 1,
       "message": "nit: Please use nullptr with comments like\n\n`nullptr /* dev_class */`",
+      "range": {
+        "startLine": 3565,
+        "startChar": 39,
+        "endLine": 3565,
+        "endChar": 43
+      },
+      "revId": "f840308ec10d04fd2d336a0dda979014252d901d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "67e02cdb_4f060c09",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 3565,
+      "author": {
+        "id": 1973670
+      },
+      "writtenOn": "2023-05-04T08:27:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "abd291d0_0261958d",
       "range": {
         "startLine": 3565,
         "startChar": 39,
@@ -81,6 +141,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8ba61ebd_f17d239e",
+        "filename": "system/main/shim/le_scanning_manager.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 765,
+      "author": {
+        "id": 1973670
+      },
+      "writtenOn": "2023-05-04T08:27:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c635437c_7fa1a013",
+      "range": {
+        "startLine": 765,
+        "startChar": 24,
+        "endLine": 765,
+        "endChar": 36
+      },
+      "revId": "f840308ec10d04fd2d336a0dda979014252d901d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d9c7bc56_59b4cd3b",
@@ -94,6 +178,30 @@
       "writtenOn": "2023-05-03T07:06:10Z",
       "side": 1,
       "message": "nit\n\nfor (uint8_t i \u003d 0; xxxx)\n\navoid separate line for declaration",
+      "range": {
+        "startLine": 2423,
+        "startChar": 2,
+        "endLine": 2424,
+        "endChar": 40
+      },
+      "revId": "f840308ec10d04fd2d336a0dda979014252d901d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ca09dcbb_74cd277f",
+        "filename": "system/stack/btm/btm_ble_gap.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 2424,
+      "author": {
+        "id": 1973670
+      },
+      "writtenOn": "2023-05-04T08:27:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d9c7bc56_59b4cd3b",
       "range": {
         "startLine": 2423,
         "startChar": 2,
