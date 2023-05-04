@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e4b9291d_ea4f4b04",
+        "filename": "android/pandora/test/classic_ssp_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 264,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2023-05-04T07:57:44Z",
+      "side": 1,
+      "message": "nit: prefer `make_classic_connection` since we will have LE connections(to pollute the states) in the following cases as well.",
+      "range": {
+        "startLine": 264,
+        "startChar": 10,
+        "endLine": 264,
+        "endChar": 17
+      },
+      "revId": "700da138c5fa8ffb6fdbf2443be53c63f1facf22",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
