@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e3224e89_0c40f1a3",
+        "filename": "system/btif/src/stack_manager.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 320,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-05-04T22:31:22Z",
+      "side": 0,
+      "message": "This is never started anymore but looks like it\u0027s fine since the config-\u003estart_up is null.\n\nIdea: add an `ASSERT` in startup to not even try to start module with null startup method",
+      "range": {
+        "startLine": 320,
+        "startChar": 0,
+        "endLine": 320,
+        "endChar": 56
+      },
+      "revId": "1d832b93cd6af032da4bdae23dc507fe91d82c3c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

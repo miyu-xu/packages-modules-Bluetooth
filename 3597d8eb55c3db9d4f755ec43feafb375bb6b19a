@@ -16,6 +16,29 @@
       "message": "Hints on what I missed?",
       "revId": "3597d8eb55c3db9d4f755ec43feafb375bb6b19a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "27aef397_f93e8b80",
+        "filename": "system/btif/src/stack_manager.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 401,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-05-04T22:31:22Z",
+      "side": 1,
+      "message": "We may want to move this to `event_clean_up_stack",
+      "range": {
+        "startLine": 401,
+        "startChar": 0,
+        "endLine": 401,
+        "endChar": 53
+      },
+      "revId": "3597d8eb55c3db9d4f755ec43feafb375bb6b19a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
