@@ -8,6 +8,7 @@ use std::{
     fmt::Debug,
     future::Future,
     hash::Hash,
+    ops::{Deref, DerefMut},
     rc::{Rc, Weak},
     time::Duration,
 };
@@ -17,7 +18,9 @@ use crate::{core::address::AddressWithType, gatt::ids::ServerId};
 use self::{
     acceptlist_manager::LeAcceptlistManager,
     attempt_manager::{ConnectionAttempts, ConnectionMode},
-    le_manager::{ErrorCode, InactiveLeAclManager, LeAclManagerConnectionCallbacks},
+    le_manager::{
+        AddressResolver, ErrorCode, InactiveLeAclManager, LeAclManagerConnectionCallbacks,
+    },
     target_state::determine_target_state,
 };
 
@@ -28,7 +31,10 @@ pub mod le_manager;
 mod mocks;
 pub mod target_state;
 
-pub use ffi::{register_callbacks, LeAclManagerImpl, LeAclManagerShim};
+pub use ffi::{
+    register_callbacks, AddressResolverImpl, AddressResolverShim, LeAclManagerImpl,
+    LeAclManagerShim,
+};
 use log::info;
 use scopeguard::ScopeGuard;
 use tokio::{sync::Mutex, task::spawn_local, time::timeout};
@@ -81,6 +87,8 @@ pub struct LeConnection {
 pub struct ConnectionManager {
     /// Internal state
     state: Mutex<ConnectionManagerState>,
+    /// Lets us resolve addresses corresponding to the same peer device
+    address_resolver: Box<dyn AddressResolver>,
 }
 
 #[derive(Debug)]
@@ -88,7 +96,7 @@ struct ConnectionManagerState {
     /// All pending connection attempts (unresolved direct + all background)
     attempts: ConnectionAttempts,
     /// The addresses we are currently connected to
-    current_connections: HashSet<AddressWithType>,
+    current_connections: HashSet<LeConnection>,
     /// Tracks the state of the LE connect list, and updates it to drive to a
     /// specified target state
     acceptlist_manager: LeAcceptlistManager,
@@ -110,6 +118,12 @@ impl LeAclManagerConnectionCallbacks for ConnectionManagerCallbackHandler {
     fn on_disconnect(&self, address: AddressWithType) {
         self.send_to_manager(move |manager| async move { manager.on_disconnect(address).await });
     }
+
+    fn on_resolving_list_change(&self) {
+        self.send_to_manager(
+            move |manager| async move { manager.on_resolving_list_change().await },
+        );
+    }
 }
 
 impl ConnectionManagerCallbackHandler {
@@ -127,7 +141,10 @@ impl ConnectionManagerCallbackHandler {
 
 impl ConnectionManager {
     /// Constructor
-    pub fn new(le_manager: impl InactiveLeAclManager) -> Rc<Self> {
+    pub fn new(
+        le_manager: impl InactiveLeAclManager,
+        address_resolver: impl AddressResolver + Clone + 'static,
+    ) -> Rc<Self> {
         Rc::new_cyclic(|weak| Self {
             state: Mutex::new(ConnectionManagerState {
                 attempts: ConnectionAttempts::new(),
@@ -136,6 +153,7 @@ impl ConnectionManager {
                     le_manager.register_callbacks(ConnectionManagerCallbackHandler(weak.clone())),
                 ),
             }),
+            address_resolver: Box::new(address_resolver),
         })
     }
 
@@ -151,6 +169,21 @@ impl ConnectionManager {
             self.direct_connection(client, address).await?,
         ));
         Ok(())
+    }
+
+    /// Test whether we are connected to a particular peer device
+    async fn is_connected(
+        &self,
+        address: AddressWithType,
+        state: &mut ConnectionManagerState,
+    ) -> bool {
+        let canonical = self.address_resolver.resolve_address(address).await;
+        for connection in &state.current_connections {
+            if canonical == self.address_resolver.resolve_address(connection.remote_address).await {
+                return true;
+            }
+        }
+        false
     }
 
     /// Start a direct connection to a peer device from a specified client.
@@ -170,7 +203,7 @@ impl ConnectionManager {
         let mut state = self.state.lock().await;
 
         // if connected, this is a no-op
-        let attempt_and_guard = if state.current_connections.contains(&address) {
+        let attempt_and_guard = if self.is_connected(address, state.deref_mut()).await {
             None
         } else {
             let pending_attempt = state.attempts.register_direct_connection(client, address)?;
@@ -254,34 +287,68 @@ impl ConnectionManager {
     ) {
         let mut state = self.state.lock().await;
         // record this connection while it exists
-        if result.is_ok() {
-            state.current_connections.insert(address);
+        if let Ok(connection) = result {
+            state.current_connections.insert(connection);
         }
         // all completed connections remove the address from the direct list
         state.acceptlist_manager.on_connect_complete(address);
+        // figure out what the canonical address is
+        let canonical_address = self.address_resolver.resolve_address(address).await;
         // invoke any pending callbacks, update set of attempts
-        state.attempts.process_connection(address, result).await;
+        state
+            .attempts
+            .process_connection(canonical_address, self.address_resolver.as_ref(), result)
+            .await;
         // update the acceptlist
         self.reconcile_state(&mut state).await;
     }
 
     async fn on_disconnect(&self, address: AddressWithType) {
         let mut state = self.state.lock().await;
-        state.current_connections.remove(&address);
+        state.current_connections.retain(|conn| conn.remote_address != address);
         self.reconcile_state(&mut state).await;
+    }
+
+    async fn on_resolving_list_change(&self) {
+        let mut state = self.state.lock().await;
+        let state = state.deref_mut();
+        // Figure out if some of our connection attempts actually match existing connections,
+        // by re-processing all existing connections
+        for connection in &state.current_connections {
+            let canonical_address =
+                self.address_resolver.resolve_address(connection.remote_address).await;
+            state
+                .attempts
+                .process_connection(
+                    canonical_address,
+                    self.address_resolver.deref(),
+                    Ok(*connection),
+                )
+                .await;
+        }
+        // Then, ensure that we are using canonical addresses in the connect list
+        self.reconcile_state(state).await;
     }
 
     /// Make the state of the LeAcceptlistManager consistent with the attempts tracked in ConnectionAttempts
     async fn reconcile_state(&self, state: &mut ConnectionManagerState) {
-        state
-            .acceptlist_manager
-            .drive_to_state(determine_target_state(&state.attempts.active_attempts()).await);
+        state.acceptlist_manager.drive_to_state(
+            determine_target_state(
+                &state.attempts.active_attempts(),
+                self.address_resolver.as_ref(),
+                state.current_connections.iter().copied(),
+            )
+            .await,
+        );
     }
 }
 
 #[cfg(test)]
 mod test {
-    use crate::{core::address::AddressType, utils::task::block_on_locally};
+    use crate::{
+        connection::le_manager::CanonicalAddress, core::address::AddressType,
+        utils::task::block_on_locally,
+    };
 
     use super::{mocks::mock_le_manager::MockLeAclManager, *};
 
@@ -290,6 +357,10 @@ mod test {
 
     const ADDRESS_1: AddressWithType =
         AddressWithType { address: [1, 2, 3, 4, 5, 6], address_type: AddressType::Public };
+    const ADDRESS_2: AddressWithType =
+        AddressWithType { address: [1, 2, 3, 4, 5, 7], address_type: AddressType::Public };
+    const ADDRESS_3: AddressWithType =
+        AddressWithType { address: [1, 2, 3, 4, 5, 8], address_type: AddressType::Public };
 
     const ERROR: ErrorCode = ErrorCode(1);
 
@@ -302,7 +373,8 @@ mod test {
         block_on_locally(async {
             // arrange
             let mock_le_manager = MockLeAclManager::new();
-            let connection_manager = ConnectionManager::new(mock_le_manager.clone());
+            let connection_manager =
+                ConnectionManager::new(mock_le_manager.clone(), mock_le_manager.resolver());
 
             // act: initiate a direct connection
             connection_manager.start_direct_connection(CLIENT_1, ADDRESS_1).await.unwrap();
@@ -319,7 +391,8 @@ mod test {
         block_on_locally(async {
             // arrange: one pending direct connection
             let mock_le_manager = MockLeAclManager::new();
-            let connection_manager = ConnectionManager::new(mock_le_manager.clone());
+            let connection_manager =
+                ConnectionManager::new(mock_le_manager.clone(), mock_le_manager.resolver());
             connection_manager.start_direct_connection(CLIENT_1, ADDRESS_1).await.unwrap();
 
             // act: the connection attempt fails
@@ -336,7 +409,8 @@ mod test {
         block_on_locally(async {
             // arrange
             let mock_le_manager = MockLeAclManager::new();
-            let connection_manager = ConnectionManager::new(mock_le_manager.clone());
+            let connection_manager =
+                ConnectionManager::new(mock_le_manager.clone(), mock_le_manager.resolver());
 
             // act: initiate a background connection
             connection_manager.add_background_connection(CLIENT_1, ADDRESS_1).await.unwrap();
@@ -353,7 +427,8 @@ mod test {
         block_on_locally(async {
             // arrange
             let mock_le_manager = MockLeAclManager::new();
-            let connection_manager = ConnectionManager::new(mock_le_manager.clone());
+            let connection_manager =
+                ConnectionManager::new(mock_le_manager.clone(), mock_le_manager.resolver());
 
             // act: initiate a direct connection, that succeeds
             connection_manager.start_direct_connection(CLIENT_1, ADDRESS_1).await.unwrap();
@@ -370,7 +445,8 @@ mod test {
         block_on_locally(async {
             // arrange
             let mock_le_manager = MockLeAclManager::new();
-            let connection_manager = ConnectionManager::new(mock_le_manager.clone());
+            let connection_manager =
+                ConnectionManager::new(mock_le_manager.clone(), mock_le_manager.resolver());
 
             // act: initiate a background connection, that succeeds
             connection_manager
@@ -391,7 +467,8 @@ mod test {
         block_on_locally(async {
             // arrange
             let mock_le_manager = MockLeAclManager::new();
-            let connection_manager = ConnectionManager::new(mock_le_manager.clone());
+            let connection_manager =
+                ConnectionManager::new(mock_le_manager.clone(), mock_le_manager.resolver());
 
             // act: initiate a direct connection, that succeeds, then disconnects
             connection_manager.start_direct_connection(CLIENT_1, ADDRESS_1).await.unwrap();
@@ -409,7 +486,8 @@ mod test {
         block_on_locally(async {
             // arrange
             let mock_le_manager = MockLeAclManager::new();
-            let connection_manager = ConnectionManager::new(mock_le_manager.clone());
+            let connection_manager =
+                ConnectionManager::new(mock_le_manager.clone(), mock_le_manager.resolver());
 
             // act: initiate a background connection, that succeeds, then disconnects
             connection_manager.add_background_connection(CLIENT_1, ADDRESS_1).await.unwrap();
@@ -446,7 +524,8 @@ mod test {
         block_on_locally(async {
             // arrange
             let mock_le_manager = MockLeAclManager::new();
-            let connection_manager = ConnectionManager::new(mock_le_manager.clone());
+            let connection_manager =
+                ConnectionManager::new(mock_le_manager.clone(), mock_le_manager.resolver());
 
             // act: initiate a background connection that fails
             connection_manager.add_background_connection(CLIENT_1, ADDRESS_1).await.unwrap();
@@ -463,7 +542,8 @@ mod test {
         block_on_locally(async {
             // arrange: a pending direct connection
             let mock_le_manager = MockLeAclManager::new();
-            let connection_manager = ConnectionManager::new(mock_le_manager.clone());
+            let connection_manager =
+                ConnectionManager::new(mock_le_manager.clone(), mock_le_manager.resolver());
             connection_manager.start_direct_connection(CLIENT_1, ADDRESS_1).await.unwrap();
 
             // act: let it timeout
@@ -482,7 +562,8 @@ mod test {
         block_on_locally(async {
             // arrange
             let mock_le_manager = MockLeAclManager::new();
-            let connection_manager = ConnectionManager::new(mock_le_manager.clone());
+            let connection_manager =
+                ConnectionManager::new(mock_le_manager.clone(), mock_le_manager.resolver());
 
             // act: start a direct connection
             connection_manager.start_direct_connection(CLIENT_1, ADDRESS_1).await.unwrap();
@@ -502,12 +583,219 @@ mod test {
         block_on_locally(async {
             // arrange: an existing connection
             let mock_le_manager = MockLeAclManager::new();
-            let connection_manager = ConnectionManager::new(mock_le_manager.clone());
+            let connection_manager =
+                ConnectionManager::new(mock_le_manager.clone(), mock_le_manager.resolver());
             mock_le_manager.on_le_connect(ADDRESS_1, ErrorCode::SUCCESS);
             handle_events().await;
 
             // act: start a direct connection to the same address
             connection_manager.start_direct_connection(CLIENT_1, ADDRESS_1).await.unwrap();
+
+            // assert: we don't do anything with the accept list
+            assert_eq!(mock_le_manager.current_connection_mode(), None);
+        });
+    }
+
+    #[test]
+    fn test_background_connection_to_connected_then_bonded() {
+        block_on_locally(async {
+            // arrange
+            let mock_le_manager = MockLeAclManager::new();
+            let connection_manager =
+                ConnectionManager::new(mock_le_manager.clone(), mock_le_manager.resolver());
+
+            // act: connect
+            mock_le_manager.on_le_connect(ADDRESS_1, ErrorCode::SUCCESS);
+            // act: bond, so the canonical address is ADDRESS_2 but ADDRESS_1 is a valid RPA
+            mock_le_manager.with_resolver(|r| {
+                r.associate_address(CanonicalAddress::new(ADDRESS_2), ADDRESS_1)
+            });
+
+            handle_events().await;
+
+            // act: add the canonical address to the background connect list
+            connection_manager.add_background_connection(CLIENT_1, ADDRESS_2).await.unwrap();
+
+            // assert: we don't do anything with the accept list
+            assert_eq!(mock_le_manager.current_connection_mode(), None);
+        });
+    }
+
+    #[test]
+    fn test_background_connection_to_connected_bonded_then_disconnected() {
+        block_on_locally(async {
+            // arrange
+            let mock_le_manager = MockLeAclManager::new();
+            let connection_manager =
+                ConnectionManager::new(mock_le_manager.clone(), mock_le_manager.resolver());
+
+            // act: connect
+            mock_le_manager.on_le_connect(ADDRESS_1, ErrorCode::SUCCESS);
+            // act: bond, so the canonical address is ADDRESS_2 but ADDRESS_1 is a valid RPA
+            mock_le_manager.with_resolver(|r| {
+                r.associate_address(CanonicalAddress::new(ADDRESS_2), ADDRESS_1)
+            });
+
+            handle_events().await;
+
+            // act: add the canonical address to the background connect list
+            connection_manager.add_background_connection(CLIENT_1, ADDRESS_2).await.unwrap();
+            // act: then disconnect
+            mock_le_manager.on_le_disconnect(ADDRESS_1);
+            handle_events().await;
+
+            // assert: we have added only the canonical address to the background connect list
+            assert_eq!(mock_le_manager.current_connection_mode(), Some(ConnectionMode::Background));
+            assert!(mock_le_manager.current_acceptlist().contains(&ADDRESS_2));
+            assert!(!mock_le_manager.current_acceptlist().contains(&ADDRESS_1));
+        });
+    }
+
+    #[test]
+    fn test_connect_to_bonded_using_rpa() {
+        block_on_locally(async {
+            // arrange: a bonded device
+            let mock_le_manager = MockLeAclManager::new();
+            let connection_manager =
+                ConnectionManager::new(mock_le_manager.clone(), mock_le_manager.resolver());
+            mock_le_manager.with_resolver(|r| {
+                r.associate_address(CanonicalAddress::new(ADDRESS_2), ADDRESS_1)
+            });
+
+            handle_events().await;
+
+            // act: start a connection attempt to an RPA
+            connection_manager.start_direct_connection(CLIENT_1, ADDRESS_1).await.unwrap();
+
+            // assert: we have added only the canonical address to the connect list
+            assert_eq!(mock_le_manager.current_connection_mode(), Some(ConnectionMode::Direct));
+            assert!(mock_le_manager.current_acceptlist().contains(&ADDRESS_2));
+            assert!(!mock_le_manager.current_acceptlist().contains(&ADDRESS_1));
+        });
+    }
+
+    #[test]
+    fn test_successful_connect_to_bonded_using_rpa() {
+        block_on_locally(async {
+            // arrange: a bonded device
+            let mock_le_manager = MockLeAclManager::new();
+            let connection_manager =
+                ConnectionManager::new(mock_le_manager.clone(), mock_le_manager.resolver());
+            mock_le_manager.with_resolver(|r| {
+                r.associate_address(CanonicalAddress::new(ADDRESS_2), ADDRESS_1)
+            });
+
+            handle_events().await;
+
+            // act: start a connection attempt to an RPA
+            connection_manager.start_direct_connection(CLIENT_1, ADDRESS_1).await.unwrap();
+            // act: get connection completion
+            mock_le_manager.on_le_connect(ADDRESS_2, ErrorCode::SUCCESS);
+            handle_events().await;
+
+            // assert: we have finished initiating
+            assert_eq!(mock_le_manager.current_connection_mode(), None);
+        });
+    }
+
+    #[test]
+    fn test_failed_connect_to_bonded_using_rpa() {
+        block_on_locally(async {
+            // arrange: a bonded device
+            let mock_le_manager = MockLeAclManager::new();
+            let connection_manager =
+                ConnectionManager::new(mock_le_manager.clone(), mock_le_manager.resolver());
+            mock_le_manager.with_resolver(|r| {
+                r.associate_address(CanonicalAddress::new(ADDRESS_2), ADDRESS_1)
+            });
+            handle_events().await;
+
+            // act: start a connection attempt to an RPA
+            connection_manager.start_direct_connection(CLIENT_1, ADDRESS_1).await.unwrap();
+            // act: get connection completion with failed error code
+            mock_le_manager.on_le_connect(ADDRESS_2, ErrorCode(1));
+            handle_events().await;
+            // act: try a reconnection
+            connection_manager.start_direct_connection(CLIENT_1, ADDRESS_1).await.unwrap();
+
+            // assert: we retry the connection
+            assert_eq!(mock_le_manager.current_connection_mode(), Some(ConnectionMode::Direct));
+        });
+    }
+
+    #[test]
+    fn test_connect_to_bonded_using_rpa_then_unbond() {
+        block_on_locally(async {
+            // arrange: a bonded device
+            let mock_le_manager = MockLeAclManager::new();
+            let connection_manager =
+                ConnectionManager::new(mock_le_manager.clone(), mock_le_manager.resolver());
+            mock_le_manager.with_resolver(|r| {
+                r.associate_address(CanonicalAddress::new(ADDRESS_2), ADDRESS_1)
+            });
+
+            handle_events().await;
+
+            // act: start a connection attempt to an RPA
+            connection_manager.start_direct_connection(CLIENT_1, ADDRESS_1).await.unwrap();
+            // act: then unbond
+            mock_le_manager.with_resolver(|r| r.clear_address(CanonicalAddress::new(ADDRESS_2)));
+            handle_events().await;
+
+            // assert: we have placed the RPA in the connect list
+            assert_eq!(mock_le_manager.current_connection_mode(), Some(ConnectionMode::Direct));
+            assert!(mock_le_manager.current_acceptlist().contains(&ADDRESS_1));
+        });
+    }
+
+    #[test]
+    fn test_bond_to_already_connected() {
+        block_on_locally(async {
+            // arrange
+            let mock_le_manager = MockLeAclManager::new();
+            let connection_manager =
+                ConnectionManager::new(mock_le_manager.clone(), mock_le_manager.resolver());
+            // arrange: an existing connection
+            mock_le_manager.on_le_connect(ADDRESS_1, ErrorCode::SUCCESS);
+            // arrange: a connection attempt to a different address
+            connection_manager.start_direct_connection(CLIENT_1, ADDRESS_2).await.unwrap();
+            handle_events().await;
+
+            // act: bond, so we realize that these addresses are the same
+            mock_le_manager.with_resolver(|r| {
+                r.associate_address(CanonicalAddress::new(ADDRESS_2), ADDRESS_1)
+            });
+            handle_events().await;
+
+            // assert: we are no longer initiating any connection
+            assert_eq!(mock_le_manager.current_connection_mode(), None);
+        });
+    }
+
+    #[test]
+    fn test_direct_connection_to_already_connected_with_different_address() {
+        block_on_locally(async {
+            // arrange: a bonded device
+            let mock_le_manager = MockLeAclManager::new();
+            let connection_manager =
+                ConnectionManager::new(mock_le_manager.clone(), mock_le_manager.resolver());
+            mock_le_manager.with_resolver(|r| {
+                r.set_address_equivalences(
+                    [(
+                        CanonicalAddress::new(ADDRESS_3),
+                        [ADDRESS_1, ADDRESS_2].into_iter().collect(),
+                    )]
+                    .into_iter()
+                    .collect(),
+                )
+            });
+            handle_events().await;
+
+            // act: connect using one RPA
+            mock_le_manager.on_le_connect(ADDRESS_1, ErrorCode::SUCCESS);
+            handle_events().await;
+            // act: try to connect to the second RPA
+            connection_manager.start_direct_connection(CLIENT_1, ADDRESS_2).await.unwrap();
 
             // assert: we don't do anything with the accept list
             assert_eq!(mock_le_manager.current_connection_mode(), None);
