@@ -164,7 +164,7 @@ class Test(ControllerTest):
         # 12. Repeat steps 8–11 100 times.
         received = [0, 0]
         for n in range(15):
-            index = await self.expect_ll([
+            (index, _) = await self.expect_ll([
                 ll.LeExtendedAdvertisingPdu(source_address=controller.address,
                                             advertising_address_type=ll.AddressType.PUBLIC,
                                             target_address_type=ll.AddressType.PUBLIC,
