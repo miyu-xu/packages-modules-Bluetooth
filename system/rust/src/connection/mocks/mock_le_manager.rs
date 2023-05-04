@@ -9,22 +9,39 @@ use crate::{
     connection::{
         attempt_manager::ConnectionMode,
         le_manager::{
-            ErrorCode, InactiveLeAclManager, LeAclManager, LeAclManagerConnectionCallbacks,
+            AddressResolver, ErrorCode, InactiveLeAclManager, LeAclManager,
+            LeAclManagerConnectionCallbacks,
         },
         LeConnection,
     },
     core::address::AddressWithType,
 };
 
+use super::mock_address_resolver::MockAddressResolver;
+
 #[derive(Clone)]
 pub struct MockLeAclManager {
     active: Rc<RefCell<Option<Rc<MockActiveLeAclManager>>>>,
     callbacks: Rc<RefCell<Option<Box<dyn LeAclManagerConnectionCallbacks>>>>,
+    pub resolver: MockAddressResolver,
 }
 
 impl MockLeAclManager {
     pub fn new() -> Self {
-        Self { active: Rc::new(RefCell::new(None)), callbacks: Rc::new(RefCell::new(None)) }
+        Self {
+            active: Default::default(),
+            callbacks: Default::default(),
+            resolver: Default::default(),
+        }
+    }
+
+    pub fn resolver(&self) -> impl AddressResolver + Clone {
+        self.resolver.clone()
+    }
+
+    pub fn with_resolver(&self, f: impl FnOnce(&MockAddressResolver)) {
+        f(&self.resolver);
+        self.callbacks.borrow().as_deref().unwrap().on_resolving_list_change();
     }
 
     fn inner(&self) -> Rc<MockActiveLeAclManager> {
@@ -75,6 +92,15 @@ impl InactiveLeAclManager for MockLeAclManager {
         *self.active.borrow_mut() = Some(out.clone());
         *self.callbacks.borrow_mut() = Some(Box::new(callbacks));
         out
+    }
+}
+
+impl Debug for MockLeAclManager {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        f.debug_struct("MockLeAclManager")
+            .field("active", &self.active)
+            .field("resolver", &self.resolver)
+            .finish()
     }
 }
 

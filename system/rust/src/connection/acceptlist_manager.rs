@@ -7,7 +7,10 @@ use log::info;
 
 use crate::core::address::AddressWithType;
 
-use super::{le_manager::LeAclManager, target_state::TargetState};
+use super::{
+    le_manager::{CanonicalAddress, LeAclManager},
+    target_state::TargetState,
+};
 
 /// This struct monitors the state of the LE connect list,
 /// and drives it to the target state.
@@ -42,36 +45,40 @@ impl LeAcceptlistManager {
 
     /// Drive the state of the connect list to the target state
     pub fn drive_to_state(&mut self, target: TargetState) {
+        let target_direct_list = target.direct_list.iter().map(CanonicalAddress::addr).collect();
+        let target_background_list =
+            target.background_list.iter().map(CanonicalAddress::addr).collect();
+
         // First, pull out anything in the ACL manager that we don't need
         // recall that cancel_connect() removes addresses from *both* lists (!)
-        for address in self.direct_list.difference(&target.direct_list) {
+        for address in self.direct_list.difference(&target_direct_list) {
             info!("Cancelling connection attempt to {address:?}");
             self.le_manager.remove_from_all_lists(*address);
             self.background_list.remove(address);
         }
-        self.direct_list = self.direct_list.intersection(&target.direct_list).copied().collect();
+        self.direct_list = self.direct_list.intersection(&target_direct_list).copied().collect();
 
-        for address in self.background_list.difference(&target.background_list) {
+        for address in self.background_list.difference(&target_background_list) {
             info!("Cancelling connection attempt to {address:?}");
             self.le_manager.remove_from_all_lists(*address);
             self.direct_list.remove(address);
         }
         self.background_list =
-            self.background_list.intersection(&target.background_list).copied().collect();
+            self.background_list.intersection(&target_background_list).copied().collect();
 
         // now everything extra has been removed, we can put things back in
-        for address in target.direct_list.difference(&self.direct_list) {
+        for address in target_direct_list.difference(&self.direct_list) {
             info!("Starting direct connection to {address:?}");
             self.le_manager.add_to_direct_list(*address);
         }
-        for address in target.background_list.difference(&self.background_list) {
+        for address in target_background_list.difference(&self.background_list) {
             info!("Starting background connection to {address:?}");
             self.le_manager.add_to_background_list(*address);
         }
 
         // we should now be in a consistent state!
-        self.direct_list = target.direct_list;
-        self.background_list = target.background_list;
+        self.direct_list = target_direct_list;
+        self.background_list = target_background_list;
     }
 }
 
@@ -87,8 +94,10 @@ mod test {
 
     use super::*;
 
-    const ADDRESS_1: AddressWithType =
-        AddressWithType { address: [1, 2, 3, 4, 5, 6], address_type: AddressType::Public };
+    const ADDRESS_1: CanonicalAddress = CanonicalAddress::new(AddressWithType {
+        address: [1, 2, 3, 4, 5, 6],
+        address_type: AddressType::Public,
+    });
 
     #[test]
     fn test_add_to_direct_list() {
@@ -105,7 +114,7 @@ mod test {
         // assert: that the device has been added
         assert_eq!(mock_le_manager.current_connection_mode(), Some(ConnectionMode::Direct));
         assert_eq!(mock_le_manager.current_acceptlist().len(), 1);
-        assert!(mock_le_manager.current_acceptlist().contains(&ADDRESS_1));
+        assert!(mock_le_manager.current_acceptlist().contains(&ADDRESS_1.addr()));
     }
 
     #[test]
@@ -123,7 +132,7 @@ mod test {
         // assert: that the device has been added
         assert_eq!(mock_le_manager.current_connection_mode(), Some(ConnectionMode::Background));
         assert_eq!(mock_le_manager.current_acceptlist().len(), 1);
-        assert!(mock_le_manager.current_acceptlist().contains(&ADDRESS_1));
+        assert!(mock_le_manager.current_acceptlist().contains(&ADDRESS_1.addr()));
     }
 
     #[test]
@@ -247,10 +256,10 @@ mod test {
             direct_list: [ADDRESS_1].into(),
         });
         // act: the connection succeeds (and later disconnects)
-        mock_le_manager.on_le_connect(ADDRESS_1, ErrorCode::SUCCESS);
-        manager.on_connect_complete(ADDRESS_1);
+        mock_le_manager.on_le_connect(ADDRESS_1.addr(), ErrorCode::SUCCESS);
+        manager.on_connect_complete(ADDRESS_1.addr());
         // the peer later disconnects
-        mock_le_manager.on_le_disconnect(ADDRESS_1);
+        mock_le_manager.on_le_disconnect(ADDRESS_1.addr());
         // act: retry the direct connection
         manager.drive_to_state(TargetState {
             background_list: [].into(),
@@ -260,7 +269,7 @@ mod test {
         // assert: we have resumed the direct connection
         assert_eq!(mock_le_manager.current_connection_mode(), Some(ConnectionMode::Direct));
         assert_eq!(mock_le_manager.current_acceptlist().len(), 1);
-        assert!(mock_le_manager.current_acceptlist().contains(&ADDRESS_1));
+        assert!(mock_le_manager.current_acceptlist().contains(&ADDRESS_1.addr()));
     }
 
     #[test]
@@ -303,8 +312,8 @@ mod test {
             direct_list: [].into(),
         });
         // act: the connection succeeds
-        mock_le_manager.on_le_connect(ADDRESS_1, ErrorCode::SUCCESS);
-        manager.on_connect_complete(ADDRESS_1);
+        mock_le_manager.on_le_connect(ADDRESS_1.addr(), ErrorCode::SUCCESS);
+        manager.on_connect_complete(ADDRESS_1.addr());
         // act: we remove the background connection
         manager.drive_to_state(TargetState { background_list: [].into(), direct_list: [].into() });
 
