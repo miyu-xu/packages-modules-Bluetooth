@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "240eb9be_b4a11291",
+        "filename": "system/rust/src/connection.rs",
+        "patchSetId": 25
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-05-04T17:03:37Z",
+      "side": 1,
+      "message": "Why do you need everything to be async ? And can the \"refactor of async\" be done in a separate CL (as a pre-requisite if it is really needed for the address resolver)",
+      "range": {
+        "startLine": 119,
+        "startChar": 0,
+        "endLine": 119,
+        "endChar": 97
+      },
+      "revId": "08f5e548f728ac8ecd14faa84a34831d90e968bb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d96d41dc_122f206b",
+        "filename": "system/rust/src/connection/ffi.rs",
+        "patchSetId": 25
+      },
+      "lineNbr": 263,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-05-04T17:03:37Z",
+      "side": 1,
+      "message": "All these async modification seems unrelated with the address resolver.\nCan it be done in a separate CL ?",
+      "range": {
+        "startLine": 263,
+        "startChar": 20,
+        "endLine": 263,
+        "endChar": 38
+      },
+      "revId": "08f5e548f728ac8ecd14faa84a34831d90e968bb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e3f8fb97_c5a7f67b",
+        "filename": "system/rust/src/connection/target_state.rs",
+        "patchSetId": 25
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-05-04T17:03:37Z",
+      "side": 1,
+      "message": "Can you create this file in a first CL, and then modify the code in it ?\nRight now it is hard to to see what are the specific change in the code",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 80
+      },
+      "revId": "08f5e548f728ac8ecd14faa84a34831d90e968bb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
