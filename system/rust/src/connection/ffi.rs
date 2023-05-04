@@ -181,57 +181,71 @@ pub fn register_callbacks() {
         |client, address| {
             let client = ConnectionManagerClient::GattClient(client);
             do_in_rust_thread(move |modules| {
-                let result =
-                    modules.connection_manager.as_ref().start_direct_connection(client, address);
-                if let Err(err) = result {
-                    warn!("Failed to start direct connection from {client:?} to {address:?} ({err:?})")
-                }
+                let connection_manager = modules.connection_manager.clone();
+                spawn_local(async move {
+                    let result = connection_manager.start_direct_connection(client, address).await;
+                    if let Err(err) = result {
+                        warn!("Failed to start direct connection from {client:?} to {address:?} ({err:?})")
+                    }
+                });
             });
         },
         |client, address| {
             let client = ConnectionManagerClient::GattClient(client);
             do_in_rust_thread(move |modules| {
-                let result = modules.connection_manager.cancel_connection(
-                    client,
-                    address,
-                    ConnectionMode::Direct,
-                );
-                if let Err(err) = result {
-                    warn!("Failed to cancel direct connection from {client:?} to {address:?} ({err:?})")
-                }
+                let connection_manager = modules.connection_manager.clone();
+                spawn_local(async move {
+                    let result = connection_manager
+                        .cancel_connection(client, address, ConnectionMode::Direct)
+                        .await;
+                    if let Err(err) = result {
+                        warn!("Failed to cancel direct connection from {client:?} to {address:?} ({err:?})")
+                    }
+                });
             })
         },
         |client, address| {
             let client = ConnectionManagerClient::GattClient(client);
             do_in_rust_thread(move |modules| {
-                let result = modules.connection_manager.add_background_connection(client, address);
-                if let Err(err) = result {
-                    warn!("Failed to add background connection from {client:?} to {address:?} ({err:?})")
-                }
+                let connection_manager = modules.connection_manager.clone();
+                spawn_local(async move {
+                    let result =
+                        connection_manager.add_background_connection(client, address).await;
+                    if let Err(err) = result {
+                        warn!("Failed to add background connection from {client:?} to {address:?} ({err:?})")
+                    }
+                });
             })
         },
         |client, address| {
             let client = ConnectionManagerClient::GattClient(client);
             do_in_rust_thread(move |modules| {
-                let result = modules.connection_manager.cancel_connection(
-                    client,
-                    address,
-                    ConnectionMode::Background,
-                );
-                if let Err(err) = result {
-                    warn!("Failed to remove background connection from {client:?} to {address:?} ({err:?})")
-                }
+                let connection_manager = modules.connection_manager.clone();
+                spawn_local(async move {
+                    let result = connection_manager
+                        .cancel_connection(client, address, ConnectionMode::Background)
+                        .await;
+                    if let Err(err) = result {
+                        warn!("Failed to remove background connection from {client:?} to {address:?} ({err:?})")
+                    }
+                });
             })
         },
         |client| {
             let client = ConnectionManagerClient::GattClient(client);
             do_in_rust_thread(move |modules| {
-                modules.connection_manager.remove_client(client);
+                let connection_manager = modules.connection_manager.clone();
+                spawn_local(async move {
+                    connection_manager.remove_client(client).await;
+                });
             })
         },
         |address| {
             do_in_rust_thread(move |modules| {
-                modules.connection_manager.cancel_unconditionally(address);
+                let connection_manager = modules.connection_manager.clone();
+                spawn_local(async move {
+                    connection_manager.cancel_unconditionally(address).await;
+                });
             })
         },
     )

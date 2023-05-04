@@ -22,7 +22,7 @@ pub struct TargetState {
 }
 
 /// Takes a list of connection attempts, and determines the target state of the LE ACL manager
-pub fn determine_target_state(attempts: &[ConnectionAttempt]) -> TargetState {
+pub async fn determine_target_state(attempts: &[ConnectionAttempt]) -> TargetState {
     let background_list = attempts
         .iter()
         .filter(|attempt| attempt.mode == ConnectionMode::Background)
@@ -108,10 +108,11 @@ impl LeAcceptlistManager {
 mod test {
     use crate::{
         connection::{
-            le_manager::ErrorCode, mocks::mock_le_manager::MockActiveLeAclManager,
-            ConnectionManagerClient,
+            attempt_manager::ConnectionMode, le_manager::ErrorCode,
+            mocks::mock_le_manager::MockActiveLeAclManager, ConnectionManagerClient,
         },
         core::address::AddressType,
+        utils::task::block_on_locally,
     };
 
     use super::*;
@@ -127,7 +128,7 @@ mod test {
 
     #[test]
     fn test_determine_target_state() {
-        let target = determine_target_state(&[
+        let target = block_on_locally(determine_target_state(&[
             ConnectionAttempt {
                 client: CLIENT,
                 mode: ConnectionMode::Background,
@@ -153,7 +154,7 @@ mod test {
                 mode: ConnectionMode::Direct,
                 remote_address: ADDRESS_3,
             },
-        ]);
+        ]));
 
         assert_eq!(target.background_list.len(), 2);
         assert!(target.background_list.contains(&ADDRESS_1));
@@ -362,5 +363,26 @@ mod test {
 
         // assert: we remain doing our direct connection
         assert_eq!(mock_le_manager.current_connection_mode(), Some(ConnectionMode::Direct));
+    }
+
+    #[test]
+    fn test_remove_background_connection_after_disconnect() {
+        // arrange
+        let mock_le_manager = MockActiveLeAclManager::new();
+        let mut manager = LeAcceptlistManager::new(mock_le_manager.clone());
+
+        // act: initiate a background connection
+        manager.drive_to_state(TargetState {
+            background_list: [ADDRESS_1].into(),
+            direct_list: [].into(),
+        });
+        // act: the connection succeeds
+        mock_le_manager.on_le_connect(ADDRESS_1, ErrorCode::SUCCESS);
+        manager.on_connect_complete(ADDRESS_1);
+        // act: we remove the background connection
+        manager.drive_to_state(TargetState { background_list: [].into(), direct_list: [].into() });
+
+        // assert: we have returned to idle
+        assert_eq!(mock_le_manager.current_connection_mode(), None);
     }
 }
