@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a418c825_7b5b4eca",
+        "filename": "system/stack/l2cap/l2c_fcr.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1707,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-05-04T20:41:40Z",
+      "side": 1,
+      "message": "nit: at this point, can_renegotiate should probably be removed to simplify the logic, but that can be done in a separate CL.",
+      "revId": "c3de238af7970f0de4b6a3f90e2193caea2f52e8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
