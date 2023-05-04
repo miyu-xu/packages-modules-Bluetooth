@@ -149,7 +149,8 @@ public class CsipSetCoordinatorNativeInterface {
     /** Device availability */
     @VisibleForTesting
     public void onDeviceAvailable(
-            byte[] address, int groupId, int groupSize, int rank, long uuidLsb, long uuidMsb) {
+            byte[] address, int groupId, int groupSize, int rank, long uuidLsb, long uuidMsb,
+            boolean isValid) {
         UUID uuid = new UUID(uuidMsb, uuidLsb);
         CsipSetCoordinatorStackEvent event = new CsipSetCoordinatorStackEvent(
                 CsipSetCoordinatorStackEvent.EVENT_TYPE_DEVICE_AVAILABLE);
@@ -158,6 +159,7 @@ public class CsipSetCoordinatorNativeInterface {
         event.valueInt2 = groupSize;
         event.valueInt3 = rank;
         event.valueUuid1 = uuid;
+        event.valueBool1 = isValid;
 
         if (DBG) {
             Log.d(TAG, "onDeviceAvailable: " + event);

@@ -841,6 +841,14 @@ public class CsipSetCoordinatorService extends ProfileService {
         if (stackEvent.type == CsipSetCoordinatorStackEvent.EVENT_TYPE_DEVICE_AVAILABLE) {
             Objects.requireNonNull(device, "Device should never be null, event: " + stackEvent);
 
+            boolean isValidDevice = stackEvent.valueBool1;
+            if (!isValidDevice) {
+                Log.e(TAG, "Invalid device detected: " + device + ", removing bond");
+                device.removeBond();
+
+                return;
+            }
+
             intent = new Intent(BluetoothCsipSetCoordinator.ACTION_CSIS_DEVICE_AVAILABLE);
             intent.putExtra(BluetoothDevice.EXTRA_DEVICE, stackEvent.device);
             intent.putExtra(BluetoothCsipSetCoordinator.EXTRA_CSIS_GROUP_ID, groupId);

@@ -59,7 +59,8 @@ class CsisClientCallbacks {
   /** Callback for the new available device */
   virtual void OnDeviceAvailable(const RawAddress& addr, int group_id,
                                  int group_size, int rank,
-                                 const bluetooth::Uuid& uuid) = 0;
+                                 const bluetooth::Uuid& uuid,
+                                 bool is_valid) = 0;
 
   /* Callback for available set member*/
   virtual void OnSetMemberAvailable(const RawAddress& address,

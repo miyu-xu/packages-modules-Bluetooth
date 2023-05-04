@@ -111,6 +111,8 @@ public class CsipSetCoordinatorStackEvent {
         switch (evType) {
             case EVENT_TYPE_GROUP_LOCK_CHANGED:
                 return "locked: " + Boolean.toString(value);
+            case EVENT_TYPE_DEVICE_AVAILABLE:
+                return "is valid: " + Boolean.toString(value);
             default:
                 return "<unused>";
         }

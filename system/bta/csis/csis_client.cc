@@ -229,7 +229,7 @@ class CsisClientImpl : public CsisClient {
 
     callbacks_->OnDeviceAvailable(device->addr, csis_group->GetGroupId(),
                                   csis_group->GetDesiredSize(),
-                                  csis_instance->GetRank(), uuid);
+                                  csis_instance->GetRank(), uuid, true);
   }
 
   void Connect(const RawAddress& address) override {
@@ -665,7 +665,7 @@ class CsisClientImpl : public CsisClient {
 
         callbacks_->OnDeviceAvailable(device->addr, group_id,
                                       csis_group->GetDesiredSize(), rank,
-                                      csis_group->GetUuid());
+                                      csis_group->GetUuid(), true);
       }
     }
 
@@ -835,7 +835,7 @@ class CsisClientImpl : public CsisClient {
 
       callbacks_->OnDeviceAvailable(
           device->addr, group_id, csis_group->GetDesiredSize(),
-          csis_instance->GetRank(), csis_instance->GetUuid());
+          csis_instance->GetRank(), csis_instance->GetUuid(), true);
       notify_connected = true;
     }
     if (notify_connected)
@@ -1242,8 +1242,17 @@ class CsisClientImpl : public CsisClient {
     if (discovered_group_rsi != all_rsi.cend()) {
       DLOG(INFO) << "Found set member "
                  << ADDRESS_TO_LOGGABLE_STR(result->bd_addr);
-      callbacks_->OnSetMemberAvailable(result->bd_addr,
-                                       csis_group->GetGroupId());
+
+      auto device = std::make_shared<CsisDevice>(result->bd_addr, false);
+      /*
+       * Expected group ID will be checked while reading SIRK if this device
+       * truly is member of group.
+       */
+      device.get()->SetExpectedGroupIdMember(csis_group->GetGroupId());
+      devices_.push_back(device);
+
+      callbacks_->OnSetMemberAvailable(
+          result->bd_addr, device.get()->GetExpectedGroupIdMember());
 
       /* Switch back to the opportunistic observer mode.
        * When second device will pair, csis will restart active scan
@@ -1482,6 +1491,33 @@ class CsisClientImpl : public CsisClient {
       }
 
       if (group_id == bluetooth::groups::kGroupUnknown) {
+        /*
+         * Joining member must join already existing group otherwise it means
+         * that its SIRK is different. Device connection was triggered by RSI
+         * match for group.
+         */
+        if (device->GetExpectedGroupIdMember() !=
+            bluetooth::groups::kGroupUnknown) {
+          LOG_ERROR("Joining device %s, does not match any existig group",
+                    ADDRESS_TO_LOGGABLE_CSTR(device->addr));
+          RemoveDevice(device->addr);
+
+          /* This device was invalid, search for valid member */
+          auto csis_group = FindCsisGroup(device->GetExpectedGroupIdMember());
+          LOG_ASSERT(csis_group)
+              << ", Expected CSIS group: "
+              << static_cast<int>(device->GetExpectedGroupIdMember())
+              << " does not exist";
+          csis_group->SetDiscoveryState(
+              CsisDiscoveryState::CSIS_DISCOVERY_ONGOING);
+          CsisActiveObserverSet(true);
+
+          callbacks_->OnDeviceAvailable(device->addr, csis_group->GetGroupId(),
+                                        csis_group->GetDesiredSize(), 0,
+                                        csis_group->GetUuid(), false);
+
+          return;
+        }
         /* Here it means, we have new group. Let's us create it */
         group_id =
             dev_groups_->AddDevice(device->addr, csis_instance->GetUuid());
