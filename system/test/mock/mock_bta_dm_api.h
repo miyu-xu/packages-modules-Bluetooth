@@ -186,12 +186,14 @@ struct BTA_DmBleRequestMaxTxDataLength {
 extern struct BTA_DmBleRequestMaxTxDataLength BTA_DmBleRequestMaxTxDataLength;
 
 // Name: BTA_DmBleScan
-// Params: bool start, uint8_t duration
+// Params: bool start, uint8_t duration, bool isCsisObserve
 // Return: void
 struct BTA_DmBleScan {
-  std::function<void(bool start, uint8_t duration)> body{
-      [](bool start, uint8_t duration) {}};
-  void operator()(bool start, uint8_t duration) { body(start, duration); };
+  std::function<void(bool start, uint8_t duration, bool isCsisObserve)> body{
+      [](bool start, uint8_t duration, bool isCsisObserve) {}};
+  void operator()(bool start, uint8_t duration, bool isCsisObserve) {
+    body(start, duration, isCsisObserve);
+  };
 };
 extern struct BTA_DmBleScan BTA_DmBleScan;
 

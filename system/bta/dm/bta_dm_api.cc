@@ -605,14 +605,15 @@ void BTA_DmBleObserve(bool start, uint8_t duration,
  * Parameters       start: start or stop the scan procedure,
  *                  duration_sec: Duration of the scan. Continuous scan if 0 is
  *                                passed,
+ *                  isCsisObserve: whether this is an active CSIS observation,
  *
  * Returns          void
  *
  ******************************************************************************/
-void BTA_DmBleScan(bool start, uint8_t duration_sec) {
+void BTA_DmBleScan(bool start, uint8_t duration_sec, bool isCsisObserve) {
   APPL_TRACE_API("%s:start = %d ", __func__, start);
-  do_in_main_thread(FROM_HERE,
-                    base::Bind(bta_dm_ble_scan, start, duration_sec));
+  do_in_main_thread(FROM_HERE, base::Bind(bta_dm_ble_scan, start, duration_sec,
+                                          isCsisObserve));
 }
 
 /*******************************************************************************
