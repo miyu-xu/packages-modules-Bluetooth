@@ -84,8 +84,6 @@ pub trait LeAclManagerConnectionCallbacks {
     /// Invoked whenever the resolving list has changed, so addresses may become / are no
     /// longer equivalent to the controller.
     fn on_resolving_list_change(&self);
-    /// Invoked when a device is seen advertising using targeted announcements
-    fn on_scan_result(&self, address: AddressWithType);
 }
 
 /// Address resolution for RPAs

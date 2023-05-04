@@ -21,7 +21,7 @@ use self::{
     le_manager::{
         AddressResolver, ErrorCode, InactiveLeAclManager, LeAclManagerConnectionCallbacks,
     },
-    target_state::determine_target_state,
+    target_state::determine_target_state, le_scanner::{LeScanner, LeScannerFilterControls, LeScanningManagerCallbacks},
 };
 
 mod acceptlist_manager;
@@ -30,6 +30,7 @@ mod ffi;
 pub mod le_manager;
 mod mocks;
 pub mod target_state;
+mod le_scanner;
 
 pub use ffi::{
     register_callbacks, AddressResolverImpl, AddressResolverShim, LeAclManagerImpl,
@@ -100,6 +101,8 @@ struct ConnectionManagerState {
     /// Tracks the state of the LE connect list, and updates it to drive to a
     /// specified target state
     acceptlist_manager: LeAcceptlistManager,
+    /// Lets us control scan filters and receive results
+    scanner: Box<dyn LeScannerFilterControls>,
 }
 
 struct ConnectionManagerCallbackHandler(Weak<ConnectionManager>);
@@ -124,9 +127,11 @@ impl LeAclManagerConnectionCallbacks for ConnectionManagerCallbackHandler {
             move |manager| async move { manager.on_resolving_list_change().await },
         );
     }
+}
 
-    fn on_scan_result(&self, address: AddressWithType) {
-        self.send_to_manager(move |manager| async move { manager.on_scan_result(address).await });
+impl LeScanningManagerCallbacks for ConnectionManagerCallbackHandler {
+    fn on_targeted_announcement_scan_result(&self, address: AddressWithType) {
+        self.send_to_manager(move |manager| async move { manager.on_targeted_announcement_scan_result(address).await });
     }
 }
 
@@ -148,17 +153,21 @@ impl ConnectionManager {
     pub fn new(
         le_manager: impl InactiveLeAclManager,
         address_resolver: impl AddressResolver + Clone + 'static,
+        scanner: impl LeScanner + 'static,
     ) -> Rc<Self> {
-        Rc::new_cyclic(|weak| Self {
-            state: Mutex::new(ConnectionManagerState {
-                attempts: ConnectionAttempts::new(),
-                current_connections: HashSet::new(),
-                acceptlist_manager: LeAcceptlistManager::new(
-                    le_manager.register_callbacks(ConnectionManagerCallbackHandler(weak.clone())),
-                ),
-            }),
-            address_resolver: Box::new(address_resolver),
-        })
+        Rc::new_cyclic(|weak| {
+            scanner.register_callbacks(ConnectionManagerCallbackHandler(weak.clone())).expect("Failed to register callbacks from connection manager to LE scanner");
+            Self {
+                state: Mutex::new(ConnectionManagerState {
+                    attempts: ConnectionAttempts::new(),
+                    current_connections: HashSet::new(),
+                    acceptlist_manager: LeAcceptlistManager::new(
+                        le_manager.register_callbacks(ConnectionManagerCallbackHandler(weak.clone())),
+                    ),
+                    scanner,
+                }),
+                address_resolver: Box::new(address_resolver),
+            }})
     }
 
     /// Start a direct connection to a peer device from a specified client. If the peer
@@ -334,10 +343,10 @@ impl ConnectionManager {
         self.reconcile_state(state).await;
     }
 
-    async fn on_scan_result(self: &Rc<Self>, address: AddressWithType) {
+    async fn on_targeted_announcement_scan_result(self: &Rc<Self>, address: AddressWithType) {
         let mut state = self.state.lock().await;
         let canonical_address = self.address_resolver.resolve_address(address).await;
-        state.attempts.process_scan_result(canonical_address, self.address_resolver.deref()).await;
+        state.attempts.process_targeted_announcement_scan_result(canonical_address, self.address_resolver.deref()).await;
         // the scan result will go stale after a timeout, so schedule a state update afterwards to check
         // if it has indeed become stale
         let this = self.clone();
@@ -349,6 +358,7 @@ impl ConnectionManager {
 
     /// Make the state of the LeAcceptlistManager consistent with the attempts tracked in ConnectionAttempts
     async fn reconcile_state(&self, state: &mut ConnectionManagerState) {
+        // determine the target state
         let target = determine_target_state(
             &state.attempts.active_attempts(),
             self.address_resolver.as_ref(),
@@ -356,7 +366,9 @@ impl ConnectionManager {
         )
         .await;
 
+        // drive the ACL + scanning managers to this target state
         state.acceptlist_manager.drive_to_state(target.target_acceptlist_state);
+        state.scanner.set_targeted_announcement_filter_enabled(target.scan_for_targeted_announcements)
     }
 }
 

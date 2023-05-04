@@ -212,7 +212,7 @@ impl ConnectionAttempts {
     }
 
     /// Handle a scan result matching a targeted announcement
-    pub async fn process_scan_result(
+    pub async fn process_targeted_announcement_scan_result(
         &mut self,
         canonical_address: CanonicalAddress,
         address_resolver: &dyn AddressResolver,
