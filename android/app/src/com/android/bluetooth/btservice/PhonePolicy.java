@@ -362,7 +362,7 @@ class PhonePolicy {
         if ((csipSetCooridnatorService != null)
                 && (Utils.arrayContains(uuids, BluetoothUuid.COORDINATED_SET))
                 && (csipSetCooridnatorService.getConnectionPolicy(device)
-                        == BluetoothProfile.CONNECTION_POLICY_UNKNOWN)) {
+                        == BluetoothProfile.CONNECTION_POLICY_UNKNOWN) && isLeAudioProfileAllowed) {
             if (mAutoConnectProfilesSupported) {
                 csipSetCooridnatorService.setConnectionPolicy(device,
                         BluetoothProfile.CONNECTION_POLICY_ALLOWED);
@@ -371,6 +371,11 @@ class PhonePolicy {
                         BluetoothProfile.CSIP_SET_COORDINATOR,
                         BluetoothProfile.CONNECTION_POLICY_ALLOWED);
             }
+        } else if (!sLeAudioEnabledByDefault) {
+            debugLog("clear CSIP priority because dual mode is disabled by default");
+            mAdapterService.getDatabase().setProfileConnectionPolicy(device,
+                    BluetoothProfile.CSIP_SET_COORDINATOR,
+                    BluetoothProfile.CONNECTION_POLICY_FORBIDDEN);
         }
 
         // If we do not have a stored priority for HFP/A2DP (all roles) then default to on.
