@@ -15,9 +15,10 @@ use std::{
 use crate::{core::address::AddressWithType, gatt::ids::ServerId};
 
 use self::{
-    acceptlist_manager::{determine_target_state, LeAcceptlistManager},
+    acceptlist_manager::LeAcceptlistManager,
     attempt_manager::{ConnectionAttempts, ConnectionMode},
     le_manager::{ErrorCode, InactiveLeAclManager, LeAclManagerConnectionCallbacks},
+    target_state::determine_target_state,
 };
 
 mod acceptlist_manager;
@@ -25,6 +26,7 @@ mod attempt_manager;
 mod ffi;
 pub mod le_manager;
 mod mocks;
+pub mod target_state;
 
 pub use ffi::{register_callbacks, LeAclManagerImpl, LeAclManagerShim};
 use log::info;
