@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4776f378_a59e40e8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-05-04T17:51:17Z",
+      "side": 1,
+      "message": "We need CSIP enabled to make sure we can pair with the additional set members. We will update the other CL to set CSIP to forbidden after the CSIP characteristics have been read.",
+      "revId": "86825c5d76ecebca2a60890c32f6b6338092eab3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
