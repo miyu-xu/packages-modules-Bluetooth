@@ -22,6 +22,30 @@
       },
       "revId": "a0ddd3688d1dc27745a67686c9ce05ed75e1df77",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "34ba2b89_78dd1486",
+        "filename": "android/app/src/com/android/bluetooth/btservice/PhonePolicy.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-05-04T17:02:29Z",
+      "side": 1,
+      "message": "Nope, it will never be touched by native. All of our mutual exclusion logic has always been in Java. We don\u0027t use init flags in java (only native), so that\u0027s why I opted against an init flag.",
+      "parentUuid": "fcb988f2_4766e45c",
+      "range": {
+        "startLine": 102,
+        "startChar": 70,
+        "endLine": 102,
+        "endChar": 97
+      },
+      "revId": "a0ddd3688d1dc27745a67686c9ce05ed75e1df77",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
