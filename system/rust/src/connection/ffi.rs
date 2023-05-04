@@ -26,7 +26,7 @@ use super::{
         AddressResolver, CanonicalAddress, ErrorCode, InactiveLeAclManager, LeAclManager,
         LeAclManagerConnectionCallbacks,
     },
-    ConnectionManagerClient, LeConnection,
+    ConnectionManagerClient, LeConnection, le_scanner::LeScanningManagerCallbacks,
 };
 
 unsafe impl Send for LeAclManagerShim {}
@@ -72,7 +72,7 @@ mod inner {
         #[cxx_name = "RegisterRustCallbacks"]
         unsafe fn unchecked_register_rust_callbacks(
             self: Pin<&mut Self>,
-            callbacks: Box<LeAclManagerCallbackShim>,
+            callbacks: Box<LeConnectionManagerCallbackShim>,
         );
     }
 
@@ -107,7 +107,7 @@ mod inner {
 
     #[namespace = "bluetooth::connection"]
     extern "Rust" {
-        type LeAclManagerCallbackShim;
+        type LeConnectionManagerCallbackShim;
         #[cxx_name = "OnLeConnectSuccess"]
         fn on_le_connect_success(&self, address: AddressWithType);
         #[cxx_name = "OnLeConnectFail"]
@@ -139,9 +139,9 @@ mod inner {
 impl LeAclManagerShim {
     fn register_rust_callbacks(
         self: Pin<&mut LeAclManagerShim>,
-        callbacks: Box<LeAclManagerCallbackShim>,
+        callbacks: Box<LeConnectionManagerCallbackShim>,
     ) where
-        Box<LeAclManagerCallbackShim>: Send + Sync,
+        Box<LeConnectionManagerCallbackShim>: Send + Sync,
     {
         // SAFETY: The requirements of this method are enforced
         // by our own trait bounds.
@@ -154,38 +154,38 @@ impl LeAclManagerShim {
 /// Implementation of HciConnectProxy wrapping the corresponding C++ methods
 pub struct LeAclManagerImpl(pub UniquePtr<LeAclManagerShim>);
 
-pub struct LeAclManagerCallbackShim(
-    UnboundedSender<Box<dyn FnOnce(&dyn LeAclManagerConnectionCallbacks) + Send>>,
+pub struct LeConnectionManagerCallbackShim(
+    UnboundedSender<Box<dyn FnOnce((&dyn LeAclManagerConnectionCallbacks, &dyn LeScanningManagerCallbacks)) + Send>>,
 );
 
-impl LeAclManagerCallbackShim {
+impl LeConnectionManagerCallbackShim {
     fn on_le_connect_success(&self, address: AddressWithType) {
         let _ = self.0.send(Box::new(move |callback| {
-            callback.on_le_connect(address, Ok(LeConnection { remote_address: address }))
+            callback.0.on_le_connect(address, Ok(LeConnection { remote_address: address }))
         }));
     }
 
     fn on_le_connect_fail(&self, address: AddressWithType, status: u8) {
         let _ = self.0.send(Box::new(move |callback| {
-            callback.on_le_connect(address, Err(ErrorCode(status)))
+            callback.0.on_le_connect(address, Err(ErrorCode(status)))
         }));
     }
 
     fn on_disconnect(&self, address: AddressWithType) {
         let _ = self.0.send(Box::new(move |callback| {
-            callback.on_disconnect(address);
+            callback.0.on_disconnect(address);
         }));
     }
 
     fn on_resolving_list_change(&self) {
         let _ = self.0.send(Box::new(move |callback| {
-            callback.on_resolving_list_change();
+            callback.0.on_resolving_list_change();
         }));
     }
 
-    fn on_scan_result(&self, address: AddressWithType) {
+    fn on_targeted_announcement_scan_result(&self, address: AddressWithType) {
         let _ = self.0.send(Box::new(move |callback| {
-            callback.on_scan_result(address);
+            callback.1.on_targeted_announcement_scan_result(address);
         }));
     }
 }
@@ -201,7 +201,7 @@ impl InactiveLeAclManager for LeAclManagerImpl {
 
         // only register callbacks if the feature is enabled
         if init_flags::use_unified_connection_manager_is_enabled() {
-            self.0.pin_mut().register_rust_callbacks(Box::new(LeAclManagerCallbackShim(tx)));
+            self.0.pin_mut().register_rust_callbacks(Box::new(LeConnectionManagerCallbackShim(tx)));
         }
 
         spawn_local(async move {
