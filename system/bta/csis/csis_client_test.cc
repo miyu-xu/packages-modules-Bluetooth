@@ -101,7 +101,7 @@ class MockCsisCallbacks : public CsisClientCallbacks {
               (const RawAddress& address, ConnectionState state), (override));
   MOCK_METHOD((void), OnDeviceAvailable,
               (const RawAddress& address, int group_id, int group_size,
-               int rank, const bluetooth::Uuid& uuid),
+               int rank, const bluetooth::Uuid& uuid, bool is_valid),
               (override));
   MOCK_METHOD((void), OnSetMemberAvailable,
               (const RawAddress& address, int group_id), (override));
@@ -117,7 +117,8 @@ class MockCsisCallbacks : public CsisClientCallbacks {
 class CsisClientTest : public ::testing::Test {
  private:
   void set_sample_database(uint16_t conn_id, bool csis, bool csis_broken,
-                           uint8_t rank, uint8_t sirk_msb = 1) {
+                           uint8_t rank, uint8_t sirk_msb = 1,
+                           uint8_t size = 1) {
     gatt::DatabaseBuilder builder;
     builder.AddService(0x0001, 0x0003, Uuid::From16Bit(0x1800), true);
     builder.AddCharacteristic(0x0002, 0x0003, Uuid::From16Bit(0x2a00),
@@ -162,9 +163,9 @@ class CsisClientTest : public ::testing::Test {
     services_map[conn_id] = builder.Build().Services();
 
     ON_CALL(gatt_queue, ReadCharacteristic(conn_id, _, _, _))
-        .WillByDefault(
-            Invoke([rank, sirk_msb](uint16_t conn_id, uint16_t handle,
-                                    GATT_READ_OP_CB cb, void* cb_data) -> void {
+        .WillByDefault(Invoke(
+            [rank, sirk_msb, size](uint16_t conn_id, uint16_t handle,
+                                   GATT_READ_OP_CB cb, void* cb_data) -> void {
               std::vector<uint8_t> value;
 
               switch (handle) {
@@ -178,6 +179,7 @@ class CsisClientTest : public ::testing::Test {
                   break;
                 case 0x0024:
                   value.resize(1);
+                  value.assign(1, size);
                   break;
                 case 0x0027:
                   value.resize(1);
@@ -448,7 +450,7 @@ class CsisClientTest : public ::testing::Test {
     EXPECT_CALL(*callbacks,
                 OnConnectionState(address, ConnectionState::CONNECTED))
         .Times(1);
-    EXPECT_CALL(*callbacks, OnDeviceAvailable(address, _, _, _, _)).Times(1);
+    EXPECT_CALL(*callbacks, OnDeviceAvailable(address, _, _, _, _, _)).Times(1);
     EXPECT_CALL(gatt_interface,
                 Open(gatt_if, address, BTM_BLE_BKG_CONNECT_ALLOW_LIST, _))
         .WillOnce(Invoke([this, conn_id](tGATT_IF client_if,
@@ -551,8 +553,8 @@ class CsisClientTest : public ::testing::Test {
   }
 
   void SetSampleDatabaseCsis(uint16_t conn_id, uint8_t rank,
-                             uint8_t sirk_msb = 1) {
-    set_sample_database(conn_id, true, false, rank, sirk_msb);
+                             uint8_t sirk_msb = 1, uint8_t size = 1) {
+    set_sample_database(conn_id, true, false, rank, sirk_msb, size);
   }
   void SetSampleDatabaseNoCsis(uint16_t conn_id, uint8_t rank) {
     set_sample_database(conn_id, false, false, rank);
@@ -657,9 +659,71 @@ TEST_F(CsisClientTest, test_discovery_csis_found) {
   TestConnect(test_address);
   EXPECT_CALL(*callbacks,
               OnConnectionState(test_address, ConnectionState::CONNECTED));
-  EXPECT_CALL(*callbacks, OnDeviceAvailable(test_address, _, _, _, _));
+  EXPECT_CALL(*callbacks, OnDeviceAvailable(test_address, _, _, _, _, _));
   InjectConnectedEvent(test_address, 1);
   GetSearchCompleteEvent(1);
+  Mock::VerifyAndClearExpectations(callbacks.get());
+  TestAppUnregister();
+}
+
+TEST_F(CsisClientTest, test_intrusion_connect) {
+  SetSampleDatabaseCsis(1, 1, 1, 2);
+  SetSampleDatabaseCsis(2, 2, 2, 2);
+  bool enable_scanner = false;
+  tBTA_DM_SEARCH_CBACK* p_results_cb = nullptr;
+
+  const uint8_t eir[] = {
+      0x07,  // size
+      BTM_BLE_AD_TYPE_RSI,
+      0x62,
+      0x2F,
+      0x6E,
+      0x04,
+      0x05,
+      0x06  // RSI
+  };
+
+  tBTA_DM_SEARCH_EVT event = BTA_DM_INQ_RES_EVT;
+  tBTA_DM_INQ_RES result = {
+      .bd_addr = GetTestAddress(2),
+      .p_eir = eir,
+      .eir_len = 8,
+  };
+  tBTA_DM_SEARCH data = {
+      .inq_res = result,
+  };
+
+  EXPECT_CALL(*callbacks,
+              OnConnectionState(GetTestAddress(1), ConnectionState::CONNECTED));
+  EXPECT_CALL(*callbacks,
+              OnConnectionState(GetTestAddress(2), ConnectionState::CONNECTED))
+      .Times(0);
+  EXPECT_CALL(*callbacks,
+              OnDeviceAvailable(GetTestAddress(1), _, _, _, _, true));
+
+  TestAppRegister();
+  TestConnect(GetTestAddress(1));
+
+  Mock::VerifyAndClearExpectations(&dm_interface);
+  EXPECT_CALL(dm_interface, BTA_DmBleCsisObserve(true, _))
+      .WillOnce(DoAll(SaveArg<0>(&enable_scanner), SaveArg<1>(&p_results_cb)));
+
+  InjectConnectedEvent(GetTestAddress(1), 1);
+  GetSearchCompleteEvent(1);
+
+  ASSERT_TRUE(p_results_cb);
+  ASSERT_TRUE(enable_scanner);
+
+  Mock::VerifyAndClearExpectations(&dm_interface);
+  EXPECT_CALL(*callbacks, OnSetMemberAvailable(GetTestAddress(2), _));
+  p_results_cb(event, &data);
+
+  EXPECT_CALL(*callbacks,
+              OnDeviceAvailable(GetTestAddress(2), _, _, _, _, false));
+  TestConnect(GetTestAddress(2));
+  InjectConnectedEvent(GetTestAddress(2), 2);
+  GetSearchCompleteEvent(2);
+
   Mock::VerifyAndClearExpectations(callbacks.get());
   TestAppUnregister();
 }
@@ -743,7 +807,7 @@ TEST_F(CsisClientTest, test_get_group_id) {
   TestConnect(test_address);
   EXPECT_CALL(*callbacks,
               OnConnectionState(test_address, ConnectionState::CONNECTED));
-  EXPECT_CALL(*callbacks, OnDeviceAvailable(test_address, _, _, _, _));
+  EXPECT_CALL(*callbacks, OnDeviceAvailable(test_address, _, _, _, _, _));
   InjectConnectedEvent(test_address, 1);
   GetSearchCompleteEvent(1);
   int group_id = CsisClient::Get()->GetGroupId(test_address);
@@ -1032,7 +1096,8 @@ TEST_F(CsisMultiClientTest, test_discover_multiple_instances) {
   EXPECT_CALL(*callbacks,
               OnConnectionState(test_address, ConnectionState::CONNECTED))
       .Times(1);
-  EXPECT_CALL(*callbacks, OnDeviceAvailable(test_address, _, _, _, _)).Times(2);
+  EXPECT_CALL(*callbacks, OnDeviceAvailable(test_address, _, _, _, _, _))
+      .Times(2);
   InjectConnectedEvent(test_address, 1);
   GetSearchCompleteEvent(1);
   Mock::VerifyAndClearExpectations(callbacks.get());
