@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fcb988f2_4766e45c",
+        "filename": "android/app/src/com/android/bluetooth/btservice/PhonePolicy.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-05-04T05:42:32Z",
+      "side": 1,
+      "message": "Would this flag ever be used by native layer? If so, how would this interop with init flags?",
+      "range": {
+        "startLine": 102,
+        "startChar": 70,
+        "endLine": 102,
+        "endChar": 97
+      },
+      "revId": "a0ddd3688d1dc27745a67686c9ce05ed75e1df77",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
