@@ -254,7 +254,9 @@ impl ConnectionManager {
     ) {
         let mut state = self.state.lock().await;
         // record this connection while it exists
-        state.current_connections.insert(address);
+        if result.is_ok() {
+            state.current_connections.insert(address);
+        }
         // all completed connections remove the address from the direct list
         state.acceptlist_manager.on_connect_complete(address);
         // invoke any pending callbacks, update set of attempts
@@ -416,6 +418,42 @@ mod test {
             handle_events().await;
 
             // assert: the background connection has resumed
+            assert_eq!(mock_le_manager.current_connection_mode(), Some(ConnectionMode::Background));
+        });
+    }
+
+    #[test]
+    fn test_failed_direct_connection_with_retry() {
+        block_on_locally(async {
+            // arrange
+            let mock_le_manager = MockLeAclManager::new();
+            let connection_manager = ConnectionManager::new(mock_le_manager.clone());
+
+            // act: initiate a direct connection that fails
+            connection_manager.start_direct_connection(CLIENT_1, ADDRESS_1).await.unwrap();
+            mock_le_manager.on_le_connect(ADDRESS_1, ErrorCode(1));
+            handle_events().await;
+            // act: then retry the direct connection
+            connection_manager.start_direct_connection(CLIENT_2, ADDRESS_1).await.unwrap();
+
+            // assert: the direct connection has resumed
+            assert_eq!(mock_le_manager.current_connection_mode(), Some(ConnectionMode::Direct));
+        });
+    }
+
+    #[test]
+    fn test_background_connection_after_failing() {
+        block_on_locally(async {
+            // arrange
+            let mock_le_manager = MockLeAclManager::new();
+            let connection_manager = ConnectionManager::new(mock_le_manager.clone());
+
+            // act: initiate a background connection that fails
+            connection_manager.add_background_connection(CLIENT_1, ADDRESS_1).await.unwrap();
+            mock_le_manager.on_le_connect(ADDRESS_1, ErrorCode(1));
+            handle_events().await;
+
+            // assert: the background connection has not stopped
             assert_eq!(mock_le_manager.current_connection_mode(), Some(ConnectionMode::Background));
         });
     }
