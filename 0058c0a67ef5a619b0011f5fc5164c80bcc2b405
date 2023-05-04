@@ -73,6 +73,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7e395e5a_df20710f",
+        "filename": "android/app/src/com/android/bluetooth/hfpclient/connserv/HfpClientConnection.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1466695
+      },
+      "writtenOn": "2023-05-04T22:05:58Z",
+      "side": 1,
+      "message": "Sorry, I meant we didn\u0027t want it to be able to be enabled on the fly, we want it hardcoded.",
+      "parentUuid": "e4c17aa7_372dee15",
+      "range": {
+        "startLine": 32,
+        "startChar": 39,
+        "endLine": 32,
+        "endChar": 69
+      },
+      "revId": "0058c0a67ef5a619b0011f5fc5164c80bcc2b405",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "77c61409_213a050d",
         "filename": "android/app/tests/unit/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachineTest.java",
         "patchSetId": 1
