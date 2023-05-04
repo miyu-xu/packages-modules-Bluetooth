@@ -140,13 +140,14 @@ class CsipSetCoordinatorServiceInterfaceImpl : public CsisClientInterface,
   }
 
   void OnDeviceAvailable(const RawAddress& addr, int group_id, int group_size,
-                         int rank, const bluetooth::Uuid& uuid) override {
+                         int rank, const bluetooth::Uuid& uuid,
+                         bool is_valid) override {
     DVLOG(2) << __func__ << " addr: " << ADDRESS_TO_LOGGABLE_STR(addr)
              << " group_id: " << group_id;
 
     do_in_jni_thread(FROM_HERE, Bind(&CsisClientCallbacks::OnDeviceAvailable,
                                      Unretained(callbacks_), addr, group_id,
-                                     group_size, rank, uuid));
+                                     group_size, rank, uuid, is_valid));
   }
 
   void OnSetMemberAvailable(const RawAddress& addr, int group_id) override {

@@ -284,13 +284,14 @@ public class CsipSetCoordinatorServiceTest {
         long uuidLsb = 0x01;
         long uuidMsb = 0x01;
         UUID uuid = new UUID(uuidMsb, uuidLsb);
+        boolean isValid = true;
 
         doCallRealMethod()
                 .when(mCsipSetCoordinatorNativeInterface)
                 .onDeviceAvailable(any(byte[].class), anyInt(), anyInt(), anyInt(), anyLong(),
-                        anyLong());
+                        anyLong(), anyBoolean());
         mCsipSetCoordinatorNativeInterface.onDeviceAvailable(
-                getByteAddress(mTestDevice), group_id, group_size, 1, uuidLsb, uuidMsb);
+                getByteAddress(mTestDevice), group_id, group_size, 1, uuidLsb, uuidMsb, isValid);
         Assert.assertFalse(mService.isGroupLocked(group_id));
 
         UUID lock_uuid = mService.lockGroup(group_id, mCsipSetCoordinatorLockCallback);
@@ -339,13 +340,14 @@ public class CsipSetCoordinatorServiceTest {
         long uuidLsb = 0x01;
         long uuidMsb = 0x01;
         UUID uuid = new UUID(uuidMsb, uuidLsb);
+        boolean isValid = true;
 
         doCallRealMethod()
                 .when(mCsipSetCoordinatorNativeInterface)
                 .onDeviceAvailable(any(byte[].class), anyInt(), anyInt(), anyInt(), anyLong(),
-                        anyLong());
+                        anyLong(), anyBoolean());
         mCsipSetCoordinatorNativeInterface.onDeviceAvailable(
-                getByteAddress(mTestDevice), group_id, group_size, 1, uuidLsb, uuidMsb);
+                getByteAddress(mTestDevice), group_id, group_size, 1, uuidLsb, uuidMsb, isValid);
         Assert.assertFalse(mService.isGroupLocked(group_id));
 
         UUID lock_uuid = mService.lockGroup(group_id, mCsipSetCoordinatorLockCallback);
@@ -475,13 +477,14 @@ public class CsipSetCoordinatorServiceTest {
         long uuidLsb = 0x01;
         long uuidMsb = 0x01;
         UUID uuid = new UUID(uuidMsb, uuidLsb);
+        boolean isValid = true;
 
         doCallRealMethod()
                 .when(mCsipSetCoordinatorNativeInterface)
                 .onDeviceAvailable(any(byte[].class), anyInt(), anyInt(), anyInt(), anyLong(),
-                        anyLong());
+                        anyLong(), anyBoolean());
         mCsipSetCoordinatorNativeInterface.onDeviceAvailable(
-                getByteAddress(mTestDevice), group_id, group_size, 0x02, uuidLsb, uuidMsb);
+                getByteAddress(mTestDevice), group_id, group_size, 0x02, uuidLsb, uuidMsb, isValid);
 
         Intent intent = TestUtils.waitForIntent(TIMEOUT_MS, mIntentQueue.get(mTestDevice));
         Assert.assertNotNull(intent);
@@ -498,17 +501,40 @@ public class CsipSetCoordinatorServiceTest {
 
         // Another device with the highest rank
         mCsipSetCoordinatorNativeInterface.onDeviceAvailable(
-                getByteAddress(mTestDevice2), group_id, group_size, 0x01, uuidLsb, uuidMsb);
+                getByteAddress(mTestDevice2), group_id, group_size, 0x01, uuidLsb, uuidMsb, isValid);
 
         // Yet another device with the lowest rank
         mCsipSetCoordinatorNativeInterface.onDeviceAvailable(
-                getByteAddress(mTestDevice3), group_id, group_size, 0x03, uuidLsb, uuidMsb);
+                getByteAddress(mTestDevice3), group_id, group_size, 0x03, uuidLsb, uuidMsb, isValid);
 
         // Verify if the list of devices is sorted, with the lowest rank value devices first
         List<BluetoothDevice> devices = mService.getGroupDevicesOrdered(group_id);
         Assert.assertEquals(0, devices.indexOf(mTestDevice2));
         Assert.assertEquals(1, devices.indexOf(mTestDevice));
         Assert.assertEquals(2, devices.indexOf(mTestDevice3));
+    }
+
+    /**
+     * Test that native callback generates proper intent.
+     */
+    @Test
+    public void testStackEventInvalidDeviceAvailable() {
+        int group_id = 0x01;
+        int group_size = 0x03;
+        long uuidLsb = 0x01;
+        long uuidMsb = 0x01;
+        UUID uuid = new UUID(uuidMsb, uuidLsb);
+        boolean isValid = false;
+
+        doCallRealMethod()
+                .when(mCsipSetCoordinatorNativeInterface)
+                .onDeviceAvailable(any(byte[].class), anyInt(), anyInt(), anyInt(), anyLong(),
+                        anyLong(), anyBoolean());
+        mCsipSetCoordinatorNativeInterface.onDeviceAvailable(
+                getByteAddress(mTestDevice), group_id, group_size, 0x02, uuidLsb, uuidMsb, isValid);
+
+        Intent intent = TestUtils.waitForNoIntent(TIMEOUT_MS, mIntentQueue.get(mTestDevice));
+        Assert.assertNull(intent);
     }
 
     /**
