@@ -22,6 +22,30 @@
       },
       "revId": "700da138c5fa8ffb6fdbf2443be53c63f1facf22",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bdc9c0d6_1ad29171",
+        "filename": "android/pandora/test/classic_ssp_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 264,
+      "author": {
+        "id": 1937985
+      },
+      "writtenOn": "2023-05-04T08:11:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e4b9291d_ea4f4b04",
+      "range": {
+        "startLine": 264,
+        "startChar": 10,
+        "endLine": 264,
+        "endChar": 17
+      },
+      "revId": "700da138c5fa8ffb6fdbf2443be53c63f1facf22",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
