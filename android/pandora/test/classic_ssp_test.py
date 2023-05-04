@@ -13,176 +13,300 @@
 # limitations under the License.
 
 import asyncio
+import avatar
 import itertools
 import logging
 
-from avatar import BumblePandoraDevice, PandoraDevice, PandoraDevices, asynchronous, parameterized
-from bumble.core import BT_BR_EDR_TRANSPORT
-from bumble.hci import HCI_CENTRAL_ROLE, Address as BumbleAddress
+from avatar import BumblePandoraDevice, PandoraDevice, PandoraDevices
+from bumble.hci import HCI_CENTRAL_ROLE, HCI_PERIPHERAL_ROLE
 from bumble.pairing import PairingDelegate
-from concurrent import futures
-from contextlib import suppress
 from mobly import base_test, signals, test_runner
-from pandora.host_pb2 import RANDOM, DataTypes, OwnAddressType
-from pandora.security_pb2 import LEVEL2, PairingEventAnswer
-from typing import NoReturn, Optional
+from pandora.host_pb2 import Connection
+from pandora.security_pb2 import LEVEL2, PairingEventAnswer, SecureResponse, SecurityLevel, WaitSecurityResponse
+from typing import Callable, Coroutine, Optional, Tuple
 
 
 class ClassicSspTest(base_test.BaseTestClass):  # type: ignore[misc]
+    '''
+    This class aim to test SSP (Secure Simple Pairing) on Classic
+    Bluetooth devices.
+    '''
+
     devices: Optional[PandoraDevices] = None
 
     # pandora devices.
     dut: PandoraDevice
     ref: PandoraDevice
 
-    def setup_class(self) -> None:
+    @avatar.asynchronous
+    async def setup_class(self) -> None:
         self.devices = PandoraDevices(self)
         self.dut, self.ref, *_ = self.devices
 
-        # Enable BR/EDR mode for Bumble devices.
+        # Enable BR/EDR mode and SSP for Bumble devices.
         for device in self.devices:
             if isinstance(device, BumblePandoraDevice):
                 device.config.setdefault('classic_enabled', True)
+                device.config.setdefault('classic_ssp_enabled', True)
+
+        await asyncio.gather(self.dut.reset(), self.ref.reset())
 
     def teardown_class(self) -> None:
         if self.devices:
             self.devices.stop_all()
 
-    @asynchronous
-    async def setup_test(self) -> None:
+    @avatar.asynchronous
+    async def setup_test(self) -> None:  # pytype: disable=wrong-arg-types
         await asyncio.gather(self.dut.reset(), self.ref.reset())
 
-    async def connect_le(self, dut_address_type: OwnAddressType, ref_address_type: OwnAddressType) -> None:
-        advertisement = self.dut.aio.host.Advertise(
-            legacy=True,
-            connectable=True,
-            own_address_type=dut_address_type,
-            data=DataTypes(manufacturer_specific_data=b'pause cafe'),
-        )
+    async def _test_success(
+        self,
+        ref_io_capability: Optional[PairingDelegate.IoCapability],
+        connect_and_pair: Callable[[], Coroutine[None, None, Tuple[SecureResponse, WaitSecurityResponse]]],
+    ) -> None:
+        '''
+        Perform SSP and assert it is successful.
+        Prerequisites:
+          - DUT and REF not bonded.
+        Pairing methods:
+          - Numeric Comparison with automatic confirmation (Just Works).
+          - Numeric Comparison.
+          - Passkey Entry.
+          - OOB (TODO: out of the scope of Avatar right now).
+        '''
+        # Try to override reference device default IO capability.
+        if ref_io_capability is not None:
+            if isinstance(self.ref, BumblePandoraDevice):
+                # Override Bumble reference device default IO capability.
+                self.ref.server_config.io_capability = ref_io_capability
+            else:
+                raise signals.TestSkip('Unable to override IO capability on non Bumble device.')
 
-        scan = self.ref.aio.host.Scan(own_address_type=ref_address_type)
-        dut = await anext(
-            (x async for x in scan if b'pause cafe' in x.data.manufacturer_specific_data)
-        )  # pytype: disable=name-error
-        scan.cancel()
-        assert dut
-
-        (ref_dut_res, dut_ref_res) = await asyncio.gather(
-            self.ref.aio.host.ConnectLE(own_address_type=ref_address_type, **dut.address_asdict()),
-            anext(aiter(advertisement)),  # pytype: disable=name-error
-        )
-
-        advertisement.cancel()
-        ref_dut, dut_ref = ref_dut_res.connection, dut_ref_res.connection
-        assert ref_dut and dut_ref
-
-    async def handle_pairing_events(self) -> NoReturn:
-        ref_pairing_stream = self.ref.aio.security.OnPairing()
+        # Listen for pairing event on bot DUT and REF.
         dut_pairing_stream = self.dut.aio.security.OnPairing()
+        ref_pairing_stream = self.ref.aio.security.OnPairing()
+
+        # Start connection/pairing.
+        connect_and_pair_task = asyncio.create_task(connect_and_pair())
 
         try:
-            while True:
-                ref_pairing_event, dut_pairing_event = await asyncio.gather(
-                    anext(ref_pairing_stream),
-                    anext(dut_pairing_stream),
+            dut_pairing_event = await asyncio.wait_for(anext(dut_pairing_stream), timeout=15.0)
+            self.dut.log.info(f'DUT pairing event: {dut_pairing_event.method_variant()}')
+
+            if dut_pairing_event.method_variant() == 'just_works':
+                dut_pairing_stream.send_nowait(PairingEventAnswer(event=dut_pairing_event, confirm=True))
+                ref_pairing_event = await asyncio.wait_for(anext(ref_pairing_stream), timeout=2.0)
+                self.dut.log.info(f'REF pairing event: {ref_pairing_event.method_variant()}')
+                assert ref_pairing_event.method_variant() == 'just_works'
+                ref_pairing_stream.send_nowait(PairingEventAnswer(event=ref_pairing_event, confirm=True))
+
+            elif dut_pairing_event.method_variant() == 'numeric_comparison':
+                ref_pairing_event = await asyncio.wait_for(anext(ref_pairing_stream), timeout=2.0)
+                self.dut.log.info(f'REF pairing event: {ref_pairing_event.method_variant()}')
+                assert ref_pairing_event.method_variant() == 'numeric_comparison'
+                confirm = (
+                    ref_pairing_event.numeric_comparison == dut_pairing_event.numeric_comparison
                 )
 
-                if dut_pairing_event.method_variant() in (
-                    'numeric_comparison',
-                    'just_works',
-                ):
-                    assert ref_pairing_event.method_variant() in ('numeric_comparison', 'just_works')
-                    dut_pairing_stream.send_nowait(
-                        PairingEventAnswer(
-                            event=dut_pairing_event,
-                            confirm=True,
-                        )
-                    )
-                    ref_pairing_stream.send_nowait(
-                        PairingEventAnswer(
-                            event=ref_pairing_event,
-                            confirm=True,
-                        )
-                    )
-                elif dut_pairing_event.method_variant() == 'passkey_entry_notification':
-                    assert ref_pairing_event.method_variant() == 'passkey_entry_request'
-                    ref_pairing_stream.send_nowait(
-                        PairingEventAnswer(
-                            event=ref_pairing_event,
-                            passkey=dut_pairing_event.passkey_entry_notification,
-                        )
-                    )
-                elif dut_pairing_event.method_variant() == 'passkey_entry_request':
-                    assert ref_pairing_event.method_variant() == 'passkey_entry_notification'
-                    dut_pairing_stream.send_nowait(
-                        PairingEventAnswer(
-                            event=dut_pairing_event,
-                            passkey=ref_pairing_event.passkey_entry_notification,
-                        )
-                    )
-                else:
-                    assert False
+                dut_pairing_stream.send_nowait(PairingEventAnswer(event=dut_pairing_event, confirm=confirm))
+                ref_pairing_stream.send_nowait(PairingEventAnswer(event=ref_pairing_event, confirm=confirm))
 
+            elif dut_pairing_event.method_variant() == 'passkey_entry_notification':
+                ref_pairing_event = await asyncio.wait_for(anext(ref_pairing_stream), timeout=2.0)
+                self.dut.log.info(f'REF pairing event: {ref_pairing_event.method_variant()}')
+                assert ref_pairing_event.method_variant() == 'passkey_entry_request'
+                ref_pairing_stream.send_nowait(
+                    PairingEventAnswer(event=ref_pairing_event, passkey=dut_pairing_event.passkey_entry_notification)
+                )
+
+            elif dut_pairing_event.method_variant() == 'passkey_entry_request':
+                ref_pairing_event = await asyncio.wait_for(anext(ref_pairing_stream), timeout=2.0)
+                self.dut.log.info(f'REF pairing event: {ref_pairing_event.method_variant()}')
+                assert ref_pairing_event.method_variant() == 'passkey_entry_notification'
+                dut_pairing_stream.send_nowait(
+                    PairingEventAnswer(event=dut_pairing_event, passkey=ref_pairing_event.passkey_entry_notification)
+                )
+            else:
+                assert False
+        except (asyncio.CancelledError, asyncio.TimeoutError):
+            logging.error('Pairing timed-out.')
+            pass
         finally:
-            ref_pairing_stream.cancel()
-            dut_pairing_stream.cancel()
+            # Assert success.
+            (secure, wait_security) = await connect_and_pair_task
+            logging.info(f'Initiator pairing: {secure.result_variant()}')
+            logging.info(f'Acceptor pairing: {wait_security.result_variant()}')
+            assert secure.result_variant() == 'success'
+            assert wait_security.result_variant() == 'success'
 
-    @parameterized(
+    @avatar.parameterized(
         *itertools.product(
-            (PairingDelegate.NO_OUTPUT_NO_INPUT,),
-            (HCI_CENTRAL_ROLE,),
-            (RANDOM,),
+            (
+                None,
+                PairingDelegate.DISPLAY_OUTPUT_ONLY,
+                PairingDelegate.DISPLAY_OUTPUT_AND_YES_NO_INPUT,
+                PairingDelegate.KEYBOARD_INPUT_ONLY,
+                PairingDelegate.NO_OUTPUT_NO_INPUT,
+                PairingDelegate.DISPLAY_OUTPUT_AND_KEYBOARD_INPUT,
+            ),
+            (
+                HCI_CENTRAL_ROLE,
+                HCI_PERIPHERAL_ROLE,
+            )
         )
     )  # type: ignore[misc]
-    @asynchronous
-    async def test_classic_pairing_incoming(
-        self, ref_io_capability: PairingDelegate.IoCapability, ref_role: int, ref_le_addr_type: OwnAddressType
+    @avatar.asynchronous
+    async def test_success_initiate_connection_initiate_pairing(
+        self,
+        ref_io_capability: Optional[PairingDelegate.IoCapability],
+        ref_role: Optional[int],
     ) -> None:
-        if not isinstance(self.ref, BumblePandoraDevice):
-            raise signals.TestSkip('Test require Bumble as reference device(s)')
+        # Connection/pairing task.
+        async def connect_and_pair() -> Tuple[SecureResponse, WaitSecurityResponse]:
+            dut_ref, ref_dut = await connect(self.dut, self.ref)
+            if ref_role: await role_switch(self.ref, ref_dut, ref_role)
+            return await pair(self.dut, dut_ref, self.ref, ref_dut, LEVEL2)
 
-        # override reference device IO capability
-        self.ref.server_config.io_capability = ref_io_capability
+        await self._test_success(ref_io_capability, connect_and_pair)
 
-        pairing = asyncio.create_task(self.handle_pairing_events())
-
-        await self.connect_le(RANDOM, ref_le_addr_type)
-
-        (dut_ref_res, ref_dut_res) = await asyncio.gather(
-            self.dut.aio.host.WaitConnection(address=self.ref.address),
-            self.ref.aio.host.Connect(address=self.dut.address),
+    @avatar.parameterized(
+        *itertools.product(
+            (
+                None,
+                PairingDelegate.DISPLAY_OUTPUT_ONLY,
+                PairingDelegate.DISPLAY_OUTPUT_AND_YES_NO_INPUT,
+                PairingDelegate.KEYBOARD_INPUT_ONLY,
+                PairingDelegate.NO_OUTPUT_NO_INPUT,
+                PairingDelegate.DISPLAY_OUTPUT_AND_KEYBOARD_INPUT,
+            ),
+            (
+                HCI_CENTRAL_ROLE,
+                HCI_PERIPHERAL_ROLE,
+            )
         )
+    )  # type: ignore[misc]
+    @avatar.asynchronous
+    async def test_success_initiate_connection_accept_pairing(
+        self,
+        ref_io_capability: Optional[PairingDelegate.IoCapability],
+        ref_role: Optional[int],
+    ) -> None:
+        # Connection/pairing task.
+        async def connect_and_pair() -> Tuple[SecureResponse, WaitSecurityResponse]:
+            dut_ref, ref_dut = await connect(self.dut, self.ref)
+            if ref_role: await role_switch(self.ref, ref_dut, ref_role)
+            return await pair(self.ref, ref_dut, self.dut, dut_ref, LEVEL2)
 
-        assert ref_dut_res.result_variant() == 'connection'
-        assert dut_ref_res.result_variant() == 'connection'
-        ref_dut = ref_dut_res.connection
-        dut_ref = dut_ref_res.connection
-        assert ref_dut and dut_ref
+        await self._test_success(ref_io_capability, connect_and_pair)
 
-        ref_dut_raw = self.ref.device.find_connection_by_bd_addr(
-            BumbleAddress(bytes(reversed(self.dut.address)), BumbleAddress.PUBLIC_DEVICE_ADDRESS), BT_BR_EDR_TRANSPORT
+    @avatar.parameterized(
+        *itertools.product(
+            (
+                None,
+                PairingDelegate.DISPLAY_OUTPUT_ONLY,
+                PairingDelegate.DISPLAY_OUTPUT_AND_YES_NO_INPUT,
+                PairingDelegate.KEYBOARD_INPUT_ONLY,
+                PairingDelegate.NO_OUTPUT_NO_INPUT,
+                PairingDelegate.DISPLAY_OUTPUT_AND_KEYBOARD_INPUT,
+            ),
+            (
+                HCI_CENTRAL_ROLE,
+                HCI_PERIPHERAL_ROLE,
+            )
         )
-        assert ref_dut_raw
+    )  # type: ignore[misc]
+    @avatar.asynchronous
+    async def test_success_accept_connection_initiate_pairing(
+        self,
+        ref_io_capability: Optional[PairingDelegate.IoCapability],
+        ref_role: Optional[int],
+    ) -> None:
+        # Connection/pairing task.
+        async def connect_and_pair() -> Tuple[SecureResponse, WaitSecurityResponse]:
+            ref_dut, dut_ref = await connect(self.ref, self.dut)
+            if ref_role: await role_switch(self.ref, ref_dut, ref_role)
+            return await pair(self.dut, dut_ref, self.ref, ref_dut, LEVEL2)
 
-        if ref_dut_raw.role != ref_role:
-            await ref_dut_raw.switch_role(ref_role)
+        await self._test_success(ref_io_capability, connect_and_pair)
 
-        (secure, wait_security) = await asyncio.gather(
-            self.ref.aio.security.Secure(connection=ref_dut, classic=LEVEL2),
-            self.dut.aio.security.WaitSecurity(connection=dut_ref, classic=LEVEL2),
+    @avatar.parameterized(
+        *itertools.product(
+            (
+                None,
+                PairingDelegate.DISPLAY_OUTPUT_ONLY,
+                PairingDelegate.DISPLAY_OUTPUT_AND_YES_NO_INPUT,
+                PairingDelegate.KEYBOARD_INPUT_ONLY,
+                PairingDelegate.NO_OUTPUT_NO_INPUT,
+                PairingDelegate.DISPLAY_OUTPUT_AND_KEYBOARD_INPUT,
+            ),
+            (
+                HCI_CENTRAL_ROLE,
+                HCI_PERIPHERAL_ROLE,
+            )
         )
+    )  # type: ignore[misc]
+    @avatar.asynchronous
+    async def test_success_accept_connection_accept_pairing(
+        self,
+        ref_io_capability: Optional[PairingDelegate.IoCapability],
+        ref_role: Optional[int],
+    ) -> None:
+        # Connection/pairing task.
+        async def connect_and_pair() -> Tuple[SecureResponse, WaitSecurityResponse]:
+            ref_dut, dut_ref = await connect(self.ref, self.dut)
+            # if ref_role: await role_switch(self.ref, ref_dut, ref_role)
+            return await pair(self.ref, ref_dut, self.dut, dut_ref, LEVEL2)
 
-        pairing.cancel()
-        with suppress(asyncio.CancelledError, futures.CancelledError):
-            await pairing
+        await self._test_success(ref_io_capability, connect_and_pair)
 
-        assert secure.result_variant() == 'success'
-        assert wait_security.result_variant() == 'success'
 
-        await asyncio.gather(
-            self.dut.aio.host.WaitDisconnection(connection=dut_ref),
-            self.ref.aio.host.Disconnect(connection=ref_dut),
-        )
+# Connection task.
+async def connect(initiator: PandoraDevice, acceptor: PandoraDevice) -> Tuple[Connection, Connection]:
+    '''Connect two device and returns both connection tokens.'''
+    (connect, wait_connection) = await asyncio.gather(
+        initiator.aio.host.Connect(address=acceptor.address),
+        acceptor.aio.host.WaitConnection(address=initiator.address),
+    )
+
+    # Assert connection are successful.
+    assert connect.result_variant() == 'connection'
+    assert wait_connection.result_variant() == 'connection'
+    assert connect.connection and wait_connection.connection
+
+    # Returns connections.
+    return connect.connection, wait_connection.connection
+
+
+# Pairing task.
+async def pair(
+    initiator: PandoraDevice,
+    initiator_connection: Connection,
+    acceptor: PandoraDevice,
+    acceptor_connection: Connection,
+    security_level: SecurityLevel,
+) -> Tuple[SecureResponse, WaitSecurityResponse]:
+    '''Pair two device and returns both pairing responses.'''
+    return await asyncio.gather(
+        initiator.aio.security.Secure(connection=initiator_connection, classic=security_level),
+        acceptor.aio.security.WaitSecurity(connection=acceptor_connection, classic=security_level),
+    )
+
+# Role switch task.
+async def role_switch(
+    device: PandoraDevice,
+    connection: Connection,
+    role: int,
+) -> None:
+    '''Switch role if supported.'''
+    if not isinstance(device, BumblePandoraDevice):
+        return
+
+    connection_handle = int.from_bytes(connection.cookie.value, 'big')
+    bumble_connection = device.device.lookup_connection(connection_handle)
+    assert bumble_connection
+
+    if bumble_connection.role != role:
+        await bumble_connection.switch_role(role)
 
 
 if __name__ == '__main__':
