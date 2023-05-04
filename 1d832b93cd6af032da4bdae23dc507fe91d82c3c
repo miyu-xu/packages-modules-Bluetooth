@@ -22,6 +22,30 @@
       },
       "revId": "1d832b93cd6af032da4bdae23dc507fe91d82c3c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f95bed81_a8c42397",
+        "filename": "system/btif/src/stack_manager.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 320,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-05-04T22:50:47Z",
+      "side": 0,
+      "message": "Let\u0027s do that in a different CL.",
+      "parentUuid": "e3224e89_0c40f1a3",
+      "range": {
+        "startLine": 320,
+        "startChar": 0,
+        "endLine": 320,
+        "endChar": 56
+      },
+      "revId": "1d832b93cd6af032da4bdae23dc507fe91d82c3c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
