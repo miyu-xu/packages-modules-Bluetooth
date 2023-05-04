@@ -101,6 +101,9 @@ pub async fn determine_target_state(
     )
     .await;
 
+    // Remove everything we are currently connected to, since it doesn't make sense to keep connecting to them.
+    // Leaving them in the acceptlist is not a no-op, since it has the risk of making duplicate connections
+    // depending on the controller.
     let background_list =
         &(&background_list - &pending_targeted_announcements) - &canonical_addr_current_connections;
     let direct_list =
