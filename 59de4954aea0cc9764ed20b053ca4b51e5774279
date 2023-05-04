@@ -167,6 +167,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "524ea9d4_0bbabe04",
+        "filename": "android/pandora/test/asha_test.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1937985
+      },
+      "writtenOn": "2023-05-04T04:48:07Z",
+      "side": 1,
+      "message": "Commit message updated.\nFor asserts, follow up in other comment",
+      "parentUuid": "1776e7c0_41a64229",
+      "range": {
+        "startLine": 67,
+        "startChar": 0,
+        "endLine": 71,
+        "endChar": 86
+      },
+      "revId": "59de4954aea0cc9764ed20b053ca4b51e5774279",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d5a41905_54768563",
@@ -251,6 +275,30 @@
       "side": 1,
       "message": "Same as previous",
       "parentUuid": "e51b4fd6_c1e637c9",
+      "range": {
+        "startLine": 116,
+        "startChar": 20,
+        "endLine": 116,
+        "endChar": 26
+      },
+      "revId": "59de4954aea0cc9764ed20b053ca4b51e5774279",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "09b80548_e78d99f0",
+        "filename": "android/pandora/test/classic_ssp_test.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1937985
+      },
+      "writtenOn": "2023-05-04T04:48:07Z",
+      "side": 1,
+      "message": "For asserts, follow up in other comment",
+      "parentUuid": "b068d0ac_2e7e27ec",
       "range": {
         "startLine": 116,
         "startChar": 20,
