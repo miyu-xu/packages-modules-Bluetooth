@@ -49,6 +49,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e4c17aa7_372dee15",
+        "filename": "android/app/src/com/android/bluetooth/hfpclient/connserv/HfpClientConnection.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1985170
+      },
+      "writtenOn": "2023-05-04T21:26:50Z",
+      "side": 1,
+      "message": "I assume by default this will be false as well unless someone explicitly modify the \nlog level for the tag. So it shouldn\u0027t affect the user/debug builds. Any other mechanism which will result in the flag to be true by default?\nDuring debugging, it does turn out to be helpful to enable it on the fly. \nThere were few flags which were by default to true which are untouched, I assumed they might have some historical reasoning.",
+      "parentUuid": "9753c91d_2080350f",
+      "range": {
+        "startLine": 32,
+        "startChar": 39,
+        "endLine": 32,
+        "endChar": 69
+      },
+      "revId": "0058c0a67ef5a619b0011f5fc5164c80bcc2b405",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "77c61409_213a050d",
         "filename": "android/app/tests/unit/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachineTest.java",
         "patchSetId": 1
@@ -60,6 +84,30 @@
       "writtenOn": "2023-05-04T21:20:13Z",
       "side": 1,
       "message": "Should we also `assertThat(...).isFalse()` right before we `sendMessage` above?",
+      "range": {
+        "startLine": 1297,
+        "startChar": 8,
+        "endLine": 1298,
+        "endChar": 49
+      },
+      "revId": "0058c0a67ef5a619b0011f5fc5164c80bcc2b405",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e5e531f9_542cdb66",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachineTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1298,
+      "author": {
+        "id": 1985170
+      },
+      "writtenOn": "2023-05-04T21:26:50Z",
+      "side": 1,
+      "message": "Will do.",
+      "parentUuid": "77c61409_213a050d",
       "range": {
         "startLine": 1297,
         "startChar": 8,
