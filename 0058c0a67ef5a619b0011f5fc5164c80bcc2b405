@@ -119,6 +119,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "702b0284_0e959607",
+        "filename": "android/app/src/com/android/bluetooth/hfpclient/connserv/HfpClientConnection.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1985170
+      },
+      "writtenOn": "2023-05-05T17:22:11Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "314601a7_3de801fb",
+      "range": {
+        "startLine": 32,
+        "startChar": 39,
+        "endLine": 32,
+        "endChar": 69
+      },
+      "revId": "0058c0a67ef5a619b0011f5fc5164c80bcc2b405",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "77c61409_213a050d",
@@ -179,6 +203,30 @@
       "writtenOn": "2023-05-05T17:15:27Z",
       "side": 1,
       "message": "While I like how clean the new test is, we might get funny looks for utilizing reflection at all. I\u0027m inclined to accept it though, but just a warning!\n\nAs well, do we need this test anymore if we\u0027re now reflecting all the event type fields in your new test? I think these cover the same lines/cases.",
+      "range": {
+        "startLine": 47,
+        "startChar": 16,
+        "endLine": 47,
+        "endChar": 33
+      },
+      "revId": "0058c0a67ef5a619b0011f5fc5164c80bcc2b405",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "75f4f077_e70e6d07",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/hfpclient/StackEventTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1985170
+      },
+      "writtenOn": "2023-05-05T17:22:11Z",
+      "side": 1,
+      "message": "I wrote the test to identify instances of fields that haven\u0027t been mapped to the field rather than investigating manually. In future, if new fields are added and not mapped the test will fail and can act as a preventive measure.\nEven if someone doesn\u0027t add the mapping nothing is going to fall apart and the logs do indicate the event no. So I am ok with removing it as well (not a fan of reflection either)",
+      "parentUuid": "ded413e5_78f70a4d",
       "range": {
         "startLine": 47,
         "startChar": 16,
