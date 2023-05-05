@@ -186,6 +186,32 @@ cc_defaults {
     export_static_lib_headers: ["libbluetooth_rust_interop"],
 }
 
+cc_library_headers {
+    name: "libbluetooth_gd_headers",
+    host_supported: true,
+    export_include_dirs: ["."],
+    shared_libs: [
+        "libflatbuffers-cpp",
+    ],
+    export_shared_lib_headers: [
+        "libflatbuffers-cpp",
+    ],
+    generated_headers: [
+        "BluetoothGeneratedBundlerSchema_h_bfbs",
+        "BluetoothGeneratedDumpsysDataSchema_h",
+        "BluetoothGeneratedPackets_h",
+    ],
+    export_generated_headers: [
+        "BluetoothGeneratedBundlerSchema_h_bfbs",
+        "BluetoothGeneratedDumpsysDataSchema_h",
+        "BluetoothGeneratedPackets_h",
+    ],
+    apex_available: [
+        "com.android.btservices",
+    ],
+    min_sdk_version: "Tiramisu",
+}
+
 cc_library {
     name: "libbluetooth_gd",
     defaults: [

@@ -127,6 +127,9 @@ cc_library_static {
         /* we export all classes, so change default visibility, instead of having EXPORT_SYMBOL on each class*/
         "-fvisibility=default",
     ],
+    header_libs: [
+        "libbluetooth_gd_headers",
+    ],
     static_libs: [
         "avrcp-target-service",
         "lib-bt-packets",
@@ -1000,6 +1003,9 @@ cc_test {
         "hh/bta_hh_main.cc",
         "hh/bta_hh_utils.cc",
         "test/bta_hh_test.cc",
+    ],
+    header_libs: [
+        "libbluetooth_gd_headers",
     ],
     shared_libs: [
         "libcrypto",

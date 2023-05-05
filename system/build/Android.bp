@@ -173,7 +173,6 @@ cc_defaults {
         "libbt-protos-lite",
         "libbt-sbc-decoder",
         "libbt-sbc-encoder",
-        "libflatbuffers-cpp",
         "libg722codec",
         "liblc3",
         "libopus",

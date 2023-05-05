@@ -49,6 +49,7 @@ cc_library_static {
     ],
     header_libs: [
         "libbluetooth_headers",
+        "libbluetooth_gd_headers",
     ],
     include_dirs: [
         "external/aac/libAACdec/include",
@@ -62,17 +63,10 @@ cc_library_static {
         "packages/modules/Bluetooth/system/bta/sys",
         "packages/modules/Bluetooth/system/btif/include",
         "packages/modules/Bluetooth/system/device/include",
-        "packages/modules/Bluetooth/system/gd",
-        "packages/modules/Bluetooth/system/gd/hal",
-        "packages/modules/Bluetooth/system/gd/rust/shim",
         "packages/modules/Bluetooth/system/internal_include",
         "packages/modules/Bluetooth/system/udrv/include",
         "packages/modules/Bluetooth/system/vnd/ble",
         "packages/modules/Bluetooth/system/vnd/include",
-    ],
-    generated_headers: [
-        "BluetoothGeneratedDumpsysDataSchema_h",
-        "BluetoothGeneratedPackets_h",
     ],
     srcs: crypto_toolbox_srcs + [
         "a2dp/a2dp_aac.cc",
@@ -181,14 +175,13 @@ cc_library_static {
     ],
     header_libs: [
         "libbluetooth_headers",
+        "libbluetooth_gd_headers",
     ],
     include_dirs: [
         "packages/modules/Bluetooth/system",
         "packages/modules/Bluetooth/system/bta/include",
         "packages/modules/Bluetooth/system/bta/sys",
         "packages/modules/Bluetooth/system/btif/include",
-        "packages/modules/Bluetooth/system/gd",
-        "packages/modules/Bluetooth/system/gd/rust/shim",
         "packages/modules/Bluetooth/system/internal_include",
         "packages/modules/Bluetooth/system/udrv/include",
         "packages/modules/Bluetooth/system/vnd/ble",
@@ -273,9 +266,6 @@ cc_library_static {
         "smp/smp_utils.cc",
         "srvc/srvc_dis.cc",
         "srvc/srvc_eng.cc",
-    ],
-    generated_headers: [
-        "BluetoothGeneratedDumpsysDataSchema_h",
     ],
     cflags: [
         /* we export all classes, so change default visibility, instead of having EXPORT_SYMBOL on each class*/

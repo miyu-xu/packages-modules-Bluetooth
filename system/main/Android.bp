@@ -48,12 +48,10 @@ cc_library_static {
         "packages/modules/Bluetooth/system/vnd/include",
         "system/security/keystore/include",
     ],
-    generated_headers: [
-        "BluetoothGeneratedBundlerSchema_h_bfbs",
-        "BluetoothGeneratedDumpsysDataSchema_h",
-        "BluetoothGeneratedPackets_h",
+    header_libs: [
+        "libbt_callbacks_cxx_headers",
+        "libbluetooth_gd_headers",
     ],
-    header_libs: ["libbt_callbacks_cxx_headers"],
     host_supported: true,
     min_sdk_version: "Tiramisu",
 }
