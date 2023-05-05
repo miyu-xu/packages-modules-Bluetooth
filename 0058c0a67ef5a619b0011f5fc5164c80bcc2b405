@@ -97,6 +97,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "314601a7_3de801fb",
+        "filename": "android/app/src/com/android/bluetooth/hfpclient/connserv/HfpClientConnection.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2023-05-05T17:15:27Z",
+      "side": 1,
+      "message": "We talked offline about this, but for others following along-- I would rather make logging easy to control at runtime and be careful with our log messages, than make it impossible to debug without a build change.\n\nOther profiles are trending in the direction of runtime enable-able logging and I think we should here too.",
+      "parentUuid": "7e395e5a_df20710f",
+      "range": {
+        "startLine": 32,
+        "startChar": 39,
+        "endLine": 32,
+        "endChar": 69
+      },
+      "revId": "0058c0a67ef5a619b0011f5fc5164c80bcc2b405",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "77c61409_213a050d",
         "filename": "android/app/tests/unit/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachineTest.java",
         "patchSetId": 1
@@ -137,6 +161,29 @@
         "startChar": 8,
         "endLine": 1298,
         "endChar": 49
+      },
+      "revId": "0058c0a67ef5a619b0011f5fc5164c80bcc2b405",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ded413e5_78f70a4d",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/hfpclient/StackEventTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2023-05-05T17:15:27Z",
+      "side": 1,
+      "message": "While I like how clean the new test is, we might get funny looks for utilizing reflection at all. I\u0027m inclined to accept it though, but just a warning!\n\nAs well, do we need this test anymore if we\u0027re now reflecting all the event type fields in your new test? I think these cover the same lines/cases.",
+      "range": {
+        "startLine": 47,
+        "startChar": 16,
+        "endLine": 47,
+        "endChar": 33
       },
       "revId": "0058c0a67ef5a619b0011f5fc5164c80bcc2b405",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
