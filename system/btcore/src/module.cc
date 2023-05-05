@@ -63,12 +63,12 @@ bool module_init_and_start_up(const module_t* module) {
   CHECK(module != NULL);
   CHECK(get_module_state(module) == MODULE_STATE_NONE);
 
-  LOG_INFO("%s Starting module \"%s\"", __func__, module->name);
+  LOG_INFO("Starting module \"%s\"", module->name);
   if (!call_lifecycle_function(module->init_and_start_up)) {
-    LOG_ERROR("%s Failed to start up module \"%s\"", __func__, module->name);
+    LOG_ERROR("Failed to start up module \"%s\"", module->name);
     return false;
   }
-  LOG_INFO("%s Started module \"%s\"", __func__, module->name);
+  LOG_INFO("Started module \"%s\"", module->name);
 
   set_module_state(module, MODULE_STATE_INITIALIZED_AND_STARTED);
   return true;
@@ -81,12 +81,12 @@ void module_shut_down_and_clean_up(const module_t* module) {
   // Only something to do if the module was actually initialized
   if (state == MODULE_STATE_NONE) return;
 
-  LOG_INFO("%s Cleaning up module \"%s\"", __func__, module->name);
+  LOG_INFO("Cleaning up module \"%s\"", module->name);
   if (!call_lifecycle_function(module->shut_down_and_clean_up)) {
-    LOG_ERROR("%s Failed to cleanup module \"%s\". Continuing anyway.",
-              __func__, module->name);
+    LOG_ERROR("Failed to cleanup module \"%s\". Continuing anyway.",
+              module->name);
   }
-  LOG_INFO("%s Cleanup of module \"%s\" completed", __func__, module->name);
+  LOG_INFO("Cleanup of module \"%s\" completed", module->name);
 
   set_module_state(module, MODULE_STATE_NONE);
 }
