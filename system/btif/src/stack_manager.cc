@@ -197,11 +197,8 @@ static void clean_up_stack(ProfileStopCallback stopProfiles) {
 
   auto status =
       future.wait_for(std::chrono::milliseconds(BT_STACK_CLEANUP_WAIT_MS));
-  if (status == std::future_status::ready) {
-    management_thread.ShutDown();
-  } else {
-    LOG_ERROR("cleanup could not be completed in time, abandon it");
-  }
+  CHECK(status == std::future_status::ready);
+  management_thread.ShutDown();
 }
 
 static bool get_stack_is_running() { return stack_is_running; }
@@ -218,37 +215,6 @@ extern const module_t rust_module;
 extern const module_t stack_config_module;
 extern const module_t device_iot_config_module;
 
-struct module_lookup {
-  const char* name;
-  const module_t* module;
-};
-
-const struct module_lookup module_table[] = {
-    {BTE_LOGMSG_MODULE, &bte_logmsg_module},
-    {BTIF_CONFIG_MODULE, &btif_config_module},
-    {GD_CONTROLLER_MODULE, &gd_controller_module},
-    {GD_SHIM_MODULE, &gd_shim_module},
-    {INTEROP_MODULE, &interop_module},
-    {OSI_MODULE, &osi_module},
-    {RUST_MODULE, &rust_module},
-    {STACK_CONFIG_MODULE, &stack_config_module},
-    {DEVICE_IOT_CONFIG_MODULE, &device_iot_config_module},
-    {NULL, NULL},
-};
-
-inline const module_t* get_local_module(const char* name) {
-  size_t len = strlen(name);
-
-  for (const struct module_lookup* l = module_table; l->module; l++) {
-    if (strncmp(l->name, name, len) == 0) {
-      return l->module;
-    }
-  }
-
-  LOG_ALWAYS_FATAL("Cannot find module %s, aborting", name);
-  return nullptr;
-}
-
 static void init_stack_internal(bluetooth::core::CoreInterface* interface) {
   // all callbacks out of libbluetooth-core happen via this interface
   interfaceToProfiles = interface;
@@ -257,16 +223,16 @@ static void init_stack_internal(bluetooth::core::CoreInterface* interface) {
 
   main_thread_start_up();
 
-  module_init_and_start_up(get_local_module(DEVICE_IOT_CONFIG_MODULE));
-  module_init_and_start_up(get_local_module(OSI_MODULE));
+  module_init_and_start_up(&device_iot_config_module);
+  module_init_and_start_up(&osi_module);
   bte_main_init();
   LOG_INFO("%s Gd shim module enabled", __func__);
-  module_init_and_start_up(get_local_module(GD_SHIM_MODULE));
-  module_init_and_start_up(get_local_module(BTIF_CONFIG_MODULE));
+  module_init_and_start_up(&gd_shim_module);
+  module_init_and_start_up(&btif_config_module);
   btif_init_bluetooth();
 
-  module_init_and_start_up(get_local_module(INTEROP_MODULE));
-  module_init_and_start_up(get_local_module(STACK_CONFIG_MODULE));
+  module_init_and_start_up(&interop_module);
+  module_init_and_start_up(&stack_config_module);
 
   // stack init is synchronous, so no waiting necessary here
   stack_is_initialized = true;
@@ -276,37 +242,21 @@ static void init_stack_internal(bluetooth::core::CoreInterface* interface) {
 static void event_init_stack(std::promise<void> promise,
                              bluetooth::core::CoreInterface* interface) {
   LOG_INFO("is initializing the stack");
+  CHECK(!stack_is_initialized);
 
-  if (stack_is_initialized) {
-    LOG_INFO("found the stack already in initialized state");
-  } else {
-    init_stack_internal(interface);
-  }
+  init_stack_internal(interface);
 
   LOG_INFO("finished");
 
   promise.set_value();
 }
 
-static void ensure_stack_is_initialized(
-    bluetooth::core::CoreInterface* interface) {
-  if (!stack_is_initialized) {
-    LOG_WARN("found the stack was uninitialized. Initializing now.");
-    // No future needed since we are calling it directly
-    init_stack_internal(interface);
-  }
-}
-
 // Synchronous function to start up the stack
 static void event_start_up_stack(bluetooth::core::CoreInterface* interface,
                                  ProfileStartCallback startProfiles,
                                  ProfileStopCallback stopProfiles) {
-  if (stack_is_running) {
-    LOG_INFO("%s stack already brought up", __func__);
-    return;
-  }
-
-  ensure_stack_is_initialized(interface);
+  CHECK(stack_is_initialized);
+  CHECK(!stack_is_running);
 
   LOG_INFO("%s is bringing up the stack", __func__);
   future_t* local_hack_future = future_new();
@@ -314,7 +264,7 @@ static void event_start_up_stack(bluetooth::core::CoreInterface* interface,
 
   LOG_INFO("%s Gd shim module enabled", __func__);
   get_btm_client_interface().lifecycle.btm_init();
-  module_init_and_start_up(get_local_module(BTIF_CONFIG_MODULE));
+  module_init_and_start_up(&btif_config_module);
 
   l2c_init();
   sdp_init();
@@ -329,7 +279,7 @@ static void event_start_up_stack(bluetooth::core::CoreInterface* interface,
 
   bta_sys_init();
 
-  module_init_and_start_up(get_local_module(BTE_LOGMSG_MODULE));
+  module_init_and_start_up(&bte_logmsg_module);
 
   btif_init_ok();
   BTA_dm_init();
@@ -337,7 +287,7 @@ static void event_start_up_stack(bluetooth::core::CoreInterface* interface,
 
   bta_set_forward_hw_failures(true);
   btm_acl_device_down();
-  module_init_and_start_up(get_local_module(GD_CONTROLLER_MODULE));
+  module_init_and_start_up(&gd_controller_module);
   BTM_reset_complete();
 
   BTA_dm_on_hw_on();
@@ -349,7 +299,7 @@ static void event_start_up_stack(bluetooth::core::CoreInterface* interface,
     return;
   }
 
-  module_init_and_start_up(get_local_module(RUST_MODULE));
+  module_init_and_start_up(&rust_module);
 
   stack_is_running = true;
   LOG_INFO("%s finished", __func__);
@@ -358,17 +308,14 @@ static void event_start_up_stack(bluetooth::core::CoreInterface* interface,
 
 // Synchronous function to shut down the stack
 static void event_shut_down_stack(ProfileStopCallback stopProfiles) {
-  if (!stack_is_running) {
-    LOG_INFO("%s stack is already brought down", __func__);
-    return;
-  }
+  CHECK(stack_is_running);
 
   LOG_INFO("%s is bringing down the stack", __func__);
   future_t* local_hack_future = future_new();
   hack_future = local_hack_future;
   stack_is_running = false;
 
-  module_shut_down_and_clean_up(get_local_module(RUST_MODULE));
+  module_shut_down_and_clean_up(&rust_module);
 
   do_in_main_thread(FROM_HERE, base::Bind(&btm_ble_multi_adv_cleanup));
 
@@ -387,12 +334,12 @@ static void event_shut_down_stack(ProfileStopCallback stopProfiles) {
   bta_set_forward_hw_failures(false);
   BTA_dm_on_hw_off();
 
-  module_shut_down_and_clean_up(get_local_module(BTIF_CONFIG_MODULE));
-  module_shut_down_and_clean_up(get_local_module(DEVICE_IOT_CONFIG_MODULE));
+  module_shut_down_and_clean_up(&btif_config_module);
+  module_shut_down_and_clean_up(&device_iot_config_module);
 
   future_await(local_hack_future);
 
-  module_shut_down_and_clean_up(get_local_module(BTE_LOGMSG_MODULE));
+  module_shut_down_and_clean_up(&bte_logmsg_module);
 
   gatt_free();
   l2c_free();
@@ -418,10 +365,7 @@ static void ensure_stack_is_not_running(ProfileStopCallback stopProfiles) {
 // Synchronous function to clean up the stack
 static void event_clean_up_stack(std::promise<void> promise,
                                  ProfileStopCallback stopProfiles) {
-  if (!stack_is_initialized) {
-    LOG_INFO("%s found the stack already in a clean state", __func__);
-    goto cleanup;
-  }
+  CHECK(stack_is_initialized);
 
   ensure_stack_is_not_running(stopProfiles);
 
@@ -430,22 +374,21 @@ static void event_clean_up_stack(std::promise<void> promise,
 
   btif_cleanup_bluetooth();
 
-  module_shut_down_and_clean_up(get_local_module(STACK_CONFIG_MODULE));
-  module_shut_down_and_clean_up(get_local_module(INTEROP_MODULE));
+  module_shut_down_and_clean_up(&stack_config_module);
+  module_shut_down_and_clean_up(&interop_module);
 
-  module_shut_down_and_clean_up(get_local_module(BTIF_CONFIG_MODULE));
-  module_shut_down_and_clean_up(get_local_module(DEVICE_IOT_CONFIG_MODULE));
+  module_shut_down_and_clean_up(&btif_config_module);
+  module_shut_down_and_clean_up(&device_iot_config_module);
 
-  module_shut_down_and_clean_up(get_local_module(OSI_MODULE));
+  module_shut_down_and_clean_up(&osi_module);
   LOG_INFO("%s Gd shim module disabled", __func__);
-  module_shut_down_and_clean_up(get_local_module(GD_SHIM_MODULE));
+  module_shut_down_and_clean_up(&gd_shim_module);
 
   main_thread_shut_down();
 
   module_management_stop();
   LOG_INFO("%s finished", __func__);
 
-cleanup:;
   promise.set_value();
 }
 
