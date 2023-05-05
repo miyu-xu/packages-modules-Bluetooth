@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "adcff520_5662fff8",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 1390,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-05-05T21:04:07Z",
+      "side": 1,
+      "message": "Now that we are also in `acl_state`, I think we take this out into its own IF statement and document what happens.",
+      "revId": "c55f8e9fae629351c98748e9612c52ab45126382",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6d433b2a_87788c7f",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 1516,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-05-05T21:04:07Z",
+      "side": 1,
+      "message": "Document this please -- this is confusing without an explanation about WHY we do this.",
+      "revId": "c55f8e9fae629351c98748e9612c52ab45126382",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
