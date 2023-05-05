@@ -1,5 +1,23 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9c553841_54f1a464",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-05-05T16:19:21Z",
+      "side": 1,
+      "message": "Adding a comment because it says that I have draft comments, but I can\u0027t find any.",
+      "revId": "bf7f71aeeeb48e568a0c0a328a05d5a5ca6fb4c2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
