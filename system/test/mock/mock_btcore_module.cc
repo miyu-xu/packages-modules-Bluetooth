@@ -37,12 +37,10 @@ namespace btcore_module {
 
 // Function state capture and return values, if needed
 struct get_module get_module;
-struct module_clean_up module_clean_up;
-struct module_init module_init;
+struct module_init_and_start_up module_init_and_start_up;
 struct module_management_start module_management_start;
 struct module_management_stop module_management_stop;
-struct module_shut_down module_shut_down;
-struct module_start_up module_start_up;
+struct module_shut_down_and_clean_up module_shut_down_and_clean_up;
 
 }  // namespace btcore_module
 }  // namespace mock
@@ -53,13 +51,9 @@ const module_t* get_module(const char* name) {
   inc_func_call_count(__func__);
   return test::mock::btcore_module::get_module(name);
 }
-void module_clean_up(const module_t* module) {
+bool module_init_and_start_up(const module_t* module) {
   inc_func_call_count(__func__);
-  test::mock::btcore_module::module_clean_up(module);
-}
-bool module_init(const module_t* module) {
-  inc_func_call_count(__func__);
-  return test::mock::btcore_module::module_init(module);
+  return test::mock::btcore_module::module_init_and_start_up(module);
 }
 void module_management_start(void) {
   inc_func_call_count(__func__);
@@ -69,13 +63,9 @@ void module_management_stop(void) {
   inc_func_call_count(__func__);
   test::mock::btcore_module::module_management_stop();
 }
-void module_shut_down(const module_t* module) {
+void module_shut_down_and_clean_up(const module_t* module) {
   inc_func_call_count(__func__);
-  test::mock::btcore_module::module_shut_down(module);
-}
-bool module_start_up(const module_t* module) {
-  inc_func_call_count(__func__);
-  return test::mock::btcore_module::module_start_up(module);
+  test::mock::btcore_module::module_shut_down_and_clean_up(module);
 }
 // Mocked functions complete
 // END mockcify generation
