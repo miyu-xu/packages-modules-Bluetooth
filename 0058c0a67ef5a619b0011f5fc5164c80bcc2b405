@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bf2a0884_2f6a9659",
+        "filename": "android/app/src/com/android/bluetooth/hfpclient/NativeInterface.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1985170
+      },
+      "writtenOn": "2023-05-05T20:27:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0c1c45da_58d8b463",
+      "range": {
+        "startLine": 38,
+        "startChar": 39,
+        "endLine": 38,
+        "endChar": 70
+      },
+      "revId": "0058c0a67ef5a619b0011f5fc5164c80bcc2b405",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9753c91d_2080350f",
@@ -190,6 +214,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a74c2749_bc0ed23c",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachineTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1298,
+      "author": {
+        "id": 1985170
+      },
+      "writtenOn": "2023-05-05T20:27:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e5e531f9_542cdb66",
+      "range": {
+        "startLine": 1297,
+        "startChar": 8,
+        "endLine": 1298,
+        "endChar": 49
+      },
+      "revId": "0058c0a67ef5a619b0011f5fc5164c80bcc2b405",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ded413e5_78f70a4d",
@@ -227,6 +275,30 @@
       "side": 1,
       "message": "I wrote the test to identify instances of fields that haven\u0027t been mapped to the field rather than investigating manually. In future, if new fields are added and not mapped the test will fail and can act as a preventive measure.\nEven if someone doesn\u0027t add the mapping nothing is going to fall apart and the logs do indicate the event no. So I am ok with removing it as well (not a fan of reflection either)",
       "parentUuid": "ded413e5_78f70a4d",
+      "range": {
+        "startLine": 47,
+        "startChar": 16,
+        "endLine": 47,
+        "endChar": 33
+      },
+      "revId": "0058c0a67ef5a619b0011f5fc5164c80bcc2b405",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d9fdd9c6_d0bbc74c",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/hfpclient/StackEventTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1985170
+      },
+      "writtenOn": "2023-05-05T20:27:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "75f4f077_e70e6d07",
       "range": {
         "startLine": 47,
         "startChar": 16,
