@@ -46,6 +46,30 @@
       },
       "revId": "452410992d7aecf2ec25596039fbabd1bb0b27b5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e8fff78c_20bd1d06",
+        "filename": "system/main/bte_logmsg.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-05-05T23:41:14Z",
+      "side": 0,
+      "message": "What do you think about adding in the init of  BTE_LOGMSG_MODULE something like `CHECK(STACK_CONFIG_MODULE.is_init)`\nto spot it instantly ?",
+      "parentUuid": "4abd70c9_4bc40f9c",
+      "range": {
+        "startLine": 146,
+        "startChar": 0,
+        "endLine": 146,
+        "endChar": 49
+      },
+      "revId": "452410992d7aecf2ec25596039fbabd1bb0b27b5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
