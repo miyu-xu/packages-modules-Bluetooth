@@ -34,6 +34,23 @@
       "parentUuid": "087809b7_cf005f57",
       "revId": "0182faac71080e2a19936eee44a03ae20feeb573",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3a024171_26654d23",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-05-05T15:09:34Z",
+      "side": 1,
+      "message": "The GAP CLCB apparently stores the outstanding read command request is `cl_op_uuid` until it is completed and then zeroed.\n\nThis check ensures that for this connection, this field being set corresponds with an outstanding command request.  Presumably upon receipt of the closure of this command sequence `cl_op_uuid` will be zeroed, and `send_cl_read_request` will be called again to check for more work.\n\n```\ntypedef struct {\n  RawAddress bda;\n  tGAP_BLE_CMPL_CBACK* p_cback;\n  uint16_t conn_id;\n  uint16_t cl_op_uuid; \u003c-- uuid of outstanding read request in flight\n  bool connected;\n  std::queue\u003ctGAP_REQUEST\u003e requests; \u003c-- queued list of requests\n} tGAP_CLCB;\n\n```",
+      "revId": "0182faac71080e2a19936eee44a03ae20feeb573",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
