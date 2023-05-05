@@ -22,7 +22,6 @@
 #include <string>
 #include <vector>
 
-#include "config.pb.h"
 #include "hci/address.h"
 #include "hci/hci_packets.h"
 
@@ -52,10 +51,7 @@ struct ControllerQuirks {
 // Controller. The Host device cannot modify any of these parameters.
 struct ControllerProperties {
  public:
-  ControllerProperties();
-  ControllerProperties(rootcanal::configuration::Controller const&);
-  ControllerProperties(ControllerProperties const&) = default;
-  ControllerProperties(ControllerProperties&&) = default;
+  explicit ControllerProperties(const std::string& file_name = "");
   ~ControllerProperties() = default;
 
   // Perform a bitwise and operation on the supported commands mask;
@@ -67,8 +63,7 @@ struct ControllerProperties {
   bool CheckSupportedFeatures() const;
 
   // Check if the supported command mask is valid according to the
-  // specification. If fixup is true, then the mask is updated instead of
-  // returning an error.
+  // specification.
   bool CheckSupportedCommands() const;
 
   // Enabled quirks.
@@ -86,17 +81,17 @@ struct ControllerProperties {
   bool le_supported{true};
 
   // Local Supported Commands (Vol 4, Part E § 7.4.2).
-  std::array<uint8_t, 64> supported_commands{};
+  std::array<uint8_t, 64> supported_commands;
 
   // Vendor Supported Commands.
   bool supports_le_get_vendor_capabilities_command{true};
 
   // Local Supported Features (Vol 4, Part E § 7.4.3) and
   // Local Extended Features (Vol 4, Part E § 7.4.3).
-  std::array<uint64_t, 3> lmp_features{};
+  std::array<uint64_t, 3> lmp_features;
 
   // LE Local Supported Features (Vol 4, Part E § 7.8.3).
-  uint64_t le_features{0};
+  uint64_t le_features;
 
   // Buffer Size (Vol 4, Part E § 7.4.5).
   uint16_t acl_data_packet_length{1024};

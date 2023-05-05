@@ -47,7 +47,7 @@ cc_binary {
         "libhidlbase",
         "libjsoncpp",
         "liblog",
-        "libprotobuf-cpp-full",
+        "libprotobuf-cpp-lite",
         "libutils",
     ],
     cflags: [
@@ -96,7 +96,7 @@ cc_library_shared {
         "libhidlbase",
         "libjsoncpp",
         "liblog",
-        "libprotobuf-cpp-full",
+        "libprotobuf-cpp-lite",
         "libutils",
     ],
     generated_headers: [
