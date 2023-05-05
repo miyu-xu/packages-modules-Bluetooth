@@ -223,16 +223,16 @@ static void init_stack_internal(bluetooth::core::CoreInterface* interface) {
 
   main_thread_start_up();
 
-  module_init_and_start_up(&device_iot_config_module);
-  module_init_and_start_up(&osi_module);
+  module_init_and_start_up(device_iot_config_module);
+  module_init_and_start_up(osi_module);
   bte_main_init();
   LOG_INFO("Gd shim module enabled");
-  module_init_and_start_up(&gd_shim_module);
-  module_init_and_start_up(&btif_config_module);
+  module_init_and_start_up(gd_shim_module);
+  module_init_and_start_up(btif_config_module);
   btif_init_bluetooth();
 
-  module_init_and_start_up(&interop_module);
-  module_init_and_start_up(&stack_config_module);
+  module_init_and_start_up(interop_module);
+  module_init_and_start_up(stack_config_module);
 
   // stack init is synchronous, so no waiting necessary here
   stack_is_initialized = true;
@@ -277,8 +277,8 @@ static void event_start_up_stack(bluetooth::core::CoreInterface* interface,
 
   bta_sys_init();
 
-  module_init_and_start_up(&bte_logmsg_module);
-  module_init_and_start_up(&gd_controller_module);
+  module_init_and_start_up(bte_logmsg_module);
+  module_init_and_start_up(gd_controller_module);
 
   btif_init_ok();
   BTA_dm_init();
@@ -297,7 +297,7 @@ static void event_start_up_stack(bluetooth::core::CoreInterface* interface,
     return;
   }
 
-  module_init_and_start_up(&rust_module);
+  module_init_and_start_up(rust_module);
 
   stack_is_running = true;
   LOG_INFO("Finished");
@@ -313,7 +313,7 @@ static void event_shut_down_stack(ProfileStopCallback stopProfiles) {
   hack_future = local_hack_future;
   stack_is_running = false;
 
-  module_shut_down_and_clean_up(&rust_module);
+  module_shut_down_and_clean_up(rust_module);
 
   do_in_main_thread(FROM_HERE, base::Bind(&btm_ble_multi_adv_cleanup));
 
@@ -334,9 +334,9 @@ static void event_shut_down_stack(ProfileStopCallback stopProfiles) {
 
   future_await(local_hack_future);
 
-  module_shut_down_and_clean_up(&gd_controller_module);
+  module_shut_down_and_clean_up(gd_controller_module);
 
-  module_shut_down_and_clean_up(&bte_logmsg_module);
+  module_shut_down_and_clean_up(bte_logmsg_module);
 
   gatt_free();
   l2c_free();
@@ -370,15 +370,15 @@ static void event_clean_up_stack(std::promise<void> promise,
 
   btif_cleanup_bluetooth();
 
-  module_shut_down_and_clean_up(&stack_config_module);
-  module_shut_down_and_clean_up(&interop_module);
+  module_shut_down_and_clean_up(stack_config_module);
+  module_shut_down_and_clean_up(interop_module);
 
-  module_shut_down_and_clean_up(&btif_config_module);
-  module_shut_down_and_clean_up(&device_iot_config_module);
+  module_shut_down_and_clean_up(btif_config_module);
+  module_shut_down_and_clean_up(device_iot_config_module);
 
-  module_shut_down_and_clean_up(&osi_module);
+  module_shut_down_and_clean_up(osi_module);
   LOG_INFO("Gd shim module disabled");
-  module_shut_down_and_clean_up(&gd_shim_module);
+  module_shut_down_and_clean_up(gd_shim_module);
 
   main_thread_shut_down();
 
