@@ -53,12 +53,6 @@ void module_management_start(void) {}
 
 void module_management_stop(void) { metadata.clear(); }
 
-const module_t* get_module(const char* name) {
-  module_t* module = (module_t*)dlsym(RTLD_DEFAULT, name);
-  CHECK(module);
-  return module;
-}
-
 bool module_init_and_start_up(const module_t* module) {
   CHECK(module != NULL);
   CHECK(get_module_state(module) == MODULE_STATE_NONE);
