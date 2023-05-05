@@ -147,6 +147,30 @@
       },
       "revId": "2ef46edf27aa7f73f4f644f0f5cde6028052fe01",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "da7bc86d_4bc026b0",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 2350,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-05-05T22:15:39Z",
+      "side": 1,
+      "message": "We missed case2/3 mentioned by Ying above I think. You probably want to call `self.resume_discovery()` if it doesn\u0027t have any uuids enabled.\n\nExample: You call `connect_all_enabled_profiles` on an address we didn\u0027t discover or bond and you\u0027ll get stuck in discovery paused state indefinitely.",
+      "parentUuid": "6f166991_1986f907",
+      "range": {
+        "startLine": 2350,
+        "startChar": 7,
+        "endLine": 2350,
+        "endChar": 32
+      },
+      "revId": "2ef46edf27aa7f73f4f644f0f5cde6028052fe01",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
