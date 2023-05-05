@@ -26,8 +26,6 @@
 static const char GD_SHIM_MODULE[] = "gd_shim_module";
 
 constexpr future_t* kReturnImmediate = nullptr;
-constexpr module_lifecycle_fn kUnusedModuleApi = nullptr;
-constexpr char* kUnusedModuleDependencies = nullptr;
 
 namespace bluetooth {
 namespace shim {

@@ -75,8 +75,6 @@ typedef bool (*compare_func)(const entry_t& first, const entry_t& second);
 
 // config_lock is used by the callee in the following methods
 future_t* device_iot_config_module_init(void);
-future_t* device_iot_config_module_start_up(void);
-future_t* device_iot_config_module_shut_down(void);
 future_t* device_iot_config_module_clean_up(void);
 void device_iot_config_write(uint16_t event, char* p_param);
 

@@ -35,11 +35,9 @@ future_t* GeneralShutDown() {
 
 EXPORT_SYMBOL extern const module_t gd_shim_module = {
     .name = GD_SHIM_MODULE,
-    .init = kUnusedModuleApi,
-    .start_up = ShimModuleStartUp,
-    .shut_down = GeneralShutDown,
-    .clean_up = kUnusedModuleApi,
-    .dependencies = {kUnusedModuleDependencies}};
+    .init_and_start_up = ShimModuleStartUp,
+    .shut_down_and_clean_up = GeneralShutDown,
+    .dependencies = {nullptr}};
 
 bool bluetooth::shim::is_gd_link_policy_enabled() {
   return bluetooth::common::init_flags::gd_link_policy_is_enabled();
