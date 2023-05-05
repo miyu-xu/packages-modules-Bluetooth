@@ -308,10 +308,8 @@ static future_t* interop_clean_up(void) {
 
 EXPORT_SYMBOL module_t interop_module = {
     .name = INTEROP_MODULE,
-    .init = interop_init,
-    .start_up = NULL,
-    .shut_down = NULL,
-    .clean_up = interop_clean_up,
+    .init_and_start_up = interop_init,
+    .shut_down_and_clean_up = interop_clean_up,
     .dependencies = {NULL},
 };
 

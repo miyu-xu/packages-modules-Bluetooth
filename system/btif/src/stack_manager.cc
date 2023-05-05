@@ -257,15 +257,16 @@ static void init_stack_internal(bluetooth::core::CoreInterface* interface) {
 
   main_thread_start_up();
 
-  module_init(get_local_module(DEVICE_IOT_CONFIG_MODULE));
-  module_init(get_local_module(OSI_MODULE));
+  module_init_and_start_up(get_local_module(DEVICE_IOT_CONFIG_MODULE));
+  module_init_and_start_up(get_local_module(OSI_MODULE));
   bte_main_init();
-  module_start_up(get_local_module(GD_SHIM_MODULE));
-  module_init(get_local_module(BTIF_CONFIG_MODULE));
+  LOG_INFO("%s Gd shim module enabled", __func__);
+  module_init_and_start_up(get_local_module(GD_SHIM_MODULE));
+  module_init_and_start_up(get_local_module(BTIF_CONFIG_MODULE));
   btif_init_bluetooth();
 
-  module_init(get_local_module(INTEROP_MODULE));
-  module_init(get_local_module(STACK_CONFIG_MODULE));
+  module_init_and_start_up(get_local_module(INTEROP_MODULE));
+  module_init_and_start_up(get_local_module(STACK_CONFIG_MODULE));
 
   // stack init is synchronous, so no waiting necessary here
   stack_is_initialized = true;
@@ -313,7 +314,7 @@ static void event_start_up_stack(bluetooth::core::CoreInterface* interface,
 
   LOG_INFO("%s Gd shim module enabled", __func__);
   get_btm_client_interface().lifecycle.btm_init();
-  module_start_up(get_local_module(BTIF_CONFIG_MODULE));
+  module_init_and_start_up(get_local_module(BTIF_CONFIG_MODULE));
 
   l2c_init();
   sdp_init();
@@ -328,7 +329,7 @@ static void event_start_up_stack(bluetooth::core::CoreInterface* interface,
 
   bta_sys_init();
 
-  module_init(get_local_module(BTE_LOGMSG_MODULE));
+  module_init_and_start_up(get_local_module(BTE_LOGMSG_MODULE));
 
   btif_init_ok();
   BTA_dm_init();
@@ -336,7 +337,7 @@ static void event_start_up_stack(bluetooth::core::CoreInterface* interface,
 
   bta_set_forward_hw_failures(true);
   btm_acl_device_down();
-  CHECK(module_start_up(get_local_module(GD_CONTROLLER_MODULE)));
+  module_init_and_start_up(get_local_module(GD_CONTROLLER_MODULE));
   BTM_reset_complete();
 
   BTA_dm_on_hw_on();
@@ -348,7 +349,7 @@ static void event_start_up_stack(bluetooth::core::CoreInterface* interface,
     return;
   }
 
-  module_start_up(get_local_module(RUST_MODULE));
+  module_init_and_start_up(get_local_module(RUST_MODULE));
 
   stack_is_running = true;
   LOG_INFO("%s finished", __func__);
@@ -367,7 +368,7 @@ static void event_shut_down_stack(ProfileStopCallback stopProfiles) {
   hack_future = local_hack_future;
   stack_is_running = false;
 
-  module_shut_down(get_local_module(RUST_MODULE));
+  module_shut_down_and_clean_up(get_local_module(RUST_MODULE));
 
   do_in_main_thread(FROM_HERE, base::Bind(&btm_ble_multi_adv_cleanup));
 
@@ -386,12 +387,12 @@ static void event_shut_down_stack(ProfileStopCallback stopProfiles) {
   bta_set_forward_hw_failures(false);
   BTA_dm_on_hw_off();
 
-  module_shut_down(get_local_module(BTIF_CONFIG_MODULE));
-  module_shut_down(get_local_module(DEVICE_IOT_CONFIG_MODULE));
+  module_shut_down_and_clean_up(get_local_module(BTIF_CONFIG_MODULE));
+  module_shut_down_and_clean_up(get_local_module(DEVICE_IOT_CONFIG_MODULE));
 
   future_await(local_hack_future);
 
-  module_clean_up(get_local_module(BTE_LOGMSG_MODULE));
+  module_shut_down_and_clean_up(get_local_module(BTE_LOGMSG_MODULE));
 
   gatt_free();
   l2c_free();
@@ -429,15 +430,15 @@ static void event_clean_up_stack(std::promise<void> promise,
 
   btif_cleanup_bluetooth();
 
-  module_clean_up(get_local_module(STACK_CONFIG_MODULE));
-  module_clean_up(get_local_module(INTEROP_MODULE));
+  module_shut_down_and_clean_up(get_local_module(STACK_CONFIG_MODULE));
+  module_shut_down_and_clean_up(get_local_module(INTEROP_MODULE));
 
-  module_clean_up(get_local_module(BTIF_CONFIG_MODULE));
-  module_clean_up(get_local_module(DEVICE_IOT_CONFIG_MODULE));
+  module_shut_down_and_clean_up(get_local_module(BTIF_CONFIG_MODULE));
+  module_shut_down_and_clean_up(get_local_module(DEVICE_IOT_CONFIG_MODULE));
 
-  module_clean_up(get_local_module(OSI_MODULE));
+  module_shut_down_and_clean_up(get_local_module(OSI_MODULE));
   LOG_INFO("%s Gd shim module disabled", __func__);
-  module_shut_down(get_local_module(GD_SHIM_MODULE));
+  module_shut_down_and_clean_up(get_local_module(GD_SHIM_MODULE));
 
   main_thread_shut_down();
 

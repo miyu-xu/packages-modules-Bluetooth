@@ -30,10 +30,8 @@ typedef future_t* (*module_lifecycle_fn)(void);
 
 typedef struct {
   const char* name{nullptr};
-  module_lifecycle_fn init{nullptr};
-  module_lifecycle_fn start_up{nullptr};
-  module_lifecycle_fn shut_down{nullptr};
-  module_lifecycle_fn clean_up{nullptr};
+  module_lifecycle_fn init_and_start_up{nullptr};
+  module_lifecycle_fn shut_down_and_clean_up{nullptr};
   const char* dependencies[BTCORE_MAX_MODULE_DEPENDENCIES]{nullptr};
 } module_t;
 
@@ -47,13 +45,7 @@ const module_t* get_module(const char* name);
 
 // Initialize the provided module. |module| may not be NULL
 // and must not be initialized.
-bool module_init(const module_t* module);
-// Start up the provided module. |module| may not be NULL
-// and must be initialized or have no init function.
-bool module_start_up(const module_t* module);
-// Shut down the provided module. |module| may not be NULL.
-// If not started, does nothing.
-void module_shut_down(const module_t* module);
+bool module_init_and_start_up(const module_t* module);
 // Clean up the provided module. |module| may not be NULL.
 // If not initialized, does nothing.
-void module_clean_up(const module_t* module);
+void module_shut_down_and_clean_up(const module_t* module);

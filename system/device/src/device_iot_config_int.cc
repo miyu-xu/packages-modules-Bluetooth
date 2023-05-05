@@ -160,21 +160,9 @@ future_t* device_iot_config_module_init(void) {
   return future_new_immediate(FUTURE_SUCCESS);
 }
 
-future_t* device_iot_config_module_start_up(void) {
-  LOG_INFO("");
-  return future_new_immediate(FUTURE_SUCCESS);
-}
-
-future_t* device_iot_config_module_shut_down(void) {
-  LOG_INFO("");
-  device_iot_config_flush();
-  return future_new_immediate(FUTURE_SUCCESS);
-}
-
 future_t* device_iot_config_module_clean_up(void) {
   LOG_INFO("");
-  if (config_timer != NULL && alarm_is_scheduled(config_timer))
-    device_iot_config_flush();
+  device_iot_config_flush();
 
   alarm_free(config_timer);
   config_timer = NULL;
@@ -187,10 +175,8 @@ future_t* device_iot_config_module_clean_up(void) {
 
 EXPORT_SYMBOL module_t device_iot_config_module = {
     .name = DEVICE_IOT_CONFIG_MODULE,
-    .init = device_iot_config_module_init,
-    .start_up = device_iot_config_module_start_up,
-    .shut_down = device_iot_config_module_shut_down,
-    .clean_up = device_iot_config_module_clean_up};
+    .init_and_start_up = device_iot_config_module_init,
+    .shut_down_and_clean_up = device_iot_config_module_clean_up};
 
 void device_iot_config_write(uint16_t event, UNUSED_ATTR char* p_param) {
   if (!InitFlags::IsDeviceIotConfigLoggingEnabled()) return;

@@ -141,8 +141,6 @@ static future_t* init(void) {
 
 EXPORT_SYMBOL extern const module_t bte_logmsg_module = {
     .name = BTE_LOGMSG_MODULE,
-    .init = init,
-    .start_up = NULL,
-    .shut_down = NULL,
-    .clean_up = NULL,
+    .init_and_start_up = init,
+    .shut_down_and_clean_up = NULL,
     .dependencies = {STACK_CONFIG_MODULE, NULL}};

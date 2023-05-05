@@ -37,8 +37,7 @@ using bluetooth::common::MessageLoopThread;
 
 typedef enum {
   MODULE_STATE_NONE = 0,
-  MODULE_STATE_INITIALIZED = 1,
-  MODULE_STATE_STARTED = 2
+  MODULE_STATE_INITIALIZED_AND_STARTED = 1,
 } module_state_t;
 
 static std::unordered_map<const module_t*, module_state_t> metadata;
@@ -60,68 +59,30 @@ const module_t* get_module(const char* name) {
   return module;
 }
 
-bool module_init(const module_t* module) {
+bool module_init_and_start_up(const module_t* module) {
   CHECK(module != NULL);
   CHECK(get_module_state(module) == MODULE_STATE_NONE);
 
-  if (!call_lifecycle_function(module->init)) {
-    LOG_ERROR("%s Failed to initialize module \"%s\"", __func__, module->name);
-    return false;
-  }
-
-  set_module_state(module, MODULE_STATE_INITIALIZED);
-  return true;
-}
-
-bool module_start_up(const module_t* module) {
-  CHECK(module != NULL);
-  // TODO(zachoverflow): remove module->init check once automagic order/call is
-  // in place.
-  // This hack is here so modules which don't require init don't have to have
-  // useless calls
-  // as we're converting the startup sequence.
-  CHECK(get_module_state(module) == MODULE_STATE_INITIALIZED ||
-        module->init == NULL);
-
   LOG_INFO("%s Starting module \"%s\"", __func__, module->name);
-  if (!call_lifecycle_function(module->start_up)) {
+  if (!call_lifecycle_function(module->init_and_start_up)) {
     LOG_ERROR("%s Failed to start up module \"%s\"", __func__, module->name);
     return false;
   }
   LOG_INFO("%s Started module \"%s\"", __func__, module->name);
 
-  set_module_state(module, MODULE_STATE_STARTED);
+  set_module_state(module, MODULE_STATE_INITIALIZED_AND_STARTED);
   return true;
 }
 
-void module_shut_down(const module_t* module) {
+void module_shut_down_and_clean_up(const module_t* module) {
   CHECK(module != NULL);
   module_state_t state = get_module_state(module);
-  CHECK(state <= MODULE_STATE_STARTED);
-
-  // Only something to do if the module was actually started
-  if (state < MODULE_STATE_STARTED) return;
-
-  LOG_INFO("%s Shutting down module \"%s\"", __func__, module->name);
-  if (!call_lifecycle_function(module->shut_down)) {
-    LOG_ERROR("%s Failed to shutdown module \"%s\". Continuing anyway.",
-              __func__, module->name);
-  }
-  LOG_INFO("%s Shutdown of module \"%s\" completed", __func__, module->name);
-
-  set_module_state(module, MODULE_STATE_INITIALIZED);
-}
-
-void module_clean_up(const module_t* module) {
-  CHECK(module != NULL);
-  module_state_t state = get_module_state(module);
-  CHECK(state <= MODULE_STATE_INITIALIZED);
 
   // Only something to do if the module was actually initialized
-  if (state < MODULE_STATE_INITIALIZED) return;
+  if (state == MODULE_STATE_NONE) return;
 
   LOG_INFO("%s Cleaning up module \"%s\"", __func__, module->name);
-  if (!call_lifecycle_function(module->clean_up)) {
+  if (!call_lifecycle_function(module->shut_down_and_clean_up)) {
     LOG_ERROR("%s Failed to cleanup module \"%s\". Continuing anyway.",
               __func__, module->name);
   }
