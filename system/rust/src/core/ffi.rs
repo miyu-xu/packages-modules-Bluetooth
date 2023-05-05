@@ -73,8 +73,9 @@ mod inner {
     #[namespace = "bluetooth::connection"]
     unsafe extern "C++" {
         include!("src/connection/ffi/connection_shim.h");
-        type LeAclManagerShim = crate::connection::LeAclManagerShim;
-        type AddressResolverShim = crate::connection::AddressResolverShim;
+        type LeAclManagerShim = crate::connection::ffi::le_manager::LeAclManagerShim;
+        type AddressResolverShim = crate::connection::ffi::address_resolver::AddressResolverShim;
+        type LeScannerShim = crate::connection::ffi::le_scanner::LeScannerShim;
     }
 
     #[namespace = "bluetooth::rust_shim"]
@@ -83,6 +84,7 @@ mod inner {
             gatt_server_callbacks: UniquePtr<GattServerCallbacks>,
             le_acl_manager: UniquePtr<LeAclManagerShim>,
             address_resolver: SharedPtr<AddressResolverShim>,
+            le_scanner: UniquePtr<LeScannerShim>,
             on_started: Pin<&'static mut Future>,
         );
 

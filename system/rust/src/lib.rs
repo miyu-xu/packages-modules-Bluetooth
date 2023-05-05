@@ -17,6 +17,7 @@
 
 use bt_common::init_flags::rust_event_loop_is_enabled;
 use connection::le_manager::{AddressResolver, InactiveLeAclManager};
+use connection::le_scanner::LeScanner;
 use gatt::{channel::AttTransport, GattCallbacks};
 use log::{info, warn};
 use tokio::task::LocalSet;
@@ -70,6 +71,7 @@ impl GlobalModuleRegistry {
         att_transport: Rc<dyn AttTransport>,
         le_acl_manager: impl InactiveLeAclManager,
         address_resolver: impl AddressResolver + Clone + 'static,
+        scanner: impl LeScanner + 'static,
         on_started: impl FnOnce(),
     ) {
         info!("starting Rust modules");
@@ -87,7 +89,7 @@ impl GlobalModuleRegistry {
 
         // First, setup FFI and C++ modules
         gatt::arbiter::initialize_arbiter();
-        connection::register_callbacks();
+        connection::ffi::register_callbacks();
 
         // Now enter the runtime
         local.block_on(&rt, async {
@@ -97,7 +99,7 @@ impl GlobalModuleRegistry {
             let gatt_module = &mut gatt::server::GattModule::new(att_transport.clone());
 
             let connection_manager =
-                connection::ConnectionManager::new(le_acl_manager, address_resolver);
+                connection::ConnectionManager::new(le_acl_manager, address_resolver, scanner);
 
             // All modules that are visible from incoming JNI / top-level interfaces should
             // be exposed here

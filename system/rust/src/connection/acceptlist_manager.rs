@@ -9,7 +9,7 @@ use crate::core::address::AddressWithType;
 
 use super::{
     le_manager::{CanonicalAddress, LeAclManager},
-    target_state::TargetState,
+    target_state::TargetAcceptlistState,
 };
 
 /// This struct monitors the state of the LE connect list,
@@ -44,7 +44,7 @@ impl LeAcceptlistManager {
     }
 
     /// Drive the state of the connect list to the target state
-    pub fn drive_to_state(&mut self, target: TargetState) {
+    pub fn drive_to_state(&mut self, target: TargetAcceptlistState) {
         let target_direct_list = target.direct_list.iter().map(CanonicalAddress::addr).collect();
         let target_background_list =
             target.background_list.iter().map(CanonicalAddress::addr).collect();
@@ -106,7 +106,7 @@ mod test {
         let mut manager = LeAcceptlistManager::new(mock_le_manager.clone());
 
         // act: request a device to be present in the direct list
-        manager.drive_to_state(TargetState {
+        manager.drive_to_state(TargetAcceptlistState {
             background_list: [].into(),
             direct_list: [ADDRESS_1].into(),
         });
@@ -124,7 +124,7 @@ mod test {
         let mut manager = LeAcceptlistManager::new(mock_le_manager.clone());
 
         // act: request a device to be present in the direct list
-        manager.drive_to_state(TargetState {
+        manager.drive_to_state(TargetAcceptlistState {
             background_list: [ADDRESS_1].into(),
             direct_list: [].into(),
         });
@@ -140,13 +140,13 @@ mod test {
         // arrange: a pending background connection
         let mock_le_manager = MockActiveLeAclManager::new();
         let mut manager = LeAcceptlistManager::new(mock_le_manager.clone());
-        manager.drive_to_state(TargetState {
+        manager.drive_to_state(TargetAcceptlistState {
             background_list: [ADDRESS_1].into(),
             direct_list: [].into(),
         });
 
         // act: initiate a direct connection to the same device
-        manager.drive_to_state(TargetState {
+        manager.drive_to_state(TargetAcceptlistState {
             background_list: [ADDRESS_1].into(),
             direct_list: [ADDRESS_1].into(),
         });
@@ -160,17 +160,17 @@ mod test {
         // arrange: a pending background connection
         let mock_le_manager = MockActiveLeAclManager::new();
         let mut manager = LeAcceptlistManager::new(mock_le_manager.clone());
-        manager.drive_to_state(TargetState {
+        manager.drive_to_state(TargetAcceptlistState {
             background_list: [ADDRESS_1].into(),
             direct_list: [].into(),
         });
 
         // act: initiate a direct connection to the same device, then remove it
-        manager.drive_to_state(TargetState {
+        manager.drive_to_state(TargetAcceptlistState {
             background_list: [ADDRESS_1].into(),
             direct_list: [ADDRESS_1].into(),
         });
-        manager.drive_to_state(TargetState {
+        manager.drive_to_state(TargetAcceptlistState {
             background_list: [ADDRESS_1].into(),
             direct_list: [].into(),
         });
@@ -184,21 +184,21 @@ mod test {
         // arrange: a pending background connection
         let mock_le_manager = MockActiveLeAclManager::new();
         let mut manager = LeAcceptlistManager::new(mock_le_manager.clone());
-        manager.drive_to_state(TargetState {
+        manager.drive_to_state(TargetAcceptlistState {
             background_list: [ADDRESS_1].into(),
             direct_list: [].into(),
         });
 
         // act: initiate a direct connection to the same device, cancel it, then resume
-        manager.drive_to_state(TargetState {
+        manager.drive_to_state(TargetAcceptlistState {
             background_list: [ADDRESS_1].into(),
             direct_list: [ADDRESS_1].into(),
         });
-        manager.drive_to_state(TargetState {
+        manager.drive_to_state(TargetAcceptlistState {
             background_list: [ADDRESS_1].into(),
             direct_list: [].into(),
         });
-        manager.drive_to_state(TargetState {
+        manager.drive_to_state(TargetAcceptlistState {
             background_list: [ADDRESS_1].into(),
             direct_list: [ADDRESS_1].into(),
         });
@@ -214,11 +214,14 @@ mod test {
         let mut manager = LeAcceptlistManager::new(mock_le_manager.clone());
 
         // act: add then remove a background connection
-        manager.drive_to_state(TargetState {
+        manager.drive_to_state(TargetAcceptlistState {
             background_list: [ADDRESS_1].into(),
             direct_list: [].into(),
         });
-        manager.drive_to_state(TargetState { background_list: [].into(), direct_list: [].into() });
+        manager.drive_to_state(TargetAcceptlistState {
+            background_list: [].into(),
+            direct_list: [].into(),
+        });
 
         // assert: we have stopped our connection
         assert_eq!(mock_le_manager.current_connection_mode(), None);
@@ -231,12 +234,15 @@ mod test {
         let mut manager = LeAcceptlistManager::new(mock_le_manager.clone());
 
         // act: add, remove, then re-add a background connection
-        manager.drive_to_state(TargetState {
+        manager.drive_to_state(TargetAcceptlistState {
             background_list: [ADDRESS_1].into(),
             direct_list: [].into(),
         });
-        manager.drive_to_state(TargetState { background_list: [].into(), direct_list: [].into() });
-        manager.drive_to_state(TargetState {
+        manager.drive_to_state(TargetAcceptlistState {
+            background_list: [].into(),
+            direct_list: [].into(),
+        });
+        manager.drive_to_state(TargetAcceptlistState {
             background_list: [ADDRESS_1].into(),
             direct_list: [].into(),
         });
@@ -251,7 +257,7 @@ mod test {
         let mut manager = LeAcceptlistManager::new(mock_le_manager.clone());
 
         // act: initiate a direct connection
-        manager.drive_to_state(TargetState {
+        manager.drive_to_state(TargetAcceptlistState {
             background_list: [].into(),
             direct_list: [ADDRESS_1].into(),
         });
@@ -261,7 +267,7 @@ mod test {
         // the peer later disconnects
         mock_le_manager.on_le_disconnect(ADDRESS_1.addr());
         // act: retry the direct connection
-        manager.drive_to_state(TargetState {
+        manager.drive_to_state(TargetAcceptlistState {
             background_list: [].into(),
             direct_list: [ADDRESS_1].into(),
         });
@@ -277,21 +283,21 @@ mod test {
         // arrange: a pending direct connection
         let mock_le_manager = MockActiveLeAclManager::new();
         let mut manager = LeAcceptlistManager::new(mock_le_manager.clone());
-        manager.drive_to_state(TargetState {
+        manager.drive_to_state(TargetAcceptlistState {
             background_list: [].into(),
             direct_list: [ADDRESS_1].into(),
         });
 
         // act: add, remove, then re-add a background connection
-        manager.drive_to_state(TargetState {
+        manager.drive_to_state(TargetAcceptlistState {
             background_list: [ADDRESS_1].into(),
             direct_list: [ADDRESS_1].into(),
         });
-        manager.drive_to_state(TargetState {
+        manager.drive_to_state(TargetAcceptlistState {
             background_list: [].into(),
             direct_list: [ADDRESS_1].into(),
         });
-        manager.drive_to_state(TargetState {
+        manager.drive_to_state(TargetAcceptlistState {
             background_list: [ADDRESS_1].into(),
             direct_list: [ADDRESS_1].into(),
         });
@@ -307,7 +313,7 @@ mod test {
         let mut manager = LeAcceptlistManager::new(mock_le_manager.clone());
 
         // act: initiate a background connection
-        manager.drive_to_state(TargetState {
+        manager.drive_to_state(TargetAcceptlistState {
             background_list: [ADDRESS_1].into(),
             direct_list: [].into(),
         });
@@ -315,7 +321,10 @@ mod test {
         mock_le_manager.on_le_connect(ADDRESS_1.addr(), ErrorCode::SUCCESS);
         manager.on_connect_complete(ADDRESS_1.addr());
         // act: we remove the background connection
-        manager.drive_to_state(TargetState { background_list: [].into(), direct_list: [].into() });
+        manager.drive_to_state(TargetAcceptlistState {
+            background_list: [].into(),
+            direct_list: [].into(),
+        });
 
         // assert: we have returned to idle
         assert_eq!(mock_le_manager.current_connection_mode(), None);
