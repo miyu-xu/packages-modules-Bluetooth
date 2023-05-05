@@ -123,9 +123,9 @@ void BTA_DmBleRequestMaxTxDataLength(const RawAddress& remote_device) {
   inc_func_call_count(__func__);
   test::mock::bta_dm_api::BTA_DmBleRequestMaxTxDataLength(remote_device);
 }
-void BTA_DmBleScan(bool start, uint8_t duration) {
+void BTA_DmBleScan(bool start, uint8_t duration, bool isCsisObserve) {
   inc_func_call_count(__func__);
-  test::mock::bta_dm_api::BTA_DmBleScan(start, duration);
+  test::mock::bta_dm_api::BTA_DmBleScan(start, duration, isCsisObserve);
 }
 void BTA_DmBleSecurityGrant(const RawAddress& bd_addr,
                             tBTA_DM_BLE_SEC_GRANT res) {
