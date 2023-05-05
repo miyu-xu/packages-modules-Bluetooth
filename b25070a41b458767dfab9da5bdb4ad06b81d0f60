@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f5307149_b0f28216",
+        "filename": "tools/rootcanal/model/controller/link_layer_controller.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 501,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-05-05T16:17:28Z",
+      "side": 1,
+      "message": "nit: I prefer to put the comment inside the else rather than split the \n} else {",
+      "range": {
+        "startLine": 501,
+        "startChar": 2,
+        "endLine": 501,
+        "endChar": 3
+      },
+      "revId": "b25070a41b458767dfab9da5bdb4ad06b81d0f60",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7a4cff25_3d51083d",
+        "filename": "tools/rootcanal/model/controller/link_layer_controller.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 542,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-05-05T16:17:28Z",
+      "side": 1,
+      "message": "Should there be a TODO here to check for the change (to match the TODO in 569) ?",
+      "revId": "b25070a41b458767dfab9da5bdb4ad06b81d0f60",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
