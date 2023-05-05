@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "19353f29_3a683e47",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 1842,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-05-05T17:12:37Z",
+      "side": 1,
+      "message": "`return true;`",
+      "revId": "2ef46edf27aa7f73f4f644f0f5cde6028052fe01",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8a15a417_e7eb62d4",
         "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
         "patchSetId": 2
@@ -14,6 +31,30 @@
       "writtenOn": "2023-05-05T07:24:53Z",
       "side": 1,
       "message": "Introducing pause_discovery and resume_discovery here would have to consider:\ncase 1. connecting to enabled profiles\ncase 2. service discovery is ongoing\ncase 3. no profile interested",
+      "range": {
+        "startLine": 2350,
+        "startChar": 7,
+        "endLine": 2350,
+        "endChar": 32
+      },
+      "revId": "2ef46edf27aa7f73f4f644f0f5cde6028052fe01",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "91ff4ef3_2095b38e",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 2350,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-05-05T17:12:37Z",
+      "side": 1,
+      "message": "Discovery only really needs to be paused when we don\u0027t have an active ACL link for profile connection right? The collision occurs between inquiry, RnR and new ACL connections, all of which don\u0027t occur if you already have an active connection.\n\nInstead, we should be doing the following:\n\nabove in this fn:\n```\nif !is_connected {\n  self.pause_discovery();\n}\n```\n\nin acl_state_changed:\n```\nself.resume_discovery()\n```",
+      "parentUuid": "8a15a417_e7eb62d4",
       "range": {
         "startLine": 2350,
         "startChar": 7,
