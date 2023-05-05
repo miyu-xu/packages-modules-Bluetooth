@@ -695,7 +695,7 @@ TEST_F(DeviceIotConfigModuleTest,
   test::mock::osi_config::config_new_empty.body = {};
 }
 
-TEST_F(DeviceIotConfigModuleTest, test_device_iot_config_module_start_up) {
+TEST_F(DeviceIotConfigModuleTest, test_device_iot_config_module_init) {
   std::string enable_logging_property_get_value;
   std::string factory_reset_property_get_value;
 
@@ -706,7 +706,7 @@ TEST_F(DeviceIotConfigModuleTest, test_device_iot_config_module_start_up) {
   {
     reset_mock_function_count_map();
 
-    device_iot_config_module_start_up();
+    device_iot_config_module_init();
 
     EXPECT_EQ(get_func_call_count("config_new"), 0);
     EXPECT_EQ(get_func_call_count("config_new_empty"), 0);
@@ -734,7 +734,7 @@ TEST_F(DeviceIotConfigModuleTest, test_device_iot_config_module_shutdown) {
 
     return_value = false;
 
-    device_iot_config_module_shut_down();
+    device_iot_config_module_clean_up();
 
     EXPECT_EQ(get_func_call_count("alarm_is_scheduled"), 1);
     EXPECT_EQ(get_func_call_count("alarm_cancel"), 1);
@@ -748,7 +748,7 @@ TEST_F(DeviceIotConfigModuleTest, test_device_iot_config_module_shutdown) {
 
     return_value = true;
 
-    device_iot_config_module_shut_down();
+    device_iot_config_module_clean_up();
 
     EXPECT_EQ(get_func_call_count("alarm_is_scheduled"), 1);
     EXPECT_EQ(get_func_call_count("alarm_cancel"), 1);
@@ -862,7 +862,6 @@ class DeviceIotConfigTest : public testing::Test {
     test::mock::osi_allocator::osi_free.body = [&](void* ptr) {};
 
     device_iot_config_module_init();
-    device_iot_config_module_start_up();
 
     reset_mock_function_count_map();
   }
@@ -3341,7 +3340,6 @@ class DeviceIotConfigDisabledTest : public testing::Test {
     test::mock::osi_allocator::osi_free.body = [&](void* ptr) {};
 
     device_iot_config_module_init();
-    device_iot_config_module_start_up();
 
     reset_mock_function_count_map();
   }
