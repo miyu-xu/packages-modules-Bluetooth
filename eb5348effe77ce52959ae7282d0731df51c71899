@@ -1,5 +1,40 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ccc78f1c_1faa46c6",
+        "filename": "system/stack/l2cap/l2c_csm.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 341,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-05-05T00:02:48Z",
+      "side": 1,
+      "message": "This does not match the L2CAP_CONN_INTERNAL_MASK checked by RFC below, so this is a behavioral change.",
+      "revId": "eb5348effe77ce52959ae7282d0731df51c71899",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "05e45632_21c28f9a",
+        "filename": "system/stack/l2cap/l2c_csm.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 716,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-05-05T00:02:48Z",
+      "side": 1,
+      "message": "ditto",
+      "revId": "eb5348effe77ce52959ae7282d0731df51c71899",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
