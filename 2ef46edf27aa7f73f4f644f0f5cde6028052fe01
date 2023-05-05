@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8a15a417_e7eb62d4",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 2350,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2023-05-05T07:24:53Z",
+      "side": 1,
+      "message": "Introducing pause_discovery and resume_discovery here would have to consider:\ncase 1. connecting to enabled profiles\ncase 2. service discovery is ongoing\ncase 3. no profile interested",
+      "range": {
+        "startLine": 2350,
+        "startChar": 7,
+        "endLine": 2350,
+        "endChar": 32
+      },
+      "revId": "2ef46edf27aa7f73f4f644f0f5cde6028052fe01",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
