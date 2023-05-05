@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "10e50088_04e34969",
+        "filename": "tools/rootcanal/py/controller.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 243,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-05-05T23:22:13Z",
+      "side": 1,
+      "message": "I agree that it makes the result handling awkward;\nI will remove the index",
+      "parentUuid": "65bb3712_5983a40e",
+      "range": {
+        "startLine": 243,
+        "startChar": 45,
+        "endLine": 243,
+        "endChar": 75
+      },
+      "revId": "4b17157cbcaa3f0e846ff661c576ae74b98d8188",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "34fe17ef_0ba375a1",
         "filename": "tools/rootcanal/py/controller.py",
         "patchSetId": 8
@@ -72,6 +96,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8ab9219e_3c94b350",
+        "filename": "tools/rootcanal/test/LL/CON/PER/BV_40_C.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-05-05T23:22:13Z",
+      "side": 1,
+      "message": "These tests have incorrect inputs; I am not sure if that is an error in the test specification or if the test is expected to return an error.",
+      "parentUuid": "4b3b7038_12667591",
+      "range": {
+        "startLine": 127,
+        "startChar": 11,
+        "endLine": 127,
+        "endChar": 13
+      },
+      "revId": "4b17157cbcaa3f0e846ff661c576ae74b98d8188",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "757ca38a_3aae7b62",
         "filename": "tools/rootcanal/test/LL/CON/PER/BV_42_C.py",
         "patchSetId": 8
@@ -83,6 +131,30 @@
       "writtenOn": "2023-05-05T23:11:53Z",
       "side": 1,
       "message": "Too hard to do it correctly?  It\u0027s surprising to have the same TODO in the code and the tests.",
+      "range": {
+        "startLine": 234,
+        "startChar": 10,
+        "endLine": 234,
+        "endChar": 14
+      },
+      "revId": "4b17157cbcaa3f0e846ff661c576ae74b98d8188",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4787fe99_fadbdae8",
+        "filename": "tools/rootcanal/test/LL/CON/PER/BV_42_C.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 234,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-05-05T23:22:13Z",
+      "side": 1,
+      "message": "Its expected to have the same TODO, the test is validating the behavior for which I have added a TODO 😄\nImplementing this correclty requires having a context to know if the request is initiated locally, but I don\u0027t see value to adding this logic when it does not make a difference if a spurious event is sent.",
+      "parentUuid": "757ca38a_3aae7b62",
       "range": {
         "startLine": 234,
         "startChar": 10,
