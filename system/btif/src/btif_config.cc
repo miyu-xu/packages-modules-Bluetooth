@@ -191,11 +191,7 @@ static future_t* init(void) {
   return future_new_immediate(FUTURE_SUCCESS);
 }
 
-static future_t* shut_down(void) {
-  return future_new_immediate(FUTURE_SUCCESS);
-}
-
-static future_t* clean_up(void) {
+static future_t* shut_down_and_clean_up(void) {
   CHECK(bluetooth::shim::is_gd_stack_started_up());
   // GD storage module cleanup by itself
   std::unique_lock<std::recursive_mutex> lock(config_lock);
@@ -203,11 +199,10 @@ static future_t* clean_up(void) {
   return future_new_immediate(FUTURE_SUCCESS);
 }
 
-EXPORT_SYMBOL module_t btif_config_module = {.name = BTIF_CONFIG_MODULE,
-                                             .init = init,
-                                             .start_up = NULL,
-                                             .shut_down = shut_down,
-                                             .clean_up = clean_up};
+EXPORT_SYMBOL module_t btif_config_module = {
+    .name = BTIF_CONFIG_MODULE,
+    .init_and_start_up = init,
+    .shut_down_and_clean_up = shut_down_and_clean_up};
 
 bool btif_config_exist(const std::string& section, const std::string& key) {
   CHECK(bluetooth::shim::is_gd_stack_started_up());
