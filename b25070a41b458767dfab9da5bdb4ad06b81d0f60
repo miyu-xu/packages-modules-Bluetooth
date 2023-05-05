@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e81daffd_a39c929e",
+        "filename": "tools/rootcanal/model/controller/link_layer_controller.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 501,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-05-05T22:42:04Z",
+      "side": 1,
+      "message": "I don\u0027t see the point.\n  }\n  // Peripheral receives the request: respond with local phy preferences\n  // in LL_PHY_RSP pdu.\n  else {\n  \n  vs  \n  \n  } else {\n  // Peripheral receives the request: respond with local phy preferences\n  // in LL_PHY_RSP pdu.\n\nI think there are very few of the first one in the Google code I\u0027ve seen.  Can you find many examples?",
+      "parentUuid": "b39a3bbd_62573586",
+      "range": {
+        "startLine": 501,
+        "startChar": 2,
+        "endLine": 501,
+        "endChar": 3
+      },
+      "revId": "b25070a41b458767dfab9da5bdb4ad06b81d0f60",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7a4cff25_3d51083d",
         "filename": "tools/rootcanal/model/controller/link_layer_controller.cc",
         "patchSetId": 5
