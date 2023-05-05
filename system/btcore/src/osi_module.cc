@@ -39,5 +39,4 @@ future_t* osi_clean_up(void) {
 EXPORT_SYMBOL extern const module_t osi_module = {
     .name = OSI_MODULE,
     .init_and_start_up = osi_init,
-    .shut_down_and_clean_up = osi_clean_up,
-    .dependencies = {NULL}};
+    .shut_down_and_clean_up = osi_clean_up};

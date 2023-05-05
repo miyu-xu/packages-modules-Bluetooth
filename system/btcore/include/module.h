@@ -26,13 +26,10 @@
 
 typedef future_t* (*module_lifecycle_fn)(void);
 
-#define BTCORE_MAX_MODULE_DEPENDENCIES 10
-
 typedef struct {
   const char* name{nullptr};
   module_lifecycle_fn init_and_start_up{nullptr};
   module_lifecycle_fn shut_down_and_clean_up{nullptr};
-  const char* dependencies[BTCORE_MAX_MODULE_DEPENDENCIES]{nullptr};
 } module_t;
 
 // Prepares module management. Must be called before doing anything with
