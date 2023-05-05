@@ -74,6 +74,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6c91936f_0e46f65b",
+        "filename": "tools/rootcanal/model/controller/link_layer_controller.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 501,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-05-05T23:27:25Z",
+      "side": 1,
+      "message": "That enables different scoping for the comments\n```\n// General description of block function \n// and entry conditions.\nif (cond) {\n   // Local description of first action in block.\n   action();\n}\n// General description of block function \n// and entry conditions.\nelse {\n   // Local description of first action in block.\n   action();\n}\n```\n\n\u003e I think there are very few of the first one in the Google code I\u0027ve seen. \n\u003e Can you find many examples?\n\nPersonal preference ?\nYou said it yourself :) `nit: I prefer to put ...`",
+      "parentUuid": "e81daffd_a39c929e",
+      "range": {
+        "startLine": 501,
+        "startChar": 2,
+        "endLine": 501,
+        "endChar": 3
+      },
+      "revId": "b25070a41b458767dfab9da5bdb4ad06b81d0f60",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7a4cff25_3d51083d",
         "filename": "tools/rootcanal/model/controller/link_layer_controller.cc",
         "patchSetId": 5
