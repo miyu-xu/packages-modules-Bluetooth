@@ -116,6 +116,30 @@
       },
       "revId": "3e04150fd50ceb20e4bd451205eec5f423df52c6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d03e465a_23e93ae9",
+        "filename": "system/stack/btm/btm_inq.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1318,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-05-05T00:28:34Z",
+      "side": 1,
+      "message": "Would it make sense to do this:\ncase BTM_INQ_RES_IGNORE_RSSI:\n  btm_cb.btm_inq_vars.inq_cmpl_info.resp_type[BTM_INQ_RESULT_STANDARD]++;\n  break;",
+      "parentUuid": "131ff606_1d35068b",
+      "range": {
+        "startLine": 1318,
+        "startChar": 15,
+        "endLine": 1318,
+        "endChar": 38
+      },
+      "revId": "3e04150fd50ceb20e4bd451205eec5f423df52c6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
