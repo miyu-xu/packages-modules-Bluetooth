@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7d016949_f3a74837",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 1842,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2023-05-05T20:53:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c8f66c0e_92a662ae",
+      "revId": "2ef46edf27aa7f73f4f644f0f5cde6028052fe01",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8a15a417_e7eb62d4",
@@ -97,6 +115,30 @@
       "side": 1,
       "message": "Love this. I was thinking add a TODO to describe this. Thanks for the hint.",
       "parentUuid": "91ff4ef3_2095b38e",
+      "range": {
+        "startLine": 2350,
+        "startChar": 7,
+        "endLine": 2350,
+        "endChar": 32
+      },
+      "revId": "2ef46edf27aa7f73f4f644f0f5cde6028052fe01",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6f166991_1986f907",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 2350,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2023-05-05T20:53:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ee8d00bf_2fd24a1b",
       "range": {
         "startLine": 2350,
         "startChar": 7,
