@@ -46,47 +46,37 @@ static std::unordered_map<const module_t*, module_state_t> metadata;
 static std::mutex metadata_mutex;
 
 static bool call_lifecycle_function(module_lifecycle_fn function);
-static module_state_t get_module_state(const module_t* module);
-static void set_module_state(const module_t* module, module_state_t state);
+static module_state_t get_module_state(const module_t& module);
+static void set_module_state(const module_t& module, module_state_t state);
 
-void module_management_start(void) {}
+void module_management_cleanup(void) { metadata.clear(); }
 
-void module_management_stop(void) { metadata.clear(); }
-
-const module_t* get_module(const char* name) {
-  module_t* module = (module_t*)dlsym(RTLD_DEFAULT, name);
-  CHECK(module);
-  return module;
-}
-
-bool module_init_and_start_up(const module_t* module) {
-  CHECK(module != NULL);
+bool module_init_and_start_up(const module_t& module) {
   CHECK(get_module_state(module) == MODULE_STATE_NONE);
 
-  LOG_INFO("Starting module \"%s\"", module->name);
-  if (!call_lifecycle_function(module->init_and_start_up)) {
-    LOG_ERROR("Failed to start up module \"%s\"", module->name);
+  LOG_INFO("Starting module \"%s\"", module.name);
+  if (!call_lifecycle_function(module.init_and_start_up)) {
+    LOG_ERROR("Failed to start up module \"%s\"", module.name);
     return false;
   }
-  LOG_INFO("Started module \"%s\"", module->name);
+  LOG_INFO("Started module \"%s\"", module.name);
 
   set_module_state(module, MODULE_STATE_INITIALIZED_AND_STARTED);
   return true;
 }
 
-void module_shut_down_and_clean_up(const module_t* module) {
-  CHECK(module != NULL);
+void module_shut_down_and_clean_up(const module_t& module) {
   module_state_t state = get_module_state(module);
 
   // Only something to do if the module was actually initialized
   if (state == MODULE_STATE_NONE) return;
 
-  LOG_INFO("Cleaning up module \"%s\"", module->name);
-  if (!call_lifecycle_function(module->shut_down_and_clean_up)) {
+  LOG_INFO("Cleaning up module \"%s\"", module.name);
+  if (!call_lifecycle_function(module.shut_down_and_clean_up)) {
     LOG_ERROR("Failed to cleanup module \"%s\". Continuing anyway.",
-              module->name);
+              module.name);
   }
-  LOG_INFO("Cleanup of module \"%s\" completed", module->name);
+  LOG_INFO("Cleanup of module \"%s\" completed", module.name);
 
   set_module_state(module, MODULE_STATE_NONE);
 }
@@ -104,14 +94,14 @@ static bool call_lifecycle_function(module_lifecycle_fn function) {
   return future_await(future);
 }
 
-static module_state_t get_module_state(const module_t* module) {
+static module_state_t get_module_state(const module_t& module) {
   std::lock_guard<std::mutex> lock(metadata_mutex);
-  auto map_ptr = metadata.find(module);
+  auto map_ptr = metadata.find(&module);
 
   return (map_ptr != metadata.end()) ? map_ptr->second : MODULE_STATE_NONE;
 }
 
-static void set_module_state(const module_t* module, module_state_t state) {
+static void set_module_state(const module_t& module, module_state_t state) {
   std::lock_guard<std::mutex> lock(metadata_mutex);
-  metadata[module] = state;
+  metadata[&module] = state;
 }
