@@ -36,7 +36,6 @@ void BTCoreModuleFuzzer::process() {
   (void)hal_util_load_bt_library(&interface);
   module_management_start();
   module_init_and_start_up(&osi_module);
-  (void)get_module(osi_module.name);
   module_shut_down_and_clean_up(&osi_module);
   module_management_stop();
 }
