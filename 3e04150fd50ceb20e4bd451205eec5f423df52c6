@@ -140,6 +140,30 @@
       },
       "revId": "3e04150fd50ceb20e4bd451205eec5f423df52c6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3c233129_c66ad956",
+        "filename": "system/stack/btm/btm_inq.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1318,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-05-05T01:15:13Z",
+      "side": 1,
+      "message": "Sure, but this function is *never* called with the enum BTM_INQ_RES_IGNORE_RSSI and is only here to complete the enum symbol handled cases w/out using default, which would also work.",
+      "parentUuid": "d03e465a_23e93ae9",
+      "range": {
+        "startLine": 1318,
+        "startChar": 15,
+        "endLine": 1318,
+        "endChar": 38
+      },
+      "revId": "3e04150fd50ceb20e4bd451205eec5f423df52c6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
