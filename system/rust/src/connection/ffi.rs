@@ -26,12 +26,14 @@ use super::{
         AddressResolver, CanonicalAddress, ErrorCode, InactiveLeAclManager, LeAclManager,
         LeAclManagerConnectionCallbacks,
     },
+    le_scanner::{LeScanner, LeScannerCallbacks, LeScannerFilterControls},
     ConnectionManagerClient, LeConnection,
 };
 
 unsafe impl Send for LeAclManagerShim {}
 unsafe impl Send for AddressResolverShim {}
 unsafe impl Sync for AddressResolverShim {}
+unsafe impl Send for LeScannerShim {}
 
 #[cxx::bridge]
 #[allow(clippy::needless_lifetimes)]
@@ -40,6 +42,7 @@ unsafe impl Sync for AddressResolverShim {}
 mod inner {
     impl UniquePtr<LeAclManagerShim> {}
     impl SharedPtr<AddressResolverShim> {}
+    impl UniquePtr<LeScannerShim> {}
 
     #[namespace = "bluetooth::core"]
     extern "C++" {
@@ -78,10 +81,15 @@ mod inner {
 
     #[namespace = "bluetooth::connection"]
     extern "Rust" {
-        type ResolveAddressCallback;
-
-        #[cxx_name = "Invoke"]
-        fn invoke_callback(callback: Box<ResolveAddressCallback>, address: AddressWithType);
+        type LeAclManagerCallbackShim;
+        #[cxx_name = "OnLeConnectSuccess"]
+        fn on_le_connect_success(&self, address: AddressWithType);
+        #[cxx_name = "OnLeConnectFail"]
+        fn on_le_connect_fail(&self, address: AddressWithType, status: u8);
+        #[cxx_name = "OnLeDisconnection"]
+        fn on_disconnect(&self, address: AddressWithType);
+        #[cxx_name = "OnResolvingListChange"]
+        fn on_resolving_list_change(&self);
     }
 
     #[namespace = "bluetooth::connection"]
@@ -107,15 +115,41 @@ mod inner {
 
     #[namespace = "bluetooth::connection"]
     extern "Rust" {
-        type LeAclManagerCallbackShim;
-        #[cxx_name = "OnLeConnectSuccess"]
-        fn on_le_connect_success(&self, address: AddressWithType);
-        #[cxx_name = "OnLeConnectFail"]
-        fn on_le_connect_fail(&self, address: AddressWithType, status: u8);
-        #[cxx_name = "OnLeDisconnection"]
-        fn on_disconnect(&self, address: AddressWithType);
-        #[cxx_name = "OnResolvingListChange"]
-        fn on_resolving_list_change(&self);
+        type ResolveAddressCallback;
+
+        #[cxx_name = "Invoke"]
+        fn invoke_callback(callback: Box<ResolveAddressCallback>, address: AddressWithType);
+    }
+
+    #[namespace = "bluetooth::connection"]
+    unsafe extern "C++" {
+        include!("src/connection/ffi/connection_shim.h");
+
+        /// This lets us register for scan results, and configure scan filters
+        type LeScannerShim;
+
+        /// Register Rust callbacks for scan results
+        ///
+        /// # Safety
+        /// `callbacks` must be Send + Sync, since C++ moves it to a different thread and
+        /// invokes it from several others (GD + legacy threads).
+        #[cxx_name = "RegisterRustCallbacks"]
+        unsafe fn unchecked_register_rust_callbacks(
+            self: Pin<&mut Self>,
+            callbacks: Box<LeScannerCallbacksShim>,
+        );
+
+        /// Enable / disable the APCF filter for targeted announcements.
+        /// Sends HCI commands whenever invoked, so do so only if needed.
+        #[cxx_name = "SetTargetedAnnouncementFilterEnabled"]
+        fn set_targeted_announcement_filter_enabled(&self, enable: bool);
+    }
+
+    #[namespace = "bluetooth::connection"]
+    extern "Rust" {
+        type LeScannerCallbacksShim;
+        #[cxx_name = "OnTargetedAnnouncementScanResult"]
+        fn on_targeted_announcement_scan_result(&self, address: AddressWithType);
     }
 
     #[namespace = "bluetooth::connection"]
@@ -149,7 +183,7 @@ impl LeAclManagerShim {
     }
 }
 
-/// Implementation of HciConnectProxy wrapping the corresponding C++ methods
+/// Implementation of LeAclManager wrapping the corresponding C++ methods
 pub struct LeAclManagerImpl(pub UniquePtr<LeAclManagerShim>);
 
 pub struct LeAclManagerCallbackShim(
@@ -205,8 +239,6 @@ impl InactiveLeAclManager for LeAclManagerImpl {
     }
 }
 
-type ResolveAddressCallback = Callback<AddressWithType>;
-
 impl LeAclManager for LeAclManagerImpl {
     fn add_to_direct_list(&self, address: AddressWithType) {
         self.0.create_le_connection(address, /* is_direct= */ true)
@@ -226,6 +258,8 @@ impl Debug for LeAclManagerImpl {
         f.debug_tuple("LeAclManagerImpl").finish()
     }
 }
+
+type ResolveAddressCallback = Callback<AddressWithType>;
 
 /// Implementation of AddressResolver wrapping the corresponding C++ methods
 #[derive(Clone)]
@@ -251,6 +285,74 @@ impl AddressResolver for AddressResolverImpl {
 impl Debug for AddressResolverImpl {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         f.debug_tuple("AddressResolverImpl").finish()
+    }
+}
+
+/// Implementation of LeScanner wrapping the corresponding C++ methods
+pub struct LeScannerImpl {
+    shim: UniquePtr<LeScannerShim>,
+    registered: bool,
+    targeted_announcements_filter_enabled: bool,
+}
+
+impl LeScannerImpl {
+    pub fn new(shim: UniquePtr<LeScannerShim>) -> Self {
+        Self { shim, registered: false, targeted_announcements_filter_enabled: false }
+    }
+}
+
+impl LeScanner for LeScannerImpl {
+    fn register_callbacks(&mut self, callbacks: impl LeScannerCallbacks + 'static) -> Result<(), ()>
+    where
+        Box<LeScannerCallbacksShim>: Send + Sync,
+    {
+        if self.registered {
+            return Err(());
+        }
+
+        let (tx, mut rx) = unbounded_channel();
+
+        // only register callbacks if the feature is enabled
+        if init_flags::use_unified_connection_manager_is_enabled() {
+            unsafe {
+                self.shim
+                    .pin_mut()
+                    .unchecked_register_rust_callbacks(Box::new(LeScannerCallbacksShim(tx)));
+            }
+        }
+
+        spawn_local(async move {
+            while let Some(f) = rx.recv().await {
+                f(&callbacks)
+            }
+        });
+
+        Ok(())
+    }
+}
+
+impl LeScannerFilterControls for LeScannerImpl {
+    fn set_targeted_announcement_filter_enabled(&mut self, enable: bool) {
+        if enable != self.targeted_announcements_filter_enabled {
+            self.shim.set_targeted_announcement_filter_enabled(enable);
+        }
+        self.targeted_announcements_filter_enabled = enable;
+    }
+}
+
+impl Debug for LeScannerImpl {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        f.debug_struct("LeScannerImpl").field("registered", &self.registered).finish()
+    }
+}
+
+pub struct LeScannerCallbacksShim(UnboundedSender<Box<dyn FnOnce(&dyn LeScannerCallbacks) + Send>>);
+
+impl LeScannerCallbacksShim {
+    fn on_targeted_announcement_scan_result(&self, address: AddressWithType) {
+        let _ = self.0.send(Box::new(move |callback| {
+            callback.on_targeted_announcement_scan_result(address);
+        }));
     }
 }
 

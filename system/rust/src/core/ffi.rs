@@ -75,6 +75,7 @@ mod inner {
         include!("src/connection/ffi/connection_shim.h");
         type LeAclManagerShim = crate::connection::LeAclManagerShim;
         type AddressResolverShim = crate::connection::AddressResolverShim;
+        type LeScannerShim = crate::connection::LeScannerShim;
     }
 
     #[namespace = "bluetooth::rust_shim"]
@@ -83,6 +84,7 @@ mod inner {
             gatt_server_callbacks: UniquePtr<GattServerCallbacks>,
             le_acl_manager: UniquePtr<LeAclManagerShim>,
             address_resolver: SharedPtr<AddressResolverShim>,
+            le_scanner: UniquePtr<LeScannerShim>,
             on_started: Pin<&'static mut Future>,
         );
 

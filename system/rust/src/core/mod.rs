@@ -12,7 +12,10 @@ use bt_common::init_flags::rust_event_loop_is_enabled;
 use cxx::{SharedPtr, UniquePtr};
 
 use crate::{
-    connection::{AddressResolverImpl, AddressResolverShim, LeAclManagerImpl, LeAclManagerShim},
+    connection::{
+        AddressResolverImpl, AddressResolverShim, LeAclManagerImpl, LeAclManagerShim,
+        LeScannerImpl, LeScannerShim,
+    },
     gatt::ffi::{AttTransportImpl, GattCallbacksImpl},
     GlobalModuleRegistry, MainThreadTxMessage, GLOBAL_MODULE_REGISTRY,
 };
@@ -25,6 +28,7 @@ fn start(
     gatt_server_callbacks: UniquePtr<GattServerCallbacks>,
     le_acl_manager: UniquePtr<LeAclManagerShim>,
     address_resolver: SharedPtr<AddressResolverShim>,
+    le_scanner: UniquePtr<LeScannerShim>,
     on_started: Pin<&'static mut Future>,
 ) {
     if rust_event_loop_is_enabled() {
@@ -34,6 +38,7 @@ fn start(
                 Rc::new(AttTransportImpl()),
                 LeAclManagerImpl(le_acl_manager),
                 AddressResolverImpl(address_resolver),
+                LeScannerImpl::new(le_scanner),
                 || {
                     future_ready(on_started);
                 },

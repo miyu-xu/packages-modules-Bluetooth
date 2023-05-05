@@ -1,6 +1,7 @@
 use std::{
     collections::{hash_map::Entry, HashMap},
     future::{Future, IntoFuture},
+    time::{Duration, Instant},
 };
 
 use tokio::sync::oneshot;
@@ -17,16 +18,53 @@ use super::{
 pub enum ConnectionMode {
     Background,
     Direct,
+    TargetedAnnouncement,
+}
+
+#[derive(Clone, Copy, Debug)]
+pub struct LastSeen {
+    time: Option<Instant>,
+}
+
+impl LastSeen {
+    pub const DURATION: Duration = Duration::from_secs(30);
+
+    pub fn new() -> Self {
+        LastSeen { time: None }
+    }
+
+    fn update(&mut self) {
+        self.time = Some(Instant::now());
+    }
+
+    pub fn is_recent(&self) -> bool {
+        self.time.map(|time| Instant::now().duration_since(time) < Self::DURATION).unwrap_or(false)
+    }
+}
+
+#[derive(Debug, Clone, Copy)]
+pub struct ConnectionAttempt {
+    /// the key used to identify this attempt (unique amongst all active attempts)
+    pub key: ConnectionAttemptKey,
+    /// whether we have seen this device making a targeted announcement
+    pub last_seen: LastSeen,
+}
+
+impl From<ConnectionAttemptKey> for ConnectionAttempt {
+    fn from(key: ConnectionAttemptKey) -> Self {
+        Self { key, last_seen: LastSeen::new() }
+    }
 }
 
 #[derive(Debug)]
 struct ConnectionAttemptData {
     id: AttemptId,
+    attempt: ConnectionAttempt,
     conn_tx: Option<oneshot::Sender<Result<LeConnection, ErrorCode>>>,
 }
 
 #[derive(Debug, Hash, PartialEq, Eq, Clone, Copy)]
-pub struct ConnectionAttempt {
+pub struct ConnectionAttemptKey {
     pub client: ConnectionManagerClient,
     pub mode: ConnectionMode,
     pub remote_address: AddressWithType,
@@ -38,7 +76,7 @@ pub struct AttemptId(u64);
 #[derive(Debug)]
 pub struct ConnectionAttempts {
     attempt_id: AttemptId,
-    attempts: HashMap<ConnectionAttempt, ConnectionAttemptData>,
+    attempts: HashMap<ConnectionAttemptKey, ConnectionAttemptData>,
 }
 
 #[derive(Debug)]
@@ -88,15 +126,16 @@ impl ConnectionAttempts {
         PendingConnectionAttempt<impl Future<Output = Result<LeConnection, ConnectionFailure>>>,
         CreateConnectionFailure,
     > {
-        let attempt =
-            ConnectionAttempt { client, mode: ConnectionMode::Direct, remote_address: address };
+        let key =
+            ConnectionAttemptKey { client, mode: ConnectionMode::Direct, remote_address: address };
+        let attempt = ConnectionAttempt { key, last_seen: LastSeen::new() };
 
         let id = self.new_attempt_id();
-        let Entry::Vacant(entry) = self.attempts.entry(attempt) else {
+        let Entry::Vacant(entry) = self.attempts.entry(key) else {
             return Err(CreateConnectionFailure::ConnectionAlreadyPending)
         };
         let (tx, rx) = oneshot::channel();
-        entry.insert(ConnectionAttemptData { conn_tx: Some(tx), id });
+        entry.insert(ConnectionAttemptData { attempt, conn_tx: Some(tx), id });
 
         Ok(PendingConnectionAttempt {
             id,
@@ -116,14 +155,18 @@ impl ConnectionAttempts {
         client: ConnectionManagerClient,
         address: AddressWithType,
     ) -> Result<AttemptId, CreateConnectionFailure> {
-        let attempt =
-            ConnectionAttempt { client, mode: ConnectionMode::Background, remote_address: address };
+        let key = ConnectionAttemptKey {
+            client,
+            mode: ConnectionMode::Background,
+            remote_address: address,
+        };
+        let attempt = ConnectionAttempt { key, last_seen: LastSeen::new() };
 
         let id = self.new_attempt_id();
-        let Entry::Vacant(entry) = self.attempts.entry(attempt) else {
+        let Entry::Vacant(entry) = self.attempts.entry(key) else {
             return Err(CreateConnectionFailure::ConnectionAlreadyPending)
         };
-        entry.insert(ConnectionAttemptData { conn_tx: None, id });
+        entry.insert(ConnectionAttemptData { attempt, conn_tx: None, id });
 
         Ok(id)
     }
@@ -136,7 +179,7 @@ impl ConnectionAttempts {
         mode: ConnectionMode,
     ) -> Result<(), CancelConnectFailure> {
         let existing =
-            self.attempts.remove(&ConnectionAttempt { client, mode, remote_address: address });
+            self.attempts.remove(&ConnectionAttemptKey { client, mode, remote_address: address });
 
         if existing.is_some() {
             // note: dropping the ConnectionAttemptData is sufficient to close the channel and send a cancellation error
@@ -148,24 +191,41 @@ impl ConnectionAttempts {
 
     /// Cancel the connection attempt with the given ID.
     pub fn cancel_attempt_with_id(&mut self, id: AttemptId) {
-        self.attempts.retain(|_, attempt| attempt.id != id);
+        self.attempts.retain(|_, data| data.id != id);
     }
 
     /// Cancel all connection attempts to this address
     pub fn remove_unconditionally(&mut self, address: AddressWithType) {
-        self.attempts.retain(|attempt, _| attempt.remote_address != address);
+        self.attempts.retain(|key, _| key.remote_address != address);
     }
 
     /// Cancel all connection attempts from this client
     pub fn remove_client(&mut self, client: ConnectionManagerClient) {
-        self.attempts.retain(|attempt, _| attempt.client != client);
+        self.attempts.retain(|key, _| key.client != client);
     }
 
     /// List all active connection attempts. Note that we can have active background (but NOT) direct
     /// connection attempts to connected devices, as we will resume the connection attempt when the
     /// peer disconnects from us.
     pub fn active_attempts(&self) -> Vec<ConnectionAttempt> {
-        self.attempts.keys().cloned().collect()
+        self.attempts.values().map(|data| data.attempt).collect()
+    }
+
+    /// Handle a scan result matching a targeted announcement
+    pub async fn process_targeted_announcement_scan_result(
+        &mut self,
+        canonical_address: CanonicalAddress,
+        address_resolver: &dyn AddressResolver,
+    ) {
+        for (key, data) in &mut self.attempts {
+            if key.mode != ConnectionMode::TargetedAnnouncement {
+                continue;
+            }
+            if canonical_address != address_resolver.resolve_address(key.remote_address).await {
+                continue;
+            }
+            data.attempt.last_seen.update();
+        }
     }
 
     /// Handle a successful connection by notifying clients and resolving direct connect attempts
@@ -222,9 +282,9 @@ mod test {
 
             // assert: this attempt is pending
             assert_eq!(attempts.active_attempts().len(), 1);
-            assert_eq!(attempts.active_attempts()[0].client, CLIENT_1);
-            assert_eq!(attempts.active_attempts()[0].mode, ConnectionMode::Direct);
-            assert_eq!(attempts.active_attempts()[0].remote_address, ADDRESS_1);
+            assert_eq!(attempts.active_attempts()[0].key.client, CLIENT_1);
+            assert_eq!(attempts.active_attempts()[0].key.mode, ConnectionMode::Direct);
+            assert_eq!(attempts.active_attempts()[0].key.remote_address, ADDRESS_1);
         });
     }
 
@@ -274,7 +334,7 @@ mod test {
 
             // assert: one attempt is still pending
             assert_eq!(attempts.active_attempts().len(), 1);
-            assert_eq!(attempts.active_attempts()[0].client, CLIENT_2);
+            assert_eq!(attempts.active_attempts()[0].key.client, CLIENT_2);
         });
     }
 
@@ -304,9 +364,9 @@ mod test {
 
             // assert: this attempt is pending
             assert_eq!(attempts.active_attempts().len(), 1);
-            assert_eq!(attempts.active_attempts()[0].client, CLIENT_1);
-            assert_eq!(attempts.active_attempts()[0].mode, ConnectionMode::Background);
-            assert_eq!(attempts.active_attempts()[0].remote_address, ADDRESS_1);
+            assert_eq!(attempts.active_attempts()[0].key.client, CLIENT_1);
+            assert_eq!(attempts.active_attempts()[0].key.mode, ConnectionMode::Background);
+            assert_eq!(attempts.active_attempts()[0].key.remote_address, ADDRESS_1);
         });
     }
 
@@ -501,8 +561,8 @@ mod test {
             assert!(try_await(pending_conn_2).await.is_err());
             // assert: two attempts remain, both to the other address
             assert_eq!(attempts.active_attempts().len(), 2);
-            assert_eq!(attempts.active_attempts()[0].remote_address, ADDRESS_2);
-            assert_eq!(attempts.active_attempts()[1].remote_address, ADDRESS_2);
+            assert_eq!(attempts.active_attempts()[0].key.remote_address, ADDRESS_2);
+            assert_eq!(attempts.active_attempts()[1].key.remote_address, ADDRESS_2);
         });
     }
 
@@ -524,8 +584,8 @@ mod test {
             assert!(try_await(pending_conn_2).await.is_err());
             // assert: two attempts remain, both from the second client
             assert_eq!(attempts.active_attempts().len(), 2);
-            assert_eq!(attempts.active_attempts()[0].client, CLIENT_2);
-            assert_eq!(attempts.active_attempts()[1].client, CLIENT_2);
+            assert_eq!(attempts.active_attempts()[0].key.client, CLIENT_2);
+            assert_eq!(attempts.active_attempts()[1].key.client, CLIENT_2);
         });
     }
 }
