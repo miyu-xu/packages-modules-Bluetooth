@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "982238ae_0bb17d8a",
+        "filename": "tools/rootcanal/py/controller.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 243,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-05-05T23:46:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "10e50088_04e34969",
+      "range": {
+        "startLine": 243,
+        "startChar": 45,
+        "endLine": 243,
+        "endChar": 75
+      },
+      "revId": "4b17157cbcaa3f0e846ff661c576ae74b98d8188",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "34fe17ef_0ba375a1",
@@ -61,6 +85,30 @@
       "writtenOn": "2023-05-05T23:11:53Z",
       "side": 1,
       "message": "I guess this matching to index logic could also be moved to the one place you want an index...",
+      "range": {
+        "startLine": 251,
+        "startChar": 8,
+        "endLine": 251,
+        "endChar": 11
+      },
+      "revId": "4b17157cbcaa3f0e846ff661c576ae74b98d8188",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d34e7d88_be5cabf4",
+        "filename": "tools/rootcanal/py/controller.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 251,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-05-05T23:46:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "34fe17ef_0ba375a1",
       "range": {
         "startLine": 251,
         "startChar": 8,
