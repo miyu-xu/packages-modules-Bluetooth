@@ -22,6 +22,30 @@
       },
       "revId": "706cd3e48c6f7d4aa207037d63c1c53dd39b09a2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9b3d1d42_3060e915",
+        "filename": "system/btif/src/stack_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 290,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-05-05T23:36:03Z",
+      "side": 1,
+      "message": "👍  Since I didn\u0027t remove it, I was waiting for a future CL for that 😊  Good catch!",
+      "parentUuid": "ea2a8cf9_13e47428",
+      "range": {
+        "startLine": 290,
+        "startChar": 34,
+        "endLine": 290,
+        "endChar": 54
+      },
+      "revId": "706cd3e48c6f7d4aa207037d63c1c53dd39b09a2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
