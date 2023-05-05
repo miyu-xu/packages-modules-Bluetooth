@@ -7,6 +7,7 @@ sysprop_library {
     host_supported: true,
     srcs: [
         "avrcp.sysprop",
+        "bluetooth.sysprop",
         "bta.sysprop",
         "hfp.sysprop",
         "pan.sysprop",

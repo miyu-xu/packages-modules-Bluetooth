@@ -23,6 +23,7 @@ import android.content.Context;
 import android.provider.DeviceConfig;
 import android.provider.Settings;
 import android.util.Log;
+import android.sysprop.Bluetooth;
 
 /**
  * The BluetoothDeviceConfigListener handles system device config change callback and checks
@@ -63,10 +64,12 @@ public class BluetoothDeviceConfigListener {
     }
 
     private void updateApmConfigs() {
+        mPrevApmEnhancement = Bluetooth.apmEnhancementIsEnabled().orElse(false);
         mPrevApmEnhancement = DeviceConfig.getBoolean(DeviceConfig.NAMESPACE_BLUETOOTH,
-                APM_ENHANCEMENT, false);
+                APM_ENHANCEMENT, mPrevApmEnhancement);
+        mPrevBtApmState = Bluetooth.apmEnhancementDefaultState().orElse(false);
         mPrevBtApmState = DeviceConfig.getBoolean(DeviceConfig.NAMESPACE_BLUETOOTH,
-                BT_DEFAULT_APM_STATE, false);
+                BT_DEFAULT_APM_STATE, mPrevBtApmState);
 
         Settings.Global.putInt(mContext.getContentResolver(),
                 APM_ENHANCEMENT, mPrevApmEnhancement ? 1 : 0);

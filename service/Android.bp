@@ -77,6 +77,7 @@ java_library {
         "bluetooth-manager-service-proto-java-gen",
         "bluetooth-nano-protos",
         "bluetooth-proto-enums-java-gen",
+        "com.android.sysprop.bluetooth",
         "modules-utils-shell-command-handler",
     ],
 }

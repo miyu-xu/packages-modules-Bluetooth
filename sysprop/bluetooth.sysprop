@@ -1,0 +1,19 @@
+module: "android.sysprop.Bluetooth"
+owner: Platform
+
+prop {
+    api_name: "apmEnhancementIsEnabled"
+    type: Boolean
+    scope: Internal
+    access: Readonly
+    prop_name: "bluetooth.apm_enhancement.enabled"
+}
+
+prop {
+    api_name: "apmEnhancementDefaultState"
+    type: Boolean
+    scope: Internal
+    access: Readonly
+    prop_name: "bluetooth.apm_enhancement.default_state"
+}
+
