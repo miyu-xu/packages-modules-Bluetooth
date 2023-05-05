@@ -38,9 +38,7 @@ void module_management_start(void);
 // Cleans up all module management resources.
 void module_management_stop(void);
 
-// Initialize the provided module. |module| may not be NULL
-// and must not be initialized.
-bool module_init_and_start_up(const module_t* module);
-// Clean up the provided module. |module| may not be NULL.
-// If not initialized, does nothing.
-void module_shut_down_and_clean_up(const module_t* module);
+// Initialize the provided module. |module| must not be initialized.
+bool module_init_and_start_up(const module_t& module);
+// Clean up the provided module. If not initialized, does nothing.
+void module_shut_down_and_clean_up(const module_t& module);

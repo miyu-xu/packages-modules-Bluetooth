@@ -56,13 +56,13 @@ namespace btcore_module {
 
 // Shared state between mocked functions and tests
 // Name: module_init_and_start_up
-// Params: const module_t* module
+// Params: const module_t& module
 // Return: bool
 struct module_init_and_start_up {
   bool return_value{false};
-  std::function<bool(const module_t* module)> body{
-      [this](const module_t* module) { return return_value; }};
-  bool operator()(const module_t* module) { return body(module); };
+  std::function<bool(const module_t& module)> body{
+      [this](const module_t& module) { return return_value; }};
+  bool operator()(const module_t& module) { return body(module); };
 };
 extern struct module_init_and_start_up module_init_and_start_up;
 
@@ -85,12 +85,12 @@ struct module_management_stop {
 extern struct module_management_stop module_management_stop;
 
 // Name: module_shut_down_and_clean_up
-// Params: const module_t* module
+// Params: const module_t& module
 // Return: void
 struct module_shut_down_and_clean_up {
-  std::function<void(const module_t* module)> body{
-      [](const module_t* module) {}};
-  void operator()(const module_t* module) { body(module); };
+  std::function<void(const module_t& module)> body{
+      [](const module_t& module) {}};
+  void operator()(const module_t& module) { body(module); };
 };
 extern struct module_shut_down_and_clean_up module_shut_down_and_clean_up;
 
