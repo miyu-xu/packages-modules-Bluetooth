@@ -842,6 +842,8 @@ class ActiveDeviceManager {
                 mLeHearingAidActiveDevice = null;
                 mPendingLeHearingAidActiveDevice.remove(device);
             }
+
+            return true;
         }
         return true;
     }
@@ -963,7 +965,10 @@ class ActiveDeviceManager {
                     if (DBG) {
                         Log.d(TAG, "set LE audio device active: " + device);
                     }
-                    setLeAudioActiveDevice(device);
+                    if (!setLeAudioActiveDevice(device)) {
+                        return false;
+                    }
+
                     if (!Utils.isDualModeAudioEnabled()) {
                         setA2dpActiveDevice(null, true);
                         setHfpActiveDevice(null);
