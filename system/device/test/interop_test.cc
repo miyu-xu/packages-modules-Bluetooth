@@ -121,7 +121,7 @@ class InteropTest : public ::testing::Test {
 };
 
 TEST_F(InteropTest, test_lookup_hit) {
-  module_init_and_start_up(&interop_module);
+  module_init_and_start_up(interop_module);
 
   RawAddress test_address;
 
@@ -262,11 +262,11 @@ TEST_F(InteropTest, test_lookup_hit) {
   EXPECT_TRUE(interop_match_addr(INTEROP_SLC_SKIP_BIND_COMMAND, &test_address));
 #endif
 
-  module_shut_down_and_clean_up(&interop_module);
+  module_shut_down_and_clean_up(interop_module);
 }
 
 TEST_F(InteropTest, test_lookup_miss) {
-  module_init_and_start_up(&interop_module);
+  module_init_and_start_up(interop_module);
 
   RawAddress test_address;
 
@@ -385,11 +385,11 @@ TEST_F(InteropTest, test_lookup_miss) {
       interop_match_addr(INTEROP_SLC_SKIP_BIND_COMMAND, &test_address));
   EXPECT_FALSE(interop_match_addr(INTEROP_AVRCP_1_3_ONLY, &test_address));
 
-  module_shut_down_and_clean_up(&interop_module);
+  module_shut_down_and_clean_up(interop_module);
 }
 
 TEST_F(InteropTest, test_dynamic_db_clear) {
-  module_init_and_start_up(&interop_module);
+  module_init_and_start_up(interop_module);
 
   RawAddress test_address;
 
@@ -414,11 +414,11 @@ TEST_F(InteropTest, test_dynamic_db_clear) {
 
   EXPECT_FALSE(interop_match_addr(INTEROP_AUTO_RETRY_PAIRING, &test_address));
 
-  module_shut_down_and_clean_up(&interop_module);
+  module_shut_down_and_clean_up(interop_module);
 }
 
 TEST_F(InteropTest, test_name_hit) {
-  module_init_and_start_up(&interop_module);
+  module_init_and_start_up(interop_module);
 
   EXPECT_TRUE(interop_match_name(INTEROP_DISABLE_AUTO_PAIRING, "BMW M3"));
   EXPECT_TRUE(interop_match_name(INTEROP_DISABLE_AUTO_PAIRING, "Audi"));
@@ -463,11 +463,11 @@ TEST_F(InteropTest, test_name_hit) {
   EXPECT_TRUE(interop_match_name(INTEROP_CHANGE_HID_VID_PID, "CK87BT"));
 #endif
 
-  module_shut_down_and_clean_up(&interop_module);
+  module_shut_down_and_clean_up(interop_module);
 }
 
 TEST_F(InteropTest, test_name_miss) {
-  module_init_and_start_up(&interop_module);
+  module_init_and_start_up(interop_module);
 
   EXPECT_FALSE(interop_match_name(INTEROP_DISABLE_AUTO_PAIRING, "__GOOGLE__"));
   EXPECT_FALSE(interop_match_name(INTEROP_DISABLE_AUTO_PAIRING, "BM"));
@@ -551,11 +551,11 @@ TEST_F(InteropTest, test_name_miss) {
   EXPECT_FALSE(interop_match_name(INTEROP_SLC_SKIP_BIND_COMMAND, "TEST"));
   EXPECT_FALSE(interop_match_name(INTEROP_AVRCP_1_3_ONLY, "TEST"));
 
-  module_shut_down_and_clean_up(&interop_module);
+  module_shut_down_and_clean_up(interop_module);
 }
 
 TEST_F(InteropTest, test_range_hit) {
-  module_init_and_start_up(&interop_module);
+  module_init_and_start_up(interop_module);
 
   RawAddress test_address;
   RawAddress::FromString("00:0f:59:50:00:00", test_address);
@@ -568,11 +568,11 @@ TEST_F(InteropTest, test_range_hit) {
   EXPECT_TRUE(
       interop_match_addr(INTEROP_DISABLE_ABSOLUTE_VOLUME, &test_address));
 
-  module_shut_down_and_clean_up(&interop_module);
+  module_shut_down_and_clean_up(interop_module);
 }
 
 TEST_F(InteropTest, test_range_miss) {
-  module_init_and_start_up(&interop_module);
+  module_init_and_start_up(interop_module);
 
   RawAddress test_address;
   RawAddress::FromString("00:0f:59:49:12:34", test_address);
@@ -582,11 +582,11 @@ TEST_F(InteropTest, test_range_miss) {
   EXPECT_FALSE(
       interop_match_addr(INTEROP_DISABLE_ABSOLUTE_VOLUME, &test_address));
 
-  module_shut_down_and_clean_up(&interop_module);
+  module_shut_down_and_clean_up(interop_module);
 }
 
 TEST_F(InteropTest, test_vndr_prdt_hit) {
-  module_init_and_start_up(&interop_module);
+  module_init_and_start_up(interop_module);
 
   uint16_t vendor_id = 0x22b8;
   uint16_t product_id = 0x093D;
@@ -600,11 +600,11 @@ TEST_F(InteropTest, test_vndr_prdt_hit) {
   EXPECT_TRUE(interop_database_match_vndr_prdt(INTEROP_CHANGE_HID_VID_PID,
                                                vendor_id, product_id));
 
-  module_shut_down_and_clean_up(&interop_module);
+  module_shut_down_and_clean_up(interop_module);
 }
 
 TEST_F(InteropTest, test_vndr_prdt_miss) {
-  module_init_and_start_up(&interop_module);
+  module_init_and_start_up(interop_module);
 
   uint16_t vendor_id = 0x22b9;
   uint16_t product_id = 0x093D;
@@ -612,33 +612,33 @@ TEST_F(InteropTest, test_vndr_prdt_miss) {
   EXPECT_FALSE(interop_database_match_vndr_prdt(
       INTEROP_REMOVE_HID_DIG_DESCRIPTOR, vendor_id, product_id));
 
-  module_shut_down_and_clean_up(&interop_module);
+  module_shut_down_and_clean_up(interop_module);
 }
 
 TEST_F(InteropTest, test_manufacturer_hit) {
-  module_init_and_start_up(&interop_module);
+  module_init_and_start_up(interop_module);
 
   uint16_t manufacturer = 0x004C;
 
   EXPECT_TRUE(interop_database_match_manufacturer(
       INTEROP_DISABLE_SNIFF_DURING_SCO, manufacturer));
 
-  module_shut_down_and_clean_up(&interop_module);
+  module_shut_down_and_clean_up(interop_module);
 }
 
 TEST_F(InteropTest, test_manufacturer_miss) {
-  module_init_and_start_up(&interop_module);
+  module_init_and_start_up(interop_module);
 
   uint16_t manufacturer = 0x004D;
 
   EXPECT_FALSE(interop_database_match_manufacturer(
       INTEROP_DISABLE_SNIFF_DURING_SCO, manufacturer));
 
-  module_shut_down_and_clean_up(&interop_module);
+  module_shut_down_and_clean_up(interop_module);
 }
 
 TEST_F(InteropTest, test_ssr_max_latency_hit) {
-  module_init_and_start_up(&interop_module);
+  module_init_and_start_up(interop_module);
 
   RawAddress test_address;
   RawAddress::FromString("00:1b:dc:70:12:34", test_address);
@@ -648,11 +648,11 @@ TEST_F(InteropTest, test_ssr_max_latency_hit) {
       INTEROP_UPDATE_HID_SSR_MAX_LAT, &test_address, &max_lat));
   EXPECT_TRUE(max_lat == 0x0012);
 
-  module_shut_down_and_clean_up(&interop_module);
+  module_shut_down_and_clean_up(interop_module);
 }
 
 TEST_F(InteropTest, test_ssr_max_latency_miss) {
-  module_init_and_start_up(&interop_module);
+  module_init_and_start_up(interop_module);
 
   RawAddress test_address;
   RawAddress::FromString("00:1b:db:70:12:34", test_address);
@@ -661,11 +661,11 @@ TEST_F(InteropTest, test_ssr_max_latency_miss) {
   EXPECT_FALSE(interop_database_match_addr_get_max_lat(
       INTEROP_UPDATE_HID_SSR_MAX_LAT, &test_address, &max_lat));
 
-  module_shut_down_and_clean_up(&interop_module);
+  module_shut_down_and_clean_up(interop_module);
 }
 
 TEST_F(InteropTest, test_dynamic_addr) {
-  module_init_and_start_up(&interop_module);
+  module_init_and_start_up(interop_module);
 
   RawAddress test_address;
 
@@ -683,11 +683,11 @@ TEST_F(InteropTest, test_dynamic_addr) {
   EXPECT_FALSE(
       interop_match_addr(INTEROP_DISABLE_LE_SECURE_CONNECTIONS, &test_address));
 
-  module_shut_down_and_clean_up(&interop_module);
+  module_shut_down_and_clean_up(interop_module);
 }
 
 TEST_F(InteropTest, test_dynamic_name) {
-  module_init_and_start_up(&interop_module);
+  module_init_and_start_up(interop_module);
 
   EXPECT_FALSE(
       interop_match_name(INTEROP_DISABLE_LE_SECURE_CONNECTIONS, "TEST"));
@@ -700,11 +700,11 @@ TEST_F(InteropTest, test_dynamic_name) {
   EXPECT_FALSE(
       interop_match_name(INTEROP_DISABLE_LE_SECURE_CONNECTIONS, "TEST"));
 
-  module_shut_down_and_clean_up(&interop_module);
+  module_shut_down_and_clean_up(interop_module);
 }
 
 TEST_F(InteropTest, test_dynamic_vndr_prdt) {
-  module_init_and_start_up(&interop_module);
+  module_init_and_start_up(interop_module);
 
   uint16_t vendor_id = 0x11b8;
   uint16_t product_id = 0x193D;
@@ -723,11 +723,11 @@ TEST_F(InteropTest, test_dynamic_vndr_prdt) {
   EXPECT_FALSE(interop_database_match_vndr_prdt(INTEROP_CHANGE_HID_VID_PID,
                                                 vendor_id, product_id));
 
-  module_shut_down_and_clean_up(&interop_module);
+  module_shut_down_and_clean_up(interop_module);
 }
 
 TEST_F(InteropTest, test_dynamic_addr_get_ssr_max_lat) {
-  module_init_and_start_up(&interop_module);
+  module_init_and_start_up(interop_module);
 
   RawAddress test_address;
   RawAddress::FromString("11:22:33:44:55:66", test_address);
@@ -751,11 +751,11 @@ TEST_F(InteropTest, test_dynamic_addr_get_ssr_max_lat) {
 
   EXPECT_FALSE(max_lat == 0x0012);
 
-  module_shut_down_and_clean_up(&interop_module);
+  module_shut_down_and_clean_up(interop_module);
 }
 
 TEST_F(InteropTest, test_dynamic_manufacturer) {
-  module_init_and_start_up(&interop_module);
+  module_init_and_start_up(interop_module);
 
   uint16_t manufacturer = 0xFFFF;
 
@@ -774,11 +774,11 @@ TEST_F(InteropTest, test_dynamic_manufacturer) {
   EXPECT_FALSE(interop_database_match_manufacturer(
       INTEROP_DISABLE_SNIFF_DURING_SCO, manufacturer));
 
-  module_shut_down_and_clean_up(&interop_module);
+  module_shut_down_and_clean_up(interop_module);
 }
 
 TEST_F(InteropTest, test_dynamic_addr_get_lmp_version) {
-  module_init_and_start_up(&interop_module);
+  module_init_and_start_up(interop_module);
 
   RawAddress test_address;
   RawAddress::FromString("11:22:33:44:55:66", test_address);
@@ -809,11 +809,11 @@ TEST_F(InteropTest, test_dynamic_addr_get_lmp_version) {
 
   EXPECT_FALSE(lmp_version == 0xFF && lmp_sub_version == 0xFFFF);
 
-  module_shut_down_and_clean_up(&interop_module);
+  module_shut_down_and_clean_up(interop_module);
 }
 
 TEST_F(InteropTest, test_dynamic_did_version) {
-  module_init_and_start_up(&interop_module);
+  module_init_and_start_up(interop_module);
 
   RawAddress test_address;
   RawAddress::FromString("11:22:33:44:55:66", test_address);
@@ -832,5 +832,5 @@ TEST_F(InteropTest, test_dynamic_did_version) {
   EXPECT_FALSE(interop_database_match_version(INTEROP_DISABLE_SNIFF_DURING_SCO,
                                               did_version));
 
-  module_shut_down_and_clean_up(&interop_module);
+  module_shut_down_and_clean_up(interop_module);
 }
