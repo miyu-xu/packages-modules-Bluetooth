@@ -55,17 +55,6 @@ namespace mock {
 namespace btcore_module {
 
 // Shared state between mocked functions and tests
-// Name: get_module
-// Params: const char* name
-// Return: const module_t*
-struct get_module {
-  const module_t* return_value{0};
-  std::function<const module_t*(const char* name)> body{
-      [this](const char* name) { return return_value; }};
-  const module_t* operator()(const char* name) { return body(name); };
-};
-extern struct get_module get_module;
-
 // Name: module_init_and_start_up
 // Params: const module_t* module
 // Return: bool

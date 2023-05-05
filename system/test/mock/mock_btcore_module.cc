@@ -36,7 +36,6 @@ namespace mock {
 namespace btcore_module {
 
 // Function state capture and return values, if needed
-struct get_module get_module;
 struct module_init_and_start_up module_init_and_start_up;
 struct module_management_start module_management_start;
 struct module_management_stop module_management_stop;
@@ -47,10 +46,6 @@ struct module_shut_down_and_clean_up module_shut_down_and_clean_up;
 }  // namespace test
 
 // Mocked functions, if any
-const module_t* get_module(const char* name) {
-  inc_func_call_count(__func__);
-  return test::mock::btcore_module::get_module(name);
-}
 bool module_init_and_start_up(const module_t* module) {
   inc_func_call_count(__func__);
   return test::mock::btcore_module::module_init_and_start_up(module);

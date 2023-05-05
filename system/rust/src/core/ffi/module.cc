@@ -31,8 +31,7 @@
 // Rust modules don't run on Floss yet (b/277643360)
 const module_t rust_module = {.name = RUST_MODULE,
                               .init_and_start_up = nullptr,
-                              .shut_down_and_clean_up = nullptr,
-                              .dependencies = {}};
+                              .shut_down_and_clean_up = nullptr};
 
 #else
 
@@ -76,7 +75,6 @@ future_t* Stop() {
 
 const module_t rust_module = {.name = RUST_MODULE,
                               .init_and_start_up = Start,
-                              .shut_down_and_clean_up = Stop,
-                              .dependencies = {}};
+                              .shut_down_and_clean_up = Stop};
 
 #endif
