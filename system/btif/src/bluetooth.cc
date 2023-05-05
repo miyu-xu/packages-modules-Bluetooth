@@ -325,6 +325,7 @@ static bluetooth::core::CoreInterface* CreateInterfaceToProfiles() {
       .invoke_le_address_associate_cb = invoke_le_address_associate_cb,
       .invoke_acl_state_changed_cb = invoke_acl_state_changed_cb,
       .invoke_thread_evt_cb = invoke_thread_evt_cb,
+      .invoke_le_test_mode_cb = invoke_le_test_mode_cb,
       .invoke_energy_info_cb = invoke_energy_info_cb,
       .invoke_link_quality_report_cb = invoke_link_quality_report_cb};
   static auto configInterface = ConfigInterfaceImpl();
@@ -917,6 +918,29 @@ static const void* get_profile_interface(const char* profile_id) {
   return NULL;
 }
 
+int le_test_mode(uint16_t opcode, uint8_t* buf, uint8_t len) {
+  if (!interface_ready()) return BT_STATUS_NOT_READY;
+
+  switch (opcode) {
+    case HCI_BLE_TRANSMITTER_TEST:
+      if (len != 3) return BT_STATUS_PARM_INVALID;
+      do_in_main_thread(FROM_HERE, base::BindOnce(btif_ble_transmitter_test,
+                                                  buf[0], buf[1], buf[2]));
+      break;
+    case HCI_BLE_RECEIVER_TEST:
+      if (len != 1) return BT_STATUS_PARM_INVALID;
+      do_in_main_thread(FROM_HERE,
+                        base::BindOnce(btif_ble_receiver_test, buf[0]));
+      break;
+    case HCI_BLE_TEST_END:
+      do_in_main_thread(FROM_HERE, base::BindOnce(btif_ble_test_end));
+      break;
+    default:
+      return BT_STATUS_UNSUPPORTED;
+  }
+  return BT_STATUS_SUCCESS;
+}
+
 static bt_os_callouts_t* wakelock_os_callouts_saved = nullptr;
 
 static int acquire_wake_lock_cb(const char* lock_name) {
@@ -1108,6 +1132,7 @@ EXPORT_SYMBOL bt_interface_t bluetoothInterface = {
     .pin_reply = pin_reply,
     .ssp_reply = ssp_reply,
     .get_profile_interface = get_profile_interface,
+    .le_test_mode = le_test_mode,
     .set_os_callouts = set_os_callouts,
     .read_energy_info = read_energy_info,
     .dump = dump,
@@ -1378,6 +1403,15 @@ void invoke_thread_evt_cb(bt_cb_thread_evt event) {
                                     }
                                   },
                                   event));
+}
+
+void invoke_le_test_mode_cb(bt_status_t status, uint16_t count) {
+  do_in_jni_thread(FROM_HERE, base::BindOnce(
+                                  [](bt_status_t status, uint16_t count) {
+                                    HAL_CBACK(bt_hal_cbacks, le_test_mode_cb,
+                                              status, count);
+                                  },
+                                  status, count));
 }
 
 // takes ownership of |uid_data|

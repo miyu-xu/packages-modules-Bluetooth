@@ -329,6 +329,12 @@ bt_status_t btif_dm_get_adapter_property(bt_property_t* prop);
  ******************************************************************************/
 void btif_dm_get_remote_services(const RawAddress remote_addr, int transport);
 
+void btif_ble_transmitter_test(uint8_t tx_freq, uint8_t test_data_len,
+                               uint8_t packet_payload);
+
+void btif_ble_receiver_test(uint8_t rx_freq);
+void btif_ble_test_end();
+
 /*******************************************************************************
  *
  * Function         btif_dm_read_energy_info

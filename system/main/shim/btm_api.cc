@@ -600,6 +600,58 @@ bool bluetooth::shim::BTM_ReadConnectedTransportAddress(
   return false;
 }
 
+void bluetooth::shim::BTM_BleReceiverTest(uint8_t rx_freq,
+                                          tBTM_CMPL_CB* p_cmd_cmpl_cback) {
+  LOG_INFO("UNIMPLEMENTED %s", __func__);
+  CHECK(p_cmd_cmpl_cback != nullptr);
+}
+
+void bluetooth::shim::BTM_BleTransmitterTest(uint8_t tx_freq,
+                                             uint8_t test_data_len,
+                                             uint8_t packet_payload,
+                                             tBTM_CMPL_CB* p_cmd_cmpl_cback) {
+  LOG_INFO("UNIMPLEMENTED %s", __func__);
+  CHECK(p_cmd_cmpl_cback != nullptr);
+}
+
+void bluetooth::shim::BTM_BleTestEnd(tBTM_CMPL_CB* p_cmd_cmpl_cback) {
+  LOG_INFO("UNIMPLEMENTED %s", __func__);
+  CHECK(p_cmd_cmpl_cback != nullptr);
+}
+
+bool bluetooth::shim::BTM_UseLeLink(const RawAddress& raw_address) {
+  return Stack::GetInstance()->GetBtm()->UseLeLink(raw_address);
+}
+
+void bluetooth::shim::BTM_BleReadPhy(
+    const RawAddress& bd_addr,
+    base::Callback<void(uint8_t tx_phy, uint8_t rx_phy, uint8_t status)> cb) {
+  LOG_INFO("UNIMPLEMENTED %s", __func__);
+}
+
+void bluetooth::shim::BTM_BleSetPhy(const RawAddress& bd_addr, uint8_t tx_phys,
+                                    uint8_t rx_phys, uint16_t phy_options) {
+  LOG_INFO("UNIMPLEMENTED %s", __func__);
+}
+
+bool bluetooth::shim::BTM_BleDataSignature(const RawAddress& bd_addr,
+                                           uint8_t* p_text, uint16_t len,
+                                           BLE_SIGNATURE signature) {
+  LOG_INFO("UNIMPLEMENTED %s", __func__);
+  CHECK(p_text != nullptr);
+  return false;
+}
+
+bool bluetooth::shim::BTM_BleVerifySignature(const RawAddress& bd_addr,
+                                             uint8_t* p_orig, uint16_t len,
+                                             uint32_t counter,
+                                             uint8_t* p_comp) {
+  LOG_INFO("UNIMPLEMENTED %s", __func__);
+  CHECK(p_orig != nullptr);
+  CHECK(p_comp != nullptr);
+  return false;
+}
+
 bool bluetooth::shim::BTM_GetLeSecurityState(const RawAddress& bd_addr,
                                              uint8_t* p_le_dev_sec_flags,
                                              uint8_t* p_le_key_size) {
