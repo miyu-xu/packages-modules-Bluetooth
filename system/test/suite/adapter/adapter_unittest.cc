@@ -180,7 +180,6 @@ TEST_F(BluetoothTest, AdapterCleanupDuringDiscovery) {
   ASSERT_TRUE(callbacks != nullptr);
 
   for (int i = 0; i < kTestRepeatCount; ++i) {
-    bt_interface()->init(callbacks, false, false, 0, nullptr, false, nullptr);
     EXPECT_EQ(bt_interface()->enable(), BT_STATUS_SUCCESS);
     semaphore_wait(adapter_state_changed_callback_sem_);
     EXPECT_EQ(GetState(), BT_STATE_ON) << "Adapter did not turn on.";
@@ -191,6 +190,9 @@ TEST_F(BluetoothTest, AdapterCleanupDuringDiscovery) {
     semaphore_wait(adapter_state_changed_callback_sem_);
     EXPECT_EQ(GetState(), BT_STATE_OFF) << "Adapter did not turn off.";
     bt_interface()->cleanup();
+
+    // Init for the next iteration
+    bt_interface()->init(callbacks, false, false, 0, nullptr, false, nullptr);
   }
 }
 
