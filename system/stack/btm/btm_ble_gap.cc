@@ -456,6 +456,16 @@ const uint8_t btm_le_state_combo_tbl[BTM_BLE_STATE_MAX][BTM_BLE_STATE_MAX] = {
         UNSUPPORTED                             /* scanable adv */
     }};
 
+static void btm_send_hci_scan_enable(uint8_t enable,
+                                     uint8_t filter_duplicates) {
+  if (controller_get_interface()->supports_ble_extended_advertising()) {
+    btsnd_hcic_ble_set_extended_scan_enable(enable, filter_duplicates, 0x0000,
+                                            0x0000);
+  } else {
+    btsnd_hcic_ble_set_scan_enable(enable, filter_duplicates);
+  }
+}
+
 /* check LE combo state supported */
 inline bool BTM_LE_STATES_SUPPORTED(const uint8_t* x, uint8_t bit_num) {
   uint8_t mask = 1 << (bit_num % 8);
@@ -492,13 +502,15 @@ void BTM_BleTargetAnnouncementObserve(bool enable,
  *                  duration: how long the scan should last, in seconds. 0 means
  *                  scan without timeout. Starting the scan second time without
  *                  timeout will disable the timer.
+ *                  force_active_scan: whether this is an active observation,
+ *                                     default is false.
  *
  * Returns          void
  *
  ******************************************************************************/
 tBTM_STATUS BTM_BleObserve(bool start, uint8_t duration,
                            tBTM_INQ_RESULTS_CB* p_results_cb,
-                           tBTM_CMPL_CB* p_cmpl_cb) {
+                           tBTM_CMPL_CB* p_cmpl_cb, bool force_active_scan) {
   tBTM_BLE_INQ_CB* p_inq = &btm_cb.ble_ctr_cb.inq_var;
   tBTM_STATUS status = BTM_WRONG_MODE;
 
@@ -507,13 +519,21 @@ tBTM_STATUS BTM_BleObserve(bool start, uint8_t duration,
   uint32_t scan_window =
       !p_inq->scan_window ? BTM_BLE_GAP_DISC_SCAN_WIN : p_inq->scan_window;
 
+  // use low latency scanning if the scanning is active
+  if (force_active_scan) {
+    scan_interval = BTM_BLE_LOW_LATENCY_SCAN_INT;
+    scan_window = BTM_BLE_LOW_LATENCY_SCAN_WIN;
+  }
+
   BTM_TRACE_EVENT("%s : scan_type:%d, %d, %d", __func__, p_inq->scan_type,
-                  p_inq->scan_interval, p_inq->scan_window);
+                  scan_interval, scan_window);
 
   if (!controller_get_interface()->supports_ble()) return BTM_ILLEGAL_VALUE;
 
   if (start) {
-    /* shared inquiry database, do not allow observe if any inquiry is active */
+    /* shared inquiry database, do not allow observe if any inquiry is active.
+     * except we are doing CSIS active scanning
+     */
     if (btm_cb.ble_ctr_cb.is_ble_observe_active()) {
       if (duration == 0) {
         if (alarm_is_scheduled(btm_cb.ble_ctr_cb.observer_timer)) {
@@ -522,12 +542,18 @@ tBTM_STATUS BTM_BleObserve(bool start, uint8_t duration,
           BTM_TRACE_ERROR("%s Scan with no duration started twice!", __func__);
         }
       } else {
-        if (alarm_is_scheduled(btm_cb.ble_ctr_cb.observer_timer)) {
+        if (!force_active_scan &&
+            alarm_is_scheduled(btm_cb.ble_ctr_cb.observer_timer)) {
           BTM_TRACE_ERROR("%s Scan with duration started twice!", __func__);
         }
       }
-      BTM_TRACE_WARNING("%s Observer was already active", __func__);
-      return BTM_CMD_STARTED;
+      if (!force_active_scan) {
+        BTM_TRACE_WARNING("%s Observer was already active", __func__);
+        return BTM_CMD_STARTED;
+      }
+      // stop non active scan if this is an active scan that needs to be
+      // started.
+      btm_ble_stop_observe();
     }
 
     btm_cb.ble_ctr_cb.p_obs_results_cb = p_results_cb;
@@ -552,7 +578,10 @@ tBTM_STATUS BTM_BleObserve(bool start, uint8_t duration,
         .start_time_ms = timestamper_in_milliseconds.GetTimestamp(),
         .results = 0,
     };
-    BTM_LogHistory(kBtmLogTag, RawAddress::kEmpty, "Le observe started");
+
+    BTM_LogHistory(
+        kBtmLogTag, RawAddress::kEmpty, "Le observe started",
+        base::StringPrintf("active scanning enabled: %d", force_active_scan));
 
     if (status == BTM_CMD_STARTED) {
       btm_cb.ble_ctr_cb.set_ble_observe_active();
@@ -1947,16 +1976,6 @@ tBTM_STATUS btm_ble_set_connectability(uint16_t combined_mode) {
                        btm_ble_fast_adv_timer_timeout, NULL);
   }
   return status;
-}
-
-static void btm_send_hci_scan_enable(uint8_t enable,
-                                     uint8_t filter_duplicates) {
-  if (controller_get_interface()->supports_ble_extended_advertising()) {
-    btsnd_hcic_ble_set_extended_scan_enable(enable, filter_duplicates, 0x0000,
-                                            0x0000);
-  } else {
-    btsnd_hcic_ble_set_scan_enable(enable, filter_duplicates);
-  }
 }
 
 void btm_send_hci_set_scan_params(uint8_t scan_type, uint16_t scan_int,

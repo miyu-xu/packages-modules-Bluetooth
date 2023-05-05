@@ -1146,11 +1146,14 @@ void BTA_DmBleObserve(bool start, uint8_t duration,
  * Parameters       start: start or stop the scan procedure,
  *                  duration_sec: Duration of the scan. Continuous scan if 0 is
  *                                passed,
+ *                  force_active_scan: whether this is an active observation,
+ *                                     default is false,
  *
  * Returns          void
  *
  ******************************************************************************/
-void BTA_DmBleScan(bool start, uint8_t duration);
+void BTA_DmBleScan(bool start, uint8_t duration,
+                   bool force_active_scan = false);
 
 /*******************************************************************************
  *
