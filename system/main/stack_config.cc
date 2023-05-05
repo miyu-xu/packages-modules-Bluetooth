@@ -87,10 +87,8 @@ static future_t* clean_up() {
 
 EXPORT_SYMBOL extern const module_t stack_config_module = {
     .name = STACK_CONFIG_MODULE,
-    .init = init,
-    .start_up = NULL,
-    .shut_down = NULL,
-    .clean_up = clean_up,
+    .init_and_start_up = init,
+    .shut_down_and_clean_up = clean_up,
     .dependencies = {NULL}};
 
 // Interface functions

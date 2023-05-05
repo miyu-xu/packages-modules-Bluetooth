@@ -47,10 +47,8 @@ static future_t* shut_down(void);
 
 EXPORT_SYMBOL extern const module_t gd_controller_module = {
     .name = GD_CONTROLLER_MODULE,
-    .init = nullptr,
-    .start_up = start_up,
-    .shut_down = shut_down,
-    .clean_up = nullptr,
+    .init_and_start_up = start_up,
+    .shut_down_and_clean_up = shut_down,
     .dependencies = {GD_SHIM_MODULE, nullptr}};
 
 struct {
