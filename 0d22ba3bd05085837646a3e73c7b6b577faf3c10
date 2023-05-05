@@ -16,6 +16,24 @@
       "message": "I don\u0027t think it\u0027s the RnR that we\u0027re colliding with for pairing but the actual ACL connection. Btw, once the ACL connects as part of bonding, we call `self.resume_discovery()` in `acl_state`. This path is *technically* only useful for the NotBonded state (when an ACL connection is NOT established).",
       "revId": "0d22ba3bd05085837646a3e73c7b6b577faf3c10",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0e456d43_1ee63f29",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 1424,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2023-05-05T22:04:52Z",
+      "side": 1,
+      "message": "I have seen RnR to the target device right after bond request, so I always have the \"wrong\" impression of RnR can be part of the bonding process hide in the libluetooth.\n\nYou are right that we are actually colliding with the ACL connection, and I have just captured a fresh new snoop with this patch, and there was no RnR request in between.\n\nComment updated, but I kept the Bonded state in the statement.",
+      "parentUuid": "85282dc1_488d43d9",
+      "revId": "0d22ba3bd05085837646a3e73c7b6b577faf3c10",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
