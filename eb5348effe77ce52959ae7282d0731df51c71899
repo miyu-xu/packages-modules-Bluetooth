@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "59cfc33f_edaedda8",
+        "filename": "system/stack/l2cap/l2c_csm.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 341,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2023-05-06T00:31:40Z",
+      "side": 1,
+      "message": "aosp/2581034 should address this specifically.",
+      "parentUuid": "ccc78f1c_1faa46c6",
+      "revId": "eb5348effe77ce52959ae7282d0731df51c71899",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "05e45632_21c28f9a",
@@ -31,6 +49,24 @@
       "writtenOn": "2023-05-05T00:02:48Z",
       "side": 1,
       "message": "ditto",
+      "revId": "eb5348effe77ce52959ae7282d0731df51c71899",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "020ceeb5_3268ea9c",
+        "filename": "system/stack/l2cap/l2c_csm.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 716,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2023-05-06T00:31:40Z",
+      "side": 1,
+      "message": "same as above.",
+      "parentUuid": "05e45632_21c28f9a",
       "revId": "eb5348effe77ce52959ae7282d0731df51c71899",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
