@@ -235,6 +235,30 @@
       },
       "revId": "4b17157cbcaa3f0e846ff661c576ae74b98d8188",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "58f39091_fc69cc01",
+        "filename": "tools/rootcanal/test/LL/CON/PER/BV_42_C.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 234,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-05-06T00:06:54Z",
+      "side": 1,
+      "message": "I am adding the missing behavior, I don\u0027t want to disable the full test for this one case 😊",
+      "parentUuid": "cf6d5653_46397dbb",
+      "range": {
+        "startLine": 234,
+        "startChar": 10,
+        "endLine": 234,
+        "endChar": 14
+      },
+      "revId": "4b17157cbcaa3f0e846ff661c576ae74b98d8188",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
