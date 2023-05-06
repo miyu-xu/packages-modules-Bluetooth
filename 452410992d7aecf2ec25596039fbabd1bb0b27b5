@@ -188,6 +188,30 @@
       },
       "revId": "452410992d7aecf2ec25596039fbabd1bb0b27b5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8475a256_0be976f6",
+        "filename": "system/btif/src/stack_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 340,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-05-06T00:45:55Z",
+      "side": 1,
+      "message": "😂",
+      "parentUuid": "6454ddfd_bfda8f98",
+      "range": {
+        "startLine": 340,
+        "startChar": 2,
+        "endLine": 340,
+        "endChar": 7
+      },
+      "revId": "452410992d7aecf2ec25596039fbabd1bb0b27b5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
