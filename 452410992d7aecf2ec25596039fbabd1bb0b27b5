@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e0acda14_613480dc",
+        "filename": "system/btcore/include/module.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-05-06T00:06:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "46110c86_0f28f1a8",
+      "range": {
+        "startLine": 46,
+        "startChar": 43,
+        "endLine": 46,
+        "endChar": 59
+      },
+      "revId": "452410992d7aecf2ec25596039fbabd1bb0b27b5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5cf2f856_97506268",
@@ -47,6 +71,54 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e1f2f1b4_afa56994",
+        "filename": "system/btif/src/stack_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 263,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-05-06T00:06:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5cf2f856_97506268",
+      "range": {
+        "startLine": 263,
+        "startChar": 40,
+        "endLine": 263,
+        "endChar": 48
+      },
+      "revId": "452410992d7aecf2ec25596039fbabd1bb0b27b5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7a8f1066_84b31147",
+        "filename": "system/btif/src/stack_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 263,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-05-06T00:06:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5cf2f856_97506268",
+      "range": {
+        "startLine": 263,
+        "startChar": 40,
+        "endLine": 263,
+        "endChar": 48
+      },
+      "revId": "452410992d7aecf2ec25596039fbabd1bb0b27b5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e3c3e149_b1fd5907",
@@ -60,6 +132,30 @@
       "writtenOn": "2023-05-05T23:25:56Z",
       "side": 1,
       "message": "Why do we CHECK only on this module ?. Looks suspicious.\nI would better put the CHECK in module_init_and_start_up for all the module. AKA never return false",
+      "range": {
+        "startLine": 340,
+        "startChar": 2,
+        "endLine": 340,
+        "endChar": 7
+      },
+      "revId": "452410992d7aecf2ec25596039fbabd1bb0b27b5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9bf5b515_13990fbc",
+        "filename": "system/btif/src/stack_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 340,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-05-06T00:06:18Z",
+      "side": 1,
+      "message": "It already never returns false 😊\n\nI\u0027ll clean it up in a follow-on.",
+      "parentUuid": "e3c3e149_b1fd5907",
       "range": {
         "startLine": 340,
         "startChar": 2,
