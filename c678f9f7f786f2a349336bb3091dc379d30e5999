@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a0e1da9c_bb5d0f8e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2023-05-06T00:30:16Z",
+      "side": 1,
+      "message": "This fix should work in the shorter term. I am meanwhile trying to see the impact the original feature had across other l2cap uses and what else it may have broken.",
+      "revId": "c678f9f7f786f2a349336bb3091dc379d30e5999",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
