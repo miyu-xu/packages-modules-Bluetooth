@@ -1,5 +1,46 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6ca9facb_71e0b79c",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 7075,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-05-06T00:14:44Z",
+      "side": 1,
+      "message": "uuids can be null here",
+      "range": {
+        "startLine": 7075,
+        "startChar": 0,
+        "endLine": 7075,
+        "endChar": 52
+      },
+      "revId": "7b6a580587cde5ee210bedc8e5c8144aea235a68",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "af8c054f_de7e133d",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 700,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-05-06T00:14:44Z",
+      "side": 1,
+      "message": "uuids can be null",
+      "revId": "7b6a580587cde5ee210bedc8e5c8144aea235a68",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
