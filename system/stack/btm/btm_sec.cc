@@ -1255,8 +1255,15 @@ void BTM_ConfirmReqReply(tBTM_STATUS res, const RawAddress& bd_addr) {
 
   /* If timeout already expired or has been canceled, ignore the reply */
   if ((btm_cb.pairing_state != BTM_PAIR_STATE_WAIT_NUMERIC_CONFIRM) ||
-      (btm_cb.pairing_bda != bd_addr))
+      (btm_cb.pairing_bda != bd_addr)) {
+    LOG_WARN("Ignored confirm request reply pairing_bda:%s peer:%s",
+             ADDRESS_TO_LOGGABLE_CSTR(btm_cb.pairing_bda),
+             ADDRESS_TO_LOGGABLE_CSTR(bd_addr));
     return;
+  }
+
+  BTM_LogHistory(kBtmLogTag, bd_addr, "Confirm reply",
+                 base::StringPrintf("status:%s", btm_status_text(res).c_str()));
 
   btm_sec_change_pairing_state(BTM_PAIR_STATE_WAIT_AUTH_COMPLETE);
 
