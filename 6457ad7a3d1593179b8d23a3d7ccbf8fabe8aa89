@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ba0b66ba_e1eded4b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-05-06T00:45:11Z",
+      "side": 1,
+      "message": "Doing something slightly different than aosp/2563713 while achieving the same result",
+      "revId": "6457ad7a3d1593179b8d23a3d7ccbf8fabe8aa89",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
