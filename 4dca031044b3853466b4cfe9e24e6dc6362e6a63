@@ -22,6 +22,30 @@
       },
       "revId": "4dca031044b3853466b4cfe9e24e6dc6362e6a63",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8cf6e9f9_c83ed0cc",
+        "filename": "system/bta/csis/csis_client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 852,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-05-08T09:48:06Z",
+      "side": 1,
+      "message": "all is good here. Thanks.",
+      "parentUuid": "99686aba_76ad5ad1",
+      "range": {
+        "startLine": 852,
+        "startChar": 13,
+        "endLine": 852,
+        "endChar": 22
+      },
+      "revId": "4dca031044b3853466b4cfe9e24e6dc6362e6a63",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
