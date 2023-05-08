@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3e55824b_9828af06",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-05-08T18:48:29Z",
+      "side": 1,
+      "message": "Can you add a test in `BondStateMachineTest.java` ?\n\nCan you create a bug and associate it\u0027s number to this change ?",
+      "range": {
+        "startLine": 13,
+        "startChar": 6,
+        "endLine": 13,
+        "endChar": 12
+      },
+      "revId": "7de13574739bbd3583bed0d5947ecf16bb159bbc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a3935d84_3a359fdc",
+        "filename": "android/app/src/com/android/bluetooth/btservice/BondStateMachine.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-05-08T18:48:29Z",
+      "side": 1,
+      "message": "I expect this `if` to prevent this CL from working as intended.\n\nI understand we want to call `sendIntent` when `mPendingBondedDevices.contains(dev)` is true and  `msg.what` is either `BONDED_INTENT_DELAY` or `UUID_UPDATE`.  \nIt looks like we will call `deferMessage` and the event will be handle when we switch back to `StableState`.",
+      "range": {
+        "startLine": 200,
+        "startChar": 10,
+        "endLine": 205,
+        "endChar": 13
+      },
+      "revId": "7de13574739bbd3583bed0d5947ecf16bb159bbc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "96988c8b_481bd005",
+        "filename": "android/app/src/com/android/bluetooth/btservice/BondStateMachine.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 298,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-05-08T18:48:29Z",
+      "side": 1,
+      "message": "Idea for follow-up fix:\nIf this CL is merged, these msg are now handled the same way in all the state.\nIt may be a good idea to not duplicate code and to change state structure to have a global observer state that can handle generic event.\nThis would also apply to CREATE_BOND | REMOVE_BOND",
+      "range": {
+        "startLine": 298,
+        "startChar": 21,
+        "endLine": 298,
+        "endChar": 40
+      },
+      "revId": "7de13574739bbd3583bed0d5947ecf16bb159bbc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
