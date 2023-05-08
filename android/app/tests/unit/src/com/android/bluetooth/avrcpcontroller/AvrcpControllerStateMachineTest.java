@@ -1821,4 +1821,60 @@ public class AvrcpControllerStateMachineTest {
         Assert.assertTrue(nowPlaying.isCached());
         assertNowPlayingList(updatedNowPlayingList);
     }
+
+    /**
+     * Test making a browse request where results don't come back within the timeout window. The
+     * node should still be notified on.
+     */
+    @Test
+    public void testMakeBrowseRequestWithTimeout_contentsCachedAndNotified() {
+        setUpConnectedState(true, true);
+        sendAudioFocusUpdate(AudioManager.AUDIOFOCUS_GAIN);
+
+        //Set something arbitrary for the current Now Playing list
+        List<AvrcpItem> nowPlayingList = new ArrayList<AvrcpItem>();
+        nowPlayingList.add(makeNowPlayingItem(1, "Song 1"));
+        setNowPlayingList(nowPlayingList);
+        clearInvocations(mAvrcpControllerService);
+
+        // Invalidate the contents by doing a new fetch
+        BrowseTree.BrowseNode nowPlaying = mAvrcpStateMachine.findNode("NOW_PLAYING");
+        mAvrcpStateMachine.requestContents(nowPlaying);
+        TestUtils.waitForLooperToFinishScheduledTask(mAvrcpStateMachine.getHandler().getLooper());
+
+        // should notify on an empty list with no browse requests going out to native
+        verify(mAvrcpControllerService, times(1)).getNowPlayingListNative(
+                eq(mTestAddress), eq(0), eq(19));
+        Assert.assertFalse(nowPlaying.isCached());
+
+        // Send timeout on our own instead of waiting 10 seconds
+        mAvrcpStateMachine.sendMessage(AvrcpControllerStateMachine.MESSAGE_INTERNAL_CMD_TIMEOUT);
+        TestUtils.waitForLooperToFinishScheduledTask(mAvrcpStateMachine.getHandler().getLooper());
+
+        // Node should be set to cached and notified on
+        assertNowPlayingList(new ArrayList<AvrcpItem>());
+        Assert.assertTrue(nowPlaying.isCached());
+
+        // See that state from BluetoothMediaBrowserService is updated to null (i.e. empty)
+        MediaSessionCompat session = BluetoothMediaBrowserService.getSession();
+        Assert.assertNotNull(session);
+        MediaControllerCompat controller = session.getController();
+        Assert.assertNotNull(controller);
+        List<MediaSessionCompat.QueueItem> queue = controller.getQueue();
+        Assert.assertNull(queue);
+    }
+
+    /**
+     * Test making a browse request with a null node. The request should not generate any native
+     * layer browse requests.
+     */
+    @Test
+    public void testNullBrowseRequest_requestDropped() {
+        setUpConnectedState(true, true);
+        sendAudioFocusUpdate(AudioManager.AUDIOFOCUS_GAIN);
+        clearInvocations(mAvrcpControllerService);
+        mAvrcpStateMachine.requestContents(null);
+        TestUtils.waitForLooperToFinishScheduledTask(mAvrcpStateMachine.getHandler().getLooper());
+        verifyNoMoreInteractions(mAvrcpControllerService);
+    }
 }
