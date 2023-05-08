@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ff7cface_a09d2eb9",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-05-08T22:04:53Z",
+      "side": 1,
+      "message": "Can you add a test for this specific behavior ? It looks like there is none and it would be best to make sure a test is here.",
+      "range": {
+        "startLine": 11,
+        "startChar": 6,
+        "endLine": 11,
+        "endChar": 86
+      },
+      "revId": "5e95d791d5a8b52de1295d0fee2b281449e2d794",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "059fdafb_799a79f5",
+        "filename": "android/app/src/com/android/bluetooth/a2dp/A2dpService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 212,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-05-08T22:04:53Z",
+      "side": 1,
+      "message": "I am not sure this will works as you expected it to be\n\nThis will only send a message into the [a2dp state machine](https://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/android/app/src/com/android/bluetooth/a2dp/A2dpService.java;l\u003d342;drc\u003d8606781bcd3e73d86b2f4bb8d821196517815c9d) that may or may not be handled before reaching the `doQuit`.\nEven if the message is processed, I do not expect the native to complete before the end of this method so the intent will not be broadcast.",
+      "range": {
+        "startLine": 212,
+        "startChar": 0,
+        "endLine": 212,
+        "endChar": 37
+      },
+      "revId": "5e95d791d5a8b52de1295d0fee2b281449e2d794",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "69f95fca_4a87081f",
+        "filename": "android/app/src/com/android/bluetooth/a2dp/A2dpService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-05-08T22:04:53Z",
+      "side": 1,
+      "message": "Not directly related to your change but:\n`getActiveDevice()` will ALWAYS return NULL here since we just removed the active device. I am not sure what was tried to be achieved here but this should be checked",
+      "range": {
+        "startLine": 221,
+        "startChar": 39,
+        "endLine": 221,
+        "endChar": 54
+      },
+      "revId": "5e95d791d5a8b52de1295d0fee2b281449e2d794",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5fb250dc_18d97a3e",
+        "filename": "android/app/src/com/android/bluetooth/a2dp/A2dpService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 1160,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-05-08T22:04:53Z",
+      "side": 1,
+      "message": "Same as above",
+      "range": {
+        "startLine": 1160,
+        "startChar": 0,
+        "endLine": 1160,
+        "endChar": 35
+      },
+      "revId": "5e95d791d5a8b52de1295d0fee2b281449e2d794",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
