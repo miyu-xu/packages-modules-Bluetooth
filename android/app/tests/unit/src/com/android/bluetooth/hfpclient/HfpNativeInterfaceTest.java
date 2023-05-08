@@ -18,8 +18,10 @@ package com.android.bluetooth.hfpclient;
 
 import static com.google.common.truth.Truth.assertThat;
 
+import static org.mockito.Mockito.anyString;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+
 
 import com.android.bluetooth.TestUtils;
 import com.android.bluetooth.btservice.AdapterService;
@@ -307,5 +309,11 @@ public class HfpNativeInterfaceTest {
         verify(mService).messageFromNative(event.capture());
         assertThat(event.getValue().type).isEqualTo(StackEvent.EVENT_TYPE_UNKNOWN_EVENT);
         assertThat(event.getValue().valueString).isEqualTo(eventString);
+    }
+
+    @Test
+    public void testSendAndroidAt() {
+        // If the device is null, should return False
+        assertThat(mNativeInterface.sendAndroidAt(null, anyString())).isEqualTo(false);
     }
 }
