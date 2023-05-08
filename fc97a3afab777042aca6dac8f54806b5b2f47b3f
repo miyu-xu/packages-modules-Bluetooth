@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "929d4ff1_4402f28c",
+        "filename": "android/pandora/server/src/com/android/pandora/MediaPlayerBrowserService.kt",
+        "patchSetId": 3
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-05-08T15:03:05Z",
+      "side": 1,
+      "message": "nit: Move to next CL",
+      "revId": "fc97a3afab777042aca6dac8f54806b5b2f47b3f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
