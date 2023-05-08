@@ -63,7 +63,8 @@ impl<'a> FieldParser<'a> {
     pub fn add(&mut self, field: &'a analyzer_ast::Field) {
         match &field.desc {
             _ if self.scope.is_bitfield(field) => self.add_bit_field(field),
-            ast::FieldDesc::Padding { .. } => todo!("Padding fields are not supported"),
+            // Padding fields are handled with their associated field.
+            ast::FieldDesc::Padding { .. } => (),
             ast::FieldDesc::Array { id, width, type_id, size, .. } => self.add_array_field(
                 id,
                 *width,
@@ -310,12 +311,35 @@ impl<'a> FieldParser<'a> {
             ArrayShape::Unknown
         };
 
+        let padding = self
+            .scope
+            .typedef
+            .get(self.packet_name)
+            .and_then(|decl| self.scope.get_array_padding(decl, id));
+
         // TODO size modifier
 
-        // TODO padded_size
+        let span = match padding {
+            Some(padding_size) => {
+                // Padding hardly makes sense if the array is not specified with
+                // size or count field.
+                assert!(matches!(
+                    array_shape,
+                    ArrayShape::SizeField { .. } | ArrayShape::CountField { .. }
+                ));
+                let span = self.span;
+                self.check_size(&quote!(#padding_size));
+                self.code.push(quote! {
+                    let (head, tail) = #span.get().split_at(#padding_size);
+                    let mut head = &mut Cell::new(head);
+                    #span.replace(tail);
+                });
+                format_ident!("head")
+            }
+            None => self.span.clone(),
+        };
 
         let id = format_ident!("{id}");
-        let span = self.span;
 
         let parse_element = self.parse_array_element(self.span, width, type_id, decl);
         match (element_width, &array_shape) {
