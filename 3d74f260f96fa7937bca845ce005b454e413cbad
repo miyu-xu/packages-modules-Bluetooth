@@ -22,6 +22,30 @@
       },
       "revId": "3d74f260f96fa7937bca845ce005b454e413cbad",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "16a17cde_6e152a14",
+        "filename": "service/tests/src/com/android/server/bluetooth/BluetoothManagerServiceTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-05-08T22:21:28Z",
+      "side": 1,
+      "message": "The TODO may not be exactly what should be done, you are right.\nI am wondering what the code should do since if the user want it to be enable, why are we no longer trying to enable the bluetooth and only silently stop to bind.",
+      "parentUuid": "d11b6aee_a85e4317",
+      "range": {
+        "startLine": 171,
+        "startChar": 30,
+        "endLine": 171,
+        "endChar": 37
+      },
+      "revId": "3d74f260f96fa7937bca845ce005b454e413cbad",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
