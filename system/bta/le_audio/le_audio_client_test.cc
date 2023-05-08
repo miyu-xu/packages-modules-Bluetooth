@@ -4285,15 +4285,8 @@ TEST_F(UnicastTest, MicrophoneAttachToCurrentMediaScenario) {
   EXPECT_CALL(*mock_le_audio_source_hal_client_, Stop()).Times(1);
   EXPECT_CALL(*mock_le_audio_source_hal_client_, OnDestroyed()).Times(1);
   EXPECT_CALL(*mock_le_audio_sink_hal_client_, OnDestroyed()).Times(1);
-  do_in_main_thread(
-      FROM_HERE, base::BindOnce(
-                     [](LeAudioClient* client) {
-                       client->GroupSetActive(bluetooth::groups::kGroupUnknown);
-                     },
-                     LeAudioClient::Get()));
+  LeAudioClient::Get()->GroupSetActive(bluetooth::groups::kGroupUnknown);
   Mock::VerifyAndClearExpectations(&mock_le_audio_source_hal_client_);
-
-  SyncOnMainLoop();
 }
 
 TEST_F(UnicastTest, UpdateNotSupportedContextType) {
