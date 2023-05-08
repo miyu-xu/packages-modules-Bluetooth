@@ -35,6 +35,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b7d1f550_49139927",
+        "filename": "system/bta/include/bta_api.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 1149,
+      "author": {
+        "id": 1958755
+      },
+      "writtenOn": "2023-05-08T16:38:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cd856d16_f8389026",
+      "revId": "9a59494adb8c88ec5bcaa7719b59ac1c69705452",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "92f4133d_c59d3c91",
@@ -48,6 +66,30 @@
       "writtenOn": "2023-05-08T07:32:45Z",
       "side": 1,
       "message": "let\u0027s remove any CSIS related things here and try to make it generic.\nE.g. instead of isCsisObser, lets name it `force_active_scan` or similar.",
+      "range": {
+        "startLine": 505,
+        "startChar": 20,
+        "endLine": 505,
+        "endChar": 33
+      },
+      "revId": "9a59494adb8c88ec5bcaa7719b59ac1c69705452",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f9d5aab0_3c9fafff",
+        "filename": "system/stack/btm/btm_ble_gap.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 505,
+      "author": {
+        "id": 1958755
+      },
+      "writtenOn": "2023-05-08T16:38:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "92f4133d_c59d3c91",
       "range": {
         "startLine": 505,
         "startChar": 20,
@@ -81,6 +123,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "57036ae9_e12c3554",
+        "filename": "system/stack/btm/btm_ble_gap.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 552,
+      "author": {
+        "id": 1958755
+      },
+      "writtenOn": "2023-05-08T16:38:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "50149bca_0134da36",
+      "range": {
+        "startLine": 552,
+        "startChar": 8,
+        "endLine": 552,
+        "endChar": 12
+      },
+      "revId": "9a59494adb8c88ec5bcaa7719b59ac1c69705452",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "eca35d72_66f09150",
@@ -94,6 +160,24 @@
       "writtenOn": "2023-05-08T07:32:45Z",
       "side": 1,
       "message": "Also, there is no need to stop and start again if current scannig is active. `(p_inq-\u003escan_type \u003d\u003d BTM_BLE_SCAN_MODE_ACTI)`",
+      "revId": "9a59494adb8c88ec5bcaa7719b59ac1c69705452",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2751c415_65c464cd",
+        "filename": "system/stack/btm/btm_ble_gap.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 554,
+      "author": {
+        "id": 1958755
+      },
+      "writtenOn": "2023-05-08T16:38:43Z",
+      "side": 1,
+      "message": "I think we still need to use `btm_ble_stop_observe()` because this is the only way that we make scanning activity to be none. `btm_ble_stop_scan()` only disables scanning but activity is still on; that is, `is_ble_scan_active() \u003d\u003d true`. This will makes us not go into `if (!btm_cb.ble_ctr_cb.is_ble_scan_active())` statement to reset scanning parameters to be low latency.\n\nIn my local test, if we only do `btm_ble_stop_scan()`, we still not set scanning parameters as low latency since`is_ble_scan_active()` is still true.\n\nplease correct me if I misunderstand something, thanks.",
+      "parentUuid": "eca35d72_66f09150",
       "revId": "9a59494adb8c88ec5bcaa7719b59ac1c69705452",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -115,6 +199,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "da8fffa4_df2edd39",
+        "filename": "system/stack/btm/btm_ble_gap.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 576,
+      "author": {
+        "id": 1958755
+      },
+      "writtenOn": "2023-05-08T16:38:43Z",
+      "side": 1,
+      "message": "Remove this part since using `btm_ble_stop_observe()` will make `is_ble_scan_active \u003d\u003d false`. So there is no chance we go into this statement as long as current scanning is active -\u003e `force_active_scan \u003d\u003d true`",
+      "parentUuid": "8a76c3bf_34b5cf0b",
+      "revId": "9a59494adb8c88ec5bcaa7719b59ac1c69705452",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d68d2172_7475572c",
@@ -128,6 +230,30 @@
       "writtenOn": "2023-05-08T07:32:45Z",
       "side": 1,
       "message": "can we add to LogHistory addtional string saying if Active scan is enabled?",
+      "range": {
+        "startLine": 588,
+        "startChar": 55,
+        "endLine": 588,
+        "endChar": 62
+      },
+      "revId": "9a59494adb8c88ec5bcaa7719b59ac1c69705452",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1f9ca9a2_c5732309",
+        "filename": "system/stack/btm/btm_ble_gap.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 588,
+      "author": {
+        "id": 1958755
+      },
+      "writtenOn": "2023-05-08T16:38:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d68d2172_7475572c",
       "range": {
         "startLine": 588,
         "startChar": 55,
