@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6dee7f9a_a8e03e67",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-05-08T21:04:40Z",
+      "side": 1,
+      "message": "suggest something like:\n\nBluetooth sends intents when its state changes.  External code that wants to track the state should watch for those intents.",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 64
+      },
+      "revId": "4f01f3b97f341e6abb80d6ee7813f4fe53493ff9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
