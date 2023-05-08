@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a151fd30_dc77aaba",
+        "filename": "system/rust/src/gatt/arbiter.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-05-08T17:22:57Z",
+      "side": 1,
+      "message": "What\u0027s the difference between tcb_idx and tcb_idx?  Just the type?",
+      "range": {
+        "startLine": 176,
+        "startChar": 8,
+        "endLine": 176,
+        "endChar": 15
+      },
+      "revId": "2d7ab41f15447e8925b88542ef83dd97147cb0bc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "46b39046_2e31c081",
+        "filename": "system/rust/src/gatt/arbiter.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-05-08T17:22:57Z",
+      "side": 1,
+      "message": "I like the error on 198 better.  How do you know it\u0027s closed?",
+      "range": {
+        "startLine": 185,
+        "startChar": 36,
+        "endLine": 185,
+        "endChar": 42
+      },
+      "revId": "2d7ab41f15447e8925b88542ef83dd97147cb0bc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
