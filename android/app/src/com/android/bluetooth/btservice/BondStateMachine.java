@@ -295,6 +295,11 @@ final class BondStateMachine extends StateMachine {
                                 BluetoothDevice.PAIRING_VARIANT_PIN);
                     }
                     break;
+                case UUID_UPDATE:
+                    if (mPendingBondedDevices.contains(dev)) {
+                        sendIntent(dev, BluetoothDevice.BOND_BONDED, 0, false);
+                    }
+                    break;
                 default:
                     Log.e(TAG, "Received unhandled event:" + msg.what);
                     return false;
