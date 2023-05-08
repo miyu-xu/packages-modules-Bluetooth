@@ -831,6 +831,9 @@ class AvrcpControllerStateMachine extends StateMachine {
 
             if (mBrowseNode == null) {
                 transitionTo(mConnected);
+            } else if (!mBrowsingConnected) {
+                Log.w(TAG, "GetFolderItems: Browsing not connected, node=" + mBrowseNode);
+                transitionTo(mConnected);
             } else {
                 mBrowseNode.setCached(false);
                 navigateToFolderOrRetrieve(mBrowseNode);
@@ -868,7 +871,6 @@ class AvrcpControllerStateMachine extends StateMachine {
                         // If we have fetched all the elements or if the remotes sends us 0 elements
                         // (which can lead us into a loop since mCurrInd does not proceed) we simply
                         // abort.
-                        mBrowseNode.setCached(true);
                         transitionTo(mConnected);
                     } else {
                         // Fetch the next set of items.
@@ -964,7 +966,7 @@ class AvrcpControllerStateMachine extends StateMachine {
                 case MESSAGE_INTERNAL_CMD_TIMEOUT:
                     // We have timed out to execute the request, we should simply send
                     // whatever listing we have gotten until now.
-                    Log.w(TAG, "TIMEOUT");
+                    Log.w(TAG, "GetFolderItems: Timeout waiting for download, node=" + mBrowseNode);
                     transitionTo(mConnected);
                     break;
 
@@ -972,7 +974,6 @@ class AvrcpControllerStateMachine extends StateMachine {
                     // If we have gotten an error for OUT OF RANGE we have
                     // already sent all the items to the client hence simply
                     // transition to Connected state here.
-                    mBrowseNode.setCached(true);
                     transitionTo(mConnected);
                     break;
 
@@ -1097,6 +1098,13 @@ class AvrcpControllerStateMachine extends StateMachine {
         public void exit() {
             logd("GetFolderItems: fetch complete, node=" + mBrowseNode);
             removeMessages(MESSAGE_INTERNAL_CMD_TIMEOUT);
+
+            // Whatever we have, notify on it so the UI doesn't hang
+            if (mBrowseNode != null) {
+                mBrowseNode.setCached(true);
+                notifyChanged(mBrowseNode);
+            }
+
             mBrowseNode = null;
             super.exit();
         }
