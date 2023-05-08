@@ -46,6 +46,30 @@
       },
       "revId": "3d74f260f96fa7937bca845ce005b454e413cbad",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7aed72be_51bb9b2c",
+        "filename": "service/tests/src/com/android/server/bluetooth/BluetoothManagerServiceTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-05-08T22:23:48Z",
+      "side": 1,
+      "message": "But after the binding timeout, the ManagerService:\n1. Do not print an error\n2. Do not display a popup to the user saying \"Bluetooth has crash\" or something\n3. Stop trying to start the bluetooth.\n4. If AFTER the timeout the bluetooth finally bind, it will allow it like nothing happened because we never call unbind on it.\n\n\nDo you think I should write all of this in the TODO instead ?",
+      "parentUuid": "16a17cde_6e152a14",
+      "range": {
+        "startLine": 171,
+        "startChar": 30,
+        "endLine": 171,
+        "endChar": 37
+      },
+      "revId": "3d74f260f96fa7937bca845ce005b454e413cbad",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
