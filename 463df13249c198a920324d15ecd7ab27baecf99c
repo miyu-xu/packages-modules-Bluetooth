@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ab3ec532_9945e218",
+        "filename": "android/pandora/server/src/com/android/pandora/MediaPlayerBrowserService.kt",
+        "patchSetId": 1
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-05-08T14:58:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1609cc6e_87954160",
+      "revId": "463df13249c198a920324d15ecd7ab27baecf99c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "35c689ba_718c206c",
@@ -196,6 +214,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2f6e7256_c76d6f3e",
+        "filename": "android/pandora/server/src/com/android/pandora/MediaPlayerBrowserService.kt",
+        "patchSetId": 1
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-05-08T14:58:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "db1af018_41211c29",
+      "range": {
+        "startLine": 161,
+        "startChar": 4,
+        "endLine": 161,
+        "endChar": 21
+      },
+      "revId": "463df13249c198a920324d15ecd7ab27baecf99c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4f5c6291_fdbe0a25",
@@ -257,6 +299,30 @@
       "side": 1,
       "message": "I would prefer that take the shuffle mode as an argument to `SetShuffleMode` so it can be useful to build other tests, and provide the correct ShuffleMode from mmi2grpc",
       "parentUuid": "1ef50dac_5903030a",
+      "range": {
+        "startLine": 168,
+        "startChar": 102,
+        "endLine": 168,
+        "endChar": 118
+      },
+      "revId": "463df13249c198a920324d15ecd7ab27baecf99c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "49316ee6_6292b555",
+        "filename": "android/pandora/server/src/com/android/pandora/MediaPlayerBrowserService.kt",
+        "patchSetId": 1
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-05-08T14:58:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6374cd8b_087231aa",
       "range": {
         "startLine": 168,
         "startChar": 102,
