@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8040557a_6beb42e2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2023-05-08T17:47:23Z",
+      "side": 1,
+      "message": "Hi Jakub,\n\n\nPlease add a bug number into the commit message to satisfy the linter. The bug number should look like this in a new line before the `Change-Id:\n`Bug: \u003cnumber\u003e`\n\nRegarding the `pts-bot` failure, I\u0027ll relaunch the presubmit, the OPP tests are known flaky tests in `pts-bot`.",
+      "revId": "3ad1e5c7206e6e93b9557fe6d31ca5f68d6307b6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
