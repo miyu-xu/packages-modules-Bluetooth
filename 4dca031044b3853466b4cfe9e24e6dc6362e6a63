@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "99686aba_76ad5ad1",
+        "filename": "system/bta/csis/csis_client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 852,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-05-08T08:45:57Z",
+      "side": 1,
+      "message": "It\u0027s different than bug number in commit message, should they be different ?",
+      "range": {
+        "startLine": 852,
+        "startChar": 13,
+        "endLine": 852,
+        "endChar": 22
+      },
+      "revId": "4dca031044b3853466b4cfe9e24e6dc6362e6a63",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
