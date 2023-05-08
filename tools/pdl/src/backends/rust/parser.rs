@@ -63,12 +63,13 @@ impl<'a> FieldParser<'a> {
     pub fn add(&mut self, field: &'a analyzer_ast::Field) {
         match &field.desc {
             _ if self.scope.is_bitfield(field) => self.add_bit_field(field),
-            ast::FieldDesc::Padding { .. } => todo!("Padding fields are not supported"),
+            ast::FieldDesc::Padding { .. } => (),
             ast::FieldDesc::Array { id, width, type_id, size, .. } => self.add_array_field(
                 id,
                 *width,
                 type_id.as_deref(),
                 *size,
+                field.annot.padded_size,
                 self.scope.get_field_declaration(field),
             ),
             ast::FieldDesc::Typedef { id, type_id } => self.add_typedef_field(id, type_id),
@@ -277,6 +278,7 @@ impl<'a> FieldParser<'a> {
         // `size`: the size of the array in number of elements (if
         // known). If None, the array is a Vec with a dynamic size.
         size: Option<usize>,
+        padding_size: Option<usize>,
         decl: Option<&analyzer_ast::Decl>,
     ) {
         enum ElementWidth {
@@ -312,12 +314,23 @@ impl<'a> FieldParser<'a> {
 
         // TODO size modifier
 
-        // TODO padded_size
+        let span = match padding_size {
+            Some(padding_size) => {
+                let span = self.span;
+                self.check_size(&quote!(#padding_size));
+                self.code.push(quote! {
+                    let (head, tail) = #span.get().split_at(#padding_size);
+                    let mut head = &mut Cell::new(head);
+                    #span.replace(tail);
+                });
+                format_ident!("head")
+            }
+            None => self.span.clone(),
+        };
 
         let id = format_ident!("{id}");
-        let span = self.span;
 
-        let parse_element = self.parse_array_element(self.span, width, type_id, decl);
+        let parse_element = self.parse_array_element(&span, width, type_id, decl);
         match (element_width, &array_shape) {
             (ElementWidth::Unknown, ArrayShape::SizeField(size_field)) => {
                 // The element width is not known, but the array full
