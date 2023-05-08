@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ffd8be46_1064348d",
+        "filename": "system/rust/src/connection.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-05-08T14:38:44Z",
+      "side": 1,
+      "message": "What are we doing with the result of the future returned by this function ?",
+      "range": {
+        "startLine": 149,
+        "startChar": 12,
+        "endLine": 149,
+        "endChar": 58
+      },
+      "revId": "ad77a595a978942ee433bdab1c79ad2119ee0857",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d5c3be88_7cb13820",
+        "filename": "system/rust/src/connection.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-05-08T14:38:44Z",
+      "side": 1,
+      "message": "Having an async fn returning a future is a bit weird.\n\nCould we make this just one async function ? Asked differently, do you need the two level of Result ?",
+      "range": {
+        "startLine": 159,
+        "startChar": 4,
+        "endLine": 159,
+        "endChar": 10
+      },
+      "revId": "ad77a595a978942ee433bdab1c79ad2119ee0857",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5d26a191_9eeeb353",
+        "filename": "system/rust/src/connection.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-05-08T14:38:44Z",
+      "side": 1,
+      "message": "nit: Implement `reconcile_state` on `ConnectionManagerState` instead as you don\u0027t use `self`",
+      "range": {
+        "startLine": 270,
+        "startChar": 104,
+        "endLine": 275,
+        "endChar": 5
+      },
+      "revId": "ad77a595a978942ee433bdab1c79ad2119ee0857",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
