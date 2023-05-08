@@ -67,6 +67,7 @@ java_library {
         "androidx.annotation_annotation",
         "androidx.appcompat_appcompat",
         "modules-utils-shell-command-handler",
+        "modules-utils-statemachine",
         "bluetooth-manager-service-proto-java-gen",
         "bluetooth-proto-enums-java-gen",
         "bluetooth-nano-protos",
