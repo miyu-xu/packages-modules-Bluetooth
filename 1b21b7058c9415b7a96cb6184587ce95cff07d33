@@ -26,6 +26,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "41ec9f4d_5b0e2ae0",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/avrcp.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 713,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-05-08T15:05:21Z",
+      "side": 1,
+      "message": "nit: `nextShuffleMode`",
+      "range": {
+        "startLine": 713,
+        "startChar": 8,
+        "endLine": 713,
+        "endChar": 22
+      },
+      "revId": "1b21b7058c9415b7a96cb6184587ce95cff07d33",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e29ba2ed_087d96b6",
         "filename": "android/pandora/server/src/com/android/pandora/MediaPlayerBrowserService.kt",
         "patchSetId": 3
