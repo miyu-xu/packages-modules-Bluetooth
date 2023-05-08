@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5e7c8ea2_7c3c0d0a",
+        "filename": "system/rust/src/gatt/arbiter.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-05-08T17:42:33Z",
+      "side": 1,
+      "message": "Yup. FFI only lets us get primitive types safely, so we just immediately cast it to the wrapper type to avoid mixups later.",
+      "parentUuid": "a151fd30_dc77aaba",
+      "range": {
+        "startLine": 176,
+        "startChar": 8,
+        "endLine": 176,
+        "endChar": 15
+      },
+      "revId": "2d7ab41f15447e8925b88542ef83dd97147cb0bc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "46b39046_2e31c081",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-05-08T17:22:57Z",
       "side": 1,
       "message": "I like the error on 198 better.  How do you know it\u0027s closed?",
+      "range": {
+        "startLine": 185,
+        "startChar": 36,
+        "endLine": 185,
+        "endChar": 42
+      },
+      "revId": "2d7ab41f15447e8925b88542ef83dd97147cb0bc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c7880bad_a93f7a0a",
+        "filename": "system/rust/src/gatt/arbiter.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-05-08T17:42:33Z",
+      "side": 1,
+      "message": "Updated.",
+      "parentUuid": "46b39046_2e31c081",
       "range": {
         "startLine": 185,
         "startChar": 36,
