@@ -1,0 +1,141 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "77252c5a_d7826f3e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-05-08T07:32:45Z",
+      "side": 1,
+      "message": "Thanks. Couple of comments.",
+      "revId": "9a59494adb8c88ec5bcaa7719b59ac1c69705452",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cd856d16_f8389026",
+        "filename": "system/bta/include/bta_api.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 1149,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-05-08T07:32:45Z",
+      "side": 1,
+      "message": "let\u0027s remove any CSIS related things here and try to make it generic.\nE.g. instead of isCsisObser, lets name it force_active_scan or similar.",
+      "revId": "9a59494adb8c88ec5bcaa7719b59ac1c69705452",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "92f4133d_c59d3c91",
+        "filename": "system/stack/btm/btm_ble_gap.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 505,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-05-08T07:32:45Z",
+      "side": 1,
+      "message": "let\u0027s remove any CSIS related things here and try to make it generic.\nE.g. instead of isCsisObser, lets name it `force_active_scan` or similar.",
+      "range": {
+        "startLine": 505,
+        "startChar": 20,
+        "endLine": 505,
+        "endChar": 33
+      },
+      "revId": "9a59494adb8c88ec5bcaa7719b59ac1c69705452",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "50149bca_0134da36",
+        "filename": "system/stack/btm/btm_ble_gap.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 552,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-05-08T07:32:45Z",
+      "side": 1,
+      "message": "nit: else not needed here since return above",
+      "range": {
+        "startLine": 552,
+        "startChar": 8,
+        "endLine": 552,
+        "endChar": 12
+      },
+      "revId": "9a59494adb8c88ec5bcaa7719b59ac1c69705452",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eca35d72_66f09150",
+        "filename": "system/stack/btm/btm_ble_gap.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 554,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-05-08T07:32:45Z",
+      "side": 1,
+      "message": "Also, there is no need to stop and start again if current scannig is active. `(p_inq-\u003escan_type \u003d\u003d BTM_BLE_SCAN_MODE_ACTI)`",
+      "revId": "9a59494adb8c88ec5bcaa7719b59ac1c69705452",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8a76c3bf_34b5cf0b",
+        "filename": "system/stack/btm/btm_ble_gap.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 576,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-05-08T07:32:45Z",
+      "side": 1,
+      "message": "maybe instead this, we should have  around line 563 something like this:\n\n```suggestion\n   if (isCsisObserve \u0026\u0026 btm_cb.ble_ctr_cb.is_ble_scan_active()\n        \u0026\u0026 (p_inq-\u003escan_type !\u003d BTM_BLE_SCAN_MODE_ACTI)) {\n     // Need to stop non active scan bo the \n     btm_ble_stop_scan();\n   }\n```",
+      "revId": "9a59494adb8c88ec5bcaa7719b59ac1c69705452",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d68d2172_7475572c",
+        "filename": "system/stack/btm/btm_ble_gap.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 588,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-05-08T07:32:45Z",
+      "side": 1,
+      "message": "can we add to LogHistory addtional string saying if Active scan is enabled?",
+      "range": {
+        "startLine": 588,
+        "startChar": 55,
+        "endLine": 588,
+        "endChar": 62
+      },
+      "revId": "9a59494adb8c88ec5bcaa7719b59ac1c69705452",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
