@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "de2b7493_f85a3ffa",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-05-08T22:53:42Z",
+      "side": 1,
+      "message": "No regressions in size on ChromeOS either.",
+      "revId": "c3d823c215fe263fdb38ca0be8ede55533d0e227",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
