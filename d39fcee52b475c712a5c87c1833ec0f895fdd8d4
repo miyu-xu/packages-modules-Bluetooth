@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1efd8500_ee3fc305",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 2012,
+      "author": {
+        "id": 1306903
+      },
+      "writtenOn": "2023-05-08T09:02:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5a91ca24_3a6eb09d",
+      "range": {
+        "startLine": 2012,
+        "startChar": 20,
+        "endLine": 2012,
+        "endChar": 49
+      },
+      "revId": "d39fcee52b475c712a5c87c1833ec0f895fdd8d4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b3f5b5e0_47c1c0f4",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-05-05T01:07:21Z",
       "side": 1,
       "message": "nit: capitalize this word to keep consistency with comment below",
+      "range": {
+        "startLine": 2018,
+        "startChar": 36,
+        "endLine": 2018,
+        "endChar": 51
+      },
+      "revId": "d39fcee52b475c712a5c87c1833ec0f895fdd8d4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dc78a117_46d20275",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 2018,
+      "author": {
+        "id": 1306903
+      },
+      "writtenOn": "2023-05-08T09:02:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b3f5b5e0_47c1c0f4",
       "range": {
         "startLine": 2018,
         "startChar": 36,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "39c5fbb2_02095860",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 2019,
+      "author": {
+        "id": 1306903
+      },
+      "writtenOn": "2023-05-08T09:02:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f193e2fd_79b6f9c6",
+      "range": {
+        "startLine": 2019,
+        "startChar": 18,
+        "endLine": 2019,
+        "endChar": 19
+      },
+      "revId": "d39fcee52b475c712a5c87c1833ec0f895fdd8d4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c224ee20_ec6ed912",
@@ -83,6 +155,30 @@
       "writtenOn": "2023-05-05T01:07:21Z",
       "side": 1,
       "message": "need to add a parenthesis around like [this](https://source.corp.google.com/h/android/platform/superproject/+/refs/heads/master:packages/modules/Bluetooth/android/app/src/com/android/bluetooth/hfp/AtPhonebook.java;l\u003d246;drc\u003d7346c436e5a11ce08f6a80dcfeb8ef941ca30176;bpv\u003d1;bpt\u003d1)\n+CHLD: (0,1,2,3)",
+      "range": {
+        "startLine": 2025,
+        "startChar": 23,
+        "endLine": 2025,
+        "endChar": 78
+      },
+      "revId": "d39fcee52b475c712a5c87c1833ec0f895fdd8d4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8b4156d3_f052b3cc",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 2025,
+      "author": {
+        "id": 1306903
+      },
+      "writtenOn": "2023-05-08T09:02:20Z",
+      "side": 1,
+      "message": "Done, also rewrote the HFPC part that handles the command.",
+      "parentUuid": "c224ee20_ec6ed912",
       "range": {
         "startLine": 2025,
         "startChar": 23,
