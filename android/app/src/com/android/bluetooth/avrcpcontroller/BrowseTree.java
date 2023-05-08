@@ -255,14 +255,11 @@ public class BrowseTree {
         }
 
         synchronized List<MediaItem> getContents() {
-            if (mChildren.size() > 0 || mCached) {
-                List<MediaItem> contents = new ArrayList<MediaItem>(mChildren.size());
-                for (BrowseNode child : mChildren) {
-                    contents.add(child.getMediaItem());
-                }
-                return contents;
+            List<MediaItem> contents = new ArrayList<MediaItem>(mChildren.size());
+            for (BrowseNode child : mChildren) {
+                contents.add(child.getMediaItem());
             }
-            return null;
+            return contents;
         }
 
         synchronized boolean isChild(BrowseNode node) {
