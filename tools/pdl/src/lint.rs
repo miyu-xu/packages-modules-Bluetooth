@@ -257,6 +257,28 @@ impl<'d> Scope<'d> {
         }
     }
 
+    /// Return the padding for the selected array, if declared.
+    pub fn get_array_padding(&self, decl: &analyzer_ast::Decl, id: &str) -> Option<usize> {
+        match &decl.desc {
+            DeclDesc::Packet { fields, .. } | DeclDesc::Struct { fields, .. } => {
+                fields
+                    .windows(2)
+                    .filter_map(|pair| match pair {
+                        [analyzer_ast::Field {
+                            desc: FieldDesc::Array { id: array_id, .. }, ..
+                        }, analyzer_ast::Field { desc: FieldDesc::Padding { size }, .. }]
+                            if array_id == id =>
+                        {
+                            Some(*size)
+                        }
+                        _ => None,
+                    })
+                    .next()
+            }
+            _ => None,
+        }
+    }
+
     /// Determine the size of a field in bits, if possible.
     ///
     /// If the field is dynamically sized (e.g. unsized array or

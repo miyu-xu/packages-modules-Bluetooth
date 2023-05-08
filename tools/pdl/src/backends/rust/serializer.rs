@@ -260,8 +260,7 @@ impl<'a> FieldSerializer<'a> {
         width: Option<usize>,
         decl: Option<&analyzer_ast::Decl>,
     ) {
-        // TODO: padding
-
+        let span = format_ident!("{}", self.span);
         let serialize = match width {
             Some(width) => {
                 let value = quote!(*elem);
@@ -277,7 +276,6 @@ impl<'a> FieldSerializer<'a> {
                         self.span,
                     )
                 } else {
-                    let span = format_ident!("{}", self.span);
                     quote! {
                         elem.write_to(#span)
                     }
@@ -285,11 +283,33 @@ impl<'a> FieldSerializer<'a> {
             }
         };
 
+        let padding = self
+            .scope
+            .typedef
+            .get(self.packet_name)
+            .and_then(|decl| self.scope.get_array_padding(decl, id));
         let id = format_ident!("{id}");
-        self.code.push(quote! {
-            for elem in &self.#id {
-                #serialize;
-            }
+
+        self.code.push(match padding {
+            Some(padding_size) =>
+                quote! {
+                    let current_size = #span.len();
+                    for elem in &self.#id {
+                        #serialize;
+                    }
+                    let array_size = #span.len() - current_size;
+                    if array_size > #padding_size {
+                        panic!("attempted to serialize an array larger than the englobing padding size");
+                    }
+                    #span.extend_from_slice(
+                        &[0; #padding_size - array_size]);
+                },
+            None =>
+                quote! {
+                    for elem in &self.#id {
+                        #serialize;
+                    }
+                }
         });
     }
 
