@@ -22,6 +22,30 @@
       },
       "revId": "c2eebd234c51f303d034122042cc646dd58f7fa1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5b84d2db_75b4a2d8",
+        "filename": "system/bta/hearing_aid/hearing_aid.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1700,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-05-09T11:20:26Z",
+      "side": 1,
+      "message": "if `0` is used instead of `gatt_if`, all other gatt clients will be removed from the background connect - which is something we don\u0027t want.",
+      "parentUuid": "f5013c27_8962d3a8",
+      "range": {
+        "startLine": 1700,
+        "startChar": 4,
+        "endLine": 1700,
+        "endChar": 50
+      },
+      "revId": "c2eebd234c51f303d034122042cc646dd58f7fa1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
