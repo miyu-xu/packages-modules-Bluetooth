@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cc1c353f_462b1d29",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 4580,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-05-09T19:05:53Z",
+      "side": 1,
+      "message": "Will this be hit with le ? \n\nAs this may be a valid INVALID_HANDLE as le uses `ble_hci_handle`",
+      "revId": "c3602fb01eedf059072371c2febbdeba3807c520",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
