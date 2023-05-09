@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "73e26aca_bb51da23",
+        "filename": "android/app/src/com/android/bluetooth/mapclient/MceStateMachine.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 257,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2023-05-09T22:06:51Z",
+      "side": 1,
+      "message": "I don\u0027t disagree with this line of code, though we _used_ to allow these broadcasts out, and I\u0027m not sure if others are relying on these broadcasts or just constantly filtering them out. I\u0027m a bit concerned about that idea.",
+      "range": {
+        "startLine": 255,
+        "startChar": 8,
+        "endLine": 257,
+        "endChar": 9
+      },
+      "revId": "0d8c2818578fa15617ea4d1c6e5d5c941a7df8c6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fde2e93e_19130104",
+        "filename": "android/app/src/com/android/bluetooth/mapclient/MceStateMachine.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 269,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2023-05-09T22:06:51Z",
+      "side": 1,
+      "message": "mMostRecentState is always changed on the handler, but getState() can be invoked off the handler. I think as this is, its not totally thread safe.\n\nWe have terrible, awful abuse of synchronized, so maybe a `void synchronized setState()` function will suffice to make this thread safe.",
+      "range": {
+        "startLine": 269,
+        "startChar": 8,
+        "endLine": 269,
+        "endChar": 33
+      },
+      "revId": "0d8c2818578fa15617ea4d1c6e5d5c941a7df8c6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
