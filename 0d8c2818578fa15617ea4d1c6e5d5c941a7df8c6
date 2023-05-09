@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "467f1e92_188108e8",
+        "filename": "android/app/src/com/android/bluetooth/mapclient/MceStateMachine.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 257,
+      "author": {
+        "id": 1985170
+      },
+      "writtenOn": "2023-05-09T22:15:29Z",
+      "side": 1,
+      "message": "I believe the SettingsLib does rely on these broadcast. https://source.corp.google.com/android-internal/frameworks/base/packages/SettingsLib/src/com/android/settingslib/bluetooth/LocalBluetoothProfileManager.java;l\u003d174\n\nCan the state machine enter/transition to the same state back to back? Since, we send it during onEnter (which ideally should be invoked only once) then we shouldn\u0027t require this check. However, I have seen similar pattern in other state machine that caches the recent state.",
+      "parentUuid": "73e26aca_bb51da23",
+      "range": {
+        "startLine": 255,
+        "startChar": 8,
+        "endLine": 257,
+        "endChar": 9
+      },
+      "revId": "0d8c2818578fa15617ea4d1c6e5d5c941a7df8c6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "fde2e93e_19130104",
         "filename": "android/app/src/com/android/bluetooth/mapclient/MceStateMachine.java",
         "patchSetId": 2
@@ -37,6 +61,30 @@
       "writtenOn": "2023-05-09T22:06:51Z",
       "side": 1,
       "message": "mMostRecentState is always changed on the handler, but getState() can be invoked off the handler. I think as this is, its not totally thread safe.\n\nWe have terrible, awful abuse of synchronized, so maybe a `void synchronized setState()` function will suffice to make this thread safe.",
+      "range": {
+        "startLine": 269,
+        "startChar": 8,
+        "endLine": 269,
+        "endChar": 33
+      },
+      "revId": "0d8c2818578fa15617ea4d1c6e5d5c941a7df8c6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cc8805cf_3c25fe9e",
+        "filename": "android/app/src/com/android/bluetooth/mapclient/MceStateMachine.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 269,
+      "author": {
+        "id": 1985170
+      },
+      "writtenOn": "2023-05-09T22:15:29Z",
+      "side": 1,
+      "message": "Will make the change.",
+      "parentUuid": "fde2e93e_19130104",
       "range": {
         "startLine": 269,
         "startChar": 8,
