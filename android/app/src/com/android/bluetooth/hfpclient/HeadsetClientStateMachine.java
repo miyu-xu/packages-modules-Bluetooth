@@ -902,7 +902,7 @@ public class HeadsetClientStateMachine extends StateMachine {
         mInBandRingtonePolicyProperty = getAudioPolicySystemProp(
             "bluetooth.headset_client.audio_policy.in_band_ringtone.config");
         mForceSetAudioPolicyProperty = SystemProperties.getBoolean(
-            "bluetooth.headset_client.audio_policy.force_enabled", false);
+            "bluetooth.headset_client.audio_policy.force_set", false);
 
         mIndicatorNetworkState = HeadsetClientHalConstants.NETWORK_STATE_NOT_AVAILABLE;
         mIndicatorNetworkType = HeadsetClientHalConstants.SERVICE_TYPE_HOME;
