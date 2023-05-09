@@ -205,7 +205,7 @@ bt_status_t btif_gattc_test_command_impl(int command,
                             static_cast<tBLE_ADDR_TYPE>(params->u2));
 
       if (!GATT_Connect(test_cb.gatt_if, *params->bda1,
-                        BTM_BLE_DIRECT_CONNECTION, BT_TRANSPORT_LE, false)) {
+                        BTM_BLE_DIRECT_CONNECTION, BT_TRANSPORT_LE)) {
         LOG_ERROR("%s: GATT_Connect failed!", __func__);
       }
       break;

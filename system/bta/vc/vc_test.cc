@@ -337,7 +337,7 @@ class VolumeControlTest : public ::testing::Test {
         .WillByDefault(DoAll(Return(true)));
 
     EXPECT_CALL(gatt_interface,
-                Open(gatt_if, address, BTM_BLE_DIRECT_CONNECTION, _));
+                Open(gatt_if, address, BTM_BLE_DIRECT_CONNECTION));
     VolumeControl::Get()->Connect(address);
     Mock::VerifyAndClearExpectations(&gatt_interface);
   }
@@ -359,9 +359,9 @@ class VolumeControlTest : public ::testing::Test {
 
     if (auto_connect) {
       EXPECT_CALL(gatt_interface,
-                  Open(gatt_if, address, BTM_BLE_BKG_CONNECT_ALLOW_LIST, _));
+                  Open(gatt_if, address, BTM_BLE_BKG_CONNECT_ALLOW_LIST));
     } else {
-      EXPECT_CALL(gatt_interface, Open(gatt_if, address, _, _)).Times(0);
+      EXPECT_CALL(gatt_interface, Open(gatt_if, address, _)).Times(0);
     }
     VolumeControl::Get()->AddFromStorage(address, auto_connect);
   }
