@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ea3e0adf_8f0cdd3f",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 4391,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-05-09T23:19:39Z",
+      "side": 1,
+      "message": "since this is the behavior change, could we log this BTM_SEC_STATE_LE_ENCRYPTING properly? so that we can easily catch this from the logs.",
+      "revId": "dc60ba3a42bde708cd6f7a4323d61c9ec50ee8c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
