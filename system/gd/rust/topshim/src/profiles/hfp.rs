@@ -47,7 +47,6 @@ bitflags! {
         const UNSUPPORTED = 0b00;
         const CVSD = 0b01;
         const MSBC = 0b10;
-        const LC3 = 0b100;
     }
 }
 
@@ -165,8 +164,7 @@ pub mod ffi {
         fn hfp_audio_state_callback(state: u32, addr: RawAddress);
         fn hfp_volume_update_callback(volume: u8, addr: RawAddress);
         fn hfp_battery_level_update_callback(battery_level: u8, addr: RawAddress);
-        fn hfp_wbs_caps_update_callback(wbs_supported: bool, addr: RawAddress);
-        fn hfp_swb_caps_update_callback(swb_supported: bool, addr: RawAddress);
+        fn hfp_caps_update_callback(wbs_supported: bool, addr: RawAddress);
         fn hfp_indicator_query_callback(addr: RawAddress);
         fn hfp_current_calls_query_callback(addr: RawAddress);
         fn hfp_answer_call_callback(addr: RawAddress);
@@ -200,8 +198,7 @@ pub enum HfpCallbacks {
     AudioState(BthfAudioState, RawAddress),
     VolumeUpdate(u8, RawAddress),
     BatteryLevelUpdate(u8, RawAddress),
-    WbsCapsUpdate(bool, RawAddress),
-    SwbCapsUpdate(bool, RawAddress),
+    CapsUpdate(bool, RawAddress),
     IndicatorQuery(RawAddress),
     CurrentCallsQuery(RawAddress),
     AnswerCall(RawAddress),
@@ -238,12 +235,7 @@ cb_variant!(
 
 cb_variant!(
     HfpCb,
-    hfp_wbs_caps_update_callback -> HfpCallbacks::WbsCapsUpdate,
-    bool, RawAddress);
-
-cb_variant!(
-    HfpCb,
-    hfp_swb_caps_update_callback -> HfpCallbacks::SwbCapsUpdate,
+    hfp_caps_update_callback -> HfpCallbacks::CapsUpdate,
     bool, RawAddress);
 
 cb_variant!(

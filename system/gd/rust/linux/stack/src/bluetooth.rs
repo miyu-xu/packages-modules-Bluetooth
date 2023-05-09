@@ -209,9 +209,6 @@ pub trait IBluetooth {
 
     /// Returns whether WBS is supported.
     fn is_wbs_supported(&self) -> bool;
-
-    /// Returns whether SWB is supported.
-    fn is_swb_supported(&self) -> bool;
 }
 
 /// Adapter API for Bluetooth qualification and verification.
@@ -2361,10 +2358,6 @@ impl IBluetooth for Bluetooth {
 
     fn is_wbs_supported(&self) -> bool {
         self.intf.lock().unwrap().get_wbs_supported()
-    }
-
-    fn is_swb_supported(&self) -> bool {
-        self.intf.lock().unwrap().get_swb_supported()
     }
 }
 
