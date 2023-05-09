@@ -16,6 +16,24 @@
       "message": "The `Integer` type knows how to print itself -- in exactly this format 😊",
       "revId": "2bf79f6206de9d72ced31da70d9b3d0e1a80d335",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "181d73e4_a7205e21",
+        "filename": "tools/pdl/src/backends/rust.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 909,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-05-09T18:29:36Z",
+      "side": 1,
+      "message": "Are you mentioning to_tokens ? It is converting the type to an identifier token, but in this case I am looking to produce a string token.",
+      "parentUuid": "c7a88e1c_0214c8f3",
+      "revId": "2bf79f6206de9d72ced31da70d9b3d0e1a80d335",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
