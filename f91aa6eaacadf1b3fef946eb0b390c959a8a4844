@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "43889e4f_053906b1",
+        "filename": "system/stack/btm/btm_ble_gap.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 459,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-05-09T06:04:29Z",
+      "side": 1,
+      "message": "looks like this function does not need to be moved now.",
+      "range": {
+        "startLine": 459,
+        "startChar": 0,
+        "endLine": 459,
+        "endChar": 6
+      },
+      "revId": "f91aa6eaacadf1b3fef946eb0b390c959a8a4844",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a5b5cfe9_efa0c53a",
+        "filename": "system/stack/btm/btm_ble_gap.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 550,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-05-09T06:04:29Z",
+      "side": 1,
+      "message": "```suggestion\n      if (!force_active_scan || (p_inq-\u003escan_type \u003d\u003d BTM_BLE_SCAN_MODE_ACTI)) {\n```",
+      "revId": "f91aa6eaacadf1b3fef946eb0b390c959a8a4844",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
