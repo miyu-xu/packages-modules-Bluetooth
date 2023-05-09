@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5873405c_791ffb92",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2023-05-09T09:34:00Z",
+      "side": 1,
+      "message": "Hi, I\u0027m unable to test this with the problematic device: Amazon echo buds because we don\u0027t have this device and it is currently either out of stock or unable to ship to Taiwan in many websites. Do you think this is safe to merge as this is a simple change?",
+      "revId": "cecb5bf5b5d33f930ce2f48a9359684e59f5ebac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
