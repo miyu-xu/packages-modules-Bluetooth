@@ -26,6 +26,7 @@
  ******************************************************************************/
 
 #define LOG_TAG "bt_btif_hf"
+
 #include <base/functional/callback.h>
 #include <base/logging.h>
 #include <frameworks/proto_logging/stats/enums/bluetooth/enums.pb.h>
@@ -575,29 +576,18 @@ static void btif_hf_upstreams_evt(uint16_t event, char* p_param) {
       bt_hf_callbacks->KeyPressedCallback(&btif_hf_cb[idx].connected_bda);
       break;
 
-    case BTA_AG_CODEC_EVT:
+    case BTA_AG_WBS_EVT:
       BTIF_TRACE_DEBUG(
-          "BTA_AG_CODEC_EVT Set codec status %d codec %d 1=CVSD 2=MSBC 4=LC3",
+          "BTA_AG_WBS_EVT Set codec status %d codec %d 1=CVSD 2=MSBC",
           p_data->val.hdr.status, p_data->val.num);
       if (p_data->val.num == BTM_SCO_CODEC_CVSD) {
         bt_hf_callbacks->WbsCallback(BTHF_WBS_NO,
                                      &btif_hf_cb[idx].connected_bda);
-        bt_hf_callbacks->SwbCallback(BTHF_SWB_NO,
-                                     &btif_hf_cb[idx].connected_bda);
       } else if (p_data->val.num == BTM_SCO_CODEC_MSBC) {
         bt_hf_callbacks->WbsCallback(BTHF_WBS_YES,
                                      &btif_hf_cb[idx].connected_bda);
-        bt_hf_callbacks->SwbCallback(BTHF_SWB_NO,
-                                     &btif_hf_cb[idx].connected_bda);
-      } else if (p_data->val.num == BTM_SCO_CODEC_LC3) {
-        bt_hf_callbacks->WbsCallback(BTHF_WBS_NO,
-                                     &btif_hf_cb[idx].connected_bda);
-        bt_hf_callbacks->SwbCallback(BTHF_SWB_YES,
-                                     &btif_hf_cb[idx].connected_bda);
       } else {
         bt_hf_callbacks->WbsCallback(BTHF_WBS_NONE,
-                                     &btif_hf_cb[idx].connected_bda);
-        bt_hf_callbacks->SwbCallback(BTHF_SWB_NONE,
                                      &btif_hf_cb[idx].connected_bda);
       }
       break;
@@ -636,14 +626,9 @@ static void btif_hf_upstreams_evt(uint16_t event, char* p_param) {
       /* If the peer supports mSBC and the BTIF preferred codec is also mSBC,
        * then we should set the BTA AG Codec to mSBC. This would trigger a +BCS
        * to mSBC at the time of SCO connection establishment */
-      if (hfp_hal_interface::get_swb_supported() &&
-          (p_data->val.num & BTM_SCO_CODEC_LC3)) {
-        BTIF_TRACE_EVENT("%s: btif_hf override-Preferred Codec to LC3",
-                         __func__);
-        BTA_AgSetCodec(btif_hf_cb[idx].handle, BTM_SCO_CODEC_LC3);
-      } else if (hfp_hal_interface::get_wbs_supported() &&
-                 (p_data->val.num & BTM_SCO_CODEC_MSBC)) {
-        BTIF_TRACE_EVENT("%s: btif_hf override-Preferred Codec to mSBC",
+      if (hfp_hal_interface::get_wbs_supported() &&
+          (p_data->val.num & BTM_SCO_CODEC_MSBC)) {
+        BTIF_TRACE_EVENT("%s: btif_hf override-Preferred Codec to MSBC",
                          __func__);
         BTA_AgSetCodec(btif_hf_cb[idx].handle, BTM_SCO_CODEC_MSBC);
       } else {
@@ -652,17 +637,13 @@ static void btif_hf_upstreams_evt(uint16_t event, char* p_param) {
         BTA_AgSetCodec(btif_hf_cb[idx].handle, BTM_SCO_CODEC_CVSD);
       }
       break;
-
     case BTA_AG_AT_BCS_EVT:
       BTIF_TRACE_DEBUG("%s: AG final selected codec is 0x%02x 1=CVSD 2=MSBC",
                        __func__, p_data->val.num);
       /* No BTHF_WBS_NONE case, because HF1.6 supported device can send BCS */
       /* Only CVSD is considered narrow band speech */
       bt_hf_callbacks->WbsCallback(
-          (p_data->val.num == BTM_SCO_CODEC_MSBC) ? BTHF_WBS_YES : BTHF_WBS_NO,
-          &btif_hf_cb[idx].connected_bda);
-      bt_hf_callbacks->SwbCallback(
-          (p_data->val.num == BTM_SCO_CODEC_LC3) ? BTHF_SWB_YES : BTHF_SWB_NO,
+          (p_data->val.num == BTM_SCO_CODEC_CVSD) ? BTHF_WBS_NO : BTHF_WBS_YES,
           &btif_hf_cb[idx].connected_bda);
       break;
 
