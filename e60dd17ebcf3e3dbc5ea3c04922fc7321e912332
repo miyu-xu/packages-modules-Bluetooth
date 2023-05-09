@@ -39,6 +39,30 @@
       },
       "revId": "e60dd17ebcf3e3dbc5ea3c04922fc7321e912332",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6f2362ff_24fd1286",
+        "filename": "system/stack/btm/btm_ble_gap.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 545,
+      "author": {
+        "id": 1958755
+      },
+      "writtenOn": "2023-05-09T09:18:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "17b97ed1_f0c90764",
+      "range": {
+        "startLine": 545,
+        "startChar": 14,
+        "endLine": 545,
+        "endChar": 20
+      },
+      "revId": "e60dd17ebcf3e3dbc5ea3c04922fc7321e912332",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
