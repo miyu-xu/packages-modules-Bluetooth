@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "08f8ce6e_399bd581",
+        "filename": "system/stack/btm/btm_ble_gap.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 459,
+      "author": {
+        "id": 1958755
+      },
+      "writtenOn": "2023-05-09T07:06:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "43889e4f_053906b1",
+      "range": {
+        "startLine": 459,
+        "startChar": 0,
+        "endLine": 459,
+        "endChar": 6
+      },
+      "revId": "f91aa6eaacadf1b3fef946eb0b390c959a8a4844",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a5b5cfe9_efa0c53a",
@@ -37,6 +61,24 @@
       "writtenOn": "2023-05-09T06:04:29Z",
       "side": 1,
       "message": "```suggestion\n      if (!force_active_scan || (p_inq-\u003escan_type \u003d\u003d BTM_BLE_SCAN_MODE_ACTI)) {\n```",
+      "revId": "f91aa6eaacadf1b3fef946eb0b390c959a8a4844",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "66470204_aef09c35",
+        "filename": "system/stack/btm/btm_ble_gap.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 550,
+      "author": {
+        "id": 1958755
+      },
+      "writtenOn": "2023-05-09T07:06:03Z",
+      "side": 1,
+      "message": "per discussion, stop current scan request if it is not low latency or current ongoing scan is low latency.",
+      "parentUuid": "a5b5cfe9_efa0c53a",
       "revId": "f91aa6eaacadf1b3fef946eb0b390c959a8a4844",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
