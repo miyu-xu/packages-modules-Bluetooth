@@ -1350,19 +1350,21 @@ void DumpsysNeighbor(int fd) {
                     1000.0,
                 btm_cb.neighbor.le_scan.results);
   }
-  const auto copy = btm_cb.neighbor.inquiry_history_->Pull();
-  LOG_DUMPSYS(fd, "Last %zu inquiry scans:", copy.size());
-  for (const auto& it : copy) {
-    LOG_DUMPSYS(fd,
-                "  %s - %s duration_ms:%-5Lu num_resp:%-2u"
-                " std:%-2u rssi:%-2u ext:%-2u %12s",
-                EpochMillisToString(it.entry.start_time_ms).c_str(),
-                EpochMillisToString(it.timestamp).c_str(),
-                it.timestamp - it.entry.start_time_ms, it.entry.num_resp,
-                it.entry.resp_type[BTM_INQ_RESULT_STANDARD],
-                it.entry.resp_type[BTM_INQ_RESULT_WITH_RSSI],
-                it.entry.resp_type[BTM_INQ_RESULT_EXTENDED],
-                btm_inquiry_cmpl_status_text(it.entry.status).c_str());
+  if (btm_cb.neighbor.inquiry_history_ != nullptr) {
+    const auto copy = btm_cb.neighbor.inquiry_history_->Pull();
+    LOG_DUMPSYS(fd, "Last %zu inquiry scans:", copy.size());
+    for (const auto& it : copy) {
+      LOG_DUMPSYS(fd,
+                  "  %s - %s duration_ms:%-5Lu num_resp:%-2u"
+                  " std:%-2u rssi:%-2u ext:%-2u %12s",
+                  EpochMillisToString(it.entry.start_time_ms).c_str(),
+                  EpochMillisToString(it.timestamp).c_str(),
+                  it.timestamp - it.entry.start_time_ms, it.entry.num_resp,
+                  it.entry.resp_type[BTM_INQ_RESULT_STANDARD],
+                  it.entry.resp_type[BTM_INQ_RESULT_WITH_RSSI],
+                  it.entry.resp_type[BTM_INQ_RESULT_EXTENDED],
+                  btm_inquiry_cmpl_status_text(it.entry.status).c_str());
+    }
   }
 }
 #undef DUMPSYS_TAG
