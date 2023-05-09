@@ -92,7 +92,6 @@ typedef struct {
   tBTM_BLE_CONN_TYPE connection_type;
   tBT_TRANSPORT transport;
   uint8_t initiating_phys;
-  bool opportunistic;
   tBT_DEVICE_TYPE remote_addr_type;
 } tBTA_GATTC_API_OPEN;
 
@@ -103,7 +102,6 @@ typedef struct {
   bool is_direct;
   tBT_TRANSPORT transport;
   uint8_t initiating_phys;
-  bool opportunistic;
 } tBTA_GATTC_API_CANCEL_OPEN;
 
 typedef struct {
