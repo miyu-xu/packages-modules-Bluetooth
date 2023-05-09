@@ -34,6 +34,23 @@
       "parentUuid": "b731d936_14e270b4",
       "revId": "4ba37b0fe2224aa05b049a15e2b5188a908ca215",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6baf4cbe_dd9667dc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2023-05-09T22:25:13Z",
+      "side": 1,
+      "message": "Can we sync the change to head, resolve merge conflicts and the resend for review?",
+      "revId": "4ba37b0fe2224aa05b049a15e2b5188a908ca215",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
