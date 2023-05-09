@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fbfcfe14_39740724",
+        "filename": "android/app/src/com/android/bluetooth/pan/PanService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 771,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2023-05-09T07:38:16Z",
+      "side": 1,
+      "message": "This is not used. Is it needed?",
+      "range": {
+        "startLine": 766,
+        "startChar": 4,
+        "endLine": 771,
+        "endChar": 5
+      },
+      "revId": "ecbbe63aa2186a898fecc38f1752faf2f263ab67",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
