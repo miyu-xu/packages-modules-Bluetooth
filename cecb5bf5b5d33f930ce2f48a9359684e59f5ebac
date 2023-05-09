@@ -16,6 +16,24 @@
       "message": "Hi, I\u0027m unable to test this with the problematic device: Amazon echo buds because we don\u0027t have this device and it is currently either out of stock or unable to ship to Taiwan in many websites. Do you think this is safe to merge as this is a simple change?",
       "revId": "cecb5bf5b5d33f930ce2f48a9359684e59f5ebac",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e33771c9_afe63009",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2023-05-09T09:46:28Z",
+      "side": 1,
+      "message": "Since in BlueZ the device in question also fails to connect to A2DP (after numerous retries), I think adding this CL will likely result in a longer duration of baseband connection, then the device will still get disconnected due to our \"complete profile\" policy.\n\nOn the other hand, I don\u0027t think this will cause adverse effects to the common scenarios, and perhaps can cure some cases if the device\u0027s policy is to somehow initiate another connection after some time. But I\u0027d suggest testing it first either way, and there is room for discussion about improving the policy as soon as we understand the device\u0027s requirement.",
+      "parentUuid": "5873405c_791ffb92",
+      "revId": "cecb5bf5b5d33f930ce2f48a9359684e59f5ebac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
