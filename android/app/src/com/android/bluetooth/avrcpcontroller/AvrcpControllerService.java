@@ -350,12 +350,24 @@ public class AvrcpControllerService extends ProfileService {
                 setActiveDevice(device);
             }
 
+            // If the node isn't downloaded, go fetch it. Return what we have so far (null indicates
+            // a download is progress. If it had an error, return what we have but uncache it so
+            // future requests force a download and give us a chance to recover.
             if (!requestedNode.isCached()) {
-                if (DBG) Log.d(TAG, "node is not cached");
+                if (DBG) Log.d(TAG, "node is not cached, request download");
                 refreshContents(requestedNode);
+                return requestedNode.getContents(); // returns null if no progress has been made yet
+            } else if (requestedNode.isInError()) {
+                if (DBG) {
+                    Log.d(TAG, "node is cached, but the download had an issue. Return and uncache");
+                }
+                List<MediaItem> contents = requestedNode.getContents();
+                requestedNode.setCached(false);
+                return contents;
+            } else {
+                if (DBG) Log.d(TAG, "node is cached, return contents");
+                return requestedNode.getContents();
             }
-            if (DBG) Log.d(TAG, "Returning contents");
-            return requestedNode.getContents();
         }
     }
 

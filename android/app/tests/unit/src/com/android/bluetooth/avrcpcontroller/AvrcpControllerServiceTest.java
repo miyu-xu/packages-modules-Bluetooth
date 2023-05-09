@@ -30,6 +30,7 @@ import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothProfile;
 import android.content.Intent;
 import android.media.AudioManager;
+import android.support.v4.media.MediaBrowserCompat.MediaItem;
 import android.support.v4.media.session.PlaybackStateCompat;
 
 import androidx.test.filters.MediumTest;
@@ -50,6 +51,7 @@ import org.mockito.MockitoAnnotations;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 @MediumTest
 @RunWith(AndroidJUnit4.class)
@@ -175,6 +177,22 @@ public class AvrcpControllerServiceTest {
         mService.getContents(parentMediaId);
 
         verify(node).getContents();
+    }
+
+    @Test
+    public void testGetContentsWithAnErroneousResult_contentsReturnedThenUncached() {
+        String parentMediaId = "test_parent_media_id";
+        BrowseTree.BrowseNode node = mock(BrowseTree.BrowseNode.class);
+        MediaItem item = mock(MediaItem.class);
+        when(mStateMachine.findNode(parentMediaId)).thenReturn(node);
+        when(node.isCached()).thenReturn(true);
+        when(node.isInError()).thenReturn(true);
+        List<MediaItem> results = new ArrayList<MediaItem>();
+        results.add(item);
+        when(node.getContents()).thenReturn(results);
+
+        assertThat(mService.getContents(parentMediaId)).isEqualTo(results);
+        verify(node).setCached(false);
     }
 
     @Test

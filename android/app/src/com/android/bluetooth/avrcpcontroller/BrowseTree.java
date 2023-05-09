@@ -134,6 +134,10 @@ public class BrowseTree {
         // without doing another fetch.
         boolean mCached = false;
 
+        // Incidates if there was a problem in downloading the node before the contents were
+        // marked as "cached" or not;
+        boolean mInError = false;
+
         byte mBrowseScope = AvrcpControllerService.BROWSE_SCOPE_VFS;
 
         // List of children.
@@ -277,6 +281,10 @@ public class BrowseTree {
             return mCached;
         }
 
+        synchronized boolean isInError() {
+            return mInError;
+        }
+
         synchronized boolean isBrowsable() {
             return mItem.isBrowsable();
         }
@@ -290,7 +298,16 @@ public class BrowseTree {
                     indicateCoverArtUnused(child.getID(), child.getCoverArtUuid());
                 }
                 mChildren.clear();
+                mInError = false;
             }
+        }
+
+        /**
+         * Mark this node as having an error during fetch so we can know if we should retry in the
+         * future or not.
+         */
+        synchronized void setInError() {
+            mInError = true;
         }
 
         // Fetch the Unique UID for this item, this is unique across all elements in the tree.
