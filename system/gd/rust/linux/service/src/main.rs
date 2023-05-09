@@ -180,8 +180,7 @@ fn main() -> Result<(), Box<dyn Error>> {
         tx.clone(),
         bluetooth_admin.clone(),
     ))));
-    let bluetooth_qa = Arc::new(Mutex::new(Box::new(BluetoothQA::new(tx.clone()))));
-
+    let qa = Arc::new(Mutex::new(Box::new(BluetoothQA::new(tx.clone()))));
     let dis =
         Arc::new(Mutex::new(Box::new(DeviceInformation::new(bluetooth_gatt.clone(), tx.clone()))));
 
@@ -227,7 +226,6 @@ fn main() -> Result<(), Box<dyn Error>> {
             bt_sock_mgr.clone(),
             bluetooth_admin.clone(),
             dis.clone(),
-            bluetooth_qa.clone(),
         ));
 
         // Set up the disconnect watcher to monitor client disconnects.
@@ -372,11 +370,7 @@ fn main() -> Result<(), Box<dyn Error>> {
             logging.clone(),
         );
 
-        cr.lock().unwrap().insert(
-            make_object_name(adapter_index, "qa"),
-            &[qa_iface],
-            bluetooth_qa.clone(),
-        );
+        cr.lock().unwrap().insert(make_object_name(adapter_index, "qa"), &[qa_iface], qa.clone());
 
         // Hold locks and initialize all interfaces. This must be done AFTER DBus is
         // initialized so DBus can properly enforce user policies.
@@ -415,9 +409,6 @@ fn main() -> Result<(), Box<dyn Error>> {
                 signal::sigaction(signal::SIGTERM, &sig_action).unwrap();
             }
         }
-
-        // Initialize the bluetooth_qa
-        bluetooth.lock().unwrap().cache_discoverable_mode_into_qa();
 
         // Serve clients forever.
         future::pending::<()>().await;
