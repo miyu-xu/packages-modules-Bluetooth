@@ -28,10 +28,7 @@ fn main() {
 
     let filename = match matches.get_one::<String>("filename") {
         Some(f) => f,
-        None => {
-            println!("No filename parameter given.");
-            return;
-        }
+        None => "",
     };
 
     let report_signals = match matches.get_one::<bool>("signals") {
@@ -39,10 +36,14 @@ fn main() {
         None => false,
     };
 
-    let mut parser = match LogParser::new(filename.as_str()) {
+    let mut parser = match LogParser::new(filename) {
         Ok(p) => p,
         Err(e) => {
-            println!("Failed to load parser on {}: {}", filename, e);
+            println!(
+                "Failed to load parser on {}: {}",
+                if filename.len() == 0 { "stdin" } else { filename },
+                e
+            );
             return;
         }
     };
