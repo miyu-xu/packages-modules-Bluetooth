@@ -16,6 +16,24 @@
       "message": "since this is the behavior change, could we log this BTM_SEC_STATE_LE_ENCRYPTING properly? so that we can easily catch this from the logs.",
       "revId": "dc60ba3a42bde708cd6f7a4323d61c9ec50ee8c5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d6517f93_980a69c1",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 4391,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2023-05-09T23:28:06Z",
+      "side": 1,
+      "message": "The security state is logged right above this check.\n\nReplaced the \"idle\" with state string in the log statement.",
+      "parentUuid": "ea3e0adf_8f0cdd3f",
+      "revId": "dc60ba3a42bde708cd6f7a4323d61c9ec50ee8c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
