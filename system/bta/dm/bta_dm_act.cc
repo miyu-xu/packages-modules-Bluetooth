@@ -4338,8 +4338,6 @@ void bta_dm_close_gatt_conn(UNUSED_ATTR tBTA_DM_MSG* p_data) {
  *
  ******************************************************************************/
 void btm_dm_start_gatt_discovery(const RawAddress& bd_addr) {
-  constexpr bool kUseOpportunistic = true;
-
   bta_dm_search_cb.gatt_disc_active = true;
 
   /* connection is already open */
@@ -4353,23 +4351,19 @@ void btm_dm_start_gatt_discovery(const RawAddress& bd_addr) {
     if (BTM_IsAclConnectionUp(bd_addr, BT_TRANSPORT_LE)) {
       LOG_DEBUG(
           "Use existing gatt client connection for discovery peer:%s "
-          "transport:%s opportunistic:%c",
+          "transport:%s opportunistic: T",
           ADDRESS_TO_LOGGABLE_CSTR(bd_addr),
-          bt_transport_text(BT_TRANSPORT_LE).c_str(),
-          (kUseOpportunistic) ? 'T' : 'F');
+          bt_transport_text(BT_TRANSPORT_LE).c_str());
       get_gatt_interface().BTA_GATTC_Open(bta_dm_search_cb.client_if, bd_addr,
-                                          BTM_BLE_DIRECT_CONNECTION,
-                                          kUseOpportunistic);
+                                          BTM_BLE_OPPORTUNISTIC);
     } else {
       LOG_DEBUG(
           "Opening new gatt client connection for discovery peer:%s "
-          "transport:%s opportunistic:%c",
+          "transport:%s opportunistic:F",
           ADDRESS_TO_LOGGABLE_CSTR(bd_addr),
-          bt_transport_text(BT_TRANSPORT_LE).c_str(),
-          (!kUseOpportunistic) ? 'T' : 'F');
+          bt_transport_text(BT_TRANSPORT_LE).c_str());
       get_gatt_interface().BTA_GATTC_Open(bta_dm_search_cb.client_if, bd_addr,
-                                          BTM_BLE_DIRECT_CONNECTION,
-                                          !kUseOpportunistic);
+                                          BTM_BLE_DIRECT_CONNECTION);
     }
   }
 }

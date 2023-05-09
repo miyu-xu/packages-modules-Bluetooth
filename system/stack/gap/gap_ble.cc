@@ -386,8 +386,8 @@ bool accept_client_operation(const RawAddress& peer_bda, uint16_t uuid,
                                 BT_TRANSPORT_LE))
     p_clcb->connected = true;
 
-  if (!GATT_Connect(gatt_if, p_clcb->bda, BTM_BLE_DIRECT_CONNECTION,
-                    BT_TRANSPORT_LE, true))
+  if (!GATT_Connect(gatt_if, p_clcb->bda, BTM_BLE_OPPORTUNISTIC,
+                    BT_TRANSPORT_LE))
     return false;
 
   /* enqueue the request */

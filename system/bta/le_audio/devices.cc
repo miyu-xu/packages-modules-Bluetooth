@@ -1995,7 +1995,7 @@ void LeAudioDeviceGroup::Enable(int gatt_if,
              ADDRESS_TO_LOGGABLE_CSTR(address));
 
     if (connection_state == DeviceConnectState::DISCONNECTED) {
-      BTA_GATTC_Open(gatt_if, address, reconnection_mode, false);
+      BTA_GATTC_Open(gatt_if, address, reconnection_mode);
       device_iter.lock()->SetConnectionState(
           DeviceConnectState::CONNECTING_AUTOCONNECT);
     }
@@ -2022,7 +2022,7 @@ void LeAudioDeviceGroup::AddToAllowListNotConnectedGroupMembers(int gatt_if) {
              ADDRESS_TO_LOGGABLE_CSTR(address));
 
     BTA_GATTC_CancelOpen(gatt_if, address, false);
-    BTA_GATTC_Open(gatt_if, address, BTM_BLE_BKG_CONNECT_ALLOW_LIST, false);
+    BTA_GATTC_Open(gatt_if, address, BTM_BLE_BKG_CONNECT_ALLOW_LIST);
     device_iter.lock()->SetConnectionState(
         DeviceConnectState::CONNECTING_AUTOCONNECT);
   }
@@ -3090,7 +3090,7 @@ void LeAudioDevices::SetInitialGroupAutoconnectState(
       dev->SetConnectionState(DeviceConnectState::CONNECTING_AUTOCONNECT);
       dev->autoconnect_flag_ = true;
       btif_storage_set_leaudio_autoconnect(dev->address_, true);
-      BTA_GATTC_Open(gatt_if, dev->address_, BTM_BLE_DIRECT_CONNECTION, false);
+      BTA_GATTC_Open(gatt_if, dev->address_, BTM_BLE_DIRECT_CONNECTION);
     }
   }
 }
