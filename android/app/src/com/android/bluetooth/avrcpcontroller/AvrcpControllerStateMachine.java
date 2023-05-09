@@ -831,6 +831,10 @@ class AvrcpControllerStateMachine extends StateMachine {
 
             if (mBrowseNode == null) {
                 transitionTo(mConnected);
+            } else if (!mBrowsingConnected) {
+                Log.w(TAG, "GetFolderItems: Browsing not connected, node=" + mBrowseNode);
+                mBrowseNode.setInError();
+                transitionTo(mConnected);
             } else {
                 mAbort = false;
                 int scope = mBrowseNode.getScope();
@@ -970,6 +974,7 @@ class AvrcpControllerStateMachine extends StateMachine {
                     // We have timed out to execute the request, we should simply send
                     // whatever listing we have gotten until now.
                     Log.w(TAG, "GetFolderItems: Timeout waiting for download, node=" + mBrowseNode);
+                    mBrowseNode.setInError();
                     transitionTo(mConnected);
                     break;
 
