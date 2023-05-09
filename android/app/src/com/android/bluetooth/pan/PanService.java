@@ -180,7 +180,6 @@ public class PanService extends ProfileService {
             Log.w(TAG, "stop() called before start()");
             return true;
         }
-        mAdapterService = null;
         if (mTetheringManager != null) {
             mTetheringManager.unregisterTetheringEventCallback(mTetheringCallback);
             mTetheringManager = null;
@@ -761,6 +760,14 @@ public class PanService extends ProfileService {
         for (BluetoothDevice device : mPanDevices.keySet()) {
             println(sb, "  " + device + " : " + mPanDevices.get(device));
         }
+    }
+
+    @VisibleForTesting
+    Looper getHandlerLooper() {
+        if (mHandler == null) {
+            return null;
+        }
+        return mHandler.getLooper();
     }
 
     @VisibleForTesting
