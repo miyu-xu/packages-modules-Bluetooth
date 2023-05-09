@@ -890,13 +890,6 @@ typedef struct {
   bool (*get_wbs_supported)();
 
   /**
-   *
-   * Is swb supported by the controller
-   *
-   */
-  bool (*get_swb_supported)();
-
-  /**
    * Data passed from BluetoothDevice.metadata_changed
    *
    * @param remote_bd_addr remote address
