@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "599caa44_767526af",
+        "filename": "android/app/src/com/android/bluetooth/mapclient/MceStateMachine.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 257,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2023-05-09T23:16:53Z",
+      "side": 1,
+      "message": "Ah! Okay! So our initial state is \"Connecting\" and not \"Disconnected\" so this shouldn\u0027t really have an impact. I thought for a moment our initial state was disconnected and from there we fired off a connect request and moved to connecting.\n\nI _think_ we\u0027re okay here.",
+      "parentUuid": "467f1e92_188108e8",
+      "range": {
+        "startLine": 255,
+        "startChar": 8,
+        "endLine": 257,
+        "endChar": 9
+      },
+      "revId": "0d8c2818578fa15617ea4d1c6e5d5c941a7df8c6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "fde2e93e_19130104",
         "filename": "android/app/src/com/android/bluetooth/mapclient/MceStateMachine.java",
         "patchSetId": 2
