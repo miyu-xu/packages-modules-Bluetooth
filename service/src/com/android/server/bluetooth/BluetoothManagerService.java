@@ -64,6 +64,7 @@ import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
+import android.content.res.Resources;
 import android.database.ContentObserver;
 import android.os.Binder;
 import android.os.Bundle;
@@ -1816,7 +1817,29 @@ public class BluetoothManagerService extends IBluetoothManager.Stub {
             mBluetoothAirplaneModeListener.start(mBluetoothModeChangeHelper);
         }
         registerForProvisioningStateChange();
-        mBluetoothDeviceConfigListener = new BluetoothDeviceConfigListener(this, DBG, mContext);
+        mBluetoothDeviceConfigListener = new BluetoothDeviceConfigListener(this, DBG);
+        checkApmEnhancementEnabled();
+    }
+
+    /**
+     * Check whether APM Enhancement feature should be enabled
+     */
+    private void checkApmEnhancementEnabled() {
+        String btPackageName = mBluetoothModeChangeHelper.getBluetoothPackageName();
+        if (btPackageName == null) {
+            Log.e(TAG, "Unable to find Bluetooth package name with APM resources");
+            return;
+        }
+        try {
+            Resources resources = mContext.getPackageManager()
+                    .getResourcesForApplication(btPackageName);
+            int apmEnhancement = resources.getIdentifier("config_bluetooth_apm_enhancement_enabled",
+                    "bool", btPackageName);
+            Settings.Global.putInt(mContext.getContentResolver(),
+                    APM_ENHANCEMENT, resources.getBoolean(apmEnhancement) ? 1 : 0);
+        } catch (Exception e) {
+            Log.e(TAG, "Unable to set whether APM enhancement should be enabled");
+        }
     }
 
     /**

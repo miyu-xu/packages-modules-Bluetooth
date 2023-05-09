@@ -16,6 +16,7 @@
 
 package com.android.server.bluetooth;
 
+import static org.junit.Assert.assertTrue;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.any;
 import static org.mockito.Mockito.doReturn;
@@ -104,5 +105,11 @@ public class BluetoothManagerServiceTest {
         mManagerService.onUserRestrictionsChanged(UserHandle.SYSTEM);
         verify(mBluetoothServerProxy, timeout(sTimeout)).handlerSendWhatMessage(mHandler,
                 BluetoothManagerService.MESSAGE_DISABLE);
+    }
+
+    @Test
+    public void testApmEnhancementEnabled() {
+        assertTrue(Settings.Global.getInt(mContext.getContentResolver(),
+                "apm_enhancement_enabled",  0) == 1);
     }
 }
