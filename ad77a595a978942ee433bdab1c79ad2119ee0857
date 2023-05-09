@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "61277b92_3ebb68b5",
+        "filename": "system/rust/src/connection.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-05-09T23:44:31Z",
+      "side": 1,
+      "message": "At the moment, nothing. But in a future CL, I will plug this into the Rust GATT implementation, so you can do:\n```\nlet conn \u003d timeout(TIMEOUT, self.direct_connection.await?).await?; \nlet gatt \u003d Gatt(conn);\ngatt.read/write/etc().await\n```\nall in a single sequence.",
+      "parentUuid": "ffd8be46_1064348d",
+      "range": {
+        "startLine": 149,
+        "startChar": 12,
+        "endLine": 149,
+        "endChar": 58
+      },
+      "revId": "ad77a595a978942ee433bdab1c79ad2119ee0857",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d5c3be88_7cb13820",
@@ -49,6 +73,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "449bb85e_8f1a2947",
+        "filename": "system/rust/src/connection.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-05-09T23:44:31Z",
+      "side": 1,
+      "message": "One level of result represents a failure that happens essentially immediately. The second level represents a failure that happens after a long period of time (cancellation / HCI error).\n\nThe first level of error is needed even in the \"synchronous\" API (where we just add/remove devices from direct/background lists, and don\u0027t wait for the connection itself) while the second level is needed if we want to write sequential code (e.g. for pairing -\u003e service discovery).",
+      "parentUuid": "d5c3be88_7cb13820",
+      "range": {
+        "startLine": 159,
+        "startChar": 4,
+        "endLine": 159,
+        "endChar": 10
+      },
+      "revId": "ad77a595a978942ee433bdab1c79ad2119ee0857",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5d26a191_9eeeb353",
         "filename": "system/rust/src/connection.rs",
         "patchSetId": 2
@@ -60,6 +108,30 @@
       "writtenOn": "2023-05-08T14:38:44Z",
       "side": 1,
       "message": "nit: Implement `reconcile_state` on `ConnectionManagerState` instead as you don\u0027t use `self`",
+      "range": {
+        "startLine": 270,
+        "startChar": 104,
+        "endLine": 275,
+        "endChar": 5
+      },
+      "revId": "ad77a595a978942ee433bdab1c79ad2119ee0857",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "12374ee1_83583fa7",
+        "filename": "system/rust/src/connection.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-05-09T23:44:31Z",
+      "side": 1,
+      "message": "I do in the followup CL, so I\u0027d prefer to keep this change here (especially since the followups are a lot more complicated, so I want to keep them focused on the logical changes).",
+      "parentUuid": "5d26a191_9eeeb353",
       "range": {
         "startLine": 270,
         "startChar": 104,
