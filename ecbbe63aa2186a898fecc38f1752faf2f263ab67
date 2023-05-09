@@ -22,6 +22,30 @@
       },
       "revId": "ecbbe63aa2186a898fecc38f1752faf2f263ab67",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "849813f5_47acd0f3",
+        "filename": "android/app/src/com/android/bluetooth/pan/PanService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 771,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-05-09T08:48:20Z",
+      "side": 1,
+      "message": "Oh, I was planed to use it in the test. But it turned out not needed, since I could meet a test failure before this CL that passed after this CL on the newly added test.",
+      "parentUuid": "fbfcfe14_39740724",
+      "range": {
+        "startLine": 766,
+        "startChar": 4,
+        "endLine": 771,
+        "endChar": 5
+      },
+      "revId": "ecbbe63aa2186a898fecc38f1752faf2f263ab67",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
