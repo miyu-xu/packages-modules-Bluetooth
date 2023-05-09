@@ -457,9 +457,18 @@ impl BluetoothMedia {
                         self.a2dp_states.remove(&addr);
                         self.a2dp_caps.remove(&addr);
                         self.a2dp_audio_state.remove(&addr);
-                        self.rm_connected_profile(addr, uuid::Profile::A2dpSink, true);
-                        if self.is_complete_profiles_required() {
-                            self.disconnect(addr.to_string());
+                        if self.is_profile_connected(&addr, &uuid::Profile::A2dpSink) {
+                            self.rm_connected_profile(addr, uuid::Profile::A2dpSink, true);
+                            if self.is_complete_profiles_required() {
+                                self.disconnect(addr.to_string());
+                            }
+                        } else {
+                            // Likely to be failed to connect.
+                            debug!(
+                                "[{}]: a2dp disconnected before connected. err={:?}",
+                                DisplayAddress(&addr),
+                                error
+                            );
                         }
                     }
                     _ => {
