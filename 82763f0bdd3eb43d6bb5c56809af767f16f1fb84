@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "44cfab23_2ee480f6",
+        "filename": "floss/hcidoc/src/parser.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 254,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-05-10T19:40:29Z",
+      "side": 0,
+      "message": "Just to confirm, the rewind is not necessary because you\u0027ve opened a BufReader right?",
+      "revId": "82763f0bdd3eb43d6bb5c56809af767f16f1fb84",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

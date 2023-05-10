@@ -16,6 +16,23 @@
       "message": "Hi, please review. Thanks!",
       "revId": "42480d8da2f2a33aa5533e203ad469e863b96e9d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3a7ac787_a6bbd675",
+        "filename": "floss/hcidoc/src/parser.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 241,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-05-10T19:40:29Z",
+      "side": 1,
+      "message": "nit: replace unwrap() with ?",
+      "revId": "42480d8da2f2a33aa5533e203ad469e863b96e9d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
