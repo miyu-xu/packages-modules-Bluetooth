@@ -34,6 +34,24 @@
       "parentUuid": "d1d82956_b8b58392",
       "revId": "d61f0252a7defa2ad98a76e7af93be673410acb8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8a1f902a_bdf179ab",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-05-10T18:21:59Z",
+      "side": 1,
+      "message": "Acknowledged - I know we are just moving out of device config flags.",
+      "parentUuid": "5b2afd28_e18aa2a2",
+      "revId": "d61f0252a7defa2ad98a76e7af93be673410acb8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
