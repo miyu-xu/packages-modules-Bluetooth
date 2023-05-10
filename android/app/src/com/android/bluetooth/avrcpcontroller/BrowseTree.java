@@ -95,7 +95,11 @@ public class BrowseTree {
                 .setBrowsable(true).build());
         mNowPlayingNode.mBrowseScope = AvrcpControllerService.BROWSE_SCOPE_NOW_PLAYING;
         mNowPlayingNode.setExpectedChildren(255);
-        mBrowseMap.put(ROOT, mRootNode);
+        if (device == null) {
+            mBrowseMap.put(ROOT, mRootNode);
+        } else {
+            mBrowseMap.put(ROOT + device.getAddress().toString(), mRootNode);
+        }
         mBrowseMap.put(NOW_PLAYING_PREFIX, mNowPlayingNode);
 
         mCurrentBrowseNode = mRootNode;
@@ -313,6 +317,10 @@ public class BrowseTree {
 
         synchronized MediaItem getMediaItem() {
             return mItem.toMediaItem();
+        }
+
+        synchronized boolean isRoot() {
+            return getID().startsWith(ROOT);
         }
 
         synchronized boolean isPlayer() {
