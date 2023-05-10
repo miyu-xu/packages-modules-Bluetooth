@@ -645,10 +645,16 @@ public class BluetoothManagerService extends IBluetoothManager.Stub {
 
         mBluetoothNotificationManager = new BluetoothNotificationManager(mContext);
 
-        // Disable ASHA if BLE is not supported on this platform
+        // Disable ASHA on Automotive, TV, and Watch devices if the system property is not set
+        // This means that the OS will not automatically enable ASHA on these platforms, but these
+        // platforms can choose to enable ASHA themselves
+        boolean isAshaDisabledByDefault =
+                isAutomotive(mContext) || isWatch(mContext) || isTv(mContext);
         mIsHearingAidProfileSupported =
-                BluetoothProperties.isProfileAshaCentralEnabled().orElse(true);
-        if (!mContext.getPackageManager().hasSystemFeature(PackageManager.FEATURE_BLUETOOTH_LE)) {
+                BluetoothProperties.isProfileAshaCentralEnabled().orElse(isAshaDisabledByDefault);
+        // Disable ASHA if BLE is not supported on this platform even if the platform enabled ASHA
+        // accidentally
+        if (!isBleSupported(mContext)) {
             mIsHearingAidProfileSupported = false;
         }
 
@@ -3616,6 +3622,44 @@ public class BluetoothManagerService extends IBluetoothManager.Stub {
             return BluetoothAdapter.BT_SNOOP_LOG_MODE_FULL;
         }
         return BluetoothAdapter.BT_SNOOP_LOG_MODE_DISABLED;
+    }
+
+    /**
+     * Check if BLE is supported by this platform
+     * @param context current device context
+     * @return true if BLE is supported, false otherwise
+     */
+    public static boolean isBleSupported(Context context) {
+        return context.getPackageManager().hasSystemFeature(PackageManager.FEATURE_BLUETOOTH_LE);
+    }
+
+    /**
+     * Check if this is an automotive device
+     * @param context current device context
+     * @return true if this Android device is an automotive device, false otherwise
+     */
+    public static boolean isAutomotive(Context context) {
+        return context.getPackageManager().hasSystemFeature(PackageManager.FEATURE_AUTOMOTIVE);
+    }
+
+    /**
+     * Check if this is a watch device
+     * @param context current device context
+     * @return true if this Android device is a watch device, false otherwise
+     */
+    public static boolean isWatch(Context context) {
+        return context.getPackageManager().hasSystemFeature(PackageManager.FEATURE_WATCH);
+    }
+
+    /**
+     * Check if this is a TV device
+     * @param context current device context
+     * @return true if this Android device is a TV device, false otherwise
+     */
+    public static boolean isTv(Context context) {
+        PackageManager pm = context.getPackageManager();
+        return pm.hasSystemFeature(PackageManager.FEATURE_TELEVISION)
+                || pm.hasSystemFeature(PackageManager.FEATURE_LEANBACK);
     }
 }
 
