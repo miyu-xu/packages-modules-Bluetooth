@@ -1874,4 +1874,32 @@ public class AvrcpControllerStateMachineTest {
         TestUtils.waitForLooperToFinishScheduledTask(mAvrcpStateMachine.getHandler().getLooper());
         verifyNoMoreInteractions(mAvrcpControllerService);
     }
+
+    /**
+     * Test making a browse request, followed by another request, and show that the second request
+     * is properly enqueued and serviced after the first one.
+     */
+    @Test
+    public void testAbortCurrentBrowseRequest_contentsCachedAndNotified() {
+        final String rootName = "__ROOT__" + mTestDevice.getAddress().toString();
+        setUpConnectedState(true, true);
+        sendAudioFocusUpdate(AudioManager.AUDIOFOCUS_GAIN);
+
+        // Get the root of the device
+        BrowseTree.BrowseNode playerListNode = mAvrcpStateMachine.findNode(rootName);
+        mAvrcpStateMachine.requestContents(playerListNode);
+        TestUtils.waitForLooperToFinishScheduledTask(mAvrcpStateMachine.getHandler().getLooper());
+        verify(mAvrcpControllerService, times(1)).getPlayerListNative(eq(mTestAddress),
+                eq(0), eq(19));
+
+        // Add a new fetch request on top.
+        mAvrcpStateMachine.requestContents(playerListNode);
+
+        // Send back results. Make sure second request still goes out
+        mAvrcpStateMachine.sendMessage(AvrcpControllerStateMachine.MESSAGE_PROCESS_GET_PLAYER_ITEMS,
+                new ArrayList<>());
+        TestUtils.waitForLooperToBeIdle(mAvrcpStateMachine.getHandler().getLooper());
+        verify(mAvrcpControllerService, times(2)).getPlayerListNative(eq(mTestAddress),
+                eq(0), eq(19));
+    }
 }
