@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ba2720ec_2ce285a4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1930641
+      },
+      "writtenOn": "2023-05-10T14:19:13Z",
+      "side": 1,
+      "message": "Fuzzer updates for Bluetooth",
+      "revId": "c58747f972dd31a65836f13f3b6d0ebf43059a17",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
