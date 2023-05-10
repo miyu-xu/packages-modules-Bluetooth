@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "10856073_61fee7e8",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1597,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-05-10T17:11:49Z",
+      "side": 1,
+      "message": "let\u0027s keep same return type, I don\u0027t want to cast bt_status_t to boolean",
+      "parentUuid": "de35e22d_b5f093c0",
+      "range": {
+        "startLine": 1597,
+        "startChar": 9,
+        "endLine": 1597,
+        "endChar": 48
+      },
+      "revId": "1f8d6ba8f563277fe321fcebc14e0fca9a04af7a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1d67d69b_58c57fae",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-05-10T17:06:44Z",
       "side": 1,
       "message": "this is a bool, but we are comparing this to BT_STATUS_FAIL",
+      "range": {
+        "startLine": 1850,
+        "startChar": 6,
+        "endLine": 1850,
+        "endChar": 11
+      },
+      "revId": "1f8d6ba8f563277fe321fcebc14e0fca9a04af7a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e2003d52_edab6c57",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1850,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-05-10T17:11:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1d67d69b_58c57fae",
       "range": {
         "startLine": 1850,
         "startChar": 6,
