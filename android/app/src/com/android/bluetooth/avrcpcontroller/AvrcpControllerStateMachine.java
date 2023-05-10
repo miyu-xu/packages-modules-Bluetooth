@@ -835,6 +835,11 @@ class AvrcpControllerStateMachine extends StateMachine {
                 Log.w(TAG, "GetFolderItems: Browsing not connected, node=" + mBrowseNode);
                 transitionTo(mConnected);
             } else {
+                int scope = mBrowseNode.getScope();
+                if (scope == AvrcpControllerService.BROWSE_SCOPE_PLAYER_LIST
+                        || scope == AvrcpControllerService.BROWSE_SCOPE_NOW_PLAYING) {
+                    mBrowseNode.setExpectedChildren(255);
+                }
                 mBrowseNode.setCached(false);
                 navigateToFolderOrRetrieve(mBrowseNode);
             }
