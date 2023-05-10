@@ -15,8 +15,10 @@
  */
 package com.android.bluetooth.opp;
 
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.anyString;
 import static org.mockito.Mockito.doReturn;
+import static org.mockito.Mockito.doThrow;
 
 import android.bluetooth.BluetoothAdapter;
 import android.content.Context;
@@ -25,6 +27,7 @@ import androidx.test.filters.MediumTest;
 import androidx.test.rule.ServiceTestRule;
 import androidx.test.runner.AndroidJUnit4;
 
+import com.android.bluetooth.BluetoothMethodProxy;
 import com.android.bluetooth.R;
 import com.android.bluetooth.TestUtils;
 import com.android.bluetooth.btservice.AdapterService;
@@ -49,11 +52,15 @@ public class BluetoothOppServiceTest {
     public final ServiceTestRule mServiceRule = new ServiceTestRule();
 
     @Mock
+    BluetoothMethodProxy mBluetoothMethodProxy;
+
+    @Mock
     private AdapterService mAdapterService;
 
     @Before
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
+        BluetoothMethodProxy.setInstanceForTesting(mBluetoothMethodProxy);
         TestUtils.setAdapterService(mAdapterService);
         doReturn(true, false).when(mAdapterService).isStartedProfile(anyString());
         TestUtils.startService(mServiceRule, BluetoothOppService.class);
@@ -66,6 +73,7 @@ public class BluetoothOppServiceTest {
 
     @After
     public void tearDown() throws Exception {
+        BluetoothMethodProxy.setInstanceForTesting(null);
         TestUtils.stopService(mServiceRule, BluetoothOppService.class);
         TestUtils.clearAdapterService(mAdapterService);
     }
