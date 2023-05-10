@@ -72,6 +72,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d958c5a2_d352a835",
+        "filename": "android/app/src/com/android/bluetooth/mapclient/MceStateMachine.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 257,
+      "author": {
+        "id": 1985170
+      },
+      "writtenOn": "2023-05-10T00:10:37Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "599caa44_767526af",
+      "range": {
+        "startLine": 255,
+        "startChar": 8,
+        "endLine": 257,
+        "endChar": 9
+      },
+      "revId": "0d8c2818578fa15617ea4d1c6e5d5c941a7df8c6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fde2e93e_19130104",
@@ -109,6 +133,30 @@
       "side": 1,
       "message": "Will make the change.",
       "parentUuid": "fde2e93e_19130104",
+      "range": {
+        "startLine": 269,
+        "startChar": 8,
+        "endLine": 269,
+        "endChar": 33
+      },
+      "revId": "0d8c2818578fa15617ea4d1c6e5d5c941a7df8c6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3062d216_1da8e90d",
+        "filename": "android/app/src/com/android/bluetooth/mapclient/MceStateMachine.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 269,
+      "author": {
+        "id": 1985170
+      },
+      "writtenOn": "2023-05-10T00:10:37Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "cc8805cf_3c25fe9e",
       "range": {
         "startLine": 269,
         "startChar": 8,
