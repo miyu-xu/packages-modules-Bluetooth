@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "90fe616a_977f5b95",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-05-10T00:36:06Z",
+      "side": 1,
+      "message": "Why a property and not an init flag ?",
+      "range": {
+        "startLine": 173,
+        "startChar": 56,
+        "endLine": 173,
+        "endChar": 77
+      },
+      "revId": "ddb86a183f311f8f6f82178d011a18fe2d2cc1b1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
