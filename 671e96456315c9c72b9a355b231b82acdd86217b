@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ed26cf69_0fb596d3",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 1861,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-05-10T20:24:07Z",
+      "side": 1,
+      "message": "Why do we select _either_ those from bd_addr, or static_addr, but not both? I thought you were going to take the union of the UUIDs from both addresses.",
+      "revId": "671e96456315c9c72b9a355b231b82acdd86217b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
