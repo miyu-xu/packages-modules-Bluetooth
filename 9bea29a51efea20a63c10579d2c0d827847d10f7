@@ -46,6 +46,30 @@
       },
       "revId": "9bea29a51efea20a63c10579d2c0d827847d10f7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0474f04e_7cd099fb",
+        "filename": "android/pandora/test/asha_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1011,
+      "author": {
+        "id": 1952952
+      },
+      "writtenOn": "2023-05-10T00:36:30Z",
+      "side": 1,
+      "message": "I see, thanks for the explanation!",
+      "parentUuid": "716455e1_659b19b1",
+      "range": {
+        "startLine": 1011,
+        "startChar": 8,
+        "endLine": 1011,
+        "endChar": 56
+      },
+      "revId": "9bea29a51efea20a63c10579d2c0d827847d10f7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
