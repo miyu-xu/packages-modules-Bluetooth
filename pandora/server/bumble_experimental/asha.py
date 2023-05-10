@@ -17,7 +17,7 @@ import grpc
 import logging
 import struct
 
-from avatar.bumble_server import utils
+from bumble.pandora import utils
 from bumble.core import AdvertisingData
 from bumble.device import Connection, Connection as BumbleConnection, Device
 from bumble.gatt import (
