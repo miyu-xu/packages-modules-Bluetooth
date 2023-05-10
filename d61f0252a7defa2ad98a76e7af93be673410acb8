@@ -16,6 +16,24 @@
       "message": "Can you add a test in BluetoothManagerServiceTest to make sure the config is readable and working as intended ?\n\nDid you check the overlay was working too ?",
       "revId": "d61f0252a7defa2ad98a76e7af93be673410acb8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5b2afd28_e18aa2a2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1810265
+      },
+      "writtenOn": "2023-05-10T03:58:36Z",
+      "side": 1,
+      "message": "I added the test to check whether we are reading (from overlay) \u0026 writing (to settings.global) the correct config value.\n\nI also manually tested on my device by changing the overlay value and confirming that feature gets enabled/disabled accordingly. \n\nI do want to clarify that APM enhancement feature has been fully live in public via device config flag for months.\n\nThe purpose of this CL is to replace the device config flag with an overlay (the APM enhancement feature itself should not change).",
+      "parentUuid": "d1d82956_b8b58392",
+      "revId": "d61f0252a7defa2ad98a76e7af93be673410acb8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
