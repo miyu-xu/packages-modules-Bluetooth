@@ -208,7 +208,7 @@ public class Constants {
 
     static final boolean DEBUG = true;
 
-    static final boolean VERBOSE = false;
+    static final boolean VERBOSE = true;
 
     static final int MAX_RECORDS_IN_DATABASE = 50;
 
