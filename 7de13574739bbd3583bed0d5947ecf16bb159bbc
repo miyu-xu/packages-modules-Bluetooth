@@ -68,6 +68,29 @@
       },
       "revId": "7de13574739bbd3583bed0d5947ecf16bb159bbc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "60d8177d_555d5f67",
+        "filename": "android/app/src/com/android/bluetooth/btservice/BondStateMachine.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 298,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2023-05-10T09:26:31Z",
+      "side": 1,
+      "message": "This is considered \"BONDED\" so we should remove the device from `mDevices` and may make a transition to `StableState`.",
+      "range": {
+        "startLine": 298,
+        "startChar": 21,
+        "endLine": 298,
+        "endChar": 40
+      },
+      "revId": "7de13574739bbd3583bed0d5947ecf16bb159bbc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
