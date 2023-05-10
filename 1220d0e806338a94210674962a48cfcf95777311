@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3f25e907_fdae6182",
+        "filename": "framework/tests/bumble/Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1986325
+      },
+      "writtenOn": "2023-05-10T17:01:00Z",
+      "side": 1,
+      "message": "please modify the naming in these location in the same cl. thanks!\n\npackages/modules/Bluetooth/framework/tests/bumble/AndroidTest.xml\npackages/modules/Bluetooth/framework/tests/bumble/Android.bp",
+      "revId": "1220d0e806338a94210674962a48cfcf95777311",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
