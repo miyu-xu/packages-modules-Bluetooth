@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5a4daa51_5b318e5c",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-05-10T21:26:34Z",
+      "side": 1,
+      "message": "Done -- It was an autoformat change",
+      "parentUuid": "7e8d4260_f7695e2d",
+      "range": {
+        "startLine": 242,
+        "startChar": 2,
+        "endLine": 242,
+        "endChar": 7
+      },
+      "revId": "170ffc88a0c90b08b4aae8c2bfb912fa9f35e295",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4bc90ea5_a3df3346",
@@ -72,6 +96,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c992edf9_09943490",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 1241,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-05-10T21:26:34Z",
+      "side": 1,
+      "message": "Yes.\nPermission check are done in the binder. If the permission check do not pass it will not call enableBle like before.",
+      "parentUuid": "3027ac56_85873ba0",
+      "range": {
+        "startLine": 1241,
+        "startChar": 12,
+        "endLine": 1241,
+        "endChar": 28
+      },
+      "revId": "170ffc88a0c90b08b4aae8c2bfb912fa9f35e295",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "13fc94a9_2325117c",
         "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
         "patchSetId": 10
@@ -83,6 +131,30 @@
       "writtenOn": "2023-05-08T23:35:46Z",
       "side": 1,
       "message": "?  I thought we were already disabled in satellite mode.",
+      "range": {
+        "startLine": 1283,
+        "startChar": 24,
+        "endLine": 1283,
+        "endChar": 34
+      },
+      "revId": "170ffc88a0c90b08b4aae8c2bfb912fa9f35e295",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "18c88811_f2f2f856",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 1283,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-05-10T21:26:34Z",
+      "side": 1,
+      "message": "Good finding. This will definitivly go away in a next change",
+      "parentUuid": "13fc94a9_2325117c",
       "range": {
         "startLine": 1283,
         "startChar": 24,
@@ -118,6 +190,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "de965d8b_2bd410c8",
+        "filename": "service/src/com/android/server/bluetooth/BtPermissionUtils.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-05-10T21:26:34Z",
+      "side": 1,
+      "message": "This was initial documentation. I do not know what it mean.",
+      "parentUuid": "1b8bcff8_7204f1bf",
+      "range": {
+        "startLine": 62,
+        "startChar": 49,
+        "endLine": 62,
+        "endChar": 75
+      },
+      "revId": "170ffc88a0c90b08b4aae8c2bfb912fa9f35e295",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "03ef42b3_9a208abb",
         "filename": "service/src/com/android/server/bluetooth/BtPermissionUtils.java",
         "patchSetId": 10
@@ -129,6 +225,30 @@
       "writtenOn": "2023-05-08T23:35:46Z",
       "side": 1,
       "message": "containing?\n\nReturn the error description if this caller is not allowed to toggle Bluetooth. ?",
+      "range": {
+        "startLine": 92,
+        "startChar": 26,
+        "endLine": 92,
+        "endChar": 35
+      },
+      "revId": "170ffc88a0c90b08b4aae8c2bfb912fa9f35e295",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "19ec2d95_a1326eae",
+        "filename": "service/src/com/android/server/bluetooth/BtPermissionUtils.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-05-10T21:26:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "03ef42b3_9a208abb",
       "range": {
         "startLine": 92,
         "startChar": 26,
@@ -164,6 +284,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "cf90a2bc_1fd5227b",
+        "filename": "service/src/com/android/server/bluetooth/BtPermissionUtils.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-05-10T21:26:34Z",
+      "side": 1,
+      "message": "I am keeping it in this CL since this is only a move but I upload aosp/2583162 to try to remove it.\n\nI am keeping this comment open to not forget about it.",
+      "parentUuid": "313d9d63_3b7c6814",
+      "range": {
+        "startLine": 155,
+        "startChar": 40,
+        "endLine": 155,
+        "endChar": 56
+      },
+      "revId": "170ffc88a0c90b08b4aae8c2bfb912fa9f35e295",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "bb637ec0_dbcde380",
         "filename": "service/src/com/android/server/bluetooth/BtPermissionUtils.java",
         "patchSetId": 10
@@ -175,6 +319,24 @@
       "writtenOn": "2023-05-08T23:35:46Z",
       "side": 1,
       "message": "DevicePolicyManager ?  I think out of context it might not be obvious.",
+      "revId": "170ffc88a0c90b08b4aae8c2bfb912fa9f35e295",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f5b87e51_7850723f",
+        "filename": "service/src/com/android/server/bluetooth/BtPermissionUtils.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-05-10T21:26:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bb637ec0_dbcde380",
       "revId": "170ffc88a0c90b08b4aae8c2bfb912fa9f35e295",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -192,6 +354,30 @@
       "writtenOn": "2023-05-08T23:35:46Z",
       "side": 1,
       "message": "should there also be no warning on 176?",
+      "range": {
+        "startLine": 189,
+        "startChar": 12,
+        "endLine": 189,
+        "endChar": 31
+      },
+      "revId": "170ffc88a0c90b08b4aae8c2bfb912fa9f35e295",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e3c5a8c9_4b93a532",
+        "filename": "service/src/com/android/server/bluetooth/BtPermissionUtils.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-05-10T21:26:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e7da3b57_a8c9a5cc",
       "range": {
         "startLine": 189,
         "startChar": 12,
@@ -227,6 +413,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7038c90c_0db729d5",
+        "filename": "service/src/com/android/server/bluetooth/BtPermissionUtils.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 272,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-05-10T21:26:34Z",
+      "side": 1,
+      "message": "I think this function should only say if you are a foregroundUser or not.\n\nThen if we want to allow specific process, it should not be done inside this method but on a parallele call.\nSomething like:\n```\ncheckIfCallerIsForegroundUser() || checkIfCallerIsExceptionnallyAllowed()\n```\n\nBecause we have the checkBluetoothPermissions that looks on\n```\n if (isCallerSystem(callingAppId)) return true;\n        if (isCallerShell(callingAppId)) return true;\n        if (isCallerRoot(callingAppId)) return true;\n```\nbut here we are looking on \n```\n|| isCallerNfc(callingAppId)\n                        || isCallerSystemUi(callingAppId)\n                        || isCallerShell(callingAppId);\n```\n\nAnd both of theses looks like hidden bypass that I would like to make it obvious",
+      "parentUuid": "2d755193_4912e7ea",
+      "range": {
+        "startLine": 272,
+        "startChar": 42,
+        "endLine": 272,
+        "endChar": 43
+      },
+      "revId": "170ffc88a0c90b08b4aae8c2bfb912fa9f35e295",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "447e0c01_05ce0162",
         "filename": "service/tests/src/com/android/server/bluetooth/BluetoothManagerServiceTest.java",
         "patchSetId": 10
@@ -238,6 +448,30 @@
       "writtenOn": "2023-05-08T23:35:46Z",
       "side": 1,
       "message": "Can we push this into the previous CL?",
+      "range": {
+        "startLine": 159,
+        "startChar": 58,
+        "endLine": 159,
+        "endChar": 61
+      },
+      "revId": "170ffc88a0c90b08b4aae8c2bfb912fa9f35e295",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d7451244_4b105eee",
+        "filename": "service/tests/src/com/android/server/bluetooth/BluetoothManagerServiceTest.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-05-10T21:26:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "447e0c01_05ce0162",
       "range": {
         "startLine": 159,
         "startChar": 58,
@@ -271,6 +505,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b4a38fbb_0ef535eb",
+        "filename": "service/tests/src/com/android/server/bluetooth/BluetoothServiceBinderTest.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-05-10T21:26:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "69363ab2_63c44793",
+      "range": {
+        "startLine": 128,
+        "startChar": 52,
+        "endLine": 128,
+        "endChar": 56
+      },
+      "revId": "170ffc88a0c90b08b4aae8c2bfb912fa9f35e295",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "49c68566_5d2268ea",
@@ -284,6 +542,30 @@
       "writtenOn": "2023-05-08T23:35:46Z",
       "side": 1,
       "message": "nit: fail",
+      "range": {
+        "startLine": 203,
+        "startChar": 66,
+        "endLine": 203,
+        "endChar": 72
+      },
+      "revId": "170ffc88a0c90b08b4aae8c2bfb912fa9f35e295",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9eec3be4_41cebfb8",
+        "filename": "service/tests/src/com/android/server/bluetooth/BluetoothServiceBinderTest.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-05-10T21:26:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "49c68566_5d2268ea",
       "range": {
         "startLine": 203,
         "startChar": 66,
