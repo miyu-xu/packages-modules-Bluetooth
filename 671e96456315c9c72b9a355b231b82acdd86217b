@@ -16,6 +16,24 @@
       "message": "Why do we select _either_ those from bd_addr, or static_addr, but not both? I thought you were going to take the union of the UUIDs from both addresses.",
       "revId": "671e96456315c9c72b9a355b231b82acdd86217b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "361fd36d_3d568f3f",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 1861,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-05-10T21:07:01Z",
+      "side": 1,
+      "message": "It\u0027s union for both transport, not union for both addresses.\n\nYou just finished GATT service discovery, and received result of this discovery in p_data-\u003edisc_ble_res.services.\n\n\nResult of Classic discovery, if it was already done, is stored and can be obtained by calling btif_get_existing_uuids for bd_addr or static_addr_copy.\n\nIf there is result for bd_addr, for  static_addr_copy result would be empty.",
+      "parentUuid": "ed26cf69_0fb596d3",
+      "revId": "671e96456315c9c72b9a355b231b82acdd86217b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
