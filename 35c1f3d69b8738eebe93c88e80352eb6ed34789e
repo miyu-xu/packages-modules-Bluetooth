@@ -88,6 +88,24 @@
       "parentUuid": "3694ab9c_64f00157",
       "revId": "35c1f3d69b8738eebe93c88e80352eb6ed34789e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5f203b1a_aa5f2b7d",
+        "filename": "framework/tests/bumble/Android.bp",
+        "patchSetId": 2
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1986325
+      },
+      "writtenOn": "2023-05-10T18:49:37Z",
+      "side": 1,
+      "message": "I want to try something, it\u0027s very inconvenient to use a pending cl. I suspect it\u0027s something related to partial download. Can we have this cl merged first?",
+      "parentUuid": "e1c7d48a_514616c2",
+      "revId": "35c1f3d69b8738eebe93c88e80352eb6ed34789e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
