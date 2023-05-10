@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9e6ebd05_16de1ca2",
+        "filename": "android/app/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachine.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 2038,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-05-10T00:42:08Z",
+      "side": 1,
+      "message": "nit: maybe remove if it is not used?",
+      "range": {
+        "startLine": 2038,
+        "startChar": 15,
+        "endLine": 2038,
+        "endChar": 23
+      },
+      "revId": "af1f1f9b11be8171bd62bd1a612ebbbd605a8a5f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1fcd6917_41f79f6b",
+        "filename": "android/app/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachine.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 2278,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-05-10T00:42:08Z",
+      "side": 1,
+      "message": "As an AT command response, here should be `:` instead of `\u003d`",
+      "range": {
+        "startLine": 2278,
+        "startChar": 25,
+        "endLine": 2278,
+        "endChar": 26
+      },
+      "revId": "af1f1f9b11be8171bd62bd1a612ebbbd605a8a5f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
