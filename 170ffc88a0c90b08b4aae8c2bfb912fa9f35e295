@@ -118,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d3a88149_955db225",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 1241,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-05-10T21:32:13Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "c992edf9_09943490",
+      "range": {
+        "startLine": 1241,
+        "startChar": 12,
+        "endLine": 1241,
+        "endChar": 28
+      },
+      "revId": "170ffc88a0c90b08b4aae8c2bfb912fa9f35e295",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "13fc94a9_2325117c",
@@ -212,6 +236,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "904f33f9_0514e2e3",
+        "filename": "service/src/com/android/server/bluetooth/BtPermissionUtils.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-05-10T21:32:13Z",
+      "side": 1,
+      "message": "I guess we should remove it at some point if multiple people don\u0027t know what it means.",
+      "parentUuid": "de965d8b_2bd410c8",
+      "range": {
+        "startLine": 62,
+        "startChar": 49,
+        "endLine": 62,
+        "endChar": 75
+      },
+      "revId": "170ffc88a0c90b08b4aae8c2bfb912fa9f35e295",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "03ef42b3_9a208abb",
@@ -296,6 +344,30 @@
       "side": 1,
       "message": "I am keeping it in this CL since this is only a move but I upload aosp/2583162 to try to remove it.\n\nI am keeping this comment open to not forget about it.",
       "parentUuid": "313d9d63_3b7c6814",
+      "range": {
+        "startLine": 155,
+        "startChar": 40,
+        "endLine": 155,
+        "endChar": 56
+      },
+      "revId": "170ffc88a0c90b08b4aae8c2bfb912fa9f35e295",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3fe2eadb_906fd2b9",
+        "filename": "service/src/com/android/server/bluetooth/BtPermissionUtils.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-05-10T21:32:13Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "cf90a2bc_1fd5227b",
       "range": {
         "startLine": 155,
         "startChar": 40,
@@ -425,6 +497,30 @@
       "side": 1,
       "message": "I think this function should only say if you are a foregroundUser or not.\n\nThen if we want to allow specific process, it should not be done inside this method but on a parallele call.\nSomething like:\n```\ncheckIfCallerIsForegroundUser() || checkIfCallerIsExceptionnallyAllowed()\n```\n\nBecause we have the checkBluetoothPermissions that looks on\n```\n if (isCallerSystem(callingAppId)) return true;\n        if (isCallerShell(callingAppId)) return true;\n        if (isCallerRoot(callingAppId)) return true;\n```\nbut here we are looking on \n```\n|| isCallerNfc(callingAppId)\n                        || isCallerSystemUi(callingAppId)\n                        || isCallerShell(callingAppId);\n```\n\nAnd both of theses looks like hidden bypass that I would like to make it obvious",
       "parentUuid": "2d755193_4912e7ea",
+      "range": {
+        "startLine": 272,
+        "startChar": 42,
+        "endLine": 272,
+        "endChar": 43
+      },
+      "revId": "170ffc88a0c90b08b4aae8c2bfb912fa9f35e295",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f8ccd515_57911d46",
+        "filename": "service/src/com/android/server/bluetooth/BtPermissionUtils.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 272,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-05-10T21:32:13Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "7038c90c_0db729d5",
       "range": {
         "startLine": 272,
         "startChar": 42,
