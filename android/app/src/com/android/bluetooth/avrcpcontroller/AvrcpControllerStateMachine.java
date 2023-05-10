@@ -833,6 +833,11 @@ class AvrcpControllerStateMachine extends StateMachine {
                 transitionTo(mConnected);
             } else {
                 mAbort = false;
+                int scope = mBrowseNode.getScope();
+                if (scope == AvrcpControllerService.BROWSE_SCOPE_PLAYER_LIST
+                        || scope == AvrcpControllerService.BROWSE_SCOPE_NOW_PLAYING) {
+                    mBrowseNode.setExpectedChildren(255);
+                }
                 mBrowseNode.setCached(false);
                 navigateToFolderOrRetrieve(mBrowseNode);
             }
@@ -977,7 +982,8 @@ class AvrcpControllerStateMachine extends StateMachine {
 
                 case MESSAGE_GET_FOLDER_ITEMS:
                     BrowseTree.BrowseNode requested = (BrowseTree.BrowseNode) msg.obj;
-                    if (!mBrowseNode.equals(requested) || requested.isNowPlaying()) {
+                    if (!mBrowseNode.equals(requested) || requested.isNowPlaying()
+                            || requested.isRoot()) {
                         if (shouldAbort(mBrowseNode.getScope(), requested.getScope())) {
                             mAbort = true;
                         }
