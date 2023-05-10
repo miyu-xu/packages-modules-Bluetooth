@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "89767ee7_8c78751c",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1827,
+      "author": {
+        "id": 1810265
+      },
+      "writtenOn": "2023-05-10T22:41:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0baab8ae_1d1ac3b0",
+      "range": {
+        "startLine": 1827,
+        "startChar": 17,
+        "endLine": 1827,
+        "endChar": 43
+      },
+      "revId": "d6b83b192a68c04d8e98f2814913420d6b7c6214",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6f7d7037_c588b4c4",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-05-10T18:21:59Z",
       "side": 1,
       "message": "I have a question around the usage of Settings.Global\n\nSince checkApmEnhancementEnabled is called at each bluetooth boot, the value stored in `Settings.Global` will be erase and re-write the previous value.\nSo what is the goal of setting this inside the Settings.Global ? Just to give acces to the Bluetooth config ?\n\nFor example if I use `adb shell cmd settings put global apm_enhancement_enabled 1` to modify this value, it does not persist.\n\n\n----\n\nLooking at the documentation of Settings.Global:\n\u003e these are for preferences that the user must explicitly modify through the system UI or specialized APIs for those values.\n\nI looked at the code and didn\u0027t found it.\nBut by looking at it, I found that the settings config is also used by wifi.\n\nAre you using this to have a global config shared between bluetooth and wifi ?\nIf this is the case, shouldn\u0027t we remove all this code in bluetooth and only set a default value in settings ? I found [this list](https://android.googlesource.com/platform/frameworks/base/+/refs/heads/master/packages/SettingsProvider/res/values/defaults.xml) of default value. Wouldn\u0027t it be  better to set apm_enhancement_enabled there instead ?",
+      "range": {
+        "startLine": 1838,
+        "startChar": 11,
+        "endLine": 1839,
+        "endChar": 83
+      },
+      "revId": "d6b83b192a68c04d8e98f2814913420d6b7c6214",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5b8ea39d_e3320d92",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1839,
+      "author": {
+        "id": 1810265
+      },
+      "writtenOn": "2023-05-10T22:41:44Z",
+      "side": 1,
+      "message": "The value should not change from the one in overlay so it\u0027s okay if modification doesn\u0027t persist.\nWe do not expect this value to change at all (no one should be writing to Settings Global to modify this value).\n\nThe reason why we chose to store the value in Settings.Global was to communicate between bluetooth and wifi module (without adding a new API - feature was requested past the API deadline).\n\nI have a bug tracking the cleanup of this.\nWe will not be using Settings.Global permanently, and I\u0027ll add a formal API for communicating between bluetooth and wifi module.",
+      "parentUuid": "6f7d7037_c588b4c4",
       "range": {
         "startLine": 1838,
         "startChar": 11,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ca3e7e65_edb68ac2",
+        "filename": "service/tests/src/com/android/server/bluetooth/BluetoothManagerServiceTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1810265
+      },
+      "writtenOn": "2023-05-10T22:41:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b4861f32_186c973b",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 30
+      },
+      "revId": "d6b83b192a68c04d8e98f2814913420d6b7c6214",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "96d2a76e_90090deb",
@@ -83,6 +155,30 @@
       "writtenOn": "2023-05-10T18:21:59Z",
       "side": 1,
       "message": "Can the test check that the config is read ? by calling the method and not only rely on the current value of the system ?\n\nRight now this test is only looking if the feature has been enabled once, I was thinking of a test to make sure `checkApmEnhancementEnabled` still work.\n\n(I am worried about the try catch in it that will prevent from detecting any error if someone modify the config to remove some value and do it wrong)",
+      "range": {
+        "startLine": 111,
+        "startChar": 16,
+        "endLine": 111,
+        "endChar": 41
+      },
+      "revId": "d6b83b192a68c04d8e98f2814913420d6b7c6214",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "04e26299_2270541c",
+        "filename": "service/tests/src/com/android/server/bluetooth/BluetoothManagerServiceTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1810265
+      },
+      "writtenOn": "2023-05-10T22:41:44Z",
+      "side": 1,
+      "message": "I rewrote the value and then called the method to make sure we update the value in Settings.Global.\n\nIn order to do this, I had to add another method to initialize BluetoothModeChangeHelper. \n\nI ran into bunch of security errors when calling `handleOnBootPhase` for initialization so I figured this would be a simple workaround.",
+      "parentUuid": "96d2a76e_90090deb",
       "range": {
         "startLine": 111,
         "startChar": 16,
