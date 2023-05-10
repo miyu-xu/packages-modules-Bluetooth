@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d21cb496_f444ac2c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1937985
+      },
+      "writtenOn": "2023-05-10T05:39:08Z",
+      "side": 1,
+      "message": "Can you confirm me `avatar format` \u0026 `avatar lit` have been run ? Otherwise LGTM, thank you 😊",
+      "revId": "76a3eff40ce3ae5cb35309645b6475881b865b9d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
