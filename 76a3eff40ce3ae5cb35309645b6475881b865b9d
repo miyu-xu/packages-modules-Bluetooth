@@ -16,6 +16,24 @@
       "message": "Can you confirm me `avatar format` \u0026 `avatar lit` have been run ? Otherwise LGTM, thank you 😊",
       "revId": "76a3eff40ce3ae5cb35309645b6475881b865b9d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "18215700_af5d4bfb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1952952
+      },
+      "writtenOn": "2023-05-10T06:17:10Z",
+      "side": 1,
+      "message": "Fixed the lint issue and updated, thanks for the reminding Abel!",
+      "parentUuid": "d21cb496_f444ac2c",
+      "revId": "76a3eff40ce3ae5cb35309645b6475881b865b9d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
