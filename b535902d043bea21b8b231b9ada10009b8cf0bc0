@@ -16,6 +16,24 @@
       "message": "nit: You don\u0027t need to modify this file",
       "revId": "b535902d043bea21b8b231b9ada10009b8cf0bc0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b43cebd9_fe7d6f4b",
+        "filename": "system/test/run_unit_tests.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1985170
+      },
+      "writtenOn": "2023-05-10T21:41:23Z",
+      "side": 1,
+      "message": "got it. I will keep it for now. I had added to continue the support for the instruction here https://g3doc.corp.google.com/company/teams/android-bluetooth/useful_resources.md?cl\u003dhead#to-run-all-the-bt-test",
+      "parentUuid": "3eeb43a0_2009b2f4",
+      "revId": "b535902d043bea21b8b231b9ada10009b8cf0bc0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
