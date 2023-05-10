@@ -16,7 +16,7 @@ import asyncio
 import grpc
 import logging
 
-from avatar.bumble_server import utils
+from bumble.pandora import utils
 from bumble.core import ProtocolError
 from bumble.device import Connection as BumbleConnection, Device, Peer
 from bumble.gatt_client import CharacteristicProxy, ServiceProxy

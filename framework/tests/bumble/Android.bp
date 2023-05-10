@@ -40,7 +40,7 @@ android_test_helper_app {
 }
 
 // This empty test host is needed for building required host binary
-// "bumble_pandora_server" and include it in test zip
+// "bumble-pandora-server" and include it in test zip
 java_test_host {
     name: "BumbleBluetoothTests",
 
@@ -52,7 +52,7 @@ java_test_host {
         ":BumbleBluetoothTestsApp"
     ],
 
-    required: ["bumble_pandora_server"],
+    required: ["bumble-pandora-server"],
 
     test_suites: [
         "device-tests",
