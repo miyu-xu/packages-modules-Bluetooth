@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ec01587b_445e2fbf",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-05-10T00:43:45Z",
+      "side": 1,
+      "message": "@aryarahul was just in this encryption area (btm_sec_execute_procedure) so you may want to run this by him too.",
+      "revId": "01c49bbb5d19626c58915650e21e7dc53c03a271",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f3a03bdc_b9f2a5de",
+        "filename": "system/stack/btm/btm_ble.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 1419,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-05-10T00:43:45Z",
+      "side": 1,
+      "message": "should this be for `le` only ? \n\nCan\u0027t le and classic be encrypted separately ?",
+      "revId": "01c49bbb5d19626c58915650e21e7dc53c03a271",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dccd56ce_7bcf7b41",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 4392,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-05-10T00:43:45Z",
+      "side": 1,
+      "message": "nit: This log message does not align with the checked logic.  (We never checked for RNR)",
+      "revId": "01c49bbb5d19626c58915650e21e7dc53c03a271",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "01b735da_e04e208c",
+        "filename": "system/stack/btm/security_device_record.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 340,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-05-10T00:43:45Z",
+      "side": 1,
+      "message": "nit: Could just put this underneath and build upon the progression.\n\ne.g.\n```\nis_security_state_encrypting() const {\n  return is_security_state_bredr_encrypting()\n         || is_security_state_le_encrypting();\n}\n```",
+      "revId": "01c49bbb5d19626c58915650e21e7dc53c03a271",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
