@@ -57,11 +57,10 @@ import com.google.common.annotations.VisibleForTesting;
 import java.util.HashMap;
 
 /**
- * This class handles the updating of the Notification Manager for the cases
- * where there is an ongoing transfer, incoming transfer need confirm and
- * complete (successful or failed) transfer.
+ * This class handles the updating of the Notification Manager for the cases where there is an
+ * ongoing transfer, incoming transfer need confirm and complete (successful or failed) transfer.
  */
-class BluetoothOppNotification {
+public class BluetoothOppNotification {
     private static final String TAG = "BluetoothOppNotification";
     private static final boolean V = Constants.VERBOSE;
 
@@ -149,10 +148,9 @@ class BluetoothOppNotification {
     /**
      * Constructor
      *
-     * @param ctx The context to use to obtain access to the Notification
-     *            Service
+     * @param ctx The context to use to obtain access to the Notification Service
      */
-    BluetoothOppNotification(Context ctx) {
+    public BluetoothOppNotification(Context ctx) {
         mContext = ctx;
         mNotificationMgr = mContext.getSystemService(NotificationManager.class);
         mNotificationChannel = new NotificationChannel(OPP_NOTIFICATION_CHANNEL,
