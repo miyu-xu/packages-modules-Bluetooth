@@ -16,9 +16,10 @@ import asyncio
 import avatar
 import logging
 
-from avatar import BumblePandoraDevice, PandoraDevice, PandoraDevices, bumble_server
+from avatar import BumblePandoraDevice, PandoraDevice, PandoraDevices
 from bumble.gatt import Characteristic, Service
 from bumble.pairing import PairingConfig
+from bumble import pandora as bumble_server
 from bumble_experimental.gatt import GATTService
 from mobly import base_test, signals, test_runner
 from mobly.asserts import assert_equal  # type: ignore
