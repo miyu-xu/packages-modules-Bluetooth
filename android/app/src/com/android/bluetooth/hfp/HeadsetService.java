@@ -1841,18 +1841,18 @@ public class HeadsetService extends ProfileService {
                 }
             }
         }
-        getStateMachinesThreadHandler().post(() -> {
-            boolean isCallIdleBefore = mSystemInterface.isCallIdle();
-            mSystemInterface.getHeadsetPhoneState().setNumActiveCall(numActive);
-            mSystemInterface.getHeadsetPhoneState().setNumHeldCall(numHeld);
-            mSystemInterface.getHeadsetPhoneState().setCallState(callState);
-            // Suspend A2DP when call about is about to become active
-            if (mActiveDevice != null && callState != HeadsetHalConstants.CALL_STATE_DISCONNECTED
-                    && !mSystemInterface.isCallIdle() && isCallIdleBefore) {
-                mSystemInterface.getAudioManager().setA2dpSuspended(true);
-                mSystemInterface.getAudioManager().setLeAudioSuspended(true);
-            }
-        });
+
+        boolean isCallIdleBefore = mSystemInterface.isCallIdle();
+        mSystemInterface.getHeadsetPhoneState().setNumActiveCall(numActive);
+        mSystemInterface.getHeadsetPhoneState().setNumHeldCall(numHeld);
+        mSystemInterface.getHeadsetPhoneState().setCallState(callState);
+        // Suspend A2DP when call about is about to become active
+        if (mActiveDevice != null && callState != HeadsetHalConstants.CALL_STATE_DISCONNECTED
+                && !mSystemInterface.isCallIdle() && isCallIdleBefore) {
+            mSystemInterface.getAudioManager().setA2dpSuspended(true);
+            mSystemInterface.getAudioManager().setLeAudioSuspended(true);
+        }
+
         doForEachConnectedStateMachine(
                 stateMachine -> stateMachine.sendMessage(HeadsetStateMachine.CALL_STATE_CHANGED,
                         new HeadsetCallState(numActive, numHeld, callState, number, type, name)));
