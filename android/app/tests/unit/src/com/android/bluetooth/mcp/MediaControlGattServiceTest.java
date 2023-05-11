@@ -1187,4 +1187,11 @@ public class MediaControlGattServiceTest {
         state_map.put(PlayerStateField.PLAYBACK_STATE, playback_state);
         mMcpService.updatePlayerState(state_map);
     }
+
+    @Test
+    public void testDumpDoesNotCrash() {
+        mMcpService.dump(new StringBuilder());
+        BluetoothGattService service = initAllFeaturesGattService();
+        mMcpService.dump(new StringBuilder());
+    }
 }
