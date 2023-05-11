@@ -121,6 +121,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "002584bf_05eb5467",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1839,
+      "author": {
+        "id": 1810265
+      },
+      "writtenOn": "2023-05-11T02:27:45Z",
+      "side": 1,
+      "message": "Wifi depends on BT to let it know that APM enhancement is enabled.\nThe reason behind this is mentioned in the design doc (https://docs.google.com/document/d/1nRt0XuuL3kNMVH3Af1E62m7DuguKQ5ESOWZ2EOLH-Lg/edit?resourcekey\u003d0-TZ-Bg3-zfBIToJHGSu-viA#heading\u003dh.co2ts64jsqv8).\n\nTLDR, Wifi needs to know if BT has the new APM enhancement code (since it\u0027s an older mainline module and can be on devices without the BT APM code).\n\nWe haven\u0027t figured out how we want to handle the communication between BT and Wifi, but this is the tracking bug (b/275101188) we can use to continue the discussion.",
+      "parentUuid": "90912603_333e0a77",
+      "range": {
+        "startLine": 1838,
+        "startChar": 11,
+        "endLine": 1839,
+        "endChar": 83
+      },
+      "revId": "d6b83b192a68c04d8e98f2814913420d6b7c6214",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b4861f32_186c973b",
         "filename": "service/tests/src/com/android/server/bluetooth/BluetoothManagerServiceTest.java",
         "patchSetId": 2
