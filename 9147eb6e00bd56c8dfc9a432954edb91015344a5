@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "155df787_b4ab2d7c",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1857,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-05-11T06:08:42Z",
+      "side": 1,
+      "message": "this is queued to headset state machine handler and hence will guarantee to execute after `setA2dpSuspended` even if `setA2dpSuspended` is posted to the handler to execute. \n\nHence I don\u0027t think this change is needed. The real problem should be at the audio framework.",
+      "range": {
+        "startLine": 1857,
+        "startChar": 0,
+        "endLine": 1857,
+        "endChar": 96
+      },
+      "revId": "9147eb6e00bd56c8dfc9a432954edb91015344a5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
