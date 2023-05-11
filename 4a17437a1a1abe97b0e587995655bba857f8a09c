@@ -16,6 +16,57 @@
       "message": "We can use a better abstraction for different platforms, but LGTM for now.\nWould like abps@\u0027s review and approval.",
       "revId": "4a17437a1a1abe97b0e587995655bba857f8a09c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b45a4a94_2ebbee43",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-05-11T22:45:17Z",
+      "side": 1,
+      "message": "Needs owners next",
+      "revId": "4a17437a1a1abe97b0e587995655bba857f8a09c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ed3fc381_123b01b9",
+        "filename": "system/main/bte_init_cpp_logging.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-05-11T22:45:17Z",
+      "side": 1,
+      "message": "This could probably be a `base::Stringprintf` for simplicity.",
+      "revId": "4a17437a1a1abe97b0e587995655bba857f8a09c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4a0c6ae8_6cfb9d92",
+        "filename": "system/main/bte_init_cpp_logging.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-05-11T22:45:17Z",
+      "side": 1,
+      "message": "How many instances of `LOG(FATAL)` is there in the source? Aborts on those seems concerning...",
+      "revId": "4a17437a1a1abe97b0e587995655bba857f8a09c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
