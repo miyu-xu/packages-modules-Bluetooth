@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0401cd37_78f90669",
+        "filename": "android/app/src/com/android/bluetooth/avrcpcontroller/AvrcpControllerStateMachine.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 839,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2023-05-11T22:53:53Z",
+      "side": 1,
+      "message": "Yeah, we use the magic number everywhere and I don\u0027t love it. I was trying to avoid touching too much at once.\n\nI changed the scope of this CL greatly too BTW. This change may be better pulled back into the previous CL.\n\nI can make a constant to hold the default and cascade it elsewhere.\n\nI would abstract it away entirely (I started to), but got afraid of doing that much at once frankly.",
+      "parentUuid": "86efa50d_076e9f62",
+      "revId": "208e58500e84e8233ebbcdde4f6cc3a5c7d71893",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "83bfe359_80dfc901",
         "filename": "android/app/src/com/android/bluetooth/avrcpcontroller/AvrcpControllerStateMachine.java",
         "patchSetId": 4
@@ -52,6 +70,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dcd7ea37_d1e93646",
+        "filename": "android/app/src/com/android/bluetooth/avrcpcontroller/BrowseTree.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2023-05-11T22:53:53Z",
+      "side": 1,
+      "message": "Yeah, there\u0027s an sBrowseTree for all the device nodes, and then each device has its own tree. Each tree has its own map of ID -\u003e node. I\u0027m not saying its the best architecture, but it\u0027s what we have! It\u0027s intentionally not static.",
+      "parentUuid": "2dc1afb0_eacc3c2d",
+      "revId": "208e58500e84e8233ebbcdde4f6cc3a5c7d71893",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9d31548e_0b5ddb2a",
@@ -65,6 +101,30 @@
       "writtenOn": "2023-05-11T22:32:43Z",
       "side": 1,
       "message": "replace mRootNode.getUUID() instead of the if else? I believe uuid is set to similar pattern during construction of root node.\n\nAlso, when does the map get cleared. Earlier we had only element in the map. Now, we can have n (no. of devices) root nodes in the map. So, it might be leaking memory if we have only one instance of the BrowseTree instance within the BrowseMediaService.",
+      "range": {
+        "startLine": 98,
+        "startChar": 0,
+        "endLine": 103,
+        "endChar": 0
+      },
+      "revId": "208e58500e84e8233ebbcdde4f6cc3a5c7d71893",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "29199a41_2af6fc2a",
+        "filename": "android/app/src/com/android/bluetooth/avrcpcontroller/BrowseTree.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2023-05-11T22:53:53Z",
+      "side": 1,
+      "message": "Oh I like this. I\u0027ll do that.\n\nThe map is cleared when contents are uncached. Devices remove themselves from the static tree as well.\n\nOutside the scope of this bug, but it looks like we don\u0027t call clear() when a device disconnects or we clean up the service.",
+      "parentUuid": "9d31548e_0b5ddb2a",
       "range": {
         "startLine": 98,
         "startChar": 0,
