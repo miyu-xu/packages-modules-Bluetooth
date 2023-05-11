@@ -43,6 +43,7 @@
 #include "btif/include/btif_metrics_logging.h"
 #include "btif/include/btif_profile_queue.h"
 #include "btif/include/btif_util.h"
+#include "common/init_flags.h"
 #include "common/metrics.h"
 #include "device/include/device_iot_config.h"
 #include "include/hardware/bluetooth_headset_callbacks.h"
@@ -52,6 +53,7 @@
 #include "osi/include/log.h"
 #include "stack/btm/btm_sco_hfp_hal.h"
 #include "stack/include/btm_api.h"
+#include "stack/include/btu.h"
 #include "types/raw_address.h"
 
 namespace {
@@ -91,6 +93,13 @@ static RawAddress active_bda = {};
  *  Static variables
  ******************************************************************************/
 static Callbacks* bt_hf_callbacks = nullptr;
+
+const static int AG_ENABLE_RETRY_LIMIT =
+    bluetooth::common::init_flags::get_ag_enable_retry_limit();
+
+static std::deque<std::pair<bool, int>> execute_service_dequeue;
+
+bt_status_t ExecuteServiceHelper();
 
 #define CHECK_BTHF_INIT()                                             \
   do {                                                                \
@@ -1587,6 +1596,21 @@ bt_status_t HeadsetInterface::SetActiveDevice(RawAddress* active_device_addr) {
  *
  ******************************************************************************/
 bt_status_t ExecuteService(bool b_enable) {
+  execute_service_dequeue.emplace_back(b_enable, AG_ENABLE_RETRY_LIMIT);
+  do_in_main_thread(FROM_HERE,
+                    base::BindOnce(base::IgnoreResult(ExecuteServiceHelper)));
+  return BT_STATUS_SUCCESS;
+}
+
+bt_status_t ExecuteServiceHelper() {
+  if (execute_service_dequeue.empty()) {
+    LOG_ERROR("execute_service_dequeue is empty");
+    return BT_STATUS_FAIL;
+  }
+  auto operation = execute_service_dequeue.front();
+  bool b_enable = operation.first;
+  int retry_remain = operation.second;
+
   const char* service_names_raw[] = BTIF_HF_SERVICE_NAMES;
   std::vector<std::string> service_names;
   for (const char* service_name_raw : service_names_raw) {
@@ -1596,7 +1620,19 @@ bt_status_t ExecuteService(bool b_enable) {
   }
   if (b_enable) {
     /* Enable and register with BTA-AG */
-    BTA_AgEnable(bte_hf_evt);
+    tBTA_STATUS status = BTA_AgEnable(bte_hf_evt);
+    if (status == BTA_FAILURE) {
+      if (retry_remain > 0) {
+        execute_service_dequeue.front().second--;
+        do_in_main_thread_delayed(
+            FROM_HERE, base::BindOnce(base::IgnoreResult(ExecuteServiceHelper)),
+            base::TimeDelta::FromMilliseconds(100));
+        return BT_STATUS_BUSY;
+      } else {
+        LOG_ERROR("BTA_AgEnable retry failed %d/%d ", retry_remain,
+                  AG_ENABLE_RETRY_LIMIT);
+      }
+    }
     for (uint8_t app_id = 0; app_id < btif_max_hf_clients; app_id++) {
       BTA_AgRegister(get_BTIF_HF_SERVICES(), btif_hf_features, service_names,
                      app_id);
@@ -1609,6 +1645,7 @@ bt_status_t ExecuteService(bool b_enable) {
     /* Disable AG */
     BTA_AgDisable();
   }
+  execute_service_dequeue.pop_front();
   return BT_STATUS_SUCCESS;
 }
 
