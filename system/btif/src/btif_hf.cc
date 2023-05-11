@@ -43,6 +43,7 @@
 #include "btif/include/btif_metrics_logging.h"
 #include "btif/include/btif_profile_queue.h"
 #include "btif/include/btif_util.h"
+#include "common/init_flags.h"
 #include "common/metrics.h"
 #include "device/include/device_iot_config.h"
 #include "include/hardware/bluetooth_headset_callbacks.h"
@@ -91,6 +92,10 @@ static RawAddress active_bda = {};
  *  Static variables
  ******************************************************************************/
 static Callbacks* bt_hf_callbacks = nullptr;
+
+const static int AG_ENABLE_RETRY_LIMIT =
+    bluetooth::common::init_flags::ag_enable_retry_limit();
+static int ag_enable_retry_remain = AG_ENABLE_RETRY_LIMIT;
 
 #define CHECK_BTHF_INIT()                                             \
   do {                                                                \
@@ -1596,7 +1601,17 @@ bt_status_t ExecuteService(bool b_enable) {
   }
   if (b_enable) {
     /* Enable and register with BTA-AG */
-    BTA_AgEnable(bte_hf_evt);
+    tBTA_STATUS status = BTA_AgEnable(bte_hf_evt);
+    if (status == BTA_FAILURE) {
+      if (ag_enable_retry_remain > 0) {
+        ag_enable_retry_remain--;
+        do_in_main_thread(FROM_HERE, base::BindOnce(&ExecuteService, b_enable));
+        return BT_STATUS_BUSY;
+      } else {
+        LOG_ERROR("BTA_AgEnable failed after %d retry", AG_ENABLE_RETRY_LIMIT);
+      }
+    }
+    ag_enable_retry_remain = AG_ENABLE_RETRY_LIMIT;
     for (uint8_t app_id = 0; app_id < btif_max_hf_clients; app_id++) {
       BTA_AgRegister(get_BTIF_HF_SERVICES(), btif_hf_features, service_names,
                      app_id);

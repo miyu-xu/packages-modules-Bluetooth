@@ -11,6 +11,7 @@ mod ffi {
 
         fn dump() -> Vec<InitFlagWithValue>;
 
+        fn ag_enable_retry_limit() -> i32;
         fn always_send_services_if_gatt_disc_done_is_enabled() -> bool;
         fn always_use_private_gatt_for_debugging_is_enabled() -> bool;
         fn asynchronously_start_l2cap_coc_is_enabled() -> bool;

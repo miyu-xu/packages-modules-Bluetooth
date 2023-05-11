@@ -358,6 +358,7 @@ pub const LOG_TAG_VERBOSE: i32 = 6;
 init_flags!(
     name: InitFlags
     flags: {
+        ag_enable_retry_limit: i32 = 5,
         always_send_services_if_gatt_disc_done = true,
         always_use_private_gatt_for_debugging,
         asynchronously_start_l2cap_coc = true,
