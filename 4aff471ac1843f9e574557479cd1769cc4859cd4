@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7a29776d_68b267a9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-05-11T00:10:54Z",
+      "side": 1,
+      "message": "-2 To prevent accidental submission. But the wanted feature looks correct to me.",
+      "revId": "4aff471ac1843f9e574557479cd1769cc4859cd4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "115767cd_f71c5862",
