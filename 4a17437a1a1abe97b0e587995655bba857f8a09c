@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e99fa456_0611f3a1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2023-05-11T18:19:58Z",
+      "side": 1,
+      "message": "We can use a better abstraction for different platforms, but LGTM for now.\nWould like abps@\u0027s review and approval.",
+      "revId": "4a17437a1a1abe97b0e587995655bba857f8a09c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
