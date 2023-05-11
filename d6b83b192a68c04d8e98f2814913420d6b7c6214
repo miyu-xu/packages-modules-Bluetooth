@@ -97,6 +97,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "90912603_333e0a77",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1839,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-05-11T00:54:23Z",
+      "side": 1,
+      "message": "I see thanks for the explanation.\n\nWho will be the owner of this config ?\nI do not know how wifi use this but I would says none of bluetooth or wifi should own it. Is there a AirplaneModeManager somewhere that can be the owner of it ?\n\nDo you have a tracking bug for that ? We can move this conversation outside of this CL.",
+      "parentUuid": "5b8ea39d_e3320d92",
+      "range": {
+        "startLine": 1838,
+        "startChar": 11,
+        "endLine": 1839,
+        "endChar": 83
+      },
+      "revId": "d6b83b192a68c04d8e98f2814913420d6b7c6214",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b4861f32_186c973b",
         "filename": "service/tests/src/com/android/server/bluetooth/BluetoothManagerServiceTest.java",
         "patchSetId": 2
@@ -179,6 +203,30 @@
       "side": 1,
       "message": "I rewrote the value and then called the method to make sure we update the value in Settings.Global.\n\nIn order to do this, I had to add another method to initialize BluetoothModeChangeHelper. \n\nI ran into bunch of security errors when calling `handleOnBootPhase` for initialization so I figured this would be a simple workaround.",
       "parentUuid": "96d2a76e_90090deb",
+      "range": {
+        "startLine": 111,
+        "startChar": 16,
+        "endLine": 111,
+        "endChar": 41
+      },
+      "revId": "d6b83b192a68c04d8e98f2814913420d6b7c6214",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ec7620fa_55cb6e9e",
+        "filename": "service/tests/src/com/android/server/bluetooth/BluetoothManagerServiceTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-05-11T00:54:23Z",
+      "side": 1,
+      "message": "Thanks !\n\nFYI: I may change some of this in a few days as I have aosp/2580796 that got into the same issue as you.",
+      "parentUuid": "04e26299_2270541c",
       "range": {
         "startLine": 111,
         "startChar": 16,

@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6e2d5d57_0af6800a",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1828,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-05-11T00:54:23Z",
+      "side": 1,
+      "message": "nit remove public.\nTest and code are living in the same package (same below)",
+      "range": {
+        "startLine": 1828,
+        "startChar": 4,
+        "endLine": 1828,
+        "endChar": 10
+      },
+      "revId": "3629146e962e99c66085981daf8b536091e5080f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
