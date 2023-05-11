@@ -38,6 +38,11 @@ class BtaGattQueue {
   static void Clean(uint16_t conn_id);
   static void ReadCharacteristic(uint16_t conn_id, uint16_t handle,
                                  GATT_READ_OP_CB cb, void* cb_data);
+  static void ReadCharacteristicByUuid(uint16_t conn_id,
+                                       const bluetooth::Uuid& uuid,
+                                       uint16_t s_handle, uint16_t e_handle,
+                                       tGATT_AUTH_REQ auth_req,
+                                       GATT_READ_OP_CB cb, void* cb_data);
   static void ReadDescriptor(uint16_t conn_id, uint16_t handle,
                              GATT_READ_OP_CB cb, void* cb_data);
   static void WriteCharacteristic(uint16_t conn_id, uint16_t handle,
@@ -54,12 +59,16 @@ class BtaGattQueue {
   struct gatt_operation {
     uint8_t type;
     uint16_t handle;
+    uint16_t s_handle;
+    uint16_t e_handle;
     GATT_READ_OP_CB read_cb;
     void* read_cb_data;
     GATT_WRITE_OP_CB write_cb;
     void* write_cb_data;
     GATT_CONFIGURE_MTU_OP_CB mtu_cb;
     void* mtu_cb_data;
+    bluetooth::Uuid uuid;
+    tGATT_AUTH_REQ auth_req;
 
     /* write-specific fields */
     tGATT_WRITE_TYPE write_type;

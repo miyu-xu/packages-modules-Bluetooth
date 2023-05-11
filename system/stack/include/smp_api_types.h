@@ -98,8 +98,9 @@ typedef enum : uint8_t {
   SMP_UNUSED11 = 11,
   SMP_BR_KEYS_REQ_EVT = 12, /* SMP over BR keys request event */
   SMP_UNUSED13 = 13,
-  SMP_CONSENT_REQ_EVT = 14,   /* Consent request event */
-  SMP_LE_ADDR_ASSOC_EVT = 15, /* Identity address association event */
+  SMP_CONSENT_REQ_EVT = 14,           /* Consent request event */
+  SMP_LE_ADDR_ASSOC_EVT = 15,         /* Identity address association event */
+  SMP_CSIS_VERIFICATION_REQ_EVT = 16, /* Request for CSIS to verify member */
 } tSMP_EVT;
 
 /* pairing failure reason code */
@@ -135,7 +136,8 @@ typedef enum : uint8_t {
   /* Unspecified failure reason */
   SMP_FAIL = (SMP_MAX_FAIL_RSN_PER_SPEC + 0x0A), /* 0x18 */
 
-  SMP_CONN_TOUT = (SMP_MAX_FAIL_RSN_PER_SPEC + 0x0B), /* 0x19 */
+  SMP_CONN_TOUT = (SMP_MAX_FAIL_RSN_PER_SPEC + 0x0B),           /* 0x19 */
+  SMP_CSIS_DEVICE_INVALID = (SMP_MAX_FAIL_RSN_PER_SPEC + 0x0C), /* 0x1a */
 } tSMP_STATUS;
 
 #define CASE_RETURN_TEXT(code) \
@@ -313,5 +315,8 @@ typedef struct {
  * events occur.*/
 typedef tBTM_STATUS(tSMP_CALLBACK)(tSMP_EVT event, const RawAddress& bd_addr,
                                    const tSMP_EVT_DATA* p_data);
+/* Security Manager CSIS verification event - Called by the stack when Security
+ * Manager requires verification from CSIS.*/
+typedef tBTM_STATUS(tSMP_CSIS_CALLBACK)(const RawAddress& bd_addr);
 
 #endif  // SMP_API_TYPES_H

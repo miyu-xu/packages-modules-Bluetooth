@@ -31,6 +31,7 @@ constexpr uint8_t GATT_READ_DESC = 2;
 constexpr uint8_t GATT_WRITE_CHAR = 3;
 constexpr uint8_t GATT_WRITE_DESC = 4;
 constexpr uint8_t GATT_CONFIG_MTU = 5;
+constexpr uint8_t GATT_READ_BY_UUID_CHAR = 6;
 
 struct gatt_read_op_data {
   GATT_READ_OP_CB cb;
@@ -174,6 +175,13 @@ void BtaGattQueue::gatt_execute_next_op(uint16_t conn_id) {
     BTA_GATTC_ConfigureMTU(conn_id, static_cast<uint16_t>(op.value[0] |
                                                           (op.value[1] << 8)),
                            gatt_configure_mtu_op_finished, data);
+  } else if (op.type == GATT_READ_BY_UUID_CHAR) {
+    gatt_read_op_data* data =
+        (gatt_read_op_data*)osi_malloc(sizeof(gatt_read_op_data));
+    data->cb = op.read_cb;
+    data->cb_data = op.read_cb_data;
+    BTA_GATTC_ReadUsingCharUuid(conn_id, op.uuid, op.s_handle, op.e_handle,
+                                op.auth_req, gatt_read_op_finished, data);
   }
 
   gatt_ops.pop_front();
@@ -189,6 +197,21 @@ void BtaGattQueue::ReadCharacteristic(uint16_t conn_id, uint16_t handle,
   gatt_op_queue[conn_id].push_back({.type = GATT_READ_CHAR,
                                     .handle = handle,
                                     .read_cb = cb,
+                                    .read_cb_data = cb_data});
+  gatt_execute_next_op(conn_id);
+}
+
+void BtaGattQueue::ReadCharacteristicByUuid(uint16_t conn_id,
+                                            const bluetooth::Uuid& uuid,
+                                            uint16_t s_handle,
+                                            uint16_t e_handle,
+                                            tGATT_AUTH_REQ auth_req,
+                                            GATT_READ_OP_CB cb, void* cb_data) {
+  gatt_op_queue[conn_id].push_back({.type = GATT_READ_BY_UUID_CHAR,
+                                    .s_handle = s_handle,
+                                    .e_handle = e_handle,
+                                    .read_cb = cb,
+                                    .uuid = std::move(uuid),
                                     .read_cb_data = cb_data});
   gatt_execute_next_op(conn_id);
 }

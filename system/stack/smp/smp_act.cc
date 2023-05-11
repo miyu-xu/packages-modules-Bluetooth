@@ -1044,6 +1044,16 @@ void smp_proc_id_info(tSMP_CB* p_cb, tSMP_INT_DATA* p_data) {
     return;
   }
 
+  if (!p_cb->tk.data()) {
+    SMP_TRACE_DEBUG("%s, has empty tk data", __func__);
+    return;
+  }
+
+  if (!p) {
+    SMP_TRACE_DEBUG("%s, has empty p", __func__);
+    return;
+  }
+
   STREAM_TO_ARRAY(p_cb->tk.data(), p, OCTET16_LEN); /* reuse TK for IRK */
   smp_key_distribution_by_transport(p_cb, NULL);
 }
@@ -1212,6 +1222,27 @@ void smp_enc_cmpl(tSMP_CB* p_cb, tSMP_INT_DATA* p_data) {
   tSMP_INT_DATA smp_int_data;
   smp_int_data.status = enc_enable ? SMP_SUCCESS : SMP_ENC_FAIL;
   smp_sm_event(p_cb, SMP_AUTH_CMPL_EVT, &smp_int_data);
+}
+
+/*******************************************************************************
+ * Function     smp_csis_verify
+ * Description   verify if device belongs to csis group and is valid before
+ *               exchaning keys.
+ ******************************************************************************/
+void smp_csis_verify(tSMP_CB* p_cb, tSMP_INT_DATA* p_data) {
+  tBTM_STATUS callback_rc;
+  SMP_TRACE_DEBUG("%s", __func__);
+
+  if (p_cb->p_callback) {
+    SMP_TRACE_DEBUG("%s, there is registrated CSIS verification callback",
+                    __func__);
+    p_cb->cb_evt = SMP_CSIS_VERIFICATION_REQ_EVT;
+    callback_rc = (*p_cb->p_callback)(p_cb->cb_evt, p_cb->pairing_bda, nullptr);
+
+    // TODO: handle response for callback request
+  } else {
+    SMP_TRACE_DEBUG("%s, there are no registrated callbacks for SMP", __func__);
+  }
 }
 
 /*******************************************************************************

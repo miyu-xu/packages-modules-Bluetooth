@@ -249,6 +249,7 @@ typedef enum : uint8_t {
   BTA_DM_REPORT_BONDING_EVT = 32,    /*handle for pin or key missing*/
   BTA_DM_LE_ADDR_ASSOC_EVT = 33,     /* identity address association event */
   BTA_DM_LINK_UP_FAILED_EVT = 34,    /* Create connection failed event */
+  BTA_DM_CSIS_VERIFICATION_REQ_EVT = 35,
 } tBTA_DM_SEC_EVT;
 
 /* Structure associated with BTA_DM_PIN_REQ_EVT */
@@ -1168,6 +1169,36 @@ void BTA_DmBleScan(bool start, uint8_t duration, bool low_latency_scan = false);
  *
  ******************************************************************************/
 void BTA_DmBleCsisObserve(bool observe, tBTA_DM_SEARCH_CBACK* p_results_cb);
+
+/*******************************************************************************
+ *
+ * Function         BTA_DmCsisSecCbRegister
+ *
+ * Description      This procedure registeres in requested a callback for
+ *                  verification by CSIS potential set member.
+ *
+ * Parameters       p_cback     - callback to member verificator
+ *
+ * Returns          void
+ *
+ ******************************************************************************/
+extern void BTA_DmCsisSecCbRegister(tBTA_DM_SEC_CBACK* p_cback);
+
+/*******************************************************************************
+ *
+ * Function         BTA_DmCsisConfirmDeviceReply
+ *
+ * Description      This procedure confirms requested to validate set device.
+ *
+ * Parameters       bd_addr     - BD address of the peer
+ *                  accept      - True if device is authorized by CSIS, false
+ *                                otherwise.
+ *
+ * Returns          void
+ *
+ ******************************************************************************/
+extern void BTA_DmCsisConfirmDeviceReply(const RawAddress& bd_addr,
+                                         bool accept);
 
 /*******************************************************************************
  *

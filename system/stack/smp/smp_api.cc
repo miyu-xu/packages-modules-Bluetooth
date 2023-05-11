@@ -583,3 +583,51 @@ bool SMP_CrLocScOobData() {
  *
  ******************************************************************************/
 void SMP_ClearLocScOobData() { smp_clear_local_oob_data(); }
+
+/*******************************************************************************
+ *
+ * Function         SMP_CsisConfirmDeviceReply
+ *
+ * Description      This function is called after Security Manager submitted
+ *                  verification of device with CSIP.
+ *
+ * Parameters:      bd_addr      - Address of the device with which verification
+ *                                 was requested
+ *                  res          - comparison result SMP_SUCCESS if success
+ *
+ ******************************************************************************/
+void SMP_CsisConfirmDeviceReply(const RawAddress& bd_addr, uint8_t res) {
+  LOG_ASSERT(!bluetooth::shim::is_gd_shim_enabled())
+      << "Legacy SMP API should not be invoked when GD Security is used";
+
+  tSMP_CB* p_cb = &smp_cb;
+
+  SMP_TRACE_EVENT("%s: Result:%d", __func__, res);
+
+  /* TODO should be handled here similar ? */
+  /* If timeout already expired or has been canceled, ignore the reply */
+  // if (p_cb->cb_evt != SMP_NC_REQ_EVT) {
+  //   SMP_TRACE_WARNING("%s() - Wrong State: %d", __func__, p_cb->state);
+  //   return;
+  // }
+
+  if (bd_addr != p_cb->pairing_bda) {
+    SMP_TRACE_ERROR("%s() - Wrong BD Addr", __func__);
+    return;
+  }
+
+  if (btm_find_dev(bd_addr) == NULL) {
+    SMP_TRACE_ERROR("%s() - no dev CB", __func__);
+    return;
+  }
+
+  if (res != SMP_SUCCESS) {
+    SMP_TRACE_WARNING("%s() - Verification fails", __func__);
+    /* send pairing failure */
+    tSMP_INT_DATA smp_int_data;
+    smp_int_data.status = SMP_CSIS_DEVICE_INVALID;
+    smp_sm_event(p_cb, SMP_AUTH_CMPL_EVT, &smp_int_data);
+  } else {
+    smp_sm_event(p_cb, SMP_CSIS_DEVICE_VALID_EVT, NULL);
+  }
+}

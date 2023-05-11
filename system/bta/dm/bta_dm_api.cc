@@ -792,6 +792,44 @@ void BTA_DmBleSubrateRequest(const RawAddress& bd_addr, uint16_t subrate_min,
                                subrate_max, max_latency, cont_num, timeout));
 }
 
+/*******************************************************************************
+ *
+ * Function         BTA_DmCsisSecCbRegister
+ *
+ * Description      This procedure registeres in requested a callback for
+ *                  verification by CSIS potential set member.
+ *
+ * Parameters       p_cback     - callback to member verificator
+ *
+ * Returns          void
+ *
+ ******************************************************************************/
+extern void BTA_DmCsisSecCbRegister(tBTA_DM_SEC_CBACK* p_cback) {
+  APPL_TRACE_API("%s ", __func__);
+  do_in_main_thread(FROM_HERE,
+                    base::Bind(bta_dm_ble_csis_sec_cb_register, p_cback));
+}
+
+/*******************************************************************************
+ *
+ * Function         BTA_DmCsisConfirmDeviceReply
+ *
+ * Description      This procedure confirms requested to validate set device.
+ *
+ * Parameters       bd_addr     - BD address of the peer
+ *                  accept      - True if device is authorized by CSIS, false
+ *                                otherwise.
+ *
+ * Returns          void
+ *
+ ******************************************************************************/
+extern void BTA_DmCsisConfirmDeviceReply(const RawAddress& bd_addr,
+                                         bool accept) {
+  APPL_TRACE_API("%s ", __func__);
+  do_in_main_thread(FROM_HERE, base::Bind(bta_dm_ble_csis_confirm_device_reply,
+                                          bd_addr, accept));
+}
+
 bool BTA_DmCheckLeAudioCapable(const RawAddress& address) {
   for (tBTM_INQ_INFO* inq_ent = BTM_InqDbFirst(); inq_ent != nullptr;
        inq_ent = BTM_InqDbNext(inq_ent)) {

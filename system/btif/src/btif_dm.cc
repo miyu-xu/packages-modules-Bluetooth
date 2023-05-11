@@ -35,10 +35,6 @@
 #include <base/strings/stringprintf.h>
 #include <bluetooth/uuid.h>
 #include <hardware/bluetooth.h>
-#include <hardware/bt_csis.h>
-#include <hardware/bt_hearing_aid.h>
-#include <hardware/bt_le_audio.h>
-#include <hardware/bt_vc.h>
 #include <signal.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -52,14 +48,10 @@
 
 #include "advertise_data_parser.h"
 #include "bta/include/bta_api.h"
-#include "bta_csis_api.h"
 #include "bta_dm_int.h"
 #include "bta_gatt_api.h"
-#include "bta_le_audio_api.h"
-#include "bta_vc_api.h"
 #include "btif/include/stack_manager.h"
 #include "btif_api.h"
-#include "btif_av.h"
 #include "btif_bqr.h"
 #include "btif_config.h"
 #include "btif_dm.h"
@@ -2302,6 +2294,12 @@ static void btif_dm_upstreams_evt(uint16_t event, char* p_param) {
       break;
 
     case BTA_DM_LE_ADDR_ASSOC_EVT:
+      GetInterfaceToProfiles()->events->invoke_le_address_associate_cb(
+          p_data->proc_id_addr.pairing_bda, p_data->proc_id_addr.id_addr);
+      break;
+
+    case BTA_DM_CSIS_VERIFICATION_REQ_EVT:
+      // TODO Do something with CSIP profile
       GetInterfaceToProfiles()->events->invoke_le_address_associate_cb(
           p_data->proc_id_addr.pairing_bda, p_data->proc_id_addr.id_addr);
       break;

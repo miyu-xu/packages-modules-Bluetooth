@@ -63,7 +63,7 @@ typedef enum : uint8_t {
 #endif
 
 #define SMP_WAIT_FOR_RSP_TIMEOUT_MS (30 * 1000)
-#define SMP_DELAYED_AUTH_TIMEOUT_MS 500
+#define SMP_DELAYED_AUTH_TIMEOUT_MS 1500
 
 #define SMP_OPCODE_INIT 0x04
 
@@ -147,7 +147,8 @@ typedef enum : uint8_t {
   SMP_SC_OOB_DATA_EVT = (SMP_SELF_DEF_EVT + 23),  // 0x27
 
   SMP_CR_LOC_SC_OOB_DATA_EVT = (SMP_SELF_DEF_EVT + 24),  // 0x28
-  SMP_MAX_EVT = SMP_CR_LOC_SC_OOB_DATA_EVT,              // 0x28
+  SMP_CSIS_DEVICE_VALID_EVT = (SMP_SELF_DEF_EVT + 25),   // 0x29
+  SMP_MAX_EVT = SMP_CSIS_DEVICE_VALID_EVT,               // 0x29
 } tSMP_EVENT;
 typedef tSMP_EVENT tSMP_BR_EVENT;
 
@@ -174,6 +175,7 @@ enum {
   SMP_STATE_ENCRYPTION_PENDING,
   SMP_STATE_BOND_PENDING,
   SMP_STATE_CREATE_LOCAL_SEC_CONN_OOB_DATA,
+  SMP_STATE_CSIS_VERIFY,
   SMP_STATE_MAX
 };
 typedef uint8_t tSMP_STATE;
@@ -234,6 +236,7 @@ typedef struct {
 /* SMP control block */
 typedef struct {
   tSMP_CALLBACK* p_callback;
+  tSMP_CSIS_CALLBACK* p_csis_callback;
   alarm_t* smp_rsp_timer_ent;
   uint8_t trace_level;
   RawAddress pairing_bda;
@@ -357,6 +360,7 @@ void smp_enc_cmpl(tSMP_CB* p_cb, tSMP_INT_DATA* p_data);
 void smp_proc_discard(tSMP_CB* p_cb, tSMP_INT_DATA* p_data);
 void smp_pairing_cmpl(tSMP_CB* p_cb, tSMP_INT_DATA* p_data);
 void smp_decide_association_model(tSMP_CB* p_cb, tSMP_INT_DATA* p_data);
+void smp_csis_verify(tSMP_CB* p_cb, tSMP_INT_DATA* p_data);
 void smp_send_app_cback(tSMP_CB* p_cb, tSMP_INT_DATA* p_data);
 void smp_proc_compare(tSMP_CB* p_cb, tSMP_INT_DATA* p_data);
 void smp_check_auth_req(tSMP_CB* p_cb, tSMP_INT_DATA* p_data);
