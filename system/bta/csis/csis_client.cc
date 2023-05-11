@@ -44,6 +44,7 @@
 #include "stack/btm/btm_dev.h"
 #include "stack/btm/btm_sec.h"
 #include "stack/crypto_toolbox/crypto_toolbox.h"
+#include "stack/gatt/gatt_int.h"
 
 using base::Closure;
 using bluetooth::Uuid;
@@ -130,6 +131,16 @@ class CsisClientImpl : public CsisClient {
             },
             initCb),
         true);
+
+    BTA_DmSirkSecCbRegister([](tBTA_DM_SEC_EVT event, tBTA_DM_SEC* p_data) {
+      if (event != BTA_DM_SIRK_VERIFICATION_REQ_EVT) {
+        LOG_ERROR("Invalid event received by CSIP: %d",
+                  static_cast<int>(event));
+        return;
+      }
+
+      instance->VerifySetMember(p_data->ble_req.bd_addr);
+    });
 
     DLOG(INFO) << __func__ << " Background scan enabled";
     CsisObserverSetBackground(true);
@@ -706,7 +717,13 @@ class CsisClientImpl : public CsisClient {
              << static_cast<int>(g->GetTargetLockState()) << "\n"
              << "    devices: \n";
       for (auto& device : devices_) {
-        if (!g->IsDeviceInTheGroup(device)) continue;
+        if (!g->IsDeviceInTheGroup(device)) {
+          if (device->GetExpectedGroupIdMember() == g->GetGroupId()) {
+            stream << "        == candidate addr: "
+                   << ADDRESS_TO_LOGGABLE_STR(device->addr) << "\n";
+          }
+          continue;
+        }
 
         stream << "        == addr: "
                << ADDRESS_TO_LOGGABLE_STR(device->addr) << " ==\n"
@@ -1256,8 +1273,21 @@ class CsisClientImpl : public CsisClient {
     if (discovered_group_rsi != all_rsi.cend()) {
       DLOG(INFO) << "Found set member "
                  << ADDRESS_TO_LOGGABLE_STR(result->bd_addr);
-      callbacks_->OnSetMemberAvailable(result->bd_addr,
-                                       csis_group->GetGroupId());
+      auto device = FindDeviceByAddress(result->bd_addr);
+      if (device == nullptr) {
+        device = std::make_shared<CsisDevice>(result->bd_addr, false);
+        devices_.push_back(device);
+      }
+
+      /*
+       * Expected group ID will be checked while reading SIRK if this device
+       * truly is member of group.
+       */
+      device.get()->SetExpectedGroupIdMember(csis_group->GetGroupId());
+      devices_.push_back(device);
+
+      callbacks_->OnSetMemberAvailable(
+          result->bd_addr, device.get()->GetExpectedGroupIdMember());
 
       /* Switch back to the opportunistic observer mode.
        * When second device will pair, csis will restart active scan
@@ -1524,6 +1554,24 @@ class CsisClientImpl : public CsisClient {
                << loghex(csis_group->GetDesiredSize())
                << ", actual group Size: "
                << loghex(csis_group->GetCurrentSize());
+    if (csis_group->GetDesiredSize() == csis_group->GetCurrentSize()) {
+      auto iter = devices_.cbegin();
+
+      /*
+       * Remove devices which are expected members but are not connected and
+       * group is already completed. Those devices are cached ivalid devices
+       * kept on list to not trigger "new device" found every time advertising
+       * event is received.
+       */
+      while (iter != devices_.cend()) {
+        if (((*iter)->GetExpectedGroupIdMember() == csis_group->GetGroupId()) &&
+            !(*iter)->IsConnected()) {
+          iter = devices_.erase(iter);
+        } else {
+          ++iter;
+        }
+      }
+    }
   }
 
   void DeregisterNotifications(std::shared_ptr<CsisDevice> device) {
@@ -2047,6 +2095,89 @@ class CsisClientImpl : public CsisClient {
 
       if (register_status != GATT_SUCCESS) return;
     }
+  }
+
+  void ReadSirkValue(tGATT_STATUS status, const RawAddress& address,
+                     uint8_t sirk_type, Octet16& received_sirk) {
+    if (status != GATT_SUCCESS) {
+      LOG_INFO("Invalid member, can't read SIRK (status: %02x)", status);
+      BTA_DmSirkConfirmDeviceReply(address, false);
+      return;
+    }
+
+    auto device = FindDeviceByAddress(address);
+    if (device == nullptr) {
+      LOG_ERROR("Invalid SIRK value read for unknown device");
+      BTA_DmSirkConfirmDeviceReply(address, false);
+      return;
+    }
+
+    LOG_DEBUG("%s, status: 0x%02x", ADDRESS_TO_LOGGABLE_CSTR(address), status);
+
+    /* Verify if sirk is not all zeros */
+    Octet16 zero{};
+    if (memcmp(zero.data(), received_sirk.data(), 16) == 0) {
+      LOG_ERROR("Received invalid zero SIRK address: %s ",
+                ADDRESS_TO_LOGGABLE_CSTR(address));
+      BTA_DmSirkConfirmDeviceReply(address, false);
+      return;
+    }
+
+    if (sirk_type == bluetooth::csis::kCsisSirkTypeEncrypted) {
+      /* Decrypt encrypted SIRK */
+      Octet16 sirk;
+      sdf(device->addr, received_sirk, sirk);
+      received_sirk = sirk;
+    }
+
+    /* SIRK is ready. Add device to the group */
+
+    /* Now having SIRK we can decide if the device belongs to some group we
+     * know or this is a new group
+     */
+    auto csis_group = FindCsisGroup(device->GetExpectedGroupIdMember());
+    if (!csis_group) {
+      LOG_ERROR("Expected group with ID: %d, isn't cached",
+                device->GetExpectedGroupIdMember());
+      return;
+    }
+
+    /* Device will be added to group when upper layer decides */
+    RemoveDevice(device->addr);
+
+    if (csis_group->IsSirkBelongsToGroup(received_sirk)) {
+      LOG_INFO("Device %s, verified successfully by SIRK",
+               ADDRESS_TO_LOGGABLE_CSTR(address));
+      BTA_DmSirkConfirmDeviceReply(address, true);
+    } else {
+      /*
+       * Joining member must join already existing group otherwise it means
+       * that its SIRK is different. Device connection was triggered by RSI
+       * match for group.
+       */
+      LOG_ERROR("Joining device %s, does not match any existig group",
+                ADDRESS_TO_LOGGABLE_CSTR(address));
+      BTA_DmSirkConfirmDeviceReply(address, false);
+
+      /* This device was invalid, search for valid member */
+      csis_group->SetDiscoveryState(CsisDiscoveryState::CSIS_DISCOVERY_ONGOING);
+      CsisActiveObserverSet(true);
+    }
+  }
+
+  void VerifySetMember(const RawAddress& address) {
+    auto device = FindDeviceByAddress(address);
+
+    LOG_INFO("Device: %s", ADDRESS_TO_LOGGABLE_CSTR(address));
+
+    /* It's ok for device to not be a CSIS device at all */
+    if (!device) {
+      LOG_INFO("Valid - new member");
+      BTA_DmSirkConfirmDeviceReply(address, true);
+      return;
+    }
+
+    /* TODO call GATT read SIRK here */
   }
 
   uint8_t gatt_if_;
