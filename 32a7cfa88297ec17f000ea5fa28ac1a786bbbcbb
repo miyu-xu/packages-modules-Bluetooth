@@ -214,6 +214,24 @@
       "parentUuid": "59f632a0_87299081",
       "revId": "32a7cfa88297ec17f000ea5fa28ac1a786bbbcbb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "830aa734_93cdd474",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 21
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1984885
+      },
+      "writtenOn": "2023-05-11T06:03:15Z",
+      "side": 1,
+      "message": "I have fix the error, please check whether it works, thanks a lot\n\notherwise, I can\u0027t run git clang-format in my environment, can you help to clang-format for patch:https://android-review.googlesource.com/c/platform/packages/modules/Bluetooth/+/2394936/29",
+      "parentUuid": "4c485a3d_0ce93114",
+      "revId": "32a7cfa88297ec17f000ea5fa28ac1a786bbbcbb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
