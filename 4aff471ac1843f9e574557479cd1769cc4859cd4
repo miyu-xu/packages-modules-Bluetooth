@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "87aed330_25992644",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 654,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-05-11T01:21:58Z",
+      "side": 1,
+      "message": "yes, good catch!",
+      "parentUuid": "115767cd_f71c5862",
+      "range": {
+        "startLine": 654,
+        "startChar": 73,
+        "endLine": 654,
+        "endChar": 96
+      },
+      "revId": "4aff471ac1843f9e574557479cd1769cc4859cd4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "456756f3_6edc0c77",
@@ -64,6 +88,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b70276b8_dba78945",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 659,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-05-11T01:21:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "456756f3_6edc0c77",
+      "range": {
+        "startLine": 648,
+        "startChar": 8,
+        "endLine": 659,
+        "endChar": 9
+      },
+      "revId": "4aff471ac1843f9e574557479cd1769cc4859cd4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f1b2284a_259a3f7f",
@@ -77,6 +125,30 @@
       "writtenOn": "2023-05-10T23:58:42Z",
       "side": 1,
       "message": "What about this override, is this still valid ?\nI would like `mIsHearingAidProfileSupported` to be final but this second override prevent it.",
+      "range": {
+        "startLine": 669,
+        "startChar": 0,
+        "endLine": 669,
+        "endChar": 53
+      },
+      "revId": "4aff471ac1843f9e574557479cd1769cc4859cd4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4e0c7943_4e5121d4",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 669,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-05-11T01:21:58Z",
+      "side": 1,
+      "message": "I have no idea on this one unfortunately 😞",
+      "parentUuid": "f1b2284a_259a3f7f",
       "range": {
         "startLine": 669,
         "startChar": 0,
