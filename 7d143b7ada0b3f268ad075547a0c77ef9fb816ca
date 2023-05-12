@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6b54ca28_5c54d9b3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-05-12T21:05:36Z",
+      "side": 1,
+      "message": "Enjoy the code deletion",
+      "revId": "7d143b7ada0b3f268ad075547a0c77ef9fb816ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "02c996b2_a965eadd",
+        "filename": "system/gd/hci/acl_manager.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 277,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-05-12T21:05:36Z",
+      "side": 1,
+      "message": "Should these strings be constants somewhere ?",
+      "revId": "7d143b7ada0b3f268ad075547a0c77ef9fb816ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c092bf92_f18c68df",
+        "filename": "system/gd/security/internal/security_manager_impl.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-05-12T21:05:36Z",
+      "side": 1,
+      "message": "The previous behavior API is structured like a db...with locking is it possible for the db to get corrupt by another thread ?\n\ne.g.\nirk_prop is valid, but immediately after this key/value pair changes by another thread `\"Adapter\", \"LE_LOCAL_KEY_IRK\"` and suddenly the data is invalid.\n\nLooks like it write/reads again, although with lock dropping",
+      "revId": "7d143b7ada0b3f268ad075547a0c77ef9fb816ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
