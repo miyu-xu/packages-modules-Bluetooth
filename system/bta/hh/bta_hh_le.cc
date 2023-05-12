@@ -178,25 +178,27 @@ void bta_hh_le_enable(void) {
   for (xx = 0; xx < ARRAY_SIZE(bta_hh_cb.le_cb_index); xx++)
     bta_hh_cb.le_cb_index[xx] = BTA_HH_IDX_INVALID;
 
-  BTA_GATTC_AppRegister(bta_hh_gattc_callback,
-                        base::Bind([](uint8_t client_id, uint8_t r_status) {
-                          tBTA_HH bta_hh;
-                          bta_hh.status = BTA_HH_ERR;
+  BTA_GATTC_AppRegister(
+      bta_hh_gattc_callback,
+      base::BindRepeating([](uint8_t client_id, uint8_t r_status) {
+        tBTA_HH bta_hh;
+        bta_hh.status = BTA_HH_ERR;
 
-                          if (r_status == GATT_SUCCESS) {
-                            bta_hh_cb.gatt_if = client_id;
-                            bta_hh.status = BTA_HH_OK;
-                          } else {
-                            bta_hh_cb.gatt_if = BTA_GATTS_INVALID_IF;
-                          }
+        if (r_status == GATT_SUCCESS) {
+          bta_hh_cb.gatt_if = client_id;
+          bta_hh.status = BTA_HH_OK;
+        } else {
+          bta_hh_cb.gatt_if = BTA_GATTS_INVALID_IF;
+        }
 
-                          /* null check is needed in case HID profile is shut
-                           * down before BTA_GATTC_AppRegister is done */
-                          if (bta_hh_cb.p_cback) {
-                            /* signal BTA call back event */
-                            (*bta_hh_cb.p_cback)(BTA_HH_ENABLE_EVT, &bta_hh);
-                          }
-                        }), false);
+        /* null check is needed in case HID profile is shut
+         * down before BTA_GATTC_AppRegister is done */
+        if (bta_hh_cb.p_cback) {
+          /* signal BTA call back event */
+          (*bta_hh_cb.p_cback)(BTA_HH_ENABLE_EVT, &bta_hh);
+        }
+      }),
+      false);
 }
 
 /*******************************************************************************

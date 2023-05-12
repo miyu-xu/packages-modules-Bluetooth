@@ -38,10 +38,10 @@ class LeAudioClient {
 
   static void Initialize(
       bluetooth::le_audio::LeAudioClientCallbacks* callbacks,
-      base::Closure initCb, base::Callback<bool()> hal_2_1_verifier,
+      base::Closure initCb, base::RepeatingCallback<bool()> hal_2_1_verifier,
       const std::vector<bluetooth::le_audio::btle_audio_codec_config_t>&
           offloading_preference);
-  static void Cleanup(base::Callback<void()> cleanupCb);
+  static void Cleanup(base::RepeatingCallback<void()> cleanupCb);
   static LeAudioClient* Get(void);
   static void DebugDump(int fd);
 

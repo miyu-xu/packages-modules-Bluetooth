@@ -751,9 +751,10 @@ static void btu_hcif_command_complete_evt_with_cb_on_task(BT_HDR* event,
 
 static void btu_hcif_command_complete_evt_with_cb(BT_HDR* response,
                                                   void* context) {
-  do_in_main_thread(FROM_HERE,
-                    base::Bind(btu_hcif_command_complete_evt_with_cb_on_task,
-                               response, context));
+  do_in_main_thread(
+      FROM_HERE,
+      base::BindRepeating(btu_hcif_command_complete_evt_with_cb_on_task,
+                          response, context));
 }
 
 static void btu_hcif_command_status_evt_with_cb_on_task(uint8_t status,
@@ -788,9 +789,9 @@ static void btu_hcif_command_status_evt_with_cb(uint8_t status, BT_HDR* command,
     return;
   }
 
-  do_in_main_thread(
-      FROM_HERE, base::Bind(btu_hcif_command_status_evt_with_cb_on_task, status,
-                            command, context));
+  do_in_main_thread(FROM_HERE, base::BindRepeating(
+                                   btu_hcif_command_status_evt_with_cb_on_task,
+                                   status, command, context));
 }
 
 /* This function is called to send commands to the Host Controller. |cb| is
@@ -961,7 +962,8 @@ static void btu_hcif_encryption_change_evt(uint8_t* p) {
   } else {
     btsnd_hcic_read_encryption_key_size(
         handle,
-        base::Bind(&read_encryption_key_size_complete_after_encryption_change));
+        base::BindRepeating(
+            &read_encryption_key_size_complete_after_encryption_change));
   }
 }
 
@@ -1201,8 +1203,9 @@ static void btu_hcif_command_complete_evt_on_task(BT_HDR* event,
 }
 
 static void btu_hcif_command_complete_evt(BT_HDR* response, void* context) {
-  do_in_main_thread(FROM_HERE, base::Bind(btu_hcif_command_complete_evt_on_task,
-                                          response, context));
+  do_in_main_thread(FROM_HERE,
+                    base::BindRepeating(btu_hcif_command_complete_evt_on_task,
+                                        response, context));
 }
 
 /*******************************************************************************
@@ -1358,8 +1361,9 @@ static void btu_hcif_command_status_evt_on_task(uint8_t status, BT_HDR* event,
 
 static void btu_hcif_command_status_evt(uint8_t status, BT_HDR* command,
                                         void* context) {
-  do_in_main_thread(FROM_HERE, base::Bind(btu_hcif_command_status_evt_on_task,
-                                          status, command, context));
+  do_in_main_thread(FROM_HERE,
+                    base::BindRepeating(btu_hcif_command_status_evt_on_task,
+                                        status, command, context));
 }
 
 /*******************************************************************************
@@ -1519,7 +1523,9 @@ static void btu_hcif_encryption_key_refresh_cmpl_evt(uint8_t* p) {
     btm_sec_encrypt_change(handle, static_cast<tHCI_STATUS>(status),
                            (status == HCI_SUCCESS) ? 1 : 0);
   } else {
-    btsnd_hcic_read_encryption_key_size(handle, base::Bind(&read_encryption_key_size_complete_after_key_refresh));
+    btsnd_hcic_read_encryption_key_size(
+        handle, base::BindRepeating(
+                    &read_encryption_key_size_complete_after_key_refresh));
   }
 }
 

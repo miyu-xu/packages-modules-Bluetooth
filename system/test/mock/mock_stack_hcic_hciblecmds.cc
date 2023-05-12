@@ -252,7 +252,7 @@ void btsnd_hcic_ble_periodic_advertising_terminate_sync(
       btsnd_hcic_ble_periodic_advertising_terminate_sync(sync_handle,
                                                          std::move(cb));
 }
-void btsnd_hcic_ble_rand(base::Callback<void(BT_OCTET8)> cb) {
+void btsnd_hcic_ble_rand(base::RepeatingCallback<void(BT_OCTET8)> cb) {
   inc_func_call_count(__func__);
   test::mock::stack_hcic_hciblecmds::btsnd_hcic_ble_rand(std::move(cb));
 }

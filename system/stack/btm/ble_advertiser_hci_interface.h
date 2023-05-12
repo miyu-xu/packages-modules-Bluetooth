@@ -32,9 +32,9 @@
  * and Bluetooth 5.0 "Advertising Extension" feature for more details  */
 class BleAdvertiserHciInterface {
  public:
-  using status_cb = base::Callback<void(uint8_t /* status */)>;
-  using parameters_cb =
-      base::Callback<void(uint8_t /* status */, int8_t /* tx_power */)>;
+  using status_cb = base::RepeatingCallback<void(uint8_t /* status */)>;
+  using parameters_cb = base::RepeatingCallback<void(uint8_t /* status */,
+                                                     int8_t /* tx_power */)>;
 
   static void Initialize();
   static BleAdvertiserHciInterface* Get();
@@ -53,7 +53,7 @@ class BleAdvertiserHciInterface {
   virtual void SetAdvertisingEventObserver(
       AdvertisingEventObserver* observer) = 0;
   virtual void ReadInstanceCount(
-      base::Callback<void(uint8_t /* inst_cnt*/)> cb) = 0;
+      base::RepeatingCallback<void(uint8_t /* inst_cnt*/)> cb) = 0;
   virtual void SetParameters(
       uint8_t handle, uint16_t properties, uint32_t adv_int_min,
       uint32_t adv_int_max, uint8_t channel_map, uint8_t own_address_type,

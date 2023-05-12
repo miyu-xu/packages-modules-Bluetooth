@@ -99,7 +99,8 @@ void BleAdvertiserIntf::OnOwnAddressRead(uint8_t advertiser_id, uint8_t address_
 // BleAdvertiserInterface implementations
 
 void BleAdvertiserIntf::RegisterAdvertiser() {
-  adv_intf_->RegisterAdvertiser(base::Bind(&BleAdvertiserIntf::OnIdStatusCallback, base::Unretained(this)));
+  adv_intf_->RegisterAdvertiser(
+      base::BindRepeating(&BleAdvertiserIntf::OnIdStatusCallback, base::Unretained(this)));
 }
 
 void BleAdvertiserIntf::Unregister(uint8_t adv_id) {
@@ -108,13 +109,18 @@ void BleAdvertiserIntf::Unregister(uint8_t adv_id) {
 
 void BleAdvertiserIntf::GetOwnAddress(uint8_t adv_id) {
   adv_intf_->GetOwnAddress(
-      adv_id, base::Bind(&BleAdvertiserIntf::OnGetAddressCallback, base::Unretained(this), adv_id));
+      adv_id,
+      base::BindRepeating(
+          &BleAdvertiserIntf::OnGetAddressCallback, base::Unretained(this), adv_id));
 }
 
 void BleAdvertiserIntf::SetParameters(uint8_t adv_id, RustAdvertiseParameters params) {
   AdvertiseParameters converted = internal::ConvertRustAdvParams(params);
   adv_intf_->SetParameters(
-      adv_id, converted, base::Bind(&BleAdvertiserIntf::OnParametersCallback, base::Unretained(this), adv_id));
+      adv_id,
+      converted,
+      base::BindRepeating(
+          &BleAdvertiserIntf::OnParametersCallback, base::Unretained(this), adv_id));
 }
 
 void BleAdvertiserIntf::SetData(uint8_t adv_id, bool set_scan_rsp, ::rust::Vec<uint8_t> data) {
@@ -125,17 +131,17 @@ void BleAdvertiserIntf::SetData(uint8_t adv_id, bool set_scan_rsp, ::rust::Vec<u
       adv_id,
       set_scan_rsp,
       converted,
-      base::Bind(&BleAdvertiserIntf::OnIdStatusCallback, base::Unretained(this), adv_id));
+      base::BindRepeating(&BleAdvertiserIntf::OnIdStatusCallback, base::Unretained(this), adv_id));
 }
 
 void BleAdvertiserIntf::Enable(uint8_t adv_id, bool enable, uint16_t duration, uint8_t max_ext_adv_events) {
   adv_intf_->Enable(
       adv_id,
       enable,
-      base::Bind(&BleAdvertiserIntf::OnIdStatusCallback, base::Unretained(this), adv_id),
+      base::BindRepeating(&BleAdvertiserIntf::OnIdStatusCallback, base::Unretained(this), adv_id),
       duration,
       max_ext_adv_events,
-      base::Bind(&BleAdvertiserIntf::OnIdStatusCallback, base::Unretained(this), adv_id));
+      base::BindRepeating(&BleAdvertiserIntf::OnIdStatusCallback, base::Unretained(this), adv_id));
 }
 
 void BleAdvertiserIntf::StartAdvertising(
@@ -151,12 +157,12 @@ void BleAdvertiserIntf::StartAdvertising(
 
   adv_intf_->StartAdvertising(
       adv_id,
-      base::Bind(&BleAdvertiserIntf::OnIdStatusCallback, base::Unretained(this), adv_id),
+      base::BindRepeating(&BleAdvertiserIntf::OnIdStatusCallback, base::Unretained(this), adv_id),
       converted_params,
       converted_adv_data,
       converted_scan_rsp_data,
       timeout_in_sec,
-      base::Bind(&BleAdvertiserIntf::OnIdStatusCallback, base::Unretained(this), adv_id));
+      base::BindRepeating(&BleAdvertiserIntf::OnIdStatusCallback, base::Unretained(this), adv_id));
 }
 
 void BleAdvertiserIntf::StartAdvertisingSet(
@@ -177,7 +183,7 @@ void BleAdvertiserIntf::StartAdvertisingSet(
 
   adv_intf_->StartAdvertisingSet(
       reg_id,
-      base::Bind(&BleAdvertiserIntf::OnIdTxPowerStatusCallback, base::Unretained(this)),
+      base::BindRepeating(&BleAdvertiserIntf::OnIdTxPowerStatusCallback, base::Unretained(this)),
       converted_params,
       converted_adv_data,
       converted_scan_rsp_data,
@@ -185,14 +191,16 @@ void BleAdvertiserIntf::StartAdvertisingSet(
       converted_periodic_data,
       duration,
       max_ext_adv_events,
-      base::Bind(&BleAdvertiserIntf::OnIdStatusCallback, base::Unretained(this)));
+      base::BindRepeating(&BleAdvertiserIntf::OnIdStatusCallback, base::Unretained(this)));
 }
 
 void BleAdvertiserIntf::SetPeriodicAdvertisingParameters(uint8_t adv_id, RustPeriodicAdvertisingParameters params) {
   PeriodicAdvertisingParameters converted = internal::ConvertRustPeriodicAdvParams(params);
 
   adv_intf_->SetPeriodicAdvertisingParameters(
-      adv_id, converted, base::Bind(&BleAdvertiserIntf::OnIdStatusCallback, base::Unretained(this), adv_id));
+      adv_id,
+      converted,
+      base::BindRepeating(&BleAdvertiserIntf::OnIdStatusCallback, base::Unretained(this), adv_id));
 }
 
 void BleAdvertiserIntf::SetPeriodicAdvertisingData(uint8_t adv_id, ::rust::Vec<uint8_t> data) {
@@ -200,12 +208,17 @@ void BleAdvertiserIntf::SetPeriodicAdvertisingData(uint8_t adv_id, ::rust::Vec<u
   std::copy(data.begin(), data.end(), std::back_inserter(converted));
 
   adv_intf_->SetPeriodicAdvertisingData(
-      adv_id, converted, base::Bind(&BleAdvertiserIntf::OnIdStatusCallback, base::Unretained(this), adv_id));
+      adv_id,
+      converted,
+      base::BindRepeating(&BleAdvertiserIntf::OnIdStatusCallback, base::Unretained(this), adv_id));
 }
 
 void BleAdvertiserIntf::SetPeriodicAdvertisingEnable(uint8_t adv_id, bool enable, bool include_adi) {
   adv_intf_->SetPeriodicAdvertisingEnable(
-      adv_id, enable, include_adi, base::Bind(&BleAdvertiserIntf::OnIdStatusCallback, base::Unretained(this), adv_id));
+      adv_id,
+      enable,
+      include_adi,
+      base::BindRepeating(&BleAdvertiserIntf::OnIdStatusCallback, base::Unretained(this), adv_id));
 }
 
 void BleAdvertiserIntf::RegisterCallbacks() {

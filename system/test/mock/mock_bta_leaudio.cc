@@ -80,7 +80,7 @@ bool LeAudioClient::GetAsesForStorage(const RawAddress& addr,
   return false;
 }
 
-void LeAudioClient::Cleanup(base::Callback<void()> cleanupCb) {
+void LeAudioClient::Cleanup(base::RepeatingCallback<void()> cleanupCb) {
   std::move(cleanupCb).Run();
   inc_func_call_count(__func__);
 }
@@ -95,7 +95,7 @@ bool LeAudioClient::IsLeAudioClientRunning(void) {
 }
 void LeAudioClient::Initialize(
     bluetooth::le_audio::LeAudioClientCallbacks* callbacks_,
-    base::Closure initCb, base::Callback<bool()> hal_2_1_verifier,
+    base::Closure initCb, base::RepeatingCallback<bool()> hal_2_1_verifier,
     const std::vector<bluetooth::le_audio::btle_audio_codec_config_t>&
         offloading_preference) {
   inc_func_call_count(__func__);

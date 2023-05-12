@@ -1486,8 +1486,9 @@ class UnicastTestNoInit : public Test {
         .Times(1);
 
     do_in_main_thread(
-        FROM_HERE, base::Bind(&LeAudioClient::Connect,
-                              base::Unretained(LeAudioClient::Get()), address));
+        FROM_HERE,
+        base::BindRepeating(&LeAudioClient::Connect,
+                            base::Unretained(LeAudioClient::Get()), address));
 
     SyncOnMainLoop();
     Mock::VerifyAndClearExpectations(&mock_gatt_interface_);
@@ -1500,8 +1501,9 @@ class UnicastTestNoInit : public Test {
                 OnConnectionState(ConnectionState::DISCONNECTED, address))
         .Times(1);
     do_in_main_thread(
-        FROM_HERE, base::Bind(&LeAudioClient::Disconnect,
-                              base::Unretained(LeAudioClient::Get()), address));
+        FROM_HERE,
+        base::BindRepeating(&LeAudioClient::Disconnect,
+                            base::Unretained(LeAudioClient::Get()), address));
   }
 
   void ConnectCsisDevice(const RawAddress& addr, uint16_t conn_id,
@@ -1532,9 +1534,9 @@ class UnicastTestNoInit : public Test {
     if (connect_through_csis) {
       // Add it the way CSIS would do: add to group and then connect
       do_in_main_thread(
-          FROM_HERE,
-          base::Bind(&LeAudioClient::GroupAddNode,
-                     base::Unretained(LeAudioClient::Get()), group_id, addr));
+          FROM_HERE, base::BindRepeating(&LeAudioClient::GroupAddNode,
+                                         base::Unretained(LeAudioClient::Get()),
+                                         group_id, addr));
       ConnectLeAudio(addr);
     } else {
       // The usual connect
@@ -2312,10 +2314,11 @@ class UnicastTest : public UnicastTestNoInit {
                         SaveArg<1>(&app_register_callback)));
     LeAudioClient::Initialize(
         &mock_audio_hal_client_callbacks_,
-        base::Bind([](MockFunction<void()>* foo) { foo->Call(); },
-                   &mock_storage_load),
-        base::Bind([](MockFunction<bool()>* foo) { return foo->Call(); },
-                   &mock_hal_2_1_verifier),
+        base::BindRepeating([](MockFunction<void()>* foo) { foo->Call(); },
+                            &mock_storage_load),
+        base::BindRepeating(
+            [](MockFunction<bool()>* foo) { return foo->Call(); },
+            &mock_hal_2_1_verifier),
         framework_encode_preference);
 
     SyncOnMainLoop();
@@ -2361,10 +2364,11 @@ TEST_F(UnicastTestNoInit, InitializeNoHal_2_1) {
   EXPECT_DEATH(
       LeAudioClient::Initialize(
           &mock_audio_hal_client_callbacks_,
-          base::Bind([](MockFunction<void()>* foo) { foo->Call(); },
-                     &mock_storage_load),
-          base::Bind([](MockFunction<bool()>* foo) { return foo->Call(); },
-                     &mock_hal_2_1_verifier),
+          base::BindRepeating([](MockFunction<void()>* foo) { foo->Call(); },
+                              &mock_storage_load),
+          base::BindRepeating(
+              [](MockFunction<bool()>* foo) { return foo->Call(); },
+              &mock_hal_2_1_verifier),
           framework_encode_preference),
       ", LE Audio Client requires Bluetooth Audio HAL V2.1 at least. Either "
       "disable LE Audio Profile, or update your HAL");
@@ -2665,19 +2669,19 @@ TEST_F(UnicastTestNoInit, LoadStoredEarbudsCsisGrouped) {
 
   EXPECT_CALL(mock_storage_load, Call()).WillOnce([&]() {
     do_in_main_thread(
-        FROM_HERE,
-        base::Bind(&LeAudioClient::AddFromStorage, test_address0, autoconnect,
-                   codec_spec_conf::kLeAudioLocationFrontLeft,
-                   codec_spec_conf::kLeAudioLocationFrontLeft, 0xff, 0xff,
-                   std::move(handles), std::move(snk_pacs), std::move(src_pacs),
-                   std::move(ases)));
+        FROM_HERE, base::BindRepeating(
+                       &LeAudioClient::AddFromStorage, test_address0,
+                       autoconnect, codec_spec_conf::kLeAudioLocationFrontLeft,
+                       codec_spec_conf::kLeAudioLocationFrontLeft, 0xff, 0xff,
+                       std::move(handles), std::move(snk_pacs),
+                       std::move(src_pacs), std::move(ases)));
     do_in_main_thread(
-        FROM_HERE,
-        base::Bind(&LeAudioClient::AddFromStorage, test_address1, autoconnect,
-                   codec_spec_conf::kLeAudioLocationFrontRight,
-                   codec_spec_conf::kLeAudioLocationFrontRight, 0xff, 0xff,
-                   std::move(handles), std::move(snk_pacs), std::move(src_pacs),
-                   std::move(ases)));
+        FROM_HERE, base::BindRepeating(
+                       &LeAudioClient::AddFromStorage, test_address1,
+                       autoconnect, codec_spec_conf::kLeAudioLocationFrontRight,
+                       codec_spec_conf::kLeAudioLocationFrontRight, 0xff, 0xff,
+                       std::move(handles), std::move(snk_pacs),
+                       std::move(src_pacs), std::move(ases)));
   });
 
   // Expect stored device0 to connect automatically (first directed connection )
@@ -2713,10 +2717,10 @@ TEST_F(UnicastTestNoInit, LoadStoredEarbudsCsisGrouped) {
                            SaveArg<1>(&app_register_callback)));
   LeAudioClient::Initialize(
       &mock_audio_hal_client_callbacks_,
-      base::Bind([](MockFunction<void()>* foo) { foo->Call(); },
-                 &mock_storage_load),
-      base::Bind([](MockFunction<bool()>* foo) { return foo->Call(); },
-                 &mock_hal_2_1_verifier),
+      base::BindRepeating([](MockFunction<void()>* foo) { foo->Call(); },
+                          &mock_storage_load),
+      base::BindRepeating([](MockFunction<bool()>* foo) { return foo->Call(); },
+                          &mock_hal_2_1_verifier),
       framework_encode_preference);
   if (app_register_callback) app_register_callback.Run(gatt_if, GATT_SUCCESS);
 
@@ -2819,19 +2823,20 @@ TEST_F(UnicastTestNoInit, LoadStoredEarbudsCsisGroupedDifferently) {
   // Load devices from the storage when storage API is called
   EXPECT_CALL(mock_storage_load, Call()).WillOnce([&]() {
     do_in_main_thread(
-        FROM_HERE,
-        base::Bind(&LeAudioClient::AddFromStorage, test_address0, autoconnect0,
-                   codec_spec_conf::kLeAudioLocationFrontLeft,
-                   codec_spec_conf::kLeAudioLocationFrontLeft, 0xff, 0xff,
-                   std::move(handles), std::move(snk_pacs), std::move(src_pacs),
-                   std::move(ases)));
+        FROM_HERE, base::BindRepeating(
+                       &LeAudioClient::AddFromStorage, test_address0,
+                       autoconnect0, codec_spec_conf::kLeAudioLocationFrontLeft,
+                       codec_spec_conf::kLeAudioLocationFrontLeft, 0xff, 0xff,
+                       std::move(handles), std::move(snk_pacs),
+                       std::move(src_pacs), std::move(ases)));
     do_in_main_thread(
         FROM_HERE,
-        base::Bind(&LeAudioClient::AddFromStorage, test_address1, autoconnect1,
-                   codec_spec_conf::kLeAudioLocationFrontRight,
-                   codec_spec_conf::kLeAudioLocationFrontRight, 0xff, 0xff,
-                   std::move(handles), std::move(snk_pacs), std::move(src_pacs),
-                   std::move(ases)));
+        base::BindRepeating(&LeAudioClient::AddFromStorage, test_address1,
+                            autoconnect1,
+                            codec_spec_conf::kLeAudioLocationFrontRight,
+                            codec_spec_conf::kLeAudioLocationFrontRight, 0xff,
+                            0xff, std::move(handles), std::move(snk_pacs),
+                            std::move(src_pacs), std::move(ases)));
   });
 
   // Expect stored device0 to connect automatically
@@ -2863,10 +2868,10 @@ TEST_F(UnicastTestNoInit, LoadStoredEarbudsCsisGroupedDifferently) {
       framework_encode_preference;
   LeAudioClient::Initialize(
       &mock_audio_hal_client_callbacks_,
-      base::Bind([](MockFunction<void()>* foo) { foo->Call(); },
-                 &mock_storage_load),
-      base::Bind([](MockFunction<bool()>* foo) { return foo->Call(); },
-                 &mock_hal_2_1_verifier),
+      base::BindRepeating([](MockFunction<void()>* foo) { foo->Call(); },
+                          &mock_storage_load),
+      base::BindRepeating([](MockFunction<bool()>* foo) { return foo->Call(); },
+                          &mock_hal_2_1_verifier),
       framework_encode_preference);
   if (app_register_callback) app_register_callback.Run(gatt_if, GATT_SUCCESS);
 
@@ -3215,8 +3220,9 @@ TEST_F(UnicastTest, RemoveTwoEarbudsCsisGrouped) {
       .Times(0);
 
   do_in_main_thread(
-      FROM_HERE, base::Bind(&LeAudioClient::GroupDestroy,
-                            base::Unretained(LeAudioClient::Get()), group_id0));
+      FROM_HERE,
+      base::BindRepeating(&LeAudioClient::GroupDestroy,
+                          base::Unretained(LeAudioClient::Get()), group_id0));
 
   SyncOnMainLoop();
   Mock::VerifyAndClearExpectations(&mock_btif_storage_);

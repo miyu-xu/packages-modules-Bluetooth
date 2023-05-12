@@ -108,30 +108,31 @@ class MediaInterface {
  public:
   virtual void SendKeyEvent(uint8_t key, KeyState state) = 0;
 
-  using SongInfoCallback = base::Callback<void(SongInfo)>;
+  using SongInfoCallback = base::RepeatingCallback<void(SongInfo)>;
   virtual void GetSongInfo(SongInfoCallback info_cb) = 0;
 
-  using PlayStatusCallback = base::Callback<void(PlayStatus)>;
+  using PlayStatusCallback = base::RepeatingCallback<void(PlayStatus)>;
   virtual void GetPlayStatus(PlayStatusCallback status_cb) = 0;
 
   // Contains the current queue and the media ID of the currently playing item
   // in the queue
   using NowPlayingCallback =
-      base::Callback<void(std::string, std::vector<SongInfo>)>;
+      base::RepeatingCallback<void(std::string, std::vector<SongInfo>)>;
   virtual void GetNowPlayingList(NowPlayingCallback now_playing_cb) = 0;
 
   // TODO (apanicke): Use a map with the ID as the key instead of vector
   // in follow up cleanup patches. This allows simplification of the
   // MediaPlayerInfo object
-  using MediaListCallback =
-      base::Callback<void(uint16_t curr_player, std::vector<MediaPlayerInfo>)>;
+  using MediaListCallback = base::RepeatingCallback<void(
+      uint16_t curr_player, std::vector<MediaPlayerInfo>)>;
   virtual void GetMediaPlayerList(MediaListCallback list_cb) = 0;
 
-  using FolderItemsCallback = base::Callback<void(std::vector<ListItem>)>;
+  using FolderItemsCallback =
+      base::RepeatingCallback<void(std::vector<ListItem>)>;
   virtual void GetFolderItems(uint16_t player_id, std::string media_id,
                               FolderItemsCallback folder_cb) = 0;
 
-  using SetBrowsedPlayerCallback = base::Callback<void(
+  using SetBrowsedPlayerCallback = base::RepeatingCallback<void(
       bool success, std::string root_id, uint32_t num_items)>;
   virtual void SetBrowsedPlayer(uint16_t player_id,
                                 SetBrowsedPlayerCallback browse_cb) = 0;
@@ -153,7 +154,7 @@ class VolumeInterface {
  public:
   // TODO (apanicke): Investigate the best value type for volume. Right now it
   // is a value from 0-127 because thats what AVRCP uses.
-  using VolumeChangedCb = base::Callback<void(int8_t volume)>;
+  using VolumeChangedCb = base::RepeatingCallback<void(int8_t volume)>;
 
   // Indicate that a device has been connected that does not support absolute
   // volume.
@@ -177,21 +178,22 @@ class VolumeInterface {
 class PlayerSettingsInterface {
  public:
   using ListPlayerSettingsCallback =
-      base::Callback<void(std::vector<PlayerAttribute> attributes)>;
+      base::RepeatingCallback<void(std::vector<PlayerAttribute> attributes)>;
   virtual void ListPlayerSettings(ListPlayerSettingsCallback cb) = 0;
 
-  using ListPlayerSettingValuesCallback = base::Callback<void(
+  using ListPlayerSettingValuesCallback = base::RepeatingCallback<void(
       PlayerAttribute setting, std::vector<uint8_t> values)>;
   virtual void ListPlayerSettingValues(PlayerAttribute setting,
                                        ListPlayerSettingValuesCallback cb) = 0;
 
-  using GetCurrentPlayerSettingValueCallback = base::Callback<void(
+  using GetCurrentPlayerSettingValueCallback = base::RepeatingCallback<void(
       std::vector<PlayerAttribute> attributes, std::vector<uint8_t> values)>;
   virtual void GetCurrentPlayerSettingValue(
       std::vector<PlayerAttribute> attributes,
       GetCurrentPlayerSettingValueCallback cb) = 0;
 
-  using SetPlayerSettingValueCallback = base::Callback<void(bool success)>;
+  using SetPlayerSettingValueCallback =
+      base::RepeatingCallback<void(bool success)>;
   virtual void SetPlayerSettings(std::vector<PlayerAttribute> attributes,
                                  std::vector<uint8_t> values,
                                  SetPlayerSettingValueCallback cb) = 0;

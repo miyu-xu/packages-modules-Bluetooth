@@ -31,7 +31,7 @@ void Queue<T>::RegisterEnqueue(Handler* handler, EnqueueCallback callback) {
   enqueue_.handler_ = handler;
   enqueue_.reactable_ = enqueue_.handler_->thread_->GetReactor()->Register(
       enqueue_.reactive_semaphore_.GetFd(),
-      base::Bind(&Queue<T>::EnqueueCallbackInternal, base::Unretained(this), std::move(callback)),
+      base::BindRepeating(&Queue<T>::EnqueueCallbackInternal, base::Unretained(this), std::move(callback)),
       base::Closure());
 }
 

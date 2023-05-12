@@ -32,9 +32,9 @@
 #define BTM_BLE_MULTI_ADV_FAILURE 1
 #define ADVERTISE_FAILED_TOO_MANY_ADVERTISERS 0x02
 
-using MultiAdvCb = base::Callback<void(uint8_t /* status */)>;
+using MultiAdvCb = base::RepeatingCallback<void(uint8_t /* status */)>;
 using ParametersCb =
-    base::Callback<void(uint8_t /* status */, int8_t /* tx_power */)>;
+    base::RepeatingCallback<void(uint8_t /* status */, int8_t /* tx_power */)>;
 
 // methods we must have defined
 void btm_ble_update_dmt_flag_bits(uint8_t* flag_value,
@@ -102,15 +102,15 @@ class BleAdvertisingManager {
    * enabled.
    */
   virtual void StartAdvertisingSet(
-      base::Callback<void(uint8_t /* inst_id */, int8_t /* tx_power */,
-                          uint8_t /* status */)>
+      base::RepeatingCallback<void(uint8_t /* inst_id */, int8_t /* tx_power */,
+                                   uint8_t /* status */)>
           cb,
       tBTM_BLE_ADV_PARAMS* params, std::vector<uint8_t> advertise_data,
       std::vector<uint8_t> scan_response_data,
       tBLE_PERIODIC_ADV_PARAMS* periodic_params,
       std::vector<uint8_t> periodic_data, uint16_t duration,
       uint8_t maxExtAdvEvents,
-      base::Callback<void(uint8_t /* inst_id */, uint8_t /* status */)>
+      base::RepeatingCallback<void(uint8_t /* inst_id */, uint8_t /* status */)>
           timeout_cb) = 0;
 
   /* Register an advertising instance, status will be returned in |cb|
@@ -118,7 +118,8 @@ class BleAdvertisingManager {
    * advertising is disabled by calling |BTM_BleDisableAdvInstance|, or when any
    * of the operations fails. */
   virtual void RegisterAdvertiser(
-      base::Callback<void(uint8_t /* inst_id */, uint8_t /* status */)>) = 0;
+      base::RepeatingCallback<void(uint8_t /* inst_id */,
+                                   uint8_t /* status */)>) = 0;
 
   /* This function enables/disables an advertising instance. Operation status is
    * returned in |cb| */
@@ -166,8 +167,8 @@ class BleAdvertisingManager {
       uint8_t status, uint8_t advertising_handle, uint16_t connection_handle,
       uint8_t num_completed_extended_adv_events) = 0;
 
-  using GetAddressCallback =
-      base::Callback<void(uint8_t /* address_type*/, RawAddress /*address*/)>;
+  using GetAddressCallback = base::RepeatingCallback<void(
+      uint8_t /* address_type*/, RawAddress /*address*/)>;
   virtual void GetOwnAddress(uint8_t inst_id, GetAddressCallback cb) = 0;
 };
 

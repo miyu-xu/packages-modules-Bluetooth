@@ -166,13 +166,13 @@ void post_on_bt_jni(BtJniClosure closure);
  * thread
  */
 template <typename R, typename... Args>
-base::Callback<R(Args...)> jni_thread_wrapper(const base::Location& from_here,
-                                              base::Callback<R(Args...)> cb) {
-  return base::Bind(
-      [](const base::Location& from_here, base::Callback<R(Args...)> cb,
-         Args... args) {
+base::RepeatingCallback<R(Args...)> jni_thread_wrapper(
+    const base::Location& from_here, base::RepeatingCallback<R(Args...)> cb) {
+  return base::BindRepeating(
+      [](const base::Location& from_here,
+         base::RepeatingCallback<R(Args...)> cb, Args... args) {
         do_in_jni_thread(from_here,
-                         base::Bind(cb, std::forward<Args>(args)...));
+                         base::BindRepeating(cb, std::forward<Args>(args)...));
       },
       from_here, std::move(cb));
 }
