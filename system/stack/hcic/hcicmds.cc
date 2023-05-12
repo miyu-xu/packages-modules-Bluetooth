@@ -1562,8 +1562,10 @@ void btsnd_hcic_read_encryption_key_size(uint16_t handle, ReadEncKeySizeCb cb) {
   uint8_t* p = param;
   UINT16_TO_STREAM(p, handle);
 
-  btu_hcif_send_cmd_with_cb(FROM_HERE, HCI_READ_ENCR_KEY_SIZE, param, len,
-                            base::Bind(&read_encryption_key_size_complete, base::Passed(&cb)));
+  btu_hcif_send_cmd_with_cb(
+      FROM_HERE, HCI_READ_ENCR_KEY_SIZE, param, len,
+      base::BindRepeating(&read_encryption_key_size_complete,
+                          base::Passed(&cb)));
 }
 
 void btsnd_hcic_read_failed_contact_counter(uint16_t handle) {

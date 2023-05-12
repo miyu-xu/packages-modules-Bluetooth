@@ -154,9 +154,10 @@ void BTM_BlePasskeyReply(const RawAddress& bd_addr, uint8_t res,
   inc_func_call_count(__func__);
   test::mock::stack_btm_ble::BTM_BlePasskeyReply(bd_addr, res, passkey);
 }
-void BTM_BleReadPhy(
-    const RawAddress& bd_addr,
-    base::Callback<void(uint8_t tx_phy, uint8_t rx_phy, uint8_t status)> cb) {
+void BTM_BleReadPhy(const RawAddress& bd_addr,
+                    base::RepeatingCallback<void(uint8_t tx_phy, uint8_t rx_phy,
+                                                 uint8_t status)>
+                        cb) {
   inc_func_call_count(__func__);
   test::mock::stack_btm_ble::BTM_BleReadPhy(bd_addr, cb);
 }
@@ -381,9 +382,10 @@ void doNothing(uint8_t* data, uint16_t len) {
   inc_func_call_count(__func__);
   test::mock::stack_btm_ble::doNothing(data, len);
 }
-void read_phy_cb(
-    base::Callback<void(uint8_t tx_phy, uint8_t rx_phy, uint8_t status)> cb,
-    uint8_t* data, uint16_t len) {
+void read_phy_cb(base::RepeatingCallback<void(uint8_t tx_phy, uint8_t rx_phy,
+                                              uint8_t status)>
+                     cb,
+                 uint8_t* data, uint16_t len) {
   inc_func_call_count(__func__);
   test::mock::stack_btm_ble::read_phy_cb(cb, data, len);
 }

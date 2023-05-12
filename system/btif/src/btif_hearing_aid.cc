@@ -38,10 +38,10 @@ using bluetooth::hearing_aid::HearingAidInterface;
 
 // template specialization
 template <>
-base::Callback<void()> jni_thread_wrapper(const base::Location& from_here,
-                                          base::Callback<void()> cb) {
-  return base::Bind(
-      [](const base::Location& from_here, base::Callback<void()> cb) {
+base::RepeatingCallback<void()> jni_thread_wrapper(
+    const base::Location& from_here, base::RepeatingCallback<void()> cb) {
+  return base::BindRepeating(
+      [](const base::Location& from_here, base::RepeatingCallback<void()> cb) {
         do_in_jni_thread(from_here, cb);
       },
       from_here, std::move(cb));

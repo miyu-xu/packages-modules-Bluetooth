@@ -82,7 +82,7 @@ void BTM_SecAddBleKey(const RawAddress& bd_addr, tBTM_LE_KEY_VALUE* p_le_key,
  **/
 void BTM_BleSetScanParams(uint32_t scan_interval, uint32_t scan_window,
                           tBLE_SCAN_MODE scan_type,
-                          base::Callback<void(uint8_t)> cb);
+                          base::RepeatingCallback<void(uint8_t)> cb);
 
 /*******************************************************************************
  *
@@ -129,22 +129,22 @@ void BTM_BleGetDynamicAudioBuffer(
  *
  *
  ******************************************************************************/
-void BTM_BleSetStorageConfig(uint8_t batch_scan_full_max,
-                             uint8_t batch_scan_trunc_max,
-                             uint8_t batch_scan_notify_threshold,
-                             base::Callback<void(uint8_t /* status */)> cb,
-                             tBTM_BLE_SCAN_THRESHOLD_CBACK* p_thres_cback,
-                             tBTM_BLE_REF_VALUE ref_value);
+void BTM_BleSetStorageConfig(
+    uint8_t batch_scan_full_max, uint8_t batch_scan_trunc_max,
+    uint8_t batch_scan_notify_threshold,
+    base::RepeatingCallback<void(uint8_t /* status */)> cb,
+    tBTM_BLE_SCAN_THRESHOLD_CBACK* p_thres_cback, tBTM_BLE_REF_VALUE ref_value);
 
 /* This function is called to enable batch scan */
-void BTM_BleEnableBatchScan(tBTM_BLE_BATCH_SCAN_MODE scan_mode,
-                            uint32_t scan_interval, uint32_t scan_window,
-                            tBTM_BLE_DISCARD_RULE discard_rule,
-                            tBLE_ADDR_TYPE addr_type,
-                            base::Callback<void(uint8_t /* status */)> cb);
+void BTM_BleEnableBatchScan(
+    tBTM_BLE_BATCH_SCAN_MODE scan_mode, uint32_t scan_interval,
+    uint32_t scan_window, tBTM_BLE_DISCARD_RULE discard_rule,
+    tBLE_ADDR_TYPE addr_type,
+    base::RepeatingCallback<void(uint8_t /* status */)> cb);
 
 /* This function is called to disable batch scanning */
-void BTM_BleDisableBatchScan(base::Callback<void(uint8_t /* status */)> cb);
+void BTM_BleDisableBatchScan(
+    base::RepeatingCallback<void(uint8_t /* status */)> cb);
 
 /* This function is called to read batch scan reports */
 void BTM_BleReadScanReports(tBLE_SCAN_MODE scan_mode,
@@ -603,9 +603,10 @@ tBTM_STATUS BTM_SetBleDataLength(const RawAddress& bd_addr,
  * Returns          BTM_SUCCESS if success; otherwise failed.
  *
  ******************************************************************************/
-void BTM_BleReadPhy(
-    const RawAddress& bd_addr,
-    base::Callback<void(uint8_t tx_phy, uint8_t rx_phy, uint8_t status)> cb);
+void BTM_BleReadPhy(const RawAddress& bd_addr,
+                    base::RepeatingCallback<void(uint8_t tx_phy, uint8_t rx_phy,
+                                                 uint8_t status)>
+                        cb);
 
 /*******************************************************************************
  *
@@ -635,15 +636,16 @@ void btm_ble_multi_adv_cleanup(void);
 bool btm_ble_get_acl_remote_addr(uint16_t hci_handle, RawAddress& conn_addr,
                                  tBLE_ADDR_TYPE* p_addr_type);
 
-using StartSyncCb = base::Callback<void(
+using StartSyncCb = base::RepeatingCallback<void(
     uint8_t /*status*/, uint16_t /*sync_handle*/, uint8_t /*advertising_sid*/,
     uint8_t /*address_type*/, RawAddress /*address*/, uint8_t /*phy*/,
     uint16_t /*interval*/)>;
-using SyncReportCb = base::Callback<void(
+using SyncReportCb = base::RepeatingCallback<void(
     uint16_t /*sync_handle*/, int8_t /*tx_power*/, int8_t /*rssi*/,
     uint8_t /*status*/, std::vector<uint8_t> /*data*/)>;
-using SyncLostCb = base::Callback<void(uint16_t /*sync_handle*/)>;
-using BigInfoReportCb = base::Callback<void(uint16_t /*sync_handle*/, bool /*encrypted*/)>;
+using SyncLostCb = base::RepeatingCallback<void(uint16_t /*sync_handle*/)>;
+using BigInfoReportCb =
+    base::RepeatingCallback<void(uint16_t /*sync_handle*/, bool /*encrypted*/)>;
 
 void btm_ble_periodic_adv_sync_established(uint8_t status, uint16_t sync_handle,
                                            uint8_t adv_sid,
@@ -708,7 +710,8 @@ void BTM_BleStopPeriodicSync(uint16_t handle);
  ******************************************************************************/
 void BTM_BleCancelPeriodicSync(uint8_t adv_sid, RawAddress address);
 
-using SyncTransferCb = base::Callback<void(uint8_t /*status*/, RawAddress)>;
+using SyncTransferCb =
+    base::RepeatingCallback<void(uint8_t /*status*/, RawAddress)>;
 
 /*******************************************************************************
  *

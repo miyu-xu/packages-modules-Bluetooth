@@ -1259,11 +1259,13 @@ TEST_F(LeExtendedAdvertisingAPITest, trigger_advertiser_callbacks_if_started_whi
       {},
       0,
       base::BindOnce(
-          [](std::promise<ErrorCode> promise, uint8_t status) { promise.set_value((ErrorCode)status); },
+          [](std::promise<ErrorCode> promise, uint8_t status) {
+            promise.set_value((ErrorCode)status);
+          },
           std::move(status_promise)),
-      base::Bind([](uint8_t _status) {}),
-      base::Bind([](Address _address, AddressType _address_type) {}),
-      base::Bind([](ErrorCode _status, uint8_t _unused_1, uint8_t _unused_2) {}),
+      base::BindRepeating([](uint8_t _status) {}),
+      base::BindRepeating([](Address _address, AddressType _address_type) {}),
+      base::BindRepeating([](ErrorCode _status, uint8_t _unused_1, uint8_t _unused_2) {}),
       client_handler_);
 
   test_hci_layer_->GetCommand();

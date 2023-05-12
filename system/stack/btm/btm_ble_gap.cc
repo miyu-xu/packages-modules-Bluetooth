@@ -183,15 +183,16 @@ AdvertisingCache cache;
 static tBTM_BLE_CTRL_FEATURES_CBACK* p_ctrl_le_feature_rd_cmpl_cback = NULL;
 #endif
 /**********PAST & PS *******************/
-using StartSyncCb = base::Callback<void(
+using StartSyncCb = base::RepeatingCallback<void(
     uint8_t /*status*/, uint16_t /*sync_handle*/, uint8_t /*advertising_sid*/,
     uint8_t /*address_type*/, RawAddress /*address*/, uint8_t /*phy*/,
     uint16_t /*interval*/)>;
-using SyncReportCb = base::Callback<void(
+using SyncReportCb = base::RepeatingCallback<void(
     uint16_t /*sync_handle*/, int8_t /*tx_power*/, int8_t /*rssi*/,
     uint8_t /*status*/, std::vector<uint8_t> /*data*/)>;
-using SyncLostCb = base::Callback<void(uint16_t /*sync_handle*/)>;
-using SyncTransferCb = base::Callback<void(uint8_t /*status*/, RawAddress)>;
+using SyncLostCb = base::RepeatingCallback<void(uint16_t /*sync_handle*/)>;
+using SyncTransferCb =
+    base::RepeatingCallback<void(uint8_t /*status*/, RawAddress)>;
 #define MAX_SYNC_TRANSACTION 16
 #define SYNC_TIMEOUT (30 * 1000)
 #define ADV_SYNC_ESTB_EVT_LEN 16
@@ -858,7 +859,8 @@ bool BTM_BleConfigPrivacy(bool privacy_mode) {
     /* always set host random address, used when privacy 1.1 or priavcy 1.2 is
      * disabled */
     p_cb->addr_mgnt_cb.own_addr_type = BLE_ADDR_RANDOM;
-    btm_gen_resolvable_private_addr(base::Bind(&btm_gen_resolve_paddr_low));
+    btm_gen_resolvable_private_addr(
+        base::BindRepeating(&btm_gen_resolve_paddr_low));
 
     /* 4.2 controller only allow privacy 1.2 or mixed mode, resolvable private
      * address in controller */
@@ -1397,7 +1399,7 @@ void BTM_BlePeriodicSyncTransfer(RawAddress addr, uint16_t service_data,
   if (BleScanningManager::IsInitialized()) {
     BleScanningManager::Get()->PeriodicAdvSyncTransfer(
         addr, service_data, sync_handle,
-        base::Bind(&btm_ble_periodic_syc_transfer_cmd_cmpl));
+        base::BindRepeating(&btm_ble_periodic_syc_transfer_cmd_cmpl));
   }
 }
 
@@ -1436,7 +1438,7 @@ void BTM_BlePeriodicSyncSetInfo(RawAddress addr, uint16_t service_data,
   if (BleScanningManager::IsInitialized()) {
     BleScanningManager::Get()->PeriodicAdvSetInfoTransfer(
         addr, service_data, adv_handle,
-        base::Bind(&btm_ble_periodic_syc_transfer_cmd_cmpl));
+        base::BindRepeating(&btm_ble_periodic_syc_transfer_cmd_cmpl));
   }
 }
 
@@ -1542,7 +1544,7 @@ void BTM_BlePeriodicSyncTxParameters(RawAddress addr, uint8_t mode,
   if (BleScanningManager::IsInitialized()) {
     BleScanningManager::Get()->SetPeriodicAdvSyncTransferParams(
         addr, mode, skip, timeout, cte_type, true,
-        base::Bind(&btm_ble_periodic_syc_transfer_param_cmpl));
+        base::BindRepeating(&btm_ble_periodic_syc_transfer_param_cmpl));
   }
 }
 
@@ -1644,7 +1646,7 @@ static uint8_t btm_set_conn_mode_adv_init_addr(
  **/
 void BTM_BleSetScanParams(uint32_t scan_interval, uint32_t scan_window,
                           tBLE_SCAN_MODE scan_mode,
-                          base::Callback<void(uint8_t)> cb) {
+                          base::RepeatingCallback<void(uint8_t)> cb) {
   if (!controller_get_interface()->supports_ble()) {
     LOG_INFO("Controller does not support ble");
     return;
@@ -2044,9 +2046,9 @@ tBTM_STATUS btm_ble_start_inquiry(uint8_t duration) {
   }
 
   /* Cleanup anything remaining on index 0 */
-  BTM_BleAdvFilterParamSetup(BTM_BLE_SCAN_COND_DELETE,
-                             static_cast<tBTM_BLE_PF_FILT_INDEX>(0), nullptr,
-                             base::Bind(btm_ble_scan_filt_param_cfg_evt));
+  BTM_BleAdvFilterParamSetup(
+      BTM_BLE_SCAN_COND_DELETE, static_cast<tBTM_BLE_PF_FILT_INDEX>(0), nullptr,
+      base::BindRepeating(btm_ble_scan_filt_param_cfg_evt));
 
   auto adv_filt_param = std::make_unique<btgatt_filt_param_setup_t>();
   /* Add an allow-all filter on index 0*/
@@ -2056,8 +2058,10 @@ tBTM_STATUS btm_ble_start_inquiry(uint8_t duration) {
   adv_filt_param->list_logic_type = BTA_DM_BLE_PF_LIST_LOGIC_OR;
   adv_filt_param->rssi_low_thres = LOWEST_RSSI_VALUE;
   adv_filt_param->rssi_high_thres = LOWEST_RSSI_VALUE;
-  BTM_BleAdvFilterParamSetup(BTM_BLE_SCAN_COND_ADD, static_cast<tBTM_BLE_PF_FILT_INDEX>(0),
-                 std::move(adv_filt_param), base::Bind(btm_ble_scan_filt_param_cfg_evt));
+  BTM_BleAdvFilterParamSetup(
+      BTM_BLE_SCAN_COND_ADD, static_cast<tBTM_BLE_PF_FILT_INDEX>(0),
+      std::move(adv_filt_param),
+      base::BindRepeating(btm_ble_scan_filt_param_cfg_evt));
 
   uint16_t scan_interval = osi_property_get_int32(kPropertyInquiryScanInterval,
                                                   BTM_BLE_LOW_LATENCY_SCAN_INT);
@@ -3060,9 +3064,9 @@ void btm_ble_stop_inquiry(void) {
   p_ble_cb->reset_ble_inquiry();
 
   /* Cleanup anything remaining on index 0 */
-  BTM_BleAdvFilterParamSetup(BTM_BLE_SCAN_COND_DELETE,
-                             static_cast<tBTM_BLE_PF_FILT_INDEX>(0), nullptr,
-                             base::Bind(btm_ble_scan_filt_param_cfg_evt));
+  BTM_BleAdvFilterParamSetup(
+      BTM_BLE_SCAN_COND_DELETE, static_cast<tBTM_BLE_PF_FILT_INDEX>(0), nullptr,
+      base::BindRepeating(btm_ble_scan_filt_param_cfg_evt));
 
   /* If no more scan activity, stop LE scan now */
   if (!p_ble_cb->is_ble_scan_active()) {

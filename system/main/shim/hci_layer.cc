@@ -53,7 +53,8 @@ constexpr size_t kBtHdrSize = sizeof(BT_HDR);
 constexpr size_t kCommandLengthSize = sizeof(uint8_t);
 constexpr size_t kCommandOpcodeSize = sizeof(uint16_t);
 
-static base::Callback<void(const base::Location&, BT_HDR*)> send_data_upwards;
+static base::RepeatingCallback<void(const base::Location&, BT_HDR*)>
+    send_data_upwards;
 static const packet_fragmenter_t* packet_fragmenter;
 
 namespace {
@@ -562,7 +563,8 @@ using bluetooth::common::BindOnce;
 using bluetooth::common::Unretained;
 
 static void set_data_cb(
-    base::Callback<void(const base::Location&, BT_HDR*)> send_data_cb) {
+    base::RepeatingCallback<void(const base::Location&, BT_HDR*)>
+        send_data_cb) {
   send_data_upwards = std::move(send_data_cb);
 }
 

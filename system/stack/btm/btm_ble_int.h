@@ -86,7 +86,7 @@ void btm_ble_update_mode_operation(uint8_t link_role, const RawAddress* bda,
                                    tHCI_STATUS status);
 /* BLE address management */
 void btm_gen_resolvable_private_addr(
-    base::Callback<void(const RawAddress& rpa)> cb);
+    base::RepeatingCallback<void(const RawAddress& rpa)> cb);
 
 tBTM_SEC_DEV_REC* btm_ble_resolve_random_addr(const RawAddress& random_bda);
 void btm_gen_resolve_paddr_low(const RawAddress& address);

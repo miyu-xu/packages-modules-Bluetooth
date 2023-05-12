@@ -374,7 +374,7 @@ static void add_service_impl(int server_if,
 
   BTA_GATTS_AddService(
       server_if, service,
-      jni_thread_wrapper(FROM_HERE, base::Bind(&on_service_added_cb)));
+      jni_thread_wrapper(FROM_HERE, base::BindRepeating(&on_service_added_cb)));
 }
 
 static bt_status_t btif_gatts_add_service(int server_if,
@@ -443,7 +443,9 @@ static bt_status_t btif_gatts_set_preferred_phy(const RawAddress& bd_addr,
 
 static bt_status_t btif_gatts_read_phy(
     const RawAddress& bd_addr,
-    base::Callback<void(uint8_t tx_phy, uint8_t rx_phy, uint8_t status)> cb) {
+    base::RepeatingCallback<void(uint8_t tx_phy, uint8_t rx_phy,
+                                 uint8_t status)>
+        cb) {
   CHECK_BTGATT_INIT();
   do_in_main_thread(FROM_HERE, Bind(&BTM_BleReadPhy, bd_addr,
                                     jni_thread_wrapper(FROM_HERE, cb)));

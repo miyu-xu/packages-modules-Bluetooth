@@ -31,8 +31,8 @@ extern tBTM_CB btm_cb;
 
 using base::Bind;
 using base::Callback;
-using hci_cmd_cb = base::Callback<void(uint8_t* /* return_parameters */,
-                                       uint16_t /* return_parameters_length*/)>;
+using hci_cmd_cb = base::RepeatingCallback<void(
+    uint8_t* /* return_parameters */, uint16_t /* return_parameters_length*/)>;
 
 tBTM_BLE_BATCH_SCAN_CB ble_batchscan_cb;
 tBTM_BLE_ADV_TRACK_CB ble_advtrack_cb;
@@ -197,8 +197,8 @@ void param_enable_cb(Callback<void(uint8_t /* status */)> cb, uint8_t* p,
   cb.Run(status);
 }
 
-void disable_cb(base::Callback<void(uint8_t /* status */)> cb, uint8_t* p,
-                uint16_t len) {
+void disable_cb(base::RepeatingCallback<void(uint8_t /* status */)> cb,
+                uint8_t* p, uint16_t len) {
   if (len < 2) {
     BTM_TRACE_ERROR("%s: wrong length", __func__);
     return;
@@ -289,8 +289,9 @@ void read_reports_cb(std::vector<uint8_t> data_all, uint8_t num_records_all,
 
     /* More records could be in the buffer and needs to be pulled out */
     btm_ble_read_batchscan_reports(
-        report_format, base::Bind(&read_reports_cb, std::move(data_all),
-                                  num_records_all, std::move(cb)));
+        report_format,
+        base::BindRepeating(&read_reports_cb, std::move(data_all),
+                            num_records_all, std::move(cb)));
   }
 }
 
@@ -469,7 +470,8 @@ void BTM_BleEnableBatchScan(tBTM_BLE_BATCH_SCAN_MODE scan_mode,
 }
 
 /* This function is called to disable batch scanning */
-void BTM_BleDisableBatchScan(base::Callback<void(uint8_t /* status */)> cb) {
+void BTM_BleDisableBatchScan(
+    base::RepeatingCallback<void(uint8_t /* status */)> cb) {
   BTM_TRACE_EVENT(" BTM_BleDisableBatchScan");
 
   if (!can_do_batch_scan()) {
@@ -513,7 +515,8 @@ void BTM_BleReadScanReports(tBTM_BLE_BATCH_SCAN_MODE scan_mode,
   }
 
   btm_ble_read_batchscan_reports(
-      scan_mode, base::Bind(&read_reports_cb, std::vector<uint8_t>(), 0, cb));
+      scan_mode,
+      base::BindRepeating(&read_reports_cb, std::vector<uint8_t>(), 0, cb));
   return;
 }
 

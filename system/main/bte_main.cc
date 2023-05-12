@@ -67,7 +67,8 @@ void btu_hci_msg_process(BT_HDR* p_msg);
  *****************************************************************************/
 static void post_to_main_message_loop(const base::Location& from_here,
                                       BT_HDR* p_msg) {
-  if (do_in_main_thread(from_here, base::Bind(&btu_hci_msg_process, p_msg)) !=
+  if (do_in_main_thread(from_here,
+                        base::BindRepeating(&btu_hci_msg_process, p_msg)) !=
       BT_STATUS_SUCCESS) {
     LOG(ERROR) << __func__ << ": do_in_main_thread failed from "
                << from_here.ToString();
@@ -81,7 +82,7 @@ void bte_main_init(void) {
     return;
   }
 
-  hci->set_data_cb(base::Bind(&post_to_main_message_loop));
+  hci->set_data_cb(base::BindRepeating(&post_to_main_message_loop));
 }
 
 /******************************************************************************

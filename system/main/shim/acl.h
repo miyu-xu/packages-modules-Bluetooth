@@ -32,7 +32,7 @@
 #include "stack/include/bt_types.h"
 #include "types/raw_address.h"
 
-using LeRandCallback = base::Callback<void(uint64_t)>;
+using LeRandCallback = base::RepeatingCallback<void(uint64_t)>;
 
 namespace bluetooth {
 namespace shim {

@@ -60,12 +60,14 @@ struct btm_gen_resolve_paddr_low {
 };
 extern struct btm_gen_resolve_paddr_low btm_gen_resolve_paddr_low;
 // Name: btm_gen_resolvable_private_addr
-// Params:  base::Callback<void(const RawAddress&)> cb
+// Params:  base::RepeatingCallback<void(const RawAddress&)> cb
 // Returns: void
 struct btm_gen_resolvable_private_addr {
-  std::function<void(base::Callback<void(const RawAddress&)> cb)> body{
-      [](base::Callback<void(const RawAddress&)> cb) {}};
-  void operator()(base::Callback<void(const RawAddress&)> cb) { body(cb); };
+  std::function<void(base::RepeatingCallback<void(const RawAddress&)> cb)> body{
+      [](base::RepeatingCallback<void(const RawAddress&)> cb) {}};
+  void operator()(base::RepeatingCallback<void(const RawAddress&)> cb) {
+    body(cb);
+  };
 };
 extern struct btm_gen_resolvable_private_addr btm_gen_resolvable_private_addr;
 // Name: btm_get_next_private_addrress_interval_ms
