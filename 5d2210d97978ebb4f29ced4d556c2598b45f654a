@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "78092d17_c97053ab",
+        "filename": "system/gd/storage/storage_module_test.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-05-12T20:43:52Z",
+      "side": 1,
+      "message": "maybe\n\nconstexpr size_t kTempDevicesCapacity \u003d 10;\n\nin anon namespace above",
+      "revId": "5d2210d97978ebb4f29ced4d556c2598b45f654a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "632d2185_6f2757c9",
+        "filename": "system/gd/storage/storage_module_test.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 234,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-05-12T20:43:52Z",
+      "side": 1,
+      "message": "Unf. regular ASSERTs should not be used in tests",
+      "revId": "5d2210d97978ebb4f29ced4d556c2598b45f654a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
