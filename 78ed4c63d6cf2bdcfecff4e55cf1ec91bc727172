@@ -16,6 +16,70 @@
       "message": "When are the move and assignment constructors called ? Seems dangerous",
       "revId": "78ed4c63d6cf2bdcfecff4e55cf1ec91bc727172",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "26da0e66_33717334",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-05-12T20:46:20Z",
+      "side": 1,
+      "message": "I put it in the code.  I\u0027d rather just remove the move and assignment constructors, but it would be a bigger refactor.  I want to make sure that no one tries to use the old one, though, since the changes won\u0027t be saved.  I\u0027m calling that out with the crash.",
+      "parentUuid": "1ac29df7_b1e9d9f2",
+      "revId": "78ed4c63d6cf2bdcfecff4e55cf1ec91bc727172",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e291fd25_876c21eb",
+        "filename": "system/gd/storage/storage_module.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-05-12T20:46:20Z",
+      "side": 1,
+      "message": "operator\u003d() is called here.",
+      "range": {
+        "startLine": 166,
+        "startChar": 7,
+        "endLine": 166,
+        "endChar": 15
+      },
+      "revId": "78ed4c63d6cf2bdcfecff4e55cf1ec91bc727172",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ac89d674_cac67159",
+        "filename": "system/gd/storage/storage_module.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-05-12T20:46:20Z",
+      "side": 1,
+      "message": "Move is called here.",
+      "range": {
+        "startLine": 197,
+        "startChar": 48,
+        "endLine": 197,
+        "endChar": 72
+      },
+      "revId": "78ed4c63d6cf2bdcfecff4e55cf1ec91bc727172",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
