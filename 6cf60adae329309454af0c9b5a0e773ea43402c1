@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "364dc988_fe2bc82c",
+        "filename": "android/app/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachine.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 1217,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-05-12T06:02:57Z",
+      "side": 1,
+      "message": "even if this returns false, shouldn\u0027t we still transition to mConnected?\n\nOtherwise, a command like\n\n \"+ANDROID: (SINKAUDIOPOLICY),(CMD2, 1, 2)\"\n \n will fail this connection\n \n or maybe \n \n  \"+ANDROID: (SINKAUDIOPOLICY),(CMD2, 1, 2)\" \n  \n  should return True?\n  \n  Then what about some bad command like\n  \n  +ANDROID: ABSDFAWGEWG ?",
+      "range": {
+        "startLine": 1217,
+        "startChar": 39,
+        "endLine": 1217,
+        "endChar": 63
+      },
+      "revId": "6cf60adae329309454af0c9b5a0e773ea43402c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "366b0b52_9e8506c2",
         "filename": "android/app/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachine.java",
         "patchSetId": 8
