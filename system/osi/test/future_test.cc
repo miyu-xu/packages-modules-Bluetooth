@@ -42,7 +42,8 @@ TEST_F(FutureTest, test_future_non_immediate) {
 
   MessageLoopThread worker_thread("worker_thread");
   worker_thread.StartUp();
-  worker_thread.DoInThread(FROM_HERE, base::Bind(post_to_future, future));
+  worker_thread.DoInThread(FROM_HERE,
+                           base::BindRepeating(post_to_future, future));
 
   EXPECT_EQ(pass_back_data0, future_await(future));
 

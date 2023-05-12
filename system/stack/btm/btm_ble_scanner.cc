@@ -61,12 +61,13 @@ class BleScanningManagerImpl
   }
 
   void PeriodicScanCancelStart() override {
-    GetHciInterface()->PeriodicScanCancelStart(base::Bind(&status_callback));
+    GetHciInterface()->PeriodicScanCancelStart(
+        base::BindRepeating(&status_callback));
   }
 
   void PeriodicScanTerminate(uint16_t sync_handle) override {
-    GetHciInterface()->PeriodicScanTerminate(sync_handle,
-                                             base::Bind(&status_callback));
+    GetHciInterface()->PeriodicScanTerminate(
+        sync_handle, base::BindRepeating(&status_callback));
   }
 
   void PeriodicAdvSyncTransfer(

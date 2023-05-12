@@ -71,10 +71,11 @@ void btm_gen_resolve_paddr_low(const RawAddress& address) {
 
 /** This function generate a resolvable private address using local IRK */
 void btm_gen_resolvable_private_addr(
-    base::Callback<void(const RawAddress&)> cb) {
+    base::RepeatingCallback<void(const RawAddress&)> cb) {
   /* generate 3B rand as BD LSB, SRK with it, get BD MSB */
-  btsnd_hcic_ble_rand(base::Bind(
-      [](base::Callback<void(const RawAddress&)> cb, BT_OCTET8 random) {
+  btsnd_hcic_ble_rand(base::BindRepeating(
+      [](base::RepeatingCallback<void(const RawAddress&)> cb,
+         BT_OCTET8 random) {
         const Octet16& irk = BTM_GetDeviceIDRoot();
         cb.Run(generate_rpa_from_irk_and_rand(irk, random));
       },

@@ -99,7 +99,7 @@ class LeAudioBroadcasterImpl : public LeAudioBroadcaster, public BigCallbacks {
   ~LeAudioBroadcasterImpl() override = default;
 
   void GenerateBroadcastIds(void) {
-    btsnd_hcic_ble_rand(base::Bind([](BT_OCTET8 rand) {
+    btsnd_hcic_ble_rand(base::BindRepeating([](BT_OCTET8 rand) {
       if (!instance) return;
 
       /* LE Rand returns 8 octets. Lets' make 2 outstanding Broadcast Ids out
@@ -631,23 +631,24 @@ class LeAudioBroadcasterImpl : public LeAudioBroadcaster, public BigCallbacks {
     }
   }
 
-  void IsValidBroadcast(
-      uint32_t broadcast_id, uint8_t addr_type, RawAddress addr,
-      base::Callback<void(uint8_t /* broadcast_id */, uint8_t /* addr_type */,
-                          RawAddress /* addr */, bool /* is_local */)>
-          cb) override {
+  void IsValidBroadcast(uint32_t broadcast_id, uint8_t addr_type,
+                        RawAddress addr,
+                        base::RepeatingCallback<void(
+                            uint8_t /* broadcast_id */, uint8_t /* addr_type */,
+                            RawAddress /* addr */, bool /* is_local */)>
+                            cb) override {
     if (broadcasts_.count(broadcast_id) == 0) {
       LOG_ERROR("No such broadcast_id=%d", broadcast_id);
       std::move(cb).Run(broadcast_id, addr_type, addr, false);
       return;
     }
 
-    broadcasts_[broadcast_id]->RequestOwnAddress(base::Bind(
+    broadcasts_[broadcast_id]->RequestOwnAddress(base::BindRepeating(
         [](uint32_t broadcast_id, uint8_t req_address_type,
            RawAddress req_address,
-           base::Callback<void(uint8_t /* broadcast_id */,
-                               uint8_t /* addr_type */, RawAddress /* addr */,
-                               bool /* is_local */)>
+           base::RepeatingCallback<void(
+               uint8_t /* broadcast_id */, uint8_t /* addr_type */,
+               RawAddress /* addr */, bool /* is_local */)>
                cb,
            uint8_t rcv_address_type, RawAddress rcv_address) {
           bool is_local = (req_address_type == rcv_address_type) &&
@@ -1021,7 +1022,7 @@ LeAudioBroadcasterImpl::LeAudioSourceCallbacksImpl
 
 void LeAudioBroadcaster::Initialize(
     bluetooth::le_audio::LeAudioBroadcasterCallbacks* callbacks,
-    base::Callback<bool()> audio_hal_verifier) {
+    base::RepeatingCallback<bool()> audio_hal_verifier) {
   std::scoped_lock<std::mutex> lock(instance_mutex);
   LOG_INFO();
   if (instance) {

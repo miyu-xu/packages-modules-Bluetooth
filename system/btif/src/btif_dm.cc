@@ -3109,8 +3109,8 @@ static void start_advertising_callback(uint8_t id, tBT_TRANSPORT transport,
   }
   LOG_DEBUG("OOB advertiser with id %hhd", id);
   auto advertiser = get_ble_advertiser_instance();
-  advertiser->GetOwnAddress(
-      id, base::Bind(&get_address_callback, transport, is_valid, c, r));
+  advertiser->GetOwnAddress(id, base::BindRepeating(&get_address_callback,
+                                                    transport, is_valid, c, r));
 }
 
 static void timeout_cb(uint8_t id, tBTM_STATUS status) {
@@ -3159,9 +3159,10 @@ static void id_status_callback(tBT_TRANSPORT transport, bool is_valid,
 
   advertiser->StartAdvertising(
       id,
-      base::Bind(&start_advertising_callback, id, transport, is_valid, c, r),
+      base::BindRepeating(&start_advertising_callback, id, transport, is_valid,
+                          c, r),
       parameters, advertisement, scan_data, 120 /* timeout_s */,
-      base::Bind(&timeout_cb, id));
+      base::BindRepeating(&timeout_cb, id));
 }
 
 // Step One: Start the advertiser
@@ -3169,7 +3170,7 @@ static void start_oob_advertiser(tBT_TRANSPORT transport, bool is_valid,
                                  const Octet16& c, const Octet16& r) {
   auto advertiser = get_ble_advertiser_instance();
   advertiser->RegisterAdvertiser(
-      base::Bind(&id_status_callback, transport, is_valid, c, r));
+      base::BindRepeating(&id_status_callback, transport, is_valid, c, r));
 }
 
 void btif_dm_proc_loc_oob(tBT_TRANSPORT transport, bool is_valid,

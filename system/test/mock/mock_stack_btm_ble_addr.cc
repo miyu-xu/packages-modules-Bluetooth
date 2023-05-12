@@ -72,7 +72,7 @@ void btm_gen_resolve_paddr_low(const RawAddress& address) {
   test::mock::stack_btm_ble_addr::btm_gen_resolve_paddr_low(address);
 }
 void btm_gen_resolvable_private_addr(
-    base::Callback<void(const RawAddress&)> cb) {
+    base::RepeatingCallback<void(const RawAddress&)> cb) {
   inc_func_call_count(__func__);
   test::mock::stack_btm_ble_addr::btm_gen_resolvable_private_addr(cb);
 }

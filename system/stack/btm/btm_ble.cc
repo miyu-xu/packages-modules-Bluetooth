@@ -649,9 +649,10 @@ tBTM_STATUS BTM_SetBleDataLength(const RawAddress& bd_addr,
   return BTM_SUCCESS;
 }
 
-void read_phy_cb(
-    base::Callback<void(uint8_t tx_phy, uint8_t rx_phy, uint8_t status)> cb,
-    uint8_t* data, uint16_t len) {
+void read_phy_cb(base::RepeatingCallback<void(uint8_t tx_phy, uint8_t rx_phy,
+                                              uint8_t status)>
+                     cb,
+                 uint8_t* data, uint16_t len) {
   uint8_t status, tx_phy, rx_phy;
   uint16_t handle;
 
@@ -680,9 +681,10 @@ void read_phy_cb(
  *                  BTM_WRONG_MODE if Device in wrong mode for request.
  *
  ******************************************************************************/
-void BTM_BleReadPhy(
-    const RawAddress& bd_addr,
-    base::Callback<void(uint8_t tx_phy, uint8_t rx_phy, uint8_t status)> cb) {
+void BTM_BleReadPhy(const RawAddress& bd_addr,
+                    base::RepeatingCallback<void(uint8_t tx_phy, uint8_t rx_phy,
+                                                 uint8_t status)>
+                        cb) {
   BTM_TRACE_DEBUG("%s", __func__);
 
   if (!BTM_IsAclConnectionUp(bd_addr, BT_TRANSPORT_LE)) {
@@ -708,7 +710,7 @@ void BTM_BleReadPhy(
   uint8_t* pp = data;
   UINT16_TO_STREAM(pp, handle);
   btu_hcif_send_cmd_with_cb(FROM_HERE, HCI_BLE_READ_PHY, data, len,
-                            base::Bind(&read_phy_cb, std::move(cb)));
+                            base::BindRepeating(&read_phy_cb, std::move(cb)));
   return;
 }
 
@@ -753,7 +755,7 @@ void BTM_BleSetPhy(const RawAddress& bd_addr, uint8_t tx_phys, uint8_t rx_phys,
   UINT8_TO_STREAM(pp, rx_phys);
   UINT16_TO_STREAM(pp, phy_options);
   btu_hcif_send_cmd_with_cb(FROM_HERE, HCI_BLE_SET_PHY, data, len,
-                            base::Bind(doNothing));
+                            base::BindRepeating(doNothing));
 }
 
 /*******************************************************************************
@@ -2007,7 +2009,8 @@ static void btm_ble_reset_id_impl(const Octet16& rand1, const Octet16& rand2) {
 
   /* if privacy is enabled, new RPA should be calculated */
   if (btm_cb.ble_ctr_cb.privacy_mode != BTM_PRIVACY_NONE) {
-    btm_gen_resolvable_private_addr(base::Bind(&btm_gen_resolve_paddr_low));
+    btm_gen_resolvable_private_addr(
+        base::BindRepeating(&btm_gen_resolve_paddr_low));
   }
 
   /* proceed generate ER */
@@ -2032,16 +2035,16 @@ void btm_ble_reset_id(void) {
   /* In order to reset identity, we need four random numbers. Make four nested
    * calls to generate them first, then proceed to perform the actual reset in
    * btm_ble_reset_id_impl. */
-  btsnd_hcic_ble_rand(base::Bind([](BT_OCTET8 rand) {
+  btsnd_hcic_ble_rand(base::BindRepeating([](BT_OCTET8 rand) {
     reset_id_data tmp;
     memcpy(tmp.rand1.data(), rand, BT_OCTET8_LEN);
-    btsnd_hcic_ble_rand(base::Bind(
+    btsnd_hcic_ble_rand(base::BindRepeating(
         [](reset_id_data tmp, BT_OCTET8 rand) {
           memcpy(tmp.rand1.data() + 8, rand, BT_OCTET8_LEN);
-          btsnd_hcic_ble_rand(base::Bind(
+          btsnd_hcic_ble_rand(base::BindRepeating(
               [](reset_id_data tmp, BT_OCTET8 rand) {
                 memcpy(tmp.rand2.data(), rand, BT_OCTET8_LEN);
-                btsnd_hcic_ble_rand(base::Bind(
+                btsnd_hcic_ble_rand(base::BindRepeating(
                     [](reset_id_data tmp, BT_OCTET8 rand) {
                       memcpy(tmp.rand2.data() + 8, rand, BT_OCTET8_LEN);
                       // when all random numbers are ready, do the actual reset.

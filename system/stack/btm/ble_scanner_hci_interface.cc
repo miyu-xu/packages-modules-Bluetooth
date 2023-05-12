@@ -29,8 +29,8 @@
 namespace {
 BleScannerHciInterface* instance = nullptr;
 
-static void status_callback(base::Callback<void(uint8_t)> cb, uint8_t* data,
-                            uint16_t len) {
+static void status_callback(base::RepeatingCallback<void(uint8_t)> cb,
+                            uint8_t* data, uint16_t len) {
   uint8_t status;
 
   LOG_ASSERT(len == 1) << "Received bad response length: " << len;
@@ -40,8 +40,9 @@ static void status_callback(base::Callback<void(uint8_t)> cb, uint8_t* data,
   cb.Run(status);
 }
 
-static void status_handle_callback(base::Callback<void(uint8_t, uint16_t)> cb,
-                                   uint8_t* data, uint16_t len) {
+static void status_handle_callback(
+    base::RepeatingCallback<void(uint8_t, uint16_t)> cb, uint8_t* data,
+    uint16_t len) {
   uint8_t status;
   uint16_t handle = HCI_INVALID_HANDLE;
 
@@ -91,14 +92,15 @@ class BleScannerImplBase : public BleScannerHciInterface {
   void PeriodicScanCancelStart(status_cb command_complete) override {
     VLOG(1) << __func__;
     btsnd_hcic_ble_periodic_advertising_create_sync_cancel(
-        base::Bind(&status_callback, std::move(command_complete)));
+        base::BindRepeating(&status_callback, std::move(command_complete)));
   }
 
   void PeriodicScanTerminate(uint16_t sync_handle,
                              status_cb command_complete) override {
     VLOG(1) << __func__;
     btsnd_hcic_ble_periodic_advertising_terminate_sync(
-        sync_handle, base::Bind(&status_callback, std::move(command_complete)));
+        sync_handle,
+        base::BindRepeating(&status_callback, std::move(command_complete)));
   }
 
   void PeriodicScanResultEvtEnable(uint16_t sync_handle, bool enable,
@@ -106,7 +108,7 @@ class BleScannerImplBase : public BleScannerHciInterface {
     VLOG(1) << __func__;
     btsnd_hcic_ble_set_periodic_advertising_receive_enable(
         sync_handle, enable,
-        base::Bind(&status_callback, std::move(command_complete)));
+        base::BindRepeating(&status_callback, std::move(command_complete)));
   }
 
   void PeriodicAdvertiserListGetSize(
@@ -122,7 +124,7 @@ class BleScannerImplBase : public BleScannerHciInterface {
     VLOG(1) << __func__;
     btsnd_hci_ble_add_device_to_periodic_advertiser_list(
         adv_addr_type, adv_addr, set_id,
-        base::Bind(&status_callback, std::move(command_complete)));
+        base::BindRepeating(&status_callback, std::move(command_complete)));
   }
 
   void PeriodicAdvertiserListRemoveDevice(uint8_t adv_addr_type,
@@ -131,13 +133,13 @@ class BleScannerImplBase : public BleScannerHciInterface {
     VLOG(1) << __func__;
     btsnd_hci_ble_remove_device_from_periodic_advertiser_list(
         adv_addr_type, adv_addr, set_id,
-        base::Bind(&status_callback, std::move(command_complete)));
+        base::BindRepeating(&status_callback, std::move(command_complete)));
   }
 
   void PeriodicAdvertiserListClear(status_cb command_complete) override {
     VLOG(1) << __func__;
     btsnd_hci_ble_clear_periodic_advertiser_list(
-        base::Bind(&status_callback, std::move(command_complete)));
+        base::BindRepeating(&status_callback, std::move(command_complete)));
   };
 
   void PeriodicAdvSyncTransfer(
@@ -154,7 +156,8 @@ class BleScannerImplBase : public BleScannerHciInterface {
 
     btsnd_hcic_ble_periodic_advertising_sync_transfer(
         acl_handle, service_data, sync_handle,
-        base::Bind(&status_handle_callback, std::move(command_complete)));
+        base::BindRepeating(&status_handle_callback,
+                            std::move(command_complete)));
   }
 
   void PeriodicAdvSetInfoTransfer(const RawAddress& bd_addr,
@@ -171,7 +174,8 @@ class BleScannerImplBase : public BleScannerHciInterface {
 
     btsnd_hcic_ble_periodic_advertising_set_info_transfer(
         acl_handle, service_data, adv_handle,
-        base::Bind(&status_handle_callback, std::move(command_complete)));
+        base::BindRepeating(&status_handle_callback,
+                            std::move(command_complete)));
   }
 
   void SetPeriodicAdvSyncTransferParams(const RawAddress& bd_addr, uint8_t mode,
@@ -190,11 +194,11 @@ class BleScannerImplBase : public BleScannerHciInterface {
     if (set_defaults)
       btsnd_hcic_ble_set_default_periodic_advertising_sync_transfer_params(
           acl_handle, mode, skip, sync_timeout, cte_type,
-          base::Bind(&status_callback, std::move(command_complete)));
+          base::BindRepeating(&status_callback, std::move(command_complete)));
     else
       btsnd_hcic_ble_set_periodic_advertising_sync_transfer_params(
           acl_handle, mode, skip, sync_timeout, cte_type,
-          base::Bind(&status_callback, std::move(command_complete)));
+          base::BindRepeating(&status_callback, std::move(command_complete)));
   }
 
   void OnPeriodicAdvSyncEstablished(uint8_t status, uint16_t sync_handle,
@@ -237,7 +241,7 @@ class BleScannerListImpl : public virtual BleScannerImplBase {
     VLOG(1) << __func__;
     btsnd_hci_ble_add_device_to_periodic_advertiser_list(
         adv_addr_type, adv_addr, set_id,
-        base::Bind(&status_callback, std::move(command_complete)));
+        base::BindRepeating(&status_callback, std::move(command_complete)));
   }
 
   void PeriodicAdvertiserListRemoveDevice(uint8_t adv_addr_type,
@@ -246,13 +250,13 @@ class BleScannerListImpl : public virtual BleScannerImplBase {
     VLOG(1) << __func__;
     btsnd_hci_ble_remove_device_from_periodic_advertiser_list(
         adv_addr_type, adv_addr, set_id,
-        base::Bind(&status_callback, std::move(command_complete)));
+        base::BindRepeating(&status_callback, std::move(command_complete)));
   }
 
   void PeriodicAdvertiserListClear(status_cb command_complete) override {
     VLOG(1) << __func__;
     btsnd_hci_ble_clear_periodic_advertiser_list(
-        base::Bind(&status_callback, std::move(command_complete)));
+        base::BindRepeating(&status_callback, std::move(command_complete)));
   };
 };
 
@@ -270,7 +274,8 @@ class BleScannerSyncTransferImpl : public virtual BleScannerImplBase {
 
     btsnd_hcic_ble_periodic_advertising_sync_transfer(
         acl_handle, service_data, sync_handle,
-        base::Bind(&status_handle_callback, std::move(command_complete)));
+        base::BindRepeating(&status_handle_callback,
+                            std::move(command_complete)));
   }
 
   void PeriodicAdvSetInfoTransfer(const RawAddress& bd_addr,
@@ -286,7 +291,8 @@ class BleScannerSyncTransferImpl : public virtual BleScannerImplBase {
 
     btsnd_hcic_ble_periodic_advertising_set_info_transfer(
         acl_handle, service_data, adv_handle,
-        base::Bind(&status_handle_callback, std::move(command_complete)));
+        base::BindRepeating(&status_handle_callback,
+                            std::move(command_complete)));
   }
 
   void SetPeriodicAdvSyncTransferParams(const RawAddress& bd_addr, uint8_t mode,
@@ -304,11 +310,11 @@ class BleScannerSyncTransferImpl : public virtual BleScannerImplBase {
     if (set_defaults)
       btsnd_hcic_ble_set_default_periodic_advertising_sync_transfer_params(
           acl_handle, mode, skip, sync_timeout, cte_type,
-          base::Bind(&status_callback, std::move(command_complete)));
+          base::BindRepeating(&status_callback, std::move(command_complete)));
     else
       btsnd_hcic_ble_set_periodic_advertising_sync_transfer_params(
           acl_handle, mode, skip, sync_timeout, cte_type,
-          base::Bind(&status_callback, std::move(command_complete)));
+          base::BindRepeating(&status_callback, std::move(command_complete)));
   }
 };
 

@@ -54,7 +54,8 @@ bt_status_t do_in_main_thread_delayed(const base::Location& from_here,
 
 void post_on_bt_main(BtMainClosure closure) {
   ASSERT(do_in_main_thread(
-             FROM_HERE, base::Bind(do_post_on_bt_main, std::move(closure))) ==
+             FROM_HERE,
+             base::BindRepeating(do_post_on_bt_main, std::move(closure))) ==
          BT_STATUS_SUCCESS);
 }
 

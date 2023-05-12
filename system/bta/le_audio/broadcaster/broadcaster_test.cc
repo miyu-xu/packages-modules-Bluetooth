@@ -60,9 +60,9 @@ extern "C" const char* __asan_default_options() {
   return "detect_container_overflow=0";
 }
 
-static base::Callback<void(BT_OCTET8)> generator_cb;
+static base::RepeatingCallback<void(BT_OCTET8)> generator_cb;
 
-void btsnd_hcic_ble_rand(base::Callback<void(BT_OCTET8)> cb) {
+void btsnd_hcic_ble_rand(base::RepeatingCallback<void(BT_OCTET8)> cb) {
   generator_cb = cb;
 }
 
@@ -219,8 +219,9 @@ class BroadcasterTest : public Test {
     });
 
     ASSERT_FALSE(LeAudioBroadcaster::IsLeAudioBroadcasterRunning());
-    LeAudioBroadcaster::Initialize(&mock_broadcaster_callbacks_,
-                                   base::Bind([]() -> bool { return true; }));
+    LeAudioBroadcaster::Initialize(
+        &mock_broadcaster_callbacks_,
+        base::BindRepeating([]() -> bool { return true; }));
 
     ContentControlIdKeeper::GetInstance()->Start();
     ContentControlIdKeeper::GetInstance()->SetCcid(LeAudioContextType::MEDIA,

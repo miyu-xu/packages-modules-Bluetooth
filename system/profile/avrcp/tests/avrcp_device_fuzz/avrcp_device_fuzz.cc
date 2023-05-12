@@ -12,20 +12,21 @@ namespace avrcp {
 class FakeMediaInterface : public MediaInterface {
  public:
   virtual void SendKeyEvent(uint8_t key, KeyState state) {}
-  using SongInfoCallback = base::Callback<void(SongInfo)>;
+  using SongInfoCallback = base::RepeatingCallback<void(SongInfo)>;
   virtual void GetSongInfo(SongInfoCallback info_cb) {}
-  using PlayStatusCallback = base::Callback<void(PlayStatus)>;
+  using PlayStatusCallback = base::RepeatingCallback<void(PlayStatus)>;
   virtual void GetPlayStatus(PlayStatusCallback status_cb) {}
   using NowPlayingCallback =
-      base::Callback<void(std::string, std::vector<SongInfo>)>;
+      base::RepeatingCallback<void(std::string, std::vector<SongInfo>)>;
   virtual void GetNowPlayingList(NowPlayingCallback now_playing_cb) {}
-  using MediaListCallback =
-      base::Callback<void(uint16_t curr_player, std::vector<MediaPlayerInfo>)>;
+  using MediaListCallback = base::RepeatingCallback<void(
+      uint16_t curr_player, std::vector<MediaPlayerInfo>)>;
   virtual void GetMediaPlayerList(MediaListCallback list_cb) {}
-  using FolderItemsCallback = base::Callback<void(std::vector<ListItem>)>;
+  using FolderItemsCallback =
+      base::RepeatingCallback<void(std::vector<ListItem>)>;
   virtual void GetFolderItems(uint16_t player_id, std::string media_id,
                               FolderItemsCallback folder_cb) {}
-  using SetBrowsedPlayerCallback = base::Callback<void(
+  using SetBrowsedPlayerCallback = base::RepeatingCallback<void(
       bool success, std::string root_id, uint32_t num_items)>;
   virtual void SetBrowsedPlayer(uint16_t player_id,
                                 SetBrowsedPlayerCallback browse_cb) {}
@@ -89,10 +90,11 @@ extern "C" int LLVMFuzzerTestOneInput(const uint8_t* Data, size_t Size) {
   FakePlayerSettingsInterface fpsi;
 
   std::vector<uint8_t> Packet(Data, Data + Size);
-  Device device(RawAddress::kAny, true,
-                base::Bind([](uint8_t, bool,
-                              std::unique_ptr<::bluetooth::PacketBuilder>) {}),
-                0xFFFF, 0xFFFF);
+  Device device(
+      RawAddress::kAny, true,
+      base::BindRepeating(
+          [](uint8_t, bool, std::unique_ptr<::bluetooth::PacketBuilder>) {}),
+      0xFFFF, 0xFFFF);
   device.RegisterInterfaces(&fmi, &fai, &fvi, &fpsi);
 
   auto browse_request = TestPacketType<BrowsePacket>::Make(Packet);

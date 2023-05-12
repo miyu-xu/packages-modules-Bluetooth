@@ -61,7 +61,7 @@ bool RepeatingTimer::SchedulePeriodic(
   expected_time_next_task_us_ = time_next_task_us;
   task_ = std::move(task);
   task_wrapper_.Reset(
-      base::Bind(&RepeatingTimer::RunTask, base::Unretained(this)));
+      base::BindRepeating(&RepeatingTimer::RunTask, base::Unretained(this)));
   message_loop_thread_ = thread;
   period_ = period;
   uint64_t time_until_next_us = time_next_task_us - time_get_os_boottime_us();

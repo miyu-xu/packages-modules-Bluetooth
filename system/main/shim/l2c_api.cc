@@ -163,8 +163,9 @@ struct ClassicDynamicChannelHelper {
     channel_enqueue_buffer_.erase(cid_token);
     channels_[cid_token]->GetQueueUpEnd()->UnregisterDequeue();
     channels_.erase(cid_token);
-    do_in_main_thread(FROM_HERE, base::Bind(appl_info_.pL2CA_DisconnectInd_Cb,
-                                            cid_token, false));
+    do_in_main_thread(FROM_HERE,
+                      base::BindRepeating(appl_info_.pL2CA_DisconnectInd_Cb,
+                                          cid_token, false));
 
     remove_classic_cid_token_entry(cid_token);
     initiated_by_us_.erase(cid_token);
@@ -193,24 +194,28 @@ struct ClassicDynamicChannelHelper {
 
     if (initiator_local) {
       do_in_main_thread(
-          FROM_HERE, base::Bind(appl_info_.pL2CA_ConnectCfm_Cb, cid_token, 0));
+          FROM_HERE,
+          base::BindRepeating(appl_info_.pL2CA_ConnectCfm_Cb, cid_token, 0));
 
       tL2CAP_CFG_INFO cfg_info{};
-      do_in_main_thread(FROM_HERE, base::Bind(appl_info_.pL2CA_ConfigCfm_Cb,
-                                              cid_token, L2CAP_INITIATOR_LOCAL,
-                                              base::Unretained(&cfg_info)));
+      do_in_main_thread(FROM_HERE,
+                        base::BindRepeating(appl_info_.pL2CA_ConfigCfm_Cb,
+                                            cid_token, L2CAP_INITIATOR_LOCAL,
+                                            base::Unretained(&cfg_info)));
     } else {
       if (appl_info_.pL2CA_ConnectInd_Cb == nullptr) {
         Disconnect(cid_token);
         return;
       }
-      do_in_main_thread(FROM_HERE, base::Bind(appl_info_.pL2CA_ConnectInd_Cb,
-                                              address, cid_token, psm_, 0));
+      do_in_main_thread(FROM_HERE,
+                        base::BindRepeating(appl_info_.pL2CA_ConnectInd_Cb,
+                                            address, cid_token, psm_, 0));
 
       tL2CAP_CFG_INFO cfg_info{};
-      do_in_main_thread(FROM_HERE, base::Bind(appl_info_.pL2CA_ConfigCfm_Cb,
-                                              cid_token, L2CAP_INITIATOR_LOCAL,
-                                              base::Unretained(&cfg_info)));
+      do_in_main_thread(FROM_HERE,
+                        base::BindRepeating(appl_info_.pL2CA_ConfigCfm_Cb,
+                                            cid_token, L2CAP_INITIATOR_LOCAL,
+                                            base::Unretained(&cfg_info)));
     }
 
     channel->GetQueueUpEnd()->RegisterDequeue(
@@ -234,9 +239,9 @@ struct ClassicDynamicChannelHelper {
         static_cast<BT_HDR*>(osi_calloc(packet_vector.size() + sizeof(BT_HDR)));
     std::copy(packet_vector.begin(), packet_vector.end(), buffer->data);
     buffer->len = packet_vector.size();
-    if (do_in_main_thread(FROM_HERE,
-                          base::Bind(appl_info_.pL2CA_DataInd_Cb, cid_token,
-                                     base::Unretained(buffer))) !=
+    if (do_in_main_thread(FROM_HERE, base::BindRepeating(
+                                         appl_info_.pL2CA_DataInd_Cb, cid_token,
+                                         base::Unretained(buffer))) !=
         BT_STATUS_SUCCESS) {
       osi_free(buffer);
     }
@@ -1296,8 +1301,8 @@ struct LeDynamicChannelHelper {
         psm_, config_, policy_,
         base::BindOnce(&LeDynamicChannelHelper::on_registration_complete,
                        base::Unretained(this), std::move(promise)),
-        base::Bind(&LeDynamicChannelHelper::on_channel_open,
-                   base::Unretained(this), 0),
+        base::BindRepeating(&LeDynamicChannelHelper::on_channel_open,
+                            base::Unretained(this), 0),
         GetGdShimHandler());
     future.wait_for(std::chrono::milliseconds(300));
   }
@@ -1325,8 +1330,8 @@ struct LeDynamicChannelHelper {
     initiated_by_us_[cid_token] = true;
     GetL2capLeModule()->GetDynamicChannelManager()->ConnectChannel(
         device, config_, psm_,
-        base::Bind(&LeDynamicChannelHelper::on_channel_open,
-                   base::Unretained(this), cid_token),
+        base::BindRepeating(&LeDynamicChannelHelper::on_channel_open,
+                            base::Unretained(this), cid_token),
         base::BindOnce(&LeDynamicChannelHelper::on_outgoing_connection_fail,
                        base::Unretained(this)),
         GetGdShimHandler());
@@ -1365,8 +1370,9 @@ struct LeDynamicChannelHelper {
     channel_enqueue_buffer_.erase(cid_token);
     channels_[cid_token]->GetQueueUpEnd()->UnregisterDequeue();
     channels_.erase(cid_token);
-    do_in_main_thread(FROM_HERE, base::Bind(appl_info_.pL2CA_DisconnectInd_Cb,
-                                            cid_token, false));
+    do_in_main_thread(FROM_HERE,
+                      base::BindRepeating(appl_info_.pL2CA_DisconnectInd_Cb,
+                                          cid_token, false));
 
     remove_le_cid_token_entry(cid_token);
     initiated_by_us_.erase(cid_token);
@@ -1403,15 +1409,17 @@ struct LeDynamicChannelHelper {
 
     if (initiator_local) {
       do_in_main_thread(
-          FROM_HERE, base::Bind(appl_info_.pL2CA_ConnectCfm_Cb, cid_token, 0));
+          FROM_HERE,
+          base::BindRepeating(appl_info_.pL2CA_ConnectCfm_Cb, cid_token, 0));
 
     } else {
       if (appl_info_.pL2CA_ConnectInd_Cb == nullptr) {
         Disconnect(cid_token);
         return;
       }
-      do_in_main_thread(FROM_HERE, base::Bind(appl_info_.pL2CA_ConnectInd_Cb,
-                                              address, cid_token, psm_, 0));
+      do_in_main_thread(FROM_HERE,
+                        base::BindRepeating(appl_info_.pL2CA_ConnectInd_Cb,
+                                            address, cid_token, psm_, 0));
     }
   }
 
@@ -1427,9 +1435,9 @@ struct LeDynamicChannelHelper {
         static_cast<BT_HDR*>(osi_calloc(packet_vector.size() + sizeof(BT_HDR)));
     std::copy(packet_vector.begin(), packet_vector.end(), buffer->data);
     buffer->len = packet_vector.size();
-    if (do_in_main_thread(FROM_HERE,
-                          base::Bind(appl_info_.pL2CA_DataInd_Cb, cid_token,
-                                     base::Unretained(buffer))) !=
+    if (do_in_main_thread(FROM_HERE, base::BindRepeating(
+                                         appl_info_.pL2CA_DataInd_Cb, cid_token,
+                                         base::Unretained(buffer))) !=
         BT_STATUS_SUCCESS) {
       osi_free(buffer);
     }

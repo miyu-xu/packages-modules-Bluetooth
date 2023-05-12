@@ -182,9 +182,10 @@ typedef struct {
   bt_status_t (*set_preferred_phy)(const RawAddress& bd_addr, uint8_t tx_phy,
                                    uint8_t rx_phy, uint16_t phy_options);
 
-  bt_status_t (*read_phy)(
-      const RawAddress& bd_addr,
-      base::Callback<void(uint8_t tx_phy, uint8_t rx_phy, uint8_t status)> cb);
+  bt_status_t (*read_phy)(const RawAddress& bd_addr,
+                          base::RepeatingCallback<void(
+                              uint8_t tx_phy, uint8_t rx_phy, uint8_t status)>
+                              cb);
 
 } btgatt_server_interface_t;
 

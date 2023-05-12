@@ -177,13 +177,13 @@ static void start_up_stack_async(bluetooth::core::CoreInterface* interface,
                                  ProfileStartCallback startProfiles,
                                  ProfileStopCallback stopProfiles) {
   management_thread.DoInThread(
-      FROM_HERE,
-      base::Bind(event_start_up_stack, interface, startProfiles, stopProfiles));
+      FROM_HERE, base::BindRepeating(event_start_up_stack, interface,
+                                     startProfiles, stopProfiles));
 }
 
 static void shut_down_stack_async(ProfileStopCallback stopProfiles) {
-  management_thread.DoInThread(FROM_HERE,
-                               base::Bind(event_shut_down_stack, stopProfiles));
+  management_thread.DoInThread(
+      FROM_HERE, base::BindRepeating(event_shut_down_stack, stopProfiles));
 }
 
 static void clean_up_stack(ProfileStopCallback stopProfiles) {
@@ -352,7 +352,8 @@ static void event_start_up_stack(bluetooth::core::CoreInterface* interface,
 
   stack_is_running = true;
   LOG_INFO("%s finished", __func__);
-  do_in_jni_thread(FROM_HERE, base::Bind(event_signal_stack_up, nullptr));
+  do_in_jni_thread(FROM_HERE,
+                   base::BindRepeating(event_signal_stack_up, nullptr));
 }
 
 // Synchronous function to shut down the stack
@@ -369,14 +370,14 @@ static void event_shut_down_stack(ProfileStopCallback stopProfiles) {
 
   module_shut_down(get_local_module(RUST_MODULE));
 
-  do_in_main_thread(FROM_HERE, base::Bind(&btm_ble_multi_adv_cleanup));
+  do_in_main_thread(FROM_HERE, base::BindRepeating(&btm_ble_multi_adv_cleanup));
 
-  do_in_main_thread(FROM_HERE, base::Bind(&btm_ble_scanner_cleanup));
+  do_in_main_thread(FROM_HERE, base::BindRepeating(&btm_ble_scanner_cleanup));
 
   btif_dm_on_disable();
   stopProfiles();
 
-  do_in_main_thread(FROM_HERE, base::Bind(bta_dm_disable));
+  do_in_main_thread(FROM_HERE, base::BindRepeating(bta_dm_disable));
 
   future_await(local_hack_future);
   local_hack_future = future_new();
@@ -401,7 +402,8 @@ static void event_shut_down_stack(ProfileStopCallback stopProfiles) {
   get_btm_client_interface().lifecycle.btm_free();
 
   hack_future = future_new();
-  do_in_jni_thread(FROM_HERE, base::Bind(event_signal_stack_down, nullptr));
+  do_in_jni_thread(FROM_HERE,
+                   base::BindRepeating(event_signal_stack_down, nullptr));
   future_await(hack_future);
   LOG_INFO("%s finished", __func__);
 }
