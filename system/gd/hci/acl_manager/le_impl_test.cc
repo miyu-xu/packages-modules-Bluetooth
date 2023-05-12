@@ -1495,6 +1495,91 @@ TEST_F(LeImplTest, on_create_connection_timeout) {
   ASSERT_TRUE(le_impl_->create_connection_timeout_alarms_.empty());
 }
 
+// TODO: Come up with better name
+TEST_F(LeImplTest, connection_canceled_then_requested) {
+  set_random_device_address_policy();
+  controller_->AddSupported(OpCode::LE_EXTENDED_CREATE_CONNECTION);
+
+  // Create Connection
+  ASSERT_NO_FATAL_FAILURE(hci_layer_->SetCommandFuture());
+  le_impl_->create_le_connection(
+      {remote_public_address_with_type_.GetAddress(),
+       remote_public_address_with_type_.GetAddressType()},
+      true,
+      false);
+  hci_layer_->GetCommand(OpCode::LE_ADD_DEVICE_TO_FILTER_ACCEPT_LIST);
+  ASSERT_NO_FATAL_FAILURE(hci_layer_->SetCommandFuture());
+  hci_layer_->CommandCompleteCallback(
+      LeAddDeviceToFilterAcceptListCompleteBuilder::Create(0x01, ErrorCode::SUCCESS));
+  hci_layer_->GetCommand(OpCode::LE_EXTENDED_CREATE_CONNECTION);
+  hci_layer_->CommandStatusCallback(
+      LeExtendedCreateConnectionStatusBuilder::Create(ErrorCode::SUCCESS, 0x01));
+  sync_handler();
+
+  ASSERT_EQ(ConnectabilityState::ARMED, le_impl_->connectability_state_);
+
+  // Connection timeout
+  EXPECT_CALL(
+      mock_le_connection_callbacks_, OnLeConnectFail(_, ErrorCode::CONNECTION_ACCEPT_TIMEOUT))
+      .Times(1);
+  le_impl_->create_connection_timeout_alarms_.emplace(
+      std::piecewise_construct,
+      std::forward_as_tuple(
+          remote_public_address_with_type_.GetAddress(),
+          remote_public_address_with_type_.GetAddressType()),
+      std::forward_as_tuple(handler_));
+
+  le_impl_->on_create_connection_timeout(remote_public_address_with_type_);
+
+  sync_handler();
+
+  // Connection complete event occurs
+  hci_layer_->IncomingLeMetaEvent(LeEnhancedConnectionCompleteBuilder::Create(
+      ErrorCode::SUCCESS,
+      0x0041,
+      Role::CENTRAL,
+      AddressType::PUBLIC_DEVICE_ADDRESS,
+      remote_public_address_with_type_.GetAddress(),
+      Address::kEmpty,
+      Address::kEmpty,
+      0x0024,
+      0x0000,
+      0x0011,
+      ClockAccuracy::PPM_30));
+
+  sync_handler();
+
+  le_impl_->create_le_connection(
+      {remote_public_address_with_type_.GetAddress(),
+       remote_public_address_with_type_.GetAddressType()},
+      true,
+      false);
+
+  // sync_handler();
+
+  hci_layer_->CommandCompleteCallback(
+      LeCreateConnectionCancelCompleteBuilder::Create(0x01, ErrorCode::COMMAND_DISALLOWED));
+
+  sync_handler();
+
+  // TODO: Need remove device from filter accept list complete
+  le_impl_->le_address_manager_->OnCommandComplete(
+      ReturnCommandComplete(OpCode::LE_REMOVE_DEVICE_FROM_FILTER_ACCEPT_LIST, ErrorCode::SUCCESS));
+
+  // sync_handler();
+
+  // le_impl_->create_le_connection({remote_public_address_with_type_.GetAddress(),
+  // remote_public_address_with_type_.GetAddressType()}, true, false);
+
+  // Simulate Disconnect ACL after connection canceled by acl.cc
+  le_impl_->on_le_disconnect(0x0041, ErrorCode::CONNECTION_TERMINATED_BY_LOCAL_HOST);
+
+  // ASSERT_TRUE(le_impl_->create_connection_timeout_alarms_.empty());
+
+  EXPECT_CALL(
+      mock_le_connection_callbacks_, OnLeConnectSuccess(remote_public_address_with_type_, _));
+}
+
 // b/260917913
 TEST_F(LeImplTest, DISABLED_on_common_le_connection_complete__NoPriorConnection) {
   auto log_capture = std::make_unique<LogCapture>();
