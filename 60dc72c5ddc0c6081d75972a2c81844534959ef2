@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c5a16d86_b03b04ec",
+        "filename": "system/gd/storage/storage_module.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 271,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-05-12T21:19:10Z",
+      "side": 1,
+      "message": "I think that brings up the fundamental problem with this module.\n\n`Storage` isn\u0027t at all storage, but a thin wrapper around the bt configuration settings and run time data accumulated (other devices)\n\nI don\u0027t like `Storage` nor do I like `Config`",
+      "parentUuid": "f70b5569_5206806e",
+      "revId": "60dc72c5ddc0c6081d75972a2c81844534959ef2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6bbf5467_30b29ee8",
         "filename": "system/gd/storage/storage_module.h",
         "patchSetId": 2
@@ -67,6 +85,24 @@
       "side": 1,
       "message": "That\u0027s the way it was with GetConfigCache().  The problem I had was that if I give away a pointer to the data, my locks are pretty useless.\n\n\"Storage\" -\u003e ConfigFile :)",
       "parentUuid": "6bbf5467_30b29ee8",
+      "revId": "60dc72c5ddc0c6081d75972a2c81844534959ef2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0673e231_0a90769b",
+        "filename": "system/gd/storage/storage_module.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-05-12T21:19:10Z",
+      "side": 1,
+      "message": "Exactly !  I\u0027ve seen this pattern before in the code where we lock, say things are good, then give up the lock/resource, and think all is well.\n\nThe stack lifecycle is a good example of this.\n\nMy proposal still uses the locks as you intended, just a narrower namespace that maintains the lockability.",
+      "parentUuid": "616caed5_8409edb4",
       "revId": "60dc72c5ddc0c6081d75972a2c81844534959ef2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
