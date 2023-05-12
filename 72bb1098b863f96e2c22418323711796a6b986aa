@@ -22,6 +22,30 @@
       },
       "revId": "72bb1098b863f96e2c22418323711796a6b986aa",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a3729565_ca9afd58",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2023-05-12T20:09:36Z",
+      "side": 1,
+      "message": "Done, and added test. Imports removed from test file are from auto formatting.",
+      "parentUuid": "b44b6907_80a66ed3",
+      "range": {
+        "startLine": 147,
+        "startChar": 4,
+        "endLine": 147,
+        "endChar": 10
+      },
+      "revId": "72bb1098b863f96e2c22418323711796a6b986aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
