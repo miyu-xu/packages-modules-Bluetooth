@@ -16,6 +16,23 @@
       "message": "friendly ping for owners approval",
       "revId": "6c8fb61b8b2685a278877444ffdea5e26447447b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c2a28e6f_04bd23ae",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1359214
+      },
+      "writtenOn": "2023-05-12T00:19:11Z",
+      "side": 1,
+      "message": "PTAL",
+      "revId": "6c8fb61b8b2685a278877444ffdea5e26447447b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
