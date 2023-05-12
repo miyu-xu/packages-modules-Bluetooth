@@ -37,6 +37,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d7a16480_60114728",
+        "filename": "system/gd/hci/acl_manager.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 277,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-05-12T21:27:32Z",
+      "side": 1,
+      "message": "I wasn\u0027t sure where.  Originally, this was going to move to GD security...",
+      "parentUuid": "02c996b2_a965eadd",
+      "revId": "7d143b7ada0b3f268ad075547a0c77ef9fb816ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c092bf92_f18c68df",
         "filename": "system/gd/security/internal/security_manager_impl.cc",
         "patchSetId": 2
@@ -48,6 +66,24 @@
       "writtenOn": "2023-05-12T21:05:36Z",
       "side": 1,
       "message": "The previous behavior API is structured like a db...with locking is it possible for the db to get corrupt by another thread ?\n\ne.g.\nirk_prop is valid, but immediately after this key/value pair changes by another thread `\"Adapter\", \"LE_LOCAL_KEY_IRK\"` and suddenly the data is invalid.\n\nLooks like it write/reads again, although with lock dropping",
+      "revId": "7d143b7ada0b3f268ad075547a0c77ef9fb816ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "58579b05_831eddab",
+        "filename": "system/gd/security/internal/security_manager_impl.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-05-12T21:27:32Z",
+      "side": 1,
+      "message": "It does drop the lock between 87 \u0026 88 for example.  I could just use the \"new_irk\" value and put it in a std::optional.\n\nI didn\u0027t do that because the code would be uglier, and if the IRK is changed anywhere else this will be problematic.  In the future, I\u0027d like to just abort if there\u0027s no IRK in this module.",
+      "parentUuid": "c092bf92_f18c68df",
       "revId": "7d143b7ada0b3f268ad075547a0c77ef9fb816ca",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
