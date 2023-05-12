@@ -72,7 +72,7 @@ typedef struct {
   int32_t aa_feed_counter;
   int32_t aa_feed_residue;
   float counter;
-  uint32_t bytes_per_tick; /* pcm bytes read each media task tick */
+  float bytes_per_tick; /* pcm bytes read each media task tick */
   uint64_t last_frame_us;
 } tA2DP_SBC_FEEDING_STATE;
 
@@ -353,9 +353,9 @@ void a2dp_sbc_feeding_reset(void) {
        a2dp_sbc_encoder_cb.feeding_params.bits_per_sample / 8 *
        a2dp_sbc_encoder_cb.feeding_params.channel_count *
        A2DP_SBC_ENCODER_INTERVAL_MS) /
-      1000;
+      1000.0f;
 
-  LOG_INFO("%s: PCM bytes per tick %u", __func__,
+  LOG_INFO("%s: PCM bytes per tick %f", __func__,
            a2dp_sbc_encoder_cb.feeding_state.bytes_per_tick);
 }
 
