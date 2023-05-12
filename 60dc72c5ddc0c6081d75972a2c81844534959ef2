@@ -56,6 +56,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "cb9f81b1_7acf7045",
+        "filename": "system/gd/storage/storage_module.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 271,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-05-12T22:44:36Z",
+      "side": 1,
+      "message": "I\u0027m having a hard time coming up with a good name, since it contains information about the local adapter and about paired devices, but not interoperability information, GATT cache, etc.",
+      "parentUuid": "c5a16d86_b03b04ec",
+      "revId": "60dc72c5ddc0c6081d75972a2c81844534959ef2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6bbf5467_30b29ee8",
         "filename": "system/gd/storage/storage_module.h",
         "patchSetId": 2
@@ -103,6 +121,24 @@
       "side": 1,
       "message": "Exactly !  I\u0027ve seen this pattern before in the code where we lock, say things are good, then give up the lock/resource, and think all is well.\n\nThe stack lifecycle is a good example of this.\n\nMy proposal still uses the locks as you intended, just a narrower namespace that maintains the lockability.",
       "parentUuid": "616caed5_8409edb4",
+      "revId": "60dc72c5ddc0c6081d75972a2c81844534959ef2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "36b7939a_2b0e3a9a",
+        "filename": "system/gd/storage/storage_module.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-05-12T22:44:36Z",
+      "side": 1,
+      "message": "I\u0027ll try it in a CL on top and see what you think.",
+      "parentUuid": "0673e231_0a90769b",
       "revId": "60dc72c5ddc0c6081d75972a2c81844534959ef2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
