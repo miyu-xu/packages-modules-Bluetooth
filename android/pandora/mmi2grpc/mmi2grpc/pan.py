@@ -20,6 +20,10 @@ from mmi2grpc._proxy import ProfileProxy
 
 from pandora.host_grpc import Host
 from pandora_experimental.pan_grpc import PAN
+from pandora_experimental._android_grpc import Android
+
+# IP address of PTS
+TSPX_PTS_IP_ADDRESS = "192.168.168.100"
 
 
 class PANProxy(ProfileProxy):
@@ -28,6 +32,9 @@ class PANProxy(ProfileProxy):
         super().__init__(channel)
         self.host = Host(channel)
         self.pan = PAN(channel)
+        self._android = Android(channel)
+
+        self.counter = 0
 
     def TSC_BNEP_mmi_iut_accept_transport(self, pts_addr: bytes, **kwargs):
         """
@@ -223,6 +230,36 @@ class PANProxy(ProfileProxy):
     def TSC_PAN_mmi_confirm_linklocal_ip_address_selected(self, **kwargs):
         """
         Click OK if the IUT has selected a LINKLOCAL IP address:
+        """
+
+        return "OK"
+
+    @assert_description
+    def TSC_PAN_mmi_iut_icmp_echo_request(self, **kwargs):
+        """
+        Take action to send ICMP echo request
+        """
+
+        # Not sending ping again for repetitive mmi call
+        if self.counter == 0:
+            self.counter += 1
+            ping_status = self._android.SendPing(ip_address=TSPX_PTS_IP_ADDRESS).ping_status
+            assert ping_status == 0
+
+        return "OK"
+
+    @assert_description
+    def TSC_PAN_mmi_iut_receive_icmp_echo_reply(self, **kwargs):
+        """
+         Has the IUT received the ICMP echo reply from PTS?
+        """
+
+        return "OK"
+
+    @assert_description
+    def TSC_PAN_mmi_iut_send_dns_request(self, **kwargs):
+        """
+        Take action to send DNS request
         """
 
         return "OK"
