@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "da82239d_f7fa23d5",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/avrcpcontroller/AvrcpControllerStateMachineTest.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 1841,
+      "author": {
+        "id": 1985170
+      },
+      "writtenOn": "2023-05-12T16:50:44Z",
+      "side": 1,
+      "message": "I think the test does validate native call is invoked.",
+      "revId": "d75f6c07d38335885ae2e79610efccb1a6ba97fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
