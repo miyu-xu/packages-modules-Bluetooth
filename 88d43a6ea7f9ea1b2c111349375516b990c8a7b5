@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1f2fdab1_f2d1ea33",
+        "filename": "system/gd/storage/storage_module.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 204,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-05-12T19:57:37Z",
+      "side": 1,
+      "message": "Maybe add a comment\ne.g.\n```\n// Need to create and initialize a new config file on the filesystem so it should be saved here.\n```",
+      "revId": "88d43a6ea7f9ea1b2c111349375516b990c8a7b5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b339918d_841c30ee",
+        "filename": "system/gd/storage/storage_module.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 214,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-05-12T19:57:37Z",
+      "side": 1,
+      "message": "```\n// There is an outstanding pending config save task queued so execute it here prior to stopping module\n```",
+      "revId": "88d43a6ea7f9ea1b2c111349375516b990c8a7b5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
