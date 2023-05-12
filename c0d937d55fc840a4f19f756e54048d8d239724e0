@@ -22,6 +22,30 @@
       },
       "revId": "c0d937d55fc840a4f19f756e54048d8d239724e0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a54642e0_6eb4a4cd",
+        "filename": "system/stack/l2cap/l2c_ble.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1427,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-05-12T17:50:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1c7e690d_b1adaec6",
+      "range": {
+        "startLine": 1427,
+        "startChar": 4,
+        "endLine": 1427,
+        "endChar": 37
+      },
+      "revId": "c0d937d55fc840a4f19f756e54048d8d239724e0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
