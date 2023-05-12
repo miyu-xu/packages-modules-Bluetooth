@@ -21,10 +21,10 @@
 namespace bluetooth {
 namespace common {
 
-using base::Callback;
 using base::Closure;
 using base::OnceCallback;
 using base::OnceClosure;
+using base::RepeatingCallback;
 
 }  // namespace common
 }  // namespace bluetooth

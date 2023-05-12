@@ -58,7 +58,7 @@ class FixedChannelManager {
   /**
    * OnConnectionOpenCallback(FixedChannel channel);
    */
-  using OnConnectionOpenCallback = common::Callback<void(std::unique_ptr<FixedChannel>)>;
+  using OnConnectionOpenCallback = common::RepeatingCallback<void(std::unique_ptr<FixedChannel>)>;
 
   enum class RegistrationResult {
     SUCCESS = 0,

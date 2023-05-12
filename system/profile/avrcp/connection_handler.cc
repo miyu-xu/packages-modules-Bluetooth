@@ -138,7 +138,8 @@ bool ConnectionHandler::ConnectDevice(const RawAddress& bdaddr) {
     return;
   };
 
-  return SdpLookup(bdaddr, base::Bind(connection_lambda, this, bdaddr), false);
+  return SdpLookup(bdaddr, base::BindRepeating(connection_lambda, this, bdaddr),
+                   false);
 }
 
 bool ConnectionHandler::DisconnectDevice(const RawAddress& bdaddr) {
@@ -189,11 +190,11 @@ bool ConnectionHandler::SdpLookup(const RawAddress& bdaddr, SdpCallback cb,
   db_params.p_db = disc_db;
   db_params.p_attrs = attr_list;
 
-  return avrc_->FindService(UUID_SERVCLASS_AV_REMOTE_CONTROL, bdaddr,
-                            &db_params,
-                            base::Bind(&ConnectionHandler::SdpCb,
-                                       weak_ptr_factory_.GetWeakPtr(), bdaddr,
-                                       cb, disc_db, retry)) == AVRC_SUCCESS;
+  return avrc_->FindService(
+             UUID_SERVCLASS_AV_REMOTE_CONTROL, bdaddr, &db_params,
+             base::BindRepeating(&ConnectionHandler::SdpCb,
+                                 weak_ptr_factory_.GetWeakPtr(), bdaddr, cb,
+                                 disc_db, retry)) == AVRC_SUCCESS;
 }
 
 bool ConnectionHandler::AvrcpConnect(bool initiator, const RawAddress& bdaddr) {
@@ -201,14 +202,14 @@ bool ConnectionHandler::AvrcpConnect(bool initiator, const RawAddress& bdaddr) {
 
   tAVRC_CONN_CB open_cb;
   if (initiator) {
-    open_cb.ctrl_cback = base::Bind(&ConnectionHandler::InitiatorControlCb,
-                                    weak_ptr_factory_.GetWeakPtr());
+    open_cb.ctrl_cback = base::BindRepeating(
+        &ConnectionHandler::InitiatorControlCb, weak_ptr_factory_.GetWeakPtr());
   } else {
-    open_cb.ctrl_cback = base::Bind(&ConnectionHandler::AcceptorControlCb,
-                                    weak_ptr_factory_.GetWeakPtr());
+    open_cb.ctrl_cback = base::BindRepeating(
+        &ConnectionHandler::AcceptorControlCb, weak_ptr_factory_.GetWeakPtr());
   }
-  open_cb.msg_cback =
-      base::Bind(&ConnectionHandler::MessageCb, weak_ptr_factory_.GetWeakPtr());
+  open_cb.msg_cback = base::BindRepeating(&ConnectionHandler::MessageCb,
+                                          weak_ptr_factory_.GetWeakPtr());
   open_cb.company_id = AVRC_CO_GOOGLE;
   open_cb.conn = initiator ? AVRC_CONN_INT
                            : AVRC_CONN_ACP;  // 0 if initiator, 1 if acceptor
@@ -254,8 +255,8 @@ void ConnectionHandler::InitiatorControlCb(uint8_t handle, uint8_t event,
       // devices SDP is completed after the device connects AVRCP so that
       // information isn't very useful when trying to control our
       // capabilities. For now always use AVRCP 1.6.
-      auto&& callback = base::Bind(&ConnectionHandler::SendMessage,
-                                   base::Unretained(this), handle);
+      auto&& callback = base::BindRepeating(&ConnectionHandler::SendMessage,
+                                            base::Unretained(this), handle);
       auto&& ctrl_mtu = avrc_->GetPeerMtu(handle) - AVCT_HDR_LEN;
       auto&& browse_mtu = avrc_->GetBrowseMtu(handle) - AVCT_HDR_LEN;
       std::shared_ptr<Device> newDevice = std::make_shared<Device>(
@@ -325,8 +326,9 @@ void ConnectionHandler::AcceptorControlCb(uint8_t handle, uint8_t event,
     case AVRC_OPEN_IND_EVT: {
       LOG(INFO) << __PRETTY_FUNCTION__ << ": Connection Opened Event";
 
-      auto&& callback = base::Bind(&ConnectionHandler::SendMessage,
-                                   weak_ptr_factory_.GetWeakPtr(), handle);
+      auto&& callback =
+          base::BindRepeating(&ConnectionHandler::SendMessage,
+                              weak_ptr_factory_.GetWeakPtr(), handle);
       auto&& ctrl_mtu = avrc_->GetPeerMtu(handle) - AVCT_HDR_LEN;
       auto&& browse_mtu = avrc_->GetBrowseMtu(handle) - AVCT_HDR_LEN;
       std::shared_ptr<Device> newDevice = std::make_shared<Device>(
@@ -360,7 +362,8 @@ void ConnectionHandler::AcceptorControlCb(uint8_t handle, uint8_t event,
         }
       };
 
-      SdpLookup(*peer_addr, base::Bind(sdp_lambda, this, handle), false);
+      SdpLookup(*peer_addr, base::BindRepeating(sdp_lambda, this, handle),
+                false);
 
       avrc_->OpenBrowse(handle, AVCT_ACP);
       AvrcpConnect(false, RawAddress::kAny);

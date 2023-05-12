@@ -726,7 +726,8 @@ static int le_rand() {
   if (!interface_ready()) return BT_STATUS_NOT_READY;
 
   do_in_main_thread(
-      FROM_HERE, base::BindOnce(btif_dm_le_rand, base::Bind(&le_rand_btif_cb)));
+      FROM_HERE,
+      base::BindOnce(btif_dm_le_rand, base::BindRepeating(&le_rand_btif_cb)));
   return BT_STATUS_SUCCESS;
 }
 
@@ -973,16 +974,18 @@ static bt_os_callouts_t* wakelock_os_callouts_saved = nullptr;
 
 static int acquire_wake_lock_cb(const char* lock_name) {
   return do_in_jni_thread(
-      FROM_HERE, base::Bind(base::IgnoreResult(
-                                wakelock_os_callouts_saved->acquire_wake_lock),
-                            lock_name));
+      FROM_HERE,
+      base::BindRepeating(
+          base::IgnoreResult(wakelock_os_callouts_saved->acquire_wake_lock),
+          lock_name));
 }
 
 static int release_wake_lock_cb(const char* lock_name) {
   return do_in_jni_thread(
-      FROM_HERE, base::Bind(base::IgnoreResult(
-                                wakelock_os_callouts_saved->release_wake_lock),
-                            lock_name));
+      FROM_HERE,
+      base::BindRepeating(
+          base::IgnoreResult(wakelock_os_callouts_saved->release_wake_lock),
+          lock_name));
 }
 
 static bt_os_callouts_t wakelock_os_callouts_jni = {

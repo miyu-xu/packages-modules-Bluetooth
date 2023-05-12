@@ -120,7 +120,7 @@ class LeAudioClientInterfaceImpl : public LeAudioClientInterface,
         FROM_HERE, Bind(&LeAudioClient::Initialize, this,
                         jni_thread_wrapper(
                             FROM_HERE, Bind(&btif_storage_load_bonded_leaudio)),
-                        base::Bind([]() -> bool {
+                        base::BindRepeating([]() -> bool {
                           return LeAudioHalVerifier::SupportsLeAudio();
                         }),
                         offloading_preference));

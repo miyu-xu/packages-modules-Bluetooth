@@ -27,8 +27,8 @@ namespace common {
 template <typename TENQUEUE, typename TDEQUEUE>
 class BidiQueueEnd : public ::bluetooth::os::IQueueEnqueue<TENQUEUE>, public ::bluetooth::os::IQueueDequeue<TDEQUEUE> {
  public:
-  using EnqueueCallback = Callback<std::unique_ptr<TENQUEUE>()>;
-  using DequeueCallback = Callback<void()>;
+  using EnqueueCallback = RepeatingCallback<std::unique_ptr<TENQUEUE>()>;
+  using DequeueCallback = RepeatingCallback<void()>;
 
   BidiQueueEnd(::bluetooth::os::IQueueEnqueue<TENQUEUE>* tx, ::bluetooth::os::IQueueDequeue<TDEQUEUE>* rx)
       : tx_(tx), rx_(rx) {}

@@ -291,7 +291,7 @@ static void BTM_LE_PF_local_name(tBTM_BLE_SCAN_COND_OP action,
   /* send local name filter */
   btu_hcif_send_cmd_with_cb(
       FROM_HERE, HCI_BLE_ADV_FILTER, param, len,
-      base::Bind(&btm_flt_update_cb, BTM_BLE_META_PF_LOCAL_NAME, cb));
+      base::BindRepeating(&btm_flt_update_cb, BTM_BLE_META_PF_LOCAL_NAME, cb));
 
   memset(&btm_ble_adv_filt_cb.cur_filter_target, 0, sizeof(tBLE_BD_ADDR));
 }
@@ -355,7 +355,7 @@ static void BTM_LE_PF_manu_data(tBTM_BLE_SCAN_COND_OP action,
 
   btu_hcif_send_cmd_with_cb(
       FROM_HERE, HCI_BLE_ADV_FILTER, param, len,
-      base::Bind(&btm_flt_update_cb, BTM_BLE_META_PF_MANU_DATA, cb));
+      base::BindRepeating(&btm_flt_update_cb, BTM_BLE_META_PF_MANU_DATA, cb));
 
   memset(&btm_ble_adv_filt_cb.cur_filter_target, 0, sizeof(tBLE_BD_ADDR));
 }
@@ -393,7 +393,7 @@ static void BTM_LE_PF_srvc_data_pattern(tBTM_BLE_SCAN_COND_OP action,
 
   btu_hcif_send_cmd_with_cb(
       FROM_HERE, HCI_BLE_ADV_FILTER, param, len,
-      base::Bind(&btm_flt_update_cb, BTM_BLE_META_PF_SRVC_DATA, cb));
+      base::BindRepeating(&btm_flt_update_cb, BTM_BLE_META_PF_SRVC_DATA, cb));
 
   memset(&btm_ble_adv_filt_cb.cur_filter_target, 0, sizeof(tBLE_BD_ADDR));
 }
@@ -538,7 +538,7 @@ static void BTM_LE_PF_addr_filter(tBTM_BLE_SCAN_COND_OP action,
   /* send address filter */
   btu_hcif_send_cmd_with_cb(
       FROM_HERE, HCI_BLE_ADV_FILTER, param, len,
-      base::Bind(&btm_flt_update_cb, BTM_BLE_META_PF_ADDR, cb));
+      base::BindRepeating(&btm_flt_update_cb, BTM_BLE_META_PF_ADDR, cb));
 
   memset(&btm_ble_adv_filt_cb.cur_filter_target, 0, sizeof(tBLE_BD_ADDR));
 }
@@ -608,8 +608,9 @@ static void BTM_LE_PF_uuid_filter(tBTM_BLE_SCAN_COND_OP action,
   }
 
   /* send UUID filter update */
-  btu_hcif_send_cmd_with_cb(FROM_HERE, HCI_BLE_ADV_FILTER, param, len,
-                            base::Bind(&btm_flt_update_cb, evt_type, cb));
+  btu_hcif_send_cmd_with_cb(
+      FROM_HERE, HCI_BLE_ADV_FILTER, param, len,
+      base::BindRepeating(&btm_flt_update_cb, evt_type, cb));
   memset(&btm_ble_adv_filt_cb.cur_filter_target, 0, sizeof(tBLE_BD_ADDR));
 }
 
@@ -798,7 +799,7 @@ void BTM_LE_PF_clear(tBTM_BLE_PF_FILT_INDEX filt_index,
 
   btu_hcif_send_cmd_with_cb(
       FROM_HERE, HCI_BLE_ADV_FILTER, param, len,
-      base::Bind(&btm_flt_update_cb, BTM_BLE_META_PF_FEAT_SEL, cb));
+      base::BindRepeating(&btm_flt_update_cb, BTM_BLE_META_PF_FEAT_SEL, cb));
 
   memset(&btm_ble_adv_filt_cb.cur_filter_target, 0, sizeof(tBLE_BD_ADDR));
 }
@@ -883,7 +884,7 @@ void BTM_BleAdvFilterParamSetup(
 
     btu_hcif_send_cmd_with_cb(
         FROM_HERE, HCI_BLE_ADV_FILTER, param, len,
-        base::Bind(&btm_flt_update_cb, BTM_BLE_META_PF_FEAT_SEL, cb));
+        base::BindRepeating(&btm_flt_update_cb, BTM_BLE_META_PF_FEAT_SEL, cb));
   } else if (BTM_BLE_SCAN_COND_DELETE == action) {
     /* select feature based on control block settings */
     UINT8_TO_STREAM(p, BTM_BLE_META_PF_FEAT_SEL);
@@ -894,7 +895,7 @@ void BTM_BleAdvFilterParamSetup(
     btu_hcif_send_cmd_with_cb(
         FROM_HERE, HCI_BLE_ADV_FILTER, param,
         (uint8_t)(BTM_BLE_ADV_FILT_META_HDR_LENGTH),
-        base::Bind(&btm_flt_update_cb, BTM_BLE_META_PF_FEAT_SEL, cb));
+        base::BindRepeating(&btm_flt_update_cb, BTM_BLE_META_PF_FEAT_SEL, cb));
 
     auto entry = remove_me_later_map.find(filt_index);
     if (entry != remove_me_later_map.end()) {
@@ -925,7 +926,7 @@ void BTM_BleAdvFilterParamSetup(
     btu_hcif_send_cmd_with_cb(
         FROM_HERE, HCI_BLE_ADV_FILTER, param,
         (uint8_t)(BTM_BLE_ADV_FILT_META_HDR_LENGTH - 1),
-        base::Bind(&btm_flt_update_cb, BTM_BLE_META_PF_FEAT_SEL, cb));
+        base::BindRepeating(&btm_flt_update_cb, BTM_BLE_META_PF_FEAT_SEL, cb));
   }
 }
 
@@ -977,9 +978,9 @@ void BTM_BleEnableDisableFilterFeature(uint8_t enable,
   UINT8_TO_STREAM(p, BTM_BLE_META_PF_ENABLE);
   UINT8_TO_STREAM(p, enable);
 
-  btu_hcif_send_cmd_with_cb(FROM_HERE, HCI_BLE_ADV_FILTER, param,
-                            BTM_BLE_PCF_ENABLE_LEN,
-                            base::Bind(&enable_cmpl_cback, p_stat_cback));
+  btu_hcif_send_cmd_with_cb(
+      FROM_HERE, HCI_BLE_ADV_FILTER, param, BTM_BLE_PCF_ENABLE_LEN,
+      base::BindRepeating(&enable_cmpl_cback, p_stat_cback));
 }
 
 /*******************************************************************************

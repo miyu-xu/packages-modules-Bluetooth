@@ -42,12 +42,12 @@ namespace avrcp {
 #define VOL_NOT_SUPPORTED -1
 #define VOL_REGISTRATION_FAILED -2
 
-Device::Device(
-    const RawAddress& bdaddr, bool avrcp13_compatibility,
-    base::Callback<void(uint8_t label, bool browse,
+Device::Device(const RawAddress& bdaddr, bool avrcp13_compatibility,
+               base::RepeatingCallback<
+                   void(uint8_t label, bool browse,
                         std::unique_ptr<::bluetooth::PacketBuilder> message)>
-        send_msg_cb,
-    uint16_t ctrl_mtu, uint16_t browse_mtu)
+                   send_msg_cb,
+               uint16_t ctrl_mtu, uint16_t browse_mtu)
     : weak_ptr_factory_(this),
       address_(bdaddr),
       avrcp13_compatibility_(avrcp13_compatibility),
@@ -181,14 +181,15 @@ void Device::VendorPacketHandler(uint8_t label,
         send_message(label, false, std::move(response));
         return;
       }
-      media_interface_->GetSongInfo(base::Bind(&Device::GetElementAttributesResponse, weak_ptr_factory_.GetWeakPtr(),
-                                               label, get_element_attributes_request_pkt));
+      media_interface_->GetSongInfo(base::BindRepeating(
+          &Device::GetElementAttributesResponse, weak_ptr_factory_.GetWeakPtr(),
+          label, get_element_attributes_request_pkt));
     } break;
 
     case CommandPdu::GET_PLAY_STATUS: {
-      media_interface_->GetPlayStatus(base::Bind(&Device::GetPlayStatusResponse,
-                                                 weak_ptr_factory_.GetWeakPtr(),
-                                                 label));
+      media_interface_->GetPlayStatus(
+          base::BindRepeating(&Device::GetPlayStatusResponse,
+                              weak_ptr_factory_.GetWeakPtr(), label));
     } break;
 
     case CommandPdu::PLAY_ITEM: {
@@ -209,8 +210,9 @@ void Device::VendorPacketHandler(uint8_t label,
         return;
       }
 
-      media_interface_->GetMediaPlayerList(base::Bind(&Device::HandleSetAddressedPlayer, weak_ptr_factory_.GetWeakPtr(),
-                                                      label, set_addressed_player_request));
+      media_interface_->GetMediaPlayerList(base::BindRepeating(
+          &Device::HandleSetAddressedPlayer, weak_ptr_factory_.GetWeakPtr(),
+          label, set_addressed_player_request));
     } break;
 
     case CommandPdu::LIST_PLAYER_APPLICATION_SETTING_ATTRIBUTES: {
@@ -223,9 +225,9 @@ void Device::VendorPacketHandler(uint8_t label,
         return;
       }
 
-      player_settings_interface_->ListPlayerSettings(
-          base::Bind(&Device::ListPlayerApplicationSettingAttributesResponse,
-                     weak_ptr_factory_.GetWeakPtr(), label));
+      player_settings_interface_->ListPlayerSettings(base::BindRepeating(
+          &Device::ListPlayerApplicationSettingAttributesResponse,
+          weak_ptr_factory_.GetWeakPtr(), label));
     } break;
 
     case CommandPdu::LIST_PLAYER_APPLICATION_SETTING_VALUES: {
@@ -261,9 +263,9 @@ void Device::VendorPacketHandler(uint8_t label,
       }
 
       player_settings_interface_->ListPlayerSettingValues(
-          attribute,
-          base::Bind(&Device::ListPlayerApplicationSettingValuesResponse,
-                     weak_ptr_factory_.GetWeakPtr(), label));
+          attribute, base::BindRepeating(
+                         &Device::ListPlayerApplicationSettingValuesResponse,
+                         weak_ptr_factory_.GetWeakPtr(), label));
     } break;
 
     case CommandPdu::GET_CURRENT_PLAYER_APPLICATION_SETTING_VALUE: {
@@ -303,8 +305,8 @@ void Device::VendorPacketHandler(uint8_t label,
 
       player_settings_interface_->GetCurrentPlayerSettingValue(
           attributes,
-          base::Bind(&Device::GetPlayerApplicationSettingValueResponse,
-                     weak_ptr_factory_.GetWeakPtr(), label));
+          base::BindRepeating(&Device::GetPlayerApplicationSettingValueResponse,
+                              weak_ptr_factory_.GetWeakPtr(), label));
     } break;
 
     case CommandPdu::SET_PLAYER_APPLICATION_SETTING_VALUE: {
@@ -372,9 +374,9 @@ void Device::VendorPacketHandler(uint8_t label,
 
       player_settings_interface_->SetPlayerSettings(
           attributes, values,
-          base::Bind(&Device::SetPlayerApplicationSettingValueResponse,
-                     weak_ptr_factory_.GetWeakPtr(), label,
-                     pkt->GetCommandPdu()));
+          base::BindRepeating(&Device::SetPlayerApplicationSettingValueResponse,
+                              weak_ptr_factory_.GetWeakPtr(), label,
+                              pkt->GetCommandPdu()));
     } break;
 
     default: {
@@ -451,21 +453,21 @@ void Device::HandleNotification(
   switch (pkt->GetEventRegistered()) {
     case Event::TRACK_CHANGED: {
       media_interface_->GetNowPlayingList(
-          base::Bind(&Device::TrackChangedNotificationResponse,
-                     weak_ptr_factory_.GetWeakPtr(), label, true));
+          base::BindRepeating(&Device::TrackChangedNotificationResponse,
+                              weak_ptr_factory_.GetWeakPtr(), label, true));
     } break;
 
     case Event::PLAYBACK_STATUS_CHANGED: {
       media_interface_->GetPlayStatus(
-          base::Bind(&Device::PlaybackStatusNotificationResponse,
-                     weak_ptr_factory_.GetWeakPtr(), label, true));
+          base::BindRepeating(&Device::PlaybackStatusNotificationResponse,
+                              weak_ptr_factory_.GetWeakPtr(), label, true));
     } break;
 
     case Event::PLAYBACK_POS_CHANGED: {
       play_pos_interval_ = pkt->GetInterval();
       media_interface_->GetPlayStatus(
-          base::Bind(&Device::PlaybackPosNotificationResponse,
-                     weak_ptr_factory_.GetWeakPtr(), label, true));
+          base::BindRepeating(&Device::PlaybackPosNotificationResponse,
+                              weak_ptr_factory_.GetWeakPtr(), label, true));
     } break;
 
     case Event::PLAYER_APPLICATION_SETTING_CHANGED: {
@@ -482,14 +484,14 @@ void Device::HandleNotification(
           PlayerAttribute::SHUFFLE, PlayerAttribute::SCAN};
       player_settings_interface_->GetCurrentPlayerSettingValue(
           attributes,
-          base::Bind(&Device::PlayerSettingChangedNotificationResponse,
-                     weak_ptr_factory_.GetWeakPtr(), label, true));
+          base::BindRepeating(&Device::PlayerSettingChangedNotificationResponse,
+                              weak_ptr_factory_.GetWeakPtr(), label, true));
     } break;
 
     case Event::NOW_PLAYING_CONTENT_CHANGED: {
       media_interface_->GetNowPlayingList(
-          base::Bind(&Device::HandleNowPlayingNotificationResponse,
-                     weak_ptr_factory_.GetWeakPtr(), label, true));
+          base::BindRepeating(&Device::HandleNowPlayingNotificationResponse,
+                              weak_ptr_factory_.GetWeakPtr(), label, true));
     } break;
 
     case Event::AVAILABLE_PLAYERS_CHANGED: {
@@ -506,8 +508,8 @@ void Device::HandleNotification(
 
     case Event::ADDRESSED_PLAYER_CHANGED: {
       media_interface_->GetMediaPlayerList(
-          base::Bind(&Device::AddressedPlayerNotificationResponse,
-                     weak_ptr_factory_.GetWeakPtr(), label, true));
+          base::BindRepeating(&Device::AddressedPlayerNotificationResponse,
+                              weak_ptr_factory_.GetWeakPtr(), label, true));
     } break;
 
     case Event::UIDS_CHANGED: {
@@ -585,8 +587,8 @@ void Device::HandleVolumeChanged(
     volume_ = pkt->GetVolume();
     volume_ &= ~0x80;  // remove RFA bit
     volume_interface_->DeviceConnected(
-        GetAddress(),
-        base::Bind(&Device::SetVolume, weak_ptr_factory_.GetWeakPtr()));
+        GetAddress(), base::BindRepeating(&Device::SetVolume,
+                                          weak_ptr_factory_.GetWeakPtr()));
 
     // Ignore the returned volume in favor of the volume returned
     // by the volume interface.
@@ -753,8 +755,8 @@ void Device::PlaybackPosNotificationResponse(uint8_t label, bool interim,
   // the status bar on the remote device move.
   if (status.state == PlayState::PLAYING && !IsInSilenceMode()) {
     DEVICE_VLOG(0) << __func__ << ": Queue next play position update";
-    play_pos_update_cb_.Reset(base::Bind(&Device::HandlePlayPosUpdate,
-                                         weak_ptr_factory_.GetWeakPtr()));
+    play_pos_update_cb_.Reset(base::BindRepeating(
+        &Device::HandlePlayPosUpdate, weak_ptr_factory_.GetWeakPtr()));
     btbase::AbstractMessageLoop::current_task_runner()->PostDelayedTask(
         FROM_HERE, play_pos_update_cb_.callback(),
 #if BASE_VER < 931007
@@ -897,7 +899,7 @@ void Device::MessageReceived(uint8_t label, std::shared_ptr<Packet> pkt) {
         // We need to get the play status since we need to know
         // what the actual playstate is without being modified
         // by whether the device is active.
-        media_interface_->GetPlayStatus(base::Bind(
+        media_interface_->GetPlayStatus(base::BindRepeating(
             [](base::WeakPtr<Device> d, PlayStatus s) {
               if (!d) return;
 
@@ -1127,19 +1129,19 @@ void Device::HandleGetFolderItems(uint8_t label,
   switch (pkt->GetScope()) {
     case Scope::MEDIA_PLAYER_LIST:
       media_interface_->GetMediaPlayerList(
-          base::Bind(&Device::GetMediaPlayerListResponse,
-                     weak_ptr_factory_.GetWeakPtr(), label, pkt));
+          base::BindRepeating(&Device::GetMediaPlayerListResponse,
+                              weak_ptr_factory_.GetWeakPtr(), label, pkt));
       break;
     case Scope::VFS:
       media_interface_->GetFolderItems(
           curr_browsed_player_id_, CurrentFolder(),
-          base::Bind(&Device::GetVFSListResponse,
-                     weak_ptr_factory_.GetWeakPtr(), label, pkt));
+          base::BindRepeating(&Device::GetVFSListResponse,
+                              weak_ptr_factory_.GetWeakPtr(), label, pkt));
       break;
     case Scope::NOW_PLAYING:
       media_interface_->GetNowPlayingList(
-          base::Bind(&Device::GetNowPlayingListResponse,
-                     weak_ptr_factory_.GetWeakPtr(), label, pkt));
+          base::BindRepeating(&Device::GetNowPlayingListResponse,
+                              weak_ptr_factory_.GetWeakPtr(), label, pkt));
       break;
     default:
       DEVICE_LOG(ERROR) << __func__ << ": " << pkt->GetScope();
@@ -1162,21 +1164,21 @@ void Device::HandleGetTotalNumberOfItems(
 
   switch (pkt->GetScope()) {
     case Scope::MEDIA_PLAYER_LIST: {
-      media_interface_->GetMediaPlayerList(
-          base::Bind(&Device::GetTotalNumberOfItemsMediaPlayersResponse,
-                     weak_ptr_factory_.GetWeakPtr(), label));
+      media_interface_->GetMediaPlayerList(base::BindRepeating(
+          &Device::GetTotalNumberOfItemsMediaPlayersResponse,
+          weak_ptr_factory_.GetWeakPtr(), label));
       break;
     }
     case Scope::VFS:
       media_interface_->GetFolderItems(
           curr_browsed_player_id_, CurrentFolder(),
-          base::Bind(&Device::GetTotalNumberOfItemsVFSResponse,
-                     weak_ptr_factory_.GetWeakPtr(), label));
+          base::BindRepeating(&Device::GetTotalNumberOfItemsVFSResponse,
+                              weak_ptr_factory_.GetWeakPtr(), label));
       break;
     case Scope::NOW_PLAYING:
       media_interface_->GetNowPlayingList(
-          base::Bind(&Device::GetTotalNumberOfItemsNowPlayingResponse,
-                     weak_ptr_factory_.GetWeakPtr(), label));
+          base::BindRepeating(&Device::GetTotalNumberOfItemsNowPlayingResponse,
+                              weak_ptr_factory_.GetWeakPtr(), label));
       break;
     default:
       DEVICE_LOG(ERROR) << __func__ << ": " << pkt->GetScope();
@@ -1254,8 +1256,8 @@ void Device::HandleChangePath(uint8_t label,
 
   media_interface_->GetFolderItems(
       curr_browsed_player_id_, CurrentFolder(),
-      base::Bind(&Device::ChangePathResponse, weak_ptr_factory_.GetWeakPtr(),
-                 label, pkt));
+      base::BindRepeating(&Device::ChangePathResponse,
+                          weak_ptr_factory_.GetWeakPtr(), label, pkt));
 }
 
 void Device::ChangePathResponse(uint8_t label,
@@ -1291,8 +1293,8 @@ void Device::HandleGetItemAttributes(
   switch (pkt->GetScope()) {
     case Scope::NOW_PLAYING: {
       media_interface_->GetNowPlayingList(
-          base::Bind(&Device::GetItemAttributesNowPlayingResponse,
-                     weak_ptr_factory_.GetWeakPtr(), label, pkt));
+          base::BindRepeating(&Device::GetItemAttributesNowPlayingResponse,
+                              weak_ptr_factory_.GetWeakPtr(), label, pkt));
     } break;
     case Scope::VFS:
       // TODO (apanicke): Check the vfs_ids_ here. If the item doesn't exist
@@ -1301,8 +1303,8 @@ void Device::HandleGetItemAttributes(
       // on the media layer.
       media_interface_->GetFolderItems(
           curr_browsed_player_id_, CurrentFolder(),
-          base::Bind(&Device::GetItemAttributesVFSResponse,
-                     weak_ptr_factory_.GetWeakPtr(), label, pkt));
+          base::BindRepeating(&Device::GetItemAttributesVFSResponse,
+                              weak_ptr_factory_.GetWeakPtr(), label, pkt));
       break;
     default:
       DEVICE_LOG(ERROR) << "UNKNOWN SCOPE FOR HANDLE GET ITEM ATTRIBUTES";
@@ -1594,8 +1596,8 @@ void Device::HandleSetBrowsedPlayer(
   DEVICE_VLOG(2) << __func__ << ": player_id=" << pkt->GetPlayerId();
   media_interface_->SetBrowsedPlayer(
       pkt->GetPlayerId(),
-      base::Bind(&Device::SetBrowsedPlayerResponse,
-                 weak_ptr_factory_.GetWeakPtr(), label, pkt));
+      base::BindRepeating(&Device::SetBrowsedPlayerResponse,
+                          weak_ptr_factory_.GetWeakPtr(), label, pkt));
 }
 
 void Device::SetBrowsedPlayerResponse(
@@ -1673,9 +1675,9 @@ void Device::HandleTrackUpdate() {
     return;
   }
 
-  media_interface_->GetNowPlayingList(
-      base::Bind(&Device::TrackChangedNotificationResponse,
-                 weak_ptr_factory_.GetWeakPtr(), track_changed_.second, false));
+  media_interface_->GetNowPlayingList(base::BindRepeating(
+      &Device::TrackChangedNotificationResponse, weak_ptr_factory_.GetWeakPtr(),
+      track_changed_.second, false));
 }
 
 void Device::HandlePlayStatusUpdate() {
@@ -1685,7 +1687,7 @@ void Device::HandlePlayStatusUpdate() {
     return;
   }
 
-  media_interface_->GetPlayStatus(base::Bind(
+  media_interface_->GetPlayStatus(base::BindRepeating(
       &Device::PlaybackStatusNotificationResponse,
       weak_ptr_factory_.GetWeakPtr(), play_status_changed_.second, false));
 }
@@ -1698,7 +1700,7 @@ void Device::HandleNowPlayingUpdate() {
     return;
   }
 
-  media_interface_->GetNowPlayingList(base::Bind(
+  media_interface_->GetNowPlayingList(base::BindRepeating(
       &Device::HandleNowPlayingNotificationResponse,
       weak_ptr_factory_.GetWeakPtr(), now_playing_changed_.second, false));
 }
@@ -1795,7 +1797,7 @@ void Device::HandlePlayPosUpdate() {
     return;
   }
 
-  media_interface_->GetPlayStatus(base::Bind(
+  media_interface_->GetPlayStatus(base::BindRepeating(
       &Device::PlaybackPosNotificationResponse, weak_ptr_factory_.GetWeakPtr(),
       play_pos_changed_.second, false));
 }
@@ -1826,7 +1828,7 @@ void Device::HandleAddressedPlayerUpdate() {
         << "Device is not registered for addressed player updates";
     return;
   }
-  media_interface_->GetMediaPlayerList(base::Bind(
+  media_interface_->GetMediaPlayerList(base::BindRepeating(
       &Device::AddressedPlayerNotificationResponse,
       weak_ptr_factory_.GetWeakPtr(), addr_player_changed_.second, false));
 }

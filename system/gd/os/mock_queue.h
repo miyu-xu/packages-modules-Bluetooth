@@ -35,7 +35,7 @@ namespace os {
 template <typename T>
 class MockIQueueEnqueue : public IQueueEnqueue<T> {
  public:
-  using EnqueueCallback = common::Callback<std::unique_ptr<T>()>;
+  using EnqueueCallback = common::RepeatingCallback<std::unique_ptr<T>()>;
 
   virtual void RegisterEnqueue(Handler* handler, EnqueueCallback callback) {
     ASSERT(registered_handler == nullptr);
@@ -64,7 +64,7 @@ class MockIQueueEnqueue : public IQueueEnqueue<T> {
 template <typename T>
 class MockIQueueDequeue : public IQueueDequeue<T> {
  public:
-  using DequeueCallback = common::Callback<void()>;
+  using DequeueCallback = common::RepeatingCallback<void()>;
 
   virtual void RegisterDequeue(Handler* handler, DequeueCallback callback) {
     ASSERT(registered_handler == nullptr);

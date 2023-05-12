@@ -95,7 +95,7 @@ class TestController : public Controller {
 class TestLeAddressManager : public LeAddressManager {
  public:
   TestLeAddressManager(
-      common::Callback<void(std::unique_ptr<CommandBuilder>)> enqueue_command,
+      common::RepeatingCallback<void(std::unique_ptr<CommandBuilder>)> enqueue_command,
       os::Handler* handler,
       Address public_address,
       uint8_t connect_list_size,
@@ -215,9 +215,9 @@ class LeAdvertisingManagerTest : public ::testing::Test {
   uint8_t num_instances_ = 8;
   bool support_ble_extended_advertising_ = false;
 
-  const common::Callback<void(Address, AddressType)> scan_callback =
+  const common::RepeatingCallback<void(Address, AddressType)> scan_callback =
       common::Bind(&LeAdvertisingManagerTest::on_scan, common::Unretained(this));
-  const common::Callback<void(ErrorCode, uint8_t, uint8_t)> set_terminated_callback =
+  const common::RepeatingCallback<void(ErrorCode, uint8_t, uint8_t)> set_terminated_callback =
       common::Bind(&LeAdvertisingManagerTest::on_set_terminated, common::Unretained(this));
 
   void on_scan(Address address, AddressType address_type) {}
@@ -1259,11 +1259,13 @@ TEST_F(LeExtendedAdvertisingAPITest, trigger_advertiser_callbacks_if_started_whi
       {},
       0,
       base::BindOnce(
-          [](std::promise<ErrorCode> promise, uint8_t status) { promise.set_value((ErrorCode)status); },
+          [](std::promise<ErrorCode> promise, uint8_t status) {
+            promise.set_value((ErrorCode)status);
+          },
           std::move(status_promise)),
-      base::Bind([](uint8_t _status) {}),
-      base::Bind([](Address _address, AddressType _address_type) {}),
-      base::Bind([](ErrorCode _status, uint8_t _unused_1, uint8_t _unused_2) {}),
+      base::BindRepeating([](uint8_t _status) {}),
+      base::BindRepeating([](Address _address, AddressType _address_type) {}),
+      base::BindRepeating([](ErrorCode _status, uint8_t _unused_1, uint8_t _unused_2) {}),
       client_handler_);
 
   test_hci_layer_->GetCommand();

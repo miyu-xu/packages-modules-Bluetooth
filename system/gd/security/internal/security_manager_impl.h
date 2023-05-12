@@ -186,7 +186,7 @@ class SecurityManagerImpl : public channel::ISecurityManagerChannelListener, pub
   void OnPinEntry(const bluetooth::hci::AddressWithType& address, std::vector<uint8_t> pin) override;
 
   // Facade Configuration API functions
-  using FacadeDisconnectCallback = common::Callback<void(bluetooth::hci::AddressWithType)>;
+  using FacadeDisconnectCallback = common::RepeatingCallback<void(bluetooth::hci::AddressWithType)>;
   void SetDisconnectCallback(FacadeDisconnectCallback callback);
   void SetIoCapability(hci::IoCapability io_capability);
   void SetAuthenticationRequirements(hci::AuthenticationRequirements authentication_requirements);

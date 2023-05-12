@@ -71,7 +71,7 @@ class ContextualCallback;
 template <typename R, typename... Args>
 class ContextualCallback<R(Args...)> {
  public:
-  ContextualCallback(common::Callback<R(Args...)>&& callback, IPostableContext* context)
+  ContextualCallback(common::RepeatingCallback<R(Args...)>&& callback, IPostableContext* context)
       : callback_(std::move(callback)), context_(context) {}
 
   constexpr ContextualCallback() = default;
@@ -96,7 +96,7 @@ class ContextualCallback<R(Args...)> {
   }
 
  private:
-  common::Callback<R(Args...)> callback_;
+  common::RepeatingCallback<R(Args...)> callback_;
   IPostableContext* context_;
 };
 

@@ -355,7 +355,7 @@ void btsnd_hcic_ble_read_chnl_map(uint16_t handle);
 
 void btsnd_hcic_ble_read_remote_feat(uint16_t handle);
 
-void btsnd_hcic_ble_rand(base::Callback<void(BT_OCTET8)> cb);
+void btsnd_hcic_ble_rand(base::RepeatingCallback<void(BT_OCTET8)> cb);
 
 void btsnd_hcic_ble_start_enc(uint16_t handle,
                               uint8_t rand[HCIC_BLE_RAND_DI_SIZE],

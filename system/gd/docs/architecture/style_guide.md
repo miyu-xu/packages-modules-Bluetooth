@@ -170,9 +170,9 @@ Examples of currently used libraries:
 *   boringssl: Google's openssl implementation
 *   small parts of libchrome, to be removed or replaced eventually
     *   base::OnceCallback
-    *   base::Callback
+    *   base::RepeatingCallback
     *   base::BindOnce
-    *   base::Bind
+    *   base::BindRepeating
 *   google-breakpad: host binary crash handler
 *   libunwindstack: print stacktrace on crash on host
 

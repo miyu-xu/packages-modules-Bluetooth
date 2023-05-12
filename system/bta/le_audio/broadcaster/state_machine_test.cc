@@ -43,7 +43,7 @@ extern "C" const char* __asan_default_options() {
   return "detect_container_overflow=0";
 }
 
-void btsnd_hcic_ble_rand(base::Callback<void(BT_OCTET8)> cb) {}
+void btsnd_hcic_ble_rand(base::RepeatingCallback<void(BT_OCTET8)> cb) {}
 
 namespace le_audio {
 namespace broadcaster {
@@ -94,26 +94,26 @@ class StateMachineTest : public Test {
     BroadcastStateMachine::Initialize(sm_callbacks_.get());
 
     ON_CALL(*mock_ble_advertising_manager_, StartAdvertisingSet)
-        .WillByDefault([](base::Callback<void(uint8_t, int8_t, uint8_t)> cb,
-                          tBTM_BLE_ADV_PARAMS* params,
-                          std::vector<uint8_t> advertise_data,
-                          std::vector<uint8_t> scan_response_data,
-                          tBLE_PERIODIC_ADV_PARAMS* periodic_params,
-                          std::vector<uint8_t> periodic_data, uint16_t duration,
-                          uint8_t maxExtAdvEvents,
-                          base::Callback<void(uint8_t, uint8_t)> timeout_cb) {
-          static uint8_t advertiser_id = 1;
-          uint8_t tx_power = 32;
-          uint8_t status = 0;
-          cb.Run(advertiser_id++, tx_power, status);
-        });
+        .WillByDefault(
+            [](base::RepeatingCallback<void(uint8_t, int8_t, uint8_t)> cb,
+               tBTM_BLE_ADV_PARAMS* params, std::vector<uint8_t> advertise_data,
+               std::vector<uint8_t> scan_response_data,
+               tBLE_PERIODIC_ADV_PARAMS* periodic_params,
+               std::vector<uint8_t> periodic_data, uint16_t duration,
+               uint8_t maxExtAdvEvents,
+               base::RepeatingCallback<void(uint8_t, uint8_t)> timeout_cb) {
+              static uint8_t advertiser_id = 1;
+              uint8_t tx_power = 32;
+              uint8_t status = 0;
+              cb.Run(advertiser_id++, tx_power, status);
+            });
 
     ON_CALL(*mock_ble_advertising_manager_, Enable)
         .WillByDefault(
             [](uint8_t advertiser_id, bool enable,
-               base::Callback<void(uint8_t /* status */)> cb, uint16_t duration,
-               uint8_t maxExtAdvEvents,
-               base::Callback<void(uint8_t /* status */)> timeout_cb) {
+               base::RepeatingCallback<void(uint8_t /* status */)> cb,
+               uint16_t duration, uint8_t maxExtAdvEvents,
+               base::RepeatingCallback<void(uint8_t /* status */)> timeout_cb) {
               cb.Run(0);
             });
 
@@ -280,14 +280,14 @@ class StateMachineTest : public Test {
 
 TEST_F(StateMachineTest, CreateInstanceFailed) {
   EXPECT_CALL(*mock_ble_advertising_manager_, StartAdvertisingSet)
-      .WillOnce([](base::Callback<void(uint8_t, int8_t, uint8_t)> cb,
+      .WillOnce([](base::RepeatingCallback<void(uint8_t, int8_t, uint8_t)> cb,
                    tBTM_BLE_ADV_PARAMS* params,
                    std::vector<uint8_t> advertise_data,
                    std::vector<uint8_t> scan_response_data,
                    tBLE_PERIODIC_ADV_PARAMS* periodic_params,
                    std::vector<uint8_t> periodic_data, uint16_t duration,
                    uint8_t maxExtAdvEvents,
-                   base::Callback<void(uint8_t, uint8_t)> timeout_cb) {
+                   base::RepeatingCallback<void(uint8_t, uint8_t)> timeout_cb) {
         uint8_t advertiser_id = 1;
         uint8_t tx_power = 0;
         uint8_t status = 1;
@@ -305,14 +305,14 @@ TEST_F(StateMachineTest, CreateInstanceFailed) {
 
 TEST_F(StateMachineTest, CreateInstanceTimeout) {
   EXPECT_CALL(*mock_ble_advertising_manager_, StartAdvertisingSet)
-      .WillOnce([](base::Callback<void(uint8_t, int8_t, uint8_t)> cb,
+      .WillOnce([](base::RepeatingCallback<void(uint8_t, int8_t, uint8_t)> cb,
                    tBTM_BLE_ADV_PARAMS* params,
                    std::vector<uint8_t> advertise_data,
                    std::vector<uint8_t> scan_response_data,
                    tBLE_PERIODIC_ADV_PARAMS* periodic_params,
                    std::vector<uint8_t> periodic_data, uint16_t duration,
                    uint8_t maxExtAdvEvents,
-                   base::Callback<void(uint8_t, uint8_t)> timeout_cb) {
+                   base::RepeatingCallback<void(uint8_t, uint8_t)> timeout_cb) {
         uint8_t advertiser_id = 1;
         uint8_t status = 1;
         timeout_cb.Run(advertiser_id, status);
@@ -903,28 +903,28 @@ TEST_F(StateMachineTest, AnnouncementTest) {
   std::vector<uint8_t> p_data;
 
   EXPECT_CALL(*mock_ble_advertising_manager_, StartAdvertisingSet)
-      .WillOnce([&p_data, &a_data, &adv_params](
-                    base::Callback<void(uint8_t, int8_t, uint8_t)> cb,
-                    tBTM_BLE_ADV_PARAMS* params,
-                    std::vector<uint8_t> advertise_data,
-                    std::vector<uint8_t> scan_response_data,
-                    tBLE_PERIODIC_ADV_PARAMS* periodic_params,
-                    std::vector<uint8_t> periodic_data, uint16_t duration,
-                    uint8_t maxExtAdvEvents,
-                    base::Callback<void(uint8_t, uint8_t)> timeout_cb) {
-        uint8_t advertiser_id = 1;
-        uint8_t tx_power = 0;
-        uint8_t status = 0;
+      .WillOnce(
+          [&p_data, &a_data, &adv_params](
+              base::RepeatingCallback<void(uint8_t, int8_t, uint8_t)> cb,
+              tBTM_BLE_ADV_PARAMS* params, std::vector<uint8_t> advertise_data,
+              std::vector<uint8_t> scan_response_data,
+              tBLE_PERIODIC_ADV_PARAMS* periodic_params,
+              std::vector<uint8_t> periodic_data, uint16_t duration,
+              uint8_t maxExtAdvEvents,
+              base::RepeatingCallback<void(uint8_t, uint8_t)> timeout_cb) {
+            uint8_t advertiser_id = 1;
+            uint8_t tx_power = 0;
+            uint8_t status = 0;
 
-        // Since we are not using these buffers in this callback it is safe to
-        // move them.
-        a_data = std::move(advertise_data);
-        p_data = std::move(periodic_data);
+            // Since we are not using these buffers in this callback it is safe
+            // to move them.
+            a_data = std::move(advertise_data);
+            p_data = std::move(periodic_data);
 
-        adv_params = *params;
+            adv_params = *params;
 
-        cb.Run(advertiser_id, tx_power, status);
-      });
+            cb.Run(advertiser_id, tx_power, status);
+          });
 
   EXPECT_CALL(*(sm_callbacks_.get()), OnStateMachineCreateStatus(_, true))
       .Times(1);

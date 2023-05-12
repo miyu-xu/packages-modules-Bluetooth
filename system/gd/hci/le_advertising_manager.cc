@@ -66,8 +66,8 @@ struct Advertiser {
   AdvertiserAddressType address_type;
   base::OnceCallback<void(uint8_t /* status */)> status_callback;
   base::OnceCallback<void(uint8_t /* status */)> timeout_callback;
-  common::Callback<void(Address, AddressType)> scan_callback;
-  common::Callback<void(ErrorCode, uint8_t, uint8_t)> set_terminated_callback;
+  common::RepeatingCallback<void(Address, AddressType)> scan_callback;
+  common::RepeatingCallback<void(ErrorCode, uint8_t, uint8_t)> set_terminated_callback;
   int8_t tx_power;
   uint16_t duration;
   uint8_t max_extended_advertising_events;
@@ -392,8 +392,8 @@ struct LeAdvertisingManager::impl : public bluetooth::hci::LeAddressManagerCallb
   void create_advertiser(
       int reg_id,
       const AdvertisingConfig config,
-      common::Callback<void(Address, AddressType)> scan_callback,
-      common::Callback<void(ErrorCode, uint8_t, uint8_t)> set_terminated_callback,
+      common::RepeatingCallback<void(Address, AddressType)> scan_callback,
+      common::RepeatingCallback<void(ErrorCode, uint8_t, uint8_t)> set_terminated_callback,
       os::Handler* handler) {
     AdvertiserId id = allocate_advertiser();
     if (id == kInvalidId) {
@@ -409,8 +409,8 @@ struct LeAdvertisingManager::impl : public bluetooth::hci::LeAddressManagerCallb
       int reg_id,
       AdvertiserId id,
       const AdvertisingConfig config,
-      common::Callback<void(Address, AddressType)> scan_callback,
-      common::Callback<void(ErrorCode, uint8_t, uint8_t)> set_terminated_callback,
+      common::RepeatingCallback<void(Address, AddressType)> scan_callback,
+      common::RepeatingCallback<void(ErrorCode, uint8_t, uint8_t)> set_terminated_callback,
       os::Handler* handler) {
     // check advertising data is valid before start advertising
     if (!check_advertising_data(config.advertisement, config.connectable && config.discoverable) ||
@@ -478,8 +478,8 @@ struct LeAdvertisingManager::impl : public bluetooth::hci::LeAddressManagerCallb
       uint16_t duration,
       base::OnceCallback<void(uint8_t /* status */)> status_callback,
       base::OnceCallback<void(uint8_t /* status */)> timeout_callback,
-      const common::Callback<void(Address, AddressType)> scan_callback,
-      const common::Callback<void(ErrorCode, uint8_t, uint8_t)> set_terminated_callback,
+      const common::RepeatingCallback<void(Address, AddressType)> scan_callback,
+      const common::RepeatingCallback<void(ErrorCode, uint8_t, uint8_t)> set_terminated_callback,
       os::Handler* handler) {
     advertising_sets_[id].status_callback = std::move(status_callback);
     advertising_sets_[id].timeout_callback = std::move(timeout_callback);
@@ -491,8 +491,8 @@ struct LeAdvertisingManager::impl : public bluetooth::hci::LeAddressManagerCallb
   void create_extended_advertiser(
       int reg_id,
       const AdvertisingConfig config,
-      common::Callback<void(Address, AddressType)> scan_callback,
-      common::Callback<void(ErrorCode, uint8_t, uint8_t)> set_terminated_callback,
+      common::RepeatingCallback<void(Address, AddressType)> scan_callback,
+      common::RepeatingCallback<void(ErrorCode, uint8_t, uint8_t)> set_terminated_callback,
       uint16_t duration,
       uint8_t max_ext_adv_events,
       os::Handler* handler) {
@@ -517,8 +517,8 @@ struct LeAdvertisingManager::impl : public bluetooth::hci::LeAddressManagerCallb
       int reg_id,
       AdvertiserId id,
       const AdvertisingConfig config,
-      common::Callback<void(Address, AddressType)> scan_callback,
-      common::Callback<void(ErrorCode, uint8_t, uint8_t)> set_terminated_callback,
+      common::RepeatingCallback<void(Address, AddressType)> scan_callback,
+      common::RepeatingCallback<void(ErrorCode, uint8_t, uint8_t)> set_terminated_callback,
       uint16_t duration,
       uint8_t max_ext_adv_events,
       os::Handler* handler) {
@@ -1334,7 +1334,7 @@ struct LeAdvertisingManager::impl : public bluetooth::hci::LeAddressManagerCallb
     }
   }
 
-  common::Callback<void(Address, AddressType)> scan_callback_;
+  common::RepeatingCallback<void(Address, AddressType)> scan_callback_;
   common::ContextualCallback<void(ErrorCode, uint16_t, hci::AddressWithType)> set_terminated_callback_{};
   AdvertisingCallback* advertising_callbacks_ = nullptr;
   os::Handler* registered_handler_{nullptr};
@@ -1641,8 +1641,8 @@ size_t LeAdvertisingManager::GetNumberOfAdvertisingInstances() const {
 void LeAdvertisingManager::ExtendedCreateAdvertiser(
     int reg_id,
     const AdvertisingConfig config,
-    common::Callback<void(Address, AddressType)> scan_callback,
-    common::Callback<void(ErrorCode, uint8_t, uint8_t)> set_terminated_callback,
+    common::RepeatingCallback<void(Address, AddressType)> scan_callback,
+    common::RepeatingCallback<void(ErrorCode, uint8_t, uint8_t)> set_terminated_callback,
     uint16_t duration,
     uint8_t max_extended_advertising_events,
     os::Handler* handler) {
@@ -1723,8 +1723,8 @@ void LeAdvertisingManager::StartAdvertising(
     uint16_t duration,
     base::OnceCallback<void(uint8_t /* status */)> status_callback,
     base::OnceCallback<void(uint8_t /* status */)> timeout_callback,
-    common::Callback<void(Address, AddressType)> scan_callback,
-    common::Callback<void(ErrorCode, uint8_t, uint8_t)> set_terminated_callback,
+    common::RepeatingCallback<void(Address, AddressType)> scan_callback,
+    common::RepeatingCallback<void(ErrorCode, uint8_t, uint8_t)> set_terminated_callback,
     os::Handler* handler) {
   CallOn(
       pimpl_.get(),

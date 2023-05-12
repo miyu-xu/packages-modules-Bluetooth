@@ -41,7 +41,7 @@ class LeAddressManagerCallback {
 class LeAddressManager {
  public:
   LeAddressManager(
-      common::Callback<void(std::unique_ptr<CommandBuilder>)> enqueue_command,
+      common::RepeatingCallback<void(std::unique_ptr<CommandBuilder>)> enqueue_command,
       os::Handler* handler,
       Address public_address,
       uint8_t connect_list_size,
@@ -167,7 +167,7 @@ class LeAddressManager {
   template <class View>
   void on_command_complete(CommandCompleteView view);
 
-  common::Callback<void(std::unique_ptr<CommandBuilder>)> enqueue_command_;
+  common::RepeatingCallback<void(std::unique_ptr<CommandBuilder>)> enqueue_command_;
   os::Handler* handler_;
   std::map<LeAddressManagerCallback*, ClientState> registered_clients_;
 

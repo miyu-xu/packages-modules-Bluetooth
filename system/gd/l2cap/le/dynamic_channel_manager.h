@@ -64,7 +64,7 @@ class DynamicChannelManager {
   /**
    * OnConnectionOpenCallback(DynamicChannel channel);
    */
-  using OnConnectionOpenCallback = common::Callback<void(std::unique_ptr<DynamicChannel>)>;
+  using OnConnectionOpenCallback = common::RepeatingCallback<void(std::unique_ptr<DynamicChannel>)>;
 
   enum class RegistrationResult {
     SUCCESS = 0,

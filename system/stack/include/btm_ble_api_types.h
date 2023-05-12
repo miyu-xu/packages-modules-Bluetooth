@@ -363,9 +363,9 @@ typedef enum : uint8_t {
 } tBTM_BLE_CONN_TYPE;
 
 typedef void(tBTM_BLE_SCAN_THRESHOLD_CBACK)(tBTM_BLE_REF_VALUE ref_value);
-using tBTM_BLE_SCAN_REP_CBACK =
-    base::Callback<void(tBTM_STATUS /* status */, uint8_t /* report_format */,
-                        uint8_t /* num_reports */, std::vector<uint8_t>)>;
+using tBTM_BLE_SCAN_REP_CBACK = base::RepeatingCallback<void(
+    tBTM_STATUS /* status */, uint8_t /* report_format */,
+    uint8_t /* num_reports */, std::vector<uint8_t>)>;
 
 #ifndef BTM_BLE_BATCH_SCAN_MAX
 #define BTM_BLE_BATCH_SCAN_MAX 5
@@ -442,16 +442,16 @@ enum {
 typedef uint8_t tBTM_BLE_SCAN_COND_OP;
 
 /* BLE adv payload filtering config complete callback */
-using tBTM_BLE_PF_CFG_CBACK = base::Callback<void(
+using tBTM_BLE_PF_CFG_CBACK = base::RepeatingCallback<void(
     uint8_t /* avbl_space */, tBTM_BLE_SCAN_COND_OP /* action */,
     tBTM_STATUS /* btm_status */)>;
 
 /* BLE adv payload filtering status setup complete callback */
-using tBTM_BLE_PF_STATUS_CBACK = base::Callback<void(
+using tBTM_BLE_PF_STATUS_CBACK = base::RepeatingCallback<void(
     tBTM_BLE_SCAN_COND_OP /*action*/, tBTM_STATUS /* btm_status */)>;
 
 /* BLE adv payload filtering param setup complete callback */
-using tBTM_BLE_PF_PARAM_CB = base::Callback<void(
+using tBTM_BLE_PF_PARAM_CB = base::RepeatingCallback<void(
     uint8_t /* avbl_space */, tBTM_BLE_SCAN_COND_OP /* action */,
     tBTM_STATUS /* btm_status */)>;
 

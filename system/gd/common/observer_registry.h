@@ -33,7 +33,7 @@ namespace common {
 class SingleObserverRegistry {
  public:
   template <typename R, typename... T>
-  decltype(auto) Register(Callback<R(T...)> callback) {
+  decltype(auto) Register(RepeatingCallback<R(T...)> callback) {
     session_++;
     return Bind(&SingleObserverRegistry::callback_wrapper<R, T...>, Unretained(this), session_, callback);
   }
@@ -44,7 +44,7 @@ class SingleObserverRegistry {
 
  private:
   template <typename R, typename... T>
-  void callback_wrapper(int session, Callback<R(T...)> callback, T... t) {
+  void callback_wrapper(int session, RepeatingCallback<R(T...)> callback, T... t) {
     if (session == session_) {
       callback.Run(std::forward<T>(t)...);
     }
@@ -58,7 +58,7 @@ template <int Capacity = 10>
 class MultipleObserverRegistry {
  public:
   template <typename R, typename... T>
-  decltype(auto) Register(int event_type, Callback<R(T...)> callback) {
+  decltype(auto) Register(int event_type, RepeatingCallback<R(T...)> callback) {
     ASSERT(event_type < Capacity);
     return registry_[event_type].Register(callback);
   }

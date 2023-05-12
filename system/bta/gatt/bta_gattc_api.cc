@@ -69,7 +69,7 @@ void BTA_GATTC_Disable(void) {
     return;
   }
 
-  do_in_main_thread(FROM_HERE, base::Bind(&bta_gattc_disable));
+  do_in_main_thread(FROM_HERE, base::BindRepeating(&bta_gattc_disable));
   bta_sys_deregister(BTA_ID_GATTC);
 }
 
@@ -87,8 +87,8 @@ void BTA_GATTC_AppRegister(tBTA_GATTC_CBACK* p_client_cb,
   }
 
   do_in_main_thread(
-      FROM_HERE, base::Bind(&bta_gattc_register, Uuid::GetRandom(), p_client_cb,
-                            std::move(cb), eatt_support));
+      FROM_HERE, base::BindRepeating(&bta_gattc_register, Uuid::GetRandom(),
+                                     p_client_cb, std::move(cb), eatt_support));
 }
 
 static void app_deregister_impl(tGATT_IF client_if) {
@@ -113,7 +113,8 @@ static void app_deregister_impl(tGATT_IF client_if) {
  *
  ******************************************************************************/
 void BTA_GATTC_AppDeregister(tGATT_IF client_if) {
-  do_in_main_thread(FROM_HERE, base::Bind(&app_deregister_impl, client_if));
+  do_in_main_thread(FROM_HERE,
+                    base::BindRepeating(&app_deregister_impl, client_if));
 }
 
 /*******************************************************************************
@@ -287,7 +288,7 @@ void BTA_GATTC_ServiceSearchRequest(uint16_t conn_id, const Uuid* p_srvc_uuid) {
 void BTA_GATTC_DiscoverServiceByUuid(uint16_t conn_id, const Uuid& srvc_uuid) {
   do_in_main_thread(
       FROM_HERE,
-      base::Bind(
+      base::BindRepeating(
           base::IgnoreResult<tGATT_STATUS (*)(uint16_t, tGATT_DISC_TYPE,
                                               uint16_t, uint16_t, const Uuid&)>(
               &GATTC_Discover),
@@ -774,6 +775,6 @@ tGATT_STATUS BTA_GATTC_DeregisterForNotifications(tGATT_IF client_if,
  *
  ******************************************************************************/
 void BTA_GATTC_Refresh(const RawAddress& remote_bda) {
-  do_in_main_thread(FROM_HERE,
-                    base::Bind(&bta_gattc_process_api_refresh, remote_bda));
+  do_in_main_thread(FROM_HERE, base::BindRepeating(
+                                   &bta_gattc_process_api_refresh, remote_bda));
 }

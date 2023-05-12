@@ -38,8 +38,8 @@ class MockLeAdvertisingManager : public LeAdvertisingManager {
       ExtendedCreateAdvertiser,
       (int regId,
        const AdvertisingConfig,
-       const common::Callback<void(Address, AddressType)>&,
-       const common::Callback<void(ErrorCode, uint8_t, uint8_t)>&,
+       const common::RepeatingCallback<void(Address, AddressType)>&,
+       const common::RepeatingCallback<void(ErrorCode, uint8_t, uint8_t)>&,
        uint16_t,
        uint8_t,
        os::Handler*));

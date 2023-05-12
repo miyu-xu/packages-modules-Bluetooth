@@ -32,7 +32,7 @@ class LeAudioBroadcaster {
 
   static void Initialize(
       bluetooth::le_audio::LeAudioBroadcasterCallbacks* callbacks,
-      base::Callback<bool()> hal_2_1_verifier);
+      base::RepeatingCallback<bool()> hal_2_1_verifier);
   static void Stop(void);
   static void Cleanup(void);
   static LeAudioBroadcaster* Get(void);
@@ -57,8 +57,9 @@ class LeAudioBroadcaster {
       const std::vector<std::vector<uint8_t>>& subgroup_metadata) = 0;
   virtual void IsValidBroadcast(
       uint32_t broadcast_id, uint8_t addr_type, RawAddress addr,
-      base::Callback<void(uint8_t /* broadcast_id */, uint8_t /* addr_type */,
-                          RawAddress /* addr */, bool /* is_valid */)>
+      base::RepeatingCallback<void(uint8_t /* broadcast_id */,
+                                   uint8_t /* addr_type */,
+                                   RawAddress /* addr */, bool /* is_valid */)>
           cb) = 0;
 
   virtual void SetStreamingPhy(uint8_t phy) = 0;

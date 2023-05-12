@@ -114,8 +114,8 @@ class LeAdvertisingManager : public bluetooth::Module {
   void ExtendedCreateAdvertiser(
       int reg_id,
       const AdvertisingConfig config,
-      common::Callback<void(Address, AddressType)> scan_callback,
-      common::Callback<void(ErrorCode, uint8_t, uint8_t)> set_terminated_callback,
+      common::RepeatingCallback<void(Address, AddressType)> scan_callback,
+      common::RepeatingCallback<void(ErrorCode, uint8_t, uint8_t)> set_terminated_callback,
       uint16_t duration,
       uint8_t max_extended_advertising_events,
       os::Handler* handler);
@@ -126,8 +126,8 @@ class LeAdvertisingManager : public bluetooth::Module {
       uint16_t duration,
       base::OnceCallback<void(uint8_t /* status */)> status_callback,
       base::OnceCallback<void(uint8_t /* status */)> timeout_callback,
-      common::Callback<void(Address, AddressType)> scan_callback,
-      common::Callback<void(ErrorCode, uint8_t, uint8_t)> set_terminated_callback,
+      common::RepeatingCallback<void(Address, AddressType)> scan_callback,
+      common::RepeatingCallback<void(ErrorCode, uint8_t, uint8_t)> set_terminated_callback,
       os::Handler* handler);
 
   void GetOwnAddress(uint8_t advertiser_id);

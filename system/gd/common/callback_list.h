@@ -76,7 +76,7 @@ class CallbackList<void(Args...)> : public base::internal::CallbackListBase<Call
     auto it = this->GetIterator();
     CallbackType* cb;
     while ((cb = it.GetNext()) != nullptr) {
-      cb->handler->Post(base::Bind(cb->callback, args...));
+      cb->handler->Post(base::BindRepeating(cb->callback, args...));
     }
   }
 };

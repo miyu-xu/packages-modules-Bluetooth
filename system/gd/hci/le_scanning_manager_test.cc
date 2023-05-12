@@ -148,12 +148,13 @@ class TestController : public Controller {
 class TestLeAddressManager : public LeAddressManager {
  public:
   TestLeAddressManager(
-      common::Callback<void(std::unique_ptr<CommandBuilder>)> enqueue_command,
+      common::RepeatingCallback<void(std::unique_ptr<CommandBuilder>)> enqueue_command,
       os::Handler* handler,
       Address public_address,
       uint8_t connect_list_size,
       uint8_t resolving_list_size)
-      : LeAddressManager(enqueue_command, handler, public_address, connect_list_size, resolving_list_size) {}
+      : LeAddressManager(
+            enqueue_command, handler, public_address, connect_list_size, resolving_list_size) {}
 
   AddressPolicy Register(LeAddressManagerCallback* callback) override {
     client_ = callback;

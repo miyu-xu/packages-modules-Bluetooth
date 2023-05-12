@@ -826,7 +826,7 @@ struct classic_impl : public security::ISecurityManagerListener {
   ConnectionCallbacks* client_callbacks_ = nullptr;
   os::Handler* client_handler_ = nullptr;
 
-  common::Callback<bool(Address, ClassOfDevice)> should_accept_connection_;
+  common::RepeatingCallback<bool(Address, ClassOfDevice)> should_accept_connection_;
   std::unique_ptr<RoleChangeView> delayed_role_change_ = nullptr;
 
   std::unique_ptr<security::SecurityManager> security_manager_;

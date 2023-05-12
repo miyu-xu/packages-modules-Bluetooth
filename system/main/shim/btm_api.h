@@ -612,9 +612,10 @@ bool BTM_UseLeLink(const RawAddress& bd_addr);
  * Returns          BTM_SUCCESS if success; otherwise failed.
  *
  ******************************************************************************/
-void BTM_BleReadPhy(
-    const RawAddress& bd_addr,
-    base::Callback<void(uint8_t tx_phy, uint8_t rx_phy, uint8_t status)> cb);
+void BTM_BleReadPhy(const RawAddress& bd_addr,
+                    base::RepeatingCallback<void(uint8_t tx_phy, uint8_t rx_phy,
+                                                 uint8_t status)>
+                        cb);
 
 /*******************************************************************************
  *
@@ -1693,7 +1694,7 @@ tBTM_CONTRL_STATE BTM_PM_ReadControllerState(void);
  **/
 void BTM_BleSetScanParams(uint32_t scan_interval, uint32_t scan_window,
                           tBLE_SCAN_MODE scan_type,
-                          base::Callback<void(uint8_t)> cb);
+                          base::RepeatingCallback<void(uint8_t)> cb);
 
 /*******************************************************************************
  *
@@ -1723,22 +1724,22 @@ void BTM_BleGetVendorCapabilities(tBTM_BLE_VSC_CB* p_cmn_vsc_cb);
  *
  *
  ******************************************************************************/
-void BTM_BleSetStorageConfig(uint8_t batch_scan_full_max,
-                             uint8_t batch_scan_trunc_max,
-                             uint8_t batch_scan_notify_threshold,
-                             base::Callback<void(uint8_t /* status */)> cb,
-                             tBTM_BLE_SCAN_THRESHOLD_CBACK* p_thres_cback,
-                             tBTM_BLE_REF_VALUE ref_value);
+void BTM_BleSetStorageConfig(
+    uint8_t batch_scan_full_max, uint8_t batch_scan_trunc_max,
+    uint8_t batch_scan_notify_threshold,
+    base::RepeatingCallback<void(uint8_t /* status */)> cb,
+    tBTM_BLE_SCAN_THRESHOLD_CBACK* p_thres_cback, tBTM_BLE_REF_VALUE ref_value);
 
 /* This function is called to enable batch scan */
-void BTM_BleEnableBatchScan(tBTM_BLE_BATCH_SCAN_MODE scan_mode,
-                            uint32_t scan_interval, uint32_t scan_window,
-                            tBTM_BLE_DISCARD_RULE discard_rule,
-                            tBLE_ADDR_TYPE addr_type,
-                            base::Callback<void(uint8_t /* status */)> cb);
+void BTM_BleEnableBatchScan(
+    tBTM_BLE_BATCH_SCAN_MODE scan_mode, uint32_t scan_interval,
+    uint32_t scan_window, tBTM_BLE_DISCARD_RULE discard_rule,
+    tBLE_ADDR_TYPE addr_type,
+    base::RepeatingCallback<void(uint8_t /* status */)> cb);
 
 /* This function is called to disable batch scanning */
-void BTM_BleDisableBatchScan(base::Callback<void(uint8_t /* status */)> cb);
+void BTM_BleDisableBatchScan(
+    base::RepeatingCallback<void(uint8_t /* status */)> cb);
 
 /* This function is called to read batch scan reports */
 void BTM_BleReadScanReports(tBLE_SCAN_MODE scan_mode,
@@ -1883,7 +1884,7 @@ tBTM_STATUS BTM_DisconnectAllAcls(void);
  * Returns          Return btm status
  *
  ******************************************************************************/
-using LeRandCallback = base::Callback<void(uint64_t)>;
+using LeRandCallback = base::RepeatingCallback<void(uint64_t)>;
 tBTM_STATUS BTM_LeRand(LeRandCallback);
 
 /*******************************************************************************

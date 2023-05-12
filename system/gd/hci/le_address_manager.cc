@@ -26,7 +26,7 @@ namespace hci {
 static constexpr uint8_t BLE_ADDR_MASK = 0xc0u;
 
 LeAddressManager::LeAddressManager(
-    common::Callback<void(std::unique_ptr<CommandBuilder>)> enqueue_command,
+    common::RepeatingCallback<void(std::unique_ptr<CommandBuilder>)> enqueue_command,
     os::Handler* handler,
     Address public_address,
     uint8_t connect_list_size,

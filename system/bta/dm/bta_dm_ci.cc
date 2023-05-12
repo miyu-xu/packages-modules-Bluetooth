@@ -50,7 +50,7 @@ void bta_dm_ci_rmt_oob(bool accept, const RawAddress& bd_addr, const Octet16& c,
   msg->c = c;
   msg->r = r;
 
-  do_in_main_thread(FROM_HERE,
-                    base::Bind(bta_dm_ci_rmt_oob_act, base::Passed(&msg)));
+  do_in_main_thread(FROM_HERE, base::BindRepeating(bta_dm_ci_rmt_oob_act,
+                                                   base::Passed(&msg)));
 }
 
