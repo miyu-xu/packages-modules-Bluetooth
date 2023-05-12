@@ -124,6 +124,7 @@ struct le_acl_connection {
   std::unique_ptr<LeAclConnection> pending_connection_;
   acl_manager::assembler* assembler_;
   LeConnectionManagementCallbacks* le_connection_management_callbacks_ = nullptr;
+  bool is_canceled_ = false;
 };
 
 struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
@@ -200,6 +201,7 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
       return connection->second.le_connection_management_callbacks_;
     }
     void remove(uint16_t handle) {
+      LOG_INFO("remove");
       auto connection = le_acl_connections_.find(handle);
       if (connection != le_acl_connections_.end()) {
         connection->second.le_connection_management_callbacks_ = nullptr;
@@ -222,6 +224,7 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
       le_acl_connections.clear();
     }
     void invalidate(uint16_t handle) {
+      LOG_INFO("invalidate");
       std::unique_lock<std::mutex> lock(le_acl_connections_guard_);
       remove(handle);
     }
@@ -250,6 +253,7 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
         AclConnection::QueueDownEnd* queue_end,
         os::Handler* handler,
         LeConnectionManagementCallbacks* le_connection_management_callbacks) {
+      LOG_INFO("add: %s", remote_address.GetAddress().ToString().c_str());
       std::unique_lock<std::mutex> lock(le_acl_connections_guard_);
       auto emplace_pair = le_acl_connections_.emplace(
           std::piecewise_construct,
@@ -292,11 +296,38 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
     }
 
     bool alreadyConnected(AddressWithType address_with_type) {
+      LOG_INFO("alreadyConnected");
       for (auto it = le_acl_connections_.begin(); it != le_acl_connections_.end(); it++) {
+        LOG_INFO(
+            "alreadyConnected: %s second.remote_address_: %s",
+            address_with_type.GetAddress().ToString().c_str(),
+            it->second.remote_address_.GetAddress().ToString().c_str());
         if (it->second.remote_address_ == address_with_type) {
           return true;
         }
       }
+      return false;
+    }
+
+    bool setConnectionCanceled(AddressWithType address_with_type) {
+      LOG_INFO("setConnectionCanceled");
+      for (auto it = le_acl_connections_.begin(); it != le_acl_connections_.end(); it++) {
+        if (it->second.remote_address_ == address_with_type) {
+          it->second.is_canceled_ = true;
+          return true;
+        }
+      }
+      return false;
+    }
+
+    bool isCanceled(AddressWithType address_with_type) {
+      LOG_INFO("isCanceled");
+      for (auto it = le_acl_connections_.begin(); it != le_acl_connections_.end(); it++) {
+        if (it->second.remote_address_ == address_with_type) {
+          return it->second.is_canceled_;
+        }
+      }
+      LOG_ERROR("Couldn't find connection to check if it's canceled");
       return false;
     }
 
@@ -335,6 +366,7 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
   }
 
   void on_le_connection_complete(LeMetaEventView packet) {
+    LOG_INFO("on_le_connection_complete");
     LeConnectionCompleteView connection_complete = LeConnectionCompleteView::Create(packet);
     ASSERT(connection_complete.IsValid());
     auto status = connection_complete.GetStatus();
@@ -449,12 +481,14 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
     connection->supervision_timeout_ = supervision_timeout;
     connection->in_filter_accept_list_ = in_filter_accept_list;
     connection->locally_initiated_ = (role == hci::Role::CENTRAL);
+    LOG_INFO("on le conn complete, invalidate");
     auto connection_callbacks = connection->GetEventCallbacks(
         [this](uint16_t handle) { this->connections.invalidate(handle); });
     if (std::holds_alternative<DataAsUninitializedPeripheral>(role_specific_data)) {
       // the OnLeConnectSuccess event will be sent after receiving the On Advertising Set Terminated
       // event, since we need it to know what local_address / advertising set the peer connected to.
       // In the meantime, we store it as a pending_connection.
+      LOG_INFO("Adding connection holds alternative");
       connections.add(
           handle,
           remote_address,
@@ -463,6 +497,7 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
           handler_,
           connection_callbacks);
     } else {
+      LOG_INFO("Adding connection");
       connections.add(
           handle, remote_address, nullptr, queue_down_end, handler_, connection_callbacks);
       le_client_handler_->Post(common::BindOnce(
@@ -477,6 +512,7 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
   }
 
   void on_le_enhanced_connection_complete(LeMetaEventView packet) {
+    LOG_INFO("on_le_enhanced_connection_complete");
     LeEnhancedConnectionCompleteView connection_complete = LeEnhancedConnectionCompleteView::Create(packet);
     ASSERT(connection_complete.IsValid());
     auto status = connection_complete.GetStatus();
@@ -608,6 +644,7 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
     connection->in_filter_accept_list_ = in_filter_accept_list;
     connection->locally_initiated_ = (role == hci::Role::CENTRAL);
 
+    LOG_INFO("on le extended conn complete: invalidating handle");
     auto connection_callbacks = connection->GetEventCallbacks(
         [this](uint16_t handle) { this->connections.invalidate(handle); });
 
@@ -615,6 +652,8 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
       // the OnLeConnectSuccess event will be sent after receiving the On Advertising Set Terminated
       // event, since we need it to know what local_address / advertising set the peer connected to.
       // In the meantime, we store it as a pending_connection.
+      LOG_INFO("Adding connection, holds alternative, extended");  // TODO: Looking for this log,
+                                                                   // may need to flash again
       connections.add(
           handle,
           remote_address,
@@ -623,6 +662,7 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
           handler_,
           connection_callbacks);
     } else {
+      LOG_INFO("Adding connection, extended");
       connections.add(
           handle, remote_address, nullptr, queue_down_end, handler_, connection_callbacks);
       le_client_handler_->Post(common::BindOnce(
@@ -658,6 +698,7 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
 
   static constexpr bool kRemoveConnectionAfterwards = true;
   void on_le_disconnect(uint16_t handle, ErrorCode reason) {
+    LOG_INFO("on_le_disconnect");
     AddressWithType remote_address = connections.getAddressWithType(handle);
     bool event_also_routes_to_other_receivers = connections.crash_on_unknown_handle_;
     connections.crash_on_unknown_handle_ = false;
@@ -1047,12 +1088,18 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
   }
 
   void create_le_connection(AddressWithType address_with_type, bool add_to_connect_list, bool is_direct) {
+    LOG_INFO(
+        "create_le_connection:%s add_to_connect_list: %B is_direct: %B",
+        ADDRESS_TO_LOGGABLE_CSTR(address_with_type.GetAddress()),
+        add_to_connect_list,
+        is_direct);
     if (le_client_callbacks_ == nullptr) {
       LOG_ERROR("No callbacks to call");
       return;
     }
 
     if (connections.alreadyConnected(address_with_type)) {
+      // TODO: Check if is canceled
       LOG_INFO("Device already connected, return");
       return;
     }
@@ -1063,6 +1110,8 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
       if (is_direct) {
         direct_connections_.insert(address_with_type);
         if (create_connection_timeout_alarms_.find(address_with_type) == create_connection_timeout_alarms_.end()) {
+          LOG_INFO("Setting connection timeout alarm");
+
           create_connection_timeout_alarms_.emplace(
               std::piecewise_construct,
               std::forward_as_tuple(address_with_type.GetAddress(), address_with_type.GetAddressType()),
@@ -1146,8 +1195,12 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
   }
 
   void cancel_connect(AddressWithType address_with_type) {
+    LOG_INFO("cancel_connect:%s", ADDRESS_TO_LOGGABLE_CSTR(address_with_type.GetAddress()));
+    // TODO: Set le_acl_connection canceled
+    connections.setConnectionCanceled(address_with_type);
     // Remove any alarms for this peer, if any
     if (create_connection_timeout_alarms_.find(address_with_type) != create_connection_timeout_alarms_.end()) {
+      LOG_INFO("Removing alarm for canceled connection");
       create_connection_timeout_alarms_.at(address_with_type).Cancel();
       create_connection_timeout_alarms_.erase(address_with_type);
     }
