@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "89d24c66_b9ec70f4",
+        "filename": "system/gd/storage/storage_module_test.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-05-12T20:53:08Z",
+      "side": 1,
+      "message": "Done (put it with the other constant)",
+      "parentUuid": "78092d17_c97053ab",
+      "revId": "5d2210d97978ebb4f29ced4d556c2598b45f654a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "632d2185_6f2757c9",
@@ -31,6 +49,24 @@
       "writtenOn": "2023-05-12T20:43:52Z",
       "side": 1,
       "message": "Unf. regular ASSERTs should not be used in tests",
+      "revId": "5d2210d97978ebb4f29ced4d556c2598b45f654a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "10c208ad_fa283261",
+        "filename": "system/gd/storage/storage_module_test.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 234,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-05-12T20:53:08Z",
+      "side": 1,
+      "message": "Good catch!",
+      "parentUuid": "632d2185_6f2757c9",
       "revId": "5d2210d97978ebb4f29ced4d556c2598b45f654a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
