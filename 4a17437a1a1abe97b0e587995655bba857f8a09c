@@ -52,6 +52,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "16f001b6_12976fec",
+        "filename": "system/main/bte_init_cpp_logging.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2023-05-12T02:41:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ed3fc381_123b01b9",
+      "revId": "4a17437a1a1abe97b0e587995655bba857f8a09c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4a0c6ae8_6cfb9d92",
@@ -65,6 +83,24 @@
       "writtenOn": "2023-05-11T22:45:17Z",
       "side": 1,
       "message": "How many instances of `LOG(FATAL)` is there in the source? Aborts on those seems concerning...",
+      "revId": "4a17437a1a1abe97b0e587995655bba857f8a09c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3b74af49_a7cc960f",
+        "filename": "system/main/bte_init_cpp_logging.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2023-05-12T02:41:31Z",
+      "side": 1,
+      "message": "There are quite a lot to count, most seem to be sanity checks.",
+      "parentUuid": "4a0c6ae8_6cfb9d92",
       "revId": "4a17437a1a1abe97b0e587995655bba857f8a09c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
