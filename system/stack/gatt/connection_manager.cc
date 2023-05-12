@@ -29,6 +29,9 @@
 
 #include "bind_helpers.h"
 #include "internal_include/bt_trace.h"
+#include "main/shim/acl_api.h"
+#include "main/shim/classic_connection_observer.h"
+#include "main/shim/le_connection_observer.h"
 #include "main/shim/le_scanning_manager.h"
 #include "main/shim/shim.h"
 #include "os/log.h"
@@ -84,6 +87,71 @@ struct tAPPS_CONNECTING {
 namespace {
 // Maps address to apps trying to connect to it
 std::map<RawAddress, tAPPS_CONNECTING> bgconn_dev;
+
+// Set of currently connected le addresses (as emitted by ACL manager).
+std::set<RawAddress> connected_devices;
+
+class ConnectionObserverImpl
+    : public bluetooth::shim::LeConnectionObserver,
+      public bluetooth::shim::ClassicConnectionObserver {
+ public:
+  ConnectionObserverImpl() {
+    ACL_AddClassicConnectionObserver(this);
+    ACL_AddLeConnectionObserver(this);
+  }
+  ~ConnectionObserverImpl() override {
+    ACL_RemoveLeConnectionObserver(this);
+    ACL_RemoveClassicConnectionObserver(this);
+  }
+
+  void HandleConnect(const RawAddress& address) {
+    LOG_ERROR("abps - Connected %s", address.ToString().c_str());
+    connected_devices.insert(address);
+  }
+
+  void HandleOnDisconnect(const RawAddress& address) {
+    LOG_ERROR("abps - Disconnected %s", address.ToString().c_str());
+    connected_devices.erase(address);
+
+    // If we have background devices that are not in acceptlist, add them now.
+    // TODO
+    auto it = bgconn_dev.find(address);
+    if (it != bgconn_dev.end()) {
+      // Not in accept list and no targetted announcements.
+      if (!it->second.is_in_accept_list &&
+          it->second.doing_targeted_announcements_conn.empty()) {
+        LOG_ERROR(
+            "abps - Adding background connection back to accept list after "
+            "disconnect: %s",
+            address.ToString().c_str());
+        if (!BTM_AcceptlistAdd(address)) {
+          LOG_WARN("abps - Failed to add device %s to accept list",
+                   ADDRESS_TO_LOGGABLE_CSTR(address));
+          return;
+        }
+        bgconn_dev[address].is_in_accept_list = true;
+      }
+    }
+  }
+
+  void OnClassicConnected(const RawAddress& address) override {
+    HandleConnect(address);
+  }
+
+  void OnClassicDisconnected(const RawAddress& address) override {
+    HandleOnDisconnect(address);
+  }
+
+  void OnLeConnected(const RawAddress& address) override {
+    HandleConnect(address);
+  }
+
+  void OnLeDisconnected(const RawAddress& address) override {
+    HandleOnDisconnect(address);
+  }
+};
+
+static std::unique_ptr<ConnectionObserverImpl> g_connection_observer = nullptr;
 
 int num_of_targeted_announcements_users(void) {
   return std::count_if(
@@ -296,7 +364,12 @@ bool background_connect_add(uint8_t app_id, const RawAddress& address) {
     }
   }
 
-  if (!in_acceptlist) {
+  // Only add to accept list if current address isn't already connected.
+  if (!in_acceptlist &&
+      connected_devices.find(address) == connected_devices.end()) {
+    LOG_ERROR(
+        "abps - Adding %s to bgconn acceptlist. Will become identity address",
+        address.ToString().c_str());
     // the device is not in the acceptlist
     if (is_targeted_announcement_enabled) {
       LOG_DEBUG("Targeted announcement enabled, do not add to AcceptList");
@@ -448,6 +521,13 @@ void on_connection_timed_out_from_shim(const RawAddress& address) {
  * to true, as there is no need to wipe controller acceptlist in this case. */
 void reset(bool after_reset) {
   bgconn_dev.clear();
+
+  // Observe connections to avoid double including addresses in acceptlist.
+  connected_devices.clear();
+  if (g_connection_observer.get() == nullptr) {
+    g_connection_observer = std::make_unique<ConnectionObserverImpl>();
+  }
+
   if (!after_reset) {
     target_announcements_filtering_set(false);
     BTM_AcceptlistClear();

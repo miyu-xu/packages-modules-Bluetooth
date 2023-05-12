@@ -1445,6 +1445,25 @@ bool shim::legacy::Acl::CheckForOrphanedAclConnections() const {
   return orphaned_acl_connections;
 }
 
+void shim::legacy::Acl::AddClassicConnectionObserver(
+    ClassicConnectionObserver* observer) {
+  classic_connection_observers_.insert(observer);
+}
+void shim::legacy::Acl::RemoveClassicConnectionObserver(
+    ClassicConnectionObserver* observer) {
+  classic_connection_observers_.erase(observer);
+}
+
+void shim::legacy::Acl::AddLeConnectionObserver(
+    LeConnectionObserver* observer) {
+  le_connection_observers_.insert(observer);
+}
+
+void shim::legacy::Acl::RemoveLeConnectionObserver(
+    LeConnectionObserver* observer) {
+  le_connection_observers_.erase(observer);
+}
+
 void shim::legacy::Acl::on_incoming_acl_credits(uint16_t handle,
                                                 uint16_t credits) {
   TRY_POSTING_ON_MAIN(acl_interface_.on_packets_completed, handle, credits);
@@ -1513,6 +1532,12 @@ void shim::legacy::Acl::OnClassicLinkDisconnected(HciHandle handle,
   TeardownTime teardown_time = std::chrono::system_clock::now();
 
   pimpl_->handle_to_classic_connection_map_.erase(handle);
+
+  // Notify observers of disconnection.
+  for (const auto& observer : classic_connection_observers_) {
+    observer->OnClassicDisconnected(ToRawAddress(remote_address));
+  }
+
   TRY_POSTING_ON_MAIN(acl_interface_.connection.classic.on_disconnected,
                       ToLegacyHciErrorCode(hci::ErrorCode::SUCCESS), handle,
                       ToLegacyHciErrorCode(reason));
@@ -1579,6 +1604,12 @@ void shim::legacy::Acl::OnLeLinkDisconnected(HciHandle handle,
       std::move(std::make_unique<LeConnectionDescriptor>(
           remote_address_with_type, creation_time, teardown_time, handle,
           is_locally_initiated, reason)));
+
+  // Notify observers of disconnection.
+  for (const auto& observer : le_connection_observers_) {
+    observer->OnLeDisconnected(
+        ToRawAddress(remote_address_with_type.GetAddress()));
+  }
 }
 
 void shim::legacy::Acl::OnConnectSuccess(
@@ -1599,6 +1630,11 @@ void shim::legacy::Acl::OnConnectSuccess(
   pimpl_->handle_to_classic_connection_map_[handle]->RegisterCallbacks();
   pimpl_->handle_to_classic_connection_map_[handle]
       ->ReadRemoteControllerInformation();
+
+  // Notify observers of connection.
+  for (const auto& observer : classic_connection_observers_) {
+    observer->OnClassicConnected(bd_addr);
+  }
 
   TRY_POSTING_ON_MAIN(acl_interface_.connection.classic.on_connected, bd_addr,
                       handle, false, locally_initiated);
@@ -1721,6 +1757,11 @@ void shim::legacy::Acl::OnLeConnectSuccess(
     LOG_DEBUG("Connection address is not rpa addr:%s",
               ADDRESS_TO_LOGGABLE_CSTR(address_with_type));
     pimpl_->shadow_acceptlist_.Remove(address_with_type);
+  }
+
+  // Notify observers of connection.
+  for (const auto& observer : le_connection_observers_) {
+    observer->OnLeConnected(ToRawAddress(address_with_type.GetAddress()));
   }
 
   if (!pimpl_->handle_to_le_connection_map_[handle]->IsInFilterAcceptList() &&

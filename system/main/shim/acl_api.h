@@ -27,6 +27,9 @@
 namespace bluetooth {
 namespace shim {
 
+class ClassicConnectionObserver;
+class LeConnectionObserver;
+
 void ACL_CreateClassicConnection(const RawAddress& raw_address);
 void ACL_CancelClassicConnection(const RawAddress& raw_address);
 bool ACL_AcceptLeConnectionFrom(const tBLE_BD_ADDR& legacy_address_with_type,
@@ -64,6 +67,11 @@ void ACL_RemoteNameRequest(const RawAddress& bd_addr,
                            uint8_t page_scan_rep_mode, uint8_t page_scan_mode,
                            uint16_t clock_offset);
 void ACL_CancelRemoteNameRequest(const RawAddress& addr);
+
+void ACL_AddClassicConnectionObserver(ClassicConnectionObserver* observer);
+void ACL_RemoveClassicConnectionObserver(ClassicConnectionObserver* observer);
+void ACL_AddLeConnectionObserver(LeConnectionObserver* observer);
+void ACL_RemoveLeConnectionObserver(LeConnectionObserver* observer);
 
 }  // namespace shim
 }  // namespace bluetooth

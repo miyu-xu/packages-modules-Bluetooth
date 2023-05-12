@@ -18,6 +18,7 @@
 
 #include <future>
 #include <memory>
+#include <set>
 
 #include "gd/hci/acl_manager/connection_callbacks.h"
 #include "gd/hci/acl_manager/le_connection_callbacks.h"
@@ -27,6 +28,8 @@
 #include "gd/os/handler.h"
 #include "gd/packet/raw_builder.h"
 #include "main/shim/acl_legacy_interface.h"
+#include "main/shim/classic_connection_observer.h"
+#include "main/shim/le_connection_observer.h"
 #include "main/shim/link_connection_interface.h"
 #include "main/shim/link_policy_interface.h"
 #include "stack/include/bt_types.h"
@@ -50,6 +53,14 @@ class Acl : public hci::acl_manager::ConnectionCallbacks,
   Acl& operator=(const Acl&) = delete;
 
   ~Acl();
+
+  // Monitor classic connections.
+  void AddClassicConnectionObserver(ClassicConnectionObserver* observer);
+  void RemoveClassicConnectionObserver(ClassicConnectionObserver* observer);
+
+  // Monitor LE connections.
+  void AddLeConnectionObserver(LeConnectionObserver* observer);
+  void RemoveLeConnectionObserver(LeConnectionObserver* observer);
 
   // hci::acl_manager::ConnectionCallbacks
   void OnConnectSuccess(
@@ -136,6 +147,9 @@ class Acl : public hci::acl_manager::ConnectionCallbacks,
   const acl_interface_t acl_interface_;
 
   bool CheckForOrphanedAclConnections() const;
+
+  std::set<ClassicConnectionObserver*> classic_connection_observers_;
+  std::set<LeConnectionObserver*> le_connection_observers_;
 
   struct impl;
   std::unique_ptr<impl> pimpl_;

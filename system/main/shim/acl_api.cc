@@ -229,3 +229,21 @@ void bluetooth::shim::ACL_CancelRemoteNameRequest(const RawAddress& addr) {
   bluetooth::shim::GetRemoteNameRequest()->CancelRemoteNameRequest(
       ToGdAddress(addr));
 }
+
+void bluetooth::shim::ACL_AddClassicConnectionObserver(
+    ClassicConnectionObserver* observer) {
+  Stack::GetInstance()->GetAcl()->AddClassicConnectionObserver(observer);
+}
+void bluetooth::shim::ACL_RemoveClassicConnectionObserver(
+    ClassicConnectionObserver* observer) {
+  Stack::GetInstance()->GetAcl()->RemoveClassicConnectionObserver(observer);
+}
+
+void bluetooth::shim::ACL_AddLeConnectionObserver(
+    LeConnectionObserver* observer) {
+  Stack::GetInstance()->GetAcl()->AddLeConnectionObserver(observer);
+}
+void bluetooth::shim::ACL_RemoveLeConnectionObserver(
+    LeConnectionObserver* observer) {
+  Stack::GetInstance()->GetAcl()->RemoveLeConnectionObserver(observer);
+}
