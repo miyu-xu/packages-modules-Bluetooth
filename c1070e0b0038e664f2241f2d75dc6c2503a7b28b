@@ -22,6 +22,30 @@
       },
       "revId": "c1070e0b0038e664f2241f2d75dc6c2503a7b28b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2d670e16_f1ffcc23",
+        "filename": "system/test/suite/Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-05-12T17:17:51Z",
+      "side": 1,
+      "message": "It\u0027s moved in a later commit, I just wanted to do that in different steps !",
+      "parentUuid": "5a673fe6_c826cd7d",
+      "range": {
+        "startLine": 127,
+        "startChar": 4,
+        "endLine": 127,
+        "endChar": 15
+      },
+      "revId": "c1070e0b0038e664f2241f2d75dc6c2503a7b28b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
