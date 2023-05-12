@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "75c97533_79dade8e",
+        "filename": "android/app/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachine.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 1217,
+      "author": {
+        "id": 1306903
+      },
+      "writtenOn": "2023-05-12T10:25:51Z",
+      "side": 1,
+      "message": "Yes the bad commands prevents the state move to mConnected here, but we expect the AG will eventually reply an OK or ERROR to us for the `AT+ANDROID\u003d?` we\u0027ve sent earlier, that will be handled at line#1200 and helps us move away from mConnecting state.\n\nThe link should be disconnected by CONNECTING_TIMEOUT if the OK or ERROR is never received.",
+      "parentUuid": "364dc988_fe2bc82c",
+      "range": {
+        "startLine": 1217,
+        "startChar": 39,
+        "endLine": 1217,
+        "endChar": 63
+      },
+      "revId": "6cf60adae329309454af0c9b5a0e773ea43402c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "366b0b52_9e8506c2",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "461296dd_9f0bc4f3",
+        "filename": "android/app/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachine.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 2038,
+      "author": {
+        "id": 1306903
+      },
+      "writtenOn": "2023-05-12T10:25:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "366b0b52_9e8506c2",
+      "range": {
+        "startLine": 2038,
+        "startChar": 8,
+        "endLine": 2038,
+        "endChar": 93
+      },
+      "revId": "6cf60adae329309454af0c9b5a0e773ea43402c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8b80c5e4_3a30dba0",
@@ -60,6 +108,30 @@
       "writtenOn": "2023-05-12T05:30:25Z",
       "side": 1,
       "message": "should we also expect the +ANDROID\u003d? response?\n\ne.g. \n\n+ANDROID\u003d(SINKAUDIOPOLICY)",
+      "range": {
+        "startLine": 1447,
+        "startChar": 0,
+        "endLine": 1448,
+        "endChar": 68
+      },
+      "revId": "6cf60adae329309454af0c9b5a0e773ea43402c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "60a04862_bd4b514c",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/hfp/HeadsetStateMachineTest.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 1448,
+      "author": {
+        "id": 1306903
+      },
+      "writtenOn": "2023-05-12T10:25:51Z",
+      "side": 1,
+      "message": "Done. Added testCheckAndProcessAndroidAt_replyAndroidAtFeatureRequest",
+      "parentUuid": "8b80c5e4_3a30dba0",
       "range": {
         "startLine": 1447,
         "startChar": 0,
