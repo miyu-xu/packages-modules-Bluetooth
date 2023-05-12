@@ -1,4 +1,5 @@
 #![rustfmt::skip]
+/// @generated rust packets from test.
 use bytes::{Buf, BufMut, Bytes, BytesMut};
 use std::convert::{TryFrom, TryInto};
 use std::cell::Cell;
