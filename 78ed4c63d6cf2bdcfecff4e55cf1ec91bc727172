@@ -59,6 +59,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a6bb5ba0_511f7eee",
+        "filename": "system/gd/storage/storage_module.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-05-12T22:28:07Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "e291fd25_876c21eb",
+      "range": {
+        "startLine": 166,
+        "startChar": 7,
+        "endLine": 166,
+        "endChar": 15
+      },
+      "revId": "78ed4c63d6cf2bdcfecff4e55cf1ec91bc727172",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ac89d674_cac67159",
@@ -72,6 +96,30 @@
       "writtenOn": "2023-05-12T20:46:20Z",
       "side": 1,
       "message": "Move is called here.",
+      "range": {
+        "startLine": 197,
+        "startChar": 48,
+        "endLine": 197,
+        "endChar": 72
+      },
+      "revId": "78ed4c63d6cf2bdcfecff4e55cf1ec91bc727172",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ac5796ba_7291eb74",
+        "filename": "system/gd/storage/storage_module.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-05-12T22:28:07Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "ac89d674_cac67159",
       "range": {
         "startLine": 197,
         "startChar": 48,
