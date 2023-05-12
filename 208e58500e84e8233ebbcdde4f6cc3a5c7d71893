@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3c500678_e8fdf7bd",
+        "filename": "android/app/src/com/android/bluetooth/avrcpcontroller/AvrcpControllerStateMachine.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 839,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2023-05-12T14:54:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0401cd37_78f90669",
+      "revId": "208e58500e84e8233ebbcdde4f6cc3a5c7d71893",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "83bfe359_80dfc901",
@@ -49,6 +67,24 @@
       "writtenOn": "2023-05-11T22:32:43Z",
       "side": 1,
       "message": "so, in this case the browse node \u0026 requested node are same i.e. scope would always be the same. This will result in request being aborted if the node is a root node. Why would we want to defer the request? Would this message be ever processed and go in infinite loop?",
+      "revId": "208e58500e84e8233ebbcdde4f6cc3a5c7d71893",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5716715f_24bf580c",
+        "filename": "android/app/src/com/android/bluetooth/avrcpcontroller/AvrcpControllerStateMachine.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 986,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2023-05-12T14:54:42Z",
+      "side": 1,
+      "message": "Discussed offline",
+      "parentUuid": "83bfe359_80dfc901",
       "revId": "208e58500e84e8233ebbcdde4f6cc3a5c7d71893",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -125,6 +161,30 @@
       "side": 1,
       "message": "Oh I like this. I\u0027ll do that.\n\nThe map is cleared when contents are uncached. Devices remove themselves from the static tree as well.\n\nOutside the scope of this bug, but it looks like we don\u0027t call clear() when a device disconnects or we clean up the service.",
       "parentUuid": "9d31548e_0b5ddb2a",
+      "range": {
+        "startLine": 98,
+        "startChar": 0,
+        "endLine": 103,
+        "endChar": 0
+      },
+      "revId": "208e58500e84e8233ebbcdde4f6cc3a5c7d71893",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "de8b7461_183c3db2",
+        "filename": "android/app/src/com/android/bluetooth/avrcpcontroller/BrowseTree.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2023-05-12T14:54:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "29199a41_2af6fc2a",
       "range": {
         "startLine": 98,
         "startChar": 0,
