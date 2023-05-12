@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "20c4acad_c4915d2f",
+        "filename": "system/gd/storage/storage_module.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 271,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-05-12T20:37:22Z",
+      "side": 1,
+      "message": "bool StorageModule::Data::HasSection(const std::string\u0026 section) const {",
+      "revId": "60dc72c5ddc0c6081d75972a2c81844534959ef2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6bbf5467_30b29ee8",
+        "filename": "system/gd/storage/storage_module.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-05-12T20:37:22Z",
+      "side": 1,
+      "message": "Since all these APIs operate on the *data* not the *storage module*, does it make sense to also provide a similar API ?\n\ne.g.\nclass StorageModule\n  struct Data {\n    bool HasSection(..);\n    ...\n  };\n  \nThe argument against this is there is already precedent for this in the public Storage API.",
+      "revId": "60dc72c5ddc0c6081d75972a2c81844534959ef2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e7aa4985_0db79719",
+        "filename": "system/main/shim/config.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-05-12T20:37:22Z",
+      "side": 1,
+      "message": "return GetStorage()-\u003edata.HasSection(section);",
+      "revId": "60dc72c5ddc0c6081d75972a2c81844534959ef2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
