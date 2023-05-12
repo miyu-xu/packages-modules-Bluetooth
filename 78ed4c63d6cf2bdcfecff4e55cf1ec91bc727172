@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1ac29df7_b1e9d9f2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-05-12T20:39:48Z",
+      "side": 1,
+      "message": "When are the move and assignment constructors called ? Seems dangerous",
+      "revId": "78ed4c63d6cf2bdcfecff4e55cf1ec91bc727172",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
