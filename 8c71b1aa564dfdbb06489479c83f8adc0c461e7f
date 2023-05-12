@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f8f2502d_2527628b",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 29
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-05-12T15:52:36Z",
+      "side": 1,
+      "message": "It seems odd to have so many static functions and then change this one.  I think I need to understand the direction better.",
+      "revId": "8c71b1aa564dfdbb06489479c83f8adc0c461e7f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
