@@ -1,5 +1,29 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c4f03fba_f151953b",
+        "filename": "tools/pdl/Android.bp",
+        "patchSetId": 10
+      },
+      "lineNbr": 451,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2023-05-12T14:20:38Z",
+      "side": 1,
+      "message": "I did not see this until now... it\u0027s not robust to depend on the order of the inputs like this 😭 The `srcs` below can be reordered using a simple `bpfmt -s` call.\n\nWe will be rewriting this anyway for the PDL on GitHub, so this is more a note for myself.",
+      "range": {
+        "startLine": 451,
+        "startChar": 30,
+        "endLine": 451,
+        "endChar": 39
+      },
+      "revId": "075d0d3da75e1d4c55781881145851e0a33116e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
