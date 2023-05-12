@@ -32,9 +32,9 @@ class MsftExtensionManager : public bluetooth::Module {
   MsftExtensionManager& operator=(const MsftExtensionManager&) = delete;
 
   using MsftAdvMonitorAddCallback =
-      base::Callback<void(uint8_t /* monitor_handle */, ErrorCode /* status */)>;
-  using MsftAdvMonitorRemoveCallback = base::Callback<void(ErrorCode /* status */)>;
-  using MsftAdvMonitorEnableCallback = base::Callback<void(ErrorCode /* status */)>;
+      base::RepeatingCallback<void(uint8_t /* monitor_handle */, ErrorCode /* status */)>;
+  using MsftAdvMonitorRemoveCallback = base::RepeatingCallback<void(ErrorCode /* status */)>;
+  using MsftAdvMonitorEnableCallback = base::RepeatingCallback<void(ErrorCode /* status */)>;
 
   virtual bool SupportsMsftExtensions();
   void MsftAdvMonitorAdd(const MsftAdvMonitor& monitor, MsftAdvMonitorAddCallback cb);

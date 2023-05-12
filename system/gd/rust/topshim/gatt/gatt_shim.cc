@@ -40,7 +40,8 @@ void ServerReadPhyCallback(
 }  // namespace internal
 
 int GattClientIntf::read_phy(int client_if, RawAddress addr) {
-  return client_intf_->read_phy(addr, base::Bind(&internal::ReadPhyCallback, client_if, addr));
+  return client_intf_->read_phy(
+      addr, base::BindRepeating(&internal::ReadPhyCallback, client_if, addr));
 }
 
 std::unique_ptr<GattClientIntf> GetGattClientProfile(const unsigned char* gatt_intf) {
@@ -49,7 +50,7 @@ std::unique_ptr<GattClientIntf> GetGattClientProfile(const unsigned char* gatt_i
 
 int GattServerIntf::server_read_phy(int server_if, RawAddress addr) {
   return server_intf_->read_phy(
-      addr, base::Bind(&internal::ServerReadPhyCallback, server_if, addr));
+      addr, base::BindRepeating(&internal::ServerReadPhyCallback, server_if, addr));
 }
 
 std::unique_ptr<GattServerIntf> GetGattServerProfile(const unsigned char* gatt_intf) {

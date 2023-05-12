@@ -98,14 +98,14 @@ void known_tx_pwr(BleAdvertiserHciInterface::parameters_cb cb, int8_t tx_power,
 class BleAdvertiserVscHciInterfaceImpl : public BleAdvertiserHciInterface {
   void SendAdvCmd(const base::Location& posted_from, uint8_t param_len,
                   uint8_t* param_buf, status_cb command_complete) {
-    btu_hcif_send_cmd_with_cb(posted_from, HCI_BLE_MULTI_ADV, param_buf,
-                              param_len,
-                              base::Bind(&btm_ble_multi_adv_vsc_cmpl_cback,
-                                         param_buf[0], command_complete));
+    btu_hcif_send_cmd_with_cb(
+        posted_from, HCI_BLE_MULTI_ADV, param_buf, param_len,
+        base::BindRepeating(&btm_ble_multi_adv_vsc_cmpl_cback, param_buf[0],
+                            command_complete));
   }
 
   void ReadInstanceCount(
-      base::Callback<void(uint8_t /* inst_cnt*/)> cb) override {
+      base::RepeatingCallback<void(uint8_t /* inst_cnt*/)> cb) override {
     cb.Run(BTM_BleMaxMultiAdvInstanceCount());
   }
 
@@ -154,9 +154,9 @@ class BleAdvertiserVscHciInterfaceImpl : public BleAdvertiserHciInterface {
     UINT8_TO_STREAM(pp, handle);
     INT8_TO_STREAM(pp, tx_power);
 
-    SendAdvCmd(
-        FROM_HERE, BTM_BLE_MULTI_ADV_SET_PARAM_LEN, param,
-        base::Bind(&known_tx_pwr, std::move(command_complete), tx_power));
+    SendAdvCmd(FROM_HERE, BTM_BLE_MULTI_ADV_SET_PARAM_LEN, param,
+               base::BindRepeating(&known_tx_pwr, std::move(command_complete),
+                                   tx_power));
   }
 
   void SetAdvertisingData(uint8_t handle, uint8_t operation,
@@ -327,11 +327,11 @@ class BleAdvertiserLegacyHciInterfaceImpl : public BleAdvertiserHciInterface {
                   status_cb command_complete) {
     btu_hcif_send_cmd_with_cb(
         posted_from, opcode, param_buf, param_buf_len,
-        base::Bind(&adv_cmd_cmpl_cback, command_complete));
+        base::BindRepeating(&adv_cmd_cmpl_cback, command_complete));
   }
 
   void ReadInstanceCount(
-      base::Callback<void(uint8_t /* inst_cnt*/)> cb) override {
+      base::RepeatingCallback<void(uint8_t /* inst_cnt*/)> cb) override {
     cb.Run(1);
   }
 
@@ -377,10 +377,10 @@ class BleAdvertiserLegacyHciInterfaceImpl : public BleAdvertiserHciInterface {
     UINT8_TO_STREAM(pp, channel_map);
     UINT8_TO_STREAM(pp, filter_policy);
 
-    SendAdvCmd(
-        FROM_HERE, HCI_BLE_WRITE_ADV_PARAMS, param,
-        HCIC_PARAM_SIZE_BLE_WRITE_ADV_PARAMS,
-        base::Bind(&known_tx_pwr, std::move(command_complete), (int8_t)0));
+    SendAdvCmd(FROM_HERE, HCI_BLE_WRITE_ADV_PARAMS, param,
+               HCIC_PARAM_SIZE_BLE_WRITE_ADV_PARAMS,
+               base::BindRepeating(&known_tx_pwr, std::move(command_complete),
+                                   (int8_t)0));
   }
 
   void SetAdvertisingData(uint8_t handle, uint8_t operation,
@@ -514,11 +514,11 @@ class BleAdvertiserHciExtendedImpl : public BleAdvertiserHciInterface {
                   status_cb command_complete) {
     btu_hcif_send_cmd_with_cb(
         posted_from, opcode, param_buf, param_buf_len,
-        base::Bind(&adv_cmd_cmpl_cback, command_complete));
+        base::BindRepeating(&adv_cmd_cmpl_cback, command_complete));
   }
 
   void ReadInstanceCount(
-      base::Callback<void(uint8_t /* inst_cnt*/)> cb) override {
+      base::RepeatingCallback<void(uint8_t /* inst_cnt*/)> cb) override {
     cb.Run(controller_get_interface()
                ->get_ble_number_of_supported_advertising_sets());
   }
@@ -560,10 +560,10 @@ class BleAdvertiserHciExtendedImpl : public BleAdvertiserHciInterface {
     UINT8_TO_STREAM(pp, advertising_sid);
     UINT8_TO_STREAM(pp, scan_request_notify_enable);
 
-    btu_hcif_send_cmd_with_cb(
-        FROM_HERE, HCI_LE_SET_EXT_ADVERTISING_PARAM, param,
-        HCI_LE_SET_EXT_ADVERTISING_PARAM_LEN,
-        base::Bind(parameters_response_parser, std::move(command_complete)));
+    btu_hcif_send_cmd_with_cb(FROM_HERE, HCI_LE_SET_EXT_ADVERTISING_PARAM,
+                              param, HCI_LE_SET_EXT_ADVERTISING_PARAM_LEN,
+                              base::BindRepeating(parameters_response_parser,
+                                                  std::move(command_complete)));
   }
 
   void SetAdvertisingData(uint8_t handle, uint8_t operation,

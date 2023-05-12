@@ -1450,7 +1450,7 @@ static void registerScannerNative(JNIEnv* env, jobject object,
 
   Uuid uuid = from_java_uuid(app_uuid_msb, app_uuid_lsb);
   sGattIf->scanner->RegisterScanner(
-      uuid, base::Bind(&btgattc_register_scanner_cb, uuid));
+      uuid, base::BindRepeating(&btgattc_register_scanner_cb, uuid));
 }
 
 static void unregisterScannerNative(JNIEnv* env, jobject object,
@@ -1510,7 +1510,8 @@ static void gattClientReadPhyNative(JNIEnv* env, jobject object, jint clientIf,
   if (!sGattIf) return;
 
   RawAddress bda = str2addr(env, address);
-  sGattIf->client->read_phy(bda, base::Bind(&readClientPhyCb, clientIf, bda));
+  sGattIf->client->read_phy(
+      bda, base::BindRepeating(&readClientPhyCb, clientIf, bda));
 }
 
 static void gattClientRefreshNative(JNIEnv* env, jobject object, jint clientIf,
@@ -1654,7 +1655,7 @@ static void gattSetScanParametersNative(JNIEnv* env, jobject object,
   if (!sGattIf) return;
   sGattIf->scanner->SetScanParameters(
       client_if, scan_interval_unit, scan_window_unit,
-      base::Bind(&set_scan_params_cmpl_cb, client_if));
+      base::BindRepeating(&set_scan_params_cmpl_cb, client_if));
 }
 
 void scan_filter_param_cb(uint8_t client_if, uint8_t avbl_space, uint8_t action,
@@ -1714,7 +1715,8 @@ static void gattClientScanFilterParamAddNative(JNIEnv* env, jobject object,
 
   sGattIf->scanner->ScanFilterParamSetup(
       client_if, add_scan_filter_params_action, filt_index,
-      std::move(filt_params), base::Bind(&scan_filter_param_cb, client_if));
+      std::move(filt_params),
+      base::BindRepeating(&scan_filter_param_cb, client_if));
 }
 
 static void gattClientScanFilterParamDeleteNative(JNIEnv* env, jobject object,
@@ -1724,7 +1726,7 @@ static void gattClientScanFilterParamDeleteNative(JNIEnv* env, jobject object,
   const int delete_scan_filter_params_action = 1;
   sGattIf->scanner->ScanFilterParamSetup(
       client_if, delete_scan_filter_params_action, filt_index, nullptr,
-      base::Bind(&scan_filter_param_cb, client_if));
+      base::BindRepeating(&scan_filter_param_cb, client_if));
 }
 
 static void gattClientScanFilterParamClearAllNative(JNIEnv* env, jobject object,
@@ -1733,7 +1735,7 @@ static void gattClientScanFilterParamClearAllNative(JNIEnv* env, jobject object,
   const int clear_scan_filter_params_action = 2;
   sGattIf->scanner->ScanFilterParamSetup(
       client_if, clear_scan_filter_params_action, 0 /* index, unused */,
-      nullptr, base::Bind(&scan_filter_param_cb, client_if));
+      nullptr, base::BindRepeating(&scan_filter_param_cb, client_if));
 }
 
 static void scan_filter_cfg_cb(uint8_t client_if, uint8_t filt_type,
@@ -1761,8 +1763,9 @@ static void gattClientScanFilterAddNative(JNIEnv* env, jobject object,
 
   int numFilters = env->GetArrayLength(filters);
   if (numFilters == 0) {
-    sGattIf->scanner->ScanFilterAdd(filter_index, std::move(native_filters),
-                                    base::Bind(&scan_filter_cfg_cb, client_if));
+    sGattIf->scanner->ScanFilterAdd(
+        filter_index, std::move(native_filters),
+        base::BindRepeating(&scan_filter_cfg_cb, client_if));
     return;
   }
 
@@ -1900,15 +1903,16 @@ static void gattClientScanFilterAddNative(JNIEnv* env, jobject object,
     native_filters.push_back(curr);
   }
 
-  sGattIf->scanner->ScanFilterAdd(filter_index, std::move(native_filters),
-                                  base::Bind(&scan_filter_cfg_cb, client_if));
+  sGattIf->scanner->ScanFilterAdd(
+      filter_index, std::move(native_filters),
+      base::BindRepeating(&scan_filter_cfg_cb, client_if));
 }
 
 static void gattClientScanFilterClearNative(JNIEnv* env, jobject object,
                                             jint client_if, jint filt_index) {
   if (!sGattIf) return;
-  sGattIf->scanner->ScanFilterClear(filt_index,
-                                    base::Bind(&scan_filter_cfg_cb, client_if));
+  sGattIf->scanner->ScanFilterClear(
+      filt_index, base::BindRepeating(&scan_filter_cfg_cb, client_if));
 }
 
 void scan_enable_cb(uint8_t client_if, uint8_t action, uint8_t status) {
@@ -1922,8 +1926,8 @@ void scan_enable_cb(uint8_t client_if, uint8_t action, uint8_t status) {
 static void gattClientScanFilterEnableNative(JNIEnv* env, jobject object,
                                              jint client_if, jboolean enable) {
   if (!sGattIf) return;
-  sGattIf->scanner->ScanFilterEnable(enable,
-                                     base::Bind(&scan_enable_cb, client_if));
+  sGattIf->scanner->ScanFilterEnable(
+      enable, base::BindRepeating(&scan_enable_cb, client_if));
 }
 
 static void gattClientConfigureMTUNative(JNIEnv* env, jobject object,
@@ -1970,7 +1974,7 @@ static void gattClientConfigBatchScanStorageNative(
   sGattIf->scanner->BatchscanConfigStorage(
       client_if, max_full_reports_percent, max_trunc_reports_percent,
       notify_threshold_level_percent,
-      base::Bind(&batchscan_cfg_storage_cb, client_if));
+      base::BindRepeating(&batchscan_cfg_storage_cb, client_if));
 }
 
 void batchscan_enable_cb(uint8_t client_if, uint8_t status) {
@@ -1989,14 +1993,14 @@ static void gattClientStartBatchScanNative(JNIEnv* env, jobject object,
   if (!sGattIf) return;
   sGattIf->scanner->BatchscanEnable(
       scan_mode, scan_interval_unit, scan_window_unit, addr_type, discard_rule,
-      base::Bind(&batchscan_enable_cb, client_if));
+      base::BindRepeating(&batchscan_enable_cb, client_if));
 }
 
 static void gattClientStopBatchScanNative(JNIEnv* env, jobject object,
                                           jint client_if) {
   if (!sGattIf) return;
   sGattIf->scanner->BatchscanDisable(
-      base::Bind(&batchscan_enable_cb, client_if));
+      base::BindRepeating(&batchscan_enable_cb, client_if));
 }
 
 static void gattClientReadScanReportsNative(JNIEnv* env, jobject object,
@@ -2066,7 +2070,8 @@ static void gattServerReadPhyNative(JNIEnv* env, jobject object, jint serverIf,
   if (!sGattIf) return;
 
   RawAddress bda = str2addr(env, address);
-  sGattIf->server->read_phy(bda, base::Bind(&readServerPhyCb, serverIf, bda));
+  sGattIf->server->read_phy(
+      bda, base::BindRepeating(&readServerPhyCb, serverIf, bda));
 }
 
 static void gattServerAddServiceNative(JNIEnv* env, jobject object,
@@ -2400,9 +2405,11 @@ static void startAdvertisingSetNative(
   env->ReleaseByteArrayElements(periodic_data, periodic_data_data, JNI_ABORT);
 
   sGattIf->advertiser->StartAdvertisingSet(
-      reg_id, base::Bind(&ble_advertising_set_started_cb, reg_id, server_if),
+      reg_id,
+      base::BindRepeating(&ble_advertising_set_started_cb, reg_id, server_if),
       params, data_vec, scan_resp_vec, periodicParams, periodic_data_vec,
-      duration, maxExtAdvEvents, base::Bind(ble_advertising_set_timeout_cb));
+      duration, maxExtAdvEvents,
+      base::BindRepeating(ble_advertising_set_timeout_cb));
 }
 
 static void stopAdvertisingSetNative(JNIEnv* env, jobject object,
@@ -2430,7 +2437,7 @@ static void getOwnAddressNative(JNIEnv* env, jobject object,
                                 jint advertiser_id) {
   if (!sGattIf) return;
   sGattIf->advertiser->GetOwnAddress(
-      advertiser_id, base::Bind(&getOwnAddressCb, advertiser_id));
+      advertiser_id, base::BindRepeating(&getOwnAddressCb, advertiser_id));
 }
 
 static void callJniCallback(jmethodID method, uint8_t advertiser_id,
@@ -2456,10 +2463,10 @@ static void enableAdvertisingSetNative(JNIEnv* env, jobject object,
                                        jint duration, jint maxExtAdvEvents) {
   if (!sGattIf) return;
 
-  sGattIf->advertiser->Enable(advertiser_id, enable,
-                              base::Bind(&enableSetCb, advertiser_id, enable),
-                              duration, maxExtAdvEvents,
-                              base::Bind(&enableSetCb, advertiser_id, false));
+  sGattIf->advertiser->Enable(
+      advertiser_id, enable,
+      base::BindRepeating(&enableSetCb, advertiser_id, enable), duration,
+      maxExtAdvEvents, base::BindRepeating(&enableSetCb, advertiser_id, false));
 }
 
 static void setAdvertisingDataNative(JNIEnv* env, jobject object,
@@ -2468,7 +2475,8 @@ static void setAdvertisingDataNative(JNIEnv* env, jobject object,
 
   sGattIf->advertiser->SetData(
       advertiser_id, false, toVector(env, data),
-      base::Bind(&callJniCallback, method_onAdvertisingDataSet, advertiser_id));
+      base::BindRepeating(&callJniCallback, method_onAdvertisingDataSet,
+                          advertiser_id));
 }
 
 static void setScanResponseDataNative(JNIEnv* env, jobject object,
@@ -2477,8 +2485,8 @@ static void setScanResponseDataNative(JNIEnv* env, jobject object,
 
   sGattIf->advertiser->SetData(
       advertiser_id, true, toVector(env, data),
-      base::Bind(&callJniCallback, method_onScanResponseDataSet,
-                 advertiser_id));
+      base::BindRepeating(&callJniCallback, method_onScanResponseDataSet,
+                          advertiser_id));
 }
 
 static void setAdvertisingParametersNativeCb(uint8_t advertiser_id,
@@ -2499,7 +2507,7 @@ static void setAdvertisingParametersNative(JNIEnv* env, jobject object,
   AdvertiseParameters params = parseParams(env, parameters);
   sGattIf->advertiser->SetParameters(
       advertiser_id, params,
-      base::Bind(&setAdvertisingParametersNativeCb, advertiser_id));
+      base::BindRepeating(&setAdvertisingParametersNativeCb, advertiser_id));
 }
 
 static void setPeriodicAdvertisingParametersNative(
@@ -2511,8 +2519,9 @@ static void setPeriodicAdvertisingParametersNative(
       parsePeriodicParams(env, periodic_parameters);
   sGattIf->advertiser->SetPeriodicAdvertisingParameters(
       advertiser_id, periodicParams,
-      base::Bind(&callJniCallback,
-                 method_onPeriodicAdvertisingParametersUpdated, advertiser_id));
+      base::BindRepeating(&callJniCallback,
+                          method_onPeriodicAdvertisingParametersUpdated,
+                          advertiser_id));
 }
 
 static void setPeriodicAdvertisingDataNative(JNIEnv* env, jobject object,
@@ -2522,8 +2531,8 @@ static void setPeriodicAdvertisingDataNative(JNIEnv* env, jobject object,
 
   sGattIf->advertiser->SetPeriodicAdvertisingData(
       advertiser_id, toVector(env, data),
-      base::Bind(&callJniCallback, method_onPeriodicAdvertisingDataSet,
-                 advertiser_id));
+      base::BindRepeating(&callJniCallback, method_onPeriodicAdvertisingDataSet,
+                          advertiser_id));
 }
 
 static void enablePeriodicSetCb(uint8_t advertiser_id, bool enable,
@@ -2545,7 +2554,7 @@ static void setPeriodicAdvertisingEnableNative(JNIEnv* env, jobject object,
       bluetooth::common::init_flags::periodic_advertising_adi_is_enabled();
   sGattIf->advertiser->SetPeriodicAdvertisingEnable(
       advertiser_id, enable, include_adi,
-      base::Bind(&enablePeriodicSetCb, advertiser_id, enable));
+      base::BindRepeating(&enablePeriodicSetCb, advertiser_id, enable));
 }
 
 static void periodicScanClassInitNative(JNIEnv* env, jclass clazz) {

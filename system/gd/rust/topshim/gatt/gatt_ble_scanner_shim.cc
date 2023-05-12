@@ -211,7 +211,8 @@ void BleScannerIntf::OnBatchScanThresholdCrossed(int client_if) {
 void BleScannerIntf::RegisterScanner(RustUuid uuid) {
   bluetooth::Uuid converted = bluetooth::Uuid::From128BitBE(uuid.uu);
   scanner_intf_->RegisterScanner(
-      converted, base::Bind(&BleScannerIntf::OnRegisterCallback, base::Unretained(this), uuid));
+      converted,
+      base::BindRepeating(&BleScannerIntf::OnRegisterCallback, base::Unretained(this), uuid));
 }
 
 void BleScannerIntf::Unregister(uint8_t scanner_id) {
@@ -232,7 +233,8 @@ void BleScannerIntf::ScanFilterParamSetup(
       action,
       filter_index,
       std::move(converted),
-      base::Bind(&BleScannerIntf::OnFilterParamSetupCallback, base::Unretained(this), scanner_id));
+      base::BindRepeating(
+          &BleScannerIntf::OnFilterParamSetupCallback, base::Unretained(this), scanner_id));
 }
 
 void BleScannerIntf::ScanFilterAdd(uint8_t filter_index, ::rust::Vec<RustApcfCommand> filters) {
@@ -240,16 +242,20 @@ void BleScannerIntf::ScanFilterAdd(uint8_t filter_index, ::rust::Vec<RustApcfCom
   scanner_intf_->ScanFilterAdd(
       filter_index,
       converted,
-      base::Bind(&BleScannerIntf::OnFilterConfigCallback, base::Unretained(this), filter_index));
+      base::BindRepeating(
+          &BleScannerIntf::OnFilterConfigCallback, base::Unretained(this), filter_index));
 }
 
 void BleScannerIntf::ScanFilterClear(uint8_t filter_index) {
   scanner_intf_->ScanFilterClear(
-      filter_index, base::Bind(&BleScannerIntf::OnFilterConfigCallback, base::Unretained(this), filter_index));
+      filter_index,
+      base::BindRepeating(
+          &BleScannerIntf::OnFilterConfigCallback, base::Unretained(this), filter_index));
 }
 
 void BleScannerIntf::ScanFilterEnable(bool enable) {
-  scanner_intf_->ScanFilterEnable(enable, base::Bind(&BleScannerIntf::OnEnableCallback, base::Unretained(this)));
+  scanner_intf_->ScanFilterEnable(
+      enable, base::BindRepeating(&BleScannerIntf::OnEnableCallback, base::Unretained(this)));
 }
 
 bool BleScannerIntf::IsMsftSupported() {
@@ -259,17 +265,22 @@ bool BleScannerIntf::IsMsftSupported() {
 void BleScannerIntf::MsftAdvMonitorAdd(uint32_t call_id, const RustMsftAdvMonitor& monitor) {
   scanner_intf_->MsftAdvMonitorAdd(
       internal::ConvertAdvMonitor(monitor),
-      base::Bind(&BleScannerIntf::OnMsftAdvMonitorAddCallback, base::Unretained(this), call_id));
+      base::BindRepeating(
+          &BleScannerIntf::OnMsftAdvMonitorAddCallback, base::Unretained(this), call_id));
 }
 
 void BleScannerIntf::MsftAdvMonitorRemove(uint32_t call_id, uint8_t monitor_handle) {
   scanner_intf_->MsftAdvMonitorRemove(
-      monitor_handle, base::Bind(&BleScannerIntf::OnMsftAdvMonitorRemoveCallback, base::Unretained(this), call_id));
+      monitor_handle,
+      base::BindRepeating(
+          &BleScannerIntf::OnMsftAdvMonitorRemoveCallback, base::Unretained(this), call_id));
 }
 
 void BleScannerIntf::MsftAdvMonitorEnable(uint32_t call_id, bool enable) {
   scanner_intf_->MsftAdvMonitorEnable(
-      enable, base::Bind(&BleScannerIntf::OnMsftAdvMonitorEnableCallback, base::Unretained(this), call_id));
+      enable,
+      base::BindRepeating(
+          &BleScannerIntf::OnMsftAdvMonitorEnableCallback, base::Unretained(this), call_id));
 }
 
 void BleScannerIntf::SetScanParameters(uint8_t scanner_id, uint16_t scan_interval, uint16_t scan_window) {
@@ -277,7 +288,7 @@ void BleScannerIntf::SetScanParameters(uint8_t scanner_id, uint16_t scan_interva
       scanner_id,
       scan_interval,
       scan_window,
-      base::Bind(&BleScannerIntf::OnStatusCallback, base::Unretained(this), scanner_id));
+      base::BindRepeating(&BleScannerIntf::OnStatusCallback, base::Unretained(this), scanner_id));
 }
 
 void BleScannerIntf::BatchscanConfigStorage(
@@ -290,7 +301,7 @@ void BleScannerIntf::BatchscanConfigStorage(
       batch_scan_full_max,
       batch_scan_trunc_max,
       batch_scan_notify_threshold,
-      base::Bind(&BleScannerIntf::OnStatusCallback, base::Unretained(this), scanner_id));
+      base::BindRepeating(&BleScannerIntf::OnStatusCallback, base::Unretained(this), scanner_id));
 }
 
 void BleScannerIntf::BatchscanEnable(
@@ -301,11 +312,12 @@ void BleScannerIntf::BatchscanEnable(
       scan_window,
       addr_type,
       discard_rule,
-      base::Bind(&BleScannerIntf::OnStatusCallback, base::Unretained(this), 0));
+      base::BindRepeating(&BleScannerIntf::OnStatusCallback, base::Unretained(this), 0));
 }
 
 void BleScannerIntf::BatchscanDisable() {
-  scanner_intf_->BatchscanDisable(base::Bind(&BleScannerIntf::OnStatusCallback, base::Unretained(this), 0));
+  scanner_intf_->BatchscanDisable(
+      base::BindRepeating(&BleScannerIntf::OnStatusCallback, base::Unretained(this), 0));
 }
 
 void BleScannerIntf::BatchscanReadReports(uint8_t scanner_id, int32_t scan_mode) {

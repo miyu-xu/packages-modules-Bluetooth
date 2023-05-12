@@ -50,7 +50,7 @@ bool BTM_BleLocalPrivacyEnabled() { return true; }
 void btm_acl_update_conn_addr(uint16_t conn_handle, const RawAddress& address) {
 }
 void btm_gen_resolvable_private_addr(
-    base::Callback<void(const RawAddress& rpa)> cb) {
+    base::RepeatingCallback<void(const RawAddress& rpa)> cb) {
   cb.Run(RawAddress::kEmpty);
 }
 
@@ -95,7 +95,7 @@ class AdvertiserHciMock : public BleAdvertiserHciInterface {
   ~AdvertiserHciMock() override = default;
 
   MOCK_METHOD1(ReadInstanceCount,
-               void(base::Callback<void(uint8_t /* inst_cnt*/)>));
+               void(base::RepeatingCallback<void(uint8_t /* inst_cnt*/)>));
   MOCK_METHOD1(SetAdvertisingEventObserver,
                void(AdvertisingEventObserver* observer));
   MOCK_METHOD6(SetAdvertisingData,
@@ -158,7 +158,7 @@ class BleAdvertisingManagerTest : public testing::Test {
   void SetUp() override {
     hci_mock.reset(new AdvertiserHciMock());
 
-    base::Callback<void(uint8_t)> inst_cnt_Cb;
+    base::RepeatingCallback<void(uint8_t)> inst_cnt_Cb;
     EXPECT_CALL(*hci_mock, ReadInstanceCount(_))
         .Times(Exactly(1))
         .WillOnce(SaveArg<0>(&inst_cnt_Cb));
@@ -273,7 +273,7 @@ TEST_F(BleAdvertisingManagerTest, test_android_flow) {
   BleAdvertisingManager::Get()->Enable(
       advertiser_id, true,
       Bind(&BleAdvertisingManagerTest::EnableCb, base::Unretained(this)), 0, 0,
-      base::Callback<void(uint8_t)>());
+      base::RepeatingCallback<void(uint8_t)>());
   ::testing::Mock::VerifyAndClearExpectations(hci_mock.get());
 
   enable_cb.Run(0);
@@ -554,7 +554,8 @@ TEST_F(BleAdvertisingManagerTest, test_start_advertising_set_params_failed) {
       advertiser_id,
       Bind(&BleAdvertisingManagerTest::StartAdvertisingCb,
            base::Unretained(this)),
-      &params, adv_data, scan_resp, 0, base::Callback<void(uint8_t)>());
+      &params, adv_data, scan_resp, 0,
+      base::RepeatingCallback<void(uint8_t)>());
   ::testing::Mock::VerifyAndClearExpectations(hci_mock.get());
 
   // set params failed
@@ -932,7 +933,7 @@ TEST_F(BleAdvertisingManagerTest, test_suspend_resume) {
     BleAdvertisingManager::Get()->Enable(
         advertiser_id, true,
         Bind(&BleAdvertisingManagerTest::EnableCb, base::Unretained(this)), 0,
-        0, base::Callback<void(uint8_t)>());
+        0, base::RepeatingCallback<void(uint8_t)>());
     enable_cb.Run(0);
     ::testing::Mock::VerifyAndClearExpectations(hci_mock.get());
   }

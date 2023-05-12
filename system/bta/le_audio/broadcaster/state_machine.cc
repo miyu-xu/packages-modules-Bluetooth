@@ -97,18 +97,18 @@ class BroadcastStateMachineImpl : public BroadcastStateMachine {
     return sm_config_;
   }
 
-  void RequestOwnAddress(
-      base::Callback<void(uint8_t /* address_type*/, RawAddress /*address*/)>
-          cb) override {
+  void RequestOwnAddress(base::RepeatingCallback<void(uint8_t /* address_type*/,
+                                                      RawAddress /*address*/)>
+                             cb) override {
     uint8_t advertising_sid = GetAdvertisingSid();
     advertiser_if_->GetOwnAddress(advertising_sid, cb);
   }
 
   void RequestOwnAddress(void) override {
     auto broadcast_id = GetBroadcastId();
-    RequestOwnAddress(
-        base::Bind(&IBroadcastStateMachineCallbacks::OnOwnAddressResponse,
-                   base::Unretained(this->callbacks_), broadcast_id));
+    RequestOwnAddress(base::BindRepeating(
+        &IBroadcastStateMachineCallbacks::OnOwnAddressResponse,
+        base::Unretained(this->callbacks_), broadcast_id));
   }
 
   RawAddress GetOwnAddress() override {
@@ -295,8 +295,8 @@ class BroadcastStateMachineImpl : public BroadcastStateMachine {
 
     advertiser_if_->GetOwnAddress(
         advertising_sid,
-        base::Bind(&BroadcastStateMachineImpl::OnAddressResponse,
-                   base::Unretained(this)));
+        base::BindRepeating(&BroadcastStateMachineImpl::OnAddressResponse,
+                            base::Unretained(this)));
   }
 
   void CreateAnnouncementTimeoutCb(uint8_t advertising_sid, uint8_t status) {
@@ -345,12 +345,13 @@ class BroadcastStateMachineImpl : public BroadcastStateMachine {
        * CreateBIG command.
        */
       advertiser_if_->StartAdvertisingSet(
-          base::Bind(&BroadcastStateMachineImpl::CreateAnnouncementCb,
-                     base::Unretained(this)),
+          base::BindRepeating(&BroadcastStateMachineImpl::CreateAnnouncementCb,
+                              base::Unretained(this)),
           &adv_params, adv_data, std::vector<uint8_t>(), &periodic_params,
           periodic_data, 0 /* duration */, 0 /* maxExtAdvEvents */,
-          base::Bind(&BroadcastStateMachineImpl::CreateAnnouncementTimeoutCb,
-                     base::Unretained(this)));
+          base::BindRepeating(
+              &BroadcastStateMachineImpl::CreateAnnouncementTimeoutCb,
+              base::Unretained(this)));
     }
   }
 
@@ -394,11 +395,12 @@ class BroadcastStateMachineImpl : public BroadcastStateMachine {
     LOG_INFO("broadcast_id=%d", GetBroadcastId());
     advertiser_if_->Enable(
         GetAdvertisingSid(), true,
-        base::Bind(&BroadcastStateMachineImpl::EnableAnnouncementCb,
-                   base::Unretained(this), true),
+        base::BindRepeating(&BroadcastStateMachineImpl::EnableAnnouncementCb,
+                            base::Unretained(this), true),
         0, 0, /* Enable until stopped */
-        base::Bind(&BroadcastStateMachineImpl::EnableAnnouncementTimeoutCb,
-                   base::Unretained(this), true));
+        base::BindRepeating(
+            &BroadcastStateMachineImpl::EnableAnnouncementTimeoutCb,
+            base::Unretained(this), true));
   }
 
   void CreateBig(void) {
@@ -427,11 +429,12 @@ class BroadcastStateMachineImpl : public BroadcastStateMachine {
     LOG_INFO("broadcast_id=%d", GetBroadcastId());
     advertiser_if_->Enable(
         GetAdvertisingSid(), false,
-        base::Bind(&BroadcastStateMachineImpl::EnableAnnouncementCb,
-                   base::Unretained(this), false),
+        base::BindRepeating(&BroadcastStateMachineImpl::EnableAnnouncementCb,
+                            base::Unretained(this), false),
         0, 0,
-        base::Bind(&BroadcastStateMachineImpl::EnableAnnouncementTimeoutCb,
-                   base::Unretained(this), false));
+        base::BindRepeating(
+            &BroadcastStateMachineImpl::EnableAnnouncementTimeoutCb,
+            base::Unretained(this), false));
   }
 
   void TerminateBig() {

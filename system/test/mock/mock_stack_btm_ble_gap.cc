@@ -54,15 +54,16 @@
 #define UNUSED_ATTR
 #endif
 
-using StartSyncCb = base::Callback<void(
+using StartSyncCb = base::RepeatingCallback<void(
     uint8_t /*status*/, uint16_t /*sync_handle*/, uint8_t /*advertising_sid*/,
     uint8_t /*address_type*/, RawAddress /*address*/, uint8_t /*phy*/,
     uint16_t /*interval*/)>;
-using SyncReportCb = base::Callback<void(
+using SyncReportCb = base::RepeatingCallback<void(
     uint16_t /*sync_handle*/, int8_t /*tx_power*/, int8_t /*rssi*/,
     uint8_t /*status*/, std::vector<uint8_t> /*data*/)>;
-using SyncLostCb = base::Callback<void(uint16_t /*sync_handle*/)>;
-using SyncTransferCb = base::Callback<void(uint8_t /*status*/, RawAddress)>;
+using SyncLostCb = base::RepeatingCallback<void(uint16_t /*sync_handle*/)>;
+using SyncTransferCb =
+    base::RepeatingCallback<void(uint8_t /*status*/, RawAddress)>;
 
 bool BTM_BleConfigPrivacy(bool privacy_mode) {
   inc_func_call_count(__func__);
@@ -140,7 +141,7 @@ void BTM_BleGetVendorCapabilities(tBTM_BLE_VSC_CB* p_cmn_vsc_cb) {
 }
 void BTM_BleSetScanParams(uint32_t scan_interval, uint32_t scan_window,
                           tBLE_SCAN_MODE scan_mode,
-                          base::Callback<void(uint8_t)> cb) {
+                          base::RepeatingCallback<void(uint8_t)> cb) {
   inc_func_call_count(__func__);
 }
 void btm_ble_decrement_link_topology_mask(uint8_t link_role) {

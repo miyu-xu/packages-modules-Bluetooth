@@ -35,12 +35,12 @@ extern ::ScanningCallbacks* default_scanning_callback;
 
 class MsftCallbacks {
  public:
-  using MsftAdvMonitorAddCallback =
-      base::Callback<void(uint8_t /* monitor_handle */, uint8_t /* status */)>;
+  using MsftAdvMonitorAddCallback = base::RepeatingCallback<void(
+      uint8_t /* monitor_handle */, uint8_t /* status */)>;
   using MsftAdvMonitorRemoveCallback =
-      base::Callback<void(uint8_t /* status */)>;
+      base::RepeatingCallback<void(uint8_t /* status */)>;
   using MsftAdvMonitorEnableCallback =
-      base::Callback<void(uint8_t /* status */)>;
+      base::RepeatingCallback<void(uint8_t /* status */)>;
 
   MsftAdvMonitorAddCallback Add;
   MsftAdvMonitorRemoveCallback Remove;
