@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "abfa255c_7ec3558a",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 1207,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-05-12T16:00:53Z",
+      "side": 1,
+      "message": "unrelated",
+      "revId": "75c797d586bdb0d031b3c6178632baebfc638df7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
