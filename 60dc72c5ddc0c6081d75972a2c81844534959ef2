@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f70b5569_5206806e",
+        "filename": "system/gd/storage/storage_module.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 271,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-05-12T20:43:49Z",
+      "side": 1,
+      "message": "Unless the storage module eventually holds more than a config, I\u0027d rather not add another layer.",
+      "parentUuid": "20c4acad_c4915d2f",
+      "revId": "60dc72c5ddc0c6081d75972a2c81844534959ef2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6bbf5467_30b29ee8",
         "filename": "system/gd/storage/storage_module.h",
         "patchSetId": 2
@@ -37,6 +55,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "616caed5_8409edb4",
+        "filename": "system/gd/storage/storage_module.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-05-12T20:43:49Z",
+      "side": 1,
+      "message": "That\u0027s the way it was with GetConfigCache().  The problem I had was that if I give away a pointer to the data, my locks are pretty useless.\n\n\"Storage\" -\u003e ConfigFile :)",
+      "parentUuid": "6bbf5467_30b29ee8",
+      "revId": "60dc72c5ddc0c6081d75972a2c81844534959ef2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e7aa4985_0db79719",
         "filename": "system/main/shim/config.cc",
         "patchSetId": 2
@@ -48,6 +84,24 @@
       "writtenOn": "2023-05-12T20:37:22Z",
       "side": 1,
       "message": "return GetStorage()-\u003edata.HasSection(section);",
+      "revId": "60dc72c5ddc0c6081d75972a2c81844534959ef2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f68e7109_4fce3c02",
+        "filename": "system/main/shim/config.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-05-12T20:43:49Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "e7aa4985_0db79719",
       "revId": "60dc72c5ddc0c6081d75972a2c81844534959ef2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
