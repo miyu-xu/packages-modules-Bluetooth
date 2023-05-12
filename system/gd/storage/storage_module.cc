@@ -193,12 +193,13 @@ void StorageModule::Start() {
     config->SetProperty(kInfoSection, kTimeCreatedProperty, ss.str());
   }
   config->FixDeviceTypeInconsistencies();
-  config->SetPersistentConfigChangedCallback([this] { this->CallOn(this, &StorageModule::SaveDelayed); });
   // TODO (b/158035889) Migrate metrics module to GD
   pimpl_ = std::make_unique<impl>(GetHandler(), std::move(config.value()), temp_devices_capacity_);
   if (save_needed) {
     SaveDelayed();
   }
+  pimpl_->cache_.SetPersistentConfigChangedCallback(
+      [this] { this->CallOn(this, &StorageModule::SaveDelayed); });
   if (bluetooth::os::ParameterProvider::GetBtKeystoreInterface() != nullptr) {
     bluetooth::os::ParameterProvider::GetBtKeystoreInterface()->ConvertEncryptOrDecryptKeyIfNeeded();
   }
