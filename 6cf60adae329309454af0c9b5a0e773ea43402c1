@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "366b0b52_9e8506c2",
+        "filename": "android/app/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachine.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 2038,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-05-12T05:30:25Z",
+      "side": 1,
+      "message": "Should we expect \n\n+ANROID:(\u003ccmd1\u003e,\u003cfeature1\u003e,\u003cfeature2\u003e),(\u003ccmd3\u003e,\u003cfeature1\u003e,\u003cfeature2\u003e),(\u003ccmd3\u003e,\u003cfeature1\u003e,\u003cfeature2\u003e)\n\ninstead?\n\nIf this is the case, the current code works only when there is one cmd",
+      "range": {
+        "startLine": 2038,
+        "startChar": 8,
+        "endLine": 2038,
+        "endChar": 93
+      },
+      "revId": "6cf60adae329309454af0c9b5a0e773ea43402c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8b80c5e4_3a30dba0",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/hfp/HeadsetStateMachineTest.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 1448,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-05-12T05:30:25Z",
+      "side": 1,
+      "message": "should we also expect the +ANDROID\u003d? response?\n\ne.g. \n\n+ANDROID\u003d(SINKAUDIOPOLICY)",
+      "range": {
+        "startLine": 1447,
+        "startChar": 0,
+        "endLine": 1448,
+        "endChar": 68
+      },
+      "revId": "6cf60adae329309454af0c9b5a0e773ea43402c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
