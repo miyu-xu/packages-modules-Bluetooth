@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1a9b09fb_09aedc14",
+        "filename": "system/gd/security/record/security_record_storage_test.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-05-12T21:07:30Z",
+      "side": 1,
+      "message": "Will this code path/permissions work on cuttlefish devices ?",
+      "revId": "dcbfc6b8cbfd1d09facc11044bddbdfad28b0c8c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
