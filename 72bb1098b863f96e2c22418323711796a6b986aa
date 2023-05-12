@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b44b6907_80a66ed3",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-05-12T16:50:46Z",
+      "side": 1,
+      "message": "nit: can add @visiblefortesting if tests want to be added",
+      "range": {
+        "startLine": 147,
+        "startChar": 4,
+        "endLine": 147,
+        "endChar": 10
+      },
+      "revId": "72bb1098b863f96e2c22418323711796a6b986aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
