@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b9ec4269_cdea0623",
+        "filename": "system/gd/security/test/fake_storage_module.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-05-12T21:19:24Z",
+      "side": 0,
+      "message": "I copied it from here.",
+      "range": {
+        "startLine": 30,
+        "startChar": 53,
+        "endLine": 30,
+        "endChar": 64
+      },
+      "revId": "ff263c5308fd1953be477099b2d23167db1291d9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
