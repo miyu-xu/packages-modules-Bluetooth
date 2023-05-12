@@ -52,20 +52,22 @@ class MockBleAdvertisingManager : public BleAdvertisingManager {
                std::vector<uint8_t> scan_response_data, int duration,
                MultiAdvCb timeout_cb),
               (override));
-  MOCK_METHOD((void), StartAdvertisingSet,
-              (base::Callback<void(uint8_t /* inst_id */, int8_t /* tx_power */,
-                                   uint8_t /* status */)>
-                   cb,
-               tBTM_BLE_ADV_PARAMS* params, std::vector<uint8_t> advertise_data,
-               std::vector<uint8_t> scan_response_data,
-               tBLE_PERIODIC_ADV_PARAMS* periodic_params,
-               std::vector<uint8_t> periodic_data, uint16_t duration,
-               uint8_t maxExtAdvEvents,
-               base::Callback<void(uint8_t /* inst_id */, uint8_t /* status */)>
-                   timeout_cb),
-              (override));
+  MOCK_METHOD(
+      (void), StartAdvertisingSet,
+      (base::RepeatingCallback<void(
+           uint8_t /* inst_id */, int8_t /* tx_power */, uint8_t /* status */)>
+           cb,
+       tBTM_BLE_ADV_PARAMS* params, std::vector<uint8_t> advertise_data,
+       std::vector<uint8_t> scan_response_data,
+       tBLE_PERIODIC_ADV_PARAMS* periodic_params,
+       std::vector<uint8_t> periodic_data, uint16_t duration,
+       uint8_t maxExtAdvEvents,
+       base::RepeatingCallback<void(uint8_t /* inst_id */,
+                                    uint8_t /* status */)>
+           timeout_cb),
+      (override));
   MOCK_METHOD((void), RegisterAdvertiser,
-              (base::Callback<void(uint8_t inst_id, uint8_t status)>),
+              (base::RepeatingCallback<void(uint8_t inst_id, uint8_t status)>),
               (override));
   MOCK_METHOD((void), Enable,
               (uint8_t inst_id, bool enable, MultiAdvCb cb, uint16_t duration,
@@ -96,12 +98,12 @@ class MockBleAdvertisingManager : public BleAdvertisingManager {
                uint16_t connection_handle,
                uint8_t num_completed_extended_adv_events),
               (override));
-  MOCK_METHOD(
-      (void), GetOwnAddress,
-      (uint8_t inst_id,
-       base::Callback<void(uint8_t /* address_type*/, RawAddress /*address*/)>
-           cb),
-      (override));
+  MOCK_METHOD((void), GetOwnAddress,
+              (uint8_t inst_id,
+               base::RepeatingCallback<void(uint8_t /* address_type*/,
+                                            RawAddress /*address*/)>
+                   cb),
+              (override));
 
  private:
   base::WeakPtrFactory<MockBleAdvertisingManager> weak_factory_{this};

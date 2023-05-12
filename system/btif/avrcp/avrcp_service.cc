@@ -157,96 +157,98 @@ class MediaInterfaceWrapper : public MediaInterface {
   MediaInterfaceWrapper(MediaInterface* cb) : wrapped_(cb){};
 
   void SendKeyEvent(uint8_t key, KeyState state) override {
-    do_in_avrcp_jni(base::Bind(&MediaInterface::SendKeyEvent,
-                               base::Unretained(wrapped_), key, state));
+    do_in_avrcp_jni(base::BindRepeating(
+        &MediaInterface::SendKeyEvent, base::Unretained(wrapped_), key, state));
   }
 
   void GetSongInfo(SongInfoCallback info_cb) override {
     auto cb_lambda = [](SongInfoCallback cb, SongInfo data) {
-      do_in_main_thread(FROM_HERE, base::Bind(cb, data));
+      do_in_main_thread(FROM_HERE, base::BindRepeating(cb, data));
     };
 
-    auto bound_cb = base::Bind(cb_lambda, info_cb);
+    auto bound_cb = base::BindRepeating(cb_lambda, info_cb);
 
-    do_in_avrcp_jni(base::Bind(&MediaInterface::GetSongInfo,
-                               base::Unretained(wrapped_), bound_cb));
+    do_in_avrcp_jni(base::BindRepeating(&MediaInterface::GetSongInfo,
+                                        base::Unretained(wrapped_), bound_cb));
   }
 
   void GetPlayStatus(PlayStatusCallback status_cb) override {
     auto cb_lambda = [](PlayStatusCallback cb, PlayStatus status) {
-      do_in_main_thread(FROM_HERE, base::Bind(cb, status));
+      do_in_main_thread(FROM_HERE, base::BindRepeating(cb, status));
     };
 
-    auto bound_cb = base::Bind(cb_lambda, status_cb);
+    auto bound_cb = base::BindRepeating(cb_lambda, status_cb);
 
-    do_in_avrcp_jni(base::Bind(&MediaInterface::GetPlayStatus,
-                               base::Unretained(wrapped_), bound_cb));
+    do_in_avrcp_jni(base::BindRepeating(&MediaInterface::GetPlayStatus,
+                                        base::Unretained(wrapped_), bound_cb));
   }
 
   void GetNowPlayingList(NowPlayingCallback now_playing_cb) override {
     auto cb_lambda = [](NowPlayingCallback cb, std::string curr_media_id,
                         std::vector<SongInfo> song_list) {
-      do_in_main_thread(FROM_HERE,
-                        base::Bind(cb, curr_media_id, std::move(song_list)));
+      do_in_main_thread(FROM_HERE, base::BindRepeating(cb, curr_media_id,
+                                                       std::move(song_list)));
     };
 
-    auto bound_cb = base::Bind(cb_lambda, now_playing_cb);
+    auto bound_cb = base::BindRepeating(cb_lambda, now_playing_cb);
 
-    do_in_avrcp_jni(base::Bind(&MediaInterface::GetNowPlayingList,
-                               base::Unretained(wrapped_), bound_cb));
+    do_in_avrcp_jni(base::BindRepeating(&MediaInterface::GetNowPlayingList,
+                                        base::Unretained(wrapped_), bound_cb));
   }
 
   void GetMediaPlayerList(MediaListCallback list_cb) override {
     auto cb_lambda = [](MediaListCallback cb, uint16_t curr_player,
                         std::vector<MediaPlayerInfo> player_list) {
-      do_in_main_thread(FROM_HERE,
-                        base::Bind(cb, curr_player, std::move(player_list)));
+      do_in_main_thread(FROM_HERE, base::BindRepeating(cb, curr_player,
+                                                       std::move(player_list)));
     };
 
-    auto bound_cb = base::Bind(cb_lambda, list_cb);
+    auto bound_cb = base::BindRepeating(cb_lambda, list_cb);
 
-    do_in_avrcp_jni(base::Bind(&MediaInterface::GetMediaPlayerList,
-                               base::Unretained(wrapped_), bound_cb));
+    do_in_avrcp_jni(base::BindRepeating(&MediaInterface::GetMediaPlayerList,
+                                        base::Unretained(wrapped_), bound_cb));
   }
 
   void GetFolderItems(uint16_t player_id, std::string media_id,
                       FolderItemsCallback folder_cb) override {
     auto cb_lambda = [](FolderItemsCallback cb,
                         std::vector<ListItem> item_list) {
-      do_in_main_thread(FROM_HERE, base::Bind(cb, std::move(item_list)));
+      do_in_main_thread(FROM_HERE,
+                        base::BindRepeating(cb, std::move(item_list)));
     };
 
-    auto bound_cb = base::Bind(cb_lambda, folder_cb);
+    auto bound_cb = base::BindRepeating(cb_lambda, folder_cb);
 
-    do_in_avrcp_jni(base::Bind(&MediaInterface::GetFolderItems,
-                               base::Unretained(wrapped_), player_id, media_id,
-                               bound_cb));
+    do_in_avrcp_jni(base::BindRepeating(&MediaInterface::GetFolderItems,
+                                        base::Unretained(wrapped_), player_id,
+                                        media_id, bound_cb));
   }
 
   void SetBrowsedPlayer(uint16_t player_id,
                         SetBrowsedPlayerCallback browse_cb) override {
     auto cb_lambda = [](SetBrowsedPlayerCallback cb, bool success,
                         std::string root_id, uint32_t num_items) {
-      do_in_main_thread(FROM_HERE, base::Bind(cb, success, root_id, num_items));
+      do_in_main_thread(FROM_HERE,
+                        base::BindRepeating(cb, success, root_id, num_items));
     };
 
-    auto bound_cb = base::Bind(cb_lambda, browse_cb);
+    auto bound_cb = base::BindRepeating(cb_lambda, browse_cb);
 
-    do_in_avrcp_jni(base::Bind(&MediaInterface::SetBrowsedPlayer,
-                               base::Unretained(wrapped_), player_id,
-                               bound_cb));
+    do_in_avrcp_jni(base::BindRepeating(&MediaInterface::SetBrowsedPlayer,
+                                        base::Unretained(wrapped_), player_id,
+                                        bound_cb));
   }
 
   void PlayItem(uint16_t player_id, bool now_playing,
                 std::string media_id) override {
-    do_in_avrcp_jni(base::Bind(&MediaInterface::PlayItem,
-                               base::Unretained(wrapped_), player_id,
-                               now_playing, media_id));
+    do_in_avrcp_jni(base::BindRepeating(&MediaInterface::PlayItem,
+                                        base::Unretained(wrapped_), player_id,
+                                        now_playing, media_id));
   }
 
   void SetActiveDevice(const RawAddress& address) override {
-    do_in_avrcp_jni(base::Bind(&MediaInterface::SetActiveDevice,
-                               base::Unretained(wrapped_), address));
+    do_in_avrcp_jni(base::BindRepeating(&MediaInterface::SetActiveDevice,
+                                        base::Unretained(wrapped_), address));
   }
 
   void RegisterUpdateCallback(MediaCallbacks* callback) override {
@@ -268,33 +270,34 @@ class VolumeInterfaceWrapper : public VolumeInterface {
   VolumeInterfaceWrapper(VolumeInterface* interface) : wrapped_(interface){};
 
   void DeviceConnected(const RawAddress& bdaddr) override {
-    do_in_avrcp_jni(
-        base::Bind(static_cast<void (VolumeInterface::*)(const RawAddress&)>(
-                       &VolumeInterface::DeviceConnected),
-                   base::Unretained(wrapped_), bdaddr));
+    do_in_avrcp_jni(base::BindRepeating(
+        static_cast<void (VolumeInterface::*)(const RawAddress&)>(
+            &VolumeInterface::DeviceConnected),
+        base::Unretained(wrapped_), bdaddr));
   }
 
   void DeviceConnected(const RawAddress& bdaddr, VolumeChangedCb cb) override {
     auto cb_lambda = [](VolumeChangedCb cb, int8_t volume) {
-      do_in_main_thread(FROM_HERE, base::Bind(cb, volume));
+      do_in_main_thread(FROM_HERE, base::BindRepeating(cb, volume));
     };
 
-    auto bound_cb = base::Bind(cb_lambda, cb);
+    auto bound_cb = base::BindRepeating(cb_lambda, cb);
 
-    do_in_avrcp_jni(base::Bind(static_cast<void (VolumeInterface::*)(
-                                   const RawAddress&, VolumeChangedCb)>(
-                                   &VolumeInterface::DeviceConnected),
-                               base::Unretained(wrapped_), bdaddr, bound_cb));
+    do_in_avrcp_jni(
+        base::BindRepeating(static_cast<void (VolumeInterface::*)(
+                                const RawAddress&, VolumeChangedCb)>(
+                                &VolumeInterface::DeviceConnected),
+                            base::Unretained(wrapped_), bdaddr, bound_cb));
   }
 
   void DeviceDisconnected(const RawAddress& bdaddr) override {
-    do_in_avrcp_jni(base::Bind(&VolumeInterface::DeviceDisconnected,
-                               base::Unretained(wrapped_), bdaddr));
+    do_in_avrcp_jni(base::BindRepeating(&VolumeInterface::DeviceDisconnected,
+                                        base::Unretained(wrapped_), bdaddr));
   }
 
   void SetVolume(int8_t volume) override {
-    do_in_avrcp_jni(base::Bind(&VolumeInterface::SetVolume,
-                               base::Unretained(wrapped_), volume));
+    do_in_avrcp_jni(base::BindRepeating(&VolumeInterface::SetVolume,
+                                        base::Unretained(wrapped_), volume));
   }
 
  private:
@@ -311,27 +314,30 @@ class PlayerSettingsInterfaceWrapper : public PlayerSettingsInterface {
   void ListPlayerSettings(ListPlayerSettingsCallback cb) override {
     auto cb_lambda = [](const ListPlayerSettingsCallback& cb,
                         std::vector<PlayerAttribute> attributes) {
-      do_in_main_thread(FROM_HERE, base::Bind(cb, std::move(attributes)));
+      do_in_main_thread(FROM_HERE,
+                        base::BindRepeating(cb, std::move(attributes)));
     };
 
-    auto bound_cb = base::Bind(cb_lambda, cb);
+    auto bound_cb = base::BindRepeating(cb_lambda, cb);
 
-    do_in_avrcp_jni(base::Bind(&PlayerSettingsInterface::ListPlayerSettings,
-                               base::Unretained(wrapped_), bound_cb));
+    do_in_avrcp_jni(
+        base::BindRepeating(&PlayerSettingsInterface::ListPlayerSettings,
+                            base::Unretained(wrapped_), bound_cb));
   }
 
   void ListPlayerSettingValues(PlayerAttribute setting,
                                ListPlayerSettingValuesCallback cb) override {
     auto cb_lambda = [](const ListPlayerSettingValuesCallback& cb,
                         PlayerAttribute setting, std::vector<uint8_t> values) {
-      do_in_main_thread(FROM_HERE, base::Bind(cb, setting, std::move(values)));
+      do_in_main_thread(FROM_HERE,
+                        base::BindRepeating(cb, setting, std::move(values)));
     };
 
-    auto bound_cb = base::Bind(cb_lambda, cb);
+    auto bound_cb = base::BindRepeating(cb_lambda, cb);
 
     do_in_avrcp_jni(
-        base::Bind(&PlayerSettingsInterface::ListPlayerSettingValues,
-                   base::Unretained(wrapped_), setting, bound_cb));
+        base::BindRepeating(&PlayerSettingsInterface::ListPlayerSettingValues,
+                            base::Unretained(wrapped_), setting, bound_cb));
   }
 
   void GetCurrentPlayerSettingValue(
@@ -341,12 +347,13 @@ class PlayerSettingsInterfaceWrapper : public PlayerSettingsInterface {
                         std::vector<PlayerAttribute> attributes,
                         std::vector<uint8_t> values) {
       do_in_main_thread(
-          FROM_HERE, base::Bind(cb, std::move(attributes), std::move(values)));
+          FROM_HERE,
+          base::BindRepeating(cb, std::move(attributes), std::move(values)));
     };
 
-    auto bound_cb = base::Bind(cb_lambda, cb);
+    auto bound_cb = base::BindRepeating(cb_lambda, cb);
 
-    do_in_avrcp_jni(base::Bind(
+    do_in_avrcp_jni(base::BindRepeating(
         &PlayerSettingsInterface::GetCurrentPlayerSettingValue,
         base::Unretained(wrapped_), std::move(attributes), bound_cb));
   }
@@ -355,12 +362,12 @@ class PlayerSettingsInterfaceWrapper : public PlayerSettingsInterface {
                          std::vector<uint8_t> values,
                          SetPlayerSettingValueCallback cb) override {
     auto cb_lambda = [](const SetPlayerSettingValueCallback& cb, bool success) {
-      do_in_main_thread(FROM_HERE, base::Bind(cb, success));
+      do_in_main_thread(FROM_HERE, base::BindRepeating(cb, success));
     };
 
-    auto bound_cb = base::Bind(cb_lambda, cb);
+    auto bound_cb = base::BindRepeating(cb_lambda, cb);
 
-    do_in_avrcp_jni(base::Bind(
+    do_in_avrcp_jni(base::BindRepeating(
         &PlayerSettingsInterface::SetPlayerSettings, base::Unretained(wrapped_),
         std::move(attributes), std::move(values), bound_cb));
   }
@@ -412,7 +419,8 @@ void AvrcpService::Init(MediaInterface* media_interface,
   player_settings_interface_ = wrapped_player_settings_interface;
 
   ConnectionHandler::Initialize(
-      base::Bind(&AvrcpService::DeviceCallback, base::Unretained(instance_)),
+      base::BindRepeating(&AvrcpService::DeviceCallback,
+                          base::Unretained(instance_)),
       &avrcp_interface_, &sdp_interface_, wrapped_volume_interface);
   connection_handler_ = ConnectionHandler::Get();
 }
@@ -521,8 +529,10 @@ void AvrcpService::SendMediaUpdate(bool track_changed, bool play_state,
   // device update happens on the main thread.
   for (const auto& device :
        instance_->connection_handler_->GetListOfDevices()) {
-    do_in_main_thread(FROM_HERE,
-                      base::Bind(&Device::SendMediaUpdate, device.get()->Get(), track_changed, play_state, queue));
+    do_in_main_thread(
+        FROM_HERE,
+        base::BindRepeating(&Device::SendMediaUpdate, device.get()->Get(),
+                            track_changed, play_state, queue));
   }
 }
 
@@ -536,8 +546,10 @@ void AvrcpService::SendFolderUpdate(bool available_players,
   // Ensure that the update is posted to the correct thread
   for (const auto& device :
        instance_->connection_handler_->GetListOfDevices()) {
-    do_in_main_thread(FROM_HERE, base::Bind(&Device::SendFolderUpdate, device.get()->Get(), available_players,
-                                            addressed_players, uids));
+    do_in_main_thread(
+        FROM_HERE,
+        base::BindRepeating(&Device::SendFolderUpdate, device.get()->Get(),
+                            available_players, addressed_players, uids));
   }
 }
 
@@ -567,9 +579,9 @@ void AvrcpService::SendPlayerSettingsChanged(
   // Ensure that the update is posted to the correct thread
   for (const auto& device :
        instance_->connection_handler_->GetListOfDevices()) {
-    do_in_main_thread(FROM_HERE,
-                      base::Bind(&Device::HandlePlayerSettingChanged,
-                                 device.get()->Get(), attributes, values));
+    do_in_main_thread(FROM_HERE, base::BindRepeating(
+                                     &Device::HandlePlayerSettingChanged,
+                                     device.get()->Get(), attributes, values));
   }
 }
 
@@ -597,30 +609,34 @@ void AvrcpService::ServiceInterfaceImpl::Init(
 
   do_in_main_thread(
       FROM_HERE,
-      base::Bind(&AvrcpService::Init, base::Unretained(instance_),
-                 media_interface, volume_interface, player_settings_interface));
+      base::BindRepeating(&AvrcpService::Init, base::Unretained(instance_),
+                          media_interface, volume_interface,
+                          player_settings_interface));
 }
 
 void AvrcpService::ServiceInterfaceImpl::RegisterBipServer(int psm) {
   std::lock_guard<std::mutex> lock(service_interface_lock_);
   CHECK(instance_ != nullptr);
-  do_in_main_thread(FROM_HERE, base::Bind(&AvrcpService::RegisterBipServer,
-                                          base::Unretained(instance_), psm));
+  do_in_main_thread(FROM_HERE,
+                    base::BindRepeating(&AvrcpService::RegisterBipServer,
+                                        base::Unretained(instance_), psm));
 }
 
 void AvrcpService::ServiceInterfaceImpl::UnregisterBipServer() {
   std::lock_guard<std::mutex> lock(service_interface_lock_);
   CHECK(instance_ != nullptr);
-  do_in_main_thread(FROM_HERE, base::Bind(&AvrcpService::UnregisterBipServer,
-                                          base::Unretained(instance_)));
+  do_in_main_thread(FROM_HERE,
+                    base::BindRepeating(&AvrcpService::UnregisterBipServer,
+                                        base::Unretained(instance_)));
 }
 
 bool AvrcpService::ServiceInterfaceImpl::ConnectDevice(
     const RawAddress& bdaddr) {
   std::lock_guard<std::mutex> lock(service_interface_lock_);
   CHECK(instance_ != nullptr);
-  do_in_main_thread(FROM_HERE, base::Bind(&AvrcpService::ConnectDevice,
-                                          base::Unretained(instance_), bdaddr));
+  do_in_main_thread(FROM_HERE,
+                    base::BindRepeating(&AvrcpService::ConnectDevice,
+                                        base::Unretained(instance_), bdaddr));
   return true;
 }
 
@@ -628,8 +644,9 @@ bool AvrcpService::ServiceInterfaceImpl::DisconnectDevice(
     const RawAddress& bdaddr) {
   std::lock_guard<std::mutex> lock(service_interface_lock_);
   CHECK(instance_ != nullptr);
-  do_in_main_thread(FROM_HERE, base::Bind(&AvrcpService::DisconnectDevice,
-                                          base::Unretained(instance_), bdaddr));
+  do_in_main_thread(FROM_HERE,
+                    base::BindRepeating(&AvrcpService::DisconnectDevice,
+                                        base::Unretained(instance_), bdaddr));
   return true;
 }
 
@@ -637,9 +654,10 @@ void AvrcpService::ServiceInterfaceImpl::SetBipClientStatus(
     const RawAddress& bdaddr, bool connected) {
   std::lock_guard<std::mutex> lock(service_interface_lock_);
   CHECK(instance_ != nullptr);
-  do_in_main_thread(FROM_HERE, base::Bind(&AvrcpService::SetBipClientStatus,
-                                          base::Unretained(instance_), bdaddr,
-                                          connected));
+  do_in_main_thread(
+      FROM_HERE,
+      base::BindRepeating(&AvrcpService::SetBipClientStatus,
+                          base::Unretained(instance_), bdaddr, connected));
 }
 
 bool AvrcpService::ServiceInterfaceImpl::Cleanup() {
@@ -647,8 +665,8 @@ bool AvrcpService::ServiceInterfaceImpl::Cleanup() {
 
   if (instance_ == nullptr) return false;
 
-  do_in_main_thread(FROM_HERE,
-                    base::Bind(&AvrcpService::Cleanup, base::Owned(instance_)));
+  do_in_main_thread(FROM_HERE, base::BindRepeating(&AvrcpService::Cleanup,
+                                                   base::Owned(instance_)));
 
   // Setting instance to nullptr here is fine since it will be deleted on the
   // other thread.

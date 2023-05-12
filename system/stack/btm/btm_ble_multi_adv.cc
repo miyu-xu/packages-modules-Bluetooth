@@ -42,12 +42,12 @@ using base::Bind;
 using base::TimeDelta;
 using base::TimeTicks;
 using RegisterCb =
-    base::Callback<void(uint8_t /* inst_id */, uint8_t /* status */)>;
-using IdTxPowerStatusCb = base::Callback<void(
+    base::RepeatingCallback<void(uint8_t /* inst_id */, uint8_t /* status */)>;
+using IdTxPowerStatusCb = base::RepeatingCallback<void(
     uint8_t /* inst_id */, int8_t /* tx_power */, uint8_t /* status */)>;
 using SetEnableData = BleAdvertiserHciInterface::SetEnableData;
 void btm_gen_resolvable_private_addr(
-    base::Callback<void(const RawAddress& rpa)> cb);
+    base::RepeatingCallback<void(const RawAddress& rpa)> cb);
 
 constexpr int ADV_DATA_LEN_MAX = 251;
 
@@ -169,8 +169,8 @@ class BleAdvertisingManagerImpl
   BleAdvertisingManagerImpl(BleAdvertiserHciInterface* interface)
       : hci_interface(interface), weak_factory_(this) {
     hci_interface->ReadInstanceCount(
-        base::Bind(&BleAdvertisingManagerImpl::ReadInstanceCountCb,
-                   weak_factory_.GetWeakPtr()));
+        base::BindRepeating(&BleAdvertisingManagerImpl::ReadInstanceCountCb,
+                            weak_factory_.GetWeakPtr()));
   }
 
   ~BleAdvertisingManagerImpl() override { adv_inst.clear(); }
@@ -188,7 +188,7 @@ class BleAdvertisingManagerImpl
     }
   }
 
-  void GenerateRpa(base::Callback<void(const RawAddress&)> cb) {
+  void GenerateRpa(base::RepeatingCallback<void(const RawAddress&)> cb) {
     btm_gen_resolvable_private_addr(std::move(cb));
   }
 
@@ -241,8 +241,8 @@ class BleAdvertisingManagerImpl
   }
 
   void RegisterAdvertiser(
-      base::Callback<void(uint8_t /* inst_id */, uint8_t /* status */)> cb)
-      override {
+      base::RepeatingCallback<void(uint8_t /* inst_id */, uint8_t /* status */)>
+          cb) override {
     int own_address_type =
         BTM_BleLocalPrivacyEnabled() ? BLE_ADDR_RANDOM : BLE_ADDR_PUBLIC;
     RegisterAdvertiserImpl(own_address_type, cb);
@@ -250,7 +250,8 @@ class BleAdvertisingManagerImpl
 
   void RegisterAdvertiserImpl(
       int own_address_type,
-      base::Callback<void(uint8_t /* inst_id */, uint8_t /* status */)> cb) {
+      base::RepeatingCallback<void(uint8_t /* inst_id */, uint8_t /* status */)>
+          cb) {
     AdvertisingInstance* p_inst = &adv_inst[0];
     for (uint8_t i = 0; i < inst_count; i++, p_inst++) {
       if (p_inst->in_use) continue;
@@ -262,7 +263,8 @@ class BleAdvertisingManagerImpl
       if (own_address_type != BLE_ADDR_PUBLIC) {
         GenerateRpa(Bind(
             [](AdvertisingInstance* p_inst,
-               base::Callback<void(uint8_t /* inst_id */, uint8_t /* status */)>
+               base::RepeatingCallback<void(uint8_t /* inst_id */,
+                                            uint8_t /* status */)>
                    cb,
                const RawAddress& bda) {
               p_inst->own_address = bda;
@@ -650,9 +652,10 @@ class BleAdvertisingManagerImpl
 
     if (enable && p_inst->address_update_required) {
       p_inst->address_update_required = false;
-      ConfigureRpa(p_inst, base::Bind(&BleAdvertisingManagerImpl::EnableFinish,
-                                      weak_factory_.GetWeakPtr(), p_inst,
-                                      enable, std::move(cb)));
+      ConfigureRpa(p_inst,
+                   base::BindRepeating(&BleAdvertisingManagerImpl::EnableFinish,
+                                       weak_factory_.GetWeakPtr(), p_inst,
+                                       enable, std::move(cb)));
       return;
     }
 
@@ -764,8 +767,8 @@ class BleAdvertisingManagerImpl
     VLOG(1) << "data is: " << base::HexEncode(data.data(), data.size());
     DivideAndSendData(
         inst_id, data, cb,
-        base::Bind(&BleAdvertisingManagerImpl::SetDataAdvDataSender,
-                   weak_factory_.GetWeakPtr(), is_scan_rsp));
+        base::BindRepeating(&BleAdvertisingManagerImpl::SetDataAdvDataSender,
+                            weak_factory_.GetWeakPtr(), is_scan_rsp));
   }
 
   void SetDataAdvDataSender(uint8_t is_scan_rsp, uint8_t inst_id,
@@ -779,7 +782,7 @@ class BleAdvertisingManagerImpl
                                             data, cb);
   }
 
-  using DataSender = base::Callback<void(
+  using DataSender = base::RepeatingCallback<void(
       uint8_t /*inst_id*/, uint8_t /* operation */, uint8_t /* length */,
       uint8_t* /* data */, MultiAdvCb /* done */)>;
 
@@ -837,8 +840,9 @@ class BleAdvertisingManagerImpl
 
     DivideAndSendData(
         inst_id, data, cb,
-        base::Bind(&BleAdvertiserHciInterface::SetPeriodicAdvertisingData,
-                   base::Unretained(GetHciInterface())));
+        base::BindRepeating(
+            &BleAdvertiserHciInterface::SetPeriodicAdvertisingData,
+            base::Unretained(GetHciInterface())));
   }
 
   void SetPeriodicAdvertisingEnable(uint8_t inst_id, bool enable,

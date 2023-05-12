@@ -221,20 +221,20 @@ typedef struct {
  * implementation of this callback function must copy the p_service_name
  * and p_provider_name parameters passed to it as they are not guaranteed
  * to remain after the callback function exits. */
-using tAVRC_FIND_CBACK = base::Callback<void(uint16_t status)>;
+using tAVRC_FIND_CBACK = base::RepeatingCallback<void(uint16_t status)>;
 
 /* This is the control callback function.  This function passes events
  * listed in Table 20 to the application. */
 using tAVRC_CTRL_CBACK =
-    base::Callback<void(uint8_t handle, uint8_t event, uint16_t result,
-                        const RawAddress* peer_addr)>;
+    base::RepeatingCallback<void(uint8_t handle, uint8_t event, uint16_t result,
+                                 const RawAddress* peer_addr)>;
 
 /* This is the message callback function.  It is executed when AVCTP has
  * a message packet ready for the application.  The implementation of this
  * callback function must copy the tAVRC_MSG structure passed to it as it
  * is not guaranteed to remain after the callback function exits. */
-using tAVRC_MSG_CBACK = base::Callback<void(uint8_t handle, uint8_t label,
-                                            uint8_t opcode, tAVRC_MSG* p_msg)>;
+using tAVRC_MSG_CBACK = base::RepeatingCallback<void(
+    uint8_t handle, uint8_t label, uint8_t opcode, tAVRC_MSG* p_msg)>;
 
 typedef struct {
   tAVRC_CTRL_CBACK ctrl_cback;    /* application control callback */

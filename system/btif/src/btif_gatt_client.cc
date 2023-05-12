@@ -249,7 +249,7 @@ static bt_status_t btif_gattc_register_app(const Uuid& uuid,
       [](const Uuid& uuid, bool eatt_support) {
         BTA_GATTC_AppRegister(
             bta_gattc_cback,
-            base::Bind(
+            base::BindRepeating(
                 [](const Uuid& uuid, uint8_t client_id, uint8_t status) {
                   do_in_jni_thread(Bind(
                       [](const Uuid& uuid, uint8_t client_id, uint8_t status) {
@@ -642,7 +642,9 @@ static bt_status_t btif_gattc_set_preferred_phy(const RawAddress& bd_addr,
 
 static bt_status_t btif_gattc_read_phy(
     const RawAddress& bd_addr,
-    base::Callback<void(uint8_t tx_phy, uint8_t rx_phy, uint8_t status)> cb) {
+    base::RepeatingCallback<void(uint8_t tx_phy, uint8_t rx_phy,
+                                 uint8_t status)>
+        cb) {
   CHECK_BTGATT_INIT();
   do_in_main_thread(FROM_HERE, Bind(&BTM_BleReadPhy, bd_addr,
                                     jni_thread_wrapper(FROM_HERE, cb)));

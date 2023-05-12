@@ -136,21 +136,21 @@ struct BTM_BlePasskeyReply {
 extern struct BTM_BlePasskeyReply BTM_BlePasskeyReply;
 
 // Name: BTM_BleReadPhy
-// Params: const RawAddress& bd_addr, base::Callback<void(uint8_t tx_phy,
-// uint8_t rx_phy, uint8_t status Return: void
+// Params: const RawAddress& bd_addr, base::RepeatingCallback<void(uint8_t
+// tx_phy, uint8_t rx_phy, uint8_t status Return: void
 struct BTM_BleReadPhy {
-  std::function<void(
-      const RawAddress& bd_addr,
-      base::Callback<void(uint8_t tx_phy, uint8_t rx_phy, uint8_t status)>
-          callback)>
+  std::function<void(const RawAddress& bd_addr,
+                     base::RepeatingCallback<void(
+                         uint8_t tx_phy, uint8_t rx_phy, uint8_t status)>
+                         callback)>
       body{[](const RawAddress& bd_addr,
-              base::Callback<void(uint8_t tx_phy, uint8_t rx_phy,
-                                  uint8_t status)>
+              base::RepeatingCallback<void(uint8_t tx_phy, uint8_t rx_phy,
+                                           uint8_t status)>
                   callback) {}};
-  void operator()(
-      const RawAddress& bd_addr,
-      base::Callback<void(uint8_t tx_phy, uint8_t rx_phy, uint8_t status)>
-          callback) {
+  void operator()(const RawAddress& bd_addr,
+                  base::RepeatingCallback<void(uint8_t tx_phy, uint8_t rx_phy,
+                                               uint8_t status)>
+                      callback) {
     body(bd_addr, callback);
   };
 };
@@ -770,21 +770,21 @@ struct doNothing {
 extern struct doNothing doNothing;
 
 // Name: read_phy_cb
-// Params: base::Callback<void(uint8_t tx_phy, uint8_t rx_phy, uint8_t status
-// Return: void
+// Params: base::RepeatingCallback<void(uint8_t tx_phy, uint8_t rx_phy, uint8_t
+// status Return: void
 struct read_phy_cb {
-  std::function<void(
-      base::Callback<void(uint8_t tx_phy, uint8_t rx_phy, uint8_t status)>
-          callback,
-      uint8_t* data, uint16_t len)>
-      body{[](base::Callback<void(uint8_t tx_phy, uint8_t rx_phy,
-                                  uint8_t status)>
+  std::function<void(base::RepeatingCallback<void(
+                         uint8_t tx_phy, uint8_t rx_phy, uint8_t status)>
+                         callback,
+                     uint8_t* data, uint16_t len)>
+      body{[](base::RepeatingCallback<void(uint8_t tx_phy, uint8_t rx_phy,
+                                           uint8_t status)>
                   callback,
               uint8_t* data, uint16_t len) {}};
-  void operator()(
-      base::Callback<void(uint8_t tx_phy, uint8_t rx_phy, uint8_t status)>
-          callback,
-      uint8_t* data, uint16_t len) {
+  void operator()(base::RepeatingCallback<void(uint8_t tx_phy, uint8_t rx_phy,
+                                               uint8_t status)>
+                      callback,
+                  uint8_t* data, uint16_t len) {
     body(callback, data, len);
   };
 };

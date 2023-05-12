@@ -58,14 +58,14 @@ void func_abc(int a, int b, int c) {
 TEST_F(BaseBindThreadTest, simple) {
   struct Vars v;
   g_vars = {};
-  base::Callback<void()> cb0 = base::Bind(&func);
+  base::RepeatingCallback<void()> cb0 = base::BindRepeating(&func);
   cb0.Run();
   ASSERT_EQ(g_vars, v);
 
   v = {};
   v.a = 1;
   g_vars = {};
-  base::Callback<void()> cb1 = base::Bind(&func_a, 1);
+  base::RepeatingCallback<void()> cb1 = base::BindRepeating(&func_a, 1);
   cb1.Run();
   ASSERT_EQ(g_vars, v);
 
@@ -73,7 +73,7 @@ TEST_F(BaseBindThreadTest, simple) {
   v.a = 1;
   v.b = 2;
   g_vars = {};
-  base::Callback<void()> cb2 = base::Bind(&func_ab, 1, 2);
+  base::RepeatingCallback<void()> cb2 = base::BindRepeating(&func_ab, 1, 2);
   cb2.Run();
   ASSERT_EQ(g_vars, v);
 
@@ -82,7 +82,7 @@ TEST_F(BaseBindThreadTest, simple) {
   v.b = 2;
   v.c = 3;
   g_vars = {};
-  base::Callback<void()> cb3 = base::Bind(&func_abc, 1, 2, 3);
+  base::RepeatingCallback<void()> cb3 = base::BindRepeating(&func_abc, 1, 2, 3);
   cb3.Run();
   ASSERT_EQ(g_vars, v);
 }
@@ -90,14 +90,14 @@ TEST_F(BaseBindThreadTest, simple) {
 TEST_F(BaseBindThreadTest, bind_first_arg) {
   struct Vars v;
   g_vars = {};
-  base::Callback<void()> cb0 = base::Bind(&func);
+  base::RepeatingCallback<void()> cb0 = base::BindRepeating(&func);
   cb0.Run();
   ASSERT_EQ(g_vars, v);
 
   v = {};
   v.a = 1;
   g_vars = {};
-  base::Callback<void()> cb1 = base::Bind(&func_a, 1);
+  base::RepeatingCallback<void()> cb1 = base::BindRepeating(&func_a, 1);
   cb1.Run();
   ASSERT_EQ(g_vars, v);
 
@@ -105,7 +105,7 @@ TEST_F(BaseBindThreadTest, bind_first_arg) {
   v.a = 1;
   v.b = 2;
   g_vars = {};
-  base::Callback<void(int)> cb2 = base::Bind(&func_ab, 1);
+  base::RepeatingCallback<void(int)> cb2 = base::BindRepeating(&func_ab, 1);
   cb2.Run(2);
   ASSERT_EQ(g_vars, v);
 
@@ -114,7 +114,8 @@ TEST_F(BaseBindThreadTest, bind_first_arg) {
   v.b = 2;
   v.c = 3;
   g_vars = {};
-  base::Callback<void(int, int)> cb3 = base::Bind(&func_abc, 1);
+  base::RepeatingCallback<void(int, int)> cb3 =
+      base::BindRepeating(&func_abc, 1);
   cb3.Run(2, 3);
   ASSERT_EQ(g_vars, v);
 }

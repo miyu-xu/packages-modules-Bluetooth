@@ -312,46 +312,48 @@ class BleAdvertiserInterfaceImpl : public BleAdvertiserInterface,
                                int8_t tx_power,
                                AdvertisingStatus status) override {
     do_in_jni_thread(
-        FROM_HERE, base::Bind(&AdvertisingCallbacks::OnAdvertisingSetStarted,
-                              base::Unretained(advertising_callbacks_), reg_id,
-                              advertiser_id, tx_power, status));
+        FROM_HERE,
+        base::BindRepeating(&AdvertisingCallbacks::OnAdvertisingSetStarted,
+                            base::Unretained(advertising_callbacks_), reg_id,
+                            advertiser_id, tx_power, status));
   }
 
   void OnAdvertisingEnabled(uint8_t advertiser_id, bool enable,
                             uint8_t status) {
-    do_in_jni_thread(FROM_HERE,
-                     base::Bind(&AdvertisingCallbacks::OnAdvertisingEnabled,
-                                base::Unretained(advertising_callbacks_),
-                                advertiser_id, enable, status));
+    do_in_jni_thread(FROM_HERE, base::BindRepeating(
+                                    &AdvertisingCallbacks::OnAdvertisingEnabled,
+                                    base::Unretained(advertising_callbacks_),
+                                    advertiser_id, enable, status));
   }
 
   void OnAdvertisingDataSet(uint8_t advertiser_id, uint8_t status) {
-    do_in_jni_thread(FROM_HERE,
-                     base::Bind(&AdvertisingCallbacks::OnAdvertisingDataSet,
-                                base::Unretained(advertising_callbacks_),
-                                advertiser_id, status));
+    do_in_jni_thread(FROM_HERE, base::BindRepeating(
+                                    &AdvertisingCallbacks::OnAdvertisingDataSet,
+                                    base::Unretained(advertising_callbacks_),
+                                    advertiser_id, status));
   }
   void OnScanResponseDataSet(uint8_t advertiser_id, uint8_t status) {
-    do_in_jni_thread(FROM_HERE,
-                     base::Bind(&AdvertisingCallbacks::OnScanResponseDataSet,
-                                base::Unretained(advertising_callbacks_),
-                                advertiser_id, status));
+    do_in_jni_thread(
+        FROM_HERE,
+        base::BindRepeating(&AdvertisingCallbacks::OnScanResponseDataSet,
+                            base::Unretained(advertising_callbacks_),
+                            advertiser_id, status));
   }
 
   void OnAdvertisingParametersUpdated(uint8_t advertiser_id, int8_t tx_power,
                                       uint8_t status) {
     do_in_jni_thread(
-        FROM_HERE,
-        base::Bind(&AdvertisingCallbacks::OnAdvertisingParametersUpdated,
-                   base::Unretained(advertising_callbacks_), advertiser_id,
-                   tx_power, status));
+        FROM_HERE, base::BindRepeating(
+                       &AdvertisingCallbacks::OnAdvertisingParametersUpdated,
+                       base::Unretained(advertising_callbacks_), advertiser_id,
+                       tx_power, status));
   }
 
   void OnPeriodicAdvertisingParametersUpdated(uint8_t advertiser_id,
                                               uint8_t status) {
     do_in_jni_thread(
         FROM_HERE,
-        base::Bind(
+        base::BindRepeating(
             &AdvertisingCallbacks::OnPeriodicAdvertisingParametersUpdated,
             base::Unretained(advertising_callbacks_), advertiser_id, status));
   }
@@ -359,18 +361,18 @@ class BleAdvertiserInterfaceImpl : public BleAdvertiserInterface,
   void OnPeriodicAdvertisingDataSet(uint8_t advertiser_id, uint8_t status) {
     do_in_jni_thread(
         FROM_HERE,
-        base::Bind(&AdvertisingCallbacks::OnPeriodicAdvertisingDataSet,
-                   base::Unretained(advertising_callbacks_), advertiser_id,
-                   status));
+        base::BindRepeating(&AdvertisingCallbacks::OnPeriodicAdvertisingDataSet,
+                            base::Unretained(advertising_callbacks_),
+                            advertiser_id, status));
   }
 
   void OnPeriodicAdvertisingEnabled(uint8_t advertiser_id, bool enable,
                                     uint8_t status) {
     do_in_jni_thread(
         FROM_HERE,
-        base::Bind(&AdvertisingCallbacks::OnPeriodicAdvertisingEnabled,
-                   base::Unretained(advertising_callbacks_), advertiser_id,
-                   enable, status));
+        base::BindRepeating(&AdvertisingCallbacks::OnPeriodicAdvertisingEnabled,
+                            base::Unretained(advertising_callbacks_),
+                            advertiser_id, enable, status));
   }
 
   void OnOwnAddressRead(uint8_t advertiser_id, uint8_t address_type,
@@ -381,10 +383,10 @@ class BleAdvertiserInterfaceImpl : public BleAdvertiserInterface,
       address_callbacks_.erase(advertiser_id);
       return;
     }
-    do_in_jni_thread(FROM_HERE,
-                     base::Bind(&AdvertisingCallbacks::OnOwnAddressRead,
-                                base::Unretained(advertising_callbacks_),
-                                advertiser_id, address_type, raw_address));
+    do_in_jni_thread(FROM_HERE, base::BindRepeating(
+                                    &AdvertisingCallbacks::OnOwnAddressRead,
+                                    base::Unretained(advertising_callbacks_),
+                                    advertiser_id, address_type, raw_address));
   }
 
   AdvertisingCallbacks* advertising_callbacks_;

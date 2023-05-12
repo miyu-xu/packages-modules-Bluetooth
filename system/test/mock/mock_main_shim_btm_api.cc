@@ -268,7 +268,9 @@ void bluetooth::shim::BTM_BleOobDataReply(const RawAddress& bd_addr,
 }
 void bluetooth::shim::BTM_BleReadPhy(
     const RawAddress& bd_addr,
-    base::Callback<void(uint8_t tx_phy, uint8_t rx_phy, uint8_t status)> cb) {
+    base::RepeatingCallback<void(uint8_t tx_phy, uint8_t rx_phy,
+                                 uint8_t status)>
+        cb) {
   inc_func_call_count(__func__);
 }
 void bluetooth::shim::BTM_BleReceiverTest(uint8_t rx_freq,

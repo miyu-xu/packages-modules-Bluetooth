@@ -265,7 +265,7 @@ class LeAudioClientImpl : public LeAudioClient {
 
     BTA_GATTC_AppRegister(
         le_audio_gattc_callback,
-        base::Bind(
+        base::BindRepeating(
             [](base::Closure initCb, uint8_t client_id, uint8_t status) {
               if (status != GATT_SUCCESS) {
                 LOG(ERROR) << "Can't start LeAudio profile - no gatt "
@@ -3609,7 +3609,7 @@ class LeAudioClientImpl : public LeAudioClient {
     leAudioDevices_.Dump(fd, bluetooth::groups::kGroupUnknown);
   }
 
-  void Cleanup(base::Callback<void()> cleanupCb) {
+  void Cleanup(base::RepeatingCallback<void()> cleanupCb) {
     StopVbcCloseTimeout();
     if (alarm_is_scheduled(suspend_timeout_)) alarm_cancel(suspend_timeout_);
 
@@ -5557,7 +5557,7 @@ LeAudioClient* LeAudioClient::Get() {
 /* Initializer of main le audio implementation class and its instance */
 void LeAudioClient::Initialize(
     bluetooth::le_audio::LeAudioClientCallbacks* callbacks_,
-    base::Closure initCb, base::Callback<bool()> hal_2_1_verifier,
+    base::Closure initCb, base::RepeatingCallback<bool()> hal_2_1_verifier,
     const std::vector<bluetooth::le_audio::btle_audio_codec_config_t>&
         offloading_preference) {
   std::scoped_lock<std::mutex> lock(instance_mutex);
@@ -5614,7 +5614,7 @@ void LeAudioClient::DebugDump(int fd) {
   dprintf(fd, "\n");
 }
 
-void LeAudioClient::Cleanup(base::Callback<void()> cleanupCb) {
+void LeAudioClient::Cleanup(base::RepeatingCallback<void()> cleanupCb) {
   std::scoped_lock<std::mutex> lock(instance_mutex);
   if (!instance) {
     LOG(ERROR) << "Not initialized";

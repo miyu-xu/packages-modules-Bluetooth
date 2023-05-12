@@ -68,7 +68,7 @@ class MessageLoopThread final {
    * Post a task to run on this thread
    *
    * @param from_here location where this task is originated
-   * @param task task created through base::Bind()
+   * @param task task created through base::BindRepeating()
    * @return true if task is successfully scheduled, false if task cannot be
    * scheduled
    */
@@ -146,13 +146,13 @@ class MessageLoopThread final {
    * for task closure. For example:
    * <code>
    * base::CancelableClosure cancelable_task;
-   * cancelable_task.Reset(base::Bind(...)); // bind the task
+   * cancelable_task.Reset(base::BindRepeating(...)); // bind the task
    * same_thread->DoInThreadDelayed(FROM_HERE,
    *                                cancelable_task.callback(), delay);
    * ...
    * // Cancel the task closure
    * same_thread->DoInThread(FROM_HERE,
-   *                         base::Bind(&base::CancelableClosure::Cancel,
+   *                         base::BindRepeating(&base::CancelableClosure::Cancel,
    *                                    base::Unretained(&cancelable_task)));
    * </code>
    *
@@ -160,7 +160,7 @@ class MessageLoopThread final {
    * cancelled on, and destroyed on the same thread.
    *
    * @param from_here location where this task is originated
-   * @param task task created through base::Bind()
+   * @param task task created through base::BindRepeating()
    * @param delay delay for the task to be executed
    * @return true if task is successfully scheduled, false if task cannot be
    * scheduled

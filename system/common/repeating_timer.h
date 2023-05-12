@@ -52,7 +52,7 @@ class RepeatingTimer final {
    *
    * @param thread thread to run the task
    * @param from_here location where this task is originated
-   * @param task task created through base::Bind()
+   * @param task task created through base::BindRepeating()
    * @param period period for the task to be executed
    * @return true iff task is scheduled successfully
    */
