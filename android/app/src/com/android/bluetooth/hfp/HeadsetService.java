@@ -47,6 +47,8 @@ import android.os.SystemProperties;
 import android.os.UserHandle;
 import android.sysprop.BluetoothProperties;
 import android.telecom.PhoneAccount;
+import android.telecom.TelecomManager;
+import android.telephony.TelephonyManager;
 import android.util.Log;
 
 import com.android.bluetooth.BluetoothMetricsProto;
@@ -141,6 +143,8 @@ public class HeadsetService extends ProfileService {
     private VoiceRecognitionTimeoutEvent mVoiceRecognitionTimeoutEvent;
     // Timeout when voice recognition is started by remote device
     @VisibleForTesting static int sStartVrTimeoutMs = 5000;
+    // Used to retrieve call state before BluetoothInCallService is connected
+    public TelecomManager mTelecomManager;
     private ArrayList<StateMachineTask> mPendingClccResponses = new ArrayList<>();
     private boolean mStarted;
     private boolean mCreated;
@@ -205,7 +209,9 @@ public class HeadsetService extends ProfileService {
         filter.addAction(BluetoothDevice.ACTION_CONNECTION_ACCESS_REPLY);
         filter.addAction(BluetoothDevice.ACTION_BOND_STATE_CHANGED);
         registerReceiver(mHeadsetReceiver, filter);
-        // Step 7: Mark service as started
+        // Step 7: Get TelecomManager
+        mTelecomManager = getSystemService(TelecomManager.class);
+        // Step 8: Mark service as started
         mStarted = true;
         BluetoothDevice activeDevice = getActiveDevice();
         String deviceAddress = activeDevice != null ?
@@ -2039,8 +2045,16 @@ public class HeadsetService extends ProfileService {
     }
 
     private boolean shouldCallAudioBeActive() {
-        return mSystemInterface.isInCall() || (mSystemInterface.isRinging()
-                && isInbandRingingEnabled());
+        int telecomCallState = mTelecomManager.getCallState();
+        Log.i(TAG, "shouldCallAudioBeActive:"
+                + "Telecom state: " + telecomCallState
+                + "HeadsetSystemInterface inCall: " + mSystemInterface.isInCall()
+                + " isRinging: " + mSystemInterface.isRinging());
+        return ((mSystemInterface.isInCall()
+                        || telecomCallState == TelephonyManager.CALL_STATE_OFFHOOK)
+                || ((mSystemInterface.isRinging()
+                        || telecomCallState == TelephonyManager.CALL_STATE_RINGING)
+                && isInbandRingingEnabled()));
     }
 
     /**
