@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b57e445e_fab4daef",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-05-13T00:38:54Z",
+      "side": 1,
+      "message": "nit: CtsVerifier",
+      "range": {
+        "startLine": 12,
+        "startChar": 8,
+        "endLine": 12,
+        "endChar": 9
+      },
+      "revId": "f09619b7168699dc6731bb0b8980513e2f807c5e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
