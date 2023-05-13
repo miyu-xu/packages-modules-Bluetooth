@@ -396,6 +396,23 @@ public class BluetoothManagerService extends IBluetoothManager.Stub {
                 || mHandler.hasMessages(MESSAGE_RESTART_BLUETOOTH_SERVICE)
                 || mHandler.hasMessages(MESSAGE_TIMEOUT_BIND)
                 || mHandler.hasMessages(MESSAGE_BIND_PROFILE_SERVICE)) {
+            Log.d(
+                    TAG,
+                    "Busy reason is:"
+                            + " hasMessage(MESSAGE_ENABLE)="
+                            + mHandler.hasMessages(MESSAGE_ENABLE)
+                            + " hasMessage(MESSAGE_DISABLE)="
+                            + mHandler.hasMessages(MESSAGE_DISABLE)
+                            + " hasMessage(MESSAGE_HANDLE_ENABLE_DELAYED)="
+                            + mHandler.hasMessages(MESSAGE_HANDLE_ENABLE_DELAYED)
+                            + " hasMessage(MESSAGE_HANDLE_DISABLE_DELAYED)="
+                            + mHandler.hasMessages(MESSAGE_HANDLE_DISABLE_DELAYED)
+                            + " hasMessage(MESSAGE_RESTART_BLUETOOTH_SERVICE)="
+                            + mHandler.hasMessages(MESSAGE_RESTART_BLUETOOTH_SERVICE)
+                            + " hasMessage(MESSAGE_TIMEOUT_BIND)="
+                            + mHandler.hasMessages(MESSAGE_TIMEOUT_BIND)
+                            + " hasMessage(MESSAGE_BIND_PROFILE_SERVICE)="
+                            + mHandler.hasMessages(MESSAGE_BIND_PROFILE_SERVICE));
             // Bluetooth is restarting
             return SERVICE_RESTART_TIME_MS;
         }
