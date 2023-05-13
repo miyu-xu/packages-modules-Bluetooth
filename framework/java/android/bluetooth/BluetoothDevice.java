@@ -1477,9 +1477,11 @@ public final class BluetoothDevice implements Parcelable, Attributable {
             }
 
             try {
-                sIsLogRedactionEnabled = service.isLogRedactionEnabled();
+                final SynchronousResultReceiver<Boolean> recv = SynchronousResultReceiver.get();
+                service.isLogRedactionEnabled(mAttributionSource, recv);
+                sIsLogRedactionEnabled = recv.awaitResultNoInterrupt(getSyncTimeout()).getValue(defaultValue);
                 sIsLogRedactionFlagSynced = true;
-            } catch (RemoteException e) {
+            } catch (RemoteException e | TimeoutException e) {
                 // by default, set to true
                 Log.e(TAG, "Failed to call IBluetooth.isLogRedactionEnabled"
                             + e.toString() + "\n"
