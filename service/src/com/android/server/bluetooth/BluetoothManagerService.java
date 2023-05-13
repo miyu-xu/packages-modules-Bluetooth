@@ -1446,7 +1446,9 @@ public class BluetoothManagerService extends IBluetoothManager.Stub {
                 synchronousOnBrEdrDown(mContext.getAttributionSource());
                 return;
             }
-            if (isBluetoothPersistedStateOnBluetooth() || !isBleAppPresent()) {
+            if (isBluetoothPersistedStateOnAirplane()
+                    || isBluetoothPersistedStateOnBluetooth()
+                    || !isBleAppPresent()) {
                 // This triggers transition to STATE_ON
                 synchronousOnLeServiceUp(mContext.getAttributionSource());
                 persistBluetoothSetting(BLUETOOTH_ON_BLUETOOTH);
