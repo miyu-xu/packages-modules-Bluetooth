@@ -10,6 +10,7 @@ pub mod services;
 mod transactions;
 
 mod command_handler;
+mod database_manager;
 pub mod isolation_manager;
 #[cfg(test)]
 mod test;
@@ -28,9 +29,9 @@ use crate::{
 use self::{
     super::ids::ServerId,
     att_server_bearer::AttServerBearer,
+    database_manager::GattDatabaseManager,
     gatt_database::{AttDatabaseImpl, GattServiceWithHandle},
     isolation_manager::IsolationManager,
-    services::register_builtin_services,
 };
 
 use super::{
@@ -38,8 +39,7 @@ use super::{
     channel::AttTransport,
     ids::{AdvertiserId, AttHandle, TransportIndex},
 };
-use anyhow::{anyhow, bail, Result};
-use bt_common::init_flags::always_use_private_gatt_for_debugging_is_enabled;
+use anyhow::{bail, Result};
 use log::info;
 
 pub use indication_handler::IndicationError;
@@ -47,12 +47,8 @@ pub use indication_handler::IndicationError;
 #[allow(missing_docs)]
 pub struct GattModule {
     connections: HashMap<TransportIndex, GattConnection>,
-    databases: HashMap<ServerId, SharedBox<GattDatabase>>,
+    databases: GattDatabaseManager,
     transport: Rc<dyn AttTransport>,
-    // NOTE: this is logically owned by the GattModule. We share it behind a Mutex just so we
-    // can use it as part of the Arbiter. Once the Arbiter is removed, this should be owned
-    // fully by the GattModule.
-    isolation_manager: Arc<Mutex<IsolationManager>>,
 }
 
 struct GattConnection {
@@ -68,9 +64,8 @@ impl GattModule {
     ) -> Self {
         Self {
             connections: HashMap::new(),
-            databases: HashMap::new(),
+            databases: GattDatabaseManager::new(isolation_manager),
             transport,
-            isolation_manager,
         }
     }
 
@@ -81,15 +76,8 @@ impl GattModule {
         advertiser_id: Option<AdvertiserId>,
     ) -> Result<()> {
         info!("connected on tcb_idx {tcb_idx:?}");
-        self.isolation_manager.lock().unwrap().on_le_connect(tcb_idx, advertiser_id);
-
-        let Some(server_id) = self.isolation_manager.lock().unwrap().get_server_id(tcb_idx) else {
-            bail!("non-isolated servers are not yet supported (b/274945531)")
-        };
-        let database = self.databases.get(&server_id);
-        let Some(database) = database else {
-            bail!("got connection to {server_id:?} but this server does not exist!");
-        };
+        self.databases.get_isolation_manager().on_le_connect(tcb_idx, advertiser_id);
+        let database = self.databases.get_database(tcb_idx);
 
         let transport = self.transport.clone();
         let bearer = SharedBox::new(AttServerBearer::new(
@@ -104,7 +92,7 @@ impl GattModule {
     /// Handle an LE link disconnect
     pub fn on_le_disconnect(&mut self, tcb_idx: TransportIndex) -> Result<()> {
         info!("disconnected conn_id {tcb_idx:?}");
-        self.isolation_manager.lock().unwrap().on_le_disconnect(tcb_idx);
+        self.databases.get_isolation_manager().on_le_disconnect(tcb_idx);
         let connection = self.connections.remove(&tcb_idx);
         let Some(connection) = connection else {
             bail!("got disconnection from {tcb_idx:?} but bearer does not exist");
@@ -121,10 +109,10 @@ impl GattModule {
         service: GattServiceWithHandle,
         datastore: impl RawGattDatastore + 'static,
     ) -> Result<()> {
-        self.databases
-            .get(&server_id)
-            .ok_or_else(|| anyhow!("server {server_id:?} not opened"))?
-            .add_service_with_handles(service, Rc::new(datastore))
+        let datastore = Rc::new(datastore);
+        self.databases.for_each_database(server_id, |db| {
+            db.add_service_with_handles(service.clone(), datastore.clone())
+        })
     }
 
     /// Unregister an existing GATT service on a given server
@@ -133,35 +121,19 @@ impl GattModule {
         server_id: ServerId,
         service_handle: AttHandle,
     ) -> Result<()> {
-        self.databases
-            .get(&server_id)
-            .ok_or_else(|| anyhow!("server {server_id:?} not opened"))?
-            .remove_service_at_handle(service_handle)
+        self.databases.for_each_database(server_id, |db| {
+            db.remove_service_at_handle(service_handle)
+        })
     }
 
     /// Open a GATT server
     pub fn open_gatt_server(&mut self, server_id: ServerId) -> Result<()> {
-        let mut db = GattDatabase::new();
-        register_builtin_services(&mut db)?;
-        let old = self.databases.insert(server_id, db.into());
-        if old.is_some() {
-            bail!("GATT server {server_id:?} already exists but was re-opened, clobbering old value...")
-        }
-        Ok(())
+        self.databases.open_gatt_server(server_id)
     }
 
     /// Close a GATT server
     pub fn close_gatt_server(&mut self, server_id: ServerId) -> Result<()> {
-        let old = self.databases.remove(&server_id);
-        if old.is_none() {
-            bail!("GATT server {server_id:?} did not exist")
-        };
-
-        if !always_use_private_gatt_for_debugging_is_enabled() {
-            self.isolation_manager.lock().unwrap().clear_server(server_id);
-        }
-
-        Ok(())
+        self.databases.close_gatt_server(server_id)
     }
 
     /// Get an ATT bearer for a particular connection
@@ -174,6 +146,6 @@ impl GattModule {
 
     /// Get the IsolationManager to manage associations between servers + advertisers
     pub fn get_isolation_manager(&mut self) -> MutexGuard<'_, IsolationManager> {
-        self.isolation_manager.lock().unwrap()
+        self.databases.get_isolation_manager()
     }
 }
