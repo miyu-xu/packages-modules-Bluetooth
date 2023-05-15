@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3e2960bd_76558f3e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-05-15T10:22:51Z",
+      "side": 1,
+      "message": "Do we want to enable that only for one form factor (or one device) ?\n\nIf no, I would prefer that we use a real feature flag and not a sysprop.",
+      "revId": "feae86c55ff826316d4865648048b37e285d66f3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
