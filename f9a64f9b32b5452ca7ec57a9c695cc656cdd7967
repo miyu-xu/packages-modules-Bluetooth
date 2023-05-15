@@ -22,6 +22,30 @@
       },
       "revId": "f9a64f9b32b5452ca7ec57a9c695cc656cdd7967",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1f2bfe3b_ccc46794",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 402,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-05-15T19:09:28Z",
+      "side": 1,
+      "message": "I suppose I can do something better yes.\n\nIt also should not be print very often.",
+      "parentUuid": "b7ba02bb_f2d5241c",
+      "range": {
+        "startLine": 402,
+        "startChar": 32,
+        "endLine": 402,
+        "endChar": 42
+      },
+      "revId": "f9a64f9b32b5452ca7ec57a9c695cc656cdd7967",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
