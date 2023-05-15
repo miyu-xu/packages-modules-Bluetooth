@@ -13,6 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
+#define STACK_SDP_INTERNAL_ONLY
+
 #include <frameworks/proto_logging/stats/enums/bluetooth/enums.pb.h>
 #include <gmock/gmock.h>
 #include <gtest/gtest.h>

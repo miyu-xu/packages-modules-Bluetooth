@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+#define STACK_SDP_INTERNAL_ONLY
+
 #include <gtest/gtest.h>
 #include <string.h>
 
@@ -26,6 +28,7 @@
 #include "common/strings.h"
 #include "stack/gatt/gatt_int.h"
 #include "stack/include/gatt_api.h"
+#include "stack/sdp/internal/sdp_api.h"
 #include "test/common/mock_functions.h"
 #include "test/mock/mock_stack_sdp_legacy_api.h"
 #include "types/bluetooth/uuid.h"
