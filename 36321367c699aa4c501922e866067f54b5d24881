@@ -164,6 +164,30 @@
       },
       "revId": "36321367c699aa4c501922e866067f54b5d24881",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3b8682e4_c030cde6",
+        "filename": "system/stack/include/bt_name.h",
+        "patchSetId": 32
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-05-15T20:28:44Z",
+      "side": 1,
+      "message": "It\u0027s b/c you cannot cast an array to a pointer.  A `C` cast would obscure this, as `C` cast *is* a `reinterpret_cast`",
+      "parentUuid": "0b3caa30_92fc13ec",
+      "range": {
+        "startLine": 53,
+        "startChar": 41,
+        "endLine": 53,
+        "endChar": 51
+      },
+      "revId": "36321367c699aa4c501922e866067f54b5d24881",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
