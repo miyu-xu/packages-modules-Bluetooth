@@ -22,6 +22,30 @@
       },
       "revId": "7468ea1a70142b18de82d117b0c7653fa5960ef7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2541d40e_0f3d7ed4",
+        "filename": "system/stack/srvc/srvc_dis.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 464,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-05-15T17:17:23Z",
+      "side": 1,
+      "message": "packages/modules/Bluetooth/system/bta/dm/bta_dm_act.cc\n\nIt looks like Floss calls this function differently than other stack users.",
+      "parentUuid": "132a7879_bf8507ca",
+      "range": {
+        "startLine": 464,
+        "startChar": 6,
+        "endLine": 464,
+        "endChar": 13
+      },
+      "revId": "7468ea1a70142b18de82d117b0c7653fa5960ef7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
