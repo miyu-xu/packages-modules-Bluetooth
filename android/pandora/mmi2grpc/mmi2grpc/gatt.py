@@ -839,7 +839,7 @@ class GATTProxy(ProfileProxy):
                 handle=handle, value=data)
         return "OK"
 
-    def _mmi_150(self, description: str, **kwargs):
+    def MMI_IUT_WRITE_SUPPORT_FEATURE_MULTIPLE_HANDLE_VALUE(self, description: str, **kwargs):
         """
         Please send an ATT_Write_Request to Client Support Features handle =
         'XXXX'O to enable Multiple Handle Value Notifications.
