@@ -219,8 +219,6 @@ static void init_stack_internal(bluetooth::core::CoreInterface* interface) {
   // all callbacks out of libbluetooth-core happen via this interface
   interfaceToProfiles = interface;
 
-  module_management_start();
-
   main_thread_start_up();
 
   module_init_and_start_up(device_iot_config_module);
@@ -382,7 +380,7 @@ static void event_clean_up_stack(std::promise<void> promise,
 
   main_thread_shut_down();
 
-  module_management_stop();
+  module_management_clean_up();
   LOG_INFO("Finished");
 
   promise.set_value();

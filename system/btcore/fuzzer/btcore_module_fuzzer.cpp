@@ -34,10 +34,9 @@ class BTCoreModuleFuzzer {
 void BTCoreModuleFuzzer::process() {
   const bt_interface_t* interface;
   (void)hal_util_load_bt_library(&interface);
-  module_management_start();
   module_init_and_start_up(osi_module);
   module_shut_down_and_clean_up(osi_module);
-  module_management_stop();
+  module_management_clean_up();
 }
 
 extern "C" int LLVMFuzzerTestOneInput(const uint8_t*, size_t) {

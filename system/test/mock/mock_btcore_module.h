@@ -66,23 +66,14 @@ struct module_init_and_start_up {
 };
 extern struct module_init_and_start_up module_init_and_start_up;
 
-// Name: module_management_start
+// Name: module_management_clean_up
 // Params: void
 // Return: void
-struct module_management_start {
+struct module_management_clean_up {
   std::function<void(void)> body{[](void) {}};
   void operator()(void) { body(); };
 };
-extern struct module_management_start module_management_start;
-
-// Name: module_management_stop
-// Params: void
-// Return: void
-struct module_management_stop {
-  std::function<void(void)> body{[](void) {}};
-  void operator()(void) { body(); };
-};
-extern struct module_management_stop module_management_stop;
+extern struct module_management_clean_up module_management_clean_up;
 
 // Name: module_shut_down_and_clean_up
 // Params: const module_t& module
