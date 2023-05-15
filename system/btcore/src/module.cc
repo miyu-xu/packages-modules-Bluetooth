@@ -49,9 +49,7 @@ static bool call_lifecycle_function(module_lifecycle_fn function);
 static module_state_t get_module_state(const module_t& module);
 static void set_module_state(const module_t& module, module_state_t state);
 
-void module_management_start(void) {}
-
-void module_management_stop(void) { metadata.clear(); }
+void module_management_clean_up(void) { metadata.clear(); }
 
 bool module_init_and_start_up(const module_t& module) {
   CHECK(get_module_state(module) == MODULE_STATE_NONE) << module.name;

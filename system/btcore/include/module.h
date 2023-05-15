@@ -32,11 +32,8 @@ typedef struct {
   module_lifecycle_fn shut_down_and_clean_up{nullptr};
 } module_t;
 
-// Prepares module management. Must be called before doing anything with
-// modules.
-void module_management_start(void);
 // Cleans up all module management resources.
-void module_management_stop(void);
+void module_management_clean_up(void);
 
 // Initialize the provided module. |module| must not be initialized.
 bool module_init_and_start_up(const module_t& module);
