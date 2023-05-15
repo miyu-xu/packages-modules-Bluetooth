@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "24ae0df6_492d7dfa",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 32
+      },
+      "lineNbr": 2191,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-05-15T22:21:49Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "d2e5dac0_5787979e",
+      "range": {
+        "startLine": 2191,
+        "startChar": 24,
+        "endLine": 2191,
+        "endChar": 35
+      },
+      "revId": "36321367c699aa4c501922e866067f54b5d24881",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "595226af_2ba054db",
@@ -85,6 +109,30 @@
       "side": 1,
       "message": "cannot do static_cast here",
       "parentUuid": "595226af_2ba054db",
+      "range": {
+        "startLine": 52,
+        "startChar": 17,
+        "endLine": 52,
+        "endChar": 33
+      },
+      "revId": "36321367c699aa4c501922e866067f54b5d24881",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c001bdbf_d3f134a5",
+        "filename": "system/stack/include/bt_name.h",
+        "patchSetId": 32
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-05-15T22:21:49Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "ff4fd823_b51d4711",
       "range": {
         "startLine": 52,
         "startChar": 17,
@@ -204,6 +252,30 @@
       "side": 1,
       "message": "This can all go away if the decision is made to not use `strlcpy` which need to conform to that API.",
       "parentUuid": "3b8682e4_c030cde6",
+      "range": {
+        "startLine": 53,
+        "startChar": 41,
+        "endLine": 53,
+        "endChar": 51
+      },
+      "revId": "36321367c699aa4c501922e866067f54b5d24881",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e43f8dd3_ed0f378d",
+        "filename": "system/stack/include/bt_name.h",
+        "patchSetId": 32
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-05-15T22:21:49Z",
+      "side": 1,
+      "message": "I feel like we should be able to reduce the number of casts by at least one, but I\u0027m not 100% sure how...",
+      "parentUuid": "4731800d_351c2a70",
       "range": {
         "startLine": 53,
         "startChar": 41,
