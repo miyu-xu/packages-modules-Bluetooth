@@ -448,6 +448,57 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "286d8a66_1af86999",
+        "filename": "system/stack/gatt/gatt_attr.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 657,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-05-15T15:05:26Z",
+      "side": 1,
+      "message": "copy paste issue.",
+      "revId": "c4d7ec2039aaf21c17c3c33a630129deff84f75a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8241d4e1_21847d53",
+        "filename": "system/stack/gatt/gatt_attr.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 662,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-05-15T15:05:26Z",
+      "side": 1,
+      "message": "we don\u0027t need to store the SIRK here. It is already stored by CSIS module",
+      "revId": "c4d7ec2039aaf21c17c3c33a630129deff84f75a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f4288c86_06af0413",
+        "filename": "system/stack/gatt/gatt_attr.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 795,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-05-15T15:05:26Z",
+      "side": 1,
+      "message": "I will handle that part.",
+      "revId": "c4d7ec2039aaf21c17c3c33a630129deff84f75a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3bcecbdd_58f1fd2a",
         "filename": "system/stack/include/btm_api.h",
         "patchSetId": 1
