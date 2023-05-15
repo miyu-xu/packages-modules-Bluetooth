@@ -22,6 +22,30 @@
       },
       "revId": "d2e3ce7b42b3b24a0592827e14baafb1f85ddfe2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b7ac723c_21dd9743",
+        "filename": "system/bta/dm/bta_dm_main.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-05-15T17:37:22Z",
+      "side": 1,
+      "message": "yes, failed build.  This is another experiment where cancel in flight may cause problems b/c it bypasses the main thread queue",
+      "parentUuid": "4e10dab3_b19a68a5",
+      "range": {
+        "startLine": 150,
+        "startChar": 8,
+        "endLine": 150,
+        "endChar": 12
+      },
+      "revId": "d2e3ce7b42b3b24a0592827e14baafb1f85ddfe2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
