@@ -19,9 +19,9 @@ import grpc
 import logging
 
 from avatar import BumblePandoraDevice, PandoraDevice, PandoraDevices, asynchronous
+from bumble import pandora as bumble_server
 from bumble.gatt import GATT_ASHA_SERVICE
 from bumble.pairing import PairingDelegate
-from bumble import pandora as bumble_server
 from bumble_experimental.asha import AshaGattService, AshaService
 from mobly import base_test, signals, test_runner
 from mobly.asserts import assert_equal  # type: ignore
@@ -49,7 +49,7 @@ class Ear(enum.IntEnum):
     RIGHT = 1
 
 
-class ASHATest(base_test.BaseTestClass):  # type: ignore[misc]
+class AshaTest(base_test.BaseTestClass):  # type: ignore[misc]
     devices: Optional[PandoraDevices] = None
 
     # pandora devices.
