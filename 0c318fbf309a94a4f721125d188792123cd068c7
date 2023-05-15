@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cf797435_50db1f42",
+        "filename": "tools/pdl/src/backends/rust/serializer.rs",
+        "patchSetId": 14
+      },
+      "lineNbr": 303,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2023-05-15T15:52:36Z",
+      "side": 1,
+      "message": "```suggestion\n                        panic!(\"attempted to serialize an array larger than the enclosing padding size\");\n```",
+      "range": {
+        "startLine": 303,
+        "startChar": 80,
+        "endLine": 303,
+        "endChar": 89
+      },
+      "revId": "0c318fbf309a94a4f721125d188792123cd068c7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "10d72eaa_98690175",
+        "filename": "tools/pdl/src/backends/rust/serializer.rs",
+        "patchSetId": 14
+      },
+      "lineNbr": 307,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2023-05-15T15:52:36Z",
+      "side": 1,
+      "message": "```suggestion\n                    #span.put_bytes(0, #padding_size - array_size);\n```",
+      "range": {
+        "startLine": 305,
+        "startChar": 20,
+        "endLine": 307,
+        "endChar": 21
+      },
+      "revId": "0c318fbf309a94a4f721125d188792123cd068c7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "11e9cf33_2a552de9",
+        "filename": "tools/pdl/tests/generated/packet_decl_array_dynamic_count_big_endian.rs",
+        "patchSetId": 14
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2023-05-15T15:52:36Z",
+      "side": 1,
+      "message": "Just a FYI: I\u0027ve generally used `syn::Index` around integers like this to turn `3usize` into `3`. I did it to make it look more handwritten, but I\u0027m not sure it\u0027s actually worth it since it complicates the generator a little.",
+      "range": {
+        "startLine": 88,
+        "startChar": 47,
+        "endLine": 88,
+        "endChar": 53
+      },
+      "revId": "0c318fbf309a94a4f721125d188792123cd068c7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
