@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "132a7879_bf8507ca",
+        "filename": "system/stack/srvc/srvc_dis.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 464,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-05-15T16:53:46Z",
+      "side": 1,
+      "message": "This used to handle the case when it wasn\u0027t connected.  If we\u0027re going to return earlier, we should clean this up.  The original code tried to connect to read it.",
+      "range": {
+        "startLine": 464,
+        "startChar": 6,
+        "endLine": 464,
+        "endChar": 13
+      },
+      "revId": "7468ea1a70142b18de82d117b0c7653fa5960ef7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
