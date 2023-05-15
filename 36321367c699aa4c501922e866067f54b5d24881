@@ -140,6 +140,30 @@
       },
       "revId": "36321367c699aa4c501922e866067f54b5d24881",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0b3caa30_92fc13ec",
+        "filename": "system/stack/include/bt_name.h",
+        "patchSetId": 32
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-05-15T17:40:43Z",
+      "side": 1,
+      "message": "That seems like a red flag.  Maybe we can figure out why?",
+      "parentUuid": "1b890f23_4eaa5695",
+      "range": {
+        "startLine": 53,
+        "startChar": 41,
+        "endLine": 53,
+        "endChar": 51
+      },
+      "revId": "36321367c699aa4c501922e866067f54b5d24881",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
