@@ -37,8 +37,7 @@ namespace btcore_module {
 
 // Function state capture and return values, if needed
 struct module_init_and_start_up module_init_and_start_up;
-struct module_management_start module_management_start;
-struct module_management_stop module_management_stop;
+struct module_management_clean_up module_management_clean_up;
 struct module_shut_down_and_clean_up module_shut_down_and_clean_up;
 
 }  // namespace btcore_module
@@ -50,13 +49,9 @@ bool module_init_and_start_up(const module_t& module) {
   inc_func_call_count(__func__);
   return test::mock::btcore_module::module_init_and_start_up(module);
 }
-void module_management_start(void) {
+void module_management_clean_up(void) {
   inc_func_call_count(__func__);
-  test::mock::btcore_module::module_management_start();
-}
-void module_management_stop(void) {
-  inc_func_call_count(__func__);
-  test::mock::btcore_module::module_management_stop();
+  test::mock::btcore_module::module_management_clean_up();
 }
 void module_shut_down_and_clean_up(const module_t& module) {
   inc_func_call_count(__func__);
