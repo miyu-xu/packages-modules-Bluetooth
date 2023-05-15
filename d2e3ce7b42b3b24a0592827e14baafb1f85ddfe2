@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4e10dab3_b19a68a5",
+        "filename": "system/bta/dm/bta_dm_main.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-05-15T16:30:35Z",
+      "side": 1,
+      "message": "missing break before the new case?",
+      "range": {
+        "startLine": 150,
+        "startChar": 8,
+        "endLine": 150,
+        "endChar": 12
+      },
+      "revId": "d2e3ce7b42b3b24a0592827e14baafb1f85ddfe2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
