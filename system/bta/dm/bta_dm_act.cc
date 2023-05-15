@@ -67,6 +67,7 @@
 #include "stack/include/btm_client_interface.h"
 #include "stack/include/btm_log_history.h"
 #include "stack/include/btu.h"       // do_in_main_thread
+#include "stack/include/sdp_api.h"
 #include "stack/include/srvc_api.h"  // DIS_ReadDISInfo
 #include "stack/sdp/sdpint.h"
 #include "types/bluetooth/uuid.h"
