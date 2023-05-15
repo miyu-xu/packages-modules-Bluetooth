@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "160a8ddc_8bae1744",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 32
+      },
+      "lineNbr": 2191,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-05-15T16:27:52Z",
+      "side": 1,
+      "message": "static_cast?",
+      "range": {
+        "startLine": 2191,
+        "startChar": 24,
+        "endLine": 2191,
+        "endChar": 35
+      },
+      "revId": "36321367c699aa4c501922e866067f54b5d24881",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "595226af_2ba054db",
+        "filename": "system/stack/include/bt_name.h",
+        "patchSetId": 32
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-05-15T16:27:52Z",
+      "side": 1,
+      "message": "Can we do a static_cast here instead?  Reinterpret cast is a little more dangerous.",
+      "range": {
+        "startLine": 52,
+        "startChar": 17,
+        "endLine": 52,
+        "endChar": 33
+      },
+      "revId": "36321367c699aa4c501922e866067f54b5d24881",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d8d6274e_b5f819ff",
+        "filename": "system/stack/include/bt_name.h",
+        "patchSetId": 32
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-05-15T16:27:52Z",
+      "side": 1,
+      "message": "We shouldn\u0027t have to const cast this.  Can we try static_cast\u003cconst char*\u003e(bd_name_src) ?",
+      "range": {
+        "startLine": 53,
+        "startChar": 41,
+        "endLine": 53,
+        "endChar": 51
+      },
+      "revId": "36321367c699aa4c501922e866067f54b5d24881",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
