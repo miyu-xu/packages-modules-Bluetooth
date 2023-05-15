@@ -29,6 +29,7 @@ from pandora.host_pb2 import Connection
 from pandora_experimental.mediaplayer_grpc import MediaPlayer
 from pandora_experimental.mediaplayer_pb2 import NONE, ALL, GROUP
 
+
 class AVRCPProxy(ProfileProxy):
     """AVRCP proxy.
 
@@ -165,6 +166,21 @@ class AVRCPProxy(ProfileProxy):
 
     @assert_description
     def _mmi_1002(self, test: str, pts_addr: bytes, **kwargs):
+        """
+        If necessary, take action to accept the AVDTP Signaling Channel
+        Connection initiated by the tester.
+
+        Description: Make sure the IUT
+        (Implementation Under Test) is in a state to accept incoming Bluetooth
+        connections.  Some devices may need to be on a specific screen, like a
+        Bluetooth settings screen, in order to pair with PTS.  If the IUT is
+        still having problems pairing with PTS, try running a test case where
+        the IUT connects to PTS to establish pairing.
+        """
+        return self.TSC_AVDTP_mmi_iut_accept_connect(test, pts_addr, **kwargs)
+
+    @assert_description
+    def TSC_AVDTP_mmi_iut_accept_connect(self, test: str, pts_addr: bytes, **kwargs):
         """
         If necessary, take action to accept the AVDTP Signaling Channel
         Connection initiated by the tester.
