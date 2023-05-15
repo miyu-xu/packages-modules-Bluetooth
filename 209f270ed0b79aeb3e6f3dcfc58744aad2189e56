@@ -142,6 +142,30 @@
       },
       "revId": "209f270ed0b79aeb3e6f3dcfc58744aad2189e56",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "be848ff9_9b0c9a02",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/pan.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 243,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-05-15T13:33:12Z",
+      "side": 1,
+      "message": "Do you have the error that ping gives on stderr in this case ?\n\nI would prefer that we remove the assert of the ping status if this permit us to remove the counter as well.\n\nWe should not need this counter, mmi handlers should usually be very simple and map what the PTS asks to a grpc call. When we add logic in those it makes them very hard to maintain because you don\u0027t know for which test/case this logic applies. So I really prefer to avoid that.",
+      "parentUuid": "e9618428_2cb76831",
+      "range": {
+        "startLine": 243,
+        "startChar": 8,
+        "endLine": 243,
+        "endChar": 56
+      },
+      "revId": "209f270ed0b79aeb3e6f3dcfc58744aad2189e56",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
