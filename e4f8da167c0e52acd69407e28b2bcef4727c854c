@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ea5369dd_6e60d154",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-05-15T17:18:59Z",
+      "side": 1,
+      "message": "Unfortunately it\u0027s shared between dumpsys and is in a global namespace.\n\nCertainly could be put in a specific namespace, but is not currently defined at this point.",
+      "parentUuid": "8a86e8b1_cdeb6284",
+      "range": {
+        "startLine": 191,
+        "startChar": 32,
+        "endLine": 191,
+        "endChar": 45
+      },
+      "revId": "e4f8da167c0e52acd69407e28b2bcef4727c854c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f3ce19fa_a79268ee",
         "filename": "system/bta/dm/bta_dm_act.cc",
         "patchSetId": 7
@@ -37,6 +61,30 @@
       "writtenOn": "2023-05-15T16:39:21Z",
       "side": 1,
       "message": "It seems odd to have a GATT interface in this file.  Is it going to move somewhere else?",
+      "range": {
+        "startLine": 227,
+        "startChar": 7,
+        "endLine": 227,
+        "endChar": 23
+      },
+      "revId": "e4f8da167c0e52acd69407e28b2bcef4727c854c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "280a8d7a_808497a7",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-05-15T17:18:59Z",
+      "side": 1,
+      "message": "Yes...that is the intent...I think there are 2 more moves; this interface moves to handle *all* bta gatt interactions, then it could be properly encapsulated (hiding all GATT globals). The second move may be that it is exported by the gatt layer directly.\n\nFor now the idea is for this particular module to aggregate all gatt interactions.",
+      "parentUuid": "f3ce19fa_a79268ee",
       "range": {
         "startLine": 227,
         "startChar": 7,
