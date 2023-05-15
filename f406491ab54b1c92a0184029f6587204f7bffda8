@@ -22,6 +22,30 @@
       },
       "revId": "f406491ab54b1c92a0184029f6587204f7bffda8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a9ec751e_90f35d20",
+        "filename": "system/bta/dm/bta_dm_main.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-05-15T17:31:30Z",
+      "side": 1,
+      "message": "This is a proof of concept for corner case in wear.\n\nThe problem is that `something` is `device discovery`, not `service discovery`. \n\nThis CL completes the cycle for both allowing upper layer to continue propagation or caching of the data as needed.\n\nIt propagates both `device discovery` *and* `service discovery`\n\nIMHO I think it should only propagate `service discovery` just so this info is cached at a higher layer.\n\nI included both for the experimental process.\n\nI\u0027m hoping to partner with Wear to see if this works for them; if so then we can see if/how it works for a larger audience.",
+      "parentUuid": "72558fc4_859f0ac3",
+      "range": {
+        "startLine": 137,
+        "startChar": 13,
+        "endLine": 137,
+        "endChar": 40
+      },
+      "revId": "f406491ab54b1c92a0184029f6587204f7bffda8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
