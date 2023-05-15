@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d2e5dac0_5787979e",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 32
+      },
+      "lineNbr": 2191,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-05-15T17:38:56Z",
+      "side": 1,
+      "message": "C style cast was previous behavior but will update",
+      "parentUuid": "160a8ddc_8bae1744",
+      "range": {
+        "startLine": 2191,
+        "startChar": 24,
+        "endLine": 2191,
+        "endChar": 35
+      },
+      "revId": "36321367c699aa4c501922e866067f54b5d24881",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "595226af_2ba054db",
         "filename": "system/stack/include/bt_name.h",
         "patchSetId": 32
@@ -49,6 +73,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ff4fd823_b51d4711",
+        "filename": "system/stack/include/bt_name.h",
+        "patchSetId": 32
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-05-15T17:38:56Z",
+      "side": 1,
+      "message": "cannot do static_cast here",
+      "parentUuid": "595226af_2ba054db",
+      "range": {
+        "startLine": 52,
+        "startChar": 17,
+        "endLine": 52,
+        "endChar": 33
+      },
+      "revId": "36321367c699aa4c501922e866067f54b5d24881",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d8d6274e_b5f819ff",
         "filename": "system/stack/include/bt_name.h",
         "patchSetId": 32
@@ -60,6 +108,30 @@
       "writtenOn": "2023-05-15T16:27:52Z",
       "side": 1,
       "message": "We shouldn\u0027t have to const cast this.  Can we try static_cast\u003cconst char*\u003e(bd_name_src) ?",
+      "range": {
+        "startLine": 53,
+        "startChar": 41,
+        "endLine": 53,
+        "endChar": 51
+      },
+      "revId": "36321367c699aa4c501922e866067f54b5d24881",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1b890f23_4eaa5695",
+        "filename": "system/stack/include/bt_name.h",
+        "patchSetId": 32
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-05-15T17:38:56Z",
+      "side": 1,
+      "message": "will not work",
+      "parentUuid": "d8d6274e_b5f819ff",
       "range": {
         "startLine": 53,
         "startChar": 41,
