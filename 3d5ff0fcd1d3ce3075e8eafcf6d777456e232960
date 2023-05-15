@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "791062f7_58905f49",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-05-15T02:30:10Z",
+      "side": 1,
+      "message": "I think this is not a useful information. Please provide more details so that anyone can understand w/o background.",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 31
+      },
+      "revId": "3d5ff0fcd1d3ce3075e8eafcf6d777456e232960",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e03df09d_7d773e6c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-05-15T02:30:10Z",
+      "side": 1,
+      "message": "Doesn\u0027t look like this CL is the right fix.\nSee aosp/607396. I guess the test was passed w/o BluetoothMethodProxy.",
+      "revId": "3d5ff0fcd1d3ce3075e8eafcf6d777456e232960",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
