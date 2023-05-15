@@ -46,6 +46,30 @@
       },
       "revId": "075d0d3da75e1d4c55781881145851e0a33116e3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e193e1f3_d02e9c5c",
+        "filename": "tools/pdl/Android.bp",
+        "patchSetId": 10
+      },
+      "lineNbr": 451,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2023-05-15T13:14:05Z",
+      "side": 1,
+      "message": "Cool, that\u0027s good to hear.",
+      "parentUuid": "c89243ee_ca9a5a76",
+      "range": {
+        "startLine": 451,
+        "startChar": 30,
+        "endLine": 451,
+        "endChar": 39
+      },
+      "revId": "075d0d3da75e1d4c55781881145851e0a33116e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
