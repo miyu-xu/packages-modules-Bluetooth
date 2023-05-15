@@ -22,6 +22,30 @@
       },
       "revId": "209f270ed0b79aeb3e6f3dcfc58744aad2189e56",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fadda37b_15e37879",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/pan.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 243,
+      "author": {
+        "id": 1970930
+      },
+      "writtenOn": "2023-05-15T11:04:36Z",
+      "side": 1,
+      "message": "While running PAN/PANU/IP/APP/BV-03-I test, it is observed that TSC_PAN_mmi_iut_icmp_echo_request MMI is called multiple times from PTS even after first TSC_PAN_mmi_iut_icmp_echo_request MMI call is successful. For the test to Pass single ping request is required which is sent in the first mmi call. So not sending ping request again if TSC_PAN_mmi_iut_icmp_echo_request is called more than once. Also TSC_PAN_mmi_iut_icmp_echo_request MMI call is specific to PAN/PANU/IP/APP/BV-03-I test only.",
+      "parentUuid": "2442051e_2219a27b",
+      "range": {
+        "startLine": 243,
+        "startChar": 8,
+        "endLine": 243,
+        "endChar": 56
+      },
+      "revId": "209f270ed0b79aeb3e6f3dcfc58744aad2189e56",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
