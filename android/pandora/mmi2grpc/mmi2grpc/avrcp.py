@@ -164,7 +164,7 @@ class AVRCPProxy(ProfileProxy):
         return "OK"
 
     @assert_description
-    def _mmi_1002(self, test: str, pts_addr: bytes, **kwargs):
+    def TSC_AVDTP_mmi_iut_accept_connect(self, test: str, pts_addr: bytes, **kwargs):
         """
         If necessary, take action to accept the AVDTP Signaling Channel
         Connection initiated by the tester.
