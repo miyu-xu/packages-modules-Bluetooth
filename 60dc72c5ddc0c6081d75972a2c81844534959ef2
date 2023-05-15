@@ -72,6 +72,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fd0673ec_beae4c34",
+        "filename": "system/gd/storage/storage_module.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 271,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-05-15T20:27:02Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "cb9f81b1_7acf7045",
+      "revId": "60dc72c5ddc0c6081d75972a2c81844534959ef2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6bbf5467_30b29ee8",
