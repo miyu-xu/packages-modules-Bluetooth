@@ -93,6 +93,30 @@
       },
       "revId": "ddb62742a574aaa93cc744cebdfa53de6b48f29b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e50136b9_ee80491f",
+        "filename": "system/stack/l2cap/l2c_utils.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2023-05-15T16:25:42Z",
+      "side": 1,
+      "message": "Yes 😊",
+      "parentUuid": "6f2cfb2b_f99826b9",
+      "range": {
+        "startLine": 170,
+        "startChar": 10,
+        "endLine": 171,
+        "endChar": 63
+      },
+      "revId": "ddb62742a574aaa93cc744cebdfa53de6b48f29b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
