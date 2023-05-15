@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8a86e8b1_cdeb6284",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-05-15T16:39:21Z",
+      "side": 1,
+      "message": "Should this be in the same namespace as the rest of the CL?",
+      "range": {
+        "startLine": 191,
+        "startChar": 32,
+        "endLine": 191,
+        "endChar": 45
+      },
+      "revId": "e4f8da167c0e52acd69407e28b2bcef4727c854c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f3ce19fa_a79268ee",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-05-15T16:39:21Z",
+      "side": 1,
+      "message": "It seems odd to have a GATT interface in this file.  Is it going to move somewhere else?",
+      "range": {
+        "startLine": 227,
+        "startChar": 7,
+        "endLine": 227,
+        "endChar": 23
+      },
+      "revId": "e4f8da167c0e52acd69407e28b2bcef4727c854c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
