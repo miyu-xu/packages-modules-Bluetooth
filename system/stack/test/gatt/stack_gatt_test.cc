@@ -31,6 +31,8 @@
 #include "types/bluetooth/uuid.h"
 #include "types/raw_address.h"
 
+#define STACK_SDP_INTERNAL_ONLY
+
 class StackGattTest : public ::testing::Test {
  protected:
   void SetUp() override {

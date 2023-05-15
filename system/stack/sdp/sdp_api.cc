@@ -22,6 +22,8 @@
  *
  ******************************************************************************/
 
+#define STACK_SDP_INTERNAL_ONLY
+
 #include "stack/include/sdp_api.h"
 
 #include <string.h>
