@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "72558fc4_859f0ac3",
+        "filename": "system/bta/dm/bta_dm_main.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-05-15T16:34:46Z",
+      "side": 1,
+      "message": "I feel like if something got cancelled, dropping the response is correct.  Is someone calling cancel that still wants the results?",
+      "range": {
+        "startLine": 137,
+        "startChar": 13,
+        "endLine": 137,
+        "endChar": 40
+      },
+      "revId": "f406491ab54b1c92a0184029f6587204f7bffda8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
