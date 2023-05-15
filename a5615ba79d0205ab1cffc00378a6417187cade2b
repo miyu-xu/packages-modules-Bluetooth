@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "28121026_d722d3a0",
+        "filename": "system/btcore/src/module.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-05-15T22:53:03Z",
+      "side": 1,
+      "message": "init is doing a CHECK on this, but shutdown is only silently returning.\nShould it be raise to a CHECK instead ?",
+      "range": {
+        "startLine": 82,
+        "startChar": 0,
+        "endLine": 82,
+        "endChar": 41
+      },
+      "revId": "a5615ba79d0205ab1cffc00378a6417187cade2b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3432613f_e71a62da",
+        "filename": "system/device/test/device_iot_config_test.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 865,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-05-15T22:53:03Z",
+      "side": 1,
+      "message": "Init twice ?",
+      "range": {
+        "startLine": 865,
+        "startChar": 0,
+        "endLine": 865,
+        "endChar": 36
+      },
+      "revId": "a5615ba79d0205ab1cffc00378a6417187cade2b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a67c85e8_442da848",
+        "filename": "system/device/test/device_iot_config_test.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 3344,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-05-15T22:53:03Z",
+      "side": 1,
+      "message": "Init twice ?",
+      "range": {
+        "startLine": 3344,
+        "startChar": 0,
+        "endLine": 3344,
+        "endChar": 36
+      },
+      "revId": "a5615ba79d0205ab1cffc00378a6417187cade2b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
