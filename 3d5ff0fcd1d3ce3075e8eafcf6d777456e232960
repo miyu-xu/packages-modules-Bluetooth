@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d7184473_8b8ac001",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2023-05-15T06:28:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "791062f7_58905f49",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 31
+      },
+      "revId": "3d5ff0fcd1d3ce3075e8eafcf6d777456e232960",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e03df09d_7d773e6c",
@@ -37,6 +61,24 @@
       "writtenOn": "2023-05-15T02:30:10Z",
       "side": 1,
       "message": "Doesn\u0027t look like this CL is the right fix.\nSee aosp/607396. I guess the test was passed w/o BluetoothMethodProxy.",
+      "revId": "3d5ff0fcd1d3ce3075e8eafcf6d777456e232960",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d7c845a7_6e3ab1c6",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2023-05-15T06:28:12Z",
+      "side": 1,
+      "message": "I doesn\u0027t fail always because trimdatabase() is called from another thread that started after the service start. So it\u0027s flaky. I newly added a line to terminate the thread after test too\nhttps://source.corp.google.com/android-internal/packages/modules/Bluetooth/android/app/src/com/android/bluetooth/opp/BluetoothOppService.java;l\u003d252?q\u003dtrimdatabase\u0026sq\u003dpackage:android-internal$",
+      "parentUuid": "e03df09d_7d773e6c",
       "revId": "3d5ff0fcd1d3ce3075e8eafcf6d777456e232960",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
