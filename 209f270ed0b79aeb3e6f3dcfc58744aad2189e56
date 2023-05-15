@@ -118,6 +118,30 @@
       },
       "revId": "209f270ed0b79aeb3e6f3dcfc58744aad2189e56",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e9618428_2cb76831",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/pan.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 243,
+      "author": {
+        "id": 1970930
+      },
+      "writtenOn": "2023-05-15T13:25:13Z",
+      "side": 1,
+      "message": "Yes, assert condition is not met.",
+      "parentUuid": "d0434a8a_44e9e915",
+      "range": {
+        "startLine": 243,
+        "startChar": 8,
+        "endLine": 243,
+        "endChar": 56
+      },
+      "revId": "209f270ed0b79aeb3e6f3dcfc58744aad2189e56",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
