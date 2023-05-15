@@ -52,6 +52,24 @@
       "parentUuid": "831a2944_9412f08e",
       "revId": "58db97d58a77b14254eb3996ff33fa862d0fb92a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b29ef3fb_085cc617",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2023-05-15T15:26:15Z",
+      "side": 1,
+      "message": "Thanks again, I couldn\u0027t find your `external/qemu/android/build/cmake/rust/crates` reference above but that was because I looked on the wrong branch.",
+      "parentUuid": "fb0fc91a_2f55b5d0",
+      "revId": "58db97d58a77b14254eb3996ff33fa862d0fb92a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
