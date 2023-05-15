@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dfc2cc47_acfe2632",
+        "filename": "system/stack/l2cap/l2c_link.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1085,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-05-15T16:04:03Z",
+      "side": 1,
+      "message": "I don\u0027t understand the link_xmit_quota well enough to understand why you want to overwrite num_segs here.",
+      "range": {
+        "startLine": 1085,
+        "startChar": 4,
+        "endLine": 1085,
+        "endChar": 12
+      },
+      "revId": "ddb62742a574aaa93cc744cebdfa53de6b48f29b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "373fd719_d2c11422",
+        "filename": "system/stack/l2cap/l2c_utils.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-05-15T16:04:03Z",
+      "side": 1,
+      "message": "num_lm_ble_bufs is always \u003e\u003d 0, right?  No need to add the check here?",
+      "range": {
+        "startLine": 170,
+        "startChar": 10,
+        "endLine": 171,
+        "endChar": 63
+      },
+      "revId": "ddb62742a574aaa93cc744cebdfa53de6b48f29b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
