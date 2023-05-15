@@ -16,6 +16,24 @@
       "message": "You need to update the rust crates on the emulator branch, adding prettyplease to the manifest. See external/qemu/android/build/cmake/rust/crates.",
       "revId": "58db97d58a77b14254eb3996ff33fa862d0fb92a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "831a2944_9412f08e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2023-05-15T08:57:41Z",
+      "side": 1,
+      "message": "Ah, thanks! Something like https://r.android.com/2586951?",
+      "parentUuid": "a1d00ab8_b9b4c710",
+      "revId": "58db97d58a77b14254eb3996ff33fa862d0fb92a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
