@@ -1,0 +1,146 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9f103a39_6dae4be5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-05-15T08:40:26Z",
+      "side": 1,
+      "message": "Thanks..initial comments... looking further..",
+      "revId": "c4d7ec2039aaf21c17c3c33a630129deff84f75a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7a862256_375f8d99",
+        "filename": "system/bta/csis/csis_client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 720,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-05-15T08:40:26Z",
+      "side": 1,
+      "message": "```suggestion\n        if (!g-\u003eIsDeviceInTheGroup(device)) {\n          if (device-\u003eGetExpectedGroupIdMember() \u003d\u003d g-\u003eGetGroupId()) {\n             stream \u003c\u003c \"        \u003d\u003d candidate addr: \"\n                    \u003c\u003c ADDRESS_TO_LOGGABLE_STR(device-\u003eaddr) \u003c\u003c \"\\n\"; \n          }\n          continue;\n        }\n```",
+      "revId": "c4d7ec2039aaf21c17c3c33a630129deff84f75a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f7bcedc5_3c539063",
+        "filename": "system/bta/csis/csis_client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1280,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-05-15T08:40:26Z",
+      "side": 1,
+      "message": "Let\u0027s have a helper doing that because we need same in line 1399\n\nAlso, before device is pushed to the `devices_` we should check if it is not there already.",
+      "range": {
+        "startLine": 1270,
+        "startChar": 0,
+        "endLine": 1280,
+        "endChar": 69
+      },
+      "revId": "c4d7ec2039aaf21c17c3c33a630129deff84f75a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "08ab2235_a589be61",
+        "filename": "system/bta/csis/csis_client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1548,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-05-15T08:40:26Z",
+      "side": 1,
+      "message": "please do.",
+      "revId": "c4d7ec2039aaf21c17c3c33a630129deff84f75a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2c4905f8_2a4aa14c",
+        "filename": "system/bta/csis/csis_client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 2089,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-05-15T08:40:26Z",
+      "side": 1,
+      "message": "why `BTA_DmCsisConfirmDeviceReply(address, false);` is not called here but it is called in 2082 ?",
+      "revId": "c4d7ec2039aaf21c17c3c33a630129deff84f75a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9ee5a850_609aae67",
+        "filename": "system/bta/csis/csis_client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 2115,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-05-15T08:40:26Z",
+      "side": 1,
+      "message": "why not to find the device get the group with `GetExpectedGroupIdMember`\nthen find the group and call  `g-\u003eIsSirkBelongsToGroup` for a single group for the verification?",
+      "revId": "c4d7ec2039aaf21c17c3c33a630129deff84f75a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "02123870_8f7df6dd",
+        "filename": "system/bta/csis/csis_client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 2137,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-05-15T08:40:26Z",
+      "side": 1,
+      "message": "I don\u0027t thing we should search for another one. Background scan will do it after pairing ends.",
+      "revId": "c4d7ec2039aaf21c17c3c33a630129deff84f75a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2c32bc97_f8e8ee1f",
+        "filename": "system/bta/csis/csis_client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 2153,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-05-15T08:40:26Z",
+      "side": 1,
+      "message": "Shouldn\u0027t we  call `RemoveDevice(device-\u003eaddr);` in both cases?\nUpper layer later will decide to connect CSIP or not.",
+      "revId": "c4d7ec2039aaf21c17c3c33a630129deff84f75a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
