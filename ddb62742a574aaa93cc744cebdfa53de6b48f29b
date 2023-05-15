@@ -69,6 +69,30 @@
       },
       "revId": "ddb62742a574aaa93cc744cebdfa53de6b48f29b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6f2cfb2b_f99826b9",
+        "filename": "system/stack/l2cap/l2c_utils.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-05-15T16:20:24Z",
+      "side": 1,
+      "message": "I think we\u0027re agreeing with each other.\n\n  l2cb.controller_le_xmit_window \u003e 0 \u0026\u0026\n   l2cb.controller_le_xmit_window \u003e l2cb.num_lm_ble_bufs\n\n \u003d\u003d \n\nl2cb.controller_le_xmit_window \u003e l2cb.num_lm_ble_bufs\n\nSo no need to add the new check.  Right?",
+      "parentUuid": "eecbc86a_6e2ec8ae",
+      "range": {
+        "startLine": 170,
+        "startChar": 10,
+        "endLine": 171,
+        "endChar": 63
+      },
+      "revId": "ddb62742a574aaa93cc744cebdfa53de6b48f29b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
