@@ -45,6 +45,30 @@
       },
       "revId": "ddb62742a574aaa93cc744cebdfa53de6b48f29b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eecbc86a_6e2ec8ae",
+        "filename": "system/stack/l2cap/l2c_utils.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2023-05-15T16:14:13Z",
+      "side": 1,
+      "message": "num_lm_ble_bufs is unsigned,so if controller_le_xmit_window is \u003c\u003d 0 it would never be \u003e num_lm_ble_bufs",
+      "parentUuid": "373fd719_d2c11422",
+      "range": {
+        "startLine": 170,
+        "startChar": 10,
+        "endLine": 171,
+        "endChar": 63
+      },
+      "revId": "ddb62742a574aaa93cc744cebdfa53de6b48f29b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
