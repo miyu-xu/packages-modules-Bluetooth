@@ -52,9 +52,26 @@ class SDPProxy(ProfileProxy):
         super().__init__(channel)
 
     @assert_description
+    def TSC_SDP_mmi_iut_accept_connection(self, **kwargs):
+        """
+        If necessary take action to accept the SDP channel connection.
+        """
+
+        return "OK"
+
+    @assert_description
     def _mmi_6000(self, **kwargs):
         """
         If necessary take action to accept the SDP channel connection.
+        """
+
+        return self.TSC_SDP_mmi_iut_accept_connection(**kwargs)
+
+    @assert_description
+    def TSC_SDP_mmi_iut_accept_service_attribute(self, **kwargs):
+        """
+        If necessary take action to respond to the Service Attribute operation
+        appropriately.
         """
 
         return "OK"
@@ -66,10 +83,10 @@ class SDPProxy(ProfileProxy):
         appropriately.
         """
 
-        return "OK"
+        return self.TSC_SDP_mmi_iut_accept_service_attribute(**kwargs)
 
     @assert_description
-    def _mmi_6002(self, **kwargs):
+    def TSC_SDP_mmi_iut_accept_service_search(self, **kwargs):
         """
         If necessary take action to accept the Service Search operation.
         """
@@ -77,7 +94,7 @@ class SDPProxy(ProfileProxy):
         return "OK"
 
     @assert_description
-    def _mmi_6003(self, **kwargs):
+    def TSC_SDP_mmi_iut_accept_service_search_attribute(self, **kwargs):
         """
         If necessary take action to respond to the Service Search Attribute
         operation appropriately.

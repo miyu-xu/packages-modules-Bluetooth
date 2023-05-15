@@ -246,7 +246,7 @@ class L2CAPProxy(ProfileProxy):
         return "OK"
 
     @assert_description
-    def _mmi_135(self, test: str, **kwargs):
+    def MMI_IUT_SEND_INSUFFICIENT_AUTHENTICATION_ON_LE(self, test: str, **kwargs):
         """
         Please make sure an authentication requirement exists for a channel
         L2CAP.
@@ -259,7 +259,17 @@ class L2CAPProxy(ProfileProxy):
         return "OK"
 
     @assert_description
-    def _mmi_136(self, **kwargs):
+    def _mmi_135(self, test: str, **kwargs):
+        """
+        Please make sure an authentication requirement exists for a channel
+        L2CAP.
+        When receiving Credit Based Connection Request from PTS, please
+        respond with Result 0x0005 (Insufficient Authentication)
+        """
+        return self.MMI_IUT_SEND_INSUFFICIENT_AUTHENTICATION_ON_LE(test, **kwargs)
+
+    @assert_description
+    def MMI_IUT_SEND_INSUFFICIENT_AUTHORIZATION_ON_LE(self, **kwargs):
         """
         Please make sure an authorization requirement exists for a channel
         L2CAP.
@@ -267,6 +277,16 @@ class L2CAPProxy(ProfileProxy):
         respond with Result 0x0006 (Insufficient Authorization)
         """
         return "OK"
+
+    @assert_description
+    def _mmi_136(self, **kwargs):
+        """
+        Please make sure an authorization requirement exists for a channel
+        L2CAP.
+        When receiving Credit Based Connection Request from PTS, please
+        respond with Result 0x0006 (Insufficient Authorization)
+        """
+        return self.MMI_IUT_SEND_INSUFFICIENT_AUTHORIZATION_ON_LE(**kwargs)
 
     @assert_description
     def MMI_UPPER_TESTER_CONFIRM_RECEIVE_REJECT_AUTHORIZATION(self, test: str, **kwargs):
@@ -500,6 +520,14 @@ class L2CAPProxy(ProfileProxy):
         """
         Did the Implementation Under Test(IUT) inform the Upper Tester the
         connection attempt failed?
+        """
+
+        return "OK"
+
+    @assert_description
+    def MMI_IUT_SEND_L2CAP_CONNECTION_REQ(self, **kwargs):
+        """
+        Please send L2CAP Connection REQ to PTS.
         """
 
         return "OK"
