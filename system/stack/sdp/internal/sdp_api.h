@@ -20,10 +20,15 @@
 
 #include <cstdint>
 
-#include "sdpdefs.h"
+#include "stack/include/sdp_status.h"
+#include "stack/include/sdpdefs.h"
 #include "stack/sdp/sdp_discovery_db.h"
 #include "types/bluetooth/uuid.h"
 #include "types/raw_address.h"
+
+#if !defined(STACK_SDP_INTERNAL_ONLY)
+#error "Internal file must not be included"
+#endif
 
 /*******************************************************************************
  *
