@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dd97a171_101dfa79",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-05-15T22:42:02Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "ea5369dd_6e60d154",
+      "range": {
+        "startLine": 191,
+        "startChar": 32,
+        "endLine": 191,
+        "endChar": 45
+      },
+      "revId": "e4f8da167c0e52acd69407e28b2bcef4727c854c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f3ce19fa_a79268ee",
@@ -85,6 +109,30 @@
       "side": 1,
       "message": "Yes...that is the intent...I think there are 2 more moves; this interface moves to handle *all* bta gatt interactions, then it could be properly encapsulated (hiding all GATT globals). The second move may be that it is exported by the gatt layer directly.\n\nFor now the idea is for this particular module to aggregate all gatt interactions.",
       "parentUuid": "f3ce19fa_a79268ee",
+      "range": {
+        "startLine": 227,
+        "startChar": 7,
+        "endLine": 227,
+        "endChar": 23
+      },
+      "revId": "e4f8da167c0e52acd69407e28b2bcef4727c854c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "73023ccd_9c0b5128",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-05-15T22:42:02Z",
+      "side": 1,
+      "message": "That makes sense.  BTA_GATTC_ was the API.  Are there any tests that can now be updated to show how this improves things?",
+      "parentUuid": "280a8d7a_808497a7",
       "range": {
         "startLine": 227,
         "startChar": 7,
