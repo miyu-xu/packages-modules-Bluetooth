@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "80d54afd_0646dab6",
+        "filename": "tools/rootcanal/model/controller/link_layer_controller.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 351,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-05-15T22:51:47Z",
+      "side": 1,
+      "message": "nit: AclHandleIsConnected?  IsAclHandleConnected?\n\nI\u0027d rather the comments weren\u0027t so necessary, but I\u0027m not happy with the names I came up with...  So it\u0027s a nit.",
+      "revId": "44c2f09708e407017cff3e9ca6c661cf24b7cbcf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
