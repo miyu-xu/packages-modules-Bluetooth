@@ -18,6 +18,23 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "49a13a46_c41f7a75",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-05-15T09:02:56Z",
+      "side": 1,
+      "message": "another part of comments.",
+      "revId": "c4d7ec2039aaf21c17c3c33a630129deff84f75a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7a862256_375f8d99",
@@ -139,6 +156,515 @@
       "writtenOn": "2023-05-15T08:40:26Z",
       "side": 1,
       "message": "Shouldn\u0027t we  call `RemoveDevice(device-\u003eaddr);` in both cases?\nUpper layer later will decide to connect CSIP or not.",
+      "revId": "c4d7ec2039aaf21c17c3c33a630129deff84f75a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8062a8df_c22072cd",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-05-15T09:02:56Z",
+      "side": 1,
+      "message": "nit: `bta_dm_sirk_verification_cback` ?\n\nSo instead CSIS I recommend to use key name `sirk` here and in all other places",
+      "revId": "c4d7ec2039aaf21c17c3c33a630129deff84f75a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "66943199_8586b5cb",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 298,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-05-15T09:02:56Z",
+      "side": 1,
+      "message": "is it going to be called once or multiple ?",
+      "revId": "c4d7ec2039aaf21c17c3c33a630129deff84f75a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "697d660a_27b7253b",
+        "filename": "system/bta/dm/bta_dm_int.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 335,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-05-15T09:02:56Z",
+      "side": 1,
+      "message": "csis -\u003e sirk",
+      "range": {
+        "startLine": 335,
+        "startChar": 21,
+        "endLine": 335,
+        "endChar": 37
+      },
+      "revId": "c4d7ec2039aaf21c17c3c33a630129deff84f75a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "27e8300c_1c4adc80",
+        "filename": "system/bta/gatt/bta_gattc_queue.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-05-15T09:02:56Z",
+      "side": 1,
+      "message": "changes in this file are not needed I guess for this purpose. Is  this correct?",
+      "revId": "c4d7ec2039aaf21c17c3c33a630129deff84f75a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dd69dffa_f920d9c4",
+        "filename": "system/bta/include/bta_api.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 1185,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-05-15T09:02:56Z",
+      "side": 1,
+      "message": "csis-\u003esirk please",
+      "range": {
+        "startLine": 1185,
+        "startChar": 12,
+        "endLine": 1185,
+        "endChar": 35
+      },
+      "revId": "c4d7ec2039aaf21c17c3c33a630129deff84f75a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7153b8fa_97763442",
+        "filename": "system/bta/include/bta_gatt_queue.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-05-15T09:02:56Z",
+      "side": 1,
+      "message": "could be done as seprate patch if needed for other purposes. For this change it seems to be not needed.",
+      "revId": "c4d7ec2039aaf21c17c3c33a630129deff84f75a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dea90633_567e855e",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 2301,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-05-15T09:02:56Z",
+      "side": 1,
+      "message": "CSIS-\u003eSIRK",
+      "range": {
+        "startLine": 2301,
+        "startChar": 9,
+        "endLine": 2301,
+        "endChar": 41
+      },
+      "revId": "c4d7ec2039aaf21c17c3c33a630129deff84f75a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3174b071_880d23fb",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 2302,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-05-15T09:02:56Z",
+      "side": 1,
+      "message": "what is behind \"do something\" here ?:)",
+      "range": {
+        "startLine": 2302,
+        "startChar": 6,
+        "endLine": 2302,
+        "endChar": 44
+      },
+      "revId": "c4d7ec2039aaf21c17c3c33a630129deff84f75a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d6a648a7_65d401c2",
+        "filename": "system/main/shim/btm_api.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 316,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-05-15T09:02:56Z",
+      "side": 1,
+      "message": "csis-\u003esirk",
+      "revId": "c4d7ec2039aaf21c17c3c33a630129deff84f75a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aa8c6336_b3a57340",
+        "filename": "system/main/shim/btm_api.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 452,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-05-15T09:02:56Z",
+      "side": 1,
+      "message": "csis-\u003esirk",
+      "range": {
+        "startLine": 452,
+        "startChar": 23,
+        "endLine": 452,
+        "endChar": 51
+      },
+      "revId": "c4d7ec2039aaf21c17c3c33a630129deff84f75a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a31e3bcf_df904963",
+        "filename": "system/stack/btm/btm_ble.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1850,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-05-15T09:02:56Z",
+      "side": 1,
+      "message": "csis-\u003esirk\n\nIf CSIS is not supported at all, this callback will be never registered.\nIs this handled here?",
+      "range": {
+        "startLine": 1850,
+        "startChar": 24,
+        "endLine": 1850,
+        "endChar": 52
+      },
+      "revId": "c4d7ec2039aaf21c17c3c33a630129deff84f75a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a8632105_b7246b55",
+        "filename": "system/stack/btm/btm_ble.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1995,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-05-15T09:02:56Z",
+      "side": 1,
+      "message": "no, we probablyl shall not set AUTHENTICATED flag as probably this is reserved for MITM.",
+      "revId": "c4d7ec2039aaf21c17c3c33a630129deff84f75a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b6bba60f_43026473",
+        "filename": "system/stack/btm/btm_ble.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1997,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-05-15T09:02:56Z",
+      "side": 1,
+      "message": "Csis-\u003eSirk",
+      "range": {
+        "startLine": 1997,
+        "startChar": 2,
+        "endLine": 1997,
+        "endChar": 28
+      },
+      "revId": "c4d7ec2039aaf21c17c3c33a630129deff84f75a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "92489f52_94633a74",
+        "filename": "system/stack/btm/btm_int_types.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-05-15T09:02:56Z",
+      "side": 1,
+      "message": "CSIS-\u003eSIRK",
+      "range": {
+        "startLine": 120,
+        "startChar": 22,
+        "endLine": 120,
+        "endChar": 37
+      },
+      "revId": "c4d7ec2039aaf21c17c3c33a630129deff84f75a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3bcecbdd_58f1fd2a",
+        "filename": "system/stack/include/btm_api.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 937,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-05-15T09:02:56Z",
+      "side": 1,
+      "message": "Csis-\u003eSirk",
+      "range": {
+        "startLine": 937,
+        "startChar": 5,
+        "endLine": 937,
+        "endChar": 34
+      },
+      "revId": "c4d7ec2039aaf21c17c3c33a630129deff84f75a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bb3be9e9_9adbea91",
+        "filename": "system/stack/include/security_client_callbacks.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-05-15T09:02:56Z",
+      "side": 1,
+      "message": "CSIS-\u003eSIRK",
+      "range": {
+        "startLine": 79,
+        "startChar": 16,
+        "endLine": 79,
+        "endChar": 47
+      },
+      "revId": "c4d7ec2039aaf21c17c3c33a630129deff84f75a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0d036228_9a64c179",
+        "filename": "system/stack/include/smp_api.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-05-15T09:02:56Z",
+      "side": 1,
+      "message": "Csis-\u003eSirk",
+      "range": {
+        "startLine": 215,
+        "startChar": 12,
+        "endLine": 215,
+        "endChar": 38
+      },
+      "revId": "c4d7ec2039aaf21c17c3c33a630129deff84f75a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4ca02bfe_e011762b",
+        "filename": "system/stack/include/smp_api_types.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-05-15T09:02:56Z",
+      "side": 1,
+      "message": "CSIS-\u003eSIRK",
+      "range": {
+        "startLine": 103,
+        "startChar": 2,
+        "endLine": 103,
+        "endChar": 31
+      },
+      "revId": "c4d7ec2039aaf21c17c3c33a630129deff84f75a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d91ce76e_a877118a",
+        "filename": "system/stack/smp/smp_act.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1047,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-05-15T09:02:56Z",
+      "side": 1,
+      "message": "how this is related to this change!",
+      "revId": "c4d7ec2039aaf21c17c3c33a630129deff84f75a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1fef6152_f2653ee7",
+        "filename": "system/stack/smp/smp_act.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1232,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-05-15T09:02:56Z",
+      "side": 1,
+      "message": "csis-\u003esirk",
+      "range": {
+        "startLine": 1232,
+        "startChar": 5,
+        "endLine": 1232,
+        "endChar": 20
+      },
+      "revId": "c4d7ec2039aaf21c17c3c33a630129deff84f75a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c565dc86_859d1cd8",
+        "filename": "system/stack/smp/smp_act.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1244,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-05-15T09:02:56Z",
+      "side": 1,
+      "message": "this should be fine for the case where CSIP is not supported by the platform",
+      "revId": "c4d7ec2039aaf21c17c3c33a630129deff84f75a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d69d85c9_0d9b502c",
+        "filename": "system/stack/smp/smp_api.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 609,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-05-15T09:02:56Z",
+      "side": 1,
+      "message": "This should be probably not commented out, right?",
+      "revId": "c4d7ec2039aaf21c17c3c33a630129deff84f75a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d3d43da7_f6d8be1b",
+        "filename": "system/stack/smp/smp_int.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-05-15T09:02:56Z",
+      "side": 1,
+      "message": "why we need to enhance it ?",
+      "revId": "c4d7ec2039aaf21c17c3c33a630129deff84f75a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eecf3216_e467c320",
+        "filename": "system/stack/smp/smp_int.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-05-15T09:02:56Z",
+      "side": 1,
+      "message": "CSIS-\u003eSIRK",
+      "range": {
+        "startLine": 150,
+        "startChar": 2,
+        "endLine": 150,
+        "endChar": 27
+      },
+      "revId": "c4d7ec2039aaf21c17c3c33a630129deff84f75a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8a42ab33_975a53da",
+        "filename": "system/stack/smp/smp_main.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 698,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-05-15T09:02:56Z",
+      "side": 1,
+      "message": "do we still need it?",
       "revId": "c4d7ec2039aaf21c17c3c33a630129deff84f75a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
