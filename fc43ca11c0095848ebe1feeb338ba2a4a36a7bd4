@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "48cc78aa_c6b8a90b",
+        "filename": "tools/rootcanal/rust/src/packets.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-05-16T18:57:55Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "2a01e705_4250849a",
+      "range": {
+        "startLine": 8,
+        "startChar": 29,
+        "endLine": 8,
+        "endChar": 36
+      },
+      "revId": "fc43ca11c0095848ebe1feeb338ba2a4a36a7bd4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "83c6d613_0897f3f3",
