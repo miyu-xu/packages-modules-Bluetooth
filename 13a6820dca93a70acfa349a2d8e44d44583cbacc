@@ -45,6 +45,30 @@
       },
       "revId": "13a6820dca93a70acfa349a2d8e44d44583cbacc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8900a0a7_ae2e0d41",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/storage/AudioPolicyEntityTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2023-05-16T05:43:29Z",
+      "side": 1,
+      "message": "+1 on this (maybe checking not empty is enough?)",
+      "parentUuid": "6ea15474_c41e04a7",
+      "range": {
+        "startLine": 43,
+        "startChar": 0,
+        "endLine": 45,
+        "endChar": 76
+      },
+      "revId": "13a6820dca93a70acfa349a2d8e44d44583cbacc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
