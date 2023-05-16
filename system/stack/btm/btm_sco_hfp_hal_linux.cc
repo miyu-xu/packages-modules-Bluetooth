@@ -23,6 +23,7 @@
 #include "btm_sco_hfp_hal.h"
 #include "gd/common/init_flags.h"
 #include "osi/include/log.h"
+#include "os/features.h"
 #include "stack/acl/acl.h"
 #include "stack/include/acl_api.h"
 #include "stack/include/sdpdefs.h"
@@ -313,7 +314,7 @@ bool get_swb_supported() {
   for (cached_codec_info c : cached_codecs) {
     // SWB runs on the same path as MSBC non-offload.
     if (c.inner.codec == MSBC_TRANSPARENT) {
-      return false;  // TODO: query feature flag
+      return bluetooth::os::get_feature_enabled("CrOSLateBootAudioHFPSwb");
     }
   }
   return false;
