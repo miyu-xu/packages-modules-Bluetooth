@@ -124,6 +124,9 @@ pub trait IBluetoothMedia {
     /// copy of the existing CRAS API, hence not following Floss API conventions. PlayerMetadata is
     /// a custom data type that requires special handlng.
     fn set_player_metadata(&mut self, metadata: PlayerMetadata);
+
+    // Trigger a debug log dump.
+    fn trigger_debug_dump(&mut self);
 }
 
 pub trait IBluetoothMediaCallback: RPCProxy {
@@ -915,6 +918,29 @@ impl BluetoothMedia {
                     );
                 }
             }
+            HfpCallbacks::DebugDump(
+                active,
+                wbs,
+                total_num_decoded_frames,
+                pkt_loss_ratio,
+                begin_ts,
+                end_ts,
+                pkt_status_in_hex,
+                pkt_status_in_binary,
+            ) => {
+                debug!("[HFP] DebugDump: active:{} wbs:{}", active, wbs);
+                if wbs {
+                    debug!(
+                        "total_num_decoded_frames:{} pkt_loss_ratio:{}",
+                        total_num_decoded_frames, pkt_loss_ratio
+                    );
+                    debug!("begin_ts:{} end_ts:{}", begin_ts, end_ts);
+                    debug!(
+                        "pkt_status_in_hex:{} pkt_status_in_binary:{}",
+                        pkt_status_in_hex, pkt_status_in_binary
+                    );
+                }
+            }
         }
     }
 
@@ -1128,8 +1154,8 @@ impl BluetoothMedia {
                         != adapter.lock().unwrap().get_bond_state_by_addr(&addr.to_string())
                     {
                         warn!(
-                            "[{}]: Rejecting a unbonded device's attempt to connect to media profiles",
-                            DisplayAddress(&addr));
+                                        "[{}]: Rejecting a unbonded device's attempt to connect to media profiles",
+                                        DisplayAddress(&addr));
                         let fallback_tasks = self.fallback_tasks.clone();
                         let device_states = self.device_states.clone();
                         let txl = self.tx.clone();
@@ -2230,6 +2256,14 @@ impl IBluetoothMedia for BluetoothMedia {
         match self.avrcp.as_mut() {
             Some(avrcp) => avrcp.set_metadata(&metadata),
             None => warn!("Uninitialized AVRCP to set player playback status"),
+        };
+    }
+
+    fn trigger_debug_dump(&mut self) {
+        warn!("Trigger debug_dump");
+        match self.hfp.as_mut() {
+            Some(hfp) => hfp.debug_dump(),
+            None => warn!("Uninitialized HFP to dump debug log"),
         };
     }
 }
