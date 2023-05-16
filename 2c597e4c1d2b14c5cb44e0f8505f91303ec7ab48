@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ee2e1665_f6bc6d0a",
+        "filename": "framework/tests/metrics/host/Android.bp",
+        "patchSetId": 15
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1986325
+      },
+      "writtenOn": "2023-05-16T20:39:42Z",
+      "side": 1,
+      "message": "FYI, there\u0027s still some issue before having this setup integrated into CI. \n\ntracking : b/266873649, b/282961295",
+      "revId": "2c597e4c1d2b14c5cb44e0f8505f91303ec7ab48",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
