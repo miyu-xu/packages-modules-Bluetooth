@@ -34,6 +34,24 @@
       "parentUuid": "80d54afd_0646dab6",
       "revId": "44c2f09708e407017cff3e9ca6c661cf24b7cbcf",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d7274970_9a7a934c",
+        "filename": "tools/rootcanal/model/controller/link_layer_controller.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 351,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-05-16T20:47:32Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "262a71e7_4a1efd25",
+      "revId": "44c2f09708e407017cff3e9ca6c661cf24b7cbcf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
