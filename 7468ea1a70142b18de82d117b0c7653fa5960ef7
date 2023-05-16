@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "aa3be330_34314141",
+        "filename": "system/stack/srvc/srvc_dis.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 458,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-05-16T22:58:55Z",
+      "side": 1,
+      "message": "I think the fix in this file could be:\n\nconn_id \u003d GATT_INVALID_CONN_ID;",
+      "range": {
+        "startLine": 458,
+        "startChar": 4,
+        "endLine": 458,
+        "endChar": 19
+      },
+      "revId": "7468ea1a70142b18de82d117b0c7653fa5960ef7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "132a7879_bf8507ca",
         "filename": "system/stack/srvc/srvc_dis.cc",
         "patchSetId": 1
