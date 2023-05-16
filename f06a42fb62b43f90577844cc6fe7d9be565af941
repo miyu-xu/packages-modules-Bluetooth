@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b44d3e01_31bf4161",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-05-16T06:46:35Z",
+      "side": 1,
+      "message": "can we split this patch into 2?\n\n1. Add the API to register SIRK verification callback.\n2. CSIS actually doing registration.",
+      "revId": "f06a42fb62b43f90577844cc6fe7d9be565af941",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
