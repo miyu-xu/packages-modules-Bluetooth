@@ -59,6 +59,11 @@ class AclConnection {
   bool IsNearExpiring() const;
   bool HasExpired() const;
 
+  size_t GetTxCount() const { return tx_count_; }
+  size_t GetRxCount() const { return rx_count_; }
+  void IncrTxCount() { tx_count_++; }
+  void IncrRxCount() { rx_count_++; }
+
   // LE-ACL state.
   void InitiatePhyUpdate() { initiated_phy_update_ = true; }
   void PhyUpdateComplete() { initiated_phy_update_ = false; }
@@ -77,6 +82,10 @@ class AclConnection {
   // Reports the RSSI measured for the last packet received on
   // this connection.
   int8_t rssi_{0};
+
+  // Reports the number of packets sent or received on this connection.
+  size_t tx_count_{0};
+  size_t rx_count_{0};
 
   // State variables
   bool encrypted_{false};
