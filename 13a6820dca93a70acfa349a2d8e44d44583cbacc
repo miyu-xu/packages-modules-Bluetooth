@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ff0417ad_f71310fa",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/storage/AudioPolicyEntityTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2023-05-16T04:17:40Z",
+      "side": 1,
+      "message": "Please fix",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 23
+      },
+      "revId": "13a6820dca93a70acfa349a2d8e44d44583cbacc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
