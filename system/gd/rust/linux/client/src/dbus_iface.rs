@@ -4,6 +4,8 @@ use bt_topshim::btif::{
     BtBondState, BtConnectionState, BtDeviceType, BtDiscMode, BtPropertyType, BtSspVariant,
     BtStatus, BtTransport, Uuid, Uuid128Bit,
 };
+use bt_topshim::profiles::a2dp::PresentationPosition;
+use bt_topshim::profiles::avrcp::PlayerMetadata;
 use bt_topshim::profiles::gatt::{AdvertisingStatus, GattStatus, LePhy};
 use bt_topshim::profiles::hid_host::BthhReportType;
 use bt_topshim::profiles::sdp::{
@@ -29,7 +31,7 @@ use btstack::bluetooth_gatt::{
     IBluetoothGattServerCallback, IScannerCallback, ScanFilter, ScanFilterCondition,
     ScanFilterPattern, ScanResult, ScanSettings, ScanType,
 };
-use btstack::bluetooth_media::IBluetoothTelephony;
+use btstack::bluetooth_media::{IBluetoothMedia, IBluetoothMediaCallback, IBluetoothTelephony};
 use btstack::bluetooth_qa::IBluetoothQA;
 use btstack::socket_manager::{
     BluetoothServerSocket, BluetoothSocket, CallbackId, IBluetoothSocketManager,
@@ -490,6 +492,22 @@ struct ScanResultDBus {
     service_data: HashMap<String, Vec<u8>>,
     manufacturer_data: HashMap<u16, Vec<u8>>,
     adv_data: Vec<u8>,
+}
+
+#[dbus_propmap(PresentationPosition)]
+struct PresentationPositionDBus {
+    remote_delay_report_ns: u64,
+    total_bytes_read: u64,
+    data_position_sec: i64,
+    data_position_nsec: i32,
+}
+
+#[dbus_propmap(PlayerMetadata)]
+struct PlayerMetadataDBus {
+    title: String,
+    artist: String,
+    album: String,
+    length_us: i64,
 }
 
 struct IBluetoothCallbackDBus {}
@@ -2278,6 +2296,144 @@ impl IBluetoothQA for BluetoothQADBus {
     }
     #[dbus_method("GetDiscoverableMode")]
     fn get_discoverable_mode(&self) -> BtDiscMode {
+        dbus_generated!()
+    }
+}
+
+pub(crate) struct BluetoothMediaDBus {
+    client_proxy: ClientDBusProxy,
+}
+
+impl BluetoothMediaDBus {
+    pub(crate) fn new(conn: Arc<SyncConnection>, index: i32) -> BluetoothMediaDBus {
+        BluetoothMediaDBus {
+            client_proxy: ClientDBusProxy::new(
+                conn.clone(),
+                String::from("org.chromium.bluetooth"),
+                make_object_path(index, "media"),
+                String::from("org.chromium.bluetooth.BluetoothMedia"),
+            ),
+        }
+    }
+}
+
+#[generate_dbus_interface_client]
+impl IBluetoothMedia for BluetoothMediaDBus {
+    #[dbus_method("RegisterCallback")]
+    fn register_callback(&mut self, callback: Box<dyn IBluetoothMediaCallback + Send>) -> bool {
+        dbus_generated!()
+    }
+
+    #[dbus_method("Initialize")]
+    fn initialize(&mut self) -> bool {
+        dbus_generated!()
+    }
+
+    #[dbus_method("Cleanup")]
+    fn cleanup(&mut self) -> bool {
+        dbus_generated!()
+    }
+
+    #[dbus_method("Connect")]
+    fn connect(&mut self, address: String) {
+        dbus_generated!()
+    }
+
+    #[dbus_method("Disconnect")]
+    fn disconnect(&mut self, address: String) {
+        dbus_generated!()
+    }
+
+    #[dbus_method("SetActiveDevice")]
+    fn set_active_device(&mut self, address: String) {
+        dbus_generated!()
+    }
+
+    #[dbus_method("ResetActiveDevice")]
+    fn reset_active_device(&mut self) {
+        dbus_generated!()
+    }
+
+    #[dbus_method("SetHfpActiveDevice")]
+    fn set_hfp_active_device(&mut self, address: String) {
+        dbus_generated!()
+    }
+
+    #[dbus_method("SetAudioConfig")]
+    fn set_audio_config(
+        &mut self,
+        sample_rate: i32,
+        bits_per_sample: i32,
+        channel_mode: i32,
+    ) -> bool {
+        dbus_generated!()
+    }
+
+    #[dbus_method("SetVolume")]
+    fn set_volume(&mut self, volume: u8) {
+        dbus_generated!()
+    }
+
+    #[dbus_method("SetHfpVolume")]
+    fn set_hfp_volume(&mut self, volume: u8, address: String) {
+        dbus_generated!()
+    }
+
+    #[dbus_method("StartAudioRequest")]
+    fn start_audio_request(&mut self) -> bool {
+        dbus_generated!()
+    }
+
+    #[dbus_method("GetA2dpAudioStarted")]
+    fn get_a2dp_audio_started(&mut self, address: String) -> bool {
+        dbus_generated!()
+    }
+
+    #[dbus_method("StopAudioRequest")]
+    fn stop_audio_request(&mut self) {
+        dbus_generated!()
+    }
+
+    #[dbus_method("StartScoCall")]
+    fn start_sco_call(&mut self, address: String, sco_offload: bool, force_cvsd: bool) -> bool {
+        dbus_generated!()
+    }
+
+    #[dbus_method("GetHfpAudioFinalCodecs")]
+    fn get_hfp_audio_final_codecs(&mut self, address: String) -> u8 {
+        dbus_generated!()
+    }
+
+    #[dbus_method("StopScoCall")]
+    fn stop_sco_call(&mut self, address: String) {
+        dbus_generated!()
+    }
+
+    #[dbus_method("GetPresentationPosition")]
+    fn get_presentation_position(&mut self) -> PresentationPosition {
+        dbus_generated!()
+    }
+
+    // Temporary AVRCP-related meida DBUS APIs. The following APIs intercept between Chrome CRAS
+    // and cras_server as an expedited solution for AVRCP implementation. The APIs are subject to
+    // change when retiring Chrome CRAS.
+    #[dbus_method("SetPlayerPlaybackStatus")]
+    fn set_player_playback_status(&mut self, status: String) {
+        dbus_generated!()
+    }
+
+    #[dbus_method("SetPlayerPosition")]
+    fn set_player_position(&mut self, position_us: i64) {
+        dbus_generated!()
+    }
+
+    #[dbus_method("SetPlayerMetadata")]
+    fn set_player_metadata(&mut self, metadata: PlayerMetadata) {
+        dbus_generated!()
+    }
+
+    #[dbus_method("TriggerDebugDump")]
+    fn trigger_debug_dump(&mut self) {
         dbus_generated!()
     }
 }
