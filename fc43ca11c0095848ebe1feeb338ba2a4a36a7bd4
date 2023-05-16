@@ -26,6 +26,75 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "83c6d613_0897f3f3",
+        "filename": "tools/rootcanal/rust/src/packets.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-05-16T18:14:23Z",
+      "side": 1,
+      "message": "nit: Convert the u64 to an array and index into the array.",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 37
+      },
+      "revId": "fc43ca11c0095848ebe1feeb338ba2a4a36a7bd4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ecf91293_5639b88c",
+        "filename": "tools/rootcanal/rust/src/packets.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-05-16T18:14:23Z",
+      "side": 1,
+      "message": "nit: Use `u64::from_le_bytes`",
+      "range": {
+        "startLine": 29,
+        "startChar": 14,
+        "endLine": 34,
+        "endChar": 48
+      },
+      "revId": "fc43ca11c0095848ebe1feeb338ba2a4a36a7bd4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "94a31fba_12ed2adb",
+        "filename": "tools/rootcanal/rust/src/packets.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-05-16T18:14:23Z",
+      "side": 1,
+      "message": "nit: Use `to_le_bytes`",
+      "range": {
+        "startLine": 41,
+        "startChar": 0,
+        "endLine": 48,
+        "endChar": 13
+      },
+      "revId": "fc43ca11c0095848ebe1feeb338ba2a4a36a7bd4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4375bf46_c0ee57c4",
         "filename": "tools/rootcanal/rust/src/packets.rs",
         "patchSetId": 3
