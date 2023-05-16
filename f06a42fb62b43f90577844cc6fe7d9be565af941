@@ -62,6 +62,46 @@
       },
       "revId": "f06a42fb62b43f90577844cc6fe7d9be565af941",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "43788b2a_5b02111f",
+        "filename": "system/stack/smp/smp_act.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1047,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-05-16T14:44:36Z",
+      "side": 1,
+      "message": "How it is related to this patch?",
+      "revId": "f06a42fb62b43f90577844cc6fe7d9be565af941",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0f69bd54_5653a4a2",
+        "filename": "system/stack/smp/smp_act.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1230,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-05-16T14:44:36Z",
+      "side": 1,
+      "message": "is this correct? I think we are doing it differently now.",
+      "range": {
+        "startLine": 1229,
+        "startChar": 59,
+        "endLine": 1230,
+        "endChar": 32
+      },
+      "revId": "f06a42fb62b43f90577844cc6fe7d9be565af941",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
