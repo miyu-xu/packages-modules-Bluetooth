@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e1b4ea01_b08bfca5",
+        "filename": "system/stack/btm/btm_ble.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1991,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-05-16T16:34:20Z",
+      "side": 1,
+      "message": "Please use LOG_ERROR for new code",
+      "range": {
+        "startLine": 1991,
+        "startChar": 4,
+        "endLine": 1991,
+        "endChar": 19
+      },
+      "revId": "c55a057fd0f9c7e5b60da2288fb7716fea835bd0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
