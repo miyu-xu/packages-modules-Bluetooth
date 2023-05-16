@@ -141,6 +141,30 @@
       },
       "revId": "e4f8da167c0e52acd69407e28b2bcef4727c854c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "62947322_8008600e",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-05-16T23:53:11Z",
+      "side": 1,
+      "message": "No...there are absolutely no tests in this area.\n\nThe plan is to add tests that mock out GATT and return various correct and incorrect behaviors using this new interface/fake/mock.\n\nThe same would happen with the SDP interface which already landed.\n\nOnce this lands the plan would be to create a `bta_dm_search_test.cc` that injects it\u0027s own l2cap/sdp interface (already landed) and this gatt interface, and then issue the 3 API commands (search/cancel/fetch_uuids) to provide (eventual) complete search state machine coverage.",
+      "parentUuid": "73023ccd_9c0b5128",
+      "range": {
+        "startLine": 227,
+        "startChar": 7,
+        "endLine": 227,
+        "endChar": 23
+      },
+      "revId": "e4f8da167c0e52acd69407e28b2bcef4727c854c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
