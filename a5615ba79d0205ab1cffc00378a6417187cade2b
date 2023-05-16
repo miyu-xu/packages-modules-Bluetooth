@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "71823c9c_8fee1f28",
+        "filename": "system/btcore/src/module.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-05-16T21:43:29Z",
+      "side": 1,
+      "message": "I don\u0027t think the stack init is interruptable. Is it ?\n\nBut I see your point.\nThis make me want more the \"list of start module to cleanup in reverse order stuff\".\n\nAck: marking as resolved then.",
+      "parentUuid": "6543a998_43f5006f",
+      "range": {
+        "startLine": 82,
+        "startChar": 0,
+        "endLine": 82,
+        "endChar": 41
+      },
+      "revId": "a5615ba79d0205ab1cffc00378a6417187cade2b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3432613f_e71a62da",
