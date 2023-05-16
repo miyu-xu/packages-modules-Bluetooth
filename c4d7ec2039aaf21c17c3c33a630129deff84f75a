@@ -141,6 +141,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8e869236_0f3dce71",
+        "filename": "system/bta/csis/csis_client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1280,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-05-16T14:47:14Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "df123c65_9e4d0d76",
+      "range": {
+        "startLine": 1270,
+        "startChar": 0,
+        "endLine": 1280,
+        "endChar": 69
+      },
+      "revId": "c4d7ec2039aaf21c17c3c33a630129deff84f75a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "08ab2235_a589be61",
@@ -299,6 +323,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "99c6305a_53246148",
+        "filename": "system/bta/csis/csis_client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 2137,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-05-16T14:47:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0219e1ee_966ef163",
+      "revId": "c4d7ec2039aaf21c17c3c33a630129deff84f75a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2c32bc97_f8e8ee1f",
@@ -418,6 +460,24 @@
       "side": 1,
       "message": "maybe make sure it is done once. now previous callback is always overwritten.",
       "parentUuid": "8c4c8f06_188e14c2",
+      "revId": "c4d7ec2039aaf21c17c3c33a630129deff84f75a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f505368a_51c8976f",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 298,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-05-16T14:47:14Z",
+      "side": 1,
+      "message": "I think this is ok - e.g. to set it to null when CSIS is cleaned up.",
+      "parentUuid": "47e0e8d5_515befc1",
       "revId": "c4d7ec2039aaf21c17c3c33a630129deff84f75a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },

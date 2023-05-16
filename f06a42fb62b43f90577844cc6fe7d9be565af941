@@ -43,6 +43,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2cb7873f_dbc8c855",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 298,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-05-16T14:47:14Z",
+      "side": 1,
+      "message": "I think this is related to previous comment. In my opinion yes - it is \"ok\" e.g. when CSIS is cleaning up or don\u0027t want to be validator for any reason.",
+      "parentUuid": "c762fdb1_4b6e7f93",
+      "range": {
+        "startLine": 298,
+        "startChar": 12,
+        "endLine": 298,
+        "endChar": 28
+      },
+      "revId": "f06a42fb62b43f90577844cc6fe7d9be565af941",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "df9006c5_4abb62e4",
         "filename": "system/bta/dm/bta_dm_act.cc",
         "patchSetId": 2
@@ -54,6 +78,30 @@
       "writtenOn": "2023-05-16T13:34:24Z",
       "side": 1,
       "message": "SIRK verification when pairing CSIP set member.",
+      "range": {
+        "startLine": 3953,
+        "startChar": 40,
+        "endLine": 3953,
+        "endChar": 44
+      },
+      "revId": "f06a42fb62b43f90577844cc6fe7d9be565af941",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6aed8a00_a54f5008",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 3953,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-05-16T14:47:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "df9006c5_4abb62e4",
       "range": {
         "startLine": 3953,
         "startChar": 40,
