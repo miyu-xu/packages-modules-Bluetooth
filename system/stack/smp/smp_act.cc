@@ -1044,6 +1044,16 @@ void smp_proc_id_info(tSMP_CB* p_cb, tSMP_INT_DATA* p_data) {
     return;
   }
 
+  if (!p_cb->tk.data()) {
+    SMP_TRACE_DEBUG("%s, has empty tk data", __func__);
+    return;
+  }
+
+  if (!p) {
+    SMP_TRACE_DEBUG("%s, has empty p", __func__);
+    return;
+  }
+
   STREAM_TO_ARRAY(p_cb->tk.data(), p, OCTET16_LEN); /* reuse TK for IRK */
   smp_key_distribution_by_transport(p_cb, NULL);
 }
@@ -1212,6 +1222,45 @@ void smp_enc_cmpl(tSMP_CB* p_cb, tSMP_INT_DATA* p_data) {
   tSMP_INT_DATA smp_int_data;
   smp_int_data.status = enc_enable ? SMP_SUCCESS : SMP_ENC_FAIL;
   smp_sm_event(p_cb, SMP_AUTH_CMPL_EVT, &smp_int_data);
+}
+
+/*******************************************************************************
+ * Function     smp_sirk_verify
+ * Description   verify if device belongs to csis group and is valid before
+ *               exchaning keys.
+ ******************************************************************************/
+void smp_sirk_verify(tSMP_CB* p_cb, tSMP_INT_DATA* p_data) {
+  tBTM_STATUS callback_rc;
+  SMP_TRACE_DEBUG("%s", __func__);
+
+  if (p_data->status != SMP_SUCCESS) {
+    SMP_TRACE_DEBUG(
+        "%s, cancel device verification due to invalid status (%d)"
+        " while bonding.",
+        __func__, p_data->status);
+
+    tSMP_INT_DATA smp_int_data;
+    smp_int_data.status = SMP_SIRK_DEVICE_INVALID;
+    smp_sm_event(p_cb, SMP_SIRK_DEVICE_VALID_EVT, &smp_int_data);
+
+    return;
+  }
+
+  if (p_cb->p_callback) {
+    SMP_TRACE_DEBUG("%s, there is registrated SIRK verification callback",
+                    __func__);
+    p_cb->cb_evt = SMP_SIRK_VERIFICATION_REQ_EVT;
+    callback_rc = (*p_cb->p_callback)(p_cb->cb_evt, p_cb->pairing_bda, nullptr);
+
+    /* There is no member validator callback - device is by default valid */
+    if (callback_rc == BTM_SUCCESS_NO_SECURITY) {
+      tSMP_INT_DATA smp_int_data;
+      smp_int_data.status = SMP_SUCCESS;
+      smp_sm_event(p_cb, SMP_SIRK_DEVICE_VALID_EVT, &smp_int_data);
+    }
+  } else {
+    SMP_TRACE_ERROR("%s, there are no registrated callbacks for SMP", __func__);
+  }
 }
 
 /*******************************************************************************

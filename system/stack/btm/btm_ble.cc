@@ -1846,6 +1846,17 @@ tBTM_STATUS btm_proc_smp_cback(tSMP_EVT event, const RawAddress& bd_addr,
         }
         break;
 
+      case SMP_SIRK_VERIFICATION_REQ_EVT:
+        if (!btm_cb.api.p_sirk_verification_callback) {
+          BTM_TRACE_DEBUG("btm_cb.api.p_sirk_verification_callback is null");
+          return BTM_SUCCESS_NO_SECURITY;
+        } else {
+          BTM_TRACE_DEBUG("btm_cb.api.p_sirk_verification_callback=0x%x",
+                          btm_cb.api.p_sirk_verification_callback);
+          (*btm_cb.api.p_sirk_verification_callback)(bd_addr);
+        }
+        break;
+
       default:
         BTM_TRACE_DEBUG("unknown event = %d", event);
         break;
@@ -1955,6 +1966,34 @@ bool BTM_BleVerifySignature(const RawAddress& bd_addr, uint8_t* p_orig,
     }
   }
   return verified;
+}
+
+/*******************************************************************************
+ *
+ * Function         BTM_BleSirkConfirmDeviceReply
+ *
+ * Description      This procedure confirms requested to validate set device.
+ *
+ * Parameter        bd_addr     - BD address of the peer
+ *                  res         - confirmation result BTM_SUCCESS if success
+ *
+ * Returns          void
+ *
+ ******************************************************************************/
+void BTM_BleSirkConfirmDeviceReply(const RawAddress& bd_addr, uint8_t res) {
+  if (bluetooth::shim::is_gd_shim_enabled()) {
+    ASSERT_LOG(false, "This should not be invoked from code path");
+  }
+  tBTM_SEC_DEV_REC* p_dev_rec = btm_find_dev(bd_addr);
+  tSMP_STATUS res_smp = (res == BTM_SUCCESS) ? SMP_SUCCESS : SMP_FAIL;
+
+  if (p_dev_rec == NULL) {
+    BTM_TRACE_ERROR("Confirmation of Unknown device");
+    return;
+  }
+
+  BTM_TRACE_DEBUG("%s", __func__);
+  SMP_SirkConfirmDeviceReply(bd_addr, res_smp);
 }
 
 /*******************************************************************************
