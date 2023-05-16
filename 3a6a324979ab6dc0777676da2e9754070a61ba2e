@@ -34,6 +34,24 @@
       "parentUuid": "8539ed43_24e69b4c",
       "revId": "3a6a324979ab6dc0777676da2e9754070a61ba2e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bd53d215_00303f48",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-05-16T22:29:55Z",
+      "side": 1,
+      "message": "It feels too magical to me.  Does 10ms also work?\n\nI feel like the quirk would be fairly similar in complexity to implement (rx counters instead of tx counters)",
+      "parentUuid": "cb51c2fd_c474c1f5",
+      "revId": "3a6a324979ab6dc0777676da2e9754070a61ba2e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
