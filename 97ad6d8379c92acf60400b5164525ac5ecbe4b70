@@ -1,0 +1,446 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "756a6066_ba9b2900",
+        "filename": "framework/tests/bumble/src/android/bluetooth/PairingTest.java",
+        "patchSetId": 37
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-05-16T13:04:09Z",
+      "side": 1,
+      "message": "Why are they static ?",
+      "range": {
+        "startLine": 60,
+        "startChar": 0,
+        "endLine": 65,
+        "endChar": 47
+      },
+      "revId": "97ad6d8379c92acf60400b5164525ac5ecbe4b70",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f7a9f826_ed31519f",
+        "filename": "framework/tests/bumble/src/android/bluetooth/PairingTest.java",
+        "patchSetId": 37
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-05-16T13:04:09Z",
+      "side": 1,
+      "message": "As we are starting to repeat that, we might want to introduce a common base class or an utility method.",
+      "range": {
+        "startLine": 79,
+        "startChar": 8,
+        "endLine": 102,
+        "endChar": 85
+      },
+      "revId": "97ad6d8379c92acf60400b5164525ac5ecbe4b70",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d46c3795_66435102",
+        "filename": "framework/tests/bumble/src/android/bluetooth/PairingTest.java",
+        "patchSetId": 37
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-05-16T13:04:09Z",
+      "side": 1,
+      "message": "Is there a case where the channel is null ?",
+      "revId": "97ad6d8379c92acf60400b5164525ac5ecbe4b70",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8c81670c_01b2aa18",
+        "filename": "framework/tests/bumble/src/android/bluetooth/PairingTest.java",
+        "patchSetId": 37
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-05-16T13:04:09Z",
+      "side": 1,
+      "message": "nit: import it",
+      "range": {
+        "startLine": 120,
+        "startChar": 8,
+        "endLine": 120,
+        "endChar": 31
+      },
+      "revId": "97ad6d8379c92acf60400b5164525ac5ecbe4b70",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bcc55235_4cc50a63",
+        "filename": "framework/tests/bumble/src/android/bluetooth/PairingTest.java",
+        "patchSetId": 37
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-05-16T13:04:09Z",
+      "side": 1,
+      "message": "Why are you wrapping it into a `MacAddress` object ?",
+      "revId": "97ad6d8379c92acf60400b5164525ac5ecbe4b70",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "880790ce_d4b6c5af",
+        "filename": "framework/tests/bumble/src/android/bluetooth/PairingTest.java",
+        "patchSetId": 37
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-05-16T13:04:09Z",
+      "side": 1,
+      "message": "`factoryReset` should already delete all bonds",
+      "revId": "97ad6d8379c92acf60400b5164525ac5ecbe4b70",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a8036d1a_38ae2695",
+        "filename": "framework/tests/bumble/src/android/bluetooth/PairingTest.java",
+        "patchSetId": 37
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-05-16T13:04:09Z",
+      "side": 1,
+      "message": "I think we should move those closer to where they are actually used, for example move `waitDisconnectionFuture` just before `mHostBlockingStub.disconnect`",
+      "range": {
+        "startLine": 139,
+        "startChar": 0,
+        "endLine": 143,
+        "endChar": 94
+      },
+      "revId": "97ad6d8379c92acf60400b5164525ac5ecbe4b70",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "329de1fc_f2b30d6a",
+        "filename": "framework/tests/bumble/src/android/bluetooth/PairingTest.java",
+        "patchSetId": 37
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-05-16T13:04:09Z",
+      "side": 1,
+      "message": "I think we should use/assert the result somehow here, or having a CompletableFuture\u003cBluetoothDevice\u003e doesn\u0027t make sense",
+      "range": {
+        "startLine": 149,
+        "startChar": 8,
+        "endLine": 149,
+        "endChar": 34
+      },
+      "revId": "97ad6d8379c92acf60400b5164525ac5ecbe4b70",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c34b2bfb_5f05ee76",
+        "filename": "framework/tests/bumble/src/android/bluetooth/PairingTest.java",
+        "patchSetId": 37
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-05-16T13:04:09Z",
+      "side": 1,
+      "message": "We should assert the type of this pairing event",
+      "range": {
+        "startLine": 154,
+        "startChar": 21,
+        "endLine": 154,
+        "endChar": 33
+      },
+      "revId": "97ad6d8379c92acf60400b5164525ac5ecbe4b70",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "23884b45_a54dacc4",
+        "filename": "framework/tests/bumble/src/android/bluetooth/PairingTest.java",
+        "patchSetId": 37
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-05-16T13:04:09Z",
+      "side": 1,
+      "message": "This should return the SecureResponse and we should assert it",
+      "range": {
+        "startLine": 161,
+        "startChar": 8,
+        "endLine": 161,
+        "endChar": 36
+      },
+      "revId": "97ad6d8379c92acf60400b5164525ac5ecbe4b70",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7123935f_ed754dcd",
+        "filename": "framework/tests/bumble/src/android/bluetooth/PairingTest.java",
+        "patchSetId": 37
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-05-16T13:04:09Z",
+      "side": 1,
+      "message": "nit: Move just after the `onNext`",
+      "range": {
+        "startLine": 162,
+        "startChar": 8,
+        "endLine": 162,
+        "endChar": 37
+      },
+      "revId": "97ad6d8379c92acf60400b5164525ac5ecbe4b70",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "902faf9a_96facef8",
+        "filename": "framework/tests/bumble/src/android/bluetooth/PairingTest.java",
+        "patchSetId": 37
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-05-16T13:04:09Z",
+      "side": 1,
+      "message": "your waitBondedFuture is only completed if the state is `BOND_BONDED`, we should either remove that from `waitBondedForDevice` or remove this assert",
+      "range": {
+        "startLine": 166,
+        "startChar": 8,
+        "endLine": 166,
+        "endChar": 78
+      },
+      "revId": "97ad6d8379c92acf60400b5164525ac5ecbe4b70",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a2883cca_18cc0e2d",
+        "filename": "framework/tests/bumble/src/android/bluetooth/PairingTest.java",
+        "patchSetId": 37
+      },
+      "lineNbr": 229,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-05-16T13:04:09Z",
+      "side": 1,
+      "message": "The completable future here means that you can only get one Pairing Event, so it\u0027s strange that we return only one event but give something that expect multiple answers as well.\n\nI don\u0027t think that a CompletableFuture is the correct abstraction here.\n\nI think we could either:\n- take a function that would make the PairingEvent -\u003e PairingEventAsnwer mapping\n- Return something that let you receive multiple values like a Stream or a Channel",
+      "range": {
+        "startLine": 229,
+        "startChar": 17,
+        "endLine": 229,
+        "endChar": 48
+      },
+      "revId": "97ad6d8379c92acf60400b5164525ac5ecbe4b70",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7e8da56d_0ed2e237",
+        "filename": "framework/tests/bumble/src/android/bluetooth/PairingTest.java",
+        "patchSetId": 37
+      },
+      "lineNbr": 269,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-05-16T13:04:09Z",
+      "side": 1,
+      "message": "As you gave an intent filter, I don\u0027t think that you need to check that here",
+      "range": {
+        "startLine": 269,
+        "startChar": 16,
+        "endLine": 269,
+        "endChar": 73
+      },
+      "revId": "97ad6d8379c92acf60400b5164525ac5ecbe4b70",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3b107db1_440b0b18",
+        "filename": "framework/tests/bumble/src/android/bluetooth/PairingTest.java",
+        "patchSetId": 37
+      },
+      "lineNbr": 273,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-05-16T13:04:09Z",
+      "side": 1,
+      "message": "This doesn\u0027t look like to be correctly formatted",
+      "range": {
+        "startLine": 273,
+        "startChar": 65,
+        "endLine": 273,
+        "endChar": 72
+      },
+      "revId": "97ad6d8379c92acf60400b5164525ac5ecbe4b70",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "51074735_526c5d68",
+        "filename": "framework/tests/bumble/src/android/bluetooth/PairingTest.java",
+        "patchSetId": 37
+      },
+      "lineNbr": 273,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-05-16T13:04:09Z",
+      "side": 1,
+      "message": "nit: `!dev.getAddress().equals(addr)`",
+      "range": {
+        "startLine": 273,
+        "startChar": 24,
+        "endLine": 273,
+        "endChar": 62
+      },
+      "revId": "97ad6d8379c92acf60400b5164525ac5ecbe4b70",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2b2d9743_286adf15",
+        "filename": "framework/tests/bumble/src/android/bluetooth/PairingTest.java",
+        "patchSetId": 37
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-05-16T13:04:09Z",
+      "side": 1,
+      "message": "nit: Change to camel case",
+      "range": {
+        "startLine": 275,
+        "startChar": 36,
+        "endLine": 275,
+        "endChar": 52
+      },
+      "revId": "97ad6d8379c92acf60400b5164525ac5ecbe4b70",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "94f718d7_69bc8c08",
+        "filename": "framework/tests/bumble/src/android/bluetooth/PairingTest.java",
+        "patchSetId": 37
+      },
+      "lineNbr": 278,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-05-16T13:04:09Z",
+      "side": 1,
+      "message": "I think this should be done outside the `waitPairingRequestForDevice`",
+      "range": {
+        "startLine": 277,
+        "startChar": 19,
+        "endLine": 278,
+        "endChar": 53
+      },
+      "revId": "97ad6d8379c92acf60400b5164525ac5ecbe4b70",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3bc0abbb_83d49a12",
+        "filename": "framework/tests/bumble/src/android/bluetooth/PairingTest.java",
+        "patchSetId": 37
+      },
+      "lineNbr": 360,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-05-16T13:04:09Z",
+      "side": 1,
+      "message": "I think we should in the test assert for all the bond state changes",
+      "range": {
+        "startLine": 360,
+        "startChar": 20,
+        "endLine": 360,
+        "endChar": 63
+      },
+      "revId": "97ad6d8379c92acf60400b5164525ac5ecbe4b70",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "313029be_992a4de1",
+        "filename": "framework/tests/bumble/src/android/bluetooth/PairingTest.java",
+        "patchSetId": 37
+      },
+      "lineNbr": 371,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-05-16T13:04:09Z",
+      "side": 1,
+      "message": "I think we should refactor those 4 copies into one that take the intent as argument",
+      "range": {
+        "startLine": 261,
+        "startChar": 3,
+        "endLine": 371,
+        "endChar": 5
+      },
+      "revId": "97ad6d8379c92acf60400b5164525ac5ecbe4b70",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
