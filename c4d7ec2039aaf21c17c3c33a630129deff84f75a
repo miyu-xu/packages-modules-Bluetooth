@@ -119,6 +119,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "df123c65_9e4d0d76",
+        "filename": "system/bta/csis/csis_client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1280,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-05-16T06:44:49Z",
+      "side": 1,
+      "message": "when background results are processed we need to do the same i.e. store expected group_id and notify Java about member being available. See line 1399.\n\nTherefore, I suggested helper.",
+      "parentUuid": "89c07d0a_46058906",
+      "range": {
+        "startLine": 1270,
+        "startChar": 0,
+        "endLine": 1280,
+        "endChar": 69
+      },
+      "revId": "c4d7ec2039aaf21c17c3c33a630129deff84f75a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "08ab2235_a589be61",
         "filename": "system/bta/csis/csis_client.cc",
         "patchSetId": 1
@@ -259,6 +283,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0219e1ee_966ef163",
+        "filename": "system/bta/csis/csis_client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 2137,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-05-16T06:44:49Z",
+      "side": 1,
+      "message": "The only responsibility of this code is to verify the SIRK.\nOther actions are taken somewhere else - at least for now.",
+      "parentUuid": "82283ffd_011565a0",
+      "revId": "c4d7ec2039aaf21c17c3c33a630129deff84f75a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2c32bc97_f8e8ee1f",
         "filename": "system/bta/csis/csis_client.cc",
         "patchSetId": 1
@@ -358,6 +400,24 @@
       "side": 1,
       "message": "should be once",
       "parentUuid": "66943199_8586b5cb",
+      "revId": "c4d7ec2039aaf21c17c3c33a630129deff84f75a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "47e0e8d5_515befc1",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 298,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-05-16T06:44:49Z",
+      "side": 1,
+      "message": "maybe make sure it is done once. now previous callback is always overwritten.",
+      "parentUuid": "8c4c8f06_188e14c2",
       "revId": "c4d7ec2039aaf21c17c3c33a630129deff84f75a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
