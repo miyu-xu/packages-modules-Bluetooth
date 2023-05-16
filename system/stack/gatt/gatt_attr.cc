@@ -655,17 +655,18 @@ static void gatt_cl_op_cmpl_cback(uint16_t conn_id, tGATTC_OPTYPE op,
       uint8_t tcb_idx = GATT_GET_TCB_IDX(conn_id);
       tGATT_TCB& tcb = gatt_cb.tcb[tcb_idx];
 
-      tcb.gatt_status = status;
+      auto operation_callback_data = std::move(iter->second.front());
+      iter->second.pop_front();
 
+      tcb.gatt_status = status;
       if (status == GATT_SUCCESS) {
         STREAM_TO_UINT8(tcb.sirk_type, pp);
         STREAM_TO_ARRAY(tcb.sirk.data(), pp, 16);
       }
 
-      std::move(operation_callback_data->sirk_cb)
+      std::move(operation_callback_data.sirk_cb)
           .Run(tcb.gatt_status, tcb.peer_bda, tcb.sirk_type, tcb.sirk);
 
-      iter->second.pop_front();
       break;
     }
     case GATT_UUID_CLIENT_SUP_FEAT:
