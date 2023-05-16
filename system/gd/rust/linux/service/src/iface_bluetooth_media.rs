@@ -257,4 +257,9 @@ impl IBluetoothMedia for IBluetoothMediaDBus {
     fn set_player_metadata(&mut self, metadata: PlayerMetadata) {
         dbus_generated!()
     }
+
+    #[dbus_method("TriggerDebugDump")]
+    fn trigger_debug_dump(&mut self) {
+        dbus_generated!()
+    }
 }
