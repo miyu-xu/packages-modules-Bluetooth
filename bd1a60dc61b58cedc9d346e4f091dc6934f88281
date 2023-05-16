@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "964f6a47_bfe9f095",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1970930
+      },
+      "writtenOn": "2023-05-16T05:38:39Z",
+      "side": 1,
+      "message": "Hi David,\n\nMade changes as per comments.\nKindly review and share your inputs.\n\n\nThank you.\n\nRegards,\nFahad",
+      "revId": "bd1a60dc61b58cedc9d346e4f091dc6934f88281",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

@@ -166,6 +166,30 @@
       },
       "revId": "209f270ed0b79aeb3e6f3dcfc58744aad2189e56",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "94d62654_ab33dd74",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/pan.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 243,
+      "author": {
+        "id": 1970930
+      },
+      "writtenOn": "2023-05-16T05:38:39Z",
+      "side": 1,
+      "message": "Removed counter and assert of ping status.",
+      "parentUuid": "be848ff9_9b0c9a02",
+      "range": {
+        "startLine": 243,
+        "startChar": 8,
+        "endLine": 243,
+        "endChar": 56
+      },
+      "revId": "209f270ed0b79aeb3e6f3dcfc58744aad2189e56",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
