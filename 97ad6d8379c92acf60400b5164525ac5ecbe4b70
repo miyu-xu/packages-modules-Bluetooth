@@ -66,6 +66,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "295e2680_4c14959e",
+        "filename": "framework/tests/bumble/src/android/bluetooth/PairingTest.java",
+        "patchSetId": 37
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1986325
+      },
+      "writtenOn": "2023-05-16T17:56:49Z",
+      "side": 1,
+      "message": "when bumble server is not available the channel is null. I should probably assert it at setup. What do you think?",
+      "parentUuid": "d46c3795_66435102",
+      "revId": "97ad6d8379c92acf60400b5164525ac5ecbe4b70",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8c81670c_01b2aa18",
         "filename": "framework/tests/bumble/src/android/bluetooth/PairingTest.java",
         "patchSetId": 37
@@ -100,6 +118,24 @@
       "writtenOn": "2023-05-16T13:04:09Z",
       "side": 1,
       "message": "Why are you wrapping it into a `MacAddress` object ?",
+      "revId": "97ad6d8379c92acf60400b5164525ac5ecbe4b70",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "62fa3ff3_5cdd248f",
+        "filename": "framework/tests/bumble/src/android/bluetooth/PairingTest.java",
+        "patchSetId": 37
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1986325
+      },
+      "writtenOn": "2023-05-16T17:56:49Z",
+      "side": 1,
+      "message": "didn\u0027t find a proper way to convert address string to ByteString",
+      "parentUuid": "bcc55235_4cc50a63",
       "revId": "97ad6d8379c92acf60400b5164525ac5ecbe4b70",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
