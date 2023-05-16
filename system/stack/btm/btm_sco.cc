@@ -195,7 +195,9 @@ static tSCO_CONN* btm_get_active_sco() {
 }
 
 static size_t get_code_size(tSCO_CONN* sco) {
-  return sco->is_wbs() ? 240 : 120;
+  if (sco->is_swb()) return 480;
+  if (sco->is_wbs()) return 240;
+  return 120;  // CVSD
 }
 
 /*******************************************************************************
@@ -257,7 +259,7 @@ void btm_route_sco_data(BT_HDR* p_msg) {
 
   const uint8_t* decoded = nullptr;
   size_t written = 0, rc = 0;
-  if (active_sco->is_wbs()) {
+  if (active_sco->is_wbs() || active_sco->is_swb()) {
     uint16_t status = HCID_GET_PKT_STATUS(handle_with_flags);
 
     if (status > 0) LOG_DEBUG("Packet corrupted with status(0x%X)", status);
@@ -283,7 +285,7 @@ void btm_route_sco_data(BT_HDR* p_msg) {
    * server, so that we can keep the data read/write rate balanced */
   size_t read = 0, avail = 0;
   const uint8_t* encoded = nullptr;
-  if (active_sco->is_wbs()) {
+  if (active_sco->is_wbs() || active_sco->is_swb()) {
     while (written) {
       avail = BTM_SCO_DATA_SIZE_MAX - btm_pcm_buf_write_offset;
       if (avail) {
@@ -314,9 +316,10 @@ void btm_route_sco_data(BT_HDR* p_msg) {
         LOG_WARN("Buffer is full when we try to read from audio server");
         ASSERT_LOG(btm_pcm_buf_write_offset - btm_pcm_buf_read_offset >=
                        get_code_size(active_sco),
-                   "PCM buffer is full but fails to encode a WBS packet. "
+                   "PCM buffer is full but fails to encode a %s packet. "
                    "This is abnormal and can cause busy loop: "
                    "WriteOffset:%lu, ReadOffset:%lu, BufferSize:%lu",
+                   (active_sco->is_wbs() ? "WBS" : "SWB"),
                    (unsigned long)btm_pcm_buf_write_offset,
                    (unsigned long)btm_pcm_buf_read_offset,
                    (unsigned long)sizeof(btm_pcm_buf));
@@ -939,7 +942,7 @@ void btm_sco_connected(const RawAddress& bda, uint16_t hci_handle,
 
       /* In-band (non-offload) data path */
       if (p->is_inband()) {
-        if (p->is_wbs()) {
+        if (p->is_wbs() || p->is_swb()) {
           btm_pcm_buf_read_offset = 0;
           btm_pcm_buf_write_offset = 0;
           bluetooth::audio::sco::wbs::init(
@@ -1178,7 +1181,7 @@ void btm_sco_on_disconnected(uint16_t hci_handle, tHCI_REASON reason) {
           p_sco->esco.setup.transmit_coding_format.coding_format));
 
   if (p_sco->is_inband()) {
-    if (p_sco->is_wbs()) {
+    if (p_sco->is_wbs() || p_sco->is_swb()) {
       int num_decoded_frames;
       double packet_loss_ratio;
       if (bluetooth::audio::sco::wbs::cleanup(&num_decoded_frames,
@@ -1602,6 +1605,7 @@ static uint16_t btm_sco_voice_settings_to_legacy(enh_esco_params_t* p_params) {
 
     case ESCO_CODING_FORMAT_TRANSPNT:
     case ESCO_CODING_FORMAT_MSBC:
+    case ESCO_CODING_FORMAT_LC3:
       voice_settings |= HCI_AIR_CODING_FORMAT_TRANSPNT;
       break;
 
