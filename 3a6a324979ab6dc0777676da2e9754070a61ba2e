@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8539ed43_24e69b4c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-05-16T21:21:44Z",
+      "side": 1,
+      "message": "Is it a PTS-tool problem, or is the ACL packet arriving out of order?\n\nShould we add a quirk that delays the first ACL packet from a connection?\n\nI don\u0027t really like delaying the packet for everyone if it\u0027s just for one host\u0027s convenience.",
+      "revId": "3a6a324979ab6dc0777676da2e9754070a61ba2e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
