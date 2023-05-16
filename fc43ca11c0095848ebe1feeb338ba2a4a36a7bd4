@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "56b66dd2_3a827796",
+        "filename": "tools/rootcanal/rust/src/packets.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-05-16T17:42:58Z",
+      "side": 1,
+      "message": "I think I would prefer having the address be stored as bytes instead of a 48-bit value.  Have you tried that?",
+      "range": {
+        "startLine": 8,
+        "startChar": 29,
+        "endLine": 8,
+        "endChar": 36
+      },
+      "revId": "fc43ca11c0095848ebe1feeb338ba2a4a36a7bd4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4375bf46_c0ee57c4",
+        "filename": "tools/rootcanal/rust/src/packets.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-05-16T17:42:58Z",
+      "side": 1,
+      "message": "prefer not to have \u003e\u003e 0",
+      "range": {
+        "startLine": 65,
+        "startChar": 24,
+        "endLine": 65,
+        "endChar": 28
+      },
+      "revId": "fc43ca11c0095848ebe1feeb338ba2a4a36a7bd4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
