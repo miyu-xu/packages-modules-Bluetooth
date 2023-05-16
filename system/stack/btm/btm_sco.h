@@ -163,6 +163,9 @@ typedef struct {
   bool is_wbs() const {
     return esco.setup.coding_format == ESCO_CODING_FORMAT_MSBC;
   }
+  bool is_swb() const {
+    return esco.setup.coding_format == ESCO_CODING_FORMAT_LC3;
+  }
   uint16_t Handle() const { return hci_handle; }
 
   bool is_orig;           /* true if the originator       */

@@ -38,11 +38,11 @@
 // TODO(b/198260375): Make SCO data owner group configurable.
 #define SCO_HOST_DATA_GROUP "bluetooth-audio"
 
-/* Per Bluetooth Core v5.0 and HFP 1.7 specification. */
+/* Per Bluetooth Core v5.0 and HFP 1.9 specification. */
 #define BTM_WBS_H2_HEADER_0 0x01
 #define BTM_WBS_H2_HEADER_LEN 2
 #define BTM_WBS_PKT_LEN 60
-#define BTM_WBS_MAX_FS 120 /* Frame size: mSBC=120 */
+#define BTM_WBS_MAX_FS 240 /* Frame size: mSBC=120, LC3=240 */
 
 namespace {
 
@@ -132,7 +132,7 @@ constexpr size_t btm_wbs_supported_pkt_size[] = {BTM_WBS_PKT_LEN, 72, 0};
  * BTM_WBS_PKT_LEN for optimizing buffer copy. */
 constexpr size_t btm_wbs_buffer_size[] = {BTM_WBS_PKT_LEN, 360, 0};
 
-/* Define the structure that contains WBS data */
+/* Define the structure that contains (S)WBS data */
 struct tBTM_WBS_INFO {
   core::CodecInterface* active_codec;
 
@@ -262,7 +262,7 @@ struct tBTM_WBS_INFO {
 
   /* Fill in the WBS header and update the buffer's write offset to guard the
    * buffer space to be written. Return a pointer to the start of WBS packet's
-   * body for the caller to fill the encoded mSBC data if there is enough
+   * body for the caller to fill the encoded mSBC/LC3 data if there is enough
    * space in the buffer to fill in a new packet, otherwise return a nullptr. */
   uint8_t* fill_wbs_pkt_template() {
     uint8_t* wp = &wbs_encode_buf[encode_buf_wo];
@@ -320,6 +320,9 @@ size_t init(esco_coding_format_t coding_format, size_t pkt_size) {
   switch (coding_format) {
     case ESCO_CODING_FORMAT_MSBC:
       wbs_info->active_codec = GetInterfaceToProfiles()->msbcCodec;
+      break;
+    case ESCO_CODING_FORMAT_LC3:
+      wbs_info->active_codec = GetInterfaceToProfiles()->lc3Codec;
       break;
     default:
       LOG_ERROR("%s: Unknown coding format %d, trying to use mSBC", __func__,
