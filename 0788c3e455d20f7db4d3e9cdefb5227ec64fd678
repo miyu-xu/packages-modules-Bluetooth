@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "009a3d3b_6cc4050f",
+        "filename": "tools/pdl/src/backends/rust.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 913,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2023-05-16T08:40:48Z",
+      "side": 1,
+      "message": "I\u0027m confused about this change... or rather, I\u0027m confused about why I introduced the suffix to start with. It\u0027s there to guard against large literals without a type:\n\n```\n10 \u003c 3_000_000_000\n```\n\nfails to compile because the large value is inferred to be a `i32`. So for this case, the suffix is needed.\n\nLooking at the code again, this is not needed here since `max_value` will be inferred to the `backing_type` via the comparison. It seems to me that it should also be inferred correctly in the other places where we use it, so let me make a CL to remove the suffix completely.",
+      "revId": "0788c3e455d20f7db4d3e9cdefb5227ec64fd678",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
