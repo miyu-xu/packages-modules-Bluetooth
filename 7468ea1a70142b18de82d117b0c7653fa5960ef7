@@ -46,6 +46,30 @@
       },
       "revId": "7468ea1a70142b18de82d117b0c7653fa5960ef7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ae070b30_91edda9c",
+        "filename": "system/stack/srvc/srvc_dis.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 464,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-05-16T00:21:48Z",
+      "side": 1,
+      "message": "\u003e This used to handle the case when it wasn\u0027t connected.\n\nNo it doesn\u0027t attempt to connect. When `GATT_GetConnIdIfConnected` returned false, `conn_id` wouldn\u0027t even be updated and would be the default value (zero) in C++, while `GATT_INVALID_CONN_ID` is actually `0xFFFF`.",
+      "parentUuid": "2541d40e_0f3d7ed4",
+      "range": {
+        "startLine": 464,
+        "startChar": 6,
+        "endLine": 464,
+        "endChar": 13
+      },
+      "revId": "7468ea1a70142b18de82d117b0c7653fa5960ef7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
