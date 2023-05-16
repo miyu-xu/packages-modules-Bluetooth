@@ -94,6 +94,30 @@
       },
       "revId": "7468ea1a70142b18de82d117b0c7653fa5960ef7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "34703892_92913ee4",
+        "filename": "system/stack/srvc/srvc_dis.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 464,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-05-16T00:36:53Z",
+      "side": 1,
+      "message": "Yes. If GATT is not connected then we go to `dis_gatt_c_read_dis_req` and read something from conn_id\u003d0. Not pretty sure whether there is anything harmful, but I see some warnings and GATT_Disconnect is called with conn_id\u003d0.",
+      "parentUuid": "7d72ea91_3c7af36e",
+      "range": {
+        "startLine": 464,
+        "startChar": 6,
+        "endLine": 464,
+        "endChar": 13
+      },
+      "revId": "7468ea1a70142b18de82d117b0c7653fa5960ef7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
