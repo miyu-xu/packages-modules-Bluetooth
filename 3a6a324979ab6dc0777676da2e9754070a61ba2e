@@ -88,6 +88,24 @@
       "parentUuid": "492e9183_2437c97e",
       "revId": "3a6a324979ab6dc0777676da2e9754070a61ba2e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "89e3f0ee_8263721e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-05-17T18:35:53Z",
+      "side": 1,
+      "message": "That\u0027s not exactly a quirk compared to what\u0027s listed already in the controller properties\u0027s ControllerQuirks field.\n\n- ControllerQuirks enables behaviors that would be forbidden by the specification\n\n- Here the issue is more likely caused by RootCanal not emulating the baseband and its inherent delays; I am guessing that this issue with the PTS test would not occur on physical devices. The workaround I am adding approximates the normal behaviour",
+      "parentUuid": "2c24c7d8_9ea9d37e",
+      "revId": "3a6a324979ab6dc0777676da2e9754070a61ba2e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
