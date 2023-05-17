@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "db34b0c2_edaa2a2e",
+        "filename": "system/stack/gatt/gatt_attr.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-05-17T07:02:47Z",
+      "side": 0,
+      "message": "this shall stay",
+      "range": {
+        "startLine": 41,
+        "startChar": 0,
+        "endLine": 41,
+        "endChar": 25
+      },
+      "revId": "732a57d91ee079640b475a9f0767ebe50ef1e2ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
