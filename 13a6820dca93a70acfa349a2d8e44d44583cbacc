@@ -141,6 +141,30 @@
       },
       "revId": "13a6820dca93a70acfa349a2d8e44d44583cbacc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8852b4a2_2b6873fe",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/storage/AudioPolicyEntityTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2023-05-17T04:53:49Z",
+      "side": 1,
+      "message": "Suggesting either one of these two:\n\n1) assertThat(entityStr).isNotEmpty();\n\n2) \n```\nassertThat(eneityStr).isEqualTo(\n\"callEstablishAudioPolicy\u003d0|connectingTimeAudioPolicy\u003d0|inBandRingtoneAudioPolicy\u003d0\");\n```",
+      "parentUuid": "e9bf8ab6_dc204444",
+      "range": {
+        "startLine": 43,
+        "startChar": 0,
+        "endLine": 45,
+        "endChar": 76
+      },
+      "revId": "13a6820dca93a70acfa349a2d8e44d44583cbacc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
