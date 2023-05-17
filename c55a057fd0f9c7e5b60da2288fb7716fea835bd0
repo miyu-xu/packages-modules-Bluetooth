@@ -49,6 +49,63 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7dc03493_21b2528b",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 3972,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-05-17T11:44:52Z",
+      "side": 1,
+      "message": "please add here BTM_SUCCESS_NO_SECURITY, which would stand for the case where CSIS is not registered at all.",
+      "revId": "c55a057fd0f9c7e5b60da2288fb7716fea835bd0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "715dc222_6a671714",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 2301,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-05-17T11:44:52Z",
+      "side": 1,
+      "message": "please add this event to btif_util.cc\n\n```\nindex fb24a1ab864f..d8caea1bab6b 100644\n--- a/system/btif/src/btif_util.cc\n+++ b/system/btif/src/btif_util.cc\n@@ -160,6 +160,7 @@ const char* dump_dm_event(uint16_t event) {\n     CASE_RETURN_STR(BTA_DM_BLE_AUTH_CMPL_EVT)\n     CASE_RETURN_STR(BTA_DM_DEV_UNPAIRED_EVT)\n     CASE_RETURN_STR(BTA_DM_ENER_INFO_READ)\n+    CASE_RETURN_STR(BTA_DM_SIRK_VERIFICATION_REQ_EVT)\n```",
+      "revId": "c55a057fd0f9c7e5b60da2288fb7716fea835bd0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "11052835_58368347",
+        "filename": "system/stack/btm/btm_ble.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1856,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-05-17T11:44:52Z",
+      "side": 1,
+      "message": "```suggestion\n            if ((*btm_cb.api.p_sirk_verification_callback)(bd_addr) \u003d\u003d BTM_SUCCESS_NO_SECURITY) {\n              return BTM_SUCCESS_NO_SECURITY;\n          }\n```",
+      "range": {
+        "startLine": 1856,
+        "startChar": 10,
+        "endLine": 1856,
+        "endChar": 62
+      },
+      "revId": "c55a057fd0f9c7e5b60da2288fb7716fea835bd0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e1b4ea01_b08bfca5",
         "filename": "system/stack/btm/btm_ble.cc",
         "patchSetId": 3
