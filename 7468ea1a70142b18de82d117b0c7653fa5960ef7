@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fdea7510_772be99b",
+        "filename": "system/stack/srvc/srvc_dis.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 458,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-05-17T00:49:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "aa3be330_34314141",
+      "range": {
+        "startLine": 458,
+        "startChar": 4,
+        "endLine": 458,
+        "endChar": 19
+      },
+      "revId": "7468ea1a70142b18de82d117b0c7653fa5960ef7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "132a7879_bf8507ca",
@@ -181,6 +205,30 @@
       "side": 1,
       "message": "packages/modules/Bluetooth/system/bta/dm/bta_dm_act.cc line 1493",
       "parentUuid": "b1200ac1_cdbef798",
+      "range": {
+        "startLine": 464,
+        "startChar": 6,
+        "endLine": 464,
+        "endChar": 13
+      },
+      "revId": "7468ea1a70142b18de82d117b0c7653fa5960ef7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "edaa5e10_59a2848f",
+        "filename": "system/stack/srvc/srvc_dis.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 464,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-05-17T00:49:04Z",
+      "side": 1,
+      "message": "Done in https://r.android.com/2593285",
+      "parentUuid": "fc22af22_790fc1dc",
       "range": {
         "startLine": 464,
         "startChar": 6,
