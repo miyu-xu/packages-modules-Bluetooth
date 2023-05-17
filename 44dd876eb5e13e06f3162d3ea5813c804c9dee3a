@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d4611ff9_5a61359c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-05-17T22:56:14Z",
+      "side": 1,
+      "message": "The default flag value is false, AKA this CL not only add a init_flag but alsoe **disable** the feature\n\nIs it expected ?\n\nOn another topic...\nThe flag is added but there is no test change related to enabling / disabling the flag.\nThat mean the whole sco lc3 codec feature is not tested at all.",
+      "revId": "44dd876eb5e13e06f3162d3ea5813c804c9dee3a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
