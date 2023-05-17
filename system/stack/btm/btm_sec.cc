@@ -1460,11 +1460,21 @@ tBT_DEVICE_TYPE BTM_GetPeerDeviceTypeFromFeatures(const RawAddress& bd_addr) {
   if (p_dev_rec == nullptr) {
     LOG_WARN("Unknown BDA:%s", ADDRESS_TO_LOGGABLE_CSTR(bd_addr));
   } else {
-    if (p_dev_rec->remote_supports_ble && p_dev_rec->remote_supports_bredr) {
+    LOG_DEBUG(
+        " %s, remote_supports_ble %d, remote_supports_bredr %d,"
+        " is_device_type_dual_mode %d, is_device_type_br_edr %d,"
+        " is_device_type_ble %d ",
+        ADDRESS_TO_LOGGABLE_CSTR(bd_addr), p_dev_rec->remote_supports_bredr,
+        p_dev_rec->remote_supports_ble, p_dev_rec->is_device_type_dual_mode(),
+        p_dev_rec->is_device_type_br_edr(), p_dev_rec->is_device_type_ble());
+    if ((p_dev_rec->remote_supports_ble && p_dev_rec->remote_supports_bredr) ||
+        p_dev_rec->is_device_type_dual_mode()) {
       return BT_DEVICE_TYPE_DUMO;
-    } else if (p_dev_rec->remote_supports_bredr) {
+    } else if (p_dev_rec->remote_supports_bredr ||
+               p_dev_rec->is_device_type_br_edr()) {
       return BT_DEVICE_TYPE_BREDR;
-    } else if (p_dev_rec->remote_supports_ble) {
+    } else if (p_dev_rec->remote_supports_ble ||
+               p_dev_rec->is_device_type_ble()) {
       return BT_DEVICE_TYPE_BLE;
     } else {
       LOG_WARN("Device features does not support BR/EDR and BLE:%s",
