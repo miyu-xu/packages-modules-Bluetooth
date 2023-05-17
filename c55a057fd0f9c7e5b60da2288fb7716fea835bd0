@@ -22,6 +22,29 @@
       },
       "revId": "c55a057fd0f9c7e5b60da2288fb7716fea835bd0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9ccac799_a073a11a",
+        "filename": "system/stack/include/smp_api_types.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-05-17T07:22:51Z",
+      "side": 1,
+      "message": "this needs to go to new  file smp_status.h",
+      "range": {
+        "startLine": 140,
+        "startChar": 2,
+        "endLine": 140,
+        "endChar": 25
+      },
+      "revId": "c55a057fd0f9c7e5b60da2288fb7716fea835bd0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
