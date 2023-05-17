@@ -46,6 +46,30 @@
       },
       "revId": "61a05dc602fe66070f983d207fa47dddebc6dc51",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f36cd16f_b3e28ce3",
+        "filename": "android/app/src/com/android/bluetooth/opp/BluetoothOppService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 1120,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-05-17T06:06:54Z",
+      "side": 0,
+      "message": "Doesn\u0027t it means it is already fixed issue, and we just need to cherry-pick the CL to other branch?",
+      "parentUuid": "c9ec9e5e_67296194",
+      "range": {
+        "startLine": 1120,
+        "startChar": 28,
+        "endLine": 1120,
+        "endChar": 56
+      },
+      "revId": "61a05dc602fe66070f983d207fa47dddebc6dc51",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
