@@ -637,6 +637,7 @@ static void btif_hf_upstreams_evt(uint16_t event, char* p_param) {
        * then we should set the BTA AG Codec to mSBC. This would trigger a +BCS
        * to mSBC at the time of SCO connection establishment */
       if (hfp_hal_interface::get_swb_supported() &&
+          bluetooth::common::init_flags::sco_codec_select_lc3_is_enabled() &&
           (p_data->val.num & BTM_SCO_CODEC_LC3)) {
         BTIF_TRACE_EVENT("%s: btif_hf override-Preferred Codec to LC3",
                          __func__);

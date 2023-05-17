@@ -1258,7 +1258,9 @@ void bta_ag_at_hfp_cback(tBTA_AG_SCB* p_scb, uint16_t cmd, uint8_t arg_type,
         p_scb->peer_codecs = bta_ag_parse_bac(p_scb, p_arg, p_end);
         p_scb->codec_updated = true;
 
-        bool swb_supported = hfp_hal_interface::get_swb_supported();
+        bool swb_supported =
+            hfp_hal_interface::get_swb_supported() &&
+            bluetooth::common::init_flags::sco_codec_select_lc3_is_enabled();
 
         if ((p_scb->peer_codecs & BTM_SCO_CODEC_LC3) && swb_supported) {
           p_scb->sco_codec = BTM_SCO_CODEC_LC3;

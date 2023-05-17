@@ -192,7 +192,8 @@ bool bta_ag_add_record(uint16_t service_uuid, const char* p_service_name,
                                UINT_DESC_TYPE, 1, &network);
 
     // check property for SWB support
-    if (hfp_hal_interface::get_swb_supported()) {
+    if (hfp_hal_interface::get_swb_supported() &&
+        bluetooth::common::init_flags::sco_codec_select_lc3_is_enabled()) {
       features |= BTA_AG_FEAT_SWB;
     }
 

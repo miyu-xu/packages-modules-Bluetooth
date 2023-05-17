@@ -408,7 +408,8 @@ static void bta_ag_create_sco(tBTA_AG_SCB* p_scb, bool is_orig) {
 #endif
 
   if ((p_scb->sco_codec == BTM_SCO_CODEC_LC3) && !p_scb->codec_fallback &&
-      hfp_hal_interface::get_swb_supported()) {
+      hfp_hal_interface::get_swb_supported() &&
+      bluetooth::common::init_flags::sco_codec_select_lc3_is_enabled()) {
     esco_codec = UUID_CODEC_LC3;
   }
 
