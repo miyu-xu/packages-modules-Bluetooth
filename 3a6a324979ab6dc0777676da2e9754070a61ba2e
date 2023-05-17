@@ -52,6 +52,24 @@
       "parentUuid": "cb51c2fd_c474c1f5",
       "revId": "3a6a324979ab6dc0777676da2e9754070a61ba2e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "492e9183_2437c97e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-05-17T00:10:05Z",
+      "side": 1,
+      "message": "10ms does not work I think; I tested 100ms 100 times and it passed.\n\n\u003eI feel like the quirk would be fairly similar in complexity to implement (rx counters instead of tx counters)\n\nThis is already a quirk; I was just against adding a specific flag for it :)\nOr did you mean something else from:\n\n\u003e Should we add a quirk that delays the first ACL packet from a connection?",
+      "parentUuid": "bd53d215_00303f48",
+      "revId": "3a6a324979ab6dc0777676da2e9754070a61ba2e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
