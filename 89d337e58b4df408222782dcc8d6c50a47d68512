@@ -16,6 +16,24 @@
       "message": "I seems like bluetoothOppProvider is not accessible is expected. We turn off bluetooth before running the test\nhttps://source.corp.google.com/android-internal/packages/modules/Bluetooth/android/app/tests/unit/AndroidTest.xml;l\u003d31\n\nSo we should not touch content provider in the test",
       "revId": "89d337e58b4df408222782dcc8d6c50a47d68512",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "af02dab3_66665774",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-05-17T23:41:40Z",
+      "side": 1,
+      "message": "Could you elaborate more why disabling bluetooth_manager prevent the access of content provider?",
+      "parentUuid": "aa9fc759_2071329a",
+      "revId": "89d337e58b4df408222782dcc8d6c50a47d68512",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
