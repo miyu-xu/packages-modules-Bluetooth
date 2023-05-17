@@ -22,6 +22,30 @@
       },
       "revId": "732a57d91ee079640b475a9f0767ebe50ef1e2ca",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4fc92286_2e451b4c",
+        "filename": "system/stack/gatt/gatt_attr.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-05-17T07:10:40Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "db34b0c2_edaa2a2e",
+      "range": {
+        "startLine": 41,
+        "startChar": 0,
+        "endLine": 41,
+        "endChar": 25
+      },
+      "revId": "732a57d91ee079640b475a9f0767ebe50ef1e2ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
