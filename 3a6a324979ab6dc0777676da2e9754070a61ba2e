@@ -160,6 +160,24 @@
       "parentUuid": "dda4a6a8_5963dd48",
       "revId": "3a6a324979ab6dc0777676da2e9754070a61ba2e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2f792a93_b887725d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-05-17T23:25:51Z",
+      "side": 1,
+      "message": "+2 please file a bug to track its removal.",
+      "parentUuid": "cc934b7a_93d1e1ea",
+      "revId": "3a6a324979ab6dc0777676da2e9754070a61ba2e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
