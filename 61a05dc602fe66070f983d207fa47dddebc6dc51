@@ -94,6 +94,30 @@
       },
       "revId": "61a05dc602fe66070f983d207fa47dddebc6dc51",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a0940ab1_688dbde1",
+        "filename": "android/app/src/com/android/bluetooth/opp/BluetoothOppService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 1120,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2023-05-17T06:31:03Z",
+      "side": 0,
+      "message": "We cannot cherry-pick it because it will cause regression (i.e. Omer\u0027s memory leak issue). Let me find why there is no content provider in test first then",
+      "parentUuid": "835d4639_ebd06dce",
+      "range": {
+        "startLine": 1120,
+        "startChar": 28,
+        "endLine": 1120,
+        "endChar": 56
+      },
+      "revId": "61a05dc602fe66070f983d207fa47dddebc6dc51",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
