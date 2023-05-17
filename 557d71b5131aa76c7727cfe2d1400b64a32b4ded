@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8a6808f6_89dd0d87",
+        "filename": "android/app/src/com/android/bluetooth/opp/Constants.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-05-17T07:35:47Z",
+      "side": 1,
+      "message": "This would change the default value to false, won\u0027t it?\nIf so, the debug logs won\u0027t be included in the bug report?",
+      "range": {
+        "startLine": 213,
+        "startChar": 33,
+        "endLine": 213,
+        "endChar": 63
+      },
+      "revId": "557d71b5131aa76c7727cfe2d1400b64a32b4ded",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
