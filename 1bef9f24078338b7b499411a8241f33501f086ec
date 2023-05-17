@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e3ebac19_0809c873",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-05-17T23:33:37Z",
+      "side": 1,
+      "message": "Can you please add a bug link and clarify if and/or how this change was validated?",
+      "revId": "1bef9f24078338b7b499411a8241f33501f086ec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
