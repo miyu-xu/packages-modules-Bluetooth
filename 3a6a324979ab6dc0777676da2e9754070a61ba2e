@@ -70,6 +70,24 @@
       "parentUuid": "bd53d215_00303f48",
       "revId": "3a6a324979ab6dc0777676da2e9754070a61ba2e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2c24c7d8_9ea9d37e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-05-17T17:21:48Z",
+      "side": 1,
+      "message": "There\u0027s a difference between RootCanal being quirky and adding a quirk to RootCanal :)",
+      "parentUuid": "492e9183_2437c97e",
+      "revId": "3a6a324979ab6dc0777676da2e9754070a61ba2e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
