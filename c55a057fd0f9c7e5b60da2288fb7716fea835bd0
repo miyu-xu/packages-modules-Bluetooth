@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cc357066_7f11d006",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-05-17T16:48:00Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "60ef1ea3_5e04a9b6",
+      "range": {
+        "startLine": 7,
+        "startChar": 5,
+        "endLine": 7,
+        "endChar": 41
+      },
+      "revId": "c55a057fd0f9c7e5b60da2288fb7716fea835bd0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "583aa85e_7d60127d",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-05-17T07:24:35Z",
       "side": 1,
       "message": "SIRK",
+      "range": {
+        "startLine": 12,
+        "startChar": 58,
+        "endLine": 12,
+        "endChar": 62
+      },
+      "revId": "c55a057fd0f9c7e5b60da2288fb7716fea835bd0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c63cd4d8_9f006518",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-05-17T16:48:00Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "583aa85e_7d60127d",
       "range": {
         "startLine": 12,
         "startChar": 58,
@@ -64,6 +112,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1c352cce_b7df8e89",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 3972,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-05-17T16:48:00Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "7dc03493_21b2528b",
+      "revId": "c55a057fd0f9c7e5b60da2288fb7716fea835bd0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "715dc222_6a671714",
@@ -77,6 +143,24 @@
       "writtenOn": "2023-05-17T11:44:52Z",
       "side": 1,
       "message": "please add this event to btif_util.cc\n\n```\nindex fb24a1ab864f..d8caea1bab6b 100644\n--- a/system/btif/src/btif_util.cc\n+++ b/system/btif/src/btif_util.cc\n@@ -160,6 +160,7 @@ const char* dump_dm_event(uint16_t event) {\n     CASE_RETURN_STR(BTA_DM_BLE_AUTH_CMPL_EVT)\n     CASE_RETURN_STR(BTA_DM_DEV_UNPAIRED_EVT)\n     CASE_RETURN_STR(BTA_DM_ENER_INFO_READ)\n+    CASE_RETURN_STR(BTA_DM_SIRK_VERIFICATION_REQ_EVT)\n```",
+      "revId": "c55a057fd0f9c7e5b60da2288fb7716fea835bd0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cb62599f_965c954e",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 2301,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-05-17T16:48:00Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "715dc222_6a671714",
       "revId": "c55a057fd0f9c7e5b60da2288fb7716fea835bd0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -98,6 +182,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "93a37ae7_fc14f242",
+        "filename": "system/stack/btm/btm_ble.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1853,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-05-17T16:48:00Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "c08ceb95_75e452c3",
+      "revId": "c55a057fd0f9c7e5b60da2288fb7716fea835bd0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "11052835_58368347",
@@ -111,6 +213,30 @@
       "writtenOn": "2023-05-17T11:44:52Z",
       "side": 1,
       "message": "```suggestion\n            if ((*btm_cb.api.p_sirk_verification_callback)(bd_addr) \u003d\u003d BTM_SUCCESS_NO_SECURITY) {\n              return BTM_SUCCESS_NO_SECURITY;\n          }\n```",
+      "range": {
+        "startLine": 1856,
+        "startChar": 10,
+        "endLine": 1856,
+        "endChar": 62
+      },
+      "revId": "c55a057fd0f9c7e5b60da2288fb7716fea835bd0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "883aa130_aee12267",
+        "filename": "system/stack/btm/btm_ble.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1856,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-05-17T16:48:00Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "11052835_58368347",
       "range": {
         "startLine": 1856,
         "startChar": 10,
@@ -144,6 +270,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3886eab4_a2e1034a",
+        "filename": "system/stack/btm/btm_ble.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1991,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-05-17T16:48:00Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "e1b4ea01_b08bfca5",
+      "range": {
+        "startLine": 1991,
+        "startChar": 4,
+        "endLine": 1991,
+        "endChar": 19
+      },
+      "revId": "c55a057fd0f9c7e5b60da2288fb7716fea835bd0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9ccac799_a073a11a",
@@ -157,6 +307,30 @@
       "writtenOn": "2023-05-17T07:22:51Z",
       "side": 1,
       "message": "this needs to go to new  file smp_status.h",
+      "range": {
+        "startLine": 140,
+        "startChar": 2,
+        "endLine": 140,
+        "endChar": 25
+      },
+      "revId": "c55a057fd0f9c7e5b60da2288fb7716fea835bd0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9ba3d646_edb3c4c7",
+        "filename": "system/stack/include/smp_api_types.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-05-17T16:48:00Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "9ccac799_a073a11a",
       "range": {
         "startLine": 140,
         "startChar": 2,
