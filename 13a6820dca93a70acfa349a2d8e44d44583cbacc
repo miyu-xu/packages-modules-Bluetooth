@@ -117,6 +117,30 @@
       },
       "revId": "13a6820dca93a70acfa349a2d8e44d44583cbacc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2569628e_933129dd",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/storage/AudioPolicyEntityTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2023-05-17T04:52:19Z",
+      "side": 1,
+      "message": "To me, it is enough to check if toString returns non-empty string without crash unless toString has special documentation.",
+      "parentUuid": "e9bf8ab6_dc204444",
+      "range": {
+        "startLine": 43,
+        "startChar": 0,
+        "endLine": 45,
+        "endChar": 76
+      },
+      "revId": "13a6820dca93a70acfa349a2d8e44d44583cbacc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
