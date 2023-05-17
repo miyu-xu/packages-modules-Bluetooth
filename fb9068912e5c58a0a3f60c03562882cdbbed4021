@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a7d873e6_34ad34c3",
+        "filename": "android/app/src/com/android/bluetooth/sap/SapService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-05-17T23:28:45Z",
+      "side": 1,
+      "message": "VERBOSE",
+      "range": {
+        "startLine": 59,
+        "startChar": 66,
+        "endLine": 59,
+        "endChar": 71
+      },
+      "revId": "fb9068912e5c58a0a3f60c03562882cdbbed4021",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
