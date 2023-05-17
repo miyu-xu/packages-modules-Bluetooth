@@ -83,6 +83,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c08ceb95_75e452c3",
+        "filename": "system/stack/btm/btm_ble.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1853,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-05-17T12:22:45Z",
+      "side": 1,
+      "message": "else not needed",
+      "revId": "c55a057fd0f9c7e5b60da2288fb7716fea835bd0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "11052835_58368347",
         "filename": "system/stack/btm/btm_ble.cc",
         "patchSetId": 3
