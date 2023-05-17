@@ -22,6 +22,30 @@
       },
       "revId": "557d71b5131aa76c7727cfe2d1400b64a32b4ded",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4670c098_4633a0c7",
+        "filename": "android/app/src/com/android/bluetooth/opp/Constants.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2023-05-17T08:06:07Z",
+      "side": 1,
+      "message": "Yes you\u0027re right, I fixed it",
+      "parentUuid": "8a6808f6_89dd0d87",
+      "range": {
+        "startLine": 213,
+        "startChar": 33,
+        "endLine": 213,
+        "endChar": 63
+      },
+      "revId": "557d71b5131aa76c7727cfe2d1400b64a32b4ded",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
