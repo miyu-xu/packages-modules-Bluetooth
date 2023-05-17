@@ -303,6 +303,7 @@ static void event_start_up_stack(bluetooth::core::CoreInterface* interface,
 
 // Synchronous function to shut down the stack
 static void event_shut_down_stack(ProfileStopCallback stopProfiles) {
+  CHECK(stack_is_initialized);
   CHECK(stack_is_running);
 
   LOG_INFO("Bringing down the stack");
@@ -348,19 +349,11 @@ static void event_shut_down_stack(ProfileStopCallback stopProfiles) {
   LOG_INFO("Finished");
 }
 
-static void ensure_stack_is_not_running(ProfileStopCallback stopProfiles) {
-  if (stack_is_running) {
-    LOG_WARN("Found the stack was still running. Bringing it down now.");
-    event_shut_down_stack(stopProfiles);
-  }
-}
-
 // Synchronous function to clean up the stack
 static void event_clean_up_stack(std::promise<void> promise,
                                  ProfileStopCallback stopProfiles) {
+  CHECK(!stack_is_running);
   CHECK(stack_is_initialized);
-
-  ensure_stack_is_not_running(stopProfiles);
 
   LOG_INFO("Cleaning up the stack");
   stack_is_initialized = false;
