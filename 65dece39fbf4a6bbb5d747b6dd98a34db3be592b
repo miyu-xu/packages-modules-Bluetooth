@@ -22,6 +22,30 @@
       },
       "revId": "65dece39fbf4a6bbb5d747b6dd98a34db3be592b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "586d272b_9b51fdd8",
+        "filename": "android/app/src/com/android/bluetooth/BluetoothEventLogger.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2023-05-17T11:14:37Z",
+      "side": 1,
+      "message": "It has \"BTAudio\" string hard-codded and is in `audio_util` package, while logging MCS and TBS events are not really about audio events. It also has no logw, loge methods. This one is more generic.\n\nI actually wanted to make another patch on top to replace `BTAudioEventLogger` in the other modules, but let\u0027s do the opposite then. I\u0027ll make a patch which extracts it as a generic logger first, and then this one will just make use of it in MCP. And probably yet another one for TBS will be provided on top.",
+      "parentUuid": "6c02985e_f786691d",
+      "range": {
+        "startLine": 23,
+        "startChar": 75,
+        "endLine": 23,
+        "endChar": 93
+      },
+      "revId": "65dece39fbf4a6bbb5d747b6dd98a34db3be592b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
