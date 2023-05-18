@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "61243f4a_6b11195a",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1904,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-05-18T17:38:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4d7ddb3e_4ac43944",
+      "range": {
+        "startLine": 1897,
+        "startChar": 0,
+        "endLine": 1904,
+        "endChar": 9
+      },
+      "revId": "89624f13ecbdb4818d93b8ff1c08914135892381",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c54c551d_0bcd7a07",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-05-18T17:18:31Z",
       "side": 1,
       "message": "need to set default to true",
+      "range": {
+        "startLine": 404,
+        "startChar": 8,
+        "endLine": 404,
+        "endChar": 59
+      },
+      "revId": "89624f13ecbdb4818d93b8ff1c08914135892381",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2767f7c5_c1d5252a",
+        "filename": "system/gd/rust/common/src/init_flags.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 404,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-05-18T17:38:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c54c551d_0bcd7a07",
       "range": {
         "startLine": 404,
         "startChar": 8,
