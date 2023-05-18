@@ -16,6 +16,24 @@
       "message": "Do we have some tests planned for this?",
       "revId": "c8483618a9f851a8000f465ae4dcff28ce66ee27",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "00bfb394_323bedce",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-05-18T17:15:43Z",
+      "side": 1,
+      "message": "added",
+      "parentUuid": "d0b70e5c_771ded75",
+      "revId": "c8483618a9f851a8000f465ae4dcff28ce66ee27",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
