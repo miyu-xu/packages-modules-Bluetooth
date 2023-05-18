@@ -51,6 +51,24 @@
       "message": "maybe address and conn_id we could log?",
       "revId": "f1cab6e3221d81dbd461e1642390bcf383b8f6b1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ffa37453_3d150db1",
+        "filename": "system/stack/gatt/gatt_attr.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 829,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-05-18T11:55:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a53f9be5_f68772f3",
+      "revId": "f1cab6e3221d81dbd461e1642390bcf383b8f6b1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
