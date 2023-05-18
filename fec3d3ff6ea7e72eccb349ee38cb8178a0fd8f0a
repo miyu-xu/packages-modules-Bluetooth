@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ab7b78dc_bdb9ad46",
+        "filename": "android/app/src/com/android/bluetooth/pbapclient/Utils.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1466695
+      },
+      "writtenOn": "2023-05-18T23:08:46Z",
+      "side": 0,
+      "message": "Alternatively, add the `Log.isLoggable(TAG, Log.*)` here and all the pbapclient logging can be enabled with a single `adb setprop`, unless it was intentional we don\u0027t want that behavior to continue?",
+      "range": {
+        "startLine": 21,
+        "startChar": 32,
+        "endLine": 21,
+        "endChar": 37
+      },
+      "revId": "fec3d3ff6ea7e72eccb349ee38cb8178a0fd8f0a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

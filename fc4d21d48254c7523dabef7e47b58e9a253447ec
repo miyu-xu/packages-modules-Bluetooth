@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c1da6bc5_020f27b6",
+        "filename": "android/app/src/com/android/bluetooth/pbapclient/BluetoothPbapObexAuthenticator.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1466695
+      },
+      "writtenOn": "2023-05-18T23:08:46Z",
+      "side": 1,
+      "message": "Didn\u0027t dig into what `userName` actually represents, any impact on change in logging?",
+      "range": {
+        "startLine": 68,
+        "startChar": 75,
+        "endLine": 68,
+        "endChar": 83
+      },
+      "revId": "fc4d21d48254c7523dabef7e47b58e9a253447ec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1e464c41_2f964c25",
+        "filename": "android/app/src/com/android/bluetooth/pbapclient/PbapClientConnectionHandler.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 462,
+      "author": {
+        "id": 1466695
+      },
+      "writtenOn": "2023-05-18T23:08:46Z",
+      "side": 1,
+      "message": "I think `mAccount.toString()` will contain bdaddr, would that be impacted by change in logging? Although I guess it already gets logged in error below.",
+      "range": {
+        "startLine": 462,
+        "startChar": 46,
+        "endLine": 462,
+        "endChar": 54
+      },
+      "revId": "fc4d21d48254c7523dabef7e47b58e9a253447ec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3c4a3c4a_18a30c8f",
+        "filename": "android/app/src/com/android/bluetooth/pbapclient/PbapClientService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 1466695
+      },
+      "writtenOn": "2023-05-18T23:08:46Z",
+      "side": 1,
+      "message": "fyi: bdaddr",
+      "range": {
+        "startLine": 177,
+        "startChar": 49,
+        "endLine": 177,
+        "endChar": 55
+      },
+      "revId": "fc4d21d48254c7523dabef7e47b58e9a253447ec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9a1ab347_925f843c",
+        "filename": "android/app/src/com/android/bluetooth/pbapclient/PbapClientService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 313,
+      "author": {
+        "id": 1466695
+      },
+      "writtenOn": "2023-05-18T23:08:46Z",
+      "side": 1,
+      "message": "fyi: bdaddr",
+      "range": {
+        "startLine": 313,
+        "startChar": 79,
+        "endLine": 313,
+        "endChar": 85
+      },
+      "revId": "fc4d21d48254c7523dabef7e47b58e9a253447ec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
