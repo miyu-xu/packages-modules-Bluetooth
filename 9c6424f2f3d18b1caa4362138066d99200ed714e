@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0809ff6b_9a9e4ae0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-05-18T00:54:46Z",
+      "side": 1,
+      "message": "This situation should never happen. we should not be started with enableBLE while airplane is on",
+      "revId": "9c6424f2f3d18b1caa4362138066d99200ed714e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
