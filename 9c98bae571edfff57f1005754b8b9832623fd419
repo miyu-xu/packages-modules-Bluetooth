@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0d2a3c17_3bf518fe",
+        "filename": "system/stack/gatt/gatt_attr.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 827,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-05-18T16:52:33Z",
+      "side": 1,
+      "message": "Read by UUID can be used only if you have guarantee that just one instance of characteristic is present. \nDevice can have multiple CSIS instances, so this is not correct ?",
+      "range": {
+        "startLine": 827,
+        "startChar": 6,
+        "endLine": 827,
+        "endChar": 16
+      },
+      "revId": "9c98bae571edfff57f1005754b8b9832623fd419",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
