@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a867a9b0_21874df9",
+        "filename": "system/stack/btm/btm_ble.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-05-18T08:53:36Z",
+      "side": 1,
+      "message": "Should this also say :\n\n``p_info-\u003eresults.device_type |\u003d p_dev_rec-\u003edevice_type ``?\n\nSo that both Inquiry and p_dev_rec get new device types when avaliable ?",
+      "range": {
+        "startLine": 115,
+        "startChar": 4,
+        "endLine": 115,
+        "endChar": 58
+      },
+      "revId": "25610c6376af28f4b38dbeed15c69140e4c5ab73",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cd14f963_a54ff370",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1471,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-05-18T08:53:36Z",
+      "side": 1,
+      "message": "I\u0027m not quite sure about this part.\nIn security record there are fields containing almost same info, ``device_type`` and ``remote_supports_bredr`` but I don\u0027t have clear information  how these differ.\n\nSo even though this change looks good, I\u0027m afraid to have it applied at this stage of release. I\u0027m worried of what can this break.",
+      "range": {
+        "startLine": 1471,
+        "startChar": 8,
+        "endLine": 1471,
+        "endChar": 45
+      },
+      "revId": "25610c6376af28f4b38dbeed15c69140e4c5ab73",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
