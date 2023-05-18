@@ -34,6 +34,24 @@
       "parentUuid": "aa9fc759_2071329a",
       "revId": "89d337e58b4df408222782dcc8d6c50a47d68512",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1093a959_9429ef2e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2023-05-18T04:39:35Z",
+      "side": 1,
+      "message": "BluetoothOppService#stop() will disable the provider.\nhttps://source.corp.google.com/android-internal/packages/modules/Bluetooth/android/app/src/com/android/bluetooth/opp/BluetoothOppService.java;l\u003d284?q\u003dBluetoothOppService\n\nBtw, you can confirmed by running \nadb shell content query --uri content://com.android.bluetooth.opp/btopp\nwith/without Bluetooth Enabled",
+      "parentUuid": "aa9fc759_2071329a",
+      "revId": "89d337e58b4df408222782dcc8d6c50a47d68512",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

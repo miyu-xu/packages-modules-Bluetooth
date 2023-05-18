@@ -142,6 +142,30 @@
       },
       "revId": "61a05dc602fe66070f983d207fa47dddebc6dc51",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3f657f84_cc14df59",
+        "filename": "android/app/src/com/android/bluetooth/opp/BluetoothOppService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 1120,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2023-05-18T04:39:35Z",
+      "side": 0,
+      "message": "It actually does cause memory leak, since ContentProviderClient require explicit memory release. This issue was assigned to @cmanton to fix but I think he doesn\u0027t have progress on it yet. \n\nAt the same time, I don\u0027t think having this line will be better than proxying the contentProvider because:\n1. It will cover less lines\n2. Having this line is basically \"hiding the problem\". We will just not let the trimDatabase() function run\n\nBtw, I think I will cherry pick this + fix the memory leak issue anyway, but let\u0027s keep that issue out of this cl and do it in another one because I think proxying is still better than ignoring the function",
+      "parentUuid": "e09f9e92_8ccdba7a",
+      "range": {
+        "startLine": 1120,
+        "startChar": 28,
+        "endLine": 1120,
+        "endChar": 56
+      },
+      "revId": "61a05dc602fe66070f983d207fa47dddebc6dc51",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
