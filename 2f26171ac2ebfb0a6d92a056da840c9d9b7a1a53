@@ -74,6 +74,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0548f2c9_5fc0eb6b",
+        "filename": "tools/rootcanal/model/controller/link_layer_controller.cc",
+        "patchSetId": 23
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-05-18T21:10:26Z",
+      "side": 1,
+      "message": "We already do not respect this since  #include \"link_layer_controller.h\" is not valid according to the document...",
+      "parentUuid": "c427188c_bace4a0b",
+      "range": {
+        "startLine": 20,
+        "startChar": 24,
+        "endLine": 20,
+        "endChar": 25
+      },
+      "revId": "2f26171ac2ebfb0a6d92a056da840c9d9b7a1a53",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "bee2ac97_c5c2497b",
         "filename": "tools/rootcanal/model/controller/link_layer_controller.cc",
         "patchSetId": 23
