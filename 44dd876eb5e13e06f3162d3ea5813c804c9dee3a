@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d7b166a4_11233103",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1322530
+      },
+      "writtenOn": "2023-05-18T09:15:47Z",
+      "side": 1,
+      "message": "Yes, we want to default disable the feature and turn it on at later time.\n\nWe can add test as a follow up CL",
+      "parentUuid": "d4611ff9_5a61359c",
+      "revId": "44dd876eb5e13e06f3162d3ea5813c804c9dee3a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "453019db_2ebe749e",
@@ -31,6 +49,30 @@
       "writtenOn": "2023-05-18T01:51:20Z",
       "side": 1,
       "message": "why not just modify it within this function?",
+      "range": {
+        "startLine": 1262,
+        "startChar": 31,
+        "endLine": 1262,
+        "endChar": 48
+      },
+      "revId": "44dd876eb5e13e06f3162d3ea5813c804c9dee3a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c5981792_9c9bc26b",
+        "filename": "system/bta/ag/bta_ag_cmd.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1262,
+      "author": {
+        "id": 1322530
+      },
+      "writtenOn": "2023-05-18T09:15:47Z",
+      "side": 1,
+      "message": "Done, modify it within the function.",
+      "parentUuid": "453019db_2ebe749e",
       "range": {
         "startLine": 1262,
         "startChar": 31,
