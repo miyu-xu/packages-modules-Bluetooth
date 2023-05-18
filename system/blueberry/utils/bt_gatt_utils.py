@@ -49,11 +49,12 @@ def setup_gatt_connection(central: AndroidDevice,
                           autoconnect,
                           transport=GattTransport.TRANSPORT_AUTO,
                           opportunistic=False,
-                          timeout_seconds=default_timeout):
+                          timeout_seconds=default_timeout,
+                          address_type=-1):
     gatt_callback = central.sl4a.gattCreateGattCallback()
     log.info("Gatt Connect to mac address {}.".format(mac_address))
     bluetooth_gatt = central.sl4a.gattClientConnectGatt(gatt_callback, mac_address, autoconnect, transport,
-                                                        opportunistic, GattPhyMask.PHY_LE_1M_MASK)
+                                                        opportunistic, GattPhyMask.PHY_LE_1M_MASK, address_type)
     expected_event = GattCallbackString.GATT_CONN_CHANGE.format(gatt_callback)
     try:
         event = central.ed.pop_event(expected_event, timeout_seconds)
@@ -119,7 +120,8 @@ def orchestrate_gatt_connection(central: AndroidDevice,
                                 transport=GattTransport.TRANSPORT_LE,
                                 mac_address=None,
                                 autoconnect=False,
-                                opportunistic=False):
+                                opportunistic=False,
+                                address_type=-1):
     adv_callback = None
     if mac_address is None:
         if transport == GattTransport.TRANSPORT_LE:
@@ -131,7 +133,8 @@ def orchestrate_gatt_connection(central: AndroidDevice,
         else:
             mac_address = peripheral.sl4a.bluetoothGetLocalAddress()
             adv_callback = None
-    bluetooth_gatt, gatt_callback = setup_gatt_connection(central, mac_address, autoconnect, transport, opportunistic)
+    bluetooth_gatt, gatt_callback = setup_gatt_connection(central, mac_address, autoconnect, transport, opportunistic,
+                                                          address_type)
     return bluetooth_gatt, gatt_callback, adv_callback
 
 
@@ -177,7 +180,8 @@ def run_continuous_write_descriptor(cen_droid: Sl4aClient,
                         request_id = event['data']['requestId']
                         found_value = event['data']['value']
                         if found_value != test_value:
-                            log.error("Values didn't match. Found: {}, Expected: " "{}".format(found_value, test_value))
+                            log.error("Values didn't match. Found: {}, Expected: "
+                                      "{}".format(found_value, test_value))
                         per_droid.gattServerSendResponse(gatt_server, bt_device_id, request_id, status, offset,
                                                          test_value_return)
                         expected_event = GattCallbackString.DESC_WRITE.format(bluetooth_gatt)
@@ -353,8 +357,8 @@ def log_gatt_server_uuids(central: AndroidDevice, discovered_services_index, blu
             if bluetooth_gatt:
                 char_inst_id = central.sl4a.gattClientGetCharacteristicInstanceId(bluetooth_gatt,
                                                                                   discovered_services_index, i, j)
-                log.info("Discovered characteristic handle uuid: {} {}".format(
-                    hex(char_inst_id), characteristic_uuids[j]))
+                log.info("Discovered characteristic handle uuid: {} {}".format(hex(char_inst_id),
+                                                                               characteristic_uuids[j]))
                 for k in range(len(descriptor_uuids)):
                     desc_inst_id = central.sl4a.gattClientGetDescriptorInstanceId(bluetooth_gatt,
                                                                                   discovered_services_index, i, j, k)

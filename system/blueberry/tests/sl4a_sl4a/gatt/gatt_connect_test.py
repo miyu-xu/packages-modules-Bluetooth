@@ -63,6 +63,9 @@ class GattConnectTest(sl4a_sl4a_base_test.Sl4aSl4aBaseTestClass):
     default_timeout = 10
     default_discovery_timeout = 3
 
+    ADDRESS_TYPE_PUBLIC = 0
+    ADDRESS_TYPE_RANDOM = 1
+
     def setup_class(self):
         super().setup_class()
         self.central = self.dut
@@ -87,6 +90,10 @@ class GattConnectTest(sl4a_sl4a_base_test.Sl4aSl4aBaseTestClass):
             self.peripheral.sl4a.bleStopBleAdvertising(adv)
         super().teardown_test()
         return True
+
+    def __start_gatt_connection(self, address_type=self.ADDRESS_TYPE_RANDOM):
+        return orchestrate_gatt_connection(self.central, self.peripheral, GattTransport.TRANSPORT_LE, None, False,
+                                           False, address_type)
 
     def _orchestrate_gatt_disconnection(self, bluetooth_gatt, gatt_callback):
         logging.info("Disconnecting from peripheral device.")
@@ -168,7 +175,7 @@ class GattConnectTest(sl4a_sl4a_base_test.Sl4aSl4aBaseTestClass):
         gatt_server = self.peripheral.sl4a.gattServerOpenGattServer(gatt_server_cb)
         self.gatt_server_list.append(gatt_server)
         try:
-            bluetooth_gatt, gatt_callback, adv_callback = (orchestrate_gatt_connection(self.central, self.peripheral))
+            bluetooth_gatt, gatt_callback, adv_callback = self.__start_gatt_connection()
             self.bluetooth_gatt_list.append(bluetooth_gatt)
         except GattTestUtilsError as err:
             logging.error(err)
@@ -209,7 +216,7 @@ class GattConnectTest(sl4a_sl4a_base_test.Sl4aSl4aBaseTestClass):
         gatt_server = self.peripheral.sl4a.gattServerOpenGattServer(gatt_server_cb)
         self.gatt_server_list.append(gatt_server)
         try:
-            bluetooth_gatt, gatt_callback, adv_callback = (orchestrate_gatt_connection(self.central, self.peripheral))
+            bluetooth_gatt, gatt_callback, adv_callback = self.__start_gatt_connection()
             self.bluetooth_gatt_list.append(bluetooth_gatt)
         except GattTestUtilsError as err:
             logging.error(err)
@@ -292,8 +299,9 @@ class GattConnectTest(sl4a_sl4a_base_test.Sl4aSl4aBaseTestClass):
             return
         autoconnect = True
         self.central.log.info("Connecting GATT with autoConnect={}".format(autoconnect))
-        bluetooth_gatt = self.central.sl4a.gattClientConnectGatt(
-            gatt_callback, mac_address, autoconnect, GattTransport.TRANSPORT_AUTO, False, GattPhyMask.PHY_LE_1M_MASK)
+        bluetooth_gatt = self.central.sl4a.gattClientConnectGatt(gatt_callback, mac_address, autoconnect,
+                                                                 GattTransport.TRANSPORT_AUTO, False,
+                                                                 GattPhyMask.PHY_LE_1M_MASK)
         self.central.log.info("Waiting for GATt to become connected")
         self.bluetooth_gatt_list.append(bluetooth_gatt)
         expected_event = GattCallbackString.GATT_CONN_CHANGE.format(gatt_callback)
@@ -344,8 +352,11 @@ class GattConnectTest(sl4a_sl4a_base_test.Sl4aSl4aBaseTestClass):
             self.central, self.peripheral))
         # Make GATT connection 1
         try:
-            bluetooth_gatt_1, gatt_callback_1 = setup_gatt_connection(
-                self.central, mac_address, False, transport=GattTransport.TRANSPORT_AUTO, opportunistic=False)
+            bluetooth_gatt_1, gatt_callback_1 = setup_gatt_connection(self.central,
+                                                                      mac_address,
+                                                                      False,
+                                                                      transport=GattTransport.TRANSPORT_AUTO,
+                                                                      opportunistic=False)
             self.central.sl4a.bleStopBleScan(scan_callback)
             self.adv_instances.append(adv_callback)
             self.bluetooth_gatt_list.append(bluetooth_gatt_1)
@@ -355,8 +366,11 @@ class GattConnectTest(sl4a_sl4a_base_test.Sl4aSl4aBaseTestClass):
             return
         # Make GATT connection 2
         try:
-            bluetooth_gatt_2, gatt_callback_2 = setup_gatt_connection(
-                self.central, mac_address, False, transport=GattTransport.TRANSPORT_AUTO, opportunistic=True)
+            bluetooth_gatt_2, gatt_callback_2 = setup_gatt_connection(self.central,
+                                                                      mac_address,
+                                                                      False,
+                                                                      transport=GattTransport.TRANSPORT_AUTO,
+                                                                      opportunistic=True)
             self.bluetooth_gatt_list.append(bluetooth_gatt_2)
         except GattTestUtilsError as err:
             logging.error(err)
@@ -411,7 +425,7 @@ class GattConnectTest(sl4a_sl4a_base_test.Sl4aSl4aBaseTestClass):
         gatt_server = self.peripheral.sl4a.gattServerOpenGattServer(gatt_server_cb)
         self.gatt_server_list.append(gatt_server)
         try:
-            bluetooth_gatt, gatt_callback, adv_callback = (orchestrate_gatt_connection(self.central, self.peripheral))
+            bluetooth_gatt, gatt_callback, adv_callback = self.__start_gatt_connection()
             self.bluetooth_gatt_list.append(bluetooth_gatt)
         except GattTestUtilsError as err:
             logging.error(err)
@@ -456,7 +470,7 @@ class GattConnectTest(sl4a_sl4a_base_test.Sl4aSl4aBaseTestClass):
         gatt_server = self.peripheral.sl4a.gattServerOpenGattServer(gatt_server_cb)
         self.gatt_server_list.append(gatt_server)
         try:
-            bluetooth_gatt, gatt_callback, adv_callback = (orchestrate_gatt_connection(self.central, self.peripheral))
+            bluetooth_gatt, gatt_callback, adv_callback = self.__start_gatt_connection()
             self.bluetooth_gatt_list.append(bluetooth_gatt)
         except GattTestUtilsError as err:
             logging.error(err)
@@ -502,7 +516,7 @@ class GattConnectTest(sl4a_sl4a_base_test.Sl4aSl4aBaseTestClass):
         gatt_server = self.peripheral.sl4a.gattServerOpenGattServer(gatt_server_cb)
         self.gatt_server_list.append(gatt_server)
         try:
-            bluetooth_gatt, gatt_callback, adv_callback = (orchestrate_gatt_connection(self.central, self.peripheral))
+            bluetooth_gatt, gatt_callback, adv_callback = self.__start_gatt_connection()
             self.bluetooth_gatt_list.append(bluetooth_gatt)
         except GattTestUtilsError as err:
             logging.error(err)
@@ -546,7 +560,7 @@ class GattConnectTest(sl4a_sl4a_base_test.Sl4aSl4aBaseTestClass):
         gatt_server = self.peripheral.sl4a.gattServerOpenGattServer(gatt_server_cb)
         self.gatt_server_list.append(gatt_server)
         try:
-            bluetooth_gatt, gatt_callback, adv_callback = (orchestrate_gatt_connection(self.central, self.peripheral))
+            bluetooth_gatt, gatt_callback, adv_callback = self.__start_gatt_connection()
             self.bluetooth_gatt_list.append(bluetooth_gatt)
         except GattTestUtilsError as err:
             logging.error(err)
@@ -592,7 +606,7 @@ class GattConnectTest(sl4a_sl4a_base_test.Sl4aSl4aBaseTestClass):
         gatt_server = self.peripheral.sl4a.gattServerOpenGattServer(gatt_server_cb)
         self.gatt_server_list.append(gatt_server)
         try:
-            bluetooth_gatt, gatt_callback, adv_callback = (orchestrate_gatt_connection(self.central, self.peripheral))
+            bluetooth_gatt, gatt_callback, adv_callback = self.__start_gatt_connection()
             self.bluetooth_gatt_list.append(bluetooth_gatt)
         except GattTestUtilsError as err:
             logging.error(err)
@@ -645,7 +659,7 @@ class GattConnectTest(sl4a_sl4a_base_test.Sl4aSl4aBaseTestClass):
         gatt_server = self.peripheral.sl4a.gattServerOpenGattServer(gatt_server_cb)
         self.gatt_server_list.append(gatt_server)
         try:
-            bluetooth_gatt, gatt_callback, adv_callback = (orchestrate_gatt_connection(self.central, self.peripheral))
+            bluetooth_gatt, gatt_callback, adv_callback = self.__start_gatt_connection()
             self.bluetooth_gatt_list.append(bluetooth_gatt)
         except GattTestUtilsError as err:
             logging.error(err)
@@ -700,7 +714,7 @@ class GattConnectTest(sl4a_sl4a_base_test.Sl4aSl4aBaseTestClass):
             asserts.fail("Failed to setup GATT service, error: {}".format(err))
             return
         try:
-            bluetooth_gatt, gatt_callback, adv_callback = (orchestrate_gatt_connection(self.central, self.peripheral))
+            bluetooth_gatt, gatt_callback, adv_callback = self.__start_gatt_connection()
             self.bluetooth_gatt_list.append(bluetooth_gatt)
         except GattTestUtilsError as err:
             logging.error(err)
@@ -821,7 +835,7 @@ class GattConnectTest(sl4a_sl4a_base_test.Sl4aSl4aBaseTestClass):
         self.peripheral.sl4a.gattServerAddCharacteristicToService(gatt_service, characteristic)
         self.peripheral.sl4a.gattServerAddService(gatt_server, gatt_service)
         assertThat(self._find_service_added_event(gatt_server_cb, service_uuid)).isTrue()
-        bluetooth_gatt, gatt_callback, adv_callback = (orchestrate_gatt_connection(self.central, self.peripheral))
+        bluetooth_gatt, gatt_callback, adv_callback = self.__start_gatt_connection()
         self.bluetooth_gatt_list.append(bluetooth_gatt)
         self.adv_instances.append(adv_callback)
         if self.central.sl4a.gattClientDiscoverServices(bluetooth_gatt):
@@ -924,7 +938,7 @@ class GattConnectTest(sl4a_sl4a_base_test.Sl4aSl4aBaseTestClass):
         gatt_server = self.peripheral.sl4a.gattServerOpenGattServer(gatt_server_cb)
         self.gatt_server_list.append(gatt_server)
         try:
-            bluetooth_gatt, gatt_callback, adv_callback = (orchestrate_gatt_connection(self.central, self.peripheral))
+            bluetooth_gatt, gatt_callback, adv_callback = self.__start_gatt_connection()
             self.bluetooth_gatt_list.append(bluetooth_gatt)
         except GattTestUtilsError as err:
             logging.error(err)
@@ -933,7 +947,8 @@ class GattConnectTest(sl4a_sl4a_base_test.Sl4aSl4aBaseTestClass):
         conn_cen_devices = self.central.sl4a.bluetoothGetConnectedLeDevices(BluetoothProfile.GATT)
         conn_per_devices = self.peripheral.sl4a.bluetoothGetConnectedLeDevices(BluetoothProfile.GATT_SERVER)
         target_name = self.peripheral.sl4a.bluetoothGetLocalName()
-        error_message = ("Connected device {} not found in list of connected " "devices {}")
+        error_message = ("Connected device {} not found in list of connected "
+                         "devices {}")
         if not any(d['name'] == target_name for d in conn_cen_devices):
             logging.error(error_message.format(target_name, conn_cen_devices))
             asserts.fail(error_message.format(target_name, conn_cen_devices))
