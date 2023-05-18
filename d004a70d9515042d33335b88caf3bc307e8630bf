@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dd23b419_00535f18",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1963470
+      },
+      "writtenOn": "2023-05-18T09:34:04Z",
+      "side": 1,
+      "message": "Revert CL which introduced breakage on git_udc-mainline-prod on mainline_modules_x86-userdebug",
+      "revId": "d004a70d9515042d33335b88caf3bc307e8630bf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
