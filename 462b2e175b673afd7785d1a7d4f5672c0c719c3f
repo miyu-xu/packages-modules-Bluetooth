@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e2a93c04_807258ab",
+        "filename": "tools/rootcanal/py/controller.py",
+        "patchSetId": 23
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-05-18T20:52:59Z",
+      "side": 1,
+      "message": "Can we parse and show the packets?",
+      "range": {
+        "startLine": 168,
+        "startChar": 18,
+        "endLine": 168,
+        "endChar": 27
+      },
+      "revId": "462b2e175b673afd7785d1a7d4f5672c0c719c3f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
