@@ -22,6 +22,30 @@
       },
       "revId": "9c98bae571edfff57f1005754b8b9832623fd419",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7f43e240_dbc34482",
+        "filename": "system/stack/gatt/gatt_attr.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 827,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-05-18T19:01:15Z",
+      "side": 1,
+      "message": "if there is no characteristic with given UUID then Attribute Not Found will be returned. Hopefully it will be handled here if not, we will just timeout on bonding which is also not bad thing for the device which is using RSI but does not have CSIS.\n\n\nFor multiple instance, I mentioned in other comment, that we need to have followup issue reported and handle that. But for now, this should be good. I haven\u0027t seen multiple CSIS instances around.",
+      "parentUuid": "0d2a3c17_3bf518fe",
+      "range": {
+        "startLine": 827,
+        "startChar": 6,
+        "endLine": 827,
+        "endChar": 16
+      },
+      "revId": "9c98bae571edfff57f1005754b8b9832623fd419",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
