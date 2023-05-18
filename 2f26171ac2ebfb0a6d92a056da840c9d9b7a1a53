@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b3eb691d_c87028e8",
+        "filename": "tools/rootcanal/model/controller/link_layer_controller.cc",
+        "patchSetId": 23
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-05-18T20:50:24Z",
+      "side": 1,
+      "message": "nit: Why \u003c\u003e instead of \"\"?",
+      "range": {
+        "startLine": 20,
+        "startChar": 24,
+        "endLine": 20,
+        "endChar": 25
+      },
+      "revId": "2f26171ac2ebfb0a6d92a056da840c9d9b7a1a53",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
