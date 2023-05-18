@@ -89,6 +89,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "913ca137_35e932b2",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 298,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-05-18T13:30:22Z",
+      "side": 1,
+      "message": "OK - it is in our control, to exposed to the user. lets have it.",
+      "parentUuid": "50e00832_68b220c2",
+      "range": {
+        "startLine": 298,
+        "startChar": 12,
+        "endLine": 298,
+        "endChar": 28
+      },
+      "revId": "f06a42fb62b43f90577844cc6fe7d9be565af941",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "df9006c5_4abb62e4",

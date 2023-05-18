@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8c48984f_92523797",
+        "filename": "system/stack/smp/smp_act.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 1227,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-05-18T13:30:22Z",
+      "side": 1,
+      "message": "nit. typo\n\nWhat about BTM_LogHistory also here and blow?",
+      "range": {
+        "startLine": 1227,
+        "startChar": 9,
+        "endLine": 1227,
+        "endChar": 16
+      },
+      "revId": "ed779da3d906db41a8dc5ff5d497f463872d86b4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
