@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5e393f4b_c6698c76",
+        "filename": "system/stack/gatt/gatt_attr.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 663,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-05-18T11:55:08Z",
+      "side": 1,
+      "message": "as agreed offline - lets keep it as is.",
+      "parentUuid": "ecc0d04b_4e879acd",
+      "revId": "f1cab6e3221d81dbd461e1642390bcf383b8f6b1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a53f9be5_f68772f3",
