@@ -1,0 +1,211 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bb120885_63cd9b32",
+        "filename": "system/osi/include/stack_power_telemetry.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2023-05-18T06:35:26Z",
+      "side": 1,
+      "message": "Many of these headers are not used in the header, so please only include necessary parts and move others to source.",
+      "range": {
+        "startLine": 4,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 0
+      },
+      "revId": "d77ba8ba1ff8724ea9a77a436cee205f1a482c9a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "52681569_71184776",
+        "filename": "system/osi/include/stack_power_telemetry.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2023-05-18T06:35:26Z",
+      "side": 1,
+      "message": "These definitions are not used in the header, so it\u0027s better to have them in the source files.\nAlso, using constexpr instead of legacy define.",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 22,
+        "endChar": 0
+      },
+      "revId": "d77ba8ba1ff8724ea9a77a436cee205f1a482c9a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7768cda2_67ee2ea1",
+        "filename": "system/osi/include/stack_power_telemetry.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2023-05-18T06:35:26Z",
+      "side": 1,
+      "message": "No.",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 23,
+        "endChar": 20
+      },
+      "revId": "d77ba8ba1ff8724ea9a77a436cee205f1a482c9a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f24a4042_c7ec50bb",
+        "filename": "system/osi/include/stack_power_telemetry.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2023-05-18T06:35:26Z",
+      "side": 1,
+      "message": "Same as above.",
+      "range": {
+        "startLine": 25,
+        "startChar": 0,
+        "endLine": 31,
+        "endChar": 0
+      },
+      "revId": "d77ba8ba1ff8724ea9a77a436cee205f1a482c9a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "93bf405d_55bc1c30",
+        "filename": "system/osi/include/stack_power_telemetry.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2023-05-18T06:35:26Z",
+      "side": 1,
+      "message": "Please use namesapce to protect these classes.",
+      "range": {
+        "startLine": 32,
+        "startChar": 0,
+        "endLine": 32,
+        "endChar": 19
+      },
+      "revId": "d77ba8ba1ff8724ea9a77a436cee205f1a482c9a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a5371679_ed6efebb",
+        "filename": "system/osi/include/stack_power_telemetry.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2023-05-18T06:35:26Z",
+      "side": 1,
+      "message": "Use `cstdint` types and in all the other places.",
+      "range": {
+        "startLine": 48,
+        "startChar": 2,
+        "endLine": 48,
+        "endChar": 6
+      },
+      "revId": "d77ba8ba1ff8724ea9a77a436cee205f1a482c9a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "021b2934_4f45e9c7",
+        "filename": "system/osi/include/stack_power_telemetry.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2023-05-18T06:35:26Z",
+      "side": 1,
+      "message": "Prefer long and clear names: AclPacketDetails",
+      "range": {
+        "startLine": 67,
+        "startChar": 0,
+        "endLine": 67,
+        "endChar": 21
+      },
+      "revId": "d77ba8ba1ff8724ea9a77a436cee205f1a482c9a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "228711ee_a2d292ae",
+        "filename": "system/osi/include/stack_power_telemetry.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2023-05-18T06:35:26Z",
+      "side": 1,
+      "message": "Use `unordered_map` if the order doesn\u0027t matter",
+      "range": {
+        "startLine": 115,
+        "startChar": 2,
+        "endLine": 115,
+        "endChar": 5
+      },
+      "revId": "d77ba8ba1ff8724ea9a77a436cee205f1a482c9a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "688512e5_38de7b31",
+        "filename": "system/osi/include/stack_power_telemetry.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2023-05-18T06:35:26Z",
+      "side": 1,
+      "message": "Use `unique_ptr` or `shared_ptr`",
+      "range": {
+        "startLine": 132,
+        "startChar": 4,
+        "endLine": 132,
+        "endChar": 21
+      },
+      "revId": "d77ba8ba1ff8724ea9a77a436cee205f1a482c9a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
