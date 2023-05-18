@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4d7ddb3e_4ac43944",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1904,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-05-18T17:18:31Z",
+      "side": 1,
+      "message": "if (is_le_audio_capable_during_service_discovery(bd_addr)) {\n          if (bluetooth::common::init_flags::\n                sdp_return_classic_services_when_le_discovery_fails_is_enabled()) {\n            // LEA device w/ this flag \n            LOG_INFO(\n              \"Will return Classic SDP results, if done, to unblock bonding\");\n           } else {\n            // LEA device w/o this flag\n            // Do you want to do anything special?\n            return;\n          }\n        } else {\n           // return;\n        }",
+      "range": {
+        "startLine": 1897,
+        "startChar": 0,
+        "endLine": 1904,
+        "endChar": 9
+      },
+      "revId": "89624f13ecbdb4818d93b8ff1c08914135892381",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c54c551d_0bcd7a07",
+        "filename": "system/gd/rust/common/src/init_flags.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 404,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-05-18T17:18:31Z",
+      "side": 1,
+      "message": "need to set default to true",
+      "range": {
+        "startLine": 404,
+        "startChar": 8,
+        "endLine": 404,
+        "endChar": 59
+      },
+      "revId": "89624f13ecbdb4818d93b8ff1c08914135892381",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
