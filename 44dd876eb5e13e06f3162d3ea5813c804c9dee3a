@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "fe63e663_09fdb8d0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-05-18T17:44:05Z",
+      "side": 1,
+      "message": "Ack. I just noticed the system_properties is already default to false so the feature is already disable unless `bluetooth.hfp.swb.supported` is set to true.\n\nI do not know which device are setting it but since it\u0027s a new property I can safely assume that almost none are using it.\nThat mean even if you push a flag, this will not toggle the feature because it will  rely on the system_property.\n\nI am still giving a +2 since this may be the wanted behavior",
+      "parentUuid": "d7b166a4_11233103",
+      "revId": "44dd876eb5e13e06f3162d3ea5813c804c9dee3a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "453019db_2ebe749e",
         "filename": "system/bta/ag/bta_ag_cmd.cc",
         "patchSetId": 1
