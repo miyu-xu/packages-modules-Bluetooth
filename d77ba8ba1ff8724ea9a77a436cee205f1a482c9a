@@ -206,6 +206,52 @@
       },
       "revId": "d77ba8ba1ff8724ea9a77a436cee205f1a482c9a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7984a560_95abbaf7",
+        "filename": "system/osi/src/stack_power_telemetry.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2023-05-18T07:16:02Z",
+      "side": 1,
+      "message": "Can we use chrono instead of UNIX time?\n\nhttps://en.cppreference.com/w/cpp/chrono",
+      "range": {
+        "startLine": 18,
+        "startChar": 21,
+        "endLine": 18,
+        "endChar": 27
+      },
+      "revId": "d77ba8ba1ff8724ea9a77a436cee205f1a482c9a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e656cd43_972d2ec5",
+        "filename": "system/stack/acl/btm_acl.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 2700,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2023-05-18T07:16:02Z",
+      "side": 1,
+      "message": "It seems making `LogAclLinkDetails()` take a pointer arg is better than having a placeholder here.",
+      "range": {
+        "startLine": 2700,
+        "startChar": 2,
+        "endLine": 2700,
+        "endChar": 17
+      },
+      "revId": "d77ba8ba1ff8724ea9a77a436cee205f1a482c9a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
