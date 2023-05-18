@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4cd5ef7b_5f6aece3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1963470
+      },
+      "writtenOn": "2023-05-18T09:34:50Z",
+      "side": 1,
+      "message": "Revert CL which introduce build brackage on git_udc-mainline-prod on mainline_modules_x86-userdebug",
+      "revId": "b2569c2766e742a32df3ed3a92f38bd3b7b847ac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
