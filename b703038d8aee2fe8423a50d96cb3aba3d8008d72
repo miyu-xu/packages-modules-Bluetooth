@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c40079e0_4ff306ab",
+        "filename": "system/gd/hci/hci_packets.pdl",
+        "patchSetId": 2
+      },
+      "lineNbr": 719,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-05-18T16:00:03Z",
+      "side": 1,
+      "message": "good catch!",
+      "range": {
+        "startLine": 719,
+        "startChar": 31,
+        "endLine": 719,
+        "endChar": 34
+      },
+      "revId": "b703038d8aee2fe8423a50d96cb3aba3d8008d72",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "18c0521d_4d6a1a54",
+        "filename": "system/gd/hci/hci_packets.pdl",
+        "patchSetId": 2
+      },
+      "lineNbr": 4486,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-05-18T16:00:03Z",
+      "side": 1,
+      "message": "Thanks for updating it.",
+      "range": {
+        "startLine": 4486,
+        "startChar": 2,
+        "endLine": 4486,
+        "endChar": 16
+      },
+      "revId": "b703038d8aee2fe8423a50d96cb3aba3d8008d72",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4693bb51_e1ff6f2f",
+        "filename": "system/gd/hci/hci_packets.pdl",
+        "patchSetId": 2
+      },
+      "lineNbr": 6417,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-05-18T16:00:03Z",
+      "side": 1,
+      "message": "Why separate the size from the payload size?",
+      "range": {
+        "startLine": 6417,
+        "startChar": 19,
+        "endLine": 6417,
+        "endChar": 21
+      },
+      "revId": "b703038d8aee2fe8423a50d96cb3aba3d8008d72",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
