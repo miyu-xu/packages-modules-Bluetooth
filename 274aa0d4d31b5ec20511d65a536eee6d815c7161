@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0116510a_8fdc20f7",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 4060,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-05-18T00:29:49Z",
+      "side": 1,
+      "message": "else not needed. Just always return  BTM_SUCCESS_NO_SECURITY if there is no callback",
+      "revId": "274aa0d4d31b5ec20511d65a536eee6d815c7161",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b8f70c56_315eaaa2",
+        "filename": "system/stack/btm/btm_ble.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 1936,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-05-18T00:29:49Z",
+      "side": 1,
+      "message": "can we add log here?",
+      "revId": "274aa0d4d31b5ec20511d65a536eee6d815c7161",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "134b6eb1_8e84a23b",
+        "filename": "system/stack/btm/btm_ble.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 2078,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-05-18T00:29:49Z",
+      "side": 1,
+      "message": "PLease add BTM_LogHistory() to places where SIRK Verification is called and when confirmation is comming back",
+      "revId": "274aa0d4d31b5ec20511d65a536eee6d815c7161",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4a55ca13_10153497",
+        "filename": "system/stack/smp/smp_api.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 614,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-05-18T00:29:49Z",
+      "side": 1,
+      "message": "can we print valid bd_addr here?",
+      "revId": "274aa0d4d31b5ec20511d65a536eee6d815c7161",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
