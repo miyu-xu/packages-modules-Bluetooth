@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8fcfc311_e13497c1",
+        "filename": "system/stack/gatt/gatt_attr.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 598,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-05-18T12:25:01Z",
+      "side": 1,
+      "message": "Please fix this WARNING reported by Check Contents: It looks like you\u0027re taking the address of a vector element - this is unsafe (the underlying element can move)\n\nAnalyzer Description: Validates that changes do not have prohibited expressions in them.\nOwner: ayeaye-team@google.com\n\nIt looks like you\u0027re taking the address of a vector element - this is unsafe (the underlying element can move)",
+      "range": {
+        "startLine": 598,
+        "startChar": 45,
+        "endLine": 598,
+        "endChar": 59
+      },
+      "revId": "7938009a7e232a6dd1eed667ddedcc11fca9c213",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
