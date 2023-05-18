@@ -68,6 +68,30 @@
       },
       "revId": "b703038d8aee2fe8423a50d96cb3aba3d8008d72",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3b3fef7f_a2e00122",
+        "filename": "system/gd/hci/hci_packets.pdl",
+        "patchSetId": 2
+      },
+      "lineNbr": 6417,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-05-18T16:02:02Z",
+      "side": 1,
+      "message": "Explained in the commit message.",
+      "parentUuid": "4693bb51_e1ff6f2f",
+      "range": {
+        "startLine": 6417,
+        "startChar": 19,
+        "endLine": 6417,
+        "endChar": 21
+      },
+      "revId": "b703038d8aee2fe8423a50d96cb3aba3d8008d72",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
