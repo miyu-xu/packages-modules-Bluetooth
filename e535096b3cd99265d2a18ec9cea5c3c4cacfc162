@@ -16,6 +16,24 @@
       "message": "Hi Myles, can you please past the link of the broken tests due to this change ? Because this revert will bring back some pts-bot failure, I\u0027ll like to have a quick look to the tests.",
       "revId": "e535096b3cd99265d2a18ec9cea5c3c4cacfc162",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "79d5f22b_4d54c417",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2023-05-18T21:09:31Z",
+      "side": 1,
+      "message": "Discussed about it with Henri offline",
+      "parentUuid": "1a37c354_dac80315",
+      "revId": "e535096b3cd99265d2a18ec9cea5c3c4cacfc162",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
