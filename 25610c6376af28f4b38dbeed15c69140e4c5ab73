@@ -45,6 +45,30 @@
       },
       "revId": "25610c6376af28f4b38dbeed15c69140e4c5ab73",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9f3fde20_3c97d856",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1471,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-05-18T09:32:13Z",
+      "side": 1,
+      "message": "those two things `p_dev_rec-\u003eremote_supports_ble \u0026\u0026 p_dev_rec-\u003eremote_supports_bredr` are set based on the BR/EDR connection.\n\nand `device_type` which we look into with all the `is_device_type_foo` is the type taken from advertisement..\n\n\nBUt wait, you might be right, and this part is not needed based on how it is later used. Let me check that.",
+      "parentUuid": "cd14f963_a54ff370",
+      "range": {
+        "startLine": 1471,
+        "startChar": 8,
+        "endLine": 1471,
+        "endChar": 45
+      },
+      "revId": "25610c6376af28f4b38dbeed15c69140e4c5ab73",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
