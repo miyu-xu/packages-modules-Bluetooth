@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "53bd76cb_d7f5dad5",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1253,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-05-18T17:03:40Z",
+      "side": 1,
+      "message": "Does that work well if you pair with LE only device ?",
+      "range": {
+        "startLine": 1253,
+        "startChar": 47,
+        "endLine": 1253,
+        "endChar": 66
+      },
+      "revId": "d6c6d68524ec26b0f9c243a7a6e9066f40a6aeee",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
