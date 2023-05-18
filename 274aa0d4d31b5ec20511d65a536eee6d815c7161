@@ -35,6 +35,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "674965a2_3a32eee8",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 4060,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-05-18T11:55:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0116510a_8fdc20f7",
+      "revId": "274aa0d4d31b5ec20511d65a536eee6d815c7161",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b8f70c56_315eaaa2",
@@ -48,6 +66,24 @@
       "writtenOn": "2023-05-18T00:29:49Z",
       "side": 1,
       "message": "can we add log here?",
+      "revId": "274aa0d4d31b5ec20511d65a536eee6d815c7161",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "72772ba8_e7237823",
+        "filename": "system/stack/btm/btm_ble.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 1936,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-05-18T11:55:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b8f70c56_315eaaa2",
       "revId": "274aa0d4d31b5ec20511d65a536eee6d815c7161",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -69,6 +105,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e5e2a5ac_f39c6b45",
+        "filename": "system/stack/btm/btm_ble.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 2078,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-05-18T11:55:40Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "134b6eb1_8e84a23b",
+      "revId": "274aa0d4d31b5ec20511d65a536eee6d815c7161",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4a55ca13_10153497",
@@ -82,6 +136,24 @@
       "writtenOn": "2023-05-18T00:29:49Z",
       "side": 1,
       "message": "can we print valid bd_addr here?",
+      "revId": "274aa0d4d31b5ec20511d65a536eee6d815c7161",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "95c890d4_023aa513",
+        "filename": "system/stack/smp/smp_api.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 614,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-05-18T11:55:40Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "4a55ca13_10153497",
       "revId": "274aa0d4d31b5ec20511d65a536eee6d815c7161",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
