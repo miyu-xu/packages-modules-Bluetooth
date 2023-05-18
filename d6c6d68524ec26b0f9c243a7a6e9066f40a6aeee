@@ -22,6 +22,30 @@
       },
       "revId": "d6c6d68524ec26b0f9c243a7a6e9066f40a6aeee",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6e6e73e1_fc518c60",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1253,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-05-18T17:18:31Z",
+      "side": 1,
+      "message": "I have this identical CL in my dev tree for dual mode devices.\n\nI think the key is the above condition `pairing_cb.sdp_over_classic` which indicates `classic`.\n\nIf AUTO is specified, the transport selection logic will then pick LE causing the failure.",
+      "parentUuid": "53bd76cb_d7f5dad5",
+      "range": {
+        "startLine": 1253,
+        "startChar": 47,
+        "endLine": 1253,
+        "endChar": 66
+      },
+      "revId": "d6c6d68524ec26b0f9c243a7a6e9066f40a6aeee",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
