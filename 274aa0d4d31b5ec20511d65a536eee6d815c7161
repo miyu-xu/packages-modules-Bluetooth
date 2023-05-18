@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "47d8895d_0df7aafa",
+        "filename": "system/bta/csis/csis_client_test.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-05-18T00:39:01Z",
+      "side": 1,
+      "message": "is this needed in this patch or should be in following one?",
+      "revId": "274aa0d4d31b5ec20511d65a536eee6d815c7161",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0116510a_8fdc20f7",
         "filename": "system/bta/dm/bta_dm_act.cc",
         "patchSetId": 5
