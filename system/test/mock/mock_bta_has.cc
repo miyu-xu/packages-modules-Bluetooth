@@ -41,8 +41,7 @@ bool HasClient::IsHasClientRunning() {
   inc_func_call_count(__func__);
   return false;
 }
-void HasClient::AddFromStorage(RawAddress const&, unsigned char,
-                               unsigned short) {
+void HasClient::AddFromStorage(RawAddress const&, unsigned char) {
   inc_func_call_count(__func__);
 }
 HasClient* HasClient::Get() {

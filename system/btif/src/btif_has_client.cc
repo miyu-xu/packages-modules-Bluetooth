@@ -67,18 +67,12 @@ class HearingAaccessClientServiceInterfaceImpl : public HasClientInterface,
     DVLOG(2) << __func__ << " addr: " << ADDRESS_TO_LOGGABLE_STR(addr);
     do_in_main_thread(FROM_HERE, Bind(&HasClient::Connect,
                                       Unretained(HasClient::Get()), addr));
-
-    do_in_jni_thread(
-        FROM_HERE, Bind(&btif_storage_set_leaudio_has_acceptlist, addr, true));
   }
 
   void Disconnect(const RawAddress& addr) override {
     DVLOG(2) << __func__ << " addr: " << ADDRESS_TO_LOGGABLE_STR(addr);
     do_in_main_thread(FROM_HERE, Bind(&HasClient::Disconnect,
                                       Unretained(HasClient::Get()), addr));
-
-    do_in_jni_thread(
-        FROM_HERE, Bind(&btif_storage_set_leaudio_has_acceptlist, addr, false));
   }
 
   void SelectActivePreset(std::variant<RawAddress, int> addr_or_group_id,
@@ -134,7 +128,7 @@ class HearingAaccessClientServiceInterfaceImpl : public HasClientInterface,
 
     /* RemoveDevice can be called on devices that don't have BAS enabled */
     if (HasClient::IsHasClientRunning()) {
-      do_in_main_thread(FROM_HERE, Bind(&HasClient::Disconnect,
+      do_in_main_thread(FROM_HERE, Bind(&HasClient::Remove,
                                         Unretained(HasClient::Get()), addr));
     }
 

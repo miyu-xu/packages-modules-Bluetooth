@@ -735,7 +735,7 @@ class HasClientTestBase : public ::testing::Test {
         .WillByDefault(
             Invoke([&](tGATT_IF client_if, const RawAddress& remote_bda,
                        tBTM_BLE_CONN_TYPE connection_type) {
-              if (connection_type == BTM_BLE_DIRECT_CONNECTION)
+              if (connection_type == BTM_BLE_OPPORTUNISTIC)
                 InjectConnectedEvent(remote_bda, GetTestConnId(remote_bda));
             }));
 
@@ -781,8 +781,7 @@ class HasClientTestBase : public ::testing::Test {
     ON_CALL(btm_interface, BTM_IsEncrypted(address, _))
         .WillByDefault(DoAll(Return(encryption_result)));
 
-    EXPECT_CALL(gatt_interface,
-                Open(gatt_if, address, BTM_BLE_DIRECT_CONNECTION));
+    EXPECT_CALL(gatt_interface, Open(gatt_if, address, BTM_BLE_OPPORTUNISTIC));
     HasClient::Get()->Connect(address);
 
     Mock::VerifyAndClearExpectations(&*callbacks);
@@ -791,29 +790,34 @@ class HasClientTestBase : public ::testing::Test {
     Mock::VerifyAndClearExpectations(&btm_interface);
   }
 
-  void TestDisconnect(const RawAddress& address, uint16_t conn_id) {
-    EXPECT_CALL(gatt_interface, CancelOpen(_, address, _)).Times(AnyNumber());
+  void TestRemove(const RawAddress& address, uint16_t conn_id) {
+    EXPECT_CALL(gatt_interface, CancelOpen(_, address, _));
     if (conn_id != GATT_INVALID_CONN_ID) {
       assert(0);
       EXPECT_CALL(gatt_interface, Close(conn_id));
     } else {
-      EXPECT_CALL(gatt_interface, CancelOpen(gatt_if, address, _));
+      EXPECT_CALL(gatt_interface, Close(conn_id)).Times(0);
+    }
+    HasClient::Get()->Remove(address);
+  }
+
+  void TestDisconnect(const RawAddress& address, uint16_t conn_id) {
+    if (conn_id != GATT_INVALID_CONN_ID) {
+      assert(0);
+      EXPECT_CALL(gatt_interface, Close(conn_id));
+    } else {
+      EXPECT_CALL(gatt_interface, Close(conn_id)).Times(0);
     }
     HasClient::Get()->Disconnect(address);
   }
 
   void TestAddFromStorage(const RawAddress& address, uint8_t features,
                           bool auto_connect) {
+    EXPECT_CALL(gatt_interface, Open(gatt_if, address, BTM_BLE_OPPORTUNISTIC));
+    HasClient::Get()->AddFromStorage(address, features);
     if (auto_connect) {
-      EXPECT_CALL(gatt_interface,
-                  Open(gatt_if, address, BTM_BLE_BKG_CONNECT_ALLOW_LIST));
-      HasClient::Get()->AddFromStorage(address, features, auto_connect);
-
       /* Inject connected event for autoconnect/background connection */
       InjectConnectedEvent(address, GetTestConnId(address));
-    } else {
-      EXPECT_CALL(gatt_interface, Open(gatt_if, address, _)).Times(0);
-      HasClient::Get()->AddFromStorage(address, features, auto_connect);
     }
 
     Mock::VerifyAndClearExpectations(&gatt_interface);
@@ -888,7 +892,6 @@ class HasClientTestBase : public ::testing::Test {
 
   void SetEncryptionResult(const RawAddress& address, bool success) {
     encryption_result = success;
-
     ON_CALL(btm_interface, BTM_IsEncrypted(address, _))
         .WillByDefault(DoAll(Return(encryption_result)));
   }
@@ -1222,12 +1225,40 @@ TEST_F(HasClientTest, test_add_from_storage) {
   TestAddFromStorage(GetTestAddress(2), 0, false);
 }
 
+TEST_F(HasClientTest, test_remove_non_connected) {
+  const RawAddress test_address = GetTestAddress(1);
+
+  /* Override the default action to prevent us sendind the connected event */
+  EXPECT_CALL(gatt_interface,
+              Open(gatt_if, test_address, BTM_BLE_OPPORTUNISTIC))
+      .WillOnce(Return());
+  HasClient::Get()->Connect(test_address);
+  TestRemove(test_address, GATT_INVALID_CONN_ID);
+}
+
+TEST_F(HasClientTest, test_remove_connected) {
+  const RawAddress test_address = GetTestAddress(1);
+  /* Minimal possible HA device (only feature flags) */
+  SetSampleDatabaseHasNoPresetChange(
+      test_address, bluetooth::has::kFeatureBitHearingAidTypeBinaural);
+
+  EXPECT_CALL(*callbacks,
+              OnConnectionState(ConnectionState::CONNECTED, test_address))
+      .Times(1);
+  TestConnect(test_address);
+
+  EXPECT_CALL(*callbacks,
+              OnConnectionState(ConnectionState::DISCONNECTED, test_address))
+      .Times(1);
+  TestRemove(test_address, 1);
+}
+
 TEST_F(HasClientTest, test_disconnect_non_connected) {
   const RawAddress test_address = GetTestAddress(1);
 
   /* Override the default action to prevent us sendind the connected event */
   EXPECT_CALL(gatt_interface,
-              Open(gatt_if, test_address, BTM_BLE_DIRECT_CONNECTION))
+              Open(gatt_if, test_address, BTM_BLE_OPPORTUNISTIC))
       .WillOnce(Return());
   HasClient::Get()->Connect(test_address);
   TestDisconnect(test_address, GATT_INVALID_CONN_ID);
@@ -1336,6 +1367,10 @@ TEST_F(HasClientTest, test_reconnect_after_encryption_failed_from_storage) {
 }
 
 TEST_F(HasClientTest, test_load_from_storage_and_connect) {
+  /* Default Open handler injects connect event.
+   * This is not needed in this test */
+  ON_CALL(gatt_interface, Open(_, _, _)).WillByDefault(Return());
+
   const RawAddress test_address = GetTestAddress(1);
   SetSampleDatabaseHasPresetsNtf(test_address, kFeatureBitDynamicPresets);
   SetEncryptionResult(test_address, true);
@@ -1406,6 +1441,10 @@ TEST_F(HasClientTest, test_load_from_storage_and_connect) {
 }
 
 TEST_F(HasClientTest, test_load_from_storage) {
+  /* Default Open handler injects connect event.
+   * This is not needed in this test */
+  ON_CALL(gatt_interface, Open(_, _, _)).WillByDefault(Return());
+
   const RawAddress test_address = GetTestAddress(1);
   SetSampleDatabaseHasPresetsNtf(test_address, kFeatureBitDynamicPresets);
   SetEncryptionResult(test_address, true);

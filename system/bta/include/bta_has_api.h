@@ -35,10 +35,10 @@ class HasClient {
   static HasClient* Get();
   static void DebugDump(int fd);
   static bool IsHasClientRunning();
-  static void AddFromStorage(const RawAddress& addr, uint8_t features,
-                             uint16_t is_acceptlisted);
+  static void AddFromStorage(const RawAddress& addr, uint8_t features);
   virtual void Connect(const RawAddress& addr) = 0;
   virtual void Disconnect(const RawAddress& addr) = 0;
+  virtual void Remove(const RawAddress& addr) = 0;
   virtual void SelectActivePreset(
       std::variant<RawAddress, int> addr_or_group_id, uint8_t preset_index) = 0;
   virtual void NextActivePreset(
