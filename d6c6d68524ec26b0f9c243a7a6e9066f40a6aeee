@@ -70,6 +70,30 @@
       },
       "revId": "d6c6d68524ec26b0f9c243a7a6e9066f40a6aeee",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5dabae90_9b3b0152",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1253,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2023-05-18T18:32:58Z",
+      "side": 1,
+      "message": "LE authentication completion is handled in btif_dm_ble_auth_cmpl_evt(). This function is for BR/EDR authentication handling.",
+      "parentUuid": "a5343f5e_7137858f",
+      "range": {
+        "startLine": 1253,
+        "startChar": 47,
+        "endLine": 1253,
+        "endChar": 66
+      },
+      "revId": "d6c6d68524ec26b0f9c243a7a6e9066f40a6aeee",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
