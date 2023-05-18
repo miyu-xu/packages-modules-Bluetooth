@@ -31,8 +31,8 @@ import java.util.Arrays;
  */
 class BluetoothPbapObexAuthenticator implements Authenticator {
 
-    private static final String TAG = "BtPbapObexAuthenticator";
-    private static final boolean DBG = Utils.DBG;
+    private static final String TAG = "PbapClientObexAuthenticator";
+    private static final boolean DBG = Log.isLoggable(TAG, Log.DEBUG);
 
     //Default session key for legacy devices is 0000
     @VisibleForTesting
