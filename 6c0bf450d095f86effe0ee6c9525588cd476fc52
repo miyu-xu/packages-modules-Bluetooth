@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "635b7b85_08be79d9",
+        "filename": "system/stack/gatt/gatt_attr.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 894,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-05-18T12:36:30Z",
+      "side": 1,
+      "message": "we assume that once CSIS instance is on the remote side. \nWe need bugreport tracking to extend it to handle multiple CSIS instances.",
+      "revId": "6c0bf450d095f86effe0ee6c9525588cd476fc52",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
