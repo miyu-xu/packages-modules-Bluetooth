@@ -2246,11 +2246,16 @@ public class HeadsetClientStateMachine extends StateMachine {
          *  2. remote device supports audio policy
          */
         if (getForceSetAudioPolicyProperty()) {
-            setAudioPolicy(new BluetoothSinkAudioPolicy.Builder(mHsClientAudioPolicy)
-                    .setCallEstablishPolicy(establishPolicy)
-                    .setActiveDevicePolicyAfterConnection(getConnectingTimePolicyProperty())
-                    .setInBandRingtonePolicy(getInBandRingtonePolicyProperty())
-                    .build());
+            // If audio is allowed, try to set audio policy to 1,1,2
+            // If not, set to 2,2,2
+            int connectingTimePolicy = allowed ? 1 : getConnectingTimePolicyProperty();
+
+            setAudioPolicy(
+                    new BluetoothSinkAudioPolicy.Builder(mHsClientAudioPolicy)
+                            .setCallEstablishPolicy(establishPolicy)
+                            .setActiveDevicePolicyAfterConnection(connectingTimePolicy)
+                            .setInBandRingtonePolicy(getInBandRingtonePolicyProperty())
+                            .build());
         } else {
             setAudioPolicy(new BluetoothSinkAudioPolicy.Builder(mHsClientAudioPolicy)
                 .setCallEstablishPolicy(establishPolicy).build());
