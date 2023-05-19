@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "993dd510_253999e5",
+        "filename": "android/app/src/com/android/bluetooth/tbs/TbsGatt.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1313,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-05-19T08:30:56Z",
+      "side": 1,
+      "message": "CALL_CONTROL_POINT is missing?",
+      "revId": "8d1a4ffdf144cc8d1e466ba0c4988dc94e94d10d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
