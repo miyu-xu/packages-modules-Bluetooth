@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b00a53e5_c459cedf",
+        "filename": "tools/pdl/Android.bp",
+        "patchSetId": 2
+      },
+      "lineNbr": 483,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-05-19T09:18:03Z",
+      "side": 1,
+      "message": "The order of the sources here mater, we may want to fix that by using `$(location)` instead of the input order.\n\ncc @henrichataing@google.com",
+      "revId": "9a1b7c9a984524aaec70116121b61b1a0b387fd9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ddcc1fcf_fa9f47bf",
+        "filename": "tools/pdl/Android.bp",
+        "patchSetId": 2
+      },
+      "lineNbr": 533,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-05-19T09:18:03Z",
+      "side": 1,
+      "message": "Same as above",
+      "revId": "9a1b7c9a984524aaec70116121b61b1a0b387fd9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
