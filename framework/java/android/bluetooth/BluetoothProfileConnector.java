@@ -133,13 +133,8 @@ public abstract class BluetoothProfileConnector<T> {
             if (mService == null) {
                 logDebug("Binding service for " + mContext.getPackageName());
                 mCloseGuard.open("doUnbind");
-                try {
-                    return BluetoothAdapter.getDefaultAdapter().getBluetoothManager()
-                            .bindBluetoothProfileService(mProfileId, mServiceName, mConnection);
-                } catch (RemoteException re) {
-                    logError("Failed to bind service. " + re);
-                    return false;
-                }
+                return BluetoothAdapter.getDefaultAdapter()
+                        .bindBluetoothProfileService(mProfileId, mServiceName, mConnection);
             }
         }
         return true;
@@ -150,14 +145,9 @@ public abstract class BluetoothProfileConnector<T> {
             if (mService != null) {
                 logDebug("Unbinding service for " + mContext.getPackageName());
                 mCloseGuard.close();
-                try {
-                    BluetoothAdapter.getDefaultAdapter().getBluetoothManager()
-                            .unbindBluetoothProfileService(mProfileId, mConnection);
-                } catch (RemoteException re) {
-                    logError("Unable to unbind service: " + re);
-                } finally {
-                    mService = null;
-                }
+                BluetoothAdapter.getDefaultAdapter()
+                        .unbindBluetoothProfileService(mProfileId, mConnection);
+                mService = null;
             }
         }
     }

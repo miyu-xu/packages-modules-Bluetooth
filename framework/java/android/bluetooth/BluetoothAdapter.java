@@ -5730,4 +5730,34 @@ public final class BluetoothAdapter {
         }
         return BluetoothStatusCodes.ERROR_UNKNOWN;
     }
+
+    /** @hide */
+    boolean bindBluetoothProfileService(
+            int profile, String serviceName, IBluetoothProfileServiceConnection proxy) {
+        mServiceLock.readLock().lock();
+        try {
+            if (mService != null) {
+                return mService.bindBluetoothProfileService(profile, serviceName, proxy);
+            }
+        } catch (RemoteException e) {
+            Log.e(TAG, e.toString() + "\n" + Log.getStackTraceString(new Throwable()));
+        } finally {
+            mServiceLock.readLock().unlock();
+        }
+        return false;
+    }
+
+    /** @hide */
+    void unbindBluetoothProfileService(int profile, IBluetoothProfileServiceConnection proxy) {
+        mServiceLock.readLock().lock();
+        try {
+            if (mService != null) {
+                mService.unbindBluetoothProfileService(profile, proxy);
+            }
+        } catch (RemoteException e) {
+            Log.e(TAG, e.toString() + "\n" + Log.getStackTraceString(new Throwable()));
+        } finally {
+            mServiceLock.readLock().unlock();
+        }
+    }
 }

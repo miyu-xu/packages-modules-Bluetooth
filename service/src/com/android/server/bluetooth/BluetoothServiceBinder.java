@@ -37,7 +37,6 @@ import android.bluetooth.IBluetooth;
 import android.bluetooth.IBluetoothGatt;
 import android.bluetooth.IBluetoothManager;
 import android.bluetooth.IBluetoothManagerCallback;
-import android.bluetooth.IBluetoothProfileServiceConnection;
 import android.bluetooth.IBluetoothStateChangeCallback;
 import android.content.AttributionSource;
 import android.content.Context;
@@ -187,23 +186,6 @@ class BluetoothServiceBinder extends IBluetoothManager.Stub {
     @Override
     public IBluetoothGatt getBluetoothGatt() {
         return mBluetoothManagerService.getBluetoothGatt();
-    }
-
-    @Override
-    public boolean bindBluetoothProfileService(
-            int bluetoothProfile, String serviceName, IBluetoothProfileServiceConnection proxy) {
-        requireNonNull(
-                proxy,
-                "IBluetoothProfileServiceConnection cannot be null in bindBluetoothProfileService");
-
-        return mBluetoothManagerService.bindBluetoothProfileService(
-                bluetoothProfile, serviceName, proxy);
-    }
-
-    @Override
-    public void unbindBluetoothProfileService(
-            int bluetoothProfile, IBluetoothProfileServiceConnection proxy) {
-        mBluetoothManagerService.unbindBluetoothProfileService(bluetoothProfile, proxy);
     }
 
     @Override

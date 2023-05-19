@@ -33,6 +33,8 @@ import static com.android.bluetooth.Utils.hasBluetoothPrivilegedPermission;
 import static com.android.bluetooth.Utils.isDualModeAudioEnabled;
 import static com.android.bluetooth.Utils.isPackageNameAccurate;
 
+import static java.util.Objects.requireNonNull;
+
 import android.annotation.NonNull;
 import android.annotation.Nullable;
 import android.annotation.RequiresPermission;
@@ -67,6 +69,7 @@ import android.bluetooth.IBluetoothConnectionCallback;
 import android.bluetooth.IBluetoothMetadataListener;
 import android.bluetooth.IBluetoothOobDataCallback;
 import android.bluetooth.IBluetoothPreferredAudioProfilesCallback;
+import android.bluetooth.IBluetoothProfileServiceConnection;
 import android.bluetooth.IBluetoothQualityReportReadyCallback;
 import android.bluetooth.IBluetoothSocketManager;
 import android.bluetooth.IncomingRfcommSocketInfo;
@@ -75,11 +78,15 @@ import android.bluetooth.UidTraffic;
 import android.companion.CompanionDeviceManager;
 import android.content.AttributionSource;
 import android.content.BroadcastReceiver;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.ServiceConnection;
 import android.content.SharedPreferences;
+import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.os.AsyncTask;
 import android.os.BatteryStatsManager;
 import android.os.Binder;
@@ -161,6 +168,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.NoSuchElementException;
 import java.util.Objects;
 import java.util.Set;
 import java.util.UUID;
@@ -4709,6 +4717,38 @@ public class AdapterService extends Service {
 
             return service.getOffloadedTransportDiscoveryDataScanSupported();
         }
+
+        @Override
+        public boolean bindBluetoothProfileService(
+                int bluetoothProfile,
+                String serviceName,
+                IBluetoothProfileServiceConnection proxy) {
+            AdapterService service = getService();
+            if (service == null) {
+                Log.e(TAG, "bindBluetoothProfileService: Service is null");
+                return false;
+            }
+            if (proxy == null) {
+                Log.e(TAG, "bindBluetoothProfileService: proxy is null");
+                return false;
+            }
+            return service.bindBluetoothProfileService(bluetoothProfile, serviceName, proxy);
+        }
+
+        @Override
+        public void unbindBluetoothProfileService(
+                int bluetoothProfile, IBluetoothProfileServiceConnection proxy) {
+            AdapterService service = getService();
+            if (service == null) {
+                Log.e(TAG, "bindBluetoothProfileService: Service is null");
+                return;
+            }
+            if (proxy == null) {
+                Log.e(TAG, "bindBluetoothProfileService: proxy is null");
+                return;
+            }
+            service.unbindBluetoothProfileService(bluetoothProfile, proxy);
+        }
     }
 
     /**
@@ -7221,5 +7261,260 @@ public class AdapterService extends Service {
     // production this has no effect.
     public boolean isMock() {
         return false;
+    }
+
+    private @Nullable ComponentName resolveSystemService(Intent intent) {
+        if (intent.getComponent() != null) {
+            return intent.getComponent();
+        }
+
+        List<ResolveInfo> results = getPackageManager().queryIntentServices(intent, 0);
+        if (results == null) {
+            return null;
+        }
+        ComponentName comp = null;
+        for (int i = 0; i < results.size(); i++) {
+            ResolveInfo ri = results.get(i);
+            if ((ri.serviceInfo.applicationInfo.flags & ApplicationInfo.FLAG_SYSTEM) == 0) {
+                continue;
+            }
+            ComponentName foundComp =
+                    new ComponentName(
+                            ri.serviceInfo.applicationInfo.packageName, ri.serviceInfo.name);
+            if (comp != null) {
+                throw new IllegalStateException(
+                        "Multiple system services handle " + this + ": " + comp + ", " + foundComp);
+            }
+            comp = foundComp;
+        }
+        return comp;
+    }
+
+    private boolean doBind(Intent intent, ServiceConnection conn, int flags, UserHandle user) {
+        ComponentName comp = resolveSystemService(intent);
+        intent.setComponent(comp);
+        if (comp == null) {
+            Log.e(TAG, "Fail to bind to: " + intent + ": Component is null");
+            return false;
+        } else if (!bindServiceAsUser(intent, conn, flags, user)) {
+            Log.e(TAG, "bindServiceAsUser fail to : " + intent);
+            unbindService(conn);
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * This class manages the clients connected to a given ProfileService and maintains the
+     * connection with that service.
+     */
+    private final class ProfileServiceConnections
+            implements ServiceConnection, IBinder.DeathRecipient {
+
+        final Intent mIntent;
+
+        final Object mBroadcastLock = new Object();
+
+        @GuardedBy("mBroadcastLock")
+        final RemoteCallbackList<IBluetoothProfileServiceConnection> mProxies =
+                new RemoteCallbackList<>();
+
+        @GuardedBy("mBroadcastLock")
+        IBinder mService = null;
+
+        @GuardedBy("mBroadcastLock")
+        ComponentName mClassName = null;
+
+        ProfileServiceConnections(Intent intent) {
+            mIntent = requireNonNull(intent, "Intent for ProfileServiceConnections cannot be null");
+        }
+
+        private boolean bindService() {
+            if (getState() != BluetoothAdapter.STATE_ON) {
+                if (DBG) {
+                    Log.d(TAG, "Unable to bindService while Bluetooth is disabled");
+                }
+                return false;
+            }
+
+            if (!doBind(mIntent, this, 0, UserHandle.of(-3))) {
+                Log.w(TAG, "Unable to bind with intent: " + mIntent);
+                return false;
+            }
+            return true;
+        }
+
+        private void addProxy(IBluetoothProfileServiceConnection proxy) {
+            synchronized (mBroadcastLock) {
+                mProxies.register(proxy);
+                if (mService != null) {
+                    try {
+                        proxy.onServiceConnected(mClassName, mService);
+                    } catch (RemoteException e) {
+                        Log.e(TAG, "Unable to connect to proxy", e);
+                    }
+                }
+            }
+        }
+
+        private void removeProxy(IBluetoothProfileServiceConnection proxy) {
+            if (proxy == null) {
+                Log.w(TAG, "Trying to remove a null proxy");
+                return;
+            }
+            synchronized (mBroadcastLock) {
+                if (mClassName == null) {
+                    return;
+                }
+                if (mProxies.unregister(proxy)) {
+                    try {
+                        proxy.onServiceDisconnected(mClassName);
+                    } catch (RemoteException e) {
+                        Log.e(TAG, "Unable to disconnect proxy", e);
+                    }
+                }
+            }
+        }
+
+        // private void removeAllProxies() {
+        //     onServiceDisconnected(mClassName);
+        //     mProxies.kill();
+        // }
+
+        private boolean isEmpty() {
+            return mProxies.getRegisteredCallbackCount() == 0;
+        }
+
+        @Override
+        public void onServiceConnected(ComponentName className, IBinder service) {
+            synchronized (mBroadcastLock) {
+                mService = service;
+                mClassName = className;
+                try {
+                    mService.linkToDeath(this, 0);
+                } catch (RemoteException e) {
+                    Log.e(TAG, "Unable to linkToDeath", e);
+                }
+
+                final int n = mProxies.beginBroadcast();
+                try {
+                    for (int i = 0; i < n; i++) {
+                        try {
+                            mProxies.getBroadcastItem(i).onServiceConnected(className, service);
+                        } catch (RemoteException e) {
+                            Log.e(TAG, "Unable to connect to proxy", e);
+                        }
+                    }
+                } finally {
+                    mProxies.finishBroadcast();
+                }
+            }
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName className) {
+            synchronized (mBroadcastLock) {
+                if (mService == null) {
+                    return;
+                }
+                try {
+                    mService.unlinkToDeath(this, 0);
+                } catch (NoSuchElementException e) {
+                    Log.e(TAG, "error unlinking to death", e);
+                }
+                mService = null;
+                mClassName = null;
+
+                final int n = mProxies.beginBroadcast();
+                try {
+                    for (int i = 0; i < n; i++) {
+                        try {
+                            mProxies.getBroadcastItem(i).onServiceDisconnected(className);
+                        } catch (RemoteException e) {
+                            Log.e(TAG, "Unable to disconnect from proxy #" + i, e);
+                        }
+                    }
+                } finally {
+                    mProxies.finishBroadcast();
+                }
+            }
+        }
+
+        @Override
+        public void binderDied() {
+            if (DBG) {
+                Log.w(TAG, "Profile service for profile: " + mClassName + " died.");
+            }
+            onServiceDisconnected(mClassName);
+        }
+    }
+
+    // Save a ProfileServiceConnections object for each of the bound
+    // bluetooth profile services
+    private final Map<Integer, ProfileServiceConnections> mProfileServices = new HashMap<>();
+
+    boolean bindBluetoothProfileService(
+            int bluetoothProfile, String serviceName, IBluetoothProfileServiceConnection proxy) {
+        if (getState() != BluetoothAdapter.STATE_ON) {
+            if (DBG) {
+                Log.d(
+                        TAG,
+                        "Trying to bind to "
+                                + BluetoothProfile.getProfileName(bluetoothProfile)
+                                + ", while Bluetooth was disabled");
+            }
+            return false;
+        }
+        synchronized (mProfileServices) {
+            if (Utils.arrayContains(Config.getSupportedProfiles(), bluetoothProfile)) {
+                Log.w(
+                        TAG,
+                        "Cannot bind to "
+                                + BluetoothProfile.getProfileName(bluetoothProfile)
+                                + ", not in supported profiles list");
+                return false;
+            }
+            ProfileServiceConnections psc = mProfileServices.get(bluetoothProfile);
+            if (psc == null) {
+                if (DBG) {
+                    Log.d(
+                            TAG,
+                            "Creating new ProfileServiceConnections object for "
+                                    + BluetoothProfile.getProfileName(bluetoothProfile));
+                }
+                psc = new ProfileServiceConnections(new Intent(serviceName));
+                if (!psc.bindService()) {
+                    return false;
+                }
+
+                mProfileServices.put(bluetoothProfile, psc);
+            }
+        }
+
+        // Introducing a delay to give the client app time to prepare
+        // Message addProxyMsg = mHandler.obtainMessage(MESSAGE_ADD_PROXY_DELAYED);
+        // addProxyMsg.arg1 = bluetoothProfile;
+        // addProxyMsg.obj = proxy;
+        // mHandler.sendMessageDelayed(addProxyMsg, ADD_PROXY_DELAY_MS);
+        return true;
+    }
+
+    void unbindBluetoothProfileService(int profile, IBluetoothProfileServiceConnection proxy) {
+        synchronized (mProfileServices) {
+            ProfileServiceConnections psc = mProfileServices.get(profile);
+            if (psc == null) {
+                return;
+            }
+            psc.removeProxy(proxy);
+            if (psc.isEmpty()) {
+                // All proxies are disconnected, unbind with the service.
+                try {
+                    unbindService(psc);
+                } catch (IllegalArgumentException e) {
+                    Log.e(TAG, "Unable to unbind service with intent: " + psc.mIntent, e);
+                }
+                mProfileServices.remove(profile);
+            }
+        }
     }
 }
