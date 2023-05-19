@@ -16,6 +16,24 @@
       "message": "Why is this still needed? I thought we decided to check the SIRK only after pairing fully completes.",
       "revId": "9ff74644b79fb6d36136dd2883514d17d060da5d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "68a86f44_dd78a5bf",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-05-19T09:50:49Z",
+      "side": 1,
+      "message": "yes, because we don\u0027t want to say device is BONDED until we are sure it is the device we want.\n\nThis is why we need to do additional check just after Phase 3.",
+      "parentUuid": "b1b10fa8_d75f2a49",
+      "revId": "9ff74644b79fb6d36136dd2883514d17d060da5d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
