@@ -92,7 +92,7 @@ public final class BluetoothHapClient implements BluetoothProfile, AutoCloseable
                             Log.e(TAG, e.toString() + "\n"
                                     + Log.getStackTraceString(new Throwable()));
                         } catch (RemoteException e) {
-                            throw e.rethrowFromSystemServer();
+                            Log.e(TAG, "Failed to register callback", e);
                         }
                     }
                 }
