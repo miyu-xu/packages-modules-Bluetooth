@@ -11,8 +11,7 @@
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+ * limitations under the License. */
 
 package com.android.pandora
 
@@ -58,9 +57,6 @@ class AndroidInternal(val context: Context) : AndroidImplBase(), Closeable {
   private val INCOMING_FILE_TITLE = "Incoming file"
   private val INCOMING_FILE_WAIT_TIMEOUT = 2000L
 
-  // PTS does not configure the Extended Inquiry Response with the
-  // device name; the device will be found after the Inquiry Timeout
-  // (12.8sec) has elapsed.
   private val BT_DEVICE_SELECT_WAIT_TIMEOUT = 20000L
   private val IMAGE_FILE_NAME = "OPP_TEST_IMAGE.bmp"
 
@@ -144,10 +140,11 @@ class AndroidInternal(val context: Context) : AndroidImplBase(), Closeable {
     }
   }
 
-  override fun sendFile(request: Empty, responseObserver: StreamObserver<Empty>) {
+  override fun sendFile(request: SendFileRequest, responseObserver: StreamObserver<Empty>) {
     grpcUnary<Empty>(scope, responseObserver) {
+      val bluetoothDevice = request.address.toBluetoothDevice(bluetoothAdapter)
       initiateSendFile(getImageId(IMAGE_FILE_NAME), "image/bmp")
-      waitAndSelectBluetoothDevice()
+      waitAndSelectBluetoothDevice(bluetoothDevice)
       Empty.getDefaultInstance()
     }
   }
@@ -163,11 +160,11 @@ class AndroidInternal(val context: Context) : AndroidImplBase(), Closeable {
     }
   }
 
-  suspend private fun waitAndSelectBluetoothDevice() {
+  suspend private fun waitAndSelectBluetoothDevice(bluetoothDevice: BluetoothDevice) {
     var selectJob =
       scope.async {
         device
-          .wait(Until.findObject(By.textContains("PTS")), BT_DEVICE_SELECT_WAIT_TIMEOUT)
+          .wait(Until.findObject(By.textContains(bluetoothDevice.address)), BT_DEVICE_SELECT_WAIT_TIMEOUT)
           .click()
       }
     selectJob.await()
