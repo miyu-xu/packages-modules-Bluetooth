@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "be01728d_fcf6e467",
+        "filename": "tools/pdl/Android.bp",
+        "patchSetId": 2
+      },
+      "lineNbr": 483,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-05-19T17:54:43Z",
+      "side": 1,
+      "message": "Worked around with empty line.\n@henrichataing@google.com if you fix the behavior please remove the empty line here",
+      "parentUuid": "b00a53e5_c459cedf",
+      "revId": "9a1b7c9a984524aaec70116121b61b1a0b387fd9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ddcc1fcf_fa9f47bf",
@@ -31,6 +49,24 @@
       "writtenOn": "2023-05-19T09:18:03Z",
       "side": 1,
       "message": "Same as above",
+      "revId": "9a1b7c9a984524aaec70116121b61b1a0b387fd9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3ace7b70_dc9a2b86",
+        "filename": "tools/pdl/Android.bp",
+        "patchSetId": 2
+      },
+      "lineNbr": 533,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-05-19T17:54:43Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "ddcc1fcf_fa9f47bf",
       "revId": "9a1b7c9a984524aaec70116121b61b1a0b387fd9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
