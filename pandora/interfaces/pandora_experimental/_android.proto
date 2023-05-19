@@ -21,7 +21,7 @@ service Android {
   // Accept incoming file
   rpc AcceptIncomingFile(google.protobuf.Empty) returns (google.protobuf.Empty);
   // Send file
-  rpc SendFile(google.protobuf.Empty) returns (google.protobuf.Empty);
+  rpc SendFile(SendFileRequest) returns (google.protobuf.Empty);
 }
 
 message LogRequest {
@@ -41,6 +41,11 @@ message SetAccessPermissionRequest {
   bytes address = 1;
   // Set AccessType to Message, PhoneBook and SIM access permission
   AccessType access_type = 2;
+}
+
+message SendFileRequest {
+  // Peer Bluetooth Device Address as array of 6 bytes
+  bytes address = 1;
 }
 
 // Internal representation of a Connection - not exposed to clients, included here
