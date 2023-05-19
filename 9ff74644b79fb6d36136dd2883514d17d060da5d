@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b1b10fa8_d75f2a49",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-05-19T01:59:26Z",
+      "side": 1,
+      "message": "Why is this still needed? I thought we decided to check the SIRK only after pairing fully completes.",
+      "revId": "9ff74644b79fb6d36136dd2883514d17d060da5d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
