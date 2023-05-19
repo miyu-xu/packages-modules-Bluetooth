@@ -56,6 +56,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8a7e0c3d_50698b10",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1888950
+      },
+      "writtenOn": "2023-05-19T16:25:33Z",
+      "side": 1,
+      "message": "If we want to turn it on later then shouldnt the sys prop be set to true and init_flag to false. The current way its gone in - this would require a build change.",
+      "parentUuid": "fe63e663_09fdb8d0",
+      "revId": "44dd876eb5e13e06f3162d3ea5813c804c9dee3a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "453019db_2ebe749e",
         "filename": "system/bta/ag/bta_ag_cmd.cc",
         "patchSetId": 1
