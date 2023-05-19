@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "627ed01c_5fde8244",
+        "filename": "android/pandora/server/src/com/android/pandora/AndroidInternal.kt",
+        "patchSetId": 1
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2023-05-19T15:51:17Z",
+      "side": 1,
+      "message": "This behavior seems like a bug isn\u0027t it ?",
+      "revId": "9a633fa138e37eded43da9bfc708f33b82aee09d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
