@@ -24,6 +24,7 @@ import android.bluetooth.IBluetoothCallback;
 import android.bluetooth.IBluetoothConnectionCallback;
 import android.bluetooth.IBluetoothMetadataListener;
 import android.bluetooth.IBluetoothOobDataCallback;
+import android.bluetooth.IBluetoothProfileServiceConnection;
 import android.bluetooth.IBluetoothSocketManager;
 import android.bluetooth.IBluetoothStateChangeCallback;
 import android.bluetooth.BluetoothActivityEnergyInfo;
@@ -299,4 +300,10 @@ interface IBluetooth
 
     @JavaPassthrough(annotation="@android.annotation.RequiresPermission(allOf={android.Manifest.permission.BLUETOOTH_SCAN,android.Manifest.permission.BLUETOOTH_PRIVILEGED})")
     oneway void getOffloadedTransportDiscoveryDataScanSupported(in AttributionSource attributionSource, in SynchronousResultReceiver receiver);
+
+
+    @JavaPassthrough(annotation="@android.annotation.RequiresNoPermission")
+    boolean bindBluetoothProfileService(int profile, String serviceName, IBluetoothProfileServiceConnection proxy);
+    @JavaPassthrough(annotation="@android.annotation.RequiresNoPermission")
+    void unbindBluetoothProfileService(int profile, IBluetoothProfileServiceConnection proxy);
 }

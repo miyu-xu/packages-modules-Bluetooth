@@ -17,6 +17,7 @@
 package com.android.server.bluetooth;
 
 import static android.os.PowerExemptionManager.TEMPORARY_ALLOW_LIST_TYPE_FOREGROUND_SERVICE_ALLOWED;
+import static com.android.server.bluetooth.ServiceUtils.*;
 
 import static com.android.server.bluetooth.BluetoothAirplaneModeListener.APM_BT_ENABLED_NOTIFICATION;
 import static com.android.server.bluetooth.BluetoothAirplaneModeListener.APM_ENHANCEMENT;
@@ -41,7 +42,6 @@ import android.bluetooth.IBluetoothCallback;
 import android.bluetooth.IBluetoothGatt;
 import android.bluetooth.IBluetoothManager;
 import android.bluetooth.IBluetoothManagerCallback;
-import android.bluetooth.IBluetoothProfileServiceConnection;
 import android.bluetooth.IBluetoothStateChangeCallback;
 import android.content.AttributionSource;
 import android.content.BroadcastReceiver;
@@ -85,17 +85,11 @@ import com.android.server.BluetoothManagerServiceDumpProto;
 import java.io.FileDescriptor;
 import java.io.FileOutputStream;
 import java.io.PrintWriter;
-import java.time.Duration;
-import java.time.Instant;
-import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import java.util.NoSuchElementException;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.TimeoutException;
@@ -105,26 +99,11 @@ class BluetoothManagerService {
     private static final String TAG = "BluetoothManagerService";
     private static final boolean DBG = true;
 
-    private static final String BLUETOOTH_PRIVILEGED =
-            android.Manifest.permission.BLUETOOTH_PRIVILEGED;
-
     private static final int ACTIVE_LOG_MAX_SIZE = 20;
     private static final int CRASH_LOG_MAX_SIZE = 100;
 
     private static final int DEFAULT_REBIND_COUNT = 3;
     private static final int TIMEOUT_BIND_MS = 3000; //Maximum msec to wait for a bind
-
-    /**
-     * Timeout value for synchronous binder call
-     */
-    private static final Duration SYNC_CALLS_TIMEOUT = Duration.ofSeconds(3);
-
-    /**
-     * @return timeout value for synchronous binder call
-     */
-    private static Duration getSyncTimeout() {
-        return SYNC_CALLS_TIMEOUT;
-    }
 
     //Maximum msec to wait for service restart
     private static final int SERVICE_RESTART_TIME_MS = 400;
@@ -152,8 +131,6 @@ class BluetoothManagerService {
     private static final int MESSAGE_GET_NAME_AND_ADDRESS = 200;
     private static final int MESSAGE_USER_SWITCHED = 300;
     private static final int MESSAGE_USER_UNLOCKED = 301;
-    private static final int MESSAGE_ADD_PROXY_DELAYED = 400;
-    private static final int MESSAGE_BIND_PROFILE_SERVICE = 401;
     private static final int MESSAGE_RESTORE_USER_SETTING = 500;
 
     private static final int RESTORE_SETTING_TO_ON = 1;
@@ -225,11 +202,6 @@ class BluetoothManagerService {
     private boolean mEnable;
     private boolean mShutdownInProgress = false;
 
-    private static String timeToLog(long timestamp) {
-        return DateTimeFormatter.ofPattern("MM-dd HH:mm:ss.SSS").withZone(ZoneId.systemDefault())
-            .format(Instant.ofEpochMilli(timestamp));
-    }
-
     // Used for tracking apps that enabled / disabled Bluetooth.
     private class ActiveLog {
         private int mReason;
@@ -277,13 +249,6 @@ class BluetoothManagerService {
     private int mErrorRecoveryRetryCounter;
 
     private final boolean mIsHearingAidProfileSupported;
-
-    // Save a ProfileServiceConnections object for each of the bound
-    // bluetooth profile services
-    private final Map<Integer, ProfileServiceConnections> mProfileServices = new HashMap<>();
-
-    @GuardedBy("mProfileServices")
-    private boolean mUnbindingAll = false;
 
     private final IBluetoothCallback mBluetoothCallback = new IBluetoothCallback.Stub() {
         @Override
@@ -371,8 +336,7 @@ class BluetoothManagerService {
                 || mHandler.hasMessages(MESSAGE_HANDLE_ENABLE_DELAYED)
                 || mHandler.hasMessages(MESSAGE_HANDLE_DISABLE_DELAYED)
                 || mHandler.hasMessages(MESSAGE_RESTART_BLUETOOTH_SERVICE)
-                || mHandler.hasMessages(MESSAGE_TIMEOUT_BIND)
-                || mHandler.hasMessages(MESSAGE_BIND_PROFILE_SERVICE)) {
+                || mHandler.hasMessages(MESSAGE_TIMEOUT_BIND)) {
             // Bluetooth is restarting
             return SERVICE_RESTART_TIME_MS;
         }
@@ -1446,7 +1410,6 @@ class BluetoothManagerService {
             }
             mUnbinding = true;
             mHandler.removeMessages(MESSAGE_BLUETOOTH_STATE_CHANGE);
-            mHandler.removeMessages(MESSAGE_BIND_PROFILE_SERVICE);
             if (mBluetooth != null) {
                 //Unregister callback object
                 try {
@@ -1474,85 +1437,6 @@ class BluetoothManagerService {
         return mBluetoothGatt;
     }
 
-    boolean bindBluetoothProfileService(
-            int bluetoothProfile, String serviceName, IBluetoothProfileServiceConnection proxy) {
-        if (mState != BluetoothAdapter.STATE_ON) {
-            if (DBG) {
-                Log.d(TAG, "Trying to bind to profile: " + bluetoothProfile
-                        + ", while Bluetooth was disabled");
-            }
-            return false;
-        }
-        synchronized (mProfileServices) {
-            if (!mSupportedProfileList.contains(bluetoothProfile)) {
-                Log.w(TAG, "Cannot bind profile: "  + bluetoothProfile
-                        + ", not in supported profiles list");
-                return false;
-            }
-            ProfileServiceConnections psc =
-                    mProfileServices.get(Integer.valueOf(bluetoothProfile));
-            if (psc == null) {
-                if (DBG) {
-                    Log.d(TAG, "Creating new ProfileServiceConnections object for" + " profile: "
-                            + bluetoothProfile);
-                }
-                psc = new ProfileServiceConnections(new Intent(serviceName));
-                if (!psc.bindService(DEFAULT_REBIND_COUNT)) {
-                    return false;
-                }
-
-                mProfileServices.put(new Integer(bluetoothProfile), psc);
-            }
-        }
-
-        // Introducing a delay to give the client app time to prepare
-        Message addProxyMsg = mHandler.obtainMessage(MESSAGE_ADD_PROXY_DELAYED);
-        addProxyMsg.arg1 = bluetoothProfile;
-        addProxyMsg.obj = proxy;
-        mHandler.sendMessageDelayed(addProxyMsg, ADD_PROXY_DELAY_MS);
-        return true;
-    }
-
-    void unbindBluetoothProfileService(
-            int bluetoothProfile, IBluetoothProfileServiceConnection proxy) {
-        synchronized (mProfileServices) {
-            Integer profile = new Integer(bluetoothProfile);
-            ProfileServiceConnections psc = mProfileServices.get(profile);
-            if (psc == null) {
-                return;
-            }
-            psc.removeProxy(proxy);
-            if (psc.isEmpty()) {
-                // All proxies are disconnected, unbind with the service.
-                try {
-                    mContext.unbindService(psc);
-                } catch (IllegalArgumentException e) {
-                    Log.e(TAG, "Unable to unbind service with intent: " + psc.mIntent, e);
-                }
-                if (!mUnbindingAll) {
-                    mProfileServices.remove(profile);
-                }
-            }
-        }
-    }
-
-    private void unbindAllBluetoothProfileServices() {
-        synchronized (mProfileServices) {
-            mUnbindingAll = true;
-            for (Integer i : mProfileServices.keySet()) {
-                ProfileServiceConnections psc = mProfileServices.get(i);
-                try {
-                    mContext.unbindService(psc);
-                } catch (IllegalArgumentException e) {
-                    Log.e(TAG, "Unable to unbind service with intent: " + psc.mIntent, e);
-                }
-                psc.removeAllProxies();
-            }
-            mUnbindingAll = false;
-            mProfileServices.clear();
-        }
-    }
-
     /**
      * Send enable message and set adapter name and address. Called when the boot phase becomes
      * PHASE_SYSTEM_SERVICES_READY.
@@ -1566,20 +1450,21 @@ class BluetoothManagerService {
             return;
         }
         final boolean isSafeMode = mContext.getPackageManager().isSafeMode();
-        if (mEnableExternal && isBluetoothPersistedStateOnBluetooth() && !isSafeMode) {
-            if (DBG) {
-                Log.d(TAG, "Auto-enabling Bluetooth.");
-            }
-            sendEnableMsg(mQuietEnableExternal,
-                    BluetoothProtoEnums.ENABLE_DISABLE_REASON_SYSTEM_BOOT,
-                    mContext.getPackageName());
-        } else if (!isNameAndAddressSet()) {
-            if (DBG) {
-                Log.d(TAG, "Getting adapter name and address");
-            }
-            Message getMsg = mHandler.obtainMessage(MESSAGE_GET_NAME_AND_ADDRESS);
-            mHandler.sendMessage(getMsg);
-        }
+        // DO NOT SUBMIT THIS -- skip auto-start of bluetooth for easier testing
+        // if (mEnableExternal && isBluetoothPersistedStateOnBluetooth() && !isSafeMode) {
+        //     if (DBG) {
+        //         Log.d(TAG, "Auto-enabling Bluetooth.");
+        //     }
+        //     sendEnableMsg(mQuietEnableExternal,
+        //             BluetoothProtoEnums.ENABLE_DISABLE_REASON_SYSTEM_BOOT,
+        //             mContext.getPackageName());
+        // } else if (!isNameAndAddressSet()) {
+        //     if (DBG) {
+        //         Log.d(TAG, "Getting adapter name and address");
+        //     }
+        //     Message getMsg = mHandler.obtainMessage(MESSAGE_GET_NAME_AND_ADDRESS);
+        //     mHandler.sendMessage(getMsg);
+        // }
 
         mBluetoothModeChangeHelper = new BluetoothModeChangeHelper(mContext);
         if (mBluetoothAirplaneModeListener != null) {
@@ -1638,165 +1523,6 @@ class BluetoothManagerService {
         mHandler.obtainMessage(MESSAGE_USER_UNLOCKED, userHandle.getIdentifier(), 0).sendToTarget();
     }
 
-    /**
-     * This class manages the clients connected to a given ProfileService
-     * and maintains the connection with that service.
-     */
-    private final class ProfileServiceConnections
-            implements ServiceConnection, IBinder.DeathRecipient {
-        final RemoteCallbackList<IBluetoothProfileServiceConnection> mProxies =
-                new RemoteCallbackList<IBluetoothProfileServiceConnection>();
-        IBinder mService;
-        ComponentName mClassName;
-        Intent mIntent;
-
-        ProfileServiceConnections(Intent intent) {
-            mService = null;
-            mClassName = null;
-            mIntent = intent;
-        }
-
-        private boolean bindService(int rebindCount) {
-            int state = BluetoothAdapter.STATE_OFF;
-            try {
-                mBluetoothLock.readLock().lock();
-                state = synchronousGetState();
-            } catch (RemoteException | TimeoutException e) {
-                Log.e(TAG, "Unable to call getState", e);
-                return false;
-            } finally {
-                mBluetoothLock.readLock().unlock();
-            }
-
-            if (state != BluetoothAdapter.STATE_ON) {
-                if (DBG) {
-                    Log.d(TAG, "Unable to bindService while Bluetooth is disabled");
-                }
-                return false;
-            }
-
-            if (mIntent != null && mService == null
-                    && doBind(mIntent, this, 0, USER_HANDLE_CURRENT_OR_SELF)) {
-                Message msg = mHandler.obtainMessage(MESSAGE_BIND_PROFILE_SERVICE);
-                msg.obj = this;
-                msg.arg1 = rebindCount;
-                mHandler.sendMessageDelayed(msg, TIMEOUT_BIND_MS);
-                return true;
-            }
-            Log.w(TAG, "Unable to bind with intent: " + mIntent);
-            return false;
-        }
-
-        private void addProxy(IBluetoothProfileServiceConnection proxy) {
-            mProxies.register(proxy);
-            if (mService != null) {
-                try {
-                    proxy.onServiceConnected(mClassName, mService);
-                } catch (RemoteException e) {
-                    Log.e(TAG, "Unable to connect to proxy", e);
-                }
-            } else {
-                if (!mHandler.hasMessages(MESSAGE_BIND_PROFILE_SERVICE, this)) {
-                    Message msg = mHandler.obtainMessage(MESSAGE_BIND_PROFILE_SERVICE);
-                    msg.obj = this;
-                    msg.arg1 = DEFAULT_REBIND_COUNT;
-                    mHandler.sendMessage(msg);
-                }
-            }
-        }
-
-        private void removeProxy(IBluetoothProfileServiceConnection proxy) {
-            if (proxy != null) {
-                if (mProxies.unregister(proxy)) {
-                    try {
-                        proxy.onServiceDisconnected(mClassName);
-                    } catch (RemoteException e) {
-                        Log.e(TAG, "Unable to disconnect proxy", e);
-                    }
-                }
-            } else {
-                Log.w(TAG, "Trying to remove a null proxy");
-            }
-        }
-
-        private void removeAllProxies() {
-            onServiceDisconnected(mClassName);
-            mProxies.kill();
-        }
-
-        private boolean isEmpty() {
-            return mProxies.getRegisteredCallbackCount() == 0;
-        }
-
-        @Override
-        public void onServiceConnected(ComponentName className, IBinder service) {
-            // remove timeout message
-            mHandler.removeMessages(MESSAGE_BIND_PROFILE_SERVICE, this);
-            mService = service;
-            mClassName = className;
-            try {
-                mService.linkToDeath(this, 0);
-            } catch (RemoteException e) {
-                Log.e(TAG, "Unable to linkToDeath", e);
-            }
-
-            synchronized (mProxies) {
-                final int n = mProxies.beginBroadcast();
-                try {
-                    for (int i = 0; i < n; i++) {
-                        try {
-                            mProxies.getBroadcastItem(i).onServiceConnected(className, service);
-                        } catch (RemoteException e) {
-                            Log.e(TAG, "Unable to connect to proxy", e);
-                        }
-                    }
-                } finally {
-                    mProxies.finishBroadcast();
-                }
-            }
-        }
-
-        @Override
-        public void onServiceDisconnected(ComponentName className) {
-            if (mService == null) {
-                return;
-            }
-            try {
-                mService.unlinkToDeath(this, 0);
-            } catch (NoSuchElementException e) {
-                Log.e(TAG, "error unlinking to death", e);
-            }
-            mService = null;
-            mClassName = null;
-
-            synchronized (mProxies) {
-                final int n = mProxies.beginBroadcast();
-                try {
-                    for (int i = 0; i < n; i++) {
-                        try {
-                            mProxies.getBroadcastItem(i).onServiceDisconnected(className);
-                        } catch (RemoteException e) {
-                            Log.e(TAG, "Unable to disconnect from proxy #" + i, e);
-                        }
-                    }
-                } finally {
-                    mProxies.finishBroadcast();
-                }
-            }
-        }
-
-        @Override
-        public void binderDied() {
-            if (DBG) {
-                Log.w(TAG, "Profile service for profile: " + mClassName + " died.");
-            }
-            onServiceDisconnected(mClassName);
-            // Trigger rebind
-            Message msg = mHandler.obtainMessage(MESSAGE_BIND_PROFILE_SERVICE);
-            msg.obj = this;
-            mHandler.sendMessageDelayed(msg, TIMEOUT_BIND_MS);
-        }
-    }
 
     private void sendBluetoothStateCallback(boolean isUp) {
         synchronized (mStateChangeCallbacks) {
@@ -2209,32 +1935,6 @@ class BluetoothManagerService {
                     mStateChangeCallbacks.unregister(callback);
                     break;
                 }
-                case MESSAGE_ADD_PROXY_DELAYED: {
-                    ProfileServiceConnections psc = mProfileServices.get(msg.arg1);
-                    if (psc == null) {
-                        break;
-                    }
-                    IBluetoothProfileServiceConnection proxy =
-                            (IBluetoothProfileServiceConnection) msg.obj;
-                    psc.addProxy(proxy);
-                    break;
-                }
-                case MESSAGE_BIND_PROFILE_SERVICE: {
-                    ProfileServiceConnections psc = (ProfileServiceConnections) msg.obj;
-                    removeMessages(MESSAGE_BIND_PROFILE_SERVICE, msg.obj);
-                    if (psc == null) {
-                        break;
-                    }
-                    if (msg.arg1 > 0) {
-                        try {
-                            mContext.unbindService(psc);
-                        } catch (IllegalArgumentException e) {
-                            Log.e(TAG, "Unable to unbind service with intent: " + psc.mIntent, e);
-                        }
-                        psc.bindService(msg.arg1 - 1);
-                    }
-                    break;
-                }
                 case MESSAGE_BLUETOOTH_SERVICE_CONNECTED: {
                     if (DBG) {
                         Log.d(TAG, "MESSAGE_BLUETOOTH_SERVICE_CONNECTED: " + msg.arg1);
@@ -2508,7 +2208,7 @@ class BluetoothManagerService {
                 bluetoothStateChangeHandler(mState, BluetoothAdapter.STATE_ON);
             }
 
-            unbindAllBluetoothProfileServices();
+            // unbindAllBluetoothProfileServices();
             // disable
             addActiveLog(reason, mContext.getPackageName(), false);
             handleDisable();

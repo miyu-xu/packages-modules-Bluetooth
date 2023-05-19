@@ -19,7 +19,6 @@ package android.bluetooth;
 import android.bluetooth.IBluetooth;
 import android.bluetooth.IBluetoothGatt;
 import android.bluetooth.IBluetoothManagerCallback;
-import android.bluetooth.IBluetoothProfileServiceConnection;
 import android.bluetooth.IBluetoothStateChangeCallback;
 import android.content.AttributionSource;
 
@@ -46,11 +45,6 @@ interface IBluetoothManager
     int getState();
     @JavaPassthrough(annotation="@android.annotation.RequiresNoPermission")
     IBluetoothGatt getBluetoothGatt();
-
-    @JavaPassthrough(annotation="@android.annotation.RequiresNoPermission")
-    boolean bindBluetoothProfileService(int profile, String serviceName, IBluetoothProfileServiceConnection proxy);
-    @JavaPassthrough(annotation="@android.annotation.RequiresNoPermission")
-    void unbindBluetoothProfileService(int profile, IBluetoothProfileServiceConnection proxy);
 
     @JavaPassthrough(annotation="@android.annotation.RequiresPermission(allOf={android.Manifest.permission.BLUETOOTH_CONNECT,android.Manifest.permission.LOCAL_MAC_ADDRESS})")
     String getAddress(in AttributionSource attributionSource);
