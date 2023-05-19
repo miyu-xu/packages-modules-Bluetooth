@@ -195,10 +195,17 @@ public final class BluetoothLeBroadcast implements AutoCloseable, BluetoothProfi
                                         .getValue(null);
                             }
                         } catch (TimeoutException e) {
-                            Log.e(TAG, "onBluetoothServiceUp: Failed to register "
-                                    + "Le Broadcaster callback", e);
+                            Log.e(
+                                    TAG,
+                                    "onServiceConnected: Failed to register "
+                                            + "Le Broadcaster callback",
+                                    e);
                         } catch (RemoteException e) {
-                            throw e.rethrowFromSystemServer();
+                            Log.e(
+                                    TAG,
+                                    "onServiceConnected: Failed to register "
+                                            + "Le Broadcaster callback",
+                                    e);
                         }
                     }
                 }
