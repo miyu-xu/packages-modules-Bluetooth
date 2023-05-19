@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "56333a60_7bf5bb1e",
+        "filename": "android/app/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachine.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2250,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-05-19T18:13:01Z",
+      "side": 1,
+      "message": "2,2,2 looks like magic number to me. What are they supposed to stand for ? Can we  use a final int with a name that helps understanding the meaning ?",
+      "range": {
+        "startLine": 2250,
+        "startChar": 30,
+        "endLine": 2250,
+        "endChar": 35
+      },
+      "revId": "68ceaab86bc7502e0b83cfb8371d65895781d2e5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
