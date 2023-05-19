@@ -1006,7 +1006,7 @@ void l2cble_process_sig_cmd(tL2C_LCB* p_lcb, uint8_t* p, uint16_t pkt_len) {
       p_ccb = l2cu_allocate_ccb(p_lcb, 0);
       if (p_ccb == NULL) {
         L2CAP_TRACE_ERROR("L2CAP - unable to allocate CCB");
-        l2cu_reject_ble_connection(p_ccb, id, L2CAP_CONN_NO_RESOURCES);
+        l2cu_reject_ble_coc_connection(p_lcb, id, L2CAP_CONN_NO_RESOURCES);
         break;
       }
 
