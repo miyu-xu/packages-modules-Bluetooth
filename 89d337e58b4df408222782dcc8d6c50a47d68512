@@ -52,6 +52,29 @@
       "parentUuid": "aa9fc759_2071329a",
       "revId": "89d337e58b4df408222782dcc8d6c50a47d68512",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dc630952_994ec159",
+        "filename": "android/app/src/com/android/bluetooth/opp/BluetoothOppService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 250,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-05-19T06:31:40Z",
+      "side": 1,
+      "message": "Isn\u0027t it enabled here?",
+      "range": {
+        "startLine": 250,
+        "startChar": 8,
+        "endLine": 250,
+        "endChar": 29
+      },
+      "revId": "89d337e58b4df408222782dcc8d6c50a47d68512",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
