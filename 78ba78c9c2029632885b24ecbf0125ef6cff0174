@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b3d8eb7a_f087b031",
+        "filename": "android/app/src/com/android/bluetooth/mcp/MediaControlGattService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 514,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-05-19T13:37:32Z",
+      "side": 0,
+      "message": "NIT: I would keep the warning/info logs in this file, along the just added event logger",
+      "range": {
+        "startLine": 514,
+        "startChar": 8,
+        "endLine": 514,
+        "endChar": 77
+      },
+      "revId": "78ba78c9c2029632885b24ecbf0125ef6cff0174",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
