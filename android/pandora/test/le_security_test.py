@@ -1,0 +1,107 @@
+# Copyright 2023 Google LLC
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     https://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+import asyncio
+import avatar
+import itertools
+
+from avatar import BumblePandoraDevice, PandoraDevice, PandoraDevices
+from bumble.pairing import PairingDelegate
+from concurrent import futures
+from contextlib import suppress
+from mobly import base_test, signals
+from mobly.asserts import assert_equal
+from pandora.host_pb2 import PUBLIC, RANDOM, DataTypes, OwnAddressType
+from pandora.security_pb2 import LE_LEVEL3
+from typing import Optional, Tuple
+
+ALL_IO_CAPABILITIES = (
+    PairingDelegate.DISPLAY_OUTPUT_ONLY,
+    PairingDelegate.DISPLAY_OUTPUT_AND_YES_NO_INPUT,
+    PairingDelegate.KEYBOARD_INPUT_ONLY,
+    PairingDelegate.NO_OUTPUT_NO_INPUT,
+    PairingDelegate.DISPLAY_OUTPUT_AND_KEYBOARD_INPUT,
+)
+
+KEY_DISTRIBUTION_IRK = PairingDelegate.KeyDistribution.DISTRIBUTE_IDENTITY_KEY
+KEY_DISTRIBUTION_IRK_CSRK = (
+    PairingDelegate.KeyDistribution.DISTRIBUTE_IDENTITY_KEY | PairingDelegate.KeyDistribution.DISTRIBUTE_SIGNING_KEY
+)
+KEY_DISTRIBUTION_IRK_CSRK_LK = (
+    PairingDelegate.KeyDistribution.DISTRIBUTE_IDENTITY_KEY
+    | PairingDelegate.KeyDistribution.DISTRIBUTE_SIGNING_KEY
+    | PairingDelegate.KeyDistribution.DISTRIBUTE_LINK_KEY
+)
+ALL_KEY_DISTRIBUTION = (
+    (KEY_DISTRIBUTION_IRK, KEY_DISTRIBUTION_IRK),
+    (KEY_DISTRIBUTION_IRK_CSRK, KEY_DISTRIBUTION_IRK_CSRK),
+    (KEY_DISTRIBUTION_IRK_CSRK_LK, KEY_DISTRIBUTION_IRK_CSRK_LK),
+)
+
+
+class LeSecurityTest(base_test.BaseTestClass):  # type: ignore[misc]
+
+    devices: Optional[PandoraDevices] = None
+
+    # pandora devices.
+    dut: PandoraDevice
+    ref: PandoraDevice
+
+    @avatar.asynchronous
+    async def setup_class(self) -> None:
+        self.devices = PandoraDevices(self)
+        self.dut, self.ref, *_ = self.devices
+
+        await asyncio.gather(self.dut.reset(), self.ref.reset())
+
+    def teardown_class(self) -> None:
+        if self.devices:
+            self.devices.stop_all()
+
+    @avatar.asynchronous
+    async def setup_test(self) -> None:  # pytype: disable=wrong-arg-types
+        pass
+
+    @avatar.parameterized(
+        *itertools.product(
+            ALL_IO_CAPABILITIES,
+            ALL_KEY_DISTRIBUTION,
+        )
+    )  # type: ignore[misc]
+    async def test_le_pairing_incoming(  # pytype: disable=wrong-arg-types
+        self,
+        ref_io_capability: Optional[PairingDelegate.IoCapability],
+        ref_key_distribution_pair: Tuple[PairingDelegate.KeyDistribution, PairingDelegate.KeyDistribution],
+    ) -> None:
+        ref_initiator_key_distribution = ref_key_distribution_pair[0]
+        ref_responder_key_distribution = ref_key_distribution_pair[1]
+        set_pairing_parameters(
+            self.ref, ref_io_capability, ref_initiator_key_distribution, ref_responder_key_distribution
+        )
+
+    def set_pairing_parameters(
+        device: PandoraDevice,
+        io_capability: Optional[PairingDelegate.IoCapability],
+        initiator_key_distribution: Optional[PairingDelegate.KeyDistribution],
+        responder_key_distribution: Optional[PairingDelegate.KeyDistribution],
+    ) -> None:
+        if io_capability is None:
+            return
+        if isinstance(device, BumblePandoraDevice):
+            # Override Bumble reference device default IO capability.
+            device.server_config.io_capability = io_capability
+            device.server_config.smp_local_initiator_key_distribution = initiator_key_distribution
+            device.server_config.smp_local_responder_key_distribution = responder_key_distribution
+        else:
+            raise signals.TestSkip('Unable to override IO capability on non Bumble device.')
