@@ -62,10 +62,6 @@ void btu_hci_msg_process(BT_HDR* p_msg) {
       acl_link_segments_xmitted(p_msg);
       break;
 
-    case BT_EVT_TO_BTU_HCI_SCO:
-      btm_route_sco_data(p_msg);
-      break;
-
     case BT_EVT_TO_BTU_HCI_EVT:
       btu_hcif_process_event((uint8_t)(p_msg->event & BT_SUB_EVT_MASK), p_msg);
       osi_free(p_msg);
