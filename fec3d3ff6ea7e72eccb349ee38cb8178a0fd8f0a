@@ -22,6 +22,30 @@
       },
       "revId": "fec3d3ff6ea7e72eccb349ee38cb8178a0fd8f0a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fbfe6ef8_432653da",
+        "filename": "android/app/src/com/android/bluetooth/pbapclient/Utils.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2023-05-19T17:53:26Z",
+      "side": 0,
+      "message": "I found it useful to be able to control individual pieces of logging, despite it being a larger list. Other profiles don\u0027t usually do this.\n\nI think in the future we can standardize the logging interfaces a bit and make that far easier with namespaces or something. But aligning how most other profiles do it seemed arbitrarily good enough for now.",
+      "parentUuid": "ab7b78dc_bdb9ad46",
+      "range": {
+        "startLine": 21,
+        "startChar": 32,
+        "endLine": 21,
+        "endChar": 37
+      },
+      "revId": "fec3d3ff6ea7e72eccb349ee38cb8178a0fd8f0a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

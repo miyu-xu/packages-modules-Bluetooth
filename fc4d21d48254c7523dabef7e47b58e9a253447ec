@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "122fac36_5f0b8952",
+        "filename": "android/app/src/com/android/bluetooth/pbapclient/BluetoothPbapObexAuthenticator.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2023-05-19T17:53:26Z",
+      "side": 1,
+      "message": "I\u0027m not too worried about this. I think its part of the generic Android Auth framework we\u0027re using not some BT specific piece of PII. The spec just mentions GAP Authentication, and GAP doesn\u0027t seem to indicate any special handling is needed. I think its only very legacy devices that cause this code path to get executed too.\n\nI upgraded it to VDBG for now and we can reassess in the future if needed.",
+      "parentUuid": "c1da6bc5_020f27b6",
+      "range": {
+        "startLine": 68,
+        "startChar": 75,
+        "endLine": 68,
+        "endChar": 83
+      },
+      "revId": "fc4d21d48254c7523dabef7e47b58e9a253447ec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1e464c41_2f964c25",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-05-18T23:08:46Z",
       "side": 1,
       "message": "I think `mAccount.toString()` will contain bdaddr, would that be impacted by change in logging? Although I guess it already gets logged in error below.",
+      "range": {
+        "startLine": 462,
+        "startChar": 46,
+        "endLine": 462,
+        "endChar": 54
+      },
+      "revId": "fc4d21d48254c7523dabef7e47b58e9a253447ec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "006188fc_0d650157",
+        "filename": "android/app/src/com/android/bluetooth/pbapclient/PbapClientConnectionHandler.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 462,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2023-05-19T17:53:26Z",
+      "side": 1,
+      "message": "Account prints the name, which is the device MAC. There\u0027s a toSafeString() available in the Account framework, but then we lose the context of what was happened, which is particularly useful in multi-device scenarios. I think given the precedent, we\u0027re okay for now. HFP and MAP do similar things",
+      "parentUuid": "1e464c41_2f964c25",
       "range": {
         "startLine": 462,
         "startChar": 46,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f711b76b_812e9ca6",
+        "filename": "android/app/src/com/android/bluetooth/pbapclient/PbapClientService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2023-05-19T17:53:26Z",
+      "side": 1,
+      "message": "The default device and device.toString should be completely safe now, as it redirects to toStringForLogging.",
+      "parentUuid": "3c4a3c4a_18a30c8f",
+      "range": {
+        "startLine": 177,
+        "startChar": 49,
+        "endLine": 177,
+        "endChar": 55
+      },
+      "revId": "fc4d21d48254c7523dabef7e47b58e9a253447ec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9a1ab347_925f843c",
@@ -83,6 +155,30 @@
       "writtenOn": "2023-05-18T23:08:46Z",
       "side": 1,
       "message": "fyi: bdaddr",
+      "range": {
+        "startLine": 313,
+        "startChar": 79,
+        "endLine": 313,
+        "endChar": 85
+      },
+      "revId": "fc4d21d48254c7523dabef7e47b58e9a253447ec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "64fa5122_291f6bf4",
+        "filename": "android/app/src/com/android/bluetooth/pbapclient/PbapClientService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 313,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2023-05-19T17:53:26Z",
+      "side": 1,
+      "message": "The default device and device.toString should be completely safe now, as it redirects to toStringForLogging.",
+      "parentUuid": "9a1ab347_925f843c",
       "range": {
         "startLine": 313,
         "startChar": 79,
