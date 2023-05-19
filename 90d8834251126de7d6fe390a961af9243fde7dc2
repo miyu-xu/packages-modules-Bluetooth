@@ -16,6 +16,23 @@
       "message": "+1 after rebase",
       "revId": "90d8834251126de7d6fe390a961af9243fde7dc2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4f335838_3dd035ef",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-05-19T14:23:44Z",
+      "side": 1,
+      "message": "wait until \nhttps://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/2589505  \n got merge to master - then retry Presubmit.",
+      "revId": "90d8834251126de7d6fe390a961af9243fde7dc2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
