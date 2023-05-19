@@ -22,6 +22,30 @@
       },
       "revId": "081966285a12d053e1410868afef4edb575a2fc8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "45276760_dd1d1355",
+        "filename": "system/stack/btm/btm_ble_adv_filter.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 651,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-05-19T20:46:33Z",
+      "side": 1,
+      "message": "I checked with Jakub and the author of the change to_ble_addr_type - the to_ble_addr_type is syntactic sugar so reverting this in this particular location should be ok.\n\nI\u0027ve asked rongxuan@ on Bluetooth team to review as well since Jakub is out.",
+      "parentUuid": "05219b5f_5bb8d23e",
+      "range": {
+        "startLine": 651,
+        "startChar": 8,
+        "endLine": 651,
+        "endChar": 69
+      },
+      "revId": "081966285a12d053e1410868afef4edb575a2fc8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
