@@ -51,6 +51,24 @@
       "message": "Having a LOG_INFO would be useful - you might overflow the history, or restart/crash bluetooth which would wipe it, and then there is no sign of what was going on.",
       "revId": "9ff74644b79fb6d36136dd2883514d17d060da5d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c7b339c7_0f7bdf3d",
+        "filename": "system/stack/btm/btm_ble.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 2079,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-05-19T13:37:30Z",
+      "side": 1,
+      "message": "as agreed we can do it in follow up patch",
+      "parentUuid": "4a04b924_c1322109",
+      "revId": "9ff74644b79fb6d36136dd2883514d17d060da5d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
