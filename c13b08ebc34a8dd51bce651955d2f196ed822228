@@ -16,6 +16,86 @@
       "message": "I think @wescande might have some thought about letting applications know which profiles are enabled.",
       "revId": "c13b08ebc34a8dd51bce651955d2f196ed822228",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2e31d46a_ce10a5cc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-05-19T18:27:04Z",
+      "side": 1,
+      "message": "Overall I agree with this change.\nBut looking at the bug, there is a complain about too many binder calls and the binder call should not have happened in the first place !\n\n\nbindBluetoothProfileService (which is called during the constructor of these profile) is already checking for [mSupportedProfileList](https://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/service/src/com/android/server/bluetooth/BluetoothManagerService.java;l\u003d1560?q\u003dBluetoothManagerService.bindBluetoothProfileService).\n\nShould the BluetoothManagerService check for the systemProperty instead of the supportedList ?",
+      "revId": "c13b08ebc34a8dd51bce651955d2f196ed822228",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6033003c_35e64e95",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 3616,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-05-19T18:27:04Z",
+      "side": 1,
+      "message": "The proper way of doing that is to remove the list of profile from the message and \nreplace with a `@IntDef`.\nBut I do not know if that count as an API change or not.",
+      "range": {
+        "startLine": 3613,
+        "startChar": 7,
+        "endLine": 3616,
+        "endChar": 85
+      },
+      "revId": "c13b08ebc34a8dd51bce651955d2f196ed822228",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bda3ce26_ed786d71",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 3625,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-05-19T18:27:04Z",
+      "side": 1,
+      "message": "nit - I do not link suppressLint, does error-prone still complain if we removed it ?",
+      "range": {
+        "startLine": 3625,
+        "startChar": 0,
+        "endLine": 3625,
+        "endChar": 96
+      },
+      "revId": "c13b08ebc34a8dd51bce651955d2f196ed822228",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c81a0b2a_6da3545d",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 3631,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-05-19T18:27:04Z",
+      "side": 1,
+      "message": "There are a lot of error about unused variable in this file.\nAnd indeed they are unused.\nCan we do something different here ? Should they be static method ?",
+      "revId": "c13b08ebc34a8dd51bce651955d2f196ed822228",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
