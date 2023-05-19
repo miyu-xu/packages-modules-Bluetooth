@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d22ed3f0_1d8db08e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-05-19T18:33:35Z",
+      "side": 1,
+      "message": "The test that is failing is due to a bug fixed by CL# 2595869",
+      "revId": "4ff9b6513dcce62f3e81b8f8cd6ecffb1d7a7459",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
