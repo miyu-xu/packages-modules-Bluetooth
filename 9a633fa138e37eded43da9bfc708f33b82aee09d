@@ -16,6 +16,24 @@
       "message": "This behavior seems like a bug isn\u0027t it ?",
       "revId": "9a633fa138e37eded43da9bfc708f33b82aee09d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f4b31eb2_717f002c",
+        "filename": "android/pandora/server/src/com/android/pandora/AndroidInternal.kt",
+        "patchSetId": 1
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-05-19T15:59:53Z",
+      "side": 1,
+      "message": "Discussed with Myles about this behavior, this is the way device discovery is implemented in the stack, would not call this a bug but a limitation 😄 but words...",
+      "parentUuid": "627ed01c_5fde8244",
+      "revId": "9a633fa138e37eded43da9bfc708f33b82aee09d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
