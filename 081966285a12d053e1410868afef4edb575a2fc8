@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "05219b5f_5bb8d23e",
+        "filename": "system/stack/btm/btm_ble_adv_filter.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 651,
+      "author": {
+        "id": 1884410
+      },
+      "writtenOn": "2023-05-19T12:41:39Z",
+      "side": 1,
+      "message": "nit, should this be like below? same for next change.\n\ntarget_addr.type \u003d to_ble_addr_type(cmd.addr_type \u0026 (~BLE_ADDR_TYPE_ID_BIT));",
+      "range": {
+        "startLine": 651,
+        "startChar": 8,
+        "endLine": 651,
+        "endChar": 69
+      },
+      "revId": "081966285a12d053e1410868afef4edb575a2fc8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
