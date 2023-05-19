@@ -144,9 +144,9 @@ import com.android.modules.utils.BackgroundThread;
 import com.android.modules.utils.BytesMatcher;
 import com.android.modules.utils.SynchronousResultReceiver;
 
-import com.google.protobuf.InvalidProtocolBufferException;
-
 import libcore.util.SneakyThrow;
+
+import com.google.protobuf.InvalidProtocolBufferException;
 
 import java.io.FileDescriptor;
 import java.io.FileOutputStream;
@@ -799,6 +799,45 @@ public class AdapterService extends Service {
                 BluetoothStatsLog.BLUETOOTH_L2CAP_COC_CLIENT_CONNECTION,
                 metricId, port, isSecured, result, endToEndLatencyMillis,
                 appUid, socketCreationLatencyMillis, socketConnectionLatencyMillis);
+    }
+
+    /**
+     * Log RFCOMM Connection Metrics
+     *
+     * @param device Bluetooth device
+     * @param isSecured if secured API is called
+     * @param success whether the connection attempt suceeded
+     * @param socketConnectionTimeMillis when the attempt began
+     * @param appUid UID of the requesting app
+     */
+    public void logRfcommClientConnection(
+            BluetoothDevice device,
+            boolean isSecured,
+            boolean success,
+            int socketConnectionTimeMillis,
+            int appUid) {
+
+        int metricId = getMetricId(device);
+        long currentTime = System.currentTimeMillis();
+        long socketConnectionLatencyMillis = currentTime - socketConnectionTimeMillis;
+        Log.i(
+                TAG,
+                "Statslog RFCOMM client connection. metricId "
+                        + metricId
+                        + " isSecured "
+                        + isSecured
+                        + " success "
+                        + success
+                        + " socketConnectionLatencyMillis "
+                        + socketConnectionLatencyMillis
+                        + " appUid "
+                        + appUid);
+        BluetoothStatsLog.write(
+                BluetoothStatsLog.BLUETOOTH_RFCOMM_CONNECTION_ATTEMPT_COMPLETE,
+                isSecured ? 1 : 0,
+                null,
+                socketConnectionTimeMillis,
+                appUid);
     }
 
     @RequiresPermission(allOf = {
@@ -3501,6 +3540,20 @@ public class AdapterService extends Service {
             } catch (RuntimeException e) {
                 receiver.propagateException(e);
             }
+        }
+
+        @Override
+        public void logRfcommClientConnection(
+                BluetoothDevice device,
+                boolean isSecured,
+                boolean success,
+                int connectionLatencyMillis) {
+            AdapterService service = getService();
+            if (service == null) {
+                return;
+            }
+            service.logRfcommClientConnection(
+                    device, isSecured, success, connectionLatencyMillis, Binder.getCallingUid());
         }
 
         @Override
