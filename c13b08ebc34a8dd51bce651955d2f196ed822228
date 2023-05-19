@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6583e5d1_35459d41",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-05-19T10:06:49Z",
+      "side": 1,
+      "message": "I think @wescande might have some thought about letting applications know which profiles are enabled.",
+      "revId": "c13b08ebc34a8dd51bce651955d2f196ed822228",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
