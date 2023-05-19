@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "06b2f5e1_ce0c5418",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-05-19T03:21:55Z",
+      "side": 1,
+      "message": "We need to wait for bpfmt prebuilt update before merging this last CL",
+      "revId": "b025ea7f5b0590d15a04479998172284935783de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
