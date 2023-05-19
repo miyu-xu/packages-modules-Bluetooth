@@ -389,12 +389,6 @@ DURING(non_acl_passthrough_reassembly) AT_CALL(0) {
 UNEXPECTED_CALL;
 }
 
-STUB_FUNCTION(void, transmit_finished_callback,
-              (UNUSED_ATTR BT_HDR * packet,
-               UNUSED_ATTR bool sent_all_fragments))
-UNEXPECTED_CALL;
-}
-
 STUB_FUNCTION(uint16_t, get_acl_data_size_classic, (void))
 DURING(no_fragmentation, non_acl_passthrough_fragmentation, no_reassembly)
 return 42;
@@ -424,7 +418,6 @@ return 0;
 static void reset_for(TEST_MODES_T next) {
   RESET_CALL_COUNT(fragmented_callback);
   RESET_CALL_COUNT(reassembled_callback);
-  RESET_CALL_COUNT(transmit_finished_callback);
   RESET_CALL_COUNT(get_acl_data_size_classic);
   RESET_CALL_COUNT(get_acl_data_size_ble);
   RESET_CALL_COUNT(get_iso_data_size);
@@ -443,7 +436,6 @@ class PacketFragmenterTest : public AllocationTestHarness {
 
     callbacks.fragmented = fragmented_callback;
     callbacks.reassembled = reassembled_callback;
-    callbacks.transmit_finished = transmit_finished_callback;
     controller.get_acl_data_size_classic = get_acl_data_size_classic;
     controller.get_acl_data_size_ble = get_acl_data_size_ble;
     controller.get_iso_data_size = get_iso_data_size;
