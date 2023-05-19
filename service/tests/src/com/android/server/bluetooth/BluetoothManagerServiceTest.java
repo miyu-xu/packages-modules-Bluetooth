@@ -61,6 +61,8 @@ public class BluetoothManagerServiceTest {
                         new ContextWrapper(
                                 InstrumentationRegistry.getInstrumentation().getTargetContext()));
         mHandlerThread = new HandlerThread("BluetoothManagerServiceTest");
+
+        mManagerService = createBluetoothManagerService();
     }
 
     @After
@@ -68,7 +70,7 @@ public class BluetoothManagerServiceTest {
         mHandlerThread.quitSafely();
     }
 
-    private void createBluetoothManagerService() {
+    private BluetoothManagerService createBluetoothManagerService() {
         doReturn(mock(Intent.class))
                 .when(mContext)
                 .registerReceiverForAllUsers(any(), any(), eq(null), eq(null));
@@ -85,7 +87,7 @@ public class BluetoothManagerServiceTest {
         doReturn("00:11:22:33:44:55")
                 .when(mBluetoothServerProxy)
                 .settingsSecureGetString(any(), eq(Settings.Secure.BLUETOOTH_ADDRESS));
-        mManagerService = new BluetoothManagerService(mContext);
+        return new BluetoothManagerService(mContext);
     }
 
     @Test
@@ -100,7 +102,6 @@ public class BluetoothManagerServiceTest {
         doReturn(false)
                 .when(userManager)
                 .hasUserRestrictionForUser(eq(UserManager.DISALLOW_BLUETOOTH_SHARING), any());
-        createBluetoothManagerService();
 
         // Check if disable message sent once for system user only
         // Since Message object is recycled after processed, use proxy function to get what value
@@ -118,7 +119,6 @@ public class BluetoothManagerServiceTest {
 
     @Test
     public void testApmEnhancementEnabled() {
-        createBluetoothManagerService();
         mManagerService.setBluetoothModeChangeHelper(new BluetoothModeChangeHelper(mContext));
 
         // Change the apm enhancement enabled value to 0
