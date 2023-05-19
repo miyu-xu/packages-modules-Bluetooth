@@ -19,6 +19,7 @@ import classic_ssp_test
 import example
 import gatt_test
 import le_advertising_test
+import le_security_test
 import smp_test
 
 _TEST_CLASSES_LIST = [
@@ -28,6 +29,7 @@ _TEST_CLASSES_LIST = [
     le_advertising_test.LeAdvertisingTest,
     smp_test.SmpTest,
     classic_ssp_test.ClassicSspTest,
+    le_security_test.LeSecurityTest,
 ]
 
 
