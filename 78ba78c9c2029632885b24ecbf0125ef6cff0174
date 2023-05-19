@@ -22,6 +22,30 @@
       },
       "revId": "78ba78c9c2029632885b24ecbf0125ef6cff0174",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "322d0b27_03c9f403",
+        "filename": "android/app/src/com/android/bluetooth/mcp/MediaControlGattService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 514,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2023-05-19T13:53:36Z",
+      "side": 0,
+      "message": "`mEventLogger.put(...)` just adds an entry to the event log, but \n `mEventLogger.logw(...)` does print the warning AND puts an entry to the event log, so we didn\u0027t loose it here.",
+      "parentUuid": "b3d8eb7a_f087b031",
+      "range": {
+        "startLine": 514,
+        "startChar": 8,
+        "endLine": 514,
+        "endChar": 77
+      },
+      "revId": "78ba78c9c2029632885b24ecbf0125ef6cff0174",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
