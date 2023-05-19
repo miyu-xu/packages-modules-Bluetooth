@@ -10,6 +10,7 @@ package {
 filegroup {
     name: "BluetoothStorageSources",
     srcs: [
+        "adapter_config.cc",
         "classic_device.cc",
         "config_cache.cc",
         "config_cache_helper.cc",
@@ -25,6 +26,7 @@ filegroup {
 filegroup {
     name: "BluetoothStorageUnitTestSources",
     srcs: [
+        "adapter_config_test.cc",
         "classic_device_test.cc",
         "config_cache_helper_test.cc",
         "config_cache_test.cc",
