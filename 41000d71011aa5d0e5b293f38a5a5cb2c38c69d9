@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "af651755_62b4ca24",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1322530
+      },
+      "writtenOn": "2023-05-19T01:11:14Z",
+      "side": 1,
+      "message": "Bypass presubmit since the failure is not related to this CL",
+      "revId": "41000d71011aa5d0e5b293f38a5a5cb2c38c69d9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
