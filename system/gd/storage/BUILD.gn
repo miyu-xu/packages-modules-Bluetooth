@@ -15,6 +15,7 @@
 
 source_set("BluetoothStorageSources") {
   sources = [
+    "adapter_config.cc",
     "classic_device.cc",
     "config_cache.cc",
     "config_cache_helper.cc",

@@ -25,6 +25,7 @@
 
 #include "hci/address.h"
 #include "module.h"
+#include "storage/adapter_config.h"
 #include "storage/config_cache.h"
 #include "storage/device.h"
 #include "storage/mutation.h"
@@ -33,14 +34,6 @@ namespace bluetooth {
 
 namespace shim {
 class BtifConfigInterface;
-}
-
-namespace security::internal {
-class SecurityManagerImpl;
-}
-
-namespace hci {
-class AclManager;
 }
 
 namespace storage {
@@ -105,6 +98,9 @@ class StorageModule : public bluetooth::Module {
   // different. Hence, please don't make such assumption and don't use GetDeviceByBrEdrMacAddress() interchangeably
   Device GetDeviceByLeIdentityAddress(hci::Address le_identity_address);
 
+  // A think copyable, movable, comparable object that is used to access adapter level information
+  AdapterConfig GetAdapterConfig();
+
   // Get a list of bonded devices from config
   std::vector<Device> GetBondedDevices();
 
@@ -119,8 +115,6 @@ class StorageModule : public bluetooth::Module {
   std::string ToString() const override;
 
   friend shim::BtifConfigInterface;
-  friend hci::AclManager;
-  friend security::internal::SecurityManagerImpl;
   // For unit test only
   ConfigCache* GetMemoryOnlyConfigCache();
   // Normally, underlying config will be saved at most 3 seconds after the first config change in a series of changes
