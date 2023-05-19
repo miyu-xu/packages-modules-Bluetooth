@@ -595,6 +595,49 @@ TEST_F(VolumeControlTest, test_reconnect_after_interrupted_discovery) {
   TestAppUnregister();
 }
 
+TEST_F(VolumeControlTest, test_reconnected_by_peer) {
+  const RawAddress test_address = GetTestAddress(0);
+
+  // Initial connection - no callback calls yet as we want to disconnect in the
+  // middle
+  SetSampleDatabaseVOCS(1);
+  TestAppRegister();
+  TestConnect(test_address);
+
+  // Let the service discovery pass
+  ON_CALL(gatt_interface, ServiceSearchRequest(_, _))
+      .WillByDefault(Invoke(
+          [&](uint16_t conn_id, const bluetooth::Uuid* p_srvc_uuid) -> void {
+            if (*p_srvc_uuid == kVolumeControlUuid)
+              GetSearchCompleteEvent(conn_id);
+          }));
+  EXPECT_CALL(*callbacks,
+              OnConnectionState(ConnectionState::CONNECTED, test_address))
+      .Times(1);
+  EXPECT_CALL(*callbacks, OnDeviceAvailable(test_address, 2)).Times(1);
+  GetConnectedEvent(test_address, 1);
+  Mock::VerifyAndClearExpectations(callbacks.get());
+
+  // Disconnect
+  EXPECT_CALL(*callbacks,
+              OnConnectionState(ConnectionState::DISCONNECTED, test_address));
+  TestDisconnect(test_address, 1);
+
+  // Remote has reconnected
+  EXPECT_CALL(*callbacks,
+              OnConnectionState(ConnectionState::CONNECTED, test_address));
+  EXPECT_CALL(*callbacks, OnDeviceAvailable(test_address, 2));
+  GetConnectedEvent(test_address, 1);
+  Mock::VerifyAndClearExpectations(callbacks.get());
+
+  // Disconnect the reconnected device
+  EXPECT_CALL(*callbacks,
+              OnConnectionState(ConnectionState::DISCONNECTED, test_address));
+  GetDisconnectedEvent(test_address, 1);
+  Mock::VerifyAndClearExpectations(callbacks.get());
+  TestAppUnregister();
+}
+
 TEST_F(VolumeControlTest, test_add_from_storage) {
   TestAppRegister();
   TestAddFromStorage(GetTestAddress(0), true);

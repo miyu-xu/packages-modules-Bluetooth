@@ -45,7 +45,7 @@ void VolumeControlDevice::DeregisterNotifications(tGATT_IF gatt_if) {
   }
 }
 
-void VolumeControlDevice::Disconnect(tGATT_IF gatt_if) {
+void VolumeControlDevice::Disconnect(tGATT_IF gatt_if, bool keep_bg_connect) {
   LOG(INFO) << __func__ << ": " << ADDRESS_TO_LOGGABLE_STR(address);
 
   if (IsConnected()) {
@@ -54,7 +54,7 @@ void VolumeControlDevice::Disconnect(tGATT_IF gatt_if) {
     BTA_GATTC_Close(connection_id);
     connection_id = GATT_INVALID_CONN_ID;
   } else {
-    BTA_GATTC_CancelOpen(gatt_if, address, false);
+    BTA_GATTC_CancelOpen(gatt_if, address, keep_bg_connect);
   }
 
   device_ready = false;

@@ -653,22 +653,24 @@ class VolumeControlImpl : public VolumeControl {
       return;
     }
 
+    const bool keep_bg_connect = (reason != GATT_CONN_TERMINATE_LOCAL_HOST) &&
+                                 device->connecting_actively;
     if (!device->IsConnected()) {
       LOG(ERROR) << __func__
                  << " Skipping disconnect of the already disconnected device, "
                     "connection_id="
                  << loghex(connection_id);
-      return;
+      /* Device already disconnected, add to allow list to accept remote
+       * initiated connection
+       */
+      if (keep_bg_connect) {
+        BTA_GATTC_Open(gatt_if_, remote_bda, BTM_BLE_BKG_CONNECT_ALLOW_LIST,
+                       false);
+      }
     }
 
-    device_cleanup_helper(device, device->connecting_actively);
-
-    if (reason != GATT_CONN_TERMINATE_LOCAL_HOST &&
-        device->connecting_actively) {
-      /* Add device into BG connection to accept remote initiated connection */
-      BTA_GATTC_Open(gatt_if_, remote_bda, BTM_BLE_BKG_CONNECT_ALLOW_LIST,
-                     false);
-    }
+    bool notify = device->connecting_actively || device->IsReady();
+    device_cleanup_helper(device, notify, keep_bg_connect);
   }
 
   void RemoveDeviceFromOperationList(const RawAddress& addr, int operation_id) {
@@ -1068,8 +1070,9 @@ class VolumeControlImpl : public VolumeControl {
     }
   }
 
-  void device_cleanup_helper(VolumeControlDevice* device, bool notify) {
-    device->Disconnect(gatt_if_);
+  void device_cleanup_helper(VolumeControlDevice* device, bool notify,
+                             bool keep_bg_connect = false) {
+    device->Disconnect(gatt_if_, keep_bg_connect);
     if (notify)
       callbacks_->OnConnectionState(ConnectionState::DISCONNECTED,
                                     device->address);

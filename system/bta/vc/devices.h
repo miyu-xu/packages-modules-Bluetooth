@@ -112,7 +112,7 @@ class VolumeControlDevice : public bluetooth::common::IRedactableLoggable {
 
   bool IsConnected() { return connection_id != GATT_INVALID_CONN_ID; }
 
-  void Disconnect(tGATT_IF gatt_if);
+  void Disconnect(tGATT_IF gatt_if, bool keep_bg_connect = false);
 
   void DeregisterNotifications(tGATT_IF gatt_if);
 
