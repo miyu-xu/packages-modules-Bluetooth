@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "236fb809_e110a231",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 13
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-05-20T16:42:47Z",
+      "side": 1,
+      "message": "Both PTS-bot and Avatar failed because GATT did not disconnected at the right time. Please check those logs",
+      "revId": "db05160888510c9176ac4397b532c61ff7f37cd3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
