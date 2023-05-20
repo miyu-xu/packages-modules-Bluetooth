@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d7407da5_fb598fed",
+        "filename": "system/blueberry/tests/sl4a_sl4a/gatt/gatt_connect_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1874901
+      },
+      "writtenOn": "2023-05-20T00:00:48Z",
+      "side": 1,
+      "message": "```\ndef __start_gatt_connection(self, address_type\u003dADDRESS_TYPE_RANDOM):\n```",
+      "range": {
+        "startLine": 94,
+        "startChar": 51,
+        "endLine": 94,
+        "endChar": 56
+      },
+      "revId": "65a36f91cc2b7c5b8bfa2684a5e58825b8531024",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
