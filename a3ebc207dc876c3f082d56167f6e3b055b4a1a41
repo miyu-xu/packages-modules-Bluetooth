@@ -16,6 +16,24 @@
       "message": "Test failure with NPE\n\njava.lang.NullPointerException: Attempt to get length of null array\n\tat com.android.bluetooth.mcp.MediaControlProfile.getNotificationSubscriptions(MediaControlProfile.java:853)\n\tat com.android.bluetooth.mcp.MediaControlProfileTest.testGmcsSetGetNotificationSubscriptionDoesNotCrash(MediaControlProfileTest.java:507)",
       "revId": "a3ebc207dc876c3f082d56167f6e3b055b4a1a41",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "69f71ab1_d1eceaa2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2023-05-22T12:41:52Z",
+      "side": 1,
+      "message": "Should be fixed now.",
+      "parentUuid": "3a48ff2d_52c176f8",
+      "revId": "a3ebc207dc876c3f082d56167f6e3b055b4a1a41",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
