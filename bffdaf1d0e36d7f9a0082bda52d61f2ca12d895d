@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f90d28fa_dc21ad54",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 2566,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-05-22T17:52:10Z",
+      "side": 1,
+      "message": "Can we just move this to line 2605?",
+      "range": {
+        "startLine": 2562,
+        "startChar": 0,
+        "endLine": 2566,
+        "endChar": 0
+      },
+      "revId": "bffdaf1d0e36d7f9a0082bda52d61f2ca12d895d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
