@@ -47,6 +47,54 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "85b64b0e_455398dd",
+        "filename": "android/app/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachine.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2250,
+      "author": {
+        "id": 1985260
+      },
+      "writtenOn": "2023-05-22T03:08:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "46a2c3f5_27cca95b",
+      "range": {
+        "startLine": 2249,
+        "startChar": 12,
+        "endLine": 2250,
+        "endChar": 35
+      },
+      "revId": "68ceaab86bc7502e0b83cfb8371d65895781d2e5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e3848304_07d40c0b",
+        "filename": "android/app/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachine.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2250,
+      "author": {
+        "id": 1985260
+      },
+      "writtenOn": "2023-05-22T03:08:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "56333a60_7bf5bb1e",
+      "range": {
+        "startLine": 2250,
+        "startChar": 30,
+        "endLine": 2250,
+        "endChar": 35
+      },
+      "revId": "68ceaab86bc7502e0b83cfb8371d65895781d2e5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "80754fb2_bb0a1a5d",
@@ -60,6 +108,30 @@
       "writtenOn": "2023-05-22T02:21:41Z",
       "side": 1,
       "message": "BluetoothSinkAudioPolicy.POLICY_ALLOWED",
+      "range": {
+        "startLine": 2251,
+        "startChar": 49,
+        "endLine": 2251,
+        "endChar": 50
+      },
+      "revId": "68ceaab86bc7502e0b83cfb8371d65895781d2e5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "89aebe9b_2ddbfe4c",
+        "filename": "android/app/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachine.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2251,
+      "author": {
+        "id": 1985260
+      },
+      "writtenOn": "2023-05-22T03:08:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "80754fb2_bb0a1a5d",
       "range": {
         "startLine": 2251,
         "startChar": 49,
