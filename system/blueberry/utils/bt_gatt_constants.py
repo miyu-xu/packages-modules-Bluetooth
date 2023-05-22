@@ -291,7 +291,7 @@ class GattConnectionPriority(enum.IntEnum):
 # Min and max MTU values
 class GattMtuSize(enum.IntEnum):
     MIN = 23
-    MAX = 217
+    MAX = 517
 
 
 # Gatt Characteristic attribute lengths
