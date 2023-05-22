@@ -476,20 +476,14 @@ class BluetoothManagerService {
                 }
             }
 
-            int st = STATE_OFF;
-            try {
-                mBluetoothLock.readLock().lock();
-                st = synchronousGetState();
-            } catch (RemoteException | TimeoutException e) {
-                Log.e(TAG, "Unable to call getState", e);
-                return;
-            } finally {
-                mBluetoothLock.readLock().unlock();
-            }
+            int st = mState.get();
 
-            Log.d(TAG,
-                    "Airplane Mode change - current state:  " + BluetoothAdapter.nameForState(
-                            st) + ", isAirplaneModeOn()=" + isAirplaneModeOn());
+            Log.d(
+                    TAG,
+                    "Airplane Mode change - current state:  "
+                            + BluetoothAdapter.nameForState(st)
+                            + ", isAirplaneModeOn()="
+                            + isAirplaneModeOn());
 
             if (isAirplaneModeOn()) {
                 // Clear registered LE apps to force shut-off
@@ -980,15 +974,6 @@ class BluetoothManagerService {
     }
 
     @GuardedBy("mBluetoothLock")
-    private int synchronousGetState()
-            throws RemoteException, TimeoutException {
-        if (mBluetooth == null) return STATE_OFF;
-        final SynchronousResultReceiver<Integer> recv = SynchronousResultReceiver.get();
-        mBluetooth.getState(recv);
-        return recv.awaitResultNoInterrupt(getSyncTimeout()).getValue(STATE_OFF);
-    }
-
-    @GuardedBy("mBluetoothLock")
     private void synchronousOnBrEdrDown(AttributionSource attributionSource)
             throws RemoteException, TimeoutException {
         if (mBluetooth == null) return;
@@ -1063,17 +1048,7 @@ class BluetoothManagerService {
     }
 
     int getState() {
-        mBluetoothLock.readLock().lock();
-        try {
-            if (mBluetooth != null) {
-                return synchronousGetState();
-            }
-        } catch (RemoteException | TimeoutException e) {
-            Log.e(TAG, "getState()", e);
-        } finally {
-            mBluetoothLock.readLock().unlock();
-        }
-        return STATE_OFF;
+        return mState.get();
     }
 
     class ClientDeathRecipient implements IBinder.DeathRecipient {
@@ -1155,14 +1130,12 @@ class BluetoothManagerService {
     private void disableBleScanMode() {
         mBluetoothLock.writeLock().lock();
         try {
-            if (mBluetooth != null && synchronousGetState() != STATE_ON) {
+            if (mBluetooth != null && mState.equals(STATE_ON)) {
                 if (DBG) {
                     Log.d(TAG, "Resetting the mEnable flag for clean disable");
                 }
                 mEnable = false;
             }
-        } catch (RemoteException | TimeoutException e) {
-            Log.e(TAG, "getState()", e);
         } finally {
             mBluetoothLock.writeLock().unlock();
         }
@@ -1664,18 +1637,7 @@ class BluetoothManagerService {
         }
 
         private boolean bindService(int rebindCount) {
-            int state = STATE_OFF;
-            try {
-                mBluetoothLock.readLock().lock();
-                state = synchronousGetState();
-            } catch (RemoteException | TimeoutException e) {
-                Log.e(TAG, "Unable to call getState", e);
-                return false;
-            } finally {
-                mBluetoothLock.readLock().unlock();
-            }
-
-            if (state != STATE_ON) {
+            if (!mState.equals(STATE_ON)) {
                 if (DBG) {
                     Log.d(TAG, "Unable to bindService while Bluetooth is disabled");
                 }
@@ -2033,8 +1995,7 @@ class BluetoothManagerService {
                     try {
                         if (mBluetooth != null) {
                             boolean isHandled = true;
-                            int state = synchronousGetState();
-                            switch (state) {
+                            switch (mState.get()) {
                                 case STATE_BLE_ON:
                                     if (isBle == 1) {
                                         Log.i(TAG, "Already at BLE_ON State");
