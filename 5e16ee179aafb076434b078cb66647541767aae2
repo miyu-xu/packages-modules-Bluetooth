@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7171ad50_805fb2a4",
+        "filename": "framework/java/android/bluetooth/BluetoothHapClient.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2023-05-22T08:25:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0d96c271_2fd046ce",
+      "range": {
+        "startLine": 91,
+        "startChar": 25,
+        "endLine": 96,
+        "endChar": 25
+      },
+      "revId": "5e16ee179aafb076434b078cb66647541767aae2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "09ecd889_d4da2d9d",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bd3f22a2_b4362686",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudio.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2023-05-22T08:25:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "09ecd889_d4da2d9d",
+      "range": {
+        "startLine": 94,
+        "startChar": 25,
+        "endLine": 98,
+        "endChar": 25
+      },
+      "revId": "5e16ee179aafb076434b078cb66647541767aae2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9da2446f_8e88e10b",
@@ -60,6 +108,30 @@
       "writtenOn": "2023-05-19T18:04:10Z",
       "side": 1,
       "message": "Catching both Exception together:\n\n```suggestion\n                        } catch (RemoteException | TimeoutException e) {\n                            Log.e(\n                                    TAG,\n                                    \"onServiceConnected: Failed to register \"\n                                            + \"Le Broadcaster callback\",\n                                    e);\n                        }\n```",
+      "range": {
+        "startLine": 197,
+        "startChar": 26,
+        "endLine": 209,
+        "endChar": 25
+      },
+      "revId": "5e16ee179aafb076434b078cb66647541767aae2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9845d43e_8398aa49",
+        "filename": "framework/java/android/bluetooth/BluetoothLeBroadcast.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2023-05-22T08:25:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9da2446f_8e88e10b",
       "range": {
         "startLine": 197,
         "startChar": 26,
