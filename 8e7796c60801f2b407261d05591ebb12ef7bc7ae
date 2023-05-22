@@ -22,6 +22,30 @@
       },
       "revId": "8e7796c60801f2b407261d05591ebb12ef7bc7ae",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7e1093cb_72bae6b1",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/mapclient/ObexTimeTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2023-05-22T09:42:35Z",
+      "side": 1,
+      "message": "So I looked at how `new ObextTime(String)` works to solve this bug, and it basically parses datetime information from the string and stores it into a property called `mInstant`. `getInstant()` and `getTime()` simply returns this `mInstant` in the form of `Instant` class or `Date` class.\n\n`new ObexTime(String)` uses local time zone offset when specific offset information is not given ([link](https://source.corp.google.com/android-internal/packages/modules/Bluetooth/android/app/src/com/android/bluetooth/mapclient/obex/ObexTime.java;l\u003d57?q\u003dobextime\u0026sq\u003dpackage:%20android)), and uses the `UTC` timezone with offset information when offset is given in the time string. ([link](https://source.corp.google.com/android-internal/packages/modules/Bluetooth/android/app/src/com/android/bluetooth/mapclient/obex/ObexTime.java;l\u003d73?q\u003dobextime\u0026sq\u003dpackage:%20android))\n\nTime strings without offset would be strings like `VALID_TIME_STRING` in this file (`\"20190101T121314\"`) and time strings with offset would be strings like `VALID_TIME_STRING_WITH_OFFSET_POS` (`\"20190101T121314+0130\"`). The `+0130` part is the offset information. \n\nIn this test, `ObexTime` is created with `VALID_TIME_STRING`, which doesn\u0027t include offset information, so `mInstant` is created with local time zone offset applied. Therefore, `getInstant()` here is expected to return an instant with local time zone offset applied (`VALID_INSTANT_LOCAL_TZ`). Before it was using `VALID_INSTANT`, which had no local time zone offset applied, and thus resulted in test failure.",
+      "parentUuid": "4afc14d7_0318825b",
+      "range": {
+        "startLine": 71,
+        "startChar": 8,
+        "endLine": 74,
+        "endChar": 40
+      },
+      "revId": "8e7796c60801f2b407261d05591ebb12ef7bc7ae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
