@@ -262,7 +262,7 @@ impl ConnectionManager {
 
 #[cfg(test)]
 mod test {
-    use crate::{core::address::AddressType, utils::task::block_on_locally};
+    use crate::{core::address::{AddressType, RawAddress}, utils::task::block_on_locally};
 
     use super::{mocks::mock_le_manager::MockLeAclManager, *};
 
@@ -270,7 +270,7 @@ mod test {
     const CLIENT_2: ConnectionManagerClient = ConnectionManagerClient::GattClient(2);
 
     const ADDRESS_1: AddressWithType =
-        AddressWithType { address: [1, 2, 3, 4, 5, 6], address_type: AddressType::Public };
+        AddressWithType { address: RawAddress([1, 2, 3, 4, 5, 6]), address_type: AddressType::Public };
 
     const ERROR: ErrorCode = ErrorCode(1);
 

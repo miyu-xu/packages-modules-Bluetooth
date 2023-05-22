@@ -38,8 +38,11 @@ rust_defaults {
         "libbitflags",
         "libbt_common_only_init_flags",
         "libcxx",
+        "libjni",
         "liblog_rust",
+        "libmacaddr",
         "libscopeguard",
+        "libstatslog_rust",
 
         // needed to work around duplicate symbols
         // caused by bug in Soong

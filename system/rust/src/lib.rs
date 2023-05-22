@@ -21,6 +21,9 @@ use gatt::{channel::AttTransport, GattCallbacks};
 use log::{info, warn};
 use tokio::task::LocalSet;
 
+use crate::metrics::Metrics;
+use crate::metrics::atoms::AndroidAtomLogger;
+
 use self::core::shared_box::SharedBox;
 use std::{rc::Rc, sync::Mutex};
 use tokio::runtime::Builder;
@@ -39,6 +42,7 @@ pub mod core;
 pub mod gatt;
 pub mod packets;
 pub mod utils;
+mod metrics;
 
 /// The owner of the main Rust thread on which all Rust modules run
 struct GlobalModuleRegistry {
@@ -57,6 +61,8 @@ pub struct ModuleViews<'a> {
     pub gatt_module: &'a mut gatt::server::GattModule,
     /// Proxies calls into connection manager
     pub connection_manager: SharedBox<connection::ConnectionManager>,
+    /// Metrics event logger
+    pub metrics: &'a mut Metrics,
 }
 
 static GLOBAL_MODULE_REGISTRY: Mutex<Option<GlobalModuleRegistry>> = Mutex::new(None);
@@ -98,6 +104,9 @@ impl GlobalModuleRegistry {
 
             let connection_manager = connection::ConnectionManager::new(le_acl_manager);
 
+            let atom_logger = AndroidAtomLogger::new();
+            let metrics = &mut Metrics::new(atom_logger);
+
             // All modules that are visible from incoming JNI / top-level interfaces should
             // be exposed here
             let mut modules = ModuleViews {
@@ -105,6 +114,7 @@ impl GlobalModuleRegistry {
                 gatt_incoming_callbacks,
                 gatt_module,
                 connection_manager,
+                metrics,
             };
 
             // notify upper layer that we are ready to receive messages
