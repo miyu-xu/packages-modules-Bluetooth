@@ -35,6 +35,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "79fe0d70_d776f173",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-05-22T18:56:15Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "6583e5d1_35459d41",
+      "revId": "c13b08ebc34a8dd51bce651955d2f196ed822228",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6033003c_35e64e95",
@@ -72,6 +90,30 @@
       "side": 1,
       "message": "Let me minimize the change and check this in another CL since it is not actually related with the main purpose of this CL.",
       "parentUuid": "6033003c_35e64e95",
+      "range": {
+        "startLine": 3613,
+        "startChar": 7,
+        "endLine": 3616,
+        "endChar": 85
+      },
+      "revId": "c13b08ebc34a8dd51bce651955d2f196ed822228",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f6655eee_80919b02",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 3616,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-05-22T18:56:15Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "3bfe7137_7a794a70",
       "range": {
         "startLine": 3613,
         "startChar": 7,
@@ -160,6 +202,24 @@
       "side": 1,
       "message": "ditto",
       "parentUuid": "c81a0b2a_6da3545d",
+      "revId": "c13b08ebc34a8dd51bce651955d2f196ed822228",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0b779c61_ba3f2c90",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 3631,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-05-22T18:56:15Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "47908075_9b20d19f",
       "revId": "c13b08ebc34a8dd51bce651955d2f196ed822228",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
