@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1f59a1bb_ff2b5cd2",
+        "filename": "system/btif/co/bta_hh_co.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 338,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-05-22T18:24:39Z",
+      "side": 1,
+      "message": "Do we want to open this one so we can check for hh_keep_polling?\n\nwhile (1){\n  int ret \u003d poll(pfds, 1, 50);\n  if (p_dev-\u003ehh_keep_polling \u003d\u003d 0) {\n    break;\n  }\n  if (ret \u003d\u003d -1 \u0026\u0026 errno \u003d\u003d EINTR) {\n    continue;\n  }\n  if (ret \u003c 0) {\n    LOG_ERROR(\"Cannot poll for fds: %s\\n\", strerror(errno));\n    break;\n  }",
+      "range": {
+        "startLine": 338,
+        "startChar": 4,
+        "endLine": 338,
+        "endChar": 15
+      },
+      "revId": "2dc4ed043bda30b4b94871123e15a7336b4ff50c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
