@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "bd48eb7a_17ea2867",
+        "filename": "system/bta/test/bta_dm_test.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 636,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-05-22T22:49:36Z",
+      "side": 1,
+      "message": "Makes sense.  Can we remove the commented-out checks?  I thought it meant the test wasn\u0027t passing so you commented the checks out to come back and fix in the future :)",
+      "parentUuid": "9ee49583_dbdf3517",
+      "range": {
+        "startLine": 636,
+        "startChar": 0,
+        "endLine": 636,
+        "endChar": 46
+      },
+      "revId": "7d7b337fc1f5e7ceca8a435e942e145444c4070e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a5ded66e_896488ff",
         "filename": "system/test/mock/mock_stack_btm_inq.cc",
         "patchSetId": 3
