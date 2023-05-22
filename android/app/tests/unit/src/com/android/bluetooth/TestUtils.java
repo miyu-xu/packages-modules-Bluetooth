@@ -61,6 +61,8 @@ import java.util.concurrent.TimeoutException;
 public class TestUtils {
     private static final int SERVICE_TOGGLE_TIMEOUT_MS = 1000;    // 1s
 
+    private static String sOriginalTimeout = "10000";
+
     /**
      * Utility method to replace obj.fieldName with newValue where obj is of type c
      *
@@ -381,11 +383,25 @@ public class TestUtils {
         return intent;
     }
 
-    public static void wakeUpAndDismissKeyGuard() throws Exception {
+    public static void setUpUiTest() throws Exception {
         final UiDevice device = UiDevice.getInstance(
                 androidx.test.platform.app.InstrumentationRegistry.getInstrumentation());
         device.wakeUp();
         device.executeShellCommand("wm dismiss-keyguard");
+        device.executeShellCommand("settings put global window_animation_scale 0.0");
+        device.executeShellCommand("settings put global transition_animation_scale 0.0");
+        device.executeShellCommand("settings put global animator_duration_scale 0.0");
+        sOriginalTimeout = device.executeShellCommand("settings get system screen_off_timeout 30000");
+    }
+
+    public static void tearDownUiTest() throws Exception {
+        final UiDevice device = UiDevice.getInstance(
+                androidx.test.platform.app.InstrumentationRegistry.getInstrumentation());
+        device.executeShellCommand("wm dismiss-keyguard");
+        device.executeShellCommand("settings put global window_animation_scale 1.0");
+        device.executeShellCommand("settings put global transition_animation_scale 1.0");
+        device.executeShellCommand("settings put global animator_duration_scale 1.0");
+        device.executeShellCommand("settings put system screen_off_timeout " + sOriginalTimeout);
     }
 
     /**
