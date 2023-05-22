@@ -20,6 +20,8 @@ import static com.android.bluetooth.opp.BluetoothOppNotification.NOTIFICATION_ID
 import static com.android.bluetooth.opp.BluetoothOppNotification.NOTIFICATION_ID_OUTBOUND_COMPLETE;
 import static com.android.bluetooth.opp.BluetoothOppNotification.NOTIFICATION_ID_PROGRESS;
 
+import static com.google.common.truth.Truth.assertThat;
+
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.argThat;
 import static org.mockito.ArgumentMatchers.eq;
@@ -33,15 +35,19 @@ import android.content.Context;
 import android.content.ContextWrapper;
 import android.database.MatrixCursor;
 import android.graphics.drawable.Icon;
-import android.util.Log;
 
 import androidx.test.core.app.ApplicationProvider;
 import androidx.test.espresso.intent.Intents;
 import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.runner.AndroidJUnit4;
+import androidx.test.uiautomator.By;
+import androidx.test.uiautomator.UiDevice;
+import androidx.test.uiautomator.UiObject2;
+import androidx.test.uiautomator.Until;
 
 import com.android.bluetooth.BluetoothMethodProxy;
 import com.android.bluetooth.R;
+import com.android.bluetooth.TestUtils;
 
 import org.junit.After;
 import org.junit.Before;
@@ -50,10 +56,10 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import java.util.Objects;
-
 @RunWith(AndroidJUnit4.class)
 public class BluetoothOppNotificationTest {
+    static final int TIMEOUT_MS = 3000;
+
     @Mock
     BluetoothMethodProxy mMethodProxy;
 
@@ -62,7 +68,7 @@ public class BluetoothOppNotificationTest {
     BluetoothOppNotification mOppNotification;
 
     @Before
-    public void setUp() {
+    public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
         mTargetContext = spy(new ContextWrapper(
                 ApplicationProvider.getApplicationContext()));
@@ -73,6 +79,7 @@ public class BluetoothOppNotificationTest {
                 mOppNotification = new BluetoothOppNotification(mTargetContext));
 
         Intents.init();
+        TestUtils.wakeUpAndDismissKeyGuard();
     }
 
     @After
@@ -197,8 +204,8 @@ public class BluetoothOppNotificationTest {
         // getContentIntent doesn't work because it requires signature permission
         verify(mockNotificationManager).notify(eq(NOTIFICATION_ID_INBOUND_COMPLETE), argThat(
                 arg -> arg.getSmallIcon().sameAs(Icon.createWithResource(mTargetContext,
-                            android.R.drawable.stat_sys_download_done)
-        )));
+                        android.R.drawable.stat_sys_download_done)
+                )));
     }
 
     @Test
@@ -213,8 +220,7 @@ public class BluetoothOppNotificationTest {
         String url = "content:///abc/xyz";
         String destination = "AA:BB:CC:DD:EE:FF";
         String mimeType = "text/plain";
-        NotificationManager mockNotificationManager = mock(NotificationManager.class);
-        mOppNotification.mNotificationMgr = mockNotificationManager;
+
         MatrixCursor cursor = new MatrixCursor(new String[]{
                 BluetoothShare.TIMESTAMP, BluetoothShare.DIRECTION, BluetoothShare._ID,
                 BluetoothShare.TOTAL_BYTES, BluetoothShare.CURRENT_BYTES, BluetoothShare._DATA,
@@ -230,11 +236,24 @@ public class BluetoothOppNotificationTest {
 
         mOppNotification.updateIncomingFileConfirmNotification();
 
-        // Todo: find a better way to verify the notification
-        // getContentIntent doesn't work because it requires signature permission
-        verify(mockNotificationManager).notify(eq(NOTIFICATION_ID_PROGRESS), argThat(
-                arg -> arg.getSmallIcon().sameAs(Icon.createWithResource(mTargetContext,
-                    R.drawable.bt_incomming_file_notification))
-        ));
+        final UiDevice device = UiDevice.getInstance(
+                androidx.test.platform.app.InstrumentationRegistry.getInstrumentation());
+
+        device.openNotification();
+
+        String titleString = mTargetContext.getText(
+                R.string.incoming_file_confirm_Notification_title).toString();
+        String confirmString = mTargetContext.getText(R.string.incoming_file_confirm_ok).toString();
+        String declineString = mTargetContext.getText(R.string.incoming_file_confirm_cancel).toString();
+        device.wait(Until.hasObject(By.text(titleString)), TIMEOUT_MS);
+        UiObject2 title = device.findObject(By.text(titleString));
+        UiObject2 buttonOk = device.findObject(By.text(confirmString));
+        UiObject2 buttonDecline = device.findObject(By.text(declineString));
+        assertThat(title).isNotNull();
+        assertThat(buttonOk).isNotNull();
+        assertThat(buttonDecline).isNotNull();
+        buttonDecline.click();
+        assertThat(device.findObject(By.text(titleString))).isNull();
     }
 }
+
