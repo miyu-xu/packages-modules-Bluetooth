@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4afc14d7_0318825b",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/mapclient/ObexTimeTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2023-05-22T09:02:33Z",
+      "side": 1,
+      "message": "Q) Why does this fix the failure? Could you please explain how the `new ObexTime(String)` and `getInstant()` works?",
+      "range": {
+        "startLine": 71,
+        "startChar": 8,
+        "endLine": 74,
+        "endChar": 40
+      },
+      "revId": "8e7796c60801f2b407261d05591ebb12ef7bc7ae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
