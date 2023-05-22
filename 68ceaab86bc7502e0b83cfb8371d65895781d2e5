@@ -22,6 +22,52 @@
       },
       "revId": "68ceaab86bc7502e0b83cfb8371d65895781d2e5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "46a2c3f5_27cca95b",
+        "filename": "android/app/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachine.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2250,
+      "author": {
+        "id": 1306903
+      },
+      "writtenOn": "2023-05-22T02:21:41Z",
+      "side": 1,
+      "message": "set `call establish policy` and `connecting policy` to `POLICY_ALLOWED` if allowed\u003dtrue, otherwise set them to the default values",
+      "range": {
+        "startLine": 2249,
+        "startChar": 12,
+        "endLine": 2250,
+        "endChar": 35
+      },
+      "revId": "68ceaab86bc7502e0b83cfb8371d65895781d2e5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "80754fb2_bb0a1a5d",
+        "filename": "android/app/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachine.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2251,
+      "author": {
+        "id": 1306903
+      },
+      "writtenOn": "2023-05-22T02:21:41Z",
+      "side": 1,
+      "message": "BluetoothSinkAudioPolicy.POLICY_ALLOWED",
+      "range": {
+        "startLine": 2251,
+        "startChar": 49,
+        "endLine": 2251,
+        "endChar": 50
+      },
+      "revId": "68ceaab86bc7502e0b83cfb8371d65895781d2e5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
