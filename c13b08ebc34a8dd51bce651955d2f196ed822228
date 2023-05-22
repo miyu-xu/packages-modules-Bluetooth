@@ -58,6 +58,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "3bfe7137_7a794a70",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 3616,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-05-22T06:01:02Z",
+      "side": 1,
+      "message": "Let me minimize the change and check this in another CL since it is not actually related with the main purpose of this CL.",
+      "parentUuid": "6033003c_35e64e95",
+      "range": {
+        "startLine": 3613,
+        "startChar": 7,
+        "endLine": 3616,
+        "endChar": 85
+      },
+      "revId": "c13b08ebc34a8dd51bce651955d2f196ed822228",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "bda3ce26_ed786d71",
@@ -81,6 +105,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a8891735_8f189348",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 3625,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-05-22T06:01:02Z",
+      "side": 1,
+      "message": "done",
+      "parentUuid": "bda3ce26_ed786d71",
+      "range": {
+        "startLine": 3625,
+        "startChar": 0,
+        "endLine": 3625,
+        "endChar": 96
+      },
+      "revId": "c13b08ebc34a8dd51bce651955d2f196ed822228",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c81a0b2a_6da3545d",
@@ -94,6 +142,24 @@
       "writtenOn": "2023-05-19T18:27:04Z",
       "side": 1,
       "message": "There are a lot of error about unused variable in this file.\nAnd indeed they are unused.\nCan we do something different here ? Should they be static method ?",
+      "revId": "c13b08ebc34a8dd51bce651955d2f196ed822228",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "47908075_9b20d19f",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 3631,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-05-22T06:01:02Z",
+      "side": 1,
+      "message": "ditto",
+      "parentUuid": "c81a0b2a_6da3545d",
       "revId": "c13b08ebc34a8dd51bce651955d2f196ed822228",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
