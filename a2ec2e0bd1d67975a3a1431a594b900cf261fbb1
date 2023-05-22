@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1548780b_f5585446",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 3714,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-05-22T06:51:28Z",
+      "side": 1,
+      "message": "This will not return FEATURE_SUPPORTED if it is called before the adpapter connected with AdapterService.\nWhat is the suggested way to prevent these calls before the connection?",
+      "range": {
+        "startLine": 3714,
+        "startChar": 37,
+        "endLine": 3714,
+        "endChar": 55
+      },
+      "revId": "a2ec2e0bd1d67975a3a1431a594b900cf261fbb1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
