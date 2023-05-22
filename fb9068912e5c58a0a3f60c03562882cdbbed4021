@@ -22,6 +22,30 @@
       },
       "revId": "fb9068912e5c58a0a3f60c03562882cdbbed4021",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d710d959_bc0cedc0",
+        "filename": "android/app/src/com/android/bluetooth/sap/SapService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2023-05-22T00:20:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a7d873e6_34ad34c3",
+      "range": {
+        "startLine": 59,
+        "startChar": 66,
+        "endLine": 59,
+        "endChar": 71
+      },
+      "revId": "fb9068912e5c58a0a3f60c03562882cdbbed4021",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
