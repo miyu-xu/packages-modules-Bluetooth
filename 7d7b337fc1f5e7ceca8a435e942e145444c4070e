@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9ee49583_dbdf3517",
+        "filename": "system/bta/test/bta_dm_test.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 636,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-05-22T22:45:44Z",
+      "side": 1,
+      "message": "It\u0027s b/c of the ASSERT_FALSE above all the bottom is not needed.\n\nDone",
+      "parentUuid": "952a79a0_a241a7a8",
+      "range": {
+        "startLine": 636,
+        "startChar": 0,
+        "endLine": 636,
+        "endChar": 46
+      },
+      "revId": "7d7b337fc1f5e7ceca8a435e942e145444c4070e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a5ded66e_896488ff",
         "filename": "system/test/mock/mock_stack_btm_inq.cc",
         "patchSetId": 3
@@ -37,6 +61,30 @@
       "writtenOn": "2023-05-22T18:00:33Z",
       "side": 1,
       "message": "Please fix this WARNING reported by Build Warnings: using decl \u0027Uuid\u0027 is unused [misc-unused-using-decls]\n\nAnalyzer Description: Reports warnings that originate from build.log in the build artifacts.\nOwner: farivar@google.com\n\n    using decl \u0027Uuid\u0027 is unused [misc-unused-using-decls]\n    using bluetooth::Uuid;\n                     ^\n    /b/f/w/packages/modules/Bluetooth/system/test/mock/mock_stack_btm_inq.cc:32:18: note: remove the using\n    using bluetooth::Uuid;\n    ~~~~~~~~~~~~~~~~~^~~~~\n\nThis finding was found on https://android-build.googleplex.com/builds/build-details/P57052701/targets/aosp_arm64-userdebug_tidy, but may also be present on other builds.",
+      "range": {
+        "startLine": 32,
+        "startChar": 18,
+        "endLine": 32,
+        "endChar": 22
+      },
+      "revId": "7d7b337fc1f5e7ceca8a435e942e145444c4070e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1c1ba95b_eddfff85",
+        "filename": "system/test/mock/mock_stack_btm_inq.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-05-22T22:45:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a5ded66e_896488ff",
       "range": {
         "startLine": 32,
         "startChar": 18,
