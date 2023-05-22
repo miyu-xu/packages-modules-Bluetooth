@@ -34,6 +34,24 @@
       "parentUuid": "627ed01c_5fde8244",
       "revId": "9a633fa138e37eded43da9bfc708f33b82aee09d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3bb7246e_beb46235",
+        "filename": "android/pandora/server/src/com/android/pandora/AndroidInternal.kt",
+        "patchSetId": 1
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2023-05-22T17:57:20Z",
+      "side": 1,
+      "message": "see comment in b/283333903",
+      "parentUuid": "f4b31eb2_717f002c",
+      "revId": "9a633fa138e37eded43da9bfc708f33b82aee09d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
