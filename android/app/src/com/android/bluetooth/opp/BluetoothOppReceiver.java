@@ -102,7 +102,7 @@ public class BluetoothOppReceiver extends BroadcastReceiver {
             context.startActivity(in);
 
         } else if (action.equals(Constants.ACTION_DECLINE)) {
-            if (V) {
+            if (true) {
                 Log.v(TAG, "Receiver ACTION_DECLINE");
             }
 
