@@ -22,6 +22,30 @@
       },
       "revId": "bffdaf1d0e36d7f9a0082bda52d61f2ca12d895d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "81cc78d9_77571194",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 2566,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-05-22T22:53:38Z",
+      "side": 1,
+      "message": "I don\u0027t think so...I highlighted this such that future readers may not blunder through here (e.g. FALLTHRROUGH) \n\nThe problem is that the first 3 fields of .key_notif *happen* to be the same as .cfm_req, with the 4th and copied field *happens* to be the same (uint32_t) although named differently and for different purposes.\n\nThe intent of the TODO is to dive deeper into this unusual structural behavior.\n\nSo...unsure if this is now expected behavior or accidental corruption.\n\nWorst case I\u0027ll just back out my comments and let it ride.\n\n```\n/* Structure associated with BTA_DM_SP_KEY_NOTIF_EVT */\ntypedef struct {\n  /* Note: First 3 data members must be, bd_addr, dev_class, and bd_name in\n   * order */\n  RawAddress bd_addr;  /* peer address */\n  DEV_CLASS dev_class; /* peer CoD */\n  BD_NAME bd_name;     /* peer device name */\n  uint32_t passkey; /* the numeric value for comparison. If just_works, do not\n                       show this number to UI */\n} tBTA_DM_SP_KEY_NOTIF;\n```\n\n```\n/* Structure associated with BTA_DM_SP_CFM_REQ_EVT */\ntypedef struct {\n  /* Note: First 3 data members must be, bd_addr, dev_class, and bd_name in\n   * order */\n  RawAddress bd_addr;  /* peer address */\n  DEV_CLASS dev_class; /* peer CoD */\n  BD_NAME bd_name;     /* peer device name */\n  uint32_t num_val; /* the numeric value for comparison. If just_works, do not\n                       show this number to UI */\n  bool just_works;  /* true, if \"Just Works\" association model */\n  tBTM_AUTH_REQ loc_auth_req; /* Authentication required for local device */\n  tBTM_AUTH_REQ rmt_auth_req; /* Authentication required for peer device */\n  tBTM_IO_CAP loc_io_caps;    /* IO Capabilities of local device */\n  tBTM_AUTH_REQ rmt_io_caps;  /* IO Capabilities of remote device */\n} tBTA_DM_SP_CFM_REQ;\n```",
+      "parentUuid": "f90d28fa_dc21ad54",
+      "range": {
+        "startLine": 2562,
+        "startChar": 0,
+        "endLine": 2566,
+        "endChar": 0
+      },
+      "revId": "bffdaf1d0e36d7f9a0082bda52d61f2ca12d895d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
