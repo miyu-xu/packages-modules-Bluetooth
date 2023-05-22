@@ -16,12 +16,15 @@
 
 package com.android.bluetooth.opp;
 
-import static com.android.bluetooth.opp.BluetoothOppNotification.NOTIFICATION_ID_INBOUND_COMPLETE;
-import static com.android.bluetooth.opp.BluetoothOppNotification.NOTIFICATION_ID_OUTBOUND_COMPLETE;
-import static com.android.bluetooth.opp.BluetoothOppNotification.NOTIFICATION_ID_PROGRESS;
+import static android.content.pm.PackageManager.COMPONENT_ENABLED_STATE_ENABLED;
+import static android.content.pm.PackageManager.DONT_KILL_APP;
+
+import static androidx.test.espresso.intent.Intents.intended;
+import static androidx.test.espresso.intent.matcher.IntentMatchers.hasAction;
+
+import static com.google.common.truth.Truth.assertThat;
 
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.argThat;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.mock;
@@ -29,19 +32,24 @@ import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.verify;
 
 import android.app.NotificationManager;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.ContextWrapper;
 import android.database.MatrixCursor;
-import android.graphics.drawable.Icon;
-import android.util.Log;
 
 import androidx.test.core.app.ApplicationProvider;
 import androidx.test.espresso.intent.Intents;
 import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.runner.AndroidJUnit4;
+import androidx.test.uiautomator.By;
+import androidx.test.uiautomator.Direction;
+import androidx.test.uiautomator.UiDevice;
+import androidx.test.uiautomator.UiObject2;
+import androidx.test.uiautomator.Until;
 
 import com.android.bluetooth.BluetoothMethodProxy;
 import com.android.bluetooth.R;
+import com.android.bluetooth.TestUtils;
 
 import org.junit.After;
 import org.junit.Before;
@@ -50,10 +58,10 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import java.util.Objects;
-
 @RunWith(AndroidJUnit4.class)
 public class BluetoothOppNotificationTest {
+    static final int TIMEOUT_MS = 3000;
+
     @Mock
     BluetoothMethodProxy mMethodProxy;
 
@@ -61,24 +69,45 @@ public class BluetoothOppNotificationTest {
 
     BluetoothOppNotification mOppNotification;
 
+    ComponentName mReceiverName;
+    int mPreviousState;
     @Before
-    public void setUp() {
+    public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
         mTargetContext = spy(new ContextWrapper(
                 ApplicationProvider.getApplicationContext()));
-        mMethodProxy = spy(BluetoothMethodProxy.getInstance());
         BluetoothMethodProxy.setInstanceForTesting(mMethodProxy);
 
         InstrumentationRegistry.getInstrumentation().runOnMainSync(() ->
                 mOppNotification = new BluetoothOppNotification(mTargetContext));
 
         Intents.init();
+        TestUtils.wakeUpAndDismissKeyGuard();
+        // Go to notification screen
+        UiDevice.getInstance(InstrumentationRegistry.getInstrumentation()).openNotification();
+
+
+
+        // Decline the incoming file, cannot user intended from Espresso.
+        // Enable BluetoothOppReceiver and then check for dismissed notification
+        mReceiverName = new ComponentName(mTargetContext,
+                com.android.bluetooth.opp.BluetoothOppReceiver.class);
+        mPreviousState = mTargetContext.getPackageManager().getComponentEnabledSetting(
+                mReceiverName);
+        mTargetContext.getPackageManager().setComponentEnabledSetting(
+                mReceiverName, COMPONENT_ENABLED_STATE_ENABLED, DONT_KILL_APP);
     }
 
     @After
     public void tearDown() {
+        // Back to home screen
+        UiDevice.getInstance(InstrumentationRegistry.getInstrumentation()).pressHome();
+
         BluetoothMethodProxy.setInstanceForTesting(null);
         Intents.release();
+
+        mTargetContext.getPackageManager().setComponentEnabledSetting(
+                mReceiverName, mPreviousState, DONT_KILL_APP);
     }
 
     @Test
@@ -115,12 +144,19 @@ public class BluetoothOppNotificationTest {
         //confirm handover case does broadcast
         verify(mTargetContext).sendBroadcast(any(), eq(Constants.HANDOVER_STATUS_PERMISSION),
                 any());
-        // Todo: find a better way to verify the notification
-        // getContentIntent doesn't work because it requires signature permission
-        verify(mockNotificationManager).notify(eq(NOTIFICATION_ID_PROGRESS), argThat(
-                arg -> arg.getSmallIcon().sameAs(Icon.createWithResource(mTargetContext,
-                        android.R.drawable.stat_sys_download))
-        ));
+
+        final UiDevice device = UiDevice.getInstance(
+                androidx.test.platform.app.InstrumentationRegistry.getInstrumentation());
+
+        device.openNotification();
+
+        String titleString = mTargetContext.getString(R.string.notification_receiving,
+                mTargetContext.getString(R.string.unknown_file));
+        device.wait(Until.hasObject(By.text(titleString)), TIMEOUT_MS);
+        UiObject2 title = device.findObject(By.text(titleString));
+        assertThat(title).isNotNull();
+        title.swipe(Direction.RIGHT, 1);
+        assertThat(device.findObject(By.text(titleString))).isNull();
     }
 
     @Test
@@ -134,8 +170,6 @@ public class BluetoothOppNotificationTest {
         long current = 100;
         int confirmation = BluetoothShare.USER_CONFIRMATION_CONFIRMED;
         String destination = "AA:BB:CC:DD:EE:FF";
-        NotificationManager mockNotificationManager = mock(NotificationManager.class);
-        mOppNotification.mNotificationMgr = mockNotificationManager;
         MatrixCursor cursor = new MatrixCursor(new String[]{
                 BluetoothShare.TIMESTAMP, BluetoothShare.DIRECTION, BluetoothShare._ID,
                 BluetoothShare.TOTAL_BYTES, BluetoothShare.CURRENT_BYTES, BluetoothShare._DATA,
@@ -154,12 +188,17 @@ public class BluetoothOppNotificationTest {
 
         mOppNotification.updateCompletedNotification();
 
-        // Todo: find a better way to verify the notification
-        // getContentIntent doesn't work because it requires signature permission
-        verify(mockNotificationManager).notify(eq(NOTIFICATION_ID_OUTBOUND_COMPLETE), argThat(
-                arg -> arg.getSmallIcon().sameAs(Icon.createWithResource(mTargetContext,
-                        android.R.drawable.stat_sys_upload_done))
-        ));
+        final UiDevice device = UiDevice.getInstance(
+                androidx.test.platform.app.InstrumentationRegistry.getInstrumentation());
+
+        device.openNotification();
+
+        String titleString = mTargetContext.getString(R.string.outbound_noti_title);
+        device.wait(Until.hasObject(By.text(titleString)), TIMEOUT_MS);
+        UiObject2 title = device.findObject(By.text(titleString));
+        assertThat(title).isNotNull();
+        title.swipe(Direction.RIGHT, 1);
+        assertThat(device.findObject(By.text(titleString))).isNull();
     }
 
     @Test
@@ -173,8 +212,6 @@ public class BluetoothOppNotificationTest {
         long current = 100;
         int confirmation = BluetoothShare.USER_CONFIRMATION_CONFIRMED;
         String destination = "AA:BB:CC:DD:EE:FF";
-        NotificationManager mockNotificationManager = mock(NotificationManager.class);
-        mOppNotification.mNotificationMgr = mockNotificationManager;
         MatrixCursor cursor = new MatrixCursor(new String[]{
                 BluetoothShare.TIMESTAMP, BluetoothShare.DIRECTION, BluetoothShare._ID,
                 BluetoothShare.TOTAL_BYTES, BluetoothShare.CURRENT_BYTES, BluetoothShare._DATA,
@@ -193,16 +230,21 @@ public class BluetoothOppNotificationTest {
 
         mOppNotification.updateCompletedNotification();
 
-        // Todo: find a better way to verify the notification
-        // getContentIntent doesn't work because it requires signature permission
-        verify(mockNotificationManager).notify(eq(NOTIFICATION_ID_INBOUND_COMPLETE), argThat(
-                arg -> arg.getSmallIcon().sameAs(Icon.createWithResource(mTargetContext,
-                            android.R.drawable.stat_sys_download_done)
-        )));
+        final UiDevice device = UiDevice.getInstance(
+                androidx.test.platform.app.InstrumentationRegistry.getInstrumentation());
+
+        device.openNotification();
+
+        String titleString = mTargetContext.getString(R.string.inbound_noti_title);
+        device.wait(Until.hasObject(By.text(titleString)), TIMEOUT_MS);
+        UiObject2 title = device.findObject(By.text(titleString));
+        assertThat(title).isNotNull();
+        title.swipe(Direction.RIGHT, 1);
+        assertThat(device.findObject(By.text(titleString))).isNull();
     }
 
     @Test
-    public void updateIncomingFileConfirmationNotification() {
+    public void updateIncomingFileConfirmationNotification() throws InterruptedException {
         long timestamp = 10L;
         int dir = BluetoothShare.DIRECTION_INBOUND;
         int id = 0;
@@ -213,8 +255,9 @@ public class BluetoothOppNotificationTest {
         String url = "content:///abc/xyz";
         String destination = "AA:BB:CC:DD:EE:FF";
         String mimeType = "text/plain";
-        NotificationManager mockNotificationManager = mock(NotificationManager.class);
-        mOppNotification.mNotificationMgr = mockNotificationManager;
+
+        mOppNotification.mNotificationMgr = spy(mOppNotification.mNotificationMgr);
+
         MatrixCursor cursor = new MatrixCursor(new String[]{
                 BluetoothShare.TIMESTAMP, BluetoothShare.DIRECTION, BluetoothShare._ID,
                 BluetoothShare.TOTAL_BYTES, BluetoothShare.CURRENT_BYTES, BluetoothShare._DATA,
@@ -226,15 +269,43 @@ public class BluetoothOppNotificationTest {
                 status, mimeType
         });
         doReturn(cursor).when(mMethodProxy).contentResolverQuery(any(),
-                eq(BluetoothShare.CONTENT_URI), any(), any(), any(), any());
+                eq(com.android.bluetooth.opp.BluetoothShare.CONTENT_URI), any(), any(), any(),
+                any());
 
         mOppNotification.updateIncomingFileConfirmNotification();
 
-        // Todo: find a better way to verify the notification
-        // getContentIntent doesn't work because it requires signature permission
-        verify(mockNotificationManager).notify(eq(NOTIFICATION_ID_PROGRESS), argThat(
-                arg -> arg.getSmallIcon().sameAs(Icon.createWithResource(mTargetContext,
-                    R.drawable.bt_incomming_file_notification))
-        ));
+        final UiDevice device = UiDevice.getInstance(
+                androidx.test.platform.app.InstrumentationRegistry.getInstrumentation());
+
+        String titleString = mTargetContext.getString(
+                R.string.incoming_file_confirm_Notification_title);
+
+        // All actions' titles are converted into upper case
+        String confirmString = mTargetContext.getString(
+                R.string.incoming_file_confirm_ok).toUpperCase();
+        String declineString = mTargetContext.getString(
+                R.string.incoming_file_confirm_cancel).toUpperCase();
+
+        device.wait(Until.hasObject(By.text(titleString)), TIMEOUT_MS);
+        UiObject2 title = device.findObject(By.text(titleString));
+        UiObject2 buttonOk = device.findObject(By.text(confirmString));
+        UiObject2 buttonDecline = device.findObject(By.text(declineString));
+
+        assertThat(title).isNotNull();
+        assertThat(buttonOk).isNotNull();
+        assertThat(buttonDecline).isNotNull();
+
+        buttonDecline.wait(Until.clickable(true), TIMEOUT_MS);
+
+        buttonDecline.click();
+        // work around for b/
+        buttonDecline.click();
+
+        device.wait(Until.gone(By.text(titleString)), TIMEOUT_MS);
+
+        assertThat(device.findObject(By.text(titleString))).isNull();
+        assertThat(device.findObject(By.text(confirmString))).isNull();
+        assertThat(device.findObject(By.text(declineString))).isNull();
     }
 }
+
