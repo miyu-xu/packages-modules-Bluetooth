@@ -451,6 +451,7 @@ final class BondStateMachine extends StateMachine {
                 mAdapterService.getMetricId(device));
         BluetoothClass deviceClass = device.getBluetoothClass();
         int classOfDevice = deviceClass == null ? 0 : deviceClass.getClassOfDevice();
+        Log.e(TAG, "BT_Metrics_test: BondStateMachine: Class of device: " + classOfDevice + ", metric_id: " + mAdapterService.getMetricId(device));
         BluetoothStatsLog.write(BluetoothStatsLog.BLUETOOTH_CLASS_OF_DEVICE_REPORTED,
                 mAdapterService.obfuscateAddress(device), classOfDevice,
                 mAdapterService.getMetricId(device));

@@ -1173,6 +1173,7 @@ final class RemoteDevices {
 
         BluetoothClass deviceClass = device.getBluetoothClass();
         int classOfDevice = deviceClass == null ? 0 : deviceClass.getClassOfDevice();
+        Log.e(TAG, "BT_Metrics_test: RemoteDevices: Class of device: " + classOfDevice + "metric_id: " + metricId);
         BluetoothStatsLog.write(BluetoothStatsLog.BLUETOOTH_CLASS_OF_DEVICE_REPORTED,
                 mAdapterService.obfuscateAddress(device), classOfDevice, metricId);
 
