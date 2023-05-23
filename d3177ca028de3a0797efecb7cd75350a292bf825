@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8d5b81e0_67c3f9ab",
+        "filename": "system/stack/btu/btu_task.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2023-05-23T00:39:46Z",
+      "side": 0,
+      "message": "nit: Should be on parent CL?",
+      "range": {
+        "startLine": 45,
+        "startChar": 5,
+        "endLine": 45,
+        "endChar": 23
+      },
+      "revId": "d3177ca028de3a0797efecb7cd75350a292bf825",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
