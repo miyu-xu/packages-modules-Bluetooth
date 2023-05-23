@@ -1,5 +1,29 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c5918cc1_9f8adee2",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 1994,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-05-23T02:07:23Z",
+      "side": 1,
+      "message": "java.lang.Integer cannot be cast to java.lang.String",
+      "range": {
+        "startLine": 1994,
+        "startChar": 10,
+        "endLine": 1994,
+        "endChar": 43
+      },
+      "revId": "145b3827acf83d23d89736f234d4f1fc55931a14",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
