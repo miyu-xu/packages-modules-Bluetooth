@@ -1181,9 +1181,6 @@ final class RemoteDevices {
                 transportLinkType);
 
         BluetoothClass deviceClass = device.getBluetoothClass();
-        int classOfDevice = deviceClass == null ? 0 : deviceClass.getClassOfDevice();
-        BluetoothStatsLog.write(BluetoothStatsLog.BLUETOOTH_CLASS_OF_DEVICE_REPORTED,
-                mAdapterService.obfuscateAddress(device), classOfDevice, metricId);
 
         if (intent != null) {
             intent.putExtra(BluetoothDevice.EXTRA_DEVICE, device)
