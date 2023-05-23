@@ -41,8 +41,6 @@
 #include "stack/include/bt_octets.h"
 #include "types/raw_address.h"
 
-void bte_main_hci_send(BT_HDR* p_msg, uint16_t event);
-
 /* Message by message.... */
 
 #define HCIC_PARAM_SIZE_INQUIRY 5
