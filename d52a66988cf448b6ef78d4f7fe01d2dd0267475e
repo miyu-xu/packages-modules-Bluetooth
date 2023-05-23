@@ -33,6 +33,24 @@
       "message": "So if disconnection happen by remote, we will never go to the background connect?",
       "revId": "d52a66988cf448b6ef78d4f7fe01d2dd0267475e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6af054e9_aa2f94ea",
+        "filename": "system/bta/vc/vc.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 673,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2023-05-23T16:44:25Z",
+      "side": 1,
+      "message": "As stated at line #656, we will connect in background when the reason is not GATT_CONN_TERMINATE_LOCAL_HOST (that is when the remote disconnects) and when the upper layer wants to be connected (connecting_actively flag).",
+      "parentUuid": "d523af3c_e9468a9d",
+      "revId": "d52a66988cf448b6ef78d4f7fe01d2dd0267475e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
