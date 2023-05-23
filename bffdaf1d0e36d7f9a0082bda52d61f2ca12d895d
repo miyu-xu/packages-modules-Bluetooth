@@ -46,6 +46,30 @@
       },
       "revId": "bffdaf1d0e36d7f9a0082bda52d61f2ca12d895d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "58a9ca97_ae9fd9c2",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 2566,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-05-23T00:28:15Z",
+      "side": 1,
+      "message": "This is _so_ ugly.",
+      "parentUuid": "81cc78d9_77571194",
+      "range": {
+        "startLine": 2562,
+        "startChar": 0,
+        "endLine": 2566,
+        "endChar": 0
+      },
+      "revId": "bffdaf1d0e36d7f9a0082bda52d61f2ca12d895d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
