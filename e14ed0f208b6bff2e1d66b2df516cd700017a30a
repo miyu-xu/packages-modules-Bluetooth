@@ -16,6 +16,24 @@
       "message": "Add TODO to refragment the SDU to fit the ISO H4 packet size, though probably not needed in most cases.",
       "revId": "e14ed0f208b6bff2e1d66b2df516cd700017a30a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "737d9dc0_42e9d90e",
+        "filename": "tools/rootcanal/model/controller/link_layer_controller.cc",
+        "patchSetId": 22
+      },
+      "lineNbr": 4108,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-05-23T17:48:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "50dd2b7b_f9c8f15d",
+      "revId": "e14ed0f208b6bff2e1d66b2df516cd700017a30a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
