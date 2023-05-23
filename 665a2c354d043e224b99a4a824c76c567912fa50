@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "73133548_d3a7786a",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 2574,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-05-23T16:53:59Z",
+      "side": 1,
+      "message": "I thought we had a function for copying names.  Can we use that here?",
+      "range": {
+        "startLine": 2574,
+        "startChar": 8,
+        "endLine": 2574,
+        "endChar": 15
+      },
+      "revId": "665a2c354d043e224b99a4a824c76c567912fa50",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
