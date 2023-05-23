@@ -22,6 +22,30 @@
       },
       "revId": "665a2c354d043e224b99a4a824c76c567912fa50",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9141f301_0c4ade56",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 2574,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-05-23T18:27:18Z",
+      "side": 1,
+      "message": "Yes ! We do...(but not when I wrote this patch)",
+      "parentUuid": "73133548_d3a7786a",
+      "range": {
+        "startLine": 2574,
+        "startChar": 8,
+        "endLine": 2574,
+        "endChar": 15
+      },
+      "revId": "665a2c354d043e224b99a4a824c76c567912fa50",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
