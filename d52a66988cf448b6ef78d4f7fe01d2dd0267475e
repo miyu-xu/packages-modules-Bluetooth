@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c2108ac3_eabdb488",
+        "filename": "system/bta/vc/vc.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 670,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-05-23T16:29:24Z",
+      "side": 1,
+      "message": "shouldn\u0027t we return here?\n\nI\u0027m wondering if we",
+      "revId": "d52a66988cf448b6ef78d4f7fe01d2dd0267475e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d523af3c_e9468a9d",
+        "filename": "system/bta/vc/vc.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 673,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-05-23T16:29:24Z",
+      "side": 1,
+      "message": "So if disconnection happen by remote, we will never go to the background connect?",
+      "revId": "d52a66988cf448b6ef78d4f7fe01d2dd0267475e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
