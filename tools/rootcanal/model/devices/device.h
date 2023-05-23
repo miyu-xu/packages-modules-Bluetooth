@@ -23,6 +23,7 @@
 #include <vector>
 
 #include "hci/address.h"
+#include "log.h"
 #include "packets/link_layer_packets.h"
 #include "phy.h"
 
