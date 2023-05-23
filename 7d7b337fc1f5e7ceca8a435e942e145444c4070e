@@ -72,6 +72,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "81a14cad_7d4d322d",
+        "filename": "system/bta/test/bta_dm_test.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 636,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-05-23T02:36:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bd48eb7a_17ea2867",
+      "range": {
+        "startLine": 636,
+        "startChar": 0,
+        "endLine": 636,
+        "endChar": 46
+      },
+      "revId": "7d7b337fc1f5e7ceca8a435e942e145444c4070e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a5ded66e_896488ff",
