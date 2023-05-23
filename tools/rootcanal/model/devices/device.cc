@@ -17,8 +17,13 @@
 #include "device.h"
 
 #include <vector>
+#include "log.h"
 
 namespace rootcanal {
+
+Device::Device() {
+  ASSERT(Address::FromString("BB:BB:BB:BB:BB:AD", address_));
+}
 
 std::string Device::ToString() const {
   return GetTypeString() + "@" + address_.ToString();
