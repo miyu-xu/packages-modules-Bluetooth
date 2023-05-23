@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b4bf3daa_29947712",
+        "filename": "system/stack/test/common/stack_test_packet_utils.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-05-23T16:26:43Z",
+      "side": 1,
+      "message": "This is no longer used, correct ?",
+      "revId": "f659a47cdb7dc83eefff17ad206aa818d7a791e4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
