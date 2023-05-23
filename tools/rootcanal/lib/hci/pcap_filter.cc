@@ -16,21 +16,21 @@
  *
  ******************************************************************************/
 
-#include <hci/hci_packets.h>
 #include <hci/pcap_filter.h>
 #include <packet/raw_builder.h>
+#include <packets/hci_packets.h>
 
 using namespace bluetooth::hci;
 using namespace bluetooth::packet;
 
 namespace rootcanal {
 
-static PacketView<kLittleEndian> create_packet_view(
+static pdl::packet::slice create_packet_view(
     std::vector<uint8_t> const& packet) {
   // Wrap the reference to the packet in a shared_ptr with created
   // a no-op deleter. The packet view will be short lived so there is no
   // risk of the reference leaking.
-  return PacketView<kLittleEndian>(std::shared_ptr<std::vector<uint8_t> const>(
+  return pdl::packet::slice(std::shared_ptr<std::vector<uint8_t> const>(
       &packet, [](std::vector<uint8_t> const* /* ptr */) {}));
 }
 
@@ -142,9 +142,8 @@ static std::vector<uint8_t> FilterHciAcl(std::vector<uint8_t> const& packet) {
   payload.resize(acl.GetPayload().size());
   ASSERT(acl.IsValid());
   return AclBuilder::Create(acl.GetHandle(), acl.GetPacketBoundaryFlag(),
-                            acl.GetBroadcastFlag(),
-                            std::make_unique<RawBuilder>(payload))
-      ->SerializeToBytes();
+                            acl.GetBroadcastFlag(), std::move(payload))
+      ->pdl::packet::Builder::Serialize();
 }
 
 static std::vector<uint8_t> FilterHciSco(std::vector<uint8_t> const& packet) {
@@ -153,7 +152,7 @@ static std::vector<uint8_t> FilterHciSco(std::vector<uint8_t> const& packet) {
   data.resize(sco.GetData().size());
   ASSERT(sco.IsValid());
   return ScoBuilder::Create(sco.GetHandle(), sco.GetPacketStatusFlag(), data)
-      ->SerializeToBytes();
+      ->pdl::packet::Builder::Serialize();
 }
 
 static std::vector<uint8_t> FilterHciIso(std::vector<uint8_t> const& packet) {
@@ -162,9 +161,8 @@ static std::vector<uint8_t> FilterHciIso(std::vector<uint8_t> const& packet) {
   payload.resize(iso.GetPayload().size());
   ASSERT(iso.IsValid());
   return IsoBuilder::Create(iso.GetConnectionHandle(), iso.GetPbFlag(),
-                            iso.GetTsFlag(),
-                            std::make_unique<RawBuilder>(payload))
-      ->SerializeToBytes();
+                            iso.GetTsFlag(), std::move(payload))
+      ->pdl::packet::Builder::Serialize();
 }
 
 // Replace device names in GAP entries.
@@ -219,7 +217,8 @@ std::vector<uint8_t> PcapFilter::FilterWriteLocalName(CommandView& command) {
 
   std::array<uint8_t, 248> local_name =
       ChangeDeviceName(parameters.GetLocalName());
-  return WriteLocalNameBuilder::Create(local_name)->SerializeToBytes();
+  return WriteLocalNameBuilder::Create(local_name)
+      ->pdl::packet::Builder::Serialize();
 }
 
 // Replace the device names in the GAP entries of the extended inquiry response.
@@ -234,7 +233,7 @@ std::vector<uint8_t> PcapFilter::FilterWriteExtendedInquiryResponse(
                 extended_inquiry_response.size());
   return WriteExtendedInquiryResponseBuilder::Create(
              parameters.GetFecRequired(), extended_inquiry_response)
-      ->SerializeToBytes();
+      ->pdl::packet::Builder::Serialize();
 }
 
 // Replace the device names in the GAP entries of the advertising data.
@@ -246,7 +245,7 @@ std::vector<uint8_t> PcapFilter::FilterLeSetAdvertisingData(
   std::vector<uint8_t> advertising_data = parameters.GetAdvertisingData();
   FilterGapData(advertising_data);
   return LeSetAdvertisingDataBuilder::Create(advertising_data)
-      ->SerializeToBytes();
+      ->pdl::packet::Builder::Serialize();
 }
 
 // Replace the device names in the GAP entries of the scan response data.
@@ -258,7 +257,7 @@ std::vector<uint8_t> PcapFilter::FilterLeSetScanResponseData(
   std::vector<uint8_t> advertising_data = parameters.GetAdvertisingData();
   FilterGapData(advertising_data);
   return LeSetScanResponseDataBuilder::Create(advertising_data)
-      ->SerializeToBytes();
+      ->pdl::packet::Builder::Serialize();
 }
 
 // Replace the device names in the GAP entries of the extended advertising data.
@@ -272,7 +271,7 @@ std::vector<uint8_t> PcapFilter::FilterLeSetExtendedAdvertisingData(
   return LeSetExtendedAdvertisingDataBuilder::Create(
              parameters.GetAdvertisingHandle(), parameters.GetOperation(),
              parameters.GetFragmentPreference(), advertising_data)
-      ->SerializeToBytes();
+      ->pdl::packet::Builder::Serialize();
 }
 
 // Replace the device names in the GAP entries of the extended scan response
@@ -287,7 +286,7 @@ std::vector<uint8_t> PcapFilter::FilterLeSetExtendedScanResponseData(
   return LeSetExtendedScanResponseDataBuilder::Create(
              parameters.GetAdvertisingHandle(), parameters.GetOperation(),
              parameters.GetFragmentPreference(), advertising_data)
-      ->SerializeToBytes();
+      ->pdl::packet::Builder::Serialize();
 }
 
 // Replace the device names in the GAP entries of the periodic advertising
@@ -302,7 +301,7 @@ std::vector<uint8_t> PcapFilter::FilterLeSetPeriodicAdvertisingData(
   return LeSetPeriodicAdvertisingDataBuilder::Create(
              parameters.GetAdvertisingHandle(), parameters.GetOperation(),
              advertising_data)
-      ->SerializeToBytes();
+      ->pdl::packet::Builder::Serialize();
 }
 
 // Replace the device names in the GAP entries of the advertising data.
@@ -315,7 +314,7 @@ std::vector<uint8_t> PcapFilter::FilterLeMultiAdvtSetData(
   FilterGapData(advertising_data);
   return LeMultiAdvtSetDataBuilder::Create(advertising_data,
                                            parameters.GetAdvertisingInstance())
-      ->SerializeToBytes();
+      ->pdl::packet::Builder::Serialize();
 }
 
 // Replace the device names in the GAP entries of the scan response data.
@@ -328,7 +327,7 @@ std::vector<uint8_t> PcapFilter::FilterLeMultiAdvtSetScanResp(
   FilterGapData(advertising_data);
   return LeMultiAdvtSetScanRespBuilder::Create(
              advertising_data, parameters.GetAdvertisingInstance())
-      ->SerializeToBytes();
+      ->pdl::packet::Builder::Serialize();
 }
 
 // Replace the local device name in the read local name complete event.
@@ -345,7 +344,7 @@ std::vector<uint8_t> PcapFilter::FilterReadLocalNameComplete(
   return ReadLocalNameCompleteBuilder::Create(
              parameters.GetNumHciCommandPackets(), parameters.GetStatus(),
              local_name)
-      ->SerializeToBytes();
+      ->pdl::packet::Builder::Serialize();
 }
 
 // Replace the device names in the GAP entries of the extended inquiry response.
@@ -365,7 +364,7 @@ std::vector<uint8_t> PcapFilter::FilterReadExtendedInquiryResponseComplete(
   return ReadExtendedInquiryResponseCompleteBuilder::Create(
              parameters.GetNumHciCommandPackets(), parameters.GetStatus(),
              parameters.GetFecRequired(), extended_inquiry_response)
-      ->SerializeToBytes();
+      ->pdl::packet::Builder::Serialize();
 }
 
 // Replace the remote device name in the remote name request complete event.
@@ -381,7 +380,7 @@ std::vector<uint8_t> PcapFilter::FilterRemoteNameRequestComplete(
 
   return RemoteNameRequestCompleteBuilder::Create(
              parameters.GetStatus(), parameters.GetBdAddr(), remote_name)
-      ->SerializeToBytes();
+      ->pdl::packet::Builder::Serialize();
 }
 
 // Replace the device names in the GAP entries in the extended inquiry result.
@@ -398,7 +397,7 @@ std::vector<uint8_t> PcapFilter::FilterExtendedInquiryResult(
              parameters.GetAddress(), parameters.GetPageScanRepetitionMode(),
              parameters.GetClassOfDevice(), parameters.GetClockOffset(),
              parameters.GetRssi(), extended_inquiry_response)
-      ->SerializeToBytes();
+      ->pdl::packet::Builder::Serialize();
 }
 
 // Replace the device names in the GAP entries in the advertising report.
@@ -412,7 +411,8 @@ std::vector<uint8_t> PcapFilter::FilterLeAdvertisingReport(
     FilterGapData(response.advertising_data_);
   }
 
-  return LeAdvertisingReportBuilder::Create(responses)->SerializeToBytes();
+  return LeAdvertisingReportBuilder::Create(responses)
+      ->pdl::packet::Builder::Serialize();
 }
 
 // Replace the device names in the GAP entries in the extended advertising
@@ -429,7 +429,7 @@ std::vector<uint8_t> PcapFilter::FilterLeExtendedAdvertisingReport(
   }
 
   return LeExtendedAdvertisingReportBuilder::Create(responses)
-      ->SerializeToBytes();
+      ->pdl::packet::Builder::Serialize();
 }
 
 // Generate a device name of the specified length.
