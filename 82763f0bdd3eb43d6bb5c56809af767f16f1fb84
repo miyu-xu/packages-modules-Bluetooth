@@ -16,6 +16,24 @@
       "message": "Just to confirm, the rewind is not necessary because you\u0027ve opened a BufReader right?",
       "revId": "82763f0bdd3eb43d6bb5c56809af767f16f1fb84",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "83f9ce28_629e1679",
+        "filename": "floss/hcidoc/src/parser.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 254,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-05-23T04:31:47Z",
+      "side": 0,
+      "message": "I removed the rewind because:\n(1) I can\u0027t get rewind to work with BufReader (not sure whether this is my fault at interpreting the error message on rust)\n(2) When this is called, the file is just opened anyway so it always points to the beginning of the file. I don\u0027t think rewind is needed in this case.",
+      "parentUuid": "44cfab23_2ee480f6",
+      "revId": "82763f0bdd3eb43d6bb5c56809af767f16f1fb84",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
