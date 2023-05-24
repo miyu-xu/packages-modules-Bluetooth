@@ -5289,7 +5289,6 @@ class LeAudioClientImpl : public LeAudioClient {
          * STREAMING. Peer device uses cache. For the moment
          * it is handled same as IDLE
          */
-        FALLTHROUGH;
       case GroupStreamStatus::IDLE: {
         if (group) {
           UpdateLocationsAndContextsAvailability(group->group_id_);
