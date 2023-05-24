@@ -267,9 +267,9 @@ std::ostream& operator<<(std::ostream& out, const HasCtpNtf& ntf) {
         }
         break;
       case PresetCtpChangeId::PRESET_DELETED:
-        FALLTHROUGH;
+        [[fallthrough]];
       case PresetCtpChangeId::PRESET_AVAILABLE:
-        FALLTHROUGH;
+        [[fallthrough]];
       case PresetCtpChangeId::PRESET_UNAVAILABLE:
         out << ", \"index\": " << +ntf.index;
         break;
