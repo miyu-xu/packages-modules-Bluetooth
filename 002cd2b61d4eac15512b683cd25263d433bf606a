@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "697f821f_d8c0687d",
+        "filename": "system/blueberry/utils/bt_test_utils.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-05-24T17:21:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fbb28c73_28da02d0",
+      "range": {
+        "startLine": 209,
+        "startChar": 70,
+        "endLine": 209,
+        "endChar": 83
+      },
+      "revId": "002cd2b61d4eac15512b683cd25263d433bf606a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a81cb5e3_177d9e07",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-05-23T18:36:55Z",
       "side": 1,
       "message": "Also, asking since I don\u0027t have knowledge of this area: is there any impact if the caller of this function doesn\u0027t specify the `adv_addr_type`, do we just ignore / is this fine?",
+      "range": {
+        "startLine": 226,
+        "startChar": 7,
+        "endLine": 226,
+        "endChar": 20
+      },
+      "revId": "002cd2b61d4eac15512b683cd25263d433bf606a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "27333fa5_a5efb837",
+        "filename": "system/blueberry/utils/bt_test_utils.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 226,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-05-24T17:21:06Z",
+      "side": 1,
+      "message": "Nope, the default value is -1 (AUTO), so we skip adding it which preserves current behavior",
+      "parentUuid": "a81cb5e3_177d9e07",
       "range": {
         "startLine": 226,
         "startChar": 7,
