@@ -81,6 +81,29 @@
       },
       "revId": "b4061c92606cf058b7059069f8443a493735a30d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c85d098e_6b150323",
+        "filename": "system/stack/test/fuzzers/sdp/sdpFuzzFunctions.h",
+        "patchSetId": 41
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-05-24T21:19:48Z",
+      "side": 1,
+      "message": "It\u0027s surprising that this one didn\u0027t get replaced.  I think I\u0027d prefer either removing the comments or leaving them so they\u0027re more readable.",
+      "range": {
+        "startLine": 78,
+        "startChar": 11,
+        "endLine": 78,
+        "endChar": 35
+      },
+      "revId": "b4061c92606cf058b7059069f8443a493735a30d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
