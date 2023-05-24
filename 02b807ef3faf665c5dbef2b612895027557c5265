@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "123ba422_1082d8f2",
+        "filename": "system/gd/hci/le_scanning_manager.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 873,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-05-24T23:21:50Z",
+      "side": 1,
+      "message": "I wonder if we should have done auto here for all three types.",
+      "range": {
+        "startLine": 873,
+        "startChar": 8,
+        "endLine": 873,
+        "endChar": 16
+      },
+      "revId": "02b807ef3faf665c5dbef2b612895027557c5265",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "855e4500_942f0b71",
+        "filename": "system/gd/hci/le_scanning_manager.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 877,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-05-24T23:21:50Z",
+      "side": 1,
+      "message": "I\u0027m surprised this isn\u0027t a build warning, since it was shifting a 16-bit value 24 bits.",
+      "range": {
+        "startLine": 877,
+        "startChar": 42,
+        "endLine": 877,
+        "endChar": 53
+      },
+      "revId": "02b807ef3faf665c5dbef2b612895027557c5265",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
