@@ -202,6 +202,22 @@ class AshaTest(base_test.BaseTestClass):  # type: ignore[misc]
         asha_service.on('stop', stop_command_handler)
         return stop_future
 
+    async def get_audio_data(self, ref_device: BumblePandoraDevice, connection: Connection, timeout: int) -> bytearray:
+        ref_asha = AioAsha(ref_device.aio.channel)
+        audio_data = bytearray()
+        try:
+            captured_data = ref_asha.CaptureAudio(connection=connection, timeout=timeout)
+            async for data in captured_data:
+                audio_data.extend(data.data)
+
+        except grpc.aio.AioRpcError as e:
+            if e.code() == grpc.StatusCode.DEADLINE_EXCEEDED:
+                return audio_data
+            else:
+                raise e
+
+        return audio_data
+
     @avatar.parameterized(
         (RANDOM, Ear.LEFT),
         (RANDOM, Ear.RIGHT),
@@ -859,14 +875,8 @@ class AshaTest(base_test.BaseTestClass):  # type: ignore[misc]
         logging.info(f"stop_result:{stop_result}")
         assert_is_not_none(stop_result)
 
-        ref_asha = AioAsha(self.ref_left.aio.channel)
-        try:
-            ref_asha.CaptureAudio(connection=ref_dut, timeout=2)
-        except grpc.aio.AioRpcError as e:
-            if e.code() == grpc.StatusCode.DEADLINE_EXCEEDED:
-                logging.info("no audio data, work as expected")
-            else:
-                raise e
+        audio_data = await self.get_audio_data(ref_device=self.ref_left, connection=ref_dut, timeout=10)
+        assert_equal(len(audio_data), 0)
 
     @asynchronous
     async def test_music_restart(self) -> None:
