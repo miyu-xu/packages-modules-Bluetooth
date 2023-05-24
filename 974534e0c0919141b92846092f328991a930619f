@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "489f9249_951d83ba",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 753,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-05-24T16:44:04Z",
+      "side": 1,
+      "message": "```\npackages/modules/Bluetooth/system/bta/le_audio/state_machine.cc:753:35: error: too many arguments to function call, expected single argument \u0027leAudioDevice\u0027, have 2 arguments\n        CisCreateForDevice(group, leAudioDevice);\n        ~~~~~~~~~~~~~~~~~~        ^~~~~~~~~~~~~\npackages/modules/Bluetooth/system/bta/le_audio/state_machine.cc:1448:15: note: \u0027CisCreateForDevice\u0027 declared here\n  static void CisCreateForDevice(LeAudioDevice* leAudioDevice) {\n```",
+      "revId": "974534e0c0919141b92846092f328991a930619f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
