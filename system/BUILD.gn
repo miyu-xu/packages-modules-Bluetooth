@@ -128,6 +128,10 @@ config("target_defaults") {
     defines += [ "EXCLUDE_NONSTANDARD_CODECS" ]
   }
 
+  if (!(defined(use.bt_leaudio) && use.bt_leaudio)) {
+    defines += [ "EXCLUDE_LEAUDIO" ]
+  }
+
   configs = [ ":external_libchrome" ]
 
   if (target_os == "chromeos") {
