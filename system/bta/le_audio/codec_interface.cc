@@ -18,6 +18,8 @@
 
 #include "codec_interface.h"
 
+#include <base/logging.h>
+
 #include <memory>
 #include <optional>
 #include <vector>
