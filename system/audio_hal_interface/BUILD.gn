@@ -20,6 +20,12 @@ static_library("audio_hal_interface") {
     "hearing_aid_software_encoding_host.cc",
   ]
 
+  if (defined(use.bt_leaudio) && use.bt_leaudio) {
+    sources += [
+      "le_audio_software_host.cc",
+    ]
+  }
+
   include_dirs = [
     "//bt/system/bta/include",
     "//bt/system/btif/include",
