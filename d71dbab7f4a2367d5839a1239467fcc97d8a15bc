@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ac2087d2_67547a5a",
+        "filename": "TEST_MAPPING",
+        "patchSetId": 2
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-05-24T14:53:55Z",
+      "side": 0,
+      "message": "Can you remove it from `hwasan-presubmit` as well ? Thanks !",
+      "revId": "d71dbab7f4a2367d5839a1239467fcc97d8a15bc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
