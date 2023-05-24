@@ -61,10 +61,8 @@ static_library("btif") {
     "src/btif_gatt_server.cc",
     "src/btif_gatt_test.cc",
     "src/btif_gatt_util.cc",
+    "src/btif_has_client.cc",
     "src/btif_hd.cc",
-    "src/btif_vc.cc",
-    #"src/btif_le_audio_broadcaster.cc",
-    #"src/btif_has_client.cc",
     "src/btif_hearing_aid.cc",
     "src/btif_hf.cc",
     "src/btif_hf_client.cc",
@@ -72,6 +70,7 @@ static_library("btif") {
     "src/btif_iot_config.cc",
     "src/btif_keystore.cc",
     "src/btif_le_audio.cc",
+    "src/btif_le_audio_broadcaster.cc",
     "src/btif_metrics_logging.cc",
     "src/btif_pan.cc",
     "src/btif_profile_queue.cc",
@@ -89,6 +88,7 @@ static_library("btif") {
     "src/btif_storage.cc",
     "src/btif_uid.cc",
     "src/btif_util.cc",
+    "src/btif_vc.cc",
     "src/stack_manager.cc",
   ]
 
