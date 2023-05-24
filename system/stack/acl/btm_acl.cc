@@ -53,11 +53,13 @@
 #include "main/shim/l2c_api.h"
 #include "main/shim/metrics_api.h"
 #include "main/shim/shim.h"
+#include "os/metrics.h"
 #include "os/parameter_provider.h"
 #include "osi/include/allocator.h"
 #include "osi/include/log.h"
 #include "osi/include/osi.h"  // UNUSED_ATTR
 #include "osi/include/properties.h"
+#include "osi/include/stack_power_telemetry.h"
 #include "rust/src/connection/ffi/connection_shim.h"
 #include "rust/src/core/ffi/types.h"
 #include "stack/acl/acl.h"
@@ -78,7 +80,6 @@
 #include "stack/include/sco_hci_link_interface.h"
 #include "types/hci_role.h"
 #include "types/raw_address.h"
-#include "os/metrics.h"
 
 #ifndef PROPERTY_LINK_SUPERVISION_TIMEOUT
 #define PROPERTY_LINK_SUPERVISION_TIMEOUT \
@@ -2627,6 +2628,7 @@ bool acl_set_peer_le_features_from_handle(uint16_t hci_handle,
 
 void on_acl_br_edr_connected(const RawAddress& bda, uint16_t handle,
                              uint8_t enc_mode, bool locally_initiated) {
+  power_telemetry::GetInstance()->LogAclLinkDetails(handle, &bda, true);
   if (delayed_role_change_ != nullptr && delayed_role_change_->bd_addr == bda) {
     btm_sec_connected(bda, handle, HCI_SUCCESS, enc_mode,
                       delayed_role_change_->new_role);
@@ -2679,6 +2681,7 @@ void btm_acl_connected(const RawAddress& bda, uint16_t handle,
                        tHCI_STATUS status, uint8_t enc_mode) {
   switch (status) {
     case HCI_SUCCESS:
+      power_telemetry::GetInstance()->LogAclLinkDetails(handle, &bda, true);
       return on_acl_br_edr_connected(bda, handle, enc_mode,
                                      true /* locally_initiated */);
     default:
@@ -2698,7 +2701,7 @@ void btm_acl_disconnected(tHCI_STATUS status, uint16_t handle,
     LOG_WARN("Received disconnect with error:%s",
              hci_error_code_text(status).c_str());
   }
-
+  power_telemetry::GetInstance()->LogAclLinkDetails(handle, NULL, false);
   /* There can be a case when we rejected PIN code authentication */
   /* otherwise save a new reason */
   if (btm_get_acl_disc_reason_code() != HCI_ERR_HOST_REJECT_SECURITY) {
@@ -2781,6 +2784,7 @@ void acl_send_data_packet_br_edr(const RawAddress& bd_addr, BT_HDR* p_buf) {
       osi_free(p_buf);
       return;
     }
+    power_telemetry::GetInstance()->LogAclPktDetails(ACL_PKT_TX, p_buf->len);
     return bluetooth::shim::ACL_WriteData(p_acl->hci_handle, p_buf);
 }
 
@@ -2792,6 +2796,7 @@ void acl_send_data_packet_ble(const RawAddress& bd_addr, BT_HDR* p_buf) {
       osi_free(p_buf);
       return;
     }
+    power_telemetry::GetInstance()->LogAclPktDetails(ACL_PKT_TX, p_buf->len);
     return bluetooth::shim::ACL_WriteData(p_acl->hci_handle, p_buf);
 }
 
@@ -2873,6 +2878,7 @@ void acl_rcv_acl_data(BT_HDR* p_msg) {
   STREAM_TO_UINT16(acl_header.handle, p);
   acl_header.handle = HCID_GET_HANDLE(acl_header.handle);
 
+  power_telemetry::GetInstance()->LogAclPktDetails(ACL_PKT_RX, p_msg->len);
   STREAM_TO_UINT16(acl_header.hci_len, p);
   if (acl_header.hci_len < L2CAP_PKT_OVERHEAD ||
       acl_header.hci_len != p_msg->len - sizeof(acl_header)) {
