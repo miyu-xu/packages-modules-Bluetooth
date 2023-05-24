@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9f5844cc_015c9c34",
+        "filename": "system/blueberry/tests/sl4a_sl4a/gatt/gatt_connect_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-05-24T18:20:17Z",
+      "side": 1,
+      "message": "So it turns out those are not consistent with the Java layer constants. Therefore, we can\u0027t use them :(",
+      "parentUuid": "3638b6cc_c7348412",
+      "range": {
+        "startLine": 66,
+        "startChar": 0,
+        "endLine": 69,
+        "endChar": 0
+      },
+      "revId": "2ce4ad5b98141b7ae2980b48c402c4adecd5b4a2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d8664e3c_b65737b4",
