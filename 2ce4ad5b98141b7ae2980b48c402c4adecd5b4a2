@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3638b6cc_c7348412",
+        "filename": "system/blueberry/tests/sl4a_sl4a/gatt/gatt_connect_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1874901
+      },
+      "writtenOn": "2023-05-24T18:12:16Z",
+      "side": 1,
+      "message": "I should have thought about this sooner. Could we refer to existing constants? After some digging, this is what I found -- hopefully useful.\n\nhttps://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/system/blueberry/tests/gd/cert/py_hal.py;l\u003d27,238-240\n\nand the source PDL:\n\nhttps://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/system/gd/hci/hci_packets.pdl;l\u003d3253-3265",
+      "range": {
+        "startLine": 66,
+        "startChar": 0,
+        "endLine": 69,
+        "endChar": 0
+      },
+      "revId": "2ce4ad5b98141b7ae2980b48c402c4adecd5b4a2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d8664e3c_b65737b4",
+        "filename": "system/blueberry/utils/bt_test_utils.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 1874901
+      },
+      "writtenOn": "2023-05-24T18:12:16Z",
+      "side": 1,
+      "message": "If relevant, please set this to an appropriate constant (à la request for a constant I made in `system/blueberry/tests/sl4a_sl4a/gatt/gatt_connect_test.py`).\n\nOr default to `None` and only set the value in not `None` in lines 227/228? Or other?\n\nUpdate comment to reflect the valid values or the source of the values (e.g. the PDL?).",
+      "range": {
+        "startLine": 209,
+        "startChar": 84,
+        "endLine": 209,
+        "endChar": 86
+      },
+      "revId": "2ce4ad5b98141b7ae2980b48c402c4adecd5b4a2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
