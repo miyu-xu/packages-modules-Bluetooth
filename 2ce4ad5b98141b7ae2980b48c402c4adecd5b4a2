@@ -69,6 +69,30 @@
       },
       "revId": "2ce4ad5b98141b7ae2980b48c402c4adecd5b4a2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d68d8692_dc047064",
+        "filename": "system/blueberry/utils/bt_test_utils.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-05-24T18:22:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d8664e3c_b65737b4",
+      "range": {
+        "startLine": 209,
+        "startChar": 84,
+        "endLine": 209,
+        "endChar": 86
+      },
+      "revId": "2ce4ad5b98141b7ae2980b48c402c4adecd5b4a2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
