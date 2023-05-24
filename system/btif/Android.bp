@@ -609,6 +609,7 @@ cc_test {
         "libevent",
         "libflatbuffers-cpp",
         "libgmock",
+        "libosi",
     ],
     cflags: ["-DBUILDCFG"],
     target: {
@@ -741,6 +742,7 @@ cc_test {
         "libevent",
         "libflatbuffers-cpp",
         "libgmock",
+        "libosi",
     ],
     cflags: ["-DBUILDCFG"],
     target: {
