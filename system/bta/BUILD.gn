@@ -14,6 +14,9 @@
 #  limitations under the License.
 #
 
+import("//bt/system/gd/dumpsys/bundler/bundler.gni")
+import("//common-mk/flatbuffer.gni")
+
 static_library("bta") {
   sources = [
     "ag/bta_ag_act.cc",
@@ -81,8 +84,25 @@ static_library("bta") {
     "jv/bta_jv_act.cc",
     "jv/bta_jv_api.cc",
     "jv/bta_jv_cfg.cc",
-    "le_audio/client_linux.cc",
+    "le_audio/audio_hal_client/audio_sink_hal_client.cc",
+    "le_audio/audio_hal_client/audio_source_hal_client.cc",
+    "le_audio/broadcaster/broadcaster.cc",
+    "le_audio/broadcaster/broadcaster_types.cc",
+    "le_audio/broadcaster/state_machine.cc",
+    "le_audio/client.cc",
+    "le_audio/client_parser.cc",
+    "le_audio/codec_manager.cc",
+    "le_audio/content_control_id_keeper.cc",
+    "le_audio/devices.cc",
     "le_audio/hal_verifier_linux.cc",
+    "le_audio/le_audio_log_history.cc",
+    "le_audio/le_audio_set_configuration_provider.cc",
+    "le_audio/le_audio_set_configuration_provider_json.cc",
+    "le_audio/le_audio_types.cc",
+    "le_audio/le_audio_utils.cc",
+    "le_audio/metrics_collector.cc",
+    "le_audio/state_machine.cc",
+    "le_audio/storage_helper.cc",
     "pan/bta_pan_act.cc",
     "pan/bta_pan_api.cc",
     "pan/bta_pan_ci.cc",
@@ -106,6 +126,7 @@ static_library("bta") {
     "include",
     "sys",
     "//bt/system/",
+    "//bt/system/include",
     "//bt/system/linux_include",
     "//bt/system/bta",
     "//bt/system/gd",
@@ -121,6 +142,7 @@ static_library("bta") {
     "//bt/system/profile/avrcp",
     "//bt/system/packet/avrcp",
     "//bt/system/packet/base",
+    "//bt/system/embdrv/lc3/include",
   ]
 
   configs += [
@@ -130,7 +152,25 @@ static_library("bta") {
   deps = [
     "//bt/system:libbt-platform-protos-lite",
     "//bt/system/gd/rust/shim:init_flags_bridge_header",
+    "//bt/system/bta:LeAudioSetConfigSchemas_h",
+    "//bt/system/bta:LeAudioSetScenariosSchema_bfbs",
+    "//bt/system/embdrv/lc3:liblc3",
   ]
+}
+
+flatbuffer("LeAudioSetConfigSchemas_h") {
+  sources = [
+    "le_audio/audio_set_configurations.fbs",
+    "le_audio/audio_set_scenarios.fbs",
+  ]
+}
+
+bt_flatc_binary_schema("LeAudioSetScenariosSchema_bfbs") {
+  sources = [
+    "le_audio/audio_set_scenarios.fbs",
+  ]
+
+  include_dir = "system"
 }
 
 if (use.test) {
