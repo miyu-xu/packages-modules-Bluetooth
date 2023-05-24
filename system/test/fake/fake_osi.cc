@@ -15,6 +15,7 @@
  */
 #include "test/fake/fake_osi.h"
 
+#include "osi/include/stack_power_telemetry_mock.h"
 #include "test/mock/mock_osi_alarm.h"
 #include "test/mock/mock_osi_allocator.h"
 #include "test/mock/mock_osi_fixed_queue.h"
@@ -63,6 +64,48 @@ struct fixed_queue_t {
     capacity_ = capacity;
   }
 };
+
+struct power_telemetry::PowerTelemetryImpl {};
+
+power_telemetry::PowerTelemetry::PowerTelemetry() {}
+power_telemetry::PowerTelemetry::~PowerTelemetry() {}
+
+power_telemetry::PowerTelemetry& power_telemetry::GetInstance() {
+  static power_telemetry::MockPowerTelemetry power_telemetry;
+  return power_telemetry;
+}
+
+void power_telemetry::PowerTelemetry::LogInqScanStarted() {}
+void power_telemetry::PowerTelemetry::LogInqScanStopped() {}
+void power_telemetry::PowerTelemetry::LogBleAdvStarted() {}
+void power_telemetry::PowerTelemetry::LogBleAdvStopped() {}
+void power_telemetry::PowerTelemetry::LogTxPower(void* res) {}
+void power_telemetry::PowerTelemetry::LogLinkDetails(uint16_t handle,
+                                                     const RawAddress& bd_addr,
+                                                     bool is_connected,
+                                                     bool is_acl_link) {}
+void power_telemetry::PowerTelemetry::LogHciCmdDetail() {}
+void power_telemetry::PowerTelemetry::LogHciEvtDetail() {}
+void power_telemetry::PowerTelemetry::LogSniffStarted(
+    uint16_t handle, const RawAddress& bd_addr) {}
+void power_telemetry::PowerTelemetry::LogSniffStopped(
+    uint16_t handle, const RawAddress& bd_addr) {}
+void power_telemetry::PowerTelemetry::LogScanStarted() {}
+void power_telemetry::PowerTelemetry::LogTxAclPktData(uint16_t len) {}
+void power_telemetry::PowerTelemetry::LogRxAclPktData(uint16_t len) {}
+void power_telemetry::PowerTelemetry::LogChannelConnected(
+    uint16_t psm, int32_t src_id, int32_t dst_id, const RawAddress& bd_addr) {}
+void power_telemetry::PowerTelemetry::LogChannelDisconnected(
+    uint16_t psm, int32_t src_id, int32_t dst_id, const RawAddress& bd_addr) {}
+void power_telemetry::PowerTelemetry::LogTxBytes(uint16_t psm, int32_t src_id,
+                                                 int32_t dst_id,
+                                                 const RawAddress& bd_addr,
+                                                 int32_t num_bytes) {}
+void power_telemetry::PowerTelemetry::LogRxBytes(uint16_t psm, int32_t src_id,
+                                                 int32_t dst_id,
+                                                 const RawAddress& bd_addr,
+                                                 int32_t num_bytes) {}
+void power_telemetry::PowerTelemetry::Dumpsys(int32_t fd) {}
 
 namespace test {
 namespace fake {
