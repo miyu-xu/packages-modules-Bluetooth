@@ -17,6 +17,8 @@
 
 #include "has_preset.h"
 
+#include <base/logging.h>
+
 namespace le_audio {
 namespace has {
 
