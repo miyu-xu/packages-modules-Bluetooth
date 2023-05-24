@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0a3df74b_c6bcc2ae",
+        "filename": "system/stack/gatt/gatt_utils.cc",
+        "patchSetId": 41
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-05-24T21:13:39Z",
+      "side": 1,
+      "message": "Gatt/sdp have an interesting relationship.\n\nGatt uses SDP as a client when dishing out SDP data to remotes\nSDP uses GATT as a client when requesting GATT attr\u0027s from remote",
+      "parentUuid": "876c7e31_42d9b2da",
+      "revId": "b4061c92606cf058b7059069f8443a493735a30d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2f4f5f19_67392f0f",
         "filename": "system/stack/test/fuzzers/sdp/sdpFuzzFunctions.h",
         "patchSetId": 41
@@ -31,6 +49,30 @@
       "writtenOn": "2023-05-24T21:11:28Z",
       "side": 1,
       "message": "Do we need this?",
+      "range": {
+        "startLine": 40,
+        "startChar": 11,
+        "endLine": 40,
+        "endChar": 46
+      },
+      "revId": "b4061c92606cf058b7059069f8443a493735a30d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f55f9afd_959a4a8f",
+        "filename": "system/stack/test/fuzzers/sdp/sdpFuzzFunctions.h",
+        "patchSetId": 41
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-05-24T21:13:39Z",
+      "side": 1,
+      "message": "s/foo/bar/g\n\nI can clean up if needed",
+      "parentUuid": "2f4f5f19_67392f0f",
       "range": {
         "startLine": 40,
         "startChar": 11,
