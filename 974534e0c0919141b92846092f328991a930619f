@@ -16,6 +16,24 @@
       "message": "```\npackages/modules/Bluetooth/system/bta/le_audio/state_machine.cc:753:35: error: too many arguments to function call, expected single argument \u0027leAudioDevice\u0027, have 2 arguments\n        CisCreateForDevice(group, leAudioDevice);\n        ~~~~~~~~~~~~~~~~~~        ^~~~~~~~~~~~~\npackages/modules/Bluetooth/system/bta/le_audio/state_machine.cc:1448:15: note: \u0027CisCreateForDevice\u0027 declared here\n  static void CisCreateForDevice(LeAudioDevice* leAudioDevice) {\n```",
       "revId": "974534e0c0919141b92846092f328991a930619f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aa69d29b_112a519e",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 753,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-05-24T20:54:50Z",
+      "side": 1,
+      "message": "I think you did not cherrypick it on top of master branch",
+      "parentUuid": "489f9249_951d83ba",
+      "revId": "974534e0c0919141b92846092f328991a930619f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
