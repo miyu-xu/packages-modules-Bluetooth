@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e7072d24_6fe3cd0c",
+        "filename": "system/osi/include/stack_power_telemetry.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1985260
+      },
+      "writtenOn": "2023-05-24T03:02:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bb120885_63cd9b32",
+      "range": {
+        "startLine": 4,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 0
+      },
+      "revId": "d77ba8ba1ff8724ea9a77a436cee205f1a482c9a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "52681569_71184776",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-05-18T06:35:26Z",
       "side": 1,
       "message": "These definitions are not used in the header, so it\u0027s better to have them in the source files.\nAlso, using constexpr instead of legacy define.",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 22,
+        "endChar": 0
+      },
+      "revId": "d77ba8ba1ff8724ea9a77a436cee205f1a482c9a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1b099a64_707402f6",
+        "filename": "system/osi/include/stack_power_telemetry.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1985260
+      },
+      "writtenOn": "2023-05-24T03:02:15Z",
+      "side": 1,
+      "message": "These definitions will be used in other places as well. So let\u0027s me keep these in the header file.",
+      "parentUuid": "52681569_71184776",
       "range": {
         "startLine": 14,
         "startChar": 0,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "401448df_2be43352",
+        "filename": "system/osi/include/stack_power_telemetry.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1985260
+      },
+      "writtenOn": "2023-05-24T03:02:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7768cda2_67ee2ea1",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 23,
+        "endChar": 20
+      },
+      "revId": "d77ba8ba1ff8724ea9a77a436cee205f1a482c9a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f24a4042_c7ec50bb",
@@ -83,6 +155,30 @@
       "writtenOn": "2023-05-18T06:35:26Z",
       "side": 1,
       "message": "Same as above.",
+      "range": {
+        "startLine": 25,
+        "startChar": 0,
+        "endLine": 31,
+        "endChar": 0
+      },
+      "revId": "d77ba8ba1ff8724ea9a77a436cee205f1a482c9a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "09cbc2ed_c6de5709",
+        "filename": "system/osi/include/stack_power_telemetry.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1985260
+      },
+      "writtenOn": "2023-05-24T03:02:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f24a4042_c7ec50bb",
       "range": {
         "startLine": 25,
         "startChar": 0,
@@ -116,6 +212,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8eb13fd2_2df74a91",
+        "filename": "system/osi/include/stack_power_telemetry.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1985260
+      },
+      "writtenOn": "2023-05-24T03:02:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "93bf405d_55bc1c30",
+      "range": {
+        "startLine": 32,
+        "startChar": 0,
+        "endLine": 32,
+        "endChar": 19
+      },
+      "revId": "d77ba8ba1ff8724ea9a77a436cee205f1a482c9a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a5371679_ed6efebb",
@@ -129,6 +249,30 @@
       "writtenOn": "2023-05-18T06:35:26Z",
       "side": 1,
       "message": "Use `cstdint` types and in all the other places.",
+      "range": {
+        "startLine": 48,
+        "startChar": 2,
+        "endLine": 48,
+        "endChar": 6
+      },
+      "revId": "d77ba8ba1ff8724ea9a77a436cee205f1a482c9a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5d555a9e_0f4354a9",
+        "filename": "system/osi/include/stack_power_telemetry.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1985260
+      },
+      "writtenOn": "2023-05-24T03:02:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a5371679_ed6efebb",
       "range": {
         "startLine": 48,
         "startChar": 2,
@@ -162,6 +306,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d654e6c4_319b2c18",
+        "filename": "system/osi/include/stack_power_telemetry.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1985260
+      },
+      "writtenOn": "2023-05-24T03:02:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "021b2934_4f45e9c7",
+      "range": {
+        "startLine": 67,
+        "startChar": 0,
+        "endLine": 67,
+        "endChar": 21
+      },
+      "revId": "d77ba8ba1ff8724ea9a77a436cee205f1a482c9a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "228711ee_a2d292ae",
@@ -175,6 +343,30 @@
       "writtenOn": "2023-05-18T06:35:26Z",
       "side": 1,
       "message": "Use `unordered_map` if the order doesn\u0027t matter",
+      "range": {
+        "startLine": 115,
+        "startChar": 2,
+        "endLine": 115,
+        "endChar": 5
+      },
+      "revId": "d77ba8ba1ff8724ea9a77a436cee205f1a482c9a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bcfb1db5_36390c86",
+        "filename": "system/osi/include/stack_power_telemetry.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1985260
+      },
+      "writtenOn": "2023-05-24T03:02:15Z",
+      "side": 1,
+      "message": "The order matters because we will dump it and print the timestamp in dumpsys.",
+      "parentUuid": "228711ee_a2d292ae",
       "range": {
         "startLine": 115,
         "startChar": 2,
@@ -208,6 +400,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7e49f22b_b3db4f53",
+        "filename": "system/osi/include/stack_power_telemetry.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 1985260
+      },
+      "writtenOn": "2023-05-24T03:02:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "688512e5_38de7b31",
+      "range": {
+        "startLine": 132,
+        "startChar": 4,
+        "endLine": 132,
+        "endChar": 21
+      },
+      "revId": "d77ba8ba1ff8724ea9a77a436cee205f1a482c9a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7984a560_95abbaf7",
@@ -231,6 +447,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ce04a9e6_ea0e28ae",
+        "filename": "system/osi/src/stack_power_telemetry.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1985260
+      },
+      "writtenOn": "2023-05-24T03:02:15Z",
+      "side": 1,
+      "message": "I find out chrono is used to store the duration instead of a specific of time. We need to store the current time and show them on the dumpsys.\n\nI think it is better to keep using time_t.",
+      "parentUuid": "7984a560_95abbaf7",
+      "range": {
+        "startLine": 18,
+        "startChar": 21,
+        "endLine": 18,
+        "endChar": 27
+      },
+      "revId": "d77ba8ba1ff8724ea9a77a436cee205f1a482c9a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e656cd43_972d2ec5",
@@ -244,6 +484,30 @@
       "writtenOn": "2023-05-18T07:16:02Z",
       "side": 1,
       "message": "It seems making `LogAclLinkDetails()` take a pointer arg is better than having a placeholder here.",
+      "range": {
+        "startLine": 2700,
+        "startChar": 2,
+        "endLine": 2700,
+        "endChar": 17
+      },
+      "revId": "d77ba8ba1ff8724ea9a77a436cee205f1a482c9a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f9f6b0cc_6d9e2d92",
+        "filename": "system/stack/acl/btm_acl.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 2700,
+      "author": {
+        "id": 1985260
+      },
+      "writtenOn": "2023-05-24T03:02:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e656cd43_972d2ec5",
       "range": {
         "startLine": 2700,
         "startChar": 2,
