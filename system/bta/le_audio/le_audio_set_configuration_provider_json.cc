@@ -15,6 +15,8 @@
  *
  */
 
+#include <base/logging.h>
+
 #include <mutex>
 #include <string>
 #include <string_view>
