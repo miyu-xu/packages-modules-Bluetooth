@@ -111,19 +111,25 @@ mod test {
             le_manager::ErrorCode, mocks::mock_le_manager::MockActiveLeAclManager,
             ConnectionManagerClient,
         },
-        core::address::AddressType,
+        core::address::{AddressType, RawAddress},
     };
 
     use super::*;
 
     const CLIENT: ConnectionManagerClient = ConnectionManagerClient::GattClient(1);
 
-    const ADDRESS_1: AddressWithType =
-        AddressWithType { address: [1, 2, 3, 4, 5, 6], address_type: AddressType::Public };
-    const ADDRESS_2: AddressWithType =
-        AddressWithType { address: [1, 2, 3, 4, 5, 6], address_type: AddressType::Random };
-    const ADDRESS_3: AddressWithType =
-        AddressWithType { address: [1, 2, 3, 4, 5, 7], address_type: AddressType::Random };
+    const ADDRESS_1: AddressWithType = AddressWithType {
+        address: RawAddress([1, 2, 3, 4, 5, 6]),
+        address_type: AddressType::Public,
+    };
+    const ADDRESS_2: AddressWithType = AddressWithType {
+        address: RawAddress([1, 2, 3, 4, 5, 6]),
+        address_type: AddressType::Random,
+    };
+    const ADDRESS_3: AddressWithType = AddressWithType {
+        address: RawAddress([1, 2, 3, 4, 5, 7]),
+        address_type: AddressType::Random,
+    };
 
     #[test]
     fn test_determine_target_state() {

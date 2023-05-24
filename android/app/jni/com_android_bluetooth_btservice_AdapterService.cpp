@@ -31,6 +31,7 @@
 #include "com_android_bluetooth.h"
 #include "hardware/bt_sock.h"
 #include "os/logging/log_redaction.h"
+#include "src/metrics/ffi.rs.h"
 #include "utils/Log.h"
 #include "utils/misc.h"
 
@@ -2411,6 +2412,8 @@ jint JNI_OnLoad(JavaVM* jvm, void* reserved) {
     ALOGE("jni bluetooth quality report registration failure: %d", status);
     return JNI_ERR;
   }
+
+  android::register_metrics_native_methods(e);
 
   return JNI_VERSION_1_6;
 }

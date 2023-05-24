@@ -3503,6 +3503,22 @@ public class AdapterService extends Service {
             }
         }
 
+        // Implemented in native, no permission check needed, so we can skip some levels
+        // of indirection
+        @Override
+        public native void logRfcommConnectionAttemptStart(
+                int attemptId, BluetoothDevice device, boolean isSecured, int appUid);
+
+        // Implemented in native, no permission check needed, so we can skip some levels
+        // of indirection
+        @Override
+        public native void logRfcommClientConnectionComplete(int attemptId, boolean success);
+
+        // Implemented in native, no permission check needed, so we can skip some levels
+        // of indirection
+        @Override
+        public native void logRfcommClientDisconnection();
+
         @Override
         public void sdpSearch(BluetoothDevice device, ParcelUuid uuid, AttributionSource source,
                 SynchronousResultReceiver receiver) {
@@ -7212,6 +7228,14 @@ public class AdapterService extends Service {
             String featureBame, String name);
     private native int getRemotePbapPceVersionNative(String address);
     private native boolean pbapPseDynamicVersionUpgradeIsEnabledNative();
+
+    public native void logRfcommConnectionAttemptStart(
+            String address, boolean isSecured, int appUid, int attemptId);
+
+    public native void logRfcommClientConnectionComplete(
+            int attemptId, boolean success, long socketConnectionLatencyMillis);
+
+    public native void logRfcommClientDisconnection();
 
     // Returns if this is a mock object. This is currently used in testing so that we may not call
     // System.exit() while finalizing the object. Otherwise GC of mock objects unfortunately ends up

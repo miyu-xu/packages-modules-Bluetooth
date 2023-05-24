@@ -38,7 +38,9 @@ rust_defaults {
         "libbitflags",
         "libbt_common_only_init_flags",
         "libcxx",
+        "libjni",
         "liblog_rust",
+        "libmacaddr",
         "libscopeguard",
 
         // needed to work around duplicate symbols
@@ -92,6 +94,7 @@ rust_ffi_static {
         android: {
             rustlibs: [
                 "libandroid_logger",
+                "libstatslog_rust",
             ],
         },
     },
@@ -173,6 +176,7 @@ filegroup {
         "src/connection/ffi.rs",
         "src/core/ffi.rs",
         "src/gatt/ffi.rs",
+        "src/metrics/ffi.rs",
     ],
 }
 
