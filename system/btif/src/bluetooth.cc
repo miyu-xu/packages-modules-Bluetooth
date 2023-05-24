@@ -117,8 +117,8 @@ using bluetooth::has::HasClientInterface;
 using bluetooth::hearing_aid::HearingAidInterface;
 #ifndef TARGET_FLOSS
 using bluetooth::le_audio::LeAudioBroadcasterInterface;
-using bluetooth::le_audio::LeAudioClientInterface;
 #endif
+using bluetooth::le_audio::LeAudioClientInterface;
 using bluetooth::vc::VolumeControlInterface;
 
 /*******************************************************************************
@@ -164,11 +164,11 @@ extern HearingAidInterface* btif_hearing_aid_get_interface();
 #ifndef TARGET_FLOSS
 /* Hearing Access client */
 extern HasClientInterface* btif_has_client_get_interface();
-/* LeAudio testi client */
-extern LeAudioClientInterface* btif_le_audio_get_interface();
 /* LeAudio Broadcaster */
 extern LeAudioBroadcasterInterface* btif_le_audio_broadcaster_get_interface();
 #endif
+/* LeAudio testi client */
+extern LeAudioClientInterface* btif_le_audio_get_interface();
 /* Coordinated Set Service Client */
 extern CsisClientInterface* btif_csis_client_get_interface();
 /* Volume Control client */
@@ -292,7 +292,6 @@ struct CoreInterfaceImpl : bluetooth::core::CoreInterface {
 #endif
     btif_hearing_aid_get_interface()->RemoveDevice(bd_addr);
 
-#ifndef TARGET_FLOSS
     if (bluetooth::csis::CsisClient::IsCsisClientRunning())
       btif_csis_client_get_interface()->RemoveDevice(bd_addr);
 
@@ -302,7 +301,6 @@ struct CoreInterfaceImpl : bluetooth::core::CoreInterface {
     if (VolumeControl::IsVolumeControlRunning()) {
       btif_volume_control_get_interface()->RemoveDevice(bd_addr);
     }
-#endif
   }
 
   void onLinkDown(const RawAddress& bd_addr) override {
@@ -799,10 +797,10 @@ static void dump(int fd, const char** arguments) {
 #endif
   HearingAid::DebugDump(fd);
 #ifndef TARGET_FLOSS
-  LeAudioClient::DebugDump(fd);
   LeAudioBroadcaster::DebugDump(fd);
-  VolumeControl::DebugDump(fd);
 #endif
+  LeAudioClient::DebugDump(fd);
+  VolumeControl::DebugDump(fd);
   connection_manager::dump(fd);
   bluetooth::bqr::DebugDump(fd);
   PAN_Dumpsys(fd);
@@ -894,12 +892,12 @@ static const void* get_profile_interface(const char* profile_id) {
   }
 
 #ifndef TARGET_FLOSS
-  if (is_profile(profile_id, BT_PROFILE_LE_AUDIO_ID))
-    return btif_le_audio_get_interface();
-
   if (is_profile(profile_id, BT_PROFILE_LE_AUDIO_BROADCASTER_ID))
     return btif_le_audio_broadcaster_get_interface();
 #endif
+
+  if (is_profile(profile_id, BT_PROFILE_LE_AUDIO_ID))
+    return btif_le_audio_get_interface();
 
   if (is_profile(profile_id, BT_PROFILE_VC_ID))
     return btif_volume_control_get_interface();

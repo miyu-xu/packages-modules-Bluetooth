@@ -15,7 +15,10 @@
  * limitations under the License.
  */
 
+#ifndef TARGET_FLOSS
 #include "audio_hal_interface/hal_version_manager.h"
+#endif
+
 #include "audio_hal_interface/le_audio_software.h"
 #include "bta/le_audio/codec_manager.h"
 

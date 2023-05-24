@@ -17,6 +17,7 @@
 
 #pragma once
 
+#include <base/logging.h>
 #include <map>
 #include <memory>
 #include <optional>

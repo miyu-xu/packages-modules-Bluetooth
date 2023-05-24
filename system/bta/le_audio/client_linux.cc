@@ -49,7 +49,23 @@ void LeAudioClient::Initialize(
     bluetooth::le_audio::LeAudioClientCallbacks* callbacks,
     base::Closure initCb, base::Callback<bool()> hal_2_1_verifier,
     const std::vector<bluetooth::le_audio::btle_audio_codec_config_t>&
-        offloading_preference) {}
+    offloading_preference) {
+  IsoManager::GetInstance()->Start();
+
+  audioSinkReceiver = &audioSinkReceiverImpl;
+  audioSourceReceiver = &audioSourceReceiverImpl;
+  stateMachineHciCallbacks = &stateMachineHciCallbacksImpl;
+  stateMachineCallbacks = &stateMachineCallbacksImpl;
+  device_group_callbacks = &deviceGroupsCallbacksImpl;
+  instance = new LeAudioClientImpl(callbacks_, stateMachineCallbacks, initCb);
+
+  IsoManager::GetInstance()->RegisterCigCallbacks(stateMachineHciCallbacks);
+  CodecManager::GetInstance()->Start(offloading_preference);
+  ContentControlIdKeeper::GetInstance()->Start();
+
+  callbacks_->OnInitialized();
+
+}
 void LeAudioClient::Cleanup(base::Callback<void()> cleanupCb) {}
 LeAudioClient* LeAudioClient::Get(void) { return nullptr; }
 void LeAudioClient::DebugDump(int fd) {}

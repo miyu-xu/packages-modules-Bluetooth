@@ -16,6 +16,7 @@
 
 #include "content_control_id_keeper.h"
 
+#include <base/logging.h>
 #include <bitset>
 #include <map>
 

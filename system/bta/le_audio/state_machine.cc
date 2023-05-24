@@ -17,7 +17,8 @@
 
 #include "state_machine.h"
 
-#include <base/functional/bind.h>
+#include <bind.h>
+#include <bind_helpers.h>
 #include <base/functional/callback.h>
 #include <base/strings/string_number_conversions.h>
 
@@ -196,7 +197,7 @@ class LeAudioGroupStateMachineImpl : public LeAudioGroupStateMachine {
         ReleaseCisIds(group);
 
         /* If configuration is needed */
-        FALLTHROUGH;
+        [[fallthrough]];
       case AseState::BTA_LE_AUDIO_ASE_STATE_IDLE:
         if (!group->Configure(context_type, metadata_context_types,
                               ccid_lists)) {
