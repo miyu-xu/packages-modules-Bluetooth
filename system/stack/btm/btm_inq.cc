@@ -44,6 +44,7 @@
 #include "osi/include/log.h"
 #include "osi/include/osi.h"
 #include "osi/include/properties.h"
+#include "osi/include/stack_power_telemetry.h"
 #include "stack/btm/btm_ble_int.h"
 #include "stack/btm/btm_dev.h"
 #include "stack/btm/btm_int_types.h"
@@ -256,6 +257,11 @@ tBTM_STATUS BTM_SetDiscoverability(uint16_t inq_mode) {
   /* If the window and/or interval is '0', set to default values */
   BTM_TRACE_API("BTM_SetDiscoverability: mode %d [NonDisc-0, Lim-1, Gen-2]",
                 inq_mode);
+  if (inq_mode == BTM_NON_DISCOVERABLE) {
+    power_telemetry::GetInstance()->LogInqScanDetails(false);
+  } else {
+    power_telemetry::GetInstance()->LogInqScanDetails(true);
+  }
 
   /* Set the IAC if needed */
   if (inq_mode != BTM_NON_DISCOVERABLE) {
