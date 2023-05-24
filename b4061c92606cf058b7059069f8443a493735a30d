@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "876c7e31_42d9b2da",
+        "filename": "system/stack/gatt/gatt_utils.cc",
+        "patchSetId": 41
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-05-24T21:11:28Z",
+      "side": 1,
+      "message": "Why do we need these in GATT?",
+      "revId": "b4061c92606cf058b7059069f8443a493735a30d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2f4f5f19_67392f0f",
+        "filename": "system/stack/test/fuzzers/sdp/sdpFuzzFunctions.h",
+        "patchSetId": 41
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-05-24T21:11:28Z",
+      "side": 1,
+      "message": "Do we need this?",
+      "range": {
+        "startLine": 40,
+        "startChar": 11,
+        "endLine": 40,
+        "endChar": 46
+      },
+      "revId": "b4061c92606cf058b7059069f8443a493735a30d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
