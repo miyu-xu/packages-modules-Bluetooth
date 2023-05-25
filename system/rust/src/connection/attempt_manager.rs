@@ -194,7 +194,7 @@ impl ConnectionAttempts {
 #[cfg(test)]
 mod test {
     use crate::{
-        core::address::AddressType,
+        core::address::{AddressType, RawAddress},
         utils::task::{block_on_locally, try_await},
     };
 
@@ -203,10 +203,14 @@ mod test {
     const CLIENT_1: ConnectionManagerClient = ConnectionManagerClient::GattClient(1);
     const CLIENT_2: ConnectionManagerClient = ConnectionManagerClient::GattClient(2);
 
-    const ADDRESS_1: AddressWithType =
-        AddressWithType { address: [1, 2, 3, 4, 5, 6], address_type: AddressType::Public };
-    const ADDRESS_2: AddressWithType =
-        AddressWithType { address: [1, 2, 3, 4, 5, 6], address_type: AddressType::Random };
+    const ADDRESS_1: AddressWithType = AddressWithType {
+        address: RawAddress([1, 2, 3, 4, 5, 6]),
+        address_type: AddressType::Public,
+    };
+    const ADDRESS_2: AddressWithType = AddressWithType {
+        address: RawAddress([1, 2, 3, 4, 5, 6]),
+        address_type: AddressType::Random,
+    };
 
     const CONNECTION_1: LeConnection = LeConnection { remote_address: ADDRESS_1 };
     const CONNECTION_2: LeConnection = LeConnection { remote_address: ADDRESS_2 };

@@ -3503,6 +3503,22 @@ public class AdapterService extends Service {
             }
         }
 
+        // Implemented in native, no permission check needed, so we can skip some levels
+        // of indirection
+        @Override
+        public native void logRfcommConnectionAttemptStart(
+                int attemptId, BluetoothDevice device, boolean isSecured, ParcelUuid uuid, int port, int appUid);
+
+        // Implemented in native, no permission check needed, so we can skip some levels
+        // of indirection
+        @Override
+        public native void logRfcommClientConnectionComplete(int attemptId, boolean success);
+
+        // Implemented in native, no permission check needed, so we can skip some levels
+        // of indirection
+        @Override
+        public native void logRfcommClientDisconnection();
+
         @Override
         public void sdpSearch(BluetoothDevice device, ParcelUuid uuid, AttributionSource source,
                 SynchronousResultReceiver receiver) {
