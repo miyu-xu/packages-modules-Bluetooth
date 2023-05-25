@@ -751,32 +751,23 @@ class BluetoothManagerService {
         return Settings.Global.getInt(mContext.getContentResolver(), APM_ENHANCEMENT, 0) == 1;
     }
 
-    private boolean supportBluetoothPersistedState() {
-        // Set default support to true to copy config default.
-        return BluetoothProperties.isSupportPersistedStateEnabled().orElse(true);
-    }
-
     /**
      *  Returns true if the Bluetooth saved state is "on"
      */
     private boolean isBluetoothPersistedStateOn() {
-        if (!supportBluetoothPersistedState()) {
-            return false;
-        }
-        int state = Settings.Global.getInt(mContentResolver, Settings.Global.BLUETOOTH_ON, -1);
+        final int state =
+                BluetoothServerProxy.getInstance().getBluetoothPersistedState(mContentResolver);
         if (DBG) {
-            Log.d(TAG, "Bluetooth persisted state: " + state);
+            Log.d(TAG, "isBluetoothPersistedStateOn: " + state);
         }
-        return state != BLUETOOTH_OFF;
+        return state != -1 && state != BLUETOOTH_OFF;
     }
 
     private boolean isBluetoothPersistedStateOnAirplane() {
-        if (!supportBluetoothPersistedState()) {
-            return false;
-        }
-        int state = Settings.Global.getInt(mContentResolver, Settings.Global.BLUETOOTH_ON, -1);
+        final int state =
+                BluetoothServerProxy.getInstance().getBluetoothPersistedState(mContentResolver);
         if (DBG) {
-            Log.d(TAG, "Bluetooth persisted state: " + state);
+            Log.d(TAG, "isBluetoothPersistedStateOnAirplane: " + state);
         }
         return state == BLUETOOTH_ON_AIRPLANE;
     }
@@ -785,16 +776,16 @@ class BluetoothManagerService {
      *  Returns true if the Bluetooth saved state is BLUETOOTH_ON_BLUETOOTH
      */
     private boolean isBluetoothPersistedStateOnBluetooth() {
-        if (!supportBluetoothPersistedState()) {
-            return false;
+        final int state =
+                BluetoothServerProxy.getInstance().getBluetoothPersistedState(mContentResolver);
+        if (DBG) {
+            Log.d(TAG, "isBluetoothPersistedStateOnBluetooth: " + state);
         }
-        return Settings.Global.getInt(mContentResolver, Settings.Global.BLUETOOTH_ON,
-                BLUETOOTH_ON_BLUETOOTH) == BLUETOOTH_ON_BLUETOOTH;
+        // Persisted state is assumed ON if Settings.Global has never been defined
+        return state == -1 || state == BLUETOOTH_ON_BLUETOOTH;
     }
 
-    /**
-     *  Save the Bluetooth on/off state
-     */
+    /** Save the Bluetooth on/off state */
     private void persistBluetoothSetting(int value) {
         if (DBG) {
             Log.d(TAG, "Persisting Bluetooth Setting: " + value);

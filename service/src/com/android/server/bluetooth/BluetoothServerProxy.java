@@ -91,6 +91,10 @@ public class BluetoothServerProxy {
         return Settings.Secure.getString(contentResolver, name);
     }
 
+    int getBluetoothPersistedState(ContentResolver resolver) {
+        return Settings.Global.getInt(resolver, Settings.Global.BLUETOOTH_ON, -1);
+    }
+
     /**
      * Proxies
      * {@link com.android.server.bluetooth.BluetoothManagerService.BluetoothHandler.sendMessage}.
