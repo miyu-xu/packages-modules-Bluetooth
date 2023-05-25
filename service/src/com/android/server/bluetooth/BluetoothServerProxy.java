@@ -19,6 +19,7 @@ package com.android.server.bluetooth;
 import android.annotation.NonNull;
 import android.content.ContentResolver;
 import android.os.HandlerThread;
+import android.os.IBinder;
 import android.provider.Settings;
 import android.util.Log;
 
@@ -58,6 +59,10 @@ class BluetoothServerProxy {
 
     HandlerThread createHandlerThread(String name) {
         return new HandlerThread(name);
+    }
+
+    AdapterBinder createAdapterBinder(IBinder binder) {
+        return new AdapterBinder(binder);
     }
 
     String settingsSecureGetString(ContentResolver contentResolver, String name) {
