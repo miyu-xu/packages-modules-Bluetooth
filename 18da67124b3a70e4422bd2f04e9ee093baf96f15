@@ -69,6 +69,30 @@
       },
       "revId": "18da67124b3a70e4422bd2f04e9ee093baf96f15",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "501aba05_76fae064",
+        "filename": "tools/rootcanal/py/bluetooth.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-05-25T18:12:04Z",
+      "side": 1,
+      "message": "Required now that I am using classic HCI commands; specifically for parsing and serializing ll.Page, hci.ConnectionRequest",
+      "parentUuid": "29ae4d65_4effd6bd",
+      "range": {
+        "startLine": 53,
+        "startChar": 6,
+        "endLine": 53,
+        "endChar": 19
+      },
+      "revId": "18da67124b3a70e4422bd2f04e9ee093baf96f15",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
