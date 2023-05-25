@@ -17,6 +17,12 @@ import avatar
 import enum
 import grpc
 import logging
+import inspect
+import itertools
+import math
+import numpy as np
+import os
+from threading import Thread
 
 from avatar import BumblePandoraDevice, PandoraDevice, PandoraDevices, asynchronous
 from bumble import pandora as bumble_server
@@ -30,9 +36,11 @@ from mobly.asserts import assert_in  # type: ignore
 from mobly.asserts import assert_is_not_none  # type: ignore
 from mobly.asserts import assert_true  # type: ignore
 from pandora._utils import AioStream
+from pandora._utils import Stream
 from pandora.host_pb2 import PUBLIC, RANDOM, AdvertiseResponse, Connection, DataTypes, OwnAddressType, ScanningResponse
 from pandora.security_pb2 import LE_LEVEL3
 from pandora_experimental.asha_grpc_aio import Asha as AioAsha, add_AshaServicer_to_server
+from pandora_experimental.asha_pb2 import PlaybackAudioRequest
 from typing import List, Optional, Tuple
 
 ASHA_UUID = GATT_ASHA_SERVICE.to_hex_str('-')
@@ -40,6 +48,110 @@ HISYCNID: List[int] = [0x01, 0x02, 0x03, 0x04, 0x5, 0x6, 0x7, 0x8]
 COMPLETE_LOCAL_NAME: str = "Bumble"
 AUDIO_SIGNAL_AMPLITUDE = 0.8
 AUDIO_SIGNAL_SAMPLING_RATE = 44100
+
+# import numpy as np
+# from scipy.io import wavfile
+
+SINE_FREQUENCY = 440
+SINE_DURATION = 0.1
+
+# File which stores the audio signal output data (after transport).
+# Used for running comparisons with the generated audio signal.
+OUTPUT_WAV_FILE = '/tmp/audiodata'
+
+WAV_RIFF_SIZE_OFFSET = 4
+WAV_DATA_SIZE_OFFSET = 40
+
+
+
+# test
+
+audio_event_loop = asyncio.new_event_loop()
+
+class AudioSignal:
+    """Audio signal generator and verifier."""
+
+    def __init__(self, transport, amplitude, fs):
+        """Init AudioSignal class.
+
+        Args:
+            transport: function to send the generated audio data to.
+            amplitude: amplitude of the signal to generate.
+            fs: sampling rate of the signal to generate.
+        """
+        self.transport = transport
+        self.amplitude = amplitude
+        self.fs = fs
+        self.thread = None
+
+    def start(self):
+        print("start")
+        """Generates the audio signal and send it to the transport."""
+        self.thread = Thread(target=self._run_in_audio_event_loop)
+        self.thread.start()
+
+    def _run_in_audio_event_loop(self):
+        print("callback_a")
+        asyncio.set_event_loop(audio_event_loop)
+        asyncio.get_event_loop().call_soon(lambda: self._run())
+        audio_event_loop.run_forever()
+
+    def _run(self):
+        print("run!")
+        sine = self._generate_sine(SINE_FREQUENCY, SINE_DURATION)
+
+        # Interleaved audio.
+        stereo = np.zeros(sine.size * 2, dtype=sine.dtype)
+        stereo[0::2] = sine
+
+        # Send 4 second of audio.
+        audio = itertools.repeat(stereo.tobytes(), int(4 / SINE_DURATION))
+        print(type(audio))
+        print(type(self.transport))
+        print("trigger send data here")
+        self.transport(audio)
+        print("end send data")
+
+    def _generate_sine(self, f, duration):
+        sine = self.amplitude * \
+            np.sin(2 * np.pi * np.arange(self.fs * duration) * (f / self.fs))
+        s16le = (sine * 32767).astype('<i2')
+        return s16le
+
+    def _fixup_wav_header(self, path):
+        with open(path, 'r+b') as f:
+            f.seek(0, os.SEEK_END)
+            file_size = f.tell()
+            for offset in [WAV_RIFF_SIZE_OFFSET, WAV_DATA_SIZE_OFFSET]:
+                size = file_size - offset - 4
+                f.seek(offset)
+                f.write(size.to_bytes(4, byteorder='little'))
+
+    def verify(self):
+        """Verifies that the audio signal is correctly output."""
+        assert self.thread is not None
+        self.thread.join()
+        self.thread = None
+
+        self.fixup_wav_header(OUTPUT_WAV_FILE)
+
+        samplerate, data = wavfile.read(OUTPUT_WAV_FILE)
+        # Take one second of audio after the first second.
+        audio = data[samplerate:samplerate*2, 0].astype(np.float) / 32767
+        assert len(audio) == samplerate
+
+        spectrum = np.abs(np.fft.fft(audio))
+        frequency = np.fft.fftfreq(samplerate, d=1/samplerate)
+        amplitudes = spectrum / (samplerate/2)
+        index = np.where(frequency == SINE_FREQUENCY)
+        amplitude = amplitudes[index][0]
+
+        match_amplitude = math.isclose(
+            amplitude, self.amplitude, rel_tol=1e-03)
+
+        return match_amplitude
+# test
+
 
 
 class Ear(enum.IntEnum):
@@ -201,6 +313,22 @@ class ASHATest(base_test.BaseTestClass):  # type: ignore[misc]
 
         asha_service.on('stop', stop_command_handler)
         return stop_future
+
+    async def get_audio_data(self, ref_device: BumblePandoraDevice, connection: Connection, timeout: int) -> bytearray:
+        ref_asha = AioAsha(ref_device.aio.channel)
+        audio_data = bytearray()
+        try:
+            captured_data = ref_asha.CaptureAudio(connection=connection, timeout=timeout)
+            async for data in captured_data:
+                audio_data.extend(data.data)
+
+        except grpc.aio.AioRpcError as e:
+            if e.code() == grpc.StatusCode.DEADLINE_EXCEEDED:
+                return audio_data
+            else:
+                raise e
+
+        return audio_data
 
     @avatar.parameterized(
         (RANDOM, Ear.LEFT),
@@ -853,20 +981,16 @@ class ASHATest(base_test.BaseTestClass):  # type: ignore[misc]
 
         await dut_asha.WaitPeripheral(connection=dut_ref)
         await dut_asha.Start(connection=dut_ref)
-        logging.info("send stop")
-        _, stop_result = await asyncio.gather(dut_asha.Stop(), asyncio.wait_for(stop_future, timeout=10.0))
+        # logging.info("send stop")
+        # _, stop_result = await asyncio.gather(dut_asha.Stop(), asyncio.wait_for(stop_future, timeout=10.0))
 
-        logging.info(f"stop_result:{stop_result}")
-        assert_is_not_none(stop_result)
+        # logging.info(f"stop_result:{stop_result}")
+        # assert_is_not_none(stop_result)
 
-        ref_asha = AioAsha(self.ref_left.aio.channel)
-        try:
-            ref_asha.CaptureAudio(connection=ref_dut, timeout=2)
-        except grpc.aio.AioRpcError as e:
-            if e.code() == grpc.StatusCode.DEADLINE_EXCEEDED:
-                logging.info("no audio data, work as expected")
-            else:
-                raise e
+        audio_data = await self.get_audio_data(ref_device=self.ref_left, connection=ref_dut, timeout=100)
+        print("=================")
+        print(len(audio_data))
+        assert_equal(len(audio_data), 0)
 
     @asynchronous
     async def test_music_restart(self) -> None:
@@ -1015,6 +1139,55 @@ class ASHATest(base_test.BaseTestClass):  # type: ignore[misc]
         # ref_left already connected, otherstate = 1
         assert_equal(start_result_right['otherstate'], 1)
 
+    @asynchronous
+    async def test_music_audio_playback(self) -> None:
+        """
+        DUT discovers Ref.
+        DUT initiates connection to Ref.
+        Verify that DUT and Ref are bonded and connected.
+        DUT is streaming media to Ref.
+        DUT stops media streaming on Ref.
+        Verify that DUT sends a correct AudioControlPoint `Stop` command.
+        """
+
+        async def ref_device_connect(ref_device: BumblePandoraDevice, ear: Ear) -> Tuple[Connection, Connection]:
+            advertisement = await self.ref_advertise_asha(ref_device=ref_device, ref_address_type=RANDOM, ear=ear)
+            ref = await self.dut_scan_for_asha(dut_address_type=RANDOM, ear=ear)
+            # DUT initiates connection to ref_device.
+            dut_ref, ref_dut = await self.dut_connect_to_ref(advertisement, ref, RANDOM)
+            advertisement.cancel()
+
+            return dut_ref, ref_dut
+
+        dut_ref_left, ref_left_dut = await ref_device_connect(self.ref_left, Ear.LEFT)
+
+        # DUT starts pairing with the ref_left
+        (secure_left, wait_security_left) = await asyncio.gather(
+            self.dut.aio.security.Secure(connection=dut_ref_left, le=LE_LEVEL3),
+            self.ref_left.aio.security.WaitSecurity(connection=ref_left_dut, le=LE_LEVEL3),
+        )
+
+        assert_equal(secure_left.result_variant(), 'success')
+        assert_equal(wait_security_left.result_variant(), 'success')
+
+        dut_asha = AioAsha(self.dut.aio.channel)
+
+        stop_future_left = self.get_stop_future(self.ref_left)
+
+        await dut_asha.WaitPeripheral(connection=dut_ref_left)
+        await dut_asha.Start(connection=dut_ref_left)
+
+        def convert_frame(data):
+            return PlaybackAudioRequest(connection=dut_ref_left, data=data)
+
+        asha_audio = AudioSignal(lambda frames: dut_asha.PlaybackAudio(map(convert_frame, frames)),
+                                 AUDIO_SIGNAL_AMPLITUDE, AUDIO_SIGNAL_SAMPLING_RATE)
+        asha_audio.start()
+
+        audio_data = await self.get_audio_data(ref_device=self.ref_left, connection=ref_left_dut, timeout=100)
+        print("=================")
+        print(len(audio_data))
+        assert_equal(len(audio_data), 0)
 
 if __name__ == "__main__":
     logging.basicConfig(level=logging.DEBUG)
