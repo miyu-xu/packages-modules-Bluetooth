@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e0d09567_869dc9e7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1380243
+      },
+      "writtenOn": "2023-05-25T10:33:47Z",
+      "side": 1,
+      "message": "Ping, can someone take a look at this? It\u0027s a fairly simple clean-up.",
+      "revId": "bd2faa9ade1c38bfde8ef6656260e19e664d115e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
