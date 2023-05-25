@@ -93,6 +93,30 @@
       },
       "revId": "18da67124b3a70e4422bd2f04e9ee093baf96f15",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "80698d37_712d8c6c",
+        "filename": "tools/rootcanal/py/bluetooth.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-05-25T18:13:20Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "501aba05_76fae064",
+      "range": {
+        "startLine": 53,
+        "startChar": 6,
+        "endLine": 53,
+        "endChar": 19
+      },
+      "revId": "18da67124b3a70e4422bd2f04e9ee093baf96f15",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
