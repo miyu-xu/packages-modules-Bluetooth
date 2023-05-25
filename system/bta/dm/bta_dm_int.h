@@ -413,6 +413,8 @@ typedef struct {
   uint16_t conn_id;
   alarm_t* gatt_close_timer; /* GATT channel close delay timer */
   RawAddress pending_close_bda; /* pending GATT channel remote device address */
+  uint8_t gatt_attempts;
+  uint64_t gatt_conn_start;
 
 } tBTA_DM_SEARCH_CB;
 
