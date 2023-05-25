@@ -629,8 +629,7 @@ class BluetoothManagerService {
 
         mBinder = new BluetoothServiceBinder(this, context, mUserManager);
         mBluetoothHandlerThread.start();
-        mHandler = BluetoothServerProxy.getInstance().newBluetoothHandler(
-                new BluetoothHandler(mBluetoothHandlerThread.getLooper()));
+        mHandler = new BluetoothHandler(mBluetoothHandlerThread.getLooper());
 
         mContentResolver = context.getContentResolver();
 
