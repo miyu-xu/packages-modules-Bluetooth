@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e3c314a6_29f12446",
+        "filename": "tools/rootcanal/model/controller/link_layer_controller.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 5207,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-05-25T18:04:37Z",
+      "side": 1,
+      "message": "So it\u0027s not a quirk, it\u0027s according to the spec?",
+      "range": {
+        "startLine": 5204,
+        "startChar": 0,
+        "endLine": 5207,
+        "endChar": 35
+      },
+      "revId": "18da67124b3a70e4422bd2f04e9ee093baf96f15",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "29ae4d65_4effd6bd",
+        "filename": "tools/rootcanal/py/bluetooth.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-05-25T18:04:37Z",
+      "side": 1,
+      "message": "unrelated?",
+      "range": {
+        "startLine": 53,
+        "startChar": 6,
+        "endLine": 53,
+        "endChar": 19
+      },
+      "revId": "18da67124b3a70e4422bd2f04e9ee093baf96f15",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
