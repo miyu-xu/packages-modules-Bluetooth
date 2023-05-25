@@ -46,6 +46,30 @@
       },
       "revId": "78133222c76513aa4736d5245e0efb0754ab1e00",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "872bd188_20590741",
+        "filename": "tools/rootcanal/config.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-05-25T18:05:25Z",
+      "side": 0,
+      "message": "Acknowledged",
+      "parentUuid": "40a612e5_2752c12d",
+      "range": {
+        "startLine": 25,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 64
+      },
+      "revId": "78133222c76513aa4736d5245e0efb0754ab1e00",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
