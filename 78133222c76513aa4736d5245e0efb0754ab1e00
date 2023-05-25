@@ -22,6 +22,30 @@
       },
       "revId": "78133222c76513aa4736d5245e0efb0754ab1e00",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "40a612e5_2752c12d",
+        "filename": "tools/rootcanal/config.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-05-25T18:03:05Z",
+      "side": 0,
+      "message": "This is actually not a quirk, the LMP TS do specify that the Role Change event is sent before the Connection Complete event when Role switch is requested at connection setup.",
+      "parentUuid": "c3c0935e_f16bf448",
+      "range": {
+        "startLine": 25,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 64
+      },
+      "revId": "78133222c76513aa4736d5245e0efb0754ab1e00",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
