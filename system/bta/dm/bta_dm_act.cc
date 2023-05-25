@@ -40,6 +40,7 @@
 #include "btif/include/btif_dm.h"
 #include "btif/include/btif_storage.h"
 #include "btif/include/stack_manager.h"
+#include "common/time_util.h"
 #include "device/include/controller.h"
 #include "device/include/interop.h"
 #include "gd/common/init_flags.h"
@@ -81,6 +82,11 @@ using bluetooth::Uuid;
 
 namespace {
 constexpr char kBtmLogTag[] = "SDP";
+
+/* When attempting to do GATT service discovery over LE after pairing, retry 2
+ * times, but don't wait longer than 25 seconds for connection */
+constexpr int DM_MAX_GATT_ATTEMPTS_AFTER_PAIRING = 2;
+constexpr uint64_t DM_MAX_GATT_CONNECTION_WAIT_MS = 25000;
 }
 
 void BTIF_dm_disable();
@@ -1590,6 +1596,7 @@ void bta_dm_search_cmpl() {
 
   bta_dm_search_cb.p_search_cback(BTA_DM_DISC_CMPL_EVT, nullptr);
   bta_dm_search_cb.gatt_disc_active = false;
+  bta_dm_search_cb.gatt_attempts = 0;
 
 #if TARGET_FLOSS
   if (conn_id != GATT_INVALID_CONN_ID &&
@@ -2073,6 +2080,10 @@ static void bta_dm_discover_device(const RawAddress& remote_bd_addr) {
                    ADDRESS_TO_LOGGABLE_CSTR(bta_dm_search_cb.peer_bdaddr));
           // set the raw data buffer here
           memset(g_disc_raw_data_buf, 0, sizeof(g_disc_raw_data_buf));
+
+          bta_dm_search_cb.gatt_attempts = 0;
+          bta_dm_search_cb.gatt_conn_start =
+              bluetooth::common::time_get_os_boottime_us();
           /* start GATT for service discovery */
           btm_dm_start_gatt_discovery(bta_dm_search_cb.peer_bdaddr);
           return;
@@ -4468,6 +4479,21 @@ void bta_dm_proc_open_evt(tBTA_GATTC_OPEN* p_data) {
     get_gatt_interface().BTA_GATTC_ServiceSearchRequest(p_data->conn_id,
                                                         nullptr);
   } else {
+    uint64_t time_since_start = bluetooth::common::time_get_os_boottime_us() -
+                                bta_dm_search_cb.gatt_conn_start;
+
+    if (bta_dm_search_cb.gatt_attempts < DM_MAX_GATT_ATTEMPTS_AFTER_PAIRING &&
+        time_since_start < DM_MAX_GATT_CONNECTION_WAIT_MS * 1000) {
+      LOG_WARN(
+          "Establishing LE connection for GATT discovery after bonding failed "
+          "with error 0x%02x, will retry",
+          p_data->status);
+      bta_dm_search_cb.gatt_attempts++;
+      btm_dm_start_gatt_discovery(bta_dm_search_cb.peer_bdaddr);
+      return;
+    }
+
+    LOG_WARN("GATT discovery after bonding failed, can't establish connection");
     bta_dm_gatt_disc_complete(GATT_INVALID_CONN_ID, p_data->status);
   }
 }
