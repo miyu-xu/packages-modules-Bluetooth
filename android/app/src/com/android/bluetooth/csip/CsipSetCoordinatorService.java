@@ -91,6 +91,7 @@ public class CsipSetCoordinatorService extends ProfileService {
     private final Map<BluetoothDevice, Map<Integer, Integer>> mDeviceGroupIdRankMap =
             new ConcurrentHashMap<>();
     private final Map<Integer, Integer> mGroupIdToGroupSize = new HashMap<>();
+    private final Map<BluetoothDevice, Integer> mFoundSetMemberToGroupId = new HashMap<>();
     private final Map<ParcelUuid, Map<Executor, IBluetoothCsipSetCoordinatorCallback>> mCallbacks =
             new HashMap<>();
     private final Map<Integer, Pair<UUID, IBluetoothCsipSetCoordinatorLockCallback>> mLocks =
@@ -776,6 +777,26 @@ public class CsipSetCoordinatorService extends ProfileService {
         }
     }
 
+    void notifySetMemberAvailable(BluetoothDevice device, int groupId) {
+        Intent intent = null;
+        Log.e(TAG, "notifySetMemberAvailable" + device + ", " + groupId);
+
+        /* Sent intent as well */
+        intent = new Intent(BluetoothCsipSetCoordinator.ACTION_CSIS_SET_MEMBER_AVAILABLE);
+        intent.putExtra(BluetoothDevice.EXTRA_DEVICE, device);
+        intent.putExtra(BluetoothCsipSetCoordinator.EXTRA_CSIS_GROUP_ID, groupId);
+
+        if (intent != null) {
+            intent.addFlags(Intent.FLAG_RECEIVER_REGISTERED_ONLY_BEFORE_BOOT
+                    | Intent.FLAG_RECEIVER_INCLUDE_BACKGROUND);
+            Log.e(TAG, "sendBroadcast");
+            sendBroadcast(intent, BLUETOOTH_PRIVILEGED);
+        }
+
+        /* Notify registered parties */
+        handleSetMemberAvailable(device, groupId);
+    }
+
     void messageFromNative(CsipSetCoordinatorStackEvent stackEvent) {
         BluetoothDevice device = stackEvent.device;
         Log.d(TAG, "Message from native: " + stackEvent);
@@ -797,13 +818,12 @@ public class CsipSetCoordinatorService extends ProfileService {
         } else if (stackEvent.type
                 == CsipSetCoordinatorStackEvent.EVENT_TYPE_SET_MEMBER_AVAILABLE) {
             Objects.requireNonNull(device, "Device should never be null, event: " + stackEvent);
-            /* Notify registered parties */
-            handleSetMemberAvailable(device, stackEvent.valueInt1);
-
-            /* Sent intent as well */
-            intent = new Intent(BluetoothCsipSetCoordinator.ACTION_CSIS_SET_MEMBER_AVAILABLE);
-            intent.putExtra(BluetoothDevice.EXTRA_DEVICE, device);
-            intent.putExtra(BluetoothCsipSetCoordinator.EXTRA_CSIS_GROUP_ID, groupId);
+            if (!mFoundSetMemberToGroupId.containsKey(device)) {
+                mFoundSetMemberToGroupId.put(device, groupId);
+            }
+            if (mGroupIdToConnectedDevices.containsKey(groupId)) {
+                notifySetMemberAvailable(device, groupId);
+            }
         } else if (stackEvent.type == CsipSetCoordinatorStackEvent.EVENT_TYPE_GROUP_LOCK_CHANGED) {
             int lock_status = stackEvent.valueInt2;
             boolean lock_state = stackEvent.valueBool1;
@@ -896,6 +916,11 @@ public class CsipSetCoordinatorService extends ProfileService {
         if (DBG) {
             Log.d(TAG, "Bond state changed for device: " + device + " state: " + bondState);
         }
+        if (bondState == BluetoothDevice.BOND_BONDING &&
+            mFoundSetMemberToGroupId.containsKey(device)) {
+            mFoundSetMemberToGroupId.remove(device);
+        }
+
         // Remove state machine if the bonding for a device is removed
         if (bondState != BluetoothDevice.BOND_NONE) {
             return;
@@ -950,6 +975,11 @@ public class CsipSetCoordinatorService extends ProfileService {
                 }
                 removeStateMachine(device);
             }
+            }
+            for (Map.Entry<BluetoothDevice, Integer> entry: mFoundSetMemberToGroupId.entrySet()) {
+                if (entry.getValue() == groupId) {
+                    notifySetMemberAvailable(entry.getKey(), groupId);
+                }
         }
     }
 
