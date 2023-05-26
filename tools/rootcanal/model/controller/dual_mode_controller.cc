@@ -34,6 +34,11 @@ constexpr uint16_t kNumCommandPackets = 0x01;
 constexpr uint16_t kLeMaximumDataLength = 64;
 constexpr uint16_t kLeMaximumDataTime = 0x148;
 
+static int next_instance_id() {
+  static int instance_counter = 0;
+  return instance_counter++;
+}
+
 // Device methods.
 std::string DualModeController::GetTypeString() const {
   return "Simulated Bluetooth Controller";
@@ -61,7 +66,7 @@ void DualModeController::SendCommandCompleteUnknownOpCodeEvent(
 }
 
 DualModeController::DualModeController(ControllerProperties properties)
-    : properties_(std::move(properties)) {
+    : id_(next_instance_id()), properties_(std::move(properties)) {
   Address public_address{};
   ASSERT(Address::FromString("3C:5A:B4:04:05:06", public_address));
   SetAddress(public_address);
@@ -194,8 +199,10 @@ void DualModeController::HandleCommand(
   else if (properties_.quirks.hardware_error_before_reset &&
            !controller_reset_ &&
            op_code != OpCode::RESET) {
-    LOG_WARN("Received command %s before HCI Reset; sending the Hardware"
-             " Error event", OpCodeText(op_code).c_str());
+    log::warning(id_,
+                 "Received command {} before HCI Reset; sending the Hardware"
+                 " Error event",
+                 OpCodeText(op_code));
     send_event_(bluetooth::hci::HardwareErrorBuilder::Create(0x42));
   }
   // Command is both supported and implemented.
@@ -206,21 +213,23 @@ void DualModeController::HandleCommand(
   // Command is supported but not implemented:
   // the command needs to be implemented to fix this.
   else if (is_supported_command) {
-    LOG_ALWAYS_FATAL(
-        "Unimplemented command %s;\n"
+    log::fatal(
+        id_,
+        "Unimplemented command {};\n"
         "This message will be displayed if the command is set as supported\n"
         "in the command mask but no implementation was provided.\n"
         "This warning will be fixed by implementing the command in "
         "DualModeController",
-        OpCodeText(op_code).c_str());
+        OpCodeText(op_code));
   }
   // The command is not supported.
   // Respond with the status code Unknown Command.
   else {
     SendCommandCompleteUnknownOpCodeEvent(op_code);
     uint16_t raw_op_code = static_cast<uint16_t>(op_code);
-    LOG_INFO("Unknown command, opcode: 0x%04X, OGF: 0x%04X, OCF: 0x%04X",
-             raw_op_code, (raw_op_code & 0xFC00) >> 10, raw_op_code & 0x03FF);
+    log::info(id_,
+              "Unknown command, opcode: 0x{:04x}, OGF: 0x{:02x}, OCF: 0x{:03x}",
+              raw_op_code, (raw_op_code & 0xFC00) >> 10, raw_op_code & 0x03FF);
   }
 }
 
@@ -549,12 +558,11 @@ void DualModeController::EnhancedSetupSynchronousConnection(
       transmit_coding_format.company_id_ != receive_coding_format.company_id_ ||
       transmit_coding_format.vendor_specific_codec_id_ !=
           receive_coding_format.vendor_specific_codec_id_) {
-    LOG_INFO(
+    log::info(
+        id_,
         "EnhancedSetupSynchronousConnection: rejected Transmit_Coding_Format "
-        "(%s)"
-        " and Receive_Coding_Format (%s) as they are not equal",
-        transmit_coding_format.ToString().c_str(),
-        receive_coding_format.ToString().c_str());
+        "({}) and Receive_Coding_Format ({}) as they are not equal",
+        transmit_coding_format.ToString(), receive_coding_format.ToString());
     status = ErrorCode::INVALID_HCI_COMMAND_PARAMETERS;
   }
 
@@ -564,9 +572,10 @@ void DualModeController::EnhancedSetupSynchronousConnection(
   auto output_bandwidth = command_view.GetOutputBandwidth();
   if (input_bandwidth != output_bandwidth && input_bandwidth != 0 &&
       output_bandwidth != 0) {
-    LOG_INFO(
-        "EnhancedSetupSynchronousConnection: rejected Input_Bandwidth (%u)"
-        " and Output_Bandwidth (%u) as they are not equal and different from 0",
+    log::info(
+        id_,
+        "EnhancedSetupSynchronousConnection: rejected Input_Bandwidth ({})"
+        " and Output_Bandwidth ({}) as they are not equal and different from 0",
         input_bandwidth, output_bandwidth);
     status = ErrorCode::INVALID_HCI_COMMAND_PARAMETERS;
   }
@@ -580,11 +589,11 @@ void DualModeController::EnhancedSetupSynchronousConnection(
       input_coding_format.company_id_ != output_coding_format.company_id_ ||
       input_coding_format.vendor_specific_codec_id_ !=
           output_coding_format.vendor_specific_codec_id_) {
-    LOG_INFO(
-        "EnhancedSetupSynchronousConnection: rejected Input_Coding_Format (%s)"
-        " and Output_Coding_Format (%s) as they are not equal",
-        input_coding_format.ToString().c_str(),
-        output_coding_format.ToString().c_str());
+    log::info(
+        id_,
+        "EnhancedSetupSynchronousConnection: rejected Input_Coding_Format ({})"
+        " and Output_Coding_Format ({}) as they are not equal",
+        input_coding_format.ToString(), output_coding_format.ToString());
     status = ErrorCode::INVALID_HCI_COMMAND_PARAMETERS;
   }
 
@@ -593,9 +602,10 @@ void DualModeController::EnhancedSetupSynchronousConnection(
   ScoDatapath datapath = ScoDatapath::NORMAL;
   if (command_view.GetInputDataPath() != bluetooth::hci::ScoDataPath::HCI ||
       command_view.GetOutputDataPath() != bluetooth::hci::ScoDataPath::HCI) {
-    LOG_WARN(
-        "EnhancedSetupSynchronousConnection: Input_Data_Path (%u)"
-        " and/or Output_Data_Path (%u) are not over HCI, so data will be "
+    log::warning(
+        id_,
+        "EnhancedSetupSynchronousConnection: Input_Data_Path ({})"
+        " and/or Output_Data_Path ({}) are not over HCI, so data will be "
         "spoofed",
         static_cast<unsigned>(command_view.GetInputDataPath()),
         static_cast<unsigned>(command_view.GetOutputDataPath()));
@@ -613,25 +623,26 @@ void DualModeController::EnhancedSetupSynchronousConnection(
       input_coding_format.coding_format_ ==
           bluetooth::hci::ScoCodingFormatValues::TRANSPARENT &&
       transmit_bandwidth != input_bandwidth) {
-    LOG_INFO(
-        "EnhancedSetupSynchronousConnection: rejected Transmit_Bandwidth (%u)"
-        " and Input_Bandwidth (%u) as they are not equal",
+    log::info(
+        id_,
+        "EnhancedSetupSynchronousConnection: rejected Transmit_Bandwidth ({})"
+        " and Input_Bandwidth ({}) as they are not equal",
         transmit_bandwidth, input_bandwidth);
-    LOG_INFO(
-        "EnhancedSetupSynchronousConnection: the Transmit_Bandwidth and "
-        "Input_Bandwidth shall be equal when both Transmit_Coding_Format "
-        "and Input_Coding_Format are 'transparent'");
+    log::info(id_,
+              "EnhancedSetupSynchronousConnection: the Transmit_Bandwidth and "
+              "Input_Bandwidth shall be equal when both Transmit_Coding_Format "
+              "and Input_Coding_Format are 'transparent'");
     status = ErrorCode::INVALID_HCI_COMMAND_PARAMETERS;
   }
   if ((transmit_coding_format.coding_format_ ==
        bluetooth::hci::ScoCodingFormatValues::TRANSPARENT) !=
       (input_coding_format.coding_format_ ==
        bluetooth::hci::ScoCodingFormatValues::TRANSPARENT)) {
-    LOG_INFO(
+    log::info(
+        id_,
         "EnhancedSetupSynchronousConnection: rejected Transmit_Coding_Format "
-        "(%s) and Input_Coding_Format (%s) as they are incompatible",
-        transmit_coding_format.ToString().c_str(),
-        input_coding_format.ToString().c_str());
+        "({}) and Input_Coding_Format ({}) as they are incompatible",
+        transmit_coding_format.ToString(), input_coding_format.ToString());
     status = ErrorCode::INVALID_HCI_COMMAND_PARAMETERS;
   }
 
@@ -644,25 +655,26 @@ void DualModeController::EnhancedSetupSynchronousConnection(
       output_coding_format.coding_format_ ==
           bluetooth::hci::ScoCodingFormatValues::TRANSPARENT &&
       receive_bandwidth != output_bandwidth) {
-    LOG_INFO(
-        "EnhancedSetupSynchronousConnection: rejected Receive_Bandwidth (%u)"
-        " and Output_Bandwidth (%u) as they are not equal",
+    log::info(
+        id_,
+        "EnhancedSetupSynchronousConnection: rejected Receive_Bandwidth ({})"
+        " and Output_Bandwidth ({}) as they are not equal",
         receive_bandwidth, output_bandwidth);
-    LOG_INFO(
-        "EnhancedSetupSynchronousConnection: the Receive_Bandwidth and "
-        "Output_Bandwidth shall be equal when both Receive_Coding_Format "
-        "and Output_Coding_Format are 'transparent'");
+    log::info(id_,
+              "EnhancedSetupSynchronousConnection: the Receive_Bandwidth and "
+              "Output_Bandwidth shall be equal when both Receive_Coding_Format "
+              "and Output_Coding_Format are 'transparent'");
     status = ErrorCode::INVALID_HCI_COMMAND_PARAMETERS;
   }
   if ((receive_coding_format.coding_format_ ==
        bluetooth::hci::ScoCodingFormatValues::TRANSPARENT) !=
       (output_coding_format.coding_format_ ==
        bluetooth::hci::ScoCodingFormatValues::TRANSPARENT)) {
-    LOG_INFO(
+    log::info(
+        id_,
         "EnhancedSetupSynchronousConnection: rejected Receive_Coding_Format "
-        "(%s) and Output_Coding_Format (%s) as they are incompatible",
-        receive_coding_format.ToString().c_str(),
-        output_coding_format.ToString().c_str());
+        "({}) and Output_Coding_Format ({}) as they are incompatible",
+        receive_coding_format.ToString(), output_coding_format.ToString());
     status = ErrorCode::INVALID_HCI_COMMAND_PARAMETERS;
   }
 
@@ -696,12 +708,12 @@ void DualModeController::EnhancedAcceptSynchronousConnection(
       transmit_coding_format.company_id_ != receive_coding_format.company_id_ ||
       transmit_coding_format.vendor_specific_codec_id_ !=
           receive_coding_format.vendor_specific_codec_id_) {
-    LOG_INFO(
+    log::info(
+        id_,
         "EnhancedAcceptSynchronousConnection: rejected Transmit_Coding_Format "
-        "(%s)"
-        " and Receive_Coding_Format (%s) as they are not equal",
-        transmit_coding_format.ToString().c_str(),
-        receive_coding_format.ToString().c_str());
+        "({})"
+        " and Receive_Coding_Format ({}) as they are not equal",
+        transmit_coding_format.ToString(), receive_coding_format.ToString());
     status = ErrorCode::INVALID_HCI_COMMAND_PARAMETERS;
   }
 
@@ -711,9 +723,10 @@ void DualModeController::EnhancedAcceptSynchronousConnection(
   auto output_bandwidth = command_view.GetOutputBandwidth();
   if (input_bandwidth != output_bandwidth && input_bandwidth != 0 &&
       output_bandwidth != 0) {
-    LOG_INFO(
-        "EnhancedAcceptSynchronousConnection: rejected Input_Bandwidth (%u)"
-        " and Output_Bandwidth (%u) as they are not equal and different from 0",
+    log::info(
+        id_,
+        "EnhancedAcceptSynchronousConnection: rejected Input_Bandwidth ({})"
+        " and Output_Bandwidth ({}) as they are not equal and different from 0",
         input_bandwidth, output_bandwidth);
     status = ErrorCode::INVALID_HCI_COMMAND_PARAMETERS;
   }
@@ -727,11 +740,11 @@ void DualModeController::EnhancedAcceptSynchronousConnection(
       input_coding_format.company_id_ != output_coding_format.company_id_ ||
       input_coding_format.vendor_specific_codec_id_ !=
           output_coding_format.vendor_specific_codec_id_) {
-    LOG_INFO(
-        "EnhancedAcceptSynchronousConnection: rejected Input_Coding_Format (%s)"
-        " and Output_Coding_Format (%s) as they are not equal",
-        input_coding_format.ToString().c_str(),
-        output_coding_format.ToString().c_str());
+    log::info(
+        id_,
+        "EnhancedAcceptSynchronousConnection: rejected Input_Coding_Format ({})"
+        " and Output_Coding_Format ({}) as they are not equal",
+        input_coding_format.ToString(), output_coding_format.ToString());
     status = ErrorCode::INVALID_HCI_COMMAND_PARAMETERS;
   }
 
@@ -739,12 +752,12 @@ void DualModeController::EnhancedAcceptSynchronousConnection(
   // default HCI transport.
   if (command_view.GetInputDataPath() != bluetooth::hci::ScoDataPath::HCI ||
       command_view.GetOutputDataPath() != bluetooth::hci::ScoDataPath::HCI) {
-    LOG_INFO(
-        "EnhancedSetupSynchronousConnection: Input_Data_Path (%u)"
-        " and/or Output_Data_Path (%u) are not over HCI, so data will be "
-        "spoofed",
-        static_cast<unsigned>(command_view.GetInputDataPath()),
-        static_cast<unsigned>(command_view.GetOutputDataPath()));
+    log::info(id_,
+              "EnhancedSetupSynchronousConnection: Input_Data_Path ({})"
+              " and/or Output_Data_Path ({}) are not over HCI, so data will be "
+              "spoofed",
+              static_cast<unsigned>(command_view.GetInputDataPath()),
+              static_cast<unsigned>(command_view.GetOutputDataPath()));
   }
 
   // Either both the Transmit_Coding_Format and Input_Coding_Format shall be
@@ -758,25 +771,26 @@ void DualModeController::EnhancedAcceptSynchronousConnection(
       input_coding_format.coding_format_ ==
           bluetooth::hci::ScoCodingFormatValues::TRANSPARENT &&
       transmit_bandwidth != input_bandwidth) {
-    LOG_INFO(
-        "EnhancedSetupSynchronousConnection: rejected Transmit_Bandwidth (%u)"
-        " and Input_Bandwidth (%u) as they are not equal",
+    log::info(
+        id_,
+        "EnhancedSetupSynchronousConnection: rejected Transmit_Bandwidth ({})"
+        " and Input_Bandwidth ({}) as they are not equal",
         transmit_bandwidth, input_bandwidth);
-    LOG_INFO(
-        "EnhancedSetupSynchronousConnection: the Transmit_Bandwidth and "
-        "Input_Bandwidth shall be equal when both Transmit_Coding_Format "
-        "and Input_Coding_Format are 'transparent'");
+    log::info(id_,
+              "EnhancedSetupSynchronousConnection: the Transmit_Bandwidth and "
+              "Input_Bandwidth shall be equal when both Transmit_Coding_Format "
+              "and Input_Coding_Format are 'transparent'");
     status = ErrorCode::INVALID_HCI_COMMAND_PARAMETERS;
   }
   if ((transmit_coding_format.coding_format_ ==
        bluetooth::hci::ScoCodingFormatValues::TRANSPARENT) !=
       (input_coding_format.coding_format_ ==
        bluetooth::hci::ScoCodingFormatValues::TRANSPARENT)) {
-    LOG_INFO(
+    log::info(
+        id_,
         "EnhancedSetupSynchronousConnection: rejected Transmit_Coding_Format "
-        "(%s) and Input_Coding_Format (%s) as they are incompatible",
-        transmit_coding_format.ToString().c_str(),
-        input_coding_format.ToString().c_str());
+        "({}) and Input_Coding_Format ({}) as they are incompatible",
+        transmit_coding_format.ToString(), input_coding_format.ToString());
     status = ErrorCode::INVALID_HCI_COMMAND_PARAMETERS;
   }
 
@@ -789,25 +803,26 @@ void DualModeController::EnhancedAcceptSynchronousConnection(
       output_coding_format.coding_format_ ==
           bluetooth::hci::ScoCodingFormatValues::TRANSPARENT &&
       receive_bandwidth != output_bandwidth) {
-    LOG_INFO(
-        "EnhancedSetupSynchronousConnection: rejected Receive_Bandwidth (%u)"
-        " and Output_Bandwidth (%u) as they are not equal",
+    log::info(
+        id_,
+        "EnhancedSetupSynchronousConnection: rejected Receive_Bandwidth ({})"
+        " and Output_Bandwidth ({}) as they are not equal",
         receive_bandwidth, output_bandwidth);
-    LOG_INFO(
-        "EnhancedSetupSynchronousConnection: the Receive_Bandwidth and "
-        "Output_Bandwidth shall be equal when both Receive_Coding_Format "
-        "and Output_Coding_Format are 'transparent'");
+    log::info(id_,
+              "EnhancedSetupSynchronousConnection: the Receive_Bandwidth and "
+              "Output_Bandwidth shall be equal when both Receive_Coding_Format "
+              "and Output_Coding_Format are 'transparent'");
     status = ErrorCode::INVALID_HCI_COMMAND_PARAMETERS;
   }
   if ((receive_coding_format.coding_format_ ==
        bluetooth::hci::ScoCodingFormatValues::TRANSPARENT) !=
       (output_coding_format.coding_format_ ==
        bluetooth::hci::ScoCodingFormatValues::TRANSPARENT)) {
-    LOG_INFO(
+    log::info(
+        id_,
         "EnhancedSetupSynchronousConnection: rejected Receive_Coding_Format "
-        "(%s) and Output_Coding_Format (%s) as they are incompatible",
-        receive_coding_format.ToString().c_str(),
-        output_coding_format.ToString().c_str());
+        "({}) and Output_Coding_Format ({}) as they are incompatible",
+        receive_coding_format.ToString(), output_coding_format.ToString());
     status = ErrorCode::INVALID_HCI_COMMAND_PARAMETERS;
   }
 
@@ -1354,8 +1369,8 @@ void DualModeController::WriteScanEnable(CommandView command) {
       scan_enable == bluetooth::hci::ScanEnable::INQUIRY_AND_PAGE_SCAN ||
       scan_enable == bluetooth::hci::ScanEnable::PAGE_SCAN_ONLY;
 
-  LOG_INFO("%s | WriteScanEnable %s", GetAddress().ToString().c_str(),
-           bluetooth::hci::ScanEnableText(scan_enable).c_str());
+  log::info(id_, "{} | WriteScanEnable {}", GetAddress().ToString(),
+            bluetooth::hci::ScanEnableText(scan_enable));
 
   link_layer_controller_.SetInquiryScanEnable(inquiry_scan);
   link_layer_controller_.SetPageScanEnable(page_scan);
@@ -1546,9 +1561,8 @@ void DualModeController::LeReadLocalSupportedFeatures(CommandView command) {
   auto command_view =
       bluetooth::hci::LeReadLocalSupportedFeaturesView::Create(command);
   ASSERT(command_view.IsValid());
-  LOG_INFO("%s | LeReadLocalSupportedFeatures (%016llx)",
-           GetAddress().ToString().c_str(),
-           static_cast<unsigned long long>(properties_.le_features));
+  log::info(id_, "{} | LeReadLocalSupportedFeatures {:016x}",
+            GetAddress().ToString(), properties_.le_features);
 
   send_event_(
       bluetooth::hci::LeReadLocalSupportedFeaturesCompleteBuilder::Create(
@@ -1615,8 +1629,8 @@ void DualModeController::LeSetAdvertisingEnable(CommandView command) {
       bluetooth::hci::LeSetAdvertisingEnableView::Create(command);
   ASSERT(command_view.IsValid());
 
-  LOG_INFO(
-      "%s | LeSetAdvertisingEnable (%d)", GetAddress().ToString().c_str(),
+  log::info(
+      id_, "{} | LeSetAdvertisingEnable ({})", GetAddress().ToString(),
       command_view.GetAdvertisingEnable() == bluetooth::hci::Enable::ENABLED);
 
   ErrorCode status = link_layer_controller_.LeSetAdvertisingEnable(
@@ -1641,8 +1655,8 @@ void DualModeController::LeSetScanEnable(CommandView command) {
   auto command_view = bluetooth::hci::LeSetScanEnableView::Create(command);
   ASSERT(command_view.IsValid());
 
-  LOG_INFO("%s | LeSetScanEnable (%d)", GetAddress().ToString().c_str(),
-           command_view.GetLeScanEnable() == bluetooth::hci::Enable::ENABLED);
+  log::info(id_, "{} | LeSetScanEnable ({})", GetAddress().ToString(),
+            command_view.GetLeScanEnable() == bluetooth::hci::Enable::ENABLED);
 
   ErrorCode status = link_layer_controller_.LeSetScanEnable(
       command_view.GetLeScanEnable() == bluetooth::hci::Enable::ENABLED,
@@ -2370,15 +2384,15 @@ void DualModeController::CsrVendorCommand(CommandView command) {
   uint16_t varid = 0;
 
   if (parameters.empty()) {
-    LOG_INFO("Empty CSR vendor command");
+    log::info(id_, "Empty CSR vendor command");
     goto complete;
   }
 
   if (parameters[0] != 0xc2 || parameters.size() < 11) {
-    LOG_INFO(
-        "Unsupported CSR vendor command with code %02x "
-        "and parameter length %zu",
-        static_cast<int>(parameters[0]), parameters.size());
+    log::info(id_,
+              "Unsupported CSR vendor command with code {:02x} "
+              "and parameter length {}",
+              static_cast<int>(parameters[0]), parameters.size());
     goto complete;
   }
 
@@ -2389,8 +2403,9 @@ void DualModeController::CsrVendorCommand(CommandView command) {
 
   if (parameters.size() < (11 + length) ||
       (varid == CsrVarid::CSR_VARID_PS && length < 6)) {
-    LOG_INFO("Invalid CSR vendor command parameter length %zu, expected %u",
-             parameters.size(), 11 + length);
+    log::info(id_,
+              "Invalid CSR vendor command parameter length {}, expected {}",
+              parameters.size(), 11 + length);
     goto complete;
   }
 
@@ -2403,16 +2418,17 @@ void DualModeController::CsrVendorCommand(CommandView command) {
     length = 2 * length;
 
     if (parameters.size() < (17 + length)) {
-      LOG_INFO("Invalid CSR vendor command parameter length %zu, expected %u",
-               parameters.size(), 17 + length);
+      log::info(id_,
+                "Invalid CSR vendor command parameter length {}, expected {}",
+                parameters.size(), 17 + length);
       goto complete;
     }
 
     std::vector<uint8_t> value(parameters.begin() + 17,
                                parameters.begin() + 17 + length);
 
-    LOG_INFO("CSR vendor command type=%04x length=%04x pskey=%04x", type,
-             length, pskey);
+    log::info(id_, "CSR vendor command type={:04x} length={:04x} pskey={:04x}",
+              type, length, pskey);
 
     if (type == 0) {
       CsrReadPskey(static_cast<CsrPskey>(pskey), value);
@@ -2426,8 +2442,8 @@ void DualModeController::CsrVendorCommand(CommandView command) {
     std::vector<uint8_t> value(parameters.begin() + 11,
                                parameters.begin() + 11 + length);
 
-    LOG_INFO("CSR vendor command type=%04x length=%04x varid=%04x", type,
-             length, varid);
+    log::info(id_, "CSR vendor command type={:04x} length={:04x} varid={:04x}",
+              type, length, varid);
 
     if (type == 0) {
       CsrReadVarid(static_cast<CsrVarid>(varid), value);
@@ -2458,7 +2474,7 @@ void DualModeController::CsrReadVarid(CsrVarid varid,
       break;
 
     default:
-      LOG_INFO("Unsupported read of CSR varid 0x%04x", varid);
+      log::info(id_, "Unsupported read of CSR varid 0x{:04x}", varid);
       break;
   }
 }
@@ -2466,7 +2482,7 @@ void DualModeController::CsrReadVarid(CsrVarid varid,
 // NOLINTNEXTLINE(readability-convert-member-functions-to-static)
 void DualModeController::CsrWriteVarid(CsrVarid varid,
                                        std::vector<uint8_t> const& value) {
-  LOG_INFO("Unsupported write of CSR varid 0x%04x", varid);
+  log::info(id_, "Unsupported write of CSR varid 0x{:04x}", varid);
 }
 
 // NOLINTNEXTLINE(readability-convert-member-functions-to-static)
@@ -2491,7 +2507,7 @@ void DualModeController::CsrReadPskey(CsrPskey pskey,
       break;
 
     default:
-      LOG_INFO("Unsupported read of CSR pskey 0x%04x", pskey);
+      log::info(id_, "Unsupported read of CSR pskey 0x{:04x}", pskey);
       break;
   }
 }
@@ -2501,7 +2517,7 @@ void DualModeController::CsrWritePskey(CsrPskey pskey,
   switch (pskey) {
     case CsrPskey::CSR_PSKEY_LOCAL_SUPPORTED_FEATURES:
       ASSERT(value.size() >= 8);
-      LOG_INFO("CSR Vendor updating the Local Supported Features");
+      log::info(id_, "CSR Vendor updating the Local Supported Features");
       properties_.lmp_features[0] =
           ((uint64_t)value[0] << 0) | ((uint64_t)value[1] << 8) |
           ((uint64_t)value[2] << 16) | ((uint64_t)value[3] << 24) |
@@ -2510,7 +2526,7 @@ void DualModeController::CsrWritePskey(CsrPskey pskey,
       break;
 
     default:
-      LOG_INFO("Unsupported write of CSR pskey 0x%04x", pskey);
+      log::info(id_, "Unsupported write of CSR pskey 0x{:04x}", pskey);
       break;
   }
 }
