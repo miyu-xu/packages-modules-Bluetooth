@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9cc4a569_5fa5f929",
+        "filename": "android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 763,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-05-26T17:01:48Z",
+      "side": 0,
+      "message": "Do we sometimes get a setCurrentUser without an unlock?  If not, can we just use unlock?",
+      "range": {
+        "startLine": 761,
+        "startChar": 0,
+        "endLine": 763,
+        "endChar": 9
+      },
+      "revId": "5e57aa52729e748475643034f1b01bb34ff48622",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
