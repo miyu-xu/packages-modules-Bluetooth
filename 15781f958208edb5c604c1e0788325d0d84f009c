@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fdfa2cd5_6c2f9f61",
+        "filename": "service/tests/src/com/android/server/bluetooth/BluetoothManagerServiceTest.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-05-26T19:06:10Z",
+      "side": 1,
+      "message": "This is partially done in follow-up CL but not completely (aosp/2580796)\nLet me add a final CL to do it.",
+      "parentUuid": "5ebc4e97_3797ea43",
+      "range": {
+        "startLine": 65,
+        "startChar": 26,
+        "endLine": 65,
+        "endChar": 55
+      },
+      "revId": "15781f958208edb5c604c1e0788325d0d84f009c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "af8646f1_ce9dab68",
@@ -54,6 +78,24 @@
       "writtenOn": "2023-05-26T09:56:08Z",
       "side": 1,
       "message": "nit: I think it would be clearer to move that after the mocks. (mock then set the instance for testing)",
+      "revId": "15781f958208edb5c604c1e0788325d0d84f009c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1db60d89_62345aa8",
+        "filename": "service/tests/src/com/android/server/bluetooth/BluetoothManagerServiceTest.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-05-26T19:06:10Z",
+      "side": 1,
+      "message": "Already done in aosp/2580796",
+      "parentUuid": "af8646f1_ce9dab68",
       "revId": "15781f958208edb5c604c1e0788325d0d84f009c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
