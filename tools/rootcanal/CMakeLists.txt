@@ -223,9 +223,8 @@ android_add_library(
 
 target_include_directories(
   BluetoothPacketSources PUBLIC
-    ${ROOTCANAL_ROOT}/emulator
-    ${ROOTCANAL_ROOT}/emulator/include
     ${ROOTCANAL_ROOT}/include
+    ${ROOTCANAL_ROOT}
     ${BT_ROOT}/gd
     ${BT_ROOT})
 
@@ -238,11 +237,11 @@ android_add_library(
   SOURCE_DIR ${ROOTCANAL_ROOT}
   SRC ${BluetoothGeneratedPackets_h}
       ${RootCanalGeneratedPackets_h}
-      emulator/src/log.cc
       lib/crypto/crypto.cc
       lib/hci/address.cc
       lib/hci/class_of_device.cc
       lib/hci/pcap_filter.cc
+      lib/log.cc
       model/controller/acl_connection.cc
       model/controller/acl_connection_handler.cc
       model/controller/controller_properties.cc
@@ -284,9 +283,7 @@ android_add_library(
 
 target_include_directories(
   libbt-rootcanal
-  PUBLIC ${ROOTCANAL_ROOT}/emulator
-         ${ROOTCANAL_ROOT}/emulator/include
-         ${ROOTCANAL_ROOT}/include
+  PUBLIC ${ROOTCANAL_ROOT}/include
          ${ROOTCANAL_ROOT}
          ${BT_ROOT}/gd
          ${BT_ROOT}
