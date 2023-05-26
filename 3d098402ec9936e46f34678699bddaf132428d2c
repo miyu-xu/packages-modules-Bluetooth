@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fdcc2c24_b54d784b",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_adv.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2023-05-26T15:38:40Z",
+      "side": 1,
+      "message": "For my own education, do you know why these are (powers of 2) - 1?",
+      "revId": "3d098402ec9936e46f34678699bddaf132428d2c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c16c1611_89455cdb",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 2033,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2023-05-26T15:38:40Z",
+      "side": 1,
+      "message": "Did you mean to validate `periodic_bytes` here?",
+      "revId": "3d098402ec9936e46f34678699bddaf132428d2c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "01cc00ee_68924c38",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 2118,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2023-05-26T15:38:40Z",
+      "side": 1,
+      "message": "In this func and ones below, should we print a warning of some sort?",
+      "revId": "3d098402ec9936e46f34678699bddaf132428d2c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
