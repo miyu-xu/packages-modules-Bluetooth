@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a6714c6a_f1b0c78e",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 2764,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-05-26T01:50:38Z",
+      "side": 1,
+      "message": "can you make this class thread-safe?",
+      "revId": "e8f371371ea7d0ecf7a245a6673f82de43703fb1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ce56f59e_bc9ba402",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 2810,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-05-26T01:50:38Z",
+      "side": 1,
+      "message": "rm",
+      "range": {
+        "startLine": 2807,
+        "startChar": 0,
+        "endLine": 2810,
+        "endChar": 0
+      },
+      "revId": "e8f371371ea7d0ecf7a245a6673f82de43703fb1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
