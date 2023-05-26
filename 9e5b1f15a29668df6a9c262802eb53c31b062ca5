@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f0a21747_c814e0ce",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 763,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-05-26T01:59:55Z",
+      "side": 1,
+      "message": "note: this is a behavior change, I\u0027m pretty sure what you are doing is correct, but just FYI",
+      "revId": "9e5b1f15a29668df6a9c262802eb53c31b062ca5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3c1e562a_53126fec",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothServerProxy.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-05-26T01:59:55Z",
+      "side": 1,
+      "message": "nit: make this a constant?",
+      "range": {
+        "startLine": 95,
+        "startChar": 78,
+        "endLine": 95,
+        "endChar": 80
+      },
+      "revId": "9e5b1f15a29668df6a9c262802eb53c31b062ca5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
