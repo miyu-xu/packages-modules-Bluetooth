@@ -580,7 +580,7 @@ class LeAudioGroupStateMachineImpl : public LeAudioGroupStateMachine {
     }
 
     if (do_disconnect) {
-      RemoveCisFromStreamConfiguration(group, leAudioDevice, conn_hdl);
+      group->RemoveCisFromStreamConfiguration(leAudioDevice, conn_hdl);
       IsoManager::GetInstance()->DisconnectCis(conn_hdl, HCI_ERR_PEER_USER);
 
       log_history_->AddLogHistory(
@@ -644,9 +644,6 @@ class LeAudioGroupStateMachineImpl : public LeAudioGroupStateMachine {
   void ProcessHciNotifAclDisconnected(LeAudioDeviceGroup* group,
                                       LeAudioDevice* leAudioDevice) {
     FreeLinkQualityReports(leAudioDevice);
-    /* mark ASEs as not used. */
-    leAudioDevice->DeactivateAllAses();
-
     if (!group) {
       LOG(ERROR) << __func__
                  << " group is null for device: "
@@ -654,6 +651,18 @@ class LeAudioGroupStateMachineImpl : public LeAudioGroupStateMachine {
                  << " group_id: " << leAudioDevice->group_id_;
       return;
     }
+
+    /* It is possible that ACL disconnection came before CIS disconnect event */
+    for (auto& ase : leAudioDevice->ases_) {
+      if (group->IsCisPartOfCurrentStream(ase.cis_conn_hdl)) {
+        LOG_WARN("ACL closed before CIS: %04x", ase.cis_conn_hdl);
+        group->RemoveCisFromStreamConfiguration(leAudioDevice,
+                                                ase.cis_conn_hdl);
+      }
+    }
+
+    /* mark ASEs as not used. */
+    leAudioDevice->DeactivateAllAses();
 
     /* If group is in Idle and not transitioning, update the current group
      * audio context availability which could change due to disconnected group
@@ -902,7 +911,7 @@ class LeAudioGroupStateMachineImpl : public LeAudioGroupStateMachine {
           AudioStreamDataPathState::CIS_ASSIGNED;
     }
 
-    RemoveCisFromStreamConfiguration(group, leAudioDevice, event->cis_conn_hdl);
+    group->RemoveCisFromStreamConfiguration(leAudioDevice, event->cis_conn_hdl);
 
     auto target_state = group->GetTargetState();
     switch (target_state) {
@@ -2765,7 +2774,7 @@ class LeAudioGroupStateMachineImpl : public LeAudioGroupStateMachine {
       return;
     }
 
-    RemoveCisFromStreamConfiguration(group, leAudioDevice, ase->cis_conn_hdl);
+    group->RemoveCisFromStreamConfiguration(leAudioDevice, ase->cis_conn_hdl);
     IsoManager::GetInstance()->DisconnectCis(ase->cis_conn_hdl,
                                              HCI_ERR_PEER_USER);
     log_history_->AddLogHistory(
