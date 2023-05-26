@@ -118,9 +118,13 @@ public class BluetoothManagerServiceTest {
         doReturn(mAdapterBinder).when(mBluetoothServerProxy).createAdapterBinder(any());
         doReturn(mAdapterService).when(mAdapterBinder).getAdapterBinder();
 
+        doReturn(mock(Intent.class))
+                .when(mContext)
+                .registerReceiverForAllUsers(any(), any(), eq(null), eq(null));
+
         BluetoothServerProxy.setInstanceForTesting(mBluetoothServerProxy);
 
-        mManagerService = createBluetoothManagerService();
+        mManagerService = new BluetoothManagerService(mContext);
         mManagerService.registerAdapter(mManagerCallback);
     }
 
@@ -161,13 +165,6 @@ public class BluetoothManagerServiceTest {
                         any(ServiceConnection.class),
                         anyInt(),
                         any(UserHandle.class));
-    }
-
-    private BluetoothManagerService createBluetoothManagerService() {
-        doReturn(mock(Intent.class))
-                .when(mContext)
-                .registerReceiverForAllUsers(any(), any(), eq(null), eq(null));
-        return new BluetoothManagerService(mContext);
     }
 
     @Test
