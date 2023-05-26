@@ -33,6 +33,24 @@
       "message": "Maybe forward fix? aosp/2606745",
       "revId": "9b2a8cbde36c35633f1930a26eaf00fab9c8721c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "995fa7a6_5f8ae135",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2023-05-26T09:49:06Z",
+      "side": 1,
+      "message": "Thanks, aosp/2606745 provide a simple fix and clear root cause.",
+      "parentUuid": "b0e28c8d_bfcf47d3",
+      "revId": "9b2a8cbde36c35633f1930a26eaf00fab9c8721c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
