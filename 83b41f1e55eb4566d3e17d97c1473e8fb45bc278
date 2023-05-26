@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f5a12a98_c4bc99ab",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 655,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-05-26T15:04:01Z",
+      "side": 1,
+      "message": "I think we want to put here a comment saying \"in case of invalid controller behavior or stack sending use GATT Close before CIS disconnect complete event, make sure CISes are cleared from the group cache.",
+      "revId": "83b41f1e55eb4566d3e17d97c1473e8fb45bc278",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9768f34a_3c8a92a6",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 661,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-05-26T15:04:01Z",
+      "side": 1,
+      "message": "maybe this is good moment to move `RemoveCisFromStreamConfiguration` to `LeAudioDeviceGroup`, and then instead of `IsCisPartOfCurrentStream` create `RemoveCisFromStreamIfNeeded` ?",
+      "revId": "83b41f1e55eb4566d3e17d97c1473e8fb45bc278",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
