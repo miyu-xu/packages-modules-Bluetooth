@@ -49,6 +49,9 @@ using ::bluetooth::hci::CommandView;
 // "Hci" to distinguish it as a controller command.
 class DualModeController : public Device {
  public:
+  // Unique instance identifier.
+  const int id_;
+
   DualModeController(ControllerProperties properties = ControllerProperties());
   DualModeController(DualModeController&&) = delete;
   DualModeController(const DualModeController&) = delete;
@@ -586,7 +589,7 @@ class DualModeController : public Device {
   ControllerProperties properties_;
 
   // Link Layer state.
-  LinkLayerController link_layer_controller_{address_, properties_};
+  LinkLayerController link_layer_controller_{id_, address_, properties_};
 
  private:
   // Send a HCI_Command_Complete event for the specified op_code with
