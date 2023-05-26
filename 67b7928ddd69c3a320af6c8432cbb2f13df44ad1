@@ -1,0 +1,158 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "11abc9ef_4af90239",
+        "filename": "service/src/com/android/server/bluetooth/AdapterBinder.kt",
+        "patchSetId": 3
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-05-26T02:30:23Z",
+      "side": 1,
+      "message": "nit: make this top-level, not inside the companion object",
+      "revId": "67b7928ddd69c3a320af6c8432cbb2f13df44ad1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a6dd33a1_ce13b051",
+        "filename": "service/src/com/android/server/bluetooth/AdapterBinder.kt",
+        "patchSetId": 3
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-05-26T02:30:23Z",
+      "side": 1,
+      "message": "remove JvmName + internal, just make it public (or have no visibility specifier)\n\nI think you are using JvmName to undo the name mangling, so really this is actually public already",
+      "revId": "67b7928ddd69c3a320af6c8432cbb2f13df44ad1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6e70b6de_0c5174c8",
+        "filename": "service/src/com/android/server/bluetooth/AdapterBinder.kt",
+        "patchSetId": 3
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-05-26T02:30:23Z",
+      "side": 1,
+      "message": "nit2: can\u0027t you avoid a getter in Kotlin? https://kotlinlang.org/docs/properties.html#getters-and-setters",
+      "revId": "67b7928ddd69c3a320af6c8432cbb2f13df44ad1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c1b65ee9_b33d061a",
+        "filename": "service/src/com/android/server/bluetooth/AdapterBinder.kt",
+        "patchSetId": 3
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-05-26T02:30:23Z",
+      "side": 1,
+      "message": "nit: rm",
+      "range": {
+        "startLine": 115,
+        "startChar": 38,
+        "endLine": 115,
+        "endChar": 42
+      },
+      "revId": "67b7928ddd69c3a320af6c8432cbb2f13df44ad1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3c18fc8a_562c77e8",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 2614,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-05-26T02:30:23Z",
+      "side": 1,
+      "message": "```suggestion\n            sendBluetoothStateCallback(true);\n```",
+      "range": {
+        "startLine": 2614,
+        "startChar": 43,
+        "endLine": 2614,
+        "endChar": 52
+      },
+      "revId": "67b7928ddd69c3a320af6c8432cbb2f13df44ad1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "325851da_d44a4fda",
+        "filename": "service/tests/src/com/android/server/bluetooth/BluetoothManagerServiceTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 267,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-05-26T02:30:23Z",
+      "side": 1,
+      "message": "question: if the BMS calls bindServiceAsUser more than once, what happens?",
+      "revId": "67b7928ddd69c3a320af6c8432cbb2f13df44ad1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "826364c7_e513ed7a",
+        "filename": "service/tests/src/com/android/server/bluetooth/BluetoothManagerServiceTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 330,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-05-26T02:30:23Z",
+      "side": 1,
+      "message": "question: if there are pending messages (e.g. to take us to ON state), can they be handled even after the verify? So then this test can miss a bug",
+      "revId": "67b7928ddd69c3a320af6c8432cbb2f13df44ad1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3b1acb8a_38f140b0",
+        "filename": "service/tests/src/com/android/server/bluetooth/BluetoothManagerServiceTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 333,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-05-26T02:30:23Z",
+      "side": 1,
+      "message": "reminder to at some point in future rename this something more meaningful",
+      "range": {
+        "startLine": 333,
+        "startChar": 41,
+        "endLine": 333,
+        "endChar": 54
+      },
+      "revId": "67b7928ddd69c3a320af6c8432cbb2f13df44ad1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
