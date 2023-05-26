@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f547bb79_c229c4aa",
+        "filename": "service/tests/src/com/android/server/bluetooth/BluetoothManagerServiceTest.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-05-26T19:08:43Z",
+      "side": 1,
+      "message": "I do not understand the benefit from it.\nWhy can\u0027t I use a spy like this ? It looks like it still fulfill perfectly the needs",
+      "parentUuid": "134048bc_f0d543e7",
+      "revId": "15781f958208edb5c604c1e0788325d0d84f009c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5ebc4e97_3797ea43",
