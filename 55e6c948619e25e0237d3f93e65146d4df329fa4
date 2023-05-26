@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ab59d054_3d5d13ca",
+        "filename": "android/app/src/com/android/bluetooth/csip/CsipSetCoordinatorService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 782,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-05-26T14:25:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "67b45111_737ae316",
+      "revId": "55e6c948619e25e0237d3f93e65146d4df329fa4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "35d9467f_3e06d63c",
@@ -31,6 +49,24 @@
       "writtenOn": "2023-05-25T22:03:51Z",
       "side": 1,
       "message": "no need to check that",
+      "revId": "55e6c948619e25e0237d3f93e65146d4df329fa4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6dd02f20_05f7f30b",
+        "filename": "android/app/src/com/android/bluetooth/csip/CsipSetCoordinatorService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 789,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-05-26T14:25:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "35d9467f_3e06d63c",
       "revId": "55e6c948619e25e0237d3f93e65146d4df329fa4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
