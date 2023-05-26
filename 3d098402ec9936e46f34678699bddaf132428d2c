@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "30017f89_7fdc8c8f",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_adv.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2023-05-26T15:40:40Z",
+      "side": 1,
+      "message": "Oops I can\u0027t edit, but I mean close to power of 2, but not exactly.",
+      "parentUuid": "fdcc2c24_b54d784b",
+      "revId": "3d098402ec9936e46f34678699bddaf132428d2c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c16c1611_89455cdb",
