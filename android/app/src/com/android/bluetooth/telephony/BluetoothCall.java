@@ -16,7 +16,6 @@
 
 package com.android.bluetooth.telephony;
 
-import android.bluetooth.BluetoothLeCallControl;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -25,6 +24,7 @@ import android.telecom.DisconnectCause;
 import android.telecom.GatewayInfo;
 import android.telecom.InCallService;
 import android.telecom.PhoneAccountHandle;
+import android.util.Log;
 
 import com.android.internal.annotations.VisibleForTesting;
 
@@ -45,6 +45,7 @@ import java.util.UUID;
 @VisibleForTesting
 public class BluetoothCall {
 
+    private static final String TAG = "BluetoothCall";
     private Call mCall;
     private UUID mCallId;
 
@@ -278,8 +279,13 @@ public class BluetoothCall {
 
     // helper functions
     public boolean isSilentRingingRequested() {
-        return getDetails().getExtras() != null
-                && getDetails().getExtras().getBoolean(Call.EXTRA_SILENT_RINGING_REQUESTED);
+        boolean isSilentRingingRequested =
+                getDetails().getExtras() != null
+                        && getDetails().getExtras().getBoolean(Call.EXTRA_SILENT_RINGING_REQUESTED);
+        if (isSilentRingingRequested) {
+            Log.i(TAG, "Silent Ringing");
+        }
+        return isSilentRingingRequested;
     }
 
     public boolean isConference() {
