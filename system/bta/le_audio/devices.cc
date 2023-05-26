@@ -1818,6 +1818,20 @@ bool LeAudioDeviceGroup::IsMetadataChanged(
   return false;
 }
 
+bool LeAudioDeviceGroup::IsCisPartOfCurrentStream(uint16_t cis_conn_hdl) {
+  auto iter = std::find_if(
+      stream_conf.sink_streams.begin(), stream_conf.sink_streams.end(),
+      [cis_conn_hdl](auto& pair) { return cis_conn_hdl == pair.first; });
+
+  if (iter != stream_conf.sink_streams.end()) return true;
+
+  iter = std::find_if(
+      stream_conf.source_streams.begin(), stream_conf.source_streams.end(),
+      [cis_conn_hdl](auto& pair) { return cis_conn_hdl == pair.first; });
+
+  return iter != stream_conf.sink_streams.end();
+}
+
 void LeAudioDeviceGroup::StreamOffloaderUpdated(uint8_t direction) {
   if (direction == le_audio::types::kLeAudioDirectionSource) {
     stream_conf.source_is_initial = false;

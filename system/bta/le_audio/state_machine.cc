@@ -644,9 +644,6 @@ class LeAudioGroupStateMachineImpl : public LeAudioGroupStateMachine {
   void ProcessHciNotifAclDisconnected(LeAudioDeviceGroup* group,
                                       LeAudioDevice* leAudioDevice) {
     FreeLinkQualityReports(leAudioDevice);
-    /* mark ASEs as not used. */
-    leAudioDevice->DeactivateAllAses();
-
     if (!group) {
       LOG(ERROR) << __func__
                  << " group is null for device: "
@@ -654,6 +651,20 @@ class LeAudioGroupStateMachineImpl : public LeAudioGroupStateMachine {
                  << " group_id: " << leAudioDevice->group_id_;
       return;
     }
+
+    /* It is possible that ACL disconnection came without or before CIS
+     * disconnect event.
+     */
+    for (auto& ase : leAudioDevice->ases_) {
+      if (group->IsCisPartOfCurrentStream(ase.cis_conn_hdl)) {
+        LOG_WARN("ACL closed before CIS: %04x", ase.cis_conn_hdl);
+        RemoveCisFromStreamConfiguration(group, leAudioDevice,
+                                         ase.cis_conn_hdl);
+      }
+    }
+
+    /* mark ASEs as not used. */
+    leAudioDevice->DeactivateAllAses();
 
     /* If group is in Idle and not transitioning, update the current group
      * audio context availability which could change due to disconnected group
