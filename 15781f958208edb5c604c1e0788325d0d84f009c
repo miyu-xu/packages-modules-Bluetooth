@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "134048bc_f0d543e7",
+        "filename": "service/tests/src/com/android/server/bluetooth/BluetoothManagerServiceTest.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-05-26T09:56:08Z",
+      "side": 1,
+      "message": "Seeing you mocking the Context makes me wonder if we should investigate testing the manager service with Roboelectric instead. It would provide more accurate implementation of those objects while still being testing friendly and might allow run this on host.",
+      "revId": "15781f958208edb5c604c1e0788325d0d84f009c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5ebc4e97_3797ea43",
+        "filename": "service/tests/src/com/android/server/bluetooth/BluetoothManagerServiceTest.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-05-26T09:56:08Z",
+      "side": 1,
+      "message": "nit: Is this function used somewhere else ? If not, I would prefer that we inline it.",
+      "range": {
+        "startLine": 65,
+        "startChar": 26,
+        "endLine": 65,
+        "endChar": 55
+      },
+      "revId": "15781f958208edb5c604c1e0788325d0d84f009c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "af8646f1_ce9dab68",
+        "filename": "service/tests/src/com/android/server/bluetooth/BluetoothManagerServiceTest.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-05-26T09:56:08Z",
+      "side": 1,
+      "message": "nit: I think it would be clearer to move that after the mocks. (mock then set the instance for testing)",
+      "revId": "15781f958208edb5c604c1e0788325d0d84f009c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
