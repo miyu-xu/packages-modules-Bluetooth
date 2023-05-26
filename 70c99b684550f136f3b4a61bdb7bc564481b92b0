@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "64f1df77_81315ad2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-05-26T14:52:35Z",
+      "side": 1,
+      "message": "Thanks, minor comments.",
+      "revId": "70c99b684550f136f3b4a61bdb7bc564481b92b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b0ab860f_e6226534",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/csip/CsipSetCoordinatorServiceTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 527,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-05-26T14:52:35Z",
+      "side": 1,
+      "message": "-\u003e testStackEventSetMemberAvailableAfterGroupConnected",
+      "range": {
+        "startLine": 527,
+        "startChar": 16,
+        "endLine": 527,
+        "endChar": 48
+      },
+      "revId": "70c99b684550f136f3b4a61bdb7bc564481b92b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6a9ee3c7_11b76b61",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/csip/CsipSetCoordinatorServiceTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 571,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-05-26T14:52:35Z",
+      "side": 1,
+      "message": "-\u003e testStackEventSetMemberAvailableBeforeGroupConnected",
+      "range": {
+        "startLine": 571,
+        "startChar": 16,
+        "endLine": 571,
+        "endChar": 50
+      },
+      "revId": "70c99b684550f136f3b4a61bdb7bc564481b92b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
