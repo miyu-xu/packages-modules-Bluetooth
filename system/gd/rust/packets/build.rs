@@ -22,12 +22,13 @@ fn main() {
         Ok(dir) => PathBuf::from(dir),
         Err(_) => PathBuf::from("hci_packets.rs"),
     };
+
     if Path::new(packets_prebuilt.as_os_str()).exists() {
         let out_dir = PathBuf::from(env::var("OUT_DIR").unwrap());
-        let outputted = out_dir.join("../../hci/hci_packets.rs");
+        let out_file = out_dir.join("hci_packets.rs");
         std::fs::copy(
             packets_prebuilt.as_os_str().to_str().unwrap(),
-            out_dir.join(outputted.file_name().unwrap()).as_os_str().to_str().unwrap(),
+            out_file.as_os_str().to_str().unwrap(),
         )
         .unwrap();
     } else {
@@ -44,45 +45,33 @@ fn generate_packets() {
         Err(_) => PathBuf::from(env::current_dir().unwrap()).join("../..").canonicalize().unwrap(),
     };
 
-    let input_files = [gd_root.join("hci/hci_packets.pdl")];
-    let outputted = [out_dir.join("../../hci/hci_packets.rs")];
+    let in_file = gd_root.join("hci/hci_packets.pdl");
+    let out_file = out_dir.join("hci_packets.rs");
 
-    // Find the packetgen tool. Expecting it at CARGO_HOME/bin
-    let packetgen = match env::var("CARGO_HOME") {
-        Ok(dir) => PathBuf::from(dir).join("bin").join("bluetooth_packetgen"),
-        Err(_) => PathBuf::from("bluetooth_packetgen"),
+    // Find the pdlc tool. Expecting it at CARGO_HOME/bin
+    let pdlc = match env::var("CARGO_HOME") {
+        Ok(dir) => PathBuf::from(dir).join("bin").join("pdl"),
+        Err(_) => PathBuf::from("pdl"),
     };
 
-    if !Path::new(packetgen.as_os_str()).exists() {
+    if !Path::new(pdlc.as_os_str()).exists() {
         panic!(
-            "Unable to locate bluetooth packet generator:{:?}",
-            packetgen.as_os_str().to_str().unwrap()
+            "Unable to locate pdlc: {:?}",
+            pdlc.as_os_str().to_str().unwrap()
         );
     }
 
-    for i in 0..input_files.len() {
-        println!("cargo:rerun-if-changed={}", input_files[i].display());
-        let output = Command::new(packetgen.as_os_str().to_str().unwrap())
-            .arg("--source_root=".to_owned() + gd_root.as_os_str().to_str().unwrap())
-            .arg("--out=".to_owned() + out_dir.as_os_str().to_str().unwrap())
-            .arg("--include=bt/gd")
-            .arg("--rust")
-            .arg(input_files[i].as_os_str().to_str().unwrap())
+    println!("cargo:rerun-if-changed={}", in_file.display());
+    let output = Command::new(pdlc.as_os_str().to_str().unwrap())
+            .arg("--output-format")
+            .arg("rust")
+            .arg(in_file)
+            .stdout(Stdio::from(out_file))
             .output()
             .unwrap();
 
-        println!(
-            "Status: {}, stdout: {}, stderr: {}",
-            output.status,
-            String::from_utf8_lossy(output.stdout.as_slice()),
-            String::from_utf8_lossy(output.stderr.as_slice())
-        );
-
-        // File will be at ${OUT_DIR}/../../${input_files[i].strip('.pdl')}.rs
-        std::fs::rename(
-            outputted[i].as_os_str().to_str().unwrap(),
-            out_dir.join(outputted[i].file_name().unwrap()).as_os_str().to_str().unwrap(),
-        )
-        .unwrap();
-    }
+    println!(
+        "Status: {}, stderr: {}",
+        output.status,
+        String::from_utf8_lossy(output.stderr.as_slice())
 }
