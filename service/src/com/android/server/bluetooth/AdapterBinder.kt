@@ -59,16 +59,16 @@ class AdapterBinder(val rawBinder: IBinder) {
     }
 
     @Throws(RemoteException::class, TimeoutException::class)
-    fun onBrEdrDown(source: AttributionSource) {
+    fun stopBle(source: AttributionSource) {
         val recv: SynchronousResultReceiver<Any> = SynchronousResultReceiver.get()
-        adapterBinder.onBrEdrDown(source, recv)
+        adapterBinder.stopBle(source, recv)
         recv.awaitResultNoInterrupt(syncTimeout).getValue(null)
     }
 
     @Throws(RemoteException::class, TimeoutException::class)
-    fun onLeServiceUp(source: AttributionSource) {
+    fun startBrEdr(source: AttributionSource) {
         val recv: SynchronousResultReceiver<Any> = SynchronousResultReceiver.get()
-        adapterBinder.onLeServiceUp(source, recv)
+        adapterBinder.startBrEdr(source, recv)
         recv.awaitResultNoInterrupt(syncTimeout).getValue(null)
     }
 
