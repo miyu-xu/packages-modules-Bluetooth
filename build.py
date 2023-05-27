@@ -449,6 +449,12 @@ class HostBuild():
         shutil.copy(os.path.join(self._gn_default_output(), 'bluetooth_packetgen'),
                     os.path.join(self.env['CARGO_HOME'], 'bin'))
 
+        # Link pdlc from $HOME/.cargo/bin to $CARGO_HOME/bin
+        if 'HOME' in os.environ and os.path.join(os.environ['HOME'], '.cargo', 'bin') != self.env['CARGO_HOME']:
+            print(f"Installing pdlc to '{self.env['CARGO_HOME']}'")
+            shutil.copy(os.path.join(os.environ['HOME'], '.cargo', 'bin', 'pdlc'),
+                        os.path.join(self.env['CARGO_HOME'], 'bin'))
+
     def _target_docs(self):
         """Build the Rust docs."""
         self.run_command('docs', ['cargo', 'doc'], cwd=os.path.join(self.platform_dir, 'bt'), env=self.env)
