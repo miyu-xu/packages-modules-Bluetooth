@@ -1,5 +1,23 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d114510d_b28541b5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2023-05-27T23:42:23Z",
+      "side": 1,
+      "message": "Is the root cause of the failure caused by the AIDL version? In the previous logic, the version have already included the AIDL version.",
+      "revId": "c37cb306522e10a43b02c051a919f3ec0765b57a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
