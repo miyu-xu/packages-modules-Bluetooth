@@ -55,6 +55,7 @@ cc_library_static {
         "gatt/gatt_ble_scanner_shim.cc",
         "gatt/gatt_shim.cc",
         "hfp/hfp_shim.cc",
+        "le_audio/le_audio_shim.cc",
     ],
     generated_headers: [
         "cxx-bridge-header",
@@ -84,6 +85,7 @@ gensrcs {
         "src/profiles/avrcp.rs",
         "src/profiles/gatt.rs",
         "src/profiles/hfp.rs",
+        "src/profiles/le_audio.rs",
     ],
     output_extension: "rs.h",
     export_include_dirs: ["."],
@@ -100,6 +102,7 @@ gensrcs {
         "src/profiles/avrcp.rs",
         "src/profiles/gatt.rs",
         "src/profiles/hfp.rs",
+        "src/profiles/le_audio.rs",
     ],
     output_extension: "cc",
     export_include_dirs: ["."],

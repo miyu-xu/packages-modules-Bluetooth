@@ -16,6 +16,11 @@ use bt_topshim::profiles::hfp::{
     BthfAudioState, BthfConnectionState, CallHoldCommand, CallInfo, CallState, Hfp, HfpCallbacks,
     HfpCallbacksDispatcher, HfpCodecCapability, PhoneState, TelephonyDeviceStatus,
 };
+use bt_topshim::profiles::le_audio::{
+    ffi::BtLeAudioCodecConfig, ffi::BtLeAudioCodecIndex, ffi::BtLeAudioConnectionState,
+    ffi::BtLeAudioGroupNodeStatus, ffi::BtLeAudioGroupStatus, LeAudioClient,
+    LeAudioClientCallbacks,
+};
 use bt_topshim::profiles::ProfileConnectionState;
 use bt_topshim::{metrics, topstack};
 use bt_utils::uinput::UInput;
@@ -57,9 +62,12 @@ const CONNECT_MISSING_PROFILES_TIMEOUT_SEC: u64 = 6;
 // Set to 5s to align with default page timeout (BT spec vol 4 part E sec 6.6)
 const CONNECT_AS_INITIATOR_TIMEOUT_SEC: u64 = 5;
 
-/// The list of profiles we consider as audio profiles for media.
-const MEDIA_AUDIO_PROFILES: &[uuid::Profile] =
+/// The list of profiles we consider as legacy audio profiles for media.
+const MEDIA_LEGACY_AUDIO_PROFILES: &[uuid::Profile] =
     &[uuid::Profile::A2dpSink, uuid::Profile::Hfp, uuid::Profile::AvrcpController];
+
+// TODO: VCP
+const MEDIA_LE_AUDIO_PROFILES: &[uuid::Profile] = &[uuid::Profile::LeAudio];
 
 pub trait IBluetoothMedia {
     ///
@@ -71,9 +79,12 @@ pub trait IBluetoothMedia {
     /// clean up media stack
     fn cleanup(&mut self) -> bool;
 
-    /// connect to available but missing media profiles
+    /// connect to available but missing legacy media profiles
     fn connect(&mut self, address: String);
     fn disconnect(&mut self, address: String);
+
+    fn connect_le(&mut self, address: String);
+    fn disconnect_le(&mut self, address: String);
 
     // Set the device as the active A2DP device
     fn set_active_device(&mut self, address: String);
@@ -241,6 +252,9 @@ pub enum MediaActions {
     Connect(String),
     Disconnect(String),
     ForceEnterConnected(String), // Only used for qualification.
+
+    ConnectLe(String),
+    DisconnectLe(String),
 }
 
 #[derive(Debug, Clone, PartialEq)]
@@ -634,6 +648,9 @@ impl BluetoothMedia {
             MediaActions::Connect(address) => self.connect(address),
             MediaActions::Disconnect(address) => self.disconnect(address),
             MediaActions::ForceEnterConnected(address) => self.force_enter_connected(address),
+
+            MediaActions::ConnectLe(address) => self.connect_le(address),
+            MediaActions::DisconnectLe(address) => self.disconnect_le(address),
         }
     }
 
@@ -1112,7 +1129,7 @@ impl BluetoothMedia {
             return;
         }
 
-        let available_profiles = self.adapter_get_audio_profiles(addr);
+        let available_profiles = self.adapter_get_legacy_audio_profiles(addr);
         let connected_profiles = self.connected_profiles.get(&addr).unwrap();
         let missing_profiles =
             available_profiles.difference(&connected_profiles).cloned().collect::<HashSet<_>>();
@@ -1269,7 +1286,7 @@ impl BluetoothMedia {
         }
     }
 
-    fn adapter_get_audio_profiles(&self, addr: RawAddress) -> HashSet<uuid::Profile> {
+    fn adapter_get_le_audio_profiles(&self, addr: RawAddress) -> HashSet<uuid::Profile> {
         let device = BluetoothDevice::new(addr.to_string(), "".to_string());
         if let Some(adapter) = &self.adapter {
             adapter
@@ -1280,7 +1297,25 @@ impl BluetoothMedia {
                 .map(|u| uuid::UuidHelper::is_known_profile(&u))
                 .filter(|u| u.is_some())
                 .map(|u| u.unwrap())
-                .filter(|u| MEDIA_AUDIO_PROFILES.contains(&u))
+                .filter(|u| MEDIA_LE_AUDIO_PROFILES.contains(&u))
+                .collect()
+        } else {
+            HashSet::new()
+        }
+    }
+
+    fn adapter_get_legacy_audio_profiles(&self, addr: RawAddress) -> HashSet<uuid::Profile> {
+        let device = BluetoothDevice::new(addr.to_string(), "".to_string());
+        if let Some(adapter) = &self.adapter {
+            adapter
+                .lock()
+                .unwrap()
+                .get_remote_uuids(device)
+                .into_iter()
+                .map(|u| uuid::UuidHelper::is_known_profile(&u))
+                .filter(|u| u.is_some())
+                .map(|u| u.unwrap())
+                .filter(|u| MEDIA_LEGACY_AUDIO_PROFILES.contains(&u))
                 .collect()
         } else {
             HashSet::new()
@@ -1366,7 +1401,7 @@ impl BluetoothMedia {
                     Some(a) => a,
                 };
 
-                self.is_any_profile_connected(&addr, &MEDIA_AUDIO_PROFILES)
+                self.is_any_profile_connected(&addr, &MEDIA_LEGACY_AUDIO_PROFILES)
             })
             .cloned()
             .collect()
@@ -1755,6 +1790,34 @@ impl IBluetoothMedia for BluetoothMedia {
         true
     }
 
+    fn connect_le(&mut self, address: String) {
+        let addr = match RawAddress::from_string(address.clone()) {
+            None => {
+                warn!("Invalid device address for connecting");
+                return;
+            }
+            Some(addr) => addr,
+        };
+
+        let available_profiles = self.adapter_get_le_audio_profiles(addr);
+
+        info!(
+            "[{}]: Connecting to device, available profiles: {:?}.",
+            DisplayAddress(&addr),
+            available_profiles
+        );
+    }
+
+    fn disconnect_le(&mut self, address: String) {
+        let addr = match RawAddress::from_string(address.clone()) {
+            None => {
+                warn!("Invalid device address for connecting");
+                return;
+            }
+            Some(addr) => addr,
+        };
+    }
+
     fn connect(&mut self, address: String) {
         let addr = match RawAddress::from_string(address.clone()) {
             None => {
@@ -1764,7 +1827,7 @@ impl IBluetoothMedia for BluetoothMedia {
             Some(addr) => addr,
         };
 
-        let available_profiles = self.adapter_get_audio_profiles(addr);
+        let available_profiles = self.adapter_get_legacy_audio_profiles(addr);
 
         info!(
             "[{}]: Connecting to device, available profiles: {:?}.",
