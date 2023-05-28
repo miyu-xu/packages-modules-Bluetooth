@@ -2293,7 +2293,7 @@ impl IBluetooth for Bluetooth {
 
         // Check all remote uuids to see if they match enabled profiles and connect them.
         let mut has_enabled_uuids = false;
-        let mut has_media_profile = false;
+        let mut has_legacy_media_profile = false;
         let mut has_supported_profile = false;
         let uuids = self.get_remote_uuids(device.clone());
         for uuid in uuids.iter() {
@@ -2321,11 +2321,21 @@ impl IBluetooth for Bluetooth {
                                 }
                             }
 
+                            Profile::LeAudio => {
+                                let txl = self.tx.clone();
+                                let address = device.address.clone();
+                                topstack::get_runtime().spawn(async move {
+                                    let _ = txl
+                                        .send(Message::Media(MediaActions::ConnectLe(address)))
+                                        .await;
+                                });
+                            }
+
                             Profile::A2dpSink | Profile::A2dpSource | Profile::Hfp
-                                if !has_media_profile =>
+                                if !has_legacy_media_profile =>
                             {
                                 has_supported_profile = true;
-                                has_media_profile = true;
+                                has_legacy_media_profile = true;
                                 let txl = self.tx.clone();
                                 let address = device.address.clone();
                                 topstack::get_runtime().spawn(async move {
@@ -2412,7 +2422,7 @@ impl IBluetooth for Bluetooth {
         }
 
         let uuids = self.get_remote_uuids(device.clone());
-        let mut has_media_profile = false;
+        let mut has_legacy_media_profile = false;
         for uuid in uuids.iter() {
             match UuidHelper::is_known_profile(uuid) {
                 Some(p) => {
@@ -2422,13 +2432,23 @@ impl IBluetooth for Bluetooth {
                                 self.hh.as_ref().unwrap().disconnect(&mut addr.unwrap());
                             }
 
+                            Profile::LeAudio => {
+                                let txl = self.tx.clone();
+                                let address = device.address.clone();
+                                topstack::get_runtime().spawn(async move {
+                                    let _ = txl
+                                        .send(Message::Media(MediaActions::DisconnectLe(address)))
+                                        .await;
+                                });
+                            }
+
                             Profile::A2dpSink
                             | Profile::A2dpSource
                             | Profile::Hfp
                             | Profile::AvrcpController
-                                if !has_media_profile =>
+                                if !has_legacy_media_profile =>
                             {
-                                has_media_profile = true;
+                                has_legacy_media_profile = true;
                                 let txl = self.tx.clone();
                                 let address = device.address.clone();
                                 topstack::get_runtime().spawn(async move {
