@@ -34,3 +34,4 @@ pub mod hfp;
 pub mod hid_host;
 pub mod sdp;
 pub mod socket;
+pub mod le_audio;

@@ -14,6 +14,9 @@
  * limitations under the License.
  */
 
+#include <vector>
+#include <hardware/bluetooth.h>
+
 #include "gd/rust/topshim/le_audio/le_audio_shim.h"
 
 #include "gd/os/log.h"
@@ -26,155 +29,290 @@ namespace bluetooth {
 namespace topshim {
 namespace rust {
 namespace internal {
-static LeAudioIntf* g_le_audio_if;
+static LeAudioClientIntf* g_lea_client_if;
 
-static void connection_state_cb(bluetooth::headset::bthf_connection_state_t state, RawAddress* addr) {
-  rusty::hfp_connection_state_callback(state, *addr);
+static le_audio::btle_audio_codec_config_t from_rust_btle_audio_codec_config(
+    BtLeAudioCodecConfig codec_config) {
+  switch (codec_config.codec_type) {
+    case static_cast<int>(BtLeAudioCodecIndex::SrcLc3):
+      return le_audio::btle_audio_codec_config_t {
+        .codec_type =
+          le_audio::btle_audio_codec_index_t::LE_AUDIO_CODEC_INDEX_SOURCE_LC3
+      };
+    default:
+      ASSERT_LOG(false, "%s: Unhandled enum value from Rust", __func__);
+  }
 }
 
-static void audio_state_cb(bluetooth::headset::bthf_audio_state_t state, RawAddress* addr) {
-  rusty::hfp_audio_state_callback(state, *addr);
+static BtLeAudioCodecConfig to_rust_btle_audio_codec_config(
+    le_audio::btle_audio_codec_config_t codec_config) {
+  switch (codec_config.codec_type) {
+    case le_audio::btle_audio_codec_index_t::LE_AUDIO_CODEC_INDEX_SOURCE_LC3:
+      return BtLeAudioCodecConfig {
+        .codec_type =
+          static_cast<int>(BtLeAudioCodecIndex::SrcLc3)
+      };
+    default:
+      ASSERT_LOG(false, "%s: Unhandled enum value from C++", __func__);
+  }
+}
+
+static ::rust::vec<BtLeAudioCodecConfig> to_rust_btle_audio_codec_config_vec(
+    std::vector<le_audio::btle_audio_codec_config_t> codec_configs) {
+  ::rust::vec<BtLeAudioCodecConfig> rconfigs;
+  for (auto c : codec_configs) {
+    rconfigs.push_back(to_rust_btle_audio_codec_config(c));
+  }
+  return rconfigs;
+}
+
+static BtLeAudioConnectionState to_rust_btle_audio_connection_state(
+    le_audio::ConnectionState state) {
+  switch (state) {
+    case le_audio::ConnectionState::DISCONNECTED:
+      return BtLeAudioConnectionState::Disconnected;
+    case le_audio::ConnectionState::CONNECTING:
+      return BtLeAudioConnectionState::Connecting;
+    case le_audio::ConnectionState::CONNECTED:
+      return BtLeAudioConnectionState::Connected;
+    case le_audio::ConnectionState::DISCONNECTING:
+      return BtLeAudioConnectionState::Disconnecting;
+    default:
+      ASSERT_LOG(false, "%s: Unhandled enum value from C++", __func__);
+  }
+}
+
+static BtLeAudioGroupStatus to_rust_btle_audio_group_status(
+    le_audio::GroupStatus status) {
+  switch (status) {
+    case le_audio::GroupStatus::INACTIVE:
+      return BtLeAudioGroupStatus::Inactive;
+    case le_audio::GroupStatus::ACTIVE:
+      return BtLeAudioGroupStatus::Active;
+    case le_audio::GroupStatus::TURNED_IDLE_DURING_CALL:
+      return BtLeAudioGroupStatus::TurnedIdleDuringCall;
+    default:
+      ASSERT_LOG(false, "%s: Unhandled enum value from C++", __func__);
+  }
+}
+
+static BtLeAudioGroupNodeStatus to_rust_btle_audio_group_node_status(
+    le_audio::GroupNodeStatus status) {
+  switch (status) {
+    case le_audio::GroupNodeStatus::ADDED:
+      return BtLeAudioGroupNodeStatus::Added;
+    case le_audio::GroupNodeStatus::REMOVED:
+      return BtLeAudioGroupNodeStatus::Removed;
+    default:
+      ASSERT_LOG(false, "%s: Unhandled enum value from C++", __func__);
+  }
+}
+
+static void initialized_cb() {
+  le_audio_initialized_callback();
+}
+
+static void connection_state_cb(le_audio::ConnectionState state,
+                                const RawAddress& address) {
+  le_audio_connection_state_callback(
+      to_rust_btle_audio_connection_state(state), address);
+}
+
+static void group_status_cb(int group_id, le_audio::GroupStatus group_status) {
+  le_audio_group_status_callback(
+      group_id, to_rust_btle_audio_group_status(group_status));
+}
+
+static void group_node_status_cb(const RawAddress& bd_addr, int group_id,
+                                 le_audio::GroupNodeStatus node_status) {
+  le_audio_group_node_status_callback(
+      bd_addr, group_id, to_rust_btle_audio_group_node_status(node_status));
+}
+
+static void audio_conf_cb(uint8_t direction, int group_id,
+                          uint32_t snk_audio_location,
+                          uint32_t src_audio_location,
+                          uint16_t avail_cont) {
+  le_audio_audio_conf_callback(direction, group_id,
+      snk_audio_location, src_audio_location, avail_cont);
+}
+
+static void sink_audio_location_available_cb(const RawAddress& address,
+                                             uint32_t snk_audio_locations) {
+  le_audio_sink_audio_location_available_callback(
+      address, snk_audio_locations);
+}
+
+static void audio_local_codec_capabilities_cb(
+    std::vector<le_audio::btle_audio_codec_config_t> local_input_capa_codec_conf,
+    std::vector<le_audio::btle_audio_codec_config_t> local_output_capa_codec_conf) {
+  le_audio_audio_local_codec_capabilities_callback(
+      to_rust_btle_audio_codec_config_vec(local_input_capa_codec_conf),
+      to_rust_btle_audio_codec_config_vec(local_output_capa_codec_conf));
+}
+
+static void audio_group_codec_conf_cb(
+    int group_id, le_audio::btle_audio_codec_config_t input_codec_conf,
+    le_audio::btle_audio_codec_config_t output_codec_conf,
+    std::vector<le_audio::btle_audio_codec_config_t> input_selectable_codec_conf,
+    std::vector<le_audio::btle_audio_codec_config_t> output_selectable_codec_conf) {
+  le_audio_audio_group_codec_conf_callback(group_id,
+      to_rust_btle_audio_codec_config(input_codec_conf),
+      to_rust_btle_audio_codec_config(output_codec_conf),
+      to_rust_btle_audio_codec_config_vec(input_selectable_codec_conf),
+      to_rust_btle_audio_codec_config_vec(output_selectable_codec_conf));
 }
 }  // namespace internal
 
-class DBusHeadsetCallbacks : public headset::Callbacks {
+class DBusLeAudioClientCallbacks : public le_audio::LeAudioClientCallbacks {
  public:
-  static Callbacks* GetInstance(headset::Interface* headset) {
-    static Callbacks* instance = new DBusHeadsetCallbacks(headset);
+  static le_audio::LeAudioClientCallbacks* GetInstance() {
+    static auto instance = new DBusLeAudioClientCallbacks();
     return instance;
   }
 
-  DBusHeadsetCallbacks(headset::Interface* headset) : headset_(headset){};
+  DBusLeAudioClientCallbacks() {};
 
-  // headset::Callbacks
-  void ConnectionStateCallback(headset::bthf_connection_state_t state, RawAddress* bd_addr) override {
-    LOG_INFO("ConnectionStateCallback from %s", ADDRESS_TO_LOGGABLE_CSTR(*bd_addr));
-    topshim::rust::internal::connection_state_cb(state, bd_addr);
+  void OnInitialized() override {
+    LOG_INFO("%s", __func__);
+    topshim::rust::internal::initialized_cb();
   }
 
-  void AudioStateCallback(headset::bthf_audio_state_t state, RawAddress* bd_addr) override {
-    LOG_INFO("AudioStateCallback %u from %s", state, ADDRESS_TO_LOGGABLE_CSTR(*bd_addr));
-    topshim::rust::internal::audio_state_cb(state, bd_addr);
+  void OnConnectionState(le_audio::ConnectionState state,
+                         const RawAddress& address) override {
+    LOG_INFO("%s from %s", __func__, ADDRESS_TO_LOGGABLE_CSTR(address));
+    topshim::rust::internal::connection_state_cb(state, address);
   }
 
- private:
-  headset::Interface* headset_;
+  void OnGroupStatus(int group_id, le_audio::GroupStatus group_status) override {
+    LOG_INFO("%s gid=%d, group_status=%d", __func__, group_id, group_status);
+    topshim::rust::internal::group_status_cb(group_id, group_status);
+  }
+
+  void OnGroupNodeStatus(const RawAddress& bd_addr, int group_id,
+                         le_audio::GroupNodeStatus node_status) {
+    LOG_INFO("%s from %s, gid=%d, node_status=%d", __func__,
+        ADDRESS_TO_LOGGABLE_CSTR(bd_addr), group_id, node_status);
+    topshim::rust::internal::group_node_status_cb(bd_addr, group_id,
+        node_status);
+  }
+
+  void OnAudioConf(uint8_t direction, int group_id,
+                   uint32_t snk_audio_location,
+                   uint32_t src_audio_location,
+                   uint16_t avail_cont) {
+    LOG_INFO("%s dir=%u, gid=%d, snk_loc=%u, src_loc=%u, avail=%u", __func__,
+        direction, group_id, snk_audio_location, src_audio_location,
+        avail_cont);
+    topshim::rust::internal::audio_conf_cb(direction, group_id,
+        snk_audio_location, src_audio_location, avail_cont);
+  }
+
+  void OnSinkAudioLocationAvailable(const RawAddress& address,
+                                    uint32_t snk_audio_locations) {
+    LOG_INFO("%s from %s, snk_loc=%u", __func__,
+        ADDRESS_TO_LOGGABLE_CSTR(address), snk_audio_locations);
+    topshim::rust::internal::sink_audio_location_available_cb(
+        address, snk_audio_locations);
+  }
+
+  void OnAudioLocalCodecCapabilities(
+      std::vector<le_audio::btle_audio_codec_config_t> local_input_capa_codec_conf,
+      std::vector<le_audio::btle_audio_codec_config_t> local_output_capa_codec_conf) {
+    LOG_INFO("%s", __func__);
+    topshim::rust::internal::audio_local_codec_capabilities_cb(
+        local_input_capa_codec_conf, local_output_capa_codec_conf);
+  }
+
+  void OnAudioGroupCodecConf(
+      int group_id, le_audio::btle_audio_codec_config_t input_codec_conf,
+      le_audio::btle_audio_codec_config_t output_codec_conf,
+      std::vector<le_audio::btle_audio_codec_config_t> input_selectable_codec_conf,
+      std::vector<le_audio::btle_audio_codec_config_t> output_selectable_codec_conf) {
+    LOG_INFO("%s gid=%d", __func__, group_id);
+    topshim::rust::internal::audio_group_codec_conf_cb(
+        group_id, input_codec_conf, output_codec_conf,
+        input_selectable_codec_conf, output_selectable_codec_conf);
+  }
 };
 
-int LeAudioIntf::init() {
-  return intf_->Initialize(DBusHeadsetCallbacks::GetInstance(intf_), {});
+void LeAudioClientIntf::init(/*
+     LeAudioClientCallbacks* callbacks,
+     const std::vector<le_audio::btle_audio_codec_config_t>& offloading_preference */) {
+  return intf_->Initialize(DBusLeAudioClientCallbacks::GetInstance(), {});
 }
 
-void LeAudioIntf::cleanup() {
-
+void LeAudioClientIntf::connect(RawAddress addr) {
+  return intf_->Connect(addr);
 }
 
-uint32_t LeAudioIntf::connect(RawAddress addr) {
-  return intf_->Connect(&addr);
+void LeAudioClientIntf::disconnect(RawAddress addr) {
+  return intf_->Disconnect(addr);
 }
 
-int LeAudioIntf::connect_audio(RawAddress addr, bool sco_offload, bool force_cvsd) {
-  intf_->SetScoOffloadEnabled(sco_offload);
-  return intf_->ConnectAudio(&addr, force_cvsd);
+void LeAudioClientIntf::set_enable_state(RawAddress addr, bool enabled) {
+  return intf_->SetEnableState(addr, enabled);
 }
 
-int LeAudioIntf::set_active_device(RawAddress addr) {
-  return intf_->SetActiveDevice(&addr);
+void LeAudioClientIntf::cleanup() {
+  return intf_->Cleanup();
 }
 
-int LeAudioIntf::set_volume(int8_t volume, RawAddress addr) {
-  return intf_->VolumeControl(headset::bthf_volume_type_t::BTHF_VOLUME_TYPE_SPK, volume, &addr);
+void LeAudioClientIntf::remove_device(RawAddress addr) {
+  return intf_->RemoveDevice(addr);
 }
 
-uint32_t LeAudioIntf::disconnect(RawAddress addr) {
-  return intf_->Disconnect(&addr);
+void LeAudioClientIntf::group_add_node(int group_id, RawAddress addr) {
+  return intf_->GroupAddNode(group_id, addr);
 }
 
-int LeAudioIntf::disconnect_audio(RawAddress addr) {
-  return intf_->DisconnectAudio(&addr);
+void LeAudioClientIntf::group_remove_node(int group_id, RawAddress addr) {
+  return intf_->GroupRemoveNode(group_id, addr);
 }
 
-uint32_t LeAudioIntf::device_status_notification(TelephonyDeviceStatus status, RawAddress addr) {
-  return intf_->DeviceStatusNotification(
-      status.network_available ? headset::BTHF_NETWORK_STATE_AVAILABLE
-                               : headset::BTHF_NETWORK_STATE_NOT_AVAILABLE,
-      status.roaming ? headset::BTHF_SERVICE_TYPE_ROAMING : headset::BTHF_SERVICE_TYPE_HOME,
-      status.signal_strength,
-      status.battery_level,
-      &addr);
+void LeAudioClientIntf::group_set_active(int group_id) {
+  return intf_->GroupSetActive(group_id);
 }
 
-uint32_t LeAudioIntf::indicator_query_response(
-    TelephonyDeviceStatus device_status, PhoneState phone_state, RawAddress addr) {
-  return intf_->CindResponse(
-      device_status.network_available ? 1 : 0,
-      phone_state.num_active,
-      phone_state.num_held,
-      topshim::rust::internal::from_rust_call_state(phone_state.state),
-      device_status.signal_strength,
-      device_status.roaming ? 1 : 0,
-      device_status.battery_level,
-      &addr);
+void LeAudioClientIntf::set_codec_config_preference(int group_id,
+    BtLeAudioCodecConfig input_codec_config,
+    BtLeAudioCodecConfig output_codec_config) {
+  return intf_->SetCodecConfigPreference(
+      group_id,
+      internal::from_rust_btle_audio_codec_config(input_codec_config),
+      internal::from_rust_btle_audio_codec_config(output_codec_config));
 }
 
-uint32_t LeAudioIntf::current_calls_query_response(
-    const ::rust::Vec<CallInfo>& call_list, RawAddress addr) {
-  for (const auto& c : call_list) {
-    std::string number{c.number};
-    intf_->ClccResponse(
-        c.index,
-        c.dir_incoming ? headset::BTHF_CALL_DIRECTION_INCOMING
-                       : headset::BTHF_CALL_DIRECTION_OUTGOING,
-        topshim::rust::internal::from_rust_call_state(c.state),
-        /*mode=*/headset::BTHF_CALL_TYPE_VOICE,
-        /*multi_party=*/headset::BTHF_CALL_MPTY_TYPE_SINGLE,
-        number.c_str(),
-        /*type=*/headset::BTHF_CALL_ADDRTYPE_UNKNOWN,
-        &addr);
-  }
-
-  // NULL termination (Completes response)
-  return intf_->ClccResponse(
-      /*index=*/0,
-      /*dir=*/(headset::bthf_call_direction_t)0,
-      /*state=*/(headset::bthf_call_state_t)0,
-      /*mode=*/(headset::bthf_call_mode_t)0,
-      /*multi_party=*/(headset::bthf_call_mpty_type_t)0,
-      /*number=*/"",
-      /*type=*/(headset::bthf_call_addrtype_t)0,
-      &addr);
+void LeAudioClientIntf::set_ccid_information(int ccid, int context_type) {
+  return intf_->SetCcidInformation(ccid, context_type);
 }
 
-uint32_t LeAudioIntf::phone_state_change(
-    PhoneState phone_state, const ::rust::String& number_rs, RawAddress addr) {
-  std::string number{number_rs};
-  return intf_->PhoneStateChange(
-      phone_state.num_active,
-      phone_state.num_held,
-      topshim::rust::internal::from_rust_call_state(phone_state.state),
-      number.c_str(),
-      /*type=*/(headset::bthf_call_addrtype_t)0,
-      /*name=*/"",
-      &addr);
+void LeAudioClientIntf::set_in_call(bool in_call) {
+  return intf_->SetInCall(in_call);
 }
 
-uint32_t LeAudioIntf::simple_at_response(bool ok, RawAddress addr) {
-  return intf_->AtResponse(
-      (ok ? headset::BTHF_AT_RESPONSE_OK : headset::BTHF_AT_RESPONSE_ERROR), 0, &addr);
+void LeAudioClientIntf::send_audio_profile_preferences(int group_id,
+    bool is_output_preference_le_audio,
+    bool is_duplex_preference_le_audio) {
+  return intf_->SendAudioProfilePreferences(group_id,
+      is_output_preference_le_audio, is_duplex_preference_le_audio);
 }
 
-std::unique_ptr<LeAudioIntf> GetHfpProfile(const unsigned char* btif) {
-  if (internal::g_hfpif) std::abort();
+std::unique_ptr<LeAudioClientIntf> GetLeAudioProfile(
+    const unsigned char* btif) {
+  if (internal::g_lea_client_if) std::abort();
 
   const bt_interface_t* btif_ = reinterpret_cast<const bt_interface_t*>(btif);
 
-  auto hfpif = std::make_unique<LeAudioIntf>(const_cast<headset::Interface*>(
-      reinterpret_cast<const headset::Interface*>(btif_->get_profile_interface("handsfree"))));
-  internal::g_hfpif = hfpif.get();
+  auto lea_client_if = std::make_unique<LeAudioClientIntf>(
+      const_cast<le_audio::LeAudioClientInterface*>(
+        reinterpret_cast<const le_audio::LeAudioClientInterface*>(
+          btif_->get_profile_interface("le_audio"))));
 
-  return hfpif;
+  internal::g_lea_client_if = lea_client_if.get();
+
+  return lea_client_if;
 }
-
 }  // namespace rust
 }  // namespace topshim
 }  // namespace bluetooth

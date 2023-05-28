@@ -26,35 +26,37 @@ namespace bluetooth {
 namespace topshim {
 namespace rust {
 
-struct TelephonyDeviceStatus;
-struct CallInfo;
-struct PhoneState;
+struct BtLeAudioCodecConfig;
 
-class LeAudioIntf {
+class LeAudioClientIntf {
  public:
-  LeAudioIntf(le_audio::LeAudioClientInterface* intf) : intf_(intf){};
+  LeAudioClientIntf(le_audio::LeAudioClientInterface* intf) : intf_(intf) {};
 
-  int init();
-  uint32_t connect(RawAddress addr);
-  int connect_audio(RawAddress addr, bool sco_offload, bool force_cvsd);
-  int set_active_device(RawAddress addr);
-  int set_volume(int8_t volume, RawAddress addr);
-  uint32_t disconnect(RawAddress addr);
-  int disconnect_audio(RawAddress addr);
-  uint32_t device_status_notification(TelephonyDeviceStatus status, RawAddress addr);
-  uint32_t indicator_query_response(
-      TelephonyDeviceStatus device_status, PhoneState phone_state, RawAddress addr);
-  uint32_t current_calls_query_response(const ::rust::Vec<CallInfo>& call_list, RawAddress addr);
-  uint32_t phone_state_change(
-      PhoneState phone_state, const ::rust::String& number, RawAddress addr);
-  uint32_t simple_at_response(bool ok, RawAddress addr);
+  void init(/*
+     LeAudioClientCallbacks* callbacks,
+     const std::vector<le_audio::btle_audio_codec_config_t>& offloading_preference
+  */);
+  void connect(RawAddress addr);
+  void disconnect(RawAddress addr);
+  void set_enable_state(RawAddress addr, bool enabled);
   void cleanup();
+  void remove_device(RawAddress addr);
+  void group_add_node(int group_id, RawAddress addr);
+  void group_remove_node(int group_id, RawAddress addr);
+  void group_set_active(int group_id);
+  void set_codec_config_preference(int group_id,
+      BtLeAudioCodecConfig input_codec_config,
+      BtLeAudioCodecConfig output_codec_config);
+  void set_ccid_information(int ccid, int context_type);
+  void set_in_call(bool in_call);
+  void send_audio_profile_preferences(int group_id,
+      bool is_output_preference_le_audio, bool is_duplex_preference_le_audio);
 
  private:
-  headset::Interface* intf_;
+  le_audio::LeAudioClientInterface* intf_;
 };
 
-std::unique_ptr<HfpIntf> GetHfpProfile(const unsigned char* btif);
+std::unique_ptr<LeAudioClientIntf> GetLeAudioClientProfile(const unsigned char* btif);
 
 }  // namespace rust
 }  // namespace topshim
