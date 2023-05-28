@@ -185,6 +185,16 @@ impl IBluetoothMedia for IBluetoothMediaDBus {
         dbus_generated!()
     }
 
+    #[dbus_method("ConnectLe")]
+    fn connect_le(&mut self, address: String) {
+        dbus_generated!()
+    }
+
+    #[dbus_method("DisconnectLe")]
+    fn disconnect_le(&mut self, address: String) {
+        dbus_generated!()
+    }
+
     #[dbus_method("SetActiveDevice")]
     fn set_active_device(&mut self, address: String) {
         dbus_generated!()
