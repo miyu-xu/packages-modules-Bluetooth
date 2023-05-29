@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e0544399_31514212",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 655,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-05-29T20:56:03Z",
+      "side": 1,
+      "message": "actually above sentence means, that before Host get notification about ACL disconnection it shall get notification about CIS disconnection.\nWhich confirms what I\u0027m saying: it is invalid behavior to get ACL disconnection complete event without getting CIS disconnection complete event and the fix is actually handling some invalid behavior.",
+      "parentUuid": "7f0bffa6_83cf740a",
+      "revId": "83b41f1e55eb4566d3e17d97c1473e8fb45bc278",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9768f34a_3c8a92a6",
         "filename": "system/bta/le_audio/state_machine.cc",
         "patchSetId": 1
@@ -67,6 +85,24 @@
       "side": 1,
       "message": "I though about such implementation but I wasn\u0027t convinced to use those `multi` action/generic methods e.g. do something and do something if needed.\n\nSecond thing is if Stream is a part of group ? or it\u0027s rather a representation of generic LE Audio stream for Android it\u0027s the same thing as active device/group. I don\u0027t see currently any usage for multiple group stream or maybe I don\u0027t see specific cases.",
       "parentUuid": "9768f34a_3c8a92a6",
+      "revId": "83b41f1e55eb4566d3e17d97c1473e8fb45bc278",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6ae698ca_70f6b545",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 661,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-05-29T20:56:03Z",
+      "side": 1,
+      "message": "The thing is, we want to move group operations to the group eventually.\ne.g. all the functions in state_machine.cc which takes `group` as parameter, should actually be part of LeAudioDeviceGroup.\n\nStream belongs to the group, so imho the proposed change makes sense.",
+      "parentUuid": "19cc57cc_8b93a0ae",
       "revId": "83b41f1e55eb4566d3e17d97c1473e8fb45bc278",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
