@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7f0bffa6_83cf740a",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 655,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-05-29T11:03:57Z",
+      "side": 1,
+      "message": "According to spec `All SCO, eSCO, and CIS connections on a physical link should be\ndisconnected before the ACL connection on the same physical connection is\ndisconnected. If it does not, they will be implicitly disconnected as part of the\nACL disconnection.` 7.1.6 Disconnect command / Core. There is used `should` which `Should equals is recommended that` 1.4 / Core\n\nSo it means that it\u0027s allowed to do that \u003d\u003d not invalid.",
+      "parentUuid": "f5a12a98_c4bc99ab",
+      "revId": "83b41f1e55eb4566d3e17d97c1473e8fb45bc278",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9768f34a_3c8a92a6",
         "filename": "system/bta/le_audio/state_machine.cc",
         "patchSetId": 1
@@ -31,6 +49,24 @@
       "writtenOn": "2023-05-26T15:04:01Z",
       "side": 1,
       "message": "maybe this is good moment to move `RemoveCisFromStreamConfiguration` to `LeAudioDeviceGroup`, and then instead of `IsCisPartOfCurrentStream` create `RemoveCisFromStreamIfNeeded` ?",
+      "revId": "83b41f1e55eb4566d3e17d97c1473e8fb45bc278",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "19cc57cc_8b93a0ae",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 661,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-05-29T11:03:57Z",
+      "side": 1,
+      "message": "I though about such implementation but I wasn\u0027t convinced to use those `multi` action/generic methods e.g. do something and do something if needed.\n\nSecond thing is if Stream is a part of group ? or it\u0027s rather a representation of generic LE Audio stream for Android it\u0027s the same thing as active device/group. I don\u0027t see currently any usage for multiple group stream or maybe I don\u0027t see specific cases.",
+      "parentUuid": "9768f34a_3c8a92a6",
       "revId": "83b41f1e55eb4566d3e17d97c1473e8fb45bc278",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
