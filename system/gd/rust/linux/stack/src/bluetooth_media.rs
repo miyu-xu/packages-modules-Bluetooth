@@ -19,7 +19,7 @@ use bt_topshim::profiles::hfp::{
 use bt_topshim::profiles::le_audio::{
     ffi::BtLeAudioCodecConfig, ffi::BtLeAudioCodecIndex, ffi::BtLeAudioConnectionState,
     ffi::BtLeAudioGroupNodeStatus, ffi::BtLeAudioGroupStatus, LeAudioClient,
-    LeAudioClientCallbacks,
+    LeAudioClientCallbacks, LeAudioClientCallbacksDispatcher,
 };
 use bt_topshim::profiles::ProfileConnectionState;
 use bt_topshim::{metrics, topstack};
@@ -298,6 +298,7 @@ pub struct BluetoothMedia {
     phone_ops_enabled: bool,
     memory_dialing_number: Option<String>,
     last_dialing_number: Option<String>,
+    le_audio: Option<LeAudioClient>,
 }
 
 impl BluetoothMedia {
@@ -345,6 +346,7 @@ impl BluetoothMedia {
             phone_ops_enabled: false,
             memory_dialing_number: None,
             last_dialing_number: None,
+            le_audio: None,
         }
     }
 
@@ -413,6 +415,11 @@ impl BluetoothMedia {
                     hfp.enable();
                 }
             }
+            &Profile::LeAudio => {
+                if let Some(le_audio) = &mut self.le_audio {
+                    le_audio.enable();
+                }
+            }
             _ => {
                 warn!("Tried to enable {} in bluetooth_media", profile);
                 return;
@@ -443,6 +450,11 @@ impl BluetoothMedia {
                     hfp.disable();
                 }
             }
+            &Profile::LeAudio => {
+                if let Some(le_audio) = &mut self.le_audio {
+                    le_audio.disable();
+                }
+            }
             _ => {
                 warn!("Tried to disable {} in bluetooth_media", profile);
                 return;
@@ -461,10 +473,22 @@ impl BluetoothMedia {
                 Some(self.avrcp.as_ref().map_or(false, |avrcp| avrcp.is_enabled()))
             }
             &Profile::Hfp => Some(self.hfp.as_ref().map_or(false, |hfp| hfp.is_enabled())),
+            &Profile::LeAudio => {
+                Some(self.le_audio.as_ref().map_or(false, |le_audio| le_audio.is_enabled()))
+            }
             _ => {
                 warn!("Tried to query enablement status of {} in bluetooth_media", profile);
                 None
             }
+        }
+    }
+
+    pub fn dispatch_le_audio_callbacks(&mut self, cb: LeAudioClientCallbacks) {
+        match cb {
+            LeAudioClientCallbacks::ConnectionState(state, addr) => {
+                info!("[{}]: le_audio connection state {:?}", DisplayAddress(&addr), state);
+            }
+            _ => {}
         }
     }
 
@@ -1757,6 +1781,17 @@ fn get_hfp_dispatcher(tx: Sender<Message>) -> HfpCallbacksDispatcher {
     }
 }
 
+fn get_le_audio_dispatcher(tx: Sender<Message>) -> LeAudioClientCallbacksDispatcher {
+    LeAudioClientCallbacksDispatcher {
+        dispatch: Box::new(move |cb| {
+            let txl = tx.clone();
+            topstack::get_runtime().spawn(async move {
+                let _ = txl.send(Message::LeAudioClient(cb)).await;
+            });
+        }),
+    }
+}
+
 impl IBluetoothMedia for BluetoothMedia {
     fn register_callback(&mut self, callback: Box<dyn IBluetoothMediaCallback + Send>) -> bool {
         let _id = self.callbacks.lock().unwrap().add_callback(callback);
@@ -1784,6 +1819,11 @@ impl IBluetoothMedia for BluetoothMedia {
         self.hfp = Some(Hfp::new(&self.intf.lock().unwrap()));
         self.hfp.as_mut().unwrap().initialize(hfp_dispatcher);
 
+        // LEA
+        let le_audio_dispatcher = get_le_audio_dispatcher(self.tx.clone());
+        self.le_audio = Some(LeAudioClient::new(&self.intf.lock().unwrap()));
+        self.le_audio.as_mut().unwrap().initialize(le_audio_dispatcher);
+
         for profile in self.delay_enable_profiles.clone() {
             self.enable_profile(&profile);
         }
@@ -1806,6 +1846,15 @@ impl IBluetoothMedia for BluetoothMedia {
             DisplayAddress(&addr),
             available_profiles
         );
+
+        match self.le_audio.as_mut() {
+            Some(le_audio) => {
+                le_audio.connect(addr);
+            }
+            None => {
+                warn!("Uninitialized LeAudio to connect {}", DisplayAddress(&addr));
+            }
+        };
     }
 
     fn disconnect_le(&mut self, address: String) {
