@@ -52,7 +52,6 @@ import com.android.bluetooth.tbs.TbsService;
 import com.android.bluetooth.vc.VolumeControlService;
 import com.android.internal.annotations.VisibleForTesting;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -171,9 +170,14 @@ public class Config {
                 profile.mSupported = enabled;
             }
         }
+        //        if (enabled) {
+        //            sSupportedProfiles.add(profileClass);
+        //        } else {
+        //            sSupportedProfiles.remove(profileClass);
+        //        }
     }
 
-    private static Class[] sSupportedProfiles = new Class[0];
+    private static Set<Class> sSupportedProfiles = new HashSet<>();
 
     private static boolean sIsGdEnabledUptoScanningLayer = false;
 
@@ -211,15 +215,13 @@ public class Config {
             setProfileEnabled(HearingAidService.class, false);
         }
 
-        ArrayList<Class> profiles = new ArrayList<>(PROFILE_SERVICES_AND_FLAGS.length);
         for (ProfileConfig config : PROFILE_SERVICES_AND_FLAGS) {
             Log.i(TAG, "init: profile=" + config.mClass.getSimpleName() + ", enabled="
                     + config.mSupported);
             if (config.mSupported) {
-                profiles.add(config.mClass);
+                sSupportedProfiles.add(config.mClass);
             }
         }
-        sSupportedProfiles = profiles.toArray(new Class[profiles.size()]);
 
         if (ctx == null) {
             return;
@@ -253,8 +255,7 @@ public class Config {
      * Remove the input profiles from the supported list.
      */
     static void removeProfileFromSupportedList(HashSet<Class> nonSupportedProfiles) {
-        ArrayList<Class> profilesList = new ArrayList<Class>(Arrays.asList(sSupportedProfiles));
-        Iterator<Class> iter = profilesList.iterator();
+        Iterator<Class> iter = sSupportedProfiles.iterator();
 
         while (iter.hasNext()) {
             Class profileClass = iter.next();
@@ -264,8 +265,6 @@ public class Config {
                 Log.v(TAG, "Remove " + profileClass.getSimpleName() + " from supported list.");
             }
         }
-
-        sSupportedProfiles = profilesList.toArray(new Class[profilesList.size()]);
     }
 
     static void updateSupportedProfileMask(Boolean enable, Class profile, int supportedProfile) {
@@ -286,7 +285,7 @@ public class Config {
     }
 
     static Class[] getSupportedProfiles() {
-        return sSupportedProfiles;
+        return sSupportedProfiles.toArray(new Class[sSupportedProfiles.size()]);
     }
 
     static boolean isGdEnabledUpToScanningLayer() {
