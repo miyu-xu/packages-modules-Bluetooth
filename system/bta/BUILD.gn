@@ -152,16 +152,13 @@ static_library("bta") {
   deps = [
     "//bt/system:libbt-platform-protos-lite",
     "//bt/system/gd/rust/shim:init_flags_bridge_header",
-    "//bt/system/bta:LeAudioSetConfigSchemas_h",
     "//bt/system/bta:LeAudioSetScenariosSchema_bfbs",
+    "//bt/system/bta:LeAudioSetConfigsSchema_bfbs",
     "//bt/system/embdrv/lc3:liblc3",
-  ]
-}
-
-flatbuffer("LeAudioSetConfigSchemas_h") {
-  sources = [
-    "le_audio/audio_set_configurations.fbs",
-    "le_audio/audio_set_scenarios.fbs",
+    "//bt/system/bta:install_audio_set_scenarios_json",
+    "//bt/system/bta:install_audio_set_configurations_json",
+    "//bt/system/bta:install_audio_set_scenarios_bfbs",
+    "//bt/system/bta:install_audio_set_configurations_bfbs",
   ]
 }
 
@@ -171,6 +168,37 @@ bt_flatc_binary_schema("LeAudioSetScenariosSchema_bfbs") {
   ]
 
   include_dir = "system"
+  gen_header = true
+}
+
+bt_flatc_binary_schema("LeAudioSetConfigsSchema_bfbs") {
+  sources = [
+    "le_audio/audio_set_configurations.fbs",
+  ]
+
+  include_dir = "system"
+  gen_header = true
+}
+
+# TODO: check permission
+install_config("install_audio_set_scenarios_bfbs") {
+  sources = [ "$target_gen_dir/audio_set_scenarios.bfbs" ]
+  install_path = "/etc/bluetooth/le_audio/"
+}
+
+install_config("install_audio_set_configurations_bfbs") {
+  sources = [ "$target_gen_dir/audio_set_configurations.bfbs" ]
+  install_path = "/etc/bluetooth/le_audio/"
+}
+
+install_config("install_audio_set_scenarios_json") {
+  sources = [ "le_audio/audio_set_scenarios.json" ]
+  install_path = "/etc/bluetooth/le_audio/"
+}
+
+install_config("install_audio_set_configurations_json") {
+  sources = [ "le_audio/audio_set_configurations.json" ]
+  install_path = "/etc/bluetooth/le_audio/"
 }
 
 if (use.test) {
