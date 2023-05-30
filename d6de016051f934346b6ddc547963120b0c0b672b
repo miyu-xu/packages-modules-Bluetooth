@@ -16,6 +16,23 @@
       "message": "Maybe audio should be stopped on service disconnection/close ?",
       "revId": "d6de016051f934346b6ddc547963120b0c0b672b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c7f7bc99_4923304d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-05-30T18:10:21Z",
+      "side": 1,
+      "message": "Did you test each of the following while playing music on a LeAudio device:\n* switch output to phone\n* switch output to another LeAudio device\n* switch output to an A2dp device\n\nIn the 3 situations we should have the sound playing without the need to press play again.\nI expect this CL to break the 1st item on the list but I may be wrong",
+      "revId": "d6de016051f934346b6ddc547963120b0c0b672b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
