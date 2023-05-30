@@ -97,6 +97,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "35d2dfa3_0a0ec9e2",
+        "filename": "system/rust/src/connection.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-05-30T19:40:08Z",
+      "side": 1,
+      "message": "I think we should introduce an intermediate state/type between the two results then, transform `direct_connection(..) -\u003e Future\u003cResult\u003cFuture\u003cResult\u003cLeConnection\u003e\u003e\u003e\u003e` into something like `direct_connection(..) -\u003e Future\u003cResult\u003cPendingLeConnection\u003e\u003e`, `PendingLeConnection#connection(..) -\u003e Future\u003cResult\u003cLeConnection\u003e\u003e`\n(This would also let you implement Drop on `PendingLeConnection` instead of using a scopeguard)\n\nAlso you might want to clarify your rust doc because now we don\u0027t know `If this future is dropped` which future is referred here.",
+      "parentUuid": "449bb85e_8f1a2947",
+      "range": {
+        "startLine": 159,
+        "startChar": 4,
+        "endLine": 159,
+        "endChar": 10
+      },
+      "revId": "ad77a595a978942ee433bdab1c79ad2119ee0857",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5d26a191_9eeeb353",
         "filename": "system/rust/src/connection.rs",
         "patchSetId": 2
@@ -132,6 +156,30 @@
       "side": 1,
       "message": "I do in the followup CL, so I\u0027d prefer to keep this change here (especially since the followups are a lot more complicated, so I want to keep them focused on the logical changes).",
       "parentUuid": "5d26a191_9eeeb353",
+      "range": {
+        "startLine": 270,
+        "startChar": 104,
+        "endLine": 275,
+        "endChar": 5
+      },
+      "revId": "ad77a595a978942ee433bdab1c79ad2119ee0857",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3a651298_a91a4bc9",
+        "filename": "system/rust/src/connection.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-05-30T19:40:08Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "12374ee1_83583fa7",
       "range": {
         "startLine": 270,
         "startChar": 104,
