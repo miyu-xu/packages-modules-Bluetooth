@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8beff719_69443ed6",
+        "filename": "system/stack/sdp/internal/sdp_api.h",
+        "patchSetId": 7
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-05-30T17:00:46Z",
+      "side": 1,
+      "message": "nit: Why not static_assert?\n\nstatic_assert(defined(STACK_SDP_INTERNAL_ONLY), \"Internal file must not be included\");",
+      "range": {
+        "startLine": 29,
+        "startChar": 0,
+        "endLine": 31,
+        "endChar": 6
+      },
+      "revId": "54bedbcfaf9fe7554d6b634bb6c91e6761dcbdd3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4bf0bd07_a660e851",
+        "filename": "system/stack/test/gatt/stack_gatt_test.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-05-30T17:00:46Z",
+      "side": 1,
+      "message": "Does the GATT test really need the internal SDP APIs?",
+      "range": {
+        "startLine": 31,
+        "startChar": 0,
+        "endLine": 31,
+        "endChar": 39
+      },
+      "revId": "54bedbcfaf9fe7554d6b634bb6c91e6761dcbdd3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
