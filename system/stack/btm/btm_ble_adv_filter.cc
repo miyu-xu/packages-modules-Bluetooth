@@ -83,14 +83,6 @@ static bool is_filtering_supported() {
   return cmn_ble_vsc_cb.filter_support != 0 && cmn_ble_vsc_cb.max_filter != 0;
 }
 
-static bool is_empty_128bit(const std::array<uint8_t, 16> data) {
-  int i, len = 16;
-  for (i = 0; i < len; i++) {
-    if (data[i] != (uint8_t)0) return false;
-  }
-  return true;
-}
-
 /*******************************************************************************
  *
  * Function         btm_ble_ocf_to_condtype
@@ -263,141 +255,6 @@ static bool btm_ble_dealloc_addr_filter_counter(tBLE_BD_ADDR* p_bd_addr,
   return found;
 }
 
-/**
- * This function update(add,delete or clear) the adv local name filtering
- * condition.
- */
-static void BTM_LE_PF_local_name(tBTM_BLE_SCAN_COND_OP action,
-                                 tBTM_BLE_PF_FILT_INDEX filt_index,
-                                 std::vector<uint8_t> name,
-                                 tBTM_BLE_PF_CFG_CBACK cb) {
-  uint8_t len = BTM_BLE_ADV_FILT_META_HDR_LENGTH;
-
-  uint8_t len_max = len + BTM_BLE_PF_STR_LEN_MAX;
-  uint8_t param[len_max];
-  memset(param, 0, len_max);
-
-  uint8_t* p = param;
-  UINT8_TO_STREAM(p, BTM_BLE_META_PF_LOCAL_NAME);
-  UINT8_TO_STREAM(p, action);
-  UINT8_TO_STREAM(p, filt_index);
-
-  if (action != BTM_BLE_SCAN_COND_CLEAR) {
-    int size = std::min(name.size(), (size_t)BTM_BLE_PF_STR_LEN_MAX);
-    ARRAY_TO_STREAM(p, name.data(), size);
-    len += size;
-  }
-
-  /* send local name filter */
-  btu_hcif_send_cmd_with_cb(
-      FROM_HERE, HCI_BLE_ADV_FILTER, param, len,
-      base::Bind(&btm_flt_update_cb, BTM_BLE_META_PF_LOCAL_NAME, cb));
-
-  memset(&btm_ble_adv_filt_cb.cur_filter_target, 0, sizeof(tBLE_BD_ADDR));
-}
-
-/**
- * this function update(add/remove) service data change filter.
- */
-static void BTM_LE_PF_srvc_data(tBTM_BLE_SCAN_COND_OP action,
-                                tBTM_BLE_PF_FILT_INDEX filt_index) {
-  uint8_t num_avail = (action == BTM_BLE_SCAN_COND_ADD) ? 0 : 1;
-
-  btm_ble_cs_update_pf_counter(action, BTM_BLE_PF_SRVC_DATA, nullptr,
-                               num_avail);
-}
-
-/**
- * This function update(add,delete or clear) the adv manufacturer data filtering
- * condition.
- */
-static void BTM_LE_PF_manu_data(tBTM_BLE_SCAN_COND_OP action,
-                                tBTM_BLE_PF_FILT_INDEX filt_index,
-                                uint16_t company_id, uint16_t company_id_mask,
-                                std::vector<uint8_t> data,
-                                std::vector<uint8_t> data_mask,
-                                tBTM_BLE_PF_CFG_CBACK cb) {
-  uint8_t len = BTM_BLE_ADV_FILT_META_HDR_LENGTH;
-  int len_max = len + BTM_BLE_PF_STR_LEN_MAX + BTM_BLE_PF_STR_LEN_MAX;
-
-  uint8_t param[len_max];
-  memset(param, 0, len_max);
-
-  uint8_t* p = param;
-  UINT8_TO_STREAM(p, BTM_BLE_META_PF_MANU_DATA);
-  UINT8_TO_STREAM(p, action);
-  UINT8_TO_STREAM(p, filt_index);
-
-  if (action != BTM_BLE_SCAN_COND_CLEAR) {
-    uint8_t size = std::min(data.size(), (size_t)(BTM_BLE_PF_STR_LEN_MAX - 2));
-
-    UINT16_TO_STREAM(p, company_id);
-    if (size > 0 && data_mask.size() != 0) {
-      ARRAY_TO_STREAM(p, data.data(), size);
-      len += size + 2;
-    } else
-      len += 2;
-
-    if (company_id_mask != 0) {
-      UINT16_TO_STREAM(p, company_id_mask);
-    } else {
-      UINT16_TO_STREAM(p, (uint16_t)0xFFFF);
-    }
-    len += 2;
-
-    if (size > 0 && data_mask.size() != 0) {
-      ARRAY_TO_STREAM(p, data_mask.data(), size);
-      len += (size);
-    }
-
-    BTM_TRACE_DEBUG("Manuf data length: %d", len);
-  }
-
-  btu_hcif_send_cmd_with_cb(
-      FROM_HERE, HCI_BLE_ADV_FILTER, param, len,
-      base::Bind(&btm_flt_update_cb, BTM_BLE_META_PF_MANU_DATA, cb));
-
-  memset(&btm_ble_adv_filt_cb.cur_filter_target, 0, sizeof(tBLE_BD_ADDR));
-}
-
-/**
- * This function update(add,delete or clear) the service data filtering
- * condition.
- **/
-static void BTM_LE_PF_srvc_data_pattern(tBTM_BLE_SCAN_COND_OP action,
-                                        tBTM_BLE_PF_FILT_INDEX filt_index,
-                                        std::vector<uint8_t> data,
-                                        std::vector<uint8_t> data_mask,
-                                        tBTM_BLE_PF_CFG_CBACK cb) {
-  uint8_t len = BTM_BLE_ADV_FILT_META_HDR_LENGTH;
-  int len_max = len + BTM_BLE_PF_STR_LEN_MAX + BTM_BLE_PF_STR_LEN_MAX;
-
-  uint8_t param[len_max];
-  memset(param, 0, len_max);
-
-  uint8_t* p = param;
-  UINT8_TO_STREAM(p, BTM_BLE_META_PF_SRVC_DATA);
-  UINT8_TO_STREAM(p, action);
-  UINT8_TO_STREAM(p, filt_index);
-
-  if (action != BTM_BLE_SCAN_COND_CLEAR) {
-    uint8_t size = std::min(data.size(), (size_t)(BTM_BLE_PF_STR_LEN_MAX - 2));
-
-    if (size > 0) {
-      ARRAY_TO_STREAM(p, data.data(), size);
-      len += size;
-      ARRAY_TO_STREAM(p, data_mask.data(), size);
-      len += size;
-    }
-  }
-
-  btu_hcif_send_cmd_with_cb(
-      FROM_HERE, HCI_BLE_ADV_FILTER, param, len,
-      base::Bind(&btm_flt_update_cb, BTM_BLE_META_PF_SRVC_DATA, cb));
-
-  memset(&btm_ble_adv_filt_cb.cur_filter_target, 0, sizeof(tBLE_BD_ADDR));
-}
-
 /*******************************************************************************
  *
  * Function         btm_ble_cs_update_pf_counter
@@ -460,6 +317,8 @@ static uint8_t btm_ble_cs_update_pf_counter(tBTM_BLE_SCAN_COND_OP action,
   return BTM_BLE_INVALID_COUNTER;
 }
 
+<<<<<<< PATCH SET (8000df Delete unused BLE scanner code)
+=======
 /**
  * This function updates the address filter of adv.
  */
@@ -796,6 +655,7 @@ void BTM_LE_PF_clear(tBTM_BLE_PF_FILT_INDEX filt_index,
   memset(&btm_ble_adv_filt_cb.cur_filter_target, 0, sizeof(tBLE_BD_ADDR));
 }
 
+>>>>>>> BASE      (1f9509 Merge "Fix ObexTimeTest")
 /*******************************************************************************
  *
  * Function         BTM_BleAdvFilterParamSetup
@@ -902,59 +762,6 @@ void BTM_BleAdvFilterParamSetup(
         (uint8_t)(BTM_BLE_ADV_FILT_META_HDR_LENGTH - 1),
         base::Bind(&btm_flt_update_cb, BTM_BLE_META_PF_FEAT_SEL, cb));
   }
-}
-
-static void enable_cmpl_cback(tBTM_BLE_PF_STATUS_CBACK p_stat_cback, uint8_t* p,
-                              uint16_t evt_len) {
-  uint8_t status, op_subcode, action;
-
-  if (evt_len != 3) {
-    BTM_TRACE_ERROR("%s: APCF callback length = %d", __func__, evt_len);
-    return;
-  }
-
-  STREAM_TO_UINT8(status, p);
-  STREAM_TO_UINT8(op_subcode, p);
-  STREAM_TO_UINT8(action, p);
-
-  if (op_subcode != BTM_BLE_META_PF_ENABLE) {
-    BTM_TRACE_ERROR("%s :bad subcode: 0x%02x", __func__, op_subcode);
-    return;
-  }
-
-  tBTM_STATUS btm_status = (status == 0) ? BTM_SUCCESS : BTM_ERR_PROCESSING;
-  p_stat_cback.Run(action, btm_status);
-}
-
-/*******************************************************************************
- *
- * Function         BTM_BleEnableDisableFilterFeature
- *
- * Description      This function is called to enable / disable the APCF feature
- *
- * Parameters       enable: enable or disable the filter condition
- *                  p_stat_cback - Status callback pointer
- *
- ******************************************************************************/
-void BTM_BleEnableDisableFilterFeature(uint8_t enable,
-                                       tBTM_BLE_PF_STATUS_CBACK p_stat_cback) {
-  if (!is_filtering_supported()) {
-    if (p_stat_cback)
-      p_stat_cback.Run(BTM_BLE_PF_ENABLE,
-                       BTM_MODE_UNSUPPORTED /* BTA_FAILURE */);
-    return;
-  }
-
-  uint8_t param[20];
-  memset(param, 0, 20);
-
-  uint8_t* p = param;
-  UINT8_TO_STREAM(p, BTM_BLE_META_PF_ENABLE);
-  UINT8_TO_STREAM(p, enable);
-
-  btu_hcif_send_cmd_with_cb(FROM_HERE, HCI_BLE_ADV_FILTER, param,
-                            BTM_BLE_PCF_ENABLE_LEN,
-                            base::Bind(&enable_cmpl_cback, p_stat_cback));
 }
 
 /*******************************************************************************
