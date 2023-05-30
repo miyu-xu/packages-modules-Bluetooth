@@ -16,7 +16,6 @@
 
 package com.android.bluetooth.telephony;
 
-import android.bluetooth.BluetoothLeCallControl;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -26,24 +25,21 @@ import android.telecom.GatewayInfo;
 import android.telecom.InCallService;
 import android.telecom.PhoneAccountHandle;
 
-import com.android.internal.annotations.VisibleForTesting;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
 /**
- * A proxy class of android.telecom.Call that
- * 1) facilitates testing of the BluetoothInCallService class; We can't mock the final class
- * Call directly;
- * 2) Some helper functions, to let Call have same methods as com.android.server.telecom.Call
+ * A proxy class of android.telecom.Call that 1) facilitates testing of the BluetoothInCallService
+ * class; We can't mock the final class Call directly; 2) Some helper functions, to let Call have
+ * same methods as com.android.server.telecom.Call
  *
- * This is necessary due to the "final" attribute of the Call class. In order to
- * test the correct functioning of the BluetoothInCallService class, the final class must be put
- * into a container that can be mocked correctly.
+ * <p>This is necessary due to the "final" attribute of the Call class. In order to test the correct
+ * functioning of the BluetoothInCallService class, the final class must be put into a container
+ * that can be mocked correctly.
  */
-@VisibleForTesting
-public class BluetoothCall {
+class BluetoothCall {
 
     private Call mCall;
     private UUID mCallId;
