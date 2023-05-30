@@ -269,9 +269,9 @@ public class MetricsLogger {
         mAlarmManager.cancel(mOnAlarmListener);
     }
 
-    protected boolean logSanitizedBluetoothDeviceName(int metricId, String deviceName) {
+    protected String getMatchFromDeviceName(String deviceName) {
         if (!mBloomFilterInitialized || deviceName == null) {
-            return false;
+            return null;
         }
 
         // remove more than one spaces in a row
@@ -282,7 +282,7 @@ public class MetricsLogger {
 
         if (words.length > MAX_WORDS_ALLOWED_IN_DEVICE_NAME) {
             // Validity checking here to avoid excessively long sequences
-            return false;
+            return null;
         }
         // find the longest matched substring
         String matchedString = "";
@@ -309,15 +309,27 @@ public class MetricsLogger {
                 }
             }
         }
-
-        // upload the sha256 of the longest matched string.
         if (matchedSha256 == null) {
+            return null;
+        }
+
+        return matchedString;
+    }
+
+    protected String hashMatchedString(String matchedString) {
+        if (matchedString == null) {
+            return null;
+        }
+        return Hashing.sha256().hashString(matchedString, StandardCharsets.UTF_8).toString();
+    }
+
+    protected boolean logSanitizedBluetoothDeviceName(int metricId, String deviceName) {
+        String matchedString = getMatchFromDeviceName(deviceName);
+        String hashedName = hashMatchedString(matchedString);
+        if (hashedName == null) {
             return false;
         }
-        statslogBluetoothDeviceNames(
-                metricId,
-                matchedString,
-                Hashing.sha256().hashString(matchedString, StandardCharsets.UTF_8).toString());
+        statslogBluetoothDeviceNames(metricId, matchedString, hashedName);
         return true;
     }
 

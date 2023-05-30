@@ -362,6 +362,7 @@ public class AdapterService extends Service {
     private volatile boolean mTestModeEnabled = false;
 
     private MetricsLogger mMetricsLogger;
+    private RfcommSessionizer mRfcommSessionizer;
 
     /**
      * Register a {@link ProfileService} with AdapterService.
@@ -561,8 +562,9 @@ public class AdapterService extends Service {
     })
     public void onCreate() {
         super.onCreate();
-        initMetricsLogger();
         debugLog("onCreate()");
+        initMetricsLogger();
+        mRfcommSessionizer = new RfcommSessionizer(mMetricsLogger, Looper.getMainLooper());
         mDeviceConfigListener.start();
         mRemoteDevices = new RemoteDevices(this, Looper.getMainLooper());
         mRemoteDevices.init();
@@ -765,6 +767,9 @@ public class AdapterService extends Service {
         mMetricsLogger = metricsLogger;
     }
 
+    public RfcommSessionizer getRfcommSessionizer() {
+        return mRfcommSessionizer;
+    }
 
     /**
      *  Log L2CAP CoC Client Connection Metrics
@@ -3501,6 +3506,43 @@ public class AdapterService extends Service {
             } catch (RuntimeException e) {
                 receiver.propagateException(e);
             }
+        }
+
+        @Override
+        public void logRfcommConnectionAttemptStart(
+                int attemptId,
+                BluetoothDevice device,
+                boolean isSecured,
+                ParcelUuid uuid,
+                int port) {
+            AdapterService service = getService();
+            if (service == null) {
+                return;
+            }
+            // No permission check needed
+            service.getRfcommSessionizer()
+                    .logRfcommConnectionAttemptStart(
+                            attemptId, device, isSecured, uuid, port, Binder.getCallingUid());
+        }
+
+        @Override
+        public void logRfcommClientConnectionComplete(int attemptId, boolean success) {
+            AdapterService service = getService();
+            if (service == null) {
+                return;
+            }
+            // No permission check needed
+            service.getRfcommSessionizer().logRfcommClientConnectionComplete(attemptId, success);
+        }
+
+        @Override
+        public void logRfcommClientDisconnection() {
+            AdapterService service = getService();
+            if (service == null) {
+                return;
+            }
+            // No permission check needed
+            service.getRfcommSessionizer().logRfcommClientDisconnection();
         }
 
         @Override
