@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2729910a_2ebbdb5f",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 3714,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-05-30T07:06:44Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "ab01ebc6_009f25a7",
+      "range": {
+        "startLine": 3714,
+        "startChar": 37,
+        "endLine": 3714,
+        "endChar": 55
+      },
+      "revId": "a2ec2e0bd1d67975a3a1431a594b900cf261fbb1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d1896044_5b7a7232",
@@ -61,6 +85,30 @@
       "writtenOn": "2023-05-22T19:12:47Z",
       "side": 1,
       "message": "The logic seems not be clear.\n\nWhen isLeAudioBroadcastSourceSupported() \u003d\u003d BluetoothStatusCodes.FEATURE_SUPPORTED,  BluetoothProperties.isProfileBapBroadcastSourceEnabled().orElse(false) must be true. It means the API return true already guarantee the property setting to true.\n\nShould it change to \nif ((isLeAudioBroadcastSourceSupported() \u003d\u003d BluetoothStatusCodes.BluetoothStatusCodes.FEATURE_SUPPORTED) || (mService \u003d\u003d null \u0026\u0026 BluetoothProperties.isProfileBapBroadcastSourceEnabled().orElse(false))?\n\nThe same with the others.",
+      "range": {
+        "startLine": 3720,
+        "startChar": 16,
+        "endLine": 3723,
+        "endChar": 93
+      },
+      "revId": "a2ec2e0bd1d67975a3a1431a594b900cf261fbb1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a153e740_dc909c84",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 3723,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-05-30T07:06:44Z",
+      "side": 1,
+      "message": "Done.\n\nFYI, isLeAudioBroadcastSourceSupported() will throw exception when mService is null.",
+      "parentUuid": "d1896044_5b7a7232",
       "range": {
         "startLine": 3720,
         "startChar": 16,
