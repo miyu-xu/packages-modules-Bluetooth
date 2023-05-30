@@ -55,6 +55,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "11d6c6b1_97db623f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-05-30T09:10:28Z",
+      "side": 1,
+      "message": "BTW, when I turn off/on the BT, it looks like the BT app is restarted.\nThat means the number of binders can\u0027t be increased by multiple turn off/on.\nIsn\u0027t it?",
+      "parentUuid": "2e31d46a_ce10a5cc",
+      "revId": "c13b08ebc34a8dd51bce651955d2f196ed822228",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6033003c_35e64e95",
         "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
         "patchSetId": 1
