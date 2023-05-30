@@ -560,7 +560,8 @@ impl Bluetooth {
                 self.hh.as_mut().unwrap().activate_hogp(true);
             }
 
-            Profile::A2dpSource | Profile::Hfp | Profile::AvrcpTarget => {
+            Profile::A2dpSource | Profile::Hfp | Profile::AvrcpTarget |
+                Profile::LeAudio => {
                 self.bluetooth_media.lock().unwrap().enable_profile(profile);
             }
             // Ignore profiles that we don't connect.
@@ -578,7 +579,8 @@ impl Bluetooth {
 
             Profile::Hogp => Some(self.hh.as_ref().unwrap().is_hogp_activated),
 
-            Profile::A2dpSource | Profile::Hfp | Profile::AvrcpTarget => {
+            Profile::A2dpSource | Profile::Hfp | Profile::AvrcpTarget |
+                Profile::LeAudio => {
                 self.bluetooth_media.lock().unwrap().is_profile_enabled(profile)
             }
             // Ignore profiles that we don't connect.

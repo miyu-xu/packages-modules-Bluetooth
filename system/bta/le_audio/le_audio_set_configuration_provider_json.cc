@@ -58,11 +58,13 @@ static const std::vector<
 static const std::vector<
     std::pair<const char* /*schema*/, const char* /*content*/>>
     kLeAudioSetConfigs = {
-        {"audio_set_configurations.bfbs", "audio_set_configurations.json"}};
+        {"/etc/bluetooth/le_audio/audio_set_configurations.bfbs",
+         "/etc/bluetooth/le_audio/audio_set_configurations.json"}};
 static const std::vector<
     std::pair<const char* /*schema*/, const char* /*content*/>>
     kLeAudioSetScenarios = {
-        {"audio_set_scenarios.bfbs", "audio_set_scenarios.json"}};
+        {"/etc/bluetooth/le_audio/audio_set_scenarios.bfbs",
+         "/etc/bluetooth/le_audio/audio_set_scenarios.json"}};
 #endif
 
 /** Provides a set configurations for the given context type */
