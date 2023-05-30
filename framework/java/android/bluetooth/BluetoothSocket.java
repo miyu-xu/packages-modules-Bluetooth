@@ -221,7 +221,7 @@ public final class BluetoothSocket implements Closeable {
     /*package*/ BluetoothSocket(int type, int fd, boolean auth, boolean encrypt,
             BluetoothDevice device, int port, ParcelUuid uuid, boolean mitm, boolean min16DigitPin)
             throws IOException {
-        if (VDBG) Log.d(TAG, "Creating new BluetoothSocket of type: " + type);
+        if (DBG) Log.d(TAG, "Creating new BluetoothSocket of type: " + type);
         mSocketCreationTimeMillis = System.currentTimeMillis();
         if (type == BluetoothSocket.TYPE_RFCOMM && uuid == null && fd == -1
                 && port != BluetoothAdapter.SOCKET_CHANNEL_AUTO_STATIC_NO_SDP) {
@@ -285,7 +285,7 @@ public final class BluetoothSocket implements Closeable {
     }
 
     private BluetoothSocket(BluetoothSocket s) {
-        if (VDBG) Log.d(TAG, "Creating new Private BluetoothSocket of type: " + s.mType);
+        if (DBG) Log.d(TAG, "Creating new Private BluetoothSocket of type: " + s.mType);
         mUuid = s.mUuid;
         mType = s.mType;
         mAuth = s.mAuth;
@@ -308,7 +308,14 @@ public final class BluetoothSocket implements Closeable {
         BluetoothSocket as = new BluetoothSocket(this);
         as.mSocketState = SocketState.CONNECTED;
         FileDescriptor[] fds = mSocket.getAncillaryFileDescriptors();
-        if (DBG) Log.d(TAG, "acceptSocket: socket fd passed by stack fds:" + Arrays.toString(fds));
+        if (DBG) {
+            Log.d(
+                    TAG,
+                    "acceptSocket: socket fd passed by stack fds:"
+                            + Arrays.toString(fds)
+                            + ", mServiceName="
+                            + mServiceName);
+        }
         if (fds == null || fds.length != 1) {
             Log.e(TAG, "socket fd passed from stack failed, fds: " + Arrays.toString(fds));
             as.close();
@@ -554,7 +561,16 @@ public final class BluetoothSocket implements Closeable {
             return -1;
         }
         try {
-            if (DBG) Log.d(TAG, "bindListen(): mPort=" + mPort + ", mType=" + mType);
+            if (DBG) {
+                Log.d(
+                        TAG,
+                        "bindListen(): mPort="
+                                + mPort
+                                + ", mType="
+                                + mType
+                                + ", mServiceName="
+                                + mServiceName);
+            }
             IBluetoothSocketManager socketManager = bluetoothProxy.getSocketManager();
             if (socketManager == null) {
                 Log.e(TAG, "bindListen() bt get socket manager failed");
@@ -594,7 +610,16 @@ public final class BluetoothSocket implements Closeable {
                     mSocketState = SocketState.LISTENING;
                 }
             }
-            if (DBG) Log.d(TAG, "bindListen(): channel=" + channel + ", mPort=" + mPort);
+            if (DBG) {
+                Log.d(
+                        TAG,
+                        "bindListen(): channel="
+                                + channel
+                                + ", mPort="
+                                + mPort
+                                + ", mServiceName="
+                                + mServiceName);
+            }
             if (mPort <= -1) {
                 mPort = channel;
             } // else ASSERT(mPort == channel)
@@ -615,6 +640,14 @@ public final class BluetoothSocket implements Closeable {
     }
 
     /*package*/ BluetoothSocket accept(int timeout) throws IOException {
+        Log.d(
+                TAG,
+                "accept(), timeout (ms):"
+                        + timeout
+                        + ", channel: "
+                        + mPort
+                        + ", mServiceName="
+                        + mServiceName);
         BluetoothSocket acceptedSocket;
         if (mSocketState != SocketState.LISTENING) {
             throw new IOException("bt socket is not in listen state");
@@ -718,9 +751,22 @@ public final class BluetoothSocket implements Closeable {
 
     @Override
     public void close() throws IOException {
-        Log.d(TAG, "close() this: " + this + ", channel: " + mPort + ", mSocketIS: " + mSocketIS
-                + ", mSocketOS: " + mSocketOS + ", mSocket: " + mSocket + ", mSocketState: "
-                + mSocketState);
+        Log.d(
+                TAG,
+                "close() this: "
+                        + this
+                        + ", channel: "
+                        + mPort
+                        + ", mSocketIS: "
+                        + mSocketIS
+                        + ", mSocketOS: "
+                        + mSocketOS
+                        + ", mSocket: "
+                        + mSocket
+                        + ", mSocketState: "
+                        + mSocketState
+                        + ", mServiceName="
+                        + mServiceName);
         if (mSocketState == SocketState.CLOSED) {
             return;
         } else {

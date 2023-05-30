@@ -107,6 +107,7 @@ public final class BluetoothServerSocket implements Closeable {
      */
     /*package*/ BluetoothServerSocket(int type, boolean auth, boolean encrypt, int port)
             throws IOException {
+        if (DBG) Log.d(TAG, "Creating new BluetoothServerSocket of type: " + type);
         mSocketCreationTimeMillis = System.currentTimeMillis();
         mType = type;
         mChannel = port;
@@ -132,6 +133,16 @@ public final class BluetoothServerSocket implements Closeable {
     /*package*/ BluetoothServerSocket(int type, boolean auth, boolean encrypt, int port,
             boolean mitm, boolean min16DigitPin)
             throws IOException {
+        if (DBG) {
+            Log.d(
+                    TAG,
+                    "Creating new BluetoothServerSocket of type: "
+                            + type
+                            + ", mitm: "
+                            + mitm
+                            + ", min16DigitPin: "
+                            + min16DigitPin);
+        }
         mSocketCreationTimeMillis = System.currentTimeMillis();
         mType = type;
         mChannel = port;
@@ -189,6 +200,7 @@ public final class BluetoothServerSocket implements Closeable {
      * @throws IOException on error, for example this call was aborted, or timeout
      */
     public BluetoothSocket accept(int timeout) throws IOException {
+        if (DBG) Log.d(TAG, "accept");
         long socketConnectionTime = System.currentTimeMillis();
         BluetoothSocket acceptedSocket = null;
         try {
