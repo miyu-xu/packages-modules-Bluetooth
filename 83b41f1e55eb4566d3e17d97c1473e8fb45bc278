@@ -56,6 +56,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "77e1d046_16588a97",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 655,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-05-30T08:08:02Z",
+      "side": 1,
+      "message": "Hmmm the spec sentences were about Command, not Event, but I can agree that there could not be a explicit writing about \"mandatory\" event even for implicit disconnection request. \n\nIn term of event order there may be some flexibility. I saw in Core 5.3 `6.24 ACL DISCONNECTED` that hosts may receive event in different order - ACL disconnection first.\n\nSo I think that this part remains valid for every case - maybe comment can be redacted to `It is possible that ACL disconnection came before CIS....`",
+      "parentUuid": "e0544399_31514212",
+      "revId": "83b41f1e55eb4566d3e17d97c1473e8fb45bc278",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9768f34a_3c8a92a6",
         "filename": "system/bta/le_audio/state_machine.cc",
         "patchSetId": 1
@@ -103,6 +121,24 @@
       "side": 1,
       "message": "The thing is, we want to move group operations to the group eventually.\ne.g. all the functions in state_machine.cc which takes `group` as parameter, should actually be part of LeAudioDeviceGroup.\n\nStream belongs to the group, so imho the proposed change makes sense.",
       "parentUuid": "19cc57cc_8b93a0ae",
+      "revId": "83b41f1e55eb4566d3e17d97c1473e8fb45bc278",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2177c4cc_8c63ff2b",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 661,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-05-30T08:08:02Z",
+      "side": 1,
+      "message": "Ok, I don\u0027t remember a decision about moving stream to group so I\u0027ll not be blocking such refactor. I thought that stream is one for le_audio.",
+      "parentUuid": "6ae698ca_70f6b545",
       "revId": "83b41f1e55eb4566d3e17d97c1473e8fb45bc278",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
