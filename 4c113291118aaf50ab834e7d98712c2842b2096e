@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "97e05ddb_713d7c07",
+        "filename": "system/bta/le_audio/le_audio_utils.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 251,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-05-30T13:28:06Z",
+      "side": 1,
+      "message": "maybe it should be LIVE for VOICE recognition?",
+      "revId": "4c113291118aaf50ab834e7d98712c2842b2096e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
