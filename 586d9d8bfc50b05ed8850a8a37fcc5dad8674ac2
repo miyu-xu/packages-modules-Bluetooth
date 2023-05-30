@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7cdd1af4_b2481602",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-05-30T22:37:18Z",
+      "side": 1,
+      "message": "nit: know",
+      "range": {
+        "startLine": 9,
+        "startChar": 44,
+        "endLine": 9,
+        "endChar": 48
+      },
+      "revId": "586d9d8bfc50b05ed8850a8a37fcc5dad8674ac2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
