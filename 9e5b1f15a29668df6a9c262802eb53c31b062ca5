@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b2997141_b7910425",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 763,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-05-30T22:49:18Z",
+      "side": 1,
+      "message": "Agreed, no behavior change wanted here",
+      "parentUuid": "f0a21747_c814e0ce",
+      "revId": "9e5b1f15a29668df6a9c262802eb53c31b062ca5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3c1e562a_53126fec",
@@ -31,6 +49,30 @@
       "writtenOn": "2023-05-26T01:59:55Z",
       "side": 1,
       "message": "nit: make this a constant?",
+      "range": {
+        "startLine": 95,
+        "startChar": 78,
+        "endLine": 95,
+        "endChar": 80
+      },
+      "revId": "9e5b1f15a29668df6a9c262802eb53c31b062ca5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "82f168d4_d0a2c5a9",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothServerProxy.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-05-30T22:49:18Z",
+      "side": 1,
+      "message": "Added a default value instead",
+      "parentUuid": "3c1e562a_53126fec",
       "range": {
         "startLine": 95,
         "startChar": 78,
