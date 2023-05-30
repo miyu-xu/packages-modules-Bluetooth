@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9967cb96_754d9a55",
+        "filename": "system/stack/include/bt_name.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-05-30T19:04:31Z",
+      "side": 1,
+      "message": "I expected new to allocate, but I don\u0027t see that here.",
+      "range": {
+        "startLine": 64,
+        "startChar": 12,
+        "endLine": 64,
+        "endChar": 23
+      },
+      "revId": "b66630b3e43d48673c5d53c6ae58f6f7f858b88a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
