@@ -93,7 +93,7 @@ class NullScanningCallback : public ScanningCallback {
     LOG_INFO("OnBatchScanThresholdCrossed in NullScanningCallback");
   }
   void OnTimeout() override {
-    LOG_INFO("OnTimeout in NullScanningCallback");
+    LOG_INFO("OnTimeout in NullScanningCallback test");
   }
   void OnFilterEnable(Enable enable, uint8_t status) override {
     LOG_INFO("OnFilterEnable in NullScanningCallback");
