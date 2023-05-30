@@ -304,7 +304,7 @@ void LeAudioClientIntf::send_audio_profile_preferences(
       group_id, is_output_preference_le_audio, is_duplex_preference_le_audio);
 }
 
-std::unique_ptr<LeAudioClientIntf> GetLeAudioProfile(const unsigned char* btif) {
+std::unique_ptr<LeAudioClientIntf> GetLeAudioClientProfile(const unsigned char* btif) {
   if (internal::g_lea_client_if) std::abort();
 
   const bt_interface_t* btif_ = reinterpret_cast<const bt_interface_t*>(btif);

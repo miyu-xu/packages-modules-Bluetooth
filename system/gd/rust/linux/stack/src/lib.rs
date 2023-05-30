@@ -54,6 +54,7 @@ use bt_topshim::{
         gatt::GattScannerCallbacks,
         gatt::GattScannerInbandCallbacks,
         gatt::GattServerCallbacks,
+        le_audio::LeAudioClientCallbacks,
         hfp::HfpCallbacks,
         hid_host::{BthhReportType, HHCallbacks},
         sdp::SdpCallbacks,
@@ -74,6 +75,7 @@ pub enum Message {
     Base(BaseCallbacks),
     GattClient(GattClientCallbacks),
     GattServer(GattServerCallbacks),
+    LeAudioClient(LeAudioClientCallbacks),
     LeScanner(GattScannerCallbacks),
     LeScannerInband(GattScannerInbandCallbacks),
     LeAdvInband(GattAdvInbandCallbacks),
@@ -222,6 +224,10 @@ impl Stack {
 
                 Message::GattServer(m) => {
                     dispatch_gatt_server_callbacks(bluetooth_gatt.lock().unwrap().as_mut(), m);
+                }
+
+                Message::LeAudioClient(a) => {
+                    bluetooth_media.lock().unwrap().dispatch_le_audio_callbacks(a);
                 }
 
                 Message::LeScanner(m) => {

@@ -198,6 +198,9 @@ struct HciLayer::impl {
         op_code,
         OpCodeText(op_code).c_str());
 
+    // TODO: remove this after PoC is clear
+    LOG_WARN(__func__, op_code, OpCodeText(op_code).c_str(), logging_id.c_str());
+
     bool is_vendor_specific = static_cast<int>(op_code) & (0x3f << 10);
     CommandStatusView status_view = CommandStatusView::Create(event);
     if (is_vendor_specific && (is_status && !command_queue_.front().waiting_for_status_) &&
