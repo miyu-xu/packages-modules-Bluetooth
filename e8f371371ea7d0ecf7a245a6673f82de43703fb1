@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2fba2c6f_fdf8c27f",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 1378,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-05-30T22:50:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "edabf1d8_cf6e9c28",
+      "revId": "e8f371371ea7d0ecf7a245a6673f82de43703fb1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a6714c6a_f1b0c78e",
@@ -35,6 +53,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a2a9b0a3_7499cdb9",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 2764,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-05-30T22:50:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a6714c6a_f1b0c78e",
+      "revId": "e8f371371ea7d0ecf7a245a6673f82de43703fb1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7744edc6_55778bdc",
@@ -48,6 +84,30 @@
       "writtenOn": "2023-05-26T11:09:18Z",
       "side": 1,
       "message": "It feels wrong to me for you to create this abstraction yourself on such low level primitives, could we not try to find something that could do it for us ?",
+      "range": {
+        "startLine": 2763,
+        "startChar": 0,
+        "endLine": 2766,
+        "endChar": 80
+      },
+      "revId": "e8f371371ea7d0ecf7a245a6673f82de43703fb1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b8540952_51841e3e",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 2766,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-05-30T22:50:43Z",
+      "side": 1,
+      "message": "I am not aware of any. :/",
+      "parentUuid": "7744edc6_55778bdc",
       "range": {
         "startLine": 2763,
         "startChar": 0,
@@ -81,6 +141,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8712efb8_5feb28aa",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 2782,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-05-30T22:50:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "de7ac3ab_52bb7c9c",
+      "range": {
+        "startLine": 2782,
+        "startChar": 29,
+        "endLine": 2782,
+        "endChar": 48
+      },
+      "revId": "e8f371371ea7d0ecf7a245a6673f82de43703fb1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5e18b5ce_ca9ebd47",
@@ -94,6 +178,24 @@
       "writtenOn": "2023-05-26T11:09:18Z",
       "side": 1,
       "message": "nit: override `equals(Object o)` as well or name it differently.",
+      "revId": "e8f371371ea7d0ecf7a245a6673f82de43703fb1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "16078fea_42c514e1",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 2786,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-05-30T22:50:43Z",
+      "side": 1,
+      "message": "There is no usage of equals with Object o. Why do you want it ?\nWith the int vararg I can replace all equals with oneOf and not use equals at all.\nWould you prefer it ?",
+      "parentUuid": "5e18b5ce_ca9ebd47",
       "revId": "e8f371371ea7d0ecf7a245a6673f82de43703fb1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -123,6 +225,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "dca87844_ceedd865",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 2794,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-05-30T22:50:43Z",
+      "side": 1,
+      "message": "I don\u0027t see an easy way of improving that. I could add a conditionLock for each state but then how can I solve waiting on multiple state at once ?\n\nThis version is already way better than the previous that was checking only every 300 ms.\n\nI consider this to be a good-enough solution for now.",
+      "parentUuid": "66fae3aa_501cdafd",
+      "range": {
+        "startLine": 2793,
+        "startChar": 16,
+        "endLine": 2794,
+        "endChar": 16
+      },
+      "revId": "e8f371371ea7d0ecf7a245a6673f82de43703fb1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0ca1fb58_b238e37b",
         "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
         "patchSetId": 5
@@ -134,6 +260,30 @@
       "writtenOn": "2023-05-26T11:09:18Z",
       "side": 1,
       "message": "Should you not still hold the lock when reading the state to be sure it wasn\u0027t updated in the meantime ?",
+      "range": {
+        "startLine": 2803,
+        "startChar": 12,
+        "endLine": 2803,
+        "endChar": 33
+      },
+      "revId": "e8f371371ea7d0ecf7a245a6673f82de43703fb1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f61a7e50_180810ff",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 2803,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-05-30T22:50:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0ca1fb58_b238e37b",
       "range": {
         "startLine": 2803,
         "startChar": 12,
@@ -190,6 +340,54 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "920af0ca_c9626bae",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 2810,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-05-30T22:50:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f85286b3_69939992",
+      "range": {
+        "startLine": 2810,
+        "startChar": 69,
+        "endLine": 2810,
+        "endChar": 73
+      },
+      "revId": "e8f371371ea7d0ecf7a245a6673f82de43703fb1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2231ac00_5b54a063",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 2810,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-05-30T22:50:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ce56f59e_bc9ba402",
+      "range": {
+        "startLine": 2807,
+        "startChar": 0,
+        "endLine": 2810,
+        "endChar": 0
+      },
+      "revId": "e8f371371ea7d0ecf7a245a6673f82de43703fb1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3e10ed9b_3bd2aa0a",
@@ -203,6 +401,24 @@
       "writtenOn": "2023-05-26T11:09:18Z",
       "side": 1,
       "message": "nit: Add `@Override`",
+      "revId": "e8f371371ea7d0ecf7a245a6673f82de43703fb1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c3773a9c_d7ed5df1",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 2827,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-05-30T22:50:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3e10ed9b_3bd2aa0a",
       "revId": "e8f371371ea7d0ecf7a245a6673f82de43703fb1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -230,6 +446,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4339aa63_8c4fcfc6",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 2828,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-05-30T22:50:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4f5d652f_99683913",
+      "range": {
+        "startLine": 2828,
+        "startChar": 11,
+        "endLine": 2828,
+        "endChar": 83
+      },
+      "revId": "e8f371371ea7d0ecf7a245a6673f82de43703fb1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bd68ce06_bca4fc05",
@@ -243,6 +483,30 @@
       "writtenOn": "2023-05-26T11:09:18Z",
       "side": 1,
       "message": "nit: Use the `toString` of `mState`",
+      "range": {
+        "startLine": 3051,
+        "startChar": 37,
+        "endLine": 3051,
+        "endChar": 80
+      },
+      "revId": "e8f371371ea7d0ecf7a245a6673f82de43703fb1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2fba06a8_9897b60d",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 3051,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-05-30T22:50:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bd68ce06_bca4fc05",
       "range": {
         "startLine": 3051,
         "startChar": 37,
