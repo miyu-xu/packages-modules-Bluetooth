@@ -1,6 +1,29 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "dae27d42_e9138743",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-05-30T18:58:17Z",
+      "side": 1,
+      "message": "Remove h4_packetizer_lib\n\nIt takes another CL to add it in device/google/cuttlefish",
+      "range": {
+        "startLine": 7,
+        "startChar": 11,
+        "endLine": 7,
+        "endChar": 61
+      },
+      "revId": "396ed6dc8e4b4789701705d5cf5ac6a7b3a1eac3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "65104134_85c311bf",
