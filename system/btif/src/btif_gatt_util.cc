@@ -76,6 +76,14 @@ static void btif_gatt_set_encryption_cb(UNUSED_ATTR const RawAddress& bd_addr,
 
 void btif_gatt_check_encrypted_link(RawAddress bd_addr,
                                     tBT_TRANSPORT transport_link) {
+  RawAddress local_addr;
+  tBLE_ADDR_TYPE local_addr_type;
+  BTM_ReadConnectionAddr(bd_addr, local_addr, local_addr_type);
+  if (!local_addr_type.IsPublic() && !local_addr_type.IsAddressResolvable()) {
+    // we are using a NRPA, so don't try to establish encryption
+    return;
+  }
+
   static const bool check_encrypted = bluetooth::os::GetSystemPropertyBool(
       "bluetooth.gatt.check_encrypted_link.enabled", true);
   if (!check_encrypted) {
