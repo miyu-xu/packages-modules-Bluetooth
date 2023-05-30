@@ -36,6 +36,7 @@ rust_binary_host {
     visibility: [
         "//external/uwb/src",
         "//packages/modules/Bluetooth:__subpackages__",
+        "//system/nfc/src",
     ],
 }
 
@@ -155,6 +156,7 @@ genrule_defaults {
     defaults_visibility: [
         "//external/uwb/src",
         "//packages/modules/Bluetooth:__subpackages__",
+        "//system/nfc/src",
     ],
 }
 
