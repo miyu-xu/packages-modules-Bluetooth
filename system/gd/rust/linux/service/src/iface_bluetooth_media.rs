@@ -225,8 +225,8 @@ impl IBluetoothMedia for IBluetoothMediaDBus {
         dbus_generated!()
     }
 
-    #[dbus_method("GetHfpAudioFinalCodecs")]
-    fn get_hfp_audio_final_codecs(&mut self, address: String) -> u8 {
+    #[dbus_method("GetHfpAudioActiveCodec")]
+    fn get_hfp_audio_active_codec(&mut self, address: String) -> u8 {
         dbus_generated!()
     }
 

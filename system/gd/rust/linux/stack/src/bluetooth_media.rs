@@ -104,9 +104,9 @@ pub trait IBluetoothMedia {
     /// Returns true iff A2DP audio has started.
     fn get_a2dp_audio_started(&mut self, address: String) -> bool;
 
-    /// Returns the negotiated codec (CVSD=1, mSBC=2, LC3=4) to use if HFP audio has started.
+    /// Returns the active codec (CVSD=1, mSBC=2, LC3=4).
     /// Returns 0 if HFP audio hasn't started.
-    fn get_hfp_audio_final_codecs(&mut self, address: String) -> u8;
+    fn get_hfp_audio_active_codec(&mut self, address: String) -> u8;
 
     fn get_presentation_position(&mut self) -> PresentationPosition;
 
@@ -2172,10 +2172,10 @@ impl IBluetoothMedia for BluetoothMedia {
         }
     }
 
-    fn get_hfp_audio_final_codecs(&mut self, address: String) -> u8 {
+    fn get_hfp_audio_active_codec(&mut self, address: String) -> u8 {
         let addr = match RawAddress::from_string(address.clone()) {
             None => {
-                warn!("Invalid device address for get_hfp_audio_final_codecs");
+                warn!("Invalid device address for get_hfp_audio_active_codec");
                 return 0;
             }
             Some(addr) => addr,
