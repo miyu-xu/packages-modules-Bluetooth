@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d461ddf2_b0d2c2ec",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2023-05-30T05:30:22Z",
+      "side": 1,
+      "message": "Hi Hsin-chen, as offline discussed with Dean, could you help do the first round of review?\n\nThe purpose of this is to modify the QA implementation so that it can invoke methods defined in different classes.\n\nThanks",
+      "revId": "dfe2ecc406ff5ceac758e64b3d13bdec91948ba5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
