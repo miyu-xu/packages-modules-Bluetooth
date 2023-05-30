@@ -16,6 +16,24 @@
       "message": "Can we add this in a way that also lets Android use the info?",
       "revId": "746e922af884c5d26db7cb5c9c1b6418127e97d3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e2bf6915_496eb176",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2023-05-30T23:50:00Z",
+      "side": 1,
+      "message": "Hi Myles,\n\nMay you help clarify which info Android may also like to use? I thought Android has no need for the non-offloading path. Also, which part of the implementation do you think is not valid for Android to use?\n \nI think Android will only need to be able to call the HeadsetInterface::DebugDump and fill in the `Callbacks::DebugDumpCallback` to be able to digest the information.",
+      "parentUuid": "db28d268_607ed637",
+      "revId": "746e922af884c5d26db7cb5c9c1b6418127e97d3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
