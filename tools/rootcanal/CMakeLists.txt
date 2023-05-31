@@ -235,6 +235,7 @@ android_add_library(
 
 target_include_directories(
   BluetoothPacketSources PUBLIC
+    ${ROOTCANAL_ROOT}/include
     ${BT_ROOT}/gd
     ${BT_ROOT})
 
