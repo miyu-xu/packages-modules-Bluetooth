@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "da0b9589_62f93746",
+        "filename": "system/bta/vc/vc.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 903,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-05-31T13:11:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "830da71d_2bf521c1",
+      "range": {
+        "startLine": 903,
+        "startChar": 14,
+        "endLine": 903,
+        "endChar": 30
+      },
+      "revId": "3a35afcac0d215739bef5120d2822ad13713590d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1e73b923_eab90e87",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3c9faea3_ee772e6d",
+        "filename": "system/bta/vc/vc.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 904,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-05-31T13:11:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1e73b923_eab90e87",
+      "range": {
+        "startLine": 904,
+        "startChar": 62,
+        "endLine": 904,
+        "endChar": 76
+      },
+      "revId": "3a35afcac0d215739bef5120d2822ad13713590d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a853f172_681459ab",
@@ -60,6 +108,30 @@
       "writtenOn": "2023-05-31T13:08:08Z",
       "side": 1,
       "message": "missing `!`",
+      "range": {
+        "startLine": 988,
+        "startChar": 62,
+        "endLine": 988,
+        "endChar": 76
+      },
+      "revId": "3a35afcac0d215739bef5120d2822ad13713590d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f20027e5_e404f83a",
+        "filename": "system/bta/vc/vc.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 988,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-05-31T13:11:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a853f172_681459ab",
       "range": {
         "startLine": 988,
         "startChar": 62,
