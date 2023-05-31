@@ -33,6 +33,24 @@
       "message": "Under what conditions adapter is not present ?\nIs is just BT off ? Why would LeAudioService be working in this case ?\n\nCan this happen on startup ? If yes, shall we re-try starting scan after couple seconds ?",
       "revId": "05d0005e4efa6229d054502e20c4470d20237e35",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b55ba359_9a47852f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-05-31T13:03:11Z",
+      "side": 1,
+      "message": "Unfortunatelly I don\u0027t see more logs than unhandled IllegalStateException.\n\nIn the bug it happens on stopScan, and here we could actually have some race.\n\nI added try also to startScan, just in case as this is something which should not happen.",
+      "parentUuid": "03da9c9f_690434cc",
+      "revId": "05d0005e4efa6229d054502e20c4470d20237e35",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
