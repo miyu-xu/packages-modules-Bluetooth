@@ -142,6 +142,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a1c2e1d1_c382c0ef",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 2766,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-05-31T23:22:49Z",
+      "side": 1,
+      "message": "Done Flow is here",
+      "parentUuid": "92b4dd64_f947a509",
+      "range": {
+        "startLine": 2763,
+        "startChar": 0,
+        "endLine": 2766,
+        "endChar": 80
+      },
+      "revId": "e8f371371ea7d0ecf7a245a6673f82de43703fb1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "de7ac3ab_52bb7c9c",
@@ -321,6 +345,30 @@
       "side": 1,
       "message": "I fine with that if we add a bunch of TODO then.\n\n\u003e I don\u0027t see an easy way of improving that. I could add a conditionLock for each state but then how can I solve waiting on multiple state at once ?\n\nCreate a lock for each combination, 7 states, 128 possible combination, 128 locks 🙃 \n\nNo seriously, if you don\u0027t have a lot of waiters and memory constraint is not an issue you could create a Concurrent List of BlockingQueue and push each state changes in all queues",
       "parentUuid": "dca87844_ceedd865",
+      "range": {
+        "startLine": 2793,
+        "startChar": 16,
+        "endLine": 2794,
+        "endChar": 16
+      },
+      "revId": "e8f371371ea7d0ecf7a245a6673f82de43703fb1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cb6871d2_d2b26601",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 2794,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-05-31T23:22:49Z",
+      "side": 1,
+      "message": "Ok, this is overkill but now it is coded. Looks at this beauty 😎\n\nKotlin flow with so much test that this is shaming all the bluetooth code.",
+      "parentUuid": "a293bc2b_c2ffd9f8",
       "range": {
         "startLine": 2793,
         "startChar": 16,
