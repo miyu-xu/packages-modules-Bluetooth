@@ -16,6 +16,24 @@
       "message": "This code is still being used by QC - can we hold off on submitting this until we can get them onto the newer codepath?",
       "revId": "4473622e33964a693d5db68b78c6a1d0bbd7d3e0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "094bee33_d81e2b33",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-05-31T16:02:07Z",
+      "side": 1,
+      "message": "What\u0027s the ETA?  If they aren\u0027t using it in AOSP, they can carry a local revert while they migrate.",
+      "parentUuid": "45545bb6_dc0568a7",
+      "revId": "4473622e33964a693d5db68b78c6a1d0bbd7d3e0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
