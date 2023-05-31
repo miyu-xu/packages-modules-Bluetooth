@@ -22,6 +22,30 @@
       },
       "revId": "81ec154c4221050639abcd06f8cd13c91c938807",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "02703c82_4da3f2fe",
+        "filename": "system/bta/csis/csis_client.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1557,
+      "author": {
+        "id": 1973670
+      },
+      "writtenOn": "2023-05-31T12:46:19Z",
+      "side": 1,
+      "message": "I was overly cautious here, probably won\u0027t happen. Deleted.",
+      "parentUuid": "788f78a1_fb6f7225",
+      "range": {
+        "startLine": 1554,
+        "startChar": 0,
+        "endLine": 1557,
+        "endChar": 7
+      },
+      "revId": "81ec154c4221050639abcd06f8cd13c91c938807",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
