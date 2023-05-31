@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bbe89766_0d79458e",
+        "filename": "floss/hcidoc/src/groups/collisions.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-05-31T13:02:14Z",
+      "side": 1,
+      "message": "We assign to self.state in the match above... Let me rewrite with an Option value instead for clarity.",
+      "parentUuid": "4f808a3f_e9fa71d8",
+      "range": {
+        "startLine": 84,
+        "startChar": 28,
+        "endLine": 84,
+        "endChar": 70
+      },
+      "revId": "48296a4c05a1f54561f7a390e422587d233cd3de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "512b073c_2138aab5",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-05-31T07:16:59Z",
       "side": 1,
       "message": "Missing one indent?",
+      "range": {
+        "startLine": 96,
+        "startChar": 0,
+        "endLine": 96,
+        "endChar": 27
+      },
+      "revId": "48296a4c05a1f54561f7a390e422587d233cd3de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f3f2c05a_ef76d99f",
+        "filename": "floss/hcidoc/src/groups/collisions.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-05-31T13:02:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "512b073c_2138aab5",
       "range": {
         "startLine": 96,
         "startChar": 0,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "23c2923b_b54f0d30",
+        "filename": "floss/hcidoc/src/groups/collisions.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-05-31T13:02:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cd3e265b_04ea1170",
+      "range": {
+        "startLine": 98,
+        "startChar": 0,
+        "endLine": 139,
+        "endChar": 29
+      },
+      "revId": "48296a4c05a1f54561f7a390e422587d233cd3de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "394745aa_34db245a",
@@ -83,6 +155,24 @@
       "writtenOn": "2023-05-31T07:16:59Z",
       "side": 1,
       "message": "QQ: We have this assumption on Inquiry and Connection, but we have a different assumption on RNR. Is this based on observation?",
+      "revId": "48296a4c05a1f54561f7a390e422587d233cd3de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c1609f52_f65ca4d7",
+        "filename": "floss/hcidoc/src/groups/collisions.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-05-31T13:02:14Z",
+      "side": 1,
+      "message": "Yes -- this was based on observation on existing snoop files. I can add a comment here to that regard.",
+      "parentUuid": "394745aa_34db245a",
       "revId": "48296a4c05a1f54561f7a390e422587d233cd3de",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -104,6 +194,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cb00413c_dcc3667f",
+        "filename": "floss/hcidoc/src/groups/mod.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-05-31T13:02:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6fdcb925_42346f3f",
+      "revId": "48296a4c05a1f54561f7a390e422587d233cd3de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9790b0ca_5c43ea4a",
@@ -117,6 +225,24 @@
       "writtenOn": "2023-05-31T07:16:59Z",
       "side": 1,
       "message": "nit: alphabetical order?",
+      "revId": "48296a4c05a1f54561f7a390e422587d233cd3de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "856bb5e9_e6816250",
+        "filename": "floss/hcidoc/src/main.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-05-31T13:02:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9790b0ca_5c43ea4a",
       "revId": "48296a4c05a1f54561f7a390e422587d233cd3de",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
