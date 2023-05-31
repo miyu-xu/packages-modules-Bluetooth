@@ -12,6 +12,8 @@ use num_derive::{FromPrimitive, ToPrimitive};
 use std::sync::{Arc, Mutex};
 use tokio::sync::mpsc::Sender;
 
+use bt_utils::uhid::UHid;
+
 /// Defines the Suspend/Resume API.
 ///
 /// This API is exposed by `btadapterd` and independent of the suspend/resume detection mechanism
@@ -112,6 +114,9 @@ pub struct Suspend {
     connectable_to_restore: bool,
     /// Bluetooth adapter discoverable mode before suspending.
     discoverable_mode_to_restore: BtDiscMode,
+
+    /// Virtual uhid device created during suspend.
+    uhid: UHid,
 }
 
 impl Suspend {
@@ -135,6 +140,7 @@ impl Suspend {
             suspend_state: Arc::new(Mutex::new(SuspendState::new())),
             connectable_to_restore: false,
             discoverable_mode_to_restore: BtDiscMode::NonDiscoverable,
+            uhid: UHid::new(),
         }
     }
 
@@ -171,6 +177,16 @@ impl Suspend {
     pub(crate) fn get_connected_audio_devices(&self) -> Vec<BluetoothDevice> {
         let bonded_connected = self.bt.lock().unwrap().get_bonded_and_connected_devices();
         self.media.lock().unwrap().filter_to_connected_audio_devices_from(&bonded_connected)
+    }
+
+    fn get_wake_allowed_device_bonded(&self) -> bool {
+        let devices = self.bt.lock().unwrap().get_bonded_devices();
+        for device in devices {
+            if self.bt.lock().unwrap().get_remote_wake_allowed(device) {
+                return true;
+            }
+        }
+        false
     }
 }
 
@@ -220,6 +236,16 @@ impl ISuspend for Suspend {
 
         self.intf.lock().unwrap().disconnect_all_acls();
 
+        let adapter_addr = self.bt.lock().unwrap().get_address().to_lowercase();
+
+        if self.get_wake_allowed_device_bonded() {
+            self.uhid.create(
+                "suspend uhid".to_string(),
+                adapter_addr,
+                "00:11:11:11:11:11".to_string(),
+            );
+        }
+
         // Handle wakeful cases (Connected/Other)
         // Treat Other the same as Connected
         match suspend_type {
@@ -254,6 +280,8 @@ impl ISuspend for Suspend {
     }
 
     fn resume(&mut self) -> bool {
+        self.uhid.clear_all();
+
         self.intf.lock().unwrap().set_default_event_mask_except(0u64, 0u64);
 
         // Restore event filter and accept list to normal.
