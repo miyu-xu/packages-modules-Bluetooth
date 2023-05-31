@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bedd11cf_a2baa155",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2023-05-31T22:03:38Z",
+      "side": 1,
+      "message": "This will work only for local instance, if you want it to work for remote instance you will need to forward vsock port",
+      "revId": "b7e7c6b5fc285c0c1c30356d86ec5cbe5e280512",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
