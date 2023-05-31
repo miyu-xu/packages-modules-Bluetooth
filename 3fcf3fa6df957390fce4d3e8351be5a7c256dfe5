@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "408f10d1_ab35d8e7",
+        "filename": "system/stack/sdp/sdp_main.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 356,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-05-31T18:12:59Z",
+      "side": 1,
+      "message": "I am fine with moving the `sdpu_get_active_ccb_cid` earlier, but we should also not assigne twice the `con_state`. This is confusing for the reader and is the origin of the bug since we are assigning a potentially wrong state.\n\nHere a suggestion to do so. (and uniformize the comment)\n\n```suggestion\n  SDP_TRACE_EVENT(\"%s: SDP - Originate started for peer %s\", __func__,\n                  ADDRESS_TO_LOGGABLE_CSTR(p_bd_addr));\n\n  /* Look for any active sdp connection on the remote device */\n  cid \u003d sdpu_get_active_ccb_cid(p_bd_addr);\n\n  /* We are the originator of this connection */\n  p_ccb-\u003econ_flags |\u003d SDP_FLAGS_IS_ORIG;\n\n  /* Save the BD Address */\n  p_ccb-\u003edevice_address \u003d p_bd_addr;\n\n  /* Transition to the next appropriate state, waiting for connection confirm.\n   */\n  if (!bluetooth::common::init_flags::sdp_serialization_is_enabled() ||\n      cid \u003d\u003d 0) {\n```",
+      "range": {
+        "startLine": 338,
+        "startChar": 0,
+        "endLine": 356,
+        "endChar": 17
+      },
+      "revId": "3fcf3fa6df957390fce4d3e8351be5a7c256dfe5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
