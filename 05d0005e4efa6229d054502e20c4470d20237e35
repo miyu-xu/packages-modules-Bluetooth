@@ -16,6 +16,23 @@
       "message": "Under what conditions the Adapter is not",
       "revId": "05d0005e4efa6229d054502e20c4470d20237e35",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "03da9c9f_690434cc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-05-31T11:50:27Z",
+      "side": 1,
+      "message": "Under what conditions adapter is not present ?\nIs is just BT off ? Why would LeAudioService be working in this case ?\n\nCan this happen on startup ? If yes, shall we re-try starting scan after couple seconds ?",
+      "revId": "05d0005e4efa6229d054502e20c4470d20237e35",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
