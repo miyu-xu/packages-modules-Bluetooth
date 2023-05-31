@@ -13,6 +13,7 @@ use std::sync::{Arc, Mutex};
 use tokio::sync::mpsc::Sender;
 
 use bt_utils::socket::{BtSocket, HciChannels, MgmtCommand, HCI_DEV_NONE};
+use bt_utils::uhid::UHid;
 
 use tokio::io::unix::AsyncFd;
 
@@ -158,6 +159,9 @@ pub struct Suspend {
     connectable_to_restore: bool,
     /// Bluetooth adapter discoverable mode before suspending.
     discoverable_mode_to_restore: BtDiscMode,
+
+    /// Virtual uhid device created during suspend.
+    uhid: UHid,
 }
 
 impl Suspend {
@@ -181,6 +185,7 @@ impl Suspend {
             suspend_state: Arc::new(Mutex::new(SuspendState::new())),
             connectable_to_restore: false,
             discoverable_mode_to_restore: BtDiscMode::NonDiscoverable,
+            uhid: UHid::new(),
         }
     }
 
@@ -217,6 +222,11 @@ impl Suspend {
     pub(crate) fn get_connected_audio_devices(&self) -> Vec<BluetoothDevice> {
         let bonded_connected = self.bt.lock().unwrap().get_bonded_and_connected_devices();
         self.media.lock().unwrap().filter_to_connected_audio_devices_from(&bonded_connected)
+    }
+
+    fn get_wake_allowed_device_bonded(&self) -> bool {
+        let bt = self.bt.lock().unwrap();
+        bt.get_bonded_devices().into_iter().any(|d| bt.get_remote_wake_allowed(d))
     }
 }
 
@@ -266,6 +276,18 @@ impl ISuspend for Suspend {
 
         self.intf.lock().unwrap().disconnect_all_acls();
 
+        if self.get_wake_allowed_device_bonded() {
+            let adapter_addr = self.bt.lock().unwrap().get_address().to_lowercase();
+            match self.uhid.create(
+                "suspend uhid".to_string(),
+                adapter_addr,
+                String::from(BD_ADDR_DEFAULT),
+            ) {
+                Err(e) => log::error!("Fail to create uhid {}", e),
+                Ok(_) => (),
+            }
+        }
+
         // Handle wakeful cases (Connected/Other)
         // Treat Other the same as Connected
         match suspend_type {
@@ -303,6 +325,8 @@ impl ISuspend for Suspend {
     }
 
     fn resume(&mut self) -> bool {
+        self.uhid.clear();
+
         self.intf.lock().unwrap().set_default_event_mask_except(0u64, 0u64);
 
         // Restore event filter and accept list to normal.
