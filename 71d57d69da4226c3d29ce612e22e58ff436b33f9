@@ -118,6 +118,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6d9671de_b602fd2f",
+        "filename": "service/tests/src/com/android/server/bluetooth/BluetoothManagerServiceTest.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-05-31T11:10:38Z",
+      "side": 1,
+      "message": "I found also that you can know and listen for when the looper is idle from the message queue https://developer.android.com/reference/android/os/MessageQueue",
+      "parentUuid": "a247baea_81268fab",
+      "range": {
+        "startLine": 148,
+        "startChar": 0,
+        "endLine": 154,
+        "endChar": 58
+      },
+      "revId": "71d57d69da4226c3d29ce612e22e58ff436b33f9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4e0ca75b_2d12a966",
         "filename": "service/tests/src/com/android/server/bluetooth/BluetoothManagerServiceTest.java",
         "patchSetId": 8
