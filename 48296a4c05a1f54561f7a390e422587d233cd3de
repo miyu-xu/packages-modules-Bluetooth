@@ -1,0 +1,124 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4f808a3f_e9fa71d8",
+        "filename": "floss/hcidoc/src/groups/collisions.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-05-31T07:16:59Z",
+      "side": 1,
+      "message": "This is always true because we have the match in line 71",
+      "range": {
+        "startLine": 84,
+        "startChar": 28,
+        "endLine": 84,
+        "endChar": 70
+      },
+      "revId": "48296a4c05a1f54561f7a390e422587d233cd3de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "512b073c_2138aab5",
+        "filename": "floss/hcidoc/src/groups/collisions.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-05-31T07:16:59Z",
+      "side": 1,
+      "message": "Missing one indent?",
+      "range": {
+        "startLine": 96,
+        "startChar": 0,
+        "endLine": 96,
+        "endChar": 27
+      },
+      "revId": "48296a4c05a1f54561f7a390e422587d233cd3de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cd3e265b_04ea1170",
+        "filename": "floss/hcidoc/src/groups/collisions.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-05-31T07:16:59Z",
+      "side": 1,
+      "message": "Maybe put this into its own function so we can reuse for the events below?",
+      "range": {
+        "startLine": 98,
+        "startChar": 0,
+        "endLine": 139,
+        "endChar": 29
+      },
+      "revId": "48296a4c05a1f54561f7a390e422587d233cd3de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "394745aa_34db245a",
+        "filename": "floss/hcidoc/src/groups/collisions.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-05-31T07:16:59Z",
+      "side": 1,
+      "message": "QQ: We have this assumption on Inquiry and Connection, but we have a different assumption on RNR. Is this based on observation?",
+      "revId": "48296a4c05a1f54561f7a390e422587d233cd3de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6fdcb925_42346f3f",
+        "filename": "floss/hcidoc/src/groups/mod.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-05-31T07:16:59Z",
+      "side": 1,
+      "message": "nit: put it below the comment?",
+      "revId": "48296a4c05a1f54561f7a390e422587d233cd3de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9790b0ca_5c43ea4a",
+        "filename": "floss/hcidoc/src/main.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-05-31T07:16:59Z",
+      "side": 1,
+      "message": "nit: alphabetical order?",
+      "revId": "48296a4c05a1f54561f7a390e422587d233cd3de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
