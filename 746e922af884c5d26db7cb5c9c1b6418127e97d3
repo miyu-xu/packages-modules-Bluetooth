@@ -52,6 +52,24 @@
       "parentUuid": "e2bf6915_496eb176",
       "revId": "746e922af884c5d26db7cb5c9c1b6418127e97d3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1bf2c68c_9f3e485c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2023-05-31T01:21:38Z",
+      "side": 1,
+      "message": "I see. Thank you for the explaination. I\u0027ve tried to implement the interface following the `DebugDump(fd)` practice but found it greatly complicate the implementation. I\u0027m happy to change the implementation if there is a preferable way.",
+      "parentUuid": "a2a8316e_0fb66208",
+      "revId": "746e922af884c5d26db7cb5c9c1b6418127e97d3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
