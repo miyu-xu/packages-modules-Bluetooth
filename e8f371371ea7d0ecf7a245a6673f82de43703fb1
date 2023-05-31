@@ -218,6 +218,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e4337a61_4afd59ea",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 2786,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-05-31T08:56:48Z",
+      "side": 1,
+      "message": "\u003e There is no usage of equals with Object o. Why do you want it ?\n\nFor consistency with integer wrappers, with your equals implementation it means that equals(int) will call your implementation and equals(Integer) will call the default equals implementation that will return false\n\nAn exemple is better than words here\n```\npublic class MyClass {\n    static class Wrapper {\n        boolean equals(int value) {\n            return value \u003d\u003d 2;\n        }\n    }\n    public static void main(String args[]) {\n        Wrapper wrapper \u003d new Wrapper();\n        System.out.println(wrapper.equals(2));\n        System.out.println(wrapper.equals(Integer.valueOf(2)));\n    }\n}\n```\nPrints\n```\ntrue\nfalse\n```",
+      "parentUuid": "e362ad53_e7f446e4",
+      "revId": "e8f371371ea7d0ecf7a245a6673f82de43703fb1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "66fae3aa_501cdafd",
