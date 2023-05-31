@@ -120,6 +120,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "92b4dd64_f947a509",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 2766,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-05-31T09:18:10Z",
+      "side": 1,
+      "message": "In Kotlin, you could use a Flow but in Java I\u0027m not aware of any in the standard library, maybe we have one in Android but I don\u0027t really know how to search.",
+      "parentUuid": "b8540952_51841e3e",
+      "range": {
+        "startLine": 2763,
+        "startChar": 0,
+        "endLine": 2766,
+        "endChar": 80
+      },
+      "revId": "e8f371371ea7d0ecf7a245a6673f82de43703fb1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "de7ac3ab_52bb7c9c",
         "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
         "patchSetId": 5
