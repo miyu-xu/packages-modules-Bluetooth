@@ -285,6 +285,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a293bc2b_c2ffd9f8",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 2794,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-05-31T09:17:17Z",
+      "side": 1,
+      "message": "I fine with that if we add a bunch of TODO then.\n\n\u003e I don\u0027t see an easy way of improving that. I could add a conditionLock for each state but then how can I solve waiting on multiple state at once ?\n\nCreate a lock for each combination, 7 states, 128 possible combination, 128 locks 🙃 \n\nNo seriously, if you don\u0027t have a lot of waiters and memory constraint is not an issue you could create a Concurrent List of BlockingQueue and push each state changes in all queues",
+      "parentUuid": "dca87844_ceedd865",
+      "range": {
+        "startLine": 2793,
+        "startChar": 16,
+        "endLine": 2794,
+        "endChar": 16
+      },
+      "revId": "e8f371371ea7d0ecf7a245a6673f82de43703fb1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0ca1fb58_b238e37b",
         "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
         "patchSetId": 5
