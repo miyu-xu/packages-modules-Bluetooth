@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "788f78a1_fb6f7225",
+        "filename": "system/bta/csis/csis_client.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1557,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-05-31T12:38:10Z",
+      "side": 1,
+      "message": "Under what conditions this can happen ?\nJust above you either added device to existing group, or created group for it.",
+      "range": {
+        "startLine": 1554,
+        "startChar": 0,
+        "endLine": 1557,
+        "endChar": 7
+      },
+      "revId": "81ec154c4221050639abcd06f8cd13c91c938807",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
