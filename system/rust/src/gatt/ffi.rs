@@ -289,14 +289,14 @@ fn open_server(server_id: u8) {
     let server_id = ServerId(server_id);
 
     do_in_rust_thread(move |modules| {
+        if let Err(err) = modules.gatt_module.open_gatt_server(server_id) {
+            error!("{err:?}")
+        }
         if always_use_private_gatt_for_debugging_is_enabled() {
             modules
                 .gatt_module
-                .get_isolation_manager()
                 .associate_server_with_advertiser(server_id, AdvertiserId(0))
-        }
-        if let Err(err) = modules.gatt_module.open_gatt_server(server_id) {
-            error!("{err:?}")
+                .expect("server was just created")
         }
     })
 }
@@ -494,10 +494,11 @@ fn associate_server_with_advertiser(server_id: u8, advertiser_id: u8) {
     let server_id = ServerId(server_id);
     let advertiser_id = AdvertiserId(advertiser_id);
     do_in_rust_thread(move |modules| {
-        modules
-            .gatt_module
-            .get_isolation_manager()
-            .associate_server_with_advertiser(server_id, advertiser_id);
+        if let Err(err) =
+            modules.gatt_module.associate_server_with_advertiser(server_id, advertiser_id)
+        {
+            error!("{err:?}")
+        }
     })
 }
 
@@ -509,7 +510,7 @@ fn clear_advertiser(advertiser_id: u8) {
     let advertiser_id = AdvertiserId(advertiser_id);
 
     do_in_rust_thread(move |modules| {
-        modules.gatt_module.get_isolation_manager().clear_advertiser(advertiser_id);
+        modules.gatt_module.remove_servers_tied_to_advertiser(advertiser_id);
     })
 }
 

@@ -51,7 +51,9 @@ fn try_parse_att_server_packet(
     tcb_idx: TransportIndex,
     packet: Box<[u8]>,
 ) -> Option<OwnedAttView> {
-    isolation_manager.get_server_id(tcb_idx)?;
+    if !isolation_manager.is_connection_isolated(tcb_idx) {
+        return None;
+    }
 
     let att = OwnedAttView::try_parse(packet).ok()?;
 
@@ -146,7 +148,7 @@ mod test {
         server_id: ServerId,
     ) -> IsolationManager {
         let mut isolation_manager = IsolationManager::new();
-        isolation_manager.associate_server_with_advertiser(server_id, ADVERTISER_ID);
+        isolation_manager.associate_server_with_advertiser(server_id, ADVERTISER_ID).unwrap();
         isolation_manager.on_le_connect(tcb_idx, Some(ADVERTISER_ID));
         isolation_manager
     }

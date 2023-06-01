@@ -62,6 +62,9 @@ const SERVICE_HANDLE: AttHandle = AttHandle(6);
 const CHARACTERISTIC_HANDLE: AttHandle = AttHandle(8);
 const DESCRIPTOR_HANDLE: AttHandle = AttHandle(9);
 
+const ANOTHER_SERVICE_HANDLE: AttHandle = AttHandle(10);
+const ANOTHER_CHARACTERISTIC_HANDLE: AttHandle = AttHandle(12);
+
 const SERVICE_TYPE: Uuid = Uuid::new(0x0102);
 const CHARACTERISTIC_TYPE: Uuid = Uuid::new(0x0103);
 const DESCRIPTOR_TYPE: Uuid = Uuid::new(0x0104);
@@ -71,14 +74,19 @@ const ANOTHER_DATA: [u8; 4] = [5, 6, 7, 8];
 
 fn start_gatt_module() -> (gatt::server::GattModule, UnboundedReceiver<(TransportIndex, AttBuilder)>)
 {
+    start_gatt_module_with_arbiter(Arc::new(Mutex::new(IsolationManager::new())))
+}
+
+fn start_gatt_module_with_arbiter(
+    arbiter: Arc<Mutex<IsolationManager>>,
+) -> (gatt::server::GattModule, UnboundedReceiver<(TransportIndex, AttBuilder)>) {
     let (transport, transport_rx) = MockAttTransport::new();
-    let arbiter = IsolationManager::new();
-    let gatt = GattModule::new(Rc::new(transport), Arc::new(Mutex::new(arbiter)));
+    let gatt = GattModule::new(Rc::new(transport), arbiter);
 
     (gatt, transport_rx)
 }
 
-fn create_server_and_open_connection(
+fn create_isolated_server_and_open_connection(
     gatt: &mut GattModule,
 ) -> UnboundedReceiver<MockDatastoreEvents> {
     gatt.open_gatt_server(SERVER_ID).unwrap();
@@ -104,7 +112,7 @@ fn create_server_and_open_connection(
         datastore,
     )
     .unwrap();
-    gatt.get_isolation_manager().associate_server_with_advertiser(SERVER_ID, ADVERTISER_ID);
+    gatt.associate_server_with_advertiser(SERVER_ID, ADVERTISER_ID).unwrap();
     gatt.on_le_connect(TCB_IDX, Some(ADVERTISER_ID)).unwrap();
     data_rx
 }
@@ -115,7 +123,7 @@ fn test_service_read() {
         // arrange
         let (mut gatt, mut transport_rx) = start_gatt_module();
 
-        create_server_and_open_connection(&mut gatt);
+        create_isolated_server_and_open_connection(&mut gatt);
 
         // act
         gatt.get_bearer(TCB_IDX).unwrap().handle_packet(
@@ -150,7 +158,7 @@ fn test_server_closed_while_connected() {
         let (mut gatt, mut transport_rx) = start_gatt_module();
 
         // open a server and connect
-        create_server_and_open_connection(&mut gatt);
+        create_isolated_server_and_open_connection(&mut gatt);
         gatt.close_gatt_server(SERVER_ID).unwrap();
 
         // act: read from the closed server
@@ -184,7 +192,7 @@ fn test_characteristic_read() {
 
         let data = AttAttributeDataChild::RawData(DATA.into());
 
-        let mut data_rx = create_server_and_open_connection(&mut gatt);
+        let mut data_rx = create_isolated_server_and_open_connection(&mut gatt);
 
         // act
         gatt.get_bearer(TCB_IDX).unwrap().handle_packet(
@@ -227,7 +235,7 @@ fn test_characteristic_write() {
 
         let data = AttAttributeDataChild::RawData(DATA.into());
 
-        let mut data_rx = create_server_and_open_connection(&mut gatt);
+        let mut data_rx = create_isolated_server_and_open_connection(&mut gatt);
 
         // act
         gatt.get_bearer(TCB_IDX).unwrap().handle_packet(
@@ -276,7 +284,7 @@ fn test_send_indication() {
 
         let data = AttAttributeDataChild::RawData(DATA.into());
 
-        create_server_and_open_connection(&mut gatt);
+        create_isolated_server_and_open_connection(&mut gatt);
 
         // act
         let pending_indication = spawn_local(
@@ -312,7 +320,7 @@ fn test_send_indication_and_disconnect() {
         // arrange
         let (mut gatt, mut transport_rx) = start_gatt_module();
 
-        create_server_and_open_connection(&mut gatt);
+        create_isolated_server_and_open_connection(&mut gatt);
 
         // act: send an indication, then disconnect
         let pending_indication = spawn_local(gatt.get_bearer(TCB_IDX).unwrap().send_indication(
@@ -338,7 +346,7 @@ fn test_write_to_descriptor() {
 
         let data = AttAttributeDataChild::RawData(DATA.into());
 
-        let mut data_rx = create_server_and_open_connection(&mut gatt);
+        let mut data_rx = create_isolated_server_and_open_connection(&mut gatt);
 
         // act
         gatt.get_bearer(TCB_IDX).unwrap().handle_packet(
@@ -387,17 +395,17 @@ fn test_multiple_servers() {
         let data = AttAttributeDataChild::RawData(DATA.into());
         let another_data = AttAttributeDataChild::RawData(ANOTHER_DATA.into());
         // open the default server (SERVER_ID on CONN_ID)
-        let mut data_rx_1 = create_server_and_open_connection(&mut gatt);
+        let mut data_rx_1 = create_isolated_server_and_open_connection(&mut gatt);
         // open a second server and connect to it (ANOTHER_SERVER_ID on ANOTHER_CONN_ID)
         let (datastore, mut data_rx_2) = MockDatastore::new();
         gatt.open_gatt_server(ANOTHER_SERVER_ID).unwrap();
         gatt.register_gatt_service(
             ANOTHER_SERVER_ID,
             GattServiceWithHandle {
-                handle: SERVICE_HANDLE,
+                handle: ANOTHER_SERVICE_HANDLE,
                 type_: SERVICE_TYPE,
                 characteristics: vec![GattCharacteristicWithHandle {
-                    handle: CHARACTERISTIC_HANDLE,
+                    handle: ANOTHER_CHARACTERISTIC_HANDLE,
                     type_: CHARACTERISTIC_TYPE,
                     permissions: AttPermissions::READABLE,
                     descriptors: vec![],
@@ -406,8 +414,7 @@ fn test_multiple_servers() {
             datastore,
         )
         .unwrap();
-        gatt.get_isolation_manager()
-            .associate_server_with_advertiser(ANOTHER_SERVER_ID, ANOTHER_ADVERTISER_ID);
+        gatt.associate_server_with_advertiser(ANOTHER_SERVER_ID, ANOTHER_ADVERTISER_ID).unwrap();
         gatt.on_le_connect(ANOTHER_TCB_IDX, Some(ANOTHER_ADVERTISER_ID)).unwrap();
 
         // act: read from both connections
@@ -419,7 +426,7 @@ fn test_multiple_servers() {
         );
         gatt.get_bearer(ANOTHER_TCB_IDX).unwrap().handle_packet(
             build_att_view_or_crash(AttReadRequestBuilder {
-                attribute_handle: CHARACTERISTIC_HANDLE.into(),
+                attribute_handle: ANOTHER_CHARACTERISTIC_HANDLE.into(),
             })
             .view(),
         );
@@ -459,7 +466,7 @@ fn test_read_device_name() {
     start_test(async move {
         // arrange
         let (mut gatt, mut transport_rx) = start_gatt_module();
-        create_server_and_open_connection(&mut gatt);
+        create_isolated_server_and_open_connection(&mut gatt);
 
         // act: try to read the device name
         gatt.get_bearer(TCB_IDX).unwrap().handle_packet(
@@ -486,7 +493,7 @@ fn test_ignored_service_change_indication() {
     start_test(async move {
         // arrange
         let (mut gatt, mut transport_rx) = start_gatt_module();
-        create_server_and_open_connection(&mut gatt);
+        create_isolated_server_and_open_connection(&mut gatt);
 
         // act: add a new service
         let (datastore, _) = MockDatastore::new();
@@ -511,7 +518,7 @@ fn test_service_change_indication() {
     start_test(async move {
         // arrange
         let (mut gatt, mut transport_rx) = start_gatt_module();
-        create_server_and_open_connection(&mut gatt);
+        create_isolated_server_and_open_connection(&mut gatt);
 
         // act: discover the GATT server
         gatt.get_bearer(TCB_IDX).unwrap().handle_packet(
@@ -626,16 +633,17 @@ fn test_service_change_indication() {
 fn test_closing_gatt_server_unisolates_advertiser() {
     start_test(async move {
         // arrange
-        let (mut gatt, _) = start_gatt_module();
+        let arbiter = Arc::new(Mutex::new(IsolationManager::new()));
+        let (mut gatt, _rx) = start_gatt_module_with_arbiter(arbiter.clone());
         gatt.open_gatt_server(SERVER_ID).unwrap();
-        gatt.get_isolation_manager().associate_server_with_advertiser(SERVER_ID, ADVERTISER_ID);
+        gatt.associate_server_with_advertiser(SERVER_ID, ADVERTISER_ID).unwrap();
 
         // act
         gatt.close_gatt_server(SERVER_ID).unwrap();
 
         // assert
-        let is_advertiser_isolated =
-            gatt.get_isolation_manager().is_advertiser_isolated(ADVERTISER_ID);
+        gatt.on_le_connect(TCB_IDX, Some(ADVERTISER_ID)).unwrap();
+        let is_advertiser_isolated = arbiter.lock().unwrap().is_advertiser_isolated(ADVERTISER_ID);
         assert!(!is_advertiser_isolated);
     });
 }
@@ -644,14 +652,15 @@ fn test_closing_gatt_server_unisolates_advertiser() {
 fn test_disconnection_unisolates_connection() {
     start_test(async move {
         // arrange
-        let (mut gatt, _) = start_gatt_module();
-        create_server_and_open_connection(&mut gatt);
+        let arbiter = Arc::new(Mutex::new(IsolationManager::new()));
+        let (mut gatt, _rx) = start_gatt_module_with_arbiter(arbiter.clone());
+        create_isolated_server_and_open_connection(&mut gatt);
 
         // act
         gatt.on_le_disconnect(TCB_IDX).unwrap();
 
         // assert
-        let is_connection_isolated = gatt.get_isolation_manager().is_connection_isolated(TCB_IDX);
+        let is_connection_isolated = arbiter.lock().unwrap().is_connection_isolated(TCB_IDX);
         assert!(!is_connection_isolated);
     });
 }
