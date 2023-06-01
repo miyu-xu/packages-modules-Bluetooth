@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "755d80c6_1c35e075",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2023-06-01T00:45:07Z",
+      "side": 1,
+      "message": "Hi Hsin-chen,\n\nMay you help take a initial review of the CL. I\u0027m not 100% certain I\u0027m hooking the interface correctly.",
+      "revId": "043c23702af009f2415f62ff549a23e144e2235c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
