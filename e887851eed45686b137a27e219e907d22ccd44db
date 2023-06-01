@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1fc111cd_1e6f4a78",
+        "filename": "floss/hcidoc/src/groups/collisions.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2023-06-01T15:14:23Z",
+      "side": 1,
+      "message": "How about using generics like this? It\u0027s more efficient than trait object as no dynamic dispatch involved.\n\n`fn report\u003cW: Write\u003e(\u0026self, writer: \u0026mut W)`",
+      "range": {
+        "startLine": 207,
+        "startChar": 4,
+        "endLine": 207,
+        "endChar": 44
+      },
+      "revId": "e887851eed45686b137a27e219e907d22ccd44db",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
