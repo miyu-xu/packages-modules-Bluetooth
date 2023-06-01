@@ -366,7 +366,9 @@ static void transmit_command(const BT_HDR* command,
 
   LOG_DEBUG("Sending command %s", bluetooth::hci::OpCodeText(op_code).c_str());
 
-  if (bluetooth::hci::Checker::IsCommandStatusOpcode(op_code)) {
+  // TODO: why was 0x206d (LE_REQUEST_PEER_SCA) coded as a command status?
+  if (command_op_code != 0x206d &&
+      bluetooth::hci::Checker::IsCommandStatusOpcode(op_code)) {
     auto command_unique = std::make_unique<OsiObject>(command);
     bluetooth::shim::GetHciLayer()->EnqueueCommand(
         std::move(packet), bluetooth::shim::GetGdShimHandler()->BindOnce(

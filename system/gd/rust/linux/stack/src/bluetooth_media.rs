@@ -1784,6 +1784,15 @@ impl IBluetoothMedia for BluetoothMedia {
             DisplayAddress(&addr),
             available_profiles
         );
+
+        match self.le_audio.as_mut() {
+            Some(le_audio) => {
+                le_audio.connect(addr);
+            }
+            None => {
+                warn!("Uninitialized LeAudio to connect {}", DisplayAddress(&addr));
+            }
+        };
     }
 
     fn disconnect_le(&mut self, address: String) {
