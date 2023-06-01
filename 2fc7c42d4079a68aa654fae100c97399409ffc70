@@ -16,6 +16,24 @@
       "message": "this is not needed as group has been just created 2 lines above with  std::make_shared. if that would failed we have more serious problem.",
       "revId": "2fc7c42d4079a68aa654fae100c97399409ffc70",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "136f1640_238a3b63",
+        "filename": "system/bta/csis/csis_client.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-06-01T08:18:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9b9f11e1_4746aa91",
+      "revId": "2fc7c42d4079a68aa654fae100c97399409ffc70",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
