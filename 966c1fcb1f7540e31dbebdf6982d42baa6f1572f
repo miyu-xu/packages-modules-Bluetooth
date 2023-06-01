@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6d95696b_08ea375e",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothAdapterState.kt",
+        "patchSetId": 14
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-06-01T08:44:10Z",
+      "side": 1,
+      "message": "Use a `MutableStateFlow` instead, it let you put a value at construction\n\nYou will be able to implement `get` and `set` by reading and assigning `_uiState.value` as well.",
+      "range": {
+        "startLine": 30,
+        "startChar": 0,
+        "endLine": 34,
+        "endChar": 5
+      },
+      "revId": "966c1fcb1f7540e31dbebdf6982d42baa6f1572f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1a53218c_d1f7a100",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothAdapterState.kt",
+        "patchSetId": 14
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-06-01T08:44:10Z",
+      "side": 1,
+      "message": "As you have a replay cache here, you should be able to remove that branch no ?",
+      "range": {
+        "startLine": 49,
+        "startChar": 7,
+        "endLine": 51,
+        "endChar": 16
+      },
+      "revId": "966c1fcb1f7540e31dbebdf6982d42baa6f1572f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
