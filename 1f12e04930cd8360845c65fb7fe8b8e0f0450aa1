@@ -128,6 +128,30 @@
       },
       "revId": "1f12e04930cd8360845c65fb7fe8b8e0f0450aa1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "63d31b6b_a5c4f8b0",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 2506,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2023-06-01T23:47:39Z",
+      "side": 1,
+      "message": "what I meant is like\nNone \u003d\u003e {0, 0, 0, 0}, \n_ \u003d\u003e something wrong,",
+      "parentUuid": "658c1251_8d507898",
+      "range": {
+        "startLine": 2506,
+        "startChar": 12,
+        "endLine": 2506,
+        "endChar": 13
+      },
+      "revId": "1f12e04930cd8360845c65fb7fe8b8e0f0450aa1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
