@@ -89,6 +89,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0def7286_d334e5e5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-06-01T01:30:18Z",
+      "side": 1,
+      "message": "Got it. Anyway, checking the supported profiles in BLuetoothManagerService looks better. I\u0027ll upload a new patch set.",
+      "parentUuid": "cb2fcaaf_245999bb",
+      "revId": "c13b08ebc34a8dd51bce651955d2f196ed822228",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6033003c_35e64e95",
