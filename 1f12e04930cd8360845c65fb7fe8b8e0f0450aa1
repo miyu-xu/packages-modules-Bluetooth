@@ -45,6 +45,30 @@
       },
       "revId": "1f12e04930cd8360845c65fb7fe8b8e0f0450aa1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7197c8ab_4be7e96b",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 2506,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2023-06-01T09:43:11Z",
+      "side": 1,
+      "message": "Based on ui/events/devices/input_device.h, 0 stands for unavailable. So, I\u0027m fine with {0, 0, 0, 0}.",
+      "parentUuid": "0332d0e7_91fff59e",
+      "range": {
+        "startLine": 2506,
+        "startChar": 37,
+        "endLine": 2506,
+        "endChar": 98
+      },
+      "revId": "1f12e04930cd8360845c65fb7fe8b8e0f0450aa1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
