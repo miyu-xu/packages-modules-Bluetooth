@@ -16,6 +16,24 @@
       "message": "nit: unit test is missing for new flag.",
       "revId": "5366ea2120231d126a8ce557bd7b2afdedc079c2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "03adf1dc_218c4575",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-06-01T13:14:31Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "cda08b4b_ab964ce1",
+      "revId": "5366ea2120231d126a8ce557bd7b2afdedc079c2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
