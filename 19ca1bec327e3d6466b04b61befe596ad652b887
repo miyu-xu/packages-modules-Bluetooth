@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5b87d936_982c4324",
+        "filename": "system/bta/ag/bta_ag_sco.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 1242,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2023-06-01T22:17:28Z",
+      "side": 1,
+      "message": "Seems duplicated to line 1258?  Consider to also print out `p_scb-\u003esco_codec` here and remove both in the following if statement.",
+      "range": {
+        "startLine": 1241,
+        "startChar": 2,
+        "endLine": 1242,
+        "endChar": 38
+      },
+      "revId": "19ca1bec327e3d6466b04b61befe596ad652b887",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "15905554_05298c8d",
+        "filename": "system/bta/ag/bta_ag_sco.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 1248,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2023-06-01T22:17:28Z",
+      "side": 1,
+      "message": "Do we also want to update the `bta_ag_parse_bac`? It doesn\u0027t support LC3 now.",
+      "range": {
+        "startLine": 1248,
+        "startChar": 16,
+        "endLine": 1248,
+        "endChar": 27
+      },
+      "revId": "19ca1bec327e3d6466b04b61befe596ad652b887",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e4efeae0_f817926b",
+        "filename": "system/bta/include/bta_ag_api.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 582,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2023-06-01T22:17:28Z",
+      "side": 1,
+      "message": "This type is pretty confusing with the `tBTM_SCO_CODEC_TYPE`. The `tBTA_AG_PEER_CODEC` is its own type but using the define declared for `tBTM_SCO_CODEC_TYPE`. \n\nThere is a existing TODO `// TODO(google) This should use common definitions`, please create a bug and have the bug number on the TODO.",
+      "range": {
+        "startLine": 582,
+        "startChar": 38,
+        "endLine": 582,
+        "endChar": 56
+      },
+      "revId": "19ca1bec327e3d6466b04b61befe596ad652b887",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8d6cc773_174f13d9",
+        "filename": "system/gd/rust/linux/service/src/iface_bluetooth_media.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2023-06-01T22:17:28Z",
+      "side": 1,
+      "message": "May we use HfpCodecCapability here?",
+      "range": {
+        "startLine": 224,
+        "startChar": 86,
+        "endLine": 224,
+        "endChar": 89
+      },
+      "revId": "19ca1bec327e3d6466b04b61befe596ad652b887",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9e98d873_51d5b7b4",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 649,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2023-06-01T22:17:28Z",
+      "side": 1,
+      "message": "Consider: Rename the HfpCodecCapability::UNSUPPORTED to None such that we can use HfpCodecCapability::None here to be more readable",
+      "range": {
+        "startLine": 649,
+        "startChar": 78,
+        "endLine": 649,
+        "endChar": 79
+      },
+      "revId": "19ca1bec327e3d6466b04b61befe596ad652b887",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d6b7dcc1_fb1ca246",
+        "filename": "system/include/hardware/bluetooth_headset_interface.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2023-06-01T22:17:28Z",
+      "side": 1,
+      "message": "We can use an enum in `bt_hf.h`. Can be a follow-up. 😞",
+      "range": {
+        "startLine": 70,
+        "startChar": 35,
+        "endLine": 70,
+        "endChar": 38
+      },
+      "revId": "19ca1bec327e3d6466b04b61befe596ad652b887",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
