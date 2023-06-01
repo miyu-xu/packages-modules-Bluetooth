@@ -20,7 +20,7 @@ from pandora_experimental.hfp_grpc import HFP
 from pandora.host_grpc import Host
 from pandora.host_pb2 import DISCOVERABLE_GENERAL, CONNECTABLE
 from pandora.security_grpc import Security, SecurityStorage
-from pandora.security_pb2 import PairingEventAnswer
+from pandora.security_pb2 import PairingEventAnswer, LEVEL1
 from pandora_experimental.hfp_pb2 import AUDIO_PATH_HANDSFREE, AUDIO_PATH_SPEAKERS
 
 import sys
@@ -91,6 +91,9 @@ class HFPProxy(ProfileProxy):
             if "HFP/HF" in test:
                 self.hfp.EnableSlcAsHandsfree(connection=self.connection)
             else:
+                # The IUT will only discover the Handsfree capability over SDP
+                # when bonded, and refuse the SLC connection otherwise.
+                self.security.Secure(connection=self.connection, classic=LEVEL1)
                 self.hfp.EnableSlc(connection=self.connection)
 
         threading.Thread(target=enable_slc).start()
@@ -128,10 +131,6 @@ class HFPProxy(ProfileProxy):
         """
 
         self.host.SetConnectabilityMode(mode=CONNECTABLE)
-        # these two test cases fail if Connection is established in "TSC_iut_enable_slc"
-        if test in ("HFP/AG/SLC/BV-02-C", "HFP/AG/SLC/BV-04-C"):
-            self.connection = self.host.Connect(address=pts_addr).connection
-
         return "OK"
 
     @assert_description
