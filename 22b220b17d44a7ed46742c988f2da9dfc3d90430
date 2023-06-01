@@ -16,6 +16,23 @@
       "message": "@cmanton@google.com can you give the final +2 ?",
       "revId": "22b220b17d44a7ed46742c988f2da9dfc3d90430",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ccc529dc_9e01c4b3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-06-01T00:53:39Z",
+      "side": 1,
+      "message": "`sdpu_get_active_ccb_cid` will always succeed due to the prior check setting a condition to ensure it always succeeds\n\n```\n  p_ccb-\u003econ_state \u003d SDP_STATE_CONN_SETUP;\n\n  // Look for any active sdp connection on the remote device\n  cid \u003d sdpu_get_active_ccb_cid(p_bd_addr);\n```",
+      "revId": "22b220b17d44a7ed46742c988f2da9dfc3d90430",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
