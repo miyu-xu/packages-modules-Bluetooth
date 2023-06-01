@@ -88,6 +88,24 @@
       "parentUuid": "1bf2c68c_9f3e485c",
       "revId": "746e922af884c5d26db7cb5c9c1b6418127e97d3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "04df2fbc_a343ff2b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2023-06-01T00:42:14Z",
+      "side": 1,
+      "message": "Yeah. I was trying to not adding new headers to the interface. We can abstract and refine that once we have a better idea how we\u0027d like to improve the debugability. Thank you for the review.",
+      "parentUuid": "dc15364d_2a5878f6",
+      "revId": "746e922af884c5d26db7cb5c9c1b6418127e97d3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
