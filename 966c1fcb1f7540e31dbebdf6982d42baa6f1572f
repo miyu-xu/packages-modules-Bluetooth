@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "00ad066b_8e2f6211",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothAdapterState.kt",
+        "patchSetId": 14
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-06-01T17:10:05Z",
+      "side": 1,
+      "message": "I cannot use a mutableStateFlow because the stateFlow is conflated and I may miss some value (AKA it is the same as the condvar issue).\nCf [this doc](https://kotlinlang.org/api/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/-state-flow/)",
+      "parentUuid": "6d95696b_08ea375e",
+      "range": {
+        "startLine": 30,
+        "startChar": 0,
+        "endLine": 34,
+        "endChar": 5
+      },
+      "revId": "966c1fcb1f7540e31dbebdf6982d42baa6f1572f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1a53218c_d1f7a100",
         "filename": "service/src/com/android/server/bluetooth/BluetoothAdapterState.kt",
         "patchSetId": 14
@@ -37,6 +61,30 @@
       "writtenOn": "2023-06-01T08:44:10Z",
       "side": 1,
       "message": "As you have a replay cache here, you should be able to remove that branch no ?",
+      "range": {
+        "startLine": 49,
+        "startChar": 7,
+        "endLine": 51,
+        "endChar": 16
+      },
+      "revId": "966c1fcb1f7540e31dbebdf6982d42baa6f1572f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ea5f55cc_6a751e3c",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothAdapterState.kt",
+        "patchSetId": 14
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-06-01T17:10:05Z",
+      "side": 1,
+      "message": "I am, but if I am already in the correct state, do I want to start the timer and the filter ?\nI am not sure it is necessary.",
+      "parentUuid": "1a53218c_d1f7a100",
       "range": {
         "startLine": 49,
         "startChar": 7,
