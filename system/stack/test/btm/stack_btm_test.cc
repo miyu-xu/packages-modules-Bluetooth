@@ -59,6 +59,7 @@ extern tBTM_CB btm_cb;
 
 uint8_t btif_trace_level = BT_TRACE_LEVEL_DEBUG;
 uint8_t appl_trace_level = BT_TRACE_LEVEL_VERBOSE;
+uint8_t btu_trace_level = BT_TRACE_LEVEL_DEBUG;
 btif_hh_cb_t btif_hh_cb;
 tL2C_CB l2cb;
 

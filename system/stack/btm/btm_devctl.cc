@@ -23,6 +23,7 @@
  *
  ******************************************************************************/
 
+#include <base/location.h>
 #include <base/logging.h>
 #include <stddef.h>
 #include <stdlib.h>
@@ -33,18 +34,20 @@
 #include "btcore/include/module.h"
 #include "btif/include/btif_bqr.h"
 #include "common/message_loop_thread.h"
-#include "hci/include/hci_layer.h"
+#include "hci/hci_layer.h"
+#include "hci/hci_packets.h"
 #include "main/shim/btm_api.h"
 #include "main/shim/controller.h"
-#include "main/shim/entry.h"
-#include "main/shim/hci_layer.h"
 #include "main/shim/shim.h"
+#include "main/shim/stack.h"
 #include "osi/include/compat.h"
 #include "osi/include/osi.h"
+#include "packet/raw_builder.h"
 #include "stack/btm/btm_ble_int.h"
 #include "stack/gatt/connection_manager.h"
 #include "stack/include/acl_api.h"
 #include "stack/include/bt_hdr.h"
+#include "stack/include/btu.h"
 #include "stack/include/l2cap_controller_interface.h"
 #include "types/raw_address.h"
 
@@ -441,6 +444,45 @@ uint8_t* BTM_ReadDeviceClass(void) {
   return ((uint8_t*)btm_cb.devcb.dev_class);
 }
 
+// Helpers copied from btu_hcif for now
+using hci_cmd_cb_copy = base::OnceCallback<void(
+    uint8_t* /* return_parameters */, uint16_t /* return_parameters_length*/)>;
+
+struct cmd_with_cb_data_copy {
+  hci_cmd_cb_copy cb;
+  base::Location posted_from;
+};
+
+void cmd_with_cb_data_init(cmd_with_cb_data_copy* cb_wrapper) {
+  new (&cb_wrapper->cb) hci_cmd_cb_copy;
+  new (&cb_wrapper->posted_from) base::Location;
+}
+
+void cmd_with_cb_data_cleanup_copy(cmd_with_cb_data_copy* cb_wrapper) {
+  cb_wrapper->cb.~hci_cmd_cb_copy();
+  cb_wrapper->posted_from.~Location();
+}
+static void command_complete_cb_on_task(
+    bluetooth::hci::CommandCompleteView response, void* context) {
+  auto payload = response.GetPayload();
+  std::vector<uint8_t> parameters{payload.begin(), payload.end()};
+  cmd_with_cb_data_copy* cb_wrapper = (cmd_with_cb_data_copy*)context;
+  HCI_TRACE_DEBUG("command complete for: %s",
+                  cb_wrapper->posted_from.ToString().c_str());
+  // 2 for event header: event code (1) + parameter length (1)
+  // 3 for command complete header: num_hci_pkt (1) + opcode (2)
+  uint16_t param_len = parameters.size();
+  std::move(cb_wrapper->cb).Run(parameters.data(), param_len);
+  cmd_with_cb_data_cleanup_copy(cb_wrapper);
+  osi_free(cb_wrapper);
+}
+
+static void on_command_complete(bluetooth::hci::CommandCompleteView response,
+                                void* context) {
+  do_in_main_thread(FROM_HERE,
+                    base::Bind(command_complete_cb_on_task, response, context));
+}
+
 /*******************************************************************************
  *
  * Function         BTM_VendorSpecificCommand
@@ -453,16 +495,19 @@ uint8_t* BTM_ReadDeviceClass(void) {
  ******************************************************************************/
 void BTM_VendorSpecificCommand(uint16_t opcode, uint8_t param_len,
                                uint8_t* p_param_buf, tBTM_VSC_CMPL_CB* p_cb) {
-  /* Allocate a buffer to hold HCI command plus the callback function */
-  void* p_buf = osi_malloc(sizeof(BT_HDR) + sizeof(tBTM_CMPL_CB*) + param_len +
-                           HCIC_PREAMBLE_SIZE);
-
-  BTM_TRACE_EVENT("BTM: %s: Opcode: 0x%04X, ParamLen: %i.", __func__, opcode,
-                  param_len);
-
-  /* Send the HCI command (opcode will be OR'd with HCI_GRP_VENDOR_SPECIFIC) */
-  btsnd_hcic_vendor_spec_cmd(p_buf, opcode, param_len, p_param_buf,
-                             (void*)p_cb);
+  std::vector<uint8_t> payload_vec(p_param_buf, p_param_buf + param_len);
+  auto payload = std::make_unique<bluetooth::packet::RawBuilder>(payload_vec);
+  bluetooth::shim::GetHciLayer()->EnqueueCommand(
+      bluetooth::hci::CommandBuilder::Create(
+          static_cast<bluetooth::hci::OpCode>(opcode | 0xFC00),
+          std::move(payload)),
+      bluetooth::shim::GetGdShimHandler()->BindOnce(
+          [](tBTM_VSC_CMPL_CB* p_cb, bluetooth::hci::CommandCompleteView cv) {
+            on_command_complete(cv, (void*)p_cb);
+          },
+          p_cb));
+  // OnTransmitPacketCommandComplete, base::Unretained(&on_command_complete),
+  // base::Unretained(p_cb)));
 }
 
 /*******************************************************************************
