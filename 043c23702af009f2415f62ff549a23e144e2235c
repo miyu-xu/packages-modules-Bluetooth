@@ -16,6 +16,23 @@
       "message": "Hi Hsin-chen,\n\nMay you help take a initial review of the CL. I\u0027m not 100% certain I\u0027m hooking the interface correctly.",
       "revId": "043c23702af009f2415f62ff549a23e144e2235c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f4abf701_daa778c6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2023-06-01T01:27:10Z",
+      "side": 1,
+      "message": "This change looks great. I was wondering if this dump is also collected by CRAS in a user feedback report?",
+      "revId": "043c23702af009f2415f62ff549a23e144e2235c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
