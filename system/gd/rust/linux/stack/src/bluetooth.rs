@@ -215,6 +215,9 @@ pub trait IBluetooth {
 
     /// Returns whether SWB is supported.
     fn is_swb_supported(&self) -> bool;
+
+    /// Gets the vendor and product information of the remote device.
+    fn get_remote_vendor_product_info(&self, device: BluetoothDevice) -> BtVendorProductInfo;
 }
 
 /// Adapter API for Bluetooth qualification and verification.
@@ -2495,6 +2498,13 @@ impl IBluetooth for Bluetooth {
 
     fn is_swb_supported(&self) -> bool {
         self.intf.lock().unwrap().get_swb_supported()
+    }
+
+    fn get_remote_vendor_product_info(&self, device: BluetoothDevice) -> BtVendorProductInfo {
+        match self.get_remote_device_property(&device, &BtPropertyType::VendorProductInfo) {
+            Some(BluetoothProperty::VendorProductInfo(p)) => p.clone(),
+            _ => BtVendorProductInfo { vendor_id_src: 0, vendor_id: 0, product_id: 0, version: 0 },
+        }
     }
 }
 

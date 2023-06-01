@@ -2,7 +2,7 @@
 
 use bt_topshim::btif::{
     BtBondState, BtConnectionState, BtDeviceType, BtDiscMode, BtPropertyType, BtSspVariant,
-    BtStatus, BtTransport, Uuid, Uuid128Bit,
+    BtStatus, BtTransport, BtVendorProductInfo, Uuid, Uuid128Bit,
 };
 use bt_topshim::profiles::gatt::{AdvertisingStatus, GattStatus, LePhy};
 use bt_topshim::profiles::hid_host::BthhReportType;
@@ -193,6 +193,14 @@ pub struct BtSdpMpsRecordDBus {
     supported_scenarios_mpsd: SupportedScenarios,
     supported_scenarios_mpmd: SupportedScenarios,
     supported_dependencies: SupportedDependencies,
+}
+
+#[dbus_propmap(BtVendorProductInfo)]
+pub struct BtVendorProductInfoDBus {
+    vendor_id_src: u8,
+    vendor_id: u16,
+    product_id: u16,
+    version: u16,
 }
 
 fn read_propmap_value<T: 'static + DirectDBus>(
@@ -878,6 +886,11 @@ impl IBluetooth for BluetoothDBus {
 
     #[dbus_method("IsSwbSupported")]
     fn is_swb_supported(&self) -> bool {
+        dbus_generated!()
+    }
+
+    #[dbus_method("GetRemoteVendorProductInfo")]
+    fn get_remote_vendor_product_info(&self, _device: BluetoothDevice) -> BtVendorProductInfo {
         dbus_generated!()
     }
 }
