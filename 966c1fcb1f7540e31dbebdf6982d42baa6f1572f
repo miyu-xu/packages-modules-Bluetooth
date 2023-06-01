@@ -145,6 +145,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0659fc22_af3d513e",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothAdapterState.kt",
+        "patchSetId": 14
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-06-01T21:51:26Z",
+      "side": 1,
+      "message": "From documentation:\n\u003e The timeout event is asynchronous with respect to the code running in the block and may happen at any time, even right before the return from inside the timeout block\n\nTherefore I think even if it doesn\u0027t suspend, the timeout might fire?",
+      "parentUuid": "7e089297_24150d5a",
+      "range": {
+        "startLine": 49,
+        "startChar": 7,
+        "endLine": 51,
+        "endChar": 16
+      },
+      "revId": "966c1fcb1f7540e31dbebdf6982d42baa6f1572f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ea81de12_de45a744",
         "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
         "patchSetId": 14
