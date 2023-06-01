@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "64ea4588_9dac0c04",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1970930
+      },
+      "writtenOn": "2023-06-01T12:06:35Z",
+      "side": 1,
+      "message": "Hi Charlie,\n\nWe have implemented few avatar sdp tests.\nRequest you to confirm if our approach is correct.\n\nregards,\nFahad",
+      "revId": "01f9e4e0a539118d74980f1c9d85c159a9f8fcda",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
