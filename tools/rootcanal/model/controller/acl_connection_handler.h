@@ -75,8 +75,11 @@ class AclConnectionHandler {
   bool HasPendingLeConnection(bluetooth::hci::AddressWithType addr) const;
   bool CancelPendingLeConnection(bluetooth::hci::AddressWithType addr);
 
+  // \p pending is true if the connection is expected to be
+  // in pending state.
   uint16_t CreateConnection(bluetooth::hci::Address addr,
-                            bluetooth::hci::Address own_addr);
+                            bluetooth::hci::Address own_addr,
+                            bool pending = true);
   uint16_t CreateLeConnection(bluetooth::hci::AddressWithType addr,
                               bluetooth::hci::AddressWithType own_addr,
                               bluetooth::hci::Role role);
