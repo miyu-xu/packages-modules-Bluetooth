@@ -1570,7 +1570,7 @@ bool StackAclBtmAcl::change_connection_packet_types(
   if (link.peer_lmp_feature_valid[0]) {
     PeerPacketTypes peer_packet_types(link.peer_lmp_feature_pages[0]);
     packet_type_mask &= peer_packet_types.acl.supported;
-    packet_type_mask |= peer_packet_types.acl.unsupported;
+    packet_type_mask &= ~peer_packet_types.acl.unsupported;
   } else {
     LOG_INFO(
         "Unable to include remote supported packet types as read feature "
