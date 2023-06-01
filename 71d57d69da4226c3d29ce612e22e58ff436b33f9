@@ -436,6 +436,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1b84e258_f8a108c1",
+        "filename": "service/tests/src/com/android/server/bluetooth/BluetoothManagerServiceTest.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 297,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-06-01T23:14:37Z",
+      "side": 1,
+      "message": "Done TestLooper is now implemented in the  test 😎",
+      "parentUuid": "9405916e_02d16821",
+      "range": {
+        "startLine": 297,
+        "startChar": 11,
+        "endLine": 297,
+        "endChar": 31
+      },
+      "revId": "71d57d69da4226c3d29ce612e22e58ff436b33f9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b520b1a3_88bf6416",
