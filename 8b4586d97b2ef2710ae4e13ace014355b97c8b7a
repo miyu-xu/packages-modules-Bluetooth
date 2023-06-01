@@ -93,6 +93,30 @@
       },
       "revId": "8b4586d97b2ef2710ae4e13ace014355b97c8b7a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "519c663d_572165e4",
+        "filename": "android/app/src/com/android/bluetooth/gatt/AdvertiseManager.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 220,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-06-01T00:37:07Z",
+      "side": 1,
+      "message": "Thank you for this comment. Very useful in debugging b/284365711! 😊",
+      "parentUuid": "ac746668_cbf65bce",
+      "range": {
+        "startLine": 220,
+        "startChar": 54,
+        "endLine": 220,
+        "endChar": 85
+      },
+      "revId": "8b4586d97b2ef2710ae4e13ace014355b97c8b7a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
