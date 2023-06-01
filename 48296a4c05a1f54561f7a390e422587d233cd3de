@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3695ead2_f3a14d07",
+        "filename": "floss/hcidoc/src/groups/collisions.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-06-01T07:10:05Z",
+      "side": 1,
+      "message": "Sorry, I don\u0027t quite follow why rewriting with an option value.\n\nI mean, `self.state` won\u0027t be `CollisionState::Nothing` here, because we have\n```\n                EventChild::CommandStatus(cs) \u003d\u003e match cs.get_command_op_code() {\n                    OpCode::CreateConnection | OpCode::Inquiry | OpCode::RemoteNameRequest \u003d\u003e {\n                    ...\n                          self.state \u003d match cs.get_command_op_code() {\n                                OpCode::CreateConnection \u003d\u003e CollisionState::ConnectionActive,\n                                OpCode::Inquiry \u003d\u003e CollisionState::InquiryActive,\n                                OpCode::RemoteNameRequest \u003d\u003e CollisionState::RemoteNameReqActive,\n                                _ \u003d\u003e CollisionState::Nothing,\n                            };                    \n```\nthe default case of the inner `match` won\u0027t be executed, so `self.state` will always contain some non-empty CollisionState.\n\nDo you intend to put the if here only as a safeguard?",
+      "parentUuid": "bbe89766_0d79458e",
+      "range": {
+        "startLine": 84,
+        "startChar": 28,
+        "endLine": 84,
+        "endChar": 70
+      },
+      "revId": "48296a4c05a1f54561f7a390e422587d233cd3de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "512b073c_2138aab5",
         "filename": "floss/hcidoc/src/groups/collisions.rs",
         "patchSetId": 2
