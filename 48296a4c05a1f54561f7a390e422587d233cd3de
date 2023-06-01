@@ -72,6 +72,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7e5aa2a5_2d8177ce",
+        "filename": "floss/hcidoc/src/groups/collisions.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-06-01T14:42:18Z",
+      "side": 1,
+      "message": "Ah you are right -- I was thinking from the perspective of being exhaustive in the match statement.",
+      "parentUuid": "3695ead2_f3a14d07",
+      "range": {
+        "startLine": 84,
+        "startChar": 28,
+        "endLine": 84,
+        "endChar": 70
+      },
+      "revId": "48296a4c05a1f54561f7a390e422587d233cd3de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "512b073c_2138aab5",
