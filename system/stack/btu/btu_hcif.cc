@@ -638,16 +638,8 @@ void btu_hcif_send_cmd(UNUSED_ATTR uint8_t controller_id, const BT_HDR* p_buf) {
 
   uint16_t opcode;
   const uint8_t* stream = p_buf->data + p_buf->offset;
-  void* vsc_callback = NULL;
 
   STREAM_TO_UINT16(opcode, stream);
-
-  // Eww...horrible hackery here
-  /* If command was a VSC, then extract command_complete callback */
-  if ((opcode & HCI_GRP_VENDOR_SPECIFIC) == HCI_GRP_VENDOR_SPECIFIC ||
-      (opcode == HCI_BLE_RAND) || (opcode == HCI_BLE_ENCRYPT)) {
-    vsc_callback = *((void**)(p_buf + 1));
-  }
 
   // Skip parameter length before logging
   stream++;
@@ -655,8 +647,7 @@ void btu_hcif_send_cmd(UNUSED_ATTR uint8_t controller_id, const BT_HDR* p_buf) {
                                android::bluetooth::hci::STATUS_UNKNOWN, false);
 
   bluetooth::shim::hci_layer_get_interface()->transmit_command(
-      p_buf, btu_hcif_command_complete_evt, btu_hcif_command_status_evt,
-      vsc_callback);
+      p_buf, btu_hcif_command_complete_evt, btu_hcif_command_status_evt, NULL);
 }
 
 using hci_cmd_cb = base::OnceCallback<void(
