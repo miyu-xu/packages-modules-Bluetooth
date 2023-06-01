@@ -46,6 +46,7 @@ using TaskId = rootcanal::LinkLayerController::TaskId;
 namespace rootcanal {
 
 constexpr milliseconds kNoDelayMs(0);
+constexpr milliseconds kPageInterval(20);
 
 const Address& LinkLayerController::GetAddress() const { return address_; }
 
@@ -5113,64 +5114,75 @@ void LinkLayerController::LeSynchronization() {
 
 void LinkLayerController::IncomingPagePacket(
     model::packets::LinkLayerPacketView incoming) {
+  auto bd_addr = incoming.GetSourceAddress();
   auto page = model::packets::PageView::Create(incoming);
   ASSERT(page.IsValid());
-  LOG_INFO("from %s", incoming.GetSourceAddress().ToString().c_str());
 
   bool allow_role_switch = page.GetAllowRoleSwitch();
   if (!connections_.CreatePendingConnection(
-          incoming.GetSourceAddress(),
-          authentication_enable_ == AuthenticationEnable::REQUIRED,
+          bd_addr, authentication_enable_ == AuthenticationEnable::REQUIRED,
           allow_role_switch)) {
-    // Send a response to indicate that we're busy, or drop the packet?
+    // Will be triggered when multiple hosts are paging simultaneously;
+    // only one connection will be accepted.
     LOG_WARN("Failed to create a pending connection for %s",
-             incoming.GetSourceAddress().ToString().c_str());
+             bd_addr.ToString().c_str());
+    return;
   }
-
-  bluetooth::hci::Address source_address{};
-  bluetooth::hci::Address::FromString(page.GetSourceAddress().ToString(),
-                                      source_address);
 
   if (IsEventUnmasked(EventCode::CONNECTION_REQUEST)) {
     send_event_(bluetooth::hci::ConnectionRequestBuilder::Create(
-        source_address, page.GetClassOfDevice(),
+        bd_addr, page.GetClassOfDevice(),
         bluetooth::hci::ConnectionRequestLinkType::ACL));
   }
 }
 
 void LinkLayerController::IncomingPageRejectPacket(
     model::packets::LinkLayerPacketView incoming) {
-  LOG_INFO("%s", incoming.GetSourceAddress().ToString().c_str());
+  auto bd_addr = incoming.GetSourceAddress();
   auto reject = model::packets::PageRejectView::Create(incoming);
   ASSERT(reject.IsValid());
-  LOG_INFO("Sending CreateConnectionComplete");
+
+  if (!page_.has_value() || page_->bd_addr != bd_addr) {
+    LOG_INFO(
+        "ignoring Page Reject packet received when not in Page state,"
+        " or paging to a different address");
+    return;
+  }
+
+  LOG_INFO("received Page Reject packet from %s", bd_addr.ToString().c_str());
+  page_ = {};
+
   if (IsEventUnmasked(EventCode::CONNECTION_COMPLETE)) {
     send_event_(bluetooth::hci::ConnectionCompleteBuilder::Create(
-        static_cast<ErrorCode>(reject.GetReason()), 0x0eff,
-        incoming.GetSourceAddress(), bluetooth::hci::LinkType::ACL,
-        bluetooth::hci::Enable::DISABLED));
+        static_cast<ErrorCode>(reject.GetReason()), 0, bd_addr,
+        bluetooth::hci::LinkType::ACL, bluetooth::hci::Enable::DISABLED));
   }
 }
 
 void LinkLayerController::IncomingPageResponsePacket(
     model::packets::LinkLayerPacketView incoming) {
-  Address peer = incoming.GetSourceAddress();
-  LOG_INFO("%s", peer.ToString().c_str());
-  uint16_t handle =
-      connections_.CreateConnection(peer, incoming.GetDestinationAddress());
-  if (handle == kReservedHandle) {
-    LOG_WARN("No free handles");
-    return;
-  }
-  CancelScheduledTask(page_timeout_task_id_);
-  ASSERT(link_manager_add_link(
-      lm_.get(), reinterpret_cast<const uint8_t(*)[6]>(peer.data())));
-
-  CheckExpiringConnection(handle);
-
-  auto addr = incoming.GetSourceAddress();
+  auto bd_addr = incoming.GetSourceAddress();
   auto response = model::packets::PageResponseView::Create(incoming);
   ASSERT(response.IsValid());
+
+  if (!page_.has_value() || page_->bd_addr != bd_addr) {
+    LOG_INFO(
+        "ignoring Page Response packet received when not in Page state,"
+        " or paging to a different address");
+    return;
+  }
+
+  LOG_INFO("received Page Response packet from %s", bd_addr.ToString().c_str());
+
+  uint16_t connection_handle =
+      connections_.CreateConnection(bd_addr, GetAddress());
+  ASSERT(connection_handle != kReservedHandle);
+
+  ASSERT(link_manager_add_link(
+      lm_.get(), reinterpret_cast<const uint8_t(*)[6]>(bd_addr.data())));
+
+  CheckExpiringConnection(connection_handle);
+
   /* Role change event before connection complete is a quirk commonly exists in
    * Android-capatable Bluetooth controllers.
    * On the initiator side, only connection in peripheral role should be
@@ -5179,21 +5191,25 @@ void LinkLayerController::IncomingPageResponsePacket(
   if (connections_.IsRoleSwitchAllowedForPendingConnection() &&
       response.GetTryRoleSwitch()) {
     auto role = bluetooth::hci::Role::PERIPHERAL;
-    connections_.SetAclRole(handle, role);
+    connections_.SetAclRole(connection_handle, role);
     if (IsEventUnmasked(EventCode::ROLE_CHANGE)) {
       send_event_(bluetooth::hci::RoleChangeBuilder::Create(ErrorCode::SUCCESS,
-                                                            addr, role));
+                                                            bd_addr, role));
     }
   }
+
+  page_ = {};
   if (IsEventUnmasked(EventCode::CONNECTION_COMPLETE)) {
     send_event_(bluetooth::hci::ConnectionCompleteBuilder::Create(
-        ErrorCode::SUCCESS, handle, addr, bluetooth::hci::LinkType::ACL,
-        bluetooth::hci::Enable::DISABLED));
+        ErrorCode::SUCCESS, connection_handle, bd_addr,
+        bluetooth::hci::LinkType::ACL, bluetooth::hci::Enable::DISABLED));
   }
 }
 
 void LinkLayerController::Tick() {
   RunPendingTasks();
+  Paging();
+
   if (inquiry_timer_task_id_ != kInvalidTaskId) {
     Inquiry();
   }
@@ -5308,11 +5324,13 @@ ErrorCode LinkLayerController::AcceptConnectionRequest(const Address& bd_addr,
         link_parameters.extended));
 
     // Schedule HCI Connection Complete event.
-    ScheduleTask(kNoDelayMs, [this, status, sco_handle, bd_addr]() {
-      send_event_(bluetooth::hci::ConnectionCompleteBuilder::Create(
-          ErrorCode(status), sco_handle, bd_addr, bluetooth::hci::LinkType::SCO,
-          bluetooth::hci::Enable::DISABLED));
-    });
+    if (IsEventUnmasked(EventCode::CONNECTION_COMPLETE)) {
+      ScheduleTask(kNoDelayMs, [this, status, sco_handle, bd_addr]() {
+        send_event_(bluetooth::hci::ConnectionCompleteBuilder::Create(
+            ErrorCode(status), sco_handle, bd_addr,
+            bluetooth::hci::LinkType::SCO, bluetooth::hci::Enable::DISABLED));
+      });
+    }
 
     return ErrorCode::SUCCESS;
   }
@@ -5321,19 +5339,15 @@ ErrorCode LinkLayerController::AcceptConnectionRequest(const Address& bd_addr,
   return ErrorCode::UNKNOWN_CONNECTION;
 }
 
-void LinkLayerController::MakePeripheralConnection(const Address& addr,
+void LinkLayerController::MakePeripheralConnection(const Address& bd_addr,
                                                    bool try_role_switch) {
-  LOG_INFO("Sending page response to %s", addr.ToString().c_str());
-  SendLinkLayerPacket(model::packets::PageResponseBuilder::Create(
-      GetAddress(), addr, try_role_switch));
-
-  uint16_t handle = connections_.CreateConnection(addr, GetAddress());
+  uint16_t handle = connections_.CreateConnection(bd_addr, GetAddress());
   if (handle == kReservedHandle) {
     LOG_INFO("CreateConnection failed");
     return;
   }
   ASSERT(link_manager_add_link(
-      lm_.get(), reinterpret_cast<const uint8_t(*)[6]>(addr.data())));
+      lm_.get(), reinterpret_cast<const uint8_t(*)[6]>(bd_addr.data())));
 
   CheckExpiringConnection(handle);
 
@@ -5349,15 +5363,31 @@ void LinkLayerController::MakePeripheralConnection(const Address& addr,
   connections_.SetAclRole(handle, role);
   if (IsEventUnmasked(EventCode::ROLE_CHANGE)) {
     send_event_(bluetooth::hci::RoleChangeBuilder::Create(ErrorCode::SUCCESS,
-                                                          addr, role));
+                                                          bd_addr, role));
   }
 
   LOG_INFO("CreateConnection returned handle 0x%x", handle);
   if (IsEventUnmasked(EventCode::CONNECTION_COMPLETE)) {
     send_event_(bluetooth::hci::ConnectionCompleteBuilder::Create(
-        ErrorCode::SUCCESS, handle, addr, bluetooth::hci::LinkType::ACL,
+        ErrorCode::SUCCESS, handle, bd_addr, bluetooth::hci::LinkType::ACL,
         bluetooth::hci::Enable::DISABLED));
   }
+
+  // If the current Host was initiating a connection to the same bd_addr,
+  // send a connection complete event for the pending Create Connection
+  // command and cancel the paging.
+  if (page_.has_value() && page_->bd_addr == bd_addr) {
+    if (IsEventUnmasked(EventCode::CONNECTION_COMPLETE)) {
+      send_event_(bluetooth::hci::ConnectionCompleteBuilder::Create(
+          ErrorCode::CONNECTION_ALREADY_EXISTS, handle, bd_addr,
+          bluetooth::hci::LinkType::ACL, bluetooth::hci::Enable::DISABLED));
+    }
+    page_ = {};
+  }
+
+  LOG_INFO("Sending page response to %s", bd_addr.ToString().c_str());
+  SendLinkLayerPacket(model::packets::PageResponseBuilder::Create(
+      GetAddress(), bd_addr, try_role_switch));
 }
 
 ErrorCode LinkLayerController::RejectConnectionRequest(const Address& addr,
@@ -5388,36 +5418,61 @@ void LinkLayerController::RejectPeripheralConnection(const Address& addr,
   }
 }
 
-ErrorCode LinkLayerController::CreateConnection(const Address& addr,
+ErrorCode LinkLayerController::CreateConnection(const Address& bd_addr,
                                                 uint16_t /* packet_type */,
                                                 uint8_t /* page_scan_mode */,
                                                 uint16_t /* clock_offset */,
                                                 uint8_t allow_role_switch) {
-  if (!connections_.CreatePendingConnection(
-          addr, authentication_enable_ == AuthenticationEnable::REQUIRED,
-          allow_role_switch)) {
-    return ErrorCode::CONTROLLER_BUSY;
+  // RootCanal only accepts one pending outgoing connection at any time.
+  if (page_.has_value()) {
+    LOG_INFO("Create Connection command is already pending");
+    return ErrorCode::COMMAND_DISALLOWED;
   }
 
-  page_timeout_task_id_ = ScheduleTask(
-      duration_cast<milliseconds>(page_timeout_ * microseconds(625)),
-      [this, addr] {
-        send_event_(bluetooth::hci::ConnectionCompleteBuilder::Create(
-            ErrorCode::PAGE_TIMEOUT, 0xeff, addr, bluetooth::hci::LinkType::ACL,
-            bluetooth::hci::Enable::DISABLED));
-      });
+  // Reject the command if a connection or pending connection already exists
+  // for the selected peer address.
+  if (connections_.HasPendingConnection(bd_addr) ||
+      connections_.GetHandleOnlyAddress(bd_addr) != kReservedHandle) {
+    LOG_INFO("Connection with %s already exists", bd_addr.ToString().c_str());
+    return ErrorCode::CONNECTION_ALREADY_EXISTS;
+  }
 
-  SendLinkLayerPacket(model::packets::PageBuilder::Create(
-      GetAddress(), addr, class_of_device_, allow_role_switch));
+  auto now = std::chrono::steady_clock::now();
+  page_ = Page{
+      .bd_addr = bd_addr,
+      .allow_role_switch = allow_role_switch,
+      .next_page_event = now + kPageInterval,
+      .page_timeout = now + slots(page_timeout_),
+  };
 
   return ErrorCode::SUCCESS;
 }
 
-ErrorCode LinkLayerController::CreateConnectionCancel(const Address& addr) {
-  if (!connections_.CancelPendingConnection(addr)) {
+ErrorCode LinkLayerController::CreateConnectionCancel(const Address& bd_addr) {
+  // If the HCI_Create_Connection_Cancel command is sent to the Controller
+  // without a preceding HCI_Create_Connection command to the same device,
+  // the BR/EDR Controller shall return an HCI_Command_Complete event with
+  // the error code Unknown Connection Identifier (0x02)
+  if (!page_.has_value() || page_->bd_addr != bd_addr) {
+    LOG_INFO("no pending connection to %s", bd_addr.ToString().c_str());
     return ErrorCode::UNKNOWN_CONNECTION;
   }
-  CancelScheduledTask(page_timeout_task_id_);
+
+  // The HCI_Connection_Complete event for the corresponding HCI_Create_-
+  // Connection command shall always be sent. The HCI_Connection_Complete
+  // event shall be sent after the HCI_Command_Complete event for the
+  // HCI_Create_Connection_Cancel command. If the cancellation was successful,
+  // the HCI_Connection_Complete event will be generated with the error code
+  // Unknown Connection Identifier (0x02).
+  if (IsEventUnmasked(EventCode::CONNECTION_COMPLETE)) {
+    ScheduleTask(kNoDelayMs, [this, bd_addr]() {
+      send_event_(bluetooth::hci::ConnectionCompleteBuilder::Create(
+          ErrorCode::UNKNOWN_CONNECTION, 0, bd_addr,
+          bluetooth::hci::LinkType::ACL, bluetooth::hci::Enable::DISABLED));
+    });
+  }
+
+  page_ = {};
   return ErrorCode::SUCCESS;
 }
 
@@ -5994,18 +6049,43 @@ void LinkLayerController::Reset() {
   current_iac_lap_list_.clear();
   current_iac_lap_list_.emplace_back(general_iac);
 
+  page_ = {};
+
   if (inquiry_timer_task_id_ != kInvalidTaskId) {
     CancelScheduledTask(inquiry_timer_task_id_);
     inquiry_timer_task_id_ = kInvalidTaskId;
   }
 
-  if (page_timeout_task_id_ != kInvalidTaskId) {
-    CancelScheduledTask(page_timeout_task_id_);
-    page_timeout_task_id_ = kInvalidTaskId;
-  }
-
   lm_.reset(link_manager_create(controller_ops_));
   ll_.reset(link_layer_create(controller_ops_));
+}
+
+/// Drive the logic for the Page controller substate.
+void LinkLayerController::Paging() {
+  auto now = std::chrono::steady_clock::now();
+
+  if (page_.has_value() && now >= page_->page_timeout) {
+    LOG_INFO("page timeout triggered for connection with %s",
+             page_->bd_addr.ToString().c_str());
+
+    send_event_(bluetooth::hci::ConnectionCompleteBuilder::Create(
+        ErrorCode::PAGE_TIMEOUT, 0, page_->bd_addr,
+        bluetooth::hci::LinkType::ACL, bluetooth::hci::Enable::DISABLED));
+
+    page_ = {};
+    return;
+  }
+
+  // Send a Page packet to the peer when a paging interval has passed.
+  // Paging is suppressed while a pending connection with the same peer is
+  // being established (i.e. two hosts initiated a connection simultaneously).
+  if (page_.has_value() && now >= page_->next_page_event &&
+      !connections_.HasPendingConnection(page_->bd_addr)) {
+    SendLinkLayerPacket(model::packets::PageBuilder::Create(
+        GetAddress(), page_->bd_addr, class_of_device_,
+        page_->allow_role_switch));
+    page_->next_page_event = now + kPageInterval;
+  }
 }
 
 void LinkLayerController::StartInquiry(milliseconds timeout) {
