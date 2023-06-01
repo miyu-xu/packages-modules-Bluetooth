@@ -61,7 +61,8 @@ uint16_t AclConnectionHandler::GetUnusedHandle() {
 bool AclConnectionHandler::CreatePendingConnection(Address addr,
                                                    bool authenticate_on_connect,
                                                    bool allow_role_switch) {
-  if (classic_connection_pending_) {
+  if (classic_connection_pending_ ||
+      GetHandleOnlyAddress(addr) != kReservedHandle) {
     return false;
   }
   classic_connection_pending_ = true;
@@ -133,9 +134,9 @@ bool AclConnectionHandler::CancelPendingLeConnection(AddressWithType addr) {
   return true;
 }
 
-uint16_t AclConnectionHandler::CreateConnection(Address addr,
-                                                Address own_addr) {
-  if (CancelPendingConnection(addr)) {
+uint16_t AclConnectionHandler::CreateConnection(Address addr, Address own_addr,
+                                                bool pending) {
+  if (!pending || CancelPendingConnection(addr)) {
     uint16_t handle = GetUnusedHandle();
     acl_connections_.emplace(
         handle,
