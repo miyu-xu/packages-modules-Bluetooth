@@ -45,6 +45,29 @@
       },
       "revId": "966c1fcb1f7540e31dbebdf6982d42baa6f1572f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4d30dad5_b3fe1a86",
+        "filename": "service/tests/src/com/android/server/bluetooth/BluetoothAdapterStateTest.kt",
+        "patchSetId": 14
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-06-01T08:46:58Z",
+      "side": 1,
+      "message": "nit: Import `android.util.Log`",
+      "range": {
+        "startLine": 42,
+        "startChar": 8,
+        "endLine": 42,
+        "endChar": 24
+      },
+      "revId": "966c1fcb1f7540e31dbebdf6982d42baa6f1572f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
