@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "eced191b_40ac50c4",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 220,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-06-01T16:15:40Z",
+      "side": 1,
+      "message": "Please move this up to all the other `get_remote...` functions",
+      "revId": "1f12e04930cd8360845c65fb7fe8b8e0f0450aa1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0332d0e7_91fff59e",
         "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
         "patchSetId": 1
