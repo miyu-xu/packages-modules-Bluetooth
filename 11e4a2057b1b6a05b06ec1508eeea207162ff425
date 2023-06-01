@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9da82fe1_a39f673b",
+        "filename": "android/pandora/test/asha_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-06-01T08:33:51Z",
+      "side": 1,
+      "message": "nit: Take a `AioAsha` instead of a `BumblePandoraDevice`",
+      "range": {
+        "startLine": 205,
+        "startChar": 35,
+        "endLine": 205,
+        "endChar": 66
+      },
+      "revId": "11e4a2057b1b6a05b06ec1508eeea207162ff425",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "087141d5_9ba0a3ce",
+        "filename": "android/pandora/test/asha_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-06-01T08:33:51Z",
+      "side": 1,
+      "message": "nit:\n\n```suggestion\n                pass\n```\n\nand use the return outside the `try/except`",
+      "range": {
+        "startLine": 215,
+        "startChar": 16,
+        "endLine": 215,
+        "endChar": 33
+      },
+      "revId": "11e4a2057b1b6a05b06ec1508eeea207162ff425",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4a4fa351_6205f166",
+        "filename": "android/pandora/test/asha_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-06-01T08:33:51Z",
+      "side": 1,
+      "message": "nit: \n```suggestion\n                raise\n```\n\ninside a try except `raise` without an argument re-raise the current exception",
+      "range": {
+        "startLine": 217,
+        "startChar": 21,
+        "endLine": 217,
+        "endChar": 23
+      },
+      "revId": "11e4a2057b1b6a05b06ec1508eeea207162ff425",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
