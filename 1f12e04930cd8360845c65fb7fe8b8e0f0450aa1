@@ -69,6 +69,30 @@
       },
       "revId": "1f12e04930cd8360845c65fb7fe8b8e0f0450aa1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "658c1251_8d507898",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 2506,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2023-06-01T15:59:40Z",
+      "side": 1,
+      "message": "Nack. There are many more patterns than None:\n```\nSome(BluetoothProperty::BdName(_))\nSome(BluetoothProperty::BdAddr(_))\n...\n```\nAnd not using `_` generates compiler error.",
+      "parentUuid": "74595985_27bd3ba5",
+      "range": {
+        "startLine": 2506,
+        "startChar": 12,
+        "endLine": 2506,
+        "endChar": 13
+      },
+      "revId": "1f12e04930cd8360845c65fb7fe8b8e0f0450aa1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
