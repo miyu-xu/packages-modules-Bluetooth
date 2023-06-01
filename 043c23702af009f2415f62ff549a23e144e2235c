@@ -33,6 +33,69 @@
       "message": "This change looks great. I was wondering if this dump is also collected by CRAS in a user feedback report?",
       "revId": "043c23702af009f2415f62ff549a23e144e2235c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bb5fa46c_d1862cc8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-06-01T07:46:20Z",
+      "side": 1,
+      "message": "Only a nit.",
+      "revId": "043c23702af009f2415f62ff549a23e144e2235c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0095b7ef_57a81aa1",
+        "filename": "system/gd/rust/topshim/hfp/hfp_shim.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-06-01T07:46:20Z",
+      "side": 1,
+      "message": "I guess cxxbridge implicitly constructs a rust String for this but I\u0027d prefer doing it explicitly, especially when dealing with the shim code between 2 different languages.\n\n```suggestion\n      ::rust::String{pkt_status_in_hex},\n```",
+      "range": {
+        "startLine": 125,
+        "startChar": 6,
+        "endLine": 125,
+        "endChar": 23
+      },
+      "revId": "043c23702af009f2415f62ff549a23e144e2235c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "533d4d53_172e6246",
+        "filename": "system/gd/rust/topshim/hfp/hfp_shim.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-06-01T07:46:20Z",
+      "side": 1,
+      "message": "ditto\n\n```suggestion\n      ::rust::String{pkt_status_in_binary});\n```",
+      "range": {
+        "startLine": 126,
+        "startChar": 6,
+        "endLine": 126,
+        "endChar": 26
+      },
+      "revId": "043c23702af009f2415f62ff549a23e144e2235c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
