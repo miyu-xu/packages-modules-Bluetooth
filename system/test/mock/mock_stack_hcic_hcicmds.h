@@ -602,21 +602,6 @@ struct btsnd_hcic_user_passkey_reply {
 };
 extern struct btsnd_hcic_user_passkey_reply btsnd_hcic_user_passkey_reply;
 
-// Name: btsnd_hcic_vendor_spec_cmd
-// Params: void* buffer, uint16_t opcode, uint8_t len, uint8_t* p_data, void*
-// p_cmd_cplt_cback Return: void
-struct btsnd_hcic_vendor_spec_cmd {
-  std::function<void(void* buffer, uint16_t opcode, uint8_t len,
-                     uint8_t* p_data, void* p_cmd_cplt_cback)>
-      body{[](void* buffer, uint16_t opcode, uint8_t len, uint8_t* p_data,
-              void* p_cmd_cplt_cback) {}};
-  void operator()(void* buffer, uint16_t opcode, uint8_t len, uint8_t* p_data,
-                  void* p_cmd_cplt_cback) {
-    body(buffer, opcode, len, p_data, p_cmd_cplt_cback);
-  };
-};
-extern struct btsnd_hcic_vendor_spec_cmd btsnd_hcic_vendor_spec_cmd;
-
 // Name: btsnd_hcic_write_auth_enable
 // Params: uint8_t flag
 // Return: void
