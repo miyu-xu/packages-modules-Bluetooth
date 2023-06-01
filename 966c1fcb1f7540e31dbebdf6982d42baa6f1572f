@@ -72,6 +72,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2b7c4587_ae92faa6",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothAdapterState.kt",
+        "patchSetId": 14
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-06-01T22:41:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8eba6c17_95f38c8d",
+      "range": {
+        "startLine": 30,
+        "startChar": 0,
+        "endLine": 34,
+        "endChar": 5
+      },
+      "revId": "966c1fcb1f7540e31dbebdf6982d42baa6f1572f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1a53218c_d1f7a100",
@@ -167,6 +191,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d2cd8728_1e17dbf0",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothAdapterState.kt",
+        "patchSetId": 14
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-06-01T22:41:08Z",
+      "side": 1,
+      "message": "I tested to pass a 0 timeout to the method and call it and it failed.\n\nBut the method is called \"waitForState\" so if you expect not to wait you should use oneOf directly. \nI removed the condition.",
+      "parentUuid": "7e089297_24150d5a",
+      "range": {
+        "startLine": 49,
+        "startChar": 7,
+        "endLine": 51,
+        "endChar": 16
+      },
+      "revId": "966c1fcb1f7540e31dbebdf6982d42baa6f1572f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ea81de12_de45a744",
@@ -190,6 +238,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3ac574d4_532f1e20",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 1583,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-06-01T22:41:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ea81de12_de45a744",
+      "range": {
+        "startLine": 1583,
+        "startChar": 0,
+        "endLine": 1583,
+        "endChar": 56
+      },
+      "revId": "966c1fcb1f7540e31dbebdf6982d42baa6f1572f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4d30dad5_b3fe1a86",
@@ -203,6 +275,30 @@
       "writtenOn": "2023-06-01T08:46:58Z",
       "side": 1,
       "message": "nit: Import `android.util.Log`",
+      "range": {
+        "startLine": 42,
+        "startChar": 8,
+        "endLine": 42,
+        "endChar": 24
+      },
+      "revId": "966c1fcb1f7540e31dbebdf6982d42baa6f1572f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6b72ed9f_ef30ddd4",
+        "filename": "service/tests/src/com/android/server/bluetooth/BluetoothAdapterStateTest.kt",
+        "patchSetId": 14
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-06-01T22:41:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4d30dad5_b3fe1a86",
       "range": {
         "startLine": 42,
         "startChar": 8,
