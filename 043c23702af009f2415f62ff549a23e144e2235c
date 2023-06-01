@@ -52,6 +52,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "35d3b6f3_42e1cac0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2023-06-01T22:35:40Z",
+      "side": 1,
+      "message": "This doesn\u0027t require CRAS\u0027 involvement, so we plan to dump this into the bluetooth_quality_report (b/272390482). Joseph or Archie will help that part.",
+      "parentUuid": "f4abf701_daa778c6",
+      "revId": "043c23702af009f2415f62ff549a23e144e2235c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0095b7ef_57a81aa1",
@@ -75,6 +93,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7a8a3d57_d68945c4",
+        "filename": "system/gd/rust/topshim/hfp/hfp_shim.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2023-06-01T22:35:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0095b7ef_57a81aa1",
+      "range": {
+        "startLine": 125,
+        "startChar": 6,
+        "endLine": 125,
+        "endChar": 23
+      },
+      "revId": "043c23702af009f2415f62ff549a23e144e2235c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "533d4d53_172e6246",
@@ -88,6 +130,30 @@
       "writtenOn": "2023-06-01T07:46:20Z",
       "side": 1,
       "message": "ditto\n\n```suggestion\n      ::rust::String{pkt_status_in_binary});\n```",
+      "range": {
+        "startLine": 126,
+        "startChar": 6,
+        "endLine": 126,
+        "endChar": 26
+      },
+      "revId": "043c23702af009f2415f62ff549a23e144e2235c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "169b7826_58fa63fa",
+        "filename": "system/gd/rust/topshim/hfp/hfp_shim.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2023-06-01T22:35:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "533d4d53_172e6246",
       "range": {
         "startLine": 126,
         "startChar": 6,
