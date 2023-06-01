@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0332d0e7_91fff59e",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 2506,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2023-06-01T08:46:07Z",
+      "side": 1,
+      "message": "Does the value {0, 0, 0, 0} indicate an unknown vendor or product? If so, I assume that users of this API are aware of this and will handle it appropriately. If this is the case, I am fine with the current behavior.\n\nAlternatively, we could change the return type of the function to Option\u003cBtVendorProductInfo\u003e and return None if the vendor or product is unknown. This would make it more explicit to users of the API that an unknown vendor or product was encountered.",
+      "range": {
+        "startLine": 2506,
+        "startChar": 37,
+        "endLine": 2506,
+        "endChar": 98
+      },
+      "revId": "1f12e04930cd8360845c65fb7fe8b8e0f0450aa1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "74595985_27bd3ba5",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 2506,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2023-06-01T08:46:07Z",
+      "side": 1,
+      "message": "nit: Using `None` would be more explecited.",
+      "range": {
+        "startLine": 2506,
+        "startChar": 12,
+        "endLine": 2506,
+        "endChar": 13
+      },
+      "revId": "1f12e04930cd8360845c65fb7fe8b8e0f0450aa1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
