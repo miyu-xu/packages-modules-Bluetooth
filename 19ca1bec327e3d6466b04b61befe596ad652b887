@@ -97,6 +97,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1018ee10_55dd0451",
+        "filename": "system/bta/ag/bta_ag_sco.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 1248,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2023-06-02T23:16:33Z",
+      "side": 1,
+      "message": "In the `case BTA_AG_AT_BAC_EVT` of `bta_ag_cmd.cc`:\n```\np_scb-\u003epeer_codecs \u003d bta_ag_parse_bac(p_scb, p_arg, p_end);\n```\n\nIf we don\u0027t |\u003d the peer_codecs with the BTM_SCO_CODEC_LC3, will we ever have this statement true?\n\nSorry if I misunderstand what you meant.",
+      "parentUuid": "4589639d_88d5f657",
+      "range": {
+        "startLine": 1248,
+        "startChar": 16,
+        "endLine": 1248,
+        "endChar": 27
+      },
+      "revId": "19ca1bec327e3d6466b04b61befe596ad652b887",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e4efeae0_f817926b",
         "filename": "system/bta/include/bta_ag_api.h",
         "patchSetId": 5
@@ -273,6 +297,30 @@
       "side": 1,
       "message": "If we add an enum, I think we still need to pass a primitive type because we need to send a bitmask.",
       "parentUuid": "d6b7dcc1_fb1ca246",
+      "range": {
+        "startLine": 70,
+        "startChar": 35,
+        "endLine": 70,
+        "endChar": 38
+      },
+      "revId": "19ca1bec327e3d6466b04b61befe596ad652b887",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "73085101_d1ba0ea5",
+        "filename": "system/include/hardware/bluetooth_headset_interface.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2023-06-02T23:16:33Z",
+      "side": 1,
+      "message": "Oh. My bad. I was actually thinking about something similar to tBTM_SCO_CODEC_TYPE.",
+      "parentUuid": "a3e70c64_92059df0",
       "range": {
         "startLine": 70,
         "startChar": 35,
