@@ -22,6 +22,30 @@
       },
       "revId": "5a8a36c4ab068d8e5253008d6a43a6311e8307db",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6a2cea29_c553faf8",
+        "filename": "tools/rootcanal/lib/hci/address.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-06-02T23:00:06Z",
+      "side": 1,
+      "message": "It is not necessary, but I wanted to test it 😊\nI could just reject any non empty format string and leave it at that",
+      "parentUuid": "02d25804_d3da5f5d",
+      "range": {
+        "startLine": 129,
+        "startChar": 17,
+        "endLine": 129,
+        "endChar": 22
+      },
+      "revId": "5a8a36c4ab068d8e5253008d6a43a6311e8307db",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
