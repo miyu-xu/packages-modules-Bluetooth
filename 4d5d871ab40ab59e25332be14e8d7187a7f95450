@@ -1,5 +1,29 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "11464e37_459060bc",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1897,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-06-02T09:35:06Z",
+      "side": 1,
+      "message": "this will fail if GATT service discovery is conducted after SDP service discovery since it will clear the pairing_cb in line 1866\n\nYou may either remove the pairing_cb check in this method or save a copy of the pairing address and static address before clearing the pairing_cb",
+      "range": {
+        "startLine": 1897,
+        "startChar": 0,
+        "endLine": 1897,
+        "endChar": 68
+      },
+      "revId": "4d5d871ab40ab59e25332be14e8d7187a7f95450",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
