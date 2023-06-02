@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "873c9077_c8f91019",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-06-02T23:29:49Z",
+      "side": 1,
+      "message": "There is no pts-bot test associated with this CL",
+      "range": {
+        "startLine": 16,
+        "startChar": 6,
+        "endLine": 16,
+        "endChar": 13
+      },
+      "revId": "c9760ea8c0c2f22c3fd6264f833dbf20fd2d5642",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
