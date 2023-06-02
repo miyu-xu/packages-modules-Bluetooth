@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "02d25804_d3da5f5d",
+        "filename": "tools/rootcanal/lib/hci/address.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-06-02T22:50:49Z",
+      "side": 1,
+      "message": "? Do we need parse for format to work?",
+      "range": {
+        "startLine": 129,
+        "startChar": 17,
+        "endLine": 129,
+        "endChar": 22
+      },
+      "revId": "5a8a36c4ab068d8e5253008d6a43a6311e8307db",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
