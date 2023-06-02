@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d650b34d_0c91d295",
+        "filename": "android/pandora/test/asha_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 1937985
+      },
+      "writtenOn": "2023-06-02T12:19:37Z",
+      "side": 1,
+      "message": "Could you use this type hint https://docs.python.org/3/library/typing.html#typing.ByteString instead ?\n```suggestion\n    async def get_audio_data(self, ref_asha: AioAsha, connection: Connection, timeout: int) -\u003e ByteString:\n```",
+      "range": {
+        "startLine": 205,
+        "startChar": 95,
+        "endLine": 205,
+        "endChar": 104
+      },
+      "revId": "36db6d82ed50cccb118f22976d3e2f5e82d41894",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
