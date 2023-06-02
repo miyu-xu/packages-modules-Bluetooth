@@ -58,6 +58,8 @@ import android.os.Looper;
 import android.os.Message;
 import android.util.Log;
 
+import com.android.bluetooth.BluetoothProtoEnums;
+import com.android.bluetooth.BluetoothStatsLog;
 import com.android.bluetooth.Utils;
 import com.android.bluetooth.btservice.MetricsLogger;
 import com.android.bluetooth.btservice.ProfileService;
@@ -168,6 +170,23 @@ final class A2dpStateMachine extends StateMachine {
                     broadcastAudioState(BluetoothA2dp.STATE_NOT_PLAYING,
                                         BluetoothA2dp.STATE_PLAYING);
                 }
+            }
+
+            if (mLastConnectionState == BluetoothProfile.STATE_CONNECTING
+                    || mLastConnectionState == BluetoothProfile.STATE_DISCONNECTED) {
+                // Connecting -> Disconnected is expected failure so unknown reason
+                // but disconnected to disconnected is unexpected state reason.
+                int reason =
+                        (mLastConnectionState == BluetoothProfile.STATE_CONNECTING)
+                                ? BluetoothProtoEnum.REASON_UNKNOWN
+                                : BluetoothProtoEnum.REASON_UNEXPECTED_STATE;
+                BluetoothStatsLog.write(
+                        BluetoothStatsLog.BLUETOOTH_PROFILE_CONNECTION_ATTEMPTED,
+                        BluetoothProfile.A2DP,
+                        BluetoothProtoEnum.RESULT_FAILURE,
+                        mLastConnectionState,
+                        BluetoothProfile.STATE_DISCONNECTED,
+                        reason);
             }
         }
 
@@ -481,10 +500,21 @@ final class A2dpStateMachine extends StateMachine {
             // it differs from what we had saved before.
             mA2dpService.updateOptionalCodecsSupport(mDevice);
             mA2dpService.updateLowLatencyAudioSupport(mDevice);
+
             broadcastConnectionState(mConnectionState, mLastConnectionState);
             // Upon connected, the audio starts out as stopped
-            broadcastAudioState(BluetoothA2dp.STATE_NOT_PLAYING,
-                                BluetoothA2dp.STATE_PLAYING);
+            broadcastAudioState(BluetoothA2dp.STATE_NOT_PLAYING, BluetoothA2dp.STATE_PLAYING);
+
+            if (mLastConnectionState == BluetoothProfile.STATE_CONNECTING
+                    || mLastConnectionState == BluetoothProfile.STATE_DISCONNECTED) {
+                BluetoothStatsLog.write(
+                        BluetoothStatsLog.BLUETOOTH_PROFILE_CONNECTION_ATTEMPTED,
+                        BluetoothProfile.A2DP,
+                        BluetoothProtoEnum.RESULT_SUCCESS,
+                        mLastConnectionState,
+                        BluetoothProfile.STATE_CONNECTED,
+                        BluetoothProtoEnum.REASON_SUCCESS);
+            }
         }
 
         @Override
