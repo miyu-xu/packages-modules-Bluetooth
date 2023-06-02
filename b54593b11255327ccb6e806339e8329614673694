@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b28ceca9_85ded506",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-06-02T17:37:36Z",
+      "side": 1,
+      "message": "I am not doing that in this CL anymore.\nI kindof agree but I don\u0027t mind having this dependence for now.\n\nI am using the message in test to control the behavior, we may change that later.",
+      "parentUuid": "8dc3a17a_41aad429",
+      "revId": "b54593b11255327ccb6e806339e8329614673694",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1488239e_822ab025",
@@ -31,6 +49,30 @@
       "writtenOn": "2023-05-26T10:28:52Z",
       "side": 1,
       "message": "I think you should be more descriptive in your test names, something like `enable_bindFailure_removesTimeout`\n\nBTW what happens after the timeout is removed ? `mEnable` just stay to true and we expect the user to call `enable` again or is there a retry ?",
+      "range": {
+        "startLine": 146,
+        "startChar": 16,
+        "endLine": 146,
+        "endChar": 26
+      },
+      "revId": "b54593b11255327ccb6e806339e8329614673694",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "33afe2a4_db0c950f",
+        "filename": "service/tests/src/com/android/server/bluetooth/BluetoothManagerServiceTest.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-06-02T17:37:36Z",
+      "side": 1,
+      "message": "There is nothing right now and this need to be address, but that is logical change  and I am not addressing this for now",
+      "parentUuid": "1488239e_822ab025",
       "range": {
         "startLine": 146,
         "startChar": 16,
@@ -64,6 +106,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "938eb3b2_dbe850d9",
+        "filename": "service/tests/src/com/android/server/bluetooth/BluetoothManagerServiceTest.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-06-02T17:37:36Z",
+      "side": 1,
+      "message": "Because it needed to have more infrascture.\nIt is now done with the TestLooper.",
+      "parentUuid": "1bdc3203_f393e980",
+      "range": {
+        "startLine": 159,
+        "startChar": 8,
+        "endLine": 159,
+        "endChar": 69
+      },
+      "revId": "b54593b11255327ccb6e806339e8329614673694",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8a51dcfa_14c9ebea",
@@ -77,6 +143,30 @@
       "writtenOn": "2023-05-26T10:28:52Z",
       "side": 1,
       "message": "If I understand correctly, you want to replace those assertions by asserting that a metric was emitted here ?\n\nIf yes, you might want to be more explicit in what should be done in the todo message here.",
+      "range": {
+        "startLine": 160,
+        "startChar": 11,
+        "endLine": 160,
+        "endChar": 83
+      },
+      "revId": "b54593b11255327ccb6e806339e8329614673694",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "83d9f01f_1b95adab",
+        "filename": "service/tests/src/com/android/server/bluetooth/BluetoothManagerServiceTest.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-06-02T17:37:36Z",
+      "side": 1,
+      "message": "Done\nIt is more an open question",
+      "parentUuid": "8a51dcfa_14c9ebea",
       "range": {
         "startLine": 160,
         "startChar": 11,
@@ -110,6 +200,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2205a591_88deebbf",
+        "filename": "service/tests/src/com/android/server/bluetooth/BluetoothManagerServiceTest.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-06-02T17:37:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "616e27e0_38592b14",
+      "range": {
+        "startLine": 180,
+        "startChar": 0,
+        "endLine": 181,
+        "endChar": 54
+      },
+      "revId": "b54593b11255327ccb6e806339e8329614673694",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c3176501_24e54f91",
@@ -123,6 +237,30 @@
       "writtenOn": "2023-05-26T10:28:52Z",
       "side": 1,
       "message": "Could we either:\n- mock time.\n- make the timeout configurable to avoid doing that.\n- make a generic function to trigger all the pending messages of an handler (I prefer that a bit less than the two other).\n?\n\nThis seems too much tied to the actual implementation for me.",
+      "range": {
+        "startLine": 183,
+        "startChar": 0,
+        "endLine": 185,
+        "endChar": 75
+      },
+      "revId": "b54593b11255327ccb6e806339e8329614673694",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ea543a5f_47a4ca34",
+        "filename": "service/tests/src/com/android/server/bluetooth/BluetoothManagerServiceTest.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-06-02T17:37:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c3176501_24e54f91",
       "range": {
         "startLine": 183,
         "startChar": 0,
