@@ -25,9 +25,9 @@
 using bluetooth::common::InitFlags;
 
 TEST(InitFlagsTest, test_enable_btm_flush_discovery_queue_on_search_cancel) {
-  const char* input[] = {"INIT_btm_dm_flush_discovery_queue_on_search_cancel=true", nullptr};
+  const char* input[] = {"INIT_bta_dm_flush_discovery_queue_on_search_cancel=true", nullptr};
   InitFlags::Load(input);
-  ASSERT_TRUE(InitFlags::IsBtmDmFlushDiscoveryQueueOnSearchCancel());
+  ASSERT_TRUE(InitFlags::IsBtaDmFlushDiscoveryQueueOnSearchCancel());
 }
 
 TEST(InitFlagsTest, test_leaudio_targeted_announcement_reconnection_mode) {
