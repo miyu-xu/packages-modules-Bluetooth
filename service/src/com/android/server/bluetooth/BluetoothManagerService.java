@@ -2307,24 +2307,17 @@ class BluetoothManagerService {
             handleDisable();
             // Pbap service need receive STATE_TURNING_OFF intent to close
             bluetoothStateChangeHandler(STATE_ON, STATE_TURNING_OFF);
+            mState.set(STATE_TURNING_OFF);
 
-            boolean didDisableTimeout = !waitForState(STATE_OFF);
-
+            // TODO(b/285046954): illegal transition here as we are skipping BLE_ON and
+            // BLE_TURNING_OFF
             bluetoothStateChangeHandler(STATE_TURNING_OFF, STATE_OFF);
+            mState.set(STATE_OFF);
 
-            //
-            // If disabling Bluetooth times out, wait for an
-            // additional amount of time to ensure the process is
-            // shut down completely before attempting to restart.
-            //
-            if (didDisableTimeout) {
-                SystemClock.sleep(3000);
-            } else {
-                SystemClock.sleep(100);
-            }
+            // Wait to ensure the process is shut down completely before attempting to restart.
+            SystemClock.sleep(3000);
 
             mHandler.removeMessages(MESSAGE_BLUETOOTH_STATE_CHANGE);
-            mState.set(STATE_OFF);
             // enable
             addActiveLog(
                     BluetoothProtoEnums.ENABLE_DISABLE_REASON_USER_SWITCH,
