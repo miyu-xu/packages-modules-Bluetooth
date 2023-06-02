@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d9665a6b_bc6e6519",
+        "filename": "android/pandora/test/asha_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 1952952
+      },
+      "writtenOn": "2023-06-02T01:52:42Z",
+      "side": 1,
+      "message": "updated, thanks for the suggestion!",
+      "parentUuid": "9da82fe1_a39f673b",
+      "range": {
+        "startLine": 205,
+        "startChar": 35,
+        "endLine": 205,
+        "endChar": 66
+      },
+      "revId": "11e4a2057b1b6a05b06ec1508eeea207162ff425",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "087141d5_9ba0a3ce",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9a5023be_ecc6892b",
+        "filename": "android/pandora/test/asha_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 1952952
+      },
+      "writtenOn": "2023-06-02T01:52:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "087141d5_9ba0a3ce",
+      "range": {
+        "startLine": 215,
+        "startChar": 16,
+        "endLine": 215,
+        "endChar": 33
+      },
+      "revId": "11e4a2057b1b6a05b06ec1508eeea207162ff425",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4a4fa351_6205f166",
@@ -60,6 +108,30 @@
       "writtenOn": "2023-06-01T08:33:51Z",
       "side": 1,
       "message": "nit: \n```suggestion\n                raise\n```\n\ninside a try except `raise` without an argument re-raise the current exception",
+      "range": {
+        "startLine": 217,
+        "startChar": 21,
+        "endLine": 217,
+        "endChar": 23
+      },
+      "revId": "11e4a2057b1b6a05b06ec1508eeea207162ff425",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4ebc5359_a061f204",
+        "filename": "android/pandora/test/asha_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 1952952
+      },
+      "writtenOn": "2023-06-02T01:52:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4a4fa351_6205f166",
       "range": {
         "startLine": 217,
         "startChar": 21,
