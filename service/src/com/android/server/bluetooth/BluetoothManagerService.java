@@ -1588,11 +1588,11 @@ class BluetoothManagerService {
     }
 
     /** Called when switching to a different foreground user. */
-    void handleSwitchUser(UserHandle userHandle) {
+    private void handleSwitchUser(UserHandle userHandle) {
         if (DBG) {
             Log.d(TAG, "User " + userHandle + " switched");
         }
-        mHandler.obtainMessage(MESSAGE_USER_SWITCHED, userHandle.getIdentifier(), 0).sendToTarget();
+        mHandler.obtainMessage(MESSAGE_USER_SWITCHED, userHandle).sendToTarget();
     }
 
     /** Called when user is unlocked. */
@@ -1600,7 +1600,7 @@ class BluetoothManagerService {
         if (DBG) {
             Log.d(TAG, "User " + userHandle + " unlocked");
         }
-        mHandler.obtainMessage(MESSAGE_USER_UNLOCKED, userHandle.getIdentifier(), 0).sendToTarget();
+        mHandler.obtainMessage(MESSAGE_USER_UNLOCKED, userHandle).sendToTarget();
     }
 
     /**
@@ -2389,17 +2389,23 @@ class BluetoothManagerService {
                     }
                     mHandler.removeMessages(MESSAGE_USER_SWITCHED);
                     mBluetoothNotificationManager.createNotificationChannels();
+                    UserHandle userTo = (UserHandle) msg.obj;
 
                     /* disable and enable BT when detect a user switch */
                     if (mAdapter != null && isEnabled()) {
-                        restartForReason(BluetoothProtoEnums.ENABLE_DISABLE_REASON_USER_SWITCH);
+                        restartForNewUser(userTo);
                     } else if (mBinding || mAdapter != null) {
-                        Message userMsg = mHandler.obtainMessage(MESSAGE_USER_SWITCHED);
-                        userMsg.arg2 = 1 + msg.arg2;
+                        Message userMsg = Message.obtain(msg);
+                        userMsg.arg1++;
                         // if user is switched when service is binding retry after a delay
                         mHandler.sendMessageDelayed(userMsg, USER_SWITCHED_TIME_MS);
                         if (DBG) {
-                            Log.d(TAG, "Retry MESSAGE_USER_SWITCHED " + userMsg.arg2);
+                            Log.d(
+                                    TAG,
+                                    "MESSAGE_USER_SWITCHED user="
+                                            + userTo
+                                            + " number of retry attempt="
+                                            + userMsg.arg1);
                         }
                     }
                     break;
@@ -2428,7 +2434,7 @@ class BluetoothManagerService {
                     android.Manifest.permission.BLUETOOTH_CONNECT,
                     android.Manifest.permission.BLUETOOTH_PRIVILEGED
                 })
-        private void restartForReason(int reason) {
+        private void restartForNewUser(UserHandle newUser) {
             mBluetoothLock.readLock().lock();
             try {
                 if (mAdapter != null) {
@@ -2451,6 +2457,9 @@ class BluetoothManagerService {
                 mState.set(STATE_TURNING_ON);
             }
 
+            // TODO(b/285046954): We call unregisterCallback, and yet the code is calling
+            // waitForState(STATE_ON)
+            // This is a non-sense
             waitForState(STATE_ON);
 
             if (mState.oneOf(STATE_TURNING_ON)) {
@@ -2459,7 +2468,10 @@ class BluetoothManagerService {
 
             unbindAllBluetoothProfileServices();
             // disable
-            addActiveLog(reason, mContext.getPackageName(), false);
+            addActiveLog(
+                    BluetoothProtoEnums.ENABLE_DISABLE_REASON_USER_SWITCH,
+                    mContext.getPackageName(),
+                    false);
             handleDisable();
             // Pbap service need receive STATE_TURNING_OFF intent to close
             bluetoothStateChangeHandler(STATE_ON, STATE_TURNING_OFF);
@@ -2495,7 +2507,10 @@ class BluetoothManagerService {
             mHandler.removeMessages(MESSAGE_BLUETOOTH_STATE_CHANGE);
             mState.set(STATE_OFF);
             // enable
-            addActiveLog(reason, mContext.getPackageName(), true);
+            addActiveLog(
+                    BluetoothProtoEnums.ENABLE_DISABLE_REASON_USER_SWITCH,
+                    mContext.getPackageName(),
+                    true);
             // mEnable flag could have been reset on stopBle. Reenable it.
             mEnable = true;
             handleEnable(mQuietEnable);
