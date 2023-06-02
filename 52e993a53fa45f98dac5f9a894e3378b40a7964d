@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d178ee28_8fcb8fca",
+        "filename": "system/gd/rust/linux/client/src/callbacks.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2023-06-02T18:32:53Z",
+      "side": 1,
+      "message": "nit: callback below seems all using `remote_device`",
+      "range": {
+        "startLine": 124,
+        "startChar": 8,
+        "endLine": 124,
+        "endChar": 14
+      },
+      "revId": "52e993a53fa45f98dac5f9a894e3378b40a7964d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1b1c0092_f6da80ab",
+        "filename": "system/gd/rust/linux/client/src/dbus_iface.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 517,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2023-06-02T18:32:53Z",
+      "side": 1,
+      "message": "nit: for adapter it was property instead of properties",
+      "range": {
+        "startLine": 517,
+        "startChar": 36,
+        "endLine": 517,
+        "endChar": 37
+      },
+      "revId": "52e993a53fa45f98dac5f9a894e3378b40a7964d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
