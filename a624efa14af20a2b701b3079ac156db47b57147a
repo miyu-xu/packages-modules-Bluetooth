@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dc53f6d2_dbb88706",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-06-02T21:47:23Z",
+      "side": 1,
+      "message": "leave some comments",
+      "parentUuid": "ed0cda7c_0d95f55d",
+      "revId": "a624efa14af20a2b701b3079ac156db47b57147a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "49cee7db_5dec4522",
@@ -36,6 +54,52 @@
         "startChar": 11,
         "endLine": 1,
         "endChar": 27
+      },
+      "revId": "a624efa14af20a2b701b3079ac156db47b57147a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "57a2b880_97d50b92",
+        "filename": "android/pandora/test/hfpclient_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-06-02T21:47:23Z",
+      "side": 1,
+      "message": "The proposed AG capability is only\n`.... .... .... .... .... .1.. .... .... \u003d HF Indicators: True`\nand based on HFP spec\n```\nThe HF shall not issue the AT+CHLD\u003d? test command in case either the HF or the AG does not support the \"Three-way calling\" feature.\n```\nThen likely the response will be `error`",
+      "range": {
+        "startLine": 180,
+        "startChar": 16,
+        "endLine": 180,
+        "endChar": 67
+      },
+      "revId": "a624efa14af20a2b701b3079ac156db47b57147a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8a585755_34e6c97c",
+        "filename": "android/pandora/test/hfpclient_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-06-02T21:47:23Z",
+      "side": 1,
+      "message": "based on previous `CIND`, it is not in call or callsetup, then \n```\nIf the AG is currently in any of the Response and Hold states, then the AG shall send a +BTRH: Response with the parameter set to 0. If the AG is not in the Response and Hold states, then no response shall be sent.\n```",
+      "range": {
+        "startLine": 183,
+        "startChar": 16,
+        "endLine": 184,
+        "endChar": 61
       },
       "revId": "a624efa14af20a2b701b3079ac156db47b57147a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
