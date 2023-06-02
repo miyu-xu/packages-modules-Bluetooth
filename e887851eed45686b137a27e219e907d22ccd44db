@@ -22,6 +22,30 @@
       },
       "revId": "e887851eed45686b137a27e219e907d22ccd44db",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a019d560_3dcad5df",
+        "filename": "floss/hcidoc/src/groups/collisions.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-06-02T08:05:07Z",
+      "side": 1,
+      "message": "Will send a follow-up CL for this refactor. Should be simple -- thanks for the suggestion",
+      "parentUuid": "1fc111cd_1e6f4a78",
+      "range": {
+        "startLine": 207,
+        "startChar": 4,
+        "endLine": 207,
+        "endChar": 44
+      },
+      "revId": "e887851eed45686b137a27e219e907d22ccd44db",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
