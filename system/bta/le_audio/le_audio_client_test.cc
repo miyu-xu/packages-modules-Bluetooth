@@ -713,7 +713,8 @@ class UnicastTestNoInit : public Test {
               for (LeAudioDevice* device = group->GetFirstDevice();
                    device != nullptr; device = group->GetNextDevice(device)) {
                 for (auto& ase : device->ases_) {
-                  ase.data_path_state = types::AudioStreamDataPathState::IDLE;
+                  ase.cis_state = types::CisState::IDLE;
+                  ase.data_path_state = types::DataPathState::IDLE;
                   ase.active = false;
                   ase.state =
                       types::AseState::BTA_LE_AUDIO_ASE_STATE_CODEC_CONFIGURED;
@@ -761,8 +762,8 @@ class UnicastTestNoInit : public Test {
 
             // And also skip the ase establishment procedure which should
             // be tested as part of the state machine unit tests
-            ase.data_path_state =
-                types::AudioStreamDataPathState::DATA_PATH_ESTABLISHED;
+            ase.cis_state = types::CisState::CONNECTED;
+            ase.data_path_state = types::DataPathState::CONFIGURED;
             ase.state = types::AseState::BTA_LE_AUDIO_ASE_STATE_STREAMING;
 
             uint16_t cis_conn_hdl = ase.cis_conn_hdl;
@@ -887,8 +888,8 @@ class UnicastTestNoInit : public Test {
 
               // And also skip the ase establishment procedure which should
               // be tested as part of the state machine unit tests
-              ase.data_path_state =
-                  types::AudioStreamDataPathState::DATA_PATH_ESTABLISHED;
+              ase.cis_state = types::CisState::CONNECTED;
+              ase.data_path_state = types::DataPathState::CONFIGURED;
               ase.state = types::AseState::BTA_LE_AUDIO_ASE_STATE_STREAMING;
 
               uint16_t cis_conn_hdl = ase.cis_conn_hdl;
@@ -1053,8 +1054,7 @@ class UnicastTestNoInit : public Test {
           for (LeAudioDevice* device = group->GetFirstDevice();
                device != nullptr; device = group->GetNextDevice(device)) {
             for (auto& ase : device->ases_) {
-              ase.data_path_state =
-                  types::AudioStreamDataPathState::CIS_ESTABLISHED;
+              ase.cis_state = types::CisState::CONNECTED;
               ase.active = false;
               ase.state =
                   types::AseState::BTA_LE_AUDIO_ASE_STATE_QOS_CONFIGURED;
@@ -1135,14 +1135,12 @@ class UnicastTestNoInit : public Test {
               auto ases_pair =
                   leAudioDevice->GetAsesByCisConnHdl(event->cis_conn_hdl);
               if (ases_pair.sink) {
-                ases_pair.sink->data_path_state =
-                    types::AudioStreamDataPathState::CIS_ASSIGNED;
+                ases_pair.sink->cis_state = types::CisState::ASSIGNED;
                 ases_pair.sink->active = false;
               }
               if (ases_pair.source) {
                 ases_pair.source->active = false;
-                ases_pair.source->data_path_state =
-                    types::AudioStreamDataPathState::CIS_ASSIGNED;
+                ases_pair.source->cis_state = types::CisState::ASSIGNED;
               }
               /* Invalidate stream configuration if needed */
               auto* stream_conf = &group->stream_conf;
@@ -1270,7 +1268,8 @@ class UnicastTestNoInit : public Test {
             group->CigUnassignCis(device);
 
             for (auto& ase : device->ases_) {
-              ase.data_path_state = types::AudioStreamDataPathState::IDLE;
+              ase.cis_state = types::CisState::IDLE;
+              ase.data_path_state = types::DataPathState::IDLE;
               ase.active = false;
               ase.state = types::AseState::BTA_LE_AUDIO_ASE_STATE_IDLE;
               ase.cis_id = 0;
@@ -4516,7 +4515,8 @@ TEST_F(UnicastTest, SpeakerStreamingAutonomousRelease) {
   for (LeAudioDevice* device = group->GetFirstDevice(); device != nullptr;
        device = group->GetNextDevice(device)) {
     for (auto& ase : device->ases_) {
-      ase.data_path_state = types::AudioStreamDataPathState::IDLE;
+      ase.cis_state = types::CisState::IDLE;
+      ase.data_path_state = types::DataPathState::IDLE;
       ase.state = types::AseState::BTA_LE_AUDIO_ASE_STATE_IDLE;
       InjectCisDisconnected(group_id, ase.cis_conn_hdl);
     }
