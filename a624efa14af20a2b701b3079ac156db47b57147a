@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "49cee7db_5dec4522",
+        "filename": "android/pandora/test/hfpclient_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-06-02T18:16:10Z",
+      "side": 1,
+      "message": "Shouldn\u0027t it be `2023 The Android Open Source Project` ?",
+      "range": {
+        "startLine": 1,
+        "startChar": 11,
+        "endLine": 1,
+        "endChar": 27
+      },
+      "revId": "a624efa14af20a2b701b3079ac156db47b57147a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
