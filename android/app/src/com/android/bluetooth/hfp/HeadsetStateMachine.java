@@ -483,7 +483,22 @@ public class HeadsetStateMachine extends StateMachine {
             mHasWbsEnabled = false;
             mHasSwbEnabled = false;
             mHasNrecEnabled = false;
+
             broadcastStateTransitions();
+            if (mPrevState == mConnecting || mPrevState == mDisconnected) {
+                // Connecting -> Disconnected is expected failure so unknown reason
+                // but disconnected to disconnected is unexpected state reason.
+                int reason =
+                        (mPrevState == mConnecting) ? 0 /* Unknown */ : 2 /* Unexpected state */;
+                BluetoothStatsLog.write(
+                        BluetoothStatsLog.BLUETOOTH_PROFILE_CONNECTION_ATTEMPTED,
+                        BluetoothProfile.A2DP,
+                        2 /* Failure */,
+                        mPrevState.getConnectionStateInt(),
+                        BluetoothProfile.STATE_DISCONNECTED,
+                        reason /* Failure Reason */);
+            }
+
             // Remove the state machine for unbonded devices
             if (mPrevState != null
                     && mAdapterService.getBondState(mDevice) == BluetoothDevice.BOND_NONE) {
@@ -505,7 +520,9 @@ public class HeadsetStateMachine extends StateMachine {
                     if (!mNativeInterface.connectHfp(device)) {
                         stateLogE("CONNECT failed for connectHfp(" + device + ")");
                         // No state transition is involved, fire broadcast immediately
-                        broadcastConnectionState(device, BluetoothProfile.STATE_DISCONNECTED,
+                        broadcastConnectionState(
+                                device,
+                                BluetoothProfile.STATE_DISCONNECTED,
                                 BluetoothProfile.STATE_DISCONNECTED);
                         break;
                     }
@@ -1090,7 +1107,17 @@ public class HeadsetStateMachine extends StateMachine {
                 // or the retry count reached MAX_RETRY_DISCONNECT_AUDIO.
                 mAudioDisconnectRetry = 0;
             }
+
             broadcastStateTransitions();
+            if (mPrevState == mConnecting || mPrevState == mDisconnected) {
+                BluetoothStatsLog.write(
+                        BluetoothStatsLog.BLUETOOTH_PROFILE_CONNECTION_ATTEMPTED,
+                        BluetoothProfile.HEADSET,
+                        1 /* Success */,
+                        mPrevState.getConnectionStateInt(),
+                        BluetoothProfile.STATE_CONNECTED,
+                        1 /* Success Reason */);
+            }
         }
 
         @Override
