@@ -66,6 +66,7 @@ ENV PATH="/root/.cargo/bin:${PATH}"
 
 # Install cargo packages required on build image.
 RUN cargo install cxxbridge-cmd --version 1.0.94
+RUN cargo install pdl-compiler --version 0.1.1
 
 # Rename llvm packages. By default, they are named 11vm-ar-13, etc. which won't
 # work properly with the build.
