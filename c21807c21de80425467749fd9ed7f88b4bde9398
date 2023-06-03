@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8e2a9f6b_63519e00",
+        "filename": "system/bta/dm/bta_dm_main.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 218,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-06-03T05:14:33Z",
+      "side": 1,
+      "message": "if this is flagged of, would the Java layer get a notification on the cancellation success?",
+      "range": {
+        "startLine": 218,
+        "startChar": 12,
+        "endLine": 218,
+        "endChar": 39
+      },
+      "revId": "c21807c21de80425467749fd9ed7f88b4bde9398",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
