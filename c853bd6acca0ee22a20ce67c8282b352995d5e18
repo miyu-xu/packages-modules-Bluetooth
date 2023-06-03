@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1de00dba_c2cee057",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2470,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-06-03T22:24:18Z",
+      "side": 1,
+      "message": "should be 6 second since we were always waiting 3 during waitForState + 3 here",
+      "range": {
+        "startLine": 2470,
+        "startChar": 30,
+        "endLine": 2470,
+        "endChar": 34
+      },
+      "revId": "c853bd6acca0ee22a20ce67c8282b352995d5e18",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
