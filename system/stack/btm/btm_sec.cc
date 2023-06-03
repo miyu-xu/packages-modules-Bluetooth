@@ -3675,7 +3675,7 @@ void btm_sec_connected(const RawAddress& bda, uint16_t handle,
          2.  Link key for the remote device is present.
          3.  Remote is SSP capable.
      */
-    else if ((p_dev_rec->link_key_type <= BTM_LKEY_TYPE_REMOTE_UNIT) &&
+    else if ((p_dev_rec->link_key_type <= HCI_LKEY_TYPE_REMOTE_UNIT) &&
              (((status == HCI_ERR_AUTH_FAILURE) ||
                (status == HCI_ERR_KEY_MISSING) ||
                (status == HCI_ERR_HOST_REJECT_SECURITY) ||
