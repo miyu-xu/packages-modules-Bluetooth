@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "04aba145_0aa53d87",
+        "filename": "system/bta/dm/bta_dm_main.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-06-03T05:31:45Z",
+      "side": 1,
+      "message": "Would `BTA_DM_DISCOVERY_RESULT_EVT` always come after `BTA_DM_SDP_RESULT_EVT`?",
+      "range": {
+        "startLine": 136,
+        "startChar": 10,
+        "endLine": 136,
+        "endChar": 15
+      },
+      "revId": "f406491ab54b1c92a0184029f6587204f7bffda8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "72558fc4_859f0ac3",
         "filename": "system/bta/dm/bta_dm_main.cc",
         "patchSetId": 8
@@ -91,6 +114,29 @@
         "startChar": 13,
         "endLine": 137,
         "endChar": 40
+      },
+      "revId": "f406491ab54b1c92a0184029f6587204f7bffda8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fbe0eb9d_ca81b42d",
+        "filename": "system/bta/dm/bta_dm_main.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-06-03T05:31:45Z",
+      "side": 1,
+      "message": "would this trigger ACTION_FOUND intent?",
+      "range": {
+        "startLine": 138,
+        "startChar": 0,
+        "endLine": 138,
+        "endChar": 38
       },
       "revId": "f406491ab54b1c92a0184029f6587204f7bffda8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
