@@ -1,0 +1,412 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8bd3e538_639e44ad",
+        "filename": "system/internal_include/bt_target.h",
+        "patchSetId": 11
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2023-06-03T00:10:14Z",
+      "side": 1,
+      "message": "Why do we need to double it? Update the comment if this is to accomodate the `BTM_LC3_CODE_SIZE`.",
+      "range": {
+        "startLine": 255,
+        "startChar": 30,
+        "endLine": 255,
+        "endChar": 33
+      },
+      "revId": "c947d08a8b84673fcc6b2609d3f3f02ff71a42e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "035b3d34_90be42c9",
+        "filename": "system/stack/btm/btm_sco.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2023-06-03T00:10:14Z",
+      "side": 1,
+      "message": "Use the defined BTM_*_CODE_SIZE?",
+      "range": {
+        "startLine": 198,
+        "startChar": 28,
+        "endLine": 198,
+        "endChar": 31
+      },
+      "revId": "c947d08a8b84673fcc6b2609d3f3f02ff71a42e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "231021e4_1740a1e1",
+        "filename": "system/stack/btm/btm_sco.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2023-06-03T00:10:14Z",
+      "side": 1,
+      "message": "Is this true?",
+      "range": {
+        "startLine": 200,
+        "startChar": 9,
+        "endLine": 200,
+        "endChar": 22
+      },
+      "revId": "c947d08a8b84673fcc6b2609d3f3f02ff71a42e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4958eb5a_a3199b91",
+        "filename": "system/stack/btm/btm_sco.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2023-06-03T00:10:14Z",
+      "side": 1,
+      "message": "Put this in tSCO_CONN?\n\nAlso, please add a comment or update the name of the helper. It\u0027s difficult to understand without the context.",
+      "range": {
+        "startLine": 197,
+        "startChar": 0,
+        "endLine": 202,
+        "endChar": 0
+      },
+      "revId": "c947d08a8b84673fcc6b2609d3f3f02ff71a42e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "19d3274d_c9b756ab",
+        "filename": "system/stack/btm/btm_sco.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 263,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2023-06-03T00:10:14Z",
+      "side": 1,
+      "message": "Update the existing log or add a new log to show if we are under wbs or swb.",
+      "range": {
+        "startLine": 263,
+        "startChar": 0,
+        "endLine": 263,
+        "endChar": 61
+      },
+      "revId": "c947d08a8b84673fcc6b2609d3f3f02ff71a42e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fb75da24_2c053e61",
+        "filename": "system/stack/btm/btm_sco_hci.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 753,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2023-06-03T00:10:14Z",
+      "side": 1,
+      "message": "Please rebase and fill in the `pkt_status` as mSBC for me 😂",
+      "range": {
+        "startLine": 753,
+        "startChar": 14,
+        "endLine": 753,
+        "endChar": 15
+      },
+      "revId": "c947d08a8b84673fcc6b2609d3f3f02ff71a42e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "40deb8f6_a7e86ca9",
+        "filename": "system/stack/btm/btm_sco_hfp_hal_linux.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 316,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2023-06-03T00:10:14Z",
+      "side": 1,
+      "message": "NIT:Attach a bug and more descritive TODO.",
+      "range": {
+        "startLine": 316,
+        "startChar": 24,
+        "endLine": 316,
+        "endChar": 28
+      },
+      "revId": "c947d08a8b84673fcc6b2609d3f3f02ff71a42e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0016c619_9eef6ff7",
+        "filename": "system/stack/btm/btm_sco_hfp_hal_linux.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 392,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2023-06-03T00:10:14Z",
+      "side": 1,
+      "message": "Consider add the LC3 offload case as a early return before the switch? such that we can have the supposed to work code here and only need to remove the early return?\n\n```suggestion\n  if (codec_uuid \u003d\u003d UUID_CODEC_LC3 \u0026\u0026 get_offload_enabled()) {\n    LOG_ERROR(\"Offload path for LC3 is not implemented.\");\n    return;\n  }\n\n  switch (codec_uuid) {\n    case UUID_CODEC_CVSD:\n      codec_id \u003d codec::CVSD;\n      break;\n    case UUID_CODEC_MSBC:\n      codec_id \u003d get_offload_enabled() ? codec::MSBC : codec::MSBC_TRANSPARENT;\n      break;\n    case UUID_CODEC_LC3: {\n      codec_id \u003d get_offload_enabled() ? codec::LC3 : codec::MSBC_TRANSPARENT;\n      break;\n    }\n    default:\n      LOG_WARN(\"Unsupported codec (%d). Won\u0027t set datapath.\", codec_uuid);\n      return;\n  }\n\n```",
+      "range": {
+        "startLine": 371,
+        "startChar": 0,
+        "endLine": 392,
+        "endChar": 0
+      },
+      "revId": "c947d08a8b84673fcc6b2609d3f3f02ff71a42e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "30a597b9_9c474f76",
+        "filename": "system/stack/btm/btm_sco_hfp_hal_linux.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 460,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2023-06-03T00:10:14Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 458,
+        "startChar": 0,
+        "endLine": 460,
+        "endChar": 15
+      },
+      "revId": "c947d08a8b84673fcc6b2609d3f3f02ff71a42e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0deff599_f6a5fef8",
+        "filename": "system/stack/btm/hfp_lc3_decoder.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2023-06-03T00:10:14Z",
+      "side": 1,
+      "message": "use the osi_malloc?",
+      "range": {
+        "startLine": 46,
+        "startChar": 24,
+        "endLine": 46,
+        "endChar": 30
+      },
+      "revId": "c947d08a8b84673fcc6b2609d3f3f02ff71a42e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c480bdbd_080f7e76",
+        "filename": "system/stack/btm/hfp_lc3_decoder.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2023-06-03T00:10:14Z",
+      "side": 1,
+      "message": "osi_free_and_reset",
+      "range": {
+        "startLine": 55,
+        "startChar": 4,
+        "endLine": 56,
+        "endChar": 34
+      },
+      "revId": "c947d08a8b84673fcc6b2609d3f3f02ff71a42e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "80d65f31_a588ced6",
+        "filename": "system/stack/btm/hfp_lc3_decoder.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2023-06-03T00:10:14Z",
+      "side": 1,
+      "message": "Should we check i_buf and o_buf and do early return for lc3_decode?",
+      "revId": "c947d08a8b84673fcc6b2609d3f3f02ff71a42e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b9783957_86c6ee91",
+        "filename": "system/stack/btm/hfp_lc3_encoder.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2023-06-03T00:10:14Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 44,
+        "startChar": 24,
+        "endLine": 44,
+        "endChar": 30
+      },
+      "revId": "c947d08a8b84673fcc6b2609d3f3f02ff71a42e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "91aeb6e2_8988efbd",
+        "filename": "system/stack/btm/hfp_lc3_encoder.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2023-06-03T00:10:14Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 50,
+        "startChar": 28,
+        "endLine": 52,
+        "endChar": 34
+      },
+      "revId": "c947d08a8b84673fcc6b2609d3f3f02ff71a42e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "27dbae21_933afcd8",
+        "filename": "system/stack/btm/hfp_lc3_encoder.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2023-06-03T00:10:14Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 56,
+        "startChar": 40,
+        "endLine": 56,
+        "endChar": 45
+      },
+      "revId": "c947d08a8b84673fcc6b2609d3f3f02ff71a42e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "36f14290_692f9de1",
+        "filename": "system/stack/btm/hfp_lc3_encoder.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2023-06-03T00:10:14Z",
+      "side": 1,
+      "message": "Should we",
+      "range": {
+        "startLine": 63,
+        "startChar": 9,
+        "endLine": 63,
+        "endChar": 26
+      },
+      "revId": "c947d08a8b84673fcc6b2609d3f3f02ff71a42e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "976c0293_db2acf75",
+        "filename": "system/stack/include/hfp_lc3_encoder.h",
+        "patchSetId": 11
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2023-06-03T00:10:14Z",
+      "side": 1,
+      "message": "nit",
+      "range": {
+        "startLine": 30,
+        "startChar": 29,
+        "endLine": 30,
+        "endChar": 33
+      },
+      "revId": "c947d08a8b84673fcc6b2609d3f3f02ff71a42e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2d76ca8f_3f44c374",
+        "filename": "system/stack/include/hfp_lc3_encoder.h",
+        "patchSetId": 11
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2023-06-03T00:10:14Z",
+      "side": 1,
+      "message": "Maybe we can define the HFP_LC3_PCM_BYTES here such that caller can also check that?",
+      "range": {
+        "startLine": 33,
+        "startChar": 58,
+        "endLine": 33,
+        "endChar": 61
+      },
+      "revId": "c947d08a8b84673fcc6b2609d3f3f02ff71a42e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
