@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "34673554_9671ccd7",
+        "filename": "system/bta/dm/bta_dm_main.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-06-03T05:22:25Z",
+      "side": 1,
+      "message": "this is only setting an int\n\n```\nvoid bta_dm_search_set_state(uint8_t state) { bta_dm_search_cb.state \u003d state; }\n```\n\nHow would not doing this prevent service discovery from being stopped",
+      "range": {
+        "startLine": 217,
+        "startChar": 12,
+        "endLine": 217,
+        "endChar": 35
+      },
+      "revId": "c21807c21de80425467749fd9ed7f88b4bde9398",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8e2a9f6b_63519e00",
         "filename": "system/bta/dm/bta_dm_main.cc",
         "patchSetId": 3
@@ -14,6 +37,30 @@
       "writtenOn": "2023-06-03T05:14:33Z",
       "side": 1,
       "message": "if this is flagged of, would the Java layer get a notification on the cancellation success?",
+      "range": {
+        "startLine": 218,
+        "startChar": 12,
+        "endLine": 218,
+        "endChar": 39
+      },
+      "revId": "c21807c21de80425467749fd9ed7f88b4bde9398",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "07710542_7ed92faf",
+        "filename": "system/bta/dm/bta_dm_main.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 218,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-06-03T05:22:25Z",
+      "side": 1,
+      "message": "bta_dm_search_cancel_notify() does two things",
+      "parentUuid": "8e2a9f6b_63519e00",
       "range": {
         "startLine": 218,
         "startChar": 12,
