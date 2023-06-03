@@ -3977,7 +3977,7 @@ void btm_sec_link_key_notification(const RawAddress& p_bda,
   LOG_DEBUG("New link key generated device:%s key_type:%hhu",
             ADDRESS_TO_LOGGABLE_CSTR(p_bda), key_type);
 
-  if ((key_type >= BTM_LTK_DERIVED_LKEY_OFFSET + BTM_LKEY_TYPE_COMBINATION) &&
+  if ((key_type >= BTM_LTK_DERIVED_LKEY_OFFSET + HCI_LKEY_TYPE_COMBINATION) &&
       (key_type <=
        BTM_LTK_DERIVED_LKEY_OFFSET + BTM_LKEY_TYPE_AUTH_COMB_P_256)) {
     ltk_derived_lk = true;
