@@ -50,4 +50,5 @@ cc_test {
         "libgmock",
         "sdp_service",
     ],
+    shared_libs: ["liblog"],
 }
