@@ -1,5 +1,52 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "18024223_b2aa7315",
+        "filename": "android/app/src/com/android/bluetooth/tbs/TbsGatt.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 480,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-06-03T22:12:14Z",
+      "side": 1,
+      "message": "why would this value ever be null?",
+      "range": {
+        "startLine": 480,
+        "startChar": 67,
+        "endLine": 480,
+        "endChar": 72
+      },
+      "revId": "a420dc6d78a400843b4d9e233f4e52aa4982c7f9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b5afd5e8_5f14765d",
+        "filename": "android/app/src/com/android/bluetooth/tbs/TbsGatt.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 499,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-06-03T22:12:14Z",
+      "side": 1,
+      "message": "Could this value be null as well? Why would it ever be null?",
+      "range": {
+        "startLine": 499,
+        "startChar": 67,
+        "endLine": 499,
+        "endChar": 72
+      },
+      "revId": "a420dc6d78a400843b4d9e233f4e52aa4982c7f9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
