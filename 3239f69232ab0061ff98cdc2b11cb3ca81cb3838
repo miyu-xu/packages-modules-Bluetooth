@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7d67961e_e26d42d5",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 898,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-06-03T04:40:35Z",
+      "side": 1,
+      "message": "note: this is forced to change due to a preupload formatter hook",
+      "range": {
+        "startLine": 894,
+        "startChar": 26,
+        "endLine": 898,
+        "endChar": 34
+      },
+      "revId": "3239f69232ab0061ff98cdc2b11cb3ca81cb3838",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
