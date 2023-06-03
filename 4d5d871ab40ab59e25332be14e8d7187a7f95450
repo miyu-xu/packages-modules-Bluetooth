@@ -22,6 +22,30 @@
       },
       "revId": "4d5d871ab40ab59e25332be14e8d7187a7f95450",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "82cc8604_f01c9be8",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1897,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-06-03T04:14:36Z",
+      "side": 1,
+      "message": "fixed in https://r.android.com/2613570",
+      "parentUuid": "11464e37_459060bc",
+      "range": {
+        "startLine": 1897,
+        "startChar": 0,
+        "endLine": 1897,
+        "endChar": 68
+      },
+      "revId": "4d5d871ab40ab59e25332be14e8d7187a7f95450",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
