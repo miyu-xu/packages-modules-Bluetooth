@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9cdf1427_020e1c8c",
+        "filename": "android/app/src/com/android/bluetooth/tbs/TbsGatt.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 480,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-06-03T22:33:40Z",
+      "side": 1,
+      "message": "it could happen in notification was triggered after authorization was granted in line 1369.",
+      "parentUuid": "18024223_b2aa7315",
+      "range": {
+        "startLine": 480,
+        "startChar": 67,
+        "endLine": 480,
+        "endChar": 72
+      },
+      "revId": "a420dc6d78a400843b4d9e233f4e52aa4982c7f9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b5afd5e8_5f14765d",
         "filename": "android/app/src/com/android/bluetooth/tbs/TbsGatt.java",
         "patchSetId": 3
