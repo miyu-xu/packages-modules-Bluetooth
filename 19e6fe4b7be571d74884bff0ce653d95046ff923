@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7e153951_bcf5ca72",
+        "filename": "android/app/src/com/android/bluetooth/a2dp/A2dpStateMachine.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2023-06-03T06:23:35Z",
+      "side": 1,
+      "message": "do we have a reason to record Disconnected -\u003e Disconnected as RESULT_FAILURE?",
+      "range": {
+        "startLine": 175,
+        "startChar": 64,
+        "endLine": 175,
+        "endChar": 82
+      },
+      "revId": "19e6fe4b7be571d74884bff0ce653d95046ff923",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c20c897f_221815d3",
+        "filename": "android/app/src/com/android/bluetooth/a2dp/A2dpStateMachine.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2023-06-03T06:23:35Z",
+      "side": 1,
+      "message": "we can use `BluetoothProtoEnums.REASON_UNKNOWN`.\nsame for other magic numbers below.",
+      "range": {
+        "startLine": 180,
+        "startChar": 34,
+        "endLine": 180,
+        "endChar": 49
+      },
+      "revId": "19e6fe4b7be571d74884bff0ce653d95046ff923",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
