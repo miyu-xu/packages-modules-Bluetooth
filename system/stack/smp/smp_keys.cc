@@ -981,11 +981,11 @@ bool smp_calculate_link_key_from_long_term_key(tSMP_CB* p_cb) {
   uint8_t link_key_type;
   if (btm_cb.security_mode == BTM_SEC_MODE_SC) {
     /* Secure Connections Only Mode */
-    link_key_type = BTM_LKEY_TYPE_AUTH_COMB_P_256;
+    link_key_type = HCI_LKEY_TYPE_AUTH_COMB_P_256;
   } else if (controller_get_interface()->supports_secure_connections()) {
     /* both transports are SC capable */
     if (p_cb->sec_level == SMP_SEC_AUTHENTICATED)
-      link_key_type = BTM_LKEY_TYPE_AUTH_COMB_P_256;
+      link_key_type = HCI_LKEY_TYPE_AUTH_COMB_P_256;
     else
       link_key_type = HCI_LKEY_TYPE_UNAUTH_COMB_P_256;
   } else if (btm_cb.security_mode == BTM_SEC_MODE_SP) {
@@ -1030,7 +1030,7 @@ bool smp_calculate_long_term_key_from_link_key(tSMP_CB* p_cb) {
     return false;
   }
 
-  if ((br_link_key_type != BTM_LKEY_TYPE_AUTH_COMB_P_256) &&
+  if ((br_link_key_type != HCI_LKEY_TYPE_AUTH_COMB_P_256) &&
       (br_link_key_type != HCI_LKEY_TYPE_UNAUTH_COMB_P_256)) {
     SMP_TRACE_ERROR("%s LE SC LTK can't be derived from LK %d", __func__,
                     br_link_key_type);
@@ -1043,7 +1043,7 @@ bool smp_calculate_long_term_key_from_link_key(tSMP_CB* p_cb) {
   p_cb->ltk = crypto_toolbox::link_key_to_ltk(rev_link_key,
                                               p_cb->key_derivation_h7_used);
 
-  p_cb->sec_level = (br_link_key_type == BTM_LKEY_TYPE_AUTH_COMB_P_256)
+  p_cb->sec_level = (br_link_key_type == HCI_LKEY_TYPE_AUTH_COMB_P_256)
                         ? SMP_SEC_AUTHENTICATED
                         : SMP_SEC_UNAUTHENTICATE;
   SMP_TRACE_EVENT("%s is completed", __func__);

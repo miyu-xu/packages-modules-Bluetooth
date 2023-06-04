@@ -1647,7 +1647,7 @@ tBTM_STATUS btm_sec_l2cap_access_req_by_requirement(
       }
 
       if ((rc == BTM_SUCCESS) && (security_required & BTM_SEC_MODE4_LEVEL4) &&
-          (p_dev_rec->link_key_type != BTM_LKEY_TYPE_AUTH_COMB_P_256)) {
+          (p_dev_rec->link_key_type != HCI_LKEY_TYPE_AUTH_COMB_P_256)) {
         rc = BTM_CMD_STARTED;
       }
 
@@ -1732,8 +1732,8 @@ tBTM_STATUS btm_sec_l2cap_access_req_by_requirement(
 
   if (BTM_SEC_IS_SM4(p_dev_rec->sm4)) {
     if ((p_dev_rec->security_required & BTM_SEC_MODE4_LEVEL4) &&
-        (p_dev_rec->link_key_type != BTM_LKEY_TYPE_AUTH_COMB_P_256)) {
-      /* BTM_LKEY_TYPE_AUTH_COMB_P_256 is the only acceptable key in this case
+        (p_dev_rec->link_key_type != HCI_LKEY_TYPE_AUTH_COMB_P_256)) {
+      /* HCI_LKEY_TYPE_AUTH_COMB_P_256 is the only acceptable key in this case
        */
       if ((p_dev_rec->sec_flags & BTM_SEC_LINK_KEY_KNOWN) != 0) {
         p_dev_rec->sm4 |= BTM_SM4_UPGRADE;
@@ -1897,7 +1897,7 @@ tBTM_STATUS btm_sec_mx_access_request(const RawAddress& bd_addr,
         }
       }
       if ((rc == BTM_SUCCESS) && (security_required & BTM_SEC_MODE4_LEVEL4) &&
-          (p_dev_rec->link_key_type != BTM_LKEY_TYPE_AUTH_COMB_P_256)) {
+          (p_dev_rec->link_key_type != HCI_LKEY_TYPE_AUTH_COMB_P_256)) {
         rc = BTM_CMD_STARTED;
       }
     }
@@ -1954,8 +1954,8 @@ tBTM_STATUS btm_sec_mx_access_request(const RawAddress& bd_addr,
       btm_cb.security_mode == BTM_SEC_MODE_SC) {
     if (BTM_SEC_IS_SM4(p_dev_rec->sm4)) {
       if ((p_dev_rec->security_required & BTM_SEC_MODE4_LEVEL4) &&
-          (p_dev_rec->link_key_type != BTM_LKEY_TYPE_AUTH_COMB_P_256)) {
-        /* BTM_LKEY_TYPE_AUTH_COMB_P_256 is the only acceptable key in this case
+          (p_dev_rec->link_key_type != HCI_LKEY_TYPE_AUTH_COMB_P_256)) {
+        /* HCI_LKEY_TYPE_AUTH_COMB_P_256 is the only acceptable key in this case
          */
         if ((p_dev_rec->sec_flags & BTM_SEC_LINK_KEY_KNOWN) != 0) {
           p_dev_rec->sm4 |= BTM_SM4_UPGRADE;
@@ -3288,7 +3288,7 @@ void btm_sec_auth_complete(uint16_t handle, tHCI_STATUS status) {
 
   if (p_dev_rec->pin_code_length >= 16 ||
       p_dev_rec->link_key_type == BTM_LKEY_TYPE_AUTH_COMB ||
-      p_dev_rec->link_key_type == BTM_LKEY_TYPE_AUTH_COMB_P_256) {
+      p_dev_rec->link_key_type == HCI_LKEY_TYPE_AUTH_COMB_P_256) {
     // If we have MITM protection we have a higher level of security than
     // provided by 16 digits PIN
     p_dev_rec->sec_flags |= BTM_SEC_16_DIGIT_PIN_AUTHED;
@@ -3359,7 +3359,7 @@ void btm_sec_encrypt_change(uint16_t handle, tHCI_STATUS status,
         p_dev_rec->sec_flags |= (BTM_SEC_AUTHENTICATED | BTM_SEC_ENCRYPTED);
         if (p_dev_rec->pin_code_length >= 16 ||
             p_dev_rec->link_key_type == BTM_LKEY_TYPE_AUTH_COMB ||
-            p_dev_rec->link_key_type == BTM_LKEY_TYPE_AUTH_COMB_P_256) {
+            p_dev_rec->link_key_type == HCI_LKEY_TYPE_AUTH_COMB_P_256) {
           p_dev_rec->sec_flags |= BTM_SEC_16_DIGIT_PIN_AUTHED;
         }
       } else if (p_dev_rec->ble_hci_handle == handle) {  // BLE
@@ -3778,7 +3778,7 @@ void btm_sec_connected(const RawAddress& bda, uint16_t handle,
 
   if (p_dev_rec->pin_code_length >= 16 ||
       p_dev_rec->link_key_type == BTM_LKEY_TYPE_AUTH_COMB ||
-      p_dev_rec->link_key_type == BTM_LKEY_TYPE_AUTH_COMB_P_256) {
+      p_dev_rec->link_key_type == HCI_LKEY_TYPE_AUTH_COMB_P_256) {
     p_dev_rec->sec_flags |= (BTM_SEC_16_DIGIT_PIN_AUTHED << bit_shift);
   }
 
@@ -3979,7 +3979,7 @@ void btm_sec_link_key_notification(const RawAddress& p_bda,
 
   if ((key_type >= BTM_LTK_DERIVED_LKEY_OFFSET + HCI_LKEY_TYPE_COMBINATION) &&
       (key_type <=
-       BTM_LTK_DERIVED_LKEY_OFFSET + BTM_LKEY_TYPE_AUTH_COMB_P_256)) {
+       BTM_LTK_DERIVED_LKEY_OFFSET + HCI_LKEY_TYPE_AUTH_COMB_P_256)) {
     ltk_derived_lk = true;
     key_type -= BTM_LTK_DERIVED_LKEY_OFFSET;
   }
@@ -3997,7 +3997,7 @@ void btm_sec_link_key_notification(const RawAddress& p_bda,
    */
   if (p_dev_rec->pin_code_length >= 16 ||
       p_dev_rec->link_key_type == BTM_LKEY_TYPE_AUTH_COMB ||
-      p_dev_rec->link_key_type == BTM_LKEY_TYPE_AUTH_COMB_P_256) {
+      p_dev_rec->link_key_type == HCI_LKEY_TYPE_AUTH_COMB_P_256) {
     p_dev_rec->sec_flags |= BTM_SEC_LINK_KEY_AUTHED;
     p_dev_rec->sec_flags |= BTM_SEC_16_DIGIT_PIN_AUTHED;
   }
@@ -4025,7 +4025,7 @@ void btm_sec_link_key_notification(const RawAddress& p_bda,
     }
   } else {
     if ((p_dev_rec->link_key_type == HCI_LKEY_TYPE_UNAUTH_COMB_P_256) ||
-        (p_dev_rec->link_key_type == BTM_LKEY_TYPE_AUTH_COMB_P_256)) {
+        (p_dev_rec->link_key_type == HCI_LKEY_TYPE_AUTH_COMB_P_256)) {
       p_dev_rec->new_encryption_key_is_p256 = true;
       BTM_TRACE_DEBUG("%s set new_encr_key_256 to %d", __func__,
                       p_dev_rec->new_encryption_key_is_p256);
@@ -4508,7 +4508,7 @@ tBTM_STATUS btm_sec_execute_procedure(tBTM_SEC_DEV_REC* p_dev_rec) {
   }
 
   if ((p_dev_rec->security_required & BTM_SEC_MODE4_LEVEL4) &&
-      (p_dev_rec->link_key_type != BTM_LKEY_TYPE_AUTH_COMB_P_256)) {
+      (p_dev_rec->link_key_type != HCI_LKEY_TYPE_AUTH_COMB_P_256)) {
     BTM_TRACE_EVENT(
         "%s: Security Manager: SC only service, but link key type is 0x%02x -",
         "security failure", __func__, p_dev_rec->link_key_type);
@@ -5041,7 +5041,7 @@ static bool btm_sec_use_smp_br_chnl(tBTM_SEC_DEV_REC* p_dev_rec) {
                   p_dev_rec->link_key_type);
 
   if ((p_dev_rec->link_key_type != HCI_LKEY_TYPE_UNAUTH_COMB_P_256) &&
-      (p_dev_rec->link_key_type != BTM_LKEY_TYPE_AUTH_COMB_P_256))
+      (p_dev_rec->link_key_type != HCI_LKEY_TYPE_AUTH_COMB_P_256))
     return false;
 
   if (!L2CA_GetPeerFeatures(p_dev_rec->bd_addr, &ext_feat, chnl_mask))
