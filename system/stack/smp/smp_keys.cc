@@ -991,7 +991,7 @@ bool smp_calculate_link_key_from_long_term_key(tSMP_CB* p_cb) {
   } else if (btm_cb.security_mode == BTM_SEC_MODE_SP) {
     /* BR/EDR transport is SSP capable */
     if (p_cb->sec_level == SMP_SEC_AUTHENTICATED)
-      link_key_type = BTM_LKEY_TYPE_AUTH_COMB;
+      link_key_type = HCI_LKEY_TYPE_AUTH_COMB;
     else
       link_key_type = HCI_LKEY_TYPE_UNAUTH_COMB;
   } else {

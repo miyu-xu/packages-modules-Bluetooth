@@ -3287,7 +3287,7 @@ void btm_sec_auth_complete(uint16_t handle, tHCI_STATUS status) {
   }
 
   if (p_dev_rec->pin_code_length >= 16 ||
-      p_dev_rec->link_key_type == BTM_LKEY_TYPE_AUTH_COMB ||
+      p_dev_rec->link_key_type == HCI_LKEY_TYPE_AUTH_COMB ||
       p_dev_rec->link_key_type == HCI_LKEY_TYPE_AUTH_COMB_P_256) {
     // If we have MITM protection we have a higher level of security than
     // provided by 16 digits PIN
@@ -3358,7 +3358,7 @@ void btm_sec_encrypt_change(uint16_t handle, tHCI_STATUS status,
         }
         p_dev_rec->sec_flags |= (BTM_SEC_AUTHENTICATED | BTM_SEC_ENCRYPTED);
         if (p_dev_rec->pin_code_length >= 16 ||
-            p_dev_rec->link_key_type == BTM_LKEY_TYPE_AUTH_COMB ||
+            p_dev_rec->link_key_type == HCI_LKEY_TYPE_AUTH_COMB ||
             p_dev_rec->link_key_type == HCI_LKEY_TYPE_AUTH_COMB_P_256) {
           p_dev_rec->sec_flags |= BTM_SEC_16_DIGIT_PIN_AUTHED;
         }
@@ -3777,7 +3777,7 @@ void btm_sec_connected(const RawAddress& bda, uint16_t handle,
         ((BTM_SEC_AUTHENTICATED | BTM_SEC_ENCRYPTED) << bit_shift);
 
   if (p_dev_rec->pin_code_length >= 16 ||
-      p_dev_rec->link_key_type == BTM_LKEY_TYPE_AUTH_COMB ||
+      p_dev_rec->link_key_type == HCI_LKEY_TYPE_AUTH_COMB ||
       p_dev_rec->link_key_type == HCI_LKEY_TYPE_AUTH_COMB_P_256) {
     p_dev_rec->sec_flags |= (BTM_SEC_16_DIGIT_PIN_AUTHED << bit_shift);
   }
@@ -3996,7 +3996,7 @@ void btm_sec_link_key_notification(const RawAddress& p_bda,
    * add the extended security flag here.
    */
   if (p_dev_rec->pin_code_length >= 16 ||
-      p_dev_rec->link_key_type == BTM_LKEY_TYPE_AUTH_COMB ||
+      p_dev_rec->link_key_type == HCI_LKEY_TYPE_AUTH_COMB ||
       p_dev_rec->link_key_type == HCI_LKEY_TYPE_AUTH_COMB_P_256) {
     p_dev_rec->sec_flags |= BTM_SEC_LINK_KEY_AUTHED;
     p_dev_rec->sec_flags |= BTM_SEC_16_DIGIT_PIN_AUTHED;
