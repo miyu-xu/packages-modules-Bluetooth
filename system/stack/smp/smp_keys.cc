@@ -993,7 +993,7 @@ bool smp_calculate_link_key_from_long_term_key(tSMP_CB* p_cb) {
     if (p_cb->sec_level == SMP_SEC_AUTHENTICATED)
       link_key_type = BTM_LKEY_TYPE_AUTH_COMB;
     else
-      link_key_type = BTM_LKEY_TYPE_UNAUTH_COMB;
+      link_key_type = HCI_LKEY_TYPE_UNAUTH_COMB;
   } else {
     SMP_TRACE_ERROR("%s failed to update link_key. Sec Mode = %d, sm4 = 0x%02x",
                     __func__, btm_cb.security_mode, p_dev_rec->sm4);

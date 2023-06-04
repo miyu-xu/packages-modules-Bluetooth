@@ -1515,7 +1515,7 @@ static bool btm_sec_is_upgrade_possible(tBTM_SEC_DEV_REC* p_dev_rec,
      ** Is a link key upgrade even possible?
      */
     if ((p_dev_rec->security_required & mtm_check) /* needs MITM */
-        && ((p_dev_rec->link_key_type == BTM_LKEY_TYPE_UNAUTH_COMB) ||
+        && ((p_dev_rec->link_key_type == HCI_LKEY_TYPE_UNAUTH_COMB) ||
             (p_dev_rec->link_key_type == HCI_LKEY_TYPE_UNAUTH_COMB_P_256))
         /* has unauthenticated
         link key */
