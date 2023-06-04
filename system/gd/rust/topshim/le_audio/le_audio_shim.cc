@@ -30,6 +30,7 @@ namespace bluetooth {
 namespace topshim {
 namespace rust {
 namespace internal {
+
 static LeAudioClientIntf* g_lea_client_if;
 
 static le_audio::btle_audio_codec_config_t from_rust_btle_audio_codec_config(
@@ -317,6 +318,47 @@ std::unique_ptr<LeAudioClientIntf> GetLeAudioClientProfile(const unsigned char* 
   internal::g_lea_client_if = lea_client_if.get();
 
   return lea_client_if;
+}
+
+bool LeAudioClientIntf::host_start_audio_request() {
+  return ::bluetooth::audio::le_audio::HostStartRequest();
+}
+
+void LeAudioClientIntf::host_stop_audio_request() {
+  ::bluetooth::audio::le_audio::HostStopRequest();
+}
+
+bool LeAudioClientIntf::peer_start_audio_request() {
+  return ::bluetooth::audio::le_audio::PeerStartRequest();
+}
+
+void LeAudioClientIntf::peer_stop_audio_request() {
+  ::bluetooth::audio::le_audio::PeerStopRequest();
+}
+
+static BtLePcmConfig to_rust_btle_pcm_params(audio::le_audio::btle_pcm_parameters pcm_params) {
+  return BtLePcmConfig{
+      .data_interval_us = pcm_params.data_interval_us,
+      .sample_rate = pcm_params.sample_rate,
+      .bits_per_sample = pcm_params.bits_per_sample,
+      .channels_count = pcm_params.channels_count,
+  };
+}
+
+BtLePcmConfig LeAudioClientIntf::get_host_pcm_config() {
+  return to_rust_btle_pcm_params(::bluetooth::audio::le_audio::GetHostPcmConfig());
+}
+
+BtLePcmConfig LeAudioClientIntf::get_peer_pcm_config() {
+  return to_rust_btle_pcm_params(::bluetooth::audio::le_audio::GetPeerPcmConfig());
+}
+
+bool LeAudioClientIntf::get_host_stream_started() {
+  return ::bluetooth::audio::le_audio::GetHostStreamStarted();
+}
+
+bool LeAudioClientIntf::get_peer_stream_started() {
+  return ::bluetooth::audio::le_audio::GetPeerStreamStarted();
 }
 }  // namespace rust
 }  // namespace topshim

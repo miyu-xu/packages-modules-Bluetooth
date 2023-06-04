@@ -5,7 +5,6 @@ use bt_topshim::profiles::a2dp::{
     A2dp, A2dpCallbacksDispatcher, A2dpSink, A2dpSinkCallbacksDispatcher,
 };
 use bt_topshim::profiles::avrcp::{Avrcp, AvrcpCallbacksDispatcher};
-use bt_topshim::profiles::le_audio::{LeAudio, LeAudioClientCallbacksDispatcher};
 use bt_topshim_facade_protobuf::facade::{
     A2dpSourceConnectRequest, A2dpSourceConnectResponse, StartA2dpRequest, StartA2dpResponse,
 };
@@ -26,10 +25,6 @@ fn get_a2dp_sink_dispatcher() -> A2dpSinkCallbacksDispatcher {
 
 fn get_avrcp_dispatcher() -> AvrcpCallbacksDispatcher {
     AvrcpCallbacksDispatcher { dispatch: Box::new(move |_cb| {}) }
-}
-
-fn get_le_audio_dispatcher() -> LeAudioClientCallbacksDispatcher {
-    LeAudioClientCallbacksDispatcher { dispatch: Box::new(move |_cb| {}) }
 }
 
 /// Main object for Media facade service
