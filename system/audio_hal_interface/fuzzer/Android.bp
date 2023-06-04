@@ -100,8 +100,12 @@ cc_defaults {
         "packages/modules/Bluetooth/system/stack/include",
     ],
     cflags: [
+<<<<<<< PATCH SET (fb8ec5 Revert "audio_hal_fuzzer: Suppress trivial destructible warn)
+        "-DHAS_NO_BDROID_BUILDCFG",
+=======
         // http://b/264549607
         "-Wno-deprecated-builtins",
+>>>>>>> BASE      (f9f19c Merge "No longer call service to know its state")
     ],
     fuzz_config: {
         cc: ["android-bluetooth-security@google.com"],
