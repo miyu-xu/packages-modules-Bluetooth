@@ -3986,7 +3986,7 @@ void btm_sec_link_key_notification(const RawAddress& p_bda,
   /* If connection was made to do bonding restore link security if changed */
   btm_restore_mode();
 
-  if (key_type != BTM_LKEY_TYPE_CHANGED_COMB)
+  if (key_type != HCI_LKEY_TYPE_CHANGED_COMB)
     p_dev_rec->link_key_type = key_type;
 
   p_dev_rec->sec_flags |= BTM_SEC_LINK_KEY_KNOWN;

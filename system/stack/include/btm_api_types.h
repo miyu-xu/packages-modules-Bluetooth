@@ -319,7 +319,6 @@ enum : uint16_t {
 /* Link Key types used to generate the new link key.
  * returned in link key notification callback function
  */
-#define BTM_LKEY_TYPE_CHANGED_COMB HCI_LKEY_TYPE_CHANGED_COMB
 
 inline std::string linkkey_type_text(const int linkkey_type) {
   switch (linkkey_type) {
@@ -333,7 +332,7 @@ inline std::string linkkey_type_text(const int linkkey_type) {
       return std::string("UNAUTH_COMB");
     case HCI_LKEY_TYPE_AUTH_COMB:
       return std::string("AUTH_COMB");
-    case BTM_LKEY_TYPE_CHANGED_COMB:
+    case HCI_LKEY_TYPE_CHANGED_COMB:
       return std::string("CHANGED_COMB");
     case HCI_LKEY_TYPE_UNAUTH_COMB_P_256:
       return std::string("UNAUTH_COMB_P_256");
