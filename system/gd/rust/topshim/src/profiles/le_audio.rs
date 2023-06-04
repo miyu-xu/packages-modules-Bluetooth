@@ -2,7 +2,7 @@ use crate::btif::{BluetoothInterface, RawAddress, ToggleableProfile};
 use crate::topstack::get_dispatchers;
 
 use std::sync::{Arc, Mutex};
-use topshim_macros::{cb_variant, profile_enabled_or};
+use topshim_macros::{cb_variant, profile_enabled_or, profile_enabled_or_default};
 
 use log::warn;
 
@@ -45,6 +45,14 @@ pub mod ffi {
         Removed,
     }
 
+    #[derive(Debug, Default)]
+    pub struct BtLePcmConfig {
+        pub data_interval_us: u32,
+        pub sample_rate: u32,
+        pub bits_per_sample: u8,
+        pub channels_count: u8,
+    }
+
     unsafe extern "C++" {
         include!("le_audio/le_audio_shim.h");
 
@@ -75,6 +83,15 @@ pub mod ffi {
             is_output_preference_le_audio: bool,
             is_duplex_preference_le_audio: bool,
         );
+
+        fn host_start_audio_request(self: Pin<&mut LeAudioClientIntf>) -> bool;
+        fn host_stop_audio_request(self: Pin<&mut LeAudioClientIntf>);
+        fn peer_start_audio_request(self: Pin<&mut LeAudioClientIntf>) -> bool;
+        fn peer_stop_audio_request(self: Pin<&mut LeAudioClientIntf>);
+        fn get_host_pcm_config(self: Pin<&mut LeAudioClientIntf>) -> BtLePcmConfig;
+        fn get_peer_pcm_config(self: Pin<&mut LeAudioClientIntf>) -> BtLePcmConfig;
+        fn get_host_stream_started(self: Pin<&mut LeAudioClientIntf>) -> bool;
+        fn get_peer_stream_started(self: Pin<&mut LeAudioClientIntf>) -> bool;
     }
 
     extern "Rust" {
@@ -111,21 +128,70 @@ pub mod ffi {
     }
 }
 
+pub type BtLeAudioCodecConfig = ffi::BtLeAudioCodecConfig;
+pub type BtLeAudioCodecIndex = ffi::BtLeAudioCodecIndex;
+pub type BtLeAudioConnectionState = ffi::BtLeAudioConnectionState;
+pub type BtLeAudioGroupStatus = ffi::BtLeAudioGroupStatus;
+pub type BtLeAudioGroupNodeStatus = ffi::BtLeAudioGroupNodeStatus;
+pub type BtLePcmConfig = ffi::BtLePcmConfig;
+
+impl From<BtLeAudioGroupStatus> for i32 {
+    fn from(value: BtLeAudioGroupStatus) -> Self {
+        match value {
+            BtLeAudioGroupStatus::Inactive => 0,
+            BtLeAudioGroupStatus::Active => 1,
+            BtLeAudioGroupStatus::TurnedIdleDuringCall => 2,
+            _ => panic!("Invalid value {:?} to BtLeAudioGroupStatus", value),
+        }
+    }
+}
+
+impl From<i32> for BtLeAudioGroupStatus {
+    fn from(value: i32) -> Self {
+        match value {
+            0 => BtLeAudioGroupStatus::Inactive,
+            1 => BtLeAudioGroupStatus::Active,
+            2 => BtLeAudioGroupStatus::TurnedIdleDuringCall,
+            _ => panic!("Invalid value {} for BtLeAudioGroupStatus", value),
+        }
+    }
+}
+
+impl From<BtLeAudioGroupNodeStatus> for i32 {
+    fn from(value: BtLeAudioGroupNodeStatus) -> Self {
+        match value {
+            BtLeAudioGroupNodeStatus::Added => 1,
+            BtLeAudioGroupNodeStatus::Removed => 2,
+            _ => panic!("Invalid value {:?} to BtLeAudioGroupNodeStatus", value),
+        }
+    }
+}
+
+impl From<i32> for BtLeAudioGroupNodeStatus {
+    fn from(value: i32) -> Self {
+        match value {
+            1 => BtLeAudioGroupNodeStatus::Added,
+            2 => BtLeAudioGroupNodeStatus::Removed,
+            _ => panic!("Invalid value {} for BtLeAudioGroupNodeStatus", value),
+        }
+    }
+}
+
 #[derive(Debug)]
 pub enum LeAudioClientCallbacks {
     Initialized(),
-    ConnectionState(ffi::BtLeAudioConnectionState, RawAddress),
-    GroupStatus(i32, ffi::BtLeAudioGroupStatus),
-    GroupNodeStatus(RawAddress, i32, ffi::BtLeAudioGroupNodeStatus),
+    ConnectionState(BtLeAudioConnectionState, RawAddress),
+    GroupStatus(i32, BtLeAudioGroupStatus),
+    GroupNodeStatus(RawAddress, i32, BtLeAudioGroupNodeStatus),
     AudioConf(u8, i32, u32, u32, u16),
     SinkAudioLocationAvailable(RawAddress, u32),
-    AudioLocalCodecCapabilities(Vec<ffi::BtLeAudioCodecConfig>, Vec<ffi::BtLeAudioCodecConfig>),
+    AudioLocalCodecCapabilities(Vec<BtLeAudioCodecConfig>, Vec<BtLeAudioCodecConfig>),
     AudioGroupCodecConf(
         i32,
-        ffi::BtLeAudioCodecConfig,
-        ffi::BtLeAudioCodecConfig,
-        Vec<ffi::BtLeAudioCodecConfig>,
-        Vec<ffi::BtLeAudioCodecConfig>,
+        BtLeAudioCodecConfig,
+        BtLeAudioCodecConfig,
+        Vec<BtLeAudioCodecConfig>,
+        Vec<BtLeAudioCodecConfig>,
     ),
 }
 
@@ -140,15 +206,15 @@ cb_variant!(LeAudioClientCb,
 
 cb_variant!(LeAudioClientCb,
             le_audio_connection_state_callback -> LeAudioClientCallbacks::ConnectionState,
-            ffi::BtLeAudioConnectionState, RawAddress);
+            BtLeAudioConnectionState, RawAddress);
 
 cb_variant!(LeAudioClientCb,
             le_audio_group_status_callback -> LeAudioClientCallbacks::GroupStatus,
-            i32, ffi::BtLeAudioGroupStatus);
+            i32, BtLeAudioGroupStatus);
 
 cb_variant!(LeAudioClientCb,
             le_audio_group_node_status_callback -> LeAudioClientCallbacks::GroupNodeStatus,
-            RawAddress, i32, ffi::BtLeAudioGroupNodeStatus);
+            RawAddress, i32, BtLeAudioGroupNodeStatus);
 
 cb_variant!(LeAudioClientCb,
             le_audio_audio_conf_callback -> LeAudioClientCallbacks::AudioConf,
@@ -160,19 +226,19 @@ cb_variant!(LeAudioClientCb,
 
 cb_variant!(LeAudioClientCb,
 le_audio_audio_local_codec_capabilities_callback -> LeAudioClientCallbacks::AudioLocalCodecCapabilities,
-&Vec<ffi::BtLeAudioCodecConfig>, &Vec<ffi::BtLeAudioCodecConfig>,
+&Vec<BtLeAudioCodecConfig>, &Vec<BtLeAudioCodecConfig>,
 {
-    let _0: Vec<ffi::BtLeAudioCodecConfig> = _0.to_vec();
-    let _1: Vec<ffi::BtLeAudioCodecConfig> = _1.to_vec();
+    let _0: Vec<BtLeAudioCodecConfig> = _0.to_vec();
+    let _1: Vec<BtLeAudioCodecConfig> = _1.to_vec();
 });
 
 cb_variant!(LeAudioClientCb,
 le_audio_audio_group_codec_conf_callback -> LeAudioClientCallbacks::AudioGroupCodecConf,
-i32, ffi::BtLeAudioCodecConfig, ffi::BtLeAudioCodecConfig,
-&Vec<ffi::BtLeAudioCodecConfig>, &Vec<ffi::BtLeAudioCodecConfig>,
+i32, BtLeAudioCodecConfig, BtLeAudioCodecConfig,
+&Vec<BtLeAudioCodecConfig>, &Vec<BtLeAudioCodecConfig>,
 {
-    let _3: Vec<ffi::BtLeAudioCodecConfig> = _3.to_vec();
-    let _4: Vec<ffi::BtLeAudioCodecConfig> = _4.to_vec();
+    let _3: Vec<BtLeAudioCodecConfig> = _3.to_vec();
+    let _4: Vec<BtLeAudioCodecConfig> = _4.to_vec();
 });
 
 pub struct LeAudioClient {
@@ -248,36 +314,36 @@ impl LeAudioClient {
     }
 
     #[profile_enabled_or]
-    fn cleanup(&mut self) {
+    pub fn cleanup(&mut self) {
         self.internal.pin_mut().cleanup();
     }
 
     #[profile_enabled_or]
-    fn remove_device(&mut self, addr: RawAddress) {
+    pub fn remove_device(&mut self, addr: RawAddress) {
         self.internal.pin_mut().remove_device(addr);
     }
 
     #[profile_enabled_or]
-    fn group_add_node(&mut self, group_id: i32, addr: RawAddress) {
+    pub fn group_add_node(&mut self, group_id: i32, addr: RawAddress) {
         self.internal.pin_mut().group_add_node(group_id, addr);
     }
 
     #[profile_enabled_or]
-    fn group_remove_node(&mut self, group_id: i32, addr: RawAddress) {
+    pub fn group_remove_node(&mut self, group_id: i32, addr: RawAddress) {
         self.internal.pin_mut().group_remove_node(group_id, addr);
     }
 
     #[profile_enabled_or]
-    fn group_set_active(&mut self, group_id: i32) {
+    pub fn group_set_active(&mut self, group_id: i32) {
         self.internal.pin_mut().group_set_active(group_id);
     }
 
     #[profile_enabled_or]
-    fn set_codec_config_preference(
+    pub fn set_codec_config_preference(
         &mut self,
         group_id: i32,
-        input_codec_config: ffi::BtLeAudioCodecConfig,
-        output_codec_config: ffi::BtLeAudioCodecConfig,
+        input_codec_config: BtLeAudioCodecConfig,
+        output_codec_config: BtLeAudioCodecConfig,
     ) {
         self.internal.pin_mut().set_codec_config_preference(
             group_id,
@@ -287,17 +353,17 @@ impl LeAudioClient {
     }
 
     #[profile_enabled_or]
-    fn set_ccid_information(&mut self, ccid: i32, context_type: i32) {
+    pub fn set_ccid_information(&mut self, ccid: i32, context_type: i32) {
         self.internal.pin_mut().set_ccid_information(ccid, context_type);
     }
 
     #[profile_enabled_or]
-    fn set_in_call(&mut self, in_call: bool) {
+    pub fn set_in_call(&mut self, in_call: bool) {
         self.internal.pin_mut().set_in_call(in_call);
     }
 
     #[profile_enabled_or]
-    fn send_audio_profile_preferences(
+    pub fn send_audio_profile_preferences(
         &mut self,
         group_id: i32,
         is_output_preference_le_audio: bool,
@@ -308,5 +374,45 @@ impl LeAudioClient {
             is_output_preference_le_audio,
             is_duplex_preference_le_audio,
         );
+    }
+
+    #[profile_enabled_or(false)]
+    pub fn host_start_audio_request(&mut self) -> bool {
+        self.internal.pin_mut().host_start_audio_request()
+    }
+
+    #[profile_enabled_or]
+    pub fn host_stop_audio_request(&mut self) {
+        self.internal.pin_mut().host_stop_audio_request();
+    }
+
+    #[profile_enabled_or(false)]
+    pub fn peer_start_audio_request(&mut self) -> bool {
+        self.internal.pin_mut().peer_start_audio_request()
+    }
+
+    #[profile_enabled_or]
+    pub fn peer_stop_audio_request(&mut self) {
+        self.internal.pin_mut().peer_stop_audio_request();
+    }
+
+    #[profile_enabled_or_default]
+    pub fn get_host_pcm_config(&mut self) -> BtLePcmConfig {
+        self.internal.pin_mut().get_host_pcm_config()
+    }
+
+    #[profile_enabled_or_default]
+    pub fn get_peer_pcm_config(&mut self) -> BtLePcmConfig {
+        self.internal.pin_mut().get_peer_pcm_config()
+    }
+
+    #[profile_enabled_or(false)]
+    pub fn get_host_stream_started(&mut self) -> bool {
+        self.internal.pin_mut().get_host_stream_started()
+    }
+
+    #[profile_enabled_or(false)]
+    pub fn get_peer_stream_started(&mut self) -> bool {
+        self.internal.pin_mut().get_peer_stream_started()
     }
 }

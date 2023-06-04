@@ -28,9 +28,11 @@ namespace le_audio {
 using ::le_audio::set_configurations::AudioSetConfiguration;
 using ::le_audio::set_configurations::CodecCapabilitySetting;
 
-using ::bluetooth::audio::le_audio::PcmParameters;
+using ::bluetooth::audio::le_audio::LeAudioClientInterface;
 using ::bluetooth::audio::le_audio::StartRequestState;
 using ::bluetooth::audio::le_audio::StreamCallbacks;
+
+typedef LeAudioClientInterface::PcmParameters PcmParameters;
 
 void flush_sink();
 void flush_source();
@@ -114,6 +116,7 @@ class LeAudioSinkTransport {
   void SetStartRequestState(StartRequestState state);
 
   static inline LeAudioSinkTransport* instance = nullptr;
+  static inline bool stream_started = false;
 
  private:
   LeAudioTransport* transport_;
@@ -154,6 +157,7 @@ class LeAudioSourceTransport {
   void SetStartRequestState(StartRequestState state);
 
   static inline LeAudioSourceTransport* instance = nullptr;
+  static inline bool stream_started = false;
 
  private:
   LeAudioTransport* transport_;

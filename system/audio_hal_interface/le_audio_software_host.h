@@ -16,24 +16,43 @@
 
 #pragma once
 
-#include "audio_hal_interface/le_audio_software.h"
-
+// APIs exposed to the audio server.
 namespace bluetooth {
 namespace audio {
 namespace le_audio {
 
-using ::le_audio::set_configurations::AudioSetConfiguration;
-using ::le_audio::set_configurations::CodecCapabilitySetting;
-
-using ::bluetooth::audio::le_audio::StartRequestState;
-using ::bluetooth::audio::le_audio::StreamCallbacks;
-
-struct PcmParameters {
+struct btle_pcm_parameters {
   uint32_t data_interval_us;
   uint32_t sample_rate;
   uint8_t bits_per_sample;
   uint8_t channels_count;
 };
+
+// Invoked by audio server when it has audio data to stream.
+// Returns whether the start request has been made successfully.
+bool HostStartRequest();
+
+// Invoked by audio server when audio streaming is done.
+void HostStopRequest();
+
+// Returns whether the host stream has started.
+bool GetHostStreamStarted();
+
+// Returns the current host audio config.
+btle_pcm_parameters GetHostPcmConfig();
+
+// Invoked by audio server to request audio data streamed from the peer.
+// Returns whether the start request has been made successfully.
+bool PeerStartRequest();
+
+// Invoked by audio server when audio streaming is done.
+void PeerStopRequest();
+
+// Returns whether the peer stream has started.
+bool GetPeerStreamStarted();
+
+// Returns the current peer audio config.
+btle_pcm_parameters GetPeerPcmConfig();
 
 }  // namespace le_audio
 }  // namespace audio
