@@ -45,6 +45,17 @@ filegroup {
     ],
 }
 
+cc_defaults {
+    name: "bluetooth_cflags",
+    cflags: [
+        "-Wall",
+        "-Werror",
+        "-Wextra",
+        // there are too many unused parameters in all the code.
+        "-Wno-unused-parameter",
+    ],
+}
+
 // Address Sanitizer is flaky on Android x86_64 binaries but it's not on x86
 // binaries.
 // This default workaround the x86_64 ASAN flakyness by running 32bit binaries

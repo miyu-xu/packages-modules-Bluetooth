@@ -33,7 +33,7 @@ cc_defaults {
         "--header-filter=^.*tools\\/rootcanal\\/(model|include|net|desktop)\\/(.(?!\\.pb\\.h))*$",
     ],
     defaults: [
-        "fluoride_common_options",
+        "bluetooth_cflags",
         "gd_defaults",
     ],
     cflags: [
@@ -316,7 +316,7 @@ python_test_host {
 cc_test_host {
     name: "rootcanal_test_host",
     defaults: [
-        "fluoride_common_options",
+        "bluetooth_cflags",
     ],
     // TODO(b/231993739): Reenable isolated:true by deleting the explicit disable below
     isolated: false,
