@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "805ce8b5_8749ed76",
+        "filename": "system/bta/dm/bta_dm_main.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-06-04T20:06:03Z",
+      "side": 1,
+      "message": "This seems to be fine, because dm state machine is in the state `BTA_DM_DISCOVER_ACTIVE:` and we should not set it to `BTA_DM_SEARCH_CANCELLING`  - note that SEARCH is not active now.",
+      "parentUuid": "34673554_9671ccd7",
+      "range": {
+        "startLine": 217,
+        "startChar": 12,
+        "endLine": 217,
+        "endChar": 35
+      },
+      "revId": "c21807c21de80425467749fd9ed7f88b4bde9398",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8e2a9f6b_63519e00",
         "filename": "system/bta/dm/bta_dm_main.cc",
         "patchSetId": 3
@@ -67,6 +91,47 @@
         "endLine": 218,
         "endChar": 39
       },
+      "revId": "c21807c21de80425467749fd9ed7f88b4bde9398",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "99554064_f1a74a37",
+        "filename": "system/bta/dm/bta_dm_main.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 218,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-06-04T20:06:03Z",
+      "side": 1,
+      "message": "this seems to be ok to Call despite the flag. But maybe there is a reason why Rahul put it under the flag.",
+      "parentUuid": "07710542_7ed92faf",
+      "range": {
+        "startLine": 218,
+        "startChar": 12,
+        "endLine": 218,
+        "endChar": 39
+      },
+      "revId": "c21807c21de80425467749fd9ed7f88b4bde9398",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d9f7e3bc_c8e21354",
+        "filename": "system/gd/common/init_flags.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-06-04T20:06:03Z",
+      "side": 1,
+      "message": "nit: this could be separate patch.",
       "revId": "c21807c21de80425467749fd9ed7f88b4bde9398",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
