@@ -831,6 +831,32 @@ typedef enum : uint8_t {
 #define HCI_LKEY_TYPE_UNAUTH_COMB_P_256 0x07
 #define HCI_LKEY_TYPE_AUTH_COMB_P_256 0x08
 
+/* Link Key types used to generate the new link key.
+ * returned in link key notification callback function
+ */
+inline std::string linkkey_type_text(const int linkkey_type) {
+  switch (linkkey_type) {
+    case HCI_LKEY_TYPE_COMBINATION:
+      return std::string("COMBINATION");
+    case HCI_LKEY_TYPE_REMOTE_UNIT:
+      return std::string("REMOTE_UNIT");
+    case HCI_LKEY_TYPE_DEBUG_COMB:
+      return std::string("DEBUG_COMB");
+    case HCI_LKEY_TYPE_UNAUTH_COMB:
+      return std::string("UNAUTH_COMB");
+    case HCI_LKEY_TYPE_AUTH_COMB:
+      return std::string("AUTH_COMB");
+    case HCI_LKEY_TYPE_CHANGED_COMB:
+      return std::string("CHANGED_COMB");
+    case HCI_LKEY_TYPE_UNAUTH_COMB_P_256:
+      return std::string("UNAUTH_COMB_P_256");
+    case HCI_LKEY_TYPE_AUTH_COMB_P_256:
+      return std::string("AUTH_COMB_P_256");
+    default:
+      return base::StringPrintf("UNKNOWN[0x%02x]", linkkey_type);
+  }
+}
+
 /* Define an invalid value for a handle */
 #define HCI_INVALID_HANDLE 0xFFFF
 
