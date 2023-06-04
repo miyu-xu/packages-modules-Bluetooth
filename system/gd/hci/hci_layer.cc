@@ -16,6 +16,8 @@
 
 #include "hci/hci_layer.h"
 
+#include <base/logging.h>
+
 #include "common/bind.h"
 #include "common/init_flags.h"
 #include "common/stop_watch.h"
@@ -199,7 +201,8 @@ struct HciLayer::impl {
         OpCodeText(op_code).c_str());
 
     // TODO: remove this after PoC is clear
-    LOG_WARN(__func__, op_code, OpCodeText(op_code).c_str(), logging_id.c_str());
+    LOG(WARNING) << __func__ << " " << op_code << " " << OpCodeText(op_code).c_str() << " "
+                 << logging_id.c_str();
 
     bool is_vendor_specific = static_cast<int>(op_code) & (0x3f << 10);
     CommandStatusView status_view = CommandStatusView::Create(event);
