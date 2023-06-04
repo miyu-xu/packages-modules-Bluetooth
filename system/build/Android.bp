@@ -18,9 +18,6 @@ cc_defaults {
         // http://b/264549607
         "-Wno-deprecated-builtins",
     ],
-    include_dirs: [
-        "packages/modules/Bluetooth/system/gd",
-    ],
 }
 
 // Fuzzable defaults are the subset of defaults that are used in fuzzing, which
