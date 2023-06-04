@@ -1516,7 +1516,7 @@ static bool btm_sec_is_upgrade_possible(tBTM_SEC_DEV_REC* p_dev_rec,
      */
     if ((p_dev_rec->security_required & mtm_check) /* needs MITM */
         && ((p_dev_rec->link_key_type == BTM_LKEY_TYPE_UNAUTH_COMB) ||
-            (p_dev_rec->link_key_type == BTM_LKEY_TYPE_UNAUTH_COMB_P_256))
+            (p_dev_rec->link_key_type == HCI_LKEY_TYPE_UNAUTH_COMB_P_256))
         /* has unauthenticated
         link key */
         && (p_dev_rec->rmt_io_caps < BTM_IO_CAP_MAX) /* a valid peer IO cap */
@@ -4024,7 +4024,7 @@ void btm_sec_link_key_notification(const RawAddress& p_bda,
           p_dev_rec->link_key_type, true /* is_ctkd */);
     }
   } else {
-    if ((p_dev_rec->link_key_type == BTM_LKEY_TYPE_UNAUTH_COMB_P_256) ||
+    if ((p_dev_rec->link_key_type == HCI_LKEY_TYPE_UNAUTH_COMB_P_256) ||
         (p_dev_rec->link_key_type == BTM_LKEY_TYPE_AUTH_COMB_P_256)) {
       p_dev_rec->new_encryption_key_is_p256 = true;
       BTM_TRACE_DEBUG("%s set new_encr_key_256 to %d", __func__,
@@ -5040,7 +5040,7 @@ static bool btm_sec_use_smp_br_chnl(tBTM_SEC_DEV_REC* p_dev_rec) {
   BTM_TRACE_DEBUG("%s() link_key_type = 0x%x", __func__,
                   p_dev_rec->link_key_type);
 
-  if ((p_dev_rec->link_key_type != BTM_LKEY_TYPE_UNAUTH_COMB_P_256) &&
+  if ((p_dev_rec->link_key_type != HCI_LKEY_TYPE_UNAUTH_COMB_P_256) &&
       (p_dev_rec->link_key_type != BTM_LKEY_TYPE_AUTH_COMB_P_256))
     return false;
 

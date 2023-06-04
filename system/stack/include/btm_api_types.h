@@ -323,7 +323,6 @@ enum : uint16_t {
 #define BTM_LKEY_TYPE_AUTH_COMB HCI_LKEY_TYPE_AUTH_COMB
 #define BTM_LKEY_TYPE_CHANGED_COMB HCI_LKEY_TYPE_CHANGED_COMB
 
-#define BTM_LKEY_TYPE_UNAUTH_COMB_P_256 HCI_LKEY_TYPE_UNAUTH_COMB_P_256
 #define BTM_LKEY_TYPE_AUTH_COMB_P_256 HCI_LKEY_TYPE_AUTH_COMB_P_256
 
 inline std::string linkkey_type_text(const int linkkey_type) {
@@ -340,7 +339,7 @@ inline std::string linkkey_type_text(const int linkkey_type) {
       return std::string("AUTH_COMB");
     case BTM_LKEY_TYPE_CHANGED_COMB:
       return std::string("CHANGED_COMB");
-    case BTM_LKEY_TYPE_UNAUTH_COMB_P_256:
+    case HCI_LKEY_TYPE_UNAUTH_COMB_P_256:
       return std::string("UNAUTH_COMB_P_256");
     case BTM_LKEY_TYPE_AUTH_COMB_P_256:
       return std::string("AUTH_COMB_P_256");

@@ -987,7 +987,7 @@ bool smp_calculate_link_key_from_long_term_key(tSMP_CB* p_cb) {
     if (p_cb->sec_level == SMP_SEC_AUTHENTICATED)
       link_key_type = BTM_LKEY_TYPE_AUTH_COMB_P_256;
     else
-      link_key_type = BTM_LKEY_TYPE_UNAUTH_COMB_P_256;
+      link_key_type = HCI_LKEY_TYPE_UNAUTH_COMB_P_256;
   } else if (btm_cb.security_mode == BTM_SEC_MODE_SP) {
     /* BR/EDR transport is SSP capable */
     if (p_cb->sec_level == SMP_SEC_AUTHENTICATED)
@@ -1031,7 +1031,7 @@ bool smp_calculate_long_term_key_from_link_key(tSMP_CB* p_cb) {
   }
 
   if ((br_link_key_type != BTM_LKEY_TYPE_AUTH_COMB_P_256) &&
-      (br_link_key_type != BTM_LKEY_TYPE_UNAUTH_COMB_P_256)) {
+      (br_link_key_type != HCI_LKEY_TYPE_UNAUTH_COMB_P_256)) {
     SMP_TRACE_ERROR("%s LE SC LTK can't be derived from LK %d", __func__,
                     br_link_key_type);
     return false;
