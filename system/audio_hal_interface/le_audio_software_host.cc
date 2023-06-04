@@ -18,6 +18,9 @@
 #include "audio_hal_interface/le_audio_software_host.h"
 
 #include <base/logging.h>
+#include <errno.h>
+#include <grp.h>
+#include <sys/stat.h>
 
 #include "audio_hal_interface/le_audio_software.h"
 #include "audio_hal_interface/le_audio_software_host_transport.h"
@@ -31,10 +34,105 @@
 // TODO(b/198260375): Make LEA data owner group configurable.
 #define LEA_HOST_DATA_GROUP "bluetooth-audio"
 
+namespace {
+
+std::unique_ptr<tUIPC_STATE> lea_uipc = nullptr;
+
+void lea_data_cb(tUIPC_CH_ID, tUIPC_EVENT event) {
+  switch (event) {
+    case UIPC_OPEN_EVT:
+      LOG_INFO("%s: UIPC_OPEN_EVT", __func__);
+      /*
+       * Read directly from media task from here on (keep callback for
+       * connection events.
+       */
+      UIPC_Ioctl(*lea_uipc, UIPC_CH_ID_AV_AUDIO, UIPC_REG_REMOVE_ACTIVE_READSET,
+                 NULL);
+      UIPC_Ioctl(*lea_uipc, UIPC_CH_ID_AV_AUDIO, UIPC_SET_READ_POLL_TMO,
+                 reinterpret_cast<void*>(LEA_DATA_READ_POLL_MS));
+      break;
+    case UIPC_CLOSE_EVT:
+      LOG_INFO("%s: UIPC_CLOSE_EVT", __func__);
+      break;
+    default:
+      break;
+  }
+}
+
+static void lea_data_path_open() {
+  UIPC_Open(*lea_uipc, UIPC_CH_ID_AV_AUDIO, lea_data_cb, LEA_HOST_DATA_PATH);
+  struct group* grp = getgrnam(LEA_HOST_DATA_GROUP);
+  chmod(LEA_HOST_DATA_PATH, 0770);
+  if (grp) {
+    int res = chown(LEA_HOST_DATA_PATH, -1, grp->gr_gid);
+    if (res == -1) {
+      LOG_ERROR("%s failed: %s", __func__, strerror(errno));
+    }
+  }
+}
+
+}  // namespace
+
 namespace bluetooth {
 namespace audio {
 
 namespace le_audio {
+
+// Invoked by audio server when it has audio data to stream.
+bool HostStartRequest() {
+  host::le_audio::LeAudioSinkTransport::instance->ResetPresentationPosition();
+  return host::le_audio::LeAudioSinkTransport::instance->StartRequest();
+}
+
+void HostStopRequest() {
+  host::le_audio::LeAudioSinkTransport::instance->StopRequest();
+}
+
+btle_pcm_parameters GetHostPcmConfig() {
+  auto pcm_params = host::le_audio::LeAudioSinkTransport::instance
+                        ->LeAudioGetSelectedHalPcmConfig();
+
+  btle_pcm_parameters pcm_config = {
+      .data_interval_us = pcm_params.data_interval_us,
+      .sample_rate = pcm_params.sample_rate,
+      .bits_per_sample = pcm_params.bits_per_sample,
+      .channels_count = pcm_params.channels_count,
+  };
+
+  return pcm_config;
+}
+
+// Invoked by audio server to request audio data streamed from the peer.
+bool PeerStartRequest() {
+  host::le_audio::LeAudioSinkTransport::instance->ResetPresentationPosition();
+  return host::le_audio::LeAudioSourceTransport::instance->StartRequest();
+}
+
+void PeerStopRequest() {
+  host::le_audio::LeAudioSourceTransport::instance->StopRequest();
+}
+
+btle_pcm_parameters GetPeerPcmConfig() {
+  auto pcm_params = host::le_audio::LeAudioSourceTransport::instance
+                        ->LeAudioGetSelectedHalPcmConfig();
+
+  btle_pcm_parameters pcm_config = {
+      .data_interval_us = pcm_params.data_interval_us,
+      .sample_rate = pcm_params.sample_rate,
+      .bits_per_sample = pcm_params.bits_per_sample,
+      .channels_count = pcm_params.channels_count,
+  };
+
+  return pcm_config;
+}
+
+bool GetHostStreamStarted() {
+  return host::le_audio::LeAudioSinkTransport::stream_started;
+}
+
+bool GetPeerStreamStarted() {
+  return host::le_audio::LeAudioSourceTransport::stream_started;
+}
 
 std::vector<::le_audio::set_configurations::AudioSetConfiguration>
 get_offload_capabilities() {
@@ -78,6 +176,7 @@ void LeAudioClientInterface::Sink::StopSession() {
   LOG(INFO) << __func__;
 
   host::le_audio::LeAudioSinkTransport::instance->ClearStartRequestState();
+  host::le_audio::LeAudioSinkTransport::stream_started = false;
 }
 
 void LeAudioClientInterface::Sink::ConfirmStreamingRequest() {
@@ -93,10 +192,12 @@ void LeAudioClientInterface::Sink::ConfirmStreamingRequest() {
     case StartRequestState::PENDING_BEFORE_RESUME:
       LOG_INFO("Response before sending PENDING to audio HAL");
       instance->SetStartRequestState(StartRequestState::CONFIRMED);
+      lea_data_path_open();
       return;
     case StartRequestState::PENDING_AFTER_RESUME:
       LOG_INFO("Response after sending PENDING to audio HAL");
       instance->ClearStartRequestState();
+      host::le_audio::LeAudioSinkTransport::stream_started = true;
       return;
     case StartRequestState::CONFIRMED:
     case StartRequestState::CANCELED:
@@ -122,6 +223,7 @@ void LeAudioClientInterface::Sink::CancelStreamingRequest() {
     case StartRequestState::PENDING_AFTER_RESUME:
       LOG_INFO("Response after sending PENDING to audio HAL");
       instance->ClearStartRequestState();
+      host::le_audio::LeAudioSinkTransport::stream_started = false;
       return;
     case StartRequestState::CONFIRMED:
     case StartRequestState::CANCELED:
@@ -186,6 +288,7 @@ void LeAudioClientInterface::Source::StopSession() {
   LOG(INFO) << __func__;
 
   host::le_audio::LeAudioSourceTransport::instance->ClearStartRequestState();
+  host::le_audio::LeAudioSourceTransport::stream_started = false;
 }
 
 void LeAudioClientInterface::Source::ConfirmStreamingRequest() {
@@ -201,10 +304,12 @@ void LeAudioClientInterface::Source::ConfirmStreamingRequest() {
     case StartRequestState::PENDING_BEFORE_RESUME:
       LOG_INFO("Response before sending PENDING to audio HAL");
       instance->SetStartRequestState(StartRequestState::CONFIRMED);
+      lea_data_path_open();
       return;
     case StartRequestState::PENDING_AFTER_RESUME:
       LOG_INFO("Response after sending PENDING to audio HAL");
       instance->ClearStartRequestState();
+      host::le_audio::LeAudioSourceTransport::stream_started = true;
       return;
     case StartRequestState::CONFIRMED:
     case StartRequestState::CANCELED:
@@ -230,6 +335,7 @@ void LeAudioClientInterface::Source::CancelStreamingRequest() {
     case StartRequestState::PENDING_AFTER_RESUME:
       LOG_INFO("Response after sending PENDING to audio HAL");
       instance->ClearStartRequestState();
+      host::le_audio::LeAudioSourceTransport::stream_started = false;
       return;
     case StartRequestState::CANCELED:
     case StartRequestState::CONFIRMED:
@@ -352,8 +458,12 @@ LeAudioClientInterface* LeAudioClientInterface::interface = nullptr;
 LeAudioClientInterface* LeAudioClientInterface::Get() {
   // TODO: check flag
 
-  if (LeAudioClientInterface::interface == nullptr)
+  if (LeAudioClientInterface::interface == nullptr) {
+    ASSERT(lea_uipc == nullptr);
+    lea_uipc = UIPC_Init();
+
     LeAudioClientInterface::interface = new LeAudioClientInterface();
+  }
 
   return LeAudioClientInterface::interface;
 }

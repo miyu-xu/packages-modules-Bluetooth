@@ -18,6 +18,7 @@
 
 #include <memory>
 
+#include "audio_hal_interface/le_audio_software_host.h"
 #include "include/hardware/bt_le_audio.h"
 #include "rust/cxx.h"
 #include "types/raw_address.h"
@@ -27,6 +28,7 @@ namespace topshim {
 namespace rust {
 
 struct BtLeAudioCodecConfig;
+struct BtLePcmConfig;
 
 class LeAudioClientIntf {
  public:
@@ -53,6 +55,16 @@ const std::vector<le_audio::btle_audio_codec_config_t>& offloading_preference
   void set_in_call(bool in_call);
   void send_audio_profile_preferences(
       int group_id, bool is_output_preference_le_audio, bool is_duplex_preference_le_audio);
+
+  // interface for audio server
+  bool host_start_audio_request();
+  void host_stop_audio_request();
+  bool peer_start_audio_request();
+  void peer_stop_audio_request();
+  BtLePcmConfig get_host_pcm_config();
+  BtLePcmConfig get_peer_pcm_config();
+  bool get_host_stream_started();
+  bool get_peer_stream_started();
 
  private:
   le_audio::LeAudioClientInterface* intf_;

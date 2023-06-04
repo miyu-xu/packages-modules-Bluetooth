@@ -9,6 +9,7 @@ use bt_topshim::profiles::avrcp::PlayerMetadata;
 use bt_topshim::profiles::gatt::{AdvertisingStatus, GattStatus, LePhy};
 use bt_topshim::profiles::hfp::HfpCodecCapability;
 use bt_topshim::profiles::hid_host::BthhReportType;
+use bt_topshim::profiles::le_audio::{BtLePcmConfig, BtLeAudioGroupStatus, BtLeAudioGroupNodeStatus};
 use bt_topshim::profiles::sdp::{
     BtSdpDipRecord, BtSdpHeaderOverlay, BtSdpMasRecord, BtSdpMnsRecord, BtSdpMpsRecord,
     BtSdpOpsRecord, BtSdpPceRecord, BtSdpPseRecord, BtSdpRecord, BtSdpSapRecord, BtSdpType,
@@ -81,6 +82,8 @@ impl_dbus_arg_enum!(BtPropertyType);
 impl_dbus_arg_enum!(BtSspVariant);
 impl_dbus_arg_enum!(BtStatus);
 impl_dbus_arg_enum!(BtTransport);
+impl_dbus_arg_from_into!(BtLeAudioGroupStatus, i32);
+impl_dbus_arg_from_into!(BtLeAudioGroupNodeStatus, i32);
 impl_dbus_arg_enum!(GattStatus);
 impl_dbus_arg_enum!(GattWriteRequestStatus);
 impl_dbus_arg_enum!(GattWriteType);
@@ -2584,6 +2587,17 @@ impl IBluetoothMedia for BluetoothMediaDBus {
     fn trigger_debug_dump(&mut self) {
         dbus_generated!()
     }
+
+    fn connect_le(&mut self, _: std::string::String) { dbus_generated!() }
+    fn disconnect_le(&mut self, _: std::string::String) { dbus_generated!() }
+    fn host_start_audio_request(&mut self) -> bool { dbus_generated!() }
+    fn host_stop_audio_request(&mut self) { dbus_generated!() }
+    fn peer_start_audio_request(&mut self) -> bool { dbus_generated!() }
+    fn peer_stop_audio_request(&mut self) { dbus_generated!() }
+    fn get_host_pcm_config(&mut self) -> BtLePcmConfig { dbus_generated!() }
+    fn get_peer_pcm_config(&mut self) -> BtLePcmConfig { dbus_generated!() }
+    fn get_host_stream_started(&mut self) -> bool { dbus_generated!() }
+    fn get_peer_stream_started(&mut self) -> bool { dbus_generated!() }
 }
 
 struct IBluetoothMediaCallbackDBus {}
@@ -2626,4 +2640,19 @@ impl IBluetoothMediaCallback for IBluetoothMediaCallbackDBus {
         pkt_status_in_binary: String,
     ) {
     }
+
+    #[dbus_method("BleOnBluetoothAudioDeviceAdded")]
+    fn ble_on_bluetooth_audio_device_added(&mut self, device: BluetoothAudioDevice) {}
+
+    #[dbus_method("BleOnBluetoothAudioDeviceRemoved")]
+    fn ble_on_bluetooth_audio_device_removed(&mut self, addr: String) {}
+
+    #[dbus_method("BleOnGroupStatus")]
+    fn ble_on_group_status(&mut self, group_id: i32, status: BtLeAudioGroupStatus) {}
+
+    #[dbus_method("BleOnGroupNodeStatus")]
+    fn ble_on_group_node_status(&mut self, addr: String, group_id: i32, status: BtLeAudioGroupNodeStatus) {}
+
+    #[dbus_method("BleOnAudioConf")]
+    fn ble_on_audio_conf(&mut self, direction: u8, group_id: i32, snk_audio_location: u32, src_audio_location: u32, avail_cont: u16) {}
 }

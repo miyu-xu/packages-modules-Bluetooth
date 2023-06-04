@@ -25,9 +25,6 @@ namespace audio {
 namespace host {
 namespace le_audio {
 
-using ::bluetooth::audio::le_audio::LeAudioClientInterface;
-using ::bluetooth::audio::le_audio::StartRequestState;
-
 LeAudioTransport::LeAudioTransport(void (*flush)(void),
                                    StreamCallbacks stream_cb,
                                    PcmParameters pcm_config)

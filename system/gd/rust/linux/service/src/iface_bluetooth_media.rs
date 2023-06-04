@@ -1,6 +1,7 @@
 use bt_topshim::profiles::a2dp::{A2dpCodecConfig, PresentationPosition};
 use bt_topshim::profiles::avrcp::PlayerMetadata;
 use bt_topshim::profiles::hfp::HfpCodecCapability;
+use bt_topshim::profiles::le_audio::{BtLePcmConfig, BtLeAudioGroupStatus, BtLeAudioGroupNodeStatus};
 use btstack::bluetooth_media::{BluetoothAudioDevice, IBluetoothMedia, IBluetoothMediaCallback};
 use btstack::RPCProxy;
 
@@ -43,6 +44,16 @@ pub struct BluetoothAudioDeviceDBus {
     absolute_volume: bool,
 }
 
+#[dbus_propmap(BtLePcmConfig)]
+pub struct BtLePcmConfigDBus {
+    data_interval_us: u32,
+    sample_rate: u32,
+    bits_per_sample: u8,
+    channels_count: u8,
+}
+
+impl_dbus_arg_from_into!(BtLeAudioGroupStatus, i32);
+impl_dbus_arg_from_into!(BtLeAudioGroupNodeStatus, i32);
 impl_dbus_arg_from_into!(HfpCodecCapability, i32);
 
 #[dbus_proxy_obj(BluetoothMediaCallback, "org.chromium.bluetooth.BluetoothMediaCallback")]
@@ -89,6 +100,31 @@ impl IBluetoothMediaCallback for BluetoothMediaCallbackDBus {
         pkt_status_in_hex: String,
         pkt_status_in_binary: String,
     ) {
+        dbus_generated!()
+    }
+
+    #[dbus_method("BleOnBluetoothAudioDeviceAdded")]
+    fn ble_on_bluetooth_audio_device_added(&mut self, device: BluetoothAudioDevice) {
+        dbus_generated!()
+    }
+
+    #[dbus_method("BleOnBluetoothAudioDeviceRemoved")]
+    fn ble_on_bluetooth_audio_device_removed(&mut self, addr: String) {
+        dbus_generated!()
+    }
+
+    #[dbus_method("BleOnGroupStatus")]
+    fn ble_on_group_status(&mut self, group_id: i32, status: BtLeAudioGroupStatus) {
+        dbus_generated!()
+    }
+
+    #[dbus_method("BleOnGroupNodeStatus")]
+    fn ble_on_group_node_status(&mut self, addr: String, group_id: i32, status: BtLeAudioGroupNodeStatus) {
+        dbus_generated!()
+    }
+
+    #[dbus_method("BleOnAudioConf")]
+    fn ble_on_audio_conf(&mut self, direction: u8, group_id: i32, snk_audio_location: u32, src_audio_location: u32, avail_cont: u16) {
         dbus_generated!()
     }
 }
@@ -290,6 +326,46 @@ impl IBluetoothMedia for IBluetoothMediaDBus {
 
     #[dbus_method("TriggerDebugDump")]
     fn trigger_debug_dump(&mut self) {
+        dbus_generated!()
+    }
+
+    #[dbus_method("HostStartAudioRequest")]
+    fn host_start_audio_request(&mut self) -> bool {
+        dbus_generated!()
+    }
+
+    #[dbus_method("HostStopAudioRequest")]
+    fn host_stop_audio_request(&mut self) {
+        dbus_generated!()
+    }
+
+    #[dbus_method("PeerStartAudioRequest")]
+    fn peer_start_audio_request(&mut self) -> bool {
+        dbus_generated!()
+    }
+
+    #[dbus_method("PeerStopAudioRequest")]
+    fn peer_stop_audio_request(&mut self) {
+        dbus_generated!()
+    }
+
+    #[dbus_method("GetHostPcmConfig")]
+    fn get_host_pcm_config(&mut self) -> BtLePcmConfig {
+        dbus_generated!()
+    }
+
+    #[dbus_method("GetPeerPcmConfig")]
+    fn get_peer_pcm_config(&mut self) -> BtLePcmConfig {
+        dbus_generated!()
+    }
+
+    #[dbus_method("GetHostStreamStarted")]
+    fn get_host_stream_started(&mut self) -> bool {
+        dbus_generated!()
+    }
+
+    #[dbus_method("GetPeerStreamStarted")]
+    fn get_peer_stream_started(&mut self) -> bool {
         dbus_generated!()
     }
 }
