@@ -1849,6 +1849,7 @@ impl IBluetoothMedia for BluetoothMedia {
 
         match self.le_audio.as_mut() {
             Some(le_audio) => {
+                le_audio.set_enable_state(addr, true);
                 le_audio.connect(addr);
             }
             None => {
@@ -1864,6 +1865,21 @@ impl IBluetoothMedia for BluetoothMedia {
                 return;
             }
             Some(addr) => addr,
+        };
+
+        info!(
+            "[{}]: Disconnecting LE Audio",
+            DisplayAddress(&addr),
+        );
+
+        match self.le_audio.as_mut() {
+            Some(le_audio) => {
+                le_audio.set_enable_state(addr, false);
+                le_audio.disconnect(addr);
+            }
+            None => {
+                warn!("Uninitialized LeAudio to disconnect {}", DisplayAddress(&addr));
+            }
         };
     }
 
