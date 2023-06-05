@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fb9129c6_076ef200",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-06-05T12:22:04Z",
+      "side": 1,
+      "message": "Hi, please review this CL, thanks!\n\nThe way I change the usage of `service_resolved`, I wonder if I need to initialize its value elsewhere. WDYT?",
+      "revId": "44229f58b20f76507dd578a6361ebaaa0c3ccbd4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
