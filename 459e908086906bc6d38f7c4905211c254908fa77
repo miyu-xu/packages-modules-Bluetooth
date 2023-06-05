@@ -22,6 +22,30 @@
       },
       "revId": "459e908086906bc6d38f7c4905211c254908fa77",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ed688756_4001ac00",
+        "filename": "system/stack/include/btm_api_types.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-06-05T19:23:46Z",
+      "side": 1,
+      "message": "I could...the plan is to blow up these files, and I left these as markers to cross reference while we still have this file in play",
+      "parentUuid": "793d69a5_5093fba0",
+      "range": {
+        "startLine": 189,
+        "startChar": 0,
+        "endLine": 191,
+        "endChar": 21
+      },
+      "revId": "459e908086906bc6d38f7c4905211c254908fa77",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
