@@ -283,6 +283,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "66460157_cf95aefa",
+        "filename": "system/stack/btm/btm_sco_hci.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 753,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2023-06-05T22:16:47Z",
+      "side": 1,
+      "message": "Acknowledged. Please add a TODO then.",
+      "parentUuid": "f1ae4a17_d512c3d8",
+      "range": {
+        "startLine": 753,
+        "startChar": 14,
+        "endLine": 753,
+        "endChar": 15
+      },
+      "revId": "c947d08a8b84673fcc6b2609d3f3f02ff71a42e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "40deb8f6_a7e86ca9",
@@ -801,6 +825,30 @@
       "side": 1,
       "message": "There seems to be no way to verify if that much is written. This constant is returned as long as the function succeeds, so it does not add much value in checking whether it is this exact value.",
       "parentUuid": "2d76ca8f_3f44c374",
+      "range": {
+        "startLine": 33,
+        "startChar": 58,
+        "endLine": 33,
+        "endChar": 61
+      },
+      "revId": "c947d08a8b84673fcc6b2609d3f3f02ff71a42e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9eb1ea3b_d8ba6274",
+        "filename": "system/stack/include/hfp_lc3_encoder.h",
+        "patchSetId": 11
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2023-06-05T22:16:47Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "7ed490ad_26d31423",
       "range": {
         "startLine": 33,
         "startChar": 58,
