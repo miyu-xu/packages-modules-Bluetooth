@@ -74,6 +74,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8f49c316_63bb55b2",
+        "filename": "android/app/src/com/android/bluetooth/a2dp/A2dpStateMachine.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 2010065
+      },
+      "writtenOn": "2023-06-05T20:09:42Z",
+      "side": 1,
+      "message": "I see, I think that makes sense. On metrics side we can consider both as failure but marking atoms for unknown result makes it clear.",
+      "parentUuid": "6cc6d9b2_cb33184c",
+      "range": {
+        "startLine": 175,
+        "startChar": 64,
+        "endLine": 175,
+        "endChar": 82
+      },
+      "revId": "19e6fe4b7be571d74884bff0ce653d95046ff923",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c20c897f_221815d3",
         "filename": "android/app/src/com/android/bluetooth/a2dp/A2dpStateMachine.java",
         "patchSetId": 1
