@@ -34,6 +34,24 @@
       "parentUuid": "e52530b2_0b667656",
       "revId": "e0cfbb118cf37596aaa0293a680c8e1514cd5677",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a3a8a17c_515dca56",
+        "filename": "system/stack/include/btm_api_types.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 306,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-06-05T20:50:47Z",
+      "side": 0,
+      "message": "Didn\u0027t saw it, sorry for the noise 😊",
+      "parentUuid": "a6d75d35_e6146e95",
+      "revId": "e0cfbb118cf37596aaa0293a680c8e1514cd5677",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
