@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a9cde01f_973821be",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-06-05T20:47:44Z",
+      "side": 1,
+      "message": "nit: Isn\u0027t it the same compilation unit already ?\n\nCould we put something more explicit here like that doesn\u0027t require the reviewer to know what a compilation unit is, like\n```\nMove tBTM_CHG_ESCO_PARAMS from header to source\n```\nor\n```\nRemove private tBTM_CHG_ESCO_PARAMS from public header\n```",
+      "range": {
+        "startLine": 7,
+        "startChar": 26,
+        "endLine": 7,
+        "endChar": 45
+      },
+      "revId": "e0cfbb118cf37596aaa0293a680c8e1514cd5677",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
