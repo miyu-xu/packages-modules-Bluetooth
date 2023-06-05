@@ -121,6 +121,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "bcb5d879_aa1ef594",
+        "filename": "system/bta/ag/bta_ag_sco.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 1248,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2023-06-05T06:41:27Z",
+      "side": 1,
+      "message": "My idea was to diverge as little as possible, by mostly adding changes around where `get_swb_supported` is invoked.\n\nI think it is OK to have `peer_codecs` still store what the peer claims, and update the codec only if it isn\u0027t disabled. On the other hand, it may also work if we un-OR the `peer_codecs` and ignore it in `bta_ag_parse_bac` as you mentioned.",
+      "parentUuid": "1018ee10_55dd0451",
+      "range": {
+        "startLine": 1248,
+        "startChar": 16,
+        "endLine": 1248,
+        "endChar": 27
+      },
+      "revId": "19ca1bec327e3d6466b04b61befe596ad652b887",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e4efeae0_f817926b",
         "filename": "system/bta/include/bta_ag_api.h",
         "patchSetId": 5
