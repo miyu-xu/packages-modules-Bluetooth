@@ -16,6 +16,24 @@
       "message": "nit: remove",
       "revId": "e0cfbb118cf37596aaa0293a680c8e1514cd5677",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a6d75d35_e6146e95",
+        "filename": "system/stack/include/btm_api_types.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 306,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-06-05T20:50:04Z",
+      "side": 0,
+      "message": "the plan is the last CL [8/8] removes all of them in one shot.  Certainly could remove as we go.  Whatever you think is best.",
+      "parentUuid": "e52530b2_0b667656",
+      "revId": "e0cfbb118cf37596aaa0293a680c8e1514cd5677",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
