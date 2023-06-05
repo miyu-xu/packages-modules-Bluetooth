@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d9bb9c39_865e1538",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 3167,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-06-05T18:39:59Z",
+      "side": 1,
+      "message": "Maybe BTM_SecReadDevName should return a BD_NAME now, or something...  It feels like we could be close to removing a lot of wrappers here.",
+      "range": {
+        "startLine": 3167,
+        "startChar": 25,
+        "endLine": 3167,
+        "endChar": 43
+      },
+      "revId": "3d7061367e740ae7e1e0eb00293fe55a18487390",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "eefb68fd_660b0a9b",
         "filename": "system/bta/dm/bta_dm_act.cc",
         "patchSetId": 9
