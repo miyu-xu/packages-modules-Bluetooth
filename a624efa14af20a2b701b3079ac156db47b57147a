@@ -100,6 +100,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3a1c0b73_0f1bb5be",
+        "filename": "android/pandora/test/hfpclient_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2023-06-05T07:28:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "57a2b880_97d50b92",
+      "range": {
+        "startLine": 180,
+        "startChar": 16,
+        "endLine": 180,
+        "endChar": 67
+      },
+      "revId": "a624efa14af20a2b701b3079ac156db47b57147a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8a585755_34e6c97c",
@@ -113,6 +137,30 @@
       "writtenOn": "2023-06-02T21:47:23Z",
       "side": 1,
       "message": "based on previous `CIND`, it is not in call or callsetup, then \n```\nIf the AG is currently in any of the Response and Hold states, then the AG shall send a +BTRH: Response with the parameter set to 0. If the AG is not in the Response and Hold states, then no response shall be sent.\n```",
+      "range": {
+        "startLine": 183,
+        "startChar": 16,
+        "endLine": 184,
+        "endChar": 61
+      },
+      "revId": "a624efa14af20a2b701b3079ac156db47b57147a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ff32c8af_f30075ec",
+        "filename": "android/pandora/test/hfpclient_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2023-06-05T07:28:14Z",
+      "side": 1,
+      "message": "Acknowledged. Remove BRTH because they are unlikely to be handled in this test.",
+      "parentUuid": "8a585755_34e6c97c",
       "range": {
         "startLine": 183,
         "startChar": 16,
