@@ -1368,6 +1368,32 @@ void DualModeController::WriteScanEnable(CommandView command) {
       kNumCommandPackets, ErrorCode::SUCCESS));
 }
 
+void DualModeController::ReadTransmitPowerLevel(CommandView command) {
+  auto command_view = bluetooth::hci::ReadTransmitPowerLevelView::Create(command);
+  ASSERT(command_view.IsValid());
+
+  uint16_t connection_handle = command_view.GetConnectionHandle();
+  ErrorCode status = link_layer_controller_.HasAclConnection(connection_handle)
+                         ? ErrorCode::SUCCESS
+                         : ErrorCode::UNKNOWN_CONNECTION;
+
+  send_event_(bluetooth::hci::ReadTransmitPowerLevelCompleteBuilder::Create(
+      kNumCommandPackets, status, connection_handle, 0));
+}
+
+void DualModeController::ReadEnhancedTransmitPowerLevel(CommandView command) {
+  auto command_view = bluetooth::hci::ReadEnhancedTransmitPowerLevelView::Create(command);
+  ASSERT(command_view.IsValid());
+
+  uint16_t connection_handle = command_view.GetConnectionHandle();
+  ErrorCode status = link_layer_controller_.HasAclConnection(connection_handle)
+                         ? ErrorCode::SUCCESS
+                         : ErrorCode::UNKNOWN_CONNECTION;
+
+  send_event_(bluetooth::hci::ReadEnhancedTransmitPowerLevelCompleteBuilder::Create(
+      kNumCommandPackets, status, connection_handle, 0, 0, 0));
+}
+
 void DualModeController::ReadSynchronousFlowControlEnable(CommandView command) {
   auto command_view =
       bluetooth::hci::ReadSynchronousFlowControlEnableView::Create(command);
@@ -3290,8 +3316,8 @@ const std::unordered_map<OpCode, DualModeController::CommandHandler>
         //&DualModeController::ReadHoldModeActivity},
         //{OpCode::WRITE_HOLD_MODE_ACTIVITY,
         //&DualModeController::WriteHoldModeActivity},
-        //{OpCode::READ_TRANSMIT_POWER_LEVEL,
-        //&DualModeController::ReadTransmitPowerLevel},
+        {OpCode::READ_TRANSMIT_POWER_LEVEL,
+         &DualModeController::ReadTransmitPowerLevel},
         {OpCode::READ_SYNCHRONOUS_FLOW_CONTROL_ENABLE,
          &DualModeController::ReadSynchronousFlowControlEnable},
         {OpCode::WRITE_SYNCHRONOUS_FLOW_CONTROL_ENABLE,
@@ -3350,8 +3376,8 @@ const std::unordered_map<OpCode, DualModeController::CommandHandler>
         //&DualModeController::ReadFlowControlMode},
         //{OpCode::WRITE_FLOW_CONTROL_MODE,
         //&DualModeController::WriteFlowControlMode},
-        //{OpCode::READ_ENHANCED_TRANSMIT_POWER_LEVEL,
-        //&DualModeController::ReadEnhancedTransmitPowerLevel},
+        {OpCode::READ_ENHANCED_TRANSMIT_POWER_LEVEL,
+         &DualModeController::ReadEnhancedTransmitPowerLevel},
         //{OpCode::READ_LE_HOST_SUPPORT,
         //&DualModeController::ReadLeHostSupport},
         {OpCode::WRITE_LE_HOST_SUPPORT,
