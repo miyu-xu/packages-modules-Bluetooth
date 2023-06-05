@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eefb68fd_660b0a9b",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 3168,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-06-05T18:12:26Z",
+      "side": 1,
+      "message": "return p_temp; ?\n\nShould this function become:\n\nif (bta_dm_search_cb.peer_name[0] \u003d\u003d \u0027\\0\u0027) {\n  const char* p_temp \u003d BTM_SecReadDevName(bta_dm_search_cb.peer_bdaddr);\n  if (p_temp !\u003d NULL) return p_temp;\n}\n\nreturn (const char*)bta_dm_search_cb.peer_name;",
+      "range": {
+        "startLine": 3168,
+        "startChar": 24,
+        "endLine": 3168,
+        "endChar": 53
+      },
+      "revId": "3d7061367e740ae7e1e0eb00293fe55a18487390",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
