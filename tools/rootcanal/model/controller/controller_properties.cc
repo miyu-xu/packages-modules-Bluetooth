@@ -1820,7 +1820,8 @@ ControllerProperties::ControllerProperties(
     rootcanal::configuration::Controller const& config)
     : supported_commands(std::move(SupportedCommands())),
       lmp_features({Page0LmpFeatures(), 0, Page2LmpFeatures()}),
-      le_features(LlFeatures()) {
+      le_features(LlFeatures()),
+      strict(!config.has_strict() || config.strict()) {
   using namespace rootcanal::configuration;
 
   // Set the base configuration.
