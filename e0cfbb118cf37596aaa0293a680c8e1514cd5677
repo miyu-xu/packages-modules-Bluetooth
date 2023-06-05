@@ -22,6 +22,30 @@
       },
       "revId": "e0cfbb118cf37596aaa0293a680c8e1514cd5677",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2516f0a2_e736ccba",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-06-05T20:51:16Z",
+      "side": 1,
+      "message": "Sure...but if a reviewer doesn\u0027t know what a compilation unit is...well, they shouldn\u0027t review\n\nI will use your first recommendation\n\nAck",
+      "parentUuid": "a9cde01f_973821be",
+      "range": {
+        "startLine": 7,
+        "startChar": 26,
+        "endLine": 7,
+        "endChar": 45
+      },
+      "revId": "e0cfbb118cf37596aaa0293a680c8e1514cd5677",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
