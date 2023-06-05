@@ -143,6 +143,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e32e4fb1_29c3d9c1",
+        "filename": "system/bta/ag/bta_ag_sco.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 1248,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2023-06-05T22:03:17Z",
+      "side": 1,
+      "message": "Oh... I found the reason why we weren\u0027t on the same page.\nI found that clicking the `bta_ag_parse_bac`(https://cs.android.com/android/platform/superproject/+/refs/heads/master:packages/modules/Bluetooth/system/bta/ag/bta_ag_cmd.cc;drc\u003d7346c436e5a11ce08f6a80dcfeb8ef941ca30176;l\u003d442?q\u003dpeer_codecs\u0026ss\u003dandroid%2Fplatform%2Fsuperproject:packages%2Fmodules%2FBluetooth%2Fsystem%2F) on Android code search somehow brings me to a pretty old commit head, which doesn\u0027t contain the LC3 change. We are all good here.",
+      "parentUuid": "bcb5d879_aa1ef594",
+      "range": {
+        "startLine": 1248,
+        "startChar": 16,
+        "endLine": 1248,
+        "endChar": 27
+      },
+      "revId": "19ca1bec327e3d6466b04b61befe596ad652b887",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e4efeae0_f817926b",
