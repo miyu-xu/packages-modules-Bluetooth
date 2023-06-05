@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5808f8cd_0038d8eb",
+        "filename": "system/internal_include/bt_target.h",
+        "patchSetId": 11
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2023-06-05T08:00:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8bd3e538_639e44ad",
+      "range": {
+        "startLine": 255,
+        "startChar": 30,
+        "endLine": 255,
+        "endChar": 33
+      },
+      "revId": "c947d08a8b84673fcc6b2609d3f3f02ff71a42e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "035b3d34_90be42c9",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-06-03T00:10:14Z",
       "side": 1,
       "message": "Use the defined BTM_*_CODE_SIZE?",
+      "range": {
+        "startLine": 198,
+        "startChar": 28,
+        "endLine": 198,
+        "endChar": 31
+      },
+      "revId": "c947d08a8b84673fcc6b2609d3f3f02ff71a42e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cac8632b_c0567159",
+        "filename": "system/stack/btm/btm_sco.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2023-06-05T08:00:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "035b3d34_90be42c9",
       "range": {
         "startLine": 198,
         "startChar": 28,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e78cdd7d_e12c98ba",
+        "filename": "system/stack/btm/btm_sco.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2023-06-05T08:00:43Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "231021e4_1740a1e1",
+      "range": {
+        "startLine": 200,
+        "startChar": 9,
+        "endLine": 200,
+        "endChar": 22
+      },
+      "revId": "c947d08a8b84673fcc6b2609d3f3f02ff71a42e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4958eb5a_a3199b91",
@@ -93,6 +165,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c9b50c4e_c12dc003",
+        "filename": "system/stack/btm/btm_sco.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2023-06-05T08:00:43Z",
+      "side": 1,
+      "message": "Since there is only one caller, I decided to remove the helper.",
+      "parentUuid": "4958eb5a_a3199b91",
+      "range": {
+        "startLine": 197,
+        "startChar": 0,
+        "endLine": 202,
+        "endChar": 0
+      },
+      "revId": "c947d08a8b84673fcc6b2609d3f3f02ff71a42e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "19d3274d_c9b756ab",
@@ -106,6 +202,30 @@
       "writtenOn": "2023-06-03T00:10:14Z",
       "side": 1,
       "message": "Update the existing log or add a new log to show if we are under wbs or swb.",
+      "range": {
+        "startLine": 263,
+        "startChar": 0,
+        "endLine": 263,
+        "endChar": 61
+      },
+      "revId": "c947d08a8b84673fcc6b2609d3f3f02ff71a42e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c1fd0745_fd9d3ab5",
+        "filename": "system/stack/btm/btm_sco.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 263,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2023-06-05T08:00:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "19d3274d_c9b756ab",
       "range": {
         "startLine": 263,
         "startChar": 0,
@@ -141,6 +261,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f1ae4a17_d512c3d8",
+        "filename": "system/stack/btm/btm_sco_hci.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 753,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2023-06-05T08:00:43Z",
+      "side": 1,
+      "message": "That looks non-trivial 😂\n\nDoes it work if I do it in a follow-up patch while it is protected by the flag?",
+      "parentUuid": "fb75da24_2c053e61",
+      "range": {
+        "startLine": 753,
+        "startChar": 14,
+        "endLine": 753,
+        "endChar": 15
+      },
+      "revId": "c947d08a8b84673fcc6b2609d3f3f02ff71a42e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "40deb8f6_a7e86ca9",
         "filename": "system/stack/btm/btm_sco_hfp_hal_linux.cc",
         "patchSetId": 11
@@ -152,6 +296,30 @@
       "writtenOn": "2023-06-03T00:10:14Z",
       "side": 1,
       "message": "NIT:Attach a bug and more descritive TODO.",
+      "range": {
+        "startLine": 316,
+        "startChar": 24,
+        "endLine": 316,
+        "endChar": 28
+      },
+      "revId": "c947d08a8b84673fcc6b2609d3f3f02ff71a42e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c6ee1074_5958f305",
+        "filename": "system/stack/btm/btm_sco_hfp_hal_linux.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 316,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2023-06-05T08:00:43Z",
+      "side": 1,
+      "message": "Decided to hide this under a sysprop flag and default to false.",
+      "parentUuid": "40deb8f6_a7e86ca9",
       "range": {
         "startLine": 316,
         "startChar": 24,
@@ -185,6 +353,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b0c34f90_25154492",
+        "filename": "system/stack/btm/btm_sco_hfp_hal_linux.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 392,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2023-06-05T08:00:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0016c619_9eef6ff7",
+      "range": {
+        "startLine": 371,
+        "startChar": 0,
+        "endLine": 392,
+        "endChar": 0
+      },
+      "revId": "c947d08a8b84673fcc6b2609d3f3f02ff71a42e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "30a597b9_9c474f76",
@@ -198,6 +390,30 @@
       "writtenOn": "2023-06-03T00:10:14Z",
       "side": 1,
       "message": "ditto",
+      "range": {
+        "startLine": 458,
+        "startChar": 0,
+        "endLine": 460,
+        "endChar": 15
+      },
+      "revId": "c947d08a8b84673fcc6b2609d3f3f02ff71a42e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "55429e26_95584d91",
+        "filename": "system/stack/btm/btm_sco_hfp_hal_linux.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 460,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2023-06-05T08:00:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "30a597b9_9c474f76",
       "range": {
         "startLine": 458,
         "startChar": 0,
@@ -231,6 +447,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dc49954b_3331c2c5",
+        "filename": "system/stack/btm/hfp_lc3_decoder.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2023-06-05T08:00:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0deff599_f6a5fef8",
+      "range": {
+        "startLine": 46,
+        "startChar": 24,
+        "endLine": 46,
+        "endChar": 30
+      },
+      "revId": "c947d08a8b84673fcc6b2609d3f3f02ff71a42e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c480bdbd_080f7e76",
@@ -244,6 +484,30 @@
       "writtenOn": "2023-06-03T00:10:14Z",
       "side": 1,
       "message": "osi_free_and_reset",
+      "range": {
+        "startLine": 55,
+        "startChar": 4,
+        "endLine": 56,
+        "endChar": 34
+      },
+      "revId": "c947d08a8b84673fcc6b2609d3f3f02ff71a42e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a6afd59c_c3e2048b",
+        "filename": "system/stack/btm/hfp_lc3_decoder.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2023-06-05T08:00:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c480bdbd_080f7e76",
       "range": {
         "startLine": 55,
         "startChar": 4,
@@ -271,6 +535,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b1109771_a424c63b",
+        "filename": "system/stack/btm/hfp_lc3_decoder.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2023-06-05T08:00:43Z",
+      "side": 1,
+      "message": "We could do that for `o_buf`, but we accept anything for `i_buf` since it will conduct PLC as a fallback.",
+      "parentUuid": "80d65f31_a588ced6",
+      "revId": "c947d08a8b84673fcc6b2609d3f3f02ff71a42e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b9783957_86c6ee91",
@@ -284,6 +566,30 @@
       "writtenOn": "2023-06-03T00:10:14Z",
       "side": 1,
       "message": "ditto",
+      "range": {
+        "startLine": 44,
+        "startChar": 24,
+        "endLine": 44,
+        "endChar": 30
+      },
+      "revId": "c947d08a8b84673fcc6b2609d3f3f02ff71a42e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9327881e_e097849d",
+        "filename": "system/stack/btm/hfp_lc3_encoder.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2023-06-05T08:00:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b9783957_86c6ee91",
       "range": {
         "startLine": 44,
         "startChar": 24,
@@ -317,6 +623,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4a5c8db1_8a973829",
+        "filename": "system/stack/btm/hfp_lc3_encoder.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2023-06-05T08:00:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "91aeb6e2_8988efbd",
+      "range": {
+        "startLine": 50,
+        "startChar": 28,
+        "endLine": 52,
+        "endChar": 34
+      },
+      "revId": "c947d08a8b84673fcc6b2609d3f3f02ff71a42e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "27dbae21_933afcd8",
@@ -330,6 +660,30 @@
       "writtenOn": "2023-06-03T00:10:14Z",
       "side": 1,
       "message": "ditto",
+      "range": {
+        "startLine": 56,
+        "startChar": 40,
+        "endLine": 56,
+        "endChar": 45
+      },
+      "revId": "c947d08a8b84673fcc6b2609d3f3f02ff71a42e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "023e06aa_5679c09e",
+        "filename": "system/stack/btm/hfp_lc3_encoder.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2023-06-05T08:00:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "27dbae21_933afcd8",
       "range": {
         "startLine": 56,
         "startChar": 40,
@@ -386,6 +740,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0b7492ae_d8bca61c",
+        "filename": "system/stack/include/hfp_lc3_encoder.h",
+        "patchSetId": 11
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2023-06-05T08:00:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "976c0293_db2acf75",
+      "range": {
+        "startLine": 30,
+        "startChar": 29,
+        "endLine": 30,
+        "endChar": 33
+      },
+      "revId": "c947d08a8b84673fcc6b2609d3f3f02ff71a42e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2d76ca8f_3f44c374",
@@ -399,6 +777,30 @@
       "writtenOn": "2023-06-03T00:10:14Z",
       "side": 1,
       "message": "Maybe we can define the HFP_LC3_PCM_BYTES here such that caller can also check that?",
+      "range": {
+        "startLine": 33,
+        "startChar": 58,
+        "endLine": 33,
+        "endChar": 61
+      },
+      "revId": "c947d08a8b84673fcc6b2609d3f3f02ff71a42e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7ed490ad_26d31423",
+        "filename": "system/stack/include/hfp_lc3_encoder.h",
+        "patchSetId": 11
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2023-06-05T08:00:43Z",
+      "side": 1,
+      "message": "There seems to be no way to verify if that much is written. This constant is returned as long as the function succeeds, so it does not add much value in checking whether it is this exact value.",
+      "parentUuid": "2d76ca8f_3f44c374",
       "range": {
         "startLine": 33,
         "startChar": 58,
