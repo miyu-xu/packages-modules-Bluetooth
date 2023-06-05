@@ -16,6 +16,23 @@
       "message": "Hi Chris, please review this CL. Thanks!\n\nI wonder why [1] is needed when you submit aosp/2529445, so maybe an alternative way is to modify it instead?\n\n[1] https://source.corp.google.com/h/googleplex-android/platform/superproject/+/refs/heads/master:packages/modules/Bluetooth/system/bta/dm/bta_dm_act.cc;l\u003d1165;drc\u003d52eee2df4d9267db2e5f84fdc6dfdd2742e47fce",
       "revId": "80975f5a1275b25de3030e598a04a0098cdeb9a6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cfbf8a33_459423f9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-06-05T21:11:25Z",
+      "side": 1,
+      "message": "So the idea is to decouple the data streams (classic name, le name, classic services via sdp, le services via gatt), but they still aggregate back into bta/btif into a single giant event, and they all get loaded as `properties` anyway.\n\nSo working from the bottom towards the top, the idea was to ensure that a name was presented regardless of services...but this hits the check you found.\n\nb/230050560\nInstead of using the union of UUIDs from EIR and SDP, if SDP succeeds we\nonly report UUIDs discovered through SDP to the higher layers. If SDP\nfails, only then we report the UUIDs discovered through EIR to the\nhigher layers.",
+      "revId": "80975f5a1275b25de3030e598a04a0098cdeb9a6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
