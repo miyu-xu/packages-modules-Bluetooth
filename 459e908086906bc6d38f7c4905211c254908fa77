@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "793d69a5_5093fba0",
+        "filename": "system/stack/include/btm_api_types.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-06-05T16:17:55Z",
+      "side": 1,
+      "message": "Remove the comment as well?",
+      "range": {
+        "startLine": 189,
+        "startChar": 0,
+        "endLine": 191,
+        "endChar": 21
+      },
+      "revId": "459e908086906bc6d38f7c4905211c254908fa77",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
