@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "742ad6fd_0901c397",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2023-06-05T09:03:33Z",
+      "side": 1,
+      "message": "Some lint errors should be resolved by https://github.com/google/bumble/pull/197",
+      "revId": "3c23008ed2b934dee9020a9de2f9d1e14be61baa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

@@ -77,6 +77,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7fea78d4_7ea1e3d2",
+        "filename": "android/pandora/test/hfpclient_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2023-06-05T09:03:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "49cee7db_5dec4522",
+      "range": {
+        "startLine": 1,
+        "startChar": 11,
+        "endLine": 1,
+        "endChar": 27
+      },
+      "revId": "a624efa14af20a2b701b3079ac156db47b57147a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "57a2b880_97d50b92",
