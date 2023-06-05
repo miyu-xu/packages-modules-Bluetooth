@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5b53421c_6fe3b8d2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-06-05T20:41:00Z",
+      "side": 1,
+      "message": "Are you sure that those bits should be removed ?\n\nActive bits may indicate inactive packets\n\n7.1.14 Change Connection Packet Type command\n```\nFor ACL Link_Type\nFor SCO Link Type\nReturn parameters:\nNone.\nEvent(s) generated (unless masked away):\nWhen the BR/EDR Controller receives the\nHCI_Change_Connection_Packet_Type command, BR/EDR the Controller\nshall send the HCI_Command_Status event to the Host. In addition, when the\nLink Manager determines the packet type has been changed for the\nconnection, the Controller on the local device will send an\nHCI_Connection_Packet_Type_Changed event to the Host. This will be done\nat the local side only.\nBit Number Parameter Description\n1 2-DH1 shall not be used.\n2 3-DH1 shall not be used.\n3 Ignored; DM1 may be used whether or not this bit is set.\n4 DH1 may be used.\n8 2-DH3 shall not be used.\n9 3-DH3 shall not be used.\n10 DM3 may be used.\n11 DH3 may be used.\n12 2-DH5 shall not be used.\n13 3-DH5 shall not be used.\n14 DM5 may be used.\n15 DH5 may be used.\nAll other bits Reserved for future use.\n```",
+      "revId": "ca83ca06093581090e13f5b33c9f7d5efbb46200",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
