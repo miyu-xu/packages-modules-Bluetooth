@@ -45,6 +45,29 @@
       },
       "revId": "3d7061367e740ae7e1e0eb00293fe55a18487390",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e1f08904_60196997",
+        "filename": "system/stack/btm/btm_dev.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-06-05T18:49:03Z",
+      "side": 1,
+      "message": "Could this return\n\nconst tBTM_BD_NAME\u0026  ?",
+      "range": {
+        "startLine": 232,
+        "startChar": 0,
+        "endLine": 232,
+        "endChar": 11
+      },
+      "revId": "3d7061367e740ae7e1e0eb00293fe55a18487390",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
