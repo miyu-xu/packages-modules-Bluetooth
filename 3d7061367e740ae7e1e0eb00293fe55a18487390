@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f108c3f2_19917e1d",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 3167,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-06-05T19:13:59Z",
+      "side": 1,
+      "message": "We are close...a future CL removes `BTM_SecReadDevName` and introduces `BTM_SecReadDevToName` which requires the caller to pass in a BD_NAME",
+      "parentUuid": "d9bb9c39_865e1538",
+      "range": {
+        "startLine": 3167,
+        "startChar": 25,
+        "endLine": 3167,
+        "endChar": 43
+      },
+      "revId": "3d7061367e740ae7e1e0eb00293fe55a18487390",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "eefb68fd_660b0a9b",
         "filename": "system/bta/dm/bta_dm_act.cc",
         "patchSetId": 9
@@ -49,6 +73,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "543a9d0b_f7e1a875",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 3168,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-06-05T19:13:59Z",
+      "side": 1,
+      "message": "It\u0027s all the same convolution...my intent was to minimize what was there to make it more obvious that things wouldn\u0027t change.\n\nAs noted above, this entire function will disappear",
+      "parentUuid": "eefb68fd_660b0a9b",
+      "range": {
+        "startLine": 3168,
+        "startChar": 24,
+        "endLine": 3168,
+        "endChar": 53
+      },
+      "revId": "3d7061367e740ae7e1e0eb00293fe55a18487390",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e1f08904_60196997",
         "filename": "system/stack/btm/btm_dev.cc",
         "patchSetId": 9
@@ -60,6 +108,30 @@
       "writtenOn": "2023-06-05T18:49:03Z",
       "side": 1,
       "message": "Could this return\n\nconst tBTM_BD_NAME\u0026  ?",
+      "range": {
+        "startLine": 232,
+        "startChar": 0,
+        "endLine": 232,
+        "endChar": 11
+      },
+      "revId": "3d7061367e740ae7e1e0eb00293fe55a18487390",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d439042b_2a9e31e0",
+        "filename": "system/stack/btm/btm_dev.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-06-05T19:13:59Z",
+      "side": 1,
+      "message": "That is kind of the existing behavior.\n\nThis will be replaced by `BTM_SecReadDevToName` in a future CL which forces the caller to supply the memory for the name BD_NAME.\n\nThis tradeoff is a copy versus ownership.",
+      "parentUuid": "e1f08904_60196997",
       "range": {
         "startLine": 232,
         "startChar": 0,
