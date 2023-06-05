@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2c282766_274931a6",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 3167,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-06-05T20:38:10Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "f108c3f2_19917e1d",
+      "range": {
+        "startLine": 3167,
+        "startChar": 25,
+        "endLine": 3167,
+        "endChar": 43
+      },
+      "revId": "3d7061367e740ae7e1e0eb00293fe55a18487390",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "eefb68fd_660b0a9b",
@@ -95,6 +119,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1868ef66_42e001b1",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 3168,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-06-05T20:38:10Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "543a9d0b_f7e1a875",
+      "range": {
+        "startLine": 3168,
+        "startChar": 24,
+        "endLine": 3168,
+        "endChar": 53
+      },
+      "revId": "3d7061367e740ae7e1e0eb00293fe55a18487390",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e1f08904_60196997",
@@ -132,6 +180,30 @@
       "side": 1,
       "message": "That is kind of the existing behavior.\n\nThis will be replaced by `BTM_SecReadDevToName` in a future CL which forces the caller to supply the memory for the name BD_NAME.\n\nThis tradeoff is a copy versus ownership.",
       "parentUuid": "e1f08904_60196997",
+      "range": {
+        "startLine": 232,
+        "startChar": 0,
+        "endLine": 232,
+        "endChar": 11
+      },
+      "revId": "3d7061367e740ae7e1e0eb00293fe55a18487390",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dd52a086_296590c9",
+        "filename": "system/stack/btm/btm_dev.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-06-05T20:38:10Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "d439042b_2a9e31e0",
       "range": {
         "startLine": 232,
         "startChar": 0,
