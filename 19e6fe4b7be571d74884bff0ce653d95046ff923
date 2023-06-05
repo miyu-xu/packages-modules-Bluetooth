@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "11f3ef87_9752fd3c",
+        "filename": "android/app/src/com/android/bluetooth/a2dp/A2dpStateMachine.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 2010065
+      },
+      "writtenOn": "2023-06-05T16:31:53Z",
+      "side": 1,
+      "message": "This is a failure case as identified in previous discussions. The data seemed to indicate this a a possible transition but we may never hit this within a state machine. I think we can iterate to remove this but need to capture it now.",
+      "parentUuid": "7e153951_bcf5ca72",
+      "range": {
+        "startLine": 175,
+        "startChar": 64,
+        "endLine": 175,
+        "endChar": 82
+      },
+      "revId": "19e6fe4b7be571d74884bff0ce653d95046ff923",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c20c897f_221815d3",
         "filename": "android/app/src/com/android/bluetooth/a2dp/A2dpStateMachine.java",
         "patchSetId": 1
@@ -37,6 +61,30 @@
       "writtenOn": "2023-06-03T06:23:35Z",
       "side": 1,
       "message": "we can use `BluetoothProtoEnums.REASON_UNKNOWN`.\nsame for other magic numbers below.",
+      "range": {
+        "startLine": 180,
+        "startChar": 34,
+        "endLine": 180,
+        "endChar": 49
+      },
+      "revId": "19e6fe4b7be571d74884bff0ce653d95046ff923",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b7d6376f_0f509bad",
+        "filename": "android/app/src/com/android/bluetooth/a2dp/A2dpStateMachine.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 2010065
+      },
+      "writtenOn": "2023-06-05T16:31:53Z",
+      "side": 1,
+      "message": "Oh, did not know thats possible but may be I was referring native code. I will revise.",
+      "parentUuid": "c20c897f_221815d3",
       "range": {
         "startLine": 180,
         "startChar": 34,
