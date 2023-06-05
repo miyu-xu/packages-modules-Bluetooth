@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6cc6d9b2_cb33184c",
+        "filename": "android/app/src/com/android/bluetooth/a2dp/A2dpStateMachine.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2023-06-05T19:27:05Z",
+      "side": 1,
+      "message": "If we don\u0027t have strong opinion to make it failed, I think following would be reasonable for recording:\n\nresult \u003d BluetoothProtoEnums.REASON_UNKNOWN\nreason \u003d BluetoothProtoEnums.REASON_UNEXPECTED_STATE",
+      "parentUuid": "11f3ef87_9752fd3c",
+      "range": {
+        "startLine": 175,
+        "startChar": 64,
+        "endLine": 175,
+        "endChar": 82
+      },
+      "revId": "19e6fe4b7be571d74884bff0ce653d95046ff923",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c20c897f_221815d3",
         "filename": "android/app/src/com/android/bluetooth/a2dp/A2dpStateMachine.java",
         "patchSetId": 1
