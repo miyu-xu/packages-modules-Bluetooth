@@ -1,0 +1,123 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ff6fe58e_5ea8c146",
+        "filename": "system/gd/rust/linux/mgmt/src/powerd_suspend_manager.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-06-05T19:42:27Z",
+      "side": 1,
+      "message": "These changes should be in `stack/src/suspend.rs` since they are specific to a specific hci adapter.",
+      "revId": "1bbb6dc9c35de87453cb5cbcb87da7da7fed2bb3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "143a7049_5fcb88c7",
+        "filename": "system/gd/rust/linux/mgmt/src/powerd_suspend_manager.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-06-05T19:42:27Z",
+      "side": 1,
+      "message": "You really shouldn\u0027t need to know the MGMT internals here. \n\nSimply:\n```\nlet command \u003d MgmtCommand::FlossNotifySuspendState(hci_index, suspended);\nsock.get_mut().write_mgmt_packet(command.into());\n```",
+      "revId": "1bbb6dc9c35de87453cb5cbcb87da7da7fed2bb3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9f57a189_a2ded9c2",
+        "filename": "system/gd/rust/linux/mgmt/src/powerd_suspend_manager.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 212,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-06-05T19:42:27Z",
+      "side": 1,
+      "message": "This will cause another race! We should write this as soon as possible -- if there is any HCI traffic after this is called, it should abort suspend and we need to fix whatever is causing that instead of depending on this sleep.\n\nIf powerd suspends right away after we return here, we will not run this until resume which is wrong.",
+      "revId": "1bbb6dc9c35de87453cb5cbcb87da7da7fed2bb3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "50fe263d_3b4ab25c",
+        "filename": "system/gd/rust/linux/utils/src/socket.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-06-05T19:42:27Z",
+      "side": 1,
+      "message": "This fn only saves the data -- it doesn\u0027t write anything. What should this be doing?\n\nAlso, all pub fns should have docstring describing their use.",
+      "revId": "1bbb6dc9c35de87453cb5cbcb87da7da7fed2bb3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2a074844_ca76e1e1",
+        "filename": "system/gd/rust/linux/utils/src/socket.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-06-05T19:42:27Z",
+      "side": 1,
+      "message": "This should be `FlossNotifySuspendState(u16, bool)`",
+      "revId": "1bbb6dc9c35de87453cb5cbcb87da7da7fed2bb3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e6cba411_097e5fd2",
+        "filename": "system/gd/rust/linux/utils/src/socket.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-06-05T19:42:27Z",
+      "side": 1,
+      "message": "hardcoded values of `0, 1` need to be replaced",
+      "revId": "1bbb6dc9c35de87453cb5cbcb87da7da7fed2bb3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7860f1a7_48ca8b12",
+        "filename": "system/gd/rust/linux/utils/src/socket.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-06-05T19:42:27Z",
+      "side": 1,
+      "message": "nit: You don\u0027t need `key: value` if the name of the key is the same. \n\ni.e.\n```\nMgmtCpNotifySuspendState { hci_id, val }\n```",
+      "revId": "1bbb6dc9c35de87453cb5cbcb87da7da7fed2bb3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
