@@ -51,6 +51,23 @@
       "message": "Hi Chris,\nThanks for looking at this. I see you in the log as the original author of PeerPacketTypes, so I fear I am taking a big risk in attempting to explain your code to you... :-)",
       "revId": "ca83ca06093581090e13f5b33c9f7d5efbb46200",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "20e71600_893f40c8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1495515
+      },
+      "writtenOn": "2023-06-05T23:55:57Z",
+      "side": 1,
+      "message": "Wow, now I see what Chris is talking about. I\u0027m not sure which is more bizarre, the way the change connection packet type bits are encoded as a mix of positive and negative, or the fact that wireshark doesn\u0027t display any indication of that in the labels on the bits in the packet decoding. \n\nI now believe the existing code is correct, sorry for the confusion. I suggest this patch be abandoned.\n       Thanks,\n           Blair",
+      "revId": "ca83ca06093581090e13f5b33c9f7d5efbb46200",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
