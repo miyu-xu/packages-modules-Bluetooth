@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c90ea380_a7e1ec37",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-06-05T12:16:37Z",
+      "side": 1,
+      "message": "Hi Chris, please review this CL. Thanks!\n\nI wonder why [1] is needed when you submit aosp/2529445, so maybe an alternative way is to modify it instead?\n\n[1] https://source.corp.google.com/h/googleplex-android/platform/superproject/+/refs/heads/master:packages/modules/Bluetooth/system/bta/dm/bta_dm_act.cc;l\u003d1165;drc\u003d52eee2df4d9267db2e5f84fdc6dfdd2742e47fce",
+      "revId": "80975f5a1275b25de3030e598a04a0098cdeb9a6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
