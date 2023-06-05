@@ -16,6 +16,23 @@
       "message": "Hi Chris, please review this CL, thanks!",
       "revId": "50b62249af9360ea925d4347ded24e0473b5bc7e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "259386da_ef613b54",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1160,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-06-05T20:35:41Z",
+      "side": 1,
+      "message": "Can you also update to do this while in there ?\n\n```\nif (!bd_name_is_empty(remote_name_msg.bd_name) \u0026\u0026 p_btm_inq_info) {\n```",
+      "revId": "50b62249af9360ea925d4347ded24e0473b5bc7e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
