@@ -1,0 +1,123 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dd3baf6a_a8e2fa1e",
+        "filename": "system/gd/rust/linux/stack/src/suspend.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-06-05T19:56:21Z",
+      "side": 1,
+      "message": "Can be re-written as:\n```\nfn get_bonded_and_wake_allowed(\u0026self) -\u003e bool {\n  let bt \u003d self.bt.lock().unwrap();\n  bt.get_bonded_devices().any(|d| bt.get_remote_wake_allowed(d))\n}\n```",
+      "revId": "b421acc69aaeebc1a1164a949766cbe6e31915cd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0599aaed_9da9d2ac",
+        "filename": "system/gd/rust/linux/stack/src/suspend.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 239,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-06-05T19:56:21Z",
+      "side": 1,
+      "message": "This should be inside the if statement (since you only use it there)",
+      "revId": "b421acc69aaeebc1a1164a949766cbe6e31915cd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0de0c1d0_178021e0",
+        "filename": "system/gd/rust/linux/stack/src/suspend.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 245,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-06-05T19:56:21Z",
+      "side": 1,
+      "message": "This needs to be a const. Also document why this value and not `00:00:00:00:00:00` for example. (We should pick an invalid bd_addr, not just an arbitrary one).",
+      "revId": "b421acc69aaeebc1a1164a949766cbe6e31915cd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "830f1a6c_8e52dbaa",
+        "filename": "system/gd/rust/linux/utils/src/uhid.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-06-05T19:56:21Z",
+      "side": 1,
+      "message": "Please document what this list of entries is for and why we need it.",
+      "revId": "b421acc69aaeebc1a1164a949766cbe6e31915cd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "94ec589e_bf71939a",
+        "filename": "system/gd/rust/linux/utils/src/uhid.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-06-05T19:56:21Z",
+      "side": 1,
+      "message": "nit: Reword \"Open UHID objects\" -- we can tell it\u0027s a vector from the type.",
+      "revId": "b421acc69aaeebc1a1164a949766cbe6e31915cd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "30ac1bbf_80203a93",
+        "filename": "system/gd/rust/linux/utils/src/uhid.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-06-05T19:56:21Z",
+      "side": 1,
+      "message": "Call `self.clear()` instead",
+      "revId": "b421acc69aaeebc1a1164a949766cbe6e31915cd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "416ea982_2f8b1a7d",
+        "filename": "system/gd/rust/linux/utils/src/uhid.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-06-05T19:56:21Z",
+      "side": 1,
+      "message": "nit: Rename to \u0027clear\u0027 and add docstring.",
+      "revId": "b421acc69aaeebc1a1164a949766cbe6e31915cd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
