@@ -16,6 +16,58 @@
       "message": "Hi, please review this CL, thanks!\n\nThe way I change the usage of `service_resolved`, I wonder if I need to initialize its value elsewhere. WDYT?",
       "revId": "44229f58b20f76507dd578a6361ebaaa0c3ccbd4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "61a37230_621b7cf2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-06-06T13:04:09Z",
+      "side": 1,
+      "message": "See other comments.",
+      "parentUuid": "fb9129c6_076ef200",
+      "revId": "44229f58b20f76507dd578a6361ebaaa0c3ccbd4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "96c0e44a_0a27171c",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 342,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-06-06T13:04:09Z",
+      "side": 1,
+      "message": "This defaults to false when the device is first seen and will only get set to true once the uuids are seen via remote properties update.",
+      "revId": "44229f58b20f76507dd578a6361ebaaa0c3ccbd4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2d89b7f2_70634df0",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1494,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-06-06T13:04:09Z",
+      "side": 1,
+      "message": "We also clear services_resolved when we successfully pair.",
+      "revId": "44229f58b20f76507dd578a6361ebaaa0c3ccbd4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
