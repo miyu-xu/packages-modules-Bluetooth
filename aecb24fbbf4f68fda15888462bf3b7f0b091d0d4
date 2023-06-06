@@ -16,6 +16,24 @@
       "message": "This function should have two args as you called below.",
       "revId": "aecb24fbbf4f68fda15888462bf3b7f0b091d0d4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f995632c_a0ed0d68",
+        "filename": "system/test/mock/mock_stack_btm_inq.h",
+        "patchSetId": 8
+      },
+      "lineNbr": 428,
+      "author": {
+        "id": 1965943
+      },
+      "writtenOn": "2023-06-06T08:40:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "01427b6e_702b4d06",
+      "revId": "aecb24fbbf4f68fda15888462bf3b7f0b091d0d4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
