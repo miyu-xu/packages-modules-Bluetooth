@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f221230b_91c5458f",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 2396,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-06-06T15:24:33Z",
+      "side": 0,
+      "message": "This used to mean \"The user wants Bluetooth enabled\"  not \"Bluetooth is currently on.",
+      "range": {
+        "startLine": 2396,
+        "startChar": 44,
+        "endLine": 2396,
+        "endChar": 53
+      },
+      "revId": "95d39ba41a461d94ac3e5283f59fdfefda17026c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
