@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9d1a7823_f867896d",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-06-06T17:54:52Z",
+      "side": 1,
+      "message": "What\u0027s the reasoning for 2 retries / 25 second connection timeout?\n\nWondering if there\u0027s a relevant bug with more context?",
+      "range": {
+        "startLine": 88,
+        "startChar": 52,
+        "endLine": 88,
+        "endChar": 57
+      },
+      "revId": "3f40f32d4bda3fde8104bfe5d46deb3b8c450391",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d6b16335_f4b95b3a",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 4422,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-06-06T17:54:52Z",
+      "side": 1,
+      "message": "nit: Should this just be defined in seconds if used that way?",
+      "range": {
+        "startLine": 4422,
+        "startChar": 27,
+        "endLine": 4422,
+        "endChar": 64
+      },
+      "revId": "3f40f32d4bda3fde8104bfe5d46deb3b8c450391",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
