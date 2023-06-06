@@ -210,7 +210,7 @@ class BluetoothManagerService {
 
     private BluetoothModeChangeHelper mBluetoothModeChangeHelper;
 
-    private BluetoothAirplaneModeListener mBluetoothAirplaneModeListener;
+    private final BluetoothAirplaneModeListener mBluetoothAirplaneModeListener;
 
     private BluetoothNotificationManager mBluetoothNotificationManager;
 
@@ -718,14 +718,9 @@ class BluetoothManagerService {
             mEnableExternal = true;
         }
 
-        String airplaneModeRadios =
-                Settings.Global.getString(mContentResolver, Settings.Global.AIRPLANE_MODE_RADIOS);
-        if (airplaneModeRadios == null
-                || airplaneModeRadios.contains(Settings.Global.RADIO_BLUETOOTH)) {
-            mBluetoothAirplaneModeListener =
-                    new BluetoothAirplaneModeListener(
-                            this, looper, mContext, mBluetoothNotificationManager);
-        }
+        mBluetoothAirplaneModeListener =
+                new BluetoothAirplaneModeListener(
+                        this, looper, mContext, mBluetoothNotificationManager);
 
         mBluetoothSatelliteModeListener =
                 new BluetoothSatelliteModeListener(this, looper, mContext);
@@ -737,8 +732,7 @@ class BluetoothManagerService {
 
     /** Returns true if airplane mode is currently on */
     private boolean isAirplaneModeOn() {
-        return mBluetoothAirplaneModeListener != null
-            && mBluetoothAirplaneModeListener.isAirplaneModeOn();
+        return mBluetoothAirplaneModeListener.isAirplaneModeOn();
     }
 
     /**
