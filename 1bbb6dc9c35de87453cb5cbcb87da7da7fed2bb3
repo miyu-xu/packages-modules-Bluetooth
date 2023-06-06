@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "09220768_0814bb72",
+        "filename": "system/gd/rust/linux/mgmt/src/powerd_suspend_manager.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2023-06-06T18:40:18Z",
+      "side": 1,
+      "message": "Will move the function to suspend.rs after resolving the event sequence in suspend issue.",
+      "parentUuid": "ff6fe58e_5ea8c146",
+      "revId": "1bbb6dc9c35de87453cb5cbcb87da7da7fed2bb3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "143a7049_5fcb88c7",
         "filename": "system/gd/rust/linux/mgmt/src/powerd_suspend_manager.rs",
         "patchSetId": 6
@@ -31,6 +49,24 @@
       "writtenOn": "2023-06-05T19:42:27Z",
       "side": 1,
       "message": "You really shouldn\u0027t need to know the MGMT internals here. \n\nSimply:\n```\nlet command \u003d MgmtCommand::FlossNotifySuspendState(hci_index, suspended);\nsock.get_mut().write_mgmt_packet(command.into());\n```",
+      "revId": "1bbb6dc9c35de87453cb5cbcb87da7da7fed2bb3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0a870f3e_ded540b9",
+        "filename": "system/gd/rust/linux/mgmt/src/powerd_suspend_manager.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2023-06-06T18:40:18Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "143a7049_5fcb88c7",
       "revId": "1bbb6dc9c35de87453cb5cbcb87da7da7fed2bb3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -54,6 +90,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ff0252ee_94b1120e",
+        "filename": "system/gd/rust/linux/mgmt/src/powerd_suspend_manager.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 212,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2023-06-06T18:40:18Z",
+      "side": 1,
+      "message": "I will check why LE rand is not the last event in the suspend process then change this.",
+      "parentUuid": "9f57a189_a2ded9c2",
+      "revId": "1bbb6dc9c35de87453cb5cbcb87da7da7fed2bb3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "50fe263d_3b4ab25c",
         "filename": "system/gd/rust/linux/utils/src/socket.rs",
         "patchSetId": 6
@@ -65,6 +119,24 @@
       "writtenOn": "2023-06-05T19:42:27Z",
       "side": 1,
       "message": "This fn only saves the data -- it doesn\u0027t write anything. What should this be doing?\n\nAlso, all pub fns should have docstring describing their use.",
+      "revId": "1bbb6dc9c35de87453cb5cbcb87da7da7fed2bb3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5194e3d0_aa16bcb0",
+        "filename": "system/gd/rust/linux/utils/src/socket.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2023-06-06T18:40:18Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "50fe263d_3b4ab25c",
       "revId": "1bbb6dc9c35de87453cb5cbcb87da7da7fed2bb3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -86,6 +158,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "24e8c073_3c6d2511",
+        "filename": "system/gd/rust/linux/utils/src/socket.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2023-06-06T18:40:18Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "2a074844_ca76e1e1",
+      "revId": "1bbb6dc9c35de87453cb5cbcb87da7da7fed2bb3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e6cba411_097e5fd2",
@@ -103,6 +193,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "196d26b8_7fdf4c39",
+        "filename": "system/gd/rust/linux/utils/src/socket.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2023-06-06T18:40:18Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "e6cba411_097e5fd2",
+      "revId": "1bbb6dc9c35de87453cb5cbcb87da7da7fed2bb3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7860f1a7_48ca8b12",
@@ -116,6 +224,24 @@
       "writtenOn": "2023-06-05T19:42:27Z",
       "side": 1,
       "message": "nit: You don\u0027t need `key: value` if the name of the key is the same. \n\ni.e.\n```\nMgmtCpNotifySuspendState { hci_id, val }\n```",
+      "revId": "1bbb6dc9c35de87453cb5cbcb87da7da7fed2bb3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9446cac4_76ca6425",
+        "filename": "system/gd/rust/linux/utils/src/socket.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2023-06-06T18:40:18Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "7860f1a7_48ca8b12",
       "revId": "1bbb6dc9c35de87453cb5cbcb87da7da7fed2bb3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
