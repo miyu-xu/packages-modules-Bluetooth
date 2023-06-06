@@ -46,6 +46,30 @@
       },
       "revId": "791d9aa87fa0a1503077a81fa80c51e4c6b620ee",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dbc7359b_c07b7fac",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-06-06T16:58:56Z",
+      "side": 1,
+      "message": "Hi Himanshu, thanks for the explanation, I followed what was happening on chat, however this is not my question 😊\n\nWhat you wrote in the `Test:` stanza is this something that you ran yourself to verify your CL ?",
+      "parentUuid": "088410ea_91ce7292",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 38
+      },
+      "revId": "791d9aa87fa0a1503077a81fa80c51e4c6b620ee",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
