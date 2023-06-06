@@ -16,6 +16,24 @@
       "message": "I expected a test to get written or updated for this one",
       "revId": "e0ab17e4407d7afb70692c14700c26ca6ac123e5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5a5de9bc_18cd6278",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-06-06T18:23:42Z",
+      "side": 1,
+      "message": "You are right.\nI did this Cl while I was trying to write a test for userSwitch and I hit my head seeing this overcomplicated code.\nI\u0027ll try to upload one and update this CL with it",
+      "parentUuid": "8d033379_de1be1fa",
+      "revId": "e0ab17e4407d7afb70692c14700c26ca6ac123e5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
