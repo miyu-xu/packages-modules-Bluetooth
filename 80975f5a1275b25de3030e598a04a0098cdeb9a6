@@ -33,6 +33,23 @@
       "message": "So the idea is to decouple the data streams (classic name, le name, classic services via sdp, le services via gatt), but they still aggregate back into bta/btif into a single giant event, and they all get loaded as `properties` anyway.\n\nSo working from the bottom towards the top, the idea was to ensure that a name was presented regardless of services...but this hits the check you found.\n\nb/230050560\nInstead of using the union of UUIDs from EIR and SDP, if SDP succeeds we\nonly report UUIDs discovered through SDP to the higher layers. If SDP\nfails, only then we report the UUIDs discovered through EIR to the\nhigher layers.",
       "revId": "80975f5a1275b25de3030e598a04a0098cdeb9a6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "69aeb0a7_b4e6719f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-06-06T13:09:12Z",
+      "side": 1,
+      "message": "Providing non-owners +2\n\nLogic looks sound since SDP succeeding but having 0 uuids should result in no connection being made (SDP should be the ultimate source of truth, not EIR).",
+      "revId": "80975f5a1275b25de3030e598a04a0098cdeb9a6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
