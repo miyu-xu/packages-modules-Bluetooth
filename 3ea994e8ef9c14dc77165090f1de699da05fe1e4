@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4f7168a7_6263ef5e",
+        "filename": "system/gd/rust/linux/utils/src/uhid.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-06-06T18:43:51Z",
+      "side": 1,
+      "message": "nit: For debugging, it\u0027ll be useful to emit the name + phys + uniq",
+      "revId": "3ea994e8ef9c14dc77165090f1de699da05fe1e4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
