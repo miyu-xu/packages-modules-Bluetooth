@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "753627cf_0ee45ae8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-06-06T14:09:24Z",
+      "side": 1,
+      "message": "I expected this CL to be much closer to the TestLooper CL (maybe even the same CL)",
+      "revId": "8edbe98bfb7662092cf73440f6d0a1a6bed6bd8c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
