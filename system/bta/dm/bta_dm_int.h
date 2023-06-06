@@ -226,6 +226,7 @@ typedef struct {
   uint8_t cur_av_count;   /* current AV connecions */
 
 #if (BTA_EIR_CANNED_UUID_LIST != TRUE)
+#include "stack/btm/btm_eir.h"
   /* store UUID list for EIR */
   uint32_t eir_uuid[BTM_EIR_SERVICE_ARRAY_SIZE];
 #if (BTA_EIR_SERVER_NUM_CUSTOM_UUID > 0)
