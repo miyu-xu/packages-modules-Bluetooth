@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "54b9c86c_21e54d17",
+        "filename": "android/app/src/com/android/bluetooth/a2dp/A2dpStateMachine.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 277,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2023-06-06T00:01:41Z",
+      "side": 1,
+      "message": "For Connecting -\u003e Disconnected, I think we should make reason as REASON_UNEXPECTED_STATE and result as RESULT_FAILURE. Same in HeadsetStateMachine.java",
+      "range": {
+        "startLine": 275,
+        "startChar": 24,
+        "endLine": 277,
+        "endChar": 78
+      },
+      "revId": "13dedb0771eb076ebbfa59ab7c840854b924c292",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "77410d23_e0c3d4c2",
+        "filename": "android/app/src/com/android/bluetooth/a2dp/A2dpStateMachine.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 528,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2023-06-06T00:01:41Z",
+      "side": 1,
+      "message": "Can we put this logic into logSuccessIfNeeded()? Same in HeadsetStateMachine.java",
+      "range": {
+        "startLine": 519,
+        "startChar": 0,
+        "endLine": 528,
+        "endChar": 13
+      },
+      "revId": "13dedb0771eb076ebbfa59ab7c840854b924c292",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
