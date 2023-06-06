@@ -19,6 +19,7 @@ use bt_topshim::profiles::hfp::{
 use bt_topshim::profiles::ProfileConnectionState;
 use bt_topshim::{metrics, topstack};
 use bt_utils::uinput::UInput;
+use bt_utils::uhid::Uhid;
 
 use itertools::Itertools;
 use log::{debug, info, warn};
@@ -503,7 +504,8 @@ impl BluetoothMedia {
                     DisplayAddress(&addr),
                     supported
                 );
-
+                let mut test = Uhid::new();
+                test.create("aaa".to_string(), "bbb".to_string());
                 match self.uinput.create(self.adapter_get_remote_name(addr), addr.to_string()) {
                     Ok(()) => info!("uinput device created for: {}", DisplayAddress(&addr)),
                     Err(e) => warn!("{}", e),

@@ -5,3 +5,4 @@ pub mod array_utils;
 pub mod cod;
 pub mod socket;
 pub mod uinput;
+pub mod uhid;
