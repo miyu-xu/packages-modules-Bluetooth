@@ -129,6 +129,10 @@ using bluetooth::Uuid;
 #define PROPERTY_INQ_SCAN_WINDOW "bluetooth.core.classic.inq_scan_window"
 #endif
 
+#ifndef PROPERTY_INQ_BY_RSSI
+#define PROPERTY_INQ_BY_RSSI "persist.bluetooth.inq_by_rssi"
+#endif
+
 #define BTIF_DM_DEFAULT_INQ_MAX_DURATION 10
 
 /******************************************************************************/
@@ -1150,6 +1154,8 @@ tINQ_DB_ENT* btm_inq_db_find(const RawAddress& p_bda) {
 tINQ_DB_ENT* btm_inq_db_new(const RawAddress& p_bda) {
   uint16_t xx;
   uint64_t ot = UINT64_MAX;
+  int8_t i_rssi = 0;
+  bool inq_by_rssi = osi_property_get_bool(PROPERTY_INQ_BY_RSSI, false);
 
   std::lock_guard<std::mutex> lock(inq_db_lock_);
   tINQ_DB_ENT* p_ent = inq_db_;
@@ -1164,9 +1170,16 @@ tINQ_DB_ENT* btm_inq_db_new(const RawAddress& p_bda) {
       return (p_ent);
     }
 
-    if (p_ent->time_of_resp < ot) {
-      p_old = p_ent;
-      ot = p_ent->time_of_resp;
+    if (!inq_by_rssi) {
+      if (p_ent->time_of_resp < ot) {
+        p_old = p_ent;
+        ot = p_ent->time_of_resp;
+      }
+    } else {
+      if (p_ent->inq_info.results.rssi < i_rssi) {
+        p_old = p_ent;
+        i_rssi = p_ent->inq_info.results.rssi;
+      }
     }
   }
 
