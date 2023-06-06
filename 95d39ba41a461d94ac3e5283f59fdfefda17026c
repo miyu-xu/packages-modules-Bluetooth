@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "513fe463_f492ed11",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-06-06T14:20:18Z",
+      "side": 1,
+      "message": "nit: I prefer to have this be more specific to what the CL does.  \"Cleaning\" \"Fixing\" etc are a little generic.",
+      "revId": "95d39ba41a461d94ac3e5283f59fdfefda17026c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "820fc71a_852d3bcb",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-06-06T14:20:18Z",
+      "side": 1,
+      "message": "specific :)",
+      "range": {
+        "startLine": 10,
+        "startChar": 19,
+        "endLine": 10,
+        "endChar": 29
+      },
+      "revId": "95d39ba41a461d94ac3e5283f59fdfefda17026c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "291f2452_fd08396c",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 2400,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-06-06T14:20:18Z",
+      "side": 1,
+      "message": "Why did we switch from arg2 to arg1?",
+      "range": {
+        "startLine": 2400,
+        "startChar": 32,
+        "endLine": 2400,
+        "endChar": 36
+      },
+      "revId": "95d39ba41a461d94ac3e5283f59fdfefda17026c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
