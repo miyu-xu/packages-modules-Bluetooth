@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "273de30c_0c31adb1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-06-06T15:12:01Z",
+      "side": 1,
+      "message": "Looks good. Minor comment.",
+      "revId": "57b529812c6c1b22a97363d51845e2b26978824a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6e4c6360_b1835059",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 660,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-06-06T15:12:01Z",
+      "side": 1,
+      "message": "maybe just to be on the safe side, lets call \n\n``` /* mark ASEs as not used. */\n    leAudioDevice-\u003eDeactivateAllAses();\n``` \n\nalso inside the `if (!group) {}`\n    \nIn this way we will not change the previous behavior",
+      "range": {
+        "startLine": 660,
+        "startChar": 12,
+        "endLine": 660,
+        "endChar": 16
+      },
+      "revId": "57b529812c6c1b22a97363d51845e2b26978824a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
