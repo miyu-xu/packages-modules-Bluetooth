@@ -46,6 +46,30 @@
       },
       "revId": "305ebdab23c57b6373fca73ae0e648e1d562fe52",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e4c349f6_576c7958",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 27
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-06-06T17:49:56Z",
+      "side": 1,
+      "message": "I think I can remove it now since I already assert that I will deal with MESSAGE_TIMEOUT_BIND, so I shouldn\u0027t need to look at mBinding\n\nAnd because of this comment I did aosp/2617711 to not even have a mBinding variable. 😊",
+      "parentUuid": "672be4bc_c9bd52ec",
+      "range": {
+        "startLine": 213,
+        "startChar": 5,
+        "endLine": 213,
+        "endChar": 22
+      },
+      "revId": "305ebdab23c57b6373fca73ae0e648e1d562fe52",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
