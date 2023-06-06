@@ -160,6 +160,7 @@ typedef struct {
   uint8_t bta_dm_eir_uuid16_len; /* length of 16-bit UUIDs */
   uint8_t* bta_dm_eir_uuid16;    /* 16-bit UUIDs */
 #else
+#include "stack/btm/btm_eir.h"
   uint32_t uuid_mask[BTM_EIR_SERVICE_ARRAY_SIZE]; /* mask of UUID list in EIR */
 #endif
   int8_t* bta_dm_eir_inq_tx_power;     /* Inquiry TX power         */
