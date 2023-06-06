@@ -33,6 +33,24 @@
       "message": "Can you also update to do this while in there ?\n\n```\nif (!bd_name_is_empty(remote_name_msg.bd_name) \u0026\u0026 p_btm_inq_info) {\n```",
       "revId": "50b62249af9360ea925d4347ded24e0473b5bc7e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "df7972dc_89abbbcf",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1160,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-06-06T00:39:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "259386da_ef613b54",
+      "revId": "50b62249af9360ea925d4347ded24e0473b5bc7e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
