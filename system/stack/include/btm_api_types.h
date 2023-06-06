@@ -67,25 +67,9 @@ typedef void(tBTM_VSC_CMPL_CB)(tBTM_VSC_CMPL* p1);
 /****************************
  * minor device class field
  ****************************/
-
-/* BTM service definitions
- * Used for storing EIR data to bit mask
-*/
-#define BTM_EIR_MAX_SERVICES 46
-
 /*******************************************************************************
  * BTM Services MACROS handle array of uint32_t bits for more than 32 services
  ******************************************************************************/
-/* Determine the number of uint32_t's necessary for services */
-#define BTM_EIR_ARRAY_BITS 32 /* Number of bits in each array element */
-#define BTM_EIR_SERVICE_ARRAY_SIZE                         \
-  (((uint32_t)BTM_EIR_MAX_SERVICES / BTM_EIR_ARRAY_BITS) + \
-   (((uint32_t)BTM_EIR_MAX_SERVICES % BTM_EIR_ARRAY_BITS) ? 1 : 0))
-
-/* start of EIR in HCI buffer, 4 bytes = HCI Command(2) + Length(1) + FEC_Req(1)
- */
-#define BTM_HCI_EIR_OFFSET (BT_HDR_SIZE + 4)
-
 /***************************
  *  Device Discovery Types
  ***************************/
