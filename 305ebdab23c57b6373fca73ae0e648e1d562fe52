@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "672be4bc_c9bd52ec",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 27
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-06-06T14:00:56Z",
+      "side": 1,
+      "message": "I don\u0027t like using VisibleForTesting to inspect internal state.  Is it necessary?",
+      "range": {
+        "startLine": 213,
+        "startChar": 5,
+        "endLine": 213,
+        "endChar": 22
+      },
+      "revId": "305ebdab23c57b6373fca73ae0e648e1d562fe52",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
