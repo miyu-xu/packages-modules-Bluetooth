@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b594a84e_ea31b6ed",
+        "filename": "system/stack/btm/btm_inq.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-06-06T15:09:43Z",
+      "side": 1,
+      "message": "struct {\n\n  inq_by_rssi { false};\n  \n} internal_;",
+      "revId": "5ff2b91b11ee51c8a0d833ba55da5fa79427048d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "82f8038b_7f495f74",
+        "filename": "system/stack/btm/btm_inq.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 967,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-06-06T15:09:43Z",
+      "side": 1,
+      "message": "internal_.inq_by_rssi \u003d osi_property_get_bool(PROPERTY_INQ_BY_RSSI, false);",
+      "revId": "5ff2b91b11ee51c8a0d833ba55da5fa79427048d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "828f461a_d8ac63ed",
+        "filename": "system/stack/btm/btm_inq.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1146,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-06-06T15:09:43Z",
+      "side": 1,
+      "message": "Move to init() as shown above\n\nThere is no need to check every time; This should only be set on stack lifescycle sessions.",
+      "revId": "5ff2b91b11ee51c8a0d833ba55da5fa79427048d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6fe60be1_7583f6ab",
+        "filename": "system/stack/btm/btm_inq.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1157,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-06-06T15:09:43Z",
+      "side": 1,
+      "message": "if (internal_.inq_by_rssi) {\n // Throw out smallest rssi\n} else {\n  // Throw out longest time since response\n}",
+      "revId": "5ff2b91b11ee51c8a0d833ba55da5fa79427048d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f550be0a_844efcba",
+        "filename": "system/stack/btm/btm_inq.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1157,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-06-06T15:09:43Z",
+      "side": 1,
+      "message": "Just swap the logic\n\n```\nif (internal_.inq_by_rssi) {\n // Throw out smallest rssi\n} else {\n  // Throw out longest time since response\n}\n```",
+      "revId": "5ff2b91b11ee51c8a0d833ba55da5fa79427048d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
