@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cdc06dfb_4b48baef",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-06-06T18:13:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "513fe463_f492ed11",
+      "revId": "95d39ba41a461d94ac3e5283f59fdfefda17026c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "820fc71a_852d3bcb",
@@ -41,6 +59,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "00d7f427_d4088f9b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-06-06T18:13:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "820fc71a_852d3bcb",
+      "range": {
+        "startLine": 10,
+        "startChar": 19,
+        "endLine": 10,
+        "endChar": 29
+      },
+      "revId": "95d39ba41a461d94ac3e5283f59fdfefda17026c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "291f2452_fd08396c",
@@ -54,6 +96,30 @@
       "writtenOn": "2023-06-06T14:20:18Z",
       "side": 1,
       "message": "Why did we switch from arg2 to arg1?",
+      "range": {
+        "startLine": 2400,
+        "startChar": 32,
+        "endLine": 2400,
+        "endChar": 36
+      },
+      "revId": "95d39ba41a461d94ac3e5283f59fdfefda17026c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d413176f_2a30ce2d",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 2400,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-06-06T18:13:45Z",
+      "side": 1,
+      "message": "Yes.\nBefore we got:\nmsg.arg1 \u003d userHandle.identifier\nmsg.arg2 \u003d retry counter\n\nNow we have\nmsg.obj \u003d userHandle\nmsg.arg1 \u003d retry counter\n\n----\n\nNote that the userHandle is still not used (and couldn\u0027t be used before since it was discard after one retry)",
+      "parentUuid": "291f2452_fd08396c",
       "range": {
         "startLine": 2400,
         "startChar": 32,
