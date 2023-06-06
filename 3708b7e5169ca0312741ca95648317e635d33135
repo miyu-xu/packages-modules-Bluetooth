@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "336f01ac_1ef538fc",
+        "filename": "service/src/com/android/server/bluetooth/AdapterBinder.kt",
+        "patchSetId": 23
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-06-06T13:58:12Z",
+      "side": 1,
+      "message": "Why 3 seconds?",
+      "range": {
+        "startLine": 28,
+        "startChar": 38,
+        "endLine": 28,
+        "endChar": 39
+      },
+      "revId": "3708b7e5169ca0312741ca95648317e635d33135",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "90af0e0d_2c6298d2",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 23
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-06-06T13:58:12Z",
+      "side": 1,
+      "message": "mAdapterLock now?",
+      "range": {
+        "startLine": 207,
+        "startChar": 41,
+        "endLine": 207,
+        "endChar": 55
+      },
+      "revId": "3708b7e5169ca0312741ca95648317e635d33135",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d9b13e4c_31b12fdc",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 23
+      },
+      "lineNbr": 1401,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-06-06T13:58:12Z",
+      "side": 1,
+      "message": "Does this print something useful?  I wonder if the time it was created or something like that would be useful.",
+      "range": {
+        "startLine": 1401,
+        "startChar": 30,
+        "endLine": 1401,
+        "endChar": 38
+      },
+      "revId": "3708b7e5169ca0312741ca95648317e635d33135",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c492e63c_4f471743",
+        "filename": "service/tests/src/com/android/server/bluetooth/BluetoothManagerServiceTest.java",
+        "patchSetId": 23
+      },
+      "lineNbr": 269,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-06-06T13:58:12Z",
+      "side": 1,
+      "message": "nit: Is this really the correct bug #?  I don\u0027t see that this test is a failing test that will be fixed later.",
+      "range": {
+        "startLine": 269,
+        "startChar": 16,
+        "endLine": 269,
+        "endChar": 27
+      },
+      "revId": "3708b7e5169ca0312741ca95648317e635d33135",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
