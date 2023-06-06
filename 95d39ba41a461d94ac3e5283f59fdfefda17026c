@@ -22,6 +22,30 @@
       },
       "revId": "95d39ba41a461d94ac3e5283f59fdfefda17026c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6f2cbf6f_b5453364",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 2396,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-06-06T18:21:12Z",
+      "side": 0,
+      "message": "It was changed in aosp/388873.\nI assume the check is now \"do not restart if you are not ON\", and if you are going to be on, delayed the message to later.",
+      "parentUuid": "f221230b_91c5458f",
+      "range": {
+        "startLine": 2396,
+        "startChar": 44,
+        "endLine": 2396,
+        "endChar": 53
+      },
+      "revId": "95d39ba41a461d94ac3e5283f59fdfefda17026c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
