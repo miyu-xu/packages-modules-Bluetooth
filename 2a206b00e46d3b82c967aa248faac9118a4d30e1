@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1fbdd01b_73b15520",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-06-06T18:47:34Z",
+      "side": 1,
+      "message": "patch diff 6-7 looks good. Waiting for remaining comments to be addressed",
+      "revId": "2a206b00e46d3b82c967aa248faac9118a4d30e1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "96302f40_338dade7",
+        "filename": "system/gd/rust/linux/mgmt/src/powerd_suspend_manager.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-06-06T18:47:34Z",
+      "side": 1,
+      "message": "When you move this into btadapterd, you can update `bluetooth.rs` to take both `adapter_index` (virtual index) and `hci_index` (real index). Then you should pass `hci_index` into this fn instead of 0",
+      "revId": "2a206b00e46d3b82c967aa248faac9118a4d30e1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
