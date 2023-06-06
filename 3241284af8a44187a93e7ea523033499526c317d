@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5ebd0dc2_7f298bd4",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-06-06T16:44:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7cfbd5ce_75af066c",
+      "range": {
+        "startLine": 11,
+        "startChar": 3,
+        "endLine": 11,
+        "endChar": 21
+      },
+      "revId": "3241284af8a44187a93e7ea523033499526c317d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e4c30040_15244936",
@@ -37,6 +61,24 @@
       "writtenOn": "2023-06-06T13:39:51Z",
       "side": 1,
       "message": "I was expecting a new test that was enabled by the injected looper.",
+      "revId": "3241284af8a44187a93e7ea523033499526c317d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b3d72c44_9a162ab9",
+        "filename": "service/tests/src/com/android/server/bluetooth/BluetoothManagerServiceTest.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-06-06T16:44:36Z",
+      "side": 1,
+      "message": "Done in aosp/2606389.\nI didn\u0027t found an easy way to only test the looper. Test is done along to the extraction of AdapterBinder, so I can catch some callback and simulate some stateChanged",
+      "parentUuid": "e4c30040_15244936",
       "revId": "3241284af8a44187a93e7ea523033499526c317d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
