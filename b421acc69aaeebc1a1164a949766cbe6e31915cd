@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "61038420_84781804",
+        "filename": "system/gd/rust/linux/stack/src/suspend.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2023-06-06T18:40:26Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "dd3baf6a_a8e2fa1e",
+      "revId": "b421acc69aaeebc1a1164a949766cbe6e31915cd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0599aaed_9da9d2ac",
@@ -31,6 +49,24 @@
       "writtenOn": "2023-06-05T19:56:21Z",
       "side": 1,
       "message": "This should be inside the if statement (since you only use it there)",
+      "revId": "b421acc69aaeebc1a1164a949766cbe6e31915cd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "aa96843c_9657a44e",
+        "filename": "system/gd/rust/linux/stack/src/suspend.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 239,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2023-06-06T18:40:26Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "0599aaed_9da9d2ac",
       "revId": "b421acc69aaeebc1a1164a949766cbe6e31915cd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -52,6 +88,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0c926051_607ad608",
+        "filename": "system/gd/rust/linux/stack/src/suspend.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 245,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2023-06-06T18:40:26Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "0de0c1d0_178021e0",
+      "revId": "b421acc69aaeebc1a1164a949766cbe6e31915cd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "830f1a6c_8e52dbaa",
@@ -65,6 +119,24 @@
       "writtenOn": "2023-06-05T19:56:21Z",
       "side": 1,
       "message": "Please document what this list of entries is for and why we need it.",
+      "revId": "b421acc69aaeebc1a1164a949766cbe6e31915cd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "48569462_2960880c",
+        "filename": "system/gd/rust/linux/utils/src/uhid.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2023-06-06T18:40:26Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "830f1a6c_8e52dbaa",
       "revId": "b421acc69aaeebc1a1164a949766cbe6e31915cd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -86,6 +158,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cf3d11ad_81e0e3bf",
+        "filename": "system/gd/rust/linux/utils/src/uhid.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2023-06-06T18:40:26Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "94ec589e_bf71939a",
+      "revId": "b421acc69aaeebc1a1164a949766cbe6e31915cd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "30ac1bbf_80203a93",
@@ -103,6 +193,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5cc40fbc_2703c69a",
+        "filename": "system/gd/rust/linux/utils/src/uhid.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2023-06-06T18:40:26Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "30ac1bbf_80203a93",
+      "revId": "b421acc69aaeebc1a1164a949766cbe6e31915cd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "416ea982_2f8b1a7d",
@@ -116,6 +224,24 @@
       "writtenOn": "2023-06-05T19:56:21Z",
       "side": 1,
       "message": "nit: Rename to \u0027clear\u0027 and add docstring.",
+      "revId": "b421acc69aaeebc1a1164a949766cbe6e31915cd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "06aa659f_62ee69cc",
+        "filename": "system/gd/rust/linux/utils/src/uhid.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2023-06-06T18:40:26Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "416ea982_2f8b1a7d",
       "revId": "b421acc69aaeebc1a1164a949766cbe6e31915cd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
