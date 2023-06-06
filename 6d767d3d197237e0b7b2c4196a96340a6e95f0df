@@ -46,6 +46,30 @@
       },
       "revId": "6d767d3d197237e0b7b2c4196a96340a6e95f0df",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f1887743_9d6bf16f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 21
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-06-06T17:55:29Z",
+      "side": 1,
+      "message": "When you understand what it means and say it doesn\u0027t mean anything...  I think it\u0027s misleading",
+      "parentUuid": "e779b61e_71e00589",
+      "range": {
+        "startLine": 10,
+        "startChar": 30,
+        "endLine": 10,
+        "endChar": 53
+      },
+      "revId": "6d767d3d197237e0b7b2c4196a96340a6e95f0df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
