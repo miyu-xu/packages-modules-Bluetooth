@@ -90,6 +90,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "db144ce0_5e713d11",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 655,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-06-06T15:09:14Z",
+      "side": 1,
+      "message": "actually as we discussed offline, spec allows Disconnect Complete EVT for ACL and CIS to be in any order. So ignore my original comment .\n\nThanks!",
+      "parentUuid": "77e1d046_16588a97",
+      "revId": "83b41f1e55eb4566d3e17d97c1473e8fb45bc278",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9768f34a_3c8a92a6",
