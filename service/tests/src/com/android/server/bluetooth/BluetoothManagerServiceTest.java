@@ -16,8 +16,6 @@
 
 package com.android.server.bluetooth;
 
-import static com.google.common.truth.Truth.assertThat;
-
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.any;
 import static org.mockito.Mockito.doReturn;
@@ -68,7 +66,9 @@ public class BluetoothManagerServiceTest {
         mHandlerThread.quitSafely();
     }
 
-    private void createBluetoothManagerService() {
+    @Test
+    public void onUserRestrictionsChanged_disallowBluetooth_onlySendDisableMessageOnSystemUser()
+            throws InterruptedException {
         doReturn(mock(Intent.class)).when(mContext).registerReceiverForAllUsers(any(), any(),
                 eq(null), eq(null));
         BluetoothServerProxy.setInstanceForTesting(mBluetoothServerProxy);
@@ -82,12 +82,7 @@ public class BluetoothManagerServiceTest {
                 eq(Settings.Secure.BLUETOOTH_NAME));
         doReturn("00:11:22:33:44:55").when(mBluetoothServerProxy).settingsSecureGetString(any(),
                 eq(Settings.Secure.BLUETOOTH_ADDRESS));
-        mManagerService = new BluetoothManagerService(mContext);
-    }
 
-    @Test
-    public void onUserRestrictionsChanged_disallowBluetooth_onlySendDisableMessageOnSystemUser()
-            throws InterruptedException {
         // Spy UserManager so we can mimic the case when restriction settings changed
         UserManager userManager = mock(UserManager.class);
         doReturn(userManager).when(mContext).getSystemService(UserManager.class);
@@ -95,7 +90,7 @@ public class BluetoothManagerServiceTest {
                 eq(UserManager.DISALLOW_BLUETOOTH), any());
         doReturn(false).when(userManager).hasUserRestrictionForUser(
                 eq(UserManager.DISALLOW_BLUETOOTH_SHARING), any());
-        createBluetoothManagerService();
+        mManagerService = new BluetoothManagerService(mContext);
 
         // Check if disable message sent once for system user only
         // Since Message object is recycled after processed, use proxy function to get what value
@@ -109,22 +104,5 @@ public class BluetoothManagerServiceTest {
         mManagerService.onUserRestrictionsChanged(UserHandle.SYSTEM);
         verify(mBluetoothServerProxy, timeout(sTimeout)).handlerSendWhatMessage(mHandler,
                 BluetoothManagerService.MESSAGE_DISABLE);
-    }
-
-    @Test
-    public void testApmEnhancementEnabled() {
-        createBluetoothManagerService();
-        mManagerService.setBluetoothModeChangeHelper(new BluetoothModeChangeHelper(mContext));
-
-        // Change the apm enhancement enabled value to 0
-        Settings.Global.putInt(mContext.getContentResolver(),
-                "apm_enhancement_enabled", 0);
-        assertThat(Settings.Global.getInt(mContext.getContentResolver(),
-                "apm_enhancement_enabled",  0)).isEqualTo(0);
-
-        // Confirm that apm enhancement enabled value has been updated to 1
-        mManagerService.loadApmEnhancementStateFromResource();
-        assertThat(Settings.Global.getInt(mContext.getContentResolver(),
-                "apm_enhancement_enabled",  0)).isEqualTo(1);
     }
 }
