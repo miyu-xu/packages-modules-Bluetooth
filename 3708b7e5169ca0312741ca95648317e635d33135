@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3c90f23b_af69f97d",
+        "filename": "service/src/com/android/server/bluetooth/AdapterBinder.kt",
+        "patchSetId": 23
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-06-06T17:26:43Z",
+      "side": 1,
+      "message": "This is the current behavior, I am not making any change here.\n\nI know that 5 seconds is the time after what got trigger ANR, so we want to be smaller than that.\n\nI think that 3 seconds is mostly random value.",
+      "parentUuid": "336f01ac_1ef538fc",
+      "range": {
+        "startLine": 28,
+        "startChar": 38,
+        "endLine": 28,
+        "endChar": 39
+      },
+      "revId": "3708b7e5169ca0312741ca95648317e635d33135",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "90af0e0d_2c6298d2",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-06-06T13:58:12Z",
       "side": 1,
       "message": "mAdapterLock now?",
+      "range": {
+        "startLine": 207,
+        "startChar": 41,
+        "endLine": 207,
+        "endChar": 55
+      },
+      "revId": "3708b7e5169ca0312741ca95648317e635d33135",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4892d850_be1e015e",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 23
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-06-06T17:26:43Z",
+      "side": 1,
+      "message": "Done.\n\nThis lock is used for binding too and there are a number of thing that are wrong around this Lock... (like the fact we need one despite supposedly running in a handler).\nBut I can rename it yes !",
+      "parentUuid": "90af0e0d_2c6298d2",
       "range": {
         "startLine": 207,
         "startChar": 41,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "173e83cb_f3c3275d",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 23
+      },
+      "lineNbr": 1401,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-06-06T17:26:43Z",
+      "side": 1,
+      "message": "Done, it is now printing:\n```kt\n\"[Binder\u003d\" + adapterBinder.hashCode() + \", createdAt\u003d\" + timeToLog(createdAt) + \"]\"\n```\nI am keeping the hashCode to avoid any ambiguity and make sure this is an unique instance\n\nHere is an example of such output:\n```\nBluetoothManagerService (1536 2245)  D    disable(): mAdapter\u003d[Binder\u003d133505923, createdAt\u003d06-06 17:22:45.962], persist\u003dtrue, mBinding\u003dfalse\n```",
+      "parentUuid": "d9b13e4c_31b12fdc",
+      "range": {
+        "startLine": 1401,
+        "startChar": 30,
+        "endLine": 1401,
+        "endChar": 38
+      },
+      "revId": "3708b7e5169ca0312741ca95648317e635d33135",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c492e63c_4f471743",
@@ -83,6 +155,30 @@
       "writtenOn": "2023-06-06T13:58:12Z",
       "side": 1,
       "message": "nit: Is this really the correct bug #?  I don\u0027t see that this test is a failing test that will be fixed later.",
+      "range": {
+        "startLine": 269,
+        "startChar": 16,
+        "endLine": 269,
+        "endChar": 27
+      },
+      "revId": "3708b7e5169ca0312741ca95648317e635d33135",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "837aa3ac_2b0f68f6",
+        "filename": "service/tests/src/com/android/server/bluetooth/BluetoothManagerServiceTest.java",
+        "patchSetId": 23
+      },
+      "lineNbr": 269,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-06-06T17:26:43Z",
+      "side": 1,
+      "message": "Now it is 😊\nI was aiming this bug for any test improvement along the way",
+      "parentUuid": "c492e63c_4f471743",
       "range": {
         "startLine": 269,
         "startChar": 16,
