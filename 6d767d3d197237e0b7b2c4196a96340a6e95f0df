@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "13ccce57_cc8a0974",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 21
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-06-06T14:04:31Z",
+      "side": 1,
+      "message": "?\n\nIt seems like it means that LE has been started successfully, so the next phase can start.  This CL changes the meaning to what will be done, not what was done before...",
+      "range": {
+        "startLine": 10,
+        "startChar": 30,
+        "endLine": 10,
+        "endChar": 53
+      },
+      "revId": "6d767d3d197237e0b7b2c4196a96340a6e95f0df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
