@@ -741,6 +741,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7118d4e5_85ba3f67",
+        "filename": "system/stack/btm/hfp_lc3_encoder.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2023-06-06T00:08:59Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "36f14290_692f9de1",
+      "range": {
+        "startLine": 63,
+        "startChar": 9,
+        "endLine": 63,
+        "endChar": 26
+      },
+      "revId": "c947d08a8b84673fcc6b2609d3f3f02ff71a42e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "976c0293_db2acf75",
