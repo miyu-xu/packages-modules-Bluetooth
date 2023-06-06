@@ -22,6 +22,30 @@
       },
       "revId": "122d76b56fcbf4a11876893821fc5ee52898cb8e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "38aa9a33_b7279a4d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-06-06T18:02:31Z",
+      "side": 1,
+      "message": "It does not yet so I prefered beiing transparent on it.\nI added some handling around enable / bind / timeout but thats all for now.",
+      "parentUuid": "2b48f868_10d380bc",
+      "range": {
+        "startLine": 10,
+        "startChar": 6,
+        "endLine": 10,
+        "endChar": 10
+      },
+      "revId": "122d76b56fcbf4a11876893821fc5ee52898cb8e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
