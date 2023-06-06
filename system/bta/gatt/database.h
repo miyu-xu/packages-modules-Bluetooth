@@ -55,7 +55,7 @@ struct StoredAttribute {
       uint8_t properties;
       uint16_t value_handle;
       bluetooth::Uuid uuid;
-    } characteristic;
+    } __attribute__((packed)) characteristic;
 
     /* for descriptor we store value only for
      * «Characteristic Extended Properties» */
