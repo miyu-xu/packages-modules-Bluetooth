@@ -22,6 +22,30 @@
       },
       "revId": "6d767d3d197237e0b7b2c4196a96340a6e95f0df",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e779b61e_71e00589",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 21
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-06-06T17:54:01Z",
+      "side": 1,
+      "message": "I understand but I still think it is a non-sense since `OnLeServiceUp` is already sent by the AdapterService to the B.M.S when he calling `onBluetoothStateChange(x, BLE_ON)`.\n\nNow that everyone is aware that we are up in Le we have no-one to advertise for it and we want to start the next step.\n\nMaybe it would make more sense if I move this CL after \"No longer bind to gatt from BluetoothManagerService\" (aosp/2616509)",
+      "parentUuid": "13ccce57_cc8a0974",
+      "range": {
+        "startLine": 10,
+        "startChar": 30,
+        "endLine": 10,
+        "endChar": 53
+      },
+      "revId": "6d767d3d197237e0b7b2c4196a96340a6e95f0df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
