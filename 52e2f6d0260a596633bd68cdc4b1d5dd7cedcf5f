@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "72d2088d_f55b05a0",
+        "filename": "system/bta/gatt/bta_gattc_act.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 421,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-06-07T23:58:36Z",
+      "side": 1,
+      "message": "Will this trigger a new undocumented value to be received by Java clients? ie. other than others already passed up undocumented?\n\nContext: IIRC the error code provided to this callback gets passed straight through to Java and I don\u0027t think is translated anywhere. (Granted, that could be tracked as part of b/201571634 as future improvement since this already happens with GATT_ERROR not being publicly documented)\n\n(Marking resolved as I\u0027m ok with addressing in future as this is already problematic more broadly)",
+      "range": {
+        "startLine": 421,
+        "startChar": 39,
+        "endLine": 421,
+        "endChar": 61
+      },
+      "revId": "52e2f6d0260a596633bd68cdc4b1d5dd7cedcf5f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
