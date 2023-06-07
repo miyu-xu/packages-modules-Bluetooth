@@ -16,6 +16,23 @@
       "message": "Hi @wescande@google.com, please help to code review. Thanks.",
       "revId": "fc8af42bfc376bf91bdce1382c4be7f1f73bfb3d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e5d5c91e_ffdff39d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-06-07T07:44:34Z",
+      "side": 1,
+      "message": "Adding area owner for visibility.\nThis change looks good to me",
+      "revId": "fc8af42bfc376bf91bdce1382c4be7f1f73bfb3d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
