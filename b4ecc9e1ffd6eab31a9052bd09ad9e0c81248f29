@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "43932381_68439b8e",
+        "filename": "system/stack/btm/btm_sco_hci.cc",
+        "patchSetId": 14
+      },
+      "lineNbr": 764,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-06-07T05:23:08Z",
+      "side": 1,
+      "message": "This CL adds quite a few untested lines in this file, bringing the coverage down to 46%.  Could you add some tests?",
+      "revId": "b4ecc9e1ffd6eab31a9052bd09ad9e0c81248f29",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "47829cc9_44b3e599",
+        "filename": "system/stack/btm/btm_sco.h",
+        "patchSetId": 14
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-06-07T05:23:08Z",
+      "side": 0,
+      "message": "Did you mean to remove this from is_wbs() ?  I didn\u0027t see anything about it in the commit message.",
+      "range": {
+        "startLine": 180,
+        "startChar": 15,
+        "endLine": 180,
+        "endChar": 42
+      },
+      "revId": "1216878b666f2c997c94a8506f27de62fd0163ae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
