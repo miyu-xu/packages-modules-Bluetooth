@@ -16,6 +16,7 @@
 
 package com.android.server.bluetooth;
 
+import static org.mockito.ArgumentMatchers.anyBoolean;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -54,7 +55,7 @@ public class BluetoothSatelliteModeListenerTest {
     @Test
     public void testHandleSatelliteModeChange_InvokeSatelliteModeChanged() {
         mBluetoothSatelliteModeListener.handleSatelliteModeChange();
-        verify(mBluetoothManagerService).onSatelliteModeChanged();
+        verify(mBluetoothManagerService).onSatelliteModeChanged(anyBoolean());
     }
 }
 
