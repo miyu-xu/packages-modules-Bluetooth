@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "94c3080d_2d1d79d0",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1569,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-06-07T03:33:12Z",
+      "side": 1,
+      "message": "`mIsApmEnhancementEnabled` is set only once to true.\ncan we put it as `private static final int` ?",
+      "range": {
+        "startLine": 1569,
+        "startChar": 64,
+        "endLine": 1569,
+        "endChar": 88
+      },
+      "revId": "58bd7162ba0d8bb51f346b23a3bf31c54f3e3226",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
