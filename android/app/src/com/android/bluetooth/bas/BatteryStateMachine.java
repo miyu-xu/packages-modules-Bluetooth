@@ -68,6 +68,7 @@ public class BatteryStateMachine extends StateMachine {
 
     private Disconnected mDisconnected;
     private Connecting mConnecting;
+    private Waiting mWaiting;
     private Connected mConnected;
     private Disconnecting mDisconnecting;
     private int mLastConnectionState = BluetoothProfile.STATE_DISCONNECTED;
@@ -85,11 +86,13 @@ public class BatteryStateMachine extends StateMachine {
 
         mDisconnected = new Disconnected();
         mConnecting = new Connecting();
+        mWaiting = new Waiting();
         mConnected = new Connected();
         mDisconnecting = new Disconnecting();
 
         addState(mDisconnected);
         addState(mConnecting);
+        addState(mWaiting);
         addState(mDisconnecting);
         addState(mConnected);
 
@@ -193,6 +196,8 @@ public class BatteryStateMachine extends StateMachine {
                 return BluetoothProfile.STATE_DISCONNECTED;
             case "Connecting":
                 return BluetoothProfile.STATE_CONNECTING;
+            case "Waiting":
+                return BluetoothProfile.STATE_CONNECTING;
             case "Connected":
                 return BluetoothProfile.STATE_CONNECTED;
             case "Disconnecting":
@@ -236,6 +241,19 @@ public class BatteryStateMachine extends StateMachine {
                 mGattCallback, TRANSPORT_LE, /*opportunistic=*/true,
                 PHY_LE_1M_MASK | PHY_LE_2M_MASK, getHandler());
         return mBluetoothGatt != null;
+    }
+
+    /**
+     * Closes the current GATT connection and connects again.
+     *
+     * @return {@code true} if it successfully reconnects to the GATT server.
+     */
+    public boolean reconnectGatt() {
+        if (mBluetoothGatt != null) {
+            mBluetoothGatt.close();
+            mBluetoothGatt = null;
+        }
+        return connectGatt();
     }
 
     @Override
@@ -326,6 +344,75 @@ public class BatteryStateMachine extends StateMachine {
         }
     }
 
+    /**
+     * Waiting for the connection. The only difference from Connecting state is that it retries
+     * connect when CONNECT message is arrived.
+     */
+    @VisibleForTesting
+    class Waiting extends State {
+        private static final String TAG = "BASM_Waiting";
+
+        @Override
+        public void enter() {
+            log(TAG, "Enter (" + mDevice + "): " + messageWhatToString(getCurrentMessage().what));
+        }
+
+        @Override
+        public void exit() {
+            log(TAG, "Exit (" + mDevice + "): " + messageWhatToString(getCurrentMessage().what));
+            mLastConnectionState = BluetoothProfile.STATE_CONNECTING;
+        }
+
+        @Override
+        public boolean processMessage(Message message) {
+            log(TAG, "process message(" + mDevice + "): " + messageWhatToString(message.what));
+
+            switch (message.what) {
+                case CONNECT:
+                    if (reconnectGatt()) {
+                        transitionTo(mConnecting);
+                    } else {
+                        Log.w(
+                                TAG,
+                                "Battery connecting request rejected due to "
+                                        + "GATT connection rejection: "
+                                        + mDevice);
+                    }
+                    break;
+                case DISCONNECT:
+                    log(TAG, "Connection canceled to " + mDevice);
+                    if (mBluetoothGatt != null) {
+                        mBluetoothGatt.disconnect();
+                    }
+                    // As we're not yet connected we don't need to wait for callbacks.
+                    transitionTo(mDisconnected);
+                    break;
+                case CONNECTION_STATE_CHANGED:
+                    processConnectionEvent(message.arg1);
+                    break;
+                default:
+                    return NOT_HANDLED;
+            }
+            return HANDLED;
+        }
+
+        // in Waiting state
+        private void processConnectionEvent(int state) {
+            switch (state) {
+                case BluetoothGatt.STATE_DISCONNECTED:
+                    Log.w(TAG, "Device disconnected: " + mDevice);
+                    transitionTo(mDisconnected);
+                    break;
+                case BluetoothGatt.STATE_CONNECTED:
+                    transitionTo(mConnected);
+                    break;
+                default:
+                    Log.e(TAG, "Incorrect state: " + state);
+                    break;
+            }
+        }
+    }
+
     @VisibleForTesting
     class Connecting extends State {
         private static final String TAG = "BASM_Connecting";
@@ -356,7 +443,8 @@ public class BatteryStateMachine extends StateMachine {
                     break;
                 case CONNECT_TIMEOUT:
                     Log.w(TAG, "Connection timeout: " + mDevice);
-                    // fall through
+                    transitionTo(mWaiting);
+                    break;
                 case DISCONNECT:
                     log(TAG, "Connection canceled to " + mDevice);
                     if (mBluetoothGatt != null) {
