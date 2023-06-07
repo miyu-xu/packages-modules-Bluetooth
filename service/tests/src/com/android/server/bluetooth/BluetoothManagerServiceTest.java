@@ -97,6 +97,11 @@ public class BluetoothManagerServiceTest {
 
     @Before
     public void setUp() throws Exception {
+        // Required for reading DeviceConfig.
+        InstrumentationRegistry.getInstrumentation()
+                .getUiAutomation()
+                .adoptShellPermissionIdentity(android.Manifest.permission.READ_DEVICE_CONFIG);
+
         MockitoAnnotations.initMocks(this);
 
         // Mock these functions so security errors won't throw
@@ -152,6 +157,10 @@ public class BluetoothManagerServiceTest {
         }
         mManagerService = null;
         validateMockitoUsage();
+        // Required for reading DeviceConfig.
+        InstrumentationRegistry.getInstrumentation()
+                .getUiAutomation()
+                .dropShellPermissionIdentity();
     }
 
     /**
