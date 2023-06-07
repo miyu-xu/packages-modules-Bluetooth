@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b304d030_de3b0cb4",
+        "filename": "system/stack/btu/btu_hcif.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 1179,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-06-07T15:15:56Z",
+      "side": 0,
+      "message": "Oh my !?!",
+      "revId": "f2340a70b58ee91b05661567b60cb45119fc3f6a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
