@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9b69490b_6cf5ac37",
+        "filename": "android/app/src/com/android/bluetooth/opp/BluetoothOppReceiver.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-06-07T08:25:27Z",
+      "side": 1,
+      "message": "\"if (true)\" doesn\u0027t look good. Please fix.",
+      "range": {
+        "startLine": 105,
+        "startChar": 16,
+        "endLine": 105,
+        "endChar": 20
+      },
+      "revId": "321e45c91901e8230f4c16bcc4814efddb1334f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ea0adbef_5342ea5d",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/TestUtils.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 394,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-06-07T08:25:27Z",
+      "side": 1,
+      "message": "please fix",
+      "revId": "321e45c91901e8230f4c16bcc4814efddb1334f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "168bd44c_4d1448fb",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppNotificationTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-06-07T08:25:27Z",
+      "side": 1,
+      "message": "remove.",
+      "range": {
+        "startLine": 108,
+        "startChar": 6,
+        "endLine": 108,
+        "endChar": 41
+      },
+      "revId": "321e45c91901e8230f4c16bcc4814efddb1334f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d012524d_0371c152",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppNotificationTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-06-07T08:25:27Z",
+      "side": 1,
+      "message": "remove and others",
+      "range": {
+        "startLine": 171,
+        "startChar": 8,
+        "endLine": 171,
+        "endChar": 45
+      },
+      "revId": "321e45c91901e8230f4c16bcc4814efddb1334f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
