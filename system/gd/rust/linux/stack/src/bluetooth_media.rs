@@ -73,6 +73,9 @@ pub trait IBluetoothMedia {
 
     /// connect to available but missing media profiles
     fn connect(&mut self, address: String);
+
+    /// disconnect all profiles from the device
+    /// NOTE: do not call this function directly unless `is_complete_profiles_required`
     fn disconnect(&mut self, address: String);
 
     // Set the device as the active A2DP device
@@ -476,7 +479,8 @@ impl BluetoothMedia {
                         self.a2dp_audio_state.remove(&addr);
                         self.rm_connected_profile(addr, uuid::Profile::A2dpSink, true);
                         if self.is_complete_profiles_required() {
-                            self.disconnect(addr.to_string());
+                            let txl = self.tx.clone();
+                            BluetoothMedia::disconnect_device(txl, addr);
                         }
                     }
                     _ => {
@@ -493,6 +497,13 @@ impl BluetoothMedia {
             }
             A2dpCallbacks::MandatoryCodecPreferred(_addr) => {}
         }
+    }
+
+    fn disconnect_device(txl: Sender<Message>, addr: RawAddress) {
+        let device = BluetoothDevice::new(addr.to_string(), "Classic Device".to_string());
+        topstack::get_runtime().spawn(async move {
+            let _ = txl.send(Message::DisconnectDevice(device)).await;
+        });
     }
 
     pub fn dispatch_avrcp_callbacks(&mut self, cb: AvrcpCallbacks) {
@@ -583,6 +594,12 @@ impl BluetoothMedia {
                     uuid::Profile::AvrcpController,
                     is_profile_critical,
                 );
+
+                // Remove device if media profile is empty
+                if is_profile_critical {
+                    let txl = self.tx.clone();
+                    BluetoothMedia::disconnect_device(txl, addr);
+                }
             }
             AvrcpCallbacks::AvrcpAbsoluteVolumeUpdate(volume) => {
                 for (addr, state) in self.device_states.lock().unwrap().iter() {
@@ -673,7 +690,8 @@ impl BluetoothMedia {
                         self.hfp_audio_state.remove(&addr);
                         self.rm_connected_profile(addr, uuid::Profile::Hfp, true);
                         if self.is_complete_profiles_required() {
-                            self.disconnect(addr.to_string());
+                            let txl = self.tx.clone();
+                            BluetoothMedia::disconnect_device(txl, addr);
                         }
                     }
                     BthfConnectionState::Connecting => {
@@ -1919,9 +1937,9 @@ impl IBluetoothMedia for BluetoothMedia {
         true
     }
 
-    // TODO(b/278963515): Currently this is designed to be called from both the
-    // UI and via disconnection callbacks. Remove this workaround once the
-    // proper fix has landed.
+    // This may not disconnect all media profiles at once, but once the stack
+    // is notified of the disconnection callback, `disconnect_device` will be
+    // invoked as necessary to ensure the device is removed.
     fn disconnect(&mut self, address: String) {
         let addr = match RawAddress::from_string(address.clone()) {
             None => {
@@ -1947,6 +1965,7 @@ impl IBluetoothMedia for BluetoothMedia {
                 uuid::Profile::A2dpSink => {
                     // Some headsets (b/278963515) will try reconnecting to A2DP
                     // when HFP is running but (requested to be) disconnected.
+                    // TODO: Remove this workaround once proper fix lands.
                     if connected_profiles.contains(&Profile::Hfp) {
                         continue;
                     }
