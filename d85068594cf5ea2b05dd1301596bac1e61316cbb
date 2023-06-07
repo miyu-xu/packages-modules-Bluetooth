@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d3dc5e94_181f82eb",
+        "filename": "system/btif/src/btif_config.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 212,
+      "author": {
+        "id": 1963225
+      },
+      "writtenOn": "2023-06-07T03:27:52Z",
+      "side": 1,
+      "message": "please add the function to the mock, at system/test/mock/mock_btif_config.cc",
+      "revId": "d85068594cf5ea2b05dd1301596bac1e61316cbb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4628f71f_072cb17d",
+        "filename": "system/btif/src/btif_config.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 225,
+      "author": {
+        "id": 1963225
+      },
+      "writtenOn": "2023-06-07T03:27:52Z",
+      "side": 1,
+      "message": "ditto",
+      "revId": "d85068594cf5ea2b05dd1301596bac1e61316cbb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
