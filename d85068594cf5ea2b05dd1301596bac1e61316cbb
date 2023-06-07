@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "782c5706_853ced94",
+        "filename": "system/btif/src/btif_config.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 212,
+      "author": {
+        "id": 1965943
+      },
+      "writtenOn": "2023-06-07T05:34:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d3dc5e94_181f82eb",
+      "revId": "d85068594cf5ea2b05dd1301596bac1e61316cbb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4628f71f_072cb17d",
@@ -31,6 +49,24 @@
       "writtenOn": "2023-06-07T03:27:52Z",
       "side": 1,
       "message": "ditto",
+      "revId": "d85068594cf5ea2b05dd1301596bac1e61316cbb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "59f2f208_f08b6f80",
+        "filename": "system/btif/src/btif_config.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 225,
+      "author": {
+        "id": 1965943
+      },
+      "writtenOn": "2023-06-07T05:34:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4628f71f_072cb17d",
       "revId": "d85068594cf5ea2b05dd1301596bac1e61316cbb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
