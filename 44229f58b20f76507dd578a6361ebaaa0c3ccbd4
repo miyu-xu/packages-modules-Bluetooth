@@ -38,6 +38,23 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "b11e1dce_286380ff",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-06-07T03:56:11Z",
+      "side": 1,
+      "message": "Thanks for the review!",
+      "revId": "44229f58b20f76507dd578a6361ebaaa0c3ccbd4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "96c0e44a_0a27171c",
         "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
         "patchSetId": 1
