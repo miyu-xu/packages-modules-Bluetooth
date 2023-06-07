@@ -139,6 +139,7 @@ public class BluetoothManagerServiceTest {
         mLooper = new TestLooper();
 
         mManagerService = new BluetoothManagerService(mContext, mLooper.getLooper());
+        // Constructor is posting SatelliteModeListener.initialize on its handler
         mManagerService.registerAdapter(mManagerCallback);
     }
 

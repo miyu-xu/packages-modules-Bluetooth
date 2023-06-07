@@ -35,6 +35,7 @@ public class BluetoothSatelliteModeListener {
 
     private final BluetoothManagerService mBluetoothManagerService;
     private final BluetoothSatelliteModeHandler mHandler;
+    private final Context mContext;
 
     private static final int MSG_SATELLITE_MODE_CHANGED = 0;
 
@@ -43,12 +44,13 @@ public class BluetoothSatelliteModeListener {
         Log.d(TAG, " BluetoothSatelliteModeListener");
         mBluetoothManagerService = service;
         mHandler = new BluetoothSatelliteModeHandler(looper);
+        mContext = context;
 
         context.getContentResolver().registerContentObserver(
-                Settings.Global.getUriFor(BluetoothManagerService.SETTINGS_SATELLITE_MODE_RADIOS),
+                Settings.Global.getUriFor(SETTINGS_SATELLITE_MODE_RADIOS),
                 false, mSatelliteModeObserver);
         context.getContentResolver().registerContentObserver(
-                Settings.Global.getUriFor(BluetoothManagerService.SETTINGS_SATELLITE_MODE_ENABLED),
+                Settings.Global.getUriFor(SETTINGS_SATELLITE_MODE_ENABLED),
                 false, mSatelliteModeObserver);
     }
 
@@ -77,7 +79,32 @@ public class BluetoothSatelliteModeListener {
 
     @VisibleForTesting
     public void handleSatelliteModeChange() {
-        mBluetoothManagerService.onSatelliteModeChanged();
+        mBluetoothManagerService.onSatelliteModeChanged(isSatelliteModeOn());
+    }
+    /**
+     * @hide constant copied from {@link Settings.Global} TODO(b/274636414): Migrate to official API
+     *     in Android V.
+     */
+    @VisibleForTesting static final String SETTINGS_SATELLITE_MODE_RADIOS = "satellite_mode_radios";
+    /**
+     * @hide constant copied from {@link Settings.Global} TODO(b/274636414): Migrate to official API
+     *     in Android V.
+     */
+    @VisibleForTesting
+    static final String SETTINGS_SATELLITE_MODE_ENABLED = "satellite_mode_enabled";
+
+    boolean isSatelliteModeSensitive() {
+        final String satelliteRadios =
+                Settings.Global.getString(
+                        mContext.getContentResolver(), SETTINGS_SATELLITE_MODE_RADIOS);
+        return satelliteRadios != null && satelliteRadios.contains(Settings.Global.RADIO_BLUETOOTH);
+    }
+
+    boolean isSatelliteModeOn() {
+        if (!isSatelliteModeSensitive()) return false;
+        return Settings.Global.getInt(
+                        mContext.getContentResolver(), SETTINGS_SATELLITE_MODE_ENABLED, 0)
+                == 1;
     }
 }
 
