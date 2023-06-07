@@ -16,6 +16,24 @@
       "message": "The code LGTM, thank you for the contribution!\nCan you make sure `avatar lint` run without errors ?",
       "revId": "c1e962f2514ae3419e5a5da51efa9944b492551c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6c60c1b6_52da98d9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1970930
+      },
+      "writtenOn": "2023-06-07T10:52:13Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "804d662e_58ad45c6",
+      "revId": "c1e962f2514ae3419e5a5da51efa9944b492551c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
