@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f15a5887_ae900faf",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-06-07T09:21:08Z",
+      "side": 1,
+      "message": "IllegalArgumentException",
+      "range": {
+        "startLine": 7,
+        "startChar": 4,
+        "endLine": 7,
+        "endChar": 28
+      },
+      "revId": "affa6cc593fdf767991fb19ceb9d41f49e838c5f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eb749a08_5b157efb",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-06-07T09:21:08Z",
+      "side": 1,
+      "message": "Unnecessary message. Please remove.",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 33
+      },
+      "revId": "affa6cc593fdf767991fb19ceb9d41f49e838c5f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "87323d1b_03bdbdbd",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-06-07T09:21:08Z",
+      "side": 1,
+      "message": "What is it?",
+      "range": {
+        "startLine": 14,
+        "startChar": 46,
+        "endLine": 14,
+        "endChar": 61
+      },
+      "revId": "affa6cc593fdf767991fb19ceb9d41f49e838c5f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2adbd2ba_efe7034b",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppServiceTest.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-06-07T09:21:08Z",
+      "side": 1,
+      "message": "Could you point out where a new thread created?",
+      "range": {
+        "startLine": 74,
+        "startChar": 75,
+        "endLine": 74,
+        "endChar": 97
+      },
+      "revId": "affa6cc593fdf767991fb19ceb9d41f49e838c5f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "90ff50a5_4b799bb9",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppServiceTest.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-06-07T09:21:08Z",
+      "side": 1,
+      "message": "test to fail?",
+      "range": {
+        "startLine": 75,
+        "startChar": 32,
+        "endLine": 75,
+        "endChar": 46
+      },
+      "revId": "affa6cc593fdf767991fb19ceb9d41f49e838c5f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

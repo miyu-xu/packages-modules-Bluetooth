@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "937ddadb_30a14d5d",
+        "filename": "android/app/src/com/android/bluetooth/opp/BluetoothOppService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 1115,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-06-07T09:21:08Z",
+      "side": 0,
+      "message": "try-catch might be the right solution.",
+      "range": {
+        "startLine": 1115,
+        "startChar": 24,
+        "endLine": 1115,
+        "endChar": 36
+      },
+      "revId": "a2092e8785d11495bae5d695d3324c0913e90a1a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
