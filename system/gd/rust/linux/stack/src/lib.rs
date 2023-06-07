@@ -133,6 +133,9 @@ pub enum Message {
     // Dis callbacks
     Dis(ServiceCallbacks),
 
+    // Device removal
+    DisconnectDevice(BluetoothDevice),
+
     // Qualification Only
     QaCallbackDisconnected(u32),
     QaAddMediaPlayer(String, bool),
@@ -367,6 +370,10 @@ impl Stack {
                 Message::Dis(callback) => {
                     bluetooth_dis.lock().unwrap().handle_callbacks(&callback);
                 }
+                Message::DisconnectDevice(addr) => {
+                    bluetooth.lock().unwrap().disconnect_all_enabled_profiles(addr);
+                }
+
                 // Qualification Only
                 Message::QaAddMediaPlayer(name, browsing_supported) => {
                     bluetooth_media.lock().unwrap().add_player(name, browsing_supported);
