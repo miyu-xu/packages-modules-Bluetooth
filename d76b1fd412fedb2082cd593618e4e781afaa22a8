@@ -52,6 +52,24 @@
       "parentUuid": "3f29c962_4a2150ee",
       "revId": "d76b1fd412fedb2082cd593618e4e781afaa22a8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d68b0275_af06c9ea",
+        "filename": "framework/java/android/bluetooth/BluetoothLeBroadcastMetadata.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 408,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-06-07T18:46:18Z",
+      "side": 1,
+      "message": "yes, that\u0027s what I\u0027m planning to do for setBroadcastCode. we\u0027re missing the length checks there.",
+      "parentUuid": "647611e0_d59c4c9c",
+      "revId": "d76b1fd412fedb2082cd593618e4e781afaa22a8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
