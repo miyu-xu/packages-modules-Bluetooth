@@ -16,6 +16,24 @@
       "message": "Do you intend to write the code to the parcel if its length is 0? If so, this LGTM. If not, we should modify writeToParcel",
       "revId": "d76b1fd412fedb2082cd593618e4e781afaa22a8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3f29c962_4a2150ee",
+        "filename": "framework/java/android/bluetooth/BluetoothLeBroadcastMetadata.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 408,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-06-07T18:32:53Z",
+      "side": 1,
+      "message": "yes, i think it\u0027s okay to write 0. this cl is mainly to resolve the parcel serialize and deserialize mismatch issue to avoid exception. we should plan to add some length protection as well in the api or app later.",
+      "parentUuid": "166740f4_082cda26",
+      "revId": "d76b1fd412fedb2082cd593618e4e781afaa22a8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
