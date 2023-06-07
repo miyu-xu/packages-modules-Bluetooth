@@ -34,6 +34,24 @@
       "parentUuid": "166740f4_082cda26",
       "revId": "d76b1fd412fedb2082cd593618e4e781afaa22a8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "647611e0_d59c4c9c",
+        "filename": "framework/java/android/bluetooth/BluetoothLeBroadcastMetadata.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 408,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-06-07T18:38:16Z",
+      "side": 1,
+      "message": "My challenge is that the docs for Builder#setBroadcastCode say that the spec requires it to be between 4 and 16 octets. You allow for it to be null if there is no code required. We should definitely follow up with a length check on the API to not allow serialization or construction if it falls outside those requirements.",
+      "parentUuid": "3f29c962_4a2150ee",
+      "revId": "d76b1fd412fedb2082cd593618e4e781afaa22a8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
