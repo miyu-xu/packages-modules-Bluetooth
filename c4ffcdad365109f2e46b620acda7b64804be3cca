@@ -16,6 +16,23 @@
       "message": "Hi Abel,\n\nMade changes as per comments.\nKindly review and share your inputs.\n\nThanks,\nFahad",
       "revId": "c4ffcdad365109f2e46b620acda7b64804be3cca",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a8d0b692_9c5d383d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1937985
+      },
+      "writtenOn": "2023-06-07T15:58:45Z",
+      "side": 1,
+      "message": "Perfect! Thanks Fahad",
+      "revId": "c4ffcdad365109f2e46b620acda7b64804be3cca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
