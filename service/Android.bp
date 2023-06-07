@@ -23,6 +23,9 @@ filegroup {
         "src/**/*.java",
         "src/**/*.kt",
     ],
+    exclude_srcs: [
+        "src/**/*Test.kt",
+    ],
     visibility: [":__subpackages__"],
 }
 
@@ -137,4 +140,24 @@ java_library {
         "com.android.btservices",
     ],
     min_sdk_version: "Tiramisu",
+}
+
+android_robolectric_test {
+    name: "ServiceBluetoothRoboTests",
+    instrumentation_for: "ServiceBluetoothFakeTestApp",
+
+    srcs: [
+        "src/satellite/ModeListener.kt",
+        "src/satellite/ModeListenerTest.kt",
+    ],
+    // Include the testing libraries
+    static_libs: [
+        "androidx.test.core",
+        "mockito-robolectric-prebuilt",
+        "platform-test-annotations",
+        "testng",
+        "truth-prebuilt",
+    ],
+    upstream: true,
+    test_suites: ["general-tests"],
 }
