@@ -16,6 +16,9 @@
     {
       "name": "ServiceBluetoothTests"
     },
+    {
+      "name": "ServiceBluetoothRoboTests"
+    },
     // device only tests
     // Broken
     //{
@@ -225,6 +228,9 @@
     },
     {
       "name": "ServiceBluetoothTests"
+    },
+    {
+      "name": "ServiceBluetoothRoboTests"
     },
     // device only tests
     // Broken
