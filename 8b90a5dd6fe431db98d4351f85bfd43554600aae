@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3d43b71c_46ebafa5",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 4955,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-06-07T21:42:48Z",
+      "side": 1,
+      "message": "A common pattern is:\n\nosi_free(fixed_queue_try_remove_from_queue(btm_cb.sec_pending_q, (void*)p_e));",
+      "revId": "8b90a5dd6fe431db98d4351f85bfd43554600aae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
