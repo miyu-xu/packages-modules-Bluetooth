@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "166740f4_082cda26",
+        "filename": "framework/java/android/bluetooth/BluetoothLeBroadcastMetadata.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 408,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-06-07T18:22:55Z",
+      "side": 1,
+      "message": "Do you intend to write the code to the parcel if its length is 0? If so, this LGTM. If not, we should modify writeToParcel",
+      "revId": "d76b1fd412fedb2082cd593618e4e781afaa22a8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
