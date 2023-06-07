@@ -74,6 +74,7 @@ import android.os.RemoteException;
 import android.os.SystemClock;
 import android.os.UserHandle;
 import android.os.UserManager;
+import android.provider.DeviceConfig;
 import android.provider.Settings;
 import android.provider.Settings.SettingNotFoundException;
 import android.sysprop.BluetoothProperties;
@@ -84,6 +85,9 @@ import com.android.bluetooth.BluetoothStatsLog;
 import com.android.internal.annotations.GuardedBy;
 import com.android.internal.annotations.VisibleForTesting;
 import com.android.server.BluetoothManagerServiceDumpProto;
+import com.android.server.bluetooth.satellite.SatelliteModeListener;
+
+import kotlin.Unit;
 
 import java.io.FileDescriptor;
 import java.io.FileOutputStream;
@@ -183,6 +187,7 @@ class BluetoothManagerService {
     private static final int DEFAULT_APM_ENHANCEMENT_STATE = 1;
 
     private final Context mContext;
+    private final Looper mLooper;
 
     private final UserManager mUserManager;
 
@@ -215,7 +220,15 @@ class BluetoothManagerService {
 
     private BluetoothNotificationManager mBluetoothNotificationManager;
 
+    // TODO(b/289584302): remove BluetoothSatelliteModeListener once use_new_satellite_mode ship
     private BluetoothSatelliteModeListener mBluetoothSatelliteModeListener;
+
+    // TODO(b/289584302): Use aconfig flag when available on AOSP
+    private static final boolean USE_NEW_SATELLITE_MODE =
+            DeviceConfig.getBoolean(
+                    DeviceConfig.NAMESPACE_BLUETOOTH,
+                    "com.android.bluetooth.use_new_satellite_mode",
+                    false);
 
     // used inside handler thread
     private boolean mQuietEnable = false;
@@ -411,8 +424,6 @@ class BluetoothManagerService {
                         + BluetoothAdapter.nameForState(state)
                         + ", isAirplaneModeOn()="
                         + isAirplaneModeOn()
-                        + ", isSatelliteModeSensitive()="
-                        + isSatelliteModeSensitive()
                         + ", isSatelliteModeOn()="
                         + isSatelliteModeOn()
                         + ", delayed="
@@ -445,16 +456,18 @@ class BluetoothManagerService {
                 0);
     }
 
+    // TODO(b/289584302): Update to private once use_new_satellite_mode is enabled
     @RequiresPermission(android.Manifest.permission.BLUETOOTH_PRIVILEGED)
-    void onSatelliteModeChanged() {
+    Unit onSatelliteModeChanged(boolean isSatelliteModeOn) {
         mHandler.postDelayed(
                 () ->
                         delayModeChangedIfNeeded(
                                 ON_SATELLITE_MODE_CHANGED_TOKEN,
-                                () -> handleSatelliteModeChanged(),
+                                () -> handleSatelliteModeChanged(isSatelliteModeOn),
                                 "onSatelliteModeChanged"),
                 ON_SATELLITE_MODE_CHANGED_TOKEN,
                 0);
+        return Unit.INSTANCE;
     }
 
     @RequiresPermission(android.Manifest.permission.BLUETOOTH_PRIVILEGED)
@@ -525,26 +538,26 @@ class BluetoothManagerService {
         }
     }
 
-    private void handleSatelliteModeChanged() {
-        if (shouldBluetoothBeOn() && getState() != STATE_ON) {
+    private void handleSatelliteModeChanged(boolean isSatelliteModeOn) {
+        if (shouldBluetoothBeOn(isSatelliteModeOn) && getState() != STATE_ON) {
             sendEnableMsg(
                     mQuietEnableExternal,
                     BluetoothProtoEnums.ENABLE_DISABLE_REASON_SATELLITE_MODE,
                     mContext.getPackageName());
-        } else if (!shouldBluetoothBeOn() && getState() != STATE_OFF) {
+        } else if (!shouldBluetoothBeOn(isSatelliteModeOn) && getState() != STATE_OFF) {
             sendDisableMsg(
                     BluetoothProtoEnums.ENABLE_DISABLE_REASON_SATELLITE_MODE,
                     mContext.getPackageName());
         }
     }
 
-    private boolean shouldBluetoothBeOn() {
+    private boolean shouldBluetoothBeOn(boolean isSatelliteModeOn) {
         if (!isBluetoothPersistedStateOn()) {
             Log.d(TAG, "shouldBluetoothBeOn: User want BT off.");
             return false;
         }
 
-        if (isSatelliteModeOn()) {
+        if (isSatelliteModeOn) {
             Log.d(TAG, "shouldBluetoothBeOn: BT should be off as satellite mode is on.");
             return false;
         }
@@ -642,7 +655,7 @@ class BluetoothManagerService {
 
     BluetoothManagerService(@NonNull Context context, @NonNull Looper looper) {
         mContext = requireNonNull(context, "Context cannot be null");
-        requireNonNull(looper, "Looper cannot be null");
+        mLooper = requireNonNull(looper, "Looper cannot be null");
 
         mUserManager =
                 requireNonNull(
@@ -650,7 +663,7 @@ class BluetoothManagerService {
                         "UserManager system service cannot be null");
 
         mBinder = new BluetoothServiceBinder(this, mContext, mUserManager);
-        mHandler = new BluetoothHandler(looper);
+        mHandler = new BluetoothHandler(mLooper);
 
         mContentResolver = mContext.getContentResolver();
 
@@ -725,11 +738,13 @@ class BluetoothManagerService {
                 || airplaneModeRadios.contains(Settings.Global.RADIO_BLUETOOTH)) {
             mBluetoothAirplaneModeListener =
                     new BluetoothAirplaneModeListener(
-                            this, looper, mContext, mBluetoothNotificationManager);
+                            this, mLooper, mContext, mBluetoothNotificationManager);
         }
 
-        mBluetoothSatelliteModeListener =
-                new BluetoothSatelliteModeListener(this, looper, mContext);
+        if (!USE_NEW_SATELLITE_MODE) {
+            mBluetoothSatelliteModeListener =
+                    new BluetoothSatelliteModeListener(this, mLooper, mContext);
+        }
     }
 
     IBluetoothManager.Stub getBinder() {
@@ -743,31 +758,12 @@ class BluetoothManagerService {
                 == 1;
     }
 
-    /**
-     * @hide constant copied from {@link Settings.Global} TODO(b/274636414): Migrate to official API
-     *     in Android V.
-     */
-    @VisibleForTesting static final String SETTINGS_SATELLITE_MODE_RADIOS = "satellite_mode_radios";
-    /**
-     * @hide constant copied from {@link Settings.Global} TODO(b/274636414): Migrate to official API
-     *     in Android V.
-     */
-    @VisibleForTesting
-    static final String SETTINGS_SATELLITE_MODE_ENABLED = "satellite_mode_enabled";
-
-    private boolean isSatelliteModeSensitive() {
-        final String satelliteRadios =
-                Settings.Global.getString(
-                        mContext.getContentResolver(), SETTINGS_SATELLITE_MODE_RADIOS);
-        return satelliteRadios != null && satelliteRadios.contains(Settings.Global.RADIO_BLUETOOTH);
-    }
-
     /** Returns true if satellite mode is turned on. */
     private boolean isSatelliteModeOn() {
-        if (!isSatelliteModeSensitive()) return false;
-        return Settings.Global.getInt(
-                        mContext.getContentResolver(), SETTINGS_SATELLITE_MODE_ENABLED, 0)
-                == 1;
+        if (USE_NEW_SATELLITE_MODE) {
+            return SatelliteModeListener.isOn();
+        }
+        return mBluetoothSatelliteModeListener.isSatelliteModeOn();
     }
 
     /** Returns true if airplane mode enhancement feature is enabled */
@@ -1508,6 +1504,16 @@ class BluetoothManagerService {
         if (DBG) {
             Log.d(TAG, "Bluetooth boot completed");
         }
+
+        if (USE_NEW_SATELLITE_MODE) {
+            // TODO(b/288450479): All handleOnBootPhase should run on mHandler
+            mHandler.post(
+                    () ->
+                            SatelliteModeListener.initialize(
+                                    mLooper, mContentResolver, this::onSatelliteModeChanged));
+        }
+
+
         final boolean isBluetoothDisallowed = isBluetoothDisallowed();
         if (isBluetoothDisallowed) {
             return;
