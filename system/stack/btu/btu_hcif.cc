@@ -1063,8 +1063,7 @@ static void btu_hcif_esco_connection_chg_evt(uint8_t* p) {
  *
  ******************************************************************************/
 static void btu_hcif_hdl_command_complete(uint16_t opcode, uint8_t* p,
-                                          uint16_t evt_len,
-                                          void* p_cplt_cback) {
+                                          uint16_t evt_len) {
   switch (opcode) {
     case HCI_INQUIRY_CANCEL:
       /* Tell inquiry processing that we are done */
@@ -1112,24 +1111,12 @@ static void btu_hcif_hdl_command_complete(uint16_t opcode, uint8_t* p,
     case HCI_READ_INQ_TX_POWER_LEVEL:
       break;
 
-    /* BLE Commands sComplete*/
-    case HCI_BLE_RAND:
-    case HCI_BLE_ENCRYPT:
-      btm_ble_rand_enc_complete(p, opcode, (tBTM_RAND_ENC_CB*)p_cplt_cback);
-      break;
-
     case HCI_BLE_READ_ADV_CHNL_TX_POWER:
       btm_read_tx_power_complete(p, true);
       break;
 
     case HCI_BLE_WRITE_ADV_ENABLE:
       btm_ble_write_adv_enable_complete(p);
-      break;
-
-    case HCI_BLE_CREATE_LL_CONN:
-    case HCI_LE_EXTENDED_CREATE_CONNECTION:
-      // No command complete event for those commands according to spec
-      LOG(ERROR) << "No command complete expected, but received!";
       break;
 
     case HCI_BLE_TRANSMITTER_TEST:
@@ -1189,8 +1176,7 @@ static void btu_hcif_hdl_command_complete(uint16_t opcode, uint8_t* p,
  * Returns          void
  *
  ******************************************************************************/
-static void btu_hcif_command_complete_evt_on_task(BT_HDR* event,
-                                                  void* context) {
+static void btu_hcif_command_complete_evt_on_task(BT_HDR* event) {
   command_opcode_t opcode;
   // 2 for event header: event code (1) + parameter length (1)
   // 1 for num_hci_pkt command credit
@@ -1201,14 +1187,15 @@ static void btu_hcif_command_complete_evt_on_task(BT_HDR* event,
   // 2 for event header: event code (1) + parameter length (1)
   // 3 for command complete header: num_hci_pkt (1) + opcode (2)
   uint16_t param_len = static_cast<uint16_t>(event->len - 5);
-  btu_hcif_hdl_command_complete(opcode, stream, param_len, context);
+  btu_hcif_hdl_command_complete(opcode, stream, param_len);
 
   osi_free(event);
 }
 
-static void btu_hcif_command_complete_evt(BT_HDR* response, void* context) {
-  do_in_main_thread(FROM_HERE, base::Bind(btu_hcif_command_complete_evt_on_task,
-                                          response, context));
+static void btu_hcif_command_complete_evt(BT_HDR* response,
+                                          void* /* context */) {
+  do_in_main_thread(
+      FROM_HERE, base::Bind(btu_hcif_command_complete_evt_on_task, response));
 }
 
 /*******************************************************************************
@@ -1221,8 +1208,7 @@ static void btu_hcif_command_complete_evt(BT_HDR* response, void* context) {
  *
  ******************************************************************************/
 static void btu_hcif_hdl_command_status(uint16_t opcode, uint8_t status,
-                                        const uint8_t* p_cmd,
-                                        void* p_vsc_status_cback) {
+                                        const uint8_t* p_cmd) {
   CHECK_NE(p_cmd, nullptr) << "Null command for opcode 0x" << loghex(opcode);
   p_cmd++;  // Skip parameter total length
 
@@ -1332,9 +1318,8 @@ static void btu_hcif_hdl_command_status(uint16_t opcode, uint8_t status,
 }
 
 void bluetooth::legacy::testing::btu_hcif_hdl_command_status(
-    uint16_t opcode, uint8_t status, const uint8_t* p_cmd,
-    void* p_vsc_status_cback) {
-  ::btu_hcif_hdl_command_status(opcode, status, p_cmd, p_vsc_status_cback);
+    uint16_t opcode, uint8_t status, const uint8_t* p_cmd) {
+  ::btu_hcif_hdl_command_status(opcode, status, p_cmd);
 }
 
 /*******************************************************************************
@@ -1346,8 +1331,7 @@ void bluetooth::legacy::testing::btu_hcif_hdl_command_status(
  * Returns          void
  *
  ******************************************************************************/
-static void btu_hcif_command_status_evt_on_task(uint8_t status, BT_HDR* event,
-                                                void* context) {
+static void btu_hcif_command_status_evt_on_task(uint8_t status, BT_HDR* event) {
   command_opcode_t opcode;
   uint8_t* stream = event->data + event->offset;
   STREAM_TO_UINT16(opcode, stream);
@@ -1356,14 +1340,14 @@ static void btu_hcif_command_status_evt_on_task(uint8_t status, BT_HDR* event,
   // No need to check length since stream is written by us
   btu_hcif_log_command_metrics(opcode, stream + 1, status, true);
 
-  btu_hcif_hdl_command_status(opcode, status, stream, context);
+  btu_hcif_hdl_command_status(opcode, status, stream);
   osi_free(event);
 }
 
 static void btu_hcif_command_status_evt(uint8_t status, BT_HDR* command,
-                                        void* context) {
+                                        void* /* context */) {
   do_in_main_thread(FROM_HERE, base::Bind(btu_hcif_command_status_evt_on_task,
-                                          status, command, context));
+                                          status, command));
 }
 
 /*******************************************************************************
