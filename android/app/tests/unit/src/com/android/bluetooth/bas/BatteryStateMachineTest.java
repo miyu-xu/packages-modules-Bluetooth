@@ -55,7 +55,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
 import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoRule;
 
@@ -279,20 +278,58 @@ public class BatteryStateMachineTest {
     }
 
     @Test
-    public void testConnectGattTimeout() {
+    public void testConnectGattTimeout_Waiting() {
         allowConnection(true);
         allowConnectGatt(true);
 
-        // Inject an event for when incoming connection is requested
+        transitionToWaitingState();
+
+        Assert.assertThat(
+                mBatteryStateMachine.getCurrentState(),
+                IsInstanceOf.instanceOf(BatteryStateMachine.Waiting.class));
+    }
+
+    @Test
+    public void testWaitingConnect() {
+        allowConnection(true);
+        allowConnectGatt(true);
+
+        transitionToWaitingState();
+
+        // Send connect message again
         mBatteryStateMachine.sendMessage(BatteryStateMachine.CONNECT);
 
-        verify(mBatteryService, timeout(TIMEOUT_MS))
-                .handleConnectionStateChanged(any(BatteryStateMachine.class),
-                        eq(BluetoothProfile.STATE_DISCONNECTED),
-                        eq(BluetoothProfile.STATE_CONNECTING));
+        TestUtils.waitForLooperToFinishScheduledTask(mBatteryStateMachine.getHandler().getLooper());
 
-        Assert.assertThat(mBatteryStateMachine.getCurrentState(),
+        Assert.assertThat(
+                mBatteryStateMachine.getCurrentState(),
                 IsInstanceOf.instanceOf(BatteryStateMachine.Connecting.class));
+
+        mBatteryStateMachine.notifyConnectionStateChanged(
+                GATT_SUCCESS, BluetoothProfile.STATE_CONNECTED);
+
+        TestUtils.waitForLooperToFinishScheduledTask(mBatteryStateMachine.getHandler().getLooper());
+
+        verify(mBatteryService, timeout(TIMEOUT_MS))
+                .handleConnectionStateChanged(
+                        any(BatteryStateMachine.class),
+                        eq(BluetoothProfile.STATE_CONNECTING),
+                        eq(BluetoothProfile.STATE_CONNECTED));
+
+        Assert.assertThat(
+                mBatteryStateMachine.getCurrentState(),
+                IsInstanceOf.instanceOf(BatteryStateMachine.Connected.class));
+    }
+
+    @Test
+    public void testWaitingDisconnect() {
+        allowConnection(true);
+        allowConnectGatt(true);
+
+        transitionToWaitingState();
+
+        // Send connect message again
+        mBatteryStateMachine.sendMessage(BatteryStateMachine.DISCONNECT);
 
         verify(mBatteryService, timeout(TIMEOUT_MS))
                 .handleConnectionStateChanged(any(BatteryStateMachine.class),
@@ -301,6 +338,24 @@ public class BatteryStateMachineTest {
 
         Assert.assertThat(mBatteryStateMachine.getCurrentState(),
                 IsInstanceOf.instanceOf(BatteryStateMachine.Disconnected.class));
+    }
+
+    // Wait for timeout to go to the waiting state
+    private void transitionToWaitingState() {
+        mBatteryStateMachine.sendMessage(BatteryStateMachine.CONNECT);
+
+        verify(mBatteryService, timeout(TIMEOUT_MS))
+                .handleConnectionStateChanged(
+                        any(BatteryStateMachine.class),
+                        eq(BluetoothProfile.STATE_DISCONNECTED),
+                        eq(BluetoothProfile.STATE_CONNECTING));
+
+        Assert.assertThat(
+                mBatteryStateMachine.getCurrentState(),
+                IsInstanceOf.instanceOf(BatteryStateMachine.Connecting.class));
+
+        verify(mBatteryService, after(TIMEOUT_MS).times(1))
+                .handleConnectionStateChanged(any(BatteryStateMachine.class), anyInt(), anyInt());
     }
 
     @Test
