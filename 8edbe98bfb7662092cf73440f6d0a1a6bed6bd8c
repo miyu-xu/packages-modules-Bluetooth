@@ -16,6 +16,24 @@
       "message": "I expected this CL to be much closer to the TestLooper CL (maybe even the same CL)",
       "revId": "8edbe98bfb7662092cf73440f6d0a1a6bed6bd8c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b23ed10c_7ab30d82",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-06-07T20:20:53Z",
+      "side": 1,
+      "message": "I can move it down in the relation chain yes, but I need some change from \"Extract AdapterBinder from ManagerService\" so I couldn\u0027t do in the same CL as the one I introduce the TestLooper",
+      "parentUuid": "753627cf_0ee45ae8",
+      "revId": "8edbe98bfb7662092cf73440f6d0a1a6bed6bd8c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
