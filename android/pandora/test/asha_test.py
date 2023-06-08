@@ -42,6 +42,7 @@ from pandora.security_pb2 import LE_LEVEL3
 from pandora_experimental.asha_grpc_aio import Asha as AioAsha, add_AshaServicer_to_server
 from pandora_experimental.asha_pb2 import PlaybackAudioRequest
 from typing import ByteString, List, Optional, Tuple
+from scipy.io import wavfile
 
 ASHA_UUID = GATT_ASHA_SERVICE.to_hex_str('-')
 HISYCNID: List[int] = [0x01, 0x02, 0x03, 0x04, 0x5, 0x6, 0x7, 0x8]
@@ -50,7 +51,7 @@ AUDIO_SIGNAL_AMPLITUDE = 0.8
 AUDIO_SIGNAL_SAMPLING_RATE = 44100
 
 # import numpy as np
-# from scipy.io import wavfile
+
 
 SINE_FREQUENCY = 440
 SINE_DURATION = 0.1
@@ -105,13 +106,12 @@ class AudioSignal:
         stereo[0::2] = sine
 
         # Send 4 second of audio.
-        audio = itertools.repeat(stereo.tobytes(), int(4 / SINE_DURATION))
-        print(len(list(audio)))
-        print(type(audio))
-        print(type(self.transport))
-        print("trigger send data here")
-        self.transport(audio)
-        print("end send data")
+        # audio = itertools.repeat(stereo.tobytes(), int(4 / SINE_DURATION))
+        # print(type(audio))
+        # print(type(self.transport))
+        # print("trigger send data here")
+        # self.transport(audio)
+        # print("end send data")
 
     def _generate_sine(self, f, duration):
         sine = self.amplitude * \
@@ -318,17 +318,95 @@ class AshaTest(base_test.BaseTestClass):  # type: ignore[misc]
     async def get_audio_data(self, ref_asha: AioAsha, connection: Connection, timeout: int) -> ByteString:
         audio_data = bytearray()
         try:
+            print("start getting audio data")
             captured_data = ref_asha.CaptureAudio(connection=connection, timeout=timeout)
             async for data in captured_data:
                 audio_data.extend(data.data)
 
         except grpc.aio.AioRpcError as e:
+            print("exception")
             if e.code() == grpc.StatusCode.DEADLINE_EXCEEDED:
                 pass
             else:
                 raise
 
         return audio_data
+
+    def generate_sine(self, amplitude, fs, f, duration):
+        sine = amplitude * \
+            np.sin(2 * np.pi * np.arange(fs * duration) * (f / fs))
+        s16le = (sine * 32767).astype('<i2')
+        return s16le
+
+    def generate_audio(self, input_file):
+        print("========")
+        print("generate_audio")
+        byte_list = []
+        with open(input_file, mode='rb') as file:
+            file_content = file.read()
+            print(len(file_content))
+            frame_length = 17640
+            data_length = int(len(file_content) / frame_length)
+
+            for i in range(0, data_length):
+                byte_list.append(file_content[i * frame_length : i * frame_length + frame_length])
+
+        print(len(byte_list))
+        print("========")
+        return iter(byte_list)
+
+    async def play_audio(self, transport, amplitude, fs):
+        audio_file = "/usr/local/google/home/duoho/aosp-master-with-phones/packages/modules/Bluetooth/android/pandora/test/test_sample.wav"
+        audio = self.generate_audio(audio_file)
+
+        # print("====play_audio====")
+        # sine = self.generate_sine(amplitude, fs, SINE_FREQUENCY, SINE_DURATION)
+        # print(type(sine))
+        # print(len(sine))
+        # # Interleaved audio.
+        # stereo = np.zeros(sine.size * 2, dtype=sine.dtype)
+        # stereo[0::2] = sine
+
+        # print(type(stereo))
+        # print(len(stereo))
+        # print(len(stereo.tobytes()))
+
+        # # Send 4 second of audio.
+        # audio = itertools.repeat(stereo.tobytes(), int(4 / SINE_DURATION))
+            
+        # print(type(audio))
+        # print(type(self.transport))
+        # print("trigger send data here")
+        transport(audio)
+        # print("end send data")
+
+    def fixup_wav_header(self, path):
+        with open(path, 'r+b') as f:
+            f.seek(0, os.SEEK_END)
+            file_size = f.tell()
+            for offset in [WAV_RIFF_SIZE_OFFSET, WAV_DATA_SIZE_OFFSET]:
+                size = file_size - offset - 4
+                f.seek(offset)
+                f.write(size.to_bytes(4, byteorder='little'))
+
+    def verify_audio(self, path):
+        """Verifies that the audio signal is correctly output."""
+
+        samplerate, data = wavfile.read(path)
+        # Take one second of audio after the first second.
+        audio = data[samplerate:samplerate*2, 0].astype(np.float) / 32767
+        assert len(audio) == samplerate
+
+        spectrum = np.abs(np.fft.fft(audio))
+        frequency = np.fft.fftfreq(samplerate, d=1/samplerate)
+        amplitudes = spectrum / (samplerate/2)
+        index = np.where(frequency == SINE_FREQUENCY)
+        amplitude = amplitudes[index][0]
+
+        match_amplitude = math.isclose(
+            amplitude, self.amplitude, rel_tol=1e-03)
+
+        return match_amplitude
 
     @avatar.parameterized(
         (RANDOM, Ear.LEFT),
@@ -1177,19 +1255,57 @@ class AshaTest(base_test.BaseTestClass):  # type: ignore[misc]
         await dut_asha.WaitPeripheral(connection=dut_ref_left)
         await dut_asha.Start(connection=dut_ref_left)
 
+        # Clear audio data before start audio playback testing
+        await self.get_audio_data(
+            ref_asha=AioAsha(self.ref_left.aio.channel), connection=ref_left_dut, timeout=10
+            )
+
+        temp_file = "/usr/local/google/home/duoho/aosp-master-with-phones/packages/modules/Bluetooth/android/pandora/test/asha_encoded_start.pcm"
+        with open(temp_file, "wb") as binary_file:
+            # Write bytes to file
+            binary_file.write(temp)
+
         def convert_frame(data):
+            print(len(data))
             return PlaybackAudioRequest(connection=dut_ref_left, data=data)
 
-        asha_audio = AudioSignal(lambda frames: dut_asha.PlaybackAudio(map(convert_frame, frames)),
-                                 AUDIO_SIGNAL_AMPLITUDE, AUDIO_SIGNAL_SAMPLING_RATE)
-        asha_audio.start()
+        # asha_audio = AudioSignal(lambda frames: dut_asha.PlaybackAudio(map(convert_frame, frames)),
+        #                          AUDIO_SIGNAL_AMPLITUDE, AUDIO_SIGNAL_SAMPLING_RATE)
+        # asha_audio.start()
+        # self.play_audio(lambda frames: dut_asha.PlaybackAudio(map(convert_frame, frames)), AUDIO_SIGNAL_AMPLITUDE, AUDIO_SIGNAL_SAMPLING_RATE)
 
-        audio_data = await self.get_audio_data(
-            ref_asha=AioAsha(self.ref_left.aio.channel), connection=ref_left_dut, timeout=100
-        )
-        print("=================")
-        print(len(audio_data))
-        assert_equal(len(audio_data), 0)
+        # audio_data = await self.get_audio_data(
+        #     ref_asha=AioAsha(self.ref_left.aio.channel), connection=ref_left_dut, timeout=20
+        # )
+
+        # _, audio_data = await asyncio.gather(
+        #     self.play_audio(lambda frames: dut_asha.PlaybackAudio(map(convert_frame, frames)), AUDIO_SIGNAL_AMPLITUDE, AUDIO_SIGNAL_SAMPLING_RATE),
+        #     self.get_audio_data(
+        #     ref_asha=AioAsha(self.ref_left.aio.channel), connection=ref_left_dut, timeout=60
+        #     )
+        # )
+
+        await self.play_audio(lambda frames: dut_asha.PlaybackAudio(map(convert_frame, frames)), AUDIO_SIGNAL_AMPLITUDE, AUDIO_SIGNAL_SAMPLING_RATE)
+
+        temp2 = await self.get_audio_data(
+            ref_asha=AioAsha(self.ref_left.aio.channel), connection=ref_left_dut, timeout=10
+            )
+
+        print("===collect starting music2==")
+        print(len(temp2))
+        print("===collect starting music2 end==")
+
+        decoded_file = "/usr/local/google/home/duoho/aosp-master-with-phones/packages/modules/Bluetooth/android/pandora/test/asha_encoded.pcm"
+        with open(decoded_file, "wb") as binary_file:
+            # Write bytes to file
+            binary_file.write(temp2)
+
+        self.fixup_wav_header(decoded_file)
+        self.verify_audio(decoded_file)
+
+        # print("=================")
+        # print(len(audio_data))
+        # assert_equal(len(audio_data), 0)
 
 if __name__ == "__main__":
     logging.basicConfig(level=logging.DEBUG)
