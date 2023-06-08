@@ -16,6 +16,52 @@
       "message": "FYI Yuyang",
       "revId": "1216878b666f2c997c94a8506f27de62fd0163ae",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "18ac676d_11f73259",
+        "filename": "system/blueberry/facade/topshim/facade.proto",
+        "patchSetId": 8
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-06-08T23:36:37Z",
+      "side": 1,
+      "message": "nit: as codec is non-negative value, uint32 or uint16 might be better?",
+      "range": {
+        "startLine": 211,
+        "startChar": 2,
+        "endLine": 211,
+        "endChar": 7
+      },
+      "revId": "1216878b666f2c997c94a8506f27de62fd0163ae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "01609b42_a866fde2",
+        "filename": "system/btif/src/btif_hf.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 826,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-06-08T23:36:37Z",
+      "side": 1,
+      "message": "nit: with this change, then in `packages/modules/Bluetooth/android/app/jni/com_android_bluetooth_hfp.cpp` method `connectAudioNative`, the parameter may need to change from `false` to `0`",
+      "range": {
+        "startLine": 826,
+        "startChar": 14,
+        "endLine": 826,
+        "endChar": 77
+      },
+      "revId": "1216878b666f2c997c94a8506f27de62fd0163ae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
