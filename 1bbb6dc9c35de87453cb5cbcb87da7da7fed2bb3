@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a466b8ce_6ed75eb7",
+        "filename": "system/gd/rust/linux/mgmt/src/powerd_suspend_manager.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2023-06-08T00:08:28Z",
+      "side": 1,
+      "message": "Function call has been moved to suspend.rs with hci_index.",
+      "parentUuid": "09220768_0814bb72",
+      "revId": "1bbb6dc9c35de87453cb5cbcb87da7da7fed2bb3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "143a7049_5fcb88c7",
         "filename": "system/gd/rust/linux/mgmt/src/powerd_suspend_manager.rs",
         "patchSetId": 6
@@ -102,6 +120,24 @@
       "side": 1,
       "message": "I will check why LE rand is not the last event in the suspend process then change this.",
       "parentUuid": "9f57a189_a2ded9c2",
+      "revId": "1bbb6dc9c35de87453cb5cbcb87da7da7fed2bb3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fabb2824_063dd764",
+        "filename": "system/gd/rust/linux/mgmt/src/powerd_suspend_manager.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 212,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2023-06-08T00:08:28Z",
+      "side": 1,
+      "message": "Put notify_suspend_state before sending SuspendReady. Add 100ms delay before sending the MGMT cmd and SuspendReady.",
+      "parentUuid": "ff0252ee_94b1120e",
       "revId": "1bbb6dc9c35de87453cb5cbcb87da7da7fed2bb3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
