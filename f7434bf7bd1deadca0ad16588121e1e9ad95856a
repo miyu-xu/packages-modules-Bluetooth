@@ -34,6 +34,24 @@
       "parentUuid": "d575f59a_2a0dae8f",
       "revId": "f7434bf7bd1deadca0ad16588121e1e9ad95856a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6423c2bf_1584c9ce",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-06-08T21:53:06Z",
+      "side": 1,
+      "message": "`I expect this pre-submit to fail then to confirm it does not work without the fix.`\nExactly the expected outcome.\n\nThe hope is to combine this test, along with a similar test for the other(s), into the CL to keep track of it.",
+      "parentUuid": "801797e3_9a8c598c",
+      "revId": "f7434bf7bd1deadca0ad16588121e1e9ad95856a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
