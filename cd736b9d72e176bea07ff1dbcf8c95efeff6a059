@@ -35,6 +35,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "384ef26a_9b433888",
+        "filename": "system/gd/rust/linux/stack/src/suspend.rs",
+        "patchSetId": 11
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2023-06-08T17:50:26Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "5f86abe9_7168cb7a",
+      "revId": "cd736b9d72e176bea07ff1dbcf8c95efeff6a059",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1a1f1287_e4e2b986",
@@ -48,6 +66,24 @@
       "writtenOn": "2023-06-08T14:17:01Z",
       "side": 1,
       "message": "You should move `notify_suspend_state` here into `suspend_ready` -- reduce the number of places it has to be called.",
+      "revId": "cd736b9d72e176bea07ff1dbcf8c95efeff6a059",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e9143495_aa36725f",
+        "filename": "system/gd/rust/linux/stack/src/suspend.rs",
+        "patchSetId": 11
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2023-06-08T17:50:26Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "1a1f1287_e4e2b986",
       "revId": "cd736b9d72e176bea07ff1dbcf8c95efeff6a059",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
