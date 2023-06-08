@@ -546,6 +546,10 @@ public class BluetoothInCallService extends InCallService {
     @RequiresPermission(android.Manifest.permission.MODIFY_PHONE_STATE)
     public boolean queryPhoneState() {
         synchronized (LOCK) {
+            if (!mOnCreateCalled) {
+                Log.w(TAG, "queryPhoneState() is called before onCreate()");
+                return false;
+            }
             enforceModifyPermission();
             Log.i(TAG, "queryPhoneState");
             updateHeadsetWithCallState(true);
