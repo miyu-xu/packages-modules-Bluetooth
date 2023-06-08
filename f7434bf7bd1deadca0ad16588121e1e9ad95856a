@@ -16,6 +16,24 @@
       "message": "This test verifies the fix as it fails w/out the fix aosp/2620498",
       "revId": "f7434bf7bd1deadca0ad16588121e1e9ad95856a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "801797e3_9a8c598c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-06-08T20:50:20Z",
+      "side": 1,
+      "message": "I saw you started pre-submit and I saw the other CL is not merged. \nI expect this pre-submit to fail then to confirm it does not work without the fix.\nIf it is indeed the case, we should probably merge both CL together to better keep track of it",
+      "parentUuid": "d575f59a_2a0dae8f",
+      "revId": "f7434bf7bd1deadca0ad16588121e1e9ad95856a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
