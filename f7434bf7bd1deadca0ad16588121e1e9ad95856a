@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d575f59a_2a0dae8f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-06-08T20:12:51Z",
+      "side": 1,
+      "message": "This test verifies the fix as it fails w/out the fix aosp/2620498",
+      "revId": "f7434bf7bd1deadca0ad16588121e1e9ad95856a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
