@@ -384,7 +384,7 @@ typedef struct tBTM_CB {
     sco_cb.Free();
     btm_inq_vars.Free();
 
-    fixed_queue_free(page_queue, nullptr);
+    fixed_queue_free(page_queue, osi_free);
     page_queue = nullptr;
 
     fixed_queue_free(sec_pending_q, nullptr);
