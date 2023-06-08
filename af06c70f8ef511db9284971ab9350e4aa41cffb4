@@ -43,6 +43,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "63a921d1_9f312fff",
+        "filename": "system/osi/test/alarm_test.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-06-08T18:20:10Z",
+      "side": 1,
+      "message": "I can cite the bug",
+      "parentUuid": "d0953789_596db3bc",
+      "revId": "af06c70f8ef511db9284971ab9350e4aa41cffb4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "06fe4624_9783f5dd",
         "filename": "system/osi/test/alarm_test.cc",
         "patchSetId": 2
@@ -54,6 +72,24 @@
       "writtenOn": "2023-06-08T18:16:16Z",
       "side": 1,
       "message": "What about deleting it instead ?",
+      "revId": "af06c70f8ef511db9284971ab9350e4aa41cffb4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "387ea30b_3075ce0d",
+        "filename": "system/osi/test/alarm_test.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-06-08T18:20:10Z",
+      "side": 1,
+      "message": "That is a good comment...what should we do in these cases ?\n\nb/286419427\n\nThese are timing based tests which fail relatively often.\n\nNow, they could be infrastructure issues, but they all typically have some timing or thread based component.",
+      "parentUuid": "06fe4624_9783f5dd",
       "revId": "af06c70f8ef511db9284971ab9350e4aa41cffb4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
