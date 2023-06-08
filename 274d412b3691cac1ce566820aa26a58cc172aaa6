@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f11921a9_7a9c8ce5",
+        "filename": "android/app/src/com/android/bluetooth/bas/BatteryStateMachine.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 356,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-06-08T22:23:11Z",
+      "side": 1,
+      "message": "nit: as `CONNECT_TIMEOUT` is not possible to trigger in `Connecting` state, might be better as `Connection timeout unexpected: ` so developerd know this should not happen",
+      "range": {
+        "startLine": 356,
+        "startChar": 31,
+        "endLine": 356,
+        "endChar": 53
+      },
+      "revId": "274d412b3691cac1ce566820aa26a58cc172aaa6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
