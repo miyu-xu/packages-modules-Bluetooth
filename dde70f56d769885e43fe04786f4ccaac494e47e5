@@ -16,6 +16,24 @@
       "message": "nit: Add\n```\nBug: 286003442\nBug: 285806759\n```",
       "revId": "dde70f56d769885e43fe04786f4ccaac494e47e5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f9bb7969_d050aa7d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2023-06-08T02:03:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "73dae950_bab82ebe",
+      "revId": "dde70f56d769885e43fe04786f4ccaac494e47e5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
