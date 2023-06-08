@@ -61,6 +61,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "52c7dad1_f4d49002",
+        "filename": "system/osi/test/alarm_test.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-06-08T18:36:36Z",
+      "side": 1,
+      "message": "What about just copying what you put in the bug summary ?\n\nIMO I don\u0027t see the value of putting an indirection to the bug here as it doesn\u0027t contain much interesting information (Also it\u0027s private).\n\nAnd you\u0027ll be able to find the bug by blaming this line in the future.",
+      "parentUuid": "63a921d1_9f312fff",
+      "revId": "af06c70f8ef511db9284971ab9350e4aa41cffb4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "06fe4624_9783f5dd",
         "filename": "system/osi/test/alarm_test.cc",
         "patchSetId": 2
@@ -90,6 +108,24 @@
       "side": 1,
       "message": "That is a good comment...what should we do in these cases ?\n\nb/286419427\n\nThese are timing based tests which fail relatively often.\n\nNow, they could be infrastructure issues, but they all typically have some timing or thread based component.",
       "parentUuid": "06fe4624_9783f5dd",
+      "revId": "af06c70f8ef511db9284971ab9350e4aa41cffb4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f1e36bf4_ffa160b5",
+        "filename": "system/osi/test/alarm_test.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-06-08T18:36:36Z",
+      "side": 1,
+      "message": "IMO if we put a test `DISABLED_` it\u0027s because we want to reenable it in the future.\n\nIn the case of this specific tests I see two things that we could do:\n- Say that this test is not relevant \u003d\u003e Delete it\n- This test is relevant \u003d\u003e As it\u0027s a timing based test, change it\u0027s form and make it a benchmark or a metrics test and so keep it DISABLED for reference but put a TODO with a tracking bug to convert it to a benchmark/other form.",
+      "parentUuid": "387ea30b_3075ce0d",
       "revId": "af06c70f8ef511db9284971ab9350e4aa41cffb4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
