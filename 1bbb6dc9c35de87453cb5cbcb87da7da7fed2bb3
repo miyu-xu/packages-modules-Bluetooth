@@ -54,6 +54,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e815eb02_b0c93343",
+        "filename": "system/gd/rust/linux/mgmt/src/powerd_suspend_manager.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2023-06-08T00:08:42Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "a466b8ce_6ed75eb7",
+      "revId": "1bbb6dc9c35de87453cb5cbcb87da7da7fed2bb3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "143a7049_5fcb88c7",
@@ -138,6 +156,24 @@
       "side": 1,
       "message": "Put notify_suspend_state before sending SuspendReady. Add 100ms delay before sending the MGMT cmd and SuspendReady.",
       "parentUuid": "ff0252ee_94b1120e",
+      "revId": "1bbb6dc9c35de87453cb5cbcb87da7da7fed2bb3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "594d9451_214d6c61",
+        "filename": "system/gd/rust/linux/mgmt/src/powerd_suspend_manager.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 212,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2023-06-08T00:08:42Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "fabb2824_063dd764",
       "revId": "1bbb6dc9c35de87453cb5cbcb87da7da7fed2bb3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
