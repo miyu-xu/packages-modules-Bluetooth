@@ -69,8 +69,6 @@ const std::string kSmpOptions("mock smp options");
 const std::string kBroadcastAudioConfigOptions(
     "mock broadcast audio config options");
 
-namespace {
-
 using testing::_;
 using testing::DoAll;
 using testing::NotNull;
@@ -81,6 +79,10 @@ using testing::SaveArgPointee;
 using testing::StrEq;
 using testing::StrictMock;
 using testing::Test;
+
+namespace {
+
+const RawAddress kRawAddress = RawAddress({0xA1, 0xA2, 0xA3, 0xA4, 0xA5, 0xA6});
 
 // NOTE: The production code allows N+1 device records.
 constexpr size_t kBtmSecMaxDeviceRecords =
@@ -492,4 +494,19 @@ TEST_F(StackBtmWithInitFreeTest, wipe_secrets_and_remove) {
   device_record->ble_hci_handle = ble_handle;
 
   wipe_secrets_and_remove(device_record);
+}
+
+TEST_F(StackBtmWithInitFreeTest, page_queue) {
+  tBTM_SEC_QUEUE_ENTRY* p_e =
+      (tBTM_SEC_QUEUE_ENTRY*)osi_malloc(sizeof(tBTM_SEC_QUEUE_ENTRY));
+  p_e->psm = 123;
+  p_e->is_orig = true;
+  p_e->p_callback = nullptr;
+  p_e->p_ref_data = nullptr;
+  p_e->transport = BT_TRANSPORT_BR_EDR;
+  p_e->sec_act = BTM_BLE_SEC_NONE;
+  p_e->bd_addr = kRawAddress;
+  p_e->rfcomm_security_requirement = 0;
+
+  fixed_queue_enqueue(btm_cb.sec_pending_q, p_e);
 }
