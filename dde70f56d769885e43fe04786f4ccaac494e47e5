@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "73dae950_bab82ebe",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-06-08T01:01:56Z",
+      "side": 1,
+      "message": "nit: Add\n```\nBug: 286003442\nBug: 285806759\n```",
+      "revId": "dde70f56d769885e43fe04786f4ccaac494e47e5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
