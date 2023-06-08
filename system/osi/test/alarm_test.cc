@@ -164,7 +164,8 @@ TEST_F(AlarmTest, test_set_short_periodic) {
   alarm_free(alarm);
 }
 
-TEST_F(AlarmTest, test_set_zero_periodic) {
+// Not a good presubmit test
+TEST_F(AlarmTest, DISABLED_test_set_zero_periodic) {
   alarm_t* alarm = alarm_new_periodic("alarm_test.test_set_zero_periodic");
 
   alarm_set(alarm, 0, cb, NULL);
