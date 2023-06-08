@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "630b4e6f_ceac51ed",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2023-06-08T23:20:27Z",
+      "side": 1,
+      "message": "Affected code relates to BR/EDR but the description mentions SMP pairing. It does not make sense.\nSo what is it really? LE or BR/EDR pairing?",
+      "revId": "816fdf3690f159c11a160a5138b842a36e7307b1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "62e1f2f3_6c1b4358",
+        "filename": "system/stack/l2cap/l2c_link.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2023-06-08T23:20:27Z",
+      "side": 1,
+      "message": "This seems to be dead code. I think this would be removed soon.",
+      "revId": "816fdf3690f159c11a160a5138b842a36e7307b1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
