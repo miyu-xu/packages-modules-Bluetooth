@@ -70,6 +70,24 @@
       "parentUuid": "a3a8a17c_515dca56",
       "revId": "e0cfbb118cf37596aaa0293a680c8e1514cd5677",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cbaf784e_d811a42a",
+        "filename": "system/stack/include/btm_api_types.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 306,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-06-08T17:13:37Z",
+      "side": 0,
+      "message": "never mind...this all built locally (?) but fails in presubmit due to a redefinition compiler error on some target somewhere.\n\n```\n\u0027HCI_LKEY_TYPE_COMBINATION\u0027 macro redefined [-Werror,-Wmacro-redefined] \n```",
+      "parentUuid": "b512538b_6a133eaa",
+      "revId": "e0cfbb118cf37596aaa0293a680c8e1514cd5677",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
