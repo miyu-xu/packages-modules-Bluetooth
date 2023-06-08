@@ -16,6 +16,75 @@
       "message": "Please help review, thanks! Floss doesn\u0027t use `btm_inq_db_init` so I refactored it.",
       "revId": "72ba088528069a2acdb138acbebf608470e38efd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ecc79748_521509fb",
+        "filename": "system/gd/sysprops/sysprops_module.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-06-08T13:32:42Z",
+      "side": 1,
+      "message": "Why persist?  It looks out of place.",
+      "range": {
+        "startLine": 77,
+        "startChar": 7,
+        "endLine": 77,
+        "endChar": 14
+      },
+      "revId": "72ba088528069a2acdb138acbebf608470e38efd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9b0f8668_1ba02fa4",
+        "filename": "system/stack/btm/btm_inq.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 970,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-06-08T13:32:42Z",
+      "side": 1,
+      "message": "The fact that it\u0027s called internal makes it feel like this CL is breaking the abstraction.",
+      "range": {
+        "startLine": 970,
+        "startChar": 2,
+        "endLine": 970,
+        "endChar": 25
+      },
+      "revId": "72ba088528069a2acdb138acbebf608470e38efd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b788ecc8_6e02c1ac",
+        "filename": "system/stack/btm/btm_main.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-06-08T13:32:42Z",
+      "side": 1,
+      "message": "why do we need to do this from here as well?  Once when the Inquiry Database is initialized seems like it should be sufficient.",
+      "range": {
+        "startLine": 58,
+        "startChar": 2,
+        "endLine": 58,
+        "endChar": 25
+      },
+      "revId": "72ba088528069a2acdb138acbebf608470e38efd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
