@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d8d10bb6_1f595b6c",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 331,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-06-08T22:08:39Z",
+      "side": 1,
+      "message": "Please contain device info in the log and ditto for others",
+      "revId": "9bb5d529840692990ae0b416fe4802f6d227eccb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fb52c6c5_2f656f1c",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 968,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-06-08T22:08:39Z",
+      "side": 1,
+      "message": "Found a hearing aid fallback device, and ditto for others",
+      "range": {
+        "startLine": 968,
+        "startChar": 36,
+        "endLine": 968,
+        "endChar": 73
+      },
+      "revId": "9bb5d529840692990ae0b416fe4802f6d227eccb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
