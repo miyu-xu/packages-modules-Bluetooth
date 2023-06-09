@@ -46,6 +46,30 @@
       },
       "revId": "0df306340537d116cccbf60c3826b468a6224df7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c1ffb74e_fa4cda84",
+        "filename": "system/gd/rust/topshim/bindings/wrapper.hpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-06-09T17:30:43Z",
+      "side": 0,
+      "message": "Acknowledged",
+      "parentUuid": "246fcdac_ec9b7e1c",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 12
+      },
+      "revId": "0df306340537d116cccbf60c3826b468a6224df7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
