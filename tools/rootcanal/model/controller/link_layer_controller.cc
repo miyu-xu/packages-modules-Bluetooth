@@ -1959,6 +1959,12 @@ void LinkLayerController::SetLocalName(std::vector<uint8_t> const& local_name) {
 }
 
 void LinkLayerController::SetExtendedInquiryResponse(
+    std::array<uint8_t, 240> const& extended_inquiry_response) {
+  std::copy(extended_inquiry_response.begin(), extended_inquiry_response.end(),
+            extended_inquiry_response_.begin());
+}
+
+void LinkLayerController::SetExtendedInquiryResponse(
     std::vector<uint8_t> const& extended_inquiry_response) {
   ASSERT(extended_inquiry_response.size() <= extended_inquiry_response_.size());
   extended_inquiry_response_.fill(0);
