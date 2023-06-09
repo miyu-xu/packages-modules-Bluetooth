@@ -16,6 +16,24 @@
       "message": "Bluetooth has a different automerger graph than frameworks/proto_logging, Bluetooth merges into `udc-mainline-prod` and frameworks/proto_logging doesn\u0027t\n\nSo Automerger will not respect your topic here and you\u0027ll have a build failure on `udc-mainline-prod`,\n\nYou can test that out with https://android-build.googleplex.com/builds/abtd/run/L97300000961099656\n\nI recommend you to cherry-pick your frameworks/proto_logging change to `udc-mainline-prod` first",
       "revId": "9c182ad86d76bb4f4ab3e2e748e9268a87ca2c11",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "acb50cbe_d510bf1a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 2010065
+      },
+      "writtenOn": "2023-06-09T16:07:18Z",
+      "side": 1,
+      "message": "So logging change in udc-mainline-prod will naturally follow but I need to first CP into udc-mainline-prod for proto_logging changes, correct?",
+      "parentUuid": "151d5e99_ba7bf500",
+      "revId": "9c182ad86d76bb4f4ab3e2e748e9268a87ca2c11",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
