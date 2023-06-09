@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "23f64b4b_74a3e433",
+        "filename": "system/gd/rust/topshim/bindings/wrapper.hpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-06-09T06:52:09Z",
+      "side": 0,
+      "message": "Why ?",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 12
+      },
+      "revId": "0df306340537d116cccbf60c3826b468a6224df7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
