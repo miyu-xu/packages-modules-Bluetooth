@@ -838,29 +838,20 @@ static tAVRC_STS bta_av_chk_notif_evt_id(tAVRC_MSG_VENDOR* p_vendor) {
   return status;
 }
 
+/* Assuming rc version is 0x105, then there should be an absolute volume */
 void bta_av_proc_rsp(tAVRC_RESPONSE* p_rc_rsp) {
-  uint16_t rc_ver = 0x105;
-  const tBTA_AV_CFG* p_src_cfg = NULL;
-  if (rc_ver != 0x103)
-    p_src_cfg = &bta_av_cfg;
-  else
-    p_src_cfg = &bta_av_cfg_compatibility;
-  p_rc_rsp->get_caps.count = p_src_cfg->num_evt_ids;
-  memcpy(p_rc_rsp->get_caps.param.event_id, p_src_cfg->p_meta_evt_ids,
-         p_src_cfg->num_evt_ids);
-  APPL_TRACE_DEBUG("%s: ver: 0x%x", __func__, rc_ver);
-  /* if it's not 1.3, then there should be a absolute volume */
-  if (rc_ver != 0x103) {
-    uint8_t evt_cnt = p_rc_rsp->get_caps.count;
-    p_rc_rsp->get_caps.count += get_bta_avk_cfg()->num_evt_ids;
-    if (evt_cnt < AVRC_CAP_MAX_NUM_EVT_ID) {
-      uint32_t i = 0;
-      for (i = 0; i < get_bta_avk_cfg()->num_evt_ids &&
-                  i + evt_cnt < AVRC_CAP_MAX_NUM_EVT_ID;
-           i++) {
-        p_rc_rsp->get_caps.param.event_id[evt_cnt + i] =
-            get_bta_avk_cfg()->p_meta_evt_ids[i];
-      }
+  p_rc_rsp->get_caps.count = bta_av_cfg.num_evt_ids;
+  memcpy(p_rc_rsp->get_caps.param.event_id, bta_av_cfg.p_meta_evt_ids,
+         bta_av_cfg.num_evt_ids);
+  uint8_t evt_cnt = p_rc_rsp->get_caps.count;
+  p_rc_rsp->get_caps.count += get_bta_avk_cfg()->num_evt_ids;
+  if (evt_cnt < AVRC_CAP_MAX_NUM_EVT_ID) {
+    uint32_t i = 0;
+    for (i = 0; i < get_bta_avk_cfg()->num_evt_ids &&
+                i + evt_cnt < AVRC_CAP_MAX_NUM_EVT_ID;
+         i++) {
+      p_rc_rsp->get_caps.param.event_id[evt_cnt + i] =
+          get_bta_avk_cfg()->p_meta_evt_ids[i];
     }
   }
 }
