@@ -52,6 +52,24 @@
       "parentUuid": "801797e3_9a8c598c",
       "revId": "f7434bf7bd1deadca0ad16588121e1e9ad95856a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0b82f503_bc5da9fe",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-06-09T06:53:31Z",
+      "side": 1,
+      "message": "It looks like the test pass on some branch like aosp-master.\nThat mean the test is not working as expected.",
+      "parentUuid": "6423c2bf_1584c9ce",
+      "revId": "f7434bf7bd1deadca0ad16588121e1e9ad95856a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
