@@ -33,6 +33,24 @@
       "message": "From the context given by Sal could you use `mts-bluetooth` in your configurations ?\n\nI don\u0027t mind adding another one, but I would prefer not if it\u0027s not necessary.",
       "revId": "762dede13d07d7ac3f8497e1ac257d6d70c0ec6a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "896101c3_f956bfa8",
+        "filename": "android/app/tests/unit/Android.bp",
+        "patchSetId": 9
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1885298
+      },
+      "writtenOn": "2023-06-09T20:47:40Z",
+      "side": 1,
+      "message": "Looking into this!\nI think it\u0027s still inside android-mts, which is 5x the size of all automotive-tests, but I\u0027m trying to verify by following mainline test configurations using it",
+      "parentUuid": "d293f288_0780b164",
+      "revId": "762dede13d07d7ac3f8497e1ac257d6d70c0ec6a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
