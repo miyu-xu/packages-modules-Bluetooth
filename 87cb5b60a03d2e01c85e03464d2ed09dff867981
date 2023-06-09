@@ -1,5 +1,74 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0176de21_827e41e3",
+        "filename": "system/bta/av/bta_av_act.cc",
+        "patchSetId": 42
+      },
+      "lineNbr": 842,
+      "author": {
+        "id": 1096713
+      },
+      "writtenOn": "2023-06-09T16:02:30Z",
+      "side": 1,
+      "message": "Did we intend to read this value from somewhere?  As it is, we hardcode this value...",
+      "revId": "87cb5b60a03d2e01c85e03464d2ed09dff867981",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "33dc3407_a7efb4f0",
+        "filename": "system/bta/av/bta_av_act.cc",
+        "patchSetId": 42
+      },
+      "lineNbr": 844,
+      "author": {
+        "id": 1096713
+      },
+      "writtenOn": "2023-06-09T16:02:30Z",
+      "side": 1,
+      "message": "...so this is always true...",
+      "revId": "87cb5b60a03d2e01c85e03464d2ed09dff867981",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6158b7ca_fd270acc",
+        "filename": "system/bta/av/bta_av_act.cc",
+        "patchSetId": 42
+      },
+      "lineNbr": 846,
+      "author": {
+        "id": 1096713
+      },
+      "writtenOn": "2023-06-09T16:02:30Z",
+      "side": 1,
+      "message": "...this is always false...",
+      "revId": "87cb5b60a03d2e01c85e03464d2ed09dff867981",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6d5f0af5_c6eccb02",
+        "filename": "system/bta/av/bta_av_act.cc",
+        "patchSetId": 42
+      },
+      "lineNbr": 853,
+      "author": {
+        "id": 1096713
+      },
+      "writtenOn": "2023-06-09T16:02:30Z",
+      "side": 1,
+      "message": "...and this is always true.",
+      "revId": "87cb5b60a03d2e01c85e03464d2ed09dff867981",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
