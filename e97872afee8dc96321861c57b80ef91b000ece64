@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1920e949_42b9507e",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 480,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2023-06-09T03:01:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b8b2def6_4c4c94c1",
+      "range": {
+        "startLine": 480,
+        "startChar": 29,
+        "endLine": 480,
+        "endChar": 49
+      },
+      "revId": "e97872afee8dc96321861c57b80ef91b000ece64",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9ade48f3_6f357f9b",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-06-08T23:18:37Z",
       "side": 1,
       "message": "NIT:self.tx.clone() seems sufficient here?",
+      "range": {
+        "startLine": 483,
+        "startChar": 62,
+        "endLine": 483,
+        "endChar": 65
+      },
+      "revId": "e97872afee8dc96321861c57b80ef91b000ece64",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6a72b1b8_cf611177",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 483,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2023-06-09T03:01:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9ade48f3_6f357f9b",
       "range": {
         "startLine": 483,
         "startChar": 62,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9168808a_8d38c7a1",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 503,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2023-06-09T03:01:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "45bc3303_0304e80c",
+      "range": {
+        "startLine": 503,
+        "startChar": 60,
+        "endLine": 503,
+        "endChar": 76
+      },
+      "revId": "e97872afee8dc96321861c57b80ef91b000ece64",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fc616136_a2f18ea8",
@@ -83,6 +155,24 @@
       "writtenOn": "2023-06-08T23:18:37Z",
       "side": 1,
       "message": "NIT:extra line.",
+      "revId": "e97872afee8dc96321861c57b80ef91b000ece64",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "effea972_3262c3a2",
+        "filename": "system/gd/rust/linux/stack/src/lib.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 376,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2023-06-09T03:01:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fc616136_a2f18ea8",
       "revId": "e97872afee8dc96321861c57b80ef91b000ece64",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
