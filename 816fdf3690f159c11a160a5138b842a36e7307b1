@@ -51,6 +51,24 @@
       "message": "This seems to be dead code. I think this would be removed soon.",
       "revId": "816fdf3690f159c11a160a5138b842a36e7307b1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c7865efa_1f64a680",
+        "filename": "system/stack/l2cap/l2c_link.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1965943
+      },
+      "writtenOn": "2023-06-09T07:24:28Z",
+      "side": 1,
+      "message": "ok, we will abandon this CL firstly, if still meet the similar problem, we will upload new patch.",
+      "parentUuid": "62e1f2f3_6c1b4358",
+      "revId": "816fdf3690f159c11a160a5138b842a36e7307b1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
