@@ -52,6 +52,29 @@
       "parentUuid": "acb50cbe_d510bf1a",
       "revId": "9c182ad86d76bb4f4ab3e2e748e9268a87ca2c11",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0a62128a_4007d6b8",
+        "filename": "android/app/src/com/android/bluetooth/a2dp/A2dpStateMachine.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 287,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2023-06-09T18:53:19Z",
+      "side": 1,
+      "message": "Do you want to use `result` here instead?",
+      "range": {
+        "startLine": 287,
+        "startChar": 24,
+        "endLine": 287,
+        "endChar": 58
+      },
+      "revId": "9c182ad86d76bb4f4ab3e2e748e9268a87ca2c11",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
