@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "132979a9_982a5641",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2023-06-09T19:20:23Z",
+      "side": 1,
+      "message": "Hey David, I didn\u0027t want to abuse my owners here and wanted to make sure someone that has knowledge on our test packages takes a look/knows what we\u0027re doing here.\n\nI don\u0027t have all the background, but we\u0027re trying to shrink the size of our test executables and that means making our own curated set of tests.\n\nPTAL or forward to someone else if you think they\u0027re better suited the review 😊",
+      "revId": "762dede13d07d7ac3f8497e1ac257d6d70c0ec6a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
