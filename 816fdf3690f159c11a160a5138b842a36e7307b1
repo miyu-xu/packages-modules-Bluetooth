@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b9113c4f_90248523",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1965943
+      },
+      "writtenOn": "2023-06-09T07:20:24Z",
+      "side": 1,
+      "message": "It is SMP over BR/EDR.",
+      "parentUuid": "630b4e6f_ceac51ed",
+      "revId": "816fdf3690f159c11a160a5138b842a36e7307b1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "62e1f2f3_6c1b4358",
