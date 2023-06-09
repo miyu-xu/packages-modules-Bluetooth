@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0dc6184c_8dec91ec",
+        "filename": "system/bta/av/bta_av_act.cc",
+        "patchSetId": 42
+      },
+      "lineNbr": 842,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-06-09T16:53:50Z",
+      "side": 1,
+      "message": "Uploaded in aosp/2620772",
+      "parentUuid": "0176de21_827e41e3",
+      "revId": "87cb5b60a03d2e01c85e03464d2ed09dff867981",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "33dc3407_a7efb4f0",
@@ -31,6 +49,24 @@
       "writtenOn": "2023-06-09T16:02:30Z",
       "side": 1,
       "message": "...so this is always true...",
+      "revId": "87cb5b60a03d2e01c85e03464d2ed09dff867981",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "187b64e3_3f0f407b",
+        "filename": "system/bta/av/bta_av_act.cc",
+        "patchSetId": 42
+      },
+      "lineNbr": 844,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-06-09T16:53:50Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "33dc3407_a7efb4f0",
       "revId": "87cb5b60a03d2e01c85e03464d2ed09dff867981",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -52,6 +88,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0e54aa4e_28758130",
+        "filename": "system/bta/av/bta_av_act.cc",
+        "patchSetId": 42
+      },
+      "lineNbr": 846,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-06-09T16:53:50Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "6158b7ca_fd270acc",
+      "revId": "87cb5b60a03d2e01c85e03464d2ed09dff867981",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6d5f0af5_c6eccb02",
@@ -65,6 +119,24 @@
       "writtenOn": "2023-06-09T16:02:30Z",
       "side": 1,
       "message": "...and this is always true.",
+      "revId": "87cb5b60a03d2e01c85e03464d2ed09dff867981",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2ebf1b6c_421588e4",
+        "filename": "system/bta/av/bta_av_act.cc",
+        "patchSetId": 42
+      },
+      "lineNbr": 853,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-06-09T16:53:50Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "6d5f0af5_c6eccb02",
       "revId": "87cb5b60a03d2e01c85e03464d2ed09dff867981",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
