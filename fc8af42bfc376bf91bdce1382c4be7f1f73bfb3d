@@ -67,6 +67,24 @@
       "message": "I see this is default to false, could I know who will set this property, and when will this property set to true?\nAs current test does not cover the case when value is true, it may have impact on normal connectAudio API call.",
       "revId": "fc8af42bfc376bf91bdce1382c4be7f1f73bfb3d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0a15c8b4_e58da931",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1985260
+      },
+      "writtenOn": "2023-06-09T04:04:30Z",
+      "side": 1,
+      "message": "Will set the property to true on our watch devices. There\u0027s no related test for isScoAcceptable function so far.",
+      "parentUuid": "c023cc24_64e83ec6",
+      "revId": "fc8af42bfc376bf91bdce1382c4be7f1f73bfb3d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
