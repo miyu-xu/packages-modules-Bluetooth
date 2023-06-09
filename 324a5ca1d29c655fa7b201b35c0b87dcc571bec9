@@ -1,5 +1,23 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7aeea055_4d2f501b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 19
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2023-06-09T19:57:11Z",
+      "side": 1,
+      "message": "Perhaps too late to change course, but why have _yet another flag_ to control whether configured roles work or not?\n\nIs it not explicit enough to just make this bare minimum set of features work if you set the other four required flags?\n```\nbluetooth.profile.a2dp.source.enabled\u003dtrue\nbluetooth.profile.a2dp.sink.enabled\u003dtrue\nbluetooth.profile.avrcp.target.enabled\u003dtrue\nbluetooth.profile.avrcp.controller.enabled\u003dtrue\n```\n\nIf you do the above without the new flag, the stack misbehaves!\n\nI\u0027d rather just listen to the intent of the vendor based on the configured roles and have it all _work by default_, reduce the need for more flags, and reduce complexity of the code. Having flags that alter the behavior of other flags, or flags working dependent on other flags being set is confusing and error prone.\n\nAs I understand it, since this isn\u0027t going into Android 14 (it\u0027s _really late_ and rather complex), theres _plenty_ of sink time before 15.",
+      "revId": "324a5ca1d29c655fa7b201b35c0b87dcc571bec9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
