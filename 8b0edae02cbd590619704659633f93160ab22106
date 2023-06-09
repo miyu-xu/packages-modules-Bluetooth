@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0c0f0ddb_8feee2fd",
+        "filename": "system/build/Android.bp",
+        "patchSetId": 4
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-06-09T06:45:51Z",
+      "side": 0,
+      "message": "whoa, this is bad.\n\nWe may be able to clean the common dependency but I am not sur if it is easy to do",
+      "range": {
+        "startLine": 94,
+        "startChar": 0,
+        "endLine": 94,
+        "endChar": 36
+      },
+      "revId": "8b0edae02cbd590619704659633f93160ab22106",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
