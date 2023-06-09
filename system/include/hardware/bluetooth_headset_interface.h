@@ -67,7 +67,7 @@ class Interface {
    * @return BT_STATUS_SUCCESS on success
    */
   virtual bt_status_t ConnectAudio(RawAddress* bd_addr,
-                                   int disabled_codecs) = 0;
+                                   uint32_t disabled_codecs) = 0;
 
   /**
    * Close the audio connection

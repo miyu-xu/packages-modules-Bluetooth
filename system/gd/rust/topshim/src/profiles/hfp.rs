@@ -43,7 +43,7 @@ impl From<u32> for BthfAudioState {
 
 bitflags! {
     #[derive(Default)]
-    pub struct HfpCodecCapability: i32 {
+    pub struct HfpCodecCapability: u32 {
         const NONE = 0b00;
         const CVSD = 0b01;
         const MSBC = 0b10;
@@ -51,16 +51,16 @@ bitflags! {
     }
 }
 
-impl TryInto<i32> for HfpCodecCapability {
+impl TryInto<u32> for HfpCodecCapability {
     type Error = ();
-    fn try_into(self) -> Result<i32, Self::Error> {
+    fn try_into(self) -> Result<u32, Self::Error> {
         Ok(self.bits())
     }
 }
 
-impl TryFrom<i32> for HfpCodecCapability {
+impl TryFrom<u32> for HfpCodecCapability {
     type Error = ();
-    fn try_from(val: i32) -> Result<Self, Self::Error> {
+    fn try_from(val: u32) -> Result<Self, Self::Error> {
         Self::from_bits(val).ok_or(())
     }
 }
@@ -128,7 +128,7 @@ pub mod ffi {
             self: Pin<&mut HfpIntf>,
             bt_addr: RawAddress,
             sco_offload: bool,
-            disabled_codecs: i32,
+            disabled_codecs: u32,
         ) -> i32;
         fn set_active_device(self: Pin<&mut HfpIntf>, bt_addr: RawAddress) -> i32;
         fn set_volume(self: Pin<&mut HfpIntf>, volume: i8, bt_addr: RawAddress) -> i32;
@@ -353,7 +353,7 @@ impl Hfp {
         &mut self,
         addr: RawAddress,
         sco_offload: bool,
-        disabled_codecs: i32,
+        disabled_codecs: u32,
     ) -> i32 {
         self.internal.pin_mut().connect_audio(addr, sco_offload, disabled_codecs)
     }

@@ -415,7 +415,7 @@ pub struct A2dpCodecConfigDBus {
     codec_specific_4: i64,
 }
 
-impl_dbus_arg_from_into!(HfpCodecCapability, i32);
+impl_dbus_arg_from_into!(HfpCodecCapability, u32);
 #[dbus_propmap(BluetoothAudioDevice)]
 pub struct BluetoothAudioDeviceDBus {
     address: String,
