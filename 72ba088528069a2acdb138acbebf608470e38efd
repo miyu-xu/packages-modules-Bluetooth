@@ -43,6 +43,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "54022f03_5c6a43c1",
+        "filename": "system/gd/sysprops/sysprops_module.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2023-06-09T04:42:46Z",
+      "side": 1,
+      "message": "I\u0027m not sure about that. I just reused the value of `PROPERTY_INQ_BY_RSSI`",
+      "parentUuid": "ecc79748_521509fb",
+      "range": {
+        "startLine": 77,
+        "startChar": 7,
+        "endLine": 77,
+        "endChar": 14
+      },
+      "revId": "72ba088528069a2acdb138acbebf608470e38efd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9b0f8668_1ba02fa4",
         "filename": "system/stack/btm/btm_inq.cc",
         "patchSetId": 1
@@ -66,6 +90,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5a49aaa6_0173d269",
+        "filename": "system/stack/btm/btm_inq.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 970,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2023-06-09T04:42:46Z",
+      "side": 1,
+      "message": "the internal here means it is to set the internal value, but I think I can rename it to like `btm_inq_db_set_inq_by_rssi`",
+      "parentUuid": "9b0f8668_1ba02fa4",
+      "range": {
+        "startLine": 970,
+        "startChar": 2,
+        "endLine": 970,
+        "endChar": 25
+      },
+      "revId": "72ba088528069a2acdb138acbebf608470e38efd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b788ecc8_6e02c1ac",
         "filename": "system/stack/btm/btm_main.cc",
         "patchSetId": 1
@@ -77,6 +125,30 @@
       "writtenOn": "2023-06-08T13:32:42Z",
       "side": 1,
       "message": "why do we need to do this from here as well?  Once when the Inquiry Database is initialized seems like it should be sufficient.",
+      "range": {
+        "startLine": 58,
+        "startChar": 2,
+        "endLine": 58,
+        "endChar": 25
+      },
+      "revId": "72ba088528069a2acdb138acbebf608470e38efd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0a633ccb_88a00fa5",
+        "filename": "system/stack/btm/btm_main.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2023-06-09T04:42:46Z",
+      "side": 1,
+      "message": "This is because we never call `btm_inq_db_init` in Floss and I am not sure whether we want the other initialization in `btm_inq_db_init` so I separated them and made it only to set the internal.",
+      "parentUuid": "b788ecc8_6e02c1ac",
       "range": {
         "startLine": 58,
         "startChar": 2,
