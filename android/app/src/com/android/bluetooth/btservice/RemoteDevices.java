@@ -639,6 +639,9 @@ final class RemoteDevices {
          * @param isCoordinatedSetMember the mIsCoordinatedSetMember to set
         */
         void setIsCoordinatedSetMember(boolean isCoordinatedSetMember) {
+            if ((mAdapterService.getSupportedProfilesBitMask()
+                            & (1 << BluetoothProfile.CSIP_SET_COORDINATOR))
+                    == 0) return;
             synchronized (mObject) {
                 this.mIsCoordinatedSetMember = isCoordinatedSetMember;
             }
