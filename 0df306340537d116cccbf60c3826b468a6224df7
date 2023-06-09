@@ -22,6 +22,30 @@
       },
       "revId": "0df306340537d116cccbf60c3826b468a6224df7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "246fcdac_ec9b7e1c",
+        "filename": "system/gd/rust/topshim/bindings/wrapper.hpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-06-09T17:24:12Z",
+      "side": 0,
+      "message": "This file is used as a source file `wrapper_src: \"bindings/wrapper.hpp\",` so clang complains that we put a pragma in a source file",
+      "parentUuid": "23f64b4b_74a3e433",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 12
+      },
+      "revId": "0df306340537d116cccbf60c3826b468a6224df7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
