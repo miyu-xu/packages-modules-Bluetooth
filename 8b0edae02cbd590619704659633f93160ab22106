@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4aa06933_01aee703",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-06-09T09:12:18Z",
+      "side": 1,
+      "message": "```\nerror: builtin __has_trivial_destructor is deprecated; use __is_trivially_destructible instead [-Wdeprecated-builtins]\\n\"\n```\n\nI guess the libchrome fix was merged on aosp but it does not go in udc-mainline-prod :/",
+      "revId": "8b0edae02cbd590619704659633f93160ab22106",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
