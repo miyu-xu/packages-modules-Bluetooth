@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1d4864f4_18eba124",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-06-09T16:55:32Z",
+      "side": 1,
+      "message": "@eruffieux@google.com,\n\nI only did a delete and replace base on the comment from aosp/2394935. This is a no-op change but that make me wonder: can we really consider we are always in 1.5 in this method ?",
+      "revId": "28cc8b2a56137f7952c2480649eef6ae564278f7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
