@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "38c47fcf_5808d1ca",
+        "filename": "tools/rootcanal/model/controller/link_layer_controller.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1961,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-06-09T21:40:12Z",
+      "side": 1,
+      "message": "Why do we need both?",
+      "range": {
+        "startLine": 1961,
+        "startChar": 5,
+        "endLine": 1961,
+        "endChar": 24
+      },
+      "revId": "17bf177065168bdc46ea5d29b13e1e453826288d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
