@@ -75,6 +75,30 @@
       },
       "revId": "9c182ad86d76bb4f4ab3e2e748e9268a87ca2c11",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "39c8ac12_3d5d78b8",
+        "filename": "android/app/src/com/android/bluetooth/a2dp/A2dpStateMachine.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 287,
+      "author": {
+        "id": 2010065
+      },
+      "writtenOn": "2023-06-09T20:15:24Z",
+      "side": 1,
+      "message": "Oh, yes, I missed in last Code review iteration patchset. Fixing.",
+      "parentUuid": "0a62128a_4007d6b8",
+      "range": {
+        "startLine": 287,
+        "startChar": 24,
+        "endLine": 287,
+        "endChar": 58
+      },
+      "revId": "9c182ad86d76bb4f4ab3e2e748e9268a87ca2c11",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
