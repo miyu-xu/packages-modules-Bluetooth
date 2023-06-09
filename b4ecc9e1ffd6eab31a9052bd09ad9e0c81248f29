@@ -16,6 +16,24 @@
       "message": "This CL adds quite a few untested lines in this file, bringing the coverage down to 46%.  Could you add some tests?",
       "revId": "b4ecc9e1ffd6eab31a9052bd09ad9e0c81248f29",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c66495c9_af7ce1e2",
+        "filename": "system/stack/btm/btm_sco_hci.cc",
+        "patchSetId": 14
+      },
+      "lineNbr": 764,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2023-06-09T11:07:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "43932381_68439b8e",
+      "revId": "b4ecc9e1ffd6eab31a9052bd09ad9e0c81248f29",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
