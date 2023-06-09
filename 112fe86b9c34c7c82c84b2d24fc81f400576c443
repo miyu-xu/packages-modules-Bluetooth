@@ -1,5 +1,74 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5ef2ecae_138802d0",
+        "filename": "system/profile/avrcp/connection_handler.cc",
+        "patchSetId": 29
+      },
+      "lineNbr": 343,
+      "author": {
+        "id": 1096713
+      },
+      "writtenOn": "2023-06-09T22:21:16Z",
+      "side": 1,
+      "message": "Here we\u0027re checking `peer_addr` for `NULL`, but...",
+      "revId": "112fe86b9c34c7c82c84b2d24fc81f400576c443",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b7336f11_f5e9cec1",
+        "filename": "system/profile/avrcp/connection_handler.cc",
+        "patchSetId": 29
+      },
+      "lineNbr": 361,
+      "author": {
+        "id": 1096713
+      },
+      "writtenOn": "2023-06-09T22:21:16Z",
+      "side": 1,
+      "message": "...we unconditionally dereference `peer_addr` here...",
+      "revId": "112fe86b9c34c7c82c84b2d24fc81f400576c443",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6e7225aa_8050e5b4",
+        "filename": "system/profile/avrcp/connection_handler.cc",
+        "patchSetId": 29
+      },
+      "lineNbr": 368,
+      "author": {
+        "id": 1096713
+      },
+      "writtenOn": "2023-06-09T22:21:16Z",
+      "side": 1,
+      "message": "...and here...",
+      "revId": "112fe86b9c34c7c82c84b2d24fc81f400576c443",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "148c4872_41dcebfc",
+        "filename": "system/profile/avrcp/connection_handler.cc",
+        "patchSetId": 29
+      },
+      "lineNbr": 395,
+      "author": {
+        "id": 1096713
+      },
+      "writtenOn": "2023-06-09T22:21:16Z",
+      "side": 1,
+      "message": "...and here.\n\nSo if `peer_addr` can be NULL, it seems like we\u0027ll crash in this code.\n\nI\u0027m guessing that our new added check is just unnecessarily redundant.  But in case other logic changed that make it possible for `peer_addr` to be NULL in this function, then we should probably fix things up so we don\u0027t crash in these other places.",
+      "revId": "112fe86b9c34c7c82c84b2d24fc81f400576c443",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
