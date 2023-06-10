@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8652ea00_b7f10c88",
+        "filename": "android/pandora/test/asha_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1062,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-06-10T00:01:43Z",
+      "side": 1,
+      "message": "nit: typo",
+      "range": {
+        "startLine": 1062,
+        "startChar": 28,
+        "endLine": 1062,
+        "endChar": 36
+      },
+      "revId": "0a76ae49d8ed0f991a1d5c5e31c32f474d7a25a7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
