@@ -69,6 +69,24 @@
       "parentUuid": "896101c3_f956bfa8",
       "revId": "762dede13d07d7ac3f8497e1ac257d6d70c0ec6a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1356791e_b8f0723f",
+        "filename": "android/app/tests/unit/Android.bp",
+        "patchSetId": 9
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1885298
+      },
+      "writtenOn": "2023-06-10T06:07:34Z",
+      "side": 1,
+      "message": "I\u0027ll merge this change\n\nreasons:\n- mts-bluetooth package is 500MB, while all our automotive tests are 460MB - and bluetooth tests we need are 40MB (2x 20MB)\n- mts-bluetooth package does not produce TEST_MAPPING like configuration (partial download and test config data is not created) which would block transition to tradefed run_test_modules\n\ndevice-tests produce all those files too, but it\u0027s even bigger and we cannot use it within automotive",
+      "parentUuid": "ae8be259_8f2b405d",
+      "revId": "762dede13d07d7ac3f8497e1ac257d6d70c0ec6a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
