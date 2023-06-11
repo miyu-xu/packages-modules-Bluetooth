@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dcf99c0f_b83b84b7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1963846
+      },
+      "writtenOn": "2023-06-11T12:25:00Z",
+      "side": 1,
+      "message": "Thank you for fixing the bug by placing the writing and reading of `has_active_unfiltered_scanner` to be protected by the same gatt_async lock!\n\nCould you help fix the same issue for `has_active_unfiltered_scanner` in stop_scan() in the same file?",
+      "revId": "75a56d595ab501552de2f043b0ce6ea7b490ee12",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
