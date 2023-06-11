@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "720ee77e_f7f668b2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1997210
+      },
+      "writtenOn": "2023-06-11T12:51:42Z",
+      "side": 1,
+      "message": "Hi Etienne, could you help review this clean up CL for migration? Thanks.",
+      "revId": "845f7be776f1e5b78124243566b737acb1166d16",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
