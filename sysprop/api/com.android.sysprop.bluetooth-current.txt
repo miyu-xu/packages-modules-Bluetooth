@@ -1,0 +1,8 @@
+props {
+  module: "android.sysprop.bluetooth.Hfp"
+  prop {
+    api_name: "swb_aptx_power_management"
+    access: ReadWrite
+    prop_name: "persist.bluetooth.hfp.swb.aptx.power_management.enabled"
+  }
+}
