@@ -30,6 +30,7 @@
 #include "bt_target.h"  // Must be first to define build configuration
 #include "bt_trace.h"   // Legacy trace logging
 #include "bta/ag/bta_ag_int.h"
+#include "bta_ag_swb.h"
 #include "common/init_flags.h"
 #include "device/include/controller.h"
 #include "main/shim/dumpsys.h"
@@ -196,9 +197,17 @@ static void bta_ag_sco_disc_cback(uint16_t sco_idx) {
   }
 
   if (handle != 0) {
+    bool aptx_voice = false;
+    if (bluetooth::common::init_flags::aptx_voice_is_enabled() &&
+        bta_ag_cb.sco.p_curr_scb->is_aptx_swb_codec == true) {
+      aptx_voice = bta_ag_cb.sco.p_curr_scb->inuse_codec ==
+                   BTA_AG_SCO_APTX_SWB_SETTINGS_Q0;
+      LOG_VERBOSE("%s: aptx_voice=%d, inuse_codec=%d", __func__, aptx_voice,
+                  bta_ag_cb.sco.p_curr_scb->inuse_codec);
+    }
     /* Restore settings */
     if (bta_ag_cb.sco.p_curr_scb->inuse_codec == UUID_CODEC_MSBC ||
-        bta_ag_cb.sco.p_curr_scb->inuse_codec == UUID_CODEC_LC3) {
+        bta_ag_cb.sco.p_curr_scb->inuse_codec == UUID_CODEC_LC3 || aptx_voice) {
       /* Bypass vendor specific and voice settings if enhanced eSCO supported */
       if (!(controller_get_interface()
                 ->supports_enhanced_setup_synchronous_connection())) {
@@ -411,6 +420,13 @@ void bta_ag_create_sco(tBTA_AG_SCB* p_scb, bool is_orig) {
   }
 #endif
 
+  if (bluetooth::common::init_flags::aptx_voice_is_enabled()) {
+    if ((p_scb->sco_codec == BTA_AG_SCO_APTX_SWB_SETTINGS_Q0) &&
+        !p_scb->codec_fallback) {
+      esco_codec = BTA_AG_SCO_APTX_SWB_SETTINGS_Q0;
+    }
+  }
+
   if ((p_scb->sco_codec == BTM_SCO_CODEC_LC3) && !p_scb->codec_fallback &&
       hfp_hal_interface::get_swb_supported()) {
     esco_codec = UUID_CODEC_LC3;
@@ -424,6 +440,8 @@ void bta_ag_create_sco(tBTA_AG_SCB* p_scb, bool is_orig) {
     p_scb->codec_msbc_settings = BTA_AG_SCO_MSBC_SETTINGS_T2;
     /* Reset LC3 settings to T2 for the next audio connection */
     p_scb->codec_lc3_settings = BTA_AG_SCO_LC3_SETTINGS_T2;
+    /* Reset SWB settings to Q3 for the next audio connection */
+    p_scb->codec_aptx_settings = BTA_AG_SCO_APTX_SWB_SETTINGS_Q0;
   }
 
   bool offload = hfp_hal_interface::get_offload_enabled();
@@ -445,6 +463,17 @@ void bta_ag_create_sco(tBTA_AG_SCB* p_scb, bool is_orig) {
       params = esco_parameters_for_codec(ESCO_CODEC_MSBC_T2, offload);
     } else {
       params = esco_parameters_for_codec(ESCO_CODEC_MSBC_T1, offload);
+    }
+  } else if (bluetooth::common::init_flags::aptx_voice_is_enabled() &&
+             (p_scb->is_aptx_swb_codec == true && !p_scb->codec_updated)) {
+    if (p_scb->codec_aptx_settings == BTA_AG_SCO_APTX_SWB_SETTINGS_Q3) {
+      params = esco_parameters_for_codec(ESCO_CODEC_SWB_Q3, true);
+    } else if (p_scb->codec_aptx_settings == BTA_AG_SCO_APTX_SWB_SETTINGS_Q2) {
+      params = esco_parameters_for_codec(ESCO_CODEC_SWB_Q2, true);
+    } else if (p_scb->codec_aptx_settings == BTA_AG_SCO_APTX_SWB_SETTINGS_Q1) {
+      params = esco_parameters_for_codec(ESCO_CODEC_SWB_Q1, true);
+    } else if (p_scb->codec_aptx_settings == BTA_AG_SCO_APTX_SWB_SETTINGS_Q0) {
+      params = esco_parameters_for_codec(ESCO_CODEC_SWB_Q0, true);
     }
   } else {
     if ((p_scb->features & BTA_AG_FEAT_ESCO_S4) &&
@@ -518,6 +547,20 @@ void bta_ag_create_pending_sco(tBTA_AG_SCB* p_scb, bool is_local) {
         params = esco_parameters_for_codec(ESCO_CODEC_LC3_T2, offload);
       } else {
         params = esco_parameters_for_codec(ESCO_CODEC_LC3_T1, offload);
+      }
+    } else if (bluetooth::common::init_flags::aptx_voice_is_enabled() &&
+               (p_scb->is_aptx_swb_codec == true && !p_scb->codec_updated)) {
+      if (p_scb->codec_aptx_settings == BTA_AG_SCO_APTX_SWB_SETTINGS_Q3) {
+        params = esco_parameters_for_codec(ESCO_CODEC_SWB_Q3, true);
+      } else if (p_scb->codec_aptx_settings ==
+                 BTA_AG_SCO_APTX_SWB_SETTINGS_Q2) {
+        params = esco_parameters_for_codec(ESCO_CODEC_SWB_Q2, true);
+      } else if (p_scb->codec_aptx_settings ==
+                 BTA_AG_SCO_APTX_SWB_SETTINGS_Q1) {
+        params = esco_parameters_for_codec(ESCO_CODEC_SWB_Q1, true);
+      } else if (p_scb->codec_aptx_settings ==
+                 BTA_AG_SCO_APTX_SWB_SETTINGS_Q0) {
+        params = esco_parameters_for_codec(ESCO_CODEC_SWB_Q0, true);
       }
     } else if (esco_codec == UUID_CODEC_MSBC) {
       if (p_scb->codec_msbc_settings == BTA_AG_SCO_MSBC_SETTINGS_T2) {
@@ -640,16 +683,43 @@ void bta_ag_codec_negotiate(tBTA_AG_SCB* p_scb) {
     LOG_INFO("Assume CVSD by default due to mask mismatch");
     p_scb->sco_codec = UUID_CODEC_CVSD;
   }
+  bool aptx_voice = false;
+  if (bluetooth::common::init_flags::aptx_voice_is_enabled()) {
+    aptx_voice = p_scb->is_aptx_swb_codec;
+    LOG_VERBOSE("%s: aptx_voice=%d, is_aptx_swb_codec=%d", __func__, aptx_voice,
+                p_scb->is_aptx_swb_codec);
+  }
 
-  if ((p_scb->codec_updated || p_scb->codec_fallback) &&
-      (p_scb->features & BTA_AG_FEAT_CODEC) &&
-      (p_scb->peer_features & BTA_AG_PEER_FEAT_CODEC)) {
+  if (((p_scb->codec_updated || p_scb->codec_fallback) &&
+       (p_scb->features & BTA_AG_FEAT_CODEC) &&
+       (p_scb->peer_features & BTA_AG_PEER_FEAT_CODEC)) ||
+      (aptx_voice &&
+       (p_scb->peer_codecs & BTA_AG_SCO_APTX_SWB_SETTINGS_Q0_MASK))) {
     LOG_INFO("Starting codec negotiation");
     /* Change the power mode to Active until SCO open is completed. */
     bta_sys_busy(BTA_ID_AG, p_scb->app_id, p_scb->peer_addr);
 
-    /* Send +BCS to the peer */
-    bta_ag_send_bcs(p_scb);
+    if (p_scb->peer_codecs & BTA_AG_SCO_APTX_SWB_SETTINGS_Q0_MASK) {
+      if (p_scb->is_aptx_swb_codec == false) {
+        p_scb->sco_codec = BTA_AG_SCO_APTX_SWB_SETTINGS_Q0;
+        p_scb->is_aptx_swb_codec = true;
+      }
+      LOG_VERBOSE("%s: Sending +QCS, sco_codec=%d, is_aptx_swb_codec=%d",
+                  __func__, p_scb->sco_codec, p_scb->is_aptx_swb_codec);
+      /* Send +QCS to the peer */
+      bta_ag_send_qcs(p_scb, NULL);
+    } else {
+      if (bluetooth::common::init_flags::aptx_voice_is_enabled() &&
+          ((p_scb->is_aptx_swb_codec == true) &&
+           (p_scb->peer_codecs & BTA_AG_SCO_APTX_SWB_SETTINGS_Q0_MASK))) {
+        p_scb->sco_codec = BTM_SCO_CODEC_MSBC;
+        p_scb->is_aptx_swb_codec = false;
+      }
+      LOG_VERBOSE("%s: Sending +BCS, sco_codec=%d, is_aptx_swb_codec=%d",
+                  __func__, p_scb->sco_codec, p_scb->is_aptx_swb_codec);
+      /* Send +BCS to the peer */
+      bta_ag_send_bcs(p_scb);
+    }
 
     /* Start timer to handle timeout */
     alarm_set_on_mloop(p_scb->codec_negotiation_timer,
@@ -1361,6 +1431,8 @@ void bta_ag_sco_conn_open(tBTA_AG_SCB* p_scb,
   p_scb->codec_msbc_settings = BTA_AG_SCO_MSBC_SETTINGS_T2;
   /* reset to LC3 T2 settings as the preferred */
   p_scb->codec_lc3_settings = BTA_AG_SCO_LC3_SETTINGS_T2;
+  /* reset to SWB Q0 settings as the preferred */
+  p_scb->codec_aptx_settings = BTA_AG_SCO_APTX_SWB_SETTINGS_Q0;
 }
 
 /*******************************************************************************
@@ -1375,9 +1447,16 @@ void bta_ag_sco_conn_open(tBTA_AG_SCB* p_scb,
  ******************************************************************************/
 void bta_ag_sco_conn_close(tBTA_AG_SCB* p_scb,
                            UNUSED_ATTR const tBTA_AG_DATA& data) {
+  bool aptx_voice = false;
   /* clear current scb */
   bta_ag_cb.sco.p_curr_scb = nullptr;
   p_scb->sco_idx = BTM_INVALID_SCO_INDEX;
+  if (bluetooth::common::init_flags::aptx_voice_is_enabled()) {
+    aptx_voice = p_scb->codec_fallback &&
+                 p_scb->sco_codec == BTA_AG_SCO_APTX_SWB_SETTINGS_Q0;
+    LOG_VERBOSE("%s: aptx_voice=%d, codec_fallback=%d, sco_codec=%d", __func__,
+                aptx_voice, p_scb->codec_fallback, p_scb->sco_codec);
+  }
 
   /* codec_fallback is set when AG is initiator and connection failed for mSBC.
    * OR if codec is msbc and T2 settings failed, then retry Safe T1 settings
@@ -1387,7 +1466,8 @@ void bta_ag_sco_conn_close(tBTA_AG_SCB* p_scb,
        (p_scb->sco_codec == BTM_SCO_CODEC_MSBC &&
         p_scb->codec_msbc_settings == BTA_AG_SCO_MSBC_SETTINGS_T1) ||
        (p_scb->sco_codec == BTM_SCO_CODEC_LC3 &&
-        p_scb->codec_lc3_settings == BTA_AG_SCO_LC3_SETTINGS_T1))) {
+        p_scb->codec_lc3_settings == BTA_AG_SCO_LC3_SETTINGS_T1) ||
+       aptx_voice)) {
     bta_ag_sco_event(p_scb, BTA_AG_SCO_REOPEN_E);
   } else {
     /* Indicate if the closing of audio is because of transfer */
@@ -1407,6 +1487,7 @@ void bta_ag_sco_conn_close(tBTA_AG_SCB* p_scb,
     bta_ag_cback_sco(p_scb, BTA_AG_AUDIO_CLOSE_EVT);
     p_scb->codec_msbc_settings = BTA_AG_SCO_MSBC_SETTINGS_T2;
     p_scb->codec_lc3_settings = BTA_AG_SCO_LC3_SETTINGS_T2;
+    p_scb->codec_aptx_settings = BTA_AG_SCO_APTX_SWB_SETTINGS_Q0;
   }
 }
 

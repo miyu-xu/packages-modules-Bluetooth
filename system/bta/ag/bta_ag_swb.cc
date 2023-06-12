@@ -1,0 +1,128 @@
+/******************************************************************************
+ *
+ * Copyright (c) 2019, The Linux Foundation. All rights reserved.
+ *
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at:
+ *
+ *  http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ *
+ ******************************************************************************/
+
+#include "bta_ag_swb.h"
+
+#include <string.h>
+#include <unistd.h>
+
+#include "bta/ag/bta_ag_int.h"
+#include "common/init_flags.h"
+#include "device/include/interop.h"
+#include "include/hardware/bt_hf.h"
+#include "internal_include/bt_trace.h"
+#include "stack/btm/btm_sco_hfp_hal.h"
+#include "stack/include/btm_api_types.h"
+#include "types/raw_address.h"
+#include "utl.h"
+
+void bta_ag_swb_handle_vs_at_events(tBTA_AG_SCB* p_scb, uint16_t cmd,
+                                    int16_t int_arg, tBTA_AG_VAL* val) {
+  LOG_VERBOSE("%s: cmd : %d", __func__, cmd);
+  switch (cmd) {
+    case BTA_AG_AT_QAC_EVT:
+      LOG_VERBOSE("%s: BTA_AG_AT_QAC_EVT", __func__);
+      p_scb->codec_updated = true;
+      if (p_scb->peer_codecs & BTA_AG_SCO_APTX_SWB_SETTINGS_Q0_MASK) {
+        p_scb->sco_codec = BTA_AG_SCO_APTX_SWB_SETTINGS_Q0;
+      } else if (p_scb->peer_codecs & BTM_SCO_CODEC_MSBC) {
+        p_scb->sco_codec = UUID_CODEC_MSBC;
+      }
+      bta_ag_send_qac(p_scb, NULL);
+      LOG_VERBOSE("Received AT+QAC, updating sco codec to SWB: %d",
+                  p_scb->sco_codec);
+      val->num = p_scb->peer_codecs;
+      break;
+    case BTA_AG_AT_QCS_EVT: {
+      tBTA_AG_PEER_CODEC codec_type, codec_sent;
+      alarm_cancel(p_scb->codec_negotiation_timer);
+
+      LOG_VERBOSE("%s: BTA_AG_AT_QCS_EVT int_arg=%d", __func__, int_arg);
+      switch (int_arg) {
+        case BTA_AG_SCO_APTX_SWB_SETTINGS_Q0:
+          codec_type = BTA_AG_SCO_APTX_SWB_SETTINGS_Q0;
+          break;
+        case BTA_AG_SCO_APTX_SWB_SETTINGS_Q1:
+          codec_type = BTA_AG_SCO_APTX_SWB_SETTINGS_Q1;
+          break;
+        case BTA_AG_SCO_APTX_SWB_SETTINGS_Q2:
+          codec_type = BTA_AG_SCO_APTX_SWB_SETTINGS_Q2;
+          break;
+        case BTA_AG_SCO_APTX_SWB_SETTINGS_Q3:
+          codec_type = BTA_AG_SCO_APTX_SWB_SETTINGS_Q3;
+          break;
+        default:
+          LOG_ERROR("Unknown codec_uuid %d", int_arg);
+          p_scb->is_aptx_swb_codec = false;
+          codec_type = BTM_SCO_CODEC_MSBC;
+          p_scb->codec_fallback = true;
+          p_scb->sco_codec = BTM_SCO_CODEC_MSBC;
+          break;
+      }
+
+      if (p_scb->codec_fallback)
+        codec_sent = BTM_SCO_CODEC_MSBC;
+      else
+        codec_sent = p_scb->sco_codec;
+
+      if (codec_type == codec_sent)
+        bta_ag_sco_codec_nego(p_scb, true);
+      else
+        bta_ag_sco_codec_nego(p_scb, false);
+
+      /* send final codec info to callback */
+      val->num = codec_sent;
+      break;
+    }
+  }
+}
+
+tBTA_AG_PEER_CODEC bta_ag_parse_qac(char* p_s) {
+  tBTA_AG_PEER_CODEC retval = BTM_SCO_CODEC_NONE;
+
+  while (p_s && *p_s) {
+    // unconditionally parse as an int and advance p to the next char after it
+    uint16_t codec_modes = strtol(p_s, &p_s, 10);
+
+    // advance until next comma
+    p_s = strchr(p_s, ',');
+    if (p_s != NULL) {
+      p_s++;
+    }
+
+    switch (codec_modes) {
+      case BTA_AG_SCO_APTX_SWB_SETTINGS_Q0:
+        retval |= BTA_AG_SCO_APTX_SWB_SETTINGS_Q0_MASK;
+        break;
+      case BTA_AG_SCO_APTX_SWB_SETTINGS_Q1:
+        retval |= BTA_AG_SCO_APTX_SWB_SETTINGS_Q1_MASK;
+        break;
+      case BTA_AG_SCO_APTX_SWB_SETTINGS_Q2:
+        retval |= BTA_AG_SCO_APTX_SWB_SETTINGS_Q2_MASK;
+        break;
+      case BTA_AG_SCO_APTX_SWB_SETTINGS_Q3:
+        retval |= BTA_AG_SCO_APTX_SWB_SETTINGS_Q3_MASK;
+        break;
+      default:
+        LOG_VERBOSE("Unknown Codec UUID(%d) received\n", codec_modes);
+        break;
+    }
+  }
+
+  return (retval);
+}
