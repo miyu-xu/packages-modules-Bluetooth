@@ -507,6 +507,31 @@ public class HeadsetNativeInterface {
         return setActiveDeviceNative(getByteAddress(device));
     }
 
+    /**
+     * Enable Super Wide Band
+     *
+     * @param swbCodec SWB Codec
+     * @param enable True to enable, False to disable
+     * @param device current active SCO device
+     * @return True on success, False on failure
+     */
+    @VisibleForTesting
+    public boolean enableSwb(int swbCodec, boolean enable, BluetoothDevice device) {
+        return enableSwbNative(swbCodec, enable, getByteAddress(device));
+    }
+
+    /**
+     * Check if Super Wide Band is enabled
+     *
+     * @param swbCodec SWB Codec
+     * @param device current active SCO device
+     * @return True on enabled, False on disabled
+     */
+    @VisibleForTesting
+    public boolean isSwbEnabled(int swbCodec, BluetoothDevice device) {
+        return isSwbEnabledNative(swbCodec, getByteAddress(device));
+    }
+
     /* Native methods */
     private native boolean atResponseCodeNative(int responseCode, int errorCode, byte[] address);
 
@@ -553,4 +578,8 @@ public class HeadsetNativeInterface {
     private native boolean sendBsirNative(boolean value, byte[] address);
 
     private native boolean setActiveDeviceNative(byte[] address);
+
+    private native boolean enableSwbNative(int swbCodec, boolean enable, byte[] address);
+
+    private native boolean isSwbEnabledNative(int swbCodec, byte[] address);
 }
