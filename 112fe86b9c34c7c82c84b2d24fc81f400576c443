@@ -67,6 +67,24 @@
       "message": "...and here.\n\nSo if `peer_addr` can be NULL, it seems like we\u0027ll crash in this code.\n\nI\u0027m guessing that our new added check is just unnecessarily redundant.  But in case other logic changed that make it possible for `peer_addr` to be NULL in this function, then we should probably fix things up so we don\u0027t crash in these other places.",
       "revId": "112fe86b9c34c7c82c84b2d24fc81f400576c443",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7fcf19bd_7190c4fd",
+        "filename": "system/profile/avrcp/connection_handler.cc",
+        "patchSetId": 29
+      },
+      "lineNbr": 395,
+      "author": {
+        "id": 1984885
+      },
+      "writtenOn": "2023-06-12T03:45:09Z",
+      "side": 1,
+      "message": "I have check that there is no other logic will make peer_addr to be NULL.\nIf necessary ,I can remove the check \"peer_addr !\u003d NULL\" in line 343",
+      "parentUuid": "148c4872_41dcebfc",
+      "revId": "112fe86b9c34c7c82c84b2d24fc81f400576c443",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
