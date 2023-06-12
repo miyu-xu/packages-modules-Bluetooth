@@ -244,6 +244,7 @@ android_app {
         "bluetooth.change-ids",
         "bluetooth.mapsapi",
         "com.android.obex",
+        "com.android.sysprop.bluetooth",
         "com.android.vcard",
         "guava",
         "libprotobuf-java-lite",

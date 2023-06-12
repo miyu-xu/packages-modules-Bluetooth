@@ -33,3 +33,11 @@ prop {
     prop_name: "bluetooth.hfp.version.config"
 }
 
+# Used to enable/disable AptX SWB Power Management
+prop {
+    api_name: "swb_aptx_power_management"
+    type: Boolean
+    scope: Public
+    access: ReadWrite
+    prop_name: "persist.bluetooth.hfp.swb.aptx.power_management.enabled"
+}
