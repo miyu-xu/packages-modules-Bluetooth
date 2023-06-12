@@ -72,6 +72,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "27b9bf10_bbf4dbb7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-06-12T16:54:27Z",
+      "side": 1,
+      "message": "Yes `udc-dev` automerges to `udc-mainline-prod` !\n\nOne other good news is that it seems that our presubmit testing is fixed now and tests `udc-mainline-prod` as well.",
+      "parentUuid": "00e5de72_3e8e5431",
+      "revId": "9c182ad86d76bb4f4ab3e2e748e9268a87ca2c11",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0a62128a_4007d6b8",
