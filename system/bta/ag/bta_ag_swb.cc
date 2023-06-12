@@ -31,11 +31,65 @@
 #include "types/raw_address.h"
 #include "utl.h"
 
+static bool aptx_swb_codec_status;
+
+static bool get_lc3_swb_codec_status(RawAddress* bd_addr) {
+  uint16_t p_scb_idx = bta_ag_idx_by_bdaddr(bd_addr);
+  tBTA_AG_SCB* p_scb = bta_ag_scb_by_idx(p_scb_idx);
+  if (p_scb != NULL) {
+    return (hfp_hal_interface::get_swb_supported() &&
+            (p_scb->peer_codecs & BTM_SCO_CODEC_LC3) &&
+            !(p_scb->disabled_codecs & BTM_SCO_CODEC_LC3));
+  }
+  return false;
+}
+
+static bool get_aptx_swb_codec_status() {
+  if (bluetooth::common::init_flags::aptx_voice_is_enabled()) {
+    return aptx_swb_codec_status;
+  }
+  return false;
+}
+
+bool get_swb_codec_status(bluetooth::headset::bthf_swb_codec_t swb_codec,
+                          RawAddress* bd_addr) {
+  bool status = false;
+  switch (swb_codec) {
+    case bluetooth::headset::BTHF_SWB_CODEC_LC3:
+      status = get_lc3_swb_codec_status(bd_addr);
+      LOG_VERBOSE("%s: LC3 SWB status=%d", __func__, status);
+      break;
+    case bluetooth::headset::BTHF_SWB_CODEC_VENDOR_APTX:
+      status = get_aptx_swb_codec_status();
+      LOG_VERBOSE("%s: AptX SWB status=%d", __func__, status);
+      break;
+    default:
+      LOG_ERROR("Unknown codec: %d", swb_codec);
+      break;
+  }
+  return status;
+}
+
+bt_status_t enable_aptx_swb_codec(bool enable, RawAddress* bd_addr) {
+  if (bluetooth::common::init_flags::aptx_voice_is_enabled() &&
+      (get_lc3_swb_codec_status(bd_addr) == false)) {
+    LOG_VERBOSE("%s: enable=%d", __func__, enable);
+    aptx_swb_codec_status = enable;
+    return BT_STATUS_SUCCESS;
+  }
+  return BT_STATUS_FAIL;
+}
+
 void bta_ag_swb_handle_vs_at_events(tBTA_AG_SCB* p_scb, uint16_t cmd,
                                     int16_t int_arg, tBTA_AG_VAL* val) {
   LOG_VERBOSE("%s: cmd : %d", __func__, cmd);
   switch (cmd) {
     case BTA_AG_AT_QAC_EVT:
+      if (!get_swb_codec_status(bluetooth::headset::BTHF_SWB_CODEC_VENDOR_APTX,
+                                &p_scb->peer_addr)) {
+        bta_ag_send_qac(p_scb, NULL);
+        break;
+      }
       LOG_VERBOSE("%s: BTA_AG_AT_QAC_EVT", __func__);
       p_scb->codec_updated = true;
       if (p_scb->peer_codecs & BTA_AG_SCO_APTX_SWB_SETTINGS_Q0_MASK) {
