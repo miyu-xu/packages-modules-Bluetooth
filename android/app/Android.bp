@@ -252,6 +252,7 @@ android_app {
         "bluetooth.mapsapi",
         "bluetooth_flags_java_lib",
         "com.android.obex",
+        "com.android.sysprop.bluetooth",
         "com.android.vcard",
         "guava",
         "libprotobuf-java-lite",
