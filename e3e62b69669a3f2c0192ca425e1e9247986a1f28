@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "455876eb_9bc7f03b",
+        "filename": "tools/rootcanal/model/controller/controller_properties.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1845,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-06-12T18:27:26Z",
+      "side": 1,
+      "message": "nit: Add a comment to explain how you generated this (And upload the script)",
+      "revId": "e3e62b69669a3f2c0192ca425e1e9247986a1f28",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
