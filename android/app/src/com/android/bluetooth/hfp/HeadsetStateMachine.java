@@ -693,7 +693,36 @@ public class HeadsetStateMachine extends StateMachine {
                     break;
                 }
                 case CALL_STATE_CHANGED:
-                    stateLogD("ignoring CALL_STATE_CHANGED event");
+                    HeadsetCallState callState = (HeadsetCallState) message.obj;
+                    if (Flags.hfpCodecAptxVoice()
+                            && mHeadsetService.isSwbEnabled(
+                                    HeadsetHalConstants.BTHF_SWB_CODEC_VENDOR_APTX, mDevice)
+                            && mHeadsetService.isAptXSwbPmEnabled()) {
+                        if (mHeadsetService.isVirtualCallStarted()) {
+                            stateLogD("CALL_STATE_CHANGED: enable AptX SWB for all voip calls ");
+                            mHeadsetService.enableSwbCodec(
+                                    HeadsetHalConstants.BTHF_SWB_CODEC_VENDOR_APTX, true, mDevice);
+                        } else if ((callState.mCallState == HeadsetHalConstants.CALL_STATE_DIALING)
+                                || (callState.mCallState == HeadsetHalConstants.CALL_STATE_INCOMING)
+                                || ((callState.mCallState == HeadsetHalConstants.CALL_STATE_IDLE)
+                                        && (callState.mNumActive > 0))) {
+                            if (!mSystemInterface.isHighDefCallInProgress()) {
+                                stateLogD("CALL_STATE_CHANGED: disable AptX SWB for non-HD call ");
+                                mHeadsetService.enableSwbCodec(
+                                        HeadsetHalConstants.BTHF_SWB_CODEC_VENDOR_APTX,
+                                        false,
+                                        mDevice);
+                                mHasSwbAptXEnabled = false;
+                            } else {
+                                stateLogD("CALL_STATE_CHANGED: enable AptX SWB for HD call ");
+                                mHeadsetService.enableSwbCodec(
+                                        HeadsetHalConstants.BTHF_SWB_CODEC_VENDOR_APTX,
+                                        true,
+                                        mDevice);
+                                mHasSwbAptXEnabled = true;
+                            }
+                        }
+                    }
                     break;
                 case DEVICE_STATE_CHANGED:
                     stateLogD("ignoring DEVICE_STATE_CHANGED event");
@@ -955,14 +984,43 @@ public class HeadsetStateMachine extends StateMachine {
                     }
                     break;
                 }
-                case CALL_STATE_CHANGED: {
+                case CALL_STATE_CHANGED:
                     HeadsetCallState callState = (HeadsetCallState) message.obj;
+                    if (Flags.hfpCodecAptxVoice()
+                            && mHeadsetService.isSwbEnabled(
+                                    HeadsetHalConstants.BTHF_SWB_CODEC_VENDOR_APTX, mDevice)
+                            && mHeadsetService.isAptXSwbPmEnabled()) {
+                        if (mHeadsetService.isVirtualCallStarted()) {
+                            stateLogD("CALL_STATE_CHANGED: enable AptX SWB for all voip calls ");
+                            mHeadsetService.enableSwbCodec(
+                                    HeadsetHalConstants.BTHF_SWB_CODEC_VENDOR_APTX, true, mDevice);
+                        } else if ((callState.mCallState == HeadsetHalConstants.CALL_STATE_DIALING)
+                                || (callState.mCallState == HeadsetHalConstants.CALL_STATE_INCOMING)
+                                || ((callState.mCallState == HeadsetHalConstants.CALL_STATE_IDLE)
+                                        && (callState.mNumActive > 0))) {
+                            if (!mSystemInterface.isHighDefCallInProgress()) {
+                                stateLogD("CALL_STATE_CHANGED: disable AptX SWB for non-HD call ");
+                                mHeadsetService.enableSwbCodec(
+                                        HeadsetHalConstants.BTHF_SWB_CODEC_VENDOR_APTX,
+                                        false,
+                                        mDevice);
+                                mHasSwbAptXEnabled = false;
+                            } else {
+                                stateLogD("CALL_STATE_CHANGED: enable AptX SWB for HD call ");
+                                mHeadsetService.enableSwbCodec(
+                                        HeadsetHalConstants.BTHF_SWB_CODEC_VENDOR_APTX,
+                                        true,
+                                        mDevice);
+                                mHasSwbAptXEnabled = true;
+                            }
+                        }
+                    }
+
                     if (!mNativeInterface.phoneStateChange(mDevice, callState)) {
                         stateLogW("processCallState: failed to update call state " + callState);
                         break;
                     }
                     break;
-                }
                 case DEVICE_STATE_CHANGED:
                     if (mDeviceSilenced) {
                         stateLogW("DEVICE_STATE_CHANGED: " + mDevice
@@ -1197,6 +1255,23 @@ public class HeadsetStateMachine extends StateMachine {
                     if (isAtLeastU()) {
                         mSystemInterface.getAudioManager().setLeAudioSuspended(true);
                     }
+
+                    if (Flags.hfpCodecAptxVoice()
+                            && mHeadsetService.isSwbEnabled(
+                                    HeadsetHalConstants.BTHF_SWB_CODEC_VENDOR_APTX, mDevice)
+                            && mHeadsetService.isAptXSwbPmEnabled()) {
+                        if (!mHeadsetService.isVirtualCallStarted()
+                                && mSystemInterface.isHighDefCallInProgress()) {
+                            stateLogD("CONNECT_AUDIO: enable AptX SWB for HD call ");
+                            mHeadsetService.enableSwbCodec(
+                                    HeadsetHalConstants.BTHF_SWB_CODEC_VENDOR_APTX, true, mDevice);
+                        } else {
+                            stateLogD("CONNECT_AUDIO: disable AptX SWB for non-HD or Voip calls");
+                            mHeadsetService.enableSwbCodec(
+                                    HeadsetHalConstants.BTHF_SWB_CODEC_VENDOR_APTX, false, mDevice);
+                        }
+                    }
+
                     if (!mNativeInterface.connectAudio(mDevice)) {
                         mSystemInterface.getAudioManager().setA2dpSuspended(false);
                         if (isAtLeastU()) {
@@ -1844,6 +1919,11 @@ public class HeadsetStateMachine extends StateMachine {
         switch (wbsConfig) {
             case HeadsetHalConstants.BTHF_WBS_YES:
                 mHasWbsEnabled = true;
+                if (Flags.hfpCodecAptxVoice()
+                        && mHeadsetService.isSwbEnabled(
+                                HeadsetHalConstants.BTHF_SWB_CODEC_VENDOR_APTX, mDevice)) {
+                    mHasSwbAptXEnabled = false;
+                }
                 break;
             case HeadsetHalConstants.BTHF_WBS_NO:
             case HeadsetHalConstants.BTHF_WBS_NONE:
