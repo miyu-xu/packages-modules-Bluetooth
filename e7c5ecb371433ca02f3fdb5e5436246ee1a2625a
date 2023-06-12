@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ca9b9cae_17f97368",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 641,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-06-12T21:16:28Z",
+      "side": 1,
+      "message": "also is there another layer where we can stop setting set members? \n\ne.g. the native layer does a lot of set member discovery activities, stopping set member assignment at this layer might be unexpected at other layers",
+      "range": {
+        "startLine": 641,
+        "startChar": 13,
+        "endLine": 641,
+        "endChar": 38
+      },
+      "revId": "e7c5ecb371433ca02f3fdb5e5436246ee1a2625a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7ed77c36_1c7fedef",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 644,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-06-12T21:16:28Z",
+      "side": 1,
+      "message": "Please add an info log here to indicate CSIP is not supported",
+      "range": {
+        "startLine": 644,
+        "startChar": 26,
+        "endLine": 644,
+        "endChar": 33
+      },
+      "revId": "e7c5ecb371433ca02f3fdb5e5436246ee1a2625a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
