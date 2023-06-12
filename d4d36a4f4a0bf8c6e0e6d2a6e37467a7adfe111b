@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ded84b92_5916587f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1581454
+      },
+      "writtenOn": "2023-06-12T19:44:31Z",
+      "side": 1,
+      "message": "The metrics side looks fine to me. Need DRI\u0027s opinion on state transitions and the locations of the code",
+      "revId": "d4d36a4f4a0bf8c6e0e6d2a6e37467a7adfe111b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
