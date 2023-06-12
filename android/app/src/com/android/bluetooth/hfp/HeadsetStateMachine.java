@@ -17,6 +17,7 @@
 package com.android.bluetooth.hfp;
 
 import static android.Manifest.permission.BLUETOOTH_CONNECT;
+
 import static com.android.modules.utils.build.SdkLevel.isAtLeastU;
 
 import android.annotation.RequiresPermission;
@@ -152,6 +153,7 @@ public class HeadsetStateMachine extends StateMachine {
     private boolean mHasNrecEnabled = false;
     private boolean mHasWbsEnabled = false;
     private boolean mHasSwbEnabled = false;
+    private boolean mHasAptXSwbEnabled = false;
     // AT Phone book keeps a group of states used by AT+CPBR commands
     @VisibleForTesting
     final AtPhonebook mPhonebook;
@@ -251,6 +253,7 @@ public class HeadsetStateMachine extends StateMachine {
         mHasWbsEnabled = false;
         mHasNrecEnabled = false;
         mHasSwbEnabled = false;
+        mHasAptXSwbEnabled = false;
     }
 
     public void dump(StringBuilder sb) {
@@ -484,6 +487,7 @@ public class HeadsetStateMachine extends StateMachine {
             mHasWbsEnabled = false;
             mHasSwbEnabled = false;
             mHasNrecEnabled = false;
+            mHasAptXSwbEnabled = false;
 
             broadcastStateTransitions();
             logFailureIfNeeded();
@@ -686,7 +690,7 @@ public class HeadsetStateMachine extends StateMachine {
                             processWBSEvent(event.valueInt);
                             break;
                         case HeadsetStackEvent.EVENT_TYPE_SWB:
-                            processSWBEvent(event.valueInt);
+                            processSWBEvent(event.valueInt, event.valueInt2);
                             break;
                         case HeadsetStackEvent.EVENT_TYPE_BIND:
                             processAtBind(event.valueString, event.device);
@@ -1027,7 +1031,7 @@ public class HeadsetStateMachine extends StateMachine {
                             processWBSEvent(event.valueInt);
                             break;
                         case HeadsetStackEvent.EVENT_TYPE_SWB:
-                            processSWBEvent(event.valueInt);
+                            processSWBEvent(event.valueInt, event.valueInt2);
                             break;
                         case HeadsetStackEvent.EVENT_TYPE_AT_CHLD:
                             processAtChld(event.valueInt, event.device);
@@ -1636,11 +1640,17 @@ public class HeadsetStateMachine extends StateMachine {
 
     private void setAudioParameters() {
         AudioManager am = mSystemInterface.getAudioManager();
-        Log.i(TAG, "setAudioParameters for " + mDevice + ":"
-                + " Name=" + getCurrentDeviceName()
-                + " hasNrecEnabled=" + mHasNrecEnabled
-                + " hasWbsEnabled=" + mHasWbsEnabled);
+        Log.i(
+                TAG,
+                ("setAudioParameters for " + mDevice + ":")
+                        + (" Name=" + getCurrentDeviceName())
+                        + (" hasNrecEnabled=" + mHasNrecEnabled)
+                        + (" hasWbsEnabled=" + mHasWbsEnabled)
+                        + (" hasSwbEnabled=" + mHasSwbEnabled)
+                        + (" hasAptXSwbEnabled=" + mHasAptXSwbEnabled));
         am.setParameters("bt_lc3_swb=" + (mHasSwbEnabled ? "on" : "off"));
+        /* bt_swb: 0 -> on, 65535 -> off */
+        am.setParameters("bt_swb=" + (mHasAptXSwbEnabled ? "0" : "65535"));
         am.setBluetoothHeadsetProperties(getCurrentDeviceName(), mHasNrecEnabled, mHasWbsEnabled);
     }
 
@@ -1797,21 +1807,48 @@ public class HeadsetStateMachine extends StateMachine {
         log("processWBSEvent: " + prevWbs + " -> " + mHasWbsEnabled);
     }
 
-    private void processSWBEvent(int swbConfig) {
-        boolean prev_swb = mHasSwbEnabled;
+    private void processSWBEvent(int swbCodec, int swbConfig) {
+        boolean prevSwb = mHasSwbEnabled;
+        boolean prevAptxSwb = mHasAptXSwbEnabled;
+        boolean success = true;
+
         switch (swbConfig) {
             case HeadsetHalConstants.BTHF_SWB_YES:
-                mHasSwbEnabled = true;
+                switch (swbCodec) {
+                    case HeadsetHalConstants.BTHF_SWB_CODEC_LC3:
+                        mHasSwbEnabled = true;
+                        mHasWbsEnabled = false;
+                        mHasAptXSwbEnabled = false;
+                        break;
+                    case HeadsetHalConstants.BTHF_SWB_CODEC_VENDOR_APTX:
+                        mHasSwbEnabled = false;
+                        mHasWbsEnabled = false;
+                        mHasAptXSwbEnabled = true;
+                        break;
+                    default:
+                        success = false;
+                        break;
+                }
                 break;
             case HeadsetHalConstants.BTHF_SWB_NO:
             case HeadsetHalConstants.BTHF_SWB_NONE:
                 mHasSwbEnabled = false;
+                mHasAptXSwbEnabled = false;
                 break;
             default:
-                Log.e(TAG, "processSWBEvent: unknown swb_config");
-                return;
+                success = false;
         }
-        log("processSWBEvent: " + prev_swb + " -> " + mHasSwbEnabled);
+
+        if (!success) {
+            Log.e(
+                    TAG,
+                    ("processSWBEvent failed: swbCodec: " + swbCodec)
+                            + (" swb_config: " + swbConfig));
+            return;
+        }
+
+        log("processSWBEvent LC3 SWB config: " + prevSwb + " -> " + mHasSwbEnabled);
+        log("processSWBEvent AptX SWB config: " + prevAptxSwb + " -> " + mHasAptXSwbEnabled);
     }
 
     @RequiresPermission(android.Manifest.permission.MODIFY_PHONE_STATE)
