@@ -22,6 +22,30 @@
       },
       "revId": "0ddb55ff49dd7f76ee54eb10e90936626d02393c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ab0bfec1_3101dd6e",
+        "filename": "system/gd/rust/linux/utils/src/uhid.rs",
+        "patchSetId": 13
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-06-12T21:10:13Z",
+      "side": 1,
+      "message": "I think 0 vid/pid is representative of this better -- there is NO vendor or product associated with this. The \"name\" will also identify this as a floss created uhid.",
+      "parentUuid": "15bca846_6df096a4",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 8,
+        "endChar": 32
+      },
+      "revId": "0ddb55ff49dd7f76ee54eb10e90936626d02393c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
