@@ -16,7 +16,6 @@
 
 package com.android.bluetooth.telephony;
 
-import android.bluetooth.BluetoothLeCallControl;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -304,6 +303,10 @@ public class BluetoothCall {
 
     public boolean isExternalCall() {
         return getDetails().hasProperty(Call.Details.PROPERTY_IS_EXTERNAL_CALL);
+    }
+
+    public boolean isHighDefAudio() {
+        return getDetails().hasProperty(Call.Details.PROPERTY_HIGH_DEF_AUDIO);
     }
 
     public Integer getId() {
