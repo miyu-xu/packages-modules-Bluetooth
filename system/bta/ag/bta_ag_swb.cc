@@ -1,0 +1,178 @@
+/******************************************************************************
+ *
+ * Copyright (c) 2019, The Linux Foundation. All rights reserved.
+ *
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at:
+ *
+ *  http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ *
+ ******************************************************************************/
+
+#include "bta_ag_swb.h"
+
+#include <string.h>
+#include <unistd.h>
+
+#include "bta/ag/bta_ag_int.h"
+#include "common/init_flags.h"
+#include "device/include/interop.h"
+#include "include/hardware/bt_hf.h"
+#include "internal_include/bt_trace.h"
+#include "stack/btm/btm_sco_hfp_hal.h"
+#include "stack/include/btm_api_types.h"
+#include "types/raw_address.h"
+#include "utl.h"
+
+static bool aptx_swb_codec_status;
+
+static bool get_lc3_swb_codec_status(RawAddress* bd_addr) {
+  uint16_t p_scb_idx = bta_ag_idx_by_bdaddr(bd_addr);
+  tBTA_AG_SCB* p_scb = bta_ag_scb_by_idx(p_scb_idx);
+  if (p_scb != NULL) {
+    return (hfp_hal_interface::get_swb_supported() &&
+            (p_scb->peer_codecs & BTM_SCO_CODEC_LC3) &&
+            !(p_scb->disabled_codecs & BTM_SCO_CODEC_LC3));
+  }
+  return false;
+}
+
+static bool get_aptx_swb_codec_status() {
+  if (bluetooth::common::init_flags::aptx_voice_is_enabled()) {
+    return aptx_swb_codec_status;
+  }
+  return false;
+}
+
+bool get_swb_codec_status(bluetooth::headset::bthf_swb_codec_t swb_codec,
+                          RawAddress* bd_addr) {
+  bool status = false;
+  switch (swb_codec) {
+    case bluetooth::headset::BTHF_SWB_CODEC_LC3:
+      status = get_lc3_swb_codec_status(bd_addr);
+      break;
+    case bluetooth::headset::BTHF_SWB_CODEC_VENDOR_APTX:
+      status = get_aptx_swb_codec_status();
+      break;
+    default:
+      LOG_ERROR("Unknown codec: %d", swb_codec);
+      break;
+  }
+  return status;
+}
+
+bt_status_t enable_aptx_swb_codec(bool enable, RawAddress* bd_addr) {
+  if (bluetooth::common::init_flags::aptx_voice_is_enabled() &&
+      (get_lc3_swb_codec_status(bd_addr) == false)) {
+    LOG_INFO("%d", enable);
+    aptx_swb_codec_status = enable;
+    return BT_STATUS_SUCCESS;
+  }
+  return BT_STATUS_FAIL;
+}
+
+void bta_ag_swb_handle_vs_at_events(tBTA_AG_SCB* p_scb, uint16_t cmd,
+                                    int16_t int_arg, tBTA_AG_VAL* val) {
+  APPL_TRACE_DEBUG("%s: p_scb : %x cmd : %d", __func__, p_scb, cmd);
+  switch (cmd) {
+    case BTA_AG_AT_QAC_EVT:
+      if (!get_swb_codec_status(bluetooth::headset::BTHF_SWB_CODEC_VENDOR_APTX,
+                                &p_scb->peer_addr)) {
+        bta_ag_send_qac(p_scb, NULL);
+        break;
+      }
+      p_scb->codec_updated = true;
+      if (p_scb->peer_codecs & BTA_AG_SCO_SWB_SETTINGS_Q0_MASK) {
+        p_scb->sco_codec = BTA_AG_SCO_SWB_SETTINGS_Q0;
+      } else if (p_scb->peer_codecs & BTM_SCO_CODEC_MSBC) {
+        p_scb->sco_codec = UUID_CODEC_MSBC;
+      }
+      bta_ag_send_qac(p_scb, NULL);
+      APPL_TRACE_DEBUG("Received AT+QAC, updating sco codec to SWB: %d",
+                       p_scb->sco_codec);
+      val->num = p_scb->peer_codecs;
+      break;
+    case BTA_AG_AT_QCS_EVT: {
+      tBTA_AG_PEER_CODEC codec_type, codec_sent;
+      alarm_cancel(p_scb->codec_negotiation_timer);
+
+      switch (int_arg) {
+        case BTA_AG_SCO_SWB_SETTINGS_Q0:
+          codec_type = BTA_AG_SCO_SWB_SETTINGS_Q0;
+          break;
+        case BTA_AG_SCO_SWB_SETTINGS_Q1:
+          codec_type = BTA_AG_SCO_SWB_SETTINGS_Q1;
+          break;
+        case BTA_AG_SCO_SWB_SETTINGS_Q2:
+          codec_type = BTA_AG_SCO_SWB_SETTINGS_Q2;
+          break;
+        case BTA_AG_SCO_SWB_SETTINGS_Q3:
+          codec_type = BTA_AG_SCO_SWB_SETTINGS_Q3;
+          break;
+        default:
+          APPL_TRACE_ERROR("Unknown codec_uuid %d", int_arg);
+          p_scb->is_swb_codec = false;
+          codec_type = BTM_SCO_CODEC_MSBC;
+          p_scb->codec_fallback = true;
+          p_scb->sco_codec = BTM_SCO_CODEC_MSBC;
+          break;
+      }
+
+      if (p_scb->codec_fallback)
+        codec_sent = BTM_SCO_CODEC_MSBC;
+      else
+        codec_sent = p_scb->sco_codec;
+
+      if (codec_type == codec_sent)
+        bta_ag_sco_codec_nego(p_scb, true);
+      else
+        bta_ag_sco_codec_nego(p_scb, false);
+
+      /* send final codec info to callback */
+      val->num = codec_sent;
+      break;
+    }
+  }
+}
+
+tBTA_AG_PEER_CODEC bta_ag_parse_qac(char* p_s) {
+  tBTA_AG_PEER_CODEC retval = BTM_SCO_CODEC_NONE;
+
+  while (p_s && *p_s) {
+    // unconditionally parse as an int and advance p to the next char after it
+    uint16_t codec_modes = strtol(p_s, &p_s, 10);
+
+    // advance until next comma
+    p_s = strchr(p_s, ',');
+    if (p_s != NULL) {
+      p_s++;
+    }
+
+    switch (codec_modes) {
+      case BTA_AG_SCO_SWB_SETTINGS_Q0:
+        retval |= BTA_AG_SCO_SWB_SETTINGS_Q0_MASK;
+        break;
+      case BTA_AG_SCO_SWB_SETTINGS_Q1:
+        retval |= BTA_AG_SCO_SWB_SETTINGS_Q1_MASK;
+        break;
+      case BTA_AG_SCO_SWB_SETTINGS_Q2:
+        retval |= BTA_AG_SCO_SWB_SETTINGS_Q2_MASK;
+        break;
+      case BTA_AG_SCO_SWB_SETTINGS_Q3:
+        retval |= BTA_AG_SCO_SWB_SETTINGS_Q3_MASK;
+        break;
+      default:
+        APPL_TRACE_DEBUG("Unknown Codec UUID(%d) received\n", codec_modes);
+        break;
+    }
+  }
+
+  return (retval);
+}
