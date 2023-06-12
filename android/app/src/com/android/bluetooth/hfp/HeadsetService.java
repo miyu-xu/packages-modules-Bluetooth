@@ -149,6 +149,8 @@ public class HeadsetService extends ProfileService {
     private boolean mCreated;
     private static HeadsetService sHeadsetService;
 
+    private boolean mIsAptXSwbPmEnabled = false;
+
     private final ServiceFactory mFactory = new ServiceFactory();
 
     public static boolean isEnabled() {
@@ -189,6 +191,9 @@ public class HeadsetService extends ProfileService {
         // Step 3: Initialize system interface
         mSystemInterface = HeadsetObjectsFactory.getInstance().makeSystemInterface(this);
         // Step 4: Initialize native interface
+        mIsAptXSwbPmEnabled =
+                android.sysprop.bluetooth.Hfp.swb_aptx_power_management().orElse(false);
+        Log.i(TAG, "mIsAptXSwbPmEnabled: " + mIsAptXSwbPmEnabled);
         setHeadsetService(this);
         mMaxHeadsetConnections = mAdapterService.getMaxConnectedAudioDevices();
         mNativeInterface = HeadsetObjectsFactory.getInstance().getNativeInterface();
@@ -1179,6 +1184,7 @@ public class HeadsetService extends ProfileService {
             }
             stateMachine.sendMessage(HeadsetStateMachine.CONNECT_AUDIO, device);
         }
+        enableSwbCodec(HeadsetHalConstants.BTHF_SWB_CODEC_VENDOR_APTX, true, device);
         return true;
     }
 
@@ -1209,6 +1215,7 @@ public class HeadsetService extends ProfileService {
             stateMachine.sendMessage(HeadsetStateMachine.VOICE_RECOGNITION_STOP, device);
             stateMachine.sendMessage(HeadsetStateMachine.DISCONNECT_AUDIO, device);
         }
+        enableSwbCodec(HeadsetHalConstants.BTHF_SWB_CODEC_VENDOR_APTX, false, device);
         return true;
     }
 
@@ -1773,6 +1780,7 @@ public class HeadsetService extends ProfileService {
             if (!mSystemInterface.getVoiceRecognitionWakeLock().isHeld()) {
                 mSystemInterface.getVoiceRecognitionWakeLock().acquire(sStartVrTimeoutMs);
             }
+            enableSwbCodec(HeadsetHalConstants.BTHF_SWB_CODEC_VENDOR_APTX, true, fromDevice);
             return true;
         }
     }
@@ -2330,6 +2338,26 @@ public class HeadsetService extends ProfileService {
                 stateMachine.dump(sb);
             }
         }
+    }
+
+    /** Enable SWB Codec. */
+    public void enableSwbCodec(int swbCodec, boolean enable, BluetoothDevice device) {
+        logD("enableSwbCodec: swbCodec: " + swbCodec + " enable: " + enable + " device: " + device);
+        boolean result = mNativeInterface.enableSwb(swbCodec, enable, device);
+        logD("enableSwbCodec result: " + result);
+    }
+
+    /** Check whether SWB Codec is enabled. */
+    public boolean isSwbEnabled(int swbCodec, BluetoothDevice device) {
+        boolean enable = mNativeInterface.isSwbEnabled(swbCodec, device);
+        logD("isSwbEnabled: swbCodec: " + swbCodec + " enable: " + enable + " device: " + device);
+        return enable;
+    }
+
+    /** Check whether AptX SWB Codec Power Management is enabled. */
+    public boolean isAptXSwbPmEnabled() {
+        logD("isAptXSwbPmEnabled: " + mIsAptXSwbPmEnabled);
+        return mIsAptXSwbPmEnabled;
     }
 
     private static void logD(String message) {
