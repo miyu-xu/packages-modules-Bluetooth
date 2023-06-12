@@ -1,0 +1,148 @@
+From 5ef8a9a91b263e20d195221c2ce90a53faa638df Mon Sep 17 00:00:00 2001
+From: Kiran Kelageri <kirankelageri@codeaurora.org>
+Date: Mon, 15 Apr 2019 13:41:42 -0700
+Subject: [PATCH] Bluetooth-SWB: Enable/Disable SWB.
+
+Enable/Disable SWB based on network type
+or property.
+
+CRs-fixed: 2443122
+Change-Id: I1494f4638d4bf9dee36576e3815b47a3a5e45abe
+---
+ bta/ag/bta_ag_sco.cc          | 21 ++++++++++++++---
+ device/Android.bp             |  3 +++
+ device/src/esco_parameters.cc | 43 +++++++----------------------------
+ 3 files changed, 29 insertions(+), 38 deletions(-)
+
+diff --git a/bta/ag/bta_ag_sco.cc b/bta/ag/bta_ag_sco.cc
+index 912970b456..823e9947c4 100644
+--- a/bta/ag/bta_ag_sco.cc
++++ b/bta/ag/bta_ag_sco.cc
+@@ -76,6 +76,7 @@
+ #include "bta_ag_twsp_dev.h"
+ #endif
+ #if (SWB_ENABLED == TRUE)
++#include <hardware/vendor_hf.h>
+ #include "bta_ag_swb.h"
+ #endif
+ 
+@@ -940,19 +941,33 @@ void bta_ag_codec_negotiate(tBTA_AG_SCB* p_scb) {
+   }
+ #endif
+ 
+-  if ((p_scb->codec_updated || p_scb->codec_fallback) &&
+-      (p_scb->peer_features & BTA_AG_PEER_FEAT_CODEC)) {
++  if (((p_scb->codec_updated || p_scb->codec_fallback) &&
++      (p_scb->peer_features & BTA_AG_PEER_FEAT_CODEC))
++#if (SWB_ENABLED == TRUE)
++      || (get_swb_codec_status() || p_scb->is_swb_codec)
++#endif
++     ) {
+     /* Change the power mode to Active until SCO open is completed. */
+     bta_sys_busy(BTA_ID_AG, p_scb->app_id, p_scb->peer_addr);
+ 
+ 
+ #if (SWB_ENABLED == TRUE)
+-    if (p_scb->is_swb_codec == true && p_scb->codec_updated) {
++    if (get_swb_codec_status() && (p_scb->peer_codecs & BTA_AG_SCO_SWB_SETTINGS_Q0_MASK)) {
++      if (p_scb->is_swb_codec == false) {
++        p_scb->sco_codec = BTA_AG_SCO_SWB_SETTINGS_Q0;
++        p_scb->is_swb_codec = true;
++      }
+       /* Send +QCS to the peer */
+       bta_ag_send_qcs(p_scb, NULL);
+     } else
+ #endif
+     {
++#if (SWB_ENABLED == TRUE)
++      if (p_scb->is_swb_codec == true  && (p_scb->peer_codecs & BTA_AG_SCO_SWB_SETTINGS_Q0_MASK)) {
++        p_scb->sco_codec = BTM_SCO_CODEC_MSBC;
++        p_scb->is_swb_codec = false;
++      }
++#endif
+       /* Send +BCS to the peer */
+       bta_ag_send_bcs(p_scb, NULL);
+     }
+diff --git a/device/Android.bp b/device/Android.bp
+index 125e5abd0a..6db2104fd9 100644
+--- a/device/Android.bp
++++ b/device/Android.bp
+@@ -8,6 +8,9 @@ cc_library_static {
+     ],
+     include_dirs: [
+         "vendor/qcom/opensource/commonsys/system/bt",
++        "vendor/qcom/opensource/commonsys/system/bt/bta/ag",
++        "vendor/qcom/opensource/commonsys/system/bt/bta/sys",
++        "vendor/qcom/opensource/commonsys/system/bt/bta/include",
+         "vendor/qcom/opensource/commonsys/system/bt/btcore/include",
+         "vendor/qcom/opensource/commonsys/system/bt/hci/include",
+         "vendor/qcom/opensource/commonsys/system/bt/internal_include",
+diff --git a/device/src/esco_parameters.cc b/device/src/esco_parameters.cc
+index e64ea4855e..0589a19b3c 100644
+--- a/device/src/esco_parameters.cc
++++ b/device/src/esco_parameters.cc
+@@ -19,6 +19,9 @@
+ #include "base/logging.h"
+ 
+ #include "device/include/esco_parameters.h"
++#if (SWB_ENABLED == TRUE)
++#include "bta/include/bta_ag_swb.h"
++#endif
+ 
+ static const enh_esco_params_t default_esco_parameters[ESCO_NUM_CODECS] = {
+     // CVSD
+@@ -137,46 +140,16 @@ static const enh_esco_params_t default_esco_parameters[ESCO_NUM_CODECS] = {
+      .packet_types =
+          (ESCO_PKT_TYPES_MASK_EV3 | ESCO_PKT_TYPES_MASK_NO_3_EV3 |
+           ESCO_PKT_TYPES_MASK_NO_2_EV5 | ESCO_PKT_TYPES_MASK_NO_3_EV5),
+-     .retransmission_effort = ESCO_RETRANSMISSION_QUALITY},
+-
+-#if (SWB_ENABLED == TRUE)
+-     // SWB Q0
+-    {.transmit_bandwidth = TXRX_64KBITS_RATE,
+-     .receive_bandwidth = TXRX_64KBITS_RATE,
+-     .transmit_coding_format = {.coding_format = ESCO_CODING_FORMAT_VS,
+-                                .company_id = 0x000A,
+-                                .vendor_specific_codec_id = 0x0000},
+-     .receive_coding_format = {.coding_format = ESCO_CODING_FORMAT_VS,
+-                               .company_id = 0x000A,
+-                               .vendor_specific_codec_id = 0x0000},
+-     .transmit_codec_frame_size = 60,
+-     .receive_codec_frame_size = 60,
+-     .input_bandwidth = INPUT_OUTPUT_128K_RATE,
+-     .output_bandwidth = INPUT_OUTPUT_128K_RATE,
+-     .input_coding_format = {.coding_format = ESCO_CODING_FORMAT_LINEAR,
+-                             .company_id = 0x0000,
+-                             .vendor_specific_codec_id = 0x0000},
+-     .output_coding_format = {.coding_format = ESCO_CODING_FORMAT_LINEAR,
+-                              .company_id = 0x0000,
+-                              .vendor_specific_codec_id = 0x0000},
+-     .input_coded_data_size = 16,
+-     .output_coded_data_size = 16,
+-     .input_pcm_data_format = ESCO_PCM_DATA_FORMAT_2_COMP,
+-     .output_pcm_data_format = ESCO_PCM_DATA_FORMAT_2_COMP,
+-     .input_pcm_payload_msb_position = 0,
+-     .output_pcm_payload_msb_position = 0,
+-     .input_data_path = ESCO_DATA_PATH_PCM,
+-     .output_data_path = ESCO_DATA_PATH_PCM,
+-     .input_transport_unit_size = 0x00,
+-     .output_transport_unit_size = 0x00,
+-     .max_latency_ms = 14,
+-     .packet_types = 0x0380,
+      .retransmission_effort = ESCO_RETRANSMISSION_QUALITY}};
+-#endif
+ 
+ enh_esco_params_t esco_parameters_for_codec(esco_codec_t codec) {
+   CHECK(codec >= 0) << "codec index " << (int)codec << "< 0";
+   CHECK(codec < ESCO_NUM_CODECS) << "codec index " << (int)codec << " > "
+                                  << ESCO_NUM_CODECS;
++#if (SWB_ENABLED == TRUE)
++  if (codec > LEGACY_CODECS)
++      return default_esco_swb_parameters[codec - LEGACY_CODECS - 1];
++  else
++#endif
+   return default_esco_parameters[codec];
+ }
+-- 
+2.17.1
+

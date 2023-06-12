@@ -1,0 +1,45 @@
+From c0764437cd04b9f62e918dc70faf62eac52b6102 Mon Sep 17 00:00:00 2001
+From: Kiran Kelageri <kelageri@qti.qualcomm.com>
+Date: Wed, 5 Jun 2019 15:39:32 -0700
+Subject: [PATCH] HFP-SWB: Enable SWb feature if supported on FW
+
+Enable SWB feature based iff the feature is enabled
+on firmware.
+
+CRs-fixed: 2454365
+Change-Id: I5c3e2e10cebc6919b537d5497384d1dfa7abf2d4
+---
+ .../android/bluetooth/hfp/HeadsetService.java   | 17 +++++++++++++++++
+ 1 file changed, 17 insertions(+)
+
+diff --git a/src/com/android/bluetooth/hfp/HeadsetService.java b/src/com/android/bluetooth/hfp/HeadsetService.java
+index e42a56e19..e7b51f1ff 100644
+--- a/src/com/android/bluetooth/hfp/HeadsetService.java
++++ b/src/com/android/bluetooth/hfp/HeadsetService.java
+@@ -170,6 +170,23 @@ public class HeadsetService extends ProfileService {
+                SystemProperties.get("persist.vendor.btstack.enable.twsplussho");
+             String swbEnabled = SystemProperties.get("persist.vendor.btstack.enable.swb");
+             String swbPmEnabled = SystemProperties.get("persist.vendor.btstack.enable.swbpm");
++
++            if(mAdapterService.isSWBVoicewithAptxAdaptiveAG()) {
++               Log.d(TAG, "SWB addon feature supported on FW");
++               if (swbEnabled.isEmpty()) {
++                   SystemProperties.set("persist.vendor.btstack.enable.swb", "true");
++                   SystemProperties.set("persist.vendor.btstack.enable.swbpm", "true");
++                   swbEnabled = "true";
++                   swbPmEnabled = "true";
++               }
++            } else {
++               Log.d(TAG, "SWB addon feature not supported on FW");
++               SystemProperties.set("persist.vendor.btstack.enable.swb", "false");
++               SystemProperties.set("persist.vendor.btstack.enable.swbpm", "false");
++               swbEnabled = "false";
++               swbPmEnabled = "false";
++            }
++
+             if (!twsPlusEnabled.isEmpty() && "true".equals(twsPlusEnabled)) {
+                 mIsTwsPlusEnabled = true;
+             }
+-- 
+2.17.1
+
