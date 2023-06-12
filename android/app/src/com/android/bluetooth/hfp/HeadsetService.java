@@ -1178,6 +1178,11 @@ public class HeadsetService extends ProfileService {
                 Log.w(TAG, "startVoiceRecognition: " + device + " is not connected or connecting");
                 return false;
             }
+            if (SystemProperties.getBoolean(REJECT_SCO_IF_HFPC_CONNECTED_PROPERTY, false)
+                    && isHeadsetClientConnected()) {
+                Log.w(TAG, "startVoiceRecognition: rejected SCO since HFPC is connected!");
+                return false;
+            }
             mVoiceRecognitionStarted = true;
             if (pendingRequestByHeadset) {
                 stateMachine.sendMessage(HeadsetStateMachine.VOICE_RECOGNITION_RESULT,
@@ -1590,6 +1595,11 @@ public class HeadsetService extends ProfileService {
                 Log.w(TAG, "startScoUsingVirtualVoiceCall: no active device");
                 return false;
             }
+            if (SystemProperties.getBoolean(REJECT_SCO_IF_HFPC_CONNECTED_PROPERTY, false)
+                    && isHeadsetClientConnected()) {
+                Log.w(TAG, "startScoUsingVirtualVoiceCall: rejected SCO since HFPC is connected!");
+                return false;
+            }
             mVirtualCallStarted = true;
             // Send virtual phone state changed to initialize SCO
             phoneStateChanged(0, 0, HeadsetHalConstants.CALL_STATE_DIALING, "", 0, "", true);
@@ -1761,6 +1771,11 @@ public class HeadsetService extends ProfileService {
             }
             if (!mSystemInterface.activateVoiceRecognition()) {
                 Log.w(TAG, "startVoiceRecognitionByHeadset: failed request from " + fromDevice);
+                return false;
+            }
+            if (SystemProperties.getBoolean(REJECT_SCO_IF_HFPC_CONNECTED_PROPERTY, false)
+                    && isHeadsetClientConnected()) {
+                Log.w(TAG, "startVoiceRecognitionByHeadset: rejected SCO since HFPC is connected!");
                 return false;
             }
             mVoiceRecognitionTimeoutEvent = new VoiceRecognitionTimeoutEvent(fromDevice);
