@@ -163,9 +163,10 @@ public class HeadsetNativeInterface {
         sendMessageToService(event);
     }
 
-    private void onSWB(int codec, byte[] address) {
+    private void onSWB(int codec, int swb, byte[] address) {
         HeadsetStackEvent event =
-                new HeadsetStackEvent(HeadsetStackEvent.EVENT_TYPE_SWB, codec, getDevice(address));
+                new HeadsetStackEvent(
+                        HeadsetStackEvent.EVENT_TYPE_SWB, codec, swb, getDevice(address));
         sendMessageToService(event);
     }
 
@@ -506,6 +507,27 @@ public class HeadsetNativeInterface {
         return setActiveDeviceNative(getByteAddress(device));
     }
 
+    /**
+     * Enable Super Wide Band
+     *
+     * @param swbCodec SWB Codec
+     * @param enable True to enable, False to disable
+     * @return True on success, False on failure
+     */
+    public boolean enableSwb(int swbCodec, boolean enable) {
+        return enableSwbNative(swbCodec, enable);
+    }
+
+    /**
+     * Check if Super Wide Band is enabled
+     *
+     * @param swbCodec SWB Codec
+     * @return True on enabled, False on disabled
+     */
+    public boolean isSwbEnabled(int swbCodec) {
+        return isSwbEnabledNative(swbCodec);
+    }
+
     /* Native methods */
     private native boolean atResponseCodeNative(int responseCode, int errorCode, byte[] address);
 
@@ -552,4 +574,8 @@ public class HeadsetNativeInterface {
     private native boolean sendBsirNative(boolean value, byte[] address);
 
     private native boolean setActiveDeviceNative(byte[] address);
+
+    private native boolean enableSwbNative(int swbCodec, boolean enable);
+
+    private native boolean isSwbEnabledNative(int swbCodec);
 }
