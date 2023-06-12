@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e9342d2b_19ace371",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2023-06-12T07:55:18Z",
+      "side": 1,
+      "message": "Awesome finding! Thanks for the fix! LGTM from EP perspective!",
+      "revId": "dd52c7a050465b4cc22b14b872e28afa514fe23c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "94aab7dd_005467e7",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 1752,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2023-06-12T07:55:18Z",
+      "side": 1,
+      "message": "Do you want to use this bug to track todo? I\u0027d expect a separate bug under b/178529365 though.",
+      "range": {
+        "startLine": 1752,
+        "startChar": 18,
+        "endLine": 1752,
+        "endChar": 27
+      },
+      "revId": "dd52c7a050465b4cc22b14b872e28afa514fe23c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
