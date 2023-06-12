@@ -19,7 +19,9 @@
 #include <mutex>
 #include <shared_mutex>
 
+#include "btif/include/btif_hf.h"
 #include "com_android_bluetooth.h"
+#include "gd/common/init_flags.h"
 #include "hardware/bluetooth_headset_callbacks.h"
 #include "hardware/bluetooth_headset_interface.h"
 #include "hardware/bt_hf.h"
@@ -237,7 +239,8 @@ class JniHeadsetCallbacks : bluetooth::headset::Callbacks {
                                  addr.get());
   }
 
-  void SwbCallback(bluetooth::headset::bthf_swb_config_t swb_config,
+  void SwbCallback(bluetooth::headset::bthf_swb_codec_t swb_codec,
+                   bluetooth::headset::bthf_swb_config_t swb_config,
                    RawAddress* bd_addr) override {
     std::shared_lock<std::shared_timed_mutex> lock(callbacks_mutex);
     CallbackEnv sCallbackEnv(__func__);
@@ -246,8 +249,8 @@ class JniHeadsetCallbacks : bluetooth::headset::Callbacks {
     ScopedLocalRef<jbyteArray> addr(sCallbackEnv.get(), marshall_bda(bd_addr));
     if (addr.get() == nullptr) return;
 
-    sCallbackEnv->CallVoidMethod(mCallbacksObj, method_onSWB, swb_config,
-                                 addr.get());
+    sCallbackEnv->CallVoidMethod(mCallbacksObj, method_onSWB, swb_codec,
+                                 swb_config, addr.get());
   }
 
   void AtChldCallback(bluetooth::headset::bthf_chld_type_t chld,
@@ -947,6 +950,50 @@ static jboolean setActiveDeviceNative(JNIEnv* env, jobject /* object */,
   return (status == BT_STATUS_SUCCESS) ? JNI_TRUE : JNI_FALSE;
 }
 
+static jboolean enableSwbNative(JNIEnv* env, jobject /* object */,
+                                jint swbCodec, jboolean enable,
+                                jbyteArray address) {
+  std::shared_lock<std::shared_timed_mutex> lock(interface_mutex);
+  if (!sBluetoothHfpInterface) {
+    ALOGW("%s: sBluetoothHfpInterface is null", __func__);
+    return JNI_FALSE;
+  }
+  jbyte* addr = env->GetByteArrayElements(address, NULL);
+  if (!addr) {
+    ALOGE("%s: failed to get device address", __func__);
+    jniThrowIOException(env, EINVAL);
+    return JNI_FALSE;
+  }
+  bt_status_t ret = sBluetoothHfpInterface->EnableSwb(
+      (bluetooth::headset::bthf_swb_codec_t)swbCodec, (bool)enable,
+      (RawAddress*)addr);
+  if (ret != BT_STATUS_SUCCESS) {
+    ALOGE("%s: Failed to %s", __func__, (enable ? "enable" : "disable"));
+    return JNI_FALSE;
+  }
+  ALOGV("%s: Successfully %s", __func__, (enable ? "enabled" : "disabled"));
+  return JNI_TRUE;
+}
+
+static jboolean isSwbEnabledNative(JNIEnv* env, jobject /* object */,
+                                   jint swbCodec, jbyteArray address) {
+  std::shared_lock<std::shared_timed_mutex> lock(interface_mutex);
+  if (!sBluetoothHfpInterface) {
+    ALOGW("%s: sBluetoothHfpInterface is null", __func__);
+    return JNI_FALSE;
+  }
+  jbyte* addr = env->GetByteArrayElements(address, NULL);
+  if (!addr) {
+    ALOGE("%s: failed to get device address", __func__);
+    jniThrowIOException(env, EINVAL);
+    return JNI_FALSE;
+  }
+  return sBluetoothHfpInterface->GetSwbCodecStatus(
+             (bluetooth::headset::bthf_swb_codec_t)swbCodec, (RawAddress*)addr)
+             ? JNI_TRUE
+             : JNI_FALSE;
+}
+
 int register_com_android_bluetooth_hfp(JNIEnv* env) {
   const JNINativeMethod methods[] = {
       {"initializeNative", "(IZ)V", (void*)initializeNative},
@@ -980,6 +1027,8 @@ int register_com_android_bluetooth_hfp(JNIEnv* env) {
       {"setScoAllowedNative", "(Z)Z", (void*)setScoAllowedNative},
       {"sendBsirNative", "(Z[B)Z", (void*)sendBsirNative},
       {"setActiveDeviceNative", "([B)Z", (void*)setActiveDeviceNative},
+      {"enableSwbNative", "(IZ[B)Z", (void*)enableSwbNative},
+      {"isSwbEnabledNative", "(I[B)Z", (void*)isSwbEnabledNative},
   };
   const int result = REGISTER_NATIVE_METHODS(
       env, "com/android/bluetooth/hfp/HeadsetNativeInterface", methods);
@@ -998,7 +1047,7 @@ int register_com_android_bluetooth_hfp(JNIEnv* env) {
       {"onSendDtmf", "(I[B)V", &method_onSendDtmf},
       {"onNoiseReductionEnable", "(Z[B)V", &method_onNoiseReductionEnable},
       {"onWBS", "(I[B)V", &method_onWBS},
-      {"onSWB", "(I[B)V", &method_onSWB},
+      {"onSWB", "(II[B)V", &method_onSWB},
       {"onAtChld", "(I[B)V", &method_onAtChld},
       {"onAtCnum", "([B)V", &method_onAtCnum},
       {"onAtCind", "([B)V", &method_onAtCind},
