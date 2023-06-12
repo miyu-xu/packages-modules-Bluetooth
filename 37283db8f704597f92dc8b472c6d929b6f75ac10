@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "551afe3e_d017eed3",
+        "filename": "android/app/src/com/android/bluetooth/opp/BluetoothOppReceiver.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2023-06-12T06:17:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "68865b93_dd3a15da",
+      "range": {
+        "startLine": 105,
+        "startChar": 16,
+        "endLine": 105,
+        "endChar": 20
+      },
+      "revId": "37283db8f704597f92dc8b472c6d929b6f75ac10",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4e5e362d_2d74e1e0",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-06-09T01:40:46Z",
       "side": 1,
       "message": "What about sSystemScreenOffTimeout or similar?",
+      "range": {
+        "startLine": 405,
+        "startChar": 8,
+        "endLine": 405,
+        "endChar": 24
+      },
+      "revId": "37283db8f704597f92dc8b472c6d929b6f75ac10",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "02e430f0_b7ad0e00",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/TestUtils.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 405,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2023-06-12T06:17:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4e5e362d_2d74e1e0",
       "range": {
         "startLine": 405,
         "startChar": 8,
