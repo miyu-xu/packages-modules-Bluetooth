@@ -39,6 +39,30 @@
       },
       "revId": "dd52c7a050465b4cc22b14b872e28afa514fe23c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8a656443_f6d8b64f",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 1752,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-06-12T08:15:21Z",
+      "side": 1,
+      "message": "Thanks for the quick review!\nI didn\u0027t know we have that umbrella bug. Will create a new bug to track that.",
+      "parentUuid": "94aab7dd_005467e7",
+      "range": {
+        "startLine": 1752,
+        "startChar": 18,
+        "endLine": 1752,
+        "endChar": 27
+      },
+      "revId": "dd52c7a050465b4cc22b14b872e28afa514fe23c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
