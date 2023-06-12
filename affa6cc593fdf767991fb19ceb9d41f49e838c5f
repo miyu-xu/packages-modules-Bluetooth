@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d8f0586b_5239dac4",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2023-06-12T06:05:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f15a5887_ae900faf",
+      "range": {
+        "startLine": 7,
+        "startChar": 4,
+        "endLine": 7,
+        "endChar": 28
+      },
+      "revId": "affa6cc593fdf767991fb19ceb9d41f49e838c5f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "eb749a08_5b157efb",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-06-07T09:21:08Z",
       "side": 1,
       "message": "Unnecessary message. Please remove.",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 33
+      },
+      "revId": "affa6cc593fdf767991fb19ceb9d41f49e838c5f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "84ae6ab7_e9cdfec1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2023-06-12T06:05:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "eb749a08_5b157efb",
       "range": {
         "startLine": 9,
         "startChar": 0,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5a03879c_dfd727c3",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2023-06-12T06:05:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "87323d1b_03bdbdbd",
+      "range": {
+        "startLine": 14,
+        "startChar": 46,
+        "endLine": 14,
+        "endChar": 61
+      },
+      "revId": "affa6cc593fdf767991fb19ceb9d41f49e838c5f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e507dfd7_d027599c",
@@ -83,6 +155,24 @@
       "writtenOn": "2023-06-08T02:14:30Z",
       "side": 1,
       "message": "Seems it is not failing any more (b/281311423#comment4)",
+      "revId": "affa6cc593fdf767991fb19ceb9d41f49e838c5f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a5072bbf_5b1747b4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2023-06-12T06:05:07Z",
+      "side": 1,
+      "message": "Not failing anymore, but it\u0027s still flaky",
+      "parentUuid": "e507dfd7_d027599c",
       "revId": "affa6cc593fdf767991fb19ceb9d41f49e838c5f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -110,6 +200,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d79b093c_3cdf3389",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppServiceTest.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2023-06-12T06:05:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2adbd2ba_efe7034b",
+      "range": {
+        "startLine": 74,
+        "startChar": 75,
+        "endLine": 74,
+        "endChar": 97
+      },
+      "revId": "affa6cc593fdf767991fb19ceb9d41f49e838c5f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "90ff50a5_4b799bb9",
@@ -123,6 +237,30 @@
       "writtenOn": "2023-06-07T09:21:08Z",
       "side": 1,
       "message": "test to fail?",
+      "range": {
+        "startLine": 75,
+        "startChar": 32,
+        "endLine": 75,
+        "endChar": 46
+      },
+      "revId": "affa6cc593fdf767991fb19ceb9d41f49e838c5f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6dd432a3_1619c77f",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppServiceTest.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2023-06-12T06:05:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "90ff50a5_4b799bb9",
       "range": {
         "startLine": 75,
         "startChar": 32,
