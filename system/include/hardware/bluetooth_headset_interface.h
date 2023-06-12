@@ -230,6 +230,14 @@ class Interface {
                                        RawAddress* bd_addr) = 0;
 
   /**
+   * Enable aptX SWB
+   *
+   * @param enable true to enable, false to disable
+   * @return BT_STATUS_SUCCESS on success
+   */
+  virtual bt_status_t EnableAptxSwb(bool enable) = 0;
+
+  /**
    * Closes the interface.
    */
   virtual void Cleanup() = 0;

@@ -498,6 +498,25 @@ public class HeadsetNativeInterface {
         return setActiveDeviceNative(getByteAddress(device));
     }
 
+    /**
+     * Enable aptX Super Wide Band
+     *
+     * @param enable True to enable, False to disable
+     * @return True on success, False on failure
+     */
+    public boolean enableAptXSwb(boolean enable) {
+        return enableAptXSwbNative(enable);
+    }
+
+    /**
+     * Check if aptX Super Wide Band enabled
+     *
+     * @return True on enabled, False on disabled
+     */
+    public boolean isAptXSwbEnabled() {
+        return isAptXSwbEnabledNative();
+    }
+
     /* Native methods */
     private static native void classInitNative();
 
@@ -546,4 +565,8 @@ public class HeadsetNativeInterface {
     private native boolean sendBsirNative(boolean value, byte[] address);
 
     private native boolean setActiveDeviceNative(byte[] address);
+
+    private native boolean enableAptXSwbNative(boolean enable);
+
+    private native boolean isAptXSwbEnabledNative();
 }

@@ -149,6 +149,8 @@ public class HeadsetService extends ProfileService {
     private boolean mCreated;
     private static HeadsetService sHeadsetService;
 
+    private boolean mIsAptXSwbPmEnabled = false;
+
     private final ServiceFactory mFactory = new ServiceFactory();
 
     public static boolean isEnabled() {
@@ -189,6 +191,8 @@ public class HeadsetService extends ProfileService {
         // Step 3: Initialize system interface
         mSystemInterface = HeadsetObjectsFactory.getInstance().makeSystemInterface(this);
         // Step 4: Initialize native interface
+        mIsAptXSwbPmEnabled = BluetoothProperties.aptx_swb_power_management().orElse(false);
+        Log.i(TAG, "mIsAptXSwbPmEnabled: " + mIsAptXSwbPmEnabled);
         setHeadsetService(this);
         mMaxHeadsetConnections = mAdapterService.getMaxConnectedAudioDevices();
         mNativeInterface = HeadsetObjectsFactory.getInstance().getNativeInterface();
@@ -1189,6 +1193,7 @@ public class HeadsetService extends ProfileService {
             }
             stateMachine.sendMessage(HeadsetStateMachine.CONNECT_AUDIO, device);
         }
+        enableAptXSwbCodec(true);
         return true;
     }
 
@@ -1783,6 +1788,7 @@ public class HeadsetService extends ProfileService {
             if (!mSystemInterface.getVoiceRecognitionWakeLock().isHeld()) {
                 mSystemInterface.getVoiceRecognitionWakeLock().acquire(sStartVrTimeoutMs);
             }
+            enableAptXSwbCodec(true);
             return true;
         }
     }
@@ -2321,6 +2327,25 @@ public class HeadsetService extends ProfileService {
                 stateMachine.dump(sb);
             }
         }
+    }
+
+    /** Enable AptX SWB Codec. */
+    public void enableAptXSwbCodec(boolean enable) {
+        logD("enableAptXSwbCodec: " + enable);
+        mNativeInterface.enableAptXSwb(enable);
+    }
+
+    /** Check whether AptX SWB Codec is enabled. */
+    public boolean isAptXSwbEnabled() {
+        boolean enable = mNativeInterface.isAptXSwbEnabled();
+        logD("isAptXSwbEnabled: " + enable);
+        return enable;
+    }
+
+    /** Check whether AptX SWB Codec Power Management is enabled. */
+    public boolean isAptXSwbPmEnabled() {
+        logD("isAptXSwbPmEnabled: " + mIsAptXSwbPmEnabled);
+        return mIsAptXSwbPmEnabled;
     }
 
     private static void logD(String message) {

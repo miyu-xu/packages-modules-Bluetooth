@@ -79,4 +79,6 @@ public final class HeadsetHalConstants {
     static final int BTHF_SWB_NONE = 0;
     static final int BTHF_SWB_NO = 1;
     static final int BTHF_SWB_YES = 2;
+    static final int BTHF_SWB_APTX_NO = 3;
+    static final int BTHF_SWB_APTX_YES = 4;
 }

@@ -19,7 +19,9 @@
 #include <mutex>
 #include <shared_mutex>
 
+#include "btif/include/btif_hf.h"
 #include "com_android_bluetooth.h"
+#include "gd/common/init_flags.h"
 #include "hardware/bluetooth_headset_callbacks.h"
 #include "hardware/bluetooth_headset_interface.h"
 #include "hardware/bt_hf.h"
@@ -977,6 +979,48 @@ static jboolean setActiveDeviceNative(JNIEnv* env, jobject object,
   return (status == BT_STATUS_SUCCESS) ? JNI_TRUE : JNI_FALSE;
 }
 
+static jboolean enableAptXSwbNative(JNIEnv* env, jobject object,
+                                    jboolean enable) {
+  if (!bluetooth::common::InitFlags::IsAptXVoiceEnabled()) {
+    ALOGW("%s: IsAptXVoiceEnabled flag is disabled", __func__);
+    return JNI_FALSE;
+  }
+
+  if (!sBluetoothHfpInterface) {
+    ALOGW("%s: sBluetoothHfpInterface is null", __func__);
+    return JNI_FALSE;
+  }
+
+  int ret = sBluetoothHfpInterface->EnableAptxSwb(enable);
+
+  if (ret != 0) {
+    ALOGE("%s: Failure", __func__);
+    return JNI_FALSE;
+  } else {
+    ALOGV("%s: Success :%d", __func__, enable);
+  }
+
+  return JNI_TRUE;
+}
+
+static jboolean isAptXSwbEnabledNative(JNIEnv* env, jobject object) {
+  if (!bluetooth::common::InitFlags::IsAptXVoiceEnabled()) {
+    ALOGW("%s: IsAptXVoiceEnabled flag is disabled", __func__);
+    return JNI_FALSE;
+  }
+
+  if (!sBluetoothHfpInterface) {
+    ALOGW("%s: sBluetoothHfpInterface is null", __func__);
+    return JNI_FALSE;
+  }
+
+  if (bluetooth::headset::GetAptXSwbCodecStatus()) {
+    return JNI_TRUE;
+  }
+
+  return JNI_FALSE;
+}
+
 static JNINativeMethod sMethods[] = {
     {"classInitNative", "()V", (void*)classInitNative},
     {"initializeNative", "(IZ)V", (void*)initializeNative},
@@ -1007,6 +1051,8 @@ static JNINativeMethod sMethods[] = {
     {"setScoAllowedNative", "(Z)Z", (void*)setScoAllowedNative},
     {"sendBsirNative", "(Z[B)Z", (void*)sendBsirNative},
     {"setActiveDeviceNative", "([B)Z", (void*)setActiveDeviceNative},
+    {"enableAptXSwbNative", "(Z)Z", (void*)enableAptXSwbNative},
+    {"isAptXSwbEnabledNative", "()Z", (void*)isAptXSwbEnabledNative},
 };
 
 int register_com_android_bluetooth_hfp(JNIEnv* env) {

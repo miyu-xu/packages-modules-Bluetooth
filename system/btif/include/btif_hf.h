@@ -46,5 +46,12 @@ bool IsCallIdle();
  */
 bt_status_t ExecuteService(bool b_enable);
 
+/**
+ * Get aptX SWB codec status.
+ *
+ * @return true if enabled
+ */
+bool GetAptXSwbCodecStatus();
+
 }  // namespace headset
 }  // namespace bluetooth
