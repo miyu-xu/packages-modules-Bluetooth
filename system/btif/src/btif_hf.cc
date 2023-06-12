@@ -881,6 +881,11 @@ class HeadsetInterface : Interface {
                                const char* number, bthf_call_addrtype_t type,
                                const char* name, RawAddress* bd_addr) override;
 
+  bool GetSwbCodecStatus(bthf_swb_codec_t swbCodec,
+                         RawAddress* bd_addr) override;
+  bt_status_t EnableSwb(bthf_swb_codec_t swbCodec, bool enable,
+                        RawAddress* bd_addr) override;
+
   void Cleanup() override;
   bt_status_t SetScoOffloadEnabled(bool value) override;
   bt_status_t SetScoAllowed(bool value) override;
@@ -1546,6 +1551,21 @@ bt_status_t HeadsetInterface::PhoneStateChange(
                                      IOT_CONF_KEY_HFP_SCO_CONN_COUNT);
 
   return status;
+}
+
+bt_status_t HeadsetInterface::EnableSwb(bthf_swb_codec_t swb_codec, bool enable,
+                                        RawAddress* bd_addr) {
+  return enable_aptx_swb_codec(enable, bd_addr);
+}
+
+bool HeadsetInterface::GetSwbCodecStatus(bthf_swb_codec_t swb_codec,
+                                         RawAddress* bd_addr) {
+  bool status = false;
+  if (bd_addr->IsEmpty()) {
+    LOG(ERROR) << __func__ << " failed: address is empty";
+    return status;
+  }
+  return get_swb_codec_status(swb_codec, bd_addr);
 }
 
 void HeadsetInterface::Cleanup() {
