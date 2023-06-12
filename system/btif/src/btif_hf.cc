@@ -39,6 +39,7 @@
 
 #include "bta/include/bta_ag_api.h"
 #include "bta/include/utl.h"
+#include "bta_ag_swb.h"
 #include "btif/include/btif_common.h"
 #include "btif/include/btif_metrics_logging.h"
 #include "btif/include/btif_profile_queue.h"
@@ -172,6 +173,8 @@ static uint32_t get_hf_features() {
   return DEFAULT_BTIF_HF_FEATURES;
 #endif
 }
+
+bool GetAptXSwbCodecStatus() { return get_aptx_swb_codec_status(); }
 
 /*******************************************************************************
  *
@@ -598,8 +601,18 @@ static void btif_hf_upstreams_evt(uint16_t event, char* p_param) {
       } else {
         bt_hf_callbacks->WbsCallback(BTHF_WBS_NONE,
                                      &btif_hf_cb[idx].connected_bda);
-        bt_hf_callbacks->SwbCallback(BTHF_SWB_NONE,
-                                     &btif_hf_cb[idx].connected_bda);
+        if (bluetooth::common::init_flags::aptx_voice_is_enabled()) {
+          BTIF_TRACE_DEBUG(
+              "%s: AG final selected SWB codec is 0x%02x 0=Q0 4=Q1 6=Q2 7=Q3",
+              __func__, p_data->val.num);
+          bt_hf_callbacks->SwbCallback(
+              p_data->val.num <= BTA_AG_SCO_SWB_SETTINGS_Q3 ? BTHF_SWB_APTX_YES
+                                                            : BTHF_SWB_APTX_NO,
+              &btif_hf_cb[idx].connected_bda);
+        } else {
+          bt_hf_callbacks->SwbCallback(BTHF_SWB_NONE,
+                                       &btif_hf_cb[idx].connected_bda);
+        }
       }
       break;
 
@@ -665,6 +678,20 @@ static void btif_hf_upstreams_evt(uint16_t event, char* p_param) {
       bt_hf_callbacks->SwbCallback(
           (p_data->val.num == BTM_SCO_CODEC_LC3) ? BTHF_SWB_YES : BTHF_SWB_NO,
           &btif_hf_cb[idx].connected_bda);
+      break;
+
+    case BTA_AG_AT_QCS_EVT:
+      if (!bluetooth::common::init_flags::aptx_voice_is_enabled()) {
+        LOG(WARNING) << __func__ << ": unhandled event " << event;
+        break;
+      }
+      BTIF_TRACE_DEBUG(
+          "%s: AG final selected SWB codec is 0x%02x 0=Q0 4=Q1 6=Q2 7=Q3",
+          __func__, p_data->val.num);
+      bt_hf_callbacks->SwbCallback(p_data->val.num <= BTA_AG_SCO_SWB_SETTINGS_Q3
+                                       ? BTHF_SWB_APTX_YES
+                                       : BTHF_SWB_APTX_NO,
+                                   &btif_hf_cb[idx].connected_bda);
       break;
 
     case BTA_AG_AT_BIND_EVT:
@@ -854,6 +881,7 @@ class HeadsetInterface : Interface {
                                bthf_call_state_t call_setup_state,
                                const char* number, bthf_call_addrtype_t type,
                                const char* name, RawAddress* bd_addr) override;
+  bt_status_t EnableAptxSwb(bool enable) override;
 
   void Cleanup() override;
   bt_status_t SetScoOffloadEnabled(bool value) override;
@@ -1520,6 +1548,10 @@ bt_status_t HeadsetInterface::PhoneStateChange(
                                      IOT_CONF_KEY_HFP_SCO_CONN_COUNT);
 
   return status;
+}
+
+bt_status_t HeadsetInterface::EnableAptxSwb(bool enable) {
+  return enable_aptx_swb_codec(enable);
 }
 
 void HeadsetInterface::Cleanup() {

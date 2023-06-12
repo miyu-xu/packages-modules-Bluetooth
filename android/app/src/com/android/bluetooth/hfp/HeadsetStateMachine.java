@@ -153,6 +153,7 @@ public class HeadsetStateMachine extends StateMachine {
     private boolean mHasNrecEnabled = false;
     private boolean mHasWbsEnabled = false;
     private boolean mHasSwbEnabled = false;
+    private boolean mHasAptXSwbEnabled = false;
     // AT Phone book keeps a group of states used by AT+CPBR commands
     @VisibleForTesting
     final AtPhonebook mPhonebook;
@@ -252,6 +253,7 @@ public class HeadsetStateMachine extends StateMachine {
         mHasWbsEnabled = false;
         mHasNrecEnabled = false;
         mHasSwbEnabled = false;
+        mHasAptXSwbEnabled = false;
     }
 
     public void dump(StringBuilder sb) {
@@ -485,7 +487,7 @@ public class HeadsetStateMachine extends StateMachine {
             mHasWbsEnabled = false;
             mHasSwbEnabled = false;
             mHasNrecEnabled = false;
-
+            mHasAptXSwbEnabled = false;
             broadcastStateTransitions();
             logFailureIfNeeded();
 
@@ -649,7 +651,24 @@ public class HeadsetStateMachine extends StateMachine {
                     break;
                 }
                 case CALL_STATE_CHANGED:
-                    stateLogD("ignoring CALL_STATE_CHANGED event");
+                    HeadsetCallState callState = (HeadsetCallState) message.obj;
+                    if (mHeadsetService.isAptXSwbEnabled()
+                            && mHeadsetService.isAptXSwbPmEnabled()) {
+                        if (mHeadsetService.isVirtualCallStarted()) {
+                            stateLogD("CALL_STATE_CHANGED: enable SWB for all voip calls ");
+                            mHeadsetService.enableAptXSwbCodec(true);
+                        } else if ((callState.mCallState == HeadsetHalConstants.CALL_STATE_DIALING)
+                                || (callState.mCallState
+                                        == HeadsetHalConstants.CALL_STATE_INCOMING)) {
+                            if (!mSystemInterface.isHighDefCallInProgress()) {
+                                stateLogD("CALL_STATE_CHANGED: disable SWB for non-HD call ");
+                                mHeadsetService.enableAptXSwbCodec(false);
+                            } else {
+                                stateLogD("CALL_STATE_CHANGED: enable SWB for HD call ");
+                                mHeadsetService.enableAptXSwbCodec(true);
+                            }
+                        }
+                    }
                     break;
                 case DEVICE_STATE_CHANGED:
                     stateLogD("ignoring DEVICE_STATE_CHANGED event");
@@ -1152,6 +1171,19 @@ public class HeadsetStateMachine extends StateMachine {
                     if (isAtLeastU()) {
                         mSystemInterface.getAudioManager().setLeAudioSuspended(true);
                     }
+
+                    if (mHeadsetService.isAptXSwbEnabled()
+                            && mHeadsetService.isAptXSwbPmEnabled()) {
+                        if (!mHeadsetService.isVirtualCallStarted()
+                                && mSystemInterface.isHighDefCallInProgress()) {
+                            stateLogD("CONNECT_AUDIO: enable SWB for HD call ");
+                            mHeadsetService.enableAptXSwbCodec(true);
+                        } else {
+                            stateLogD("CONNECT_AUDIO: disable SWB for non-HD or Voip calls");
+                            mHeadsetService.enableAptXSwbCodec(false);
+                        }
+                    }
+
                     if (!mNativeInterface.connectAudio(mDevice)) {
                         mSystemInterface.getAudioManager().setA2dpSuspended(false);
                         if (isAtLeastU()) {
@@ -1618,11 +1650,24 @@ public class HeadsetStateMachine extends StateMachine {
 
     private void setAudioParameters() {
         AudioManager am = mSystemInterface.getAudioManager();
-        Log.i(TAG, "setAudioParameters for " + mDevice + ":"
-                + " Name=" + getCurrentDeviceName()
-                + " hasNrecEnabled=" + mHasNrecEnabled
-                + " hasWbsEnabled=" + mHasWbsEnabled);
+        Log.i(
+                TAG,
+                "setAudioParameters for "
+                        + mDevice
+                        + ":"
+                        + " Name="
+                        + getCurrentDeviceName()
+                        + " hasNrecEnabled="
+                        + mHasNrecEnabled
+                        + " hasWbsEnabled="
+                        + mHasWbsEnabled
+                        + " hasSwbEnabled="
+                        + mHasSwbEnabled
+                        + " hasAptXSwbEnabled="
+                        + mHasAptXSwbEnabled);
         am.setParameters("bt_lc3_swb=" + (mHasSwbEnabled ? "on" : "off"));
+        /* bt_swb: 0 -> on, 65535 -> off */
+        am.setParameters("bt_swb=" + (mHasAptXSwbEnabled ? "0" : "65535"));
         am.setBluetoothHeadsetProperties(getCurrentDeviceName(), mHasNrecEnabled, mHasWbsEnabled);
     }
 
@@ -1767,6 +1812,9 @@ public class HeadsetStateMachine extends StateMachine {
         switch (wbsConfig) {
             case HeadsetHalConstants.BTHF_WBS_YES:
                 mHasWbsEnabled = true;
+                if (mHeadsetService.isAptXSwbEnabled()) {
+                    mHasAptXSwbEnabled = false;
+                }
                 break;
             case HeadsetHalConstants.BTHF_WBS_NO:
             case HeadsetHalConstants.BTHF_WBS_NONE:
@@ -1781,19 +1829,30 @@ public class HeadsetStateMachine extends StateMachine {
 
     private void processSWBEvent(int swbConfig) {
         boolean prev_swb = mHasSwbEnabled;
+        boolean prev_aptx_swb = mHasAptXSwbEnabled;
+
         switch (swbConfig) {
             case HeadsetHalConstants.BTHF_SWB_YES:
                 mHasSwbEnabled = true;
+                mHasAptXSwbEnabled = false;
+                break;
+            case HeadsetHalConstants.BTHF_SWB_APTX_YES:
+                mHasSwbEnabled = false;
+                mHasWbsEnabled = false;
+                mHasAptXSwbEnabled = true;
                 break;
             case HeadsetHalConstants.BTHF_SWB_NO:
             case HeadsetHalConstants.BTHF_SWB_NONE:
+            case HeadsetHalConstants.BTHF_SWB_APTX_NO:
                 mHasSwbEnabled = false;
+                mHasAptXSwbEnabled = false;
                 break;
             default:
                 Log.e(TAG, "processSWBEvent: unknown swb_config");
                 return;
         }
         log("processSWBEvent: " + prev_swb + " -> " + mHasSwbEnabled);
+        log("processSWBEvent aptX: " + prev_aptx_swb + " -> " + mHasAptXSwbEnabled);
     }
 
     @RequiresPermission(android.Manifest.permission.MODIFY_PHONE_STATE)
