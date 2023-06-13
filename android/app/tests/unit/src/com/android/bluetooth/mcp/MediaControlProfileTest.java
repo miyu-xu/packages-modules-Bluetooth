@@ -385,6 +385,25 @@ public class MediaControlProfileTest {
     }
 
     @Test
+    public void testAvrcpCompatibleActionSet() {
+        long actions = 0;
+        PlaybackState.Builder bob = new PlaybackState.Builder(mMockMediaData.state);
+        bob.setActions(actions);
+        mMockMediaData.state = bob.build();
+
+        // Same base feature set as the player item features defined in `avrcp/get_foder_items.cc`
+        Assert.assertEquals(
+                PlaybackState.ACTION_PLAY
+                        | PlaybackState.ACTION_STOP
+                        | PlaybackState.ACTION_PAUSE
+                        | PlaybackState.ACTION_REWIND
+                        | PlaybackState.ACTION_FAST_FORWARD
+                        | PlaybackState.ACTION_SKIP_TO_NEXT
+                        | PlaybackState.ACTION_SKIP_TO_PREVIOUS,
+                mMediaControlProfile.getCurrentPlayerSupportedActions());
+    }
+
+    @Test
     public void testPlayerActions2McsSupportedOpcodes() {
         long actions = PlaybackState.ACTION_PLAY | PlaybackState.ACTION_PAUSE
                 | PlaybackState.ACTION_STOP | PlaybackState.ACTION_SKIP_TO_PREVIOUS
