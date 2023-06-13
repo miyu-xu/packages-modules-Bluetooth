@@ -46,6 +46,30 @@
       },
       "revId": "4084245d54d00f8a415a6c4ea3eec86bd1b69533",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ae917fa7_278b3510",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/mapclient/MapClientTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2023-06-13T09:34:36Z",
+      "side": 1,
+      "message": "Oh, it is different here. The previous is not an official one:\n\nhttps://source.corp.google.com/h/googleplex-android/platform/superproject/+/master:external/junit/src/main/java/org/junit/Assert.java;l\u003d110?q\u003dAssert.assertEquals\u0026ss\u003dh%2Fgoogleplex-android%2Fplatform%2Fsuperproject%2F%2B%2Fmaster\n\nWill swap them.",
+      "parentUuid": "71172505_c01b073a",
+      "range": {
+        "startLine": 126,
+        "startChar": 28,
+        "endLine": 126,
+        "endChar": 76
+      },
+      "revId": "4084245d54d00f8a415a6c4ea3eec86bd1b69533",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
