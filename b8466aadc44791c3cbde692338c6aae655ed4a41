@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7d190c94_a952e228",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-06-13T23:09:54Z",
+      "side": 1,
+      "message": "nit: either put that on the same line as `LE Connection Metrics` or add a new line to put it in the body and not in the subject\n\nhttps://git-scm.com/docs/git-commit#_discussion",
+      "revId": "b8466aadc44791c3cbde692338c6aae655ed4a41",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "10ecce97_592d19a8",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-06-13T23:09:54Z",
+      "side": 1,
+      "message": "nit: Remove `b/`",
+      "revId": "b8466aadc44791c3cbde692338c6aae655ed4a41",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
