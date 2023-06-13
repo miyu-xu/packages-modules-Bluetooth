@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "494c4612_90e92bf4",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/mapclient/MapClientTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-06-13T09:00:06Z",
+      "side": 1,
+      "message": "Please switch. It should be the expected value then the actual value.",
+      "range": {
+        "startLine": 126,
+        "startChar": 28,
+        "endLine": 126,
+        "endChar": 76
+      },
+      "revId": "4084245d54d00f8a415a6c4ea3eec86bd1b69533",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
