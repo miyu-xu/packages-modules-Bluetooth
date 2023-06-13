@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7de095b8_9fe1ffed",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 641,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2023-06-13T04:14:29Z",
+      "side": 1,
+      "message": "Per offline chat, the information is brought from the native layer of gap. It does\u0027t touch CSIS set member discovery. It would be set based on the advertising data containing RSI data filed. So it might be better to get the CSIP enabled status and drop the data here.",
+      "parentUuid": "ca9b9cae_17f97368",
+      "range": {
+        "startLine": 641,
+        "startChar": 13,
+        "endLine": 641,
+        "endChar": 38
+      },
+      "revId": "e7c5ecb371433ca02f3fdb5e5436246ee1a2625a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7ed77c36_1c7fedef",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-06-12T21:16:28Z",
       "side": 1,
       "message": "Please add an info log here to indicate CSIP is not supported",
+      "range": {
+        "startLine": 644,
+        "startChar": 26,
+        "endLine": 644,
+        "endChar": 33
+      },
+      "revId": "e7c5ecb371433ca02f3fdb5e5436246ee1a2625a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "802810c9_e329ddb2",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 644,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2023-06-13T04:14:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7ed77c36_1c7fedef",
       "range": {
         "startLine": 644,
         "startChar": 26,
