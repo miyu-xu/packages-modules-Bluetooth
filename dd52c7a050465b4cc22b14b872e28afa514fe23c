@@ -87,6 +87,30 @@
       },
       "revId": "dd52c7a050465b4cc22b14b872e28afa514fe23c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "abfd6c43_8725d949",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 1752,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-06-13T07:09:49Z",
+      "side": 1,
+      "message": "Hi, since this \"should\" be a temporary patch, I\u0027d prefer to keep it simple and avoid using rarely used syntaxes.",
+      "parentUuid": "4eb71c21_3a9d4e3a",
+      "range": {
+        "startLine": 1752,
+        "startChar": 18,
+        "endLine": 1752,
+        "endChar": 27
+      },
+      "revId": "dd52c7a050465b4cc22b14b872e28afa514fe23c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
