@@ -34,6 +34,8 @@ namespace bluetooth {
 namespace audio {
 namespace aidl {
 
+using ::aidl::android::hardware::audio::common::SinkMetadata;
+using ::aidl::android::hardware::audio::common::SourceMetadata;
 using ::aidl::android::hardware::bluetooth::audio::AudioConfiguration;
 using ::aidl::android::hardware::bluetooth::audio::BluetoothAudioSessionControl;
 using ::aidl::android::hardware::bluetooth::audio::ChannelMode;
@@ -587,8 +589,29 @@ void BluetoothAudioPortAidl::UpdateSourceMetadata(
              << ", state=" << state_ << ", " << source_metadata->track_count
              << " track(s)";
   if (source_metadata->track_count == 0) return;
+
+  ssize_t track_count = source_metadata->track_count;
+  LOG(DEBUG) << __func__ << " - SessionType=" << toString(session_type_) << ","
+             << track_count << " track(s)";
+
+  SourceMetadata hal_source_metadata;
+  hal_source_metadata.tracks.resize(track_count);
+  for (int i = 0; i < track_count; i++) {
+    hal_source_metadata.tracks[i].usage =
+        static_cast<::aidl::android::media::audio::common::AudioUsage>(
+            source_metadata->tracks[i].usage);
+    hal_source_metadata.tracks[i].contentType =
+        static_cast<::aidl::android::media::audio::common::AudioContentType>(
+            source_metadata->tracks[i].content_type);
+    hal_source_metadata.tracks[i].gain = source_metadata->tracks[i].gain;
+    LOG(VERBOSE) << __func__ << " - SessionType=" << toString(session_type_)
+                 << ", usage=" << toString(hal_source_metadata.tracks[i].usage)
+                 << ", content="
+                 << toString(hal_source_metadata.tracks[i].contentType)
+                 << ", gain=" << hal_source_metadata.tracks[i].gain;
+  }
   BluetoothAudioSessionControl::UpdateSourceMetadata(session_type_,
-                                                     *source_metadata);
+                                                     hal_source_metadata);
 }
 
 void BluetoothAudioPortAidl::UpdateSinkMetadata(
@@ -602,8 +625,26 @@ void BluetoothAudioPortAidl::UpdateSinkMetadata(
              << ", state=" << state_ << ", " << sink_metadata->track_count
              << " track(s)";
   if (sink_metadata->track_count == 0) return;
+
+  ssize_t track_count = sink_metadata->track_count;
+  LOG(DEBUG) << __func__ << " - SessionType=" << toString(session_type_) << ","
+             << track_count << " track(s)";
+  SinkMetadata hal_sink_metadata;
+  hal_sink_metadata.tracks.resize(track_count);
+  for (int i = 0; i < track_count; i++) {
+    hal_sink_metadata.tracks[i].source =
+        static_cast<::aidl::android::media::audio::common::AudioSource>(
+            sink_metadata->tracks[i].source);
+    hal_sink_metadata.tracks[i].gain = sink_metadata->tracks[i].gain;
+    LOG(INFO) << __func__ << " - SessionType=" << toString(session_type_)
+              << ", source=" << sink_metadata->tracks[i].source
+              << ", dest_device=" << sink_metadata->tracks[i].dest_device
+              << ", gain=" << sink_metadata->tracks[i].gain
+              << ", dest_device_address="
+              << sink_metadata->tracks[i].dest_device_address;
+  }
   BluetoothAudioSessionControl::UpdateSinkMetadata(session_type_,
-                                                   *sink_metadata);
+                                                   hal_sink_metadata);
 }
 
 BluetoothStreamState BluetoothAudioPortAidl::GetState() const { return state_; }
