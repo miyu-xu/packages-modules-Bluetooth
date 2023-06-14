@@ -16,6 +16,8 @@
 
 package com.android.bluetooth.btservice;
 
+import static com.google.common.truth.Truth.assertThat;
+
 import static org.mockito.ArgumentMatchers.anyBoolean;
 import static org.mockito.Mockito.after;
 import static org.mockito.Mockito.any;
@@ -348,7 +350,6 @@ public class ActiveDeviceManagerTest {
                 .setActiveDevice(mA2dpHeadsetDevice);
     }
 
-
     @Test
     public void headsetConnectedButA2dpNotConnected_setHeadsetActive() {
         when(mAudioManager.getMode()).thenReturn(AudioManager.MODE_NORMAL);
@@ -356,6 +357,120 @@ public class ActiveDeviceManagerTest {
         headsetConnected(mA2dpHeadsetDevice, true);
         verify(mHeadsetService, timeout(A2DP_HFP_SYNC_CONNECTION_TIMEOUT_MS))
                 .setActiveDevice(mA2dpHeadsetDevice);
+    }
+
+    @Test
+    public void switchActiveDeviceBetweenTwoA2dpHeadsetDevices() {
+        a2dpConnected(mA2dpDevice, false);
+        headsetConnected(mHeadsetDevice, false);
+        a2dpConnected(mA2dpHeadsetDevice, true);
+        a2dpConnected(mSecondaryAudioDevice, true);
+        headsetConnected(mA2dpHeadsetDevice, true);
+        headsetConnected(mSecondaryAudioDevice, true);
+
+        TestUtils.waitForLooperToFinishScheduledTask(mActiveDeviceManager.getHandlerLooper());
+        assertThat(mActiveDeviceManager.getA2dpActiveDevice()).isEqualTo(mSecondaryAudioDevice);
+        assertThat(mActiveDeviceManager.getHfpActiveDevice()).isEqualTo(mSecondaryAudioDevice);
+
+        Mockito.clearInvocations(mHeadsetService);
+        Mockito.clearInvocations(mA2dpService);
+
+        // Test HS1 A2DP -> HS2 A2DP -> HS1 HFP -> HS2 HFP
+        a2dpActiveDeviceChanged(mA2dpHeadsetDevice);
+        TestUtils.waitForLooperToFinishScheduledTask(mActiveDeviceManager.getHandlerLooper());
+        assertThat(mActiveDeviceManager.getA2dpActiveDevice()).isEqualTo(mA2dpHeadsetDevice);
+        assertThat(mActiveDeviceManager.getHfpActiveDevice()).isEqualTo(mA2dpHeadsetDevice);
+        verify(mHeadsetService).setActiveDevice(mA2dpHeadsetDevice);
+
+        a2dpActiveDeviceChanged(mSecondaryAudioDevice);
+        TestUtils.waitForLooperToFinishScheduledTask(mActiveDeviceManager.getHandlerLooper());
+        assertThat(mActiveDeviceManager.getA2dpActiveDevice()).isEqualTo(mSecondaryAudioDevice);
+        assertThat(mActiveDeviceManager.getHfpActiveDevice()).isEqualTo(mSecondaryAudioDevice);
+        verify(mHeadsetService).setActiveDevice(mSecondaryAudioDevice);
+
+        headsetActiveDeviceChanged(mA2dpHeadsetDevice);
+        TestUtils.waitForLooperToFinishScheduledTask(mActiveDeviceManager.getHandlerLooper());
+        assertThat(mActiveDeviceManager.getA2dpActiveDevice()).isEqualTo(mSecondaryAudioDevice);
+        assertThat(mActiveDeviceManager.getHfpActiveDevice()).isEqualTo(mA2dpHeadsetDevice);
+        verify(mA2dpService, never()).setActiveDevice(any());
+
+        headsetActiveDeviceChanged(mSecondaryAudioDevice);
+        TestUtils.waitForLooperToFinishScheduledTask(mActiveDeviceManager.getHandlerLooper());
+        assertThat(mActiveDeviceManager.getA2dpActiveDevice()).isEqualTo(mSecondaryAudioDevice);
+        assertThat(mActiveDeviceManager.getHfpActiveDevice()).isEqualTo(mSecondaryAudioDevice);
+        verify(mA2dpService, never()).setActiveDevice(any());
+
+        Mockito.clearInvocations(mHeadsetService);
+        Mockito.clearInvocations(mA2dpService);
+
+        // Test HS1 HFP -> HS2 HFP -> HS1 A2DP -> HS2 A2DP
+        headsetActiveDeviceChanged(mA2dpHeadsetDevice);
+        TestUtils.waitForLooperToFinishScheduledTask(mActiveDeviceManager.getHandlerLooper());
+        assertThat(mActiveDeviceManager.getA2dpActiveDevice()).isEqualTo(mA2dpHeadsetDevice);
+        assertThat(mActiveDeviceManager.getHfpActiveDevice()).isEqualTo(mA2dpHeadsetDevice);
+        verify(mA2dpService).setActiveDevice(mA2dpHeadsetDevice);
+
+        headsetActiveDeviceChanged(mSecondaryAudioDevice);
+        TestUtils.waitForLooperToFinishScheduledTask(mActiveDeviceManager.getHandlerLooper());
+        assertThat(mActiveDeviceManager.getA2dpActiveDevice()).isEqualTo(mSecondaryAudioDevice);
+        assertThat(mActiveDeviceManager.getHfpActiveDevice()).isEqualTo(mSecondaryAudioDevice);
+        verify(mA2dpService).setActiveDevice(mSecondaryAudioDevice);
+
+        a2dpActiveDeviceChanged(mA2dpHeadsetDevice);
+        TestUtils.waitForLooperToFinishScheduledTask(mActiveDeviceManager.getHandlerLooper());
+        assertThat(mActiveDeviceManager.getA2dpActiveDevice()).isEqualTo(mA2dpHeadsetDevice);
+        assertThat(mActiveDeviceManager.getHfpActiveDevice()).isEqualTo(mSecondaryAudioDevice);
+        verify(mHeadsetService, never()).setActiveDevice(any());
+
+        a2dpActiveDeviceChanged(mSecondaryAudioDevice);
+        TestUtils.waitForLooperToFinishScheduledTask(mActiveDeviceManager.getHandlerLooper());
+        assertThat(mActiveDeviceManager.getA2dpActiveDevice()).isEqualTo(mSecondaryAudioDevice);
+        assertThat(mActiveDeviceManager.getHfpActiveDevice()).isEqualTo(mSecondaryAudioDevice);
+        verify(mHeadsetService, never()).setActiveDevice(any());
+
+        Mockito.clearInvocations(mHeadsetService);
+        Mockito.clearInvocations(mA2dpService);
+
+        // Test HS1 HFP -> HFP only -> HS1 A2DP
+        headsetActiveDeviceChanged(mA2dpHeadsetDevice);
+        TestUtils.waitForLooperToFinishScheduledTask(mActiveDeviceManager.getHandlerLooper());
+        assertThat(mActiveDeviceManager.getA2dpActiveDevice()).isEqualTo(mA2dpHeadsetDevice);
+        assertThat(mActiveDeviceManager.getHfpActiveDevice()).isEqualTo(mA2dpHeadsetDevice);
+        verify(mA2dpService).setActiveDevice(mA2dpHeadsetDevice);
+
+        headsetActiveDeviceChanged(mHeadsetDevice);
+        TestUtils.waitForLooperToFinishScheduledTask(mActiveDeviceManager.getHandlerLooper());
+        assertThat(mActiveDeviceManager.getA2dpActiveDevice()).isEqualTo(mA2dpHeadsetDevice);
+        assertThat(mActiveDeviceManager.getHfpActiveDevice()).isEqualTo(mHeadsetDevice);
+        verify(mA2dpService, never()).setActiveDevice(mHeadsetDevice);
+
+        a2dpActiveDeviceChanged(mA2dpHeadsetDevice);
+        TestUtils.waitForLooperToFinishScheduledTask(mActiveDeviceManager.getHandlerLooper());
+        assertThat(mActiveDeviceManager.getA2dpActiveDevice()).isEqualTo(mA2dpHeadsetDevice);
+        assertThat(mActiveDeviceManager.getHfpActiveDevice()).isEqualTo(mHeadsetDevice);
+        verify(mHeadsetService, never()).setActiveDevice(any());
+
+        Mockito.clearInvocations(mHeadsetService);
+        Mockito.clearInvocations(mA2dpService);
+
+        // Test HS1 HFP -> A2Dp only -> HS1 A2DP
+        headsetActiveDeviceChanged(mSecondaryAudioDevice);
+        TestUtils.waitForLooperToFinishScheduledTask(mActiveDeviceManager.getHandlerLooper());
+        assertThat(mActiveDeviceManager.getA2dpActiveDevice()).isEqualTo(mSecondaryAudioDevice);
+        assertThat(mActiveDeviceManager.getHfpActiveDevice()).isEqualTo(mSecondaryAudioDevice);
+        verify(mA2dpService).setActiveDevice(mSecondaryAudioDevice);
+
+        a2dpActiveDeviceChanged(mA2dpDevice);
+        TestUtils.waitForLooperToFinishScheduledTask(mActiveDeviceManager.getHandlerLooper());
+        assertThat(mActiveDeviceManager.getA2dpActiveDevice()).isEqualTo(mA2dpDevice);
+        assertThat(mActiveDeviceManager.getHfpActiveDevice()).isEqualTo(mSecondaryAudioDevice);
+        verify(mHeadsetService, never()).setActiveDevice(mA2dpDevice);
+
+        a2dpActiveDeviceChanged(mSecondaryAudioDevice);
+        TestUtils.waitForLooperToFinishScheduledTask(mActiveDeviceManager.getHandlerLooper());
+        assertThat(mActiveDeviceManager.getA2dpActiveDevice()).isEqualTo(mSecondaryAudioDevice);
+        assertThat(mActiveDeviceManager.getHfpActiveDevice()).isEqualTo(mSecondaryAudioDevice);
+        verify(mHeadsetService, never()).setActiveDevice(any());
     }
 
     /**
