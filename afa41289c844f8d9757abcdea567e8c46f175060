@@ -34,6 +34,24 @@
       "parentUuid": "960e5236_695213e1",
       "revId": "afa41289c844f8d9757abcdea567e8c46f175060",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "be2a0553_ea5c5aea",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 484,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-06-14T22:30:46Z",
+      "side": 1,
+      "message": "I think yes it as this will make the crash silent instead of explicit and might come bite us in the future.",
+      "parentUuid": "d7287ca6_20a7e352",
+      "revId": "afa41289c844f8d9757abcdea567e8c46f175060",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
