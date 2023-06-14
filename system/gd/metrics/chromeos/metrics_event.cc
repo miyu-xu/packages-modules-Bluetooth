@@ -265,8 +265,12 @@ PairingState ToPairingState(uint32_t status, uint32_t bond_state, int32_t fail_r
   if ((BtStatus)status == BtStatus::BT_STATUS_SUCCESS && (hci::ErrorCode)fail_reason == hci::ErrorCode::SUCCESS) {
     if ((BtBondState)bond_state == BtBondState::BT_BOND_STATE_BONDED) {
       return PairingState::PAIR_SUCCEED;
-    } else {
+    } else if ((BtBondState)bond_state == BtBondState::BT_BOND_STATE_BONDING) {
       return PairingState::PAIR_FAIL_CANCELLED;
+    } else {  // BtBondState::BT_BOND_STATE_NONE
+      // This implies the event is from forgetting a device. Return an absurd value to let caller
+      // know.
+      return PairingState::PAIR_FAIL_END;
     }
   }
 
