@@ -62,6 +62,24 @@
       "message": "Instead of this, I would like something like\n\n\n```rust\nlet parsed \u003d parse_pdl(r#\" ... the PDL ... \"#);\nassert_packet_size_eq(\"S\", 32);\nassert_packet_payload_size_eq(\"S\", 0);\nassert_packet_field_size_eq(\"S.a\", 32);\n```",
       "revId": "90be8fd928198999f775fc775abc5166f96aa58f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "abe0d3fb_150ae888",
+        "filename": "tools/pdl/src/analyzer.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 2206,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2023-06-14T16:18:21Z",
+      "side": 1,
+      "message": "Oh, you of course need to pass in `parsed` into the `assert_*` functions.\n\nSince there are fields without a name, perhaps it\u0027s better to have a `assert_field_sizes_eq` function which takes a list of integers.",
+      "parentUuid": "46db24ca_51c3140c",
+      "revId": "90be8fd928198999f775fc775abc5166f96aa58f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
