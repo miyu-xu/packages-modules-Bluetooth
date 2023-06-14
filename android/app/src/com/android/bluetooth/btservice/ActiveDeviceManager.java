@@ -153,6 +153,9 @@ class ActiveDeviceManager {
     @GuardedBy("mLock")
     private BluetoothDevice mPendingActiveDevice = null;
 
+    private BluetoothDevice mA2dpHfpDeviceToBeActivated = null;
+    private BluetoothDevice mA2dpHfpDeviceBlocked = null;
+
     // Broadcast receiver for all changes
     private final BroadcastReceiver mReceiver = new BroadcastReceiver() {
         @Override
@@ -583,9 +586,29 @@ class ActiveDeviceManager {
                     setLeAudioActiveDevice(null, true);
                 }
             }
-            if (mHfpConnectedDevices.contains(device)) {
-                setHfpActiveDevice(device);
+
+            if (device != null) {
+                if (mA2dpHfpDeviceToBeActivated != null
+                        && !Objects.equals(mA2dpHfpDeviceToBeActivated, device)) {
+                    mA2dpHfpDeviceBlocked = mA2dpHfpDeviceToBeActivated;
+                    mA2dpHfpDeviceToBeActivated = null;
+                }
+
+                if (mA2dpHfpDeviceToBeActivated == null
+                        && !Objects.equals(mHfpActiveDevice, device)
+                        && !Objects.equals(mA2dpHfpDeviceBlocked, device)) {
+                    mA2dpHfpDeviceToBeActivated = device;
+                    setHfpActiveDevice(device);
+                }
+
+                if (Objects.equals(mA2dpHfpDeviceToBeActivated, device)) {
+                    mA2dpHfpDeviceToBeActivated = null;
+                }
+                if (Objects.equals(mA2dpHfpDeviceBlocked, device)) {
+                    mA2dpHfpDeviceBlocked = null;
+                }
             }
+
             // Just assign locally the new value
             mA2dpActiveDevice = device;
         }
@@ -618,8 +641,26 @@ class ActiveDeviceManager {
                     setLeAudioActiveDevice(null, true);
                 }
             }
-            if (mA2dpConnectedDevices.contains(device)) {
-                setA2dpActiveDevice(device);
+            if (device != null) {
+                if (mA2dpHfpDeviceToBeActivated != null
+                        && !Objects.equals(mA2dpHfpDeviceToBeActivated, device)) {
+                    mA2dpHfpDeviceBlocked = mA2dpHfpDeviceToBeActivated;
+                    mA2dpHfpDeviceToBeActivated = null;
+                }
+
+                if (mA2dpHfpDeviceToBeActivated == null
+                        && !Objects.equals(mA2dpActiveDevice, device)
+                        && !Objects.equals(mA2dpHfpDeviceBlocked, device)) {
+                    mA2dpHfpDeviceToBeActivated = device;
+                    setA2dpActiveDevice(device);
+                }
+
+                if (Objects.equals(mA2dpHfpDeviceToBeActivated, device)) {
+                    mA2dpHfpDeviceToBeActivated = null;
+                }
+                if (Objects.equals(mA2dpHfpDeviceBlocked, device)) {
+                    mA2dpHfpDeviceBlocked = null;
+                }
             }
             // Just assign locally the new value
             mHfpActiveDevice = device;
