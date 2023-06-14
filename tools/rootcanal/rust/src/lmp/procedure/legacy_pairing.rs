@@ -5,7 +5,7 @@ use crate::packets::{hci, lmp};
 
 use crate::num_hci_command_packets;
 
-pub async fn initiate(ctx: &impl Context) -> Result<(), ()> {
+pub async fn initiate(ctx: &impl Context) -> Result<(), hci::ErrorCode> {
     ctx.send_hci_event(hci::PinCodeRequestBuilder { bd_addr: ctx.peer_address() }.build());
 
     let _pin_code = ctx.receive_hci_command::<hci::PinCodeRequestReply>().await;
@@ -36,7 +36,7 @@ pub async fn initiate(ctx: &impl Context) -> Result<(), ()> {
     authentication::receive_challenge(ctx, link_key).await;
 
     if auth_result.is_err() {
-        return Err(());
+        return Err(hci::ErrorCode::AuthenticationFailure);
     }
     ctx.send_hci_event(
         hci::LinkKeyNotificationBuilder {

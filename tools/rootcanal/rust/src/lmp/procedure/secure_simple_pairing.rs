@@ -321,7 +321,13 @@ async fn remote_oob_data_request(ctx: &impl Context) -> Result<(), ()> {
 const CONFIRMATION_VALUE_SIZE: usize = 16;
 const PASSKEY_ENTRY_REPEAT_NUMBER: usize = 20;
 
-pub async fn initiate(ctx: &impl Context) -> Result<(), ()> {
+pub async fn initiate(ctx: &impl Context) -> Result<(), hci::ErrorCode> {
+    if ctx.pairing() {
+        return Err(hci::ErrorCode::LinkLayerCollision);
+    }
+
+    ctx.set_pairing(true);
+
     let initiator = {
         ctx.send_hci_event(hci::IoCapabilityRequestBuilder { bd_addr: ctx.peer_address() }.build());
         match ctx
@@ -373,31 +379,40 @@ pub async fn initiate(ctx: &impl Context) -> Result<(), ()> {
                         }
                         .build(),
                     );
-                    return Err(());
+                    return Err(hci::ErrorCode::AuthenticationFailure);
                 }
             }
     };
     let responder = {
-        let response = ctx.receive_lmp_packet::<lmp::IoCapabilityRes>().await;
-
-        let io_capability = hci::IoCapability::try_from(response.get_io_capabilities()).unwrap();
-        let oob_data_present =
-            hci::OobDataPresent::try_from(response.get_oob_authentication_data()).unwrap();
-        let authentication_requirements =
-            hci::AuthenticationRequirements::try_from(response.get_authentication_requirement())
+        match ctx.receive_lmp_packet::<Either<lmp::IoCapabilityRes, lmp::NotAcceptedExt>>().await {
+            Either::Left(response) => {
+                let io_capability =
+                    hci::IoCapability::try_from(response.get_io_capabilities()).unwrap();
+                let oob_data_present =
+                    hci::OobDataPresent::try_from(response.get_oob_authentication_data()).unwrap();
+                let authentication_requirements = hci::AuthenticationRequirements::try_from(
+                    response.get_authentication_requirement(),
+                )
                 .unwrap();
 
-        ctx.send_hci_event(
-            hci::IoCapabilityResponseBuilder {
-                bd_addr: ctx.peer_address(),
-                io_capability,
-                oob_data_present,
-                authentication_requirements,
-            }
-            .build(),
-        );
+                ctx.send_hci_event(
+                    hci::IoCapabilityResponseBuilder {
+                        bd_addr: ctx.peer_address(),
+                        io_capability,
+                        oob_data_present,
+                        authentication_requirements,
+                    }
+                    .build(),
+                );
 
-        AuthenticationParams { io_capability, oob_data_present, authentication_requirements }
+                AuthenticationParams {
+                    io_capability,
+                    oob_data_present,
+                    authentication_requirements,
+                }
+            }
+            Either::Right(_) => return Err(hci::ErrorCode::LinkLayerCollision),
+        }
     };
 
     // Public Key Exchange
@@ -466,7 +481,7 @@ pub async fn initiate(ctx: &impl Context) -> Result<(), ()> {
             }
             .build(),
         );
-        return Err(());
+        return Err(hci::ErrorCode::AuthenticationFailure);
     }
 
     // Authentication Stage 2
@@ -487,7 +502,7 @@ pub async fn initiate(ctx: &impl Context) -> Result<(), ()> {
                 }
                 .build(),
             );
-            return Err(());
+            return Err(hci::ErrorCode::AuthenticationFailure);
         }
     }
 
@@ -514,7 +529,7 @@ pub async fn initiate(ctx: &impl Context) -> Result<(), ()> {
     authentication::receive_challenge(ctx, link_key).await;
 
     if auth_result.is_err() {
-        return Err(());
+        return Err(hci::ErrorCode::AuthenticationFailure);
     }
 
     ctx.send_hci_event(
@@ -530,6 +545,22 @@ pub async fn initiate(ctx: &impl Context) -> Result<(), ()> {
 }
 
 pub async fn respond(ctx: &impl Context, request: lmp::IoCapabilityReq) -> Result<(), ()> {
+    // Vol 2, Part C § 2.5.1 Transaction collision resolution.
+    // In case of procedure collision, the Central rejects the Peripheral
+    // initiated procedure. The Central-initiated procedure shall then be
+    // completed.
+    if ctx.pairing() && ctx.role() == hci::Role::Central {
+        ctx.send_lmp_packet(
+            lmp::NotAcceptedExtBuilder {
+                transaction_id: 0,
+                error_code: hci::ErrorCode::LinkLayerCollision.into(),
+                not_accepted_opcode: lmp::ExtendedOpcode::IoCapabilityReq,
+            }
+            .build(),
+        );
+        return Err(());
+    }
+
     let initiator = {
         let io_capability = hci::IoCapability::try_from(request.get_io_capabilities()).unwrap();
         let oob_data_present =
@@ -750,9 +781,11 @@ mod tests {
     use crate::lmp::ec::PrivateKey;
     use crate::lmp::procedure::Context;
     use crate::lmp::test::{sequence, TestContext};
+    use crate::packets::hci;
     // simple pairing is part of authentication procedure
     use super::super::authentication::initiate;
     use super::super::authentication::respond;
+    use futures::join;
 
     fn local_p192_public_key(context: &crate::lmp::test::TestContext) -> [[u8; 16]; 3] {
         let mut buf = [[0; 16], [0; 16], [0; 16]];
@@ -1036,5 +1069,397 @@ mod tests {
         let procedure = respond;
 
         include!("../../../test/SP/BV-36-C.in");
+    }
+
+    #[test]
+    fn numeric_comparison_collision_central_initiated() {
+        // Verify that the Central handles a transaction collision for the
+        // LMP request IO_CAPABILITY_REQ by rejecting the Peripheral
+        // request and resuming the Central request.
+
+        let context = TestContext::new().with_role(hci::Role::Central);
+        let procedure = |context| async move {
+            join!(initiate(context), respond(context));
+        };
+
+        sequence! { procedure, context,
+            // ACL Connection Established
+            Upper Tester -> IUT: AuthenticationRequested {
+                connection_handle: context.peer_handle()
+            }
+            IUT -> Upper Tester: AuthenticationRequestedStatus {
+               num_hci_command_packets: 1,
+               status: ErrorCode::Success,
+            }
+            IUT -> Upper Tester: LinkKeyRequest {
+                bd_addr: context.peer_address(),
+            }
+            Upper Tester -> IUT: LinkKeyRequestNegativeReply {
+                bd_addr: context.peer_address(),
+            }
+            IUT -> Upper Tester: LinkKeyRequestNegativeReplyComplete {
+               num_hci_command_packets: 1,
+               status: ErrorCode::Success,
+               bd_addr: context.peer_address(),
+            }
+            IUT -> Upper Tester: IoCapabilityRequest {
+                bd_addr: context.peer_address(),
+            }
+            Upper Tester -> IUT: IoCapabilityRequestReply {
+                bd_addr: context.peer_address(),
+                io_capability: IoCapability::DisplayYesNo,
+                oob_present: OobDataPresent::NotPresent,
+                authentication_requirements: AuthenticationRequirements::NoBondingMitmProtection,
+            }
+            IUT -> Upper Tester: IoCapabilityRequestReplyComplete {
+                num_hci_command_packets: 1,
+                status: ErrorCode::Success,
+                bd_addr: context.peer_address(),
+            }
+            IUT -> Lower Tester: IoCapabilityReq {
+                transaction_id: 0,
+                io_capabilities: 0x01,
+                oob_authentication_data: 0x00,
+                authentication_requirement: 0x01,
+            }
+            // Procedure collision.
+            // The Central must reject the Peripheral-initiated procedure.
+            Lower Tester -> IUT: IoCapabilityReq {
+                transaction_id: 0,
+                io_capabilities: 0x01,
+                oob_authentication_data: 0x00,
+                authentication_requirement: 0x01,
+            }
+            IUT -> Lower Tester: NotAcceptedExt {
+                not_accepted_opcode: ExtendedOpcode::IoCapabilityReq,
+                error_code: hci::ErrorCode::LinkLayerCollision.into(),
+            }
+            Lower Tester -> IUT: IoCapabilityRes {
+                transaction_id: 0,
+                io_capabilities: 0x01,
+                oob_authentication_data: 0x00,
+                authentication_requirement: 0x01,
+            }
+            IUT -> Upper Tester: IoCapabilityResponse {
+                bd_addr: context.peer_address(),
+                io_capability: IoCapability::DisplayYesNo,
+                oob_data_present: OobDataPresent::NotPresent,
+                authentication_requirements: AuthenticationRequirements::NoBondingMitmProtection,
+            }
+            // Public Key Exchange
+            IUT -> Lower Tester: EncapsulatedHeader {
+                transaction_id: 0,
+                major_type: 1,
+                minor_type: 1,
+                payload_length: 48,
+            }
+            Lower Tester -> IUT: Accepted {
+                transaction_id: 0,
+                accepted_opcode: Opcode::EncapsulatedHeader,
+            }
+            repeat 3 times with (part in local_p192_public_key(&context)) {
+                IUT -> Lower Tester: EncapsulatedPayload {
+                    transaction_id: 0,
+                    data: part,
+                }
+                Lower Tester -> IUT: Accepted {
+                    transaction_id: 0,
+                    accepted_opcode: Opcode::EncapsulatedPayload,
+                }
+            }
+            Lower Tester -> IUT: EncapsulatedHeader {
+                transaction_id: 0,
+                major_type: 1,
+                minor_type: 1,
+                payload_length: 48,
+            }
+            IUT -> Lower Tester: Accepted {
+                transaction_id: 0,
+                accepted_opcode: Opcode::EncapsulatedHeader,
+            }
+            repeat 3 times with (part in peer_p192_public_key()) {
+                Lower Tester -> IUT: EncapsulatedPayload {
+                    transaction_id: 0,
+                    data: part,
+                }
+                IUT -> Lower Tester: Accepted {
+                    transaction_id: 0,
+                    accepted_opcode: Opcode::EncapsulatedPayload,
+                }
+            }
+            // Authentication Stage 1: Numeric Comparison Protocol
+            Lower Tester -> IUT: SimplePairingConfirm {
+                transaction_id: 0,
+                commitment_value: [0; 16],
+            }
+            IUT -> Lower Tester: SimplePairingNumber {
+                transaction_id: 0,
+                nonce: [0; 16],
+            }
+            Lower Tester -> IUT: Accepted {
+                transaction_id: 0,
+                accepted_opcode: Opcode::SimplePairingNumber,
+            }
+            Lower Tester -> IUT: SimplePairingNumber {
+                transaction_id: 0,
+                nonce: [0; 16],
+            }
+            IUT -> Upper Tester: UserConfirmationRequest { bd_addr: context.peer_address(), numeric_value: 0 }
+            IUT -> Lower Tester: Accepted {
+                transaction_id: 0,
+                accepted_opcode: Opcode::SimplePairingNumber,
+            }
+            Upper Tester -> IUT: UserConfirmationRequestReply { bd_addr: context.peer_address() }
+            IUT -> Upper Tester: UserConfirmationRequestReplyComplete {
+                num_hci_command_packets: 1,
+                status: ErrorCode::Success,
+                bd_addr: context.peer_address(),
+            }
+            // Authentication Stage 2
+            IUT -> Lower Tester: DhkeyCheck {
+                transaction_id: 0,
+                confirmation_value: [0; 16],
+            }
+            Lower Tester -> IUT: Accepted { transaction_id: 0, accepted_opcode: Opcode::DhkeyCheck }
+            Lower Tester -> IUT: DhkeyCheck {
+                transaction_id: 0,
+                confirmation_value: [0; 16],
+            }
+            IUT -> Lower Tester: Accepted { transaction_id: 0, accepted_opcode: Opcode::DhkeyCheck }
+            IUT -> Upper Tester: SimplePairingComplete {
+                status: ErrorCode::Success,
+                bd_addr: context.peer_address(),
+            }
+            // Link Key Calculation
+            IUT -> Lower Tester: AuRand {
+                transaction_id: 0,
+                random_number: [0; 16],
+            }
+            Lower Tester -> IUT: Sres {
+                transaction_id: 0,
+                authentication_rsp: [0; 4],
+            }
+            Lower Tester -> IUT: AuRand {
+                transaction_id: 0,
+                random_number: [0; 16],
+            }
+            IUT -> Lower Tester: Sres {
+                transaction_id: 0,
+                authentication_rsp: [0; 4],
+            }
+            IUT -> Upper Tester: LinkKeyNotification {
+                bd_addr: context.peer_address(),
+                key_type: KeyType::AuthenticatedP192,
+                link_key: [0; 16],
+            }
+            IUT -> Upper Tester: AuthenticationComplete {
+                status: ErrorCode::Success,
+                connection_handle: context.peer_handle(),
+            }
+        }
+    }
+
+    #[test]
+    fn numeric_comparison_collision_peripheral_initiated() {
+        // Verify that the Peripheral handles a transaction collision for the
+        // LMP request IO_CAPABILITY_REQ by abandoning the Peripheral
+        // request and resuming the Central request.
+
+        let context = TestContext::new().with_role(hci::Role::Peripheral);
+        let procedure = |context| async move {
+            join!(initiate(context), respond(context));
+        };
+
+        sequence! { procedure, context,
+            // ACL Connection Established
+            Upper Tester -> IUT: AuthenticationRequested {
+                connection_handle: context.peer_handle()
+            }
+            IUT -> Upper Tester: AuthenticationRequestedStatus {
+               num_hci_command_packets: 1,
+               status: ErrorCode::Success,
+            }
+            IUT -> Upper Tester: LinkKeyRequest {
+                bd_addr: context.peer_address(),
+            }
+            Upper Tester -> IUT: LinkKeyRequestNegativeReply {
+                bd_addr: context.peer_address(),
+            }
+            IUT -> Upper Tester: LinkKeyRequestNegativeReplyComplete {
+               num_hci_command_packets: 1,
+               status: ErrorCode::Success,
+               bd_addr: context.peer_address(),
+            }
+            IUT -> Upper Tester: IoCapabilityRequest {
+                bd_addr: context.peer_address(),
+            }
+            Upper Tester -> IUT: IoCapabilityRequestReply {
+                bd_addr: context.peer_address(),
+                io_capability: IoCapability::DisplayYesNo,
+                oob_present: OobDataPresent::NotPresent,
+                authentication_requirements: AuthenticationRequirements::NoBondingMitmProtection,
+            }
+            IUT -> Upper Tester: IoCapabilityRequestReplyComplete {
+                num_hci_command_packets: 1,
+                status: ErrorCode::Success,
+                bd_addr: context.peer_address(),
+            }
+            IUT -> Lower Tester: IoCapabilityReq {
+                transaction_id: 0,
+                io_capabilities: 0x01,
+                oob_authentication_data: 0x00,
+                authentication_requirement: 0x01,
+            }
+            // Procedure collision.
+            // The Peripheral must accept the Central-initiated procedure.
+            // and abandon the Peripheral-initiated one.
+            Lower Tester -> IUT: IoCapabilityReq {
+                transaction_id: 0,
+                io_capabilities: 0x01,
+                oob_authentication_data: 0x00,
+                authentication_requirement: 0x01,
+            }
+            IUT -> Upper Tester: IoCapabilityResponse {
+                bd_addr: context.peer_address(),
+                io_capability: IoCapability::DisplayYesNo,
+                oob_data_present: OobDataPresent::NotPresent,
+                authentication_requirements: AuthenticationRequirements::NoBondingMitmProtection,
+            }
+            IUT -> Upper Tester: IoCapabilityRequest {
+                bd_addr: context.peer_address(),
+            }
+            Lower Tester -> IUT: NotAcceptedExt {
+                transaction_id: 0,
+                not_accepted_opcode: ExtendedOpcode::IoCapabilityReq,
+                error_code: hci::ErrorCode::LinkLayerCollision.into(),
+            }
+            IUT -> Upper Tester: AuthenticationComplete {
+                status: ErrorCode::LinkLayerCollision,
+                connection_handle: context.peer_handle(),
+            }
+            Upper Tester -> IUT: IoCapabilityRequestReply {
+                bd_addr: context.peer_address(),
+                io_capability: IoCapability::DisplayYesNo,
+                oob_present: OobDataPresent::NotPresent,
+                authentication_requirements: AuthenticationRequirements::NoBondingMitmProtection,
+            }
+            IUT -> Upper Tester: IoCapabilityRequestReplyComplete {
+                num_hci_command_packets: 1,
+                status: ErrorCode::Success,
+                bd_addr: context.peer_address(),
+            }
+            IUT -> Lower Tester: IoCapabilityRes {
+                transaction_id: 0,
+                io_capabilities: 0x01,
+                oob_authentication_data: 0x00,
+                authentication_requirement: 0x01,
+            }
+            // Public Key Exchange
+            Lower Tester -> IUT: EncapsulatedHeader {
+                transaction_id: 0,
+                major_type: 1,
+                minor_type: 1,
+                payload_length: 48,
+            }
+            IUT -> Lower Tester: Accepted {
+                transaction_id: 0,
+                accepted_opcode: Opcode::EncapsulatedHeader,
+            }
+            repeat 3 times with (part in peer_p192_public_key()) {
+                Lower Tester -> IUT: EncapsulatedPayload {
+                    transaction_id: 0,
+                    data: part,
+                }
+                IUT -> Lower Tester: Accepted {
+                    transaction_id: 0,
+                    accepted_opcode: Opcode::EncapsulatedPayload,
+                }
+            }
+            IUT -> Lower Tester: EncapsulatedHeader {
+                transaction_id: 0,
+                major_type: 1,
+                minor_type: 1,
+                payload_length: 48,
+            }
+            Lower Tester -> IUT: Accepted {
+                transaction_id: 0,
+                accepted_opcode: Opcode::EncapsulatedHeader,
+            }
+            repeat 3 times with (part in local_p192_public_key(&context)) {
+                IUT -> Lower Tester: EncapsulatedPayload {
+                    transaction_id: 0,
+                    data: part,
+                }
+                Lower Tester -> IUT: Accepted {
+                    transaction_id: 0,
+                    accepted_opcode: Opcode::EncapsulatedPayload,
+                }
+            }
+            // Authentication Stage 1: Numeric Comparison Protocol
+            IUT -> Lower Tester: SimplePairingConfirm {
+                transaction_id: 0,
+                commitment_value: [0; 16],
+            }
+            Lower Tester -> IUT: SimplePairingNumber {
+                transaction_id: 0,
+                nonce: [0; 16],
+            }
+            IUT -> Lower Tester: Accepted {
+                transaction_id: 0,
+                accepted_opcode: Opcode::SimplePairingNumber,
+            }
+            IUT -> Lower Tester: SimplePairingNumber {
+                transaction_id: 0,
+                nonce: [0; 16],
+            }
+            Lower Tester -> IUT: Accepted {
+                transaction_id: 0,
+                accepted_opcode: Opcode::SimplePairingNumber,
+            }
+            IUT -> Upper Tester: UserConfirmationRequest { bd_addr: context.peer_address(), numeric_value: 0 }
+            Upper Tester -> IUT: UserConfirmationRequestReply { bd_addr: context.peer_address() }
+            IUT -> Upper Tester: UserConfirmationRequestReplyComplete {
+                num_hci_command_packets: 1,
+                status: ErrorCode::Success,
+                bd_addr: context.peer_address(),
+            }
+            // Authentication Stage 2
+            Lower Tester -> IUT: DhkeyCheck {
+                transaction_id: 0,
+                confirmation_value: [0; 16],
+            }
+            IUT -> Lower Tester: Accepted { transaction_id: 0, accepted_opcode: Opcode::DhkeyCheck }
+            IUT -> Lower Tester: DhkeyCheck {
+                transaction_id: 0,
+                confirmation_value: [0; 16],
+            }
+            Lower Tester -> IUT: Accepted { transaction_id: 0, accepted_opcode: Opcode::DhkeyCheck }
+            IUT -> Upper Tester: SimplePairingComplete {
+                status: ErrorCode::Success,
+                bd_addr: context.peer_address(),
+            }
+            // Link Key Calculation
+            Lower Tester -> IUT: AuRand {
+                transaction_id: 0,
+                random_number: [0; 16],
+            }
+            IUT -> Lower Tester: Sres {
+                transaction_id: 0,
+                authentication_rsp: [0; 4],
+            }
+            IUT -> Lower Tester: AuRand {
+                transaction_id: 0,
+                random_number: [0; 16],
+            }
+            Lower Tester -> IUT: Sres {
+                transaction_id: 0,
+                authentication_rsp: [0; 4],
+            }
+            IUT -> Upper Tester: LinkKeyNotification {
+                bd_addr: context.peer_address(),
+                key_type: KeyType::AuthenticatedP192,
+                link_key: [0; 16],
+            }
+        }
     }
 }

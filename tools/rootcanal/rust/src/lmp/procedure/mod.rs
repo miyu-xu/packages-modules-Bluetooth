@@ -46,6 +46,11 @@ pub trait Context {
     }
 
     fn set_private_key(&self, _key: &PrivateKey) {}
+
+    fn role(&self) -> hci::Role;
+
+    fn pairing(&self) -> bool;
+    fn set_pairing(&self, pairing: bool);
 }
 
 /// Future for Context::receive_hci_command and Context::receive_lmp_packet

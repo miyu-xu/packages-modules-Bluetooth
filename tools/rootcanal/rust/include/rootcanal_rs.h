@@ -39,7 +39,8 @@ const LinkManager* link_manager_create(ControllerOps ops);
 /// - This should be called from the thread of creation
 /// - `lm` must be a valid pointer
 /// - `peer` must be valid for reads for 6 bytes
-bool link_manager_add_link(const LinkManager* lm, const uint8_t (*peer)[6]);
+bool link_manager_add_link(const LinkManager* lm, const uint8_t (*peer)[6],
+                           uint8_t role);
 
 /// Unregister a link with a peer inside the link manager
 /// Returns true if successful
@@ -51,6 +52,18 @@ bool link_manager_add_link(const LinkManager* lm, const uint8_t (*peer)[6]);
 /// - `lm` must be a valid pointer
 /// - `peer` must be valid for reads for 6 bytes
 bool link_manager_remove_link(const LinkManager* lm, const uint8_t (*peer)[6]);
+
+/// Report a role switch to the link manager.
+/// # Arguments
+/// * `lm` - link manager pointer
+/// * `peer` - peer address as array of 6 bytes
+/// * `role` - new role for the link
+/// # Safety
+/// - This should be called from the thread of creation
+/// - `lm` must be a valid pointer
+/// - `peer` must be valid for reads for 6 bytes
+bool link_manager_set_role(const LinkManager* lm, const uint8_t (*peer)[6],
+                           uint8_t role);
 
 /// Run the Link Manager procedures
 /// # Arguments

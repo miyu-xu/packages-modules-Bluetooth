@@ -5097,7 +5097,8 @@ void LinkLayerController::IncomingPageResponsePacket(
   page_ = {};
 
   ASSERT(link_manager_add_link(
-      lm_.get(), reinterpret_cast<const uint8_t(*)[6]>(bd_addr.data())));
+      lm_.get(), reinterpret_cast<const uint8_t(*)[6]>(bd_addr.data()),
+      static_cast<uint8_t>(role)));
 
   // Role change event before connection complete generates an HCI Role Change
   // event on the initiator side if accepted; the event is sent before the
@@ -5267,7 +5268,8 @@ void LinkLayerController::MakePeripheralConnection(const Address& bd_addr,
   connection.SetRole(role);
 
   ASSERT(link_manager_add_link(
-      lm_.get(), reinterpret_cast<const uint8_t(*)[6]>(bd_addr.data())));
+      lm_.get(), reinterpret_cast<const uint8_t(*)[6]>(bd_addr.data()),
+      static_cast<uint8_t>(role)));
 
   // Role change event before connection complete generates an HCI Role Change
   // event on the acceptor side if accepted; the event is sent before the
@@ -5635,6 +5637,9 @@ void LinkLayerController::IncomingRoleSwitchRequest(
             : bluetooth::hci::Role::CENTRAL;
 
     connection.SetRole(new_role);
+    ASSERT(link_manager_set_role(
+        lm_.get(), reinterpret_cast<const uint8_t(*)[6]>(bd_addr.data()),
+        static_cast<uint8_t>(new_role)));
 
     if (IsEventUnmasked(EventCode::ROLE_CHANGE)) {
       ScheduleTask(kNoDelayMs, [this, bd_addr, new_role]() {
@@ -5666,6 +5671,9 @@ void LinkLayerController::IncomingRoleSwitchResponse(
           : bluetooth::hci::Role::CENTRAL;
 
   connection.SetRole(new_role);
+  ASSERT(link_manager_set_role(
+      lm_.get(), reinterpret_cast<const uint8_t(*)[6]>(bd_addr.data()),
+      static_cast<uint8_t>(new_role)));
 
   if (IsEventUnmasked(EventCode::ROLE_CHANGE)) {
     ScheduleTask(kNoDelayMs, [this, status, bd_addr, new_role]() {
