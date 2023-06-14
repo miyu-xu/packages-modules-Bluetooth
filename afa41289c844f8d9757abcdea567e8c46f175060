@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "960e5236_695213e1",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 484,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-06-14T22:15:35Z",
+      "side": 1,
+      "message": "Could we restrict the exception for which we do that a bit more ?\n\nCurrently this would apply for Runtime exception like NPE as well.",
+      "revId": "afa41289c844f8d9757abcdea567e8c46f175060",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
