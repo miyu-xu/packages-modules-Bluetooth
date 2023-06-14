@@ -87,6 +87,30 @@
       },
       "revId": "58cc536f13b396c779e5b8418768b450449db613",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bb6e793f_5a7a7f47",
+        "filename": "system/gd/metrics/chromeos/metrics_event.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 269,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-06-14T11:02:56Z",
+      "side": 1,
+      "message": "On second thought, the one in bluetooth.rs should reset the bonding state to none if pairing failed.",
+      "parentUuid": "5eb0d0cd_7046d983",
+      "range": {
+        "startLine": 268,
+        "startChar": 0,
+        "endLine": 269,
+        "endChar": 47
+      },
+      "revId": "58cc536f13b396c779e5b8418768b450449db613",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
