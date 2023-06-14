@@ -266,12 +266,20 @@ public final class BluetoothLeBroadcastSettings implements Parcelable {
          * Set broadcast name for the broadcast group.
          *
          * @param broadcastName Broadcast name for this broadcast group, null if no name provided
+         *     <p>As defined in Public Broadcast Profile V1.0, section 5.1.
+         *     <p>Broadcast_Name AD Type is a UTF-8 encoded string containing a minimum of 4
+         *     <p>and a maximum of 32 human-readable characters.
+         * @throws IllegalArgumentException if name length is invalid
          * @return this builder
          * @hide
          */
         @SystemApi
         @NonNull
         public Builder setBroadcastName(@Nullable String broadcastName) {
+            if (broadcastName != null
+                    && ((broadcastName.length() > 32) || (broadcastName.length() < 4))) {
+                throw new IllegalArgumentException("Invalid broadcast name length");
+            }
             mBroadcastName = broadcastName;
             return this;
         }
@@ -287,13 +295,18 @@ public final class BluetoothLeBroadcastSettings implements Parcelable {
          * <p>It must be a UTF-8 string that has at least 4 octets and should not exceed 16 octets.
          *
          * @param broadcastCode Broadcast Code for this broadcast group, null if code is not
-         *     required
+         *     required for non-encrypted broadcast
+         * @throws IllegalArgumentException if code length is invalid
          * @return this builder
          * @hide
          */
         @SystemApi
         @NonNull
         public Builder setBroadcastCode(@Nullable byte[] broadcastCode) {
+            if (broadcastCode != null
+                    && ((broadcastCode.length > 16) || (broadcastCode.length < 4))) {
+                throw new IllegalArgumentException("Invalid broadcast code length");
+            }
             mBroadcastCode = broadcastCode;
             return this;
         }
