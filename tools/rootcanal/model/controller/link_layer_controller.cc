@@ -5065,23 +5065,28 @@ void LinkLayerController::IncomingPageResponsePacket(
     WARNING(id_, "No free handles");
     return;
   }
-  CancelScheduledTask(page_timeout_task_id_);
-  ASSERT(link_manager_add_link(
-      lm_.get(), reinterpret_cast<const uint8_t(*)[6]>(peer.data())));
 
+  CancelScheduledTask(page_timeout_task_id_);
   CheckExpiringConnection(handle);
 
   auto addr = incoming.GetSourceAddress();
   auto response = model::packets::PageResponseView::Create(incoming);
   ASSERT(response.IsValid());
+
+  bluetooth::hci::Role role =
+      connections_.IsRoleSwitchAllowedForPendingConnection() &&
+      response.GetTryRoleSwitch() ? bluetooth::hci::Role::PERIPHERAL : bluetooth::hci::Role::CENTRAL;
+
+  ASSERT(link_manager_add_link(
+      lm_.get(), reinterpret_cast<const uint8_t(*)[6]>(addr.data()),
+      static_cast<uint8_t>(role)));
+
   /* Role change event before connection complete is a quirk commonly exists in
    * Android-capatable Bluetooth controllers.
    * On the initiator side, only connection in peripheral role should be
    * accompanied with a role change event */
   // TODO(b/274476773): Add a config option for this quirk
-  if (connections_.IsRoleSwitchAllowedForPendingConnection() &&
-      response.GetTryRoleSwitch()) {
-    auto role = bluetooth::hci::Role::PERIPHERAL;
+  if (role == bluetooth::hci::Role::PERIPHERAL) {
     connections_.SetAclRole(handle, role);
     if (IsEventUnmasked(EventCode::ROLE_CHANGE)) {
       send_event_(bluetooth::hci::RoleChangeBuilder::Create(ErrorCode::SUCCESS,
@@ -5234,8 +5239,6 @@ void LinkLayerController::MakePeripheralConnection(const Address& addr,
     INFO(id_, "CreateConnection failed");
     return;
   }
-  ASSERT(link_manager_add_link(
-      lm_.get(), reinterpret_cast<const uint8_t(*)[6]>(addr.data())));
 
   CheckExpiringConnection(handle);
 
@@ -5249,6 +5252,11 @@ void LinkLayerController::MakePeripheralConnection(const Address& addr,
           ? bluetooth::hci::Role::CENTRAL
           : bluetooth::hci::Role::PERIPHERAL;
   connections_.SetAclRole(handle, role);
+
+  ASSERT(link_manager_add_link(
+      lm_.get(), reinterpret_cast<const uint8_t(*)[6]>(addr.data()),
+      static_cast<uint8_t>(role)));
+
   if (IsEventUnmasked(EventCode::ROLE_CHANGE)) {
     send_event_(bluetooth::hci::RoleChangeBuilder::Create(ErrorCode::SUCCESS,
                                                           addr, role));
@@ -5516,6 +5524,11 @@ void LinkLayerController::IncomingRoleSwitchRequest(
   Role local_role =
       remote_role == Role::CENTRAL ? Role::PERIPHERAL : Role::CENTRAL;
   connections_.SetAclRole(handle, local_role);
+
+  ASSERT(link_manager_set_role(
+      lm_.get(), reinterpret_cast<const uint8_t(*)[6]>(addr.data()),
+      static_cast<uint8_t>(local_role)));
+
   if (IsEventUnmasked(EventCode::ROLE_CHANGE)) {
     ScheduleTask(kNoDelayMs, [this, addr, local_role]() {
       send_event_(bluetooth::hci::RoleChangeBuilder::Create(ErrorCode::SUCCESS,
@@ -5541,6 +5554,9 @@ void LinkLayerController::IncomingRoleSwitchResponse(
   Role role = static_cast<Role>(response.GetInitiatorNewRole());
   if (response.GetStatus() == static_cast<uint8_t>(ErrorCode::SUCCESS)) {
     connections_.SetAclRole(handle, role);
+    ASSERT(link_manager_set_role(
+        lm_.get(), reinterpret_cast<const uint8_t(*)[6]>(addr.data()),
+        static_cast<uint8_t>(role)));
   } else {
     status = static_cast<ErrorCode>(response.GetStatus());
   }

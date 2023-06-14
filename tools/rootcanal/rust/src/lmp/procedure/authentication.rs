@@ -77,7 +77,7 @@ pub async fn initiate(ctx: &impl Context) {
 
             match result {
                 Ok(_) => hci::ErrorCode::Success,
-                Err(_) => hci::ErrorCode::AuthenticationFailure,
+                Err(code) => code,
             }
         }
     };

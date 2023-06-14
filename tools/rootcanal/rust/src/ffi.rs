@@ -90,9 +90,11 @@ pub extern "C" fn link_manager_create(ops: ControllerOps) -> *const LinkManager 
 pub unsafe extern "C" fn link_manager_add_link(
     lm: *const LinkManager,
     peer: *const [u8; 6],
+    role: u8,
 ) -> bool {
     let lm = ManuallyDrop::new(Rc::from_raw(lm));
-    lm.add_link(hci::Address::from(&*peer)).is_ok()
+    let role = hci::Role::try_from(role).unwrap_or(hci::Role::Peripheral);
+    lm.add_link(hci::Address::from(&*peer), role).is_ok()
 }
 
 /// Unregister a link with a peer inside the link manager
@@ -111,6 +113,26 @@ pub unsafe extern "C" fn link_manager_remove_link(
 ) -> bool {
     let lm = ManuallyDrop::new(Rc::from_raw(lm));
     lm.remove_link(hci::Address::from(&*peer)).is_ok()
+}
+
+/// Report a role switch to the link manager.
+/// # Arguments
+/// * `lm` - link manager pointer
+/// * `peer` - peer address as array of 6 bytes
+/// * `role` - new role for the link
+/// # Safety
+/// - This should be called from the thread of creation
+/// - `lm` must be a valid pointer
+/// - `peer` must be valid for reads for 6 bytes
+#[no_mangle]
+pub unsafe extern "C" fn link_manager_set_role(
+    lm: *const LinkManager,
+    peer: *const [u8; 6],
+    role: u8,
+) -> bool {
+    let lm = ManuallyDrop::new(Rc::from_raw(lm));
+    let role = hci::Role::try_from(role).unwrap_or(hci::Role::Peripheral);
+    lm.set_role(hci::Address::from(&*peer), role).is_ok()
 }
 
 /// Run the Link Manager procedures

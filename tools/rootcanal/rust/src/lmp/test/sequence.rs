@@ -114,7 +114,7 @@ macro_rules! sequence {
             use crate::lmp::test::sequence_body;
             let last_poll = sequence_body!(ctx, $($tail)*).unwrap();
 
-            assert!(last_poll.is_ready());
+            assert!(last_poll.is_ready(), "procedure did not complete (Future not ready)");
             assert!($context.in_lmp_packets.borrow().is_empty());
             assert!($context.out_lmp_packets.borrow().is_empty());
             assert!($context.hci_commands.borrow().is_empty());

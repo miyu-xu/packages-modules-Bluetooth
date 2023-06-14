@@ -10,7 +10,6 @@ use crate::packets::{hci, lmp};
 
 use crate::lmp::procedure::Context;
 
-#[derive(Default)]
 pub struct TestContext {
     pub in_lmp_packets: RefCell<VecDeque<lmp::LmpPacket>>,
     pub out_lmp_packets: RefCell<VecDeque<lmp::LmpPacket>>,
@@ -19,6 +18,24 @@ pub struct TestContext {
     private_key: RefCell<Option<PrivateKey>>,
     features_pages: [u64; 3],
     peer_features_pages: [u64; 3],
+    role: hci::Role,
+    pairing: RefCell<bool>,
+}
+
+impl Default for TestContext {
+    fn default() -> Self {
+        TestContext {
+            in_lmp_packets: Default::default(),
+            out_lmp_packets: Default::default(),
+            hci_events: Default::default(),
+            hci_commands: Default::default(),
+            private_key: Default::default(),
+            features_pages: Default::default(),
+            peer_features_pages: Default::default(),
+            role: hci::Role::Peripheral,
+            pairing: Default::default(),
+        }
+    }
 }
 
 impl TestContext {
@@ -45,6 +62,11 @@ impl TestContext {
 
     pub fn with_peer_page_2_feature(mut self, feature: hci::LMPFeaturesPage2Bits) -> Self {
         self.peer_features_pages[2] |= u64::from(feature);
+        self
+    }
+
+    pub fn with_role(mut self, role: hci::Role) -> Self {
+        self.role = role;
         self
     }
 }
@@ -88,6 +110,18 @@ impl Context for TestContext {
 
     fn peer_handle(&self) -> u16 {
         0x42
+    }
+
+    fn role(&self) -> hci::Role {
+        self.role
+    }
+
+    fn pairing(&self) -> bool {
+        self.pairing.borrow().clone()
+    }
+
+    fn set_pairing(&self, pairing: bool) {
+        *self.pairing.borrow_mut() = pairing;
     }
 
     fn peer_extended_features(&self, features_page: u8) -> Option<u64> {

@@ -19,6 +19,8 @@ use lmp::Packet as _;
 
 struct Link {
     peer: Cell<hci::Address>,
+    role: Cell<hci::Role>,
+    pairing: Cell<bool>,
     // Only store one HCI packet as our Num_HCI_Command_Packets
     // is always 1
     hci: Cell<Option<hci::Command>>,
@@ -31,6 +33,8 @@ impl Default for Link {
             peer: Cell::new(hci::EMPTY_ADDRESS),
             hci: Default::default(),
             lmp: Default::default(),
+            role: Cell::new(hci::Role::Peripheral),
+            pairing: Cell::new(false),
         }
     }
 }
@@ -244,11 +248,16 @@ impl LinkManager {
         }
     }
 
-    pub fn add_link(self: &Rc<Self>, peer: hci::Address) -> Result<(), LinkManagerError> {
+    pub fn add_link(
+        self: &Rc<Self>,
+        peer: hci::Address,
+        role: hci::Role,
+    ) -> Result<(), LinkManagerError> {
         let index = self.links.iter().position(|link| link.peer.get().is_empty());
 
         if let Some(index) = index {
             self.links[index].peer.set(peer);
+            self.links[index].role.set(role);
             let context = LinkContext { index: index as u8, manager: Rc::downgrade(self) };
             self.procedures.borrow_mut()[index] = Some(Box::pin(procedure::run(context)));
             Ok(())
@@ -263,6 +272,17 @@ impl LinkManager {
         if let Some(index) = index {
             self.links[index].reset();
             self.procedures.borrow_mut()[index] = None;
+            Ok(())
+        } else {
+            Err(LinkManagerError::UnknownPeer)
+        }
+    }
+
+    pub fn set_role(&self, peer: hci::Address, role: hci::Role) -> Result<(), LinkManagerError> {
+        let index = self.links.iter().position(|link| link.peer.get() == peer);
+
+        if let Some(index) = index {
+            self.links[index].role.set(role);
             Ok(())
         } else {
             Err(LinkManagerError::UnknownPeer)
@@ -337,6 +357,28 @@ impl procedure::Context for LinkContext {
             manager.ops.get_extended_features(features_page)
         } else {
             0
+        }
+    }
+
+    fn role(&self) -> hci::Role {
+        if let Some(manager) = self.manager.upgrade() {
+            manager.link(self.index).role.get()
+        } else {
+            hci::Role::Peripheral
+        }
+    }
+
+    fn pairing(&self) -> bool {
+        if let Some(manager) = self.manager.upgrade() {
+            manager.link(self.index).pairing.get()
+        } else {
+            false
+        }
+    }
+
+    fn set_pairing(&self, pairing: bool) {
+        if let Some(manager) = self.manager.upgrade() {
+            manager.link(self.index).pairing.set(pairing)
         }
     }
 }
