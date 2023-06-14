@@ -16,6 +16,24 @@
       "message": "maybe it should be LIVE for VOICE recognition?",
       "revId": "4c113291118aaf50ab834e7d98712c2842b2096e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4db8cb23_59c52f33",
+        "filename": "system/bta/le_audio/le_audio_utils.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 251,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2023-06-14T08:31:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "97e05ddb_713d7c07",
+      "revId": "4c113291118aaf50ab834e7d98712c2842b2096e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
