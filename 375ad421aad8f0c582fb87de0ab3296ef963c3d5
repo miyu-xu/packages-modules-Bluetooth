@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a22e15ba_46395794",
+        "filename": "android/app/src/com/android/bluetooth/BluetoothMethodProxy.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2023-06-14T06:09:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fdb46ea6_de458598",
+      "range": {
+        "startLine": 177,
+        "startChar": 33,
+        "endLine": 177,
+        "endChar": 76
+      },
+      "revId": "375ad421aad8f0c582fb87de0ab3296ef963c3d5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "42b0a311_d97ed52f",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-06-13T06:18:05Z",
       "side": 1,
       "message": "Please create a separated CL for unrelated code with the bug.",
+      "range": {
+        "startLine": 667,
+        "startChar": 0,
+        "endLine": 680,
+        "endChar": 17
+      },
+      "revId": "375ad421aad8f0c582fb87de0ab3296ef963c3d5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "afc14c84_39cbc4f8",
+        "filename": "android/app/src/com/android/bluetooth/opp/BluetoothOppService.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 680,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2023-06-14T06:09:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "42b0a311_d97ed52f",
       "range": {
         "startLine": 667,
         "startChar": 0,
