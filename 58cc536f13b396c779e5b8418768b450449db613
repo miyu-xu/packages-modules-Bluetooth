@@ -16,6 +16,29 @@
       "message": "This might be part of the reason for the low pairing success rate in Floss metrics. PTAL, thanks!",
       "revId": "58cc536f13b396c779e5b8418768b450449db613",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c3a35ab7_e004e4f9",
+        "filename": "system/gd/metrics/chromeos/metrics_event.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 269,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-06-14T10:36:57Z",
+      "side": 1,
+      "message": "QQ: So if pairing is cancelled, we have `bond_state \u003d\u003d BONDING`? I would have guessed it gives us `bond_state \u003d\u003d NONE` instead. Otherwise the if in line 263 would mean nothing.\nIf so, maybe we need a static map like what we have in some other functions in this file as well.",
+      "range": {
+        "startLine": 268,
+        "startChar": 0,
+        "endLine": 269,
+        "endChar": 47
+      },
+      "revId": "58cc536f13b396c779e5b8418768b450449db613",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
