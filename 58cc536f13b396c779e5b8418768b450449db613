@@ -63,6 +63,30 @@
       },
       "revId": "58cc536f13b396c779e5b8418768b450449db613",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5eb0d0cd_7046d983",
+        "filename": "system/gd/metrics/chromeos/metrics_event.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 269,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-06-14T10:58:40Z",
+      "side": 1,
+      "message": "Then that\u0027s a great find!\n\nI have no problem with the `else` arm, but this `else if` arm doesn\u0027t match your explanation because here the status is success, but you say here is failure.\nWe also need to modify line 263 otherwise this `else if` arm will never be executed since we already return on line 263.\n\nAlso, probably we need to update bluetooth.rs to handle these lines only when we are not failing.\nhttps://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/system/gd/rust/linux/stack/src/bluetooth.rs;l\u003d1505-1508;drc\u003d46e869434729c751108247cf031eeb61ce21bc69",
+      "parentUuid": "e8c4782c_5b7c73f5",
+      "range": {
+        "startLine": 268,
+        "startChar": 0,
+        "endLine": 269,
+        "endChar": 47
+      },
+      "revId": "58cc536f13b396c779e5b8418768b450449db613",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
