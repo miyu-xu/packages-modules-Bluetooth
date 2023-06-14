@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "993e4ad7_166eccfb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1998925
+      },
+      "writtenOn": "2023-06-14T20:52:58Z",
+      "side": 1,
+      "message": "I\u0027ve put logs, of what the failed pairing looks like, in Buganizer. I\u0027ve also put, in Buganizer, logs of what a successful pairing with this CL looks like",
+      "revId": "794f9f6adf4b2328b336c2728ee309230b44dd02",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
