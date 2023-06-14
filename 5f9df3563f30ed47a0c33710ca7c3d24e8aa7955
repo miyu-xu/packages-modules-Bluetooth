@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "09a5cb5a_42ef820e",
+        "filename": "system/btif/src/btif_a2dp_sink.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 752,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2023-06-14T17:28:35Z",
+      "side": 1,
+      "message": "Curious if this interface is required for this change? I can\u0027t see it being used anywhere? If it isn\u0027t can we avoid this for the time being. \n\nIf it is, can we add a documentation for the same.",
+      "range": {
+        "startLine": 748,
+        "startChar": 0,
+        "endLine": 752,
+        "endChar": 0
+      },
+      "revId": "5f9df3563f30ed47a0c33710ca7c3d24e8aa7955",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "48669810_d004f570",
+        "filename": "system/btif/src/btif_avrcp_audio_track.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2023-06-14T17:28:35Z",
+      "side": 1,
+      "message": "It seems that BtifAvrcpAudioErrorHandle uses ErrorCallback (`  AAudioStreamBuilder_setErrorCallback(builder, ErrorCallback, nullptr`) which in turn depends on ErrorCallback. It seems to be a circular dependency to me. I suspect it can break things in the future.\n\n Could you clean this up so that we don\u0027t end up with any corner case or explain why this should be fine?",
+      "range": {
+        "startLine": 94,
+        "startChar": 45,
+        "endLine": 94,
+        "endChar": 70
+      },
+      "revId": "5f9df3563f30ed47a0c33710ca7c3d24e8aa7955",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
