@@ -53,31 +53,6 @@ using bluetooth::common::MetricIdAllocator;
 #define BTIF_DM_DEFAULT_INQ_MAX_RESULTS 0
 #define BTIF_DM_DEFAULT_INQ_MAX_DURATION 10
 
-/**
- * Legacy bluetooth module global control block state
- *
- * Mutex is used to synchronize access from the shim
- * layer into the global control block.  This is used
- * by the shim despite potentially arbitrary
- * unsynchronized access by the legacy stack.
- */
-extern tBTM_CB btm_cb;
-std::mutex btm_cb_mutex_;
-
-bool btm_inq_find_bdaddr(const RawAddress& p_bda);
-extern tINQ_DB_ENT* btm_inq_db_find(const RawAddress& raw_address);
-extern tINQ_DB_ENT* btm_inq_db_new(const RawAddress& p_bda, bool is_ble);
-
-/**
- * Legacy bluetooth btm stack entry points
- */
-void btm_acl_update_inquiry_status(uint8_t status);
-void btm_clear_all_pending_le_entry(void);
-void btm_clr_inq_result_flt(void);
-void btm_set_eir_uuid(const uint8_t* p_eir, tBTM_INQ_RESULTS* p_results);
-void btm_sort_inq_result(void);
-void btm_process_inq_complete(tHCI_STATUS status, uint8_t result_type);
-
 namespace {
 std::unordered_map<bluetooth::hci::AddressWithType, bt_bdname_t>
     address_name_map_;
