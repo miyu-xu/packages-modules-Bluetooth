@@ -556,6 +556,11 @@ struct LeScanningManager::impl : public LeAddressManagerCallback {
   }
 
   void start_scan() {
+    if (is_scanning_) {
+      LOG_INFO("Scanning already started, return!");
+      return;
+    }
+
     // If we receive start_scan during paused, set scan_on_resume_ to true
     if (paused_ && address_manager_registered_) {
       scan_on_resume_ = true;
