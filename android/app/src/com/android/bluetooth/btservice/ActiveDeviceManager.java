@@ -558,11 +558,9 @@ class ActiveDeviceManager {
 
     /**
      * Handles the active device logic for when the A2DP active device changes. Does the following:
-     * 1. Clear the active hearing aid.
-     * 2. If dual mode is enabled and all supported classic audio profiles are enabled, makes this
-     * device active for LE Audio. If not, clear the LE Audio active device.
-     * 3. Make HFP active for this device if it is already connected to HFP.
-     * 4. Stores the new A2DP active device.
+     * 1. Clear the active hearing aid. 2. If dual mode is enabled and all supported classic audio
+     * profiles are enabled, makes this device active for LE Audio. If not, clear the LE Audio
+     * active device. 3. Stores the new A2DP active device.
      *
      * @param device is the device that was connected to A2DP
      */
@@ -583,9 +581,6 @@ class ActiveDeviceManager {
                     setLeAudioActiveDevice(null, true);
                 }
             }
-            if (mHfpConnectedDevices.contains(device)) {
-                setHfpActiveDevice(device);
-            }
             // Just assign locally the new value
             mA2dpActiveDevice = device;
         }
@@ -593,11 +588,9 @@ class ActiveDeviceManager {
 
     /**
      * Handles the active device logic for when the HFP active device changes. Does the following:
-     * 1. Clear the active hearing aid.
-     * 2. If dual mode is enabled and all supported classic audio profiles are enabled, makes this
-     * device active for LE Audio. If not, clear the LE Audio active device.
-     * 3. Make A2DP active for this device if it is already connected to A2DP.
-     * 4. Stores the new HFP active device.
+     * 1. Clear the active hearing aid. 2. If dual mode is enabled and all supported classic audio
+     * profiles are enabled, makes this device active for LE Audio. If not, clear the LE Audio
+     * active device. 3. Stores the new HFP active device.
      *
      * @param device is the device that was connected to A2DP
      */
@@ -617,9 +610,6 @@ class ActiveDeviceManager {
                 } else {
                     setLeAudioActiveDevice(null, true);
                 }
-            }
-            if (mA2dpConnectedDevices.contains(device)) {
-                setA2dpActiveDevice(device);
             }
             // Just assign locally the new value
             mHfpActiveDevice = device;
