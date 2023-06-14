@@ -30,6 +30,7 @@ import android.bluetooth.BluetoothSinkAudioPolicy;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothHeadset;
 import android.bluetooth.BluetoothProfile;
+import android.bluetooth.BluetoothStatusCodes;
 import android.bluetooth.BluetoothUuid;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -219,6 +220,8 @@ public class HeadsetServiceAndStateMachineTest {
         // Modify start VR timeout to a smaller value for testing
         mOriginalVrTimeoutMs = HeadsetService.sStartVrTimeoutMs;
         HeadsetService.sStartVrTimeoutMs = START_VR_TIMEOUT_MILLIS;
+        android.sysprop.bluetooth.Hfp.swb_aptx_power_management(true);
+        Assert.assertTrue(android.sysprop.bluetooth.Hfp.swb_aptx_power_management().orElse(false));
         TestUtils.startService(mServiceRule, HeadsetService.class);
         mHeadsetService = HeadsetService.getHeadsetService();
         Assert.assertNotNull(mHeadsetService);
@@ -707,6 +710,8 @@ public class HeadsetServiceAndStateMachineTest {
         verify(mNativeInterface, timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(2)).atResponseCode(device,
                 HeadsetHalConstants.AT_RESPONSE_OK, 0);
         verify(mNativeInterface, timeout(ASYNC_CALL_TIMEOUT_MILLIS)).disconnectAudio(device);
+        verify(mNativeInterface, timeout(ASYNC_CALL_TIMEOUT_MILLIS).atLeast(1))
+                .enableSwb(eq(HeadsetHalConstants.BTHF_SWB_CODEC_VENDOR_APTX), anyBoolean());
         verifyNoMoreInteractions(mNativeInterface);
     }
 
@@ -772,6 +777,8 @@ public class HeadsetServiceAndStateMachineTest {
         verify(mSystemInterface, timeout(ASYNC_CALL_TIMEOUT_MILLIS)).activateVoiceRecognition();
         verify(mNativeInterface, timeout(START_VR_TIMEOUT_WAIT_MILLIS)).atResponseCode(device,
                 HeadsetHalConstants.AT_RESPONSE_ERROR, 0);
+        verify(mNativeInterface, timeout(ASYNC_CALL_TIMEOUT_MILLIS).atLeast(1))
+                .enableSwb(eq(HeadsetHalConstants.BTHF_SWB_CODEC_VENDOR_APTX), anyBoolean());
         verifyNoMoreInteractions(mNativeInterface);
         verifyZeroInteractions(mAudioManager);
     }
@@ -877,6 +884,10 @@ public class HeadsetServiceAndStateMachineTest {
         Assert.assertTrue(mHeadsetService.stopVoiceRecognition(device));
         verify(mNativeInterface, timeout(ASYNC_CALL_TIMEOUT_MILLIS)).stopVoiceRecognition(device);
         verify(mNativeInterface, timeout(ASYNC_CALL_TIMEOUT_MILLIS)).disconnectAudio(device);
+        verify(mNativeInterface, timeout(ASYNC_CALL_TIMEOUT_MILLIS).atLeast(1))
+                .enableSwb(eq(HeadsetHalConstants.BTHF_SWB_CODEC_VENDOR_APTX), anyBoolean());
+        verify(mNativeInterface, timeout(ASYNC_CALL_TIMEOUT_MILLIS).atLeast(1))
+                .isSwbEnabled(eq(HeadsetHalConstants.BTHF_SWB_CODEC_VENDOR_APTX));
         verifyNoMoreInteractions(mNativeInterface);
     }
 
@@ -950,6 +961,10 @@ public class HeadsetServiceAndStateMachineTest {
         verify(mAudioManager, timeout(ASYNC_CALL_TIMEOUT_MILLIS)).setA2dpSuspended(true);
         verify(mAudioManager, timeout(ASYNC_CALL_TIMEOUT_MILLIS)).setLeAudioSuspended(true);
         verify(mNativeInterface, timeout(ASYNC_CALL_TIMEOUT_MILLIS)).connectAudio(deviceA);
+        verify(mNativeInterface, timeout(ASYNC_CALL_TIMEOUT_MILLIS).atLeast(1))
+                .enableSwb(eq(HeadsetHalConstants.BTHF_SWB_CODEC_VENDOR_APTX), anyBoolean());
+        verify(mNativeInterface, timeout(ASYNC_CALL_TIMEOUT_MILLIS).atLeast(1))
+                .isSwbEnabled(eq(HeadsetHalConstants.BTHF_SWB_CODEC_VENDOR_APTX));
         verifyNoMoreInteractions(mNativeInterface);
     }
 
@@ -1006,6 +1021,10 @@ public class HeadsetServiceAndStateMachineTest {
         verify(mAudioManager, timeout(ASYNC_CALL_TIMEOUT_MILLIS)).setA2dpSuspended(true);
         verify(mAudioManager, timeout(ASYNC_CALL_TIMEOUT_MILLIS)).setLeAudioSuspended(true);
         verify(mNativeInterface, timeout(ASYNC_CALL_TIMEOUT_MILLIS)).connectAudio(deviceA);
+        verify(mNativeInterface, timeout(ASYNC_CALL_TIMEOUT_MILLIS).atLeast(1))
+                .enableSwb(eq(HeadsetHalConstants.BTHF_SWB_CODEC_VENDOR_APTX), anyBoolean());
+        verify(mNativeInterface, timeout(ASYNC_CALL_TIMEOUT_MILLIS).atLeast(1))
+                .isSwbEnabled(eq(HeadsetHalConstants.BTHF_SWB_CODEC_VENDOR_APTX));
         verifyNoMoreInteractions(mNativeInterface);
     }
 
@@ -1124,6 +1143,275 @@ public class HeadsetServiceAndStateMachineTest {
         verifyCallStateToNativeInvocation(incomingCallState, connectedDevices);
     }
 
+    /**
+     * Test to verify if AptX Voice codec is set properly within incoming call. AptX SWB and AptX
+     * SWB PM are enabled, LC3 SWB is disabled. Voice call is non-HD and non Voip. Expected result:
+     * AptX SWB codec disabled.
+     */
+    @Test
+    public void testIncomingCall_NonHdNonVoipCall_AptXDisabled() {
+        when(mNativeInterface.isSwbEnabled(eq(HeadsetHalConstants.BTHF_SWB_CODEC_VENDOR_APTX)))
+                .thenReturn(true);
+        when(mNativeInterface.enableSwb(
+                        eq(HeadsetHalConstants.BTHF_SWB_CODEC_VENDOR_APTX), anyBoolean()))
+                .thenReturn(true);
+        when(mSystemInterface.isHighDefCallInProgress()).thenReturn(false);
+
+        // Connect HF
+        BluetoothDevice device = TestUtils.getTestDevice(mAdapter, 0);
+        connectTestDevice(device);
+        // Make device active
+        Assert.assertTrue(mHeadsetService.setActiveDevice(device));
+        verify(mNativeInterface).setActiveDevice(device);
+        Assert.assertEquals(device, mHeadsetService.getActiveDevice());
+        verify(mNativeInterface).sendBsir(eq(device), eq(true));
+        // Simulate AptX SWB enabled, LC3 SWB disabled
+        int swbCodec = HeadsetHalConstants.BTHF_SWB_CODEC_VENDOR_APTX;
+        int swbConfig = HeadsetHalConstants.BTHF_SWB_YES;
+        HeadsetStackEvent event =
+                new HeadsetStackEvent(
+                        HeadsetStackEvent.EVENT_TYPE_SWB, swbCodec, swbConfig, device);
+        mHeadsetService.messageFromNative(event);
+        // Simulate incoming call
+        mHeadsetService.phoneStateChanged(
+                0,
+                0,
+                HeadsetHalConstants.CALL_STATE_INCOMING,
+                TEST_PHONE_NUMBER,
+                128,
+                TEST_CALLER_ID,
+                false);
+        HeadsetCallState incomingCallState =
+                new HeadsetCallState(
+                        0,
+                        0,
+                        HeadsetHalConstants.CALL_STATE_INCOMING,
+                        TEST_PHONE_NUMBER,
+                        128,
+                        TEST_CALLER_ID);
+        List<BluetoothDevice> connectedDevices = mHeadsetService.getConnectedDevices();
+        verifyCallStateToNativeInvocation(incomingCallState, connectedDevices);
+        TestUtils.waitForLooperToFinishScheduledTask(
+                mHeadsetService.getStateMachinesThreadLooper());
+        when(mSystemInterface.isRinging()).thenReturn(true);
+        // Connect Audio
+        Assert.assertEquals(BluetoothStatusCodes.SUCCESS, mHeadsetService.connectAudio());
+        waitAndVerifyAudioStateIntent(
+                ASYNC_CALL_TIMEOUT_MILLIS,
+                device,
+                BluetoothHeadset.STATE_AUDIO_CONNECTING,
+                BluetoothHeadset.STATE_AUDIO_DISCONNECTED);
+        mHeadsetService.messageFromNative(
+                new HeadsetStackEvent(
+                        HeadsetStackEvent.EVENT_TYPE_AUDIO_STATE_CHANGED,
+                        HeadsetHalConstants.AUDIO_STATE_CONNECTED,
+                        device));
+        waitAndVerifyAudioStateIntent(
+                ASYNC_CALL_TIMEOUT_MILLIS,
+                device,
+                BluetoothHeadset.STATE_AUDIO_CONNECTED,
+                BluetoothHeadset.STATE_AUDIO_CONNECTING);
+
+        // Check that AptX SWB enabled, LC3 SWB disabled
+        verify(mAudioManager, timeout(ASYNC_CALL_TIMEOUT_MILLIS))
+                .setBluetoothHeadsetProperties(
+                        anyString(), anyBoolean(), anyBoolean(), eq(false), eq(false));
+        // Check that while CONNECT_AUDIO the AptX settings were taken into account and set properly
+        verify(mNativeInterface, atLeast(1))
+                .isSwbEnabled(eq(HeadsetHalConstants.BTHF_SWB_CODEC_VENDOR_APTX));
+        verify(mNativeInterface, times(1)).connectAudio(eq(device));
+        verify(mNativeInterface, times(1)).sendBsir(eq(device), eq(true));
+        verify(mNativeInterface, times(2))
+                .enableSwb(eq(HeadsetHalConstants.BTHF_SWB_CODEC_VENDOR_APTX), eq(false));
+        verifyNoMoreInteractions(mNativeInterface);
+    }
+
+    /**
+     * Test to verify if AptX Voice codec is set properly within incoming call. AptX SWB and AptX
+     * SWB PM are enabled, LC3 SWB is disabled. Voice call is HD and non Voip. Expected result: AptX
+     * SWB codec enabled.
+     */
+    @Test
+    public void testIncomingCall_HdNonVoipCall_AptXEnabled() {
+        when(mNativeInterface.isSwbEnabled(eq(HeadsetHalConstants.BTHF_SWB_CODEC_VENDOR_APTX)))
+                .thenReturn(true);
+        when(mNativeInterface.enableSwb(
+                        eq(HeadsetHalConstants.BTHF_SWB_CODEC_VENDOR_APTX), anyBoolean()))
+                .thenReturn(true);
+        when(mSystemInterface.isHighDefCallInProgress()).thenReturn(true);
+
+        // Connect HF
+        BluetoothDevice device = TestUtils.getTestDevice(mAdapter, 0);
+        connectTestDevice(device);
+        // Make device active
+        Assert.assertTrue(mHeadsetService.setActiveDevice(device));
+        verify(mNativeInterface).setActiveDevice(device);
+        Assert.assertEquals(device, mHeadsetService.getActiveDevice());
+        verify(mNativeInterface).sendBsir(eq(device), eq(true));
+        // Simulate AptX SWB enabled, LC3 SWB disabled
+        int swbCodec = HeadsetHalConstants.BTHF_SWB_CODEC_VENDOR_APTX;
+        int swbConfig = HeadsetHalConstants.BTHF_SWB_YES;
+        HeadsetStackEvent event =
+                new HeadsetStackEvent(
+                        HeadsetStackEvent.EVENT_TYPE_SWB, swbCodec, swbConfig, device);
+        mHeadsetService.messageFromNative(event);
+        // Simulate incoming call
+        mHeadsetService.phoneStateChanged(
+                0,
+                0,
+                HeadsetHalConstants.CALL_STATE_INCOMING,
+                TEST_PHONE_NUMBER,
+                128,
+                TEST_CALLER_ID,
+                false);
+        HeadsetCallState incomingCallState =
+                new HeadsetCallState(
+                        0,
+                        0,
+                        HeadsetHalConstants.CALL_STATE_INCOMING,
+                        TEST_PHONE_NUMBER,
+                        128,
+                        TEST_CALLER_ID);
+        List<BluetoothDevice> connectedDevices = mHeadsetService.getConnectedDevices();
+        verifyCallStateToNativeInvocation(incomingCallState, connectedDevices);
+        TestUtils.waitForLooperToFinishScheduledTask(
+                mHeadsetService.getStateMachinesThreadLooper());
+        when(mSystemInterface.isRinging()).thenReturn(true);
+        // Connect Audio
+        Assert.assertEquals(BluetoothStatusCodes.SUCCESS, mHeadsetService.connectAudio());
+        waitAndVerifyAudioStateIntent(
+                ASYNC_CALL_TIMEOUT_MILLIS,
+                device,
+                BluetoothHeadset.STATE_AUDIO_CONNECTING,
+                BluetoothHeadset.STATE_AUDIO_DISCONNECTED);
+        mHeadsetService.messageFromNative(
+                new HeadsetStackEvent(
+                        HeadsetStackEvent.EVENT_TYPE_AUDIO_STATE_CHANGED,
+                        HeadsetHalConstants.AUDIO_STATE_CONNECTED,
+                        device));
+        waitAndVerifyAudioStateIntent(
+                ASYNC_CALL_TIMEOUT_MILLIS,
+                device,
+                BluetoothHeadset.STATE_AUDIO_CONNECTED,
+                BluetoothHeadset.STATE_AUDIO_CONNECTING);
+
+        // Check that AptX SWB enabled, LC3 SWB disabled
+        verify(mAudioManager, timeout(ASYNC_CALL_TIMEOUT_MILLIS))
+                .setBluetoothHeadsetProperties(
+                        anyString(), anyBoolean(), anyBoolean(), eq(false), eq(true));
+        // Check that while CONNECT_AUDIO the AptX settings were taken into account and set properly
+        verify(mNativeInterface, atLeast(1))
+                .isSwbEnabled(eq(HeadsetHalConstants.BTHF_SWB_CODEC_VENDOR_APTX));
+        verify(mNativeInterface, times(1)).connectAudio(eq(device));
+        verify(mNativeInterface, times(1)).sendBsir(eq(device), eq(true));
+        verify(mNativeInterface, times(2))
+                .enableSwb(eq(HeadsetHalConstants.BTHF_SWB_CODEC_VENDOR_APTX), eq(true));
+        verifyNoMoreInteractions(mNativeInterface);
+    }
+
+    /** Test to verify if audio parameters are correctly set. Test LC3 SWB enabled */
+    @Test
+    public void testSetAudioParameters_Lc3SwbEnabled() {
+        // Connect HF
+        BluetoothDevice device = TestUtils.getTestDevice(mAdapter, 0);
+        connectTestDevice(device);
+        // Make device active
+        Assert.assertTrue(mHeadsetService.setActiveDevice(device));
+        verify(mNativeInterface).setActiveDevice(device);
+        Assert.assertEquals(device, mHeadsetService.getActiveDevice());
+        verify(mNativeInterface).sendBsir(eq(device), eq(true));
+        // Simulate SWB
+        int swbCodec = HeadsetHalConstants.BTHF_SWB_CODEC_LC3;
+        int swbConfig = HeadsetHalConstants.BTHF_SWB_YES;
+        HeadsetStackEvent event =
+                new HeadsetStackEvent(
+                        HeadsetStackEvent.EVENT_TYPE_SWB, swbCodec, swbConfig, device);
+        mHeadsetService.messageFromNative(event);
+        // Start voice recognition
+        startVoiceRecognitionFromHf(device);
+        // Check that proper codecs were set
+        verify(mAudioManager, timeout(ASYNC_CALL_TIMEOUT_MILLIS))
+                .setBluetoothHeadsetProperties(
+                        anyString(), anyBoolean(), anyBoolean(), eq(true), eq(false));
+    }
+
+    /** Test to verify if audio parameters are correctly set. Test aptX SWB enabled */
+    @Test
+    public void testSetAudioParameters_AptXSwbEnabled() {
+        // Connect HF
+        BluetoothDevice device = TestUtils.getTestDevice(mAdapter, 0);
+        connectTestDevice(device);
+        // Make device active
+        Assert.assertTrue(mHeadsetService.setActiveDevice(device));
+        verify(mNativeInterface).setActiveDevice(device);
+        Assert.assertEquals(device, mHeadsetService.getActiveDevice());
+        verify(mNativeInterface).sendBsir(eq(device), eq(true));
+        // Simulate SWB
+        int swbCodec = HeadsetHalConstants.BTHF_SWB_CODEC_VENDOR_APTX;
+        int swbConfig = HeadsetHalConstants.BTHF_SWB_YES;
+        HeadsetStackEvent event =
+                new HeadsetStackEvent(
+                        HeadsetStackEvent.EVENT_TYPE_SWB, swbCodec, swbConfig, device);
+        mHeadsetService.messageFromNative(event);
+        // Start voice recognition
+        startVoiceRecognitionFromHf(device);
+        // Check that proper codecs were set
+        verify(mAudioManager, timeout(ASYNC_CALL_TIMEOUT_MILLIS))
+                .setBluetoothHeadsetProperties(
+                        anyString(), anyBoolean(), anyBoolean(), eq(false), eq(true));
+    }
+
+    /** Test to verify if audio parameters are correctly set. Test SWB disabled */
+    @Test
+    public void testSetAudioParameters_SwbDisabled() {
+        // Connect HF
+        BluetoothDevice device = TestUtils.getTestDevice(mAdapter, 0);
+        connectTestDevice(device);
+        // Make device active
+        Assert.assertTrue(mHeadsetService.setActiveDevice(device));
+        verify(mNativeInterface).setActiveDevice(device);
+        Assert.assertEquals(device, mHeadsetService.getActiveDevice());
+        verify(mNativeInterface).sendBsir(eq(device), eq(true));
+        // Simulate SWB
+        int codec = HeadsetHalConstants.BTHF_SWB_NO;
+        HeadsetStackEvent event =
+                new HeadsetStackEvent(HeadsetStackEvent.EVENT_TYPE_SWB, codec, device);
+        mHeadsetService.messageFromNative(event);
+        // Start voice recognition
+        startVoiceRecognitionFromHf(device);
+        // Check that proper codecs were set
+        verify(mAudioManager, timeout(ASYNC_CALL_TIMEOUT_MILLIS))
+                .setBluetoothHeadsetProperties(
+                        anyString(), anyBoolean(), anyBoolean(), eq(false), eq(false));
+    }
+
+    /**
+     * Test the functionality of {@link HeadsetService#isSwbEnabled()} and {@link
+     * HeadsetService#enableSwbCodec()}
+     *
+     * <p>AptX SWB and AptX SWB PM enabled
+     */
+    @Test
+    public void testVoiceRecognition_AptXSwbEnabled() {
+        when(mNativeInterface.isSwbEnabled(eq(HeadsetHalConstants.BTHF_SWB_CODEC_VENDOR_APTX)))
+                .thenReturn(true);
+        // Connect HF
+        BluetoothDevice device = TestUtils.getTestDevice(mAdapter, 0);
+        connectTestDevice(device);
+        // Make device active
+        Assert.assertTrue(mHeadsetService.setActiveDevice(device));
+        verify(mNativeInterface).setActiveDevice(device);
+        Assert.assertEquals(device, mHeadsetService.getActiveDevice());
+        verify(mNativeInterface).sendBsir(eq(device), eq(true));
+        // Start voice recognition to connect audio
+        startVoiceRecognitionFromHf(device);
+
+        verify(mNativeInterface, atLeast(1))
+                .isSwbEnabled(eq(HeadsetHalConstants.BTHF_SWB_CODEC_VENDOR_APTX));
+        verify(mNativeInterface, times(2))
+                .enableSwb(eq(HeadsetHalConstants.BTHF_SWB_CODEC_VENDOR_APTX), eq(true));
+    }
+
     private void startVoiceRecognitionFromHf(BluetoothDevice device) {
         // Start voice recognition
         HeadsetStackEvent startVrEvent =
@@ -1137,6 +1425,10 @@ public class HeadsetServiceAndStateMachineTest {
         verify(mAudioManager, timeout(ASYNC_CALL_TIMEOUT_MILLIS)).setA2dpSuspended(true);
         verify(mAudioManager, timeout(ASYNC_CALL_TIMEOUT_MILLIS)).setLeAudioSuspended(true);
         verify(mNativeInterface, timeout(ASYNC_CALL_TIMEOUT_MILLIS)).connectAudio(device);
+        verify(mNativeInterface, timeout(ASYNC_CALL_TIMEOUT_MILLIS).atLeast(1))
+                .enableSwb(eq(HeadsetHalConstants.BTHF_SWB_CODEC_VENDOR_APTX), anyBoolean());
+        verify(mNativeInterface, timeout(ASYNC_CALL_TIMEOUT_MILLIS).atLeast(1))
+                .isSwbEnabled(eq(HeadsetHalConstants.BTHF_SWB_CODEC_VENDOR_APTX));
         waitAndVerifyAudioStateIntent(ASYNC_CALL_TIMEOUT_MILLIS, device,
                 BluetoothHeadset.STATE_AUDIO_CONNECTING, BluetoothHeadset.STATE_AUDIO_DISCONNECTED);
         mHeadsetService.messageFromNative(
@@ -1155,6 +1447,10 @@ public class HeadsetServiceAndStateMachineTest {
         verify(mAudioManager, timeout(ASYNC_CALL_TIMEOUT_MILLIS)).setA2dpSuspended(true);
         verify(mAudioManager, timeout(ASYNC_CALL_TIMEOUT_MILLIS)).setLeAudioSuspended(true);
         verify(mNativeInterface, timeout(ASYNC_CALL_TIMEOUT_MILLIS)).connectAudio(device);
+        verify(mNativeInterface, timeout(ASYNC_CALL_TIMEOUT_MILLIS).atLeast(1))
+                .enableSwb(eq(HeadsetHalConstants.BTHF_SWB_CODEC_VENDOR_APTX), anyBoolean());
+        verify(mNativeInterface, timeout(ASYNC_CALL_TIMEOUT_MILLIS).atLeast(1))
+                .isSwbEnabled(eq(HeadsetHalConstants.BTHF_SWB_CODEC_VENDOR_APTX));
         waitAndVerifyAudioStateIntent(ASYNC_CALL_TIMEOUT_MILLIS, device,
                 BluetoothHeadset.STATE_AUDIO_CONNECTING, BluetoothHeadset.STATE_AUDIO_DISCONNECTED);
         mHeadsetService.messageFromNative(
