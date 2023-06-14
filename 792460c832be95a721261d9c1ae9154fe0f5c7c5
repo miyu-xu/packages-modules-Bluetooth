@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "24dfdfed_4c365059",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 226,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-06-14T23:01:49Z",
+      "side": 1,
+      "message": "https://docs.oracle.com/javase/8/docs/api/java/util/Map.html#get-java.lang.Object-\n\n`Map#get` returns `null` if the key is not in the map, unless there is an element with `null` as key I expect this change to be a no-op (ignoring the log).",
+      "revId": "792460c832be95a721261d9c1ae9154fe0f5c7c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e94b486b_9d6ecf9e",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 229,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-06-14T23:01:49Z",
+      "side": 1,
+      "message": "nit: add a space",
+      "range": {
+        "startLine": 229,
+        "startChar": 36,
+        "endLine": 229,
+        "endChar": 49
+      },
+      "revId": "792460c832be95a721261d9c1ae9154fe0f5c7c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
