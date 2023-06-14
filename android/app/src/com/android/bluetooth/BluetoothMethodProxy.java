@@ -173,6 +173,12 @@ public class BluetoothMethodProxy {
         return contentResolver.acquireUnstableContentProviderClient(name);
     }
 
+    /** Proxies {@link ContentResolver#acquireContentProviderClient(Uri)} (String)}. */
+    public ContentProviderClient contentResolverAcquireContentProviderClient(
+            ContentResolver contentResolver, @NonNull Uri uri) {
+        return contentResolver.acquireContentProviderClient(uri);
+    }
+
     /**
      * Proxies {@link ContentResolver#openOutputStream(Uri)}.
      */
@@ -257,5 +263,10 @@ public class BluetoothMethodProxy {
     public AppAdvertiseStats createAppAdvertiseStats(int appUid, int id, String name,
             ContextMap map, GattService service) {
         return new AppAdvertiseStats(appUid, id, name, map, service);
+    }
+
+    /** Proxies {@link Thread#start()}. */
+    public void threadStart(Thread thread) {
+        thread.start();
     }
 }
