@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c7e860a4_23eeec80",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-06-14T15:59:24Z",
+      "side": 1,
+      "message": "atest/presubmit does not catch these types of failures but direct execution does so this test must be included with the fix.\n\n```\n|vsoc_x86_64:/ # /data/nativetest64/net_test_stack_btm/net_test_stack_btm64 --gtest_filter\u003dStackBtmWithInitFreeTest.page_queue\nRunning main() from external/googletest/googletest/src/gtest_main.cc\nNote: Google Test filter \u003d StackBtmWithInitFreeTest.page_queue\n[\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d] Running 1 test from 1 test suite.\n[----------] Global test environment set-up.\n[----------] 1 test from StackBtmWithInitFreeTest\n[ RUN      ] StackBtmWithInitFreeTest.page_queue\n[       OK ] StackBtmWithInitFreeTest.page_queue (4 ms)\n[----------] 1 test from StackBtmWithInitFreeTest (4 ms total)\n\n[----------] Global test environment tear-down\n[\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d] 1 test from 1 test suite ran. (4 ms total)\n[  PASSED  ] 1 test.\n[0614/155623.797391:INFO:message_loop_thread.cc(97)] ShutDown: thread bt_test_main_thread(-1) is already stopped\n\n\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\n\u003d\u003d10829\u003d\u003dERROR: LeakSanitizer: detected memory leaks\n\nDirect leak of 48 byte(s) in 1 object(s) allocated from:\n    #0 0x79b9e514b4de  (/system/lib64/libclang_rt.asan-x86_64-android.so+0xd04de) (BuildId: 96e7f1731d052314503d8d070268eb48a19da3c5)\n    #1 0x55dc1332d756  (/data/nativetest64/net_test_stack_btm/net_test_stack_btm64+0x2fa756) (BuildId: 73e4a3c76aebae6d392e7ecde7940a02)\n    #2 0x55dc1362a304  (/data/nativetest64/net_test_stack_btm/net_test_stack_btm64+0x5f7304) (BuildId: 73e4a3c76aebae6d392e7ecde7940a02)\n    #3 0x55dc1373db7b  (/data/nativetest64/net_test_stack_btm/net_test_stack_btm64+0x70ab7b) (BuildId: 73e4a3c76aebae6d392e7ecde7940a02)\n    #4 0x55dc1373ffe2  (/data/nativetest64/net_test_stack_btm/net_test_stack_btm64+0x70cfe2) (BuildId: 73e4a3c76aebae6d392e7ecde7940a02)\n    #5 0x55dc13741b5e  (/data/nativetest64/net_test_stack_btm/net_test_stack_btm64+0x70eb5e) (BuildId: 73e4a3c76aebae6d392e7ecde7940a02)\n    #6 0x55dc1377137c  (/data/nativetest64/net_test_stack_btm/net_test_stack_btm64+0x73e37c) (BuildId: 73e4a3c76aebae6d392e7ecde7940a02)\n    #7 0x55dc1376f889  (/data/nativetest64/net_test_stack_btm/net_test_stack_btm64+0x73c889) (BuildId: 73e4a3c76aebae6d392e7ecde7940a02)\n    #8 0x55dc136fe068  (/data/nativetest64/net_test_stack_btm/net_test_stack_btm64+0x6cb068) (BuildId: 73e4a3c76aebae6d392e7ecde7940a02)\n    #9 0x79b9e1ab8899  (/apex/com.android.runtime/lib64/bionic/libc.so+0x52899) (BuildId: 02eb24b9c2ac5c742748fcd44ed5ef4f)\n\nSUMMARY: AddressSanitizer: 48 byte(s) leaked in 1 allocation(s).\nAborted\n```",
+      "revId": "84b6f1f9ea199047763207bceab3f815fb6c7811",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
