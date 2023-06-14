@@ -223,6 +223,8 @@ public class BassClientService extends ProfileService {
     }
 
     BluetoothDevice getActiveSyncedSource(BluetoothDevice scanDelegator) {
+        if (scanDelegator == null) return null;
+
         BluetoothDevice currentSource = mActiveSourceMap.get(scanDelegator);
         log("getActiveSyncedSource: scanDelegator" + scanDelegator
                 + "returning " + currentSource);
