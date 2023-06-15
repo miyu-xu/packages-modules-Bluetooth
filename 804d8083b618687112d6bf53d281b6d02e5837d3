@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1c365bb3_5e217b9e",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 588,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2023-06-15T05:57:55Z",
+      "side": 0,
+      "message": "If we remove this, then a bug similar to b/255278328 will occur. Will it be okay?\n\n[STEPS TO REPRODUCE]\n1.Connect classic HS (a.k.a. A)\n2.Listening to music via A\n3.Receive a phone call\n4.Answering the call via classic HS (a.k.a. B)\n5.Hang up the call\n6.Check if music come out from B\n\n[EXPECTED RESULTS]\nMusic will come out from B\n\n[OBSERVED RESULTS]\nMusic will come out from A",
+      "range": {
+        "startLine": 586,
+        "startChar": 12,
+        "endLine": 588,
+        "endChar": 13
+      },
+      "revId": "804d8083b618687112d6bf53d281b6d02e5837d3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
