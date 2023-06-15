@@ -399,6 +399,7 @@ init_flags!(
         sdp_return_classic_services_when_le_discovery_fails = true,
         use_rsi_from_cached_inqiry_results = false,
         att_mtu_default: i32 = 517,
+        aptx_voice = true,
     }
     // dynamic flags can be updated at runtime and should be accessed directly
     // to check.
