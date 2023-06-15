@@ -111,6 +111,30 @@
       },
       "revId": "58cc536f13b396c779e5b8418768b450449db613",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2b386f05_f8d4c7ea",
+        "filename": "system/gd/metrics/chromeos/metrics_event.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 269,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2023-06-15T04:34:55Z",
+      "side": 1,
+      "message": "Sorry I mistyped my previous comment. The bond_state in cancelling/aborting is `BT_BOND_STATE_NONE`\n\nSo the elseif in line 268 should be removed and we could have another block for the cancelling/aborting cases. However, this could be not easy.\nFor canceling from UI, it is`BT_STATUS_AUTH_FAILURE`, `BT_BOND_STATE_NONE` and `hci::ErrorCode::SUCCESS`. For aborting from the remote device, it is `BT_STATUS_FAIL`,`BT_BOND_STATE_NONE` and `hci::ErrorCode::SUCCESS`. Both cases are treated as pair success in the current implementation because hci overwrites bt_status but they should be `PAIR_FAIL_CANCEL`. Translating these 2 cases to `PAIR_FAIL_CANCEL` could hide some real failures.\n\nI also found that reconnecting phonehub has the same combination of forgetting a device (bond_state\u003dnone, the other 2 are success). So I think this could be the major contributor of most pairing_cancel results in our dashboard.\n\nIn conclusion, I think we should not care about canceling/aborting cases for now to react on the low pair success rate issue.",
+      "parentUuid": "e8c4782c_5b7c73f5",
+      "range": {
+        "startLine": 268,
+        "startChar": 0,
+        "endLine": 269,
+        "endChar": 47
+      },
+      "revId": "58cc536f13b396c779e5b8418768b450449db613",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
