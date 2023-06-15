@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2e9b7c67_38e3244c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 12
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2023-06-15T06:56:02Z",
+      "side": 1,
+      "message": "Yes, NotificationUpdateThread is started inside mUpdateThread",
+      "parentUuid": "a5f58e6d_e8602d50",
+      "range": {
+        "startLine": 16,
+        "startChar": 4,
+        "endLine": 16,
+        "endChar": 28
+      },
+      "revId": "54521ed470556225c2a21a0662d48671190b2930",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "54ef213c_416a9d92",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4312763c_2c581d7d",
+        "filename": "android/app/src/com/android/bluetooth/opp/BluetoothOppService.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 1171,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2023-06-15T06:56:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "54ef213c_416a9d92",
+      "range": {
+        "startLine": 1171,
+        "startChar": 12,
+        "endLine": 1171,
+        "endChar": 64
+      },
+      "revId": "54521ed470556225c2a21a0662d48671190b2930",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "26520a70_0711a232",
@@ -60,6 +108,30 @@
       "writtenOn": "2023-06-15T06:04:03Z",
       "side": 1,
       "message": "remove",
+      "range": {
+        "startLine": 1172,
+        "startChar": 12,
+        "endLine": 1172,
+        "endChar": 32
+      },
+      "revId": "54521ed470556225c2a21a0662d48671190b2930",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7c593569_93121170",
+        "filename": "android/app/src/com/android/bluetooth/opp/BluetoothOppService.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 1172,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2023-06-15T06:56:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "26520a70_0711a232",
       "range": {
         "startLine": 1172,
         "startChar": 12,
