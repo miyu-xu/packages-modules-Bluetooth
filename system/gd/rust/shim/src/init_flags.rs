@@ -55,6 +55,7 @@ mod ffi {
         fn sdp_return_classic_services_when_le_discovery_fails_is_enabled() -> bool;
         fn use_rsi_from_cached_inqiry_results_is_enabled() -> bool;
         fn get_att_mtu_default() -> i32;
+        fn aptx_voice_is_enabled() -> bool;
     }
 }
 
