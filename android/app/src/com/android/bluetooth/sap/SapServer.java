@@ -513,7 +513,10 @@ public class SapServer extends Thread implements Callback {
             }
 
             if (mIntentReceiver != null) {
-                mContext.unregisterReceiver(mIntentReceiver);
+                try {
+                    mContext.unregisterReceiver(mIntentReceiver);
+                } catch (IllegalArgumentException e) {
+                }
                 mIntentReceiver = null;
             }
             stopDisconnectTimer();
