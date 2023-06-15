@@ -292,7 +292,11 @@ impl IBluetoothCallback for BtCallback {
     fn on_sdp_record_created(&mut self, record: BtSdpRecord, handle: i32) {
         print_info!("SDP record handle={} created", handle);
         if let BtSdpRecord::Mps(_) = record {
-            self.context.lock().unwrap().mps_sdp_handle = Some(handle);
+            let context = self.context.clone();
+            // Use async call to prevent deadlock with `telephony enable`.
+            tokio::spawn(async move {
+                context.lock().unwrap().mps_sdp_handle = Some(handle);
+            });
         }
     }
 }
