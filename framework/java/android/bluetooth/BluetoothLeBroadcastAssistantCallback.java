@@ -127,6 +127,8 @@ public class BluetoothLeBroadcastAssistantCallback
                 final long identity = Binder.clearCallingIdentity();
                 try {
                     executor.execute(() -> cb.onSearchStarted(reason));
+                } catch (Exception e) {
+                    Log.e(TAG, "Callback already removed" + e);
                 } finally {
                     Binder.restoreCallingIdentity(identity);
                 }
@@ -142,6 +144,8 @@ public class BluetoothLeBroadcastAssistantCallback
                 final long identity = Binder.clearCallingIdentity();
                 try {
                     executor.execute(() -> cb.onSearchStartFailed(reason));
+                } catch (Exception e) {
+                    Log.e(TAG, "Callback already removed" + e);
                 } finally {
                     Binder.restoreCallingIdentity(identity);
                 }
@@ -157,6 +161,8 @@ public class BluetoothLeBroadcastAssistantCallback
                 final long identity = Binder.clearCallingIdentity();
                 try {
                     executor.execute(() -> cb.onSearchStopped(reason));
+                } catch (Exception e) {
+                    Log.e(TAG, "Callback already removed" + e);
                 } finally {
                     Binder.restoreCallingIdentity(identity);
                 }
@@ -172,6 +178,8 @@ public class BluetoothLeBroadcastAssistantCallback
                 final long identity = Binder.clearCallingIdentity();
                 try {
                     executor.execute(() -> cb.onSearchStopFailed(reason));
+                } catch (Exception e) {
+                    Log.e(TAG, "Callback already removed" + e);
                 } finally {
                     Binder.restoreCallingIdentity(identity);
                 }
@@ -187,6 +195,8 @@ public class BluetoothLeBroadcastAssistantCallback
                 final long identity = Binder.clearCallingIdentity();
                 try {
                     executor.execute(() -> cb.onSourceFound(source));
+                } catch (Exception e) {
+                    Log.e(TAG, "Callback already removed" + e);
                 } finally {
                     Binder.restoreCallingIdentity(identity);
                 }
@@ -202,6 +212,8 @@ public class BluetoothLeBroadcastAssistantCallback
                 final long identity = Binder.clearCallingIdentity();
                 try {
                     executor.execute(() -> cb.onSourceAdded(sink, sourceId, reason));
+                } catch (Exception e) {
+                    Log.e(TAG, "Callback already removed" + e);
                 } finally {
                     Binder.restoreCallingIdentity(identity);
                 }
@@ -218,6 +230,8 @@ public class BluetoothLeBroadcastAssistantCallback
                 final long identity = Binder.clearCallingIdentity();
                 try {
                     executor.execute(() -> cb.onSourceAddFailed(sink, source, reason));
+                } catch (Exception e) {
+                    Log.e(TAG, "Callback already removed" + e);
                 } finally {
                     Binder.restoreCallingIdentity(identity);
                 }
@@ -233,6 +247,8 @@ public class BluetoothLeBroadcastAssistantCallback
                 final long identity = Binder.clearCallingIdentity();
                 try {
                     executor.execute(() -> cb.onSourceModified(sink, sourceId, reason));
+                } catch (Exception e) {
+                    Log.e(TAG, "Callback already removed" + e);
                 } finally {
                     Binder.restoreCallingIdentity(identity);
                 }
@@ -248,6 +264,8 @@ public class BluetoothLeBroadcastAssistantCallback
                 final long identity = Binder.clearCallingIdentity();
                 try {
                     executor.execute(() -> cb.onSourceModifyFailed(sink, sourceId, reason));
+                } catch (Exception e) {
+                    Log.e(TAG, "Callback already removed" + e);
                 } finally {
                     Binder.restoreCallingIdentity(identity);
                 }
@@ -263,6 +281,8 @@ public class BluetoothLeBroadcastAssistantCallback
                 final long identity = Binder.clearCallingIdentity();
                 try {
                     executor.execute(() -> cb.onSourceRemoved(sink, sourceId, reason));
+                } catch (Exception e) {
+                    Log.e(TAG, "Callback already removed" + e);
                 } finally {
                     Binder.restoreCallingIdentity(identity);
                 }
@@ -278,6 +298,8 @@ public class BluetoothLeBroadcastAssistantCallback
                 final long identity = Binder.clearCallingIdentity();
                 try {
                     executor.execute(() -> cb.onSourceRemoveFailed(sink, sourceId, reason));
+                } catch (Exception e) {
+                    Log.e(TAG, "Callback already removed" + e);
                 } finally {
                     Binder.restoreCallingIdentity(identity);
                 }
@@ -294,6 +316,8 @@ public class BluetoothLeBroadcastAssistantCallback
                 final long identity = Binder.clearCallingIdentity();
                 try {
                     executor.execute(() -> cb.onReceiveStateChanged(sink, sourceId, state));
+                } catch (Exception e) {
+                    Log.e(TAG, "Callback already removed" + e);
                 } finally {
                     Binder.restoreCallingIdentity(identity);
                 }
