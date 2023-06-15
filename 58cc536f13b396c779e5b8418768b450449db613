@@ -159,6 +159,30 @@
       },
       "revId": "58cc536f13b396c779e5b8418768b450449db613",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c7abbe02_fa98852c",
+        "filename": "system/gd/metrics/chromeos/metrics_event.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 269,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2023-06-15T06:25:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cf53364c_8824a2dc",
+      "range": {
+        "startLine": 268,
+        "startChar": 0,
+        "endLine": 269,
+        "endChar": 47
+      },
+      "revId": "58cc536f13b396c779e5b8418768b450449db613",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
