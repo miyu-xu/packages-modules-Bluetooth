@@ -98,3 +98,9 @@ TEST(InitFlagsTest, test_enable_use_rsi_from_cached_inqiry_results) {
   InitFlags::Load(input);
   ASSERT_TRUE(InitFlags::UseRsiFromCachedInquiryResults());
 }
+
+TEST(InitFlagsTest, test_enable_aptx_voice) {
+  const char* input[] = {"INIT_aptx_voice=true", nullptr};
+  InitFlags::Load(input);
+  ASSERT_TRUE(InitFlags::IsAptXVoiceEnabled());
+}

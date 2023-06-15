@@ -51,6 +51,7 @@ mod ffi {
         fn use_rsi_from_cached_inqiry_results_is_enabled() -> bool;
         fn get_att_mtu_default() -> i32;
         fn encryption_in_busy_state_is_enabled() -> bool;
+        fn aptx_voice_is_enabled() -> bool;
     }
 }
 
