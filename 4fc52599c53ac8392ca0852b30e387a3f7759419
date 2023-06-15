@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "943c7b0d_7b78e61d",
+        "filename": "android/pandora/test/asha_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 254,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-06-15T16:50:57Z",
+      "side": 1,
+      "message": "nit: maybe add one comment to explain data point above 0 and below 0 symbolize a sine wave",
+      "range": {
+        "startLine": 254,
+        "startChar": 12,
+        "endLine": 254,
+        "endChar": 47
+      },
+      "revId": "4fc52599c53ac8392ca0852b30e387a3f7759419",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
