@@ -16,6 +16,24 @@
       "message": "I couldn\u0027t guess how this could happen.\nPlease try to find out the reasons if possible.",
       "revId": "09b4fdd5575588698a60acf4780b861487b4c484",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6b2aa0b3_e72b2bdc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2023-06-15T07:55:02Z",
+      "side": 1,
+      "message": "It only happens in Dogfood. So probably we should look at the changes in recent UP1A, not aosp or master",
+      "parentUuid": "15a1f82c_c4b83c9c",
+      "revId": "09b4fdd5575588698a60acf4780b861487b4c484",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
