@@ -37,6 +37,17 @@ public class BluetoothLeBroadcastAssistantCallback
     IBluetoothLeBroadcastAssistant mAdapter;
 
     public BluetoothLeBroadcastAssistantCallback(IBluetoothLeBroadcastAssistant adapter) {
+        Log.d(TAG, ":" + adapter);
+        mAdapter = adapter;
+    }
+
+    /**
+     * Set new adapter on service reconnected event.
+     *
+     * @param adapter
+     */
+    public void setAdapterReconnected(IBluetoothLeBroadcastAssistant adapter) {
+        Log.d(TAG, "setAdapterReconnected: " + adapter);
         mAdapter = adapter;
     }
 
@@ -49,6 +60,24 @@ public class BluetoothLeBroadcastAssistantCallback
     public void register(@NonNull Executor executor,
                          @NonNull BluetoothLeBroadcastAssistant.Callback callback) {
         synchronized (this) {
+            if (callback == null) {
+                if (mCallbackMap.isEmpty()) {
+                    Log.d(TAG, "There is no callbacks, nothing to do");
+                    return;
+                }
+
+                Log.d(TAG, "re-register callbacks");
+                try {
+                    mAdapter.registerCallback(this);
+                    mIsRegistered = true;
+                } catch (RemoteException e) {
+                    Log.w(TAG, "Failed to register broadcast assistant callback");
+                    Log.e(TAG, Log.getStackTraceString(new Throwable()));
+                }
+
+                return;
+            }
+
             if (mCallbackMap.containsKey(callback)) {
                 throw new IllegalArgumentException("callback is already registered");
             }
