@@ -16,6 +16,23 @@
       "message": "Hi Etienne, could you help review this clean up CL for migration? Thanks.",
       "revId": "845f7be776f1e5b78124243566b737acb1166d16",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "573756dd_4b5769ad",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1565288
+      },
+      "writtenOn": "2023-06-15T05:23:54Z",
+      "side": 1,
+      "message": "Hi Ying,\n\nCould you review this CL from CrOS BT team point of view?",
+      "revId": "845f7be776f1e5b78124243566b737acb1166d16",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
