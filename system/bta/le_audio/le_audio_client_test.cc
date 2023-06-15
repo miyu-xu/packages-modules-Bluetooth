@@ -1499,6 +1499,7 @@ class UnicastTestNoInit : public Test {
     EXPECT_CALL(mock_audio_hal_client_callbacks_,
                 OnConnectionState(ConnectionState::DISCONNECTED, address))
         .Times(1);
+    EXPECT_CALL(mock_btm_interface_, AclDisconnectFromHandle(_, _)).Times(1);
     do_in_main_thread(
         FROM_HERE, base::Bind(&LeAudioClient::Disconnect,
                               base::Unretained(LeAudioClient::Get()), address));
@@ -3033,7 +3034,15 @@ TEST_F(UnicastTestNoInit, LoadStoredEarbudsCsisGroupedDifferently) {
   ASSERT_EQ(std::find(devs.begin(), devs.end(), test_address0), devs.end());
   ASSERT_NE(std::find(devs.begin(), devs.end(), test_address1), devs.end());
 
-  DisconnectLeAudio(test_address0, 1);
+  // JT@CC: Why is the device in getting ready state here?
+  EXPECT_CALL(mock_gatt_interface_, Close(1)).Times(1);
+  EXPECT_CALL(mock_audio_hal_client_callbacks_,
+              OnConnectionState(ConnectionState::DISCONNECTED, test_address0))
+      .Times(1);
+  do_in_main_thread(
+      FROM_HERE,
+      base::Bind(&LeAudioClient::Disconnect,
+                 base::Unretained(LeAudioClient::Get()), test_address0));
 }
 
 TEST_F(UnicastTest, GroupingAddRemove) {

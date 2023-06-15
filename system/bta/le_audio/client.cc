@@ -1477,14 +1477,21 @@ class LeAudioClientImpl : public LeAudioClient {
         bool remove_from_autoconnect =
             (reconnection_mode_ != BTM_BLE_BKG_CONNECT_TARGETED_ANNOUNCEMENTS);
 
-        if (leAudioDevice->autoconnect_flag_ && remove_from_autoconnect) {
-          LOG_INFO("Removing autoconnect flag for group_id %d",
-                   leAudioDevice->group_id_);
+        if (leAudioDevice->autoconnect_flag_) {
+          if (remove_from_autoconnect) {
+            LOG_INFO("Removing autoconnect flag for group_id %d",
+                     leAudioDevice->group_id_);
 
-          /* Removes device from background connect */
-          BTA_GATTC_CancelOpen(gatt_if_, address, false);
-          btif_storage_set_leaudio_autoconnect(address, false);
-          leAudioDevice->autoconnect_flag_ = false;
+            /* Removes device from background connect */
+            BTA_GATTC_CancelOpen(gatt_if_, address, false);
+            btif_storage_set_leaudio_autoconnect(address, false);
+            leAudioDevice->autoconnect_flag_ = false;
+          } else {
+            /* Make sure ACL is disconnected to avoid reconnecting immediately
+             * when TA reconnection mechanism is used.
+             */
+            leAudioDevice->DisconnectAcl();
+          }
         }
 
         auto group = aseGroups_.FindById(leAudioDevice->group_id_);
