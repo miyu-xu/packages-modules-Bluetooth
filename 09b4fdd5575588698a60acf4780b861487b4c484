@@ -34,6 +34,29 @@
       "parentUuid": "15a1f82c_c4b83c9c",
       "revId": "09b4fdd5575588698a60acf4780b861487b4c484",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "358c5d95_7f48873c",
+        "filename": "android/app/src/com/android/bluetooth/sap/SapServer.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 518,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-06-15T18:31:06Z",
+      "side": 1,
+      "message": "I think we should add at least a log here, if we go down that route.\n\nPlease fix this WARNING reported by Build Warnings: [EmptyCatch] Caught exceptions should not be ignored\n\nAnalyzer Description: Reports warnings that originate from build.log in the build artifacts.\nOwner: farivar@google.com\n\n    [EmptyCatch] Caught exceptions should not be ignored\n                    } catch (IllegalArgumentException e) {\n                      ^\n        (see https://google.github.io/styleguide/javaguide.html#s6.2-caught-exceptions)\n\nThis finding was found on https://android-build.googleplex.com/builds/build-details/P58434651/targets/errorprone, but may also be present on other builds.",
+      "range": {
+        "startLine": 518,
+        "startChar": 0,
+        "endLine": 518,
+        "endChar": 54
+      },
+      "revId": "09b4fdd5575588698a60acf4780b861487b4c484",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
