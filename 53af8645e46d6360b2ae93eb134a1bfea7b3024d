@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7fc817a8_2af4bec8",
+        "filename": "system/audio_bluetooth_hw/device_port_proxy.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 594,
+      "author": {
+        "id": 1956242
+      },
+      "writtenOn": "2023-06-15T01:44:15Z",
+      "side": 1,
+      "message": "nit: maybe DEBUG level? also these values already logged in line#587\nSame comment for line#630",
+      "range": {
+        "startLine": 594,
+        "startChar": 2,
+        "endLine": 594,
+        "endChar": 10
+      },
+      "revId": "53af8645e46d6360b2ae93eb134a1bfea7b3024d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
