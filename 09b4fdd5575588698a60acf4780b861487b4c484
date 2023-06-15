@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "15a1f82c_c4b83c9c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-06-15T07:44:32Z",
+      "side": 1,
+      "message": "I couldn\u0027t guess how this could happen.\nPlease try to find out the reasons if possible.",
+      "revId": "09b4fdd5575588698a60acf4780b861487b4c484",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
