@@ -91,6 +91,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7feeb180_a058d106",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1659435
+      },
+      "writtenOn": "2023-06-15T13:38:14Z",
+      "side": 1,
+      "message": "Is the proposed CL still valid? Was an alternative fix already submitted?",
+      "parentUuid": "b3c77b55_059f5da8",
+      "revId": "7a5a967b1fdb20fd93ded8c7e668fdc7a944629e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0d7fe01b_60e74b23",
         "filename": "system/btif/co/bta_hh_co.cc",
         "patchSetId": 8
