@@ -52,6 +52,41 @@
       "parentUuid": "d7287ca6_20a7e352",
       "revId": "afa41289c844f8d9757abcdea567e8c46f175060",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8fa6095a_bb110a40",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 484,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-06-15T00:09:34Z",
+      "side": 1,
+      "message": "Is those exceptions we observed here only IllegalArgumentException? if yes, maybe catch that is good enough?\n\ncatch (IllegalArgumentException e) {}\n\nwe can update this cl once you\u0027re back, no rush anyways.",
+      "parentUuid": "be2a0553_ea5c5aea",
+      "revId": "afa41289c844f8d9757abcdea567e8c46f175060",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "423d80ab_0c45e201",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 542,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-06-15T00:09:34Z",
+      "side": 1,
+      "message": "setPublicBroadcastMetadata is nullable, we can do metaData.setPublicBroadcastMetadata(null);",
+      "revId": "afa41289c844f8d9757abcdea567e8c46f175060",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
