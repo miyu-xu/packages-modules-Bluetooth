@@ -1494,14 +1494,15 @@ class UnicastTestNoInit : public Test {
   }
 
   void DisconnectLeAudio(const RawAddress& address, uint16_t conn_id) {
-    SyncOnMainLoop();
     EXPECT_CALL(mock_gatt_interface_, Close(conn_id)).Times(1);
     EXPECT_CALL(mock_audio_hal_client_callbacks_,
                 OnConnectionState(ConnectionState::DISCONNECTED, address))
         .Times(1);
+    EXPECT_CALL(mock_btm_interface_, AclDisconnectFromHandle(_, _)).Times(1);
     do_in_main_thread(
         FROM_HERE, base::Bind(&LeAudioClient::Disconnect,
                               base::Unretained(LeAudioClient::Get()), address));
+    SyncOnMainLoop();
   }
 
   void ConnectCsisDevice(const RawAddress& addr, uint16_t conn_id,
@@ -2808,6 +2809,7 @@ TEST_F(UnicastTestNoInit, LoadStoredEarbudsCsisGrouped) {
                    codec_spec_conf::kLeAudioLocationFrontRight, 0xff, 0xff,
                    std::move(handles), std::move(snk_pacs), std::move(src_pacs),
                    std::move(ases)));
+    SyncOnMainLoop();
   });
 
   // Expect stored device0 to connect automatically (first directed connection )
@@ -3564,6 +3566,7 @@ TEST_F(UnicastTest, DisconnectDeviceWhenConnecting) {
       .Times(1);
 
   LeAudioClient::Get()->Disconnect(test_address0);
+  SyncOnMainLoop();
 
   Mock::VerifyAndClearExpectations(&mock_gatt_interface_);
 }
