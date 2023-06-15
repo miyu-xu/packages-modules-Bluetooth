@@ -68,12 +68,10 @@ message StartResponse {}
 
 // Request of the `PlaybackAudio` method.
 message PlaybackAudioRequest {
-  // Low Energy connection.
-  Connection connection = 1;
   // Audio data to playback.
   // `data` should be interleaved stereo frames with 16-bit signed little-endian
   // linear PCM samples at 44100Hz sample rate
-  bytes data = 2;
+  bytes data = 1;
 }
 
 // Response of the `PlaybackAudio` method.

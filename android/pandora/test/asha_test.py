@@ -225,7 +225,7 @@ class AshaTest(base_test.BaseTestClass):  # type: ignore[misc]
 
         return audio_data
 
-    async def generate_sine(self, connection: Connection) -> AsyncIterator[PlaybackAudioRequest]:
+    async def generate_sine(self) -> AsyncIterator[PlaybackAudioRequest]:
         # generate sine wave audio
         sine = AUDIO_SIGNAL_AMPLITUDE * np.sin(
             2
@@ -241,7 +241,7 @@ class AshaTest(base_test.BaseTestClass):  # type: ignore[misc]
 
         # Send 4 second of audio.
         for _ in range(0, int(4 / SINE_DURATION)):
-            yield PlaybackAudioRequest(connection=connection, data=stereo.tobytes())
+            yield PlaybackAudioRequest(data=stereo.tobytes())
 
     @avatar.parameterized(
         (RANDOM, Ear.LEFT),
@@ -1091,7 +1091,7 @@ class AshaTest(base_test.BaseTestClass):  # type: ignore[misc]
         # Clear audio data before start audio playback testing
         await self.get_audio_data(ref_asha=ref_asha, connection=ref_left_dut, timeout=10)
 
-        generated_audio = self.generate_sine(connection=dut_ref_left)
+        generated_audio = self.generate_sine()
 
         _, audio_data = await asyncio.gather(
             dut_asha.PlaybackAudio(generated_audio),
