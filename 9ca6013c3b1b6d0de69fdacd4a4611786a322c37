@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "422de912_53e84d43",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1493,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-06-15T14:19:24Z",
+      "side": 1,
+      "message": "Disconnect is handled in 1524. This also bypass graceful stream closing which is handled in line 1516.",
+      "range": {
+        "startLine": 1493,
+        "startChar": 27,
+        "endLine": 1493,
+        "endChar": 40
+      },
+      "revId": "9ca6013c3b1b6d0de69fdacd4a4611786a322c37",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
