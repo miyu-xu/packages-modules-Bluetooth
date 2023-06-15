@@ -125,6 +125,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f84e1afe_3b0abce9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1659435
+      },
+      "writtenOn": "2023-06-15T15:00:54Z",
+      "side": 1,
+      "message": "Thanks, abandoning.",
+      "parentUuid": "c2b21eb9_e7549846",
+      "revId": "7a5a967b1fdb20fd93ded8c7e668fdc7a944629e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0d7fe01b_60e74b23",
