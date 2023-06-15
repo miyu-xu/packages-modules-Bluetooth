@@ -307,6 +307,34 @@ public final class BluetoothLeBroadcastAssistant implements BluetoothProfile, Au
     private final AttributionSource mAttributionSource;
     private BluetoothLeBroadcastAssistantCallback mCallback;
 
+    private final class BroadcastLeAssistantServiceListener extends ForwardingServiceListener {
+        BroadcastLeAssistantServiceListener(ServiceListener listener) {
+            super(listener);
+        }
+
+        @Override
+        public void onServiceConnected(int profile, BluetoothProfile proxy) {
+            try {
+                if (profile == LE_AUDIO_BROADCAST_ASSISTANT) {
+                    // re-register the service-to-app callback
+                    try {
+                        final IBluetoothLeBroadcastAssistant service = getService();
+                        if (service != null) {
+                            if (mCallback != null) {
+                                mCallback.setAdapterReconnected(service);
+                                mCallback.register(null, null);
+                            }
+                        }
+                    } catch (Exception e) {
+                        Log.e(TAG, "Could not register BroadcastAssisitant: " + e);
+                    }
+                }
+            } finally {
+                super.onServiceConnected(profile, proxy);
+            }
+        }
+    }
+
     private final BluetoothProfileConnector<IBluetoothLeBroadcastAssistant> mProfileConnector =
             new BluetoothProfileConnector(this, BluetoothProfile.LE_AUDIO_BROADCAST_ASSISTANT,
                     TAG, IBluetoothLeBroadcastAssistant.class.getName()) {
@@ -326,7 +354,7 @@ public final class BluetoothLeBroadcastAssistant implements BluetoothProfile, Au
         mContext = context;
         mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
         mAttributionSource = mBluetoothAdapter.getAttributionSource();
-        mProfileConnector.connect(context, listener);
+        mProfileConnector.connect(context, new BroadcastLeAssistantServiceListener(listener));
         mCloseGuard = new CloseGuard();
         mCloseGuard.open("close");
     }
