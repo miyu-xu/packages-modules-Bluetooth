@@ -20,8 +20,9 @@ package com.android.bluetooth.leaudio;
 import android.app.Application;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothLeBroadcastMetadata;
-import android.util.Log;
+import android.os.Handler;
 
+import androidx.annotation.GuardedBy;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
@@ -47,42 +48,45 @@ public class BroadcastScanViewModel extends AndroidViewModel {
     private MutableLiveData<List<BluetoothLeBroadcastMetadata>> mAllBroadcasts = new MutableLiveData<>();
     private HashMap<Integer, BluetoothLeBroadcastMetadata> mScanSessionBroadcasts = new HashMap<>();
 
+    // Handler to prevent handler update too frequently.
+    // In a crowded place where a lot of broadcasts are present, as all the broadcast list
+    // is updated when a broadcast is updated, the list refreshes continuously preventing
+    // clicks on items on the list. This handler makes the update happen every x milliseconds.
+    private final Handler mAllBroadcastsHandler = new Handler();
+    private final int BROADCASTS_UPDATE_DELAY_MS = 1000;
+    private final Object mLock = new Object();
+
+    @GuardedBy("mLock")
+    private ArrayList<BluetoothLeBroadcastMetadata> mTempBroadcastList = new ArrayList<>();
+
     private final BluetoothProxy.OnBassEventListener mBassEventListener =
             new BluetoothProxy.OnBassEventListener() {
-        @Override
-        public void onSourceFound(BluetoothLeBroadcastMetadata source) {
-            mScanSessionBroadcasts.put(source.getBroadcastId(), source);
-            refreshBroadcasts();
-        }
-
-        @Override
-        public void onScanningStateChanged(boolean isScanning) {
-            if (!isScanning) {
-                // Update the live broadcast list and clear scan session results
-                List<BluetoothLeBroadcastMetadata> localSessionBroadcasts =
-                        mBluetooth.getAllLocalBroadcasts();
-                ArrayList<BluetoothLeBroadcastMetadata> new_arr;
-                if (localSessionBroadcasts != null) {
-                    new_arr = new ArrayList<>(localSessionBroadcasts);
-                } else {
-                    new_arr = new ArrayList<>();
+                @Override
+                public void onSourceFound(BluetoothLeBroadcastMetadata source) {
+                    mScanSessionBroadcasts.put(source.getBroadcastId(), source);
+                    refreshBroadcasts();
                 }
-                new_arr.addAll(mScanSessionBroadcasts.values());
-                mAllBroadcasts.postValue(new_arr);
 
-                // Continue as long as the main activity wants
-                if (mIsActivityScanning) {
-                    if (mScanDelegatorDevice != null) {
-                        mBluetooth.scanForBroadcasts(mScanDelegatorDevice, true);
+                @Override
+                public void onScanningStateChanged(boolean isScanning) {
+                    if (!isScanning) {
+                        // Update the live broadcast list and clear scan session results
+                        refreshBroadcasts();
+
+                        // Continue as long as the main activity wants
+                        if (mIsActivityScanning) {
+                            if (mScanDelegatorDevice != null) {
+                                mBluetooth.scanForBroadcasts(mScanDelegatorDevice, true);
+                            }
+                        }
+                    } else {
+                        // FIXME: Clear won't work - it would auto-update the mutable and clear it
+                        // as
+                        // mutable uses reference to its values
+                        mScanSessionBroadcasts = new HashMap<>();
                     }
                 }
-            } else {
-                // FIXME: Clear won't work - it would auto-update the mutable and clear it as
-                // mutable uses reference to its values
-                mScanSessionBroadcasts = new HashMap<>();
-            }
-        }
-    };
+            };
 
     private final BluetoothProxy.OnLocalBroadcastEventListener mLocalBroadcastEventListener =
             new BluetoothProxy.OnLocalBroadcastEventListener() {
@@ -117,10 +121,20 @@ public class BroadcastScanViewModel extends AndroidViewModel {
 
         mBluetooth.setOnBassEventListener(mBassEventListener);
         mBluetooth.setOnLocalBroadcastEventListener(mLocalBroadcastEventListener);
+
+        mAllBroadcastsHandler.postDelayed(
+                new Runnable() {
+                    public void run() {
+                        updateAllBroadcastsList();
+                        mAllBroadcastsHandler.postDelayed(this, BROADCASTS_UPDATE_DELAY_MS);
+                    }
+                },
+                BROADCASTS_UPDATE_DELAY_MS);
     }
 
     @Override
     public void onCleared() {
+        mAllBroadcastsHandler.removeCallbacksAndMessages(null);
         mBluetooth.setOnBassEventListener(null);
         mBluetooth.setOnLocalBroadcastEventListener(null);
     }
@@ -134,16 +148,7 @@ public class BroadcastScanViewModel extends AndroidViewModel {
         mScanDelegatorDevice = delegatorDevice;
 
         // First update the live broadcast list
-        List<BluetoothLeBroadcastMetadata> localSessionBroadcasts =
-                mBluetooth.getAllLocalBroadcasts();
-        ArrayList<BluetoothLeBroadcastMetadata> new_arr;
-        if (localSessionBroadcasts != null) {
-            new_arr = new ArrayList<>(localSessionBroadcasts);
-        } else {
-            new_arr = new ArrayList<>();
-        }
-        new_arr.addAll(mScanSessionBroadcasts.values());
-        mAllBroadcasts.postValue(new_arr);
+        refreshBroadcasts();
 
         mBluetooth.scanForBroadcasts(mScanDelegatorDevice, scan);
     }
@@ -153,12 +158,17 @@ public class BroadcastScanViewModel extends AndroidViewModel {
     }
 
     public void refreshBroadcasts() {
-        // Concatenate local broadcasts to the scanned broadcast list
-        List<BluetoothLeBroadcastMetadata> localSessionBroadcasts =
-                mBluetooth.getAllLocalBroadcasts();
-        ArrayList<BluetoothLeBroadcastMetadata> new_arr = new ArrayList<>(
-                localSessionBroadcasts);
-        new_arr.addAll(mScanSessionBroadcasts.values());
-        mAllBroadcasts.postValue(new_arr);
+        synchronized (mLock) {
+            // Concatenate local broadcasts to the scanned broadcast list
+            List<BluetoothLeBroadcastMetadata> localSessionBroadcasts =
+                    mBluetooth.getAllLocalBroadcasts();
+            mTempBroadcastList.clear();
+            mTempBroadcastList.addAll(localSessionBroadcasts);
+            mTempBroadcastList.addAll(mScanSessionBroadcasts.values());
+        }
+    }
+
+    public void updateAllBroadcastsList() {
+        mAllBroadcasts.postValue(mTempBroadcastList);
     }
 }
