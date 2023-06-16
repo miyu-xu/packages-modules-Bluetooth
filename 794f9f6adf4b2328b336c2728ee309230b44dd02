@@ -16,6 +16,23 @@
       "message": "I\u0027ve put logs, of what the failed pairing looks like, in Buganizer. I\u0027ve also put, in Buganizer, logs of what a successful pairing with this CL looks like",
       "revId": "794f9f6adf4b2328b336c2728ee309230b44dd02",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7d3c9fc6_9c2c28b7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-06-16T18:09:56Z",
+      "side": 1,
+      "message": "My concern with submitting this change is that on second call to start scan (e.g. if trying to start a second scan), the failure to update scan filter/restart scanning would be silent. \n\nWe are tracking the proper fix for this in b/276350722. \n\nWill reach out offline to discuss.",
+      "revId": "794f9f6adf4b2328b336c2728ee309230b44dd02",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
