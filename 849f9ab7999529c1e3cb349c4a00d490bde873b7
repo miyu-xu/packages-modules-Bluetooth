@@ -22,6 +22,30 @@
       },
       "revId": "849f9ab7999529c1e3cb349c4a00d490bde873b7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fc60dbe4_2d960208",
+        "filename": "android/app/src/com/android/bluetooth/mcp/MediaControlProfile.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2023-06-16T06:23:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "feac44fe_e3ab353a",
+      "range": {
+        "startLine": 178,
+        "startChar": 74,
+        "endLine": 178,
+        "endChar": 82
+      },
+      "revId": "849f9ab7999529c1e3cb349c4a00d490bde873b7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
