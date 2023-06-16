@@ -522,20 +522,11 @@ extern tBTA_DM_SEARCH_CB bta_dm_search_cb;
 /* DI control block */
 extern tBTA_DM_DI_CB bta_dm_di_cb;
 
-void bta_dm_enable(tBTA_DM_SEC_CBACK*);
 void bta_dm_disable();
-void bta_dm_ble_sirk_sec_cb_register(tBTA_DM_SEC_CBACK*);
-void bta_dm_ble_sirk_confirm_device_reply(const RawAddress& bd_addr,
-                                          bool accept);
 void bta_dm_set_dev_name(const std::vector<uint8_t>&);
 void bta_dm_set_visibility(tBTA_DM_DISC, tBTA_DM_CONN);
 void bta_dm_set_scan_config(tBTA_DM_MSG* p_data);
 void bta_dm_vendor_spec_command(tBTA_DM_MSG* p_data);
-void bta_dm_bond(const RawAddress&, tBLE_ADDR_TYPE, tBT_TRANSPORT,
-                 tBT_DEVICE_TYPE);
-void bta_dm_bond_cancel(const RawAddress&);
-void bta_dm_pin_reply(std::unique_ptr<tBTA_DM_API_PIN_REPLY> msg);
-void bta_dm_add_device(std::unique_ptr<tBTA_DM_API_ADD_DEVICE> msg);
 void bta_dm_remove_device(const RawAddress& bd_addr);
 void bta_dm_close_acl(const RawAddress&, bool, tBT_TRANSPORT);
 
@@ -544,28 +535,14 @@ void bta_dm_pm_btm_status(const RawAddress&, tBTM_PM_STATUS, uint16_t,
 void bta_dm_pm_timer(const RawAddress&, tBTA_DM_PM_ACTION);
 void bta_dm_add_ampkey(tBTA_DM_MSG* p_data);
 
-void bta_dm_add_blekey(const RawAddress& bd_addr, tBTA_LE_KEY_VALUE blekey,
-                       tBTM_LE_KEY_TYPE key_type);
-void bta_dm_add_ble_device(const RawAddress& bd_addr, tBLE_ADDR_TYPE addr_type,
-                           tBT_DEVICE_TYPE dev_type);
-void bta_dm_ble_passkey_reply(const RawAddress& bd_addr, bool accept,
-                              uint32_t passkey);
-void bta_dm_ble_confirm_reply(const RawAddress&, bool);
 void bta_dm_ble_set_conn_params(const RawAddress&, uint16_t, uint16_t, uint16_t,
                                 uint16_t);
 void bta_dm_ble_update_conn_params(const RawAddress&, uint16_t, uint16_t,
                                    uint16_t, uint16_t, uint16_t, uint16_t);
-void bta_dm_ble_config_local_privacy(bool);
 
 void bta_dm_ble_set_data_length(const RawAddress& bd_addr);
 
 void bta_dm_ble_get_energy_info(tBTA_BLE_ENERGY_INFO_CBACK*);
-
-void bta_dm_set_encryption(const RawAddress&, tBT_TRANSPORT,
-                           tBTA_DM_ENCRYPT_CBACK*, tBTM_BLE_SEC_ACT);
-void bta_dm_confirm(const RawAddress&, bool);
-
-void bta_dm_ci_rmt_oob_act(std::unique_ptr<tBTA_DM_CI_RMT_OOB> msg);
 
 void bta_dm_init_pm(void);
 void bta_dm_disable_pm(void);
@@ -596,6 +573,5 @@ void bta_dm_eir_update_cust_uuid(const tBTA_CUSTOM_UUID &curr, bool adding);
 void bta_dm_ble_subrate_request(const RawAddress& bd_addr, uint16_t subrate_min,
                                 uint16_t subrate_max, uint16_t max_latency,
                                 uint16_t cont_num, uint16_t timeout);
-void bta_dm_consolidate(const RawAddress& identity_addr, const RawAddress& rpa);
 
 #endif /* BTA_DM_INT_H */
