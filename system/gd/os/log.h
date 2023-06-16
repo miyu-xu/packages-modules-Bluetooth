@@ -31,19 +31,20 @@ static_assert(LOG_TAG != nullptr, "LOG_TAG should never be NULL");
 #include "os/log_tags.h"
 #include "os/logging/log_adapter.h"
 
-#if defined(__ANDROID__)
-
-#include <log/log.h>
-#include <log/log_event_list.h>
-
 #ifdef FUZZ_TARGET
+
 #define LOG_VERBOSE(...)
 #define LOG_DEBUG(...)
 #define LOG_INFO(...)
 #define LOG_WARN(...)
-#else
 
-static_assert(LOG_TAG != nullptr, "LOG_TAG is null after header inclusion");
+
+#else /* FUZZ_TARGET */
+
+#if defined(__ANDROID__)
+
+#include <log/log.h>
+#include <log/log_event_list.h>
 
 #if __has_include("src/init_flags.rs.h")
 
@@ -66,7 +67,6 @@ static_assert(LOG_TAG != nullptr, "LOG_TAG is null after header inclusion");
 
 #define LOG_INFO(fmt, args...) ALOGI("%s:%d %s: " fmt, __FILE__, __LINE__, __func__, ##args)
 #define LOG_WARN(fmt, args...) ALOGW("%s:%d %s: " fmt, __FILE__, __LINE__, __func__, ##args)
-#endif /* FUZZ_TARGET */
 #define LOG_ERROR(fmt, args...) ALOGE("%s:%d %s: " fmt, __FILE__, __LINE__, __func__, ##args)
 
 #elif defined (ANDROID_EMULATOR)
@@ -94,12 +94,6 @@ static_assert(LOG_TAG != nullptr, "LOG_TAG is null after header inclusion");
 #define LOGWRAPPER(tag, fmt, args...) \
   write_syslog(tag, "%s:%s:%d - %s: " fmt, LOG_TAG, __FILE__, __LINE__, __func__, ##args)
 
-#ifdef FUZZ_TARGET
-#define LOG_VERBOSE(...)
-#define LOG_DEBUG(...)
-#define LOG_INFO(...)
-#define LOG_WARN(...)
-#else
 #define LOG_VERBOSE(...)                                                               \
   do {                                                                                 \
     if (bluetooth::common::InitFlags::GetLogLevelForTag(LOG_TAG) >= LOG_TAG_VERBOSE) { \
@@ -114,7 +108,6 @@ static_assert(LOG_TAG != nullptr, "LOG_TAG is null after header inclusion");
   } while (false)
 #define LOG_INFO(...) LOGWRAPPER(LOG_TAG_INFO, __VA_ARGS__)
 #define LOG_WARN(...) LOGWRAPPER(LOG_TAG_WARN, __VA_ARGS__)
-#endif /*FUZZ_TARGET*/
 #define LOG_ERROR(...) LOGWRAPPER(LOG_TAG_ERROR, __VA_ARGS__)
 
 #define LOG_ALWAYS_FATAL(...)               \
@@ -157,12 +150,6 @@ static_assert(LOG_TAG != nullptr, "LOG_TAG is null after header inclusion");
         ##args);                                                                                                    \
   } while (false)
 
-#ifdef FUZZ_TARGET
-#define LOG_VERBOSE(...)
-#define LOG_DEBUG(...)
-#define LOG_INFO(...)
-#define LOG_WARN(...)
-#else
 #define LOG_VERBOSE(fmt, args...)                                                      \
   do {                                                                                 \
     if (bluetooth::common::InitFlags::GetLogLevelForTag(LOG_TAG) >= LOG_TAG_VERBOSE) { \
@@ -177,7 +164,6 @@ static_assert(LOG_TAG != nullptr, "LOG_TAG is null after header inclusion");
   } while (false)
 #define LOG_INFO(...) LOGWRAPPER(__VA_ARGS__)
 #define LOG_WARN(...) LOGWRAPPER(__VA_ARGS__)
-#endif /* FUZZ_TARGET */
 #define LOG_ERROR(...) LOGWRAPPER(__VA_ARGS__)
 
 #ifndef LOG_ALWAYS_FATAL
@@ -209,3 +195,5 @@ static_assert(LOG_TAG != nullptr, "LOG_TAG is null after header inclusion");
   case code:                   \
     return #code
 #endif
+
+#endif /* FUZZ_TARGET */
