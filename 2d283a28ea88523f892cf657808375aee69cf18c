@@ -88,6 +88,24 @@
       "parentUuid": "bd23601d_6853288e",
       "revId": "2d283a28ea88523f892cf657808375aee69cf18c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dcf78bb6_f13678c5",
+        "filename": "system/bta/hh/bta_hh_le.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 1418,
+      "author": {
+        "id": 1965943
+      },
+      "writtenOn": "2023-06-16T08:07:02Z",
+      "side": 1,
+      "message": "We also can reproduce on TV U platform and without non-aosp code, and bug report are attached on https://partnerissuetracker.corp.google.com/issues/266219642.\n\nWe find the root cause is that HIDReport and HIDReportVersion aren\u0027t cleared after remove_bond, in the second bond/pair flow, in bta_hh_security_cmpl it will load cache by bta_hh_le_co_cache_load, and then the default report type isn\u0027t INPUT.\n\nWe also update the new patch, plz help review, thanks.",
+      "parentUuid": "96cc8dd5_3c46f54d",
+      "revId": "2d283a28ea88523f892cf657808375aee69cf18c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
