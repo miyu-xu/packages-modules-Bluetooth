@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8e356e7c_41976063",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1937985
+      },
+      "writtenOn": "2023-06-16T00:29:19Z",
+      "side": 1,
+      "message": "Even if it does not make sense to have multiple Asha instance running on multiple connections, I still prefer to keep requesting Asha from a connection for tow reasons:\n- it force the creation of a connection to request Asha, which is less error prone.\n- Asha is still attached to a connection, not a device.\n\nWhat do yo think ?",
+      "revId": "f82eaacfb9e7bfe5f0c0a9aa5fe40b7f0d7298d9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
