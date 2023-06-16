@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "608dd707_dd9c09f9",
+        "filename": "framework/java/android/bluetooth/BluetoothLeBroadcastAssistantCallback.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-06-16T18:27:52Z",
+      "side": 1,
+      "message": "not sure if we still need those here without logs.\nif it\u0027s remote exception, shouldn\u0027t this be captured by here?\n\nhttps://cs.android.com/android/platform/superproject/+/refs/heads/master:packages/modules/Bluetooth/android/app/src/com/android/bluetooth/bass_client/BassClientService.java;l\u003d1390;drc\u003d1538eaa9dbb5bbac4d2ce6872108392d9bc14d0f;bpv\u003d1;bpt\u003d1",
+      "revId": "da891a6b8f3f0bc4037cec3d3b2b55b569bce4e5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
