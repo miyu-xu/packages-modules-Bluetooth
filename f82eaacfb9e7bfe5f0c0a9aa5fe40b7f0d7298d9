@@ -16,6 +16,24 @@
       "message": "Even if it does not make sense to have multiple Asha instance running on multiple connections, I still prefer to keep requesting Asha from a connection for tow reasons:\n- it force the creation of a connection to request Asha, which is less error prone.\n- Asha is still attached to a connection, not a device.\n\nWhat do yo think ?",
       "revId": "f82eaacfb9e7bfe5f0c0a9aa5fe40b7f0d7298d9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3878839d_20105710",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1952952
+      },
+      "writtenOn": "2023-06-16T02:36:55Z",
+      "side": 1,
+      "message": "The reason why I tried to remove connection is:\n- When working on dual device tests, it\u0027s a little bit weird if we only send \"PlaybackAudioRequest\" to one of the connection and capture audio on both of the reference devices.\n\nBut it also make sense to keeping the connection for the reasons you provided. \nI\u0027ll abandon this CL first, thanks for the suggestion!",
+      "parentUuid": "8e356e7c_41976063",
+      "revId": "f82eaacfb9e7bfe5f0c0a9aa5fe40b7f0d7298d9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
