@@ -105,7 +105,8 @@ typedef enum {
   BT_STATUS_AUTH_REJECTED,
   BT_STATUS_JNI_ENVIRONMENT_ERROR,
   BT_STATUS_JNI_THREAD_ATTACH_ERROR,
-  BT_STATUS_WAKELOCK_ERROR
+  BT_STATUS_WAKELOCK_ERROR,
+  BT_STATUS_TIMEOUT
 } bt_status_t;
 
 inline std::string bt_status_text(const bt_status_t& status) {
