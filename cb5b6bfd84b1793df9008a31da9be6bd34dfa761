@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a8fdca29_e8c3334a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-06-16T02:59:35Z",
+      "side": 1,
+      "message": "pts-bot failures are caused by this change \n\nFor example `SDP/SR/BRW/BV-02-C`:\n```\n06-15 18:20:15 I/PtsBotTest:        AssertionError: Lists differ: [\u0027Generic Access\u0027, \u0027NAP\u0027, \u0027PANU\u0027, \u0027Phonebook Access - PSE\u0027, \u0027[214 chars]ver\u0027] !\u003d [\u0027Generic Access\u0027, \u0027AudioSource\u0027, \u0027A/V_RemoteControlTarget\u0027, [214 chars]ver\u0027]\n06-15 18:20:15 I/PtsBotTest:        \n06-15 18:20:15 I/PtsBotTest:        First differing element 1:\n06-15 18:20:15 I/PtsBotTest:        \u0027NAP\u0027\n06-15 18:20:15 I/PtsBotTest:        \u0027AudioSource\u0027\n06-15 18:20:15 I/PtsBotTest:        \n06-15 18:20:15 I/PtsBotTest:          [\u0027Generic Access\u0027,\n06-15 18:20:15 I/PtsBotTest:        +  \u0027AudioSource\u0027,\n06-15 18:20:15 I/PtsBotTest:        -  \u0027NAP\u0027,\n06-15 18:20:15 I/PtsBotTest:        -  \u0027PANU\u0027,\n06-15 18:20:15 I/PtsBotTest:        -  \u0027Phonebook Access - PSE\u0027,\n06-15 18:20:15 I/PtsBotTest:           \u0027A/V_RemoteControlTarget\u0027,\n06-15 18:20:15 I/PtsBotTest:           \u0027A/V_RemoteControl\u0027,\n06-15 18:20:15 I/PtsBotTest:           \u0027A/V_RemoteControlController\u0027,\n06-15 18:20:15 I/PtsBotTest:        -  \u0027AudioSource\u0027,\n06-15 18:20:15 I/PtsBotTest:           \u0027Headset - Audio Gateway\u0027,\n06-15 18:20:15 I/PtsBotTest:           \u0027GenericAudio\u0027,\n06-15 18:20:15 I/PtsBotTest:           \u0027HandsfreeAudioGateway\u0027,\n06-15 18:20:15 I/PtsBotTest:           \u0027GenericAudio\u0027,\n06-15 18:20:15 I/PtsBotTest:        +  \u0027NAP\u0027,\n06-15 18:20:15 I/PtsBotTest:        +  \u0027PANU\u0027,\n06-15 18:20:15 I/PtsBotTest:        +  \u0027Phonebook Access - PSE\u0027,\n06-15 18:20:15 I/PtsBotTest:           \u0027OBEXObjectPush\u0027,\n06-15 18:20:15 I/PtsBotTest:           \u0027Message Access Server\u0027]\n```\nit seems that this change, changes the order of SDP records\n\nOr `AVRCP/TG/PTT/BV-05-I`:\n```\nIgnoring REQ on invalid channel.\nMTC INCONC: IUT did not respond to the PASSTHROUGH released fast enough, the IUT should respond within 2 seconds. See http://1394ta.org AV/C Panel Subunit Specification, Section 9.4.\n```",
+      "revId": "cb5b6bfd84b1793df9008a31da9be6bd34dfa761",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
