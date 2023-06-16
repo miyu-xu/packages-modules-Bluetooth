@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3ad92bab_c1322ba0",
+        "filename": "framework/java/android/bluetooth/BluetoothLeBroadcastAssistant.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 324,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-06-16T18:09:19Z",
+      "side": 1,
+      "message": "is this missed in this cl?\nsetAdapterReconnected()",
+      "revId": "8413846ecc579cfb0ef1cd2b368f61ffa0a0afb4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
