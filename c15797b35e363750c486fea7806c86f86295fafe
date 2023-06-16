@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5e95d441_914fb66d",
+        "filename": "pandora/server/bumble_experimental/asha.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 239,
+      "author": {
+        "id": 1952952
+      },
+      "writtenOn": "2023-06-16T01:52:41Z",
+      "side": 1,
+      "message": "updated",
+      "parentUuid": "ecbc878b_6a8102bd",
+      "range": {
+        "startLine": 239,
+        "startChar": 18,
+        "endLine": 239,
+        "endChar": 51
+      },
+      "revId": "c15797b35e363750c486fea7806c86f86295fafe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4ffa9be4_1f59fbc6",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-06-15T16:49:59Z",
       "side": 1,
       "message": "nit: maybe it would be better to put this as a constant at the top of the class",
+      "range": {
+        "startLine": 241,
+        "startChar": 31,
+        "endLine": 241,
+        "endChar": 33
+      },
+      "revId": "c15797b35e363750c486fea7806c86f86295fafe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "439a77d2_d13120ad",
+        "filename": "pandora/server/bumble_experimental/asha.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 241,
+      "author": {
+        "id": 1952952
+      },
+      "writtenOn": "2023-06-16T01:52:41Z",
+      "side": 1,
+      "message": "done, thanks for the suggestion!",
+      "parentUuid": "4ffa9be4_1f59fbc6",
       "range": {
         "startLine": 241,
         "startChar": 31,
