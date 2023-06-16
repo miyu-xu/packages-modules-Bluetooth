@@ -1,0 +1,169 @@
+From bfa36b78727b945437c57154c06957b9e81a5eab Mon Sep 17 00:00:00 2001
+From: Venkatesh Sharma <quic_venkshar@quicinc.com>
+Date: Mon, 31 Oct 2022 15:38:33 +0530
+Subject: [PATCH 41/50] Added API support for HF-A2DP sync
+
+-Reject A2dp Sink start when HF call is in progress
+-send Avrcp pause for SRC PLAY when HF call is in progress
+
+CRs-Fixed: 3313315
+Change-Id: I8ecf7775818b74472307b0b889f5b2a83f6637f2
+---
+ .../bluetooth/a2dpsink/A2dpSinkService.java   | 10 ++++
+ .../a2dpsink/A2dpSinkStreamHandler.java       |  7 +++
+ .../hfpclient/HeadsetClientService.java       |  8 +++
+ .../hfpclient/HfpClientA2DPSync.java          | 55 +++++++++++++++++++
+ 4 files changed, 80 insertions(+)
+ create mode 100644 src/com/android/bluetooth/hfpclient/HfpClientA2DPSync.java
+
+diff --git a/src/com/android/bluetooth/a2dpsink/A2dpSinkService.java b/src/com/android/bluetooth/a2dpsink/A2dpSinkService.java
+index c6e71ef37..d69230356 100644
+--- a/src/com/android/bluetooth/a2dpsink/A2dpSinkService.java
++++ b/src/com/android/bluetooth/a2dpsink/A2dpSinkService.java
+@@ -42,6 +42,7 @@ import com.android.bluetooth.btservice.storage.DatabaseManager;
+ import com.android.internal.annotations.VisibleForTesting;
+ import com.android.internal.util.ArrayUtils;
+ import com.android.bluetooth.avrcpcontroller.AvrcpControllerService;
++import com.android.bluetooth.hfpclient.HeadsetClientService;
+ import android.content.Context;
+ import android.media.AudioManager;
+ import android.os.Message;
+@@ -75,6 +76,7 @@ public class A2dpSinkService extends ProfileService {
+     private static A2dpSinkService sService;
+     protected static BluetoothDevice mStreamingDevice;
+     protected static BluetoothDevice mHandOffPendingDevice = null;
++    private HeadsetClientService mHeadsetClientService;
+ 
+     private static int mMaxA2dpSinkConnections = 1;
+     private A2dpSinkVendorService mA2dpSinkVendor;
+@@ -760,6 +762,14 @@ public class A2dpSinkService extends ProfileService {
+     }
+ 
+     public void onStartIndCallback(byte[] address) {
++        mHeadsetClientService = HeadsetClientService.getHeadsetClientService();
++        if ( mHeadsetClientService!= null && mHeadsetClientService.isA2dpSinkPossible() == false) {
++            if(mA2dpSinkVendor!= null){
++                Log.d(TAG, "Reject A2dpSink");
++                mA2dpSinkVendor.StartIndRsp (address, false);
++            }
++            return;
++        }
+         BluetoothDevice device = getDevice(address);
+         Log.d(TAG, "onStartIndCallback dev " + device + "streaming device" + mStreamingDevice);
+         if (mStreamingDevice != null && !mStreamingDevice.equals(device)) {
+diff --git a/src/com/android/bluetooth/a2dpsink/A2dpSinkStreamHandler.java b/src/com/android/bluetooth/a2dpsink/A2dpSinkStreamHandler.java
+index 267d3dad8..da3d03eb1 100644
+--- a/src/com/android/bluetooth/a2dpsink/A2dpSinkStreamHandler.java
++++ b/src/com/android/bluetooth/a2dpsink/A2dpSinkStreamHandler.java
+@@ -177,6 +177,13 @@ public class A2dpSinkStreamHandler extends Handler {
+                 break;
+ 
+             case SRC_PLAY:
++                HeadsetClientService mHeadsetClientService
++                       = HeadsetClientService.getHeadsetClientService();
++                if(mHeadsetClientService!= null
++                        && mHeadsetClientService.isA2dpSinkPossible() == false) {
++                    sendAvrcpPause();
++                    break;
++                }
+                 mStreamAvailable = true;
+                 // Remote play command.
+                 if (isIotDevice() || isTvDevice() || shouldRequestFocus()) {
+diff --git a/src/com/android/bluetooth/hfpclient/HeadsetClientService.java b/src/com/android/bluetooth/hfpclient/HeadsetClientService.java
+index 3d5f5efbb..5481b5618 100644
+--- a/src/com/android/bluetooth/hfpclient/HeadsetClientService.java
++++ b/src/com/android/bluetooth/hfpclient/HeadsetClientService.java
+@@ -64,6 +64,7 @@ public class HeadsetClientService extends ProfileService {
+     private HeadsetClientStateMachineFactory mSmFactory = null;
+     private DatabaseManager mDatabaseManager;
+     private AudioManager mAudioManager = null;
++    private HfpClientA2DPSync mHfpClientA2dpSinkSync = null;
+     // Maxinum number of devices we can try connecting to in one session
+     private static final int MAX_STATE_MACHINES_POSSIBLE = 100;
+ 
+@@ -101,6 +102,7 @@ public class HeadsetClientService extends ProfileService {
+ 
+         mSmFactory = new HeadsetClientStateMachineFactory();
+         mStateMachineMap.clear();
++        mHfpClientA2dpSinkSync = new HfpClientA2DPSync(this);
+ 
+         IntentFilter filter = new IntentFilter(AudioManager.VOLUME_CHANGED_ACTION);
+         registerReceiver(mBroadcastReceiver, filter);
+@@ -833,6 +835,12 @@ public class HeadsetClientService extends ProfileService {
+         return call;
+     }
+ 
++    public boolean isA2dpSinkPossible() {
++        if(mHfpClientA2dpSinkSync != null)
++            return mHfpClientA2dpSinkSync.isA2dpStreamAllowed();
++        return false;
++    }
++
+     public boolean sendDTMF(BluetoothDevice device, byte code) {
+ 
+         HeadsetClientStateMachine sm = getStateMachine(device);
+diff --git a/src/com/android/bluetooth/hfpclient/HfpClientA2DPSync.java b/src/com/android/bluetooth/hfpclient/HfpClientA2DPSync.java
+new file mode 100644
+index 000000000..dbce57ffa
+--- /dev/null
++++ b/src/com/android/bluetooth/hfpclient/HfpClientA2DPSync.java
+@@ -0,0 +1,55 @@
++/*
++* Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
++* SPDX-License-Identifier: BSD-3-Clause-Clear
++*/
++
++package com.android.bluetooth.hfpclient;
++
++import android.bluetooth.BluetoothDevice;
++import android.bluetooth.BluetoothHeadsetClient;
++import android.bluetooth.BluetoothHeadsetClientCall;
++import android.content.Context;
++import android.net.Uri;
++import android.telecom.Connection;
++
++import java.util.List;
++import java.util.ArrayList;
++import java.util.*;
++
++public class HfpClientA2DPSync{
++    private final HeadsetClientService hsClientService;
++
++    public boolean isA2dpStreamAllowed(){
++        List <BluetoothHeadsetClientCall> currentCalls = getCurrentCalls();
++        if((currentCalls.isEmpty()) == false)
++            return false;
++        List <BluetoothDevice> connectedDevices = hsClientService.getConnectedDevices();
++        if(connectedDevices.isEmpty() == false) {
++            for (BluetoothDevice currentDevice : connectedDevices) {
++               if(hsClientService.getAudioState(currentDevice)
++                   == BluetoothHeadsetClient.STATE_AUDIO_CONNECTED
++                   || hsClientService.getAudioState(currentDevice)
++                   == BluetoothHeadsetClient.STATE_AUDIO_CONNECTING) {
++                  return false;
++               }
++            }
++        }
++        return true;
++    }
++
++    public HfpClientA2DPSync(HeadsetClientService context) {
++        hsClientService = context;
++    }
++
++    private List <BluetoothHeadsetClientCall> getCurrentCalls() {
++        List <BluetoothHeadsetClientCall> callList =  new ArrayList<BluetoothHeadsetClientCall>();;
++        List <BluetoothDevice> connectedDevices = hsClientService.getConnectedDevices();
++        if(!(connectedDevices.isEmpty())) {
++            for (BluetoothDevice mDevice : connectedDevices) {
++                callList.addAll(hsClientService.getCurrentCalls(mDevice));
++            }
++            return callList;
++        }
++        return  Collections.emptyList();
++    }
++}
+\ No newline at end of file
+-- 
+2.17.1
+

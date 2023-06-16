@@ -1,0 +1,192 @@
+From 0d38e52271fecd349801b1887c095158ceca2b59 Mon Sep 17 00:00:00 2001
+From: Venkatesh Sharma <quic_venkshar@quicinc.com>
+Date: Thu, 17 Nov 2022 13:09:26 +0530
+Subject: [PATCH 44/50] BT hfp a2dp sync
+
+-A2dp suspend and pause when call on 2nd device
+-connect SCO after suspend
+
+CRs-Fixed: 3320321
+Change-Id: If0947812ae5380d69598c4834dae00cf52d32e4a
+---
+ .../bluetooth/a2dpsink/A2dpSinkService.java   | 77 +++++++++++++++++++
+ .../hfpclient/HeadsetClientService.java       |  4 +
+ .../hfpclient/HeadsetClientStateMachine.java  |  5 ++
+ 3 files changed, 86 insertions(+)
+
+diff --git a/src/com/android/bluetooth/a2dpsink/A2dpSinkService.java b/src/com/android/bluetooth/a2dpsink/A2dpSinkService.java
+index 96efcaef7..11cee7772 100644
+--- a/src/com/android/bluetooth/a2dpsink/A2dpSinkService.java
++++ b/src/com/android/bluetooth/a2dpsink/A2dpSinkService.java
+@@ -38,6 +38,8 @@ import com.android.bluetooth.mapclient.MapClientService;
+ import com.android.bluetooth.Utils;
+ import com.android.bluetooth.btservice.AdapterService;
+ import com.android.bluetooth.btservice.ProfileService;
++import android.bluetooth.BluetoothHeadsetClientCall;
++import android.bluetooth.BluetoothDevice;
+ import com.android.bluetooth.btservice.storage.DatabaseManager;
+ import com.android.internal.annotations.VisibleForTesting;
+ import com.android.internal.util.ArrayUtils;
+@@ -86,6 +88,7 @@ public class A2dpSinkService extends ProfileService {
+     private static boolean sAudioIsEnabled = false;
+     private static boolean sIsHandOffPending = false;
+     private static boolean mIsSplitSink = false;
++    private static boolean mPausedDueToCallIndicators = false;
+     private List<BluetoothDevice> connectedDevices = null;
+     private static final int DELAY_REMOVE_ACTIVE_DEV = 1000;
+ 
+@@ -358,6 +361,68 @@ public class A2dpSinkService extends ProfileService {
+         return getDevicesMatchingConnectionStates(new int[]{BluetoothAdapter.STATE_CONNECTED});
+     }
+ 
++    public void NotifyHFcallsChanged() {
++        Log.d(TAG ," NotifyHFcallsChanged ");
++        List <BluetoothHeadsetClientCall> callList =  new ArrayList<BluetoothHeadsetClientCall>();
++        if(mHeadsetClientService == null)
++            mHeadsetClientService = HeadsetClientService.getHeadsetClientService();
++        List <BluetoothDevice> connectedDevices = mHeadsetClientService.getConnectedDevices();
++        if(!(connectedDevices.isEmpty())) {
++            for (BluetoothDevice mDevice : connectedDevices) {
++                callList.addAll(mHeadsetClientService.getCurrentCalls(mDevice));
++            }
++        }
++        if(!(callList.isEmpty())&& mStreamingDevice != null) {
++            Log.d(TAG ,"Incomming Call in progress send pause to :" + mStreamingDevice);
++            AvrcpControllerService avrcpService =
++                    AvrcpControllerService.getAvrcpControllerService();
++            avrcpService.sendPassThroughCommandNative(Utils.getByteAddress(mStreamingDevice),
++                        AvrcpControllerService.PASS_THRU_CMD_ID_PAUSE,
++                        AvrcpControllerService.KEY_STATE_PRESSED);
++            avrcpService.sendPassThroughCommandNative(Utils.getByteAddress(mStreamingDevice),
++                        AvrcpControllerService.PASS_THRU_CMD_ID_PAUSE,
++                        AvrcpControllerService.KEY_STATE_RELEASED);
++            mA2dpSinkStreamHandler.obtainMessage(A2dpSinkStreamHandler.STOP_SINK).sendToTarget();
++            mPausedDueToCallIndicators = true;
++            sAudioIsEnabled = false;
++        }
++    }
++
++    public void resumeScoIfRequired() {
++        BluetoothDevice device = null;
++        boolean inband = false;
++        boolean connectSCO = true;
++        int state = BluetoothHeadsetClientCall.CALL_STATE_TERMINATED;
++        List <BluetoothHeadsetClientCall> callList =  new ArrayList<BluetoothHeadsetClientCall>();
++        if(mHeadsetClientService == null)
++            mHeadsetClientService = HeadsetClientService.getHeadsetClientService();
++
++        List <BluetoothDevice> connectedDevices = mHeadsetClientService.getConnectedDevices();
++        if(!(connectedDevices.isEmpty())) {
++            for (BluetoothDevice mDevice : connectedDevices) {
++                callList.addAll(mHeadsetClientService.getCurrentCalls(mDevice));
++            }
++        }
++        if(callList.isEmpty()) return;
++
++        for(BluetoothHeadsetClientCall calls : callList) {
++            inband = calls.isInBandRing();
++            state = calls.getState();
++            device = calls.getDevice();
++            Log.d(TAG , "Inband: "+inband +"Call state :"+state +"Device :"+device);
++        }
++        if((state == BluetoothHeadsetClientCall.CALL_STATE_INCOMING && inband == false) ||
++            state == BluetoothHeadsetClientCall.CALL_STATE_TERMINATED) {
++            connectSCO = false;
++        }
++        if(mPausedDueToCallIndicators == true && connectSCO == true) {
++            Log.d(TAG ,"Connect HFP Audio");
++            mHeadsetClientService.InternalConnectAudio(device);
++        }
++        mPausedDueToCallIndicators = false;
++        callList.clear();
++    }
++
+     protected A2dpSinkStateMachine getOrCreateStateMachine(BluetoothDevice device) {
+         if (device == null) {
+             Log.e(TAG, "getOrCreateStateMachine failed: device cannot be null");
+@@ -738,6 +803,12 @@ public class A2dpSinkService extends ProfileService {
+             return;
+         }
+ 
++        if (mStreamingDevice != null && state == StackEvent.AUDIO_STATE_STOPPED ||
++                state == StackEvent.AUDIO_STATE_REMOTE_SUSPEND) {
++            Log.d(TAG ,"onAudioStateChanged to suspended/stopped connect HFP ..");
++            resumeScoIfRequired();
++        }
++
+         if(mStreamPendingDevice != null && mStreamPendingDevice.equals(device)) {
+             mStreamPendingDevice = null;
+         }
+@@ -830,4 +901,10 @@ public class A2dpSinkService extends ProfileService {
+           sAudioIsEnabled = false;
+         }
+     }
++
++    public boolean onIsSuspendNeededCallback(byte[] address) {
++        BluetoothDevice device = getDevice(address);
++        Log.d(TAG, "onIsSuspendNeededCallback" + device);
++        return mPausedDueToCallIndicators;
++    }
+ }
+diff --git a/src/com/android/bluetooth/hfpclient/HeadsetClientService.java b/src/com/android/bluetooth/hfpclient/HeadsetClientService.java
+index 5481b5618..7476804e5 100644
+--- a/src/com/android/bluetooth/hfpclient/HeadsetClientService.java
++++ b/src/com/android/bluetooth/hfpclient/HeadsetClientService.java
+@@ -696,6 +696,10 @@ public class HeadsetClientService extends ProfileService {
+         return true;
+     }
+ 
++    public boolean InternalConnectAudio(BluetoothDevice device) {
++        return connectAudio(device);
++    }
++
+     boolean holdCall(BluetoothDevice device) {
+ 
+         HeadsetClientStateMachine sm = getStateMachine(device);
+diff --git a/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachine.java b/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachine.java
+index 909d4d2f3..f16660521 100644
+--- a/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachine.java
++++ b/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachine.java
+@@ -60,6 +60,7 @@ import com.android.bluetooth.BluetoothStatsLog;
+ import com.android.bluetooth.R;
+ import com.android.bluetooth.Utils;
+ import com.android.bluetooth.btservice.AdapterService;
++import com.android.bluetooth.a2dpsink.A2dpSinkService;
+ import com.android.bluetooth.btservice.MetricsLogger;
+ import com.android.bluetooth.btservice.ProfileService;
+ import com.android.internal.annotations.VisibleForTesting;
+@@ -137,6 +138,7 @@ public class HeadsetClientStateMachine extends StateMachine {
+     private long mClccTimer = 0;
+ 
+     private final HeadsetClientService mService;
++    private A2dpSinkService mA2dpService;
+ 
+     // Set of calls that represent the accurate state of calls that exists on AG and the calls that
+     // are currently in process of being notified to the AG from HF.
+@@ -710,6 +712,7 @@ public class HeadsetClientStateMachine extends StateMachine {
+         mService = context;
+         mNativeInterface = nativeInterface;
+         mAudioManager = mService.getAudioManager();
++        mA2dpService = A2dpSinkService.getA2dpSinkService();
+ 
+         mVendorProcessor = new VendorCommandResponseProcessor(mService, mNativeInterface);
+ 
+@@ -1411,6 +1414,7 @@ public class HeadsetClientStateMachine extends StateMachine {
+                         case StackEvent.EVENT_TYPE_CLIP:
+                         case StackEvent.EVENT_TYPE_CALL_WAITING:
+                             sendMessage(QUERY_CURRENT_CALLS);
++                            mA2dpService.NotifyHFcallsChanged();
+                             break;
+                         case StackEvent.EVENT_TYPE_CURRENT_CALLS:
+                             queryCallsUpdate(event.valueInt, event.valueInt3, event.valueString,
+@@ -1418,6 +1422,7 @@ public class HeadsetClientStateMachine extends StateMachine {
+                                             == HeadsetClientHalConstants.CALL_MPTY_TYPE_MULTI,
+                                     event.valueInt2
+                                             == HeadsetClientHalConstants.CALL_DIRECTION_OUTGOING);
++                            mA2dpService.NotifyHFcallsChanged();
+                             break;
+                         case StackEvent.EVENT_TYPE_VOLUME_CHANGED:
+                             if (event.valueInt == HeadsetClientHalConstants.VOLUME_TYPE_SPK) {
+-- 
+2.17.1
+

@@ -1,0 +1,65 @@
+From 9d64296e796e088c240b5ab2994b745d2060865f Mon Sep 17 00:00:00 2001
+From: Srinu Jella <quic_sjella@quicinc.com>
+Date: Mon, 17 Oct 2022 12:59:25 +0530
+Subject: [PATCH 35/50] A2dp SNK: Delay processing remove active device
+
+- Delay processing the remove active to MM audio
+  to take care of back to back disc and connection
+  due to codec switch or for some other use case.
+
+- It will wait for 1 second to remove active
+  device, if there is no active device update within
+  1 sec it will process the remove active immediately.
+
+CRs-Fixed: 3287567
+Change-Id: I160e615b2ca6897780bc29bb14705667287579ff
+---
+ .../bluetooth/a2dpsink/A2dpSinkService.java    | 18 +++++++++++++-----
+ 1 file changed, 13 insertions(+), 5 deletions(-)
+
+diff --git a/src/com/android/bluetooth/a2dpsink/A2dpSinkService.java b/src/com/android/bluetooth/a2dpsink/A2dpSinkService.java
+index 5fbbd9574..81dc0480b 100644
+--- a/src/com/android/bluetooth/a2dpsink/A2dpSinkService.java
++++ b/src/com/android/bluetooth/a2dpsink/A2dpSinkService.java
+@@ -84,6 +84,7 @@ public class A2dpSinkService extends ProfileService {
+     private static boolean sIsHandOffPending = false;
+     private static boolean mIsSplitSink = false;
+     private List<BluetoothDevice> connectedDevices = null;
++    private static final int DELAY_REMOVE_ACTIVE_DEV = 1000;
+ 
+     static {
+         classInitNative();
+@@ -666,10 +667,17 @@ public class A2dpSinkService extends ProfileService {
+                 connectedDevices.add(device);
+                 if (mAudioManager != null && (connectedDevices.size() == 1)) {
+                     Log.d(TAG, "SetActive device to MM Audio: ");
+-                    Message msg = mA2dpSinkStreamHandler.obtainMessage(
+-                                    A2dpSinkStreamHandler.SET_ACTIVE);
+-                    msg.obj = device;
+-                    mA2dpSinkStreamHandler.sendMessage(msg);
++                    if(mA2dpSinkStreamHandler.hasMessages(
++                                         A2dpSinkStreamHandler.REMOVE_ACTIVE)) {
++                        Log.d(TAG, "Delayed remove active is peding ");
++                        mA2dpSinkStreamHandler.removeMessages(
++                                         A2dpSinkStreamHandler.REMOVE_ACTIVE);
++                    } else {
++                        Message msg = mA2dpSinkStreamHandler.obtainMessage(
++                                        A2dpSinkStreamHandler.SET_ACTIVE);
++                        msg.obj = device;
++                        mA2dpSinkStreamHandler.sendMessage(msg);
++                    }
+                 }
+             } else if(state == BluetoothProfile.STATE_DISCONNECTED) {
+                 connectedDevices.remove(device);
+@@ -678,7 +686,7 @@ public class A2dpSinkService extends ProfileService {
+                     Message msg = mA2dpSinkStreamHandler.obtainMessage(
+                                       A2dpSinkStreamHandler.REMOVE_ACTIVE);
+                     msg.obj = device;
+-                    mA2dpSinkStreamHandler.sendMessage(msg);
++                    mA2dpSinkStreamHandler.sendMessageDelayed(msg, DELAY_REMOVE_ACTIVE_DEV);
+                 }
+             }
+         }
+-- 
+2.17.1
+

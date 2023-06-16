@@ -1,0 +1,3385 @@
+From 3c04dba52bee3976f2a20b1e4b09dc81263c2382 Mon Sep 17 00:00:00 2001
+From: Srinu Jella <quic_sjella@quicinc.com>
+Date: Fri, 8 Jul 2022 17:18:18 +0530
+Subject: [PATCH 040/100] Stack: Add support for split a2dp sink
+
+- Add support for sending start indication,
+  suspend indication to upper layers at
+  avdt layer.
+
+- Add support for sending start request to
+  app so that application can intimate audio
+  hal about the sink start for split mode.
+
+- Later MM audio hal updates the start
+  confirmation via hidl path.
+
+- Add support for HIDL session management for
+  split sink.
+
+- Add support for split sink mode at audio
+  hal interface layer.
+
+CRs-Fixed: 3245176
+Change-Id: If006180a17b440819f290eaf0792424161c7ddd7
+---
+ audio_a2dp_hw/include/audio_a2dp_hw.h         |   7 +
+ audio_hal_interface/a2dp_encoding.cc          | 269 ++++++++++++++-
+ audio_hal_interface/a2dp_encoding.h           |   7 +
+ audio_hal_interface/client_interface.cc       |   9 +
+ audio_hal_interface/client_interface.h        |   8 +
+ .../hearing_aid_software_encoding.cc          |  13 +
+ bta/av/bta_av_aact.cc                         | 241 +++++++++++++-
+ bta/av/bta_av_api.cc                          |  57 ++++
+ bta/av/bta_av_int.h                           |  27 ++
+ bta/av/bta_av_main.cc                         |  39 +++
+ bta/av/bta_av_ssm.cc                          | 116 ++++++-
+ bta/include/bta_av_api.h                      |  41 ++-
+ btif/co/bta_av_co.cc                          |   3 +
+ btif/include/btif_a2dp.h                      |  21 ++
+ btif/include/btif_a2dp_sink.h                 |   7 +
+ btif/include/btif_ahim.h                      |   8 +
+ btif/include/btif_av.h                        |  14 +
+ btif/src/bluetooth.cc                         |  12 +
+ btif/src/btif_a2dp.cc                         |  24 +-
+ btif/src/btif_a2dp_sink.cc                    | 209 +++++++++++-
+ btif/src/btif_a2dp_source.cc                  |  18 +-
+ btif/src/btif_ahim.cc                         |  11 +
+ btif/src/btif_av.cc                           | 311 ++++++++++++++++--
+ stack/a2dp/a2dp_sbc.cc                        |  54 ++-
+ stack/a2dp/a2dp_sbc_encoder.cc                |  27 +-
+ stack/avdt/avdt_api.cc                        |  78 +++++
+ stack/avdt/avdt_ccb.cc                        |  33 +-
+ stack/avdt/avdt_ccb_act.cc                    | 117 ++++++-
+ stack/avdt/avdt_int.h                         |  22 ++
+ stack/avdt/avdt_scb.cc                        |  39 ++-
+ stack/avdt/avdt_scb_act.cc                    |  63 +++-
+ stack/include/a2dp_sbc.h                      |  27 ++
+ stack/include/a2dp_sbc_encoder.h              |   9 +-
+ stack/include/avdt_api.h                      |  31 ++
+ 34 files changed, 1879 insertions(+), 93 deletions(-)
+
+diff --git a/audio_a2dp_hw/include/audio_a2dp_hw.h b/audio_a2dp_hw/include/audio_a2dp_hw.h
+index 534d2a393..b9e16e84d 100644
+--- a/audio_a2dp_hw/include/audio_a2dp_hw.h
++++ b/audio_a2dp_hw/include/audio_a2dp_hw.h
+@@ -20,6 +20,12 @@
+  *
+  ******************************************************************************/
+ 
++/*
++ * Changes from Qualcomm Innovation Center are provided under the following license:
++ * Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
++ * SPDX-License-Identifier: BSD-3-Clause-Clear
++ */
++
+ /*****************************************************************************
+  *
+  *  Filename:      audio_a2dp_hw.h
+@@ -94,6 +100,7 @@ typedef enum {
+   A2DP_CTRL_GET_PRESENTATION_POSITION,
+   A2DP_CTRL_CMD_STREAM_OPEN,
+   A2DP_CTRL_GET_SINK_LATENCY,
++  A2DP_CTRL_UPDATE_SINK_LATENCY,
+ } tA2DP_CTRL_CMD;
+ 
+ typedef enum {
+diff --git a/audio_hal_interface/a2dp_encoding.cc b/audio_hal_interface/a2dp_encoding.cc
+index 25f8dd81f..59fd81478 100644
+--- a/audio_hal_interface/a2dp_encoding.cc
++++ b/audio_hal_interface/a2dp_encoding.cc
+@@ -18,6 +18,11 @@
+  * limitations under the License.
+  */
+ 
++/*
++ * Changes from Qualcomm Innovation Center are provided under the following license:
++ * Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
++ * SPDX-License-Identifier: BSD-3-Clause-Clear
++ */
+ #include "a2dp_encoding.h"
+ #include "client_interface.h"
+ 
+@@ -42,7 +47,9 @@ extern void btif_av_reset_reconfig_flag();
+ extern bool btif_av_current_device_is_tws();
+ extern void btif_a2dp_source_encoder_init(void);
+ 
++extern uint8_t active_codec_info[AVDT_CODEC_SIZE];
+ #define AAC_SAMPLE_SIZE  1024
++#define MAX_MTU_SIZE 1024
+ #define AAC_LATM_HEADER  12
+ 
+ namespace {
+@@ -305,6 +312,8 @@ class A2dpTransport_2_1 : public ::bluetooth::audio::IBluetoothTransportInstance
+ 
+   tA2DP_CTRL_CMD GetPendingCmd() const { return a2dp_pending_cmd_; }
+ 
++  uint16_t GetSinkLatency() const { return sink_latency_; }
++
+   void ResetPendingCmd() {
+     LOG(WARNING) << "ResetPendingCmd  " << a2dp_pending_cmd_;
+     a2dp_pending_cmd_ = A2DP_CTRL_CMD_NONE;
+@@ -323,6 +332,15 @@ class A2dpTransport_2_1 : public ::bluetooth::audio::IBluetoothTransportInstance
+     }
+   }
+ 
++  void UpdateSinkLatency(uint16_t sink_latency) override {
++    if(!IsActvie()) {
++      LOG(WARNING) << __func__ << ": Not active";
++      return;
++    }
++    sink_latency_ = sink_latency;
++    ProcessRequest(A2DP_CTRL_UPDATE_SINK_LATENCY);
++  }
++
+   // delay reports from AVDTP is based on 1/10 ms (100us)
+   void SetRemoteDelay(uint16_t delay_report) {
+     remote_delay_report_ = delay_report;
+@@ -359,6 +377,7 @@ class A2dpTransport_2_1 : public ::bluetooth::audio::IBluetoothTransportInstance
+   }
+   tA2DP_CTRL_CMD a2dp_pending_cmd_;
+   uint16_t remote_delay_report_;
++  uint16_t sink_latency_;
+   uint64_t total_bytes_read_;
+   timespec data_position_;
+ 
+@@ -1794,6 +1813,235 @@ bool a2dp_get_selected_hal_codec_config_2_1(CodecConfiguration_2_1* codec_config
+     return true;
+   }
+ 
++  if(profile == A2DP_SINK) {
++    codec_config->isScramblingEnabled = btif_av_is_scrambling_enabled();
++    bta_av_co_get_peer_params(&peer_param);
++    peer_param.peer_mtu = MAX_MTU_SIZE;
++    codec_type = A2DP_GetCodecType((const uint8_t*)active_codec_info);
++    LOG(INFO) << __func__ << ": codec_type" << loghex(codec_type);
++    // Obtain the MTU
++    codec_config->peerMtu = peer_param.peer_mtu - A2DP_HEADER_SIZE;
++    if (A2DP_MEDIA_CT_SBC == codec_type) {
++      LOG(INFO) << __func__ << ": SBC codec " ;
++      codec_config->codecType = CodecType_2_1::SBC;
++      codec_config->config.sbcConfig = {};
++      auto sbc_config = codec_config->config.sbcConfig;
++      tA2DP_SBC_CIE sbc_cie;
++
++      tA2DP_STATUS a2dp_status = A2DP_ParseInfoSbc(&sbc_cie, active_codec_info, false);
++
++      if (a2dp_status != A2DP_SUCCESS) {
++        LOG(ERROR) << __func__ << ": cannot decode codec information " << a2dp_status;
++        return false;
++      }
++
++      switch (sbc_cie.samp_freq) {
++        case A2DP_SBC_IE_SAMP_FREQ_16:
++          sbc_config.sampleRate = SampleRate::RATE_16000;
++          break;
++        case A2DP_SBC_IE_SAMP_FREQ_44:
++          sbc_config.sampleRate = SampleRate::RATE_44100;
++          break;
++        case A2DP_SBC_IE_SAMP_FREQ_48:
++          sbc_config.sampleRate = SampleRate::RATE_48000;
++          break;
++        default:
++          LOG(ERROR) << __func__
++                     << ": Unknown SBC freq=" << sbc_cie.samp_freq;
++          sbc_config.sampleRate = SampleRate::RATE_UNKNOWN;
++          return false;
++      }
++
++      switch (sbc_cie.ch_mode) {
++        case A2DP_SBC_IE_CH_MD_JOINT:
++          sbc_config.channelMode = SbcChannelMode::JOINT_STEREO;
++          break;
++        case A2DP_SBC_IE_CH_MD_STEREO:
++          sbc_config.channelMode = SbcChannelMode::STEREO;
++          break;
++        case A2DP_SBC_IE_CH_MD_DUAL:
++          sbc_config.channelMode = SbcChannelMode::DUAL;
++          break;
++        case A2DP_SBC_IE_CH_MD_MONO:
++          sbc_config.channelMode = SbcChannelMode::MONO;
++          break;
++        default:
++          LOG(ERROR) << __func__
++                     << ": Unknown SBC channel_mode=" << sbc_cie.ch_mode;
++          sbc_config.channelMode = SbcChannelMode::UNKNOWN;
++          return false;
++      }
++
++      switch (sbc_cie.block_len) {
++        case A2DP_SBC_IE_BLOCKS_4:
++          sbc_config.blockLength = SbcBlockLength::BLOCKS_4;
++          break;
++        case A2DP_SBC_IE_BLOCKS_8:
++          sbc_config.blockLength = SbcBlockLength::BLOCKS_8;
++          break;
++        case A2DP_SBC_IE_BLOCKS_12:
++          sbc_config.blockLength = SbcBlockLength::BLOCKS_12;
++          break;
++        case A2DP_SBC_IE_BLOCKS_16:
++          sbc_config.blockLength = SbcBlockLength::BLOCKS_16;
++          break;
++        default:
++          LOG(ERROR) << __func__
++                     << ": Unknown SBC block_length=" << sbc_cie.block_len;
++          return false;
++      }
++
++      switch (sbc_cie.num_subbands) {
++        case A2DP_SBC_IE_SUBBAND_4:
++          sbc_config.numSubbands = SbcNumSubbands::SUBBAND_4;
++          break;
++        case A2DP_SBC_IE_SUBBAND_8:
++          sbc_config.numSubbands = SbcNumSubbands::SUBBAND_8;
++          break;
++        default:
++          LOG(ERROR) << __func__ << ": Unknown SBC Subbands=" << sbc_cie.num_subbands;
++          return false;
++      }
++
++      switch (sbc_cie.alloc_method) {
++        case A2DP_SBC_IE_ALLOC_MD_S:
++          sbc_config.allocMethod = SbcAllocMethod::ALLOC_MD_S;
++          break;
++        case A2DP_SBC_IE_ALLOC_MD_L:
++          sbc_config.allocMethod = SbcAllocMethod::ALLOC_MD_L;
++          break;
++        default:
++          LOG(ERROR) << __func__
++                     << ": Unknown SBC alloc_method=" << sbc_cie.alloc_method;
++          return false;
++      }
++
++      sbc_config.minBitpool = sbc_cie.min_bitpool;
++      sbc_config.maxBitpool = sbc_cie.max_bitpool;
++
++      sbc_config.bitsPerSample = BitsPerSample::BITS_16;
++      codec_config->encodedAudioBitrate =
++                    1000 * A2DP_GetOffloadBitrateSbcUsingCodecInfo(
++                    active_codec_info, true);
++      LOG(INFO) << __func__ << "SBC bitrate" << codec_config->encodedAudioBitrate;
++
++      codec_config->config.sbcConfig = sbc_config;
++
++    } else if (A2DP_MEDIA_CT_AAC == codec_type) {
++      codec_config->codecType = CodecType_2_1::AAC;
++      codec_config->config.aacConfig = {};
++      auto aac_config = codec_config->config.aacConfig;
++      aac_config.objectType = AacObjectType::MPEG2_LC;
++      bool is_AAC_frame_ctrl_stack_enable =
++                      controller_get_interface()->supports_aac_frame_ctl();
++      uint32_t codec_based_bit_rate = 0;
++      uint32_t mtu_based_bit_rate = 0;
++      LOG(INFO) << __func__ << "Stack AAC frame control enabled"
++                            << is_AAC_frame_ctrl_stack_enable;
++      tA2DP_AAC_CIE aac_cie;
++      if(!A2DP_GetAacCIE(active_codec_info, &aac_cie)) {
++        LOG(ERROR) << __func__ << ": Unable to get AAC CIE";
++        return false;
++      }
++      codec_based_bit_rate = aac_cie.bitRate;
++
++      switch (aac_cie.sampleRate) {
++        case A2DP_AAC_SAMPLING_FREQ_16000:
++          aac_config.sampleRate = SampleRate::RATE_16000;
++          break;
++        case A2DP_AAC_SAMPLING_FREQ_24000:
++          aac_config.sampleRate = SampleRate::RATE_24000;
++          break;
++        case A2DP_AAC_SAMPLING_FREQ_44100:
++          aac_config.sampleRate = SampleRate::RATE_44100;
++          break;
++        case A2DP_AAC_SAMPLING_FREQ_48000:
++          aac_config.sampleRate = SampleRate::RATE_48000;
++          break;
++        case A2DP_AAC_SAMPLING_FREQ_96000:
++          aac_config.sampleRate = SampleRate::RATE_96000;
++          break;
++        default:
++          LOG(ERROR) << __func__
++                     << ": Unknown SBC freq=" << aac_cie.sampleRate;
++          aac_config.sampleRate = SampleRate::RATE_UNKNOWN;
++          return false;
++      }
++
++      switch (aac_cie.channelMode) {
++        case A2DP_AAC_CHANNEL_MODE_MONO:
++          aac_config.channelMode = ChannelMode::MONO;
++          break;
++        case A2DP_AAC_CHANNEL_MODE_STEREO:
++          aac_config.channelMode = ChannelMode::STEREO;
++          break;
++        default:
++          LOG(ERROR) << __func__
++                     << ": Unknown AAC channel_mode=" << aac_cie.channelMode;
++          aac_config.channelMode = ChannelMode::UNKNOWN;
++          break;
++      }
++
++      switch (aac_cie.bits_per_sample) {
++        case BTAV_A2DP_CODEC_BITS_PER_SAMPLE_16:
++          aac_config.bitsPerSample = BitsPerSample::BITS_16;
++          break;
++        case BTAV_A2DP_CODEC_BITS_PER_SAMPLE_24:
++          aac_config.bitsPerSample = BitsPerSample::BITS_24;
++          break;
++        case BTAV_A2DP_CODEC_BITS_PER_SAMPLE_32:
++          aac_config.bitsPerSample = BitsPerSample::BITS_32;
++          break;
++        default:
++          LOG(ERROR) << __func__
++                     << ": Unknown AAC bits per sample =" << aac_cie.bits_per_sample;
++          aac_config.bitsPerSample = BitsPerSample::BITS_16;
++          break;
++      }
++
++      uint8_t vbr_enabled = aac_cie.variableBitRateSupport;
++      switch (vbr_enabled) {
++        case A2DP_AAC_VARIABLE_BIT_RATE_ENABLED:
++          LOG(INFO) << __func__ << " Enabled AAC VBR =" << +vbr_enabled;
++          aac_config.variableBitRateEnabled = AacVariableBitRate::ENABLED;
++          break;
++        case A2DP_AAC_VARIABLE_BIT_RATE_DISABLED:
++          LOG(INFO) << __func__ << " Disabled AAC VBR =" << +vbr_enabled;
++          aac_config.variableBitRateEnabled = AacVariableBitRate::DISABLED;
++          break;
++        default:
++          LOG(ERROR) << __func__ << ": Unknown AAC VBR=" << +vbr_enabled;
++          return false;
++      }
++
++      if (is_AAC_frame_ctrl_stack_enable) {
++        if (btif_av_is_peer_edr() && (btif_av_peer_supports_3mbps() == FALSE)) {
++          // This condition would be satisfied only if the remote device is
++          // EDR and supports only 2 Mbps, but the effective AVDTP MTU size
++          // exceeds the 2DH5 packet size.
++          if (peer_param.peer_mtu > MAX_2MBPS_AVDTP_MTU) {
++            peer_param.peer_mtu = MAX_2MBPS_AVDTP_MTU;
++            codec_config->peerMtu = peer_param.peer_mtu - A2DP_HEADER_SIZE;
++            APPL_TRACE_WARNING("%s Restricting MTU size to %d", __func__, peer_param.peer_mtu);
++          }
++        }
++        int sample_rate = A2DP_GetTrackSampleRate(active_codec_info);
++        mtu_based_bit_rate = (peer_param.peer_mtu - AAC_LATM_HEADER)
++                                            * (8 * sample_rate / AAC_SAMPLE_SIZE);
++        LOG(INFO) << __func__ << "sample_rate " << sample_rate;
++        LOG(INFO) << __func__ << " peer_mtu " << peer_param.peer_mtu;
++        LOG(INFO) << __func__ << " codec_bit_rate " << codec_based_bit_rate
++                  << " MTU bitrate " << mtu_based_bit_rate;
++        codec_config->encodedAudioBitrate = (codec_based_bit_rate < mtu_based_bit_rate) ?
++                                             codec_based_bit_rate:mtu_based_bit_rate;
++      } else {
++        codec_config->encodedAudioBitrate = codec_based_bit_rate;
++      }
++      codec_config->config.aacConfig = aac_config;
++    }
++    return true;
++  }
++
+ /********LC3 Codec */
+   if (a2dp_codec_configs == nullptr) {
+     LOG(WARNING) << __func__ << ": failure to get A2DP codec config";
+@@ -2298,7 +2546,8 @@ bool init( thread_t* message_loop) {
+         session_type = SessionType::A2DP_SOFTWARE_ENCODING_DATAPATH;
+       }
+ #if AHIM_ENABLED
+-    } else if(profile == AUDIO_GROUP_MGR || profile == BROADCAST) {
++    } else if(profile == AUDIO_GROUP_MGR || profile == BROADCAST ||
++              profile == A2DP_SINK) {
+         CodecConfiguration_2_1 codec_config{};
+         if (!a2dp_get_selected_hal_codec_config_2_1(&codec_config, profile)) {
+           LOG(ERROR) << __func__ << ": Failed to get CodecConfiguration";
+@@ -2333,7 +2582,7 @@ bool init( thread_t* message_loop) {
+         a2dp_sink_2_1->SetRemoteDelay(remote_delay);
+         remote_delay = 0;
+       }
+-    }else {
++    } else {
+        AudioConfiguration audio_config{};
+        if (btif_av_is_split_a2dp_enabled()) {
+          CodecConfiguration codec_config{};
+@@ -2514,7 +2763,8 @@ bool setup_codec() {
+      AudioConfiguration_2_1 audio_config{};
+ 
+ #if AHIM_ENABLED
+-     if (profile == A2DP || profile == AUDIO_GROUP_MGR) {
++     if (profile == A2DP || profile == AUDIO_GROUP_MGR ||
++         profile == A2DP_SINK) {
+ #endif
+        if (session_type == SessionType::A2DP_HARDWARE_OFFLOAD_DATAPATH) {
+          CodecConfiguration_2_1 codec_config{};
+@@ -2647,6 +2897,19 @@ tA2DP_CTRL_CMD get_pending_command() {
+   return pending_cmd;
+ }
+ 
++uint16_t get_sink_latency() {
++  std::unique_lock<std::mutex> guard(internal_mutex_);
++  uint16_t sink_latency = 0;
++  if (!is_hal_2_0_enabled()) {
++    LOG(ERROR) << __func__ << ": BluetoothAudio HAL is not enabled";
++  } else {
++    if (a2dp_sink_2_1) {
++      sink_latency = a2dp_sink_2_1->GetSinkLatency();
++    }
++  }
++  return sink_latency;
++}
++
+ void reset_pending_command() {
+   std::unique_lock<std::mutex> guard(internal_mutex_);
+   if (!is_hal_2_0_enabled()) {
+diff --git a/audio_hal_interface/a2dp_encoding.h b/audio_hal_interface/a2dp_encoding.h
+index 2b079a7f6..8448ebf6e 100644
+--- a/audio_hal_interface/a2dp_encoding.h
++++ b/audio_hal_interface/a2dp_encoding.h
+@@ -14,6 +14,12 @@
+  * limitations under the License.
+  */
+ 
++/*
++ * Changes from Qualcomm Innovation Center are provided under the following license:
++ * Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
++ * SPDX-License-Identifier: BSD-3-Clause-Clear
++ */
++
+ #pragma once
+ 
+ #include "audio_a2dp_hw/include/audio_a2dp_hw.h"
+@@ -70,6 +76,7 @@ void set_remote_delay(uint16_t delay_report);
+ bool is_streaming();
+ SessionType get_session_type();
+ void update_session_params(SessionParamType param_type);
++uint16_t get_sink_latency();
+ 
+ }  // namespace a2dp
+ }  // namespace audio
+diff --git a/audio_hal_interface/client_interface.cc b/audio_hal_interface/client_interface.cc
+index 46b55d0fc..f204ca227 100644
+--- a/audio_hal_interface/client_interface.cc
++++ b/audio_hal_interface/client_interface.cc
+@@ -14,6 +14,12 @@
+  * limitations under the License.
+  */
+ 
++/*
++ * Changes from Qualcomm Innovation Center are provided under the following license:
++ * Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
++ * SPDX-License-Identifier: BSD-3-Clause-Clear
++ */
++
+ #define LOG_TAG "BTAudioClientIf"
+ 
+ #include "client_interface.h"
+@@ -138,6 +144,7 @@ class BluetoothAudioPortImpl : public BluetoothAudioPort {
+   }
+ 
+   Return<void> updateAptxMode(uint16_t aptxMode) {
++    LOG(WARNING) << __func__ << ": latency " << aptxMode;
+     return Void();
+   }
+ 
+@@ -218,6 +225,8 @@ class BluetoothAudioPortImpl_2_1 : public BluetoothAudioPort_2_1 {
+   }
+ 
+   Return<void> updateAptxMode(uint16_t aptxMode) {
++    sink_2_1_->UpdateSinkLatency(aptxMode);
++    LOG(WARNING) << __func__ << ": latency " << aptxMode;
+     return Void();
+   }
+ 
+diff --git a/audio_hal_interface/client_interface.h b/audio_hal_interface/client_interface.h
+index 859ac86cc..f332f7e14 100644
+--- a/audio_hal_interface/client_interface.h
++++ b/audio_hal_interface/client_interface.h
+@@ -14,6 +14,12 @@
+  * limitations under the License.
+  */
+ 
++/*
++ * Changes from Qualcomm Innovation Center are provided under the following license:
++ * Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
++ * SPDX-License-Identifier: BSD-3-Clause-Clear
++ */
++
+ #pragma once
+ 
+ #include <time.h>
+@@ -183,6 +189,8 @@ class IBluetoothTransportInstance_2_1 {
+   // Invoked when the transport is requested to log bytes read
+   virtual void LogBytesRead(size_t bytes_readed) = 0;
+ 
++  virtual void UpdateSinkLatency(uint16_t sink_latency) = 0;
++
+  private:
+   SessionType session_type_;
+   AudioConfiguration_2_1 audio_config_2_1_;
+diff --git a/audio_hal_interface/hearing_aid_software_encoding.cc b/audio_hal_interface/hearing_aid_software_encoding.cc
+index c839f2cff..b2aac4fb5 100644
+--- a/audio_hal_interface/hearing_aid_software_encoding.cc
++++ b/audio_hal_interface/hearing_aid_software_encoding.cc
+@@ -14,6 +14,12 @@
+  * limitations under the License.
+  */
+ 
++/*
++ * Changes from Qualcomm Innovation Center are provided under the following license:
++ * Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
++ * SPDX-License-Identifier: BSD-3-Clause-Clear
++ */
++
+ #define LOG_TAG "BTAudioClientHearingAid"
+ 
+ #include "hearing_aid_software_encoding.h"
+@@ -237,6 +243,13 @@ class HearingAidTransport_2_1
+     }
+   }
+ 
++  void UpdateSinkLatency(uint16_t sink_latency) override {
++    if(!IsActvie()) {
++      LOG(WARNING) << __func__ << ": Not active";
++      return;
++    }
++  }
++
+   void SetRemoteDelay(uint16_t delay_report_ms) {
+     LOG(INFO) << __func__ << ": delay_report=" << delay_report_ms << " msec";
+     remote_delay_report_ms_ = delay_report_ms;
+diff --git a/bta/av/bta_av_aact.cc b/bta/av/bta_av_aact.cc
+index 645f066bf..e325ed75f 100644
+--- a/bta/av/bta_av_aact.cc
++++ b/bta/av/bta_av_aact.cc
+@@ -49,6 +49,12 @@
+  *
+  ******************************************************************************/
+ 
++/*
++ * Changes from Qualcomm Innovation Center are provided under the following license:
++ * Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
++ * SPDX-License-Identifier: BSD-3-Clause-Clear
++ */
++
+ /******************************************************************************
+  *
+  *  This file contains action functions for advanced audio/video stream
+@@ -78,6 +84,7 @@
+ #include "btm_int.h"
+ #include "device/include/controller.h"
+ #include "a2dp_sbc.h"
++#include "a2dp_aac.h"
+ #include "btif/include/btif_a2dp_source.h"
+ #include "btif/include/btif_av.h"
+ #include "btif/include/btif_hf.h"
+@@ -134,6 +141,25 @@ void update_sub_band_info(uint8_t **param, int *param_len, uint8_t id, uint16_t
+ void update_sub_band_info(uint8_t **param, int *param_len, uint8_t id, uint8_t *data, uint8_t size);
+ void enc_mode_change_callback(tBTM_VSC_CMPL *param);
+ tBTA_AV_HNDL offload_pending_handle = BTA_AV_HNDL_MSK;
++void bta_avk_update_delay_report (tBTA_AV_SCB *p_scb, tBTA_AV_DATA *p_data);
++// for split a2dp sink
++
++#define VS_QCHCI_A2DP_SINK_START              0x20
++#define AVDT_HEADER_SBC                       0x0D
++#define AVDT_HEADER_NON_SBC                   0x0C
++#define VS_QCHCI_A2DP_SINK_STOP               0x21
++
++  typedef struct {
++    uint8_t stream_handle;
++    uint16_t connection_handle;
++    uint16_t lcid;
++    uint8_t codec_id;
++    uint32_t peak_bit_rate;// 3 octets
++    uint16_t l2cap_mtu;
++    uint8_t packet_header_size;
++    uint8_t cp_enable;//content protection enable
++}A2DP_SINK_OFFLOAD_PARAM;
++A2DP_SINK_OFFLOAD_PARAM offload_sink_start;
+ 
+ /* state machine states */
+ enum {
+@@ -209,6 +235,13 @@ const tBTA_AV_SACT bta_av_a2dp_action[] = {
+     bta_av_offload_rsp,     /* BTA_AV_OFFLOAD_RSP */
+     bta_av_disc_fail_as_acp,/* BTA_AV_DISC_FAIL */
+     bta_av_handle_collision,/* BTA_AV_HANDLE_COLLISION */
++    bta_av_sink_offload_start_req, /* BTA_AV_SINK_OFFLOAD_START_REQ*/
++    bta_av_sink_offload_stop_req,  /* BTA_AV_SINK_OFFLOAD_STOP_REQ*/
++    bta_av_sink_send_pending_start_cnf,   /* BTA_AV_SINK_SEND_PENDING_START_CNF */
++    bta_av_sink_send_pending_start_rej,   /* BTA_AV_SINK_SEND_PENDING_START_REJ */
++    bta_av_sink_send_pending_suspend_cnf, /* BTA_AV_SINK_SEND_PENDING_SUSPEND_CNF */
++    bta_av_sink_send_pending_suspend_rej, /* BTA_AV_SINK_SEND_PENDING_SUSPEND_REJ */
++    bta_avk_update_delay_report, /*BTA_AVK_UPDATE_DELAY_REPORT*/
+     NULL};
+ 
+ /* these tables translate AVDT events to SSM events */
+@@ -265,6 +298,11 @@ static const uint16_t bta_av_stream_evt_fail[] = {
+     BTA_AV_AVDT_DELAY_RPT_EVT, /* AVDT_DELAY_REPORT_EVT */
+     0                          /* AVDT_DELAY_REPORT_CFM_EVT */
+ };
++
++void offload_vendor_callback(tBTM_VSC_CMPL *param);
++void sink_offload_vendor_callback(tBTM_VSC_CMPL *param);
++extern bool is_split_enabled();
++
+ void bta_av_vendor_offload_start(tBTA_AV_SCB *p_scb);
+ static void bta_av_stream0_cback(uint8_t handle, const RawAddress* bd_addr,
+                                  uint8_t event, tAVDT_CTRL* p_data);
+@@ -676,9 +714,11 @@ void bta_av_sink_data_cback(uint8_t handle, BT_HDR* p_pkt, uint32_t time_stamp,
+     osi_free(p_pkt);
+     return;
+   }
+-  p_pkt->event = BTA_AV_SINK_MEDIA_DATA_EVT;
+-  p_scb->seps[p_scb->sep_idx].p_app_sink_data_cback(BTA_AV_SINK_MEDIA_DATA_EVT,
+-                                                    (tBTA_AV_MEDIA*)p_pkt, p_scb->peer_addr);
++  if (!is_split_enabled()) {
++    p_pkt->event = BTA_AV_SINK_MEDIA_DATA_EVT;
++    p_scb->seps[p_scb->sep_idx].p_app_sink_data_cback(BTA_AV_SINK_MEDIA_DATA_EVT,
++                                                      (tBTA_AV_MEDIA*)p_pkt, p_scb->peer_addr);
++  }
+   /* Free the buffer: a copy of the packet has been delivered */
+   osi_free(p_pkt);
+ }
+@@ -2616,6 +2656,164 @@ void bta_av_str_stopped(tBTA_AV_SCB* p_scb, tBTA_AV_DATA* p_data) {
+   }
+ }
+ 
++
++/*******************************************************************************
++**
++** Function         bta_av_sink_offload_start_req
++**
++** Description      Send VSC start offload cmd.
++**
++** Returns          void
++**
++*******************************************************************************/
++void bta_av_sink_offload_start_req(tBTA_AV_SCB *p_scb, tBTA_AV_DATA *p_data)
++{
++    uint16_t mtu;
++    uint8_t param[20];
++    uint16_t acl_hdl;
++    uint8_t param_len;
++    uint32_t bitrate = 0;
++    tA2DP_CODEC_TYPE codec_type = A2DP_GetCodecType(p_scb->cfg.codec_info);
++
++    //A2dpCodecConfig* a2dp_codec_configs = bta_av_get_a2dp_current_codec();
++    APPL_TRACE_DEBUG("%s", __func__);
++    /* Check if stream has already been started. */
++    /* Support offload if only one audio source stream is open. */
++    acl_hdl = BTM_GetHCIConnHandle(p_scb->peer_addr, BT_TRANSPORT_BR_EDR);
++    param_len = 14;
++    mtu = bta_av_chk_mtu(p_scb, p_scb->stream_mtu);
++    offload_sink_start.stream_handle = 0;//stream handle is 0 always
++    offload_sink_start.connection_handle = acl_hdl;
++    offload_sink_start.l2cap_mtu = (mtu < p_scb->stream_mtu) ? mtu : p_scb->stream_mtu;
++    offload_sink_start.l2cap_mtu = BTA_AV_MAX_A2DP_MTU;
++    offload_sink_start.lcid = p_scb->l2c_cid;
++    offload_sink_start.codec_id = codec_type;
++    offload_sink_start.cp_enable = 0x0;
++    APPL_TRACE_DEBUG("%s codec_type = %04x",__func__,codec_type);
++    switch(codec_type) {
++      case A2DP_MEDIA_CT_SBC:
++        // TODO to properly get the edr
++        bitrate = A2DP_GetOffloadBitrateSbcUsingCodecInfo(p_scb->cfg.codec_info, true);
++        LOG(INFO) << __func__ << "SBC bitrate" << bitrate;
++        offload_sink_start.peak_bit_rate = bitrate * 1000;
++        offload_sink_start.packet_header_size = AVDT_HEADER_SBC;
++        break;
++      case A2DP_MEDIA_CT_AAC:
++        offload_sink_start.peak_bit_rate = A2DP_GetBitRateAac(p_scb->cfg.codec_info);
++        offload_sink_start.packet_header_size = AVDT_HEADER_NON_SBC;
++        break;
++      default:
++        APPL_TRACE_ERROR("Unsupported Codec_type");
++        return;
++        break;
++    }
++    uint8_t *p_param = param;
++    *p_param++ = VS_QCHCI_A2DP_SINK_START;
++    UINT8_TO_STREAM(p_param,offload_sink_start.stream_handle);
++    UINT16_TO_STREAM(p_param,offload_sink_start.connection_handle);
++    UINT16_TO_STREAM(p_param,offload_sink_start.lcid);
++    UINT8_TO_STREAM(p_param,offload_sink_start.codec_id);
++    UINT24_TO_STREAM(p_param,offload_sink_start.peak_bit_rate);
++    UINT16_TO_STREAM(p_param,offload_sink_start.l2cap_mtu);
++    UINT8_TO_STREAM(p_param,offload_sink_start.packet_header_size);
++    UINT8_TO_STREAM(p_param,offload_sink_start.cp_enable);
++    p_scb->sink_split_vsc_rsp_waiting = TRUE;
++    BTM_VendorSpecificCommand(HCI_VSQC_CONTROLLER_A2DP_OPCODE,param_len,
++                               param, sink_offload_vendor_callback);
++    APPL_TRACE_DEBUG("%s Stream Handle = %d",__func__,offload_sink_start.stream_handle);
++    APPL_TRACE_DEBUG("%s Connection Handle = %d",__func__,offload_sink_start.connection_handle);
++    APPL_TRACE_DEBUG("%s LCID = %d",__func__,offload_sink_start.lcid);
++    APPL_TRACE_DEBUG("%s Codec_ID = %d",__func__,offload_sink_start.codec_id);
++    APPL_TRACE_DEBUG("%s Peak Bit Rate = %d",__func__,offload_sink_start.peak_bit_rate);
++    APPL_TRACE_DEBUG("%s L2CAP Mtu = %d",__func__,offload_sink_start.l2cap_mtu);
++    APPL_TRACE_DEBUG("%s Packet Header Size = %d",__func__,offload_sink_start.packet_header_size);
++    APPL_TRACE_DEBUG("%s CP enable = %d",__func__,offload_sink_start.cp_enable);
++}
++/*******************************************************************************
++**
++** Function         bta_av_sink_offload_stop_req
++**
++** Description      send VSC stop(split) req
++**
++** Returns          void
++**
++*******************************************************************************/
++void bta_av_sink_offload_stop_req (tBTA_AV_SCB *p_scb, tBTA_AV_DATA *p_data)
++{
++    uint8_t param[2];
++    uint8_t param_len = 2;
++    uint8_t *p_param = param;
++    *p_param++ = VS_QCHCI_A2DP_SINK_STOP;
++    UINT8_TO_STREAM(p_param,0);//stream handle is 0
++    BTM_VendorSpecificCommand(HCI_VSQC_CONTROLLER_A2DP_OPCODE,param_len,
++                               param, sink_offload_vendor_callback);
++    p_scb->sink_split_vsc_rsp_waiting = TRUE;
++    APPL_TRACE_DEBUG("%s , vsc command sent",__func__);
++}
++/*******************************************************************************
++**
++** Function         bta_av_sink_send_pending_start_cnf
++**
++** Description      send start cnf for pending request
++**
++** Returns          void
++**
++*******************************************************************************/
++void bta_av_sink_send_pending_start_cnf (tBTA_AV_SCB *p_scb, tBTA_AV_DATA *p_data)
++{
++    APPL_TRACE_DEBUG(" %s handle %d",__func__,p_scb->avdt_handle);
++    AVDT_SndPendingSigStart_Rsp(p_scb->avdt_handle, TRUE);
++}
++/*******************************************************************************
++**
++** Function         bta_av_sink_send_pending_start_rej
++**
++** Description      send start cnf for pending request
++**
++** Returns          void
++**
++*******************************************************************************/
++void bta_av_sink_send_pending_start_rej (tBTA_AV_SCB *p_scb, tBTA_AV_DATA *p_data)
++{
++    APPL_TRACE_DEBUG(" %s ",__func__);
++    AVDT_SndPendingSigStart_Rsp(p_scb->avdt_handle, FALSE);
++}
++/*******************************************************************************
++**
++** Function         bta_av_sink_send_pending_suspend_cnf
++**
++** Description      send start cnf for pending request
++**
++** Returns          void
++**
++*******************************************************************************/
++void bta_av_sink_send_pending_suspend_cnf (tBTA_AV_SCB *p_scb, tBTA_AV_DATA *p_data)
++{
++    APPL_TRACE_DEBUG(" %s ",__func__);
++    AVDT_SndPendingSigSuspend_Rsp(p_scb->avdt_handle, TRUE);
++}
++/*******************************************************************************
++**
++** Function         bta_av_sink_send_pending_suspend_rej
++**
++** Description      send start cnf for pending request
++**
++** Returns          void
++**
++*******************************************************************************/
++void bta_av_sink_send_pending_suspend_rej (tBTA_AV_SCB *p_scb, tBTA_AV_DATA *p_data)
++{
++    APPL_TRACE_DEBUG(" %s ",__func__);
++    AVDT_SndPendingSigSuspend_Rsp(p_scb->avdt_handle, FALSE);
++}
++
++void bta_avk_update_delay_report (tBTA_AV_SCB *p_scb, tBTA_AV_DATA *p_data)
++{
++    tBTA_AV_API_SINK_LATENCY* p_latency = &p_data->api_sink_latency;
++    APPL_TRACE_DEBUG(" %s ",__func__);
++    AVDT_UpdateDelayReport(p_scb->avdt_handle, p_latency->sink_latency);
++}
++
+ /*******************************************************************************
+  *
+  * Function         bta_av_reconfig
+@@ -4708,3 +4906,40 @@ void bta_av_handle_collision(tBTA_AV_SCB* p_scb, tBTA_AV_DATA* p_data) {
+ 
+   /* connection is retried from upper layers, no need for connection attempt again */
+ }
++
++void sink_offload_vendor_callback(tBTM_VSC_CMPL *param)
++{
++    unsigned char sub_opcode = 0;
++    uint8_t index = 0;
++    tBTA_AV_SINK_OFFLOAD_RSP offload_rsp;
++    tBTA_AV_STATUS status = BTA_AV_FAIL_STREAM;
++    APPL_TRACE_DEBUG("offload_vendor_callback: param_len = %d subopcode = %d status = %d",
++                       param->param_len, param->p_param_buf[1], param->p_param_buf[0]);
++    for (index = 0; index < BTA_AV_NUM_STRS; index++) {
++        APPL_TRACE_DEBUG(" %s VSC Resposnse pending", __func__,
++                         bta_av_cb.p_scb[index]->sink_split_vsc_rsp_waiting);
++        if (bta_av_cb.p_scb[index]->sink_split_vsc_rsp_waiting) {
++            break;
++        }
++    }
++    if (index == BTA_AV_NUM_STRS) {
++        APPL_TRACE_DEBUG(" %s no matching scb found",__func__);
++        return;
++    }
++    // we have received response, now we make this variable as false.
++    bta_av_cb.p_scb[index]->sink_split_vsc_rsp_waiting = FALSE;
++    if (param->param_len) {
++        status = param->p_param_buf[0];
++    }
++    sub_opcode =  param->p_param_buf[1];
++    APPL_TRACE_DEBUG(" %s: sub_opcode %d  status = %d",__func__, sub_opcode, status);
++    offload_rsp.status = status;
++    offload_rsp.hndl = bta_av_cb.p_scb[index]->hndl;
++    if(sub_opcode == VS_QCHCI_A2DP_SINK_START) {
++        (*bta_av_cb.p_cback)(BTA_AV_SINK_OFFLOAD_START_RSP_EVT, (tBTA_AV *)&offload_rsp);
++    }else if(sub_opcode == VS_QCHCI_A2DP_SINK_STOP) {
++        (*bta_av_cb.p_cback)(BTA_AV_SINK_OFFLOAD_STOP_RSP_EVT, (tBTA_AV *)&offload_rsp);
++    }else {
++        APPL_TRACE_ERROR(" %s subopcode doesn't match", __func__);
++    }
++}
+\ No newline at end of file
+diff --git a/bta/av/bta_av_api.cc b/bta/av/bta_av_api.cc
+index b9c1204f2..f79163b88 100644
+--- a/bta/av/bta_av_api.cc
++++ b/bta/av/bta_av_api.cc
+@@ -49,6 +49,12 @@
+  *
+  ******************************************************************************/
+ 
++/*
++ * Changes from Qualcomm Innovation Center are provided under the following license:
++ * Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
++ * SPDX-License-Identifier: BSD-3-Clause-Clear
++ */
++
+ /******************************************************************************
+  *
+  *  This is the implementation of the API for the advanced audio/video (AV)
+@@ -808,3 +814,54 @@ void bta_av_sniff_enable(bool policy_enable, const RawAddress& peer_addr) {
+   else
+     bta_sys_clear_policy(BTA_ID_AV, policy, peer_addr);
+ }
++
++void BTA_AvkOffloadStart(tBTA_AV_HNDL  hndl) {
++    BT_HDR *p_buf = (BT_HDR *)osi_malloc(sizeof(BT_HDR));
++    p_buf->event = BTA_AV_SINK_API_OFFLOAD_START_EVT;
++    p_buf->layer_specific = hndl;
++    bta_sys_sendmsg(p_buf);
++}
++
++void BTA_AvkOffloadStop(tBTA_AV_HNDL  hndl) {
++    BT_HDR *p_buf = (BT_HDR *)osi_malloc(sizeof(BT_HDR));
++    p_buf->event = BTA_AV_SINK_API_OFFLOAD_STOP_EVT;
++    p_buf->layer_specific = hndl;
++    bta_sys_sendmsg(p_buf);
++}
++
++void BTA_AvkSendPedingStartCnf(tBTA_AV_HNDL  hndl) {
++    BT_HDR *p_buf = (BT_HDR *)osi_malloc(sizeof(BT_HDR));
++    p_buf->event = BTA_AV_SINK_API_PENDING_START_CNF_EVT;
++    p_buf->layer_specific = hndl;
++    bta_sys_sendmsg(p_buf);
++}
++
++void BTA_AvkSendPedingStartRej(tBTA_AV_HNDL  hndl) {
++    BT_HDR *p_buf = (BT_HDR *)osi_malloc(sizeof(BT_HDR));
++    p_buf->event = BTA_AV_SINK_API_PENDING_START_REJECT_EVT;
++    p_buf->layer_specific = hndl;
++    bta_sys_sendmsg(p_buf);
++}
++
++void BTA_AvkSendPedingSuspendCnf(tBTA_AV_HNDL  hndl) {
++    BT_HDR *p_buf = (BT_HDR *)osi_malloc(sizeof(BT_HDR));
++    p_buf->event = BTA_AV_SINK_API_PENDING_SUSPEND_CNF_EVT;
++    p_buf->layer_specific = hndl;
++    bta_sys_sendmsg(p_buf);
++}
++
++void BTA_AvkSendPedingSuspendRej(tBTA_AV_HNDL  hndl) {
++    BT_HDR *p_buf = (BT_HDR *)osi_malloc(sizeof(BT_HDR));
++    p_buf->event = BTA_AV_SINK_API_PENDING_SUSPEND_REJECT_EVT;
++    p_buf->layer_specific = hndl;
++    bta_sys_sendmsg(p_buf);
++}
++
++void BTA_AvkUpdateDelayReport(tBTA_AV_HNDL hndl, uint16_t sink_latency) {
++    tBTA_AV_API_SINK_LATENCY* p_buf =
++       (tBTA_AV_API_SINK_LATENCY*)osi_malloc(sizeof(tBTA_AV_API_SINK_LATENCY));
++    p_buf->hdr.layer_specific = hndl;
++    p_buf->sink_latency = sink_latency;
++    p_buf->hdr.event = BTA_AV_SINK_API_UPDATE_DELAY_REPORT_EVT;
++    bta_sys_sendmsg(p_buf);
++}
+\ No newline at end of file
+diff --git a/bta/av/bta_av_int.h b/bta/av/bta_av_int.h
+index 9a4388419..d74255c3e 100644
+--- a/bta/av/bta_av_int.h
++++ b/bta/av/bta_av_int.h
+@@ -49,6 +49,12 @@
+  *
+  ******************************************************************************/
+ 
++/*
++ * Changes from Qualcomm Innovation Center are provided under the following license:
++ * Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
++ * SPDX-License-Identifier: BSD-3-Clause-Clear
++ */
++
+ /******************************************************************************
+  *
+  *  This is the private interface file for the BTA advanced audio/video.
+@@ -121,6 +127,13 @@ enum {
+   BTA_AV_API_OFFLOAD_START_RSP_EVT,
+   BTA_AV_RECONFIG_FAIL_EVT,
+   BTA_AV_COLLISION_EVT,
++  BTA_AV_SINK_API_OFFLOAD_START_EVT,
++  BTA_AV_SINK_API_OFFLOAD_STOP_EVT,
++  BTA_AV_SINK_API_PENDING_START_CNF_EVT,
++  BTA_AV_SINK_API_PENDING_START_REJECT_EVT,
++  BTA_AV_SINK_API_PENDING_SUSPEND_CNF_EVT,
++  BTA_AV_SINK_API_PENDING_SUSPEND_REJECT_EVT,
++  BTA_AV_SINK_API_UPDATE_DELAY_REPORT_EVT,
+ 
+   /* these events are handled outside of the state machine */
+   BTA_AV_API_ENABLE_EVT,
+@@ -550,6 +563,11 @@ typedef struct {
+       p_app_sink_data_cback; /* Sink application callback for media packets */
+ } tBTA_AV_SEP;
+ 
++typedef struct {
++  BT_HDR hdr;
++  uint16_t sink_latency;
++} tBTA_AV_API_SINK_LATENCY;
++
+ /* initiator/acceptor role for adaption */
+ #define BTA_AV_ROLE_AD_INT 0x00 /* initiator */
+ #define BTA_AV_ROLE_AD_ACP 0x01 /* acceptor */
+@@ -595,6 +613,7 @@ union tBTA_AV_DATA {
+   tBTA_AV_TWS_SET_EARBUD_ROLE tws_set_earbud_role;
+   tBTA_AV_SET_TWS_DEVICE tws_set_device;
+ #endif
++  tBTA_AV_API_SINK_LATENCY api_sink_latency;
+ };
+ 
+ typedef union {
+@@ -704,6 +723,8 @@ struct tBTA_AV_SCB {
+   bool vendor_start;
+   tBTA_AV_CI_SETCONFIG *cache_setconfig;
+   int rc_ccb_alloc_handle;
++  bool sink_split_vsc_rsp_waiting; /* TRUE if we have sent VSC command and waiting for
++ response*/
+ };
+ 
+ #define BTA_AV_RC_ROLE_MASK 0x10
+@@ -988,4 +1009,10 @@ extern void bta_av_handle_collision(tBTA_AV_SCB* p_scb, tBTA_AV_DATA* p_data);
+ #if (TWS_ENABLED == TRUE)
+ extern void bta_av_set_tws_chn_mode(tBTA_AV_SCB* p_scb, bool adjust);
+ #endif
++extern void bta_av_sink_offload_start_req(tBTA_AV_SCB *p_scb, tBTA_AV_DATA *p_data);
++extern void bta_av_sink_offload_stop_req(tBTA_AV_SCB *p_scb, tBTA_AV_DATA *p_data);
++extern void bta_av_sink_send_pending_start_cnf(tBTA_AV_SCB *p_scb, tBTA_AV_DATA *p_data);
++extern void bta_av_sink_send_pending_start_rej(tBTA_AV_SCB *p_scb, tBTA_AV_DATA *p_data);
++extern void bta_av_sink_send_pending_suspend_cnf(tBTA_AV_SCB *p_scb, tBTA_AV_DATA *p_data);
++extern void bta_av_sink_send_pending_suspend_rej(tBTA_AV_SCB *p_scb, tBTA_AV_DATA *p_data);
+ #endif /* BTA_AV_INT_H */
+diff --git a/bta/av/bta_av_main.cc b/bta/av/bta_av_main.cc
+index 658b282af..77daeb503 100644
+--- a/bta/av/bta_av_main.cc
++++ b/bta/av/bta_av_main.cc
+@@ -49,6 +49,12 @@
+  *
+  ******************************************************************************/
+ 
++/*
++ * Changes from Qualcomm Innovation Center are provided under the following license:
++ * Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
++ * SPDX-License-Identifier: BSD-3-Clause-Clear
++ */
++
+ /******************************************************************************
+  *
+  *  This is the main implementation file for the BTA advanced audio/video.
+@@ -209,6 +215,8 @@ static void bta_av_api_set_tws_earbud_role(tBTA_AV_DATA * p_data);
+ static void bta_av_api_set_is_tws_device(tBTA_AV_DATA * p_data);
+ #endif
+ 
++bool is_split_enabled();
++
+ /* action functions */
+ const tBTA_AV_NSM_ACT bta_av_nsm_act[] = {
+     bta_av_api_enable,       /* BTA_AV_API_ENABLE_EVT */
+@@ -310,6 +318,21 @@ static void bta_av_api_enable(tBTA_AV_DATA* p_data) {
+   (*bta_av_cb.p_cback)(BTA_AV_ENABLE_EVT, &bta_av_data);
+ }
+ 
++/*******************************************************************************
++**
++** Function         is_split_enabled
++**
++** Description      api to check if split is enabled or not
++**
++** Returns          boolean
++**
++*******************************************************************************/
++bool is_split_enabled() {
++    APPL_TRACE_DEBUG("%s split_enabled = %d ",__func__,
++                  (bta_av_cb.features & BTA_AV_FEAT_SPLIT_ENABLED));
++    return (bta_av_cb.features & BTA_AV_FEAT_SPLIT_ENABLED);
++}
++
+ /*******************************************************************************
+  *
+  * Function         bta_av_addr_to_scb
+@@ -653,6 +676,10 @@ static void bta_av_api_register(tBTA_AV_DATA* p_data) {
+         codec_index_max = BTAV_A2DP_CODEC_INDEX_SINK_MAX;
+       }
+ 
++      if (is_split_enabled()) {
++          cs.is_split_enabled = TRUE;
++      }
++
+       /* Initialize handles to zero */
+       for (int xx = 0; xx < BTAV_A2DP_CODEC_INDEX_MAX; xx++) {
+         p_scb->seps[xx].av_handle = 0;
+@@ -1774,6 +1801,18 @@ const char* bta_av_evt_code(uint16_t evt_code) {
+       return "AVDT_DELAY_RPT";
+     case BTA_AV_ACP_CONNECT_EVT:
+       return "ACP_CONNECT";
++    case BTA_AV_SINK_API_OFFLOAD_START_EVT:
++      return "API_SINK_OFFLOAD_START_REQ";
++    case BTA_AV_SINK_API_OFFLOAD_STOP_EVT:
++      return " API_SINK_OFFLOAD_STOP_REQ";
++    case BTA_AV_SINK_API_PENDING_START_CNF_EVT:
++      return "API_SINK_PENDING_START_CNF";
++    case BTA_AV_SINK_API_PENDING_START_REJECT_EVT:
++      return " API_SINK_PENDING_START_REJ";
++    case BTA_AV_SINK_API_PENDING_SUSPEND_CNF_EVT:
++      return " API_SINK_PENDING_SUSPEND_CNF";
++    case BTA_AV_SINK_API_PENDING_SUSPEND_REJECT_EVT:
++      return " API_PENDING_SUSPEND_REJECT ";
+ 
+     case BTA_AV_API_ENABLE_EVT:
+       return "API_ENABLE";
+diff --git a/bta/av/bta_av_ssm.cc b/bta/av/bta_av_ssm.cc
+index 3b40de4a5..c539f3a42 100644
+--- a/bta/av/bta_av_ssm.cc
++++ b/bta/av/bta_av_ssm.cc
+@@ -20,6 +20,12 @@
+  *
+  ******************************************************************************/
+ 
++/*
++ * Changes from Qualcomm Innovation Center are provided under the following license:
++ * Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
++ * SPDX-License-Identifier: BSD-3-Clause-Clear
++ */
++
+ /******************************************************************************
+  *
+  *  This is the stream state machine for the BTA advanced audio/video.
+@@ -100,6 +106,13 @@ enum {
+   BTA_AV_OFFLOAD_RSP,
+   BTA_AV_DISC_FAIL_AS_ACP,
+   BTA_AV_HANDLE_COLLISION,
++  BTA_AV_SINK_OFFLOAD_START_REQ,
++  BTA_AV_SINK_OFFLOAD_STOP_REQ,
++  BTA_AV_SINK_SEND_PENDING_START_CNF,
++  BTA_AV_SINK_SEND_PENDING_START_REJ,
++  BTA_AV_SINK_SEND_PENDING_SUSPEND_CNF,
++  BTA_AV_SINK_SEND_PENDING_SUSPEND_REJ,
++  BTA_AVK_UPDATE_DELAY_REPORT,
+   BTA_AV_NUM_SACTIONS
+ };
+ 
+@@ -159,7 +172,22 @@ static const uint8_t bta_av_sst_init[][BTA_AV_NUM_COLS] = {
+                                      BTA_AV_INIT_SST},
+     /* API_RECONFIG_FAIL_EVT */ {BTA_AV_SIGNORE, BTA_AV_SIGNORE,
+                                      BTA_AV_INIT_SST},
+-    /* COLLISION_EVT */ {BTA_AV_SIGNORE, BTA_AV_SIGNORE, BTA_AV_INIT_SST}};
++    /* COLLISION_EVT */ {BTA_AV_SIGNORE, BTA_AV_SIGNORE, BTA_AV_INIT_SST},
++    /* API_OFFLOAD_START_EVT */
++          {BTA_AV_SIGNORE,        BTA_AV_SIGNORE,       BTA_AV_INIT_SST },
++    /* API_OFFLOAD_STOP_EVT */
++          {BTA_AV_SINK_OFFLOAD_STOP_REQ, BTA_AV_SIGNORE, BTA_AV_INIT_SST },
++    /* API_PENDING_START_CNF_EVT */
++          {BTA_AV_SIGNORE,        BTA_AV_SIGNORE,        BTA_AV_INIT_SST },
++    /* API_PENDING_START_REJECT_EVT */
++          {BTA_AV_SIGNORE,        BTA_AV_SIGNORE,        BTA_AV_INIT_SST },
++    /* API_PENDING_SUSPEND_CNF_EVT */
++          {BTA_AV_SIGNORE,        BTA_AV_SIGNORE,        BTA_AV_INIT_SST },
++    /* API_PENDING_SUSPEND_REJECT_EVT */
++          {BTA_AV_SIGNORE,        BTA_AV_SIGNORE,        BTA_AV_INIT_SST },
++    /* BTA_AVK_API_UPDATE_DELAY_REPORT_EVT*/
++          {BTA_AV_SIGNORE,        BTA_AV_SIGNORE,        BTA_AV_INIT_SST }
++};
+ 
+ /* state table for incoming state */
+ static const uint8_t bta_av_sst_incoming[][BTA_AV_NUM_COLS] = {
+@@ -229,7 +257,23 @@ static const uint8_t bta_av_sst_incoming[][BTA_AV_NUM_COLS] = {
+                                      BTA_AV_INCOMING_SST},
+     /* API_RECONFIG_FAIL_EVT */ {BTA_AV_SIGNORE, BTA_AV_SIGNORE,
+                                      BTA_AV_INCOMING_SST},
+-    /* COLLISION_EVT */ {BTA_AV_SIGNORE, BTA_AV_SIGNORE, BTA_AV_INCOMING_SST}};
++    /* COLLISION_EVT */ {BTA_AV_SIGNORE, BTA_AV_SIGNORE, BTA_AV_INCOMING_SST},
++    /* API_OFFLOAD_START_EVT */
++           {BTA_AV_SIGNORE,    BTA_AV_SIGNORE,       BTA_AV_INCOMING_SST },
++    /* API_OFFLOAD_STOP_EVT */
++           {BTA_AV_SINK_OFFLOAD_STOP_REQ,    BTA_AV_SIGNORE,       BTA_AV_INCOMING_SST },
++    /* API_PENDING_START_CNF_EVT */
++           {BTA_AV_SIGNORE,    BTA_AV_SIGNORE,        BTA_AV_INCOMING_SST },
++    /* API_PENDING_START_REJECT_EVT */
++           {BTA_AV_SIGNORE,    BTA_AV_SIGNORE,        BTA_AV_INCOMING_SST },
++    /* API_PENDING_SUSPEND_CNF_EVT */
++           {BTA_AV_SIGNORE,    BTA_AV_SIGNORE,        BTA_AV_INCOMING_SST },
++    /* API_PENDING_SUSPEND_REJECT_EVT */
++           {BTA_AV_SIGNORE,    BTA_AV_SIGNORE,        BTA_AV_INCOMING_SST },
++    /* BTA_AVK_API_UPDATE_DELAY_REPORT_EVT*/
++          {BTA_AV_SIGNORE,        BTA_AV_SIGNORE,        BTA_AV_INCOMING_SST }
++
++    };
+ 
+ /* state table for opening state */
+ static const uint8_t bta_av_sst_opening[][BTA_AV_NUM_COLS] = {
+@@ -298,7 +342,22 @@ static const uint8_t bta_av_sst_opening[][BTA_AV_NUM_COLS] = {
+                                      BTA_AV_OPENING_SST},
+     /* API_RECONFIG_FAIL_EVT */ {BTA_AV_SIGNORE, BTA_AV_SIGNORE,
+                                      BTA_AV_OPENING_SST},
+-    /* COLLISION_EVT */ {BTA_AV_HANDLE_COLLISION, BTA_AV_SIGNORE, BTA_AV_INIT_SST}};
++    /* COLLISION_EVT */ {BTA_AV_HANDLE_COLLISION, BTA_AV_SIGNORE, BTA_AV_INIT_SST},
++    /* API_OFFLOAD_START_EVT */
++             {BTA_AV_SIGNORE, BTA_AV_SIGNORE,       BTA_AV_OPENING_SST },
++    /* API_OFFLOAD_STOP_EVT */
++             {BTA_AV_SIGNORE,BTA_AV_SIGNORE,       BTA_AV_OPENING_SST },
++    /* API_PENDING_START_CNF_EVT */
++             {BTA_AV_SIGNORE,    BTA_AV_SIGNORE,        BTA_AV_OPENING_SST },
++    /* API_PENDING_START_REJECT_EVT */
++             {BTA_AV_SIGNORE,    BTA_AV_SIGNORE,        BTA_AV_OPENING_SST },
++    /* API_PENDING_SUSPEND_CNF_EVT */
++             {BTA_AV_SIGNORE,    BTA_AV_SIGNORE,        BTA_AV_OPENING_SST },
++    /* API_PENDING_SUSPEND_REJECT_EVT */
++             {BTA_AV_SIGNORE,    BTA_AV_SIGNORE,        BTA_AV_OPENING_SST },
++    /* BTA_AVK_API_UPDATE_DELAY_REPORT_EVT*/
++          {BTA_AV_SIGNORE,        BTA_AV_SIGNORE,        BTA_AV_OPENING_SST }
++    };
+ 
+ /* state table for open state */
+ static const uint8_t bta_av_sst_open[][BTA_AV_NUM_COLS] = {
+@@ -356,7 +415,22 @@ static const uint8_t bta_av_sst_open[][BTA_AV_NUM_COLS] = {
+                                      BTA_AV_OPEN_SST},
+     /* API_RECONFIG_FAIL_EVT */ {BTA_AV_SIGNORE, BTA_AV_SIGNORE,
+                                      BTA_AV_OPEN_SST},
+-    /* COLLISION_EVT */ {BTA_AV_SIGNORE, BTA_AV_SIGNORE, BTA_AV_OPEN_SST}};
++    /* COLLISION_EVT */ {BTA_AV_SIGNORE, BTA_AV_SIGNORE, BTA_AV_OPEN_SST},
++    /* API_OFFLOAD_START_EVT */
++      {BTA_AV_SINK_OFFLOAD_START_REQ, BTA_AV_SIGNORE, BTA_AV_OPEN_SST },
++    /* API_OFFLOAD_STOP_EVT */
++      {BTA_AV_SINK_OFFLOAD_STOP_REQ, BTA_AV_SIGNORE, BTA_AV_OPEN_SST },
++    /* API_PENDING_START_CNF_EVT */
++      {BTA_AV_SINK_SEND_PENDING_START_CNF,  BTA_AV_SIGNORE,  BTA_AV_OPEN_SST },
++    /* API_PENDING_START_REJECT_EVT */
++      {BTA_AV_SINK_SEND_PENDING_START_REJ,  BTA_AV_SIGNORE,   BTA_AV_OPEN_SST },
++    /* API_PENDING_SUSPEND_CNF_EVT */
++      {BTA_AV_SINK_SEND_PENDING_SUSPEND_CNF,  BTA_AV_SIGNORE,  BTA_AV_OPEN_SST },
++    /* API_PENDING_SUSPEND_REJECT_EVT */
++      {BTA_AV_SINK_SEND_PENDING_SUSPEND_REJ,  BTA_AV_SIGNORE,   BTA_AV_OPEN_SST },
++    /* BTA_AVK_API_UPDATE_DELAY_REPORT_EVT*/
++      {BTA_AVK_UPDATE_DELAY_REPORT,   BTA_AV_SIGNORE,        BTA_AV_OPEN_SST }
++    };
+ 
+ /* state table for reconfig state */
+ static const uint8_t bta_av_sst_rcfg[][BTA_AV_NUM_COLS] = {
+@@ -414,7 +488,22 @@ static const uint8_t bta_av_sst_rcfg[][BTA_AV_NUM_COLS] = {
+                                      BTA_AV_RCFG_SST},
+     /* API_RECONFIG_FAIL_EVT */ {BTA_AV_SIGNORE, BTA_AV_SIGNORE,
+                                      BTA_AV_OPEN_SST},
+-    /* COLLISION_EVT */ {BTA_AV_SIGNORE, BTA_AV_SIGNORE, BTA_AV_RCFG_SST}};
++    /* COLLISION_EVT */ {BTA_AV_SIGNORE, BTA_AV_SIGNORE, BTA_AV_RCFG_SST},
++    /* API_OFFLOAD_START_EVT */
++         {BTA_AV_SIGNORE,        BTA_AV_SIGNORE,       BTA_AV_RCFG_SST },
++    /* API_OFFLOAD_STOP_EVT */
++         {BTA_AV_SIGNORE,        BTA_AV_SIGNORE,       BTA_AV_RCFG_SST },
++    /* API_PENDING_START_CNF_EVT */
++         {BTA_AV_SIGNORE,    BTA_AV_SIGNORE,        BTA_AV_RCFG_SST },
++    /* API_PENDING_START_REJECT_EVT */
++         {BTA_AV_SIGNORE,    BTA_AV_SIGNORE,        BTA_AV_RCFG_SST },
++    /* API_PENDING_SUSPEND_CNF_EVT */
++         {BTA_AV_SIGNORE,    BTA_AV_SIGNORE,        BTA_AV_RCFG_SST },
++    /* API_PENDING_SUSPEND_REJECT_EVT */
++         {BTA_AV_SIGNORE,    BTA_AV_SIGNORE,        BTA_AV_RCFG_SST },
++    /* BTA_AVK_API_UPDATE_DELAY_REPORT_EVT*/
++      {BTA_AV_SIGNORE,       BTA_AV_SIGNORE,        BTA_AV_RCFG_SST }
++    };
+ 
+ /* state table for closing state */
+ static const uint8_t bta_av_sst_closing[][BTA_AV_NUM_COLS] = {
+@@ -480,7 +569,22 @@ static const uint8_t bta_av_sst_closing[][BTA_AV_NUM_COLS] = {
+                                      BTA_AV_CLOSING_SST},
+     /* API_RECONFIG_FAIL_EVT */ {BTA_AV_SIGNORE, BTA_AV_SIGNORE,
+                                      BTA_AV_CLOSING_SST},
+-    /* COLLISION_EVT */ {BTA_AV_SIGNORE, BTA_AV_SIGNORE, BTA_AV_CLOSING_SST}};
++    /* COLLISION_EVT */ {BTA_AV_SIGNORE, BTA_AV_SIGNORE, BTA_AV_CLOSING_SST},
++    /* API_OFFLOAD_START_EVT */
++       {BTA_AV_SIGNORE,        BTA_AV_SIGNORE,       BTA_AV_CLOSING_SST },
++    /* API_OFFLOAD_STOP_EVT */
++       {BTA_AV_SIGNORE,        BTA_AV_SIGNORE,       BTA_AV_CLOSING_SST },
++    /* API_PENDING_START_CNF_EVT */
++       {BTA_AV_SIGNORE,    BTA_AV_SIGNORE,        BTA_AV_CLOSING_SST },
++    /* API_PENDING_START_REJECT_EVT */
++       {BTA_AV_SIGNORE,    BTA_AV_SIGNORE,        BTA_AV_CLOSING_SST },
++    /* API_PENDING_SUSPEND_CNF_EVT */
++       {BTA_AV_SIGNORE,    BTA_AV_SIGNORE,        BTA_AV_CLOSING_SST },
++    /* API_PENDING_SUSPEND_REJECT_EVT */
++       {BTA_AV_SIGNORE,    BTA_AV_SIGNORE,        BTA_AV_CLOSING_SST },
++    /* BTA_AVK_API_UPDATE_DELAY_REPORT_EVT*/
++      {BTA_AV_SIGNORE,       BTA_AV_SIGNORE,        BTA_AV_RCFG_SST }
++    };
+ 
+ /* type for state table */
+ typedef const uint8_t (*tBTA_AV_SST_TBL)[BTA_AV_NUM_COLS];
+diff --git a/bta/include/bta_av_api.h b/bta/include/bta_av_api.h
+index ae3138246..896de6b55 100644
+--- a/bta/include/bta_av_api.h
++++ b/bta/include/bta_av_api.h
+@@ -49,6 +49,12 @@
+  *
+  ******************************************************************************/
+ 
++/*
++ * Changes from Qualcomm Innovation Center are provided under the following license:
++ * Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
++ * SPDX-License-Identifier: BSD-3-Clause-Clear
++ */
++
+ /******************************************************************************
+  *
+  *  This is the public interface file for the advanced audio/video streaming
+@@ -118,7 +124,9 @@ typedef uint8_t tBTA_AV_STATUS;
+ #define BTA_AV_FEAT_NO_SCO_SSPD \
+   0x8000 /* Do not suspend av streaming as to AG events(SCO or Call) */
+ 
+-typedef uint16_t tBTA_AV_FEAT;
++#define BTA_AV_FEAT_SPLIT_ENABLED 0x20000  /* Do not suspend av streaming as to AG events(SCO or Cal
++l) */
++typedef uint32_t tBTA_AV_FEAT;
+ 
+ /* AV channel values */
+ #define BTA_AV_CHNL_MSK 0xC0
+@@ -292,9 +300,10 @@ typedef uint8_t tBTA_AV_ERR;
+ #define BTA_AV_DELAY_REPORT_EVT 27      /* update delay report */
+ #define BTA_AV_OFFLOAD_STOP_RSP_EVT 28  /* a2dp offload start response */
+ #define BTA_AV_COLL_DETECTED_EVT 29     /* AV channel collission detected */
+-
++#define BTA_AV_SINK_OFFLOAD_START_RSP_EVT 30    /* a2dp offload start response */
++#define BTA_AV_SINK_OFFLOAD_STOP_RSP_EVT 31    /* a2dp offload stop response */
+ /* Max BTA event */
+-#define BTA_AV_MAX_EVT 30
++#define BTA_AV_MAX_EVT 32
+ 
+ typedef uint8_t tBTA_AV_EVT;
+ 
+@@ -383,6 +392,21 @@ typedef struct {
+   uint16_t cover_art_psm;  /* l2cap psm for cover art on remote */
+ } tBTA_AV_RC_OPEN;
+ 
++typedef struct {
++  tBTA_AV_HNDL hndl;
++  tBTA_AV_STATUS status;
++} tBTA_AV_SINK_OFFLOAD_RSP;
++
++typedef struct {
++  uint8_t index;
++  bool accepted;
++} tBTA_AV_SINK_START_RSP;
++
++typedef struct {
++  uint8_t index;
++  bool accepted;
++} tBTA_AV_SINK_SUSPEND_RSP;
++
+ /* data associated with BTA_AV_RC_CLOSE_EVT */
+ typedef struct {
+   uint8_t rc_handle;
+@@ -531,6 +555,9 @@ typedef union {
+   tBTA_AV_ROLE_CHANGED role_changed;
+   tBTA_AV_DELAY_RPT delay_rpt;
+   tBTA_AV_OFFLOAD_RSP offload_rsp;
++  tBTA_AV_SINK_OFFLOAD_RSP snk_offload_rsp;
++  tBTA_AV_SINK_START_RSP   start_rsp;// to handle response from btapp for start ind
++  tBTA_AV_SINK_SUSPEND_RSP   suspend_rsp; // to handle response from btapp for suspend ind
+ } tBTA_AV;
+ 
+ typedef struct {
+@@ -774,7 +801,6 @@ void BTA_AvUpdateEncoderMode(uint16_t enc_mode);
+  ******************************************************************************/
+ void BTA_AvUpdateAptxData(uint32_t data);
+ 
+-
+ /*******************************************************************************
+  * Function         BTA_AvProtectReq
+  *
+@@ -959,4 +985,11 @@ bool bta_av_get_is_peer_state_incoming(const RawAddress& bd_addr);
+ void bta_av_refresh_accept_signalling_timer(const RawAddress &remote_bdaddr);
+ tBTA_AV_SCB* bta_av_addr_to_scb(const RawAddress& bd_addr);
+ void bta_av_fake_suspend_rsp(const RawAddress &remote_bdaddr);
++void BTA_AvkOffloadStart(tBTA_AV_HNDL hndl);
++void BTA_AvkOffloadStop(tBTA_AV_HNDL hndl);
++void BTA_AvkSendPedingStartCnf(tBTA_AV_HNDL hndl);
++void BTA_AvkSendPedingStartRej(tBTA_AV_HNDL  hndl);
++void BTA_AvkSendPedingSuspendCnf(tBTA_AV_HNDL  hndl);
++void BTA_AvkSendPedingSuspendRej(tBTA_AV_HNDL  hndl);
++void BTA_AvkUpdateDelayReport(tBTA_AV_HNDL hndl, uint16_t sink_latency);
+ #endif /* BTA_AV_API_H */
+diff --git a/btif/co/bta_av_co.cc b/btif/co/bta_av_co.cc
+index b124c13d2..76a52927d 100644
+--- a/btif/co/bta_av_co.cc
++++ b/btif/co/bta_av_co.cc
+@@ -49,6 +49,7 @@
+  *
+  ******************************************************************************/
+ 
++
+ /******************************************************************************
+  *
+  *  This is the advanced audio/video call-out function implementation for
+@@ -103,6 +104,8 @@ std::mutex isDevUiReq_mutex_;
+ #define BTA_AV_CO_AUDIO_HNDL_TO_INDX(hndl) (((hndl) & (~BTA_AV_CHNL_MSK)) - 1)
+ #define BTA_AV_CO_AUDIO_INDX_TO_HNDL(indx) (((indx) + 1) | BTA_AV_CHNL_AUDIO)
+ 
++#define A2DP_SINK_AUDIO_CODEC_AAC 0x02
++
+ static void bta_av_co_free_peer(tBTA_AV_CO_PEER* p_peer);
+ /* SCMS-T protect info */
+ const uint8_t bta_av_co_cp_scmst[AVDT_CP_INFO_LEN] = {0x02, 0x02, 0x00};
+diff --git a/btif/include/btif_a2dp.h b/btif/include/btif_a2dp.h
+index a6671f112..b0cfe2944 100644
+--- a/btif/include/btif_a2dp.h
++++ b/btif/include/btif_a2dp.h
+@@ -21,6 +21,12 @@
+  *
+  ******************************************************************************/
+ 
++/*
++ * Changes from Qualcomm Innovation Center are provided under the following license:
++ * Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
++ * SPDX-License-Identifier: BSD-3-Clause-Clear
++ */
++
+ #ifndef BTIF_A2DP_H
+ #define BTIF_A2DP_H
+ 
+@@ -77,4 +83,19 @@ void btif_a2dp_sink_on_init(void);
+ 
+ // Honor remote start
+ void btif_a2dp_honor_remote_start(struct alarm_t **remote_start_alarm, int index);
++
++bool btif_a2dp_sink_is_hal_v2_enabled(void);
++
++bool btif_a2dp_sink_is_hal_v2_supported(void);
++
++bt_status_t btif_a2dp_sink_setup_codec(tBTA_AV_HNDL hndl);
++
++bool btif_a2dp_sink_start_session(const RawAddress& peer_address);
++
++bool btif_a2dp_sink_is_restart_session_needed();
++
++bool btif_a2dp_sink_restart_session(const RawAddress& old_peer_address,
++                                      const RawAddress& new_peer_address);
++
++void btif_a2dp_sink_process_request(tA2DP_CTRL_CMD cmd);
+ #endif /* BTIF_A2DP_H */
+diff --git a/btif/include/btif_a2dp_sink.h b/btif/include/btif_a2dp_sink.h
+index c8294cc16..9e5be9f41 100644
+--- a/btif/include/btif_a2dp_sink.h
++++ b/btif/include/btif_a2dp_sink.h
+@@ -17,6 +17,12 @@
+  *
+  ******************************************************************************/
+ 
++/*
++ * Changes from Qualcomm Innovation Center are provided under the following license:
++ * Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
++ * SPDX-License-Identifier: BSD-3-Clause-Clear
++ */
++
+ #ifndef BTIF_A2DP_SINK_H
+ #define BTIF_A2DP_SINK_H
+ 
+@@ -107,4 +113,5 @@ void btif_a2dp_sink_set_focus_state_req(btif_a2dp_sink_focus_state_t state);
+ // |gain| is the audio track gain value to use.
+ void btif_a2dp_sink_set_audio_track_gain(float gain);
+ 
++void btif_a2dp_sink_on_started(tBTA_AV_START* p_av_start);
+ #endif /* BTIF_A2DP_SINK_H */
+diff --git a/btif/include/btif_ahim.h b/btif/include/btif_ahim.h
+index eed3a898e..f895211f2 100644
+--- a/btif/include/btif_ahim.h
++++ b/btif/include/btif_ahim.h
+@@ -28,6 +28,12 @@
+  *
+  ******************************************************************************/
+ 
++/*
++ * Changes from Qualcomm Innovation Center are provided under the following license:
++ * Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
++ * SPDX-License-Identifier: BSD-3-Clause-Clear
++ */
++
+ #pragma once
+ 
+ #include "audio_a2dp_hw/include/audio_a2dp_hw.h"
+@@ -45,6 +51,7 @@ enum
+   A2DP = 0x1,
+   AUDIO_GROUP_MGR = 0x2,
+   BROADCAST = 0x3,
++  A2DP_SINK = 0x4,
+   MAX_CLIENT
+ };
+ 
+@@ -127,5 +134,6 @@ void btif_ahim_set_remote_delay(uint16_t delay_report);
+ bool btif_ahim_is_streaming();
+ 
+ SessionType btif_ahim_get_session_type();
++uint16_t btif_ahim_get_sink_latency();
+ 
+ 
+diff --git a/btif/include/btif_av.h b/btif/include/btif_av.h
+index 06171fb8e..771d7860f 100644
+--- a/btif/include/btif_av.h
++++ b/btif/include/btif_av.h
+@@ -20,6 +20,12 @@
+  *
+  ******************************************************************************/
+ 
++/*
++ * Changes from Qualcomm Innovation Center are provided under the following license:
++ * Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
++ * SPDX-License-Identifier: BSD-3-Clause-Clear
++ */
++
+ /*******************************************************************************
+  *
+  *  Filename:      btif_av.h
+@@ -85,6 +91,14 @@ typedef enum {
+   BTIF_AV_PROCESS_HIDL_REQ_EVT,
+   BTIF_AV_CHECK_PENDING_PLAY_EVT,
+   BTIF_AV_REPORT_AUDIO_STATE_EVT,
++  BTIF_AV_SINK_START_IND_RSP,
++  BTIF_AV_SINK_SUSPEND_IND_RSP,
++  BTIF_AV_SINK_OFFLOAD_START_CFM_EVT,
++  BTIF_AV_SINK_OFFLOAD_STOP_CFM_EVT,
++  BTIF_AV_SINK_OFFLOAD_SETUP_COMPLETE_EVT,
++  BTIF_AV_SINK_OFFLOAD_SEND_VSC_A2DP_START_EVT,
++  BTIF_AV_SINK_OFFLOAD_SEND_VSC_A2DP_STOP_EVT,
++  BTIF_AV_SINK_OFFLOAD_SINK_LATENCY_EVT
+ } btif_av_sm_event_t;
+ 
+ /*******************************************************************************
+diff --git a/btif/src/bluetooth.cc b/btif/src/bluetooth.cc
+index c52ef6435..a283d5424 100644
+--- a/btif/src/bluetooth.cc
++++ b/btif/src/bluetooth.cc
+@@ -16,6 +16,12 @@
+  *
+  ******************************************************************************/
+ 
++/*
++ * Changes from Qualcomm Innovation Center are provided under the following license:
++ * Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
++ * SPDX-License-Identifier: BSD-3-Clause-Clear
++ */
++
+ /*******************************************************************************
+  *
+  *  Filename:      bluetooth.c
+@@ -49,6 +55,8 @@
+ #if (SWB_ENABLED == TRUE)
+ #include <hardware/vendor_hf.h>
+ #endif
++
++#include <hardware/bt_av_vendor.h>
+ #include <hardware/vendor.h>
+ #include <hardware/vendor_socket.h>
+ #include <hardware/bt_ba.h>
+@@ -141,6 +149,7 @@ extern btvendor_interface_t *btif_vendor_hf_get_interface();
+ /* broadcast transmitter */
+ extern ba_transmitter_interface_t *btif_bat_get_interface();
+ extern btrc_vendor_ctrl_interface_t *btif_rc_vendor_ctrl_get_interface();
++extern btav_sink_vendor_interface_t *btif_vendor_av_sink_get_interface();
+ 
+ /*******************************************************************************
+  *  Functions
+@@ -446,6 +455,9 @@ static const void* get_profile_interface(const char* profile_id) {
+     return btif_vendor_hf_get_interface();
+ #endif
+ 
++  if (is_profile(profile_id, BT_PROFILE_A2DP_SINK_VENDOR_ID))
++    return btif_vendor_av_sink_get_interface();
++
+   if (is_profile(profile_id, BT_PROFILE_BAT_ID))
+     return btif_bat_get_interface();
+ 
+diff --git a/btif/src/btif_a2dp.cc b/btif/src/btif_a2dp.cc
+index 341cad9a9..8cfa1d537 100644
+--- a/btif/src/btif_a2dp.cc
++++ b/btif/src/btif_a2dp.cc
+@@ -21,6 +21,12 @@
+  *
+  ******************************************************************************/
+ 
++/*
++ * Changes from Qualcomm Innovation Center are provided under the following license:
++ * Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
++ * SPDX-License-Identifier: BSD-3-Clause-Clear
++ */
++
+ #define LOG_TAG "bt_btif_a2dp"
+ 
+ #include <stdbool.h>
+@@ -56,7 +62,7 @@ extern tBTIF_A2DP_SOURCE_CB btif_a2dp_source_cb;
+ extern void btif_av_reset_reconfig_flag();
+ static char a2dp_hal_imp[PROPERTY_VALUE_MAX] = "false";
+ extern bool btif_av_current_device_is_tws();
+-
++extern bool bt_split_a2dp_sink_enabled;
+ void btif_a2dp_on_idle() {
+   APPL_TRACE_EVENT("## ON A2DP IDLE ## peer_sep = %d", btif_av_get_peer_sep());
+   if (btif_av_get_peer_sep() == AVDT_TSEP_SNK) {
+@@ -70,6 +76,11 @@ bool btif_a2dp_on_started(tBTA_AV_START* p_av_start, bool pending_start,
+                           tBTA_AV_HNDL hdl) {
+   bool ack = false;
+   tA2DP_CTRL_CMD pending_cmd = A2DP_CTRL_CMD_NONE;
++
++  if (btif_av_get_peer_sep() == AVDT_TSEP_SRC) {
++    btif_a2dp_sink_on_started(p_av_start);
++    return true;
++  }
+   if (btif_a2dp_source_is_hal_v2_enabled()) {
+ #if AHIM_ENABLED
+     pending_cmd = btif_ahim_get_pending_command();
+@@ -309,12 +320,13 @@ void btif_a2dp_on_stopped(tBTA_AV_SUSPEND* p_av_suspend) {
+ 
+ void btif_a2dp_on_suspended(tBTA_AV_SUSPEND* p_av_suspend) {
+   APPL_TRACE_EVENT("## ON A2DP SUSPENDED ##");
++
++  if (btif_av_get_peer_sep() == AVDT_TSEP_SRC) {
++    btif_a2dp_sink_on_suspended(p_av_suspend);
++    return;
++  }
+   if (!btif_av_is_split_a2dp_enabled()) {
+-    if (btif_av_get_peer_sep() == AVDT_TSEP_SRC) {
+-      btif_a2dp_sink_on_suspended(p_av_suspend);
+-    } else {
+-      btif_a2dp_source_on_suspended(p_av_suspend);
+-    }
++    btif_a2dp_source_on_suspended(p_av_suspend);
+   } else {
+     if (p_av_suspend != NULL) {
+       if (btif_a2dp_source_is_hal_v2_enabled()) {
+diff --git a/btif/src/btif_a2dp_sink.cc b/btif/src/btif_a2dp_sink.cc
+index c00073c05..bfae26792 100644
+--- a/btif/src/btif_a2dp_sink.cc
++++ b/btif/src/btif_a2dp_sink.cc
+@@ -21,12 +21,19 @@
+  *
+  ******************************************************************************/
+ 
++/*
++ * Changes from Qualcomm Innovation Center are provided under the following license:
++ * Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
++ * SPDX-License-Identifier: BSD-3-Clause-Clear
++ */
++
+ #define LOG_TAG "bt_btif_a2dp_sink"
+ 
+ #include <string.h>
+ 
+ #include "bt_common.h"
+ #include "btif_a2dp.h"
++#include "btif_ahim.h"
+ #include "btif_a2dp_sink.h"
+ #include "btif_av.h"
+ #include "btif_av_co.h"
+@@ -58,6 +65,8 @@
+ 
+ #define MAX_SINK_MEDIA_WORKQUEUE_COUNT 1024
+ 
++extern bool bt_split_a2dp_sink_enabled;
++
+ enum {
+   BTIF_A2DP_SINK_STATE_OFF,
+   BTIF_A2DP_SINK_STATE_STARTING_UP,
+@@ -273,6 +282,8 @@ static void btif_a2dp_sink_command_ready(fixed_queue_t* queue,
+ }
+ 
+ void btif_a2dp_sink_update_decoder(const uint8_t* p_codec_info) {
++  if(bt_split_a2dp_sink_enabled) return;
++
+   tBTIF_MEDIA_SINK_DECODER_UPDATE* p_buf =
+       reinterpret_cast<tBTIF_MEDIA_SINK_DECODER_UPDATE*>(
+           osi_malloc(sizeof(tBTIF_MEDIA_SINK_DECODER_UPDATE)));
+@@ -298,13 +309,38 @@ void btif_a2dp_sink_on_idle(void) {
+   APPL_TRACE_DEBUG("%s: Stopped BT track", __func__);
+ }
+ 
++
++void btif_a2dp_sink_on_started(UNUSED_ATTR tBTA_AV_START* p_av_start) {
++  APPL_TRACE_DEBUG("%s: btif_a2dp_sink_state: %d",
++                                 __func__, btif_a2dp_sink_state);
++
++  if (btif_a2dp_sink_state == BTIF_A2DP_SINK_STATE_OFF) return;
++  if(bt_split_a2dp_sink_enabled) {
++    APPL_TRACE_WARNING("## ON A2DP STARTED ##");
++#if AHIM_ENABLED
++    btif_ahim_ack_stream_started(A2DP_CTRL_ACK_SUCCESS, A2DP);
++#else
++    bluetooth::audio::a2dp::ack_stream_started(A2DP_CTRL_ACK_SUCCESS);
++#endif
++  }
++}
++
+ void btif_a2dp_sink_on_stopped(UNUSED_ATTR tBTA_AV_SUSPEND* p_av_suspend) {
+   APPL_TRACE_DEBUG("%s: btif_a2dp_sink_state: %d",
+                                  __func__, btif_a2dp_sink_state);
+ 
+   if (btif_a2dp_sink_state == BTIF_A2DP_SINK_STATE_OFF) return;
+ 
+-  btif_a2dp_sink_audio_handle_stop_decoding();
++  if(bt_split_a2dp_sink_enabled) {
++    APPL_TRACE_WARNING("## ON A2DP STARTED ##");
++#if AHIM_ENABLED
++    btif_ahim_ack_stream_suspended(A2DP_CTRL_ACK_SUCCESS, A2DP);
++#else
++    bluetooth::audio::a2dp::ack_stream_suspended(A2DP_CTRL_ACK_SUCCESS);
++#endif
++  } else {
++    btif_a2dp_sink_audio_handle_stop_decoding();
++  }
+ }
+ 
+ void btif_a2dp_sink_on_suspended(UNUSED_ATTR tBTA_AV_SUSPEND* p_av_suspend) {
+@@ -313,7 +349,16 @@ void btif_a2dp_sink_on_suspended(UNUSED_ATTR tBTA_AV_SUSPEND* p_av_suspend) {
+ 
+   if (btif_a2dp_sink_state == BTIF_A2DP_SINK_STATE_OFF) return;
+ 
+-  btif_a2dp_sink_audio_handle_stop_decoding();
++  if(bt_split_a2dp_sink_enabled) {
++    APPL_TRACE_WARNING("## ON A2DP STARTED ##");
++#if AHIM_ENABLED
++    btif_ahim_ack_stream_suspended(A2DP_CTRL_ACK_SUCCESS, A2DP);
++#else
++    bluetooth::audio::a2dp::ack_stream_suspended(A2DP_CTRL_ACK_SUCCESS);
++#endif
++  } else {
++    btif_a2dp_sink_audio_handle_stop_decoding();
++  }
+ }
+ 
+ static void btif_a2dp_sink_audio_handle_stop_decoding(void) {
+@@ -624,6 +669,7 @@ uint8_t btif_a2dp_sink_enqueue_buf(BT_HDR* p_pkt) {
+ }
+ 
+ void btif_a2dp_sink_audio_rx_flush_req(void) {
++  if(bt_split_a2dp_sink_enabled) return;
+   if (fixed_queue_is_empty(btif_a2dp_sink_cb.rx_audio_queue)) {
+     /* Queue is already empty */
+     return;
+@@ -639,6 +685,7 @@ void btif_a2dp_sink_debug_dump(UNUSED_ATTR int fd) {
+ }
+ 
+ void btif_a2dp_sink_set_focus_state_req(btif_a2dp_sink_focus_state_t state) {
++  if(bt_split_a2dp_sink_enabled) return;
+   tBTIF_MEDIA_SINK_FOCUS_UPDATE* p_buf =
+       reinterpret_cast<tBTIF_MEDIA_SINK_FOCUS_UPDATE*>(
+           osi_malloc(sizeof(tBTIF_MEDIA_SINK_FOCUS_UPDATE)));
+@@ -673,6 +720,7 @@ void btif_a2dp_sink_set_audio_track_gain(float gain) {
+ }
+ 
+ static void btif_a2dp_sink_clear_track_event_req(void) {
++  if(bt_split_a2dp_sink_enabled) return;
+   BT_HDR* p_buf = reinterpret_cast<BT_HDR*>(osi_malloc(sizeof(BT_HDR)));
+ 
+   p_buf->event = BTIF_MEDIA_SINK_CLEAR_TRACK;
+@@ -697,3 +745,160 @@ void btif_a2dp_sink_on_init(void) {
+   btif_a2dp_control_init();
+ #endif
+ }
++
++static std::mutex session_wait_mutex_;
++
++// New functions to support offload path for sink
++bool btif_a2dp_sink_is_hal_v2_enabled(void) {
++  return btif_ahim_is_hal_2_0_enabled();
++}
++
++bool btif_a2dp_sink_is_hal_v2_supported(void) {
++  return btif_ahim_is_hal_2_0_supported();
++}
++
++bt_status_t btif_a2dp_sink_setup_codec(tBTA_AV_HNDL hndl) {
++  APPL_TRACE_EVENT("## A2DP SINK SETUP CODEC ##");
++  bt_status_t status = BT_STATUS_FAIL;
++  std::unique_lock<std::mutex> guard(session_wait_mutex_);
++  if (btif_a2dp_sink_is_hal_v2_supported()) {
++    APPL_TRACE_EVENT("%s ## setup_codec ##", __func__);
++    btif_ahim_setup_codec(A2DP_SINK);
++  }
++  return status;
++}
++
++
++bool btif_a2dp_sink_start_session(const RawAddress& peer_address) {
++  LOG_ERROR(LOG_TAG, "%s: peer_address=%s state=%d", __func__,
++            peer_address.ToString().c_str(), btif_a2dp_sink_state);
++  tBTA_AV_HNDL hndl = btif_av_get_hndl_by_addr(peer_address);
++  if (btif_a2dp_sink_state != BTIF_A2DP_SINK_STATE_RUNNING) {
++    LOG_ERROR(LOG_TAG, "%s: A2DP Sink media task is not running", __func__);
++    return false;
++  }
++  if (btif_a2dp_sink_is_hal_v2_supported()) {
++    APPL_TRACE_EVENT("%s calling ## init ##", __func__);
++    btif_ahim_init_hal(btif_a2dp_sink_cb.worker_thread, A2DP_SINK);
++  }
++  btif_a2dp_sink_setup_codec(hndl);
++  if (btif_a2dp_sink_is_hal_v2_enabled()) {
++    btif_ahim_start_session();
++    if (btif_ahim_get_session_type() ==
++       SessionType::A2DP_SOFTWARE_ENCODING_DATAPATH) {
++      APPL_TRACE_EVENT("%s Freeing queue from previous session", __func__);
++      fixed_queue_flush(btif_a2dp_sink_cb.rx_audio_queue, osi_free);
++    }
++  }
++  //TODO sjella
++  //btif_a2dp_update_sink_latency_change();
++  return true;
++}
++
++bool btif_a2dp_sink_is_restart_session_needed() {
++  bool restart_session = false;
++  if (btif_a2dp_sink_is_hal_v2_supported()) {
++     APPL_TRACE_EVENT("%s :: calling ahim restart_session %d", __func__);
++    restart_session = btif_ahim_is_restart_session_needed();
++  }
++  APPL_TRACE_EVENT("%s :: restart_session %d", __func__, restart_session);
++  return restart_session;
++}
++
++bool btif_a2dp_sink_end_session(const RawAddress& peer_address) {
++  LOG_ERROR(LOG_TAG, "%s: peer_address=%s state=%d", __func__,
++        peer_address.ToString().c_str(), btif_a2dp_sink_state);
++  if (btif_a2dp_sink_is_hal_v2_enabled()) {
++    btif_ahim_end_session();
++  }
++  return true;
++}
++
++bool btif_a2dp_sink_restart_session(const RawAddress& old_peer_address,
++                                      const RawAddress& new_peer_address) {
++  bool is_streaming = btif_ahim_is_streaming();
++  SessionType session_type = btif_ahim_get_session_type();
++  LOG_ERROR(LOG_TAG,
++    "%s: old_peer_address=%s new_peer_address=%s is_streaming=%d "
++    "state=%d", __func__, old_peer_address.ToString().c_str(),
++    new_peer_address.ToString().c_str(), is_streaming, btif_a2dp_sink_state);
++  CHECK(!new_peer_address.IsEmpty());
++  // If the old active peer was valid or if session is not
++  // unknown, end the old session.
++  // Otherwise, time to startup the A2DP Source processing.
++  if (!old_peer_address.IsEmpty() ||
++    session_type != SessionType::UNKNOWN) {
++    btif_a2dp_sink_end_session(old_peer_address);
++  }
++  // Start the session.
++  btif_a2dp_sink_start_session(new_peer_address);
++  // No need to start the audio here as on remote start ack
++  // it will start the audio
++  return true;
++}
++
++void btif_a2dp_sink_process_request(tA2DP_CTRL_CMD cmd) {
++  tA2DP_CTRL_ACK status = A2DP_CTRL_ACK_FAILURE;
++  APPL_TRACE_EVENT("%s :: ", __func__);
++  // update the pending command
++#if AHIM_ENABLED
++  btif_ahim_update_pending_command(cmd, A2DP);
++#else
++  bluetooth::audio::a2dp::update_pending_command(cmd);
++#endif
++  switch (cmd) {
++    case A2DP_CTRL_CMD_START: {
++      /*if(is_streaming_bda_empty()) {
++          //if streaming_bda is empty send failure ack
++          APPL_TRACE_ERROR("%s streaming_bda is empty",__func__);
++          status = A2DP_CTRL_ACK_FAILURE;
++          break;
++      } */
++      status = A2DP_CTRL_ACK_SUCCESS;
++      btif_dispatch_sm_event(BTIF_AV_SINK_OFFLOAD_START_CFM_EVT, NULL, 0);
++      break;
++    }
++    case A2DP_CTRL_CMD_SUSPEND:
++    case A2DP_CTRL_CMD_STOP: {
++      // stop capture should be linked to device which has VSC_STATE = STARTED.
++      /*if (!btif_avk_split_get_started_device_idx(&index)) {
++          // there is no device matching started/suspending/HDL_VSC state.
++          // ack from here itself
++          BTIF_TRACE_DEBUG("%s no device in started/suspending/HDL_VSC",__func__);
++          status = A2DP_CTRL_ACK_SUCCESS;
++          break;
++      }
++      BTIF_TRACE_DEBUG("%s found device @ index %d",__func__,index); */
++      btif_dispatch_sm_event(BTIF_AV_SINK_OFFLOAD_STOP_CFM_EVT, NULL, 0);
++      status = A2DP_CTRL_ACK_SUCCESS;
++      break;
++    }
++    case A2DP_CTRL_UPDATE_SINK_LATENCY: {
++
++      btif_dispatch_sm_event(BTIF_AV_SINK_OFFLOAD_SINK_LATENCY_EVT, NULL, 0);
++      status = A2DP_CTRL_ACK_SUCCESS;
++      break;
++    }
++    default:
++      APPL_TRACE_ERROR("UNSUPPORTED CMD (%d)", cmd);
++      status = A2DP_CTRL_ACK_FAILURE;
++      break;
++  }
++  // send the response now based on status
++  if(status != A2DP_CTRL_ACK_SUCCESS) {
++    switch (cmd) {
++      case A2DP_CTRL_CMD_START:
++        btif_ahim_ack_stream_started(status, A2DP);
++        break;
++      case A2DP_CTRL_CMD_SUSPEND:
++      case A2DP_CTRL_CMD_STOP:
++        btif_ahim_ack_stream_suspended(status, A2DP);
++        break;
++      default:
++        break;
++    }
++  }
++}
++thread_t* get_sink_worker_thread() {
++  return btif_a2dp_sink_cb.worker_thread;
++}
+\ No newline at end of file
+diff --git a/btif/src/btif_a2dp_source.cc b/btif/src/btif_a2dp_source.cc
+index e672c8936..8f08c2c94 100644
+--- a/btif/src/btif_a2dp_source.cc
++++ b/btif/src/btif_a2dp_source.cc
+@@ -21,6 +21,12 @@
+  *
+  ******************************************************************************/
+ 
++/*
++ * Changes from Qualcomm Innovation Center are provided under the following license:
++ * Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
++ * SPDX-License-Identifier: BSD-3-Clause-Clear
++ */
++
+ #define LOG_TAG "bt_btif_a2dp_source"
+ #define ATRACE_TAG ATRACE_TAG_AUDIO
+ 
+@@ -174,6 +180,8 @@ extern int btif_av_get_tws_pair_idx(int index);
+ extern void btif_av_clear_pending_start_flag();
+ extern bool btif_av_is_tws_suspend_triggered(int index);
+ 
++extern bool bt_split_a2dp_sink_enabled;
++extern thread_t* get_sink_worker_thread();
+ static char a2dp_hal_imp[PROPERTY_VALUE_MAX] = "false";
+ UNUSED_ATTR static const char* dump_media_event(uint16_t event) {
+   switch (event) {
+@@ -628,7 +636,7 @@ void btif_a2dp_source_stop_audio_req(void) {
+   if (btif_a2dp_source_is_hal_v2_enabled()) {
+ #if AHIM_ENABLED
+     pending_cmd = btif_ahim_get_pending_command();
+-#else 
++#else
+     pending_cmd = bluetooth::audio::a2dp::get_pending_command();
+ #endif
+   } else {
+@@ -778,7 +786,7 @@ void btif_a2dp_source_on_stopped(tBTA_AV_SUSPEND* p_av_suspend) {
+   tA2DP_CTRL_CMD pending_cmd = A2DP_CTRL_CMD_NONE;
+   if (btif_a2dp_source_is_hal_v2_enabled()) {
+ #if AHIM_ENABLED
+-    pending_cmd = btif_ahim_get_pending_command(); 
++    pending_cmd = btif_ahim_get_pending_command();
+ #else
+     pending_cmd = bluetooth::audio::a2dp::get_pending_command();
+ #endif
+@@ -2123,6 +2131,10 @@ void btif_a2dp_source_process_request(tA2DP_CTRL_CMD cmd) {
+ }
+ 
+ thread_t* get_worker_thread() {
+-  return btif_a2dp_source_cb.worker_thread;
++  if(bt_split_a2dp_sink_enabled) {
++    return get_sink_worker_thread();
++  } else {
++    return btif_a2dp_source_cb.worker_thread;
++  }
+ }
+ 
+diff --git a/btif/src/btif_ahim.cc b/btif/src/btif_ahim.cc
+index b78432e2d..ed06bae75 100644
+--- a/btif/src/btif_ahim.cc
++++ b/btif/src/btif_ahim.cc
+@@ -27,6 +27,13 @@
+  * IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+  *
+  ******************************************************************************/
++
++/*
++ * Changes from Qualcomm Innovation Center are provided under the following license:
++ * Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
++ * SPDX-License-Identifier: BSD-3-Clause-Clear
++ */
++
+ #include <mutex>
+ #include "audio_hal_interface/a2dp_encoding.h"
+ 
+@@ -145,6 +152,10 @@ tA2DP_CTRL_CMD btif_ahim_get_pending_command() {
+   return bluetooth::audio::a2dp::get_pending_command();
+ }
+ 
++uint16_t btif_ahim_get_sink_latency() {
++  return bluetooth::audio::a2dp::get_sink_latency();
++}
++
+ void btif_ahim_reset_pending_command(uint8_t profile) {
+   if (cur_active_profile == profile)
+     bluetooth::audio::a2dp::reset_pending_command();
+diff --git a/btif/src/btif_av.cc b/btif/src/btif_av.cc
+index cff69fd6b..be639f388 100644
+--- a/btif/src/btif_av.cc
++++ b/btif/src/btif_av.cc
+@@ -48,15 +48,21 @@
+  *
+  ******************************************************************************/
+ 
++/*
++ * Changes from Qualcomm Innovation Center are provided under the following license:
++ * Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
++ * SPDX-License-Identifier: BSD-3-Clause-Clear
++ */
++
+ #define LOG_TAG "btif_av"
+ 
+ #include "btif_av.h"
+-
+ #include <base/logging.h>
+ #include <string.h>
+ 
+ #include <hardware/bluetooth.h>
+ #include <hardware/bt_av.h>
++#include <hardware/bt_av_vendor.h>
+ #include <hardware/bt_rc_ext.h>
+ 
+ #include "bt_common.h"
+@@ -137,6 +143,14 @@ typedef enum {
+   BTIF_AV_STATE_CLOSING
+ } btif_av_state_t;
+ 
++typedef enum {
++    BTIF_AVK_VSC_STOP = 0x0, // initial state, VSC not started
++    BTIF_AVK_VSC_STARTING,// VSC_Start command is sent, response awated
++    BTIF_AVK_VSC_START_FAILED,// VSC Start Command Failed
++    BTIF_AVK_VSC_STARTED, // VSC start successful
++    BTIF_AVK_VSC_STOPPING // VSC_Stop command is sent, response awated
++} btif_avk_vsc_command_state_t;
++
+ /* Should not need dedicated suspend state as actual actions are no
+    different than open state. Suspend flags are needed however to prevent
+    media task from trying to restart stream during remote suspend or while
+@@ -216,6 +230,7 @@ typedef struct {
+   struct alarm_t *suspend_rsp_track_timer;
+   bool fake_suspend_rsp;
+   bool is_retry_reconfig;
++  uint8_t vsc_command_status;
+ } btif_av_cb_t;
+ 
+ typedef struct {
+@@ -245,6 +260,9 @@ typedef struct {
+  *****************************************************************************/
+ static btav_source_callbacks_t* bt_av_src_callbacks = NULL;
+ static btav_sink_callbacks_t* bt_av_sink_callbacks = NULL;
++
++uint8_t active_codec_info[AVDT_CODEC_SIZE];
++extern btav_sink_vendor_callbacks_t *bt_vendor_av_sink_callbacks;
+ static btif_av_cb_t btif_av_cb[BTIF_AV_NUM_CB];
+ btif_av_collision_detect_t collision_detect[BTIF_AV_NUM_CB];
+ 
+@@ -264,6 +282,7 @@ static std::vector<btav_a2dp_codec_config_t> codec_priorities_;
+ 
+ /*SPLITA2DP */
+ bool bt_split_a2dp_enabled = false;
++bool bt_split_a2dp_sink_enabled = false;
+ bool reconfig_a2dp = false;
+ bool btif_a2dp_audio_if_init = false;
+ bool codec_cfg_change = false;
+@@ -465,11 +484,26 @@ const char* dump_av_sm_event_name(btif_av_sm_event_t event) {
+     CASE_RETURN_STR(BTIF_AV_OFFLOAD_START_REQ_EVT)
+     CASE_RETURN_STR(BTA_AV_OFFLOAD_STOP_RSP_EVT)
+     CASE_RETURN_STR(BTIF_AV_SETUP_CODEC_REQ_EVT)
++    CASE_RETURN_STR(BTA_AV_SINK_OFFLOAD_START_RSP_EVT)
++    CASE_RETURN_STR(BTA_AV_SINK_OFFLOAD_STOP_RSP_EVT)
++    CASE_RETURN_STR(BTIF_AV_SINK_START_IND_RSP)
++    CASE_RETURN_STR(BTIF_AV_SINK_SUSPEND_IND_RSP)
++    CASE_RETURN_STR(BTIF_AV_SINK_OFFLOAD_START_CFM_EVT)
++    CASE_RETURN_STR(BTIF_AV_SINK_OFFLOAD_STOP_CFM_EVT)
++    CASE_RETURN_STR(BTIF_AV_SINK_OFFLOAD_SETUP_COMPLETE_EVT)
++    CASE_RETURN_STR(BTIF_AV_SINK_OFFLOAD_SEND_VSC_A2DP_START_EVT)
++    CASE_RETURN_STR(BTIF_AV_SINK_OFFLOAD_SEND_VSC_A2DP_STOP_EVT)
++    CASE_RETURN_STR(BTIF_AV_SINK_OFFLOAD_SINK_LATENCY_EVT)
+     default:
+       return "UNKNOWN_EVENT";
+   }
+ }
+ 
++bool is_a2dp_split_sink_enabled() {
++  BTIF_TRACE_DEBUG("%s: split Sink Enabeld %d", __func__,bt_split_a2dp_sink_enabled);
++  return bt_split_a2dp_sink_enabled;
++}
++
+ /****************************************************************************
+  *  Local helper functions
+  ****************************************************************************/
+@@ -792,6 +826,42 @@ static void btif_report_source_codec_state(UNUSED_ATTR void* p_data,
+   }
+ }
+ 
++static void btif_report_sink_codec_state(void* p_data,
++                                         RawAddress* bd_addr) {
++  btif_av_sink_config_req_t req;
++  // copy to avoid alignment problems
++  memcpy(&req, p_data, sizeof(req));
++  int index = btif_av_idx_by_bdaddr(bd_addr);
++
++  A2dpCodecs* a2dp_codecs = bta_av_get_peer_a2dp_codecs(*bd_addr);
++  if (a2dp_codecs == nullptr) return;
++
++  if (btif_a2dp_sink_is_hal_v2_supported()) {
++    if (codec_cfg_change) {
++      codec_cfg_change = false;
++      BTIF_TRACE_DEBUG("%s: set codec_cfg_change to false", __func__);
++    }
++
++    //check for codec update for active device
++    if(index < btif_max_av_clients) {
++      if(true /*btif_a2dp_sink_is_restart_session_needed()*/) {
++        RawAddress bt_addr = btif_av_cb[index].peer_bda;
++        btif_a2dp_sink_restart_session(bt_addr, bt_addr);
++        if (btif_av_cb[index].reconfig_pending) {
++          BTIF_TRACE_DEBUG("%s:Set reconfig_a2dp true",__func__);
++          reconfig_a2dp = true;
++        }
++      }
++    }
++  }
++
++  if (btif_av_cb[index].peer_sep == AVDT_TSEP_SRC &&
++      bt_av_sink_callbacks != NULL) {
++    HAL_CBACK(bt_av_sink_callbacks, audio_config_cb, btif_av_cb[index].peer_bda,
++              req.sample_rate, req.channel_count);
++  }
++}
++
+ /**
+  * Call out to JNI / JAVA layers to retrieve whether the mandatory codec is more
+  * preferred than others.
+@@ -1527,10 +1597,12 @@ static bool btif_av_state_opening_handler(btif_sm_event_t event, void* p_data,
+ 
+       BTIF_TRACE_WARNING("BTIF_AV_SINK_CONFIG_REQ_EVT %d %d", req.sample_rate,
+                          req.channel_count);
+-      if (btif_av_cb[index].peer_sep == AVDT_TSEP_SRC &&
+-          bt_av_sink_callbacks != NULL) {
+-        HAL_CBACK(bt_av_sink_callbacks, audio_config_cb, btif_av_cb[index].peer_bda,
+-                  req.sample_rate, req.channel_count);
++      if (!bt_split_a2dp_sink_enabled &&
++          (btif_av_cb[index].peer_sep == AVDT_TSEP_SRC)) {
++        if (bt_av_sink_callbacks != NULL) {
++          HAL_CBACK(bt_av_sink_callbacks, audio_config_cb, btif_av_cb[index].peer_bda,
++                    req.sample_rate, req.channel_count);
++        }
+       }
+     } break;
+ 
+@@ -1893,6 +1965,21 @@ static bool btif_av_state_opened_handler(btif_sm_event_t event, void* p_data,
+         }
+       }
+ #endif
++      if (bt_split_a2dp_sink_enabled && btif_av_cb[index].current_playing &&
++          (btif_av_cb[index].peer_sep == AVDT_TSEP_SRC)) {
++        APPL_TRACE_IMP("%s: Reset current playing flag ",__func__);
++        btif_av_cb[index].current_playing = false;
++      }
++
++      if (bt_split_a2dp_sink_enabled &&
++          (btif_av_cb[index].peer_sep == AVDT_TSEP_SRC)) {
++        btif_av_sink_config_req_t req;
++        req.channel_count = A2DP_GetTrackChannelCount(active_codec_info);
++        req.peer_bd = btif_av_cb[index].peer_bda;
++        BTIF_TRACE_WARNING("btif_report_sink_codec_state %d %d", req.sample_rate,
++                           req.channel_count);
++        btif_report_sink_codec_state(&req, &btif_av_cb[index].peer_bda);
++      }
+     } break;
+ 
+     case BTIF_SM_EXIT_EVT: {
+@@ -2108,12 +2195,69 @@ static bool btif_av_state_opened_handler(btif_sm_event_t event, void* p_data,
+       }
+ 
+ #ifndef AVK_BACKPORT
+-      if (btif_av_cb[index].peer_sep == AVDT_TSEP_SRC)
++      if (btif_av_cb[index].peer_sep == AVDT_TSEP_SRC) {
++        // Handle it differently if it is for split a2dp sink case
++        if (bt_split_a2dp_sink_enabled) {
++          if (!p_av->start.initiator) {
++            // incmoing START request. send HAL_CBAC to btapp
++            //memcpy(&streaming_bda, &(btif_av_cb[index].peer_bda),
++            //                      sizeof(bt_bdaddr_t));
++            HAL_CBACK(bt_vendor_av_sink_callbacks, start_ind_cb,
++                      &btif_av_cb[index].peer_bda);
++            break;
++          }
++        } else {
+           btif_a2dp_sink_set_rx_flush(false); /*  remove flush state, ready for streaming*/
++        }
++      }
+ #endif
+       btif_sm_change_state(btif_av_cb[index].sm_handle, BTIF_AV_STATE_STARTED);
+     } break;
+ 
++        // if we are in this state, VSC command has already been sent
++    case BTIF_AV_SINK_START_IND_RSP:
++        BTIF_TRACE_DEBUG(" %s START_CMD_RSP accepted =%d ",__FUNCTION__,
++                         p_av->start_rsp.accepted);
++         if (!p_av->start_rsp.accepted) {
++             BTA_AvkSendPedingStartRej(btif_av_cb[index].bta_handle);
++             btif_sm_change_state(btif_av_cb[index].sm_handle, BTIF_AV_STATE_OPENED);
++         }
++         break;
++
++    case BTIF_AV_SINK_SUSPEND_IND_RSP:
++         BTIF_TRACE_DEBUG(" %s SUSPEND_CMD_RSP accepted =%d ",__FUNCTION__,
++                         p_av->suspend_rsp.accepted);
++         if (!p_av->suspend_rsp.accepted) {
++             BTA_AvkSendPedingSuspendRej(btif_av_cb[index].bta_handle);
++             btif_sm_change_state(btif_av_cb[index].sm_handle, BTIF_AV_STATE_OPENED);
++         }
++         break;
++    // sink_start capture called by mm-audio, we will move to vsc state
++    case BTIF_AV_SINK_OFFLOAD_START_CFM_EVT:
++        // send a message to send VSC command
++        btif_av_cb[index].vsc_command_status = BTIF_AVK_VSC_STARTING;
++        BTA_AvkOffloadStart(btif_av_cb[index].bta_handle);
++        break;
++
++    case BTA_AV_SINK_OFFLOAD_START_RSP_EVT:
++        BTIF_TRACE_DEBUG(" OFFLOAD_START_RSP Status %d vsc_cmd_status %d",
++                         p_av->offload_rsp.status,btif_av_cb[index].vsc_command_status);
++        if (p_av->offload_rsp.status == 0) {
++            btif_av_cb[index].vsc_command_status = BTIF_AVK_VSC_STARTED;
++            BTA_AvkSendPedingStartCnf(btif_av_cb[index].bta_handle);
++            btif_sm_change_state(btif_av_cb[index].sm_handle, BTIF_AV_STATE_STARTED);
++        } else {
++            btif_av_cb[index].vsc_command_status = BTIF_AVK_VSC_START_FAILED;
++            btif_a2dp_on_started(nullptr, false, btif_av_cb[index].bta_handle);
++        }
++        BTIF_TRACE_DEBUG(" %s vsc_command_status %d",__FUNCTION__,
++                        btif_av_cb[index].vsc_command_status);
++        break;
++
++    case BTIF_AV_SINK_OFFLOAD_SETUP_COMPLETE_EVT:
++        btif_sm_change_state(btif_av_cb[index].sm_handle, BTIF_AV_STATE_STARTED);
++        break;
++
+     case BTIF_AV_SOURCE_CONFIG_REQ_EVT: {
+       btif_av_query_mandatory_codec_priority(btif_av_cb[index].peer_bda);
+       if ((btif_av_cb[index].flags & BTIF_AV_FLAG_PENDING_START) && codec_cfg_change) {
+@@ -2462,6 +2606,14 @@ static bool btif_av_state_started_handler(btif_sm_event_t event, void* p_data,
+           if (!is_playing) {
+             BTIF_TRACE_DEBUG("%s: start streaming when both are in opened state", __func__);
+             btif_initiate_sink_handoff(index, true);
++            if (bt_split_a2dp_sink_enabled) {
++              if (btif_a2dp_on_started(nullptr,
++                  ((btif_av_cb[index].flags & BTIF_AV_FLAG_PENDING_START) != 0),
++                  btif_av_cb[index].bta_handle)) {
++                /* only clear pending flag after acknowledgement */
++                btif_av_cb[index].flags &= ~BTIF_AV_FLAG_PENDING_START;
++              }
++            }
+             btif_report_audio_state(BTAV_AUDIO_STATE_STARTED, &(btif_av_cb[index].peer_bda));
+           }
+         } else {
+@@ -2761,19 +2913,38 @@ static bool btif_av_state_started_handler(btif_sm_event_t event, void* p_data,
+          * set remote suspend flag before suspending stream as in race conditions
+          * when stream is suspended, but flag is things ge tossed up
+          */
+-        BTIF_TRACE_EVENT("%s: Clear before suspending", __func__);
+-        if ((btif_av_cb[index].flags & BTIF_AV_FLAG_LOCAL_SUSPEND_PENDING) == 0) {
+-          btif_av_cb[index].flags |= BTIF_AV_FLAG_REMOTE_SUSPEND;
+-          bta_av_sniff_enable(false, btif_av_cb[index].peer_bda);
+-        }
+-        for (int i = 0; i < btif_max_av_clients; i++)
+-          if ((i != index) && btif_av_get_ongoing_multicast()) {
+-            multicast_disabled = true;
+-            btif_av_update_multicast_state(index);
+-            BTIF_TRACE_EVENT("%s: Initiate suspend for other HS also", __func__);
+-            btif_sm_dispatch(btif_av_cb[i].sm_handle,
+-                    BTIF_AV_SUSPEND_STREAM_REQ_EVT, NULL);
++
++         if(bt_split_a2dp_sink_enabled) {
++           /* remote suspend request,manage flags, inform bt-app, move to suspend_pending state
++            */
++           if ((btif_av_cb[index].flags & BTIF_AV_FLAG_LOCAL_SUSPEND_PENDING) == 0) {
++               btif_av_cb[index].flags |= BTIF_AV_FLAG_REMOTE_SUSPEND;
++           }
++           btif_av_cb[index].flags &= ~BTIF_AV_FLAG_LOCAL_SUSPEND_PENDING;
++           HAL_CBACK(bt_vendor_av_sink_callbacks, suspend_ind_cb, &btif_av_cb[index].peer_bda);
++           break;
++         } else {
++          /* remote suspend, notify HAL and await audioflinger to
++           * suspend/stop stream
++           * set remote suspend flag to block media task from restarting
++           * stream only if we did not already initiate a local suspend
++           * set remote suspend flag before suspending stream as in race conditions
++           * when stream is suspended, but flag is things ge tossed up
++           */
++          BTIF_TRACE_EVENT("%s: Clear before suspending", __func__);
++          if ((btif_av_cb[index].flags & BTIF_AV_FLAG_LOCAL_SUSPEND_PENDING) == 0) {
++            btif_av_cb[index].flags |= BTIF_AV_FLAG_REMOTE_SUSPEND;
++            bta_av_sniff_enable(false, btif_av_cb[index].peer_bda);
+           }
++          for (int i = 0; i < btif_max_av_clients; i++)
++            if ((i != index) && btif_av_get_ongoing_multicast()) {
++              multicast_disabled = true;
++              btif_av_update_multicast_state(index);
++              BTIF_TRACE_EVENT("%s: Initiate suspend for other HS also", __func__);
++              btif_sm_dispatch(btif_av_cb[i].sm_handle,
++                      BTIF_AV_SUSPEND_STREAM_REQ_EVT, NULL);
++            }
++         }
+       }
+ 
+       /* a2dp suspended, stop media task until resumed
+@@ -2868,6 +3039,64 @@ static bool btif_av_state_started_handler(btif_sm_event_t event, void* p_data,
+       memset(delay_record, 0, sizeof(int64_t) * DELAY_RECORD_COUNT);
+       break;
+ 
++    case BTIF_AV_SINK_SUSPEND_IND_RSP:
++         BTIF_TRACE_DEBUG(" %s SUSPEND_CMD_RSP accepted =%d ",__FUNCTION__,
++                         p_av->suspend_rsp.accepted);
++         if (!p_av->suspend_rsp.accepted) {
++             BTA_AvkSendPedingSuspendRej(btif_av_cb[index].bta_handle);
++             // ideally remote has suspended, not sure it will still send packets or not.
++         }
++         // else suspend request is accepted, will wait for stop capture to happen
++         break;
++
++    case BTIF_AV_SINK_OFFLOAD_STOP_CFM_EVT:
++        // MM-Audio sessoin is stopped
++        BTIF_TRACE_DEBUG(" %s vsc_command_status %d",__FUNCTION__,
++                        btif_av_cb[index].vsc_command_status);
++        // check the last vsc_command status.
++        switch (btif_av_cb[index].vsc_command_status) {
++           case BTIF_AVK_VSC_STARTED:
++              // VSC START was successful, send VSC_STOP
++              btif_av_cb[index].vsc_command_status = BTIF_AVK_VSC_STOPPING;
++              BTA_AvkOffloadStop(btif_av_cb[index].bta_handle);
++              break;
++           case BTIF_AVK_VSC_STOP:
++              // VSC Stop was already sent.send suspend cfm and move to OPENED
++              BTA_AvkSendPedingSuspendCnf(btif_av_cb[index].bta_handle);
++              btif_sm_change_state(btif_av_cb[index].sm_handle, BTIF_AV_STATE_OPENED);
++              btif_a2dp_on_suspended(nullptr);
++              break;
++           case BTIF_AVK_VSC_STARTING:
++           case BTIF_AVK_VSC_START_FAILED:
++           case BTIF_AVK_VSC_STOPPING:
++              // this should not happen actually in this state.
++              break;
++        }
++        break;
++    case BTIF_AV_SINK_OFFLOAD_SINK_LATENCY_EVT:
++        BTA_AvkUpdateDelayReport(btif_av_cb[index].bta_handle,
++                                 btif_ahim_get_sink_latency());
++
++        break;
++    case BTA_AV_SINK_OFFLOAD_STOP_RSP_EVT:
++        btif_av_cb[index].vsc_command_status = BTIF_AVK_VSC_STOP;
++        BTIF_TRACE_DEBUG(" %s vsc_command_status %d",__FUNCTION__,
++                btif_av_cb[index].vsc_command_status);
++        if (btif_av_cb[index].vsc_command_status == BTIF_AVK_VSC_STOP) {
++           if(btif_av_cb[index].flags & BTIF_AV_FLAG_PENDING_STOP) {
++             btif_a2dp_on_stopped(nullptr);
++             btif_report_audio_state(BTAV_AUDIO_STATE_STOPPED, &(btif_av_cb[index].peer_bda));
++           } else {
++             BTA_AvkSendPedingSuspendCnf(btif_av_cb[index].bta_handle);
++             btif_a2dp_on_suspended(nullptr);
++             btif_report_audio_state(BTAV_AUDIO_STATE_REMOTE_SUSPEND, &(btif_av_cb[index].peer_bda));
++           }
++        } else {
++           btif_a2dp_on_suspended(nullptr);
++        }
++        btif_sm_change_state(btif_av_cb[index].sm_handle, BTIF_AV_STATE_OPENED);
++        break;
++
+     case BTA_AV_STOP_EVT:
+       btif_av_cb[index].flags |= BTIF_AV_FLAG_PENDING_STOP;
+       BTIF_TRACE_DEBUG("%s: Stop the AV Data channel for index: %d, "
+@@ -2879,12 +3108,17 @@ static bool btif_av_state_started_handler(btif_sm_event_t event, void* p_data,
+         APPL_TRACE_WARNING("%s:Non active device disconnected,continue streaming",__func__);
+       } else {
+         if (btif_av_cb[index].peer_sep == AVDT_TSEP_SRC) {
+-          //When DUT is in Sink role
+-          if (!btif_av_cb[index].current_playing) {
+-            BTIF_TRACE_DEBUG("%s: Non active source device disconnected, "
+-                                  "continue streaming with active source device",__func__);
++          if(bt_split_a2dp_sink_enabled) {
++            btif_dispatch_sm_event(BTIF_AV_SINK_OFFLOAD_STOP_CFM_EVT, NULL, 0);
++            break;
+           } else {
+-            btif_a2dp_on_stopped(&p_av->suspend);
++            //When DUT is in Sink role
++            if (!btif_av_cb[index].current_playing) {
++              BTIF_TRACE_DEBUG("%s: Non active source device disconnected, "
++                                    "continue streaming with active source device",__func__);
++            } else {
++              btif_a2dp_on_stopped(&p_av->suspend);
++            }
+           }
+         } else {
+           //When DUT is in source role
+@@ -2931,6 +3165,14 @@ static bool btif_av_state_started_handler(btif_sm_event_t event, void* p_data,
+       }
+ /* SPLITA2DP */
+       /* avdtp link is closed */
++
++      if(bt_split_a2dp_sink_enabled) {
++        if(btif_av_cb[index].vsc_command_status == BTIF_AVK_VSC_STARTED) {
++          // VSC START was successful, send VSC_STOP
++          btif_av_cb[index].vsc_command_status = BTIF_AVK_VSC_STOP;
++          BTA_AvkOffloadStop(btif_av_cb[index].bta_handle);
++        }
++      }
+       btif_a2dp_on_stopped(NULL);
+ 
+       /* inform the application that we are disconnected */
+@@ -3604,7 +3846,11 @@ static void btif_av_handle_event(uint16_t event, char* p_param) {
+       break;
+ 
+     case BTIF_AV_PROCESS_HIDL_REQ_EVT:
+-      btif_a2dp_source_process_request((tA2DP_CTRL_CMD ) *p_param);
++      if(bt_split_a2dp_sink_enabled) {
++        btif_a2dp_sink_process_request((tA2DP_CTRL_CMD ) *p_param);
++      } else {
++        btif_a2dp_source_process_request((tA2DP_CTRL_CMD ) *p_param);
++      }
+       break;
+ 
+     default:
+@@ -4269,6 +4515,10 @@ static void bte_av_sink_media_callback(tBTA_AV_EVT event,
+         APPL_TRACE_ERROR("%s: cannot get the track frequency", __func__);
+         break;
+       }
++
++      APPL_TRACE_ERROR("%s: copied the config to active_codec_info ", __func__);
++
++      memcpy(active_codec_info, p_data->avk_config.codec_info, AVDT_CODEC_SIZE);
+       config_req.channel_count =
+           A2DP_GetTrackChannelCount(p_data->avk_config.codec_info);
+       if (config_req.channel_count == -1) {
+@@ -4461,6 +4711,12 @@ static bt_status_t init_sink(btav_sink_callbacks_t* callbacks,
+                              int /*max_connected_audio_devices*/) {
+   BTIF_TRACE_EVENT("%s", __func__);
+   property_set("persist.vendor.service.bt.a2dp.sink", "true");
++  char split_a2dp_sink[6] = "false";
++  osi_property_get("persist.vendor.bluetooth.split_a2dp_sink", split_a2dp_sink, "false");
++  if (strncmp("true", split_a2dp_sink, 4) == 0){
++      BTIF_TRACE_EVENT("%s: split a2dp is enabled ",__func__);
++      bt_split_a2dp_sink_enabled = true;
++  }
+   bt_status_t status = btif_av_init(BTA_A2DP_SINK_SERVICE_ID);
+   if (status == BT_STATUS_SUCCESS) bt_av_sink_callbacks = callbacks;
+   return status;
+@@ -5388,6 +5644,7 @@ bt_status_t btif_av_sink_execute_service(bool b_enable) {
+   bool delay_report_enabled = false;
+   char value[PROPERTY_VALUE_MAX] = {'\0'};
+   tBTA_AV_FEAT feat_delay_rpt = 0;
++  tBTA_AV_FEAT split_sink_enabled = 0;
+ 
+   if (b_enable) {
+     /* Added BTA_AV_FEAT_NO_SCO_SSPD - this ensures that the BTA does not
+@@ -5401,9 +5658,13 @@ bt_status_t btif_av_sink_execute_service(bool b_enable) {
+     if (delay_report_enabled)
+       feat_delay_rpt = BTA_AV_FEAT_DELAY_RPT;
+ 
++    if (bt_split_a2dp_sink_enabled)
++      split_sink_enabled = BTA_AV_FEAT_SPLIT_ENABLED;
++
+     BTA_AvEnable(BTA_SEC_AUTHENTICATE, BTA_AV_FEAT_NO_SCO_SSPD|BTA_AV_FEAT_RCCT|
+                                         BTA_AV_FEAT_METADATA|BTA_AV_FEAT_VENDOR|
+-                                        BTA_AV_FEAT_ADV_CTRL|BTA_AV_FEAT_RCTG|feat_delay_rpt,
++                                        BTA_AV_FEAT_ADV_CTRL|BTA_AV_FEAT_RCTG|
++                                        feat_delay_rpt | split_sink_enabled,
+                                         bte_av_callback);
+ 
+     for (i = 0; i < btif_max_av_clients; i++) {
+diff --git a/stack/a2dp/a2dp_sbc.cc b/stack/a2dp/a2dp_sbc.cc
+index 306710f16..445c96e56 100644
+--- a/stack/a2dp/a2dp_sbc.cc
++++ b/stack/a2dp/a2dp_sbc.cc
+@@ -16,6 +16,12 @@
+  *
+  ******************************************************************************/
+ 
++/*
++ * Changes from Qualcomm Innovation Center are provided under the following license:
++ * Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
++ * SPDX-License-Identifier: BSD-3-Clause-Clear
++ */
++
+ /******************************************************************************
+  *
+  *  Utility functions to help build and parse SBC Codec Information Element
+@@ -39,17 +45,7 @@
+ #include "osi/include/osi.h"
+ 
+ #define A2DP_SBC_MAX_BITPOOL 53
+-/* data type for the SBC Codec Information Element */
+-typedef struct {
+-  uint8_t samp_freq;    /* Sampling frequency */
+-  uint8_t ch_mode;      /* Channel mode */
+-  uint8_t block_len;    /* Block length */
+-  uint8_t num_subbands; /* Number of subbands */
+-  uint8_t alloc_method; /* Allocation method */
+-  uint8_t min_bitpool;  /* Minimum bitpool */
+-  uint8_t max_bitpool;  /* Maximum bitpool */
+-  btav_a2dp_codec_bits_per_sample_t bits_per_sample;
+-} tA2DP_SBC_CIE;
++
+ 
+ /* SBC SRC codec capablilities */
+ static const tA2DP_SBC_CIE a2dp_sbc_src_caps = {
+@@ -172,9 +168,9 @@ static tA2DP_STATUS A2DP_BuildInfoSbc(uint8_t media_type,
+ // codec capability.
+ // Returns A2DP_SUCCESS on success, otherwise the corresponding A2DP error
+ // status code.
+-static tA2DP_STATUS A2DP_ParseInfoSbc(tA2DP_SBC_CIE* p_ie,
+-                                      const uint8_t* p_codec_info,
+-                                      bool is_capability) {
++tA2DP_STATUS A2DP_ParseInfoSbc(tA2DP_SBC_CIE* p_ie,
++                               const uint8_t* p_codec_info,
++                               bool is_capability) {
+   uint8_t losc;
+   uint8_t media_type;
+   tA2DP_CODEC_TYPE codec_type;
+@@ -688,6 +684,29 @@ int A2DP_GetSamplingFrequencyCodeSbc(const uint8_t* p_codec_info) {
+   return -1;
+ }
+ 
++int A2DP_GetBitsPerSampleSbc(const uint8_t* p_codec_info) {
++  tA2DP_SBC_CIE sbc_cie;
++
++  tA2DP_STATUS a2dp_status = A2DP_ParseInfoSbc(&sbc_cie, p_codec_info, true);
++  if (a2dp_status != A2DP_SUCCESS) {
++    LOG_ERROR(LOG_TAG, "%s: cannot decode codec information: %d", __func__,
++              a2dp_status);
++    return -1;
++  }
++
++  switch (sbc_cie.bits_per_sample) {
++    case BTAV_A2DP_CODEC_BITS_PER_SAMPLE_16:
++      return 16;
++    case BTAV_A2DP_CODEC_BITS_PER_SAMPLE_24:
++      return 24;
++    case BTAV_A2DP_CODEC_BITS_PER_SAMPLE_32:
++      return 32;
++    case BTAV_A2DP_CODEC_BITS_PER_SAMPLE_NONE:
++      break;
++  }
++  return -1;
++}
++
+ int A2DP_GetMinBitpoolSbc(const uint8_t* p_codec_info) {
+   tA2DP_SBC_CIE sbc_cie;
+ 
+@@ -715,8 +734,13 @@ int A2DP_GetMaxBitpoolSbc(const uint8_t* p_codec_info) {
+ }
+ 
+ uint16_t A2DP_GetOffloadBitrateSbc(A2dpCodecConfig* a2dp_codec_config, bool peer_edr) {
+-  return a2dp_sbc_calulate_offload_bitrate(a2dp_codec_config, peer_edr);
++  return a2dp_sbc_calulate_offload_bitrate(a2dp_codec_config, nullptr, peer_edr);
+ }
++
++uint16_t A2DP_GetOffloadBitrateSbcUsingCodecInfo(const uint8_t *codec_info, bool peer_edr) {
++  return a2dp_sbc_calulate_offload_bitrate(nullptr, codec_info, peer_edr);
++}
++
+ int A2DP_GetSinkTrackChannelTypeSbc(const uint8_t* p_codec_info) {
+   tA2DP_SBC_CIE sbc_cie;
+ 
+diff --git a/stack/a2dp/a2dp_sbc_encoder.cc b/stack/a2dp/a2dp_sbc_encoder.cc
+index d84bc88da..8ae1cca4b 100644
+--- a/stack/a2dp/a2dp_sbc_encoder.cc
++++ b/stack/a2dp/a2dp_sbc_encoder.cc
+@@ -17,6 +17,12 @@
+  *
+  ******************************************************************************/
+ 
++/*
++ * Changes from Qualcomm Innovation Center are provided under the following license:
++ * Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
++ * SPDX-License-Identifier: BSD-3-Clause-Clear
++ */
++
+ #define LOG_TAG "a2dp_sbc_encoder"
+ 
+ #include "a2dp_sbc_encoder.h"
+@@ -955,7 +961,9 @@ static uint32_t a2dp_sbc_frame_length(void) {
+   return frame_len;
+ }
+ 
+-uint16_t a2dp_sbc_calulate_offload_bitrate(A2dpCodecConfig* a2dp_codec_config, bool is_peer_edr) {
++uint16_t a2dp_sbc_calulate_offload_bitrate(A2dpCodecConfig* a2dp_codec_config,
++                                           const uint8_t *src_codec_info,
++                                           bool is_peer_edr) {
+   uint8_t codec_info[AVDT_CODEC_SIZE];
+   uint16_t s16SamplingFreq,sample_rate;
+   int16_t s16BitPool = 0;
+@@ -964,25 +972,32 @@ uint16_t a2dp_sbc_calulate_offload_bitrate(A2dpCodecConfig* a2dp_codec_config, b
+   uint8_t protect = 0;
+   int min_bitpool;
+   int max_bitpool;
+-  uint8_t bits_per_sample,channel_count;
++  uint8_t bits_per_sample = 0,channel_count;
+   uint16_t s16ChannelMode, s16NumOfSubBands, s16NumOfBlocks;
+   uint16_t s16AllocationMethod, s16NumOfChannels;
+   uint16_t offload_bitrate;
++  const uint8_t* p_codec_info = nullptr;
+   LOG_ERROR(LOG_TAG,"%s is peer edr = %d",__func__, is_peer_edr);
+-  if (!a2dp_codec_config->copyOutOtaCodecConfig(codec_info)) {
++  if(src_codec_info) {
++    p_codec_info = src_codec_info;
++    bits_per_sample = A2DP_GetBitsPerSampleSbc(p_codec_info);
++  } else if (a2dp_codec_config &&
++      !a2dp_codec_config->copyOutOtaCodecConfig(codec_info)) {
+     LOG_ERROR(LOG_TAG,
+               "%s: Cannot update the codec encoder for %s: "
+               "invalid codec config",
+               __func__, a2dp_codec_config->name().c_str());
+     return 0;
++  } else if(a2dp_codec_config) {
++    p_codec_info = codec_info;
++    bits_per_sample = a2dp_codec_config->getAudioBitsPerSample();
+   }
+-  const uint8_t* p_codec_info = codec_info;
++
+   min_bitpool = A2DP_GetMinBitpoolSbc(p_codec_info);
+   max_bitpool = A2DP_GetMaxBitpoolSbc(p_codec_info);
+   // The feeding parameters
+   sample_rate = A2DP_GetTrackSampleRateSbc(p_codec_info);
+-  bits_per_sample =  a2dp_codec_config->getAudioBitsPerSample();
+-     //A2DP_GetTrackBitsPerSampleSbc(p_codec_info); TODO
++  //A2DP_GetTrackBitsPerSampleSbc(p_codec_info); TODO
+   channel_count = A2DP_GetTrackChannelCountSbc(p_codec_info);
+   LOG_DEBUG(LOG_TAG, "%s: sample_rate=%u bits_per_sample=%u channel_count=%u min_bitpool=%x max_bitpool=%x",
+            __func__, sample_rate, bits_per_sample, channel_count, min_bitpool, max_bitpool);
+diff --git a/stack/avdt/avdt_api.cc b/stack/avdt/avdt_api.cc
+index 96876ebf2..a3b2f6093 100644
+--- a/stack/avdt/avdt_api.cc
++++ b/stack/avdt/avdt_api.cc
+@@ -20,6 +20,12 @@
+  *
+  ******************************************************************************/
+ 
++/*
++ * Changes from Qualcomm Innovation Center are provided under the following license:
++ * Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
++ * SPDX-License-Identifier: BSD-3-Clause-Clear
++ */
++
+ /******************************************************************************
+  *
+  *  This module contains API of the audio/video distribution transport
+@@ -1370,3 +1376,75 @@ uint8_t AVDT_GetPeerSeid(uint8_t handle) {
+   AVDT_TRACE_DEBUG("%s: handle=%d, seid=%d", __func__, handle, peer_seid);
+   return peer_seid;
+ }
++
++/*******************************************************************************
++ *
++ * Function         AVDT_SndPendingSigStart_Rsp
++ *
++ * Description      Send pending Start Response to remote
++ *
++ * Returns          void
++ *
++ ******************************************************************************/
++
++void AVDT_SndPendingSigStart_Rsp(uint8_t handle, bool accepted )
++{
++    AVDT_TRACE_DEBUG("%s", __func__);
++    tAVDT_SCB *p_scb = avdt_scb_by_hdl(handle);
++    tAVDT_SCB_EVT evt;
++    if (p_scb != NULL)
++    {
++        AVDT_TRACE_DEBUG("%s accepted = %d ", __func__,accepted);
++        if (accepted) {
++          evt.msg.hdr.err_code = AVDT_SUCCESS;
++        } else {
++          evt.msg.hdr.err_code = AVDT_BAD_PARAMS;
++        }
++        avdt_scb_event(p_scb, AVDT_SCB_API_PENDING_START_RSP_EVT, &evt);
++    } else {
++        AVDT_TRACE_DEBUG("%s Improper SCB, can not send SIG START", __func__);
++    }
++}
++
++/*******************************************************************************
++ *
++ * Function         AVDT_SndPendingSigSuspend_Rsp
++ *
++ * Description      Send pending Start Response to remote
++ *
++ * Returns          void
++ *
++ ******************************************************************************/
++
++void AVDT_SndPendingSigSuspend_Rsp(uint8_t handle, bool accepted )
++{
++    AVDT_TRACE_DEBUG("%s", __func__);
++    tAVDT_SCB *p_scb = avdt_scb_by_hdl(handle);
++    tAVDT_SCB_EVT evt;
++    if (p_scb != NULL)
++    {
++        AVDT_TRACE_DEBUG("%s accepted = %d ", __func__,accepted);
++        if (accepted) {
++          evt.msg.hdr.err_code = AVDT_SUCCESS;
++        } else {
++          evt.msg.hdr.err_code = AVDT_BAD_PARAMS;
++        }
++        avdt_scb_event(p_scb, AVDT_SCB_API_PENDING_SUSPEND_RSP_EVT, &evt);
++    } else {
++        AVDT_TRACE_DEBUG("%s Improper SCB, can not send SIG SUSPEND", __func__);
++    }
++}
++
++void AVDT_UpdateDelayReport(uint8_t handle, uint16_t sink_latency) {
++  tAVDT_SCB* p_scb;
++  AVDT_TRACE_DEBUG("%s: handle=%d", __func__, handle);
++
++  /* map handle to scb */
++  p_scb = avdt_scb_by_hdl(handle);
++  if (p_scb->cs.is_split_enabled && (p_scb->cs.tsep == AVDT_TSEP_SNK) &&
++      (p_scb->curr_cfg.psc_mask & AVDT_PSC_DELAY_RPT)) {
++    //p_scb->reported_delay = sink_latency;
++    AVDT_TRACE_DEBUG(" %s ~~  update delay report to %d  ",__func__,sink_latency);
++    AVDT_DelayReport(handle, p_scb->peer_seid, sink_latency);
++  }
++}
+\ No newline at end of file
+diff --git a/stack/avdt/avdt_ccb.cc b/stack/avdt/avdt_ccb.cc
+index 9c67e9a3e..77516da12 100644
+--- a/stack/avdt/avdt_ccb.cc
++++ b/stack/avdt/avdt_ccb.cc
+@@ -16,6 +16,12 @@
+  *
+  ******************************************************************************/
+ 
++/*
++ * Changes from Qualcomm Innovation Center are provided under the following license:
++ * Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
++ * SPDX-License-Identifier: BSD-3-Clause-Clear
++ */
++
+ /******************************************************************************
+  *
+  *  This module contains the channel control block state machine and
+@@ -47,8 +53,8 @@ const char* const avdt_ccb_evt_str[] = {
+     "API_DISCOVER_REQ_EVT", "API_GETCAP_REQ_EVT",
+     "API_START_REQ_EVT",    "API_SUSPEND_REQ_EVT",
+     "API_DISCOVER_RSP_EVT", "API_GETCAP_RSP_EVT",
+-    "API_START_RSP_EVT",    "API_SUSPEND_RSP_EVT",
+-    "API_CONNECT_REQ_EVT",  "API_DISCONNECT_REQ_EVT",
++    "API_START_RSP_EVT",    "API_PENDING_START_RSP_EVT",  "API_SUSPEND_RSP_EVT",
++    "API_PENDING_SUSPEND_RSP_EVT", "API_CONNECT_REQ_EVT",  "API_DISCONNECT_REQ_EVT",
+     "MSG_DISCOVER_CMD_EVT", "MSG_GETCAP_CMD_EVT",
+     "MSG_START_CMD_EVT",    "MSG_SUSPEND_CMD_EVT",
+     "MSG_DISCOVER_RSP_EVT", "MSG_GETCAP_RSP_EVT",
+@@ -69,8 +75,9 @@ const tAVDT_CCB_ACTION avdt_ccb_action[] = {
+     avdt_ccb_hdl_suspend_rsp,  avdt_ccb_snd_discover_cmd,
+     avdt_ccb_snd_discover_rsp, avdt_ccb_snd_getcap_cmd,
+     avdt_ccb_snd_getcap_rsp,   avdt_ccb_snd_start_cmd,
+-    avdt_ccb_snd_start_rsp,    avdt_ccb_snd_suspend_cmd,
+-    avdt_ccb_snd_suspend_rsp,  avdt_ccb_clear_cmds,
++    avdt_ccb_snd_start_rsp,    avdt_ccb_snd_pending_start_rsp,
++    avdt_ccb_snd_suspend_cmd,  avdt_ccb_snd_suspend_rsp,
++    avdt_ccb_snd_pending_suspend_rsp, avdt_ccb_clear_cmds,
+     avdt_ccb_cmd_fail,         avdt_ccb_free_cmd,
+     avdt_ccb_cong_state,       avdt_ccb_ret_cmd,
+     avdt_ccb_snd_cmd,          avdt_ccb_snd_msg,
+@@ -103,8 +110,12 @@ const uint8_t avdt_ccb_st_idle[][AVDT_CCB_NUM_COLS] = {
+     {AVDT_CCB_IGNORE, AVDT_CCB_IGNORE, AVDT_CCB_IDLE_ST},
+     /* API_START_RSP_EVT */
+     {AVDT_CCB_IGNORE, AVDT_CCB_IGNORE, AVDT_CCB_IDLE_ST},
++    /* AVDT_CCB_API_PENDING_START_RSP_EVT */
++    {AVDT_CCB_IGNORE, AVDT_CCB_IGNORE, AVDT_CCB_IDLE_ST},
+     /* API_SUSPEND_RSP_EVT */
+     {AVDT_CCB_IGNORE, AVDT_CCB_IGNORE, AVDT_CCB_IDLE_ST},
++    /* AVDT_CCB_API_PENDING_SUSPEND_RSP_EVT */
++    {AVDT_CCB_IGNORE, AVDT_CCB_IGNORE, AVDT_CCB_IDLE_ST},
+     /* API_CONNECT_REQ_EVT */
+     {AVDT_CCB_SET_CONN, AVDT_CCB_CHAN_OPEN, AVDT_CCB_OPENING_ST},
+     /* API_DISCONNECT_REQ_EVT */
+@@ -164,8 +175,12 @@ const uint8_t avdt_ccb_st_opening[][AVDT_CCB_NUM_COLS] = {
+     {AVDT_CCB_IGNORE, AVDT_CCB_IGNORE, AVDT_CCB_OPENING_ST},
+     /* API_START_RSP_EVT */
+     {AVDT_CCB_IGNORE, AVDT_CCB_IGNORE, AVDT_CCB_OPENING_ST},
++    /* AVDT_CCB_API_PENDING_START_RSP_EVT */
++    {AVDT_CCB_IGNORE, AVDT_CCB_IGNORE, AVDT_CCB_OPENING_ST},
+     /* API_SUSPEND_RSP_EVT */
+     {AVDT_CCB_IGNORE, AVDT_CCB_IGNORE, AVDT_CCB_OPENING_ST},
++    /* AVDT_CCB_API_PENDING_SUSPEND_RSP_EVT */
++    {AVDT_CCB_IGNORE, AVDT_CCB_IGNORE, AVDT_CCB_OPENING_ST},
+     /* API_CONNECT_REQ_EVT */
+     {AVDT_CCB_SET_CONN, AVDT_CCB_IGNORE, AVDT_CCB_OPENING_ST},
+     /* API_DISCONNECT_REQ_EVT */
+@@ -224,9 +239,13 @@ const uint8_t avdt_ccb_st_open[][AVDT_CCB_NUM_COLS] = {
+     /* API_GETCAP_RSP_EVT */
+     {AVDT_CCB_SND_GETCAP_RSP, AVDT_CCB_SND_CMD, AVDT_CCB_OPEN_ST},
+     /* API_START_RSP_EVT */
+-    {AVDT_CCB_SND_START_RSP, AVDT_CCB_SND_CMD, AVDT_CCB_OPEN_ST},
++    {AVDT_CCB_SND_START_RSP, AVDT_CCB_IGNORE, AVDT_CCB_OPEN_ST},
++    /* AVDT_CCB_API_PENDING_START_RSP_EVT */
++    {AVDT_CCB_SND_PENDING_START_RSP, AVDT_CCB_SND_CMD, AVDT_CCB_OPEN_ST},
+     /* API_SUSPEND_RSP_EVT */
+     {AVDT_CCB_SND_SUSPEND_RSP, AVDT_CCB_SND_CMD, AVDT_CCB_OPEN_ST},
++    /* AVDT_CCB_API_PENDING_SUSPEND_RSP_EVT */
++    {AVDT_CCB_SND_PENDING_SUSPEND_RSP, AVDT_CCB_SND_CMD, AVDT_CCB_OPEN_ST},
+     /* API_CONNECT_REQ_EVT */
+     {AVDT_CCB_SET_CONN, AVDT_CCB_LL_OPENED, AVDT_CCB_OPEN_ST},
+     /* API_DISCONNECT_REQ_EVT */
+@@ -286,8 +305,12 @@ const uint8_t avdt_ccb_st_closing[][AVDT_CCB_NUM_COLS] = {
+     {AVDT_CCB_IGNORE, AVDT_CCB_IGNORE, AVDT_CCB_CLOSING_ST},
+     /* API_START_RSP_EVT */
+     {AVDT_CCB_IGNORE, AVDT_CCB_IGNORE, AVDT_CCB_CLOSING_ST},
++    /* AVDT_CCB_API_PENDING_START_RSP_EVT */
++    {AVDT_CCB_IGNORE, AVDT_CCB_IGNORE, AVDT_CCB_CLOSING_ST},
+     /* API_SUSPEND_RSP_EVT */
+     {AVDT_CCB_IGNORE, AVDT_CCB_IGNORE, AVDT_CCB_CLOSING_ST},
++    /* AVDT_CCB_API_PENDING_SUSPEND_RSP_EVT */
++    {AVDT_CCB_IGNORE, AVDT_CCB_IGNORE, AVDT_CCB_CLOSING_ST},
+     /* API_CONNECT_REQ_EVT */
+     {AVDT_CCB_SET_RECONN, AVDT_CCB_SET_CONN, AVDT_CCB_CLOSING_ST},
+     /* API_DISCONNECT_REQ_EVT */
+diff --git a/stack/avdt/avdt_ccb_act.cc b/stack/avdt/avdt_ccb_act.cc
+index 62cdd886c..ff2bf156d 100644
+--- a/stack/avdt/avdt_ccb_act.cc
++++ b/stack/avdt/avdt_ccb_act.cc
+@@ -20,6 +20,12 @@
+  *
+  ******************************************************************************/
+ 
++/*
++ * Changes from Qualcomm Innovation Center are provided under the following license:
++ * Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
++ * SPDX-License-Identifier: BSD-3-Clause-Clear
++ */
++
+ /******************************************************************************
+  *
+  *  This module contains the action functions associated with the channel
+@@ -77,6 +83,7 @@ static void avdt_ccb_clear_ccb(tAVDT_CCB* p_ccb) {
+     osi_free(p_buf);
+ }
+ 
++
+ /*******************************************************************************
+  *
+  * Function         avdt_ccb_chan_open
+@@ -518,6 +525,8 @@ void avdt_ccb_hdl_getcap_rsp(tAVDT_CCB* p_ccb, tAVDT_CCB_EVT* p_data) {
+  ******************************************************************************/
+ void avdt_ccb_hdl_start_cmd(tAVDT_CCB* p_ccb, tAVDT_CCB_EVT* p_data) {
+   uint8_t err_code = 0;
++  uint8_t i = 0;
++  tAVDT_SCB *p_scb;
+ 
+   /* verify all streams in the right state */
+   uint8_t seid =
+@@ -526,8 +535,28 @@ void avdt_ccb_hdl_start_cmd(tAVDT_CCB* p_ccb, tAVDT_CCB_EVT* p_data) {
+   AVDT_TRACE_DEBUG("%s: bd_add: %s, seid: %d", __func__,
+                      p_ccb->peer_addr.ToString().c_str(), seid);
+   if (seid == 0 && err_code == 0) {
+-    /* we're ok, send response */
+-    avdt_ccb_event(p_ccb, AVDT_CCB_API_START_RSP_EVT, p_data);
++    /* If tsep is SNK , snd start IND to BTA */
++    for (i = 0; i < p_data->msg.multi.num_seps; i++)
++    {
++      p_scb = avdt_scb_by_hdl(p_data->msg.multi.seid_list[i]);
++      if (p_scb!= NULL) {
++          AVDT_TRACE_DEBUG("%s SEP=%d split_enabled = %d ",__func__,p_scb->cs.tsep, p_scb->cs.is_split_enabled);
++      }
++      if((p_scb != NULL) && (p_scb->cs.tsep == AVDT_TSEP_SNK)&& (p_scb->p_ccb == p_ccb)
++          &&(p_scb->cs.is_split_enabled))
++      {
++        // we don't need timer (delay reporting) for split a2dp case
++        (*p_scb->cs.p_ctrl_cback)(avdt_scb_to_hdl(p_scb),
++                 &p_ccb->peer_addr,AVDT_START_IND_EVT,NULL);
++        p_ccb->start_pending_label = p_data->msg.hdr.label;
++        AVDT_TRACE_DEBUG(" %s  split_sink start_ind seid = %d label = %d",__func__,
++                         p_data->msg.multi.seid_list[i],p_ccb->start_pending_label);
++        return;
++      }
++    }
++    // if split is not enabled on this scb
++     /* we're ok, send response */
++     avdt_ccb_event(p_ccb, AVDT_CCB_API_START_RSP_EVT, p_data);
+   } else {
+     /* not ok, send reject */
+     p_data->msg.hdr.err_code = err_code;
+@@ -536,6 +565,62 @@ void avdt_ccb_hdl_start_cmd(tAVDT_CCB* p_ccb, tAVDT_CCB_EVT* p_data) {
+   }
+ }
+ 
++/*******************************************************************************
++ *
++ * Function         avdt_ccb_snd_pending_start_rsp
++ *
++ * Description      This funciton is called when response to avdtp start is sent
++ *                  from applicaiton.
++ *
++ *
++ * Returns          void.
++ *
++ ******************************************************************************/
++
++void avdt_ccb_snd_pending_start_rsp(tAVDT_CCB* p_ccb, tAVDT_CCB_EVT* p_data) {
++  tAVDT_MSG msg;
++  uint8_t accepted = p_data->msg.hdr.err_code;
++  msg.hdr.label = p_ccb->start_pending_label;
++
++  AVDT_TRACE_DEBUG("%s: label = %d accepted = %d", __func__,msg.hdr.label, accepted);
++  if (accepted == 0) {
++    avdt_msg_send_rsp(p_ccb, AVDT_SIG_START, &msg);
++  } else {
++    msg.hdr.err_code = AVDT_ERR_BAD_STATE;
++    //TODO:  Find right SEID
++    avdt_msg_send_rej(p_ccb, AVDT_SIG_START, &msg);
++  }
++  p_ccb->start_pending_label = UNUSED_T_LABEL;
++}
++
++/*******************************************************************************
++ *
++ * Function         avdt_ccb_snd_pending_suspend_rsp
++ *
++ * Description      This funciton is called when response to avdtp start is sent
++ *                  from applicaiton.
++ *
++ *
++ * Returns          void.
++ *
++ ******************************************************************************/
++
++void avdt_ccb_snd_pending_suspend_rsp(tAVDT_CCB* p_ccb, tAVDT_CCB_EVT* p_data) {
++  tAVDT_MSG msg;
++  uint8_t accepted = p_data->msg.hdr.err_code;
++  msg.hdr.label = p_ccb->suspend_pending_label;
++
++  AVDT_TRACE_DEBUG("%s: label = %d accepted = %d", __func__,msg.hdr.label, accepted);
++  if (accepted == 0) {
++    avdt_msg_send_rsp(p_ccb, AVDT_SIG_SUSPEND, &msg);
++  } else {
++    msg.hdr.err_code = AVDT_ERR_BAD_STATE;
++    //TODO:  Find right SEID
++    avdt_msg_send_rej(p_ccb, AVDT_SIG_SUSPEND, &msg);
++  }
++  p_ccb->suspend_pending_label = UNUSED_T_LABEL;
++}
++
+ /*******************************************************************************
+  *
+  * Function         avdt_ccb_hdl_start_rsp
+@@ -589,6 +674,8 @@ void avdt_ccb_hdl_start_rsp(tAVDT_CCB* p_ccb, tAVDT_CCB_EVT* p_data) {
+ void avdt_ccb_hdl_suspend_cmd(tAVDT_CCB* p_ccb, tAVDT_CCB_EVT* p_data) {
+   uint8_t seid;
+   uint8_t err_code = 0;
++  uint8_t i = 0;
++  tAVDT_SCB *p_scb;
+ 
+   AVDT_TRACE_DEBUG("%s: bd_add: %s", __func__, p_ccb->peer_addr.ToString().c_str());
+   /* verify all streams in the right state */
+@@ -596,8 +683,30 @@ void avdt_ccb_hdl_suspend_cmd(tAVDT_CCB* p_ccb, tAVDT_CCB_EVT* p_data) {
+                               p_data->msg.multi.seid_list,
+                               p_data->msg.multi.num_seps, &err_code)) == 0 &&
+       err_code == 0) {
+-    /* we're ok, send response */
+-    avdt_ccb_event(p_ccb, AVDT_CCB_API_SUSPEND_RSP_EVT, p_data);
++    /* If tsep is SNK , snd start IND to BTA */
++    for (i = 0; i < p_data->msg.multi.num_seps; i++)
++    {
++      p_scb = avdt_scb_by_hdl(p_data->msg.multi.seid_list[i]);
++      if (p_scb!= NULL) {
++          AVDT_TRACE_DEBUG("%s SEP=%d split_enabled = %d ",__func__,p_scb->cs.tsep,
++            p_scb->cs.is_split_enabled);
++      }
++      if((p_scb != NULL) && (p_scb->cs.tsep == AVDT_TSEP_SNK)&& (p_scb->p_ccb == p_ccb)
++          &&(p_scb->cs.is_split_enabled))
++      {
++        // we don't need timer (delay reporting) for split a2dp case
++        (*p_scb->cs.p_ctrl_cback)(avdt_scb_to_hdl(p_scb),
++                                  &p_scb->p_ccb->peer_addr, AVDT_SUSPEND_IND_EVT, NULL);
++
++        p_ccb->suspend_pending_label = p_data->msg.hdr.label;
++        AVDT_TRACE_DEBUG(" %s  split_sink suspend_ind seid = %d label = %d",__func__,
++                         p_data->msg.multi.seid_list[i],p_ccb->suspend_pending_label);
++        return;
++      }
++    }
++    // split is not enabled on this SCB.
++     /* we're ok, send response */
++     avdt_ccb_event(p_ccb, AVDT_CCB_API_SUSPEND_RSP_EVT, p_data);
+   } else {
+     /* not ok, send reject */
+     p_data->msg.hdr.err_code = err_code;
+diff --git a/stack/avdt/avdt_int.h b/stack/avdt/avdt_int.h
+index d8e4809f6..9a5428de2 100644
+--- a/stack/avdt/avdt_int.h
++++ b/stack/avdt/avdt_int.h
+@@ -20,6 +20,12 @@
+  *
+  ******************************************************************************/
+ 
++/*
++ * Changes from Qualcomm Innovation Center are provided under the following license:
++ * Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
++ * SPDX-License-Identifier: BSD-3-Clause-Clear
++ */
++
+ /******************************************************************************
+  *
+  *  This file contains interfaces which are internal to AVDTP.
+@@ -134,8 +140,10 @@ enum {
+   AVDT_CCB_SND_GETCAP_RSP,
+   AVDT_CCB_SND_START_CMD,
+   AVDT_CCB_SND_START_RSP,
++  AVDT_CCB_SND_PENDING_START_RSP,
+   AVDT_CCB_SND_SUSPEND_CMD,
+   AVDT_CCB_SND_SUSPEND_RSP,
++  AVDT_CCB_SND_PENDING_SUSPEND_RSP,
+   AVDT_CCB_CLEAR_CMDS,
+   AVDT_CCB_CMD_FAIL,
+   AVDT_CCB_FREE_CMD,
+@@ -167,7 +175,9 @@ enum {
+   AVDT_CCB_API_DISCOVER_RSP_EVT,
+   AVDT_CCB_API_GETCAP_RSP_EVT,
+   AVDT_CCB_API_START_RSP_EVT,
++  AVDT_CCB_API_PENDING_START_RSP_EVT,
+   AVDT_CCB_API_SUSPEND_RSP_EVT,
++  AVDT_CCB_API_PENDING_SUSPEND_RSP_EVT,
+   AVDT_CCB_API_CONNECT_REQ_EVT,
+   AVDT_CCB_API_DISCONNECT_REQ_EVT,
+   AVDT_CCB_MSG_DISCOVER_CMD_EVT,
+@@ -224,8 +234,10 @@ enum {
+   AVDT_SCB_HDL_SETCONFIG_RSP,
+   AVDT_SCB_HDL_START_CMD,
+   AVDT_SCB_HDL_START_RSP,
++  AVDT_SCB_HDL_PENDING_START_RSP,
+   AVDT_SCB_HDL_SUSPEND_CMD,
+   AVDT_SCB_HDL_SUSPEND_RSP,
++  AVDT_SCB_HDL_PENDING_SUSPEND_RSP,
+   AVDT_SCB_HDL_TC_CLOSE,
+ #if (AVDT_REPORTING == TRUE)
+   AVDT_SCB_HDL_TC_CLOSE_STO,
+@@ -288,6 +300,8 @@ enum {
+   AVDT_SCB_API_SETCONFIG_RSP_EVT,
+   AVDT_SCB_API_SETCONFIG_REJ_EVT,
+   AVDT_SCB_API_OPEN_RSP_EVT,
++  AVDT_SCB_API_PENDING_START_RSP_EVT,
++  AVDT_SCB_API_PENDING_SUSPEND_RSP_EVT,
+   AVDT_SCB_API_CLOSE_RSP_EVT,
+   AVDT_SCB_API_RECONFIG_RSP_EVT,
+   AVDT_SCB_API_SECURITY_RSP_EVT,
+@@ -361,6 +375,8 @@ enum {
+  * data types
+  ****************************************************************************/
+ 
++#define UNUSED_T_LABEL        255
++
+ /* msg union of all message parameter types */
+ typedef union {
+   tAVDT_EVT_HDR hdr;
+@@ -437,6 +453,8 @@ typedef struct {
+                          or number of SEPS for discover */
+   bool cong;          /* Whether signaling channel is congested */
+   uint8_t label;      /* Message header "label" (sequence number) */
++  uint8_t start_pending_label; /* T-label for pending Start command*/
++  uint8_t suspend_pending_label; /* T-label for pending Start command*/
+   bool reconn;        /* If true, reinitiate connection after transitioning from
+                          CLOSING to IDLE state */
+   uint8_t ret_count;  /* Command retransmission count */
+@@ -569,6 +587,8 @@ extern void avdt_ccb_snd_getcap_cmd(tAVDT_CCB* p_ccb, tAVDT_CCB_EVT* p_data);
+ extern void avdt_ccb_snd_getcap_rsp(tAVDT_CCB* p_ccb, tAVDT_CCB_EVT* p_data);
+ extern void avdt_ccb_snd_start_cmd(tAVDT_CCB* p_ccb, tAVDT_CCB_EVT* p_data);
+ extern void avdt_ccb_snd_start_rsp(tAVDT_CCB* p_ccb, tAVDT_CCB_EVT* p_data);
++extern void avdt_ccb_snd_pending_start_rsp(tAVDT_CCB* p_ccb, tAVDT_CCB_EVT* p_data);
++extern void avdt_ccb_snd_pending_suspend_rsp(tAVDT_CCB* p_ccb, tAVDT_CCB_EVT* p_data);
+ extern void avdt_ccb_snd_suspend_cmd(tAVDT_CCB* p_ccb, tAVDT_CCB_EVT* p_data);
+ extern void avdt_ccb_snd_suspend_rsp(tAVDT_CCB* p_ccb, tAVDT_CCB_EVT* p_data);
+ extern void avdt_ccb_clear_cmds(tAVDT_CCB* p_ccb, tAVDT_CCB_EVT* p_data);
+@@ -624,6 +644,8 @@ extern void avdt_scb_hdl_setconfig_cmd(tAVDT_SCB* p_scb, tAVDT_SCB_EVT* p_data);
+ extern void avdt_scb_hdl_setconfig_rej(tAVDT_SCB* p_scb, tAVDT_SCB_EVT* p_data);
+ extern void avdt_scb_hdl_setconfig_rsp(tAVDT_SCB* p_scb, tAVDT_SCB_EVT* p_data);
+ extern void avdt_scb_hdl_start_cmd(tAVDT_SCB* p_scb, tAVDT_SCB_EVT* p_data);
++extern void avdt_scb_hdl_pending_start_rsp(tAVDT_SCB* p_scb, tAVDT_SCB_EVT* p_data);
++extern void avdt_scb_hdl_pending_suspend_rsp(tAVDT_SCB* p_scb, tAVDT_SCB_EVT* p_data);
+ extern void avdt_scb_hdl_start_rsp(tAVDT_SCB* p_scb, tAVDT_SCB_EVT* p_data);
+ extern void avdt_scb_hdl_suspend_cmd(tAVDT_SCB* p_scb, tAVDT_SCB_EVT* p_data);
+ extern void avdt_scb_hdl_suspend_rsp(tAVDT_SCB* p_scb, tAVDT_SCB_EVT* p_data);
+diff --git a/stack/avdt/avdt_scb.cc b/stack/avdt/avdt_scb.cc
+index cedd6ce1e..04baeec49 100644
+--- a/stack/avdt/avdt_scb.cc
++++ b/stack/avdt/avdt_scb.cc
+@@ -20,6 +20,12 @@
+  *
+  ******************************************************************************/
+ 
++/*
++ * Changes from Qualcomm Innovation Center are provided under the following license:
++ * Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
++ * SPDX-License-Identifier: BSD-3-Clause-Clear
++ */
++
+ /******************************************************************************
+  *
+  *  This module contains the stream control block and functions which
+@@ -54,8 +60,9 @@ const char* const avdt_scb_evt_str[] = {
+     "API_DELAY_RPT_REQ",     "API_SETCONFIG_REQ_EVT", "API_OPEN_REQ_EVT",
+     "API_CLOSE_REQ_EVT",     "API_RECONFIG_REQ_EVT",  "API_SECURITY_REQ_EVT",
+     "API_ABORT_REQ_EVT",     "API_GETCONFIG_RSP_EVT", "API_SETCONFIG_RSP_EVT",
+-    "API_SETCONFIG_REJ_EVT", "API_OPEN_RSP_EVT",      "API_CLOSE_RSP_EVT",
+-    "API_RECONFIG_RSP_EVT",  "API_SECURITY_RSP_EVT",  "API_ABORT_RSP_EVT",
++    "API_SETCONFIG_REJ_EVT", "API_OPEN_RSP_EVT",      "API_PENDING_START_RSP_EVT",
++    "API_PENDING_SUSPEND_RSP_EVT", "API_CLOSE_RSP_EVT", "API_RECONFIG_RSP_EVT",
++    "API_SECURITY_RSP_EVT",  "API_ABORT_RSP_EVT",
+     "MSG_SETCONFIG_CMD_EVT", "MSG_GETCONFIG_CMD_EVT", "MSG_OPEN_CMD_EVT",
+     "MSG_START_CMD_EVT",     "MSG_SUSPEND_CMD_EVT",   "MSG_CLOSE_CMD_EVT",
+     "MSG_ABORT_CMD_EVT",     "MSG_RECONFIG_CMD_EVT",  "MSG_SECURITY_CMD_EVT",
+@@ -90,8 +97,10 @@ const tAVDT_SCB_ACTION avdt_scb_action[] = {avdt_scb_hdl_abort_cmd,
+                                             avdt_scb_hdl_setconfig_rsp,
+                                             avdt_scb_hdl_start_cmd,
+                                             avdt_scb_hdl_start_rsp,
++                                            avdt_scb_hdl_pending_start_rsp,
+                                             avdt_scb_hdl_suspend_cmd,
+                                             avdt_scb_hdl_suspend_rsp,
++                                            avdt_scb_hdl_pending_suspend_rsp,
+                                             avdt_scb_hdl_tc_close,
+ #if (AVDT_REPORTING == TRUE)
+                                             avdt_scb_hdl_tc_close_sto,
+@@ -171,6 +180,10 @@ const uint8_t avdt_scb_st_idle[][AVDT_SCB_NUM_COLS] = {
+     {AVDT_SCB_SND_SETCONFIG_REJ, AVDT_SCB_IGNORE, AVDT_SCB_IDLE_ST},
+     /* API_OPEN_RSP_EVT */
+     {AVDT_SCB_IGNORE, AVDT_SCB_IGNORE, AVDT_SCB_IDLE_ST},
++    /* AVDT_SCB_API_PENDING_START_RSP_EVT */
++    {AVDT_SCB_IGNORE, AVDT_SCB_IGNORE, AVDT_SCB_OPEN_ST},
++    /* AVDT_SCB_API_PENDING_SUSPEND_RSP_EVT */
++    {AVDT_SCB_IGNORE, AVDT_SCB_IGNORE, AVDT_SCB_OPEN_ST},
+     /* API_CLOSE_RSP_EVT */
+     {AVDT_SCB_IGNORE, AVDT_SCB_IGNORE, AVDT_SCB_IDLE_ST},
+     /* API_RECONFIG_RSP_EVT */
+@@ -272,6 +285,10 @@ const uint8_t avdt_scb_st_conf[][AVDT_SCB_NUM_COLS] = {
+     {AVDT_SCB_IGNORE, AVDT_SCB_IGNORE, AVDT_SCB_CONF_ST},
+     /* API_OPEN_RSP_EVT */
+     {AVDT_SCB_SND_OPEN_RSP, AVDT_SCB_IGNORE, AVDT_SCB_OPENING_ST},
++    /* AVDT_SCB_API_PENDING_START_RSP_EVT */
++    {AVDT_SCB_IGNORE, AVDT_SCB_IGNORE, AVDT_SCB_CONF_ST},
++    /* AVDT_SCB_API_PENDING_SUSPEND_RSP_EVT */
++    {AVDT_SCB_IGNORE, AVDT_SCB_IGNORE, AVDT_SCB_CONF_ST},
+     /* API_CLOSE_RSP_EVT */
+     {AVDT_SCB_IGNORE, AVDT_SCB_IGNORE, AVDT_SCB_CONF_ST},
+     /* API_RECONFIG_RSP_EVT */
+@@ -373,6 +390,10 @@ const uint8_t avdt_scb_st_opening[][AVDT_SCB_NUM_COLS] = {
+     {AVDT_SCB_IGNORE, AVDT_SCB_IGNORE, AVDT_SCB_OPENING_ST},
+     /* API_OPEN_RSP_EVT */
+     {AVDT_SCB_IGNORE, AVDT_SCB_IGNORE, AVDT_SCB_OPENING_ST},
++    /* AVDT_SCB_API_PENDING_START_RSP_EVT */
++    {AVDT_SCB_IGNORE, AVDT_SCB_IGNORE, AVDT_SCB_OPENING_ST},
++    /* AVDT_SCB_API_PENDING_SUSPEND_RSP_EVT */
++    {AVDT_SCB_IGNORE, AVDT_SCB_IGNORE, AVDT_SCB_OPENING_ST},
+     /* API_CLOSE_RSP_EVT */
+     {AVDT_SCB_SND_CLOSE_RSP, AVDT_SCB_SND_TC_CLOSE, AVDT_SCB_CLOSING_ST},
+     /* API_RECONFIG_RSP_EVT */
+@@ -474,6 +495,10 @@ const uint8_t avdt_scb_st_open[][AVDT_SCB_NUM_COLS] = {
+     {AVDT_SCB_IGNORE, AVDT_SCB_IGNORE, AVDT_SCB_OPEN_ST},
+     /* API_OPEN_RSP_EVT */
+     {AVDT_SCB_IGNORE, AVDT_SCB_IGNORE, AVDT_SCB_OPEN_ST},
++    /* AVDT_SCB_API_PENDING_START_RSP_EVT */
++    {AVDT_SCB_HDL_PENDING_START_RSP, AVDT_SCB_IGNORE, AVDT_SCB_STREAM_ST},
++    /* AVDT_SCB_API_PENDING_SUSPEND_RSP_EVT */
++    {AVDT_SCB_IGNORE, AVDT_SCB_IGNORE, AVDT_SCB_OPEN_ST},
+     /* API_CLOSE_RSP_EVT */
+     {AVDT_SCB_SND_CLOSE_RSP, AVDT_SCB_TC_TIMER, AVDT_SCB_CLOSING_ST},
+     /* API_RECONFIG_RSP_EVT */
+@@ -582,6 +607,10 @@ const uint8_t avdt_scb_st_stream[][AVDT_SCB_NUM_COLS] = {
+     {AVDT_SCB_IGNORE, AVDT_SCB_IGNORE, AVDT_SCB_STREAM_ST},
+     /* API_OPEN_RSP_EVT */
+     {AVDT_SCB_IGNORE, AVDT_SCB_IGNORE, AVDT_SCB_STREAM_ST},
++    /* AVDT_SCB_API_PENDING_START_RSP_EVT */
++    {AVDT_SCB_IGNORE, AVDT_SCB_IGNORE, AVDT_SCB_STREAM_ST},
++    /* AVDT_SCB_API_PENDING_SUPSEND_RSP_EVT */
++    {AVDT_SCB_HDL_PENDING_SUSPEND_RSP, AVDT_SCB_IGNORE, AVDT_SCB_OPEN_ST},
+     /* API_CLOSE_RSP_EVT */
+     {AVDT_SCB_SND_CLOSE_RSP, AVDT_SCB_TC_TIMER, AVDT_SCB_CLOSING_ST},
+     /* API_RECONFIG_RSP_EVT */
+@@ -683,6 +712,10 @@ const uint8_t avdt_scb_st_closing[][AVDT_SCB_NUM_COLS] = {
+     {AVDT_SCB_IGNORE, AVDT_SCB_IGNORE, AVDT_SCB_CLOSING_ST},
+     /* API_OPEN_RSP_EVT */
+     {AVDT_SCB_IGNORE, AVDT_SCB_IGNORE, AVDT_SCB_CLOSING_ST},
++    /* AVDT_SCB_API_PENDING_START_RSP_EVT */
++    {AVDT_SCB_IGNORE, AVDT_SCB_IGNORE, AVDT_SCB_CLOSING_ST},
++    /* AVDT_SCB_API_PENDING_SUSPEND_RSP_EVT */
++    {AVDT_SCB_IGNORE, AVDT_SCB_IGNORE, AVDT_SCB_CLOSING_ST},
+     /* API_CLOSE_RSP_EVT */
+     {AVDT_SCB_IGNORE, AVDT_SCB_IGNORE, AVDT_SCB_CLOSING_ST},
+     /* API_RECONFIG_RSP_EVT */
+@@ -965,7 +998,7 @@ uint8_t avdt_scb_verify(tAVDT_CCB* p_ccb, uint8_t state, uint8_t* p_seid,
+   uint8_t nsc_mask;
+   uint8_t ret = 0;
+ 
+-  AVDT_TRACE_DEBUG("avdt_scb_verify state %d", state);
++  AVDT_TRACE_DEBUG("avdt_scb_verify state %d num seid = %d", state,num_seid);
+   /* set nonsupported command mask */
+   /* translate public state into private state */
+   nsc_mask = 0;
+diff --git a/stack/avdt/avdt_scb_act.cc b/stack/avdt/avdt_scb_act.cc
+index 1b1f9e008..b2c6b9f29 100644
+--- a/stack/avdt/avdt_scb_act.cc
++++ b/stack/avdt/avdt_scb_act.cc
+@@ -20,6 +20,12 @@
+  *
+  ******************************************************************************/
+ 
++/*
++ * Changes from Qualcomm Innovation Center are provided under the following license:
++ * Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
++ * SPDX-License-Identifier: BSD-3-Clause-Clear
++ */
++
+ /******************************************************************************
+  *
+  *  This module contains the action functions associated with the stream
+@@ -775,6 +781,46 @@ void avdt_scb_hdl_start_cmd(tAVDT_SCB* p_scb,
+                             AVDT_START_IND_EVT, NULL);
+ }
+ 
++/*******************************************************************************
++ *
++ * Function         avdt_scb_hdl_pending_start_rsp
++ *
++ * Description      This function send a indication to ccb to send response
++ *                  for a pending start request.
++ *
++ * Returns          Nothing.
++ *
++ ******************************************************************************/
++void avdt_scb_hdl_pending_start_rsp(tAVDT_SCB* p_scb,
++                            tAVDT_SCB_EVT* p_data) {
++  tAVDT_CCB           *p_ccb = p_scb->p_ccb;
++  tAVDT_CCB_EVT avdt_ccb_evt;
++  AVDT_TRACE_DEBUG(" %s send event to ccb error_code =%d", __func__,p_data->msg.hdr.err_code);
++  avdt_ccb_evt.msg.hdr.err_code = p_data->msg.hdr.err_code;
++
++  avdt_ccb_event(p_ccb, AVDT_CCB_API_PENDING_START_RSP_EVT, &avdt_ccb_evt);
++}
++
++/*******************************************************************************
++ *
++ * Function         avdt_scb_hdl_pending_suspend_rsp
++ *
++ * Description      This function send a indication to ccb to send response
++ *                  for a pending start request.
++ *
++ * Returns          Nothing.
++ *
++ ******************************************************************************/
++void avdt_scb_hdl_pending_suspend_rsp(tAVDT_SCB* p_scb,
++                            tAVDT_SCB_EVT* p_data) {
++  tAVDT_CCB           *p_ccb = p_scb->p_ccb;
++  tAVDT_CCB_EVT avdt_ccb_evt;
++  AVDT_TRACE_DEBUG(" %s send event to ccb error_code =%d", __func__,p_data->msg.hdr.err_code);
++  avdt_ccb_evt.msg.hdr.err_code = p_data->msg.hdr.err_code;
++
++  avdt_ccb_event(p_ccb, AVDT_CCB_API_PENDING_SUSPEND_RSP_EVT, &avdt_ccb_evt);
++}
++
+ /*******************************************************************************
+  *
+  * Function         avdt_scb_hdl_start_rsp
+@@ -1063,14 +1109,17 @@ void avdt_scb_hdl_tc_open(tAVDT_SCB* p_scb, tAVDT_SCB_EVT* p_data) {
+   alarm_cancel(p_scb->transport_channel_timer);
+ 
+   if ((p_scb->cs.tsep == AVDT_TSEP_SNK) && (p_scb->curr_cfg.psc_mask & AVDT_PSC_DELAY_RPT)) {
+-    delay_rpt_alarm = alarm_new_periodic("avdt.delayreport");
+-    if (delay_rpt_alarm == NULL) {
+-      AVDT_TRACE_ERROR("%s: unable to allocate delay report alarm", __func__);
+-      return;
++    // in case of split mode, no need for timer,
++    if(!p_scb->cs.is_split_enabled) {
++      delay_rpt_alarm = alarm_new_periodic("avdt.delayreport");
++      if (delay_rpt_alarm == NULL) {
++        AVDT_TRACE_ERROR("%s: unable to allocate delay report alarm", __func__);
++        return;
++      }
++      alarm_set(delay_rpt_alarm, (period_ms_t)1000 ,(alarm_callback_t)avdt_delay_rpt_tmr_hdlr,
++                (void*)p_scb);
++      AVDT_TRACE_DEBUG(" %s ~~ start update delay report timer",__func__);
+     }
+-    alarm_set(delay_rpt_alarm, (period_ms_t)1000 ,(alarm_callback_t)avdt_delay_rpt_tmr_hdlr,
+-              (void*)p_scb);
+-    AVDT_TRACE_DEBUG(" %s ~~ start update delay report timer",__func__);
+   }
+ 
+   event =
+diff --git a/stack/include/a2dp_sbc.h b/stack/include/a2dp_sbc.h
+index 441182c4e..4ac648d3a 100644
+--- a/stack/include/a2dp_sbc.h
++++ b/stack/include/a2dp_sbc.h
+@@ -14,6 +14,12 @@
+  * limitations under the License.
+  */
+ 
++/*
++ * Changes from Qualcomm Innovation Center are provided under the following license:
++ * Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
++ * SPDX-License-Identifier: BSD-3-Clause-Clear
++ */
++
+ //
+ // A2DP Codec API for low complexity subband codec (SBC)
+ //
+@@ -25,6 +31,18 @@
+ #include "a2dp_sbc_constants.h"
+ #include "avdt_api.h"
+ 
++/* data type for the SBC Codec Information Element */
++typedef struct {
++  uint8_t samp_freq;    /* Sampling frequency */
++  uint8_t ch_mode;      /* Channel mode */
++  uint8_t block_len;    /* Block length */
++  uint8_t num_subbands; /* Number of subbands */
++  uint8_t alloc_method; /* Allocation method */
++  uint8_t min_bitpool;  /* Minimum bitpool */
++  uint8_t max_bitpool;  /* Maximum bitpool */
++  btav_a2dp_codec_bits_per_sample_t bits_per_sample;
++} tA2DP_SBC_CIE;
++
+ class A2dpCodecConfigSbc : public A2dpCodecConfig {
+  public:
+   A2dpCodecConfigSbc(btav_a2dp_codec_priority_t codec_priority);
+@@ -263,4 +281,13 @@ bool A2DP_InitCodecConfigSbcSink(tAVDT_CFG* p_cfg);
+ // |is_peer_edr| flag is true if peer is edr else false
+ // Returns |uint16_t| bitrate value
+ uint16_t A2DP_GetOffloadBitrateSbc(A2dpCodecConfig* config, bool is_peer_edr);
++
++tA2DP_STATUS A2DP_ParseInfoSbc(tA2DP_SBC_CIE* p_ie,
++                               const uint8_t* p_codec_info,
++                               bool is_capability);
++
++int A2DP_GetBitsPerSampleSbc(const uint8_t* p_codec_info);
++
++uint16_t A2DP_GetOffloadBitrateSbcUsingCodecInfo(const uint8_t *codec_info,
++                                                 bool peer_edr);
+ #endif  // A2DP_SBC_H
+diff --git a/stack/include/a2dp_sbc_encoder.h b/stack/include/a2dp_sbc_encoder.h
+index 79c66f53a..e60d1e7d8 100644
+--- a/stack/include/a2dp_sbc_encoder.h
++++ b/stack/include/a2dp_sbc_encoder.h
+@@ -17,6 +17,12 @@
+  *
+  ******************************************************************************/
+ 
++/*
++ * Changes from Qualcomm Innovation Center are provided under the following license:
++ * Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
++ * SPDX-License-Identifier: BSD-3-Clause-Clear
++ */
++
+ //
+ // Interface to the A2DP SBC Encoder
+ //
+@@ -65,5 +71,6 @@ void a2dp_sbc_send_frames(uint64_t timestamp_us);
+ // |peer_edr| flag for peer supports edr
+ // Returns |uint16_t| calculated bitrare
+ uint16_t a2dp_sbc_calulate_offload_bitrate(A2dpCodecConfig* a2dp_codec_config,
+-                                           bool peer_edr);
++                                           const uint8_t *src_codec_info,
++                                           bool is_peer_edr);
+ #endif  // A2DP_SBC_ENCODER_H
+diff --git a/stack/include/avdt_api.h b/stack/include/avdt_api.h
+index 5c01ef576..d3e48739a 100644
+--- a/stack/include/avdt_api.h
++++ b/stack/include/avdt_api.h
+@@ -20,6 +20,12 @@
+  *
+  ******************************************************************************/
+ 
++/*
++ * Changes from Qualcomm Innovation Center are provided under the following license:
++ * Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
++ * SPDX-License-Identifier: BSD-3-Clause-Clear
++ */
++
+ /******************************************************************************
+  *
+  *  This interface file contains the interface to the Audio Video
+@@ -442,6 +448,7 @@ typedef struct {
+   uint8_t media_type; /* Media type: AVDT_MEDIA_TYPE_* */
+   uint16_t nsc_mask;  /* Nonsupported protocol command messages */
+   uint8_t registration_id;/* All SCBs created during single registration will have same value.*/
++  bool is_split_enabled; /* variable to indicate is split is enabled on this SEP */
+ } tAVDT_CS;
+ 
+ /* AVDT data option mask is used in the write request */
+@@ -947,6 +954,28 @@ extern uint16_t AVDT_GetL2CapChannel(uint8_t handle);
+ extern uint16_t AVDT_GetSignalChannel(uint8_t handle,
+                                       const RawAddress& bd_addr);
+ 
++/*******************************************************************************
++ *
++ * Function         AVDT_SndPendingSigStart_Rsp
++ *
++ * Description      Send pending Start Response to remote
++ *
++ * Returns          void
++ *
++ ******************************************************************************/
++extern void AVDT_SndPendingSigStart_Rsp(uint8_t handle, bool accepted);
++
++/*******************************************************************************
++ *
++ * Function         AVDT_SndPendingSigSuspend_Rsp
++ *
++ * Description      Send pending Start Response to remote
++ *
++ * Returns          void
++ *
++ ******************************************************************************/
++extern void AVDT_SndPendingSigSuspend_Rsp(uint8_t handle, bool accepted);
++
+ /*******************************************************************************
+ **
+ ** Function         AVDT_UpdateMaxAvClients
+@@ -1018,4 +1047,6 @@ extern void AVDT_AssociateScb(uint8_t handle, const RawAddress& bd_addr);
+  *
+  ******************************************************************************/
+ extern uint8_t AVDT_GetPeerSeid(uint8_t handle);
++
++extern void AVDT_UpdateDelayReport(uint8_t handle, uint16_t sink_latency);
+ #endif /* AVDT_API_H */
+-- 
+2.17.1
+

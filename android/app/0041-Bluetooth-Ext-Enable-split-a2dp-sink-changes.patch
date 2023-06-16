@@ -1,0 +1,600 @@
+From e143cbee911912b7775812fcadbafaa77f08ca82 Mon Sep 17 00:00:00 2001
+From: Srinu Jella <quic_sjella@quicinc.com>
+Date: Sat, 18 Jun 2022 22:44:39 +0530
+Subject: [PATCH 41/50] Bluetooth Ext: Enable split a2dp sink changes
+
+ - Add vendor interface to update the start
+   indication/suspend indication to app.
+
+ - Support for split a2dp sink changes.
+
+CRs-Fixed: 3245176
+Change-Id: Ib2b048d023e8ce3f2d4aa828bd3b9c1e6aeac837
+---
+ packages_apps_bluetooth_ext/jni/Android.bp    |   1 +
+ .../jni/com_android_bluetooth_av_vendor.cpp   | 226 ++++++++++++++++++
+ .../src/a2dp_sink/A2dpSinkVendorService.java  | 104 ++++++++
+ system_bt_ext/btif/Android.bp                 |   1 +
+ system_bt_ext/btif/src/btif_av_vendor.cc      | 111 +++++++++
+ vhal/include/hardware/bt_av_vendor.h          |  81 +++++++
+ 6 files changed, 524 insertions(+)
+ create mode 100644 packages_apps_bluetooth_ext/jni/com_android_bluetooth_av_vendor.cpp
+ create mode 100644 packages_apps_bluetooth_ext/src/a2dp_sink/A2dpSinkVendorService.java
+ create mode 100644 system_bt_ext/btif/src/btif_av_vendor.cc
+ create mode 100644 vhal/include/hardware/bt_av_vendor.h
+
+diff --git a/packages_apps_bluetooth_ext/jni/Android.bp b/packages_apps_bluetooth_ext/jni/Android.bp
+index f0385d0..59cf567 100644
+--- a/packages_apps_bluetooth_ext/jni/Android.bp
++++ b/packages_apps_bluetooth_ext/jni/Android.bp
+@@ -24,6 +24,7 @@ cc_library_static {
+         "com_android_bluetooth_btservice_vendor_socket.cpp",
+         "com_android_bluetooth_avrcp_ext.cpp",
+         "com_android_bluetooth_ba.cpp",
++        "com_android_bluetooth_av_vendor.cpp",
+         "com_android_bluetooth_hf_vendor.cpp",
+     ],
+ }
+diff --git a/packages_apps_bluetooth_ext/jni/com_android_bluetooth_av_vendor.cpp b/packages_apps_bluetooth_ext/jni/com_android_bluetooth_av_vendor.cpp
+new file mode 100644
+index 0000000..dec6497
+--- /dev/null
++++ b/packages_apps_bluetooth_ext/jni/com_android_bluetooth_av_vendor.cpp
+@@ -0,0 +1,226 @@
++/*
++ * Copyright (c) 2019, The Linux Foundation. All rights reserved.
++ *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions are
++ * met:
++ *     * Redistributions of source code must retain the above copyright
++ *       notice, this list of conditions and the following disclaimer.
++ *     * Redistributions in binary form must reproduce the above
++ *       copyright notice, this list of conditions and the following
++ *       disclaimer in the documentation and/or other materials provided
++ *       with the distribution.
++ *     * Neither the name of The Linux Foundation nor the names of its
++ *       contributors may be used to endorse or promote products derived
++ *       from this software without specific prior written permission.
++ *
++ * THIS SOFTWARE IS PROVIDED "AS IS" AND ANY EXPRESS OR IMPLIED
++ * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
++ * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT
++ * ARE DISCLAIMED.  IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS
++ * BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
++ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
++ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR
++ * BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
++ * WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
++ * OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
++ * IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
++ */
++
++/*
++ * Changes from Qualcomm Innovation Center are provided under the following license:
++ * Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
++ * SPDX-License-Identifier: BSD-3-Clause-Clear
++ */
++
++#define LOG_TAG "BluetoothVendorA2dpSinkJni"
++
++#include "com_android_bluetooth.h"
++#include <hardware/bt_av_vendor.h>
++#include "utils/Log.h"
++#include "android_runtime/AndroidRuntime.h"
++
++namespace android {
++static btav_sink_vendor_interface_t *sBluetoothVendorA2dpSinkInterface = NULL;
++static jobject mCallbacksObj = NULL;
++static jmethodID method_onStartIndCallback;
++static jmethodID method_onSuspendIndCallback;
++
++static jbyteArray marshall_bda(const RawAddress* bd_addr) {
++  CallbackEnv sCallbackEnv(__func__);
++  if (!sCallbackEnv.valid()) return nullptr;
++
++  jbyteArray addr = sCallbackEnv->NewByteArray(sizeof(RawAddress));
++  if (!addr) {
++    ALOGE("Fail to new jbyteArray bd addr");
++    return nullptr;
++  }
++  sCallbackEnv->SetByteArrayRegion(addr, 0, sizeof(RawAddress),
++                                   (jbyte*)bd_addr);
++  return addr;
++}
++
++static void StartIndCallback(const RawAddress* bd_addr) {
++
++    ALOGI("%s", __FUNCTION__);
++    CallbackEnv sCallbackEnv(__func__);
++    if (!sCallbackEnv.valid()) return;
++
++    ScopedLocalRef<jbyteArray> addr(sCallbackEnv.get(), marshall_bda(bd_addr));
++    if (addr.get() == nullptr) return;
++    sCallbackEnv->CallVoidMethod(mCallbacksObj, method_onStartIndCallback,
++                                 addr.get());
++}
++
++static void SuspendIndCallback(const RawAddress* bd_addr) {
++
++    ALOGI("%s", __FUNCTION__);
++    CallbackEnv sCallbackEnv(__func__);
++    if (!sCallbackEnv.valid()) return;
++
++    ScopedLocalRef<jbyteArray> addr(sCallbackEnv.get(), marshall_bda(bd_addr));
++    if (addr.get() == nullptr) return;
++    sCallbackEnv->CallVoidMethod(mCallbacksObj, method_onSuspendIndCallback,
++                                 addr.get());
++}
++
++static btav_sink_vendor_callbacks_t sBluetoothVendorA2dpSinkCallbacks = {
++    sizeof(sBluetoothVendorA2dpSinkCallbacks),
++    StartIndCallback,
++    SuspendIndCallback
++};
++
++static void classInitNative(JNIEnv* env, jclass clazz) {
++
++    method_onStartIndCallback = env->GetMethodID(clazz, "onStartIndCallback", "([B)V");
++    method_onSuspendIndCallback =
++                  env->GetMethodID(clazz, "onSuspendIndCallback", "([B)V");
++    ALOGI("%s: succeeds", __FUNCTION__);
++}
++
++static void initNative(JNIEnv *env, jobject object) {
++    const bt_interface_t* btInf;
++    bt_status_t status;
++
++    if ( (btInf = getBluetoothInterface()) == NULL) {
++        ALOGE("Bluetooth module is not loaded");
++        return;
++    }
++
++    if (mCallbacksObj != NULL) {
++        ALOGW("Cleaning up Bluetooth Vendor callback object");
++        env->DeleteGlobalRef(mCallbacksObj);
++        mCallbacksObj = NULL;
++    }
++
++    if ( (sBluetoothVendorA2dpSinkInterface = (btav_sink_vendor_interface_t *)
++          btInf->get_profile_interface(BT_PROFILE_A2DP_SINK_VENDOR_ID)) == NULL) {
++        ALOGE("Failed to get Bluetooth Vendor Interface");
++        return;
++    }
++
++    if ( (status = sBluetoothVendorA2dpSinkInterface->init(&sBluetoothVendorA2dpSinkCallbacks))
++                 != BT_STATUS_SUCCESS) {
++        ALOGE("Failed to initialize Bluetooth Vendor, status: %d", status);
++        sBluetoothVendorA2dpSinkInterface = NULL;
++        return;
++    }
++    mCallbacksObj = env->NewGlobalRef(object);
++}
++
++static void cleanupNative(JNIEnv *env, jobject object) {
++    const bt_interface_t* btInf;
++
++    if ( (btInf = getBluetoothInterface()) == NULL) {
++        ALOGE("Bluetooth module is not loaded");
++        return;
++    }
++
++    if (sBluetoothVendorA2dpSinkInterface !=NULL) {
++        ALOGW("Cleaning up Bluetooth Vendor Interface...");
++        sBluetoothVendorA2dpSinkInterface->cleanup();
++        sBluetoothVendorA2dpSinkInterface = NULL;
++    }
++
++    if (mCallbacksObj != NULL) {
++        ALOGW("Cleaning up Bluetooth Vendor callback object");
++        env->DeleteGlobalRef(mCallbacksObj);
++        mCallbacksObj = NULL;
++    }
++
++}
++
++/* native interface */
++static jint StartIndRspNative(JNIEnv* env, jobject thiz, jbyteArray address,
++                            jboolean accepted)
++{
++   jbyte* addr = env->GetByteArrayElements(address, NULL);
++   if (!addr) {
++     jniThrowIOException(env, EINVAL);
++     return JNI_FALSE;
++   }
++
++   RawAddress bd_addr;
++   bd_addr.FromOctets(reinterpret_cast<const uint8_t*>(addr));
++    if (sBluetoothVendorA2dpSinkInterface == NULL) {
++        ALOGE("No Interface initialized");
++        return JNI_FALSE;
++    }
++
++    int ret = sBluetoothVendorA2dpSinkInterface->start_ind_rsp(bd_addr, accepted);
++
++    if (ret != 0) {
++        ALOGE("%s: Failure", __func__);
++        return JNI_FALSE;
++    } else {
++        ALOGV("%s: Success :%d", __func__, accepted);
++    }
++
++    return JNI_TRUE;
++}
++
++/* native interface */
++static jint SuspendIndRspNative(JNIEnv* env, jobject thiz, jbyteArray address,
++                               jboolean accepted)
++{
++   jbyte* addr = env->GetByteArrayElements(address, NULL);
++   if (!addr) {
++     jniThrowIOException(env, EINVAL);
++     return JNI_FALSE;
++   }
++
++   RawAddress bd_addr;
++   bd_addr.FromOctets(reinterpret_cast<const uint8_t*>(addr));
++    if (sBluetoothVendorA2dpSinkInterface == NULL) {
++        ALOGE("No Interface initialized");
++        return JNI_FALSE;
++    }
++
++    int ret = sBluetoothVendorA2dpSinkInterface->suspend_ind_rsp(bd_addr, accepted);
++
++    if (ret != 0) {
++        ALOGE("%s: Failure", __func__);
++        return JNI_FALSE;
++    } else {
++        ALOGV("%s: Success :%d", __func__, accepted);
++    }
++
++    return JNI_TRUE;
++}
++
++static JNINativeMethod sMethods[] = {
++    {"classInitNative", "()V", (void *) classInitNative},
++    {"initNative", "()V", (void *) initNative},
++    {"cleanupNative", "()V", (void *) cleanupNative},
++    { "StartIndRspNative", "([BZ)I", (void*)StartIndRspNative},
++    { "SuspendIndRspNative", "([BZ)I", (void*)SuspendIndRspNative},
++};
++
++int register_com_android_bluetooth_a2dp_sink_vendor_service(JNIEnv* env)
++{
++    ALOGE("%s:",__FUNCTION__);
++    return jniRegisterNativeMethods(env, "com/android/bluetooth/a2dpsink/A2dpSinkVendorService",
++                                    sMethods, NELEM(sMethods));
++}
++
++} /* namespace android */
+\ No newline at end of file
+diff --git a/packages_apps_bluetooth_ext/src/a2dp_sink/A2dpSinkVendorService.java b/packages_apps_bluetooth_ext/src/a2dp_sink/A2dpSinkVendorService.java
+new file mode 100644
+index 0000000..8131351
+--- /dev/null
++++ b/packages_apps_bluetooth_ext/src/a2dp_sink/A2dpSinkVendorService.java
+@@ -0,0 +1,104 @@
++/*
++ * Copyright (c) 2019, The Linux Foundation. All rights reserved.
++ *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions are
++ * met:
++ *     * Redistributions of source code must retain the above copyright
++ *       notice, this list of conditions and the following disclaimer.
++ *     * Redistributions in binary form must reproduce the above
++ *       copyright notice, this list of conditions and the following
++ *       disclaimer in the documentation and/or other materials provided
++ *       with the distribution.
++ *     * Neither the name of The Linux Foundation nor the names of its
++ *       contributors may be used to endorse or promote products derived
++ *       from this software without specific prior written permission.
++ *
++ * THIS SOFTWARE IS PROVIDED "AS IS" AND ANY EXPRESS OR IMPLIED
++ * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
++ * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT
++ * ARE DISCLAIMED.  IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS
++ * BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
++ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
++ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR
++ * BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
++ * WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
++ * OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
++ * IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
++ */
++
++/*
++ * Changes from Qualcomm Innovation Center are provided under the following license:
++ * Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
++ * SPDX-License-Identifier: BSD-3-Clause-Clear
++ */
++
++package com.android.bluetooth.a2dpsink;
++
++import android.util.Log;
++import android.bluetooth.BluetoothAdapter;
++import android.bluetooth.BluetoothDevice;
++import com.android.bluetooth.Utils;
++import android.content.Intent;
++import android.content.Context;
++
++final class A2dpSinkVendorService {
++    private static final String TAG = "A2dpSinkVendsorService";
++    private A2dpSinkService mService;
++    private final BluetoothAdapter mAdapter = BluetoothAdapter.getDefaultAdapter();
++
++    static {
++        classInitNative();
++    }
++
++    public A2dpSinkVendorService(A2dpSinkService service) {
++        mService = service;
++    }
++
++    public void init() {
++        initNative();
++    }
++
++    public void cleanup() {
++        cleanupNative();
++    }
++
++    public int StartIndRsp(byte[] address, boolean accepted) {
++        int ret = StartIndRspNative(address, accepted);
++        return ret;
++    }
++
++    public int SuspendIndRsp(byte[] address, boolean accepted) {
++        int ret = SuspendIndRspNative(address, accepted);
++        return ret;
++    }
++
++    private BluetoothDevice getDevice(byte[] address) {
++        BluetoothDevice local = mAdapter.getRemoteDevice(Utils.getAddressStringFromByte(address));
++        return local;
++    }
++
++    private void onStartIndCallback(byte[] address) {
++        A2dpSinkService service = A2dpSinkService.getA2dpSinkService();
++        if (service != null) {
++            service.onStartIndCallback(address);
++        } else {
++            Log.d(TAG,"FATAL: Stack sent event while service is not available: ");
++        }
++    }
++
++    private void onSuspendIndCallback(byte[] address) {
++        A2dpSinkService service = A2dpSinkService.getA2dpSinkService();
++        if (service != null) {
++            service.onSuspendIndCallback(address);
++        } else {
++            Log.d(TAG,"FATAL: Stack sent event while service is not available: ");
++        }
++    }
++
++    private native void initNative();
++    private native static void classInitNative();
++    private native void cleanupNative();
++    private native int StartIndRspNative(byte[] address, boolean accepted);
++    private native int SuspendIndRspNative(byte[] address, boolean accepted);
++}
+diff --git a/system_bt_ext/btif/Android.bp b/system_bt_ext/btif/Android.bp
+index 358a8c7..620544f 100644
+--- a/system_bt_ext/btif/Android.bp
++++ b/system_bt_ext/btif/Android.bp
+@@ -56,6 +56,7 @@ cc_library_static {
+         "src/btif_twsp_hf.cc",
+         "src/btif_iot_config.cc",
+         "src/btif_vendor_hf.cc",
++        "src/btif_av_vendor.cc"
+     ],
+     shared_libs: [
+         "libcutils",
+diff --git a/system_bt_ext/btif/src/btif_av_vendor.cc b/system_bt_ext/btif/src/btif_av_vendor.cc
+new file mode 100644
+index 0000000..5d5db3a
+--- /dev/null
++++ b/system_bt_ext/btif/src/btif_av_vendor.cc
+@@ -0,0 +1,111 @@
++/*
++ * Copyright (c) 2019, The Linux Foundation. All rights reserved.
++ *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions are
++ * met:
++ *     * Redistributions of source code must retain the above copyright
++ *       notice, this list of conditions and the following disclaimer.
++ *     * Redistributions in binary form must reproduce the above
++ *       copyright notice, this list of conditions and the following
++ *       disclaimer in the documentation and/or other materials provided
++ *       with the distribution.
++ *     * Neither the name of The Linux Foundation nor the names of its
++ *       contributors may be used to endorse or promote products derived
++ *       from this software without specific prior written permission.
++ *
++ * THIS SOFTWARE IS PROVIDED "AS IS" AND ANY EXPRESS OR IMPLIED
++ * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
++ * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT
++ * ARE DISCLAIMED.  IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS
++ * BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
++ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
++ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR
++ * BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
++ * WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
++ * OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
++ * IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
++ ***********************************************************************/
++
++/*
++ * Changes from Qualcomm Innovation Center are provided under the following license:
++ * Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
++ * SPDX-License-Identifier: BSD-3-Clause-Clear
++ */
++
++/************************************************************************************
++ *
++ *  Filename:      btif_av_vendor.cc
++ *
++ *  Description:   A2DP sink Vendor Bluetooth Interface
++ *
++ *
++ ***********************************************************************************/
++
++#define LOG_TAG "bt_btif_av_vendor"
++
++#include <hardware/bt_av_vendor.h>
++#include "btif_api.h"
++
++btav_sink_vendor_callbacks_t *bt_vendor_av_sink_callbacks = NULL;
++
++/*******************************************************************************
++** VENDOR INTERFACE FUNCTIONS
++*******************************************************************************/
++
++/*******************************************************************************
++**
++** Function         init
++**
++** Description     initializes the vendor interface for A2DP sink
++**
++** Returns         bt_status_t
++**
++*******************************************************************************/
++
++static bt_status_t init( btav_sink_vendor_callbacks_t* callbacks)
++{
++    bt_vendor_av_sink_callbacks = callbacks;
++    LOG_INFO(LOG_TAG,"init done");
++    return BT_STATUS_SUCCESS;
++}
++
++static void cleanup(void)
++{
++    LOG_INFO(LOG_TAG,"cleanup");
++    if (bt_vendor_av_sink_callbacks)
++        bt_vendor_av_sink_callbacks = NULL;
++}
++
++bt_status_t start_ind_rsp(const RawAddress& bd_addr, bool accepted) {
++  LOG_INFO(LOG_TAG,"%s: %d", __func__, accepted);
++  return BT_STATUS_SUCCESS;
++}
++
++bt_status_t suspend_ind_rsp(const RawAddress& bd_addr, bool accepted) {
++  LOG_INFO(LOG_TAG,"%s: %d", __func__, accepted);
++  return BT_STATUS_SUCCESS;
++}
++
++static const btav_sink_vendor_interface_t bt_vendor_av_sink_interface = {
++    sizeof(bt_vendor_av_sink_interface),
++    init,
++    cleanup,
++    start_ind_rsp,
++    suspend_ind_rsp
++};
++
++/*******************************************************************************
++**
++** Function         btif_vendor_av_sink_get_interface
++**
++** Description      Get the vendor callback interface
++**
++** Returns          btav_sink_vendor_interface_t
++**
++*******************************************************************************/
++const btav_sink_vendor_interface_t *btif_vendor_av_sink_get_interface()
++{
++    BTIF_TRACE_EVENT("%s", __FUNCTION__);
++    return &bt_vendor_av_sink_interface;
++}
+\ No newline at end of file
+diff --git a/vhal/include/hardware/bt_av_vendor.h b/vhal/include/hardware/bt_av_vendor.h
+new file mode 100644
+index 0000000..42f79b4
+--- /dev/null
++++ b/vhal/include/hardware/bt_av_vendor.h
+@@ -0,0 +1,81 @@
++/*
++ * Copyright (c) 2016, The Linux Foundation. All rights reserved.
++ *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions are
++ * met:
++ *     * Redistributions of source code must retain the above copyright
++ *       notice, this list of conditions and the following disclaimer.
++ *     * Redistributions in binary form must reproduce the above
++ *       copyright notice, this list of conditions and the following
++ *       disclaimer in the documentation and/or other materials provided
++ *       with the distribution.
++ *     * Neither the name of The Linux Foundation nor the names of its
++ *       contributors may be used to endorse or promote products derived
++ *       from this software without specific prior written permission.
++ *
++ * THIS SOFTWARE IS PROVIDED "AS IS" AND ANY EXPRESS OR IMPLIED
++ * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
++ * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT
++ * ARE DISCLAIMED.  IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS
++ * BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
++ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
++ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR
++ * BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
++ * WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
++ * OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
++ * IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
++ */
++
++/*
++ * Changes from Qualcomm Innovation Center are provided under the following license:
++ * Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
++ * SPDX-License-Identifier: BSD-3-Clause-Clear
++ */
++
++#ifndef ANDROID_INCLUDE_BT_AV_VENDOR_H
++#define ANDROID_INCLUDE_BT_AV_VENDOR_H
++
++#define BT_PROFILE_A2DP_SINK_VENDOR_ID "a2dp_sink_vendor"
++
++#include <hardware/bluetooth.h>
++__BEGIN_DECLS
++
++/** Callback for informing start indication to application.*/
++typedef void (*btav_audio_split_sink_start_ind_callback)(const RawAddress *bd_addr);
++
++/** Callback for informing suspend indication to application.*/
++typedef void (*btav_audio_split_sink_suspend_ind_callback)(const RawAddress *bd_addr);
++
++typedef struct {
++    /** set to sizeof(btav_sink_vendor_callbacks_t) */
++    size_t      size;
++    btav_audio_split_sink_start_ind_callback start_ind_cb;
++    btav_audio_split_sink_suspend_ind_callback suspend_ind_cb;
++} btav_sink_vendor_callbacks_t;
++
++
++/** Represents the standard BT-AV sink vendor interface.
++ */
++typedef struct {
++   /** set to sizeof(btav_vendor_interface_t) */
++   size_t  size;
++   /**
++    * Register the BtAvVendorcallbacks
++    */
++   bt_status_t (*init)(btav_sink_vendor_callbacks_t* callbacks);
++
++   /** Closes the av vendor interface. */
++   void  (*cleanup)(void);
++
++   /** response to start indication */
++   bt_status_t (*start_ind_rsp)(const RawAddress& bd_addr, bool accepted);
++
++   /** response to suspend indication */
++   bt_status_t (*suspend_ind_rsp)(const RawAddress& bd_addr, bool accepted);
++
++} btav_sink_vendor_interface_t;
++
++__END_DECLS
++
++#endif /* ANDROID_INCLUDE_BT_AV_VENDOR_H */
+-- 
+2.17.1
+

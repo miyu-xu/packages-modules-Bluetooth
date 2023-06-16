@@ -1,0 +1,277 @@
+From 5ec8286b6d5acd1cac77be79f1ab898456d8d64c Mon Sep 17 00:00:00 2001
+From: Srinu Jella <quic_sjella@quicinc.com>
+Date: Fri, 15 Jul 2022 20:31:35 +0530
+Subject: [PATCH 16/50] Bluetooth App: Enable split a2dp sink changes
+
+ - Support for split a2dp sink changes.
+
+CRs-Fixed: 3245176
+Change-Id: Ib2b048d023e8ce3f2d4aa828bd3b9c1e6aeac838
+---
+ jni/com_android_bluetooth.h                   |  9 +++
+ ...oid_bluetooth_btservice_AdapterService.cpp | 12 ++++
+ .../bluetooth/a2dpsink/A2dpSinkService.java   | 65 ++++++++++++++++++-
+ .../a2dpsink/A2dpSinkStreamHandler.java       | 43 ++++++++++++
+ 4 files changed, 128 insertions(+), 1 deletion(-)
+
+diff --git a/jni/com_android_bluetooth.h b/jni/com_android_bluetooth.h
+index f197512fa..fc6704ba0 100644
+--- a/jni/com_android_bluetooth.h
++++ b/jni/com_android_bluetooth.h
+@@ -15,6 +15,12 @@
+  * limitations under the License.
+  */
+ 
++/*
++ * Changes from Qualcomm Innovation Center are provided under the following license:
++ * Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
++ * SPDX-License-Identifier: BSD-3-Clause-Clear
++ */
++
+ #ifndef COM_ANDROID_BLUETOOTH_H
+ #define COM_ANDROID_BLUETOOTH_H
+ 
+@@ -167,6 +173,9 @@ int register_com_android_bluetooth_ba(JNIEnv* env);
+ int register_com_android_bluetooth_hfp_vendorhfservice(JNIEnv* env);
+ 
+ int register_com_android_bluetooth_btservice_BluetoothKeystore(JNIEnv* env);
++
++int register_com_android_bluetooth_a2dp_sink_vendor_service(JNIEnv* env);
++
+ }
+ 
+ #endif /* COM_ANDROID_BLUETOOTH_H */
+diff --git a/jni/com_android_bluetooth_btservice_AdapterService.cpp b/jni/com_android_bluetooth_btservice_AdapterService.cpp
+index f44bc648e..5396f999a 100644
+--- a/jni/com_android_bluetooth_btservice_AdapterService.cpp
++++ b/jni/com_android_bluetooth_btservice_AdapterService.cpp
+@@ -14,6 +14,12 @@
+  * limitations under the License.
+  */
+ 
++/*
++ * Changes from Qualcomm Innovation Center are provided under the following license:
++ * Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
++ * SPDX-License-Identifier: BSD-3-Clause-Clear
++ */
++
+ #define LOG_TAG "BluetoothServiceJni"
+ #include "android_runtime/AndroidRuntime.h"
+ #include "android_runtime/Log.h"
+@@ -1818,5 +1824,11 @@ jint JNI_OnLoad(JavaVM *jvm, void *reserved) {
+     return JNI_ERR;
+   }
+ #endif
++
++  status = android::register_com_android_bluetooth_a2dp_sink_vendor_service(e);
++  if (status < 0) {
++    ALOGE("jni vendor a2dp sink service registration failure, status: %d", status);
++    return JNI_ERR;
++  }
+   return JNI_VERSION_1_6;
+ }
+diff --git a/src/com/android/bluetooth/a2dpsink/A2dpSinkService.java b/src/com/android/bluetooth/a2dpsink/A2dpSinkService.java
+index 089081902..0d10ef9cc 100644
+--- a/src/com/android/bluetooth/a2dpsink/A2dpSinkService.java
++++ b/src/com/android/bluetooth/a2dpsink/A2dpSinkService.java
+@@ -13,6 +13,13 @@
+  * See the License for the specific language governing permissions and
+  * limitations under the License.
+  */
++
++ /*
++ * Changes from Qualcomm Innovation Center are provided under the following license:
++ * Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
++ * SPDX-License-Identifier: BSD-3-Clause-Clear
++ */
++
+ package com.android.bluetooth.a2dpsink;
+ 
+ import android.annotation.RequiresPermission;
+@@ -32,6 +39,9 @@ import com.android.bluetooth.btservice.ProfileService;
+ import com.android.bluetooth.btservice.storage.DatabaseManager;
+ import com.android.internal.annotations.VisibleForTesting;
+ import com.android.bluetooth.avrcpcontroller.AvrcpControllerService;
++import android.content.Context;
++import android.media.AudioManager;
++import android.os.Message;
+ 
+ 
+ import java.util.ArrayList;
+@@ -62,7 +72,10 @@ public class A2dpSinkService extends ProfileService {
+     protected static BluetoothDevice mStreamingDevice;
+ 
+     private static int mMaxA2dpSinkConnections = 1;
++    private A2dpSinkVendorService mA2dpSinkVendor;
++    private AudioManager mAudioManager;
+     public static final int MAX_ALLOWED_SINK_CONNECTIONS = 2;
++    private static boolean sAudioIsEnabled = false;
+     static {
+         classInitNative();
+     }
+@@ -78,17 +91,31 @@ public class A2dpSinkService extends ProfileService {
+         mMaxA2dpSinkConnections = Math.min(
+                 SystemProperties.getInt("persist.vendor.bt.a2dp.sink_conn", 1),
+                 MAX_ALLOWED_SINK_CONNECTIONS);
++        mAudioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
++        mA2dpSinkVendor = new A2dpSinkVendorService(this);
++        if (mA2dpSinkVendor != null) {
++            mA2dpSinkVendor.init();
++        }
+         return true;
+     }
+ 
+     @Override
+     protected boolean stop() {
++        if(sAudioIsEnabled == true) {
++          if (mAudioManager != null) {
++            mAudioManager.setParameters("btsink_enable=false");
++          }
++          sAudioIsEnabled = false;
++        }
+         synchronized (mBtA2dpLock) {
+              for (A2dpSinkStateMachine stateMachine : mDeviceStateMap.values()) {
+                  stateMachine.quitNow();
+             }
+-    }
++        }
+         sService = null;
++        if (mA2dpSinkVendor != null) {
++            mA2dpSinkVendor.cleanup();
++        }
+         return true;
+     }
+ 
+@@ -587,6 +614,17 @@ public class A2dpSinkService extends ProfileService {
+                    mDatabaseManager.setConnectionForA2dpSrc(otherDevice);
+                }
+             }
++            if(sAudioIsEnabled == true) {
++              mA2dpSinkStreamHandler.obtainMessage(
++                  A2dpSinkStreamHandler.STOP_SINK).sendToTarget();
++              sAudioIsEnabled = false;
++            }
++            if (mAudioManager != null) {
++              Message msg = mA2dpSinkStreamHandler.obtainMessage(
++                                A2dpSinkStreamHandler.REMOVE_ACTIVE);
++              msg.obj = device;
++              mA2dpSinkStreamHandler.sendMessage(msg);
++            }
+             mStreamingDevice = null;
+         }
+ 
+@@ -599,6 +637,12 @@ public class A2dpSinkService extends ProfileService {
+             } else if (device != null) {
+                 mStreamingDevice = device;
+             }
++            if (mAudioManager != null) {
++                Message msg = mA2dpSinkStreamHandler.obtainMessage(
++                                A2dpSinkStreamHandler.SET_ACTIVE);
++                msg.obj = device;
++                mA2dpSinkStreamHandler.sendMessage(msg);
++            }
+         }
+         stateMachine.sendMessage(A2dpSinkStateMachine.STACK_EVENT, event);
+     }
+@@ -633,4 +677,23 @@ public class A2dpSinkService extends ProfileService {
+         A2dpSinkStateMachine stateMachine = getOrCreateStateMachine(event.mDevice);
+         stateMachine.sendMessage(A2dpSinkStateMachine.STACK_EVENT, event);
+     }
++
++    public void onStartIndCallback(byte[] address) {
++        Log.d(TAG, "onStartIndCallback" );
++       if(sAudioIsEnabled == false) {
++         mA2dpSinkStreamHandler.obtainMessage(
++             A2dpSinkStreamHandler.START_SINK).sendToTarget();
++         sAudioIsEnabled = true;
++       }
++    }
++
++    public void onSuspendIndCallback(byte[] address) {
++        // TODO to call set param to intimate Audio HAL
++        Log.d(TAG, "onSuspendIndCallback" );
++        if(sAudioIsEnabled == true) {
++          mA2dpSinkStreamHandler.obtainMessage(
++              A2dpSinkStreamHandler.STOP_SINK).sendToTarget();
++          sAudioIsEnabled = false;
++        }
++    }
+ }
+diff --git a/src/com/android/bluetooth/a2dpsink/A2dpSinkStreamHandler.java b/src/com/android/bluetooth/a2dpsink/A2dpSinkStreamHandler.java
+index daa5312ec..267d3dad8 100644
+--- a/src/com/android/bluetooth/a2dpsink/A2dpSinkStreamHandler.java
++++ b/src/com/android/bluetooth/a2dpsink/A2dpSinkStreamHandler.java
+@@ -14,6 +14,12 @@
+  * limitations under the License.
+  */
+ 
++/*
++ * Changes from Qualcomm Innovation Center are provided under the following license:
++ * Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
++ * SPDX-License-Identifier: BSD-3-Clause-Clear
++ */
++
+ package com.android.bluetooth.a2dpsink;
+ 
+ import android.bluetooth.BluetoothDevice;
+@@ -27,6 +33,7 @@ import android.media.MediaPlayer;
+ import android.os.Handler;
+ import android.os.Message;
+ import android.util.Log;
++import android.bluetooth.BluetoothProfile;
+ 
+ import com.android.bluetooth.R;
+ import com.android.bluetooth.avrcpcontroller.BluetoothMediaBrowserService;
+@@ -72,6 +79,10 @@ public class A2dpSinkStreamHandler extends Handler {
+     public static final int REQUEST_FOCUS = 8; // Request focus when the media service is active
+     public static final int DELAYED_PAUSE = 9; // If a call just started allow stack time to settle
+     public static final int RELEASE_FOCUS = 10;
++    public static final int START_SINK = 11;  // notify Audio HAL to start split sink
++    public static final int STOP_SINK = 12; // notify Audio HAL to stop split sink
++    public static final int SET_ACTIVE = 13;  // notify Audio HAL active changed
++    public static final int REMOVE_ACTIVE = 14; // notify Audio HAL active device removed
+ 
+     // Used to indicate focus lost
+     private static final int STATE_FOCUS_LOST = 0;
+@@ -192,6 +203,38 @@ public class A2dpSinkStreamHandler extends Handler {
+                 abandonAudioFocus();
+                 break;
+ 
++            case START_SINK:
++                if (mAudioManager != null) {
++                    mAudioManager.setParameters("btsink_enable=true");
++                }
++                break;
++
++            case STOP_SINK:
++                if (mAudioManager != null) {
++                    mAudioManager.setParameters("btsink_enable=false");
++                }
++                break;
++
++            case SET_ACTIVE:
++                if (mAudioManager != null) {
++                  mAudioManager.handleBluetoothA2dpActiveDeviceChange(
++                                (BluetoothDevice) message.obj,
++                                 BluetoothProfile.STATE_CONNECTED,
++                                 BluetoothProfile.A2DP_SINK,
++                                 true, -1);
++                }
++                break;
++
++            case REMOVE_ACTIVE:
++                if (mAudioManager != null) {
++                  mAudioManager.handleBluetoothA2dpActiveDeviceChange(
++                                (BluetoothDevice) message.obj,
++                                 BluetoothProfile.STATE_DISCONNECTED,
++                                 BluetoothProfile.A2DP_SINK,
++                                 true, -1);
++                }
++                break;
++
+             case DISCONNECT:
+                 // Remote device has disconnected, restore everything to default state.
+                 mSentPause = false;
+-- 
+2.17.1
+

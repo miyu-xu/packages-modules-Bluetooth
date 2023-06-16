@@ -1,0 +1,104 @@
+From 28b8cc0b157101d64593d52b3224d2a4850cc43d Mon Sep 17 00:00:00 2001
+From: Venkatesh Sharma <quic_venkshar@quicinc.com>
+Date: Fri, 4 Nov 2022 05:04:20 +0530
+Subject: [PATCH 50/50] Vendor a2dp hfp client sync
+
+-callback added to suspend a2dp on call indication
+
+CRs-Fixed: 3320321
+Change-Id: I1d4fa454f4ae3c46bcb63f366e93066711085973
+---
+ .../jni/com_android_bluetooth_av_vendor.cpp     | 17 ++++++++++++++++-
+ .../src/a2dp_sink/A2dpSinkVendorService.java    | 10 ++++++++++
+ vhal/include/hardware/bt_av_vendor.h            |  4 ++++
+ 3 files changed, 30 insertions(+), 1 deletion(-)
+
+diff --git a/packages_apps_bluetooth_ext/jni/com_android_bluetooth_av_vendor.cpp b/packages_apps_bluetooth_ext/jni/com_android_bluetooth_av_vendor.cpp
+index dec6497..7292bc9 100644
+--- a/packages_apps_bluetooth_ext/jni/com_android_bluetooth_av_vendor.cpp
++++ b/packages_apps_bluetooth_ext/jni/com_android_bluetooth_av_vendor.cpp
+@@ -45,6 +45,7 @@ static btav_sink_vendor_interface_t *sBluetoothVendorA2dpSinkInterface = NULL;
+ static jobject mCallbacksObj = NULL;
+ static jmethodID method_onStartIndCallback;
+ static jmethodID method_onSuspendIndCallback;
++static jmethodID method_onIsSuspendNeededCallback;
+ 
+ static jbyteArray marshall_bda(const RawAddress* bd_addr) {
+   CallbackEnv sCallbackEnv(__func__);
+@@ -84,10 +85,22 @@ static void SuspendIndCallback(const RawAddress* bd_addr) {
+                                  addr.get());
+ }
+ 
++static bool IsSuspendNeededCallback(const RawAddress* bd_addr) {
++    ALOGI("%s", __FUNCTION__);
++    CallbackEnv sCallbackEnv(__func__);
++    if (!sCallbackEnv.valid()) return false;
++
++    ScopedLocalRef<jbyteArray> addr(sCallbackEnv.get(), marshall_bda(bd_addr));
++    if (addr.get() == nullptr) return false;
++    return sCallbackEnv->CallBooleanMethod(mCallbacksObj,
++                         method_onIsSuspendNeededCallback, addr.get());
++}
++
+ static btav_sink_vendor_callbacks_t sBluetoothVendorA2dpSinkCallbacks = {
+     sizeof(sBluetoothVendorA2dpSinkCallbacks),
+     StartIndCallback,
+-    SuspendIndCallback
++    SuspendIndCallback,
++    IsSuspendNeededCallback
+ };
+ 
+ static void classInitNative(JNIEnv* env, jclass clazz) {
+@@ -95,6 +108,8 @@ static void classInitNative(JNIEnv* env, jclass clazz) {
+     method_onStartIndCallback = env->GetMethodID(clazz, "onStartIndCallback", "([B)V");
+     method_onSuspendIndCallback =
+                   env->GetMethodID(clazz, "onSuspendIndCallback", "([B)V");
++    method_onIsSuspendNeededCallback =
++                  env->GetMethodID(clazz, "onIsSuspendNeededCallback", "([B)Z");
+     ALOGI("%s: succeeds", __FUNCTION__);
+ }
+ 
+diff --git a/packages_apps_bluetooth_ext/src/a2dp_sink/A2dpSinkVendorService.java b/packages_apps_bluetooth_ext/src/a2dp_sink/A2dpSinkVendorService.java
+index 8131351..60831c1 100644
+--- a/packages_apps_bluetooth_ext/src/a2dp_sink/A2dpSinkVendorService.java
++++ b/packages_apps_bluetooth_ext/src/a2dp_sink/A2dpSinkVendorService.java
+@@ -96,6 +96,16 @@ final class A2dpSinkVendorService {
+         }
+     }
+ 
++    private boolean onIsSuspendNeededCallback(byte[] address) {
++        A2dpSinkService service = A2dpSinkService.getA2dpSinkService();
++        if (service != null) {
++            return service.onIsSuspendNeededCallback(address);
++        } else {
++            Log.d(TAG,"FATAL: Stack sent event while service is not available: ");
++        }
++        return false;
++    }
++
+     private native void initNative();
+     private native static void classInitNative();
+     private native void cleanupNative();
+diff --git a/vhal/include/hardware/bt_av_vendor.h b/vhal/include/hardware/bt_av_vendor.h
+index 42f79b4..7893488 100644
+--- a/vhal/include/hardware/bt_av_vendor.h
++++ b/vhal/include/hardware/bt_av_vendor.h
+@@ -47,11 +47,15 @@ typedef void (*btav_audio_split_sink_start_ind_callback)(const RawAddress *bd_ad
+ /** Callback for informing suspend indication to application.*/
+ typedef void (*btav_audio_split_sink_suspend_ind_callback)(const RawAddress *bd_addr);
+ 
++/** Callback to know suspend can be issued to the remote device.*/
++typedef bool (*btav_audio_split_sink_is_suspend_needed_callback)(const RawAddress *bd_addr);
++
+ typedef struct {
+     /** set to sizeof(btav_sink_vendor_callbacks_t) */
+     size_t      size;
+     btav_audio_split_sink_start_ind_callback start_ind_cb;
+     btav_audio_split_sink_suspend_ind_callback suspend_ind_cb;
++    btav_audio_split_sink_is_suspend_needed_callback is_suspend_needed_cb;
+ } btav_sink_vendor_callbacks_t;
+ 
+ 
+-- 
+2.17.1
+
