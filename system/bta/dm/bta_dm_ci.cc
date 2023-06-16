@@ -26,8 +26,13 @@
 #include <memory>
 
 #include "bta/dm/bta_dm_int.h"
+<<<<<<< PATCH SET (47c78f IA2: Separate out bta::dm:bta_dm_sec)
+#include "bta/dm/bta_dm_sec.h"
+#include "stack/include/btu_task.h"
+=======
 #include "stack/include/bt_types.h"
 #include "stack/include/main_thread.h"
+>>>>>>> BASE      (09e5b7 IA2: Expose legacy device and service discovery API)
 #include "types/raw_address.h"
 
 /*******************************************************************************
