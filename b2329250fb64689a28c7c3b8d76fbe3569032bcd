@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "23777015_e068a4ff",
+        "filename": "system/gd/rust/linux/client/src/callbacks.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 299,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2023-06-16T02:21:21Z",
+      "side": 1,
+      "message": "I\u0027m a little bit confusing for the fix. Could you please provide more context, such as what each thread does?",
+      "range": {
+        "startLine": 296,
+        "startChar": 12,
+        "endLine": 299,
+        "endChar": 15
+      },
+      "revId": "b2329250fb64689a28c7c3b8d76fbe3569032bcd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
