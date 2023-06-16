@@ -16,10 +16,12 @@
 
 #pragma once
 
+#include "bta/dm/bta_dm_int.h"
+#include "osi/include/osi.h"
+#include "types/bt_transport.h"
 #include "types/raw_address.h"
 
-const char* bta_dm_get_remname(void);
-void bta_dm_disc_gatt_cancel_open(const RawAddress& bd_addr);
-void bta_dm_disc_gatt_refresh(const RawAddress& bd_addr);
+void bta_dm_process_remove_device_no_callback(const RawAddress& bd_addr);
 
-void DumpsysBtaDmDisc(int fd);
+tBTA_DM_PEER_DEVICE* find_connected_device(const RawAddress& bd_addr,
+                                           UNUSED_ATTR tBT_TRANSPORT transport);

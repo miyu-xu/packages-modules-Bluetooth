@@ -14,12 +14,11 @@
  * limitations under the License.
  */
 
-#pragma once
+#include "bta/include/bta_api.h"
 
-#include "types/raw_address.h"
+// Initialize the security manager
+void btm_dm_sec_init();
 
-const char* bta_dm_get_remname(void);
-void bta_dm_disc_gatt_cancel_open(const RawAddress& bd_addr);
-void bta_dm_disc_gatt_refresh(const RawAddress& bd_addr);
+void bta_dm_ble_config_local_privacy(bool);
 
-void DumpsysBtaDmDisc(int fd);
+void bta_dm_ble_sirk_sec_cb_register(tBTA_DM_SEC_CBACK*);
