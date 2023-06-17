@@ -32,6 +32,7 @@
 #include "avdt_int.h"
 #include "avdtc_api.h"
 #include "bt_target.h"
+#include "os/rand.h"
 #include "osi/include/allocator.h"
 #include "osi/include/log.h"
 #include "osi/include/osi.h"
@@ -803,7 +804,7 @@ void avdt_scb_hdl_tc_close(AvdtpScb* p_scb, tAVDT_SCB_EVT* p_data) {
 
   /* clear sep variables */
   avdt_scb_clr_vars(p_scb, p_data);
-  p_scb->media_seq = 0;
+  p_scb->media_seq = bluetooth::os::GenerateRandom() & 0xffff;
   p_scb->cong = false;
 
   /* free pkt we're holding, if any */
