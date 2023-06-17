@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f6a3adb3_69a2641b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-06-17T10:36:28Z",
+      "side": 1,
+      "message": "packages/modules/Bluetooth/framework/java/android/bluetooth/BluetoothLeBroadcastAssistant.java:324: error: cannot find symbol\n                                mCallback.setAdapterReconnected(service);\n                                         ^\n  symbol:   method setAdapterReconnected(IBluetoothLeBroadcastAssistant)\n  location: variable mCallback of type BluetoothLeBroadcastAssistantCallback",
+      "revId": "8413846ecc579cfb0ef1cd2b368f61ffa0a0afb4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3ad92bab_c1322ba0",
         "filename": "framework/java/android/bluetooth/BluetoothLeBroadcastAssistant.java",
         "patchSetId": 1
