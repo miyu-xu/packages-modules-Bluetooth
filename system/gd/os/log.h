@@ -155,14 +155,11 @@ static_assert(LOG_TAG != nullptr, "LOG_TAG should never be NULL");
     /* pid max is 2^22 = 4194304 in 64-bit system, and 32768 by default, hence 7 digits are needed most */          \
     fprintf(                                                                                                        \
         stderr,                                                                                                     \
-        "%s %7d %7ld %s - %s:%d - %s: " fmt "\n",                                                                   \
+        "%s %7d %7ld %s:" fmt "\n",                                                                                 \
         _buf,                                                                                                       \
         static_cast<int>(getpid()),                                                                                 \
         syscall(SYS_gettid),                                                                                        \
         LOG_TAG,                                                                                                    \
-        __FILE__,                                                                                                   \
-        __LINE__,                                                                                                   \
-        __func__,                                                                                                   \
         ##args);                                                                                                    \
   } while (false)
 
