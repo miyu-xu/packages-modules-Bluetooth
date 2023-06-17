@@ -31,6 +31,7 @@
 #include "avdtc_api.h"
 #include "btm_api.h"
 #include "l2c_api.h"
+#include "os/rand.h"
 #include "osi/include/alarm.h"
 #include "osi/include/fixed_queue.h"
 #include "stack/include/bt_hdr.h"
@@ -415,7 +416,7 @@ class AvdtpScb {
       : transport_channel_timer(nullptr),
         p_pkt(nullptr),
         p_ccb(nullptr),
-        media_seq(0),
+        media_seq(bluetooth::os::GenerateRandom() & 0xffff),
         allocated(false),
         in_use(false),
         role(0),
@@ -464,7 +465,7 @@ class AvdtpScb {
 
     p_pkt = nullptr;
     p_ccb = nullptr;
-    media_seq = 0;
+    media_seq = bluetooth::os::GenerateRandom() & 0xffff;
     allocated = false;
     in_use = false;
     role = 0;
