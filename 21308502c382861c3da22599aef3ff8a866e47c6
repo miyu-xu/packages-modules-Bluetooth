@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "51da0739_22f29211",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/ActiveDeviceManagerTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 404,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2023-06-19T01:04:13Z",
+      "side": 1,
+      "message": "When A2dp device is activated, we expect the HFP device is changed to it. (L391)\n\nHowever, when HFP device is activated, we are not expecting the A2dp device is changed. \nWhy is it different?",
+      "range": {
+        "startLine": 403,
+        "startChar": 8,
+        "endLine": 404,
+        "endChar": 61
+      },
+      "revId": "21308502c382861c3da22599aef3ff8a866e47c6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
