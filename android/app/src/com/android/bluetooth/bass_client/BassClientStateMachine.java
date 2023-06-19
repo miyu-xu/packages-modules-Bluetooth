@@ -435,6 +435,10 @@ public class BassClientStateMachine extends StateMachine {
 
     private void cancelActiveSync(BluetoothDevice sourceDev) {
         log("cancelActiveSync: sourceDev = " + sourceDev);
+        if (sourceDev == null) {
+            return;
+        }
+
         BluetoothDevice activeSyncedSrc = mService.getActiveSyncedSource(mDevice);
 
         /* Stop sync if there is some running */
