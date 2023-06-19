@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d9bdb911_72fa50e7",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 226,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-06-19T12:30:50Z",
+      "side": 1,
+      "message": "you are right, HashMap allows for keys \u003d\u003d null.\nThere was some other issue. Will try to find logs and then possibly have proper fix.",
+      "parentUuid": "24dfdfed_4c365059",
+      "revId": "792460c832be95a721261d9c1ae9154fe0f5c7c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e94b486b_9d6ecf9e",
         "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
         "patchSetId": 1
