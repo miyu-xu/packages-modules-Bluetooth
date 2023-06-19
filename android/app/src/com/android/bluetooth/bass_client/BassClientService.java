@@ -223,9 +223,17 @@ public class BassClientService extends ProfileService {
     }
 
     BluetoothDevice getActiveSyncedSource(BluetoothDevice scanDelegator) {
+        if (mActiveSourceMap == null) {
+            Log.e(TAG, "getActiveSyncedSource: mActiveSourceMap is null");
+            return null;
+        }
+
         BluetoothDevice currentSource = mActiveSourceMap.get(scanDelegator);
-        log("getActiveSyncedSource: scanDelegator" + scanDelegator
-                + "returning " + currentSource);
+        log(
+                "getActiveSyncedSource: scanDelegator: "
+                        + scanDelegator
+                        + ", returning: "
+                        + currentSource);
         return currentSource;
     }
 
@@ -1599,7 +1607,8 @@ public class BassClientService extends ProfileService {
                     Log.e(TAG, "Service is null");
                     return false;
                 }
-                mService.enforceCallingOrSelfPermission(BLUETOOTH_CONNECT, "Need BLUETOOTH_CONNECT permission");
+                mService.enforceCallingOrSelfPermission(
+                        BLUETOOTH_CONNECT, "Need BLUETOOTH_CONNECT permission");
                 return service.setConnectionPolicy(device, connectionPolicy);
             } catch (RuntimeException e) {
                 Log.e(TAG, "Exception happened", e);
@@ -1615,7 +1624,8 @@ public class BassClientService extends ProfileService {
                     Log.e(TAG, "Service is null");
                     return BluetoothProfile.CONNECTION_POLICY_FORBIDDEN;
                 }
-                mService.enforceCallingOrSelfPermission(BLUETOOTH_CONNECT, "Need BLUETOOTH_CONNECT permission");
+                mService.enforceCallingOrSelfPermission(
+                        BLUETOOTH_CONNECT, "Need BLUETOOTH_CONNECT permission");
                 return service.getConnectionPolicy(device);
             } catch (RuntimeException e) {
                 Log.e(TAG, "Exception happened", e);
