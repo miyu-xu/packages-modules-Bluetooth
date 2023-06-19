@@ -22,6 +22,30 @@
       },
       "revId": "21308502c382861c3da22599aef3ff8a866e47c6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4491abad_40dd9422",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/ActiveDeviceManagerTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 404,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-06-19T02:21:10Z",
+      "side": 1,
+      "message": "If a classic device connected, we want to activate A2DP and HFP at the same time, however if it is in the middle of activating other devices, we want to activate A2DP and HFP that of the lastly connected one.",
+      "parentUuid": "51da0739_22f29211",
+      "range": {
+        "startLine": 403,
+        "startChar": 8,
+        "endLine": 404,
+        "endChar": 61
+      },
+      "revId": "21308502c382861c3da22599aef3ff8a866e47c6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
