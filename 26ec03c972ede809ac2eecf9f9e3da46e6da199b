@@ -16,6 +16,23 @@
       "message": "Hi Rahul, could you help review this migration? Or anyone else can help? Thanks.",
       "revId": "26ec03c972ede809ac2eecf9f9e3da46e6da199b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4ca200fe_fdfbb0c7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2023-06-19T07:14:56Z",
+      "side": 1,
+      "message": "Since do_in_main_thread takes an base::OnceClosure object as its 2nd argument, it makes sense to replace base::Bind with base::BindOnce. The impact of this change goes beyond Floss, needs Android team\u0027s review.",
+      "revId": "26ec03c972ede809ac2eecf9f9e3da46e6da199b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
