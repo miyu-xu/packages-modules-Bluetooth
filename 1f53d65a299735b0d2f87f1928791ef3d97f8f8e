@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bb3708a3_13a9ce26",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-06-19T06:15:18Z",
+      "side": 1,
+      "message": "won\u0027t this break backwards-compatibility? Since this is a persistent serialization.",
+      "revId": "1f53d65a299735b0d2f87f1928791ef3d97f8f8e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
