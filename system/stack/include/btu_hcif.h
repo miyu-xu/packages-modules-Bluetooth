@@ -20,7 +20,9 @@
 #include <base/location.h>
 
 #include <cstdint>
+#include <memory>
 
+#include "hci/hci_packets.h"
 #include "include/hardware/bluetooth.h"
 #include "osi/include/osi.h"  // UNUSED_ATTR
 #include "stack/include/bt_hdr.h"
@@ -31,10 +33,16 @@
 void btu_hcif_process_event(UNUSED_ATTR uint8_t controller_id,
                             const BT_HDR* p_buf);
 void btu_hcif_send_cmd(UNUSED_ATTR uint8_t controller_id, const BT_HDR* p_msg);
+void btu_hcif_send_cmd(bluetooth::hci::OpCode op_code,
+                       std::unique_ptr<bluetooth::hci::CommandBuilder> cmd);
 void btu_hcif_send_cmd_with_cb(const base::Location& posted_from,
                                uint16_t opcode, uint8_t* params,
                                uint8_t params_len,
                                base::OnceCallback<void(uint8_t*, uint16_t)> cb);
+void btu_hcif_send_cmd_with_cb(
+    const base::Location& posted_from, bluetooth::hci::OpCode op_code,
+    std::unique_ptr<bluetooth::hci::CommandBuilder> cmd,
+    base::OnceCallback<void(bluetooth::hci::EventView)> cb);
 namespace bluetooth::legacy::testing {
 void btu_hcif_hdl_command_status(uint16_t opcode, uint8_t status,
                                  const uint8_t* p_cmd);
