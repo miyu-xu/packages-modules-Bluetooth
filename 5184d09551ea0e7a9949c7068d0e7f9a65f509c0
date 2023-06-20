@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "71aa0dff_49eb4acc",
+        "filename": "android/app/src/com/android/bluetooth/map/BluetoothMapContentObserver.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 3681,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2023-06-20T00:58:21Z",
+      "side": 1,
+      "message": "How about adding some comment here about adding metrics of this crash in future?",
+      "range": {
+        "startLine": 3679,
+        "startChar": 9,
+        "endLine": 3681,
+        "endChar": 9
+      },
+      "revId": "5184d09551ea0e7a9949c7068d0e7f9a65f509c0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
