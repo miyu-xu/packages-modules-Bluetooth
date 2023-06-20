@@ -52,6 +52,24 @@
       "parentUuid": "1b5a2c1f_56548902",
       "revId": "e755143142167f2707992b3aa777e703826a0fa1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a26b1e12_fee74828",
+        "filename": "system/build/Android.bp",
+        "patchSetId": 5
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-06-20T16:50:08Z",
+      "side": 0,
+      "message": "I don\u0027t see why this removes us the capacity to apply common configs to all modules in the future, could you clarify here ?\n\nAlso I think here we are falling into the YAGNI (You Aren\u0027t Going to Need It) principle. We are planning for something that we don\u0027t know if we will need it.",
+      "parentUuid": "eb5312a1_d72572e2",
+      "revId": "e755143142167f2707992b3aa777e703826a0fa1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
