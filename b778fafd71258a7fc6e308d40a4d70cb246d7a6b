@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "161a7a68_bad42d80",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-06-20T13:28:03Z",
+      "side": 1,
+      "message": "Can you paste some sample reports here?",
+      "revId": "b778fafd71258a7fc6e308d40a4d70cb246d7a6b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "16700cd8_2cf41d12",
@@ -14,6 +31,142 @@
       "writtenOn": "2023-06-20T12:59:33Z",
       "side": 1,
       "message": "Hi, please review this CL. Thanks!",
+      "revId": "b778fafd71258a7fc6e308d40a4d70cb246d7a6b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6d72d76f_9396dd54",
+        "filename": "floss/hcidoc/src/groups/informational.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-06-20T13:28:03Z",
+      "side": 1,
+      "message": "Add a docstring about how this will be used.\n\ni.e. \"All known information about a specific device address\"",
+      "revId": "b778fafd71258a7fc6e308d40a4d70cb246d7a6b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d6cd1be4_edc59d56",
+        "filename": "floss/hcidoc/src/groups/informational.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-06-20T13:28:03Z",
+      "side": 1,
+      "message": "Is it useful to know if a name switches between `foo` and `foo-LE`? Would it be better to print this as a Set instead?",
+      "revId": "b778fafd71258a7fc6e308d40a4d70cb246d7a6b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "927af891_293f3838",
+        "filename": "floss/hcidoc/src/groups/informational.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-06-20T13:28:03Z",
+      "side": 1,
+      "message": "Probably good to use named entries here:\n```\nlet _ \u003d writeln!(f, \"{addr} ({type}, {names}), {num_conn} connections\",\n  addr\u003dself.address, type\u003dself.address_type, names\u003dprint_names(\u0026self.names),\n  num_conn\u003dself.acls.len());\n```",
+      "revId": "b778fafd71258a7fc6e308d40a4d70cb246d7a6b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cb58668d_7b96c8dc",
+        "filename": "floss/hcidoc/src/groups/informational.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-06-20T13:28:03Z",
+      "side": 1,
+      "message": "Add docstring",
+      "revId": "b778fafd71258a7fc6e308d40a4d70cb246d7a6b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "624bb326_53ac6f3e",
+        "filename": "floss/hcidoc/src/groups/informational.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-06-20T13:28:03Z",
+      "side": 1,
+      "message": "Technically, this sounds like a generic `ConnectionsRule` and it prints informational report information. Would this be better suited there instead?\n\nYou can keep the existing implementation but just move the rule into that group instead.",
+      "revId": "b778fafd71258a7fc6e308d40a4d70cb246d7a6b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5f2ff204_3deafcb3",
+        "filename": "floss/hcidoc/src/groups/informational.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-06-20T13:28:03Z",
+      "side": 1,
+      "message": "Prefer `pub(super)` for all these (seems like these don\u0027t need to be pub outside this module).",
+      "revId": "b778fafd71258a7fc6e308d40a4d70cb246d7a6b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1f0253ef_cacc1181",
+        "filename": "floss/hcidoc/src/groups/informational.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 371,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-06-20T13:28:03Z",
+      "side": 1,
+      "message": "Downside of match statements is all these `_ \u003d\u003e {}`. Let\u0027s start commenting which line caused the default statement?\n\ni.e.\n```\n// AclCommandChild::ConnectionManagementCommand(cmd).specialize()\n_ \u003d\u003e {}\n```\n\nor if we stop shadowing `cmd`:\n```\n  // conn_mgmt_cmd.specialize()\n  _ \u003d\u003e {}\n  },\n  \n  // acl_cmd.specialize()\n  _ \u003d\u003e {}\n```",
+      "revId": "b778fafd71258a7fc6e308d40a4d70cb246d7a6b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d289d134_c165def9",
+        "filename": "floss/hcidoc/src/groups/informational.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 390,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-06-20T13:28:03Z",
+      "side": 1,
+      "message": "Avoiding unwrap:\n\n```\nfor (_, info) in self.devices.iter() {\n}\n```",
       "revId": "b778fafd71258a7fc6e308d40a4d70cb246d7a6b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
