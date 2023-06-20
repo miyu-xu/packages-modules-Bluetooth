@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "80d50549_647f2be7",
+        "filename": "system/bta/le_audio/le_audio_client_test.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 2967,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-06-20T09:04:26Z",
+      "side": 1,
+      "message": "is this because \n/* Disconnects while being in getting ready state */",
+      "revId": "5f693b129f87e7834ea9d8582b60e50790515a31",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
