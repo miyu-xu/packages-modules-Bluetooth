@@ -90,6 +90,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "dfca2982_46352c27",
+        "filename": "floss/hcidoc/src/groups/connections.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 574,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-06-20T17:33:13Z",
+      "side": 1,
+      "message": "Ah, to limit the scope, I see.",
+      "parentUuid": "f16b287d_8b1fcae3",
+      "revId": "56428650069eee34a72a0d2a2f3548d4c55716f4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c1bcdfd1_7d79bd40",
         "filename": "floss/hcidoc/src/groups/connections.rs",
         "patchSetId": 2
