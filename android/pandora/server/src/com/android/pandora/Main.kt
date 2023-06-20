@@ -29,6 +29,8 @@ class Main : MonitoringInstrumentation() {
 
   private val TAG = "PandoraMain"
 
+  private var port: Int = 8999
+
   override fun onCreate(arguments: Bundle) {
     super.onCreate(arguments)
 
@@ -37,6 +39,12 @@ class Main : MonitoringInstrumentation() {
       Log.i(TAG, "Waiting for debugger to connect...")
       Debug.waitForDebugger()
       Log.i(TAG, "Debugger connected")
+    }
+
+    // Retrieve gRPC port from arguments.
+    val portStr = arguments.getString("port")
+    if (portStr != null) {
+      port = portStr.toInt()
     }
 
     // Start instrumentation thread.
@@ -52,7 +60,7 @@ class Main : MonitoringInstrumentation() {
     uiAutomation.adoptShellPermissionIdentity()
 
     while (true) {
-      val server = Server(context)
+      val server = Server(context, port)
       server.awaitTermination()
       server.deinit()
     }

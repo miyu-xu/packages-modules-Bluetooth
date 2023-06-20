@@ -26,10 +26,9 @@ import io.grpc.netty.shaded.io.grpc.netty.NettyServerBuilder
 import java.io.Closeable
 
 @kotlinx.coroutines.ExperimentalCoroutinesApi
-class Server(context: Context) {
+class Server(context: Context, port: Int) {
 
   private val TAG = "PandoraServer"
-  private val GRPC_PORT = 8999
 
   private var grpcServer: GrpcServer
   private var services: List<BindableService>
@@ -69,7 +68,7 @@ class Server(context: Context) {
           .filter { bluetoothAdapter.getSupportedProfiles().contains(it.key) == true }
           .map { it.value(context) }
 
-    val grpcServerBuilder = NettyServerBuilder.forPort(GRPC_PORT)
+    val grpcServerBuilder = NettyServerBuilder.forPort(port)
 
     services.forEach { grpcServerBuilder.addService(it) }
 
@@ -77,7 +76,7 @@ class Server(context: Context) {
 
     Log.d(TAG, "Starting Pandora Server")
     grpcServer.start()
-    Log.d(TAG, "Pandora Server started at $GRPC_PORT")
+    Log.d(TAG, "Pandora Server started at $port")
   }
 
   fun shutdown() = grpcServer.shutdown()
