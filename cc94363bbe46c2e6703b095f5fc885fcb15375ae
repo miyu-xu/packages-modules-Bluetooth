@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b1dbd55d_e5e40e63",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-06-20T16:53:50Z",
+      "side": 1,
+      "message": "can we resolve the lint error by adding a valid unit test case? then we\u0027re ready to merge. thanks!\n\ne.g.\natest BassClientStateMachineTest",
+      "revId": "cc94363bbe46c2e6703b095f5fc885fcb15375ae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
