@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7af4b98f_ca1b7a2b",
+        "filename": "framework/java/android/bluetooth/BluetoothLeBroadcastAssistantCallback.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-06-20T22:32:41Z",
+      "side": 1,
+      "message": "currently those callbacks register/unregister are only handled by the app side, either BluetoothFindBroadcastsFragment.java or LeAudioTestApp. \nmy understanding is this is different from unicast side. Wouldn\u0027t this change conflict and cause problems with current App behavior in case onServiceConnected re-register callback before App calling?",
+      "revId": "c7fc2d9fac9e2dc6234763a9a26c9c69ef6d3022",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
