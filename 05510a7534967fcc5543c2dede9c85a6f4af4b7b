@@ -22,6 +22,30 @@
       },
       "revId": "05510a7534967fcc5543c2dede9c85a6f4af4b7b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f7149e1b_1c60e4c1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1984885
+      },
+      "writtenOn": "2023-06-20T08:21:00Z",
+      "side": 1,
+      "message": "1. connect to phone\n2. phone play music, music out put to local\n3. plug in wired headset, music out put to wired headset\n4. unplug in wired headset, music out put to local\n5. repate step 3 and 4",
+      "parentUuid": "b07ca35b_6619912f",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 60
+      },
+      "revId": "05510a7534967fcc5543c2dede9c85a6f4af4b7b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
