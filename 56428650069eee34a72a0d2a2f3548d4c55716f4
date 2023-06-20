@@ -1,0 +1,106 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8ebf9cbe_b04ef5df",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-06-20T13:37:27Z",
+      "side": 1,
+      "message": "LGTM modulo some documentation/commenting nits",
+      "revId": "56428650069eee34a72a0d2a2f3548d4c55716f4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6a7898b0_df034824",
+        "filename": "floss/hcidoc/src/groups/connections.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 574,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-06-20T13:37:27Z",
+      "side": 1,
+      "message": "This should probably be `pub(super)`. I would also describe in docstring when we expect to see this (i.e. host responds with a link key but that link key fails authentication).\n\nWe probably want to start doing this at `Signals` as well because that\u0027s likely where champions will look first to see what each signal means.",
+      "revId": "56428650069eee34a72a0d2a2f3548d4c55716f4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c1bcdfd1_7d79bd40",
+        "filename": "floss/hcidoc/src/groups/connections.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 584,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-06-20T13:37:27Z",
+      "side": 1,
+      "message": "nit: `or it mismatches with ours.`",
+      "revId": "56428650069eee34a72a0d2a2f3548d4c55716f4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d3888642_3b7d050b",
+        "filename": "floss/hcidoc/src/groups/connections.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 591,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-06-20T13:37:27Z",
+      "side": 1,
+      "message": "nit: // TODO(apusaka) - ...",
+      "revId": "56428650069eee34a72a0d2a2f3548d4c55716f4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "72b58fa8_7071a8b5",
+        "filename": "floss/hcidoc/src/groups/connections.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 626,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-06-20T13:37:27Z",
+      "side": 1,
+      "message": "Will this double report w/ `AuthenticationComplete` above?",
+      "revId": "56428650069eee34a72a0d2a2f3548d4c55716f4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5cba8978_6b7f3df1",
+        "filename": "floss/hcidoc/src/groups/connections.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 651,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-06-20T13:37:27Z",
+      "side": 1,
+      "message": "Made this comment in other review too, let\u0027s start commenting on what the `_ \u003d\u003e {}` is closing.\n\ni.e.\n\n```\n// security_cmd.specialize()\n_ \u003d\u003e {}\n```",
+      "revId": "56428650069eee34a72a0d2a2f3548d4c55716f4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
