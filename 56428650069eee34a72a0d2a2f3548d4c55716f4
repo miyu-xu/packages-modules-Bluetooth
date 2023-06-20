@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "b1646c86_3a6a8d03",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-06-20T17:27:04Z",
+      "side": 1,
+      "message": "OK",
+      "parentUuid": "5307f5b7_56149cbb",
+      "revId": "56428650069eee34a72a0d2a2f3548d4c55716f4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "8ebf9cbe_b04ef5df",
@@ -54,6 +72,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f16b287d_8b1fcae3",
+        "filename": "floss/hcidoc/src/groups/connections.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 574,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-06-20T17:27:04Z",
+      "side": 1,
+      "message": "Thanks. May I understand the reason it should be pub(super)?\nWill add comments later.",
+      "parentUuid": "6a7898b0_df034824",
+      "revId": "56428650069eee34a72a0d2a2f3548d4c55716f4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c1bcdfd1_7d79bd40",
         "filename": "floss/hcidoc/src/groups/connections.rs",
         "patchSetId": 2
@@ -71,6 +107,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8abc7826_9a836f02",
+        "filename": "floss/hcidoc/src/groups/connections.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 584,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-06-20T17:27:04Z",
+      "side": 1,
+      "message": "OK",
+      "parentUuid": "c1bcdfd1_7d79bd40",
+      "revId": "56428650069eee34a72a0d2a2f3548d4c55716f4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d3888642_3b7d050b",
         "filename": "floss/hcidoc/src/groups/connections.rs",
         "patchSetId": 2
@@ -82,6 +136,24 @@
       "writtenOn": "2023-06-20T13:37:27Z",
       "side": 1,
       "message": "nit: // TODO(apusaka) - ...",
+      "revId": "56428650069eee34a72a0d2a2f3548d4c55716f4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ea82cd8d_7380aa22",
+        "filename": "floss/hcidoc/src/groups/connections.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 591,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-06-20T17:27:04Z",
+      "side": 1,
+      "message": "OK",
+      "parentUuid": "d3888642_3b7d050b",
       "revId": "56428650069eee34a72a0d2a2f3548d4c55716f4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -116,6 +188,24 @@
       "writtenOn": "2023-06-20T13:37:27Z",
       "side": 1,
       "message": "Made this comment in other review too, let\u0027s start commenting on what the `_ \u003d\u003e {}` is closing.\n\ni.e.\n\n```\n// security_cmd.specialize()\n_ \u003d\u003e {}\n```",
+      "revId": "56428650069eee34a72a0d2a2f3548d4c55716f4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a8115e10_fbb3907b",
+        "filename": "floss/hcidoc/src/groups/connections.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 651,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-06-20T17:27:04Z",
+      "side": 1,
+      "message": "OK",
+      "parentUuid": "5cba8978_6b7f3df1",
       "revId": "56428650069eee34a72a0d2a2f3548d4c55716f4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
