@@ -22,6 +22,30 @@
       },
       "revId": "ecdea66815a214af219628a4e6b06ef213741ab9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1d63fa2f_f619f1a8",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 16
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2023-06-20T14:22:37Z",
+      "side": 1,
+      "message": "That\u0027s the commit I use to resolve merge conflict, following the system\u0027s guide",
+      "parentUuid": "137c197c_34023f2e",
+      "range": {
+        "startLine": 26,
+        "startChar": 11,
+        "endLine": 26,
+        "endChar": 19
+      },
+      "revId": "ecdea66815a214af219628a4e6b06ef213741ab9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
