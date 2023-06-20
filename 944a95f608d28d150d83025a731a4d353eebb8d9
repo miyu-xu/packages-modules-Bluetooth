@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "447945f5_f911ed2a",
+        "filename": "framework/java/android/bluetooth/BluetoothLeBroadcastSettings.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 270,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-06-20T20:18:48Z",
+      "side": 1,
+      "message": "nit: \"of 4\" --\u003e \"of 4 characters\"?",
+      "revId": "944a95f608d28d150d83025a731a4d353eebb8d9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "37183834_cd28000a",
+        "filename": "framework/java/android/bluetooth/BluetoothLeBroadcastSettings.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 272,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-06-20T20:18:48Z",
+      "side": 1,
+      "message": "This shouldn\u0027t be in a separate paragraph",
+      "revId": "944a95f608d28d150d83025a731a4d353eebb8d9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e864d201_68d6ea1f",
+        "filename": "framework/java/android/bluetooth/BluetoothLeBroadcastSettings.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-06-20T20:18:48Z",
+      "side": 1,
+      "message": "Explicitly call out \"non-null and less than 4 characters or greater than 32 characters\" instead of just saying \"invalid\"",
+      "revId": "944a95f608d28d150d83025a731a4d353eebb8d9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e72bf2c7_45fc41b6",
+        "filename": "framework/java/android/bluetooth/BluetoothLeBroadcastSettings.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 302,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-06-20T20:18:48Z",
+      "side": 1,
+      "message": "Same, call out the exact bounds again",
+      "revId": "944a95f608d28d150d83025a731a4d353eebb8d9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
