@@ -70,19 +70,12 @@ static void set_data_cb(
   FAIL() << __func__ << " should never be called";
 }
 
-static void transmit_command(const BT_HDR* command,
-                             command_complete_cb complete_callback,
-                             command_status_cb status_cb, void* context) {
-  FAIL() << __func__ << " should never be called";
-}
-
 static void transmit_downward(uint16_t type, void* data) {
   iso_interface->HciSend((BT_HDR*)data, type);
   osi_free(data);
 }
 
 static hci_t interface = {.set_data_cb = set_data_cb,
-                          .transmit_command = transmit_command,
                           .transmit_downward = transmit_downward};
 }  // namespace bluetooth::shim
 
