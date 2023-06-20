@@ -670,9 +670,11 @@ extern struct btsnd_hcic_write_dev_class btsnd_hcic_write_dev_class;
 // Params: void* buffer, uint8_t fec_req
 // Return: void
 struct btsnd_hcic_write_ext_inquiry_response {
-  std::function<void(void* buffer, uint8_t fec_req)> body{
-      [](void* buffer, uint8_t fec_req) {}};
-  void operator()(void* buffer, uint8_t fec_req) { body(buffer, fec_req); };
+  std::function<void(const std::array<uint8_t, 240>& eir_data, uint8_t fec_req)>
+      body{[](const std::array<uint8_t, 240>& eir_data, uint8_t fec_req) {}};
+  void operator()(const std::array<uint8_t, 240>& eir_data, uint8_t fec_req) {
+    body(eir_data, fec_req);
+  };
 };
 extern struct btsnd_hcic_write_ext_inquiry_response
     btsnd_hcic_write_ext_inquiry_response;

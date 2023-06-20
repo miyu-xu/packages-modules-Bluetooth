@@ -1749,8 +1749,13 @@ void btm_inq_rmt_name_failed_cancelled(void) {
  ******************************************************************************/
 tBTM_STATUS BTM_WriteEIR(BT_HDR* p_buff) {
   if (controller_get_interface()->supports_extended_inquiry_response()) {
+    std::array<uint8_t, 240> eir_data{0};
+    uint8_t* eir_data_ptr = (uint8_t*)(p_buff + 1) + 4;  // Get past the header
+    std::copy(eir_data_ptr, eir_data_ptr + 240, eir_data.begin());
     BTM_TRACE_API("Write Extended Inquiry Response to controller");
-    btsnd_hcic_write_ext_inquiry_response(p_buff, BTM_EIR_DEFAULT_FEC_REQUIRED);
+    btsnd_hcic_write_ext_inquiry_response(eir_data,
+                                          BTM_EIR_DEFAULT_FEC_REQUIRED);
+    osi_free(p_buff);
     return BTM_SUCCESS;
   } else {
     osi_free(p_buff);

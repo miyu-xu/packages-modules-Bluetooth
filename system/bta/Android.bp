@@ -267,6 +267,9 @@ cc_test {
         ":TestMockStack",
         "test/bta_hf_client_security_test.cc",
     ],
+    generated_headers: [
+        "BluetoothGeneratedPackets_h",
+    ],
     shared_libs: [
         "android.hardware.bluetooth.audio@2.0",
         "android.hardware.bluetooth.audio@2.1",

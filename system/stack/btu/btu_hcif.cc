@@ -39,7 +39,10 @@
 #include "common/metrics.h"
 #include "device/include/controller.h"
 #include "gd/common/init_flags.h"
+#include "gd/hci/hci_layer.h"
+#include "gd/packet/raw_builder.h"
 #include "main/shim/hci_layer.h"
+#include "main/shim/shim.h"
 #include "osi/include/allocator.h"
 #include "osi/include/log.h"
 #include "stack/include/acl_hci_link_interface.h"
@@ -80,9 +83,10 @@ static void btu_hcif_rmt_name_request_comp_evt(const uint8_t* p,
 static void btu_hcif_encryption_change_evt(uint8_t* p);
 static void btu_hcif_read_rmt_ext_features_comp_evt(uint8_t* p,
                                                     uint8_t evt_len);
-static void btu_hcif_command_complete_evt(BT_HDR* response, void* context);
-static void btu_hcif_command_status_evt(uint8_t status, BT_HDR* command,
-                                        void* context);
+static void btu_hcif_command_complete_evt(
+    bluetooth::hci::CommandCompleteView response);
+static void btu_hcif_command_status_evt(
+    bluetooth::hci::CommandStatusView status);
 static void btu_hcif_hardware_error_evt(uint8_t* p);
 static void btu_hcif_mode_change_evt(uint8_t* p);
 static void btu_hcif_link_key_notification_evt(const uint8_t* p);
@@ -243,15 +247,11 @@ void btu_hcif_process_event(UNUSED_ATTR uint8_t controller_id,
       break;
     case HCI_COMMAND_COMPLETE_EVT:
       LOG_ERROR(
-          "%s should not have received a command complete event. "
-          "Someone didn't go through the hci transmit_command function.",
-          __func__);
+          "Command Complete events should call a callback directly in HCI.");
       break;
     case HCI_COMMAND_STATUS_EVT:
       LOG_ERROR(
-          "%s should not have received a command status event. "
-          "Someone didn't go through the hci transmit_command function.",
-          __func__);
+          "Command Status events should call a callback directly in HCI.");
       break;
     case HCI_HARDWARE_ERROR_EVT:
       btu_hcif_hardware_error_evt(p);
@@ -642,12 +642,39 @@ void btu_hcif_send_cmd(UNUSED_ATTR uint8_t controller_id, const BT_HDR* p_buf) {
   STREAM_TO_UINT16(opcode, stream);
 
   // Skip parameter length before logging
-  stream++;
+  uint8_t length;
+  STREAM_TO_UINT8(length, stream);
   btu_hcif_log_command_metrics(opcode, stream,
                                android::bluetooth::hci::STATUS_UNKNOWN, false);
 
-  bluetooth::shim::hci_layer_get_interface()->transmit_command(
-      p_buf, btu_hcif_command_complete_evt, btu_hcif_command_status_evt, NULL);
+  auto op_code = static_cast<bluetooth::hci::OpCode>(opcode);
+  btu_hcif_send_cmd(
+      op_code,
+      bluetooth::hci::CommandBuilder::Create(
+          op_code, std::make_unique<bluetooth::packet::RawBuilder>(
+                       std::vector<uint8_t>(stream, stream + length))));
+}
+
+void btu_hcif_send_cmd(bluetooth::hci::OpCode op_code,
+                       std::unique_ptr<bluetooth::hci::CommandBuilder> cmd) {
+  auto hci = bluetooth::shim::GetHciLayer();
+  auto handler = bluetooth::shim::GetGdShimHandler();
+  if (bluetooth::hci::Checker::IsCommandStatusOpcode(op_code)) {
+    hci->EnqueueCommand(
+        std::move(cmd),
+        handler->BindOnce([](bluetooth::hci::CommandStatusView status) {
+          do_in_main_thread(
+              FROM_HERE, base::BindOnce(btu_hcif_command_status_evt, status));
+        }));
+  } else {
+    hci->EnqueueCommand(
+        std::move(cmd),
+        handler->BindOnce([](bluetooth::hci::CommandCompleteView response) {
+          do_in_main_thread(
+              FROM_HERE,
+              base::BindOnce(btu_hcif_command_complete_evt, response));
+        }));
+  }
 }
 
 using hci_cmd_cb = base::OnceCallback<void(
@@ -719,104 +746,138 @@ static void btu_hcif_log_command_complete_metrics(
   }
 }
 
-static void btu_hcif_command_complete_evt_with_cb_on_task(BT_HDR* event,
-                                                          void* context) {
-  command_opcode_t opcode;
-  // 2 for event header: event code (1) + parameter length (1)
-  // 1 for num_hci_pkt command credit
-  uint8_t* stream = event->data + event->offset + 3;
-  STREAM_TO_UINT16(opcode, stream);
+static void btu_hcif_command_complete_evt_with_cb(
+    bluetooth::hci::CommandCompleteView event,
+    base::OnceCallback<void(bluetooth::hci::EventView)> cb) {
+  auto opcode = event.GetCommandOpCode();
+  auto parameters = event.GetPayload();
+  std::vector<uint8_t> stream_vector(parameters.begin(), parameters.end());
+  uint8_t* stream = stream_vector.data();
+  btu_hcif_log_command_complete_metrics(static_cast<uint16_t>(opcode), stream);
 
-  btu_hcif_log_command_complete_metrics(opcode, stream);
-
-  cmd_with_cb_data* cb_wrapper = (cmd_with_cb_data*)context;
-  HCI_TRACE_DEBUG("command complete for: %s",
-                  cb_wrapper->posted_from.ToString().c_str());
-  // 2 for event header: event code (1) + parameter length (1)
-  // 3 for command complete header: num_hci_pkt (1) + opcode (2)
-  uint16_t param_len = static_cast<uint16_t>(event->len - 5);
-  std::move(cb_wrapper->cb).Run(stream, param_len);
-  cmd_with_cb_data_cleanup(cb_wrapper);
-  osi_free(cb_wrapper);
-
-  osi_free(event);
+  std::move(cb).Run(event);
 }
 
-static void btu_hcif_command_complete_evt_with_cb(BT_HDR* response,
-                                                  void* context) {
-  do_in_main_thread(
-      FROM_HERE, base::BindOnce(btu_hcif_command_complete_evt_with_cb_on_task,
-                                response, context));
+static void btu_hcif_command_complete_evt_with_old_cb(
+    bluetooth::hci::CommandCompleteView event, hci_cmd_cb old_cb) {
+  btu_hcif_command_complete_evt_with_cb(
+      event, base::BindOnce(
+                 [](hci_cmd_cb old_cb_p, bluetooth::hci::EventView event) {
+                   auto parameters = event.GetPayload();
+                   std::vector<uint8_t> stream_vector(parameters.begin(),
+                                                      parameters.end());
+                   std::move(old_cb_p).Run(stream_vector.data(),
+                                           stream_vector.size());
+                 },
+                 std::move(old_cb)));
 }
 
-static void btu_hcif_command_status_evt_with_cb_on_task(uint8_t status,
-                                                        BT_HDR* event,
-                                                        void* context) {
-  command_opcode_t opcode;
-  uint8_t* stream = event->data + event->offset;
-  STREAM_TO_UINT16(opcode, stream);
+static void btu_hcif_command_status_evt_with_cb(
+    bluetooth::hci::CommandStatusView event,
+    base::OnceCallback<void(bluetooth::hci::EventView)> cb) {
+  auto status = event.GetStatus();
 
-  CHECK(status != 0);
-
-  // stream + 1 to skip parameter length field
-  // No need to check length since stream is written by us
-  btu_hcif_log_command_metrics(opcode, stream + 1, status, true);
-
-  // report command status error
-  cmd_with_cb_data* cb_wrapper = (cmd_with_cb_data*)context;
-  HCI_TRACE_DEBUG("command status for: %s",
-                  cb_wrapper->posted_from.ToString().c_str());
-  std::move(cb_wrapper->cb).Run(&status, sizeof(uint16_t));
-  cmd_with_cb_data_cleanup(cb_wrapper);
-  osi_free(cb_wrapper);
-
-  osi_free(event);
-}
-
-static void btu_hcif_command_status_evt_with_cb(uint8_t status, BT_HDR* command,
-                                                void* context) {
-  // Command is pending, we  report only error.
-  if (!status) {
-    osi_free(command);
+  if (status == bluetooth::hci::ErrorCode::SUCCESS) {
     return;
   }
 
-  do_in_main_thread(FROM_HERE,
-                    base::BindOnce(btu_hcif_command_status_evt_with_cb_on_task,
-                                   status, command, context));
+  auto opcode = event.GetCommandOpCode();
+  auto parameters = event.GetPayload();
+  std::vector<uint8_t> stream_vector(parameters.begin(), parameters.end());
+
+  btu_hcif_log_command_metrics(static_cast<uint16_t>(opcode),
+                               stream_vector.data(),
+                               static_cast<uint8_t>(status), true);
+
+  std::move(cb).Run(event);
 }
 
+static void btu_hcif_command_status_evt_with_old_cb(
+    bluetooth::hci::CommandStatusView event, hci_cmd_cb old_cb) {
+  btu_hcif_command_status_evt_with_cb(
+      event, base::BindOnce(
+                 [](hci_cmd_cb old_cb_p, bluetooth::hci::EventView event) {
+                   auto parameters = event.GetPayload();
+                   std::vector<uint8_t> stream_vector(parameters.begin(),
+                                                      parameters.end());
+                   std::move(old_cb_p).Run(stream_vector.data(),
+                                           stream_vector.size());
+                 },
+                 std::move(old_cb)));
+}
 /* This function is called to send commands to the Host Controller. |cb| is
  * called when command status event is called with error code, or when the
  * command complete event is received. */
 void btu_hcif_send_cmd_with_cb(const base::Location& posted_from,
                                uint16_t opcode, uint8_t* params,
                                uint8_t params_len, hci_cmd_cb cb) {
-  BT_HDR* p = (BT_HDR*)osi_malloc(HCI_CMD_BUF_SIZE);
-  uint8_t* pp = (uint8_t*)(p + 1);
-
-  p->len = HCIC_PREAMBLE_SIZE + params_len;
-  p->offset = 0;
-
-  UINT16_TO_STREAM(pp, opcode);
-  UINT8_TO_STREAM(pp, params_len);
-  if (params) {
-    memcpy(pp, params, params_len);
-  }
-
-  btu_hcif_log_command_metrics(opcode, pp,
+  btu_hcif_log_command_metrics(opcode, params,
                                android::bluetooth::hci::STATUS_UNKNOWN, false);
 
-  cmd_with_cb_data* cb_wrapper =
-      (cmd_with_cb_data*)osi_malloc(sizeof(cmd_with_cb_data));
+  auto op_code = static_cast<bluetooth::hci::OpCode>(opcode);
+  auto cmd = bluetooth::hci::CommandBuilder::Create(
+      op_code, std::make_unique<bluetooth::packet::RawBuilder>(
+                   std::vector<uint8_t>(params, params + params_len)));
+  auto hci = bluetooth::shim::GetHciLayer();
+  auto handler = bluetooth::shim::GetGdShimHandler();
+  if (bluetooth::hci::Checker::IsCommandStatusOpcode(op_code)) {
+    hci->EnqueueCommand(
+        std::move(cmd),
+        handler->BindOnce(
+            [](hci_cmd_cb cb_p, bluetooth::hci::CommandStatusView status) {
+              do_in_main_thread(
+                  FROM_HERE,
+                  base::BindOnce(btu_hcif_command_status_evt_with_old_cb,
+                                 status, std::move(cb_p)));
+            },
+            std::move(cb)));
+  } else {
+    hci->EnqueueCommand(
+        std::move(cmd),
+        handler->BindOnce(
+            [](hci_cmd_cb cb_p, bluetooth::hci::CommandCompleteView response) {
+              do_in_main_thread(
+                  FROM_HERE,
+                  base::BindOnce(btu_hcif_command_complete_evt_with_old_cb,
+                                 response, std::move(cb_p)));
+            },
+            std::move(cb)));
+  }
+}
 
-  cmd_with_cb_data_init(cb_wrapper);
-  cb_wrapper->cb = std::move(cb);
-  cb_wrapper->posted_from = posted_from;
-
-  bluetooth::shim::hci_layer_get_interface()->transmit_command(
-      p, btu_hcif_command_complete_evt_with_cb,
-      btu_hcif_command_status_evt_with_cb, (void*)cb_wrapper);
+/* This function is called to send commands to the Host Controller. |cb| is
+ * called when command status event is called with error code, or when the
+ * command complete event is received. */
+void btu_hcif_send_cmd_with_cb(
+    const base::Location& posted_from, bluetooth::hci::OpCode opcode,
+    std::unique_ptr<bluetooth::hci::CommandBuilder> cmd,
+    base::OnceCallback<void(bluetooth::hci::EventView)> cb) {
+  auto hci = bluetooth::shim::GetHciLayer();
+  auto handler = bluetooth::shim::GetGdShimHandler();
+  if (bluetooth::hci::Checker::IsCommandStatusOpcode(opcode)) {
+    hci->EnqueueCommand(
+        std::move(cmd),
+        handler->BindOnce(
+            [](base::OnceCallback<void(bluetooth::hci::EventView)> cb_p,
+               bluetooth::hci::CommandStatusView status) {
+              do_in_main_thread(
+                  FROM_HERE, base::BindOnce(btu_hcif_command_status_evt_with_cb,
+                                            status, std::move(cb_p)));
+            },
+            std::move(cb)));
+  } else {
+    hci->EnqueueCommand(
+        std::move(cmd),
+        handler->BindOnce(
+            [](base::OnceCallback<void(bluetooth::hci::EventView)> cb_p,
+               bluetooth::hci::CommandCompleteView response) {
+              do_in_main_thread(
+                  FROM_HERE,
+                  base::BindOnce(btu_hcif_command_complete_evt_with_cb,
+                                 response, std::move(cb_p)));
+            },
+            std::move(cb)));
+  }
 }
 
 /*******************************************************************************
@@ -954,7 +1015,8 @@ static void btu_hcif_encryption_change_evt(uint8_t* p) {
   } else {
     btsnd_hcic_read_encryption_key_size(
         handle,
-        base::Bind(&read_encryption_key_size_complete_after_encryption_change));
+        base::BindOnce(
+            &read_encryption_key_size_complete_after_encryption_change));
   }
 }
 
@@ -1182,27 +1244,15 @@ static void btu_hcif_hdl_command_complete(uint16_t opcode, uint8_t* p,
  * Returns          void
  *
  ******************************************************************************/
-static void btu_hcif_command_complete_evt_on_task(BT_HDR* event) {
-  command_opcode_t opcode;
-  // 2 for event header: event code (1) + parameter length (1)
-  // 1 for num_hci_pkt command credit
-  uint8_t* stream = event->data + event->offset + 3;
-  STREAM_TO_UINT16(opcode, stream);
-
-  btu_hcif_log_command_complete_metrics(opcode, stream);
-  // 2 for event header: event code (1) + parameter length (1)
-  // 3 for command complete header: num_hci_pkt (1) + opcode (2)
-  uint16_t param_len = static_cast<uint16_t>(event->len - 5);
-  btu_hcif_hdl_command_complete(opcode, stream, param_len);
-
-  osi_free(event);
-}
-
-static void btu_hcif_command_complete_evt(BT_HDR* response,
-                                          void* /* context */) {
-  do_in_main_thread(
-      FROM_HERE,
-      base::BindOnce(btu_hcif_command_complete_evt_on_task, response));
+static void btu_hcif_command_complete_evt(
+    bluetooth::hci::CommandCompleteView event) {
+  auto opcode = event.GetCommandOpCode();
+  auto payload = event.GetPayload();
+  std::vector<uint8_t> payload_vector(payload.begin(), payload.end());
+  btu_hcif_log_command_complete_metrics(static_cast<uint16_t>(opcode),
+                                        payload_vector.data());
+  btu_hcif_hdl_command_complete(static_cast<uint16_t>(opcode),
+                                payload_vector.data(), payload_vector.size());
 }
 
 /*******************************************************************************
@@ -1338,24 +1388,19 @@ void bluetooth::legacy::testing::btu_hcif_hdl_command_status(
  * Returns          void
  *
  ******************************************************************************/
-static void btu_hcif_command_status_evt_on_task(uint8_t status, BT_HDR* event) {
-  command_opcode_t opcode;
-  uint8_t* stream = event->data + event->offset;
-  STREAM_TO_UINT16(opcode, stream);
+static void btu_hcif_command_status_evt(
+    bluetooth::hci::CommandStatusView event) {
+  auto opcode = event.GetCommandOpCode();
+  auto status = event.GetStatus();
+  auto payload = event.GetPayload();
+  std::vector<uint8_t> payload_vector(payload.begin(), payload.end());
+  btu_hcif_log_command_metrics(static_cast<uint16_t>(opcode),
+                               payload_vector.data(),
+                               static_cast<uint8_t>(status), true);
 
-  // stream + 1 to skip parameter length field
-  // No need to check length since stream is written by us
-  btu_hcif_log_command_metrics(opcode, stream + 1, status, true);
-
-  btu_hcif_hdl_command_status(opcode, status, stream);
-  osi_free(event);
-}
-
-static void btu_hcif_command_status_evt(uint8_t status, BT_HDR* command,
-                                        void* /* context */) {
-  do_in_main_thread(
-      FROM_HERE,
-      base::BindOnce(btu_hcif_command_status_evt_on_task, status, command));
+  btu_hcif_hdl_command_status(static_cast<uint16_t>(opcode),
+                              static_cast<uint8_t>(status),
+                              payload_vector.data());
 }
 
 /*******************************************************************************
@@ -1515,7 +1560,9 @@ static void btu_hcif_encryption_key_refresh_cmpl_evt(uint8_t* p) {
     btm_sec_encrypt_change(handle, static_cast<tHCI_STATUS>(status),
                            (status == HCI_SUCCESS) ? 1 : 0);
   } else {
-    btsnd_hcic_read_encryption_key_size(handle, base::Bind(&read_encryption_key_size_complete_after_key_refresh));
+    btsnd_hcic_read_encryption_key_size(
+        handle,
+        base::BindOnce(&read_encryption_key_size_complete_after_key_refresh));
   }
 }
 
