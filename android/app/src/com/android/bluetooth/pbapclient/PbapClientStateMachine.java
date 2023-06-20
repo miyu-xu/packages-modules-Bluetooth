@@ -53,6 +53,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.HandlerThread;
+import android.os.Looper;
 import android.os.Message;
 import android.os.ParcelUuid;
 import android.os.Process;
@@ -166,15 +167,17 @@ class PbapClientStateMachine extends StateMachine {
             mHandlerThread =
                     new HandlerThread("PBAP PCE handler", Process.THREAD_PRIORITY_BACKGROUND);
             mHandlerThread.start();
+            Looper looper = mHandlerThread.getLooper();
 
             // Keeps mock handler from being overwritten in tests
-            if (mConnectionHandler == null) {
+            if (mConnectionHandler == null && looper != null) {
                 mConnectionHandler =
-                    new PbapClientConnectionHandler.Builder().setLooper(mHandlerThread.getLooper())
-                            .setContext(mService)
-                            .setClientSM(PbapClientStateMachine.this)
-                            .setRemoteDevice(mCurrentDevice)
-                            .build();
+                        new PbapClientConnectionHandler.Builder()
+                                .setLooper(mHandlerThread.getLooper())
+                                .setContext(mService)
+                                .setClientSM(PbapClientStateMachine.this)
+                                .setRemoteDevice(mCurrentDevice)
+                                .build();
             }
 
             sendMessageDelayed(MSG_CONNECT_TIMEOUT, CONNECT_TIMEOUT);
