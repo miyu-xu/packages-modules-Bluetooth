@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "5307f5b7_56149cbb",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-06-20T13:38:11Z",
+      "side": 1,
+      "message": "Note - add a `Tag: #floss` to get rid of the `Test Validation` check failure",
+      "revId": "56428650069eee34a72a0d2a2f3548d4c55716f4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "8ebf9cbe_b04ef5df",
