@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fc8a9df5_7c2da45e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1956242
+      },
+      "writtenOn": "2023-06-20T19:26:17Z",
+      "side": 1,
+      "message": "Please update the commit msg with \"Test: m \u003ctarget\u003e\"",
+      "revId": "73a2ad9da56e3f55f70638fa6e7df74022cd4486",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
