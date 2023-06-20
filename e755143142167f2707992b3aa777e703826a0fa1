@@ -34,6 +34,24 @@
       "parentUuid": "d854dc9b_eaaa6d6a",
       "revId": "e755143142167f2707992b3aa777e703826a0fa1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eb5312a1_d72572e2",
+        "filename": "system/build/Android.bp",
+        "patchSetId": 5
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2023-06-20T16:27:49Z",
+      "side": 0,
+      "message": "I don\u0027t think this change is needed. We need the capacity to apply common configs to all modules, unless you have other approaches to do so.",
+      "parentUuid": "1b5a2c1f_56548902",
+      "revId": "e755143142167f2707992b3aa777e703826a0fa1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
