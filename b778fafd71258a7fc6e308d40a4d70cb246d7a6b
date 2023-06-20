@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "356385c0_9c7a320b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-06-20T18:59:12Z",
+      "side": 1,
+      "message": "Yes -- what would a sample hcidoc report look like after this rule runs.",
+      "parentUuid": "0794f32f_731d77aa",
+      "revId": "b778fafd71258a7fc6e308d40a4d70cb246d7a6b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "16700cd8_2cf41d12",
@@ -224,6 +242,24 @@
       "side": 1,
       "message": "I still don\u0027t fully grasp when should we have one group and when should we create a new one. If you think so I will move it.\n\nPersonally I can see this file bloated several more hundred lines when we support profile connections, and I am leaning against having a long file that does different things, albeit on the same topic.",
       "parentUuid": "624bb326_53ac6f3e",
+      "revId": "b778fafd71258a7fc6e308d40a4d70cb246d7a6b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "21379122_bcd0ef0a",
+        "filename": "floss/hcidoc/src/groups/informational.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-06-20T18:59:12Z",
+      "side": 1,
+      "message": "sgtm -- another option is to refactor the file layout so connections becomes a folder and has `odd_disconnections` and this rule as files inside. The goal is to group similar rules together.",
+      "parentUuid": "d6441e5e_1b1d5b09",
       "revId": "b778fafd71258a7fc6e308d40a4d70cb246d7a6b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
