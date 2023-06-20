@@ -50,8 +50,6 @@ using CommandCallbackData = struct {
 };
 
 constexpr size_t kBtHdrSize = sizeof(BT_HDR);
-constexpr size_t kCommandLengthSize = sizeof(uint8_t);
-constexpr size_t kCommandOpcodeSize = sizeof(uint16_t);
 
 static base::Callback<void(const base::Location&, BT_HDR*)> send_data_upwards;
 static const packet_fragmenter_t* packet_fragmenter;
@@ -332,44 +330,6 @@ void OnTransmitPacketStatus(command_status_cb status_callback, void* context,
   status_callback(status, static_cast<BT_HDR*>(command->Release()), context);
 }
 
-static void transmit_command(const BT_HDR* command,
-                             command_complete_cb complete_callback,
-                             command_status_cb status_callback, void* context) {
-  CHECK(command != nullptr);
-  const uint8_t* data = command->data + command->offset;
-  size_t len = command->len;
-  CHECK(len >= (kCommandOpcodeSize + kCommandLengthSize));
-
-  // little endian command opcode
-  uint16_t command_op_code = (data[1] << 8 | data[0]);
-  // Gd stack API requires opcode specification and calculates length, so
-  // no need to provide opcode or length here.
-  data += (kCommandOpcodeSize + kCommandLengthSize);
-  len -= (kCommandOpcodeSize + kCommandLengthSize);
-
-  auto op_code = static_cast<const bluetooth::hci::OpCode>(command_op_code);
-
-  auto payload = MakeUniquePacket(data, len);
-  auto packet =
-      bluetooth::hci::CommandBuilder::Create(op_code, std::move(payload));
-
-  LOG_DEBUG("Sending command %s", bluetooth::hci::OpCodeText(op_code).c_str());
-
-  if (bluetooth::hci::Checker::IsCommandStatusOpcode(op_code)) {
-    auto command_unique = std::make_unique<OsiObject>(command);
-    bluetooth::shim::GetHciLayer()->EnqueueCommand(
-        std::move(packet), bluetooth::shim::GetGdShimHandler()->BindOnce(
-                               OnTransmitPacketStatus, status_callback, context,
-                               std::move(command_unique)));
-  } else {
-    bluetooth::shim::GetHciLayer()->EnqueueCommand(
-        std::move(packet),
-        bluetooth::shim::GetGdShimHandler()->BindOnce(
-            OnTransmitPacketCommandComplete, complete_callback, context));
-    osi_free(const_cast<void*>(static_cast<const void*>(command)));
-  }
-}
-
 static void transmit_iso_fragment(const uint8_t* stream, size_t length) {
   uint16_t handle_with_flags;
   STREAM_TO_UINT16(handle_with_flags, stream);
@@ -454,12 +414,6 @@ static void set_data_cb(
   send_data_upwards = std::move(send_data_cb);
 }
 
-static void transmit_command(const BT_HDR* command,
-                             command_complete_cb complete_callback,
-                             command_status_cb status_callback, void* context) {
-  cpp::transmit_command(command, complete_callback, status_callback, context);
-}
-
 static void transmit_fragment(BT_HDR* packet, bool send_transmit_finished) {
   uint16_t event = packet->event & MSG_EVT_MASK;
 
@@ -494,7 +448,6 @@ static void transmit_downward(uint16_t type, void* raw_data) {
 }
 
 static hci_t interface = {.set_data_cb = set_data_cb,
-                          .transmit_command = transmit_command,
                           .transmit_downward = transmit_downward};
 
 const hci_t* bluetooth::shim::hci_layer_get_interface() {
