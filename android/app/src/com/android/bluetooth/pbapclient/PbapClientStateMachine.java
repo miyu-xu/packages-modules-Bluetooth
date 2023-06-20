@@ -63,6 +63,7 @@ import com.android.bluetooth.BluetoothMetricsProto;
 import com.android.bluetooth.Utils;
 import com.android.bluetooth.btservice.MetricsLogger;
 import com.android.bluetooth.btservice.ProfileService;
+import com.android.internal.annotations.GuardedBy;
 import com.android.internal.annotations.VisibleForTesting;
 import com.android.internal.util.IState;
 import com.android.internal.util.State;
@@ -102,7 +103,10 @@ class PbapClientStateMachine extends StateMachine {
     private final BluetoothDevice mCurrentDevice;
     private PbapClientService mService;
     private PbapClientConnectionHandler mConnectionHandler;
+
+    @GuardedBy("mLock")
     private HandlerThread mHandlerThread = null;
+
     private UserManager mUserManager = null;
 
     // mMostRecentState maintains previous state for broadcasting transitions.
@@ -161,20 +165,24 @@ class PbapClientStateMachine extends StateMachine {
             mCurrentDevice.sdpSearch(BluetoothUuid.PBAP_PSE);
             mMostRecentState = BluetoothProfile.STATE_CONNECTING;
 
-            // Create a separate handler instance and thread for performing
-            // connect/download/disconnect operations as they may be time consuming and error prone.
-            mHandlerThread =
-                    new HandlerThread("PBAP PCE handler", Process.THREAD_PRIORITY_BACKGROUND);
-            mHandlerThread.start();
+            synchronized (mLock) {
+                // Create a separate handler instance and thread for performing
+                // connect/download/disconnect operations as they may be time consuming and error
+                // prone.
+                mHandlerThread =
+                        new HandlerThread("PBAP PCE handler", Process.THREAD_PRIORITY_BACKGROUND);
+                mHandlerThread.start();
 
-            // Keeps mock handler from being overwritten in tests
-            if (mConnectionHandler == null) {
-                mConnectionHandler =
-                    new PbapClientConnectionHandler.Builder().setLooper(mHandlerThread.getLooper())
-                            .setContext(mService)
-                            .setClientSM(PbapClientStateMachine.this)
-                            .setRemoteDevice(mCurrentDevice)
-                            .build();
+                // Keeps mock handler from being overwritten in tests
+                if (mConnectionHandler == null) {
+                    mConnectionHandler =
+                            new PbapClientConnectionHandler.Builder()
+                                    .setLooper(mHandlerThread.getLooper())
+                                    .setContext(mService)
+                                    .setClientSM(PbapClientStateMachine.this)
+                                    .setRemoteDevice(mCurrentDevice)
+                                    .build();
+                }
             }
 
             sendMessageDelayed(MSG_CONNECT_TIMEOUT, CONNECT_TIMEOUT);
@@ -282,7 +290,9 @@ class PbapClientStateMachine extends StateMachine {
             switch (message.what) {
                 case MSG_CONNECTION_CLOSED:
                     removeMessages(MSG_DISCONNECT_TIMEOUT);
-                    mHandlerThread.quitSafely();
+                    synchronized (mLock) {
+                        mHandlerThread.quitSafely();
+                    }
                     transitionTo(mDisconnected);
                     break;
 
@@ -293,7 +303,9 @@ class PbapClientStateMachine extends StateMachine {
                 case MSG_DISCONNECT_TIMEOUT:
                     Log.w(TAG, "Disconnect Timeout, Forcing");
                     mConnectionHandler.abort();
-                    mHandlerThread.quitSafely();
+                    synchronized (mLock) {
+                        mHandlerThread.quitSafely();
+                    }
                     transitionTo(mDisconnected);
                     break;
 
@@ -388,8 +400,10 @@ class PbapClientStateMachine extends StateMachine {
     }
 
     void doQuit() {
-        if (mHandlerThread != null) {
-            mHandlerThread.quitSafely();
+        synchronized (mLock) {
+            if (mHandlerThread != null) {
+                mHandlerThread.quitSafely();
+            }
         }
         quitNow();
     }
