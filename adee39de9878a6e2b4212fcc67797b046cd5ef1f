@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d878f1b3_2f11314c",
+        "filename": "framework/java/android/bluetooth/BluetoothLeBroadcastSettings.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 273,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-06-20T21:10:54Z",
+      "side": 1,
+      "message": "nit: \"name length is non-null and less\" --\u003e \"name is non-null and its length is less\"",
+      "revId": "adee39de9878a6e2b4212fcc67797b046cd5ef1f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "300c7872_50347cdb",
+        "filename": "framework/java/android/bluetooth/BluetoothLeBroadcastSettings.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 299,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-06-20T21:10:54Z",
+      "side": 1,
+      "message": "Same nit: \"code is non-null and its length is less\"",
+      "revId": "adee39de9878a6e2b4212fcc67797b046cd5ef1f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
