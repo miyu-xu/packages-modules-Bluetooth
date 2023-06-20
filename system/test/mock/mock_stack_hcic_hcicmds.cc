@@ -364,10 +364,11 @@ void btsnd_hcic_write_dev_class(DEV_CLASS dev_class) {
   inc_func_call_count(__func__);
   test::mock::stack_hcic_hcicmds::btsnd_hcic_write_dev_class(dev_class);
 }
-void btsnd_hcic_write_ext_inquiry_response(void* buffer, uint8_t fec_req) {
+void btsnd_hcic_write_ext_inquiry_response(
+    const std::array<uint8_t, 240>& eir_data, uint8_t fec_req) {
   inc_func_call_count(__func__);
   test::mock::stack_hcic_hcicmds::btsnd_hcic_write_ext_inquiry_response(
-      buffer, fec_req);
+      eir_data, fec_req);
 }
 void btsnd_hcic_write_inqscan_cfg(uint16_t interval, uint16_t window) {
   inc_func_call_count(__func__);
