@@ -177,6 +177,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9cb94981_825c3bf5",
+        "filename": "floss/hcidoc/src/groups/connections.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 626,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-06-20T17:31:08Z",
+      "side": 1,
+      "message": "No, since we check the `state` in `report_address_auth_failure()`, and we remove the state immediately here and also in `AuthenticationComplete`",
+      "parentUuid": "72b58fa8_7071a8b5",
+      "revId": "56428650069eee34a72a0d2a2f3548d4c55716f4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5cba8978_6b7f3df1",
         "filename": "floss/hcidoc/src/groups/connections.rs",
         "patchSetId": 2
