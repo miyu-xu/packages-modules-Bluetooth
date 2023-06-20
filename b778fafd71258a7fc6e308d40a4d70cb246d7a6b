@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "0794f32f_731d77aa",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-06-20T17:44:17Z",
+      "side": 1,
+      "message": "You want some sample output of the hcidoc?",
+      "parentUuid": "161a7a68_bad42d80",
+      "revId": "b778fafd71258a7fc6e308d40a4d70cb246d7a6b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "16700cd8_2cf41d12",
@@ -54,6 +72,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9d2f6e94_0f1bdf7f",
+        "filename": "floss/hcidoc/src/groups/informational.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-06-20T17:44:17Z",
+      "side": 1,
+      "message": "OK",
+      "parentUuid": "6d72d76f_9396dd54",
+      "revId": "b778fafd71258a7fc6e308d40a4d70cb246d7a6b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d6cd1be4_edc59d56",
         "filename": "floss/hcidoc/src/groups/informational.rs",
         "patchSetId": 1
@@ -65,6 +101,24 @@
       "writtenOn": "2023-06-20T13:28:03Z",
       "side": 1,
       "message": "Is it useful to know if a name switches between `foo` and `foo-LE`? Would it be better to print this as a Set instead?",
+      "revId": "b778fafd71258a7fc6e308d40a4d70cb246d7a6b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "42c6d2dd_f3f04aa3",
+        "filename": "floss/hcidoc/src/groups/informational.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-06-20T17:44:17Z",
+      "side": 1,
+      "message": "\u003e Is it useful to know if a name switches between foo and foo-LE?\n\nYes, I believe so. I also spotted my raspi advertises as entirely something else. \n\n\u003e Would it be better to print this as a Set instead?\n\nYeah, probably set is a simpler choice since I remove dups anyway.",
+      "parentUuid": "d6cd1be4_edc59d56",
       "revId": "b778fafd71258a7fc6e308d40a4d70cb246d7a6b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -88,6 +142,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "00ff9fc6_aa68e4d3",
+        "filename": "floss/hcidoc/src/groups/informational.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-06-20T17:44:17Z",
+      "side": 1,
+      "message": "Good idea",
+      "parentUuid": "927af891_293f3838",
+      "revId": "b778fafd71258a7fc6e308d40a4d70cb246d7a6b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "cb58668d_7b96c8dc",
         "filename": "floss/hcidoc/src/groups/informational.rs",
         "patchSetId": 1
@@ -99,6 +171,24 @@
       "writtenOn": "2023-06-20T13:28:03Z",
       "side": 1,
       "message": "Add docstring",
+      "revId": "b778fafd71258a7fc6e308d40a4d70cb246d7a6b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2b7bf80b_60b306f5",
+        "filename": "floss/hcidoc/src/groups/informational.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-06-20T17:44:17Z",
+      "side": 1,
+      "message": "OK",
+      "parentUuid": "cb58668d_7b96c8dc",
       "revId": "b778fafd71258a7fc6e308d40a4d70cb246d7a6b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -122,6 +212,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d6441e5e_1b1d5b09",
+        "filename": "floss/hcidoc/src/groups/informational.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-06-20T17:44:17Z",
+      "side": 1,
+      "message": "I still don\u0027t fully grasp when should we have one group and when should we create a new one. If you think so I will move it.\n\nPersonally I can see this file bloated several more hundred lines when we support profile connections, and I am leaning against having a long file that does different things, albeit on the same topic.",
+      "parentUuid": "624bb326_53ac6f3e",
+      "revId": "b778fafd71258a7fc6e308d40a4d70cb246d7a6b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5f2ff204_3deafcb3",
         "filename": "floss/hcidoc/src/groups/informational.rs",
         "patchSetId": 1
@@ -133,6 +241,24 @@
       "writtenOn": "2023-06-20T13:28:03Z",
       "side": 1,
       "message": "Prefer `pub(super)` for all these (seems like these don\u0027t need to be pub outside this module).",
+      "revId": "b778fafd71258a7fc6e308d40a4d70cb246d7a6b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e571c49a_3b146ef8",
+        "filename": "floss/hcidoc/src/groups/informational.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-06-20T17:44:17Z",
+      "side": 1,
+      "message": "OK",
+      "parentUuid": "5f2ff204_3deafcb3",
       "revId": "b778fafd71258a7fc6e308d40a4d70cb246d7a6b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -156,6 +282,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5a5c2966_d196978a",
+        "filename": "floss/hcidoc/src/groups/informational.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 371,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-06-20T17:44:17Z",
+      "side": 1,
+      "message": "OK",
+      "parentUuid": "1f0253ef_cacc1181",
+      "revId": "b778fafd71258a7fc6e308d40a4d70cb246d7a6b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d289d134_c165def9",
         "filename": "floss/hcidoc/src/groups/informational.rs",
         "patchSetId": 1
@@ -167,6 +311,24 @@
       "writtenOn": "2023-06-20T13:28:03Z",
       "side": 1,
       "message": "Avoiding unwrap:\n\n```\nfor (_, info) in self.devices.iter() {\n}\n```",
+      "revId": "b778fafd71258a7fc6e308d40a4d70cb246d7a6b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "30d40784_a26c0d0a",
+        "filename": "floss/hcidoc/src/groups/informational.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 390,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-06-20T17:44:17Z",
+      "side": 1,
+      "message": "Nice! thanks",
+      "parentUuid": "d289d134_c165def9",
       "revId": "b778fafd71258a7fc6e308d40a4d70cb246d7a6b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
