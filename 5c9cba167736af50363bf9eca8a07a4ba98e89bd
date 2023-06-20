@@ -16,6 +16,24 @@
       "message": "What if there is device with more services that just spatial audio, and user toggles just LE Audio ?\nI have premonition this could blow up into bigger issues.\n\nWe should be able to just stop all non-opportunistic clients, mark device for no connections using TA and disconnection should happen after couple seconds.\n\nWhat is triggering the reconnection now ?",
       "revId": "5c9cba167736af50363bf9eca8a07a4ba98e89bd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3c6b53e1_b2748386",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-06-20T10:34:31Z",
+      "side": 1,
+      "message": "If LeAudio toggle is used then setConnectionPolicy API is used and LeAudio is disabled. In such a case, ACL will not be dropped.\n\nIt will be dropped only when Connect/DIsconnect API is used.",
+      "parentUuid": "a70a6ddb_af8317f8",
+      "revId": "5c9cba167736af50363bf9eca8a07a4ba98e89bd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
