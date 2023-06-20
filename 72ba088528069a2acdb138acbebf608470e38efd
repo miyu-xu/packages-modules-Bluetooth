@@ -205,6 +205,30 @@
       },
       "revId": "72ba088528069a2acdb138acbebf608470e38efd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b274b495_a7b86a48",
+        "filename": "system/stack/btm/btm_main.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2023-06-20T07:51:08Z",
+      "side": 1,
+      "message": "`btm_inq_db_init` is dead code for Floss but I\u0027m not sure about AOSP since aosp/c/2617049 was merged pretty recently.\n\nApart from that, there was a pending fix(aosp/c/2318350) in inquiry which could mitigate the same issue, but I still think Floss can benefit from enabling `inq_by_rssi` in performance.",
+      "parentUuid": "a62f23b1_a24fec4f",
+      "range": {
+        "startLine": 58,
+        "startChar": 2,
+        "endLine": 58,
+        "endChar": 25
+      },
+      "revId": "72ba088528069a2acdb138acbebf608470e38efd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
