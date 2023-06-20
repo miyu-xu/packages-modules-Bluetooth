@@ -1,6 +1,29 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "5385409f_51d7c350",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-06-20T18:47:39Z",
+      "side": 1,
+      "message": "Could you fill go/bt-testing-exemption ?\n\nI saw that you plan to do a follow up with a test, you can ignore this step if it\u0027s the case.",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 12
+      },
+      "revId": "b754e9bb2f2795fb1f692ebe02977a866e98511b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "59bf5529_93af8add",
