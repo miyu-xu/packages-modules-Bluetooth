@@ -33,6 +33,7 @@ import android.media.AudioManager;
 import android.os.Looper;
 import android.os.Message;
 import android.os.SystemClock;
+import android.os.SystemProperties;
 import android.os.UserHandle;
 import android.telephony.PhoneNumberUtils;
 import android.telephony.PhoneStateListener;
@@ -160,6 +161,12 @@ public class HeadsetStateMachine extends StateMachine {
     private int mAudioDisconnectRetry = 0;
 
     private BluetoothSinkAudioPolicy mHsClientAudioPolicy;
+    private int mAudioPolicyRemoteSupported;
+
+    // Feature flag of Audio Policy Feature
+    private boolean mAudioPolicyEnabled;
+    private static final String AUDIO_POLICY_ENABLED_PROPERTY =
+            "bluetooth.hfp.audio_policy.enabled";
 
     // Keys are AT commands, and values are the company IDs.
     private static final Map<String, Integer> VENDOR_SPECIFIC_AT_COMMAND_COMPANY_ID;
@@ -198,6 +205,7 @@ public class HeadsetStateMachine extends StateMachine {
             "DatabaseManager cannot be null when HeadsetClientStateMachine is created");
         mDeviceSilenced = false;
 
+        mAudioPolicyEnabled = SystemProperties.getBoolean(AUDIO_POLICY_ENABLED_PROPERTY, true);
         BluetoothSinkAudioPolicy storedAudioPolicy =
                 mDatabaseManager.getAudioPolicyMetadata(device);
         if (storedAudioPolicy == null) {
@@ -263,7 +271,9 @@ public class HeadsetStateMachine extends StateMachine {
         ProfileService.println(sb, "  mMicVolume: " + mMicVolume);
         ProfileService.println(sb,
                 "  mConnectingTimestampMs(uptimeMillis): " + mConnectingTimestampMs);
+        ProfileService.println(sb, "  mAudioPolicyRemoteSupported: " + mAudioPolicyRemoteSupported);
         ProfileService.println(sb, "  mHsClientAudioPolicy: " + mHsClientAudioPolicy.toString());
+        ProfileService.println(sb, "  mAudioPolicyEnabled: " + mAudioPolicyEnabled);
 
         ProfileService.println(sb, "  StateMachine: " + this);
         // Dump the state machine logs
@@ -2063,9 +2073,14 @@ public class HeadsetStateMachine extends StateMachine {
             replying with +ANDROID: (<feature1>, <feature2>, ...)
             currently we only support one type of feature: SINKAUDIOPOLICY
         */
-        mNativeInterface.atResponseString(device,
-                BluetoothHeadset.VENDOR_RESULT_CODE_COMMAND_ANDROID
-                + ": (" + BluetoothSinkAudioPolicy.HFP_SET_SINK_AUDIO_POLICY_ID + ")");
+        if (isAudioPolicySupported()) {
+            mNativeInterface.atResponseString(
+                    device,
+                    BluetoothHeadset.VENDOR_RESULT_CODE_COMMAND_ANDROID
+                            + ": ("
+                            + BluetoothSinkAudioPolicy.HFP_SET_SINK_AUDIO_POLICY_ID
+                            + ")");
+        }
     }
 
     /**
@@ -2098,6 +2113,8 @@ public class HeadsetStateMachine extends StateMachine {
         int connectingTimePolicy = (Integer) args[2];
         int inbandPolicy = (Integer) args[3];
 
+        // Received new policy of remote device, set remote support to true
+        setAudioPolicyRemoteSupported(true);
         setHfpCallAudioPolicy(new BluetoothSinkAudioPolicy.Builder()
                 .setCallEstablishPolicy(callEstablishPolicy)
                 .setActiveDevicePolicyAfterConnection(connectingTimePolicy)
@@ -2112,6 +2129,16 @@ public class HeadsetStateMachine extends StateMachine {
      * @param policies policies to be set and stored
      */
     public void setHfpCallAudioPolicy(BluetoothSinkAudioPolicy policies) {
+        if (!isAudioPolicySupported()) {
+            Log.d(TAG, "Reject to get audio policy. Reason: feature not supported");
+            return;
+        }
+        if (getAudioPolicyRemoteSupported() != BluetoothStatusCodes.FEATURE_SUPPORTED) {
+            Log.d(
+                    TAG,
+                    "Reject to get audio policy. Reason: remote device didn't init audio policy");
+            return;
+        }
         mHsClientAudioPolicy = policies;
         mDatabaseManager.setAudioPolicyMetadata(mDevice, policies);
     }
@@ -2121,6 +2148,16 @@ public class HeadsetStateMachine extends StateMachine {
      *
      */
     public BluetoothSinkAudioPolicy getHfpCallAudioPolicy() {
+        if (!isAudioPolicySupported()) {
+            Log.d(TAG, "Reject to get audio policy. Reason: feature not supported");
+            return null;
+        }
+        if (getAudioPolicyRemoteSupported() != BluetoothStatusCodes.FEATURE_SUPPORTED) {
+            Log.d(
+                    TAG,
+                    "Reject to get audio policy. Reason: remote device didn't init audio policy");
+            return null;
+        }
         return mHsClientAudioPolicy;
     }
 
@@ -2433,5 +2470,32 @@ public class HeadsetStateMachine extends StateMachine {
             default:
                 return "UNKNOWN(" + what + ")";
         }
+    }
+
+    /**
+     * sets the audio policy feature support status
+     *
+     * @param supported support status
+     */
+    public void setAudioPolicyRemoteSupported(boolean supported) {
+        if (supported) {
+            mAudioPolicyRemoteSupported = BluetoothStatusCodes.FEATURE_SUPPORTED;
+        } else {
+            mAudioPolicyRemoteSupported = BluetoothStatusCodes.FEATURE_NOT_SUPPORTED;
+        }
+    }
+
+    /**
+     * gets the audio policy feature support status
+     *
+     * @return int support status
+     */
+    public int getAudioPolicyRemoteSupported() {
+        return mAudioPolicyRemoteSupported;
+    }
+
+    /** Supported if AG supports auido policy */
+    public boolean isAudioPolicySupported() {
+        return mAudioPolicyEnabled;
     }
 }

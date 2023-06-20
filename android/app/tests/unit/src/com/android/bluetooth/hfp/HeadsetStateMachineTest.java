@@ -23,6 +23,7 @@ import static org.mockito.Mockito.*;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothHeadset;
+import android.bluetooth.BluetoothSinkAudioPolicy;
 import android.bluetooth.BluetoothProfile;
 import android.bluetooth.BluetoothStatusCodes;
 import android.content.ContentResolver;
@@ -1557,6 +1558,24 @@ public class HeadsetStateMachineTest {
         // wrong device
         BluetoothDevice device = mAdapter.getRemoteDevice("01:01:01:01:01:01");
         Assert.assertFalse(setSinkAudioPolicyArgs("SINKAUDIOPOLICY,0,0,0", device));
+    }
+
+    /** A test to verify remote supported audio policy or not. */
+    @Test
+    public void testAudioPolicyRemoteSupported() {
+        setUpConnectingState();
+        setSinkAudioPolicyArgs("SINKAUDIOPOLICY,1,1,1", mTestDevice);
+
+        Assert.assertEquals(
+                BluetoothStatusCodes.FEATURE_SUPPORTED,
+                mHeadsetStateMachine.getAudioPolicyRemoteSupported());
+        Assert.assertEquals(
+                mHeadsetStateMachine.getHfpCallAudioPolicy(),
+                new BluetoothSinkAudioPolicy.Builder()
+                        .setCallEstablishPolicy(1)
+                        .setActiveDevicePolicyAfterConnection(1)
+                        .setInBandRingtonePolicy(1)
+                        .build());
     }
 
     /**

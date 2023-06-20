@@ -1191,14 +1191,34 @@ public class HeadsetClientStateMachineTest {
                 .setInBandRingtonePolicy(BluetoothSinkAudioPolicy.POLICY_ALLOWED)
                 .build();
 
-        // Test if not support audio policy feature
+        // Test if audio policy feature is disabled
+        mHeadsetClientStateMachine.setAudioPolicyFeatureSupported(false);
+
+        //      If remote does not support audio policy feature
         mHeadsetClientStateMachine.setAudioPolicyRemoteSupported(false);
         mHeadsetClientStateMachine.setAudioPolicy(dummyAudioPolicy);
         verify(mNativeInterface, never()).sendAndroidAt(mTestDevice,
                 "+ANDROID=SINKAUDIOPOLICY,1,2,1");
         Assert.assertEquals(0, mHeadsetClientStateMachine.mQueuedActions.size());
 
-        // Test setAudioPolicy
+        //      If remote support audio policy feature
+        mHeadsetClientStateMachine.setAudioPolicyRemoteSupported(true);
+        mHeadsetClientStateMachine.setAudioPolicy(dummyAudioPolicy);
+        verify(mNativeInterface, never())
+                .sendAndroidAt(mTestDevice, "+ANDROID=SINKAUDIOPOLICY,1,2,1");
+        Assert.assertEquals(0, mHeadsetClientStateMachine.mQueuedActions.size());
+
+        // Test if audio policy feature is enabled
+        mHeadsetClientStateMachine.setAudioPolicyFeatureSupported(true);
+
+        //      If remote does not support audio policy feature
+        mHeadsetClientStateMachine.setAudioPolicyRemoteSupported(false);
+        mHeadsetClientStateMachine.setAudioPolicy(dummyAudioPolicy);
+        verify(mNativeInterface, never())
+                .sendAndroidAt(mTestDevice, "+ANDROID=SINKAUDIOPOLICY,1,2,1");
+        Assert.assertEquals(0, mHeadsetClientStateMachine.mQueuedActions.size());
+
+        //      If remote support audio policy feature
         mHeadsetClientStateMachine.setAudioPolicyRemoteSupported(true);
         mHeadsetClientStateMachine.setAudioPolicy(dummyAudioPolicy);
         verify(mNativeInterface).sendAndroidAt(mTestDevice, "+ANDROID=SINKAUDIOPOLICY,1,2,1");
@@ -1534,6 +1554,7 @@ public class HeadsetClientStateMachineTest {
 
         Boolean allowConnect = null;
         boolean mForceSetAudioPolicyProperty = false;
+        boolean mAudioPolicySupported = true;
 
         TestHeadsetClientStateMachine(HeadsetClientService context, HeadsetService headsetService,
                 Looper looper, NativeInterface nativeInterface) {
@@ -1566,6 +1587,15 @@ public class HeadsetClientStateMachineTest {
         @Override
         boolean getForceSetAudioPolicyProperty() {
             return mForceSetAudioPolicyProperty;
+        }
+
+        void setAudioPolicyFeatureSupported(boolean flag) {
+            mAudioPolicySupported = flag;
+        }
+
+        @Override
+        boolean isAudioPolicySupported() {
+            return mAudioPolicySupported;
         }
     }
 }
