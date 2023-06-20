@@ -173,7 +173,8 @@ void btsnd_hcic_sniff_sub_rate(uint16_t handle, uint16_t max_lat,
 /* Sniff Subrating */
 
 /* Extended Inquiry Response */
-void btsnd_hcic_write_ext_inquiry_response(void* buffer, uint8_t fec_req);
+void btsnd_hcic_write_ext_inquiry_response(
+    const std::array<uint8_t, 240>& eir_data, uint8_t fec_req);
 /* IO Capabilities Response */
 void btsnd_hcic_io_cap_req_reply(const RawAddress& bd_addr, uint8_t capability,
                                  uint8_t oob_present, uint8_t auth_req);
