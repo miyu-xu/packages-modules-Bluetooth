@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fdc407f3_458f0295",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-06-20T18:36:32Z",
+      "side": 1,
+      "message": "Left that part in other patch. fixed",
+      "parentUuid": "f6a3adb3_69a2641b",
+      "revId": "8413846ecc579cfb0ef1cd2b368f61ffa0a0afb4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d1ac541a_0f8e9587",
@@ -43,6 +61,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "699ced52_cbe62b31",
+        "filename": "framework/java/android/bluetooth/BluetoothLeBroadcastAssistant.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 316,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-06-20T18:36:32Z",
+      "side": 1,
+      "message": "isn\u0027t actually similar mechanism? How that differs?",
+      "parentUuid": "d1ac541a_0f8e9587",
+      "range": {
+        "startLine": 316,
+        "startChar": 20,
+        "endLine": 316,
+        "endChar": 38
+      },
+      "revId": "8413846ecc579cfb0ef1cd2b368f61ffa0a0afb4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3ad92bab_c1322ba0",
         "filename": "framework/java/android/bluetooth/BluetoothLeBroadcastAssistant.java",
         "patchSetId": 1
@@ -54,6 +96,24 @@
       "writtenOn": "2023-06-16T18:09:19Z",
       "side": 1,
       "message": "is this missed in this cl?\nsetAdapterReconnected()",
+      "revId": "8413846ecc579cfb0ef1cd2b368f61ffa0a0afb4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "772c4c9a_26b2d777",
+        "filename": "framework/java/android/bluetooth/BluetoothLeBroadcastAssistant.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 324,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-06-20T18:36:32Z",
+      "side": 1,
+      "message": "right, thanks.",
+      "parentUuid": "3ad92bab_c1322ba0",
       "revId": "8413846ecc579cfb0ef1cd2b368f61ffa0a0afb4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
