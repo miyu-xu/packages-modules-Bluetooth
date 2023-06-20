@@ -34,6 +34,24 @@
       "parentUuid": "80d50549_647f2be7",
       "revId": "5f693b129f87e7834ea9d8582b60e50790515a31",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c2a464af_dd024903",
+        "filename": "system/bta/le_audio/le_audio_client_test.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 2967,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-06-20T09:15:24Z",
+      "side": 1,
+      "message": "Ups. I incorrectly read it \"GattClose\"",
+      "parentUuid": "3c3f0226_761a53f2",
+      "revId": "5f693b129f87e7834ea9d8582b60e50790515a31",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
