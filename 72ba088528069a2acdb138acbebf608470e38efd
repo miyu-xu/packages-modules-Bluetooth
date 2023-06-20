@@ -181,6 +181,30 @@
       },
       "revId": "72ba088528069a2acdb138acbebf608470e38efd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a62f23b1_a24fec4f",
+        "filename": "system/stack/btm/btm_main.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2023-06-20T02:21:41Z",
+      "side": 1,
+      "message": "btm_inq_db_init appears to be dead code. Initializing it in tBTM_INQUIRY_VAR_ST::Init() might be an alternative option?",
+      "parentUuid": "0a633ccb_88a00fa5",
+      "range": {
+        "startLine": 58,
+        "startChar": 2,
+        "endLine": 58,
+        "endChar": 25
+      },
+      "revId": "72ba088528069a2acdb138acbebf608470e38efd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
