@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8db7e299_c9e58b1b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-06-21T23:54:36Z",
+      "side": 1,
+      "message": "Got it...thx...that space crept in because I didn\u0027t carry over the comment in my initial copy.",
+      "revId": "eae033db542125d24c97fc23f2203aa047e6fd6c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
