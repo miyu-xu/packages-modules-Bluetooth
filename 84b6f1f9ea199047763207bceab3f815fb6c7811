@@ -34,6 +34,24 @@
       "parentUuid": "c7e860a4_23eeec80",
       "revId": "84b6f1f9ea199047763207bceab3f815fb6c7811",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "da55d6ec_60b6be1b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-06-21T23:35:36Z",
+      "side": 1,
+      "message": "By inspection, it\u0027s obvious that this test should catch this failure of memory not being properly deallocated.\n\nThis test does catch the failure when run directly on cuttlefish but does not catch the failure when run via `atest`.\n\nThis leads me to believe it\u0027s an infrastructure issue with atest/presubmit not properly reporting this failure.\n\nWe need a properly working automated test.",
+      "parentUuid": "d57b25f5_eafc2eac",
+      "revId": "84b6f1f9ea199047763207bceab3f815fb6c7811",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
