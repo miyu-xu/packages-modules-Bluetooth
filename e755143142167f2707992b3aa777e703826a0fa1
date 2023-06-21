@@ -70,6 +70,24 @@
       "parentUuid": "eb5312a1_d72572e2",
       "revId": "e755143142167f2707992b3aa777e703826a0fa1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1a538b43_a0d0c912",
+        "filename": "system/build/Android.bp",
+        "patchSetId": 5
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2023-06-21T23:18:55Z",
+      "side": 0,
+      "message": "In the next step, it is quite clear that we are going to need to apply Int-San and possibly CFI (not clear whether it is enabled in other places or not).\n\nI think it is a better option to leave it like this, just be careful when adding \nnew stuff to it.\n\nWe can change the name from `fluoride` to `bluetooth`, but narrowing it to cflags is undesired.",
+      "parentUuid": "a26b1e12_fee74828",
+      "revId": "e755143142167f2707992b3aa777e703826a0fa1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
