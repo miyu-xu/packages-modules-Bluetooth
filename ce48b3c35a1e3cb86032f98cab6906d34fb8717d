@@ -88,6 +88,24 @@
       "parentUuid": "c336a631_5d74f35f",
       "revId": "ce48b3c35a1e3cb86032f98cab6906d34fb8717d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6c816a9a_21e81c61",
+        "filename": "system/stack/btm/btm_sco.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-06-21T23:51:37Z",
+      "side": 1,
+      "message": "Still here I am not sure what you did\n\nI put a suggested edit for you to apply directly.",
+      "parentUuid": "23024ded_39f0a861",
+      "revId": "ce48b3c35a1e3cb86032f98cab6906d34fb8717d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

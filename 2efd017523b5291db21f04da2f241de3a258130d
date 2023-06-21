@@ -33,6 +33,47 @@
       "message": "ok that empty line between `namespace open bracket` should be gone",
       "revId": "2efd017523b5291db21f04da2f241de3a258130d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "be895e51_959cacb6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-06-21T23:51:37Z",
+      "side": 1,
+      "message": "That wasn\u0027t the line I was talking about",
+      "parentUuid": "b6d56e42_09b2f2a7",
+      "revId": "2efd017523b5291db21f04da2f241de3a258130d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d0720e61_b5139837",
+        "filename": "system/stack/btm/btm_sco.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-06-21T23:51:37Z",
+      "side": 1,
+      "message": "```suggestion\nnamespace {\n\n/* Structure passed with SCO change command and events.\n * Used by both Sync and Enhanced sync messaging\n */\ntypedef struct {\n  uint16_t max_latency_ms;\n  uint16_t packet_types;\n  uint8_t retransmission_effort;\n} tBTM_CHG_ESCO_PARAMS;\n\nconstexpr char kBtmLogTag[] \u003d \"SCO\";\n```",
+      "range": {
+        "startLine": 71,
+        "startChar": 0,
+        "endLine": 82,
+        "endChar": 36
+      },
+      "revId": "2efd017523b5291db21f04da2f241de3a258130d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
