@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "82f2c5f3_bd25ac4b",
+        "filename": "system/stack/btm/btm_sco.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-06-21T21:15:22Z",
+      "side": 1,
+      "message": "Nit: I expect there should not be an empty line between the comment and the structure it is attached to",
+      "revId": "ce48b3c35a1e3cb86032f98cab6906d34fb8717d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
