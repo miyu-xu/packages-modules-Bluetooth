@@ -56,6 +56,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "52fc3377_b089da8f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-06-21T08:51:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "356385c0_9c7a320b",
+      "revId": "b778fafd71258a7fc6e308d40a4d70cb246d7a6b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "16700cd8_2cf41d12",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 1
@@ -106,6 +124,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "37047e71_4ac99e69",
+        "filename": "floss/hcidoc/src/groups/informational.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-06-21T08:51:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9d2f6e94_0f1bdf7f",
+      "revId": "b778fafd71258a7fc6e308d40a4d70cb246d7a6b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d6cd1be4_edc59d56",
@@ -137,6 +173,24 @@
       "side": 1,
       "message": "\u003e Is it useful to know if a name switches between foo and foo-LE?\n\nYes, I believe so. I also spotted my raspi advertises as entirely something else. \n\n\u003e Would it be better to print this as a Set instead?\n\nYeah, probably set is a simpler choice since I remove dups anyway.",
       "parentUuid": "d6cd1be4_edc59d56",
+      "revId": "b778fafd71258a7fc6e308d40a4d70cb246d7a6b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c4aab8d5_49faf9f0",
+        "filename": "floss/hcidoc/src/groups/informational.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-06-21T08:51:46Z",
+      "side": 1,
+      "message": "Changed it to set, but getting the 0th element of the set is now rather cumbersome.",
+      "parentUuid": "42c6d2dd_f3f04aa3",
       "revId": "b778fafd71258a7fc6e308d40a4d70cb246d7a6b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -176,6 +230,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ac5c8d60_1b0da535",
+        "filename": "floss/hcidoc/src/groups/informational.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-06-21T08:51:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "00ff9fc6_aa68e4d3",
+      "revId": "b778fafd71258a7fc6e308d40a4d70cb246d7a6b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cb58668d_7b96c8dc",
@@ -207,6 +279,24 @@
       "side": 1,
       "message": "OK",
       "parentUuid": "cb58668d_7b96c8dc",
+      "revId": "b778fafd71258a7fc6e308d40a4d70cb246d7a6b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9feeab4a_cc54ccf3",
+        "filename": "floss/hcidoc/src/groups/informational.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-06-21T08:51:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2b7bf80b_60b306f5",
       "revId": "b778fafd71258a7fc6e308d40a4d70cb246d7a6b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -266,6 +356,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7d8f2451_cbeb71b7",
+        "filename": "floss/hcidoc/src/groups/informational.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-06-21T08:51:46Z",
+      "side": 1,
+      "message": "Got it. How about we merge it like this now, and move into a foldered structure in a follow-up CL?",
+      "parentUuid": "21379122_bcd0ef0a",
+      "revId": "b778fafd71258a7fc6e308d40a4d70cb246d7a6b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5f2ff204_3deafcb3",
         "filename": "floss/hcidoc/src/groups/informational.rs",
         "patchSetId": 1
@@ -295,6 +403,24 @@
       "side": 1,
       "message": "OK",
       "parentUuid": "5f2ff204_3deafcb3",
+      "revId": "b778fafd71258a7fc6e308d40a4d70cb246d7a6b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "615a6a7b_d55da89b",
+        "filename": "floss/hcidoc/src/groups/informational.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-06-21T08:51:46Z",
+      "side": 1,
+      "message": "This can work even without pub, so I simply removed them.",
+      "parentUuid": "e571c49a_3b146ef8",
       "revId": "b778fafd71258a7fc6e308d40a4d70cb246d7a6b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -334,6 +460,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6014c94b_9fc42982",
+        "filename": "floss/hcidoc/src/groups/informational.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 371,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-06-21T08:51:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5a5c2966_d196978a",
+      "revId": "b778fafd71258a7fc6e308d40a4d70cb246d7a6b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d289d134_c165def9",
@@ -365,6 +509,24 @@
       "side": 1,
       "message": "Nice! thanks",
       "parentUuid": "d289d134_c165def9",
+      "revId": "b778fafd71258a7fc6e308d40a4d70cb246d7a6b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ea866a83_9be38a2c",
+        "filename": "floss/hcidoc/src/groups/informational.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 390,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-06-21T08:51:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "30d40784_a26c0d0a",
       "revId": "b778fafd71258a7fc6e308d40a4d70cb246d7a6b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
