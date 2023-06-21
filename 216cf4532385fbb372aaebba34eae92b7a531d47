@@ -22,6 +22,30 @@
       },
       "revId": "216cf4532385fbb372aaebba34eae92b7a531d47",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "562dd783_4de3af4a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 18
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2023-06-21T16:55:12Z",
+      "side": 1,
+      "message": "Opps I carelessly click submit button when I see it. Hopefully this doesn\u0027t harm",
+      "parentUuid": "5a2a44c9_39836d13",
+      "range": {
+        "startLine": 27,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 19
+      },
+      "revId": "216cf4532385fbb372aaebba34eae92b7a531d47",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
