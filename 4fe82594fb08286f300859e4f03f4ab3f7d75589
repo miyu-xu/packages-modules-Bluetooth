@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "01ecea4b_f31e1403",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2023-06-21T17:01:39Z",
+      "side": 1,
+      "message": "Corresponding Chromium change: https://crrev.com/c/4632506",
+      "revId": "4fe82594fb08286f300859e4f03f4ab3f7d75589",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
