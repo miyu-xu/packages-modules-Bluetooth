@@ -16,6 +16,91 @@
       "message": "Corresponding Chromium change: https://crrev.com/c/4632506",
       "revId": "4fe82594fb08286f300859e4f03f4ab3f7d75589",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "58203ed0_b8aaa8f8",
+        "filename": "system/gd/rust/linux/stack/src/callbacks.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-06-21T17:18:27Z",
+      "side": 1,
+      "message": "objectpaths is a dbus-ism whereas `RpcProxy` defines these as object ids. We should rename this to `object_id_to_cbid`.",
+      "revId": "4fe82594fb08286f300859e4f03f4ab3f7d75589",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c20445df_b04b45c8",
+        "filename": "system/gd/rust/linux/stack/src/callbacks.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-06-21T17:18:27Z",
+      "side": 1,
+      "message": "nit: `object id`",
+      "revId": "4fe82594fb08286f300859e4f03f4ab3f7d75589",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "90dffd99_5e3a1d77",
+        "filename": "system/gd/rust/linux/stack/src/callbacks.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-06-21T17:18:27Z",
+      "side": 1,
+      "message": "Suggestion:\n```\nif let Some(cbid) \u003d self.object_id_to_cbid.get(\u0026callback.get_object_id()) {\n  return cbid;\n}\n```",
+      "revId": "4fe82594fb08286f300859e4f03f4ab3f7d75589",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "09473670_1efeb883",
+        "filename": "system/gd/rust/linux/stack/src/callbacks.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-06-21T17:18:27Z",
+      "side": 1,
+      "message": "You may need to implement `RegisterDisconnect` here to increment the returned id for this test to work properly (this is what the dbus projection does).",
+      "revId": "4fe82594fb08286f300859e4f03f4ab3f7d75589",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6a1aa913_9c7b48a1",
+        "filename": "system/gd/rust/linux/stack/src/callbacks.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-06-21T17:18:27Z",
+      "side": 1,
+      "message": "You\u0027re going to want to add more than one (since `RegisterDisconnect` always returns 0 unless you implement the trait fn in RPCProxy)",
+      "revId": "4fe82594fb08286f300859e4f03f4ab3f7d75589",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
