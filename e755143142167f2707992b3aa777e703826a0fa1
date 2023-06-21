@@ -106,6 +106,24 @@
       "parentUuid": "1a538b43_a0d0c912",
       "revId": "e755143142167f2707992b3aa777e703826a0fa1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7473fe6d_306067f5",
+        "filename": "system/build/Android.bp",
+        "patchSetId": 5
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2023-06-21T23:47:06Z",
+      "side": 0,
+      "message": "If you insist on making the change, I don\u0027t mind, but just make sure we have a mechanism to apply common changes in build configs and document it properly.\n\nIdeally, as you mentioned, we should have option to config different types of code, e.g. code for (1) unit testing and fuzzing, (2) dogfooding, and (3) product build. I think the product variant in soong is intended for this purpose, if we use product variant properly, one such common defaults should be enough to address all types of code. \n\nIt is up to you to, whether to use one common defaults for all types of code, or use separate defaults for different types of code. Just make sure we have the mechanism to apply common change to a type of file.",
+      "parentUuid": "bda98ed4_29b6fc15",
+      "revId": "e755143142167f2707992b3aa777e703826a0fa1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
