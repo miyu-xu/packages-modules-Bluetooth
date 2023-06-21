@@ -19,7 +19,7 @@ LOCAL_host_executables := \
 	$(HOST_OUT_EXECUTABLES)/root-canal
 
 LOCAL_host_python_hci_packets_library := \
-	$(SOONG_OUT_DIR)/.intermediates/packages/modules/Bluetooth/system/gd/gd_hci_packets_python3_gen/gen/hci_packets.py
+	$(call intermediates-dir-for,ETC,gd_hci_packets_python3_gen)/gd_hci_packets_python3_gen
 
 LOCAL_host_python_extension_libraries := \
 	$(HOST_OUT_SHARED_LIBRARIES)/bluetooth_packets_python3.so
@@ -101,9 +101,11 @@ $(bluetooth_cert_src_and_bin_zip): $(SOONG_ZIP) $(LOCAL_cert_test_sources) \
 		$(LOCAL_host_python_extension_libraries) \
 		$(LOCAL_host_python_hci_packets_library) \
 		$(LOCAL_target_executables) $(LOCAL_target_libraries)
+	$(hide) rm -rf $(dir $@)/tmp && mkdir -p $(dir $@)/tmp
+	$(hide) cp -f $(PRIVATE_host_python_hci_packets_library) $(dir $@)/tmp/hci_packets.py
 	$(hide) $(SOONG_ZIP) -d -o $@ \
 		-C $(PRIVATE_bluetooth_project_dir) $(addprefix -f ,$(PRIVATE_cert_test_sources)) \
-		-C $(dir $(PRIVATE_host_python_hci_packets_library)) -f $(PRIVATE_host_python_hci_packets_library) \
+		-C $(dir $@)/tmp -f $(dir $@)/tmp/hci_packets.py \
 		-C $(HOST_OUT_EXECUTABLES) $(addprefix -f ,$(PRIVATE_host_executables)) \
 		-C $(HOST_OUT_SHARED_LIBRARIES) $(addprefix -f ,$(PRIVATE_host_python_extension_libraries)) \
 		-P lib64 \
@@ -120,7 +122,7 @@ $(call declare-container-license-deps,$(bluetooth_cert_src_and_bin_zip),\
 
 # TODO: Find a better way to locate output from SOONG genrule()
 LOCAL_facade_generated_py_zip := \
-	$(SOONG_OUT_DIR)/.intermediates/packages/modules/Bluetooth/system/BlueberryFacadeAndCertGeneratedStub_py/gen/blueberry_facade_generated_py.zip
+	$(call intermediates-dir-for,ETC,BlueberryFacadeAndCertGeneratedStub_py)/BlueberryFacadeAndCertGeneratedStub_py
 
 bluetooth_cert_tests_py_package_zip := \
 	$(call intermediates-dir-for,PACKAGING,bluetooth_cert_tests_py_package,HOST)/bluetooth_cert_tests.zip
@@ -129,12 +131,13 @@ $(bluetooth_cert_tests_py_package_zip): PRIVATE_bluetooth_project_dir := $(LOCAL
 $(bluetooth_cert_tests_py_package_zip): PRIVATE_cert_src_and_bin_zip := $(bluetooth_cert_src_and_bin_zip)
 $(bluetooth_cert_tests_py_package_zip): PRIVATE_facade_generated_py_zip := $(LOCAL_facade_generated_py_zip)
 $(bluetooth_cert_tests_py_package_zip): $(SOONG_ZIP) \
-		$(bluetooth_cert_src_and_bin_zip) $(bluetooth_cert_generated_py_zip)
+		$(bluetooth_cert_src_and_bin_zip) $(bluetooth_cert_generated_py_zip) $(LOCAL_facade_generated_py_zip)
 	@echo "Packaging Bluetooth Cert Tests into $@"
-	@rm -rf $(dir $@)bluetooth_cert_tests
-	@mkdir -p $(dir $@)bluetooth_cert_tests
+	@rm -rf $(dir $@)bluetooth_cert_tests $(dir $@)tmp
+	@mkdir -p $(dir $@)bluetooth_cert_tests $(dir $@)tmp
+	@cp -f $(PRIVATE_facade_generated_py_zip) $(dir $@)tmp/blueberry_facade_generated_py.zip
 	$(hide) unzip -o -q $(PRIVATE_cert_src_and_bin_zip) -d $(dir $@)bluetooth_cert_tests
-	$(hide) unzip -o -q $(PRIVATE_facade_generated_py_zip) -d $(dir $@)bluetooth_cert_tests
+	$(hide) unzip -o -q $(dir $@)tmp/blueberry_facade_generated_py.zip -d $(dir $@)bluetooth_cert_tests
 	# Make all subdirectory Python packages except lib64 and target
 	$(hide) for f in `find $(dir $@)bluetooth_cert_tests -type d -name "*" \
 					-not -path "$(dir $@)bluetooth_cert_tests/target*" \
