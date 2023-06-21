@@ -1510,6 +1510,7 @@ void bta_av_api_set_latency(tBTA_AV_DATA* p_data) {
  * @return the index for the free LCB entry to use or BTA_AV_NUM_LINKS
  * if no entry is found
  */
+extern const RawAddress& btif_av_find_by_handle(tBTA_AV_HNDL bta_handle);
 static uint8_t bta_av_find_lcb_index_by_scb_and_address(
     const RawAddress& peer_address) {
   APPL_TRACE_DEBUG("%s: peer_address: %s conn_lcb: 0x%x", __func__,
@@ -1541,6 +1542,12 @@ static uint8_t bta_av_find_lcb_index_by_scb_and_address(
       continue;
     }
     if (!p_scb->IsAssigned()) {
+      const RawAddress& btif_addr = btif_av_find_by_handle(p_scb->hndl);
+      if (!btif_addr.IsEmpty() && btif_addr != peer_address) {
+        APPL_TRACE_DEBUG("%s: btif_addr = %s, index=%d!",
+                         __func__, btif_addr.ToString().c_str(), index);
+        continue;
+      }
       return index;
     }
   }
