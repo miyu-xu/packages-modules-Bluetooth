@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4ae8c2a4_a0b140ca",
+        "filename": "system/gd/rust/linux/stack/src/callbacks.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-06-21T20:18:50Z",
+      "side": 1,
+      "message": "The reason this is unsafe is that tests are actually run in parallel. If you change CBID to AtomicU32, you can probably keep this safe.\n\nhttps://doc.rust-lang.org/std/sync/atomic/struct.AtomicU32.html\n\nLet\u0027s not have any unsafe code outside of topshim.",
+      "revId": "1a4d7f4b3ffc822844b7f2504ba299872f46f4e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
