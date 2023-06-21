@@ -16,6 +16,24 @@
       "message": "We need to wait for bpfmt prebuilt update before merging this last CL",
       "revId": "b025ea7f5b0590d15a04479998172284935783de",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "99de7064_0902b725",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-06-21T20:21:07Z",
+      "side": 1,
+      "message": "Prebuilt got updated. Time to merge",
+      "parentUuid": "06b2f5e1_ce0c5418",
+      "revId": "b025ea7f5b0590d15a04479998172284935783de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
