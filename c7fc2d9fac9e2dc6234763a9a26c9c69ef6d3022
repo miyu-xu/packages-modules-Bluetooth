@@ -34,6 +34,24 @@
       "parentUuid": "7af4b98f_ca1b7a2b",
       "revId": "c7fc2d9fac9e2dc6234763a9a26c9c69ef6d3022",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9b66a8d0_e8c52247",
+        "filename": "framework/java/android/bluetooth/BluetoothLeBroadcastAssistantCallback.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-06-21T21:10:44Z",
+      "side": 1,
+      "message": "Actually the broadcast UI is already using this code, and there is no such re-register callback issue as I observed. \nLocally I tested with this CL and it caused some issues with UI, shared the log in the bug report. \nIf this cl is trying to resolve some issue for the TestApp but causes regression with current broadcast UI, this might not be the preferred solution.",
+      "parentUuid": "2d9d345d_88ffb3fc",
+      "revId": "c7fc2d9fac9e2dc6234763a9a26c9c69ef6d3022",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
