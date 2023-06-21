@@ -88,6 +88,24 @@
       "parentUuid": "a26b1e12_fee74828",
       "revId": "e755143142167f2707992b3aa777e703826a0fa1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bda98ed4_29b6fc15",
+        "filename": "system/build/Android.bp",
+        "patchSetId": 5
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-06-21T23:31:03Z",
+      "side": 0,
+      "message": "\u003e In the next step, it is quite clear that we are going to need to apply Int-San and possibly CFI (not clear whether it is enabled in other places or not).\n\nI wasn\u0027t aware of that, however I would say that this should not go into `bluetooth_cflags` as this would apply to everything, test and tools included.\n\nIf I understand correctly we will want to do that to harden the production stack and so this should be applied to defaults used by the production code e.g: `fluoride_defaults` and `gd_defaults`.\n\n\u003e I think it is a better option to leave it like this, just be careful when adding new stuff to it.\n\nThe history of the stack showed us that this doesn\u0027t really work :/. `common_options` is too wide for me, maybe `_cflags` is too narrow, but I prefer for it to be too narrow and open it up later than the other way around.\n\nAlso for me this has the added benefit that when we will change it, with the name change we will understand the impact of it (has this update all the users) and review if it\u0027s indeed applicable to all this targets.",
+      "parentUuid": "1a538b43_a0d0c912",
+      "revId": "e755143142167f2707992b3aa777e703826a0fa1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
