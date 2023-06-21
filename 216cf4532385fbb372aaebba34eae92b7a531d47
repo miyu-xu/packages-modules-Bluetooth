@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5a2a44c9_39836d13",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 18
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-06-21T06:38:09Z",
+      "side": 1,
+      "message": "Please remove",
+      "range": {
+        "startLine": 27,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 19
+      },
+      "revId": "216cf4532385fbb372aaebba34eae92b7a531d47",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
