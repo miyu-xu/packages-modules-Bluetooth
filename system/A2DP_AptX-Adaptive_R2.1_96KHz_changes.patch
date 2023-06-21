@@ -1,0 +1,35 @@
+From 594a4dd0794c037cc3eaad0a6c1ee5d20f3f09a5 Mon Sep 17 00:00:00 2001
+From: Naval Saini <saini@codeaurora.org>
+Date: Wed, 16 Sep 2020 17:11:09 +0530
+Subject: [PATCH] A2DP: AptX-Adaptive R2.1 96KHz changes
+
+For capability Exchange (96k)Two bits can be used to indicate support for 96kHz
+sampling frequency for aptX adaptive.Currently bit[5] of byte 7 of the capability
+is used to indicate support by the source or sink for 96kHz.bit[7] of byte 7 of the
+capability can also be used to indicate support by the sink for 96kHz support.If a
+source support 96kHz with aptX adaptive, it must set bit 5 and bit 7 of byte 7 of the
+capability, If the sink has either of bit 5 or bit 7 of byte 7 of the capability set,
+then 96KHz sampling frequency must be indicated as supported by the sink to the ALS.
+
+CRs-Fixed: 2785490
+Change-Id: Ie69faf76281f2f23954da27589a6d1720c33273b
+---
+ stack/include/a2dp_vendor_aptx_adaptive_constants.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/stack/include/a2dp_vendor_aptx_adaptive_constants.h b/stack/include/a2dp_vendor_aptx_adaptive_constants.h
+index 6266baa..39aac8d 100644
+--- a/stack/include/a2dp_vendor_aptx_adaptive_constants.h
++++ b/stack/include/a2dp_vendor_aptx_adaptive_constants.h
+@@ -50,7 +50,7 @@
+ 
+ #define A2DP_APTX_ADAPTIVE_SAMPLERATE_44100        (0x08)
+ #define A2DP_APTX_ADAPTIVE_SAMPLERATE_48000        (0x10)
+-#define A2DP_APTX_ADAPTIVE_SAMPLERATE_96000        (0x20)
++#define A2DP_APTX_ADAPTIVE_SAMPLERATE_96000        (0xA0)
+ 
+ #define A2DP_APTX_ADAPTIVE_SOURCE_TYPE_1           (0x00) //(0x00)
+ #define A2DP_APTX_ADAPTIVE_SOURCE_TYPE_2           (0x02) //(0x02)
+-- 
+2.7.4
+

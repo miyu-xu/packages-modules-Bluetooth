@@ -1,0 +1,168 @@
+From 1e6a4de6d74f204b1ff191f595a16c7b5aad1eda Mon Sep 17 00:00:00 2001
+From: Sagar Verma <quic_sagarv@quicinc.com>
+Date: Thu, 8 Sep 2022 13:41:58 +0530
+Subject: [PATCH] A2DP: Exchange AptX Adaptive Split source tx properly
+
+Exchange AptX Adaptive Split source tx properly based
+on source and sink capabilities supported.
+
+CRs-Fixed: 3280452
+Change-Id: I88e42895edc993363870eb6ee3a841c1431e4eb0
+---
+ stack/a2dp/a2dp_codec_config.cc                    |  6 +++++
+ stack/a2dp/a2dp_vendor_aptx_adaptive.cc            | 31 +++++++++-------------
+ stack/include/a2dp_codec_api.h                     |  1 +
+ .../include/a2dp_vendor_aptx_adaptive_constants.h  |  6 ++---
+ 4 files changed, 22 insertions(+), 22 deletions(-)
+
+diff --git a/stack/a2dp/a2dp_codec_config.cc b/stack/a2dp/a2dp_codec_config.cc
+index c0c6eac..19983c4 100644
+--- a/stack/a2dp/a2dp_codec_config.cc
++++ b/stack/a2dp/a2dp_codec_config.cc
+@@ -108,6 +108,7 @@ bool aptxtws_sw = false;
+ bool vbr_supported = false;
+ bool aptxadaptiver2_1_supported = false;
+ bool aptxadaptiver2_2_supported = false;
++bool a2dp_aptxadaptive_src_split_tx_supported = false;
+ std::string offload_caps = "";
+ static void init_btav_a2dp_codec_config(
+     btav_a2dp_codec_config_t* codec_config, btav_a2dp_codec_index_t codec_index,
+@@ -1656,6 +1657,7 @@ void A2DP_SetOffloadStatus(bool offload_status, const char *offload_cap,
+   }
+   if (add_on_features_size != 0 &&
+       HCI_SPLIT_A2DP_SOURCE_Tx_Split_APTX_ADAPTIVE_SUPPORTED(add_on_features_list->as_array)) {
++    a2dp_aptxadaptive_src_split_tx_supported = true;
+     BTIF_TRACE_DEBUG("%s: split TX is supported", __func__);
+     property_get("persist.vendor.qcom.bluetooth.aptxadaptiver2_2_support", adaptive_value, "false");
+     if (!(strcmp(adaptive_value,"true"))) {
+@@ -1841,6 +1843,10 @@ bool A2DP_Get_Aptx_AdaptiveR2_2_Supported() {
+     return aptxadaptiver2_2_supported;
+ }
+ 
++bool A2DP_Get_Source_Aptx_Adaptive_SplitTx_Supported() {
++    return a2dp_aptxadaptive_src_split_tx_supported;
++}
++
+ bool A2DP_Get_AAC_VBR_Status(const RawAddress *remote_bdaddr) {
+    if (vbr_supported) {
+      if (interop_match_addr_or_name(INTEROP_DISABLE_AAC_VBR_CODEC, remote_bdaddr)) {
+diff --git a/stack/a2dp/a2dp_vendor_aptx_adaptive.cc b/stack/a2dp/a2dp_vendor_aptx_adaptive.cc
+index b9289e3..8e21f15 100644
+--- a/stack/a2dp/a2dp_vendor_aptx_adaptive.cc
++++ b/stack/a2dp/a2dp_vendor_aptx_adaptive.cc
+@@ -778,6 +778,13 @@ A2dpCodecConfigAptxAdaptive::A2dpCodecConfigAptxAdaptive(
+     } else if (A2DP_Get_Aptx_AdaptiveR2_1_Supported()) {
+       a2dp_aptx_adaptive_caps = a2dp_aptx_adaptive_r2_1_offload_caps;
+       a2dp_aptx_adaptive_default_config = a2dp_aptx_adaptive_r2_1_default_offload_config;
++      if (A2DP_Get_Source_Aptx_Adaptive_SplitTx_Supported()) {
++        LOG_INFO(LOG_TAG, "%s: Conditional enable split Tx in R2.1 configs", __func__);
++        a2dp_aptx_adaptive_caps.aptx_data.aptx_adaptive_sup_features |=
++            A2DP_APTX_ADAPTIVE_SOURCE_SPILT_TX_SUPPORTED;
++        a2dp_aptx_adaptive_default_config.aptx_data.aptx_adaptive_sup_features |=
++            A2DP_APTX_ADAPTIVE_SOURCE_SPILT_TX_SUPPORTED;
++      }
+     } else {
+       if (getOffloadCaps().find("aptxadaptiver2") == std::string::npos) {
+         LOG_INFO(LOG_TAG, "%s: Using Aptx Adaptive R1 config", __func__);
+@@ -1063,8 +1070,6 @@ bool A2dpCodecConfigAptxAdaptive::setCodecConfig(const uint8_t* p_peer_codec_inf
+   uint8_t channelMode;
+ 
+   uint8_t sink_byte_17th = 0x00, src_byte_17th = 0x00, byte_negotiated_17th = 0x00;
+-  bool is_negotiated_r1 = false;
+-
+   // Save the internal state
+   btav_a2dp_codec_config_t saved_codec_config = codec_config_;
+   btav_a2dp_codec_config_t saved_codec_capability = codec_capability_;
+@@ -1100,7 +1105,6 @@ bool A2dpCodecConfigAptxAdaptive::setCodecConfig(const uint8_t* p_peer_codec_inf
+ 
+   if ((getOffloadCaps().find("aptxadaptiver2") == std::string::npos)
+       || (sink_info_cie.aptx_data.cap_ext_ver_num == 0)) {
+-    is_negotiated_r1 = true;
+     result_config_cie.aptx_data = a2dp_aptx_adaptive_r1_offload_caps.aptx_data;
+     if (sink_info_cie.aptx_data.cap_ext_ver_num == 0) {
+       LOG_INFO(LOG_TAG, "%s: Sink supports R1.0 decoder ", __func__);
+@@ -1109,10 +1113,12 @@ bool A2dpCodecConfigAptxAdaptive::setCodecConfig(const uint8_t* p_peer_codec_inf
+     LOG_INFO(LOG_TAG, "%s: Select Aptx Adaptive R1 config", __func__);
+   } else {
+     sink_byte_17th = (sink_info_cie.aptx_data.aptx_adaptive_sup_features & 0xFF);
++    src_byte_17th = (a2dp_aptx_adaptive_caps.aptx_data.aptx_adaptive_sup_features & 0xFF);
++    byte_negotiated_17th = (((sink_byte_17th >> 4) | (src_byte_17th >> 4)) << 4) |
++                           ((sink_byte_17th & src_byte_17th) & 0x0F);
++    LOG_INFO(LOG_TAG, "sink byte: 0x%x, src byte: 0x%x, byte negotiated: 0x%x",
++                       sink_byte_17th, src_byte_17th, byte_negotiated_17th);
+     if (A2DP_Get_Aptx_AdaptiveR2_2_Supported()) {
+-      src_byte_17th = A2DP_APTX_ADAPTIVE_R2_2_SRC_17TH_BYTE;
+-      byte_negotiated_17th = (((sink_byte_17th >> 4) | (src_byte_17th >> 4)) << 4) |
+-                             ((sink_byte_17th & src_byte_17th) & 0x0F);
+       LOG_INFO(LOG_TAG, "%s: Select Aptx Adaptive R2.2 config", __func__);
+       result_config_cie.aptx_data = a2dp_aptx_adaptive_r2_2_offload_caps.aptx_data;
+       if((sink_info_cie.aptx_data.aptx_adaptive_sup_features &APTX_ADAPTIVE_SINK_R2_2_SUPPORT_CAP)
+@@ -1136,28 +1142,17 @@ bool A2dpCodecConfigAptxAdaptive::setCodecConfig(const uint8_t* p_peer_codec_inf
+         codec_config_.codec_specific_3 |= (int64_t) APTX_ADAPTIVE_R2_2_SUPPORT_NOT_AVAILABLE;
+       }
+     } else if (A2DP_Get_Aptx_AdaptiveR2_1_Supported()) {
+-      src_byte_17th = A2DP_APTX_ADAPTIVE_R2_1_SRC_17TH_BYTE;
+-      byte_negotiated_17th = (((sink_byte_17th >> 4) | (src_byte_17th >> 4)) << 4) |
+-                             ((sink_byte_17th & src_byte_17th) & 0x0F);
+       LOG_INFO(LOG_TAG, "%s: Select Aptx Adaptive R2.1 config", __func__);
+       result_config_cie.aptx_data = a2dp_aptx_adaptive_r2_1_offload_caps.aptx_data;
+       result_config_cie.aptx_data.aptx_adaptive_sup_features =
+           (sink_info_cie.aptx_data.aptx_adaptive_sup_features & 0xFFFFFF00) | byte_negotiated_17th;
+     } else {
+-      src_byte_17th = A2DP_APTX_ADAPTIVE_R2_0_SRC_17TH_BYTE;
+-      byte_negotiated_17th = (((sink_byte_17th >> 4) | (src_byte_17th >> 4)) << 4) |
+-                             ((sink_byte_17th & src_byte_17th) & 0x0F);
+       LOG_INFO(LOG_TAG, "%s: Select Aptx Adaptive R2 config", __func__);
+       result_config_cie.aptx_data = a2dp_aptx_adaptive_offload_caps.aptx_data;
+       result_config_cie.aptx_data.aptx_adaptive_sup_features =
+           (sink_info_cie.aptx_data.aptx_adaptive_sup_features & 0xFFFFFF00) | byte_negotiated_17th;
+     }
+-  }
+-
+-  if (is_negotiated_r1 == false) {
+-    LOG_INFO(LOG_TAG, "sink byte: 0x%x, src byte: 0x%x, byte negotiated: 0x%x, cap supported: 0x%x",
+-      sink_byte_17th, src_byte_17th, byte_negotiated_17th,
+-      result_config_cie.aptx_data.aptx_adaptive_sup_features);
++    LOG_INFO(LOG_TAG,"res cfg subfeat 0x%x",result_config_cie.aptx_data.aptx_adaptive_sup_features);
+   }
+ 
+   // Select the sample frequency
+diff --git a/stack/include/a2dp_codec_api.h b/stack/include/a2dp_codec_api.h
+index 0470a03..165da5a 100644
+--- a/stack/include/a2dp_codec_api.h
++++ b/stack/include/a2dp_codec_api.h
+@@ -692,6 +692,7 @@ bool A2DP_IsCodecEnabledInSoftware(btav_a2dp_codec_index_t codec_index);
+ bool A2DP_Get_AAC_VBR_Status(const RawAddress *remote_bdaddr);
+ bool A2DP_Get_Aptx_AdaptiveR2_1_Supported();
+ bool A2DP_Get_Aptx_AdaptiveR2_2_Supported();
++bool A2DP_Get_Source_Aptx_Adaptive_SplitTx_Supported();
+ 
+ bool A2DP_IsCodecEnabledInOffload(btav_a2dp_codec_index_t codec_index);
+ // Decodes and displays A2DP codec info when using |LOG_DEBUG|.
+diff --git a/stack/include/a2dp_vendor_aptx_adaptive_constants.h b/stack/include/a2dp_vendor_aptx_adaptive_constants.h
+index a5c7c7f..71e5fc9 100644
+--- a/stack/include/a2dp_vendor_aptx_adaptive_constants.h
++++ b/stack/include/a2dp_vendor_aptx_adaptive_constants.h
+@@ -82,10 +82,6 @@
+ #define A2DP_APTX_ADAPTIVE_EOC0 0x00
+ #define A2DP_APTX_ADAPTIVE_EOC1 0xAA
+ 
+-#define A2DP_APTX_ADAPTIVE_R2_0_SRC_17TH_BYTE   0x00
+-#define A2DP_APTX_ADAPTIVE_R2_1_SRC_17TH_BYTE   0x03
+-#define A2DP_APTX_ADAPTIVE_R2_2_SRC_17TH_BYTE   0x17
+-
+ #define A2DP_APTX_ADAPTIVE_CAP_EXT_VER_NUM         (0x01)
+ #define A2DP_APTX_ADAPTIVE_SUPPORTED_FEATURES      (0x0F000000)
+ #define A2DP_APTX_ADAPTIVE_R2_1_SUPPORTED_FEATURES (0x0F000003)
+@@ -95,6 +91,8 @@
+ #define A2DP_APTX_ADAPTIVE_THIRD_SETUP_PREF        (0x03)
+ #define A2DP_APTX_ADAPTIVE_FOURTH_SETUP_PREF       (0x03)
+ 
++#define A2DP_APTX_ADAPTIVE_SOURCE_SPILT_TX_SUPPORTED (0x00000004)
++
+ #define A2DP_APTX_ADAPTIVE_OTHER_FEATURES_NONE     (0x00000000)
+ #define QCOM_AV_APTX_ADAPTIVE_AUDIO                (0x00)
+ #define QCOM_CODEC_APTX_ADAPTIVE_ID                (0xff)
+-- 
+2.7.4
+

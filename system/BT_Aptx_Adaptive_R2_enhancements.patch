@@ -1,0 +1,262 @@
+From c9b701b422b3d5134307db96a258d5ae27dbb17a Mon Sep 17 00:00:00 2001
+From: Gurpreet Ghai <gghai@codeaurora.org>
+Date: Wed, 12 Jun 2019 19:42:10 +0530
+Subject: [PATCH] BT: Aptx Adaptive R2 enhancements
+
+- Enable Scan control for BLE scans.
+- Handling of multiple operations with single
+  feedback from ALS app.
+- Cleanup of mode masks and consolidation.
+
+Change-Id: I8364dda4a468151d73e9e8bfe20f9e3c50a77a2e
+CRs-Fixed: 2470253
+---
+ bta/av/bta_av_aact.cc    | 24 +++++++++++++++---------
+ bta/av/bta_av_api.cc     | 43 +++++++++++++++++++++++++++----------------
+ bta/include/bta_av_api.h |  2 +-
+ btif/co/bta_av_co.cc     | 22 +++++++++++-----------
+ btif/include/btif_av.h   |  8 ++++++++
+ btif/src/btif_av.cc      | 29 +++++++++++++++--------------
+ 6 files changed, 77 insertions(+), 51 deletions(-)
+
+diff --git a/bta/av/bta_av_aact.cc b/bta/av/bta_av_aact.cc
+index 5902793..2db0dd6 100644
+--- a/bta/av/bta_av_aact.cc
++++ b/bta/av/bta_av_aact.cc
+@@ -4069,16 +4069,22 @@ void bta_av_vendor_offload_start(tBTA_AV_SCB* p_scb)
+     offload_start.p_scb = p_scb;
+     if(strcmp(codec_name,"aptX-adaptive") == 0)
+     {
+-        const uint16_t ULL_MODE = 0x6000;
+-        const uint16_t LL_MODE = 0x2000;
+         tBTA_AV_DATA av_data;
+-        av_data.encoder_mode.enc_mode = btif_av_get_aptx_mode_info();
+-        if((av_data.encoder_mode.enc_mode & ULL_MODE) == ULL_MODE) {
+-            av_data.encoder_mode.enc_mode = LL_MODE;
+-            bta_av_update_enc_mode(&av_data);
+-            BTA_AvUpdateAptxData(ULL_MODE);
+-        } else {
+-            bta_av_update_enc_mode(&av_data);
++        av_data.encoder_mode.enc_mode = (btif_av_get_aptx_mode_info() & APTX_MODE_MASK);
++        switch(av_data.encoder_mode.enc_mode) {
++            case APTX_HQ:
++            case APTX_LL:
++              bta_av_update_enc_mode(&av_data);
++              break;
++            case APTX_ULL:
++              av_data.encoder_mode.enc_mode = APTX_LL;
++              bta_av_update_enc_mode(&av_data);
++              BTA_AvUpdateAptxData(APTX_ULL);
++              break;
++            default:
++              av_data.encoder_mode.enc_mode = APTX_HQ;
++              bta_av_update_enc_mode(&av_data);
++              APPL_TRACE_WARNING("Unknown aptX mode, send HQ as default");
+         }
+     }
+   }
+diff --git a/bta/av/bta_av_api.cc b/bta/av/bta_av_api.cc
+index 7a21a4c..4aebad0 100644
+--- a/bta/av/bta_av_api.cc
++++ b/bta/av/bta_av_api.cc
+@@ -67,6 +67,7 @@
+ #include "bta_av_api.h"
+ #include "bta_av_int.h"
+ #include "bta_sys.h"
++#include "btif/include/btif_av.h"
+ 
+ #include "osi/include/allocator.h"
+ 
+@@ -443,23 +444,33 @@ void BTA_AvUpdateEncoderMode(uint16_t enc_mode) {
+   bta_sys_sendmsg(p_buf);
+ }
+ 
+-void BTA_AvUpdateAptxData(uint16_t data) {
+-  tBTA_AV_APTX_DATA* p_buf =
+-      (tBTA_AV_APTX_DATA*)osi_malloc(sizeof(tBTA_AV_APTX_DATA));
+-  uint16_t BATTERY_INFO_MASK = 0X0F;
+-  uint16_t ULL_MODE_MASK = 0x6000;
+-  if(data & BATTERY_INFO_MASK) {
+-    p_buf->type = 4;
+-    p_buf->data = data;
+-  } else if((data & ULL_MODE_MASK) == ULL_MODE_MASK) {
+-    p_buf->type = 3;
+-    p_buf->data = 1;
+-  } else {
+-    p_buf->type = 3;
+-    p_buf->data = 0;
++void BTA_AvUpdateAptxData(uint32_t data) {
++  bool battery_info = (data & APTX_BATTERY_INFO);
++  uint16_t aptx_mode = (uint16_t)(data & APTX_MODE_MASK);
++  if(battery_info) {
++    tBTA_AV_APTX_DATA* p_buf_battery =
++        (tBTA_AV_APTX_DATA*)osi_malloc(sizeof(tBTA_AV_APTX_DATA));
++    p_buf_battery->type = 4;
++    p_buf_battery->data = (uint16_t)data;
++    p_buf_battery->hdr.event = BTA_AV_UPDATE_APTX_DATA_EVT;
++    bta_sys_sendmsg(p_buf_battery);
++  }
++  if(aptx_mode == APTX_ULL || aptx_mode == APTX_ULL_S) {
++    tBTA_AV_APTX_DATA* p_buf_ull =
++        (tBTA_AV_APTX_DATA*)osi_malloc(sizeof(tBTA_AV_APTX_DATA));
++    p_buf_ull->type = 3;
++    p_buf_ull->data = 1;
++    p_buf_ull->hdr.event = BTA_AV_UPDATE_APTX_DATA_EVT;
++    bta_sys_sendmsg(p_buf_ull);
++  }
++  if(aptx_mode == APTX_HQ || aptx_mode == APTX_LL) {
++    tBTA_AV_APTX_DATA* p_buf_ull =
++        (tBTA_AV_APTX_DATA*)osi_malloc(sizeof(tBTA_AV_APTX_DATA));
++    p_buf_ull->type = 3;
++    p_buf_ull->data = 0;
++    p_buf_ull->hdr.event = BTA_AV_UPDATE_APTX_DATA_EVT;
++    bta_sys_sendmsg(p_buf_ull);
+   }
+-  p_buf->hdr.event = BTA_AV_UPDATE_APTX_DATA_EVT;
+-  bta_sys_sendmsg(p_buf);
+ }
+ 
+ /*******************************************************************************
+diff --git a/bta/include/bta_av_api.h b/bta/include/bta_av_api.h
+index f02c010..e3857b8 100644
+--- a/bta/include/bta_av_api.h
++++ b/bta/include/bta_av_api.h
+@@ -754,7 +754,7 @@ void BTA_AvUpdateEncoderMode(uint16_t enc_mode);
+  * Returns            void
+  *
+  ******************************************************************************/
+-void BTA_AvUpdateAptxData(uint16_t data);
++void BTA_AvUpdateAptxData(uint32_t data);
+ 
+ 
+ /*******************************************************************************
+diff --git a/btif/co/bta_av_co.cc b/btif/co/bta_av_co.cc
+index c57a86e..f7b9d27 100644
+--- a/btif/co/bta_av_co.cc
++++ b/btif/co/bta_av_co.cc
+@@ -1475,7 +1475,7 @@ bool bta_av_co_set_codec_user_config(
+       //Battery level indication(0x0000-0x000F) and BTcontrol(0x8000)
+       const uint16_t ENCODER_MODE_MASK = 0x3000;
+       uint16_t encoder_mode = codec_user_config.codec_specific_4 & ENCODER_MODE_MASK;
+-      if (encoder_mode > 0) {
++      if (encoder_mode == APTX_HQ || encoder_mode == APTX_LL) {
+         APPL_TRACE_DEBUG("%s: Updating Encoder Mode to: %x", __func__, encoder_mode);
+         BTA_AvUpdateEncoderMode(encoder_mode);
+       }
+@@ -1484,16 +1484,16 @@ bool bta_av_co_set_codec_user_config(
+         BTA_AvUpdateAptxData(codec_user_config.codec_specific_4);
+       }
+ 
+-      const uint16_t BT_SCAN_CONTROL_MASK = 0xB000;
+-      const uint16_t BLE_SCAN_ON = 0x9000; //ORing of HQ(0x1000) and BTcontrol(0x8000)
+-      const uint16_t BLE_SCAN_OFF = 0xA000;//ORing of LL(0x2000) and BTcontrol(0x8000)
+-      uint16_t blescanonoroff = codec_user_config.codec_specific_4 & BT_SCAN_CONTROL_MASK;
+-      if (blescanonoroff == BLE_SCAN_OFF) {
+-        APPL_TRACE_DEBUG("%s: Disabling BLE Scanning", __func__);
+-        btif_gatt_get_interface()->scanner->Scan(false);
+-      } else if (blescanonoroff == BLE_SCAN_ON) {
+-        APPL_TRACE_DEBUG("%s: Enabling BLE Scanning", __func__);
+-        //btif_gatt_get_interface()->scanner->Scan(true);
++      bool ble_scan_off = ((codec_user_config.codec_specific_4 & APTX_SCAN_CONTROL_MASK) == APTX_SCAN_CONTROL_MASK);
++      if(!ble_scan_off)
++        return success;
++
++      switch(codec_user_config.codec_specific_4 & APTX_MODE_MASK) {
++        case APTX_ULL:
++        case APTX_LL:
++          APPL_TRACE_DEBUG("%s: Disabling BLE Scanning", __func__);
++          btif_gatt_get_interface()->scanner->Scan(false);
++          break;
+       }
+       return success;
+     }
+diff --git a/btif/include/btif_av.h b/btif/include/btif_av.h
+index 19fe5ab..3a687d1 100644
+--- a/btif/include/btif_av.h
++++ b/btif/include/btif_av.h
+@@ -39,6 +39,14 @@
+ #define SOFT_HANDOFF 1
+ #define RECONFIG_A2DP_PARAM 2
+ 
++#define APTX_HQ 0X1000
++#define APTX_LL 0X2000
++#define APTX_ULL_S 0X4000
++#define APTX_ULL 0X6000
++#define APTX_MODE_MASK 0X7000
++#define APTX_SCAN_CONTROL_MASK 0X8000
++#define APTX_BATTERY_INFO 0X0F
++
+ #define APTX_HQ_LATENCY 2000
+ #define APTX_LL_LATENCY 700
+ #define APTX_ULL_LATENCY 700
+diff --git a/btif/src/btif_av.cc b/btif/src/btif_av.cc
+index 64de480..1a89da2 100644
+--- a/btif/src/btif_av.cc
++++ b/btif/src/btif_av.cc
+@@ -583,12 +583,7 @@ static void btif_update_source_codec(void* p_data) {
+       codec_config = current_codec->getCodecConfig();
+       if(codec_config.codec_type == BTAV_A2DP_CODEC_INDEX_SOURCE_APTX_ADAPTIVE) {
+         int index = btif_max_av_clients;
+-        const uint16_t ENCODER_MODE_MASK = 0x7000;
+-        const uint16_t ULL_MODE_MASK = 0x4000;
+-        const uint16_t LL_MODE_MASK = 0x2000;
+-        const uint16_t HQ_MODE_MASK = 0x1000;
+-        const uint16_t ULL_MODE_SELECT = 0x6000; //ORing of LL and ULL
+-        uint16_t encoder_mode = req->codec_config.codec_specific_4 & ENCODER_MODE_MASK;
++        uint16_t encoder_mode = req->codec_config.codec_specific_4 & APTX_MODE_MASK;
+ 
+         if (btif_av_stream_started_ready())
+           index = btif_av_get_latest_playing_device_idx();
+@@ -597,20 +592,25 @@ static void btif_update_source_codec(void* p_data) {
+ 
+         if(index >= btif_max_av_clients) return;
+ 
+-        if(encoder_mode == HQ_MODE_MASK) {
+-          btif_av_cb[index].aptx_mode = HQ_MODE_MASK;
++        if(encoder_mode == APTX_HQ) {
++          btif_av_cb[index].aptx_mode = APTX_HQ;
+           btif_av_cb[index].codec_latency = APTX_HQ_LATENCY;
+           btif_a2dp_update_sink_latency_change();
+-        } else if (encoder_mode == LL_MODE_MASK) {
+-          btif_av_cb[index].aptx_mode = LL_MODE_MASK;
++          BTIF_TRACE_DEBUG("%s: Aptx Adaptive mode = %d, codec_latency = %d", __func__,
++                        btif_av_cb[index].aptx_mode, btif_av_cb[index].codec_latency);
++        } else if (encoder_mode == APTX_LL) {
++          btif_av_cb[index].aptx_mode = APTX_LL;
+           btif_av_cb[index].codec_latency = APTX_LL_LATENCY;
+           btif_a2dp_update_sink_latency_change();
+-        } else if (encoder_mode == ULL_MODE_SELECT) {
+-          btif_av_cb[index].aptx_mode = ULL_MODE_MASK;
++          BTIF_TRACE_DEBUG("%s: Aptx Adaptive mode = %d, codec_latency = %d", __func__,
++                        btif_av_cb[index].aptx_mode, btif_av_cb[index].codec_latency);
++        } else if (encoder_mode == APTX_ULL) {
++          btif_av_cb[index].aptx_mode = APTX_ULL;
+           btif_av_cb[index].codec_latency = APTX_ULL_LATENCY;
+           btif_a2dp_update_sink_latency_change();
++          BTIF_TRACE_DEBUG("%s: Aptx Adaptive mode = %d, codec_latency = %d", __func__,
++                        btif_av_cb[index].aptx_mode, btif_av_cb[index].codec_latency);
+         }
+-        BTIF_TRACE_DEBUG("%s: Aptx Adaptive codec_latency = %d", __func__, btif_av_cb[index].codec_latency);
+       }
+     }
+   }
+@@ -790,6 +790,7 @@ static bool btif_av_state_idle_handler(btif_sm_event_t event, void* p_data, int
+       btif_av_cb[index].tws_device = false;
+       btif_av_cb[index].offload_state = false;
+ #endif
++      btif_av_cb[index].aptx_mode = APTX_HQ;
+       btif_av_cb[index].codec_latency = 0;
+       btif_av_cb[index].reconfig_event = 0;
+       memset(&btif_av_cb[index].reconfig_data, 0, sizeof(tBTA_AV));
+@@ -3819,7 +3820,7 @@ static bt_status_t init_src(
+     btif_av_cb[i].codec_priorities = codec_priorities;
+     btif_av_cb[i].state = BTIF_AV_STATE_IDLE;
+     btif_av_cb[i].service = BTA_A2DP_SOURCE_SERVICE_ID;
+-    btif_av_cb[i].aptx_mode = 0x1000;
++    btif_av_cb[i].aptx_mode = APTX_HQ;
+     btif_av_cb[i].remote_start_alarm = NULL;
+     btif_av_cb[i].suspend_rsp_track_timer = NULL;
+     btif_av_cb[i].fake_suspend_rsp = false;
+-- 
+2.7.4
+

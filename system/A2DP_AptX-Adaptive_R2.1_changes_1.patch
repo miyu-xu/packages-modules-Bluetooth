@@ -1,0 +1,253 @@
+From 6c9706343ef059d859739c8bce672916311b3d0b Mon Sep 17 00:00:00 2001
+From: Naval Saini <saini@codeaurora.org>
+Date: Fri, 28 Aug 2020 10:17:46 +0530
+Subject: [PATCH] A2DP: AptX-Adaptive R2.1 changes(1/3)
+
+AptX-Adaptive R2.1 changes
+
+CRs-Fixed: 2774231
+Change-Id: I41ca45e9fca565ffd4413efe05cd19eb96c0f874
+---
+ btif/include/btif_av.h                             |  1 +
+ btif/src/btif_av.cc                                | 21 ++++--
+ stack/a2dp/a2dp_codec_config.cc                    | 11 +++
+ stack/a2dp/a2dp_vendor_aptx_adaptive.cc            | 79 ++++++++++++++++++++--
+ stack/include/a2dp_codec_api.h                     |  1 +
+ .../include/a2dp_vendor_aptx_adaptive_constants.h  |  1 +
+ 6 files changed, 106 insertions(+), 8 deletions(-)
+
+diff --git a/btif/include/btif_av.h b/btif/include/btif_av.h
+index afa9661..5e09e88 100644
+--- a/btif/include/btif_av.h
++++ b/btif/include/btif_av.h
+@@ -48,6 +48,7 @@
+ #define APTX_BATTERY_INFO 0X0F
+ 
+ #define APTX_HQ_LATENCY 2000
++#define APTX_R2_1_HQ_LATENCY 3200
+ #define APTX_LL_LATENCY 700
+ #define APTX_ULL_LATENCY 700
+ 
+diff --git a/btif/src/btif_av.cc b/btif/src/btif_av.cc
+index 977d899..0c5ce47 100644
+--- a/btif/src/btif_av.cc
++++ b/btif/src/btif_av.cc
+@@ -641,10 +641,18 @@ static void btif_update_source_codec(void* p_data) {
+ 
+         if(encoder_mode == APTX_HQ) {
+           btif_av_cb[index].aptx_mode = APTX_HQ;
+-          btif_av_cb[index].codec_latency = APTX_HQ_LATENCY;
++          if (A2DP_Get_Aptx_AdaptiveR2_1_Supported()) {
++            btif_av_cb[index].codec_latency = APTX_R2_1_HQ_LATENCY;
++          } else {
++            btif_av_cb[index].codec_latency = APTX_HQ_LATENCY;
++          }
+           if(tws_index < btif_max_av_clients) {
+             btif_av_cb[tws_index].aptx_mode = APTX_HQ;
+-            btif_av_cb[tws_index].codec_latency = APTX_HQ_LATENCY;
++            if (A2DP_Get_Aptx_AdaptiveR2_1_Supported()) {
++              btif_av_cb[tws_index].codec_latency = APTX_R2_1_HQ_LATENCY;
++            } else {
++              btif_av_cb[tws_index].codec_latency = APTX_HQ_LATENCY;
++            }
+           }
+           btif_a2dp_update_sink_latency_change();
+           BTIF_TRACE_DEBUG("%s: Aptx Adaptive mode = %d, codec_latency = %d", __func__,
+@@ -696,8 +704,13 @@ static void btif_report_source_codec_state(UNUSED_ATTR void* p_data,
+ 
+   if (index < btif_max_av_clients) {
+     if (codec_config.codec_type == BTAV_A2DP_CODEC_INDEX_SOURCE_APTX_ADAPTIVE) {
+-      if(btif_av_cb[index].codec_latency == 0)
+-        btif_av_cb[index].codec_latency = APTX_HQ_LATENCY;
++      if (btif_av_cb[index].codec_latency == 0) {
++        if (A2DP_Get_Aptx_AdaptiveR2_1_Supported()) {
++          btif_av_cb[index].codec_latency = APTX_R2_1_HQ_LATENCY;
++        } else {
++          btif_av_cb[index].codec_latency = APTX_HQ_LATENCY;
++        }
++      }
+     } else {
+       btif_av_cb[index].codec_latency = 0;
+     }
+diff --git a/stack/a2dp/a2dp_codec_config.cc b/stack/a2dp/a2dp_codec_config.cc
+index 2458371..0f06240 100644
+--- a/stack/a2dp/a2dp_codec_config.cc
++++ b/stack/a2dp/a2dp_codec_config.cc
+@@ -100,6 +100,7 @@ bool aptx_adaptive_sw = false;
+ bool ldac_sw = false;
+ bool aptxtws_sw = false;
+ bool vbr_supported = false;
++bool aptxadaptiver2_1_supported = false;
+ std::string offload_caps = "";
+ static void init_btav_a2dp_codec_config(
+     btav_a2dp_codec_config_t* codec_config, btav_a2dp_codec_index_t codec_index,
+@@ -1590,11 +1591,17 @@ void A2DP_SetOffloadStatus(bool offload_status, const char *offload_cap,
+   const bt_device_soc_add_on_features_t *add_on_features_list =
+       controller_get_interface()->get_soc_add_on_features(&add_on_features_size);
+   char vbr_value[PROPERTY_VALUE_MAX] = {'\0'};
++  char adaptive_value[PROPERTY_VALUE_MAX] = {'\0'};
+   property_get("persist.vendor.qcom.bluetooth.aac_vbr_ctl.enabled", vbr_value, "false");
+   if (!(strcmp(vbr_value,"true"))) {
+     BTIF_TRACE_DEBUG("%s: AAC VBR is enabled", __func__);
+     vbr_supported = true;
+   }
++  property_get("persist.vendor.qcom.bluetooth.aptxadaptiver2_1_support", adaptive_value, "false");
++  if (!(strcmp(adaptive_value,"true"))) {
++    BTIF_TRACE_DEBUG("%s: aptx-adaptive R2.1 is supported", __func__);
++    aptxadaptiver2_1_supported = true;
++  }
+   LOG_INFO(LOG_TAG,"A2dp_SetOffloadStatus:status = %d",
+                      offload_status);
+   mA2dp_offload_status = offload_status;
+@@ -1765,6 +1772,10 @@ void A2DP_SetOffloadStatus(bool offload_status, const char *offload_cap,
+ #endif
+ }
+ 
++bool A2DP_Get_Aptx_AdaptiveR2_1_Supported() {
++    return aptxadaptiver2_1_supported;
++}
++
+ bool A2DP_Get_AAC_VBR_Status() {
+     return vbr_supported;
+ }
+diff --git a/stack/a2dp/a2dp_vendor_aptx_adaptive.cc b/stack/a2dp/a2dp_vendor_aptx_adaptive.cc
+index 4c75273..a0336fa 100644
+--- a/stack/a2dp/a2dp_vendor_aptx_adaptive.cc
++++ b/stack/a2dp/a2dp_vendor_aptx_adaptive.cc
+@@ -121,6 +121,39 @@ static const tA2DP_APTX_ADAPTIVE_CIE a2dp_aptx_adaptive_offload_caps = {
+     BTAV_A2DP_CODEC_BITS_PER_SAMPLE_24, /* bits_per_sample */
+     {0}
+ };
++
++/* Default aptX-adaptive R2.1 codec configuration */
++static const tA2DP_APTX_ADAPTIVE_CIE a2dp_aptx_adaptive_r2_1_offload_caps = {
++    A2DP_APTX_ADAPTIVE_VENDOR_ID,          /* vendorId */
++    A2DP_APTX_ADAPTIVE_CODEC_ID_BLUETOOTH, /* codecId */
++    A2DP_APTX_ADAPTIVE_SAMPLERATE_48000 |
++    A2DP_APTX_ADAPTIVE_SAMPLERATE_96000,   /* sampleRate */
++    A2DP_APTX_ADAPTIVE_SOURCE_TYPE_1,
++    (A2DP_APTX_ADAPTIVE_CHANNELS_JOINT_STEREO |
++     A2DP_APTX_ADAPTIVE_CHANNELS_STEREO |
++     A2DP_APTX_ADAPTIVE_CHANNELS_TWS_STEREO |
++     A2DP_APTX_ADAPTIVE_CHANNELS_TWS_MONO |
++     A2DP_APTX_ADAPTIVE_CHANNELS_TWS_PLUS),      /* channelMode */
++    { A2DP_APTX_ADAPTIVE_TTP_LL_0,
++      A2DP_APTX_ADAPTIVE_TTP_LL_1,
++      A2DP_APTX_ADAPTIVE_TTP_HQ_0,
++      A2DP_APTX_ADAPTIVE_TTP_HQ_1,
++      A2DP_APTX_ADAPTIVE_TTP_TWS_0,
++      A2DP_APTX_ADAPTIVE_TTP_TWS_1,
++      A2DP_APTX_ADAPTIVE_RESERVED_15THBYTE,
++      A2DP_APTX_ADAPTIVE_CAP_EXT_VER_NUM,
++      A2DP_APTX_ADAPTIVE_R2_1_SUPPORTED_FEATURES,
++      A2DP_APTX_ADAPTIVE_FIRST_SETUP_PREF,
++      A2DP_APTX_ADAPTIVE_SECOND_SETUP_PREF,
++      A2DP_APTX_ADAPTIVE_THIRD_SETUP_PREF,
++      A2DP_APTX_ADAPTIVE_FOURTH_SETUP_PREF,
++      A2DP_APTX_ADAPTIVE_EOC0,
++      A2DP_APTX_ADAPTIVE_EOC1},
++
++    BTAV_A2DP_CODEC_BITS_PER_SAMPLE_24, /* bits_per_sample */
++    {0}
++};
++
+ /* Default aptX-adaptive codec configuration */
+ static const tA2DP_APTX_ADAPTIVE_CIE a2dp_aptx_adaptive_default_src_config = {
+ //static const tA2DP_APTX_ADAPTIVE_CIE a2dp_aptx_adaptive_default_config = {
+@@ -148,6 +181,7 @@ static const tA2DP_APTX_ADAPTIVE_CIE a2dp_aptx_adaptive_default_src_config = {
+     BTAV_A2DP_CODEC_BITS_PER_SAMPLE_24, /* bits_per_sample */
+     {0}
+ };
++
+ /* Default aptX-adaptive offload codec configuration */
+ static const tA2DP_APTX_ADAPTIVE_CIE a2dp_aptx_adaptive_default_offload_config = {
+ //static const tA2DP_APTX_ADAPTIVE_CIE a2dp_aptx_adaptive_default_config = {
+@@ -180,6 +214,38 @@ static const tA2DP_APTX_ADAPTIVE_CIE a2dp_aptx_adaptive_default_offload_config =
+     {0}
+ };
+ 
++/* Default aptX-adaptive R2.1 offload codec configuration */
++static const tA2DP_APTX_ADAPTIVE_CIE a2dp_aptx_adaptive_r2_1_default_offload_config = {
++//static const tA2DP_APTX_ADAPTIVE_CIE a2dp_aptx_adaptive_default_config = {
++    A2DP_APTX_ADAPTIVE_VENDOR_ID,          /* vendorId */
++    A2DP_APTX_ADAPTIVE_CODEC_ID_BLUETOOTH, /* codecId */
++    A2DP_APTX_ADAPTIVE_SAMPLERATE_48000,   /* sampleRate */
++    A2DP_APTX_ADAPTIVE_SOURCE_TYPE_1,
++    (A2DP_APTX_ADAPTIVE_CHANNELS_JOINT_STEREO |
++     A2DP_APTX_ADAPTIVE_CHANNELS_STEREO |
++     A2DP_APTX_ADAPTIVE_CHANNELS_TWS_STEREO |
++     A2DP_APTX_ADAPTIVE_CHANNELS_TWS_MONO |
++     A2DP_APTX_ADAPTIVE_CHANNELS_TWS_PLUS),      /* channelMode */
++    { A2DP_APTX_ADAPTIVE_TTP_LL_0,
++      A2DP_APTX_ADAPTIVE_TTP_LL_1,
++      A2DP_APTX_ADAPTIVE_TTP_HQ_0,
++      A2DP_APTX_ADAPTIVE_TTP_HQ_1,
++      A2DP_APTX_ADAPTIVE_TTP_TWS_0,
++      A2DP_APTX_ADAPTIVE_TTP_TWS_1,
++      A2DP_APTX_ADAPTIVE_RESERVED_15THBYTE,
++      A2DP_APTX_ADAPTIVE_CAP_EXT_VER_NUM,
++      A2DP_APTX_ADAPTIVE_R2_1_SUPPORTED_FEATURES,
++      A2DP_APTX_ADAPTIVE_FIRST_SETUP_PREF,
++      A2DP_APTX_ADAPTIVE_SECOND_SETUP_PREF,
++      A2DP_APTX_ADAPTIVE_THIRD_SETUP_PREF,
++      A2DP_APTX_ADAPTIVE_FOURTH_SETUP_PREF,
++      A2DP_APTX_ADAPTIVE_EOC0,
++      A2DP_APTX_ADAPTIVE_EOC1},
++
++    BTAV_A2DP_CODEC_BITS_PER_SAMPLE_24, /* bits_per_sample */
++    {0}
++};
++
+ static const tA2DP_APTX_ADAPTIVE_CIE a2dp_aptx_adaptive_r1_config = {
+ //static const tA2DP_APTX_ADAPTIVE_CIE a2dp_aptx_adaptive_default_config = {
+     A2DP_APTX_ADAPTIVE_VENDOR_ID,          /* vendorId */
+@@ -618,13 +684,18 @@ A2dpCodecConfigAptxAdaptive::A2dpCodecConfigAptxAdaptive(
+     : A2dpCodecConfig(BTAV_A2DP_CODEC_INDEX_SOURCE_APTX_ADAPTIVE, "aptX-adaptive",
+                       codec_priority) {
+   // Compute the local capability
+-    if (A2DP_IsCodecEnabledInOffload(BTAV_A2DP_CODEC_INDEX_SOURCE_APTX_ADAPTIVE)) {
++  if (A2DP_IsCodecEnabledInOffload(BTAV_A2DP_CODEC_INDEX_SOURCE_APTX_ADAPTIVE)) {
++    if (A2DP_Get_Aptx_AdaptiveR2_1_Supported()) {
++      a2dp_aptx_adaptive_caps = a2dp_aptx_adaptive_r2_1_offload_caps;
++      a2dp_aptx_adaptive_default_config = a2dp_aptx_adaptive_r2_1_default_offload_config;
++    } else {
+       a2dp_aptx_adaptive_caps = a2dp_aptx_adaptive_offload_caps;
+       a2dp_aptx_adaptive_default_config = a2dp_aptx_adaptive_default_offload_config;
+-    } else {
+-      a2dp_aptx_adaptive_caps = a2dp_aptx_adaptive_src_caps;
+-      a2dp_aptx_adaptive_default_config = a2dp_aptx_adaptive_default_src_config;
+     }
++  } else {
++    a2dp_aptx_adaptive_caps = a2dp_aptx_adaptive_src_caps;
++    a2dp_aptx_adaptive_default_config = a2dp_aptx_adaptive_default_src_config;
++  }
+   if (a2dp_aptx_adaptive_caps.sampleRate & A2DP_APTX_ADAPTIVE_SAMPLERATE_44100) {
+     codec_local_capability_.sample_rate |= BTAV_A2DP_CODEC_SAMPLE_RATE_44100;
+   }
+diff --git a/stack/include/a2dp_codec_api.h b/stack/include/a2dp_codec_api.h
+index 1c2ccff..584030e 100644
+--- a/stack/include/a2dp_codec_api.h
++++ b/stack/include/a2dp_codec_api.h
+@@ -690,6 +690,7 @@ bool A2DP_Is44p1kFreqSupported();
+ bool A2DP_IsCodecEnabled(btav_a2dp_codec_index_t codec_index);
+ bool A2DP_IsCodecEnabledInSoftware(btav_a2dp_codec_index_t codec_index);
+ bool A2DP_Get_AAC_VBR_Status();
++bool A2DP_Get_Aptx_AdaptiveR2_1_Supported();
+ 
+ bool A2DP_IsCodecEnabledInOffload(btav_a2dp_codec_index_t codec_index);
+ // Decodes and displays A2DP codec info when using |LOG_DEBUG|.
+diff --git a/stack/include/a2dp_vendor_aptx_adaptive_constants.h b/stack/include/a2dp_vendor_aptx_adaptive_constants.h
+index b1ceda7..6266baa 100644
+--- a/stack/include/a2dp_vendor_aptx_adaptive_constants.h
++++ b/stack/include/a2dp_vendor_aptx_adaptive_constants.h
+@@ -84,6 +84,7 @@
+ 
+ #define A2DP_APTX_ADAPTIVE_CAP_EXT_VER_NUM         (0x01)
+ #define A2DP_APTX_ADAPTIVE_SUPPORTED_FEATURES      (0x0F000000)
++#define A2DP_APTX_ADAPTIVE_R2_1_SUPPORTED_FEATURES (0x0F000003)
+ #define A2DP_APTX_ADAPTIVE_FIRST_SETUP_PREF        (0x02)
+ #define A2DP_APTX_ADAPTIVE_SECOND_SETUP_PREF       (0x03)
+ #define A2DP_APTX_ADAPTIVE_THIRD_SETUP_PREF        (0x03)
+-- 
+2.7.4
+

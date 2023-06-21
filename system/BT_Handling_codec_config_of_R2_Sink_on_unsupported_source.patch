@@ -1,0 +1,131 @@
+From a842233572b8aed32e3526dcdc55ac37fe99f653 Mon Sep 17 00:00:00 2001
+From: Gurpreet Ghai <gghai@codeaurora.org>
+Date: Wed, 3 Jul 2019 17:38:32 +0530
+Subject: [PATCH] BT: Handling codec config of R2 Sink on unsupported source
+
+- This change is for negotiating Aptx Adaptive R1 config
+  for projects that do not support Aptx Adaptive R2.
+- Such device will send R1 caps during setconfig for
+  both R1 and R2 supported Sink.
+
+CRs-Fixed: 2485029
+
+Change-Id: I5d99be7211c8cd36309aaa999140a45e5e20dcd3
+---
+ stack/a2dp/a2dp_codec_config.cc         |  6 +++++
+ stack/a2dp/a2dp_vendor_aptx_adaptive.cc | 40 ++++++++++++++++++++++++++++++++-
+ stack/include/a2dp_codec_api.h          |  2 ++
+ 3 files changed, 47 insertions(+), 1 deletion(-)
+
+diff --git a/stack/a2dp/a2dp_codec_config.cc b/stack/a2dp/a2dp_codec_config.cc
+index 6e1ca81..fed06f7 100644
+--- a/stack/a2dp/a2dp_codec_config.cc
++++ b/stack/a2dp/a2dp_codec_config.cc
+@@ -99,6 +99,7 @@ bool aptxhd_sw = false;
+ bool aptx_adaptive_sw = false;
+ bool ldac_sw = false;
+ bool aptxtws_sw = false;
++std::string offload_caps = "";
+ static void init_btav_a2dp_codec_config(
+     btav_a2dp_codec_config_t* codec_config, btav_a2dp_codec_index_t codec_index,
+     btav_a2dp_codec_priority_t codec_priority) {
+@@ -536,6 +537,10 @@ std::string A2dpCodecConfig::codecBitsPerSample2Str(
+   return result;
+ }
+ 
++std::string A2dpCodecConfig::getOffloadCaps() {
++    return offload_caps;
++}
++
+ std::string A2dpCodecConfig::codecChannelMode2Str(
+     btav_a2dp_codec_channel_mode_t codec_channel_mode) {
+   std::string result;
+@@ -1730,6 +1735,7 @@ void A2DP_SetOffloadStatus(bool offload_status, const char *offload_cap,
+   }
+   mA2dp_offload_scrambling_support = scrambling_support;
+   mA2dp_offload_44p1kFreq_support = is44p1kFreq_support;
++  offload_caps = controller_get_interface()->get_a2dp_offload_cap();
+ }
+ 
+ bool A2DP_GetOffloadStatus() {
+diff --git a/stack/a2dp/a2dp_vendor_aptx_adaptive.cc b/stack/a2dp/a2dp_vendor_aptx_adaptive.cc
+index 7a9de17..a36f122 100644
+--- a/stack/a2dp/a2dp_vendor_aptx_adaptive.cc
++++ b/stack/a2dp/a2dp_vendor_aptx_adaptive.cc
+@@ -174,6 +174,36 @@ static const tA2DP_APTX_ADAPTIVE_CIE a2dp_aptx_adaptive_default_offload_config =
+     BTAV_A2DP_CODEC_BITS_PER_SAMPLE_24, /* bits_per_sample */
+     {0}
+ };
++
++static const tA2DP_APTX_ADAPTIVE_CIE a2dp_aptx_adaptive_r1_config = {
++//static const tA2DP_APTX_ADAPTIVE_CIE a2dp_aptx_adaptive_default_config = {
++    A2DP_APTX_ADAPTIVE_VENDOR_ID,          /* vendorId */
++    A2DP_APTX_ADAPTIVE_CODEC_ID_BLUETOOTH, /* codecId */
++    A2DP_APTX_ADAPTIVE_SAMPLERATE_48000,   /* sampleRate */
++    A2DP_APTX_ADAPTIVE_SOURCE_TYPE_1,
++    (A2DP_APTX_ADAPTIVE_CHANNELS_JOINT_STEREO |
++     A2DP_APTX_ADAPTIVE_CHANNELS_TWS_STEREO |
++     A2DP_APTX_ADAPTIVE_CHANNELS_TWS_MONO ),      /* channelMode */
++    { A2DP_APTX_ADAPTIVE_TTP_LL_0,
++      A2DP_APTX_ADAPTIVE_TTP_LL_1,
++      A2DP_APTX_ADAPTIVE_TTP_HQ_0,
++      A2DP_APTX_ADAPTIVE_TTP_HQ_1,
++      A2DP_APTX_ADAPTIVE_TTP_TWS_0,
++      A2DP_APTX_ADAPTIVE_TTP_TWS_1,
++      0x00,
++      A2DP_APTX_ADAPTIVE_EOC0,
++      A2DP_APTX_ADAPTIVE_EOC1,
++      0x00,
++      0x00,
++      0x00,
++      0x00,
++      0x00,
++      0x00},
++
++    BTAV_A2DP_CODEC_BITS_PER_SAMPLE_24, /* bits_per_sample */
++    {0}
++};
++
+ tA2DP_APTX_ADAPTIVE_CIE a2dp_aptx_adaptive_caps, a2dp_aptx_adaptive_default_config;
+ 
+ 
+@@ -841,6 +871,7 @@ bool A2dpCodecConfigAptxAdaptive::setCodecConfig(const uint8_t* p_peer_codec_inf
+   tA2DP_APTX_ADAPTIVE_CIE result_config_cie;
+   uint8_t sampleRate;
+   uint8_t channelMode;
++  std::string a2dp_ofload_cap;
+ 
+   // Save the internal state
+   btav_a2dp_codec_config_t saved_codec_config = codec_config_;
+@@ -1142,7 +1173,14 @@ bool A2dpCodecConfigAptxAdaptive::setCodecConfig(const uint8_t* p_peer_codec_inf
+               sink_info_cie.channelMode);
+ 
+   result_config_cie.sourceType = a2dp_aptx_adaptive_caps.sourceType;
+-  result_config_cie.aptx_data = sink_info_cie.aptx_data;
++
++  a2dp_ofload_cap = getOffloadCaps();
++  if(getOffloadCaps().find("aptxadaptiver2") == std::string::npos) {
++    result_config_cie.aptx_data = a2dp_aptx_adaptive_r1_config.aptx_data;
++    LOG_INFO(LOG_TAG, "%s: Using Aptx Adaptive R1 config", __func__);
++  } else {
++    result_config_cie.aptx_data = sink_info_cie.aptx_data;
++  }
+ 
+   memset(result_config_cie.reserved_data, 0, sizeof(result_config_cie.reserved_data));
+ 
+diff --git a/stack/include/a2dp_codec_api.h b/stack/include/a2dp_codec_api.h
+index 6b1dc22..373c1d8 100644
+--- a/stack/include/a2dp_codec_api.h
++++ b/stack/include/a2dp_codec_api.h
+@@ -224,6 +224,8 @@ bool getCodecSpecificConfig(tBT_A2DP_OFFLOAD* p_a2dp_offload);
+   static std::string codecConfig2Str(
+       const btav_a2dp_codec_config_t& codec_config);
+ 
++  static std::string getOffloadCaps();
++
+   // Gets the string representation of A2DP Codec Sample Rate.
+   // Returns the string representation of A2DP Codec Sample Rate stored
+   // in |codec_sample_rate|. If there are multiple values stored in
+-- 
+2.7.4
+

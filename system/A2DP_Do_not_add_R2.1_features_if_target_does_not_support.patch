@@ -1,0 +1,41 @@
+From aa4ba1efcd545f363c66f8790b3d7bc2b5fd7ec7 Mon Sep 17 00:00:00 2001
+From: Naval Saini <saini@codeaurora.org>
+Date: Thu, 9 Sep 2021 20:55:16 +0530
+Subject: [PATCH] A2DP: Do not add R2.1 features if target does not support
+
+Do not show R2.1 features in local capability if target
+does not support R2.1
+
+CRs-Fixed: 3031924
+Change-Id: Ic1b605587cdc65942a6065090a702dbec88f3365
+---
+ stack/a2dp/a2dp_vendor_aptx_adaptive.cc | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
+
+diff --git a/stack/a2dp/a2dp_vendor_aptx_adaptive.cc b/stack/a2dp/a2dp_vendor_aptx_adaptive.cc
+index 605e9b4..e9ed3d0 100644
+--- a/stack/a2dp/a2dp_vendor_aptx_adaptive.cc
++++ b/stack/a2dp/a2dp_vendor_aptx_adaptive.cc
+@@ -56,7 +56,6 @@
+ #include "osi/include/osi.h"
+ #include "hardware/bt_av.h"
+ 
+-
+ /* aptX-adaptive Source codec capabilities */
+ static const tA2DP_APTX_ADAPTIVE_CIE a2dp_aptx_adaptive_src_caps = {
+     A2DP_APTX_ADAPTIVE_VENDOR_ID,          /* vendorId */
+@@ -1322,7 +1321,10 @@ bool A2dpCodecConfigAptxAdaptive::setCodecConfig(const uint8_t* p_peer_codec_inf
+     result_config_cie.aptx_data = a2dp_aptx_adaptive_r1_offload_caps.aptx_data;
+     LOG_INFO(LOG_TAG, "%s: Using Aptx Adaptive R1 config", __func__);
+   } else {
+-    result_config_cie.aptx_data = sink_info_cie.aptx_data;
++    if (A2DP_Get_Aptx_AdaptiveR2_1_Supported())
++      result_config_cie.aptx_data = a2dp_aptx_adaptive_r2_1_offload_caps.aptx_data;
++    else
++      result_config_cie.aptx_data = a2dp_aptx_adaptive_offload_caps.aptx_data;
+   }
+ 
+   memset(result_config_cie.reserved_data, 0, sizeof(result_config_cie.reserved_data));
+-- 
+2.7.4
+
