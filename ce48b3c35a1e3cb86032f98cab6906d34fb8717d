@@ -34,6 +34,24 @@
       "parentUuid": "82f2c5f3_bd25ac4b",
       "revId": "ce48b3c35a1e3cb86032f98cab6906d34fb8717d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "befae6d1_6ca12def",
+        "filename": "system/stack/btm/btm_sco.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-06-21T23:37:15Z",
+      "side": 1,
+      "message": "The wrong line was deleted. Nit is still here.",
+      "parentUuid": "dd5f7601_e821c06e",
+      "revId": "ce48b3c35a1e3cb86032f98cab6906d34fb8717d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
