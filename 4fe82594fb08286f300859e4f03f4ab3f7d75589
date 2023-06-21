@@ -35,6 +35,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "af283b3b_75e53584",
+        "filename": "system/gd/rust/linux/stack/src/callbacks.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2023-06-21T20:12:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "58203ed0_b8aaa8f8",
+      "revId": "4fe82594fb08286f300859e4f03f4ab3f7d75589",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c20445df_b04b45c8",
@@ -48,6 +66,24 @@
       "writtenOn": "2023-06-21T17:18:27Z",
       "side": 1,
       "message": "nit: `object id`",
+      "revId": "4fe82594fb08286f300859e4f03f4ab3f7d75589",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "09039d9a_21379d7a",
+        "filename": "system/gd/rust/linux/stack/src/callbacks.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2023-06-21T20:12:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c20445df_b04b45c8",
       "revId": "4fe82594fb08286f300859e4f03f4ab3f7d75589",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -69,6 +105,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "aa395258_92c039e8",
+        "filename": "system/gd/rust/linux/stack/src/callbacks.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2023-06-21T20:12:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "90dffd99_5e3a1d77",
+      "revId": "4fe82594fb08286f300859e4f03f4ab3f7d75589",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "09473670_1efeb883",
@@ -86,6 +140,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "39f3b86c_5d61a08e",
+        "filename": "system/gd/rust/linux/stack/src/callbacks.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2023-06-21T20:12:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "09473670_1efeb883",
+      "revId": "4fe82594fb08286f300859e4f03f4ab3f7d75589",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6a1aa913_9c7b48a1",
@@ -99,6 +171,24 @@
       "writtenOn": "2023-06-21T17:18:27Z",
       "side": 1,
       "message": "You\u0027re going to want to add more than one (since `RegisterDisconnect` always returns 0 unless you implement the trait fn in RPCProxy)",
+      "revId": "4fe82594fb08286f300859e4f03f4ab3f7d75589",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "000f7ace_336480fd",
+        "filename": "system/gd/rust/linux/stack/src/callbacks.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2023-06-21T20:12:01Z",
+      "side": 1,
+      "message": "Decided to implement the trait.",
+      "parentUuid": "6a1aa913_9c7b48a1",
       "revId": "4fe82594fb08286f300859e4f03f4ab3f7d75589",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
