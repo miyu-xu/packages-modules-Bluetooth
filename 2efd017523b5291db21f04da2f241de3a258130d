@@ -74,6 +74,30 @@
       },
       "revId": "2efd017523b5291db21f04da2f241de3a258130d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8e5df7b1_3f439c4b",
+        "filename": "system/stack/btm/btm_sco.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-06-21T23:52:56Z",
+      "side": 1,
+      "message": "Fix applied.",
+      "parentUuid": "d0720e61_b5139837",
+      "range": {
+        "startLine": 71,
+        "startChar": 0,
+        "endLine": 82,
+        "endChar": 36
+      },
+      "revId": "2efd017523b5291db21f04da2f241de3a258130d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
