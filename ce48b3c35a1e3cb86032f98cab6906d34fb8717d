@@ -70,6 +70,24 @@
       "parentUuid": "befae6d1_6ca12def",
       "revId": "ce48b3c35a1e3cb86032f98cab6906d34fb8717d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "23024ded_39f0a861",
+        "filename": "system/stack/btm/btm_sco.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-06-21T23:45:24Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "c336a631_5d74f35f",
+      "revId": "ce48b3c35a1e3cb86032f98cab6906d34fb8717d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
