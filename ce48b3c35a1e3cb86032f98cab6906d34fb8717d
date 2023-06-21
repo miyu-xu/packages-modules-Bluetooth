@@ -16,6 +16,24 @@
       "message": "Nit: I expect there should not be an empty line between the comment and the structure it is attached to",
       "revId": "ce48b3c35a1e3cb86032f98cab6906d34fb8717d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dd5f7601_e821c06e",
+        "filename": "system/stack/btm/btm_sco.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-06-21T23:19:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "82f2c5f3_bd25ac4b",
+      "revId": "ce48b3c35a1e3cb86032f98cab6906d34fb8717d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
