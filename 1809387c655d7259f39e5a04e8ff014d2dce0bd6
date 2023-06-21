@@ -1,0 +1,182 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7dd5bc7b_362368b8",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2133,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-06-21T21:10:19Z",
+      "side": 1,
+      "message": "Can you add `setHfpCallAudioPolicy` in the log (same below) and same thing for `getHfpCallAudioPolicy`",
+      "revId": "1809387c655d7259f39e5a04e8ff014d2dce0bd6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c337611d_9a907fab",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2480,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-06-21T21:10:19Z",
+      "side": 1,
+      "message": "package visible only with a VisibleForTesting ?",
+      "range": {
+        "startLine": 2480,
+        "startChar": 4,
+        "endLine": 2480,
+        "endChar": 10
+      },
+      "revId": "1809387c655d7259f39e5a04e8ff014d2dce0bd6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e94cd136_8b2c2296",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2493,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-06-21T21:10:19Z",
+      "side": 1,
+      "message": "This is public because of hfpclient that need to access it",
+      "range": {
+        "startLine": 2493,
+        "startChar": 4,
+        "endLine": 2493,
+        "endChar": 10
+      },
+      "revId": "1809387c655d7259f39e5a04e8ff014d2dce0bd6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6f7701c9_11a20578",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2497,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-06-21T21:10:19Z",
+      "side": 1,
+      "message": "```suggestion\n    /** Supported if AG supports audio policy */\n```",
+      "range": {
+        "startLine": 2497,
+        "startChar": 33,
+        "endLine": 2497,
+        "endChar": 38
+      },
+      "revId": "1809387c655d7259f39e5a04e8ff014d2dce0bd6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "406a5ecb_3984d371",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2498,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-06-21T21:10:19Z",
+      "side": 1,
+      "message": "Make this private ? or package only with visibleForTesting if you need to access this from test",
+      "range": {
+        "startLine": 2498,
+        "startChar": 4,
+        "endLine": 2498,
+        "endChar": 10
+      },
+      "revId": "1809387c655d7259f39e5a04e8ff014d2dce0bd6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1e15c727_cf45a705",
+        "filename": "android/app/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachine.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-06-21T21:10:19Z",
+      "side": 1,
+      "message": "this is set in constructor and can be made final",
+      "range": {
+        "startLine": 192,
+        "startChar": 20,
+        "endLine": 192,
+        "endChar": 39
+      },
+      "revId": "1809387c655d7259f39e5a04e8ff014d2dce0bd6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d0ec11c0_ea6c9140",
+        "filename": "android/app/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachine.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2305,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-06-21T21:10:19Z",
+      "side": 1,
+      "message": "```suggestion\n        Log.d(TAG, \"setAudioPolicy: \" + policies);\n```",
+      "range": {
+        "startLine": 2305,
+        "startChar": 8,
+        "endLine": 2305,
+        "endChar": 12
+      },
+      "revId": "1809387c655d7259f39e5a04e8ff014d2dce0bd6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9036ac18_96dd1843",
+        "filename": "android/app/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachine.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2375,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-06-21T21:10:19Z",
+      "side": 1,
+      "message": "```suggestion\n    /** Supported if AG and HF both support audio policy */\n```",
+      "range": {
+        "startLine": 2375,
+        "startChar": 44,
+        "endLine": 2375,
+        "endChar": 49
+      },
+      "revId": "1809387c655d7259f39e5a04e8ff014d2dce0bd6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
