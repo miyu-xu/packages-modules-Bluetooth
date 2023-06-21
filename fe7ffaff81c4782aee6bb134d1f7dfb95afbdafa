@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6aca9fa5_b9967a03",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-06-21T21:05:44Z",
+      "side": 1,
+      "message": "Missed a spot: https://osscs.corp.google.com/android/platform/superproject/+/master:packages/modules/Bluetooth/system/include/hardware/bluetooth.h;l\u003d109",
+      "revId": "fe7ffaff81c4782aee6bb134d1f7dfb95afbdafa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
