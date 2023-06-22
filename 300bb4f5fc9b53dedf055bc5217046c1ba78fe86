@@ -16,6 +16,23 @@
       "message": "Thank you for the contribution!",
       "revId": "300bb4f5fc9b53dedf055bc5217046c1ba78fe86",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a74bf095_610dee9f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1968840
+      },
+      "writtenOn": "2023-06-22T00:30:40Z",
+      "side": 1,
+      "message": "Hi Myles\n  Can you please triger the build checking again. Seems one build failed.",
+      "revId": "300bb4f5fc9b53dedf055bc5217046c1ba78fe86",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
