@@ -16,6 +16,24 @@
       "message": "Did you used `--google-style` option ?",
       "revId": "ed6564133713fc8cd1aa6e2b7f6639542334c02a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7729e29a_a8db0a10",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2023-06-22T16:41:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3f3a240b_a9463060",
+      "revId": "ed6564133713fc8cd1aa6e2b7f6639542334c02a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
