@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1b7c9ed3_e0612905",
+        "filename": "android/app/src/com/android/bluetooth/pbapclient/PbapClientStateMachine.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2023-06-22T08:09:56Z",
+      "side": 1,
+      "message": "Is there a reason why we use mLock instead of another object here? mLock seems to used for 2 different locking purposes here",
+      "range": {
+        "startLine": 107,
+        "startChar": 0,
+        "endLine": 107,
+        "endChar": 23
+      },
+      "revId": "98393e75cd805d9bb5f4e95b5bc30913d8e04330",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
