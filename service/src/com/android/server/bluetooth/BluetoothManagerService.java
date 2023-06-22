@@ -99,6 +99,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.NoSuchElementException;
+import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.TimeoutException;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
@@ -1391,6 +1392,18 @@ class BluetoothManagerService {
 
     boolean bindBluetoothProfileService(
             int bluetoothProfile, String serviceName, IBluetoothProfileServiceConnection proxy) {
+        // TODO(b/288450479): Sanitize all binder call to be on the appropriate handler thread
+        CompletableFuture<Boolean> result = new CompletableFuture<>();
+
+        mHandler.post(() -> bindProfileService(bluetoothProfile, serviceName, proxy, result));
+        return result.join();
+    }
+
+    private void bindProfileService(
+            int bluetoothProfile,
+            String serviceName,
+            IBluetoothProfileServiceConnection proxy,
+            CompletableFuture result) {
         if (!mState.oneOf(BluetoothAdapter.STATE_ON)) {
             if (DBG) {
                 Log.d(
@@ -1399,7 +1412,8 @@ class BluetoothManagerService {
                                 + bluetoothProfile
                                 + ", while Bluetooth was disabled");
             }
-            return false;
+            result.complete(false);
+            return;
         }
         synchronized (mProfileServices) {
             if (!mSupportedProfileList.contains(bluetoothProfile)) {
@@ -1408,7 +1422,8 @@ class BluetoothManagerService {
                         "Cannot bind profile: "
                                 + bluetoothProfile
                                 + ", not in supported profiles list");
-                return false;
+                result.complete(false);
+                return;
             }
             ProfileServiceConnections psc = mProfileServices.get(bluetoothProfile);
             if (psc == null) {
@@ -1421,7 +1436,8 @@ class BluetoothManagerService {
                 }
                 psc = new ProfileServiceConnections(new Intent(serviceName));
                 if (!psc.bindService(DEFAULT_REBIND_COUNT)) {
-                    return false;
+                    result.complete(false);
+                    return;
                 }
 
                 mProfileServices.put(bluetoothProfile, psc);
@@ -1433,7 +1449,7 @@ class BluetoothManagerService {
         addProxyMsg.arg1 = bluetoothProfile;
         addProxyMsg.obj = proxy;
         mHandler.sendMessageDelayed(addProxyMsg, ADD_PROXY_DELAY_MS);
-        return true;
+        result.complete(true);
     }
 
     void unbindBluetoothProfileService(
