@@ -1,5 +1,29 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "932b0d9d_7c778651",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-06-22T23:15:45Z",
+      "side": 1,
+      "message": "This doesn\u0027t seems to be a valid test for this, could you fill go/bt-testing-exemption or add a test ?",
+      "range": {
+        "startLine": 10,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 11
+      },
+      "revId": "f1a3c2ade4e2a2cfb81656f4385fe147d5826b34",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
