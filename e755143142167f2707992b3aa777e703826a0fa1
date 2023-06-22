@@ -178,6 +178,24 @@
       "parentUuid": "ae923e50_8ad62d27",
       "revId": "e755143142167f2707992b3aa777e703826a0fa1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ad879177_250b4ade",
+        "filename": "system/build/Android.bp",
+        "patchSetId": 5
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-06-22T17:40:38Z",
+      "side": 0,
+      "message": "\u003e make sure that we have ways to apply common build configs \n\nJust giving my 2 cents here. I do not think this is something we want to have.\n\nLet\u0027s take for example the CL that has created this [global default](https://cs.android.com/android/_/android/platform/packages/modules/Bluetooth/+/2ccf62f53cf7abaa49a363ee840728e830a0a1b9).\nInstead of enforcing more restriction everywhere, it added the `-Wno-unused-parameter` for a few target that didn\u0027t need it. After a few months these target now have some unused variable in it.\n\nTarget that now have this flag and didn\u0027t have it before:\n`rootcanal_test_host`, `libstatslog_bt`, `bluetooth_flatbuffer_tests`, `android.hardware.bluetooth@1.1-service.btlinux`, `async_fd_watcher`\nand anyone only depending on `libchrome_support_defaults` (and its shared version)\n\n----\n\nOn another approach, having global default that add dependency is also something we do not want. Let\u0027s look at this [CL](https://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/2607304) that remove `libbase` from one of the common rule that was used in almost all bluetooth modules. **It was only used in one test** !!\n\nA generic \"common build config\" allow that to happen again, multiple specific default will prevent that from happening",
+      "parentUuid": "ae923e50_8ad62d27",
+      "revId": "e755143142167f2707992b3aa777e703826a0fa1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
