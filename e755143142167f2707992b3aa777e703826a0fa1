@@ -124,6 +124,24 @@
       "parentUuid": "bda98ed4_29b6fc15",
       "revId": "e755143142167f2707992b3aa777e703826a0fa1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d6aefa60_171ca2d4",
+        "filename": "system/build/Android.bp",
+        "patchSetId": 5
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-06-22T01:33:37Z",
+      "side": 0,
+      "message": "\u003e If you insist on making the change\n\nYes I do :)\n\n\u003e I think the product variant in soong is intended for this purpose, if we use product variant properly, one such common defaults should be enough to address all types of code.\n\nNot really, for example you cannot target `fuzzing, (2) dogfooding, and (3) product build` explicitly. Also I think it\u0027s a bad idea to change the way we build bluetooth depending on the product variant, we should instead have one configuration per Soong target and if you want more you create other targets. \n\n\u003e It is up to you to, whether to use one common defaults for all types of code, or use separate defaults for different types of code. Just make sure we have the mechanism to apply common change to a type of file.\n\nAs you cannot really use one common default for all type of code, you are left with doing a tree of default and having \"cflags\" all common root for everything make sense to me.",
+      "parentUuid": "7473fe6d_306067f5",
+      "revId": "e755143142167f2707992b3aa777e703826a0fa1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
