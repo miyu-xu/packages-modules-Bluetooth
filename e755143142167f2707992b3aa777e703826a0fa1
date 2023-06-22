@@ -142,6 +142,24 @@
       "parentUuid": "7473fe6d_306067f5",
       "revId": "e755143142167f2707992b3aa777e703826a0fa1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ae923e50_8ad62d27",
+        "filename": "system/build/Android.bp",
+        "patchSetId": 5
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2023-06-22T16:03:09Z",
+      "side": 0,
+      "message": "I don\u0027t think it is impossible, but it does not matter that much. \n\nAgain if you want to keep multiple defaults, I don\u0027t mind, just make sure that we have ways to apply common build configs and make it be as easy and flexible as possible, not only for changes that will be merged, but also for changes for local experiment on some features.",
+      "parentUuid": "d6aefa60_171ca2d4",
+      "revId": "e755143142167f2707992b3aa777e703826a0fa1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
