@@ -160,6 +160,24 @@
       "parentUuid": "d6aefa60_171ca2d4",
       "revId": "e755143142167f2707992b3aa777e703826a0fa1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "573a1d1b_a071e1a2",
+        "filename": "system/build/Android.bp",
+        "patchSetId": 5
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-06-22T17:38:05Z",
+      "side": 0,
+      "message": "Noted, Is there things that you want me to change in this CL ? If not could you mark this comment as resolved ?",
+      "parentUuid": "ae923e50_8ad62d27",
+      "revId": "e755143142167f2707992b3aa777e703826a0fa1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
