@@ -1,5 +1,40 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4b562ded_f7c63779",
+        "filename": "framework/java/android/bluetooth/BluetoothLeBroadcastSettings.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 283,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-06-22T23:00:12Z",
+      "side": 1,
+      "message": "nit: could you add a test for this code path/exception ?",
+      "revId": "0eb2bc708f6cfc798f8517d62e01087ff81b3015",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "daad139b_cc564284",
+        "filename": "framework/java/android/bluetooth/BluetoothLeBroadcastSettings.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 309,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-06-22T23:00:12Z",
+      "side": 1,
+      "message": "nit: could you add a test for this code path/exception ?",
+      "revId": "0eb2bc708f6cfc798f8517d62e01087ff81b3015",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
