@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ca6a997a_f7a41d74",
+        "filename": "system/BUILD.gn",
+        "patchSetId": 5
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2023-06-22T02:00:26Z",
+      "side": 1,
+      "message": "May we used the [[maybe_unused] or __attribute__((__unused__)) instead of directly turning off the warning?",
+      "range": {
+        "startLine": 103,
+        "startChar": 4,
+        "endLine": 103,
+        "endChar": 32
+      },
+      "revId": "7e883669335536e5ce748416a50063047ead2819",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
