@@ -20,6 +20,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "52801656_2157f67c",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 607,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2023-06-22T08:29:35Z",
+      "side": 1,
+      "message": "Please fix this WARNING reported by AndroidLint: This method should only be accessed from tests or within private scope\n\nAnalyzer Description: Reports AndroidLint warnings.\nOwner: colefaust@google.com\n\nThis method should only be accessed from tests or within private scope\n\n                            \u0026\u0026 mDbManager.getProfileConnectionPolicy(device, BluetoothProfile.HEADSET)\n                                          ~~~~~~~~~~~~~~~~~~~~~~~~~~\n\nWith the `@VisibleForTesting` annotation you can specify an `otherwise\u003d` attribute which specifies the intended visibility if the method had not been made more widely visible for the tests.\n\nThis check looks for accesses from production code (e.g. not tests) where the access would not have been allowed with the intended production visibility.\n\nLocal repro steps at go/ayeaye-android-lint",
+      "range": {
+        "startLine": 607,
+        "startChar": 39,
+        "endLine": 607,
+        "endChar": 98
+      },
+      "revId": "21308502c382861c3da22599aef3ff8a866e47c6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "51da0739_22f29211",
         "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/ActiveDeviceManagerTest.java",
         "patchSetId": 5
