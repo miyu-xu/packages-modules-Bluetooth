@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5ce5b3eb_06ae4c15",
+        "filename": "system/stack/BUILD.gn",
+        "patchSetId": 13
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2023-06-22T02:08:30Z",
+      "side": 1,
+      "message": "Will we add more libs for other codecs? If yes, please help to add comments for these libs.",
+      "range": {
+        "startLine": 55,
+        "startChar": 0,
+        "endLine": 57,
+        "endChar": 15
+      },
+      "revId": "72ab78393d13defa569a70e13007fcd4220917cf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "64f00208_bf794779",
+        "filename": "system/stack/a2dp/a2dp_aac.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2023-06-22T02:08:30Z",
+      "side": 1,
+      "message": "We should ask @mylesgw@google.com or @ashchen@google.com if the `A2DP_AAC_SAMPLING_FREQ_48000` can be added back before we fork the code.\n\nAlso, consider to only ifndef that specific line if this is only for the purpose of enabling the A2DP_AAC_SAMPLING_FREQ_48000.",
+      "range": {
+        "startLine": 61,
+        "startChar": 0,
+        "endLine": 62,
+        "endChar": 33
+      },
+      "revId": "72ab78393d13defa569a70e13007fcd4220917cf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
