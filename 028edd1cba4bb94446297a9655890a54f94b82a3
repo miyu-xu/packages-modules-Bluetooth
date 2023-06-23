@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "821a03c4_1f8e12bb",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 14
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-06-23T22:44:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e8e69e97_ad359b11",
+      "revId": "028edd1cba4bb94446297a9655890a54f94b82a3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bff02b11_a87e4a18",
@@ -31,6 +49,30 @@
       "writtenOn": "2023-06-23T21:28:19Z",
       "side": 1,
       "message": "Tests now need a provider since they are calling the settings\nSome helper tests no longer work with the fake provider. They are\nremoved since this is not a meaningful test.",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 42
+      },
+      "revId": "028edd1cba4bb94446297a9655890a54f94b82a3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "295fe185_02af6254",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 14
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-06-23T22:44:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bff02b11_a87e4a18",
       "range": {
         "startLine": 9,
         "startChar": 0,
