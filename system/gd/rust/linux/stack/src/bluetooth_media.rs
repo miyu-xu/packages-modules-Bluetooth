@@ -18,6 +18,9 @@ use bt_topshim::profiles::hfp::{
 };
 use bt_topshim::profiles::ProfileConnectionState;
 use bt_topshim::{metrics, topstack};
+use bt_utils::at_command_parser::{
+    calculate_battery_percent, parse_at_command_data, AtCommandVendor,
+};
 use bt_utils::uinput::UInput;
 
 use itertools::Itertools;
@@ -786,6 +789,36 @@ impl BluetoothMedia {
                     }
                     _ => {}
                 }
+            }
+            HfpCallbacks::VendorSpecificAtCommand(at_string, addr) => {
+                let at_command = match parse_at_command_data(at_string) {
+                    Ok(command) => command,
+                    Err(e) => {
+                        debug!("{}", e);
+                        return;
+                    }
+                };
+                let battery_level = match calculate_battery_percent(at_command.clone()) {
+                    Ok(level) => level,
+                    Err(e) => {
+                        debug!("{}", e);
+                        return;
+                    }
+                };
+                let source_info = match at_command.vendor {
+                    Some(AtCommandVendor::Apple) => "HFP - Apple",
+                    Some(AtCommandVendor::Plantronics) => "HFP - Plantronics",
+                    _ => "HFP - UnknownAtCommand",
+                };
+                self.battery_provider_manager.lock().unwrap().set_battery_info(
+                    self.battery_provider_id,
+                    BatterySet::new(
+                        addr.to_string(),
+                        uuid::HFP.to_string(),
+                        source_info.to_string(),
+                        vec![Battery { percentage: battery_level, variant: "".to_string() }],
+                    ),
+                );
             }
             HfpCallbacks::BatteryLevelUpdate(battery_level, addr) => {
                 let battery_set = BatterySet::new(
