@@ -787,6 +787,31 @@ impl BluetoothMedia {
                     _ => {}
                 }
             }
+            HfpCallbacks::VendorSpecificAtCommand(at_string, addr) => {
+                match self.extract_battery_information_from_at_command(at_string.clone(), addr) {
+                    Ok(Some(battery_set)) => {
+                        self.battery_provider_manager
+                            .lock()
+                            .unwrap()
+                            .set_battery_info(self.battery_provider_id, battery_set);
+                    }
+                    Ok(None) => {
+                        info!(
+                            "Received unactionable AT command AT{} from {}",
+                            at_string,
+                            addr.to_string()
+                        );
+                    }
+                    Err(e) => {
+                        warn!(
+                            "Failed to process supported AT command AT{} from {}: {}",
+                            at_string,
+                            addr.to_string(),
+                            e
+                        );
+                    }
+                }
+            }
             HfpCallbacks::BatteryLevelUpdate(battery_level, addr) => {
                 let battery_set = BatterySet::new(
                     addr.to_string(),
@@ -980,6 +1005,98 @@ impl BluetoothMedia {
                         pkt_status_in_binary.clone(),
                     );
                 });
+            }
+        }
+    }
+
+    fn extract_battery_information_from_at_command(
+        &self,
+        at_string: String,
+        device_address: RawAddress,
+    ) -> Result<Option<BatterySet>, String> {
+        let mut command_parts = at_string.split("=");
+        let command = match command_parts.next() {
+            Some(cmd) => cmd,
+            None => {
+                return Err("Invalid vendor specific command".to_string());
+            }
+        };
+        let args = match command_parts.next() {
+            Some(arg_string) => arg_string,
+            None => {
+                return Err("Command malformed: arguments not supplied".to_string());
+            }
+        };
+        let num_args: i32 = args.split(",").map(|_| 1).sum();
+        let mut args = args.split(",");
+        match command {
+            // We let topshim handle responding to the initial setup request.
+            "+XAPL" => Ok(None),
+            "+IPHONEACCEV" => {
+                // Extract battery information from format
+                // AT+IPHONEACCEV=[NumberOfIndicators],[IndicatorType],[IndicatorValue]
+                match args.next() {
+                    Some(num_indicators) => match num_indicators.parse::<i32>() {
+                        Ok(parsed_num) => {
+                            if num_args != ((2 * parsed_num) + 1) {
+                                return Err(
+                                        format!(
+                                            "Incorrect number of indicators provided: received {}, expected {}",
+                                            (2 * parsed_num) + 1, num_args
+                                        )
+                                    );
+                            }
+                        }
+                        Err(e) => {
+                            return Err(format!("failed to parse indicator count: {}", e));
+                        }
+                    },
+                    None => return Err("+IPHONEACCEV command missing indicator count".to_string()),
+                }
+                // Battery level has IndicatorType of 1, with single digit number in
+                // IndicatorValue repesenting level/10
+                while args.next() != Some("1") {
+                    match args.next() {
+                        None => {
+                            return Err("Battery level not indicated in command".to_string());
+                        }
+                        // If there are still args we want to skip to the next IndicatorType so we
+                        // throw away the IndicatorValue for the current indicator.
+                        _ => (),
+                    }
+                }
+                let battery_level = match args.next() {
+                    Some(battery) => battery,
+                    None => {
+                        return Err(
+                            "Battery level indicated but not provided in command".to_string()
+                        );
+                    }
+                };
+                let battery_level = match battery_level.parse::<i32>() {
+                    Ok(battery) => battery,
+                    Err(e) => {
+                        return Err(format!("Error parsing battery level: {}", e));
+                    }
+                };
+                let battery_level = battery_level * 10;
+                return Ok(Some(BatterySet::new(
+                    device_address.to_string(),
+                    uuid::HFP.to_string(),
+                    "HFP - XAPL".to_string(),
+                    vec![Battery { percentage: battery_level as u32, variant: "".to_string() }],
+                )));
+            }
+            "+XEVENT" => {
+                // Format:
+                // AT+XEVENT=BATTERY,[Level],[NumberOfLevel],[MinutesOfTalk],[IsCharging]
+                // Battery percentage = 100 * ( Level / (NumberOfLevel - 1 ) )
+                return Ok(None);
+            }
+            // All other commands are not recognized but are not known to be malformed so we pass
+            // over them.
+            _ => {
+                return Ok(None);
             }
         }
     }
