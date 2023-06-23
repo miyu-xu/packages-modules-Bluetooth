@@ -22,6 +22,30 @@
       },
       "revId": "5e57aa52729e748475643034f1b01bb34ff48622",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cc9f7560_9f08eb20",
+        "filename": "android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 763,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-06-23T00:11:47Z",
+      "side": 0,
+      "message": "This is a good question and I do not know the answer.\nI tried to look at this and I am not sure I understand what is an unlocked user. So I prefer to keep this code working as before",
+      "parentUuid": "9cc4a569_5fa5f929",
+      "range": {
+        "startLine": 761,
+        "startChar": 0,
+        "endLine": 763,
+        "endChar": 9
+      },
+      "revId": "5e57aa52729e748475643034f1b01bb34ff48622",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

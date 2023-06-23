@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fd3161e5_c17c818b",
+        "filename": "android/app/src/com/android/bluetooth/avrcp/AvrcpTargetService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-06-23T00:11:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "56c72bd4_a98b299d",
+      "range": {
+        "startLine": 80,
+        "startChar": 36,
+        "endLine": 80,
+        "endChar": 57
+      },
+      "revId": "f7c9ed3881783062dde1ff3133995d324e9b7e66",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4ea7ed89_aa91a570",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-05-26T17:01:48Z",
       "side": 1,
       "message": "remove?  Maybe return early from the beginning of the function if the intent is the wrong kind?",
+      "range": {
+        "startLine": 94,
+        "startChar": 20,
+        "endLine": 94,
+        "endChar": 69
+      },
+      "revId": "f7c9ed3881783062dde1ff3133995d324e9b7e66",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cd71df12_ac541958",
+        "filename": "android/app/src/com/android/bluetooth/avrcp/AvrcpTargetService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-06-23T00:11:47Z",
+      "side": 1,
+      "message": "Removed. it cannot received another intent because of the filter. I wanted to note that in the comment but that is not necessary",
+      "parentUuid": "4ea7ed89_aa91a570",
       "range": {
         "startLine": 94,
         "startChar": 20,
