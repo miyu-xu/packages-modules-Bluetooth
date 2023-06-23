@@ -214,6 +214,24 @@
       "parentUuid": "ad879177_250b4ade",
       "revId": "e755143142167f2707992b3aa777e703826a0fa1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9403f9d1_2b1121ee",
+        "filename": "system/build/Android.bp",
+        "patchSetId": 5
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-06-23T20:42:26Z",
+      "side": 0,
+      "message": "\u003e Please change the CL in the way you like, just as I mentioned, document by comment what where I can add global config, here what I want to add are CFI and Int-San. After that I will resolve it\n\nThanks ! I didn\u0027t understood that you wanted me to add a comment. Done !",
+      "parentUuid": "84113ea6_4b782116",
+      "revId": "e755143142167f2707992b3aa777e703826a0fa1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
