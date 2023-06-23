@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "38447faa_4838db74",
+        "filename": "android/app/src/com/android/bluetooth/bas/BatteryStateMachine.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 259,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-06-23T07:19:14Z",
+      "side": 1,
+      "message": "this function will call `mAdapterService.setBatteryLevel(device, batteryLevel);`, and then `mRemoteDevices.updateBatteryLevel(device, batteryLevel);`, which will trigger a warn log in [RemoteDevices.java#updateBatteryLevel](https://source.corp.google.com/h/android/platform/superproject/+/refs/heads/master:packages/modules/Bluetooth/android/app/src/com/android/bluetooth/btservice/RemoteDevices.java;l\u003d750;drc\u003d9c4ad291f012ed5f9ee9b131106e9732a848740f)\n\nI guess for this resetBatteryLevel, it is targeting to call `RemoteDevices.java#resetBatteryLevel`?",
+      "range": {
+        "startLine": 259,
+        "startChar": 20,
+        "endLine": 259,
+        "endChar": 40
+      },
+      "revId": "05a519be3cb4c158337d5e3cfa24c164cb806c25",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
