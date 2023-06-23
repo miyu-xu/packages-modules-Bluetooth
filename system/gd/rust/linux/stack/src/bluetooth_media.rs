@@ -787,6 +787,118 @@ impl BluetoothMedia {
                     _ => {}
                 }
             }
+            HfpCallbacks::VendorSpecificAtCommand(at_string, addr) => {
+                let mut command_parts = at_string.split("=");
+                let command = match command_parts.next() {
+                    Some(cmd) => cmd,
+                    None => {
+                        warn!(
+                            "Invalid vendor specific command AT{} from {}",
+                            at_string,
+                            addr.to_string()
+                        );
+                        return;
+                    }
+                };
+                let args = match command_parts.next() {
+                    Some(arg_string) => arg_string,
+                    None => {
+                        warn!(
+                            "Arguments not supplied for vendor specific command AT{} from {}",
+                            at_string,
+                            addr.to_string()
+                        );
+                        return;
+                    }
+                };
+                let num_args: i32 = args.split(",").map(|_| 1).sum();
+                let mut args = args.split(",");
+                match command {
+                    // We let topshim handle responding to the initial setup request.
+                    "+XAPL" => return,
+                    "+IPHONEACCEV" => {
+                        // Extract battery information from format
+                        // AT+IPHONEACCEV=[NumberOfIndicators],[IndicatorType],[IndicatorValue]
+                        // Battery level has IndicatorType of 1, with single digit number in
+                        // IndicatorValue repesenting level/10
+                        match args.next() {
+                            Some(num_indicators) => {
+                                match num_indicators.parse::<i32>() {
+                                    Ok(parsed_num) => {
+                                        if num_args != ( (2 * parsed_num) + 1 ) {
+                                            warn!("Incorrect number of indicators provided in vendor specific command AT{} from {}", at_string, addr.to_string());
+                                            return;
+                                        }
+                                    }
+                                    Err(e) => {
+                                        warn!("Error parsing indicator count in command AT{} from {}: {}", at_string, addr.to_string(), e);
+                                        return;
+                                    }
+                                }
+                            }
+                            None => warn!("+IPHONEACCEV from {} has insufficient arguments (missing indicator count): AT{}", addr.to_string(), at_string)
+                        }
+                        while args.next() != Some("1") {
+                            match args.next() {
+                                None => {
+                                    warn!(
+                                        "Battery level for {} not indicated in command AT{}",
+                                        addr.to_string(),
+                                        at_string
+                                    );
+                                    return;
+                                }
+                                _ => (),
+                            }
+                        }
+                        let battery_level = match args.next() {
+                            Some(battery) => battery,
+                            None => {
+                                warn!(
+                                    "Battery level for {} indicated but not provided in command AT{}",
+                                    addr.to_string(), at_string
+                                );
+                                return;
+                            }
+                        };
+                        let battery_level = match battery_level.parse::<i32>() {
+                            Ok(battery) => battery,
+                            Err(e) => {
+                                warn!(
+                                    "Error parsing battery level for {} from command AT{}: {}",
+                                    addr.to_string(),
+                                    at_string,
+                                    e
+                                );
+                                return;
+                            }
+                        };
+                        let battery_level = battery_level * 10;
+                        let battery_set = BatterySet::new(
+                            addr.to_string(),
+                            uuid::HFP.to_string(),
+                            "HFP - XAPL".to_string(),
+                            vec![Battery {
+                                percentage: battery_level as u32,
+                                variant: "".to_string(),
+                            }],
+                        );
+                        self.battery_provider_manager
+                            .lock()
+                            .unwrap()
+                            .set_battery_info(self.battery_provider_id, battery_set);
+                    }
+                    "+XEVENT" => {
+                        // Format:
+                        // AT+XEVENT=BATTERY,[Level],[NumberOfLevel],[MinutesOfTalk],[IsCharging]
+                        // Battery percentage = 100 * ( Level / (NumberOfLevel - 1 ) )
+                    }
+                    _ => {
+                        warn!("Unsupported command AT{}", at_string);
+                        return;
+                    }
+                }
+            }
             HfpCallbacks::BatteryLevelUpdate(battery_level, addr) => {
                 let battery_set = BatterySet::new(
                     addr.to_string(),
