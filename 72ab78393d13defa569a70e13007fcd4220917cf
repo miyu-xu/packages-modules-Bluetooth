@@ -45,6 +45,30 @@
       },
       "revId": "72ab78393d13defa569a70e13007fcd4220917cf",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5acdda86_660ffc2e",
+        "filename": "system/stack/a2dp/a2dp_aac.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-06-23T18:25:36Z",
+      "side": 1,
+      "message": "At the time, iPhone didn\u0027t support AAC 48K, so many devices didn\u0027t support it correctly.  Why is 48K important?",
+      "parentUuid": "64f00208_bf794779",
+      "range": {
+        "startLine": 61,
+        "startChar": 0,
+        "endLine": 62,
+        "endChar": 33
+      },
+      "revId": "72ab78393d13defa569a70e13007fcd4220917cf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
