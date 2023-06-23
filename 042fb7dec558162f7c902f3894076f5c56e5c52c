@@ -1,5 +1,29 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0c45ccd4_7ae79c6f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-06-23T17:00:12Z",
+      "side": 1,
+      "message": "This doesn\u0027t seems to be a valid test, `BluetoothInstrumentationTests` doesn\u0027t test the native code, could you fill go/bt-testing-exemption ?",
+      "range": {
+        "startLine": 10,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 41
+      },
+      "revId": "042fb7dec558162f7c902f3894076f5c56e5c52c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
