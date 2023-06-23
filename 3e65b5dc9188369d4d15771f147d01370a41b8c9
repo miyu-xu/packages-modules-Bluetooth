@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "accbfac4_83eea5b3",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 2560,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-06-23T21:17:52Z",
+      "side": 1,
+      "message": "prevState \u003d\u003d STATE_BLE_TURNING_ON ?  The rest don\u0027t seem to make sense.",
+      "range": {
+        "startLine": 2560,
+        "startChar": 47,
+        "endLine": 2560,
+        "endChar": 68
+      },
+      "revId": "3e65b5dc9188369d4d15771f147d01370a41b8c9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
