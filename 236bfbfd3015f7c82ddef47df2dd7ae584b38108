@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "452b8800_a28a0422",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-06-23T22:34:12Z",
+      "side": 1,
+      "message": "nit: gain or benefit",
+      "range": {
+        "startLine": 11,
+        "startChar": 37,
+        "endLine": 11,
+        "endChar": 42
+      },
+      "revId": "236bfbfd3015f7c82ddef47df2dd7ae584b38108",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
