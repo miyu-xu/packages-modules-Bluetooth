@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0f4e09a8_cd546732",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-06-23T05:17:10Z",
+      "side": 1,
+      "message": "C",
+      "revId": "98393e75cd805d9bb5f4e95b5bc30913d8e04330",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1b7c9ed3_e0612905",
@@ -14,6 +31,30 @@
       "writtenOn": "2023-06-22T08:09:56Z",
       "side": 1,
       "message": "Is there a reason why we use mLock instead of another object here? mLock seems to used for 2 different locking purposes here",
+      "range": {
+        "startLine": 107,
+        "startChar": 0,
+        "endLine": 107,
+        "endChar": 23
+      },
+      "revId": "98393e75cd805d9bb5f4e95b5bc30913d8e04330",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f361dcd7_317b6336",
+        "filename": "android/app/src/com/android/bluetooth/pbapclient/PbapClientStateMachine.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-06-23T05:17:10Z",
+      "side": 1,
+      "message": "No, there is no reasons for that. Why do you think we should use another object?",
+      "parentUuid": "1b7c9ed3_e0612905",
       "range": {
         "startLine": 107,
         "startChar": 0,
