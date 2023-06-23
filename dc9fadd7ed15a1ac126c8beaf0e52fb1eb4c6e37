@@ -1,5 +1,29 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "59d86315_77ad3297",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 17
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-06-23T01:22:07Z",
+      "side": 1,
+      "message": "Hi, could you fill go/bt-testing-exemption ? Thanks !",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 22
+      },
+      "revId": "dc9fadd7ed15a1ac126c8beaf0e52fb1eb4c6e37",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
