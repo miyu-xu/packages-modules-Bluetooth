@@ -128,6 +128,30 @@
       },
       "revId": "95d39ba41a461d94ac3e5283f59fdfefda17026c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "65e8e04a_2b431e68",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 2400,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-06-23T17:00:37Z",
+      "side": 1,
+      "message": "I notice I never answer on the \"why\" part of the question.\n\nSince we had 2 int argument before, it was making sens to use arg2. Now we only have one int and thus I a removing the `arg2`",
+      "parentUuid": "d413176f_2a30ce2d",
+      "range": {
+        "startLine": 2400,
+        "startChar": 32,
+        "endLine": 2400,
+        "endChar": 36
+      },
+      "revId": "95d39ba41a461d94ac3e5283f59fdfefda17026c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
