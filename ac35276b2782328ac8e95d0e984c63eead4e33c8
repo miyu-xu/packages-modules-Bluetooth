@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9fe81665_c01b543d",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothAirplaneModeListener.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-06-23T21:30:18Z",
+      "side": 1,
+      "message": "This isn\u0027t clear to me...\n\nIs it the same as AIRPLANE_MODE_ENABLED ?",
+      "range": {
+        "startLine": 75,
+        "startChar": 29,
+        "endLine": 75,
+        "endChar": 46
+      },
+      "revId": "ac35276b2782328ac8e95d0e984c63eead4e33c8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
