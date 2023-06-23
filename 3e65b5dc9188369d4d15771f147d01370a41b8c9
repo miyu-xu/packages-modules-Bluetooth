@@ -22,6 +22,30 @@
       },
       "revId": "3e65b5dc9188369d4d15771f147d01370a41b8c9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b2ad77b4_22c929ab",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 2560,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-06-23T22:33:55Z",
+      "side": 1,
+      "message": "Done.\n\nI agree that other BleState are unlikely to end in a transition to BLE_ON.",
+      "parentUuid": "accbfac4_83eea5b3",
+      "range": {
+        "startLine": 2560,
+        "startChar": 47,
+        "endLine": 2560,
+        "endChar": 68
+      },
+      "revId": "3e65b5dc9188369d4d15771f147d01370a41b8c9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
