@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "159adb0e_cf6f5d59",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 2356,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-06-23T21:10:33Z",
+      "side": 1,
+      "message": "What if you are \"Turning on\"?",
+      "range": {
+        "startLine": 2356,
+        "startChar": 57,
+        "endLine": 2356,
+        "endChar": 65
+      },
+      "revId": "82951d5acfac863f9e226dea1581dfb480b26ee3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
