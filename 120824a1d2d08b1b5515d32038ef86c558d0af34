@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a44bf290_4ec3a50d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 16
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-06-23T22:41:25Z",
+      "side": 1,
+      "message": "You sure ? Bind binded binden ? 😂\n\nDone.",
+      "parentUuid": "dcbb984c_79c8a211",
+      "range": {
+        "startLine": 25,
+        "startChar": 8,
+        "endLine": 25,
+        "endChar": 14
+      },
+      "revId": "120824a1d2d08b1b5515d32038ef86c558d0af34",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8597bae0_cd6c32cd",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "22aa5766_ef85abb8",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 418,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-06-23T22:41:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8597bae0_cd6c32cd",
+      "range": {
+        "startLine": 418,
+        "startChar": 53,
+        "endLine": 418,
+        "endChar": 59
+      },
+      "revId": "120824a1d2d08b1b5515d32038ef86c558d0af34",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d0f33166_5390748c",
@@ -60,6 +108,30 @@
       "writtenOn": "2023-06-23T21:22:46Z",
       "side": 1,
       "message": "Remove?  Is it leftover debugging?",
+      "range": {
+        "startLine": 305,
+        "startChar": 12,
+        "endLine": 305,
+        "endChar": 13
+      },
+      "revId": "120824a1d2d08b1b5515d32038ef86c558d0af34",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6f051c17_e5d9acaa",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ProfileService.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 305,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-06-23T22:41:25Z",
+      "side": 1,
+      "message": "It was on purpose. I thought it could be a good idea to have a log showing when we start the cleanup of a profile..\nIf you think it is too much, I can remove it",
+      "parentUuid": "d0f33166_5390748c",
       "range": {
         "startLine": 305,
         "startChar": 12,
