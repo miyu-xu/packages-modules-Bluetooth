@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1a0e9f14_d3e2afe9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-06-23T01:57:03Z",
+      "side": 1,
+      "message": "ro.bluetooth.ble_stop_timeout_delay is set to 4000 on phone and 8000 on wear devices\nBut somehow the test expect it to be ok after 1000\n\nSo I am not suprised the test does not work on wear and never did, nor do I am surprised the test is flaky on phone.\n\nA proper fix would be to remove any timing issue, a quick fix to increase the timer in the test. I do not have time right now to do the proper fix here",
+      "revId": "d55680f7faa43a953cd828febac6b325263c6813",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
