@@ -140,6 +140,30 @@
       },
       "revId": "120824a1d2d08b1b5515d32038ef86c558d0af34",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "526f484e_d3ad450c",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ProfileService.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 305,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-06-23T22:43:32Z",
+      "side": 1,
+      "message": "I guess then we need to discuss if it should be an error.\n\nSame for doStart and doStop\n\nAll together, it seems like a lot of extra logging.",
+      "parentUuid": "6f051c17_e5d9acaa",
+      "range": {
+        "startLine": 305,
+        "startChar": 12,
+        "endLine": 305,
+        "endChar": 13
+      },
+      "revId": "120824a1d2d08b1b5515d32038ef86c558d0af34",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
