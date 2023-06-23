@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dcbb984c_79c8a211",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 16
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-06-23T21:22:46Z",
+      "side": 1,
+      "message": "nit: Not English",
+      "range": {
+        "startLine": 25,
+        "startChar": 8,
+        "endLine": 25,
+        "endChar": 14
+      },
+      "revId": "120824a1d2d08b1b5515d32038ef86c558d0af34",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8597bae0_cd6c32cd",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 418,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-06-23T21:22:46Z",
+      "side": 1,
+      "message": "BOUND?",
+      "range": {
+        "startLine": 418,
+        "startChar": 53,
+        "endLine": 418,
+        "endChar": 59
+      },
+      "revId": "120824a1d2d08b1b5515d32038ef86c558d0af34",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d0f33166_5390748c",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ProfileService.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 305,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-06-23T21:22:46Z",
+      "side": 1,
+      "message": "Remove?  Is it leftover debugging?",
+      "range": {
+        "startLine": 305,
+        "startChar": 12,
+        "endLine": 305,
+        "endChar": 13
+      },
+      "revId": "120824a1d2d08b1b5515d32038ef86c558d0af34",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
