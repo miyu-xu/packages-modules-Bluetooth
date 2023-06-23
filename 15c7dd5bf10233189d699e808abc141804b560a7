@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9d3f3ac3_38903a31",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 751,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-06-23T09:59:12Z",
+      "side": 1,
+      "message": "This is not error yet, as we are retrying, maybe just INFO or WARN first, inside the if just below ?",
+      "range": {
+        "startLine": 751,
+        "startChar": 6,
+        "endLine": 751,
+        "endChar": 15
+      },
+      "revId": "15c7dd5bf10233189d699e808abc141804b560a7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "61171ee5_8d70680b",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 753,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-06-23T09:59:12Z",
+      "side": 1,
+      "message": "NIT Should we limit number of retries ? I\u0027m not sure if this would make sense, taken that we really want to stream to whole group, and we have ACL connection at that point..",
+      "range": {
+        "startLine": 753,
+        "startChar": 7,
+        "endLine": 753,
+        "endChar": 49
+      },
+      "revId": "15c7dd5bf10233189d699e808abc141804b560a7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e59288dd_5e8027ec",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 760,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-06-23T09:59:12Z",
+      "side": 1,
+      "message": "LOG_ERROR here",
+      "revId": "15c7dd5bf10233189d699e808abc141804b560a7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "09cd0214_5f00b078",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 762,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-06-23T09:59:12Z",
+      "side": 1,
+      "message": "This is case where one erbud is streaming just fine and 2nd failed to connect with error different than 0x3e, right ?\nIn this case log this as warning.\nMaybe we should keep it as some metric -  if this happens often enough, we would have to take an action ?",
+      "range": {
+        "startLine": 762,
+        "startChar": 7,
+        "endLine": 762,
+        "endChar": 21
+      },
+      "revId": "15c7dd5bf10233189d699e808abc141804b560a7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
