@@ -219,6 +219,32 @@ public class LeAudioNativeInterface {
         sendMessageToService(event);
     }
 
+    @VisibleForTesting
+    void onHealthBaseRecommendationAction(byte[] address, int action) {
+        LeAudioStackEvent event =
+                new LeAudioStackEvent(LeAudioStackEvent.EVENT_TYPE_HEALTH_BASED_DEV_RECOMENDATION);
+        event.device = getDevice(address);
+        event.valueInt1 = action;
+
+        if (DBG) {
+            Log.d(TAG, "onHealthBaseRecommendationAction: " + event);
+        }
+        sendMessageToService(event);
+    }
+
+    @VisibleForTesting
+    void onHealthBaseGroupRecommendationAction(int groupId, int action) {
+        LeAudioStackEvent event =
+                new LeAudioStackEvent(
+                        LeAudioStackEvent.EVENT_TYPE_HEALTH_BASED_GROUP_RECOMENDATION);
+        event.valueInt1 = groupId;
+        event.valueInt2 = action;
+
+        if (DBG) {
+            Log.d(TAG, "onHealthBaseGroupRecommendationAction: " + event);
+        }
+        sendMessageToService(event);
+    }
     /**
      * Initializes the native interface.
      *

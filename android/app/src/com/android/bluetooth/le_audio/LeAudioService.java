@@ -1564,6 +1564,32 @@ public class LeAudioService extends ProfileService {
         }
     }
 
+    private void handleDeviceHealthAction(BluetoothDevice device, int action) {
+        // To implement
+        if (DBG) {
+            Log.d(
+                    TAG,
+                    "handleDeviceHealthAction: "
+                            + device
+                            + " action: "
+                            + action
+                            + ", not implemented");
+        }
+    }
+
+    private void handleGroupHealthAction(int groupId, int action) {
+        // To implement
+        if (DBG) {
+            Log.d(
+                    TAG,
+                    "handleGroupHealthAction: groupId: "
+                            + groupId
+                            + " action: "
+                            + action
+                            + ", not implemented");
+        }
+    }
+
     private void handleGroupTransitToActive(int groupId) {
         synchronized (mGroupLock) {
             LeAudioGroupDescriptor descriptor = getGroupDescriptor(groupId);
@@ -1971,6 +1997,10 @@ public class LeAudioService extends ProfileService {
                 default:
                     break;
             }
+        } else if (stackEvent.type == LeAudioStackEvent.EVENT_TYPE_HEALTH_BASED_DEV_RECOMENDATION) {
+            handleDeviceHealthAction(stackEvent.device, stackEvent.valueInt1);
+        } else if (stackEvent.type == LeAudioStackEvent.EVENT_TYPE_HEALTH_BASED_DEV_RECOMENDATION) {
+            handleGroupHealthAction(stackEvent.valueInt1, stackEvent.valueInt2);
         } else if (stackEvent.type == LeAudioStackEvent.EVENT_TYPE_BROADCAST_CREATED) {
             int broadcastId = stackEvent.valueInt1;
             boolean success = stackEvent.valueBool1;

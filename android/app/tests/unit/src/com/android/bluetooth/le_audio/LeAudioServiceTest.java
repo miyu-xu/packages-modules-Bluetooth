@@ -1299,6 +1299,36 @@ public class LeAudioServiceTest {
         assertThat(intent).isNull();
     }
 
+    /**
+     * Test native interface health base action message handling. It does not much, just chects
+     * stack even and that service not crash
+     */
+    @Test
+    public void testHealthBaseDeviceAction() {
+        doReturn(true).when(mNativeInterface).connectLeAudio(any(BluetoothDevice.class));
+        connectTestDevice(mSingleDevice, testGroupId);
+
+        LeAudioStackEvent healthBaseDevAction =
+                new LeAudioStackEvent(LeAudioStackEvent.EVENT_TYPE_HEALTH_BASED_DEV_RECOMENDATION);
+        healthBaseDevAction.device = mSingleDevice;
+        healthBaseDevAction.valueInt1 = LeAudioStackEvent.HEALTH_RECOMENDATION_ACTION_DISABLE;
+        mService.messageFromNative(stackEvent);
+        assertThat(mService.mLeAudioNativeIsInitialized).isTrue();
+    }
+
+    @Test
+    public void testHealthBaseGroupAction() {
+        doReturn(true).when(mNativeInterface).connectLeAudio(any(BluetoothDevice.class));
+        connectTestDevice(mSingleDevice, testGroupId);
+
+        LeAudioStackEvent healthBaseDevAction =
+                new LeAudioStackEvent(
+                        LeAudioStackEvent.EVENT_TYPE_HEALTH_BASED_GROUP_RECOMENDATION);
+        healthBaseDevAction.valueInt1 = testGroupId;
+        healthBaseDevAction.valueInt2 = LeAudioStackEvent.HEALTH_RECOMENDATION_ACTION_DISABLE;
+        mService.messageFromNative(stackEvent);
+        assertThat(mService.mLeAudioNativeIsInitialized).isTrue();
+    }
 
     private void sendEventAndVerifyIntentForGroupStatusChanged(int groupId, int groupStatus) {
 
