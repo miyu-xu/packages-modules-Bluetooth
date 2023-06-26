@@ -1245,6 +1245,13 @@ void bta_ag_sco_open(tBTA_AG_SCB* p_scb, UNUSED_ATTR const tBTA_AG_DATA& data) {
     return;
   }
 
+  if (bta_ag_get_active_device() != p_scb->peer_addr) {
+    LOG_INFO("remote device %s is not current active device %s", 
+        ADDRESS_TO_LOGGABLE_CSTR(p_scb->peer_addr), 
+        ADDRESS_TO_LOGGABLE_CSTR(bta_ag_get_active_device()));
+    return;
+  }
+
   p_scb->disabled_codecs = data.api_audio_open.disabled_codecs;
   LOG(INFO) << __func__ << ": disabled_codecs = " << p_scb->disabled_codecs
             << ", sco_codec = " << p_scb->sco_codec;
