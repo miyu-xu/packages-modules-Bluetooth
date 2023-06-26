@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3a80d24f_e1b73ae3",
+        "filename": "system/stack/BUILD.gn",
+        "patchSetId": 13
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2023-06-26T05:32:38Z",
+      "side": 1,
+      "message": "This should be temporary while it is still under development. Ideally (and on their way) these should not be linked directly.",
+      "parentUuid": "5ce5b3eb_06ae4c15",
+      "range": {
+        "startLine": 55,
+        "startChar": 0,
+        "endLine": 57,
+        "endChar": 15
+      },
+      "revId": "72ab78393d13defa569a70e13007fcd4220917cf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "64f00208_bf794779",
@@ -61,6 +85,30 @@
       "side": 1,
       "message": "At the time, iPhone didn\u0027t support AAC 48K, so many devices didn\u0027t support it correctly.  Why is 48K important?",
       "parentUuid": "64f00208_bf794779",
+      "range": {
+        "startLine": 61,
+        "startChar": 0,
+        "endLine": 62,
+        "endChar": 33
+      },
+      "revId": "72ab78393d13defa569a70e13007fcd4220917cf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "366ba5c8_471d128d",
+        "filename": "system/stack/a2dp/a2dp_aac.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2023-06-26T05:32:38Z",
+      "side": 1,
+      "message": "Besides the sample rate, we are also interested in having more options to the bit depth.\n\nHowever, I think it\u0027s just a nice-to-have if the peer claims support of it. We can justify whether that is worth breaking the peace later when we have stronger evidence.",
+      "parentUuid": "5acdda86_660ffc2e",
       "range": {
         "startLine": 61,
         "startChar": 0,
