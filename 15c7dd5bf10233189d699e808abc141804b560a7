@@ -26,6 +26,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "04e7a744_a3d8bc68",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 752,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-06-26T07:04:31Z",
+      "side": 1,
+      "message": "|| event-\u003estatus \u003d\u003d HCI_ERR_CONNECTION_TOUT ?",
+      "revId": "15c7dd5bf10233189d699e808abc141804b560a7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "61171ee5_8d70680b",
         "filename": "system/bta/le_audio/state_machine.cc",
         "patchSetId": 2
