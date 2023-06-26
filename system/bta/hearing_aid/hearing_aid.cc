@@ -1503,7 +1503,7 @@ class HearingAidImpl : public HearingAid {
   void SendAudio(uint8_t* encoded_data, uint16_t packet_size,
                  HearingDevice* hearingAid) {
     if (!hearingAid->playback_started || !hearingAid->command_acked) {
-      LOG_DEBUG("Playback stalled, device=%s,cmd send=%i, cmd acked=%i",
+      LOG_INFO("Playback stalled, device=%s,cmd send=%i, cmd acked=%i",
                 ADDRESS_TO_LOGGABLE_CSTR(hearingAid->address),
                 hearingAid->playback_started, hearingAid->command_acked);
       return;
@@ -1515,7 +1515,7 @@ class HearingAidImpl : public HearingAid {
     p++;
     memcpy(p, encoded_data, packet_size);
 
-    LOG_DEBUG("%s : %s", ADDRESS_TO_LOGGABLE_CSTR(hearingAid->address),
+    LOG_INFO("%s : %s", ADDRESS_TO_LOGGABLE_CSTR(hearingAid->address),
               base::HexEncode(p, packet_size).c_str());
 
     uint16_t result = GAP_ConnWriteData(hearingAid->gap_handle, audio_packet);
