@@ -49,6 +49,8 @@ import kotlinx.coroutines.flow.shareIn
 import pandora.asha.AshaGrpc.AshaImplBase
 import pandora.asha.AshaProto.*
 
+fun ByteArray.toHexString() = joinToString("") { "%02x".format(it) }
+
 @kotlinx.coroutines.ExperimentalCoroutinesApi
 class Asha(val context: Context) : AshaImplBase(), Closeable {
     private val TAG = "PandoraAsha"
@@ -201,13 +203,14 @@ class Asha(val context: Context) : AshaImplBase(), Closeable {
                 awaitClose { audioTrack!!.removeOnRoutingChangedListener(audioRoutingListener) }
             }
             audioRoutingFlow.first()
-
-            val minVolume = audioManager.getStreamMinVolume(AudioManager.STREAM_MUSIC)
+            Log.w(TAG, "vol.Events duo: prepare set volume to max in start")
+            val maxVolume = audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC)
             audioManager.setStreamVolume(
                 AudioManager.STREAM_MUSIC,
-                minVolume,
+                maxVolume,
                 AudioManager.FLAG_SHOW_UI
             )
+            Log.w(TAG, "vol.Events duo: set volume to max in start")
 
             StartResponse.getDefaultInstance()
         }
@@ -239,6 +242,7 @@ class Asha(val context: Context) : AshaImplBase(), Closeable {
         if (audioManager.isVolumeFixed) {
             Log.w(TAG, "Volume is fixed, cannot max out the volume")
         } else {
+            Log.w(TAG, "vol.Events duo: prepare set volume to max")
             val maxVolume = audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC)
             if (audioManager.getStreamVolume(AudioManager.STREAM_MUSIC) < maxVolume) {
                 audioManager.setStreamVolume(
@@ -246,13 +250,15 @@ class Asha(val context: Context) : AshaImplBase(), Closeable {
                     maxVolume,
                     AudioManager.FLAG_SHOW_UI
                 )
+                Log.w(TAG, "vol.Events duo: set volume to max")
             }
         }
 
         return object : StreamObserver<PlaybackAudioRequest> {
             override fun onNext(request: PlaybackAudioRequest) {
                 val data = request.data.toByteArray()
-                Log.d(TAG, "audio track writes data=$data")
+                val hexString = data.toHexString()
+                Log.d(TAG, "audio track writes data=$hexString")
                 val written = synchronized(audioTrack!!) { audioTrack!!.write(data, 0, data.size) }
                 if (written != data.size) {
                     Log.e(TAG, "AudioTrack write failed")
