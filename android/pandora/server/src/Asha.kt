@@ -201,13 +201,14 @@ class Asha(val context: Context) : AshaImplBase(), Closeable {
                 awaitClose { audioTrack!!.removeOnRoutingChangedListener(audioRoutingListener) }
             }
             audioRoutingFlow.first()
-
+            Log.w(TAG, "vol.Events duo: prepare set volume to min in start")
             val minVolume = audioManager.getStreamMinVolume(AudioManager.STREAM_MUSIC)
             audioManager.setStreamVolume(
                 AudioManager.STREAM_MUSIC,
                 minVolume,
                 AudioManager.FLAG_SHOW_UI
             )
+            Log.w(TAG, "vol.Events duo: set volume to min in start")
 
             StartResponse.getDefaultInstance()
         }
@@ -239,6 +240,7 @@ class Asha(val context: Context) : AshaImplBase(), Closeable {
         if (audioManager.isVolumeFixed) {
             Log.w(TAG, "Volume is fixed, cannot max out the volume")
         } else {
+            Log.w(TAG, "vol.Events duo: prepare set volume to max")
             val maxVolume = audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC)
             if (audioManager.getStreamVolume(AudioManager.STREAM_MUSIC) < maxVolume) {
                 audioManager.setStreamVolume(
@@ -246,6 +248,7 @@ class Asha(val context: Context) : AshaImplBase(), Closeable {
                     maxVolume,
                     AudioManager.FLAG_SHOW_UI
                 )
+                Log.w(TAG, "vol.Events duo: set volume to max")
             }
         }
 
