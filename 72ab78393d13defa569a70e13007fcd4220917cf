@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "aa258e9a_341e14a8",
+        "filename": "system/stack/BUILD.gn",
+        "patchSetId": 13
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2023-06-26T23:11:38Z",
+      "side": 1,
+      "message": "Please and the TODO and bug number to follow to work cleaning them then.",
+      "parentUuid": "3a80d24f_e1b73ae3",
+      "range": {
+        "startLine": 55,
+        "startChar": 0,
+        "endLine": 57,
+        "endChar": 15
+      },
+      "revId": "72ab78393d13defa569a70e13007fcd4220917cf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "64f00208_bf794779",
