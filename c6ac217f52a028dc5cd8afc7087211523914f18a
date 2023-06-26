@@ -22,6 +22,30 @@
       },
       "revId": "c6ac217f52a028dc5cd8afc7087211523914f18a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1c3eb876_edeb3964",
+        "filename": "android/app/Android.bp",
+        "patchSetId": 9
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-06-26T17:56:16Z",
+      "side": 1,
+      "message": "The other ones are libraries that are not available as static libraries and only shared libraries.",
+      "parentUuid": "e899565e_98811d36",
+      "range": {
+        "startLine": 75,
+        "startChar": 37,
+        "endLine": 75,
+        "endChar": 46
+      },
+      "revId": "c6ac217f52a028dc5cd8afc7087211523914f18a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
