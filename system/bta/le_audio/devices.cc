@@ -1819,17 +1819,23 @@ bool LeAudioDeviceGroup::IsMetadataChanged(
 }
 
 bool LeAudioDeviceGroup::IsCisPartOfCurrentStream(uint16_t cis_conn_hdl) {
-  auto iter = std::find_if(
-      stream_conf.sink_streams.begin(), stream_conf.sink_streams.end(),
-      [cis_conn_hdl](auto& pair) { return cis_conn_hdl == pair.first; });
+  if (!stream_conf.sink_streams.empty()) {
+    auto iter = std::find_if(
+        stream_conf.sink_streams.begin(), stream_conf.sink_streams.end(),
+        [cis_conn_hdl](auto& pair) { return cis_conn_hdl == pair.first; });
 
-  if (iter != stream_conf.sink_streams.end()) return true;
+    if (iter != stream_conf.sink_streams.end()) return true;
+  }
 
-  iter = std::find_if(
-      stream_conf.source_streams.begin(), stream_conf.source_streams.end(),
-      [cis_conn_hdl](auto& pair) { return cis_conn_hdl == pair.first; });
+  if (!stream_conf.source_streams.empty()) {
+    auto iter = std::find_if(
+        stream_conf.source_streams.begin(), stream_conf.source_streams.end(),
+        [cis_conn_hdl](auto& pair) { return cis_conn_hdl == pair.first; });
 
-  return iter != stream_conf.sink_streams.end();
+    return iter != stream_conf.sink_streams.end();
+  }
+
+  return false;
 }
 
 void LeAudioDeviceGroup::StreamOffloaderUpdated(uint8_t direction) {

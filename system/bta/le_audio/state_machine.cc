@@ -896,11 +896,13 @@ class LeAudioGroupStateMachineImpl : public LeAudioGroupStateMachine {
           ases_pair.sink->state == AseState::BTA_LE_AUDIO_ASE_STATE_STREAMING) {
         ases_pair.sink->state =
             AseState::BTA_LE_AUDIO_ASE_STATE_CODEC_CONFIGURED;
+        ases_pair.sink->active = false;
       }
       if (ases_pair.source && ases_pair.source->state ==
                                   AseState::BTA_LE_AUDIO_ASE_STATE_STREAMING) {
         ases_pair.source->state =
             AseState::BTA_LE_AUDIO_ASE_STATE_CODEC_CONFIGURED;
+        ases_pair.source->active = false;
       }
     }
 
@@ -1001,6 +1003,20 @@ class LeAudioGroupStateMachineImpl : public LeAudioGroupStateMachine {
           if (target_state == current_group_state) {
             state_machine_callbacks_->StatusReportCb(
                 group->group_id_, GroupStreamStatus::CONFIGURED_AUTONOMOUS);
+          }
+        } else {
+          /* There is no CISes in the group, but current  streaming state does
+           * not indicated that all ASEs has moved to same state. Probably
+           * because of unexpected disconnection. Lets check if there is any
+           * active ASE, if not, just set current state to IDLE and notify upper
+           * layer about that.
+           */
+          auto active_dev = group->GetFirstActiveDevice();
+          if (active_dev == nullptr) {
+            LOG_WARN("Clearing group %d states and assume it is IDLE.",
+                     group->group_id_);
+            ClearGroup(group, true);
+            return;
           }
         }
         RemoveCigForGroup(group);
