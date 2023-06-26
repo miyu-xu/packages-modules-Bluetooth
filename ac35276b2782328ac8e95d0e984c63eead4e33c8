@@ -22,6 +22,30 @@
       },
       "revId": "ac35276b2782328ac8e95d0e984c63eead4e33c8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "77f3f26e_9a3227e1",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothAirplaneModeListener.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-06-26T21:38:07Z",
+      "side": 1,
+      "message": "I agree this is not clear.\nI have an incomming CL that will document it better.\nAIRPLANE_MODE_ENABLED tell you if the airplane mode is enabled or not.\nBLUETOOTH_OFF_APM tell you that the bluetooth has been turned off during airplane mode.\nThis is usefull for enhanced airplane mode that allow bluetooth to stays on during airplaneMode. Even when there is no a2dp / streaming devices.",
+      "parentUuid": "9fe81665_c01b543d",
+      "range": {
+        "startLine": 75,
+        "startChar": 29,
+        "endLine": 75,
+        "endChar": 46
+      },
+      "revId": "ac35276b2782328ac8e95d0e984c63eead4e33c8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
