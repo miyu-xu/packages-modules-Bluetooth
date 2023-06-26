@@ -164,6 +164,30 @@
       },
       "revId": "120824a1d2d08b1b5515d32038ef86c558d0af34",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "69e6d8ab_3f9d9f4e",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ProfileService.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 305,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-06-26T21:30:09Z",
+      "side": 1,
+      "message": "Oh !\nSorry yes you are  100% right.\nI do want the log but not as error !.\nLet me fix that to verbose log.",
+      "parentUuid": "526f484e_d3ad450c",
+      "range": {
+        "startLine": 305,
+        "startChar": 12,
+        "endLine": 305,
+        "endChar": 13
+      },
+      "revId": "120824a1d2d08b1b5515d32038ef86c558d0af34",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
