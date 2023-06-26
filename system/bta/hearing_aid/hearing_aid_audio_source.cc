@@ -94,13 +94,16 @@ void send_audio_data() {
 
   uint32_t bytes_read;
   if (bluetooth::audio::hearing_aid::is_hal_enabled()) {
+    LOG_INFO("duo: read in hal enabled");
     bytes_read = bluetooth::audio::hearing_aid::read(p_buf, bytes_per_tick);
   } else {
+    LOG_INFO("duo: read in hal disabled");
     bytes_read = UIPC_Read(*uipc_hearing_aid, UIPC_CH_ID_AV_AUDIO, p_buf,
                            bytes_per_tick);
   }
 
-  LOG_DEBUG("bytes_read: %u", bytes_read);
+  LOG_INFO("duo: bytes_read: %u", bytes_read);
+
   if (bytes_read < bytes_per_tick) {
     stats.media_read_total_underflow_bytes += bytes_per_tick - bytes_read;
     stats.media_read_total_underflow_count++;
