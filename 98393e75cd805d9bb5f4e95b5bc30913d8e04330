@@ -63,6 +63,30 @@
       },
       "revId": "98393e75cd805d9bb5f4e95b5bc30913d8e04330",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9f98fe03_7ce6c6c1",
+        "filename": "android/app/src/com/android/bluetooth/pbapclient/PbapClientStateMachine.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2023-06-26T00:30:55Z",
+      "side": 1,
+      "message": "It\u0027s just better for the readability. For a person with no context like me, I will spend a lot of time looking for why can mHandlerThread \u0026 getConnection state interfere with each other.",
+      "parentUuid": "f361dcd7_317b6336",
+      "range": {
+        "startLine": 107,
+        "startChar": 0,
+        "endLine": 107,
+        "endChar": 23
+      },
+      "revId": "98393e75cd805d9bb5f4e95b5bc30913d8e04330",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
