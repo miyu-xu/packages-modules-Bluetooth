@@ -713,8 +713,10 @@ class LeAudioGroupStateMachineImpl : public LeAudioGroupStateMachine {
          */
         state_machine_callbacks_->StatusReportCb(group->group_id_,
                                                  GroupStreamStatus::STREAMING);
+        return;
       }
-      return;
+
+      /* Just falldown to clear CIG if group is not streaming. */
     }
 
     /* Group is not connected and all the CISes are down.
@@ -896,11 +898,13 @@ class LeAudioGroupStateMachineImpl : public LeAudioGroupStateMachine {
           ases_pair.sink->state == AseState::BTA_LE_AUDIO_ASE_STATE_STREAMING) {
         ases_pair.sink->state =
             AseState::BTA_LE_AUDIO_ASE_STATE_CODEC_CONFIGURED;
+        ases_pair.sink->active = false;
       }
       if (ases_pair.source && ases_pair.source->state ==
                                   AseState::BTA_LE_AUDIO_ASE_STATE_STREAMING) {
         ases_pair.source->state =
             AseState::BTA_LE_AUDIO_ASE_STATE_CODEC_CONFIGURED;
+        ases_pair.source->active = false;
       }
     }
 
