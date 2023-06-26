@@ -19,6 +19,7 @@
 #include "aidl/hearing_aid_software_encoding_aidl.h"
 #include "hal_version_manager.h"
 #include "hidl/hearing_aid_software_encoding_hidl.h"
+#include "osi/include/log.h"
 
 namespace bluetooth {
 namespace audio {
@@ -85,8 +86,10 @@ void set_remote_delay(uint16_t delay_report_ms) {
 size_t read(uint8_t* p_buf, uint32_t len) {
   if (HalVersionManager::GetHalTransport() ==
       BluetoothAudioHalTransport::HIDL) {
+    LOG_INFO("duo: hearing_aid_software_encoding::read from hidl");
     return hidl::hearing_aid::read(p_buf, len);
   }
+  LOG_INFO("duo: hearing_aid_software_encoding::read from aidl");
   return aidl::hearing_aid::read(p_buf, len);
 }
 
