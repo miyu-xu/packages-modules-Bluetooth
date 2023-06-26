@@ -22,6 +22,30 @@
       },
       "revId": "a6949ad5e54b38e2e3de2ded8521506bfa67607f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "218d33a6_4b5ae06b",
+        "filename": "service/tests/src/com/android/server/bluetooth/BluetoothManagerServiceTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-06-26T17:05:30Z",
+      "side": 1,
+      "message": "Yes there is one alternative.\nI was thinking moving all the modeListener initialization (satellite  \u0026 airplane) inside the `init` instead of the constructor, and perform the whole init within the BMS handler.\n\nFYI the `init` of the BMS is called `handleOnBootPhase` and is already \u0027starting\u0027 the airplane mode listener.",
+      "parentUuid": "32c1fecd_680af9b0",
+      "range": {
+        "startLine": 143,
+        "startChar": 7,
+        "endLine": 143,
+        "endChar": 23
+      },
+      "revId": "a6949ad5e54b38e2e3de2ded8521506bfa67607f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
