@@ -238,7 +238,9 @@ void end_session() {
 }
 
 size_t read(uint8_t* p_buf, uint32_t len) {
+  LOG(INFO) << __func__ << ": duo: prepare read data from hidl";
   if (!is_hal_2_0_enabled()) return 0;
+  LOG(INFO) << __func__ << ": duo: hidl hal 2.0 enabled";
   return hearing_aid_hal_clientinterface->ReadAudioData(p_buf, len);
 }
 

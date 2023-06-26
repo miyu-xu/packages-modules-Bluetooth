@@ -417,7 +417,12 @@ size_t BluetoothAudioSinkClientInterface::ReadAudioData(uint8_t* p_buf,
     LOG(ERROR) << __func__ << ": BluetoothAudioHal is not valid";
     return 0;
   }
+
+  LOG(INFO) << __func__ << "duo: start read audio data ";
+
   if (p_buf == nullptr || len == 0) return 0;
+
+  LOG(INFO) << __func__ << "duo: len = "<< len;
 
   std::lock_guard<std::mutex> guard(internal_mutex_);
 
@@ -425,19 +430,24 @@ size_t BluetoothAudioSinkClientInterface::ReadAudioData(uint8_t* p_buf,
   int timeout_ms = kDefaultDataReadTimeoutMs;
   do {
     if (data_mq_ == nullptr || !data_mq_->isValid()) break;
+    LOG(INFO) << __func__ << "duo: data mq valid";
 
     size_t avail_to_read = data_mq_->availableToRead();
     if (avail_to_read) {
+      LOG(INFO) << __func__ << "duo: avail_to_read = "<< avail_to_read;
       if (avail_to_read > len - total_read) {
+        LOG(INFO) << __func__ << "duo: avail_to_read condition 1";
         avail_to_read = len - total_read;
       }
       if (data_mq_->read((MqDataType*)p_buf + total_read, avail_to_read) == 0) {
+        LOG(INFO) << __func__ << "duo: avail_to_read condition 2";
         LOG(WARNING) << __func__ << ": len=" << len
                      << " total_read=" << total_read << " failed";
         break;
       }
       total_read += avail_to_read;
     } else if (timeout_ms >= kDefaultDataReadPollIntervalMs) {
+      LOG(INFO) << __func__ << "duo: timeout 1";
       std::this_thread::sleep_for(
           std::chrono::milliseconds(kDefaultDataReadPollIntervalMs));
       timeout_ms -= kDefaultDataReadPollIntervalMs;
@@ -453,12 +463,15 @@ size_t BluetoothAudioSinkClientInterface::ReadAudioData(uint8_t* p_buf,
   if (timeout_ms <
           (kDefaultDataReadTimeoutMs - kDefaultDataReadPollIntervalMs) &&
       timeout_ms >= kDefaultDataReadPollIntervalMs) {
+    LOG(INFO) << __func__ << ": duo: underflow " << len << " -> " << total_read
+            << " read " << (kDefaultDataReadTimeoutMs - timeout_ms) << " ms";    
     VLOG(1) << __func__ << ": underflow " << len << " -> " << total_read
             << " read " << (kDefaultDataReadTimeoutMs - timeout_ms) << " ms";
   } else {
+    LOG(INFO) << __func__ << ": duo: " << len << " -> " << total_read << " read";
     VLOG(2) << __func__ << ": " << len << " -> " << total_read << " read";
   }
-
+  LOG(INFO) << __func__ << ": duo: total_read = " << total_read;
   sink_->LogBytesRead(total_read);
   return total_read;
 }
