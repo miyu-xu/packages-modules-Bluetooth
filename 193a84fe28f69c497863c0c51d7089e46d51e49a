@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bdaf4bd8_91e3cee6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-06-26T04:41:43Z",
+      "side": 1,
+      "message": "Bypass linter since it\u0027s not applicable to this CL",
+      "revId": "193a84fe28f69c497863c0c51d7089e46d51e49a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

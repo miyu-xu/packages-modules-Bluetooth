@@ -16,6 +16,24 @@
       "message": "Optional (simpler) -- avoids raw unwrap and cloning:\n```\nfn print_names(names: \u0026HashSet\u003cString\u003e) -\u003e \u0026String {\n  if names.len() \u003e 1 {\n    \u0026format!(\"{:?}\", names)\n  } else {\n    names.iter().next().unwrap_or(\u0026String::from(\"\u003cUnknown name\u003e\"))\n  }\n}\n```",
       "revId": "f2c5db8b1907ead7127233b401f0f7ee949bf0aa",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ab76a0f5_537ea539",
+        "filename": "floss/hcidoc/src/groups/informational.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-06-26T04:41:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9e12dc69_fe02b4b8",
+      "revId": "f2c5db8b1907ead7127233b401f0f7ee949bf0aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
