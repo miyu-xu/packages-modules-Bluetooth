@@ -34,6 +34,24 @@
       "parentUuid": "7544262e_b592565d",
       "revId": "567e6f69d71c5d4faddd656bfd7bbd4758a94845",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cadb0d89_c71c27fc",
+        "filename": "system/bta/hh/bta_hh_le.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1988,
+      "author": {
+        "id": 1965943
+      },
+      "writtenOn": "2023-06-26T07:22:19Z",
+      "side": 1,
+      "message": "\u003e Thanks a lot for the question.",
+      "parentUuid": "4eda28a5_e7ca9039",
+      "revId": "567e6f69d71c5d4faddd656bfd7bbd4758a94845",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
