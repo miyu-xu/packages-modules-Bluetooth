@@ -52,6 +52,24 @@
       "parentUuid": "4eda28a5_e7ca9039",
       "revId": "567e6f69d71c5d4faddd656bfd7bbd4758a94845",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b3d55194_001b61fc",
+        "filename": "system/bta/hh/bta_hh_le.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1988,
+      "author": {
+        "id": 1965943
+      },
+      "writtenOn": "2023-06-26T07:40:59Z",
+      "side": 1,
+      "message": "Sorry, the comment on Mar 23 isn\u0027t right, since it is confused by the second HOGP device\u0027s connection in the hci log.\n\nAnd we correct this info in https://partnerissuetracker.corp.google.com/issues/249709008.\n\nThe report map is read only once when connected for the first time. If the report map is found to be empty, this change only ensures that the incidence is logged. However the report map in the cache remains empty since it was never set. Whatever failure it led to previously would still be met.\nShould such remote device be removed immediately?\n\u003e\u003e The report map will first load from cache by bta_hh_process_cache_rpt, and then updated by read report map again, in this case, load cache is successful, only the read report map again is failed. So the solution can handle this case.",
+      "parentUuid": "cadb0d89_c71c27fc",
+      "revId": "567e6f69d71c5d4faddd656bfd7bbd4758a94845",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
