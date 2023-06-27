@@ -16,6 +16,24 @@
       "message": "Please add a \"Bug:\" clause \n\nBug: 279219354\n\nso that the revert is tracked",
       "revId": "83fe1f7bede5d24e3398b90f4eba5e9e8bed4703",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "31bbb5c8_4498782c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-06-27T20:28:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8ad08e98_ea94e4a3",
+      "revId": "83fe1f7bede5d24e3398b90f4eba5e9e8bed4703",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
