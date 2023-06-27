@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6e8698f6_f761df6a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-06-27T20:56:06Z",
+      "side": 1,
+      "message": "Is it possible to split it by command ?\nHaving a ton of small CL will facilitate reviewing it.",
+      "revId": "e9905d792eea29692193d2b289734961364a7b9e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
