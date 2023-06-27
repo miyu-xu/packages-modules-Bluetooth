@@ -1824,11 +1824,31 @@ class LeAudioClientImpl : public LeAudioClient {
            * or while streaming. Don't bother current transition or streaming
            * process. Update configuration once group became idle.
            */
-          if (group->IsInTransition() ||
-              (group->GetState() ==
-               AseState::BTA_LE_AUDIO_ASE_STATE_STREAMING)) {
+          if (group->IsInTransition()) {
             group->SetPendingAvailableContextsChange(updated_avail_contexts);
             return;
+          }
+
+          bool attach_device = false;
+          if (group->GetState() == AseState::BTA_LE_AUDIO_ASE_STATE_STREAMING) {
+            if (leAudioDevice->HaveActiveAse()) {
+              /* If group is stream and the device has active ASEes just
+               * schedule update context type when stream goes idle. */
+              group->SetPendingAvailableContextsChange(updated_avail_contexts);
+              return;
+            }
+
+            if (leAudioDevice->GetConnectionState() !=
+                DeviceConnectState::CONNECTED) {
+              /* Do nothing, wait until device is connected */
+              return;
+            }
+
+            auto configuration_context_type =
+                group->GetConfigurationContextType();
+            if (updated_avail_contexts.test(configuration_context_type)) {
+              attach_device = true;
+            }
           }
 
           auto contexts_updated =
@@ -1838,6 +1858,10 @@ class LeAudioClientImpl : public LeAudioClient {
                                     group->snk_audio_locations_.to_ulong(),
                                     group->src_audio_locations_.to_ulong(),
                                     group->GetAvailableContexts().value());
+
+            if (attach_device) {
+              AttachToStreamingGroupIfNeeded(leAudioDevice);
+            }
           }
         }
       }
