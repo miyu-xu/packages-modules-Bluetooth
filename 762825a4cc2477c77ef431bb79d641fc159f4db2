@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1e232c81_812493d7",
+        "filename": "system/stack/btu/btu_hcif.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 1119,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-06-27T22:46:01Z",
+      "side": 0,
+      "message": "Good point.  I\u0027ll take another look.  Thanks!",
+      "parentUuid": "b9290c5f_e1c20d0f",
+      "range": {
+        "startLine": 1115,
+        "startChar": 3,
+        "endLine": 1119,
+        "endChar": 12
+      },
+      "revId": "762825a4cc2477c77ef431bb79d641fc159f4db2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c1b919fb_e8d0b811",
         "filename": "system/stack/btu/btu_hcif.cc",
         "patchSetId": 8
@@ -37,6 +61,30 @@
       "writtenOn": "2023-06-27T20:57:19Z",
       "side": 0,
       "message": "Removing this is not obvious when looking at the commit message",
+      "range": {
+        "startLine": 1129,
+        "startChar": 4,
+        "endLine": 1133,
+        "endChar": 12
+      },
+      "revId": "762825a4cc2477c77ef431bb79d641fc159f4db2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9f9cf3db_d8b804c9",
+        "filename": "system/stack/btu/btu_hcif.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 1133,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-06-27T22:46:01Z",
+      "side": 0,
+      "message": "Agreed.  I can remove this from the CL.",
+      "parentUuid": "c1b919fb_e8d0b811",
       "range": {
         "startLine": 1129,
         "startChar": 4,
