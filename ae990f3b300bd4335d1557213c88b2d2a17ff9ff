@@ -16,6 +16,24 @@
       "message": "nit: you should put multiple `Test` stanza on multiple lines like\n\n```\nTest: Treehugger\nTest: m rust\n```",
       "revId": "ae990f3b300bd4335d1557213c88b2d2a17ff9ff",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f08eb448_82cc3c5f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1416371
+      },
+      "writtenOn": "2023-06-27T21:23:43Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "5ce0214c_884d7d7e",
+      "revId": "ae990f3b300bd4335d1557213c88b2d2a17ff9ff",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
