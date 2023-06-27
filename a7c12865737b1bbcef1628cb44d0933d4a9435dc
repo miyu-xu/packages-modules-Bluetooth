@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b01775c0_21c1dcf5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2023-06-27T22:36:02Z",
+      "side": 1,
+      "message": "Bug to justify the bypass: b/289125535",
+      "revId": "a7c12865737b1bbcef1628cb44d0933d4a9435dc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
