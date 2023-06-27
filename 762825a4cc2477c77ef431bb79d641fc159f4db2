@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b9290c5f_e1c20d0f",
+        "filename": "system/stack/btu/btu_hcif.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 1119,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-06-27T20:57:19Z",
+      "side": 0,
+      "message": "The commit message say it remove a unused context, but theses line are using it.\n\nWhy is this considered unused ? Is this dead code that cannot be reach ?\n\nIf so since this is the only place calling `btm_ble_rand_enc_complete`, can wwe delete it ?",
+      "range": {
+        "startLine": 1115,
+        "startChar": 3,
+        "endLine": 1119,
+        "endChar": 12
+      },
+      "revId": "762825a4cc2477c77ef431bb79d641fc159f4db2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c1b919fb_e8d0b811",
+        "filename": "system/stack/btu/btu_hcif.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 1133,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-06-27T20:57:19Z",
+      "side": 0,
+      "message": "Removing this is not obvious when looking at the commit message",
+      "range": {
+        "startLine": 1129,
+        "startChar": 4,
+        "endLine": 1133,
+        "endChar": 12
+      },
+      "revId": "762825a4cc2477c77ef431bb79d641fc159f4db2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
