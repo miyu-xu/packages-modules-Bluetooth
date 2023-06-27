@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f383aae6_b748d3eb",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1832,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-06-27T07:55:40Z",
+      "side": 1,
+      "message": "Good catch 😊",
+      "revId": "6ef52819c7a97b97bb96a23f595f22d945a64a0f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "40dce903_11aff3be",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 722,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-06-27T07:55:40Z",
+      "side": 1,
+      "message": "This comment seems to be not valid after change - there may be possibility that some of CISes remain still connected.",
+      "revId": "6ef52819c7a97b97bb96a23f595f22d945a64a0f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
