@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f269e2cb_44321255",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-06-27T05:16:50Z",
+      "side": 1,
+      "message": "This should be handled on ACL disconnect.",
+      "revId": "1d237c8e4c082a9ababd00c869cfd2656739c391",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
