@@ -125,6 +125,7 @@ impl GlobalModuleRegistry {
             }
         });
         warn!("Rust thread queue has stopped, shutting down executor thread");
+        gatt::arbiter::clean_arbiter();
     }
 }
 
