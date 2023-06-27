@@ -216,6 +216,7 @@ pub trait IBluetoothTelephony {
     fn audio_connect(&mut self, address: String) -> bool;
     /// Stops the audio connection to <address>.
     fn audio_disconnect(&mut self, address: String);
+    fn a2dp_suspend(&mut self);
 }
 
 /// Serializable device used in.
@@ -2506,6 +2507,9 @@ impl IBluetoothTelephony for BluetoothMedia {
 
     fn audio_disconnect(&mut self, address: String) {
         self.stop_sco_call_impl(address)
+    }
+    fn a2dp_suspend(&mut self) {
+        self.suspend_audio_request_impl()
     }
 }
 

@@ -320,6 +320,7 @@ fn build_commands() -> HashMap<String, CommandOption> {
                     "telephony <release-held|release-active-accept-held|hold-active-accept-held>",
                 ),
                 String::from("telephony <audio-connect|audio-disconnect> <address>"),
+                String::from("telephony a2dp-suspend"),
             ],
             description: String::from("Set device telephony status."),
             function_pointer: CommandHandler::cmd_telephony,
@@ -1939,6 +1940,9 @@ impl CommandHandler {
                     .as_mut()
                     .unwrap()
                     .audio_disconnect(String::from(get_arg(args, 1)?));
+            }
+            "a2dp-suspend" => {
+                self.context.lock().unwrap().telephony_dbus.as_mut().unwrap().a2dp_suspend();
             }
             other => {
                 return Err(format!("Invalid argument '{}'", other).into());

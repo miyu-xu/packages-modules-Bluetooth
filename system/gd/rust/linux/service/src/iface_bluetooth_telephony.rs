@@ -78,4 +78,8 @@ impl IBluetoothTelephony for IBluetoothTelephonyDBus {
     fn audio_disconnect(&mut self, address: String) {
         dbus_generated!()
     }
+    #[dbus_method("A2dpSuspend")]
+    fn a2dp_suspend(&mut self) {
+        dbus_generated!()
+    }
 }
