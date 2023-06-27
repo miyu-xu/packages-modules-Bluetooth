@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "529ca8bb_8ac3799d",
+        "filename": "system/rust/src/lib.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2023-06-27T20:17:20Z",
+      "side": 1,
+      "message": "nit: maybe move this to line 121? where we clear the other stuff. Or move that line here?",
+      "revId": "f0b242805ecc8781a09411c88f868eeca4d75b31",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
