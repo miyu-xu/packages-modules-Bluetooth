@@ -22,6 +22,30 @@
       },
       "revId": "f1a3c2ade4e2a2cfb81656f4385fe147d5826b34",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "510398d1_83da49a0",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-06-27T05:32:13Z",
+      "side": 1,
+      "message": "Uploaded a test CL (aosp/2639590).",
+      "parentUuid": "932b0d9d_7c778651",
+      "range": {
+        "startLine": 10,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 11
+      },
+      "revId": "f1a3c2ade4e2a2cfb81656f4385fe147d5826b34",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
