@@ -776,15 +776,15 @@ uint16_t LeAudioDeviceGroup::GetRemoteDelay(uint8_t direction) {
   return remote_delay_ms;
 }
 
-void LeAudioDeviceGroup::UpdateAudioContextTypeAvailability(void) {
+bool LeAudioDeviceGroup::UpdateAudioSetConfigurationCache(void) {
   LOG_DEBUG(" group id: %d, available contexts: %s", group_id_,
             group_available_contexts_.to_string().c_str());
-  UpdateAudioContextTypeAvailability(group_available_contexts_);
+  return UpdateAudioSetConfigurationCache(group_available_contexts_);
 }
 
 /* Returns true if support for any type in the whole group has changed,
  * otherwise false. */
-bool LeAudioDeviceGroup::UpdateAudioContextTypeAvailability(
+bool LeAudioDeviceGroup::UpdateAudioSetConfigurationCache(
     AudioContexts update_contexts) {
   auto new_contexts = AudioContexts();
   bool active_contexts_has_been_modified = false;
@@ -800,7 +800,8 @@ bool LeAudioDeviceGroup::UpdateAudioContextTypeAvailability(
     LOG_DEBUG("Checking context: %s", ToHexString(ctx_type).c_str());
 
     if (!update_contexts.test(ctx_type)) {
-      LOG_DEBUG("Configuration not in updated context");
+      LOG_DEBUG("%s config availability not updated for ",
+                ToHexString(ctx_type).c_str());
       /* Fill context bitset for possible returned value if updated */
       if (available_context_to_configuration_map.count(ctx_type) > 0)
         new_contexts.set(ctx_type);
@@ -854,7 +855,7 @@ bool LeAudioDeviceGroup::UpdateAudioContextTypeAvailability(
 
   /* Some contexts have changed, return new available context bitset */
   if (active_contexts_has_been_modified) {
-    group_available_contexts_ = new_contexts;
+    SetAvailableContexts(new_contexts);
   }
 
   return active_contexts_has_been_modified;
@@ -1306,7 +1307,7 @@ bool LeAudioDeviceGroup::IsConfigurationSupported(
     types::LeAudioConfigurationStrategy required_snk_strategy) {
   if (!set_configurations::check_if_may_cover_scenario(
           audio_set_conf, NumOfConnected(context_type))) {
-    LOG_DEBUG(" cannot cover scenario  %s: size of for context type %d",
+    LOG_DEBUG(" cannot cover scenario  %s, num. of connected: %d",
               bluetooth::common::ToString(context_type).c_str(),
               +NumOfConnected(context_type));
     return false;
@@ -1798,12 +1799,12 @@ LeAudioDeviceGroup::GetCodecConfigurationByDirection(
   return group_config;
 }
 
-bool LeAudioDeviceGroup::IsContextSupported(
-    types::LeAudioContextType group_context_type) {
+bool LeAudioDeviceGroup::IsAudioSetConfigurationAvailable(
+    types::LeAudioContextType group_context_type) const {
   auto iter = available_context_to_configuration_map.find(group_context_type);
   if (iter == available_context_to_configuration_map.end()) return false;
 
-  return available_context_to_configuration_map[group_context_type] != nullptr;
+  return available_context_to_configuration_map.count(group_context_type) != 0;
 }
 
 bool LeAudioDeviceGroup::IsMetadataChanged(
