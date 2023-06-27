@@ -33,6 +33,24 @@
       "message": "This comment seems to be not valid after change - there may be possibility that some of CISes remain still connected.",
       "revId": "6ef52819c7a97b97bb96a23f595f22d945a64a0f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2120cd29_179e158f",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 722,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-06-27T10:42:13Z",
+      "side": 1,
+      "message": "Good point. I think I want this comment to stay, but the other case for now just handle silent (just print group state)",
+      "parentUuid": "40dce903_11aff3be",
+      "revId": "6ef52819c7a97b97bb96a23f595f22d945a64a0f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
