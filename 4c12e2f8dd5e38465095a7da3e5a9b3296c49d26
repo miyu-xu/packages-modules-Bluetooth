@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "05b39e6e_a15c54eb",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 2222,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-06-28T08:36:22Z",
+      "side": 1,
+      "message": "Please add some doc string to explain the behavior of this action",
+      "range": {
+        "startLine": 2222,
+        "startChar": 7,
+        "endLine": 2222,
+        "endChar": 25
+      },
+      "revId": "4c12e2f8dd5e38465095a7da3e5a9b3296c49d26",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6947f716_6a067fcd",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 2251,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-06-28T08:36:22Z",
+      "side": 1,
+      "message": "why is this different from kCsisGroupMemberDelayMs?",
+      "range": {
+        "startLine": 2251,
+        "startChar": 27,
+        "endLine": 2251,
+        "endChar": 47
+      },
+      "revId": "4c12e2f8dd5e38465095a7da3e5a9b3296c49d26",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "da8c1814_176bd742",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 2834,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-06-28T08:36:22Z",
+      "side": 1,
+      "message": "this is a behavior change, does this mean if device is not added to the group after kDeviceAttachDelayMs or kCsisGroupMemberDelayMs, the device will be forced to disconnect? \n\nHow do we handle it today?",
+      "range": {
+        "startLine": 2834,
+        "startChar": 6,
+        "endLine": 2834,
+        "endChar": 55
+      },
+      "revId": "4c12e2f8dd5e38465095a7da3e5a9b3296c49d26",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
