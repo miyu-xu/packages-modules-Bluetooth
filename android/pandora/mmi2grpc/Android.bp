@@ -20,6 +20,7 @@ license {
 filegroup {
     name: "mmi2grpc",
     srcs: [
+        ":netsim-python-src",
         ":pandora-python-src",
         ":pandora_experimental-python-src",
         "mmi2grpc/*.py",
