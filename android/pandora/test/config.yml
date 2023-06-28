@@ -13,3 +13,6 @@ TestBeds:
     - transport: 'tcp-client:127.0.0.1:7300'
     - transport: 'tcp-client:127.0.0.1:7300'
     - transport: 'tcp-client:127.0.0.1:7300'
+- Name: android.androids
+  Controllers:
+    AndroidDevice: '*'
