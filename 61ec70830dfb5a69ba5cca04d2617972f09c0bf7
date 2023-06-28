@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "32683fba_f3183ba4",
+        "filename": "system/bta/le_audio/le_audio_health_status.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-06-28T08:32:57Z",
+      "side": 1,
+      "message": "Please fix this WARNING reported by Build Warnings: using decl \u0027LeAudioHealthDeviceStatType\u0027 is unused [misc-unused-using-decls]\n\nAnalyzer Description: Reports warnings that originate from build.log in the build artifacts.\nOwner: farivar@google.com\n\n    using decl \u0027LeAudioHealthDeviceStatType\u0027 is unused [misc-unused-using-decls]\n    using le_audio::LeAudioHealthDeviceStatType;\n                    ^\n    /b/f/w/packages/modules/Bluetooth/system/bta/le_audio/le_audio_health_status.cc:27:17: note: remove the using\n    using le_audio::LeAudioHealthDeviceStatType;\n    ~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\nThis finding was found on https://android-build.googleplex.com/builds/build-details/P58944357/targets/aosp_arm64-userdebug_tidy, but may also be present on other builds.",
+      "range": {
+        "startLine": 27,
+        "startChar": 17,
+        "endLine": 27,
+        "endChar": 44
+      },
+      "revId": "61ec70830dfb5a69ba5cca04d2617972f09c0bf7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c6571e03_988de816",
+        "filename": "system/bta/le_audio/le_audio_health_status.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-06-28T08:32:57Z",
+      "side": 1,
+      "message": "Please fix this WARNING reported by Build Warnings: using decl \u0027LeAudioHealthGroupStatType\u0027 is unused [misc-unused-using-decls]\n\nAnalyzer Description: Reports warnings that originate from build.log in the build artifacts.\nOwner: farivar@google.com\n\n    using decl \u0027LeAudioHealthGroupStatType\u0027 is unused [misc-unused-using-decls]\n    using le_audio::LeAudioHealthGroupStatType;\n                    ^\n    /b/f/w/packages/modules/Bluetooth/system/bta/le_audio/le_audio_health_status.cc:28:17: note: remove the using\n    using le_audio::LeAudioHealthGroupStatType;\n    ~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~\n\nThis finding was found on https://android-build.googleplex.com/builds/build-details/P58944357/targets/aosp_arm64-userdebug_tidy, but may also be present on other builds.",
+      "range": {
+        "startLine": 28,
+        "startChar": 17,
+        "endLine": 28,
+        "endChar": 43
+      },
+      "revId": "61ec70830dfb5a69ba5cca04d2617972f09c0bf7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
