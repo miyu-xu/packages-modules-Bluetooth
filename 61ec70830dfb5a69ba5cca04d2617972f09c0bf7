@@ -169,6 +169,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b11ed97a_933dcb1d",
+        "filename": "system/bta/le_audio/le_audio_health_status.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-06-28T13:12:51Z",
+      "side": 1,
+      "message": "I understand that this would represent stream creation status. How issues with controller would be represented e.g. failed to create CIG, failed to setup data path etc. ?",
+      "parentUuid": "80c84d8e_1caca4a0",
+      "revId": "61ec70830dfb5a69ba5cca04d2617972f09c0bf7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "da94358b_5084e857",
         "filename": "system/bta/le_audio/le_audio_health_status_test.cc",
         "patchSetId": 3
