@@ -46,6 +46,30 @@
       },
       "revId": "4972192f7ff62952fa0aeb687be659394f31aa9e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "00454059_6063afdc",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-06-28T22:39:33Z",
+      "side": 1,
+      "message": "Otherwise, I have to put:\n\nTest: manual code inspection\n\nThat\u0027s unsatisfying to lint checkers and to me.  If pts-bot passes with this change, I\u0027m happy with it.",
+      "parentUuid": "c14e4a76_1e090129",
+      "range": {
+        "startLine": 10,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 19
+      },
+      "revId": "4972192f7ff62952fa0aeb687be659394f31aa9e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
