@@ -151,6 +151,30 @@
       },
       "revId": "e68d70f6d6e72a778a1c8febe3e5e64db899c451",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b53ca5ea_8ee23c48",
+        "filename": "Android.bp",
+        "patchSetId": 7
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2023-06-28T23:20:47Z",
+      "side": 1,
+      "message": "OK, I agree with that, let\u0027s move forward.",
+      "parentUuid": "19bb4b0b_8cd39cce",
+      "range": {
+        "startLine": 71,
+        "startChar": 11,
+        "endLine": 71,
+        "endChar": 27
+      },
+      "revId": "e68d70f6d6e72a778a1c8febe3e5e64db899c451",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
