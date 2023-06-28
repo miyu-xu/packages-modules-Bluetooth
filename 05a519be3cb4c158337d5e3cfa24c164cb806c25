@@ -22,6 +22,30 @@
       },
       "revId": "05a519be3cb4c158337d5e3cfa24c164cb806c25",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8abbc3eb_f46f66b6",
+        "filename": "android/app/src/com/android/bluetooth/bas/BatteryStateMachine.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 259,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2023-06-28T09:42:34Z",
+      "side": 1,
+      "message": "I updated AdapterService as well to hit RemoteDevices#resetBatteryLevel.",
+      "parentUuid": "38447faa_4838db74",
+      "range": {
+        "startLine": 259,
+        "startChar": 20,
+        "endLine": 259,
+        "endChar": 40
+      },
+      "revId": "05a519be3cb4c158337d5e3cfa24c164cb806c25",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
