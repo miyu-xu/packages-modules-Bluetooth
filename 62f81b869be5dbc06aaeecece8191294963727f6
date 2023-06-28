@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "25e99f31_c93d464d",
+        "filename": "system/stack/smp/smp_utils.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 332,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2023-06-28T21:48:06Z",
+      "side": 1,
+      "message": "As we discussed in person, let\u0027s add a new error code as macro in smp_status.h and use the macro here, instead of a hardcoded value.",
+      "revId": "62f81b869be5dbc06aaeecece8191294963727f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
