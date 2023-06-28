@@ -22,6 +22,30 @@
       },
       "revId": "23d3b78a748b25344bc534ce578a006ead48906e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b2d4386b_dd4d0bf1",
+        "filename": "system/stack/gatt/gatt_int.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2023-06-28T18:29:00Z",
+      "side": 1,
+      "message": "It appears to work fine. I have attached the logs in the bug.\n\nNow that you have brought it up, I am also a bit perplexed on how it works. Is it because of the assignment on first use by the compiler?\nI see other similar usages with init flags.",
+      "parentUuid": "11beb9d6_3f5e2eae",
+      "range": {
+        "startLine": 51,
+        "startChar": 22,
+        "endLine": 51,
+        "endChar": 37
+      },
+      "revId": "23d3b78a748b25344bc534ce578a006ead48906e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
