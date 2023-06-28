@@ -106,6 +106,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "aaf09deb_99b8a6d7",
+        "filename": "Android.bp",
+        "patchSetId": 7
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2023-06-28T23:22:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2d3a725f_f03c7e85",
+      "range": {
+        "startLine": 59,
+        "startChar": 12,
+        "endLine": 59,
+        "endChar": 17
+      },
+      "revId": "e68d70f6d6e72a778a1c8febe3e5e64db899c451",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c3b93547_ae1f01eb",
@@ -167,6 +191,30 @@
       "side": 1,
       "message": "OK, I agree with that, let\u0027s move forward.",
       "parentUuid": "19bb4b0b_8cd39cce",
+      "range": {
+        "startLine": 71,
+        "startChar": 11,
+        "endLine": 71,
+        "endChar": 27
+      },
+      "revId": "e68d70f6d6e72a778a1c8febe3e5e64db899c451",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "06a1c4f1_87a4eb8b",
+        "filename": "Android.bp",
+        "patchSetId": 7
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2023-06-28T23:22:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b53ca5ea_8ee23c48",
       "range": {
         "startLine": 71,
         "startChar": 11,
