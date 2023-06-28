@@ -22,6 +22,7 @@ filegroup {
     srcs: [
         ":pandora-python-src",
         ":pandora_experimental-python-src",
+        ":netsim-python-src",
         "mmi2grpc/*.py",
     ],
 }
