@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "11beb9d6_3f5e2eae",
+        "filename": "system/stack/gatt/gatt_int.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-06-28T17:51:49Z",
+      "side": 1,
+      "message": "does this actually work? \n\nbluetooth::common::init_flags::get_att_mtu_default() \n\nis loaded when BT stack starts. Hence when this static value is allocated, would `get_att_mtu_default()` have the latest value?",
+      "range": {
+        "startLine": 51,
+        "startChar": 22,
+        "endLine": 51,
+        "endChar": 37
+      },
+      "revId": "23d3b78a748b25344bc534ce578a006ead48906e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
