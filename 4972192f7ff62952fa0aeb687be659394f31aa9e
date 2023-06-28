@@ -22,6 +22,30 @@
       },
       "revId": "4972192f7ff62952fa0aeb687be659394f31aa9e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c14e4a76_1e090129",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-06-28T22:38:37Z",
+      "side": 1,
+      "message": "I disagree 😊",
+      "parentUuid": "73767524_ff59d41b",
+      "range": {
+        "startLine": 10,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 19
+      },
+      "revId": "4972192f7ff62952fa0aeb687be659394f31aa9e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
