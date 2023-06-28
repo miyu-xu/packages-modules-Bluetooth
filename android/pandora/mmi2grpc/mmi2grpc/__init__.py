@@ -16,7 +16,9 @@
 __version__ = "0.0.1"
 
 from threading import Thread
-from typing import List
+from typing import List, Optional
+from pathlib import Path
+import os
 import time
 import sys
 
@@ -44,11 +46,32 @@ from mmi2grpc._modem import Modem
 from pandora.host_grpc import Host
 
 PANDORA_SERVER_PORT = 8999
-ROOTCANAL_CONTROL_PORT = 6212
+NETSIM_FRONTEND_PORT = 6520
 MODEM_SIMULATOR_PORT = 4242
 MAX_RETRIES = 10
 GRPC_SERVER_INIT_TIMEOUT = 10  # seconds
 
+def get_ini_dir() -> Optional[Path]:
+    if xdg_runtime_dir := os.environ.get('XDG_RUNTIME_DIR', None):
+        return Path(xdg_runtime_dir)
+
+    return None
+
+def get_netsim_frontend_port() -> int:
+    if not (ini_dir := get_ini_dir()):
+        return 0
+
+    netsim_ini = ini_dir / 'netsim.ini'
+    if not netsim_ini.is_file():
+        return 0
+
+    with open(netsim_ini, 'r') as f:
+        for line in f.readlines():
+            if 'grpc.port' in line:
+                key, value = line.split('=')
+                return int(value)
+
+    return 0
 
 class IUT:
     """IUT class.
@@ -65,8 +88,9 @@ class IUT:
             args: test arguments.
         """
         self.pandora_server_port = int(args[0]) if len(args) > 0 else PANDORA_SERVER_PORT
-        self.rootcanal_control_port = int(args[1]) if len(args) > 1 else ROOTCANAL_CONTROL_PORT
+        # args[1] is deprecated, formerly rootcanal test port
         self.modem_simulator_port = int(args[2]) if len(args) > 2 else MODEM_SIMULATOR_PORT
+        self.netsim_frontend_port = get_netsim_frontend_port() or NETSIM_FRONTEND_PORT
 
         self.test = test
         self.rootcanal = None
@@ -92,9 +116,6 @@ class IUT:
 
     def __enter__(self):
         """Resets the IUT when starting a PTS test."""
-        self.rootcanal = RootCanal(port=self.rootcanal_control_port)
-        self.rootcanal.reconnect_phone()
-
         self.modem = Modem(port=self.modem_simulator_port)
 
         # Note: we don't keep a single gRPC channel instance in the IUT class
@@ -103,11 +124,10 @@ class IUT:
             self._retry(Host(channel).FactoryReset)(wait_for_ready=True)
 
     def __exit__(self, exc_type, exc_value, exc_traceback):
-        self.rootcanal.close()
-        self.rootcanal = None
-
         self.modem.close()
+
         self.modem = None
+        self.rootcanal = None
 
         self._a2dp = None
         self._avrcp = None
@@ -142,6 +162,10 @@ class IUT:
                         time.sleep(1)
 
         return wrapper
+
+    def _open_netsim_frontend(self):
+        if not self.rootcanal:
+            self.rootcanal = RootCanal(grpc.insecure_channel(f'localhost:{self.netsim_frontend_port}'))
 
     @property
     def address(self) -> bytes:
@@ -189,6 +213,7 @@ class IUT:
 
         # Handles A2DP and AVDTP MMIs.
         if profile in ("A2DP", "AVDTP"):
+            self._open_netsim_frontend()
             if not self._a2dp:
                 self._a2dp = A2DPProxy(
                     grpc.insecure_channel(f"localhost:{self.pandora_server_port}"),
@@ -222,6 +247,7 @@ class IUT:
             return self._hfp.interact(test, interaction, description, pts_address)
         # Handles HID MMIs.
         if profile in ("HID"):
+            self._open_netsim_frontend()
             if not self._hid:
                 self._hid = HIDProxy(
                     grpc.insecure_channel(f"localhost:{self.pandora_server_port}"),
