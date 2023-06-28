@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "961c067e_5ff14050",
+        "filename": "system/bta/le_audio/le_audio_health_status.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-06-28T15:52:30Z",
+      "side": 1,
+      "message": "\"should be set by\" ?",
+      "range": {
+        "startLine": 32,
+        "startChar": 16,
+        "endLine": 32,
+        "endChar": 18
+      },
+      "revId": "9a5d63dab25c0de5e73721a8114005fc946a33d4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "852b8f1e_9346eea6",
+        "filename": "system/bta/le_audio/le_audio_health_status.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-06-28T15:52:30Z",
+      "side": 1,
+      "message": "Are those states exclusive ? Or should this be a bitmask ? Or is it like a state machine where we go thorugh next stages ?\nCan device be VALID_DB and VALID_CSIS at same time ? is that good ?\n\nHow about VALID_DB and INVALID_CSIS?",
+      "range": {
+        "startLine": 42,
+        "startChar": 2,
+        "endLine": 42,
+        "endChar": 10
+      },
+      "revId": "9a5d63dab25c0de5e73721a8114005fc946a33d4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8c7fa90e_c97bbbb8",
+        "filename": "system/bta/le_audio/le_audio_health_status.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-06-28T15:52:30Z",
+      "side": 1,
+      "message": "I still don\u0027t understand why we disctinct device and group health.\nIf there is one healthy and one bad device in group, shouldn\u0027t it acutomatically make whole group bad ?\n\nShall we have just one enum for the whole group ?",
+      "range": {
+        "startLine": 54,
+        "startChar": 11,
+        "endLine": 54,
+        "endChar": 37
+      },
+      "revId": "9a5d63dab25c0de5e73721a8114005fc946a33d4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
