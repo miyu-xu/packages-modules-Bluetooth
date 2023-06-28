@@ -49,6 +49,52 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "49832dbb_b524356c",
+        "filename": "system/bta/le_audio/le_audio_health_status.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-06-28T12:32:10Z",
+      "side": 1,
+      "message": "I don\u0027t understand why you have separate device and group statistics.\n\nCIS failure is also happening for specific device.",
+      "range": {
+        "startLine": 94,
+        "startChar": 7,
+        "endLine": 94,
+        "endChar": 27
+      },
+      "revId": "61ec70830dfb5a69ba5cca04d2617972f09c0bf7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ecd507e2_01b3d9bc",
+        "filename": "system/bta/le_audio/le_audio_health_status.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-06-28T12:32:10Z",
+      "side": 1,
+      "message": "A word of comment above would be very nice",
+      "range": {
+        "startLine": 32,
+        "startChar": 11,
+        "endLine": 32,
+        "endChar": 38
+      },
+      "revId": "61ec70830dfb5a69ba5cca04d2617972f09c0bf7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1cb27bde_53db9832",
         "filename": "system/bta/le_audio/le_audio_health_status.h",
         "patchSetId": 3
@@ -83,6 +129,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8e25eb27_e061f251",
+        "filename": "system/bta/le_audio/le_audio_health_status.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-06-28T12:32:10Z",
+      "side": 1,
+      "message": "Same above. We don\u0027t have any official documentation, but any comment explaining how this mechanism should work would be nice.",
+      "range": {
+        "startLine": 39,
+        "startChar": 11,
+        "endLine": 39,
+        "endChar": 37
+      },
+      "revId": "61ec70830dfb5a69ba5cca04d2617972f09c0bf7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "80c84d8e_1caca4a0",
         "filename": "system/bta/le_audio/le_audio_health_status.h",
         "patchSetId": 3
@@ -94,6 +163,52 @@
       "writtenOn": "2023-06-28T11:56:02Z",
       "side": 1,
       "message": "I\u0027m worried that this may be abused for reporting all issues - what about e.g. controller issues ?",
+      "revId": "61ec70830dfb5a69ba5cca04d2617972f09c0bf7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "da94358b_5084e857",
+        "filename": "system/bta/le_audio/le_audio_health_status_test.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-06-28T12:32:10Z",
+      "side": 1,
+      "message": "Please fix this WARNING reported by Build Warnings: using decl \u0027_\u0027 is unused [misc-unused-using-decls]\n\nAnalyzer Description: Reports warnings that originate from build.log in the build artifacts.\nOwner: farivar@google.com\n\n    using decl \u0027_\u0027 is unused [misc-unused-using-decls]\n    using ::testing::_;\n                     ^\n    /b/f/w/packages/modules/Bluetooth/system/bta/le_audio/le_audio_health_status_test.cc:32:18: note: remove the using\n    using ::testing::_;\n    ~~~~~~~~~~~~~~~~~^~\n\nThis finding was found on https://android-build.googleplex.com/builds/build-details/P58944357/targets/aosp_arm64-userdebug_tidy, but may also be present on other builds.",
+      "range": {
+        "startLine": 32,
+        "startChar": 18,
+        "endLine": 32,
+        "endChar": 19
+      },
+      "revId": "61ec70830dfb5a69ba5cca04d2617972f09c0bf7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9d31642f_92421cba",
+        "filename": "system/bta/le_audio/le_audio_health_status_test.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-06-28T12:32:10Z",
+      "side": 1,
+      "message": "Please fix this WARNING reported by Build Warnings: using decl \u0027_\u0027 is unused [misc-unused-using-decls]\n\nAnalyzer Description: Reports warnings that originate from build.log in the build artifacts.\nOwner: farivar@google.com\n\n    using decl \u0027_\u0027 is unused [misc-unused-using-decls]\n    using ::testing::_;\n                     ^\n    /b/f/w/packages/modules/Bluetooth/system/bta/le_audio/le_audio_health_status_test.cc:32:18: note: remove the using\n    using ::testing::_;\n    ~~~~~~~~~~~~~~~~~^~\n\nThis finding was found on https://android-build.googleplex.com/builds/build-details/P58944357/targets/aosp_arm64-userdebug_tidy, but may also be present on other builds.",
+      "range": {
+        "startLine": 32,
+        "startChar": 18,
+        "endLine": 32,
+        "endChar": 19
+      },
       "revId": "61ec70830dfb5a69ba5cca04d2617972f09c0bf7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
