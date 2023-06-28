@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2669c1f9_679cb7a1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-06-28T15:55:56Z",
+      "side": 1,
+      "message": "HealthBase -\u003e HealthBased please ?",
+      "revId": "f2f39f5e85c0d3729463ca41c877b5139cc71d64",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "495e5f1f_2dc17e06",
+        "filename": "android/app/jni/com_android_bluetooth_le_audio.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 276,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-06-28T15:55:56Z",
+      "side": 1,
+      "message": "HealthBased ?",
+      "range": {
+        "startLine": 276,
+        "startChar": 10,
+        "endLine": 276,
+        "endChar": 19
+      },
+      "revId": "f2f39f5e85c0d3729463ca41c877b5139cc71d64",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c8b36afa_8b7ec6e4",
+        "filename": "android/app/jni/com_android_bluetooth_le_audio.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 295,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-06-28T15:55:56Z",
+      "side": 1,
+      "message": "HealthBased ?",
+      "range": {
+        "startLine": 295,
+        "startChar": 42,
+        "endLine": 295,
+        "endChar": 52
+      },
+      "revId": "f2f39f5e85c0d3729463ca41c877b5139cc71d64",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "46fa12a2_14271eab",
+        "filename": "android/app/jni/com_android_bluetooth_le_audio.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 299,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-06-28T15:55:56Z",
+      "side": 1,
+      "message": "HealthBased ?",
+      "range": {
+        "startLine": 299,
+        "startChar": 9,
+        "endLine": 299,
+        "endChar": 19
+      },
+      "revId": "f2f39f5e85c0d3729463ca41c877b5139cc71d64",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
