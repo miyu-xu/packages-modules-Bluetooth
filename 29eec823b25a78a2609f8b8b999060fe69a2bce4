@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7be722c2_b91706d5",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 5464,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-06-28T00:24:59Z",
+      "side": 1,
+      "message": "Since existing LE audio policy are handled in Java layer\u0027s PhonePolicy.java, could we report LE audio health status to Java via JNI so that we can handle the policy over there?",
+      "revId": "29eec823b25a78a2609f8b8b999060fe69a2bce4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
