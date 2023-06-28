@@ -32,6 +32,7 @@
 #include "bt_target.h"
 #include "btm_ble_api.h"
 #include "btu.h"
+#include "common/init_flags.h"
 #include "gatt_api.h"
 #include "osi/include/fixed_queue.h"
 #include "stack/include/bt_hdr.h"
@@ -44,6 +45,13 @@
 #define GATT_GET_GATT_IF(conn_id) ((tGATT_IF)((uint8_t)(conn_id)))
 
 #define GATT_TRANS_ID_MAX 0x0fffffff /* 4 MSB is reserved */
+
+/* Default ATT MTU must not be greater than GATT_MAX_MTU_SIZE, and not smaller
+ * than GATT_DEF_BLE_MTU_SIZE */
+const static uint16_t ATT_MTU_DEFAULT =
+    std::max(std::min(bluetooth::common::init_flags::get_att_mtu_default(),
+                      GATT_MAX_MTU_SIZE),
+             GATT_DEF_BLE_MTU_SIZE);
 
 /* security action for GATT write and read request */
 typedef enum : uint8_t {
