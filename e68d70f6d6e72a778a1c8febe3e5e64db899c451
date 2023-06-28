@@ -1,0 +1,84 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "32c80094_d52c1f90",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2023-06-28T22:21:01Z",
+      "side": 1,
+      "message": "re fo",
+      "revId": "e68d70f6d6e72a778a1c8febe3e5e64db899c451",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e2f5ceb7_29537a28",
+        "filename": "Android.bp",
+        "patchSetId": 7
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2023-06-28T22:21:01Z",
+      "side": 1,
+      "message": "I suggest mentioning that this is a high risk area, change to this defaults should be reviewed carefully.",
+      "revId": "e68d70f6d6e72a778a1c8febe3e5e64db899c451",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "519b8217_62f2af85",
+        "filename": "Android.bp",
+        "patchSetId": 7
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2023-06-28T22:21:01Z",
+      "side": 1,
+      "message": "I think tools can be excluded, if you can. because tools",
+      "range": {
+        "startLine": 59,
+        "startChar": 12,
+        "endLine": 59,
+        "endChar": 17
+      },
+      "revId": "e68d70f6d6e72a778a1c8febe3e5e64db899c451",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c3b93547_ae1f01eb",
+        "filename": "Android.bp",
+        "patchSetId": 7
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2023-06-28T22:21:01Z",
+      "side": 1,
+      "message": "\u003e Try to keep the name as precise as possible... f you add a new option that isn\u0027t\n\u003e     documented by the name of this default, rename it.\n\nI can understand that you want to avoid misuse. but simply renaming this default is a non-trivial change. \nAs we discussed, how about relaxing the name a little to make some space for options other than cflags? I think the documentation in the comment is instructive enough, and anyone trying to make change to this would be very careful.",
+      "range": {
+        "startLine": 71,
+        "startChar": 11,
+        "endLine": 71,
+        "endChar": 27
+      },
+      "revId": "e68d70f6d6e72a778a1c8febe3e5e64db899c451",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
