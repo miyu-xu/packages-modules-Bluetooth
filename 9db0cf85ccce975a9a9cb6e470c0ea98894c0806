@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e2a12ccb_6477ec1d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-06-28T15:33:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c090ca19_910a24cf",
+      "range": {
+        "startLine": 7,
+        "startChar": 20,
+        "endLine": 7,
+        "endChar": 24
+      },
+      "revId": "9db0cf85ccce975a9a9cb6e470c0ea98894c0806",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6c40a5fe_ffce14c5",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-06-28T00:26:31Z",
       "side": 1,
       "message": "Does this need another CL?",
+      "range": {
+        "startLine": 1568,
+        "startChar": 9,
+        "endLine": 1568,
+        "endChar": 23
+      },
+      "revId": "9db0cf85ccce975a9a9cb6e470c0ea98894c0806",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7559a99f_00eadba2",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 1568,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-06-28T15:33:17Z",
+      "side": 1,
+      "message": "I\u0027m not working on that, this is something we decided to not do now if I remember correctly. In other patch you mentioned PhonePolicy.java. So I believe somebody could take it from here.",
+      "parentUuid": "6c40a5fe_ffce14c5",
       "range": {
         "startLine": 1568,
         "startChar": 9,
