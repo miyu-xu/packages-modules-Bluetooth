@@ -129,6 +129,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f2b8d57c_66d6f5b2",
+        "filename": "system/bta/le_audio/le_audio_health_status.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-06-28T13:20:39Z",
+      "side": 1,
+      "message": "Can be \"DeviceStatType\" INVALID_DB | INVALID_CSIS ? and other variations.",
+      "parentUuid": "014d6cca_1d626a49",
+      "revId": "61ec70830dfb5a69ba5cca04d2617972f09c0bf7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8e25eb27_e061f251",
         "filename": "system/bta/le_audio/le_audio_health_status.h",
         "patchSetId": 3
