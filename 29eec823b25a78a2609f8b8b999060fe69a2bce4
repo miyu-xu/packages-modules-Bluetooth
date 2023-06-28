@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3d43ad33_6b1f5cd6",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 5464,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-06-28T15:29:17Z",
+      "side": 1,
+      "message": "aosp/2637963 sends it up to Java - but to LeAUdioService.java  I think we could pass it to PhonePolicy.java from there. Is that Ok?",
+      "parentUuid": "7be722c2_b91706d5",
+      "revId": "29eec823b25a78a2609f8b8b999060fe69a2bce4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3abd5bfb_0fc3946d",
         "filename": "system/bta/le_audio/le_audio_client_test.cc",
         "patchSetId": 5
