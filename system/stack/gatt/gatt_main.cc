@@ -200,6 +200,16 @@ void gatt_free(void) {
   EattExtension::GetInstance()->Stop();
 }
 
+uint16_t gatt_get_local_mtu(void) {
+  /* Default ATT MTU must not be greater than GATT_MAX_MTU_SIZE, nor smaller
+   * than GATT_DEF_BLE_MTU_SIZE */
+  const static uint16_t ATT_MTU_DEFAULT =
+      std::max(std::min(bluetooth::common::init_flags::get_att_mtu_default(),
+                        GATT_MAX_MTU_SIZE),
+               GATT_DEF_BLE_MTU_SIZE);
+  return ATT_MTU_DEFAULT;
+}
+
 void gatt_find_in_device_record(const RawAddress& bd_addr,
                                 tBLE_BD_ADDR* address_with_type) {
   const tBTM_SEC_DEV_REC* p_dev_rec = btm_find_dev(bd_addr);

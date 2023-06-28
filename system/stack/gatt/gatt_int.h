@@ -32,6 +32,7 @@
 #include "bt_target.h"
 #include "btm_ble_api.h"
 #include "btu.h"
+#include "common/init_flags.h"
 #include "gatt_api.h"
 #include "osi/include/fixed_queue.h"
 #include "stack/include/bt_hdr.h"
@@ -499,6 +500,7 @@ void gatt_proc_srv_chg(void);
 void gatt_send_srv_chg_ind(const RawAddress& peer_bda);
 void gatt_chk_srv_chg(tGATTS_SRV_CHG* p_srv_chg_clt);
 void gatt_add_a_bonded_dev_for_srv_chg(const RawAddress& bda);
+uint16_t gatt_get_local_mtu(void);
 
 /* from gatt_attr.cc */
 uint16_t gatt_profile_find_conn_id_by_bd_addr(const RawAddress& bda);
