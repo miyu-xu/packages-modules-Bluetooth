@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "73767524_ff59d41b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-06-28T22:37:59Z",
+      "side": 1,
+      "message": "Did you ran all the pts-bot tests locally ?\n\nThe `Test` stanza should describe what you did on your side to test the CL, not what the presubmit will test.",
+      "range": {
+        "startLine": 10,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 19
+      },
+      "revId": "4972192f7ff62952fa0aeb687be659394f31aa9e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
