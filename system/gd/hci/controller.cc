@@ -386,6 +386,10 @@ struct Controller::impl {
     ASSERT(complete_view.IsValid());
     ErrorCode status = complete_view.GetStatus();
     ASSERT_LOG(status == ErrorCode::SUCCESS, "Status 0x%02hhx, %s", status, ErrorCodeText(status).c_str());
+    if (status == ErrorCode::SUCCESS) {
+      LOG_INFO("le_set_host_feature_handler");
+      le_local_supported_features_ = le_local_supported_features_ | 0x4000000000;
+    }
   }
 
   void read_default_erroneous_data_reporting_handler(CommandCompleteView view) {
