@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f93b5e27_e02af3c7",
+        "filename": "android/app/src/com/android/bluetooth/gatt/ScanManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 835,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-06-28T20:23:25Z",
+      "side": 1,
+      "message": "Do we know, if client.stats is null, would client.settings also be null?\n\nI want to make sure we don\u0027t skip updating the scan mode if there\u0027s a scenario where stats can be unset but scan mode should still be updated.",
+      "range": {
+        "startLine": 835,
+        "startChar": 54,
+        "endLine": 835,
+        "endChar": 69
+      },
+      "revId": "de3f22de2a1022133f6f9ad25c657437e8d4d30e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
