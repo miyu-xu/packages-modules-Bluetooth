@@ -84,6 +84,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2d3a725f_f03c7e85",
+        "filename": "Android.bp",
+        "patchSetId": 7
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-06-28T22:48:53Z",
+      "side": 1,
+      "message": "I think we want to apply \"-Wall\", \"-Wextra\", \"-Werror\" to tools as well.\n\nAlso this default is included in tools already as all cc_targets have this default, I\u0027m mostly only documenting it \n\nFor example: https://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/tools/rootcanal/Android.bp;l\u003d36;drc\u003da9635a2a9158b272631c3216fee13abca32d1bdc",
+      "parentUuid": "1424408e_b1bacc8f",
+      "range": {
+        "startLine": 59,
+        "startChar": 12,
+        "endLine": 59,
+        "endChar": 17
+      },
+      "revId": "e68d70f6d6e72a778a1c8febe3e5e64db899c451",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c3b93547_ae1f01eb",
         "filename": "Android.bp",
         "patchSetId": 7
@@ -95,6 +119,30 @@
       "writtenOn": "2023-06-28T22:21:01Z",
       "side": 1,
       "message": "\u003e Try to keep the name as precise as possible... f you add a new option that isn\u0027t\n\u003e     documented by the name of this default, rename it.\n\nI can understand that you want to avoid misuse. but simply renaming this default is a non-trivial change. \nAs we discussed, how about relaxing the name a little to make some space for options other than cflags? I think the documentation in the comment is instructive enough, and anyone trying to make change to this would be very careful.",
+      "range": {
+        "startLine": 71,
+        "startChar": 11,
+        "endLine": 71,
+        "endChar": 27
+      },
+      "revId": "e68d70f6d6e72a778a1c8febe3e5e64db899c451",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "19bb4b0b_8cd39cce",
+        "filename": "Android.bp",
+        "patchSetId": 7
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-06-28T22:48:53Z",
+      "side": 1,
+      "message": "\u003e I can understand that you want to avoid misuse. but simply renaming this default is a non-trivial change.\n\nI\u0027m not sure to understand why, I expect \"Search and Replace All\" to be one of the basic tools in the developer\u0027s refactor toolbelt.\n\nAnd even if you do not use an editor that have this feature it\u0027s also provided by some unix tools present by default on most distributions like `sed`\n\n```\nsed -i \u0027s/bluetooth_cflags/bluetooth_cflags_new_name/g\u0027\n```\n\n\u003e how about relaxing the name a little to make some space for options other than cflags?\n\nI think I prefer it to be too narrow for now and rename it when we see the new use cases as renaming should be quite easy.",
+      "parentUuid": "c3b93547_ae1f01eb",
       "range": {
         "startLine": 71,
         "startChar": 11,
