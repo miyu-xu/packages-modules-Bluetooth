@@ -34,6 +34,23 @@
       "parentUuid": "5ce0214c_884d7d7e",
       "revId": "ae990f3b300bd4335d1557213c88b2d2a17ff9ff",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "39a5486e_09d9d928",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1010056
+      },
+      "writtenOn": "2023-06-28T18:46:11Z",
+      "side": 1,
+      "message": "BP+2 to work around existing failing tests.",
+      "revId": "ae990f3b300bd4335d1557213c88b2d2a17ff9ff",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
