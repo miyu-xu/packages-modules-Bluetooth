@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "392bc959_76c0320d",
+        "filename": "system/bta/le_audio/le_audio_health_status.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-06-28T16:37:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "961c067e_5ff14050",
+      "range": {
+        "startLine": 32,
+        "startChar": 16,
+        "endLine": 32,
+        "endChar": 18
+      },
+      "revId": "9a5d63dab25c0de5e73721a8114005fc946a33d4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "852b8f1e_9346eea6",
@@ -49,6 +73,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a4796697_1cb48d60",
+        "filename": "system/bta/le_audio/le_audio_health_status.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-06-28T16:37:23Z",
+      "side": 1,
+      "message": "Grzegorz had that comment. This is stat, so whatever you set it is good.\n\nhealth module will keep it, you can see information in the dumpsys, possibly we can make metrics out of it. \n\nIt is not a state machine.",
+      "parentUuid": "852b8f1e_9346eea6",
+      "range": {
+        "startLine": 42,
+        "startChar": 2,
+        "endLine": 42,
+        "endChar": 10
+      },
+      "revId": "9a5d63dab25c0de5e73721a8114005fc946a33d4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8c7fa90e_c97bbbb8",
         "filename": "system/bta/le_audio/le_audio_health_status.h",
         "patchSetId": 5
@@ -60,6 +108,30 @@
       "writtenOn": "2023-06-28T15:52:30Z",
       "side": 1,
       "message": "I still don\u0027t understand why we disctinct device and group health.\nIf there is one healthy and one bad device in group, shouldn\u0027t it acutomatically make whole group bad ?\n\nShall we have just one enum for the whole group ?",
+      "range": {
+        "startLine": 54,
+        "startChar": 11,
+        "endLine": 54,
+        "endChar": 37
+      },
+      "revId": "9a5d63dab25c0de5e73721a8114005fc946a33d4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9a9fc4db_5cb549f5",
+        "filename": "system/bta/le_audio/le_audio_health_status.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-06-28T16:37:23Z",
+      "side": 1,
+      "message": "This is to makes things easier to track and extend in the future.\nAS explained in other comment, we have two stages\"\n\nstage 1: Look at device as separate entity before we know the device has everything to be able to stream\n\nstage 2: When device has everything which enables it to stream, we change the optic to the group.\n\nhaving separate stats will keeps code cleaner and easy to extend if we find other metrics we want to measure for device or the group.",
+      "parentUuid": "8c7fa90e_c97bbbb8",
       "range": {
         "startLine": 54,
         "startChar": 11,
