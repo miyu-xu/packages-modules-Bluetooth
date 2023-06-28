@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c9a76251_99402015",
+        "filename": "system/stack/gatt/gatt_int.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2023-06-28T21:08:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b2d4386b_dd4d0bf1",
+      "range": {
+        "startLine": 51,
+        "startChar": 22,
+        "endLine": 51,
+        "endChar": 37
+      },
+      "revId": "23d3b78a748b25344bc534ce578a006ead48906e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b860106d_24021b87",
@@ -85,6 +109,30 @@
       "side": 1,
       "message": "This is for MTU exchange response when MTU exchange is initiated by the remote device.\ntcb.payload_size holds the MTU that is going to be used for the link that is what is reported to the applications.",
       "parentUuid": "b860106d_24021b87",
+      "range": {
+        "startLine": 852,
+        "startChar": 2,
+        "endLine": 853,
+        "endChar": 36
+      },
+      "revId": "23d3b78a748b25344bc534ce578a006ead48906e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a1152f1f_b4407fa8",
+        "filename": "system/stack/gatt/gatt_sr.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 853,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2023-06-28T21:08:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "070fe46b_3a9177e4",
       "range": {
         "startLine": 852,
         "startChar": 2,
