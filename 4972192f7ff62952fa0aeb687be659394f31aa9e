@@ -70,6 +70,23 @@
       },
       "revId": "4972192f7ff62952fa0aeb687be659394f31aa9e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ad4b0617_22ebc41b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-06-28T22:46:54Z",
+      "side": 1,
+      "message": "The platform impl should be done in the `target` build structure anyway.",
+      "revId": "4972192f7ff62952fa0aeb687be659394f31aa9e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
