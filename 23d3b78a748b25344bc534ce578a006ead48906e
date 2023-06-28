@@ -46,6 +46,29 @@
       },
       "revId": "23d3b78a748b25344bc534ce578a006ead48906e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b860106d_24021b87",
+        "filename": "system/stack/gatt/gatt_sr.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 853,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-06-28T20:30:38Z",
+      "side": 1,
+      "message": "Why do we need to do this?\n\nI would think we would want to set to min of remote declared MTU and our defined MTU. Trying to remember from discussion earlier today but hoping to clarify here.\n\nIdeally we\u0027d return the right MTU to the app callback, and respect what remote supports as well. So if we\u0027re looking at addressing the known partner issue I would think we\u0027d want to just set the default lower and keep this logic the same, until we can implement a better solution.",
+      "range": {
+        "startLine": 852,
+        "startChar": 2,
+        "endLine": 853,
+        "endChar": 36
+      },
+      "revId": "23d3b78a748b25344bc534ce578a006ead48906e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
