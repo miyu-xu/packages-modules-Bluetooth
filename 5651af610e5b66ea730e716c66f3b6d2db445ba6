@@ -22,6 +22,29 @@
       },
       "revId": "5651af610e5b66ea730e716c66f3b6d2db445ba6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6ef1ca3a_b81f817e",
+        "filename": "system/gd/rust/shim/src/init_flags.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-06-29T17:07:04Z",
+      "side": 1,
+      "message": "This cannot be a init_flag as there is no longer a possibility to push a non-boolean flag.\n\n(I know there are other flags here but they are in a bad position now)",
+      "range": {
+        "startLine": 60,
+        "startChar": 0,
+        "endLine": 60,
+        "endChar": 40
+      },
+      "revId": "5651af610e5b66ea730e716c66f3b6d2db445ba6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
