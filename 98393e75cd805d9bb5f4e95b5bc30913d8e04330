@@ -158,6 +158,30 @@
       },
       "revId": "98393e75cd805d9bb5f4e95b5bc30913d8e04330",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9ffff3af_30f01a87",
+        "filename": "android/app/src/com/android/bluetooth/pbapclient/PbapClientStateMachine.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2023-06-29T08:05:43Z",
+      "side": 1,
+      "message": "If mHandlerThread is only used by mConnectionHandler, then how about storing `mHandlerThread.getLooper()` in a local variable and use it instead of lock?",
+      "parentUuid": "23c294b1_1cb283e9",
+      "range": {
+        "startLine": 180,
+        "startChar": 47,
+        "endLine": 180,
+        "endChar": 73
+      },
+      "revId": "98393e75cd805d9bb5f4e95b5bc30913d8e04330",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
