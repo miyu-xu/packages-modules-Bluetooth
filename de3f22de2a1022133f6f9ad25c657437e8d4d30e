@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5be461b5_6035f683",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2023-06-29T02:06:38Z",
+      "side": 1,
+      "message": "Hi Jayden, I saw that you wrote the code related with downgrading scan mode in `ScanManager.java`, and wanted to ask a question about expected behavior when `client.stats \u003d\u003d null`, which is causing a null pointer exception at the moment. \n\nShould downgrade still take place with only `client.stats.setScanDowngrade()` skipped? or should `downgradeScanModeFromMaxDuty()` just return false with no downgrade?",
+      "revId": "de3f22de2a1022133f6f9ad25c657437e8d4d30e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f93b5e27_e02af3c7",
         "filename": "android/app/src/com/android/bluetooth/gatt/ScanManager.java",
         "patchSetId": 1
