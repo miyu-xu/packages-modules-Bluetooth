@@ -1712,8 +1712,6 @@ class UnicastTestNoInit : public Test {
      * might have different state that it is in the le_audio code - as tearing
      * down CISes might take some time
      */
-    std::promise<void> do_suspend_sink_promise;
-    auto do_suspend_sink_future = do_suspend_sink_promise.get_future();
     /* It's enough to call only one resume even if it'll be bi-directional
      * streaming. First suspend will trigger GroupStop.
      *
@@ -1721,16 +1719,11 @@ class UnicastTestNoInit : public Test {
      * If there will be such test oriented scenario, such resume choose logic
      * should be applied.
      */
-    unicast_source_hal_cb_->OnAudioSuspend(std::move(do_suspend_sink_promise));
-    do_suspend_sink_future.wait();
+    unicast_source_hal_cb_->OnAudioSuspend();
 
     if (suspend_source) {
       ASSERT_NE(unicast_sink_hal_cb_, nullptr);
-      std::promise<void> do_suspend_source_promise;
-      auto do_suspend_source_future = do_suspend_source_promise.get_future();
-      unicast_sink_hal_cb_->OnAudioSuspend(
-          std::move(do_suspend_source_promise));
-      do_suspend_source_future.wait();
+      unicast_sink_hal_cb_->OnAudioSuspend();
     }
   }
 

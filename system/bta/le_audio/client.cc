@@ -5438,9 +5438,8 @@ class SourceCallbacksImpl : public LeAudioSourceAudioHalClient::Callbacks {
   void OnAudioDataReady(const std::vector<uint8_t>& data) override {
     if (instance) instance->OnAudioDataReady(data);
   }
-  void OnAudioSuspend(std::promise<void> do_suspend_promise) override {
+  void OnAudioSuspend(void) override {
     if (instance) instance->OnLocalAudioSourceSuspend();
-    do_suspend_promise.set_value();
   }
 
   void OnAudioResume(void) override {
@@ -5456,9 +5455,8 @@ class SourceCallbacksImpl : public LeAudioSourceAudioHalClient::Callbacks {
 
 class SinkCallbacksImpl : public LeAudioSinkAudioHalClient::Callbacks {
  public:
-  void OnAudioSuspend(std::promise<void> do_suspend_promise) override {
+  void OnAudioSuspend(void) override {
     if (instance) instance->OnLocalAudioSinkSuspend();
-    do_suspend_promise.set_value();
   }
   void OnAudioResume(void) override {
     if (instance) instance->OnLocalAudioSinkResume();
