@@ -89,6 +89,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ed3d5de4_ffb477a0",
+        "filename": "android/app/src/com/android/bluetooth/pbapclient/PbapClientStateMachine.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-06-29T07:16:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9f98fe03_7ce6c6c1",
+      "range": {
+        "startLine": 107,
+        "startChar": 0,
+        "endLine": 107,
+        "endChar": 23
+      },
+      "revId": "98393e75cd805d9bb5f4e95b5bc30913d8e04330",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7cce7dbc_dc2333a3",
@@ -102,6 +126,30 @@
       "writtenOn": "2023-06-28T01:00:15Z",
       "side": 1,
       "message": "Q) What is the better way btw. using locks and checking this value is null?",
+      "range": {
+        "startLine": 180,
+        "startChar": 47,
+        "endLine": 180,
+        "endChar": 73
+      },
+      "revId": "98393e75cd805d9bb5f4e95b5bc30913d8e04330",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "23c294b1_1cb283e9",
+        "filename": "android/app/src/com/android/bluetooth/pbapclient/PbapClientStateMachine.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-06-29T07:16:08Z",
+      "side": 1,
+      "message": "Using locks since the null check couldn\u0027t guarantee non null w/o lock.",
+      "parentUuid": "7cce7dbc_dc2333a3",
       "range": {
         "startLine": 180,
         "startChar": 47,
