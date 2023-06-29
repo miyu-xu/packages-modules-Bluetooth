@@ -70,6 +70,30 @@
       },
       "revId": "ac35276b2782328ac8e95d0e984c63eead4e33c8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "212de4b8_4164a7d7",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothAirplaneModeListener.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-06-29T14:06:31Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "750abbaf_e71218b5",
+      "range": {
+        "startLine": 75,
+        "startChar": 29,
+        "endLine": 75,
+        "endChar": 46
+      },
+      "revId": "ac35276b2782328ac8e95d0e984c63eead4e33c8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
