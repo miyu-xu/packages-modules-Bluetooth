@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c16457ad_c58e55d8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-06-29T06:21:44Z",
+      "side": 1,
+      "message": "Hi Eric, I guess based on previous offline discussion as well as the status updated in the bug, the issue is longer reproducible, maybe we can abandon the CL?",
+      "revId": "8df8ace3a753ae9be42fd262b7be23d052ac6516",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
