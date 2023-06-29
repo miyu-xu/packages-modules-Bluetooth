@@ -22,6 +22,30 @@
       },
       "revId": "de3f22de2a1022133f6f9ad25c657437e8d4d30e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "449d0e48_0f2cc7e7",
+        "filename": "android/app/src/com/android/bluetooth/gatt/ScanManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 835,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2023-06-29T01:58:10Z",
+      "side": 1,
+      "message": "This was a scenario I wanted to ask as well! In both [constructors](https://source.corp.google.com/h/googleplex-android/platform/superproject/+/refs/heads/master:packages/modules/Bluetooth/android/app/src/com/android/bluetooth/gatt/ScanClient.java;l\u003d56;drc\u003d1bceda62ed75f951902f3195bdc475d1e9f906d9) for ScanClient, client.settings is always non null, regardless of client.stats. At this point it seems like the scenario of stats unset but scan mode still being updated is viable. \n\nHowever in `ScanManager.handleConnectingState()`, after the downgrade call is done, `ScanManager.handleClearConnectingState()` is called and this performs a [revert downgrade](https://source.corp.google.com/h/googleplex-android/platform/superproject/+/refs/heads/master:packages/modules/Bluetooth/android/app/src/com/android/bluetooth/gatt/ScanManager.java;l\u003d617;drc\u003d1bceda62ed75f951902f3195bdc475d1e9f906d9;bpv\u003d0;bpt\u003d0). And in function `revertDowngradeScanModeFromMaxDuty()`, there is a check on if the client was downgraded called [isDowngradedScanClient()](https://source.corp.google.com/h/googleplex-android/platform/superproject/+/refs/heads/master:packages/modules/Bluetooth/android/app/src/com/android/bluetooth/gatt/ScanManager.java;drc\u003d1bceda62ed75f951902f3195bdc475d1e9f906d9;bpv\u003d0;bpt\u003d0;l\u003d1161), which returns false if `client.stats \u003d\u003d null`. \n\nTherefore, since `isDowngradedScanClient()` is returning false when `client.stats \u003d\u003d null`, I\u0027m wondering if it is expected behavior for scan mode downgrade to not happen when `client.stats \u003d\u003d null`.",
+      "parentUuid": "f93b5e27_e02af3c7",
+      "range": {
+        "startLine": 835,
+        "startChar": 54,
+        "endLine": 835,
+        "endChar": 69
+      },
+      "revId": "de3f22de2a1022133f6f9ad25c657437e8d4d30e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
