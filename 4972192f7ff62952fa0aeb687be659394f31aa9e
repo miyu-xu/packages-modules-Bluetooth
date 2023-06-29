@@ -104,6 +104,24 @@
       "message": "Hi Myles,\n\nObserved this change(path set 1) is causing boottime regression\n\nhttps://screenshot.googleplex.com/6A4dvWsoc2qGz9J\n\nhttps://crystalball-presubmit.corp.google.com/dashboard/I83400010174434212?change_number\u003d2645129\u0026host\u003dandroid-review.googlesource.com\u0026patchset\u003d1\n\nPlease fix it before merging this change",
       "revId": "4972192f7ff62952fa0aeb687be659394f31aa9e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f69d92e8_41bb71a9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-06-29T17:31:01Z",
+      "side": 1,
+      "message": "Thanks for pointing this out.  It\u0027s interesting because it\u0027s hard to believe that removing a few lines of unused Bluetooth code could have affected the boot time this much.  I\u0027m re-running the presubmit to see if it\u0027s consistent.",
+      "parentUuid": "b958af69_64b995d9",
+      "revId": "4972192f7ff62952fa0aeb687be659394f31aa9e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
