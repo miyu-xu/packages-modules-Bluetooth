@@ -93,6 +93,30 @@
       },
       "revId": "5651af610e5b66ea730e716c66f3b6d2db445ba6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a97370da_a3e60052",
+        "filename": "system/gd/rust/shim/src/init_flags.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-06-29T17:57:29Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "16f90db2_d48fa405",
+      "range": {
+        "startLine": 60,
+        "startChar": 0,
+        "endLine": 60,
+        "endChar": 40
+      },
+      "revId": "5651af610e5b66ea730e716c66f3b6d2db445ba6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
