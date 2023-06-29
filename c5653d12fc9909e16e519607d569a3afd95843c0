@@ -16,6 +16,23 @@
       "message": "LGTM",
       "revId": "c5653d12fc9909e16e519607d569a3afd95843c0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "525afea2_ada850f9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-06-29T15:19:51Z",
+      "side": 1,
+      "message": "Bypass Lint +2: Code can\u0027t be built or tested on Android (need to update ayeaye rule to allow bypass hatch in commit message)",
+      "revId": "c5653d12fc9909e16e519607d569a3afd95843c0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
