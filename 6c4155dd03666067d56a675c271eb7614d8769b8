@@ -70,6 +70,30 @@
       },
       "revId": "6c4155dd03666067d56a675c271eb7614d8769b8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "441aec7a_99e12b6f",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 2516,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-06-29T21:57:36Z",
+      "side": 1,
+      "message": "Done - Chat offline",
+      "parentUuid": "121b53b4_5783015c",
+      "range": {
+        "startLine": 2516,
+        "startChar": 30,
+        "endLine": 2516,
+        "endChar": 89
+      },
+      "revId": "6c4155dd03666067d56a675c271eb7614d8769b8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
