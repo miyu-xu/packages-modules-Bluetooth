@@ -35,6 +35,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e82dc0c2_9f732c75",
+        "filename": "Android.bp",
+        "patchSetId": 7
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-06-29T14:15:44Z",
+      "side": 1,
+      "message": "I think the \"Be careful\" on line 51 gets that point across.",
+      "parentUuid": "e2f5ceb7_29537a28",
+      "revId": "e68d70f6d6e72a778a1c8febe3e5e64db899c451",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "519b8217_62f2af85",
@@ -220,6 +238,29 @@
         "startChar": 11,
         "endLine": 71,
         "endChar": 27
+      },
+      "revId": "e68d70f6d6e72a778a1c8febe3e5e64db899c451",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bb026578_caf73c2a",
+        "filename": "Android.bp",
+        "patchSetId": 7
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-06-29T14:15:44Z",
+      "side": 1,
+      "message": "This is something I\u0027d rather keep at the leaves.  I\u0027d be happy to have it repeated everywhere, so we could remove it one place at a time.  New code shouldn\u0027t have this flag.",
+      "range": {
+        "startLine": 76,
+        "startChar": 0,
+        "endLine": 77,
+        "endChar": 32
       },
       "revId": "e68d70f6d6e72a778a1c8febe3e5e64db899c451",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
