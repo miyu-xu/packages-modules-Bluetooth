@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1f4887fa_8a380e65",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioNativeInterface.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 247,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2023-06-29T08:01:03Z",
+      "side": 1,
+      "message": "I\u0027m not sure if I got it right... the recommendation is one for the whole group, but just the reason is either individual device or group behavior based?\n\nOtherwise how should we act when a device is unhealthy, but there is no such report for the group? Should we disable only this one device, or the whole group?",
+      "range": {
+        "startLine": 223,
+        "startChar": 4,
+        "endLine": 247,
+        "endChar": 5
+      },
+      "revId": "e705b689b946e51c16452e23683a0f1f3ef771ea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cd042af3_bb0d69a6",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/le_audio/LeAudioServiceTest.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 1304,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2023-06-29T08:01:03Z",
+      "side": 1,
+      "message": "some typos here",
+      "range": {
+        "startLine": 1303,
+        "startChar": 66,
+        "endLine": 1304,
+        "endChar": 44
+      },
+      "revId": "e705b689b946e51c16452e23683a0f1f3ef771ea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
