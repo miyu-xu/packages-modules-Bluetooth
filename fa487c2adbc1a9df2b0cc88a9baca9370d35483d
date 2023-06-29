@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0890333e_e82dc721",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 651,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-06-29T06:47:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6e2a191e_12d70ff5",
+      "range": {
+        "startLine": 648,
+        "startChar": 16,
+        "endLine": 651,
+        "endChar": 17
+      },
+      "revId": "fa487c2adbc1a9df2b0cc88a9baca9370d35483d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c1be84c1_b83dcf48",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c11ecdbf_dbe816f7",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/ActiveDeviceManagerTest.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 362,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-06-29T06:47:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c1be84c1_b83dcf48",
+      "range": {
+        "startLine": 362,
+        "startChar": 4,
+        "endLine": 362,
+        "endChar": 9
+      },
+      "revId": "fa487c2adbc1a9df2b0cc88a9baca9370d35483d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3da81c54_7b11fc7d",
@@ -60,6 +108,30 @@
       "writtenOn": "2023-06-28T02:20:12Z",
       "side": 1,
       "message": "Isn\u0027t this a different scenario from the commit message\u0027s?\n\nIn the commit message, the secondary device\u0027s HFP becomes active than first device\u0027s HFP.",
+      "range": {
+        "startLine": 400,
+        "startChar": 0,
+        "endLine": 410,
+        "endChar": 61
+      },
+      "revId": "fa487c2adbc1a9df2b0cc88a9baca9370d35483d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f0383788_90c58857",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/ActiveDeviceManagerTest.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 410,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-06-29T06:47:54Z",
+      "side": 1,
+      "message": "NO, it is not different scenario.\nThe scenario is,\nA2DP HS1 -\u003e A2DP HS2 -\u003e HFP HS1 -\u003e HFP HS2",
+      "parentUuid": "3da81c54_7b11fc7d",
       "range": {
         "startLine": 400,
         "startChar": 0,
