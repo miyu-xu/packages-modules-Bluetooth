@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b11b48f3_3379bf41",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-06-29T18:46:02Z",
+      "side": 1,
+      "message": "looks pretty good !",
+      "revId": "a08523d01ee4d443c44e16dfaec0d6c43b1a89c2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8ad8183f_58538690",
+        "filename": "system/common/message_loop_thread.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-06-29T18:46:02Z",
+      "side": 1,
+      "message": "I thought the `gd` directory was never used in includes, but accessed via build system",
+      "revId": "a08523d01ee4d443c44e16dfaec0d6c43b1a89c2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6582e7e8_6de47858",
+        "filename": "system/common/message_loop_thread.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-06-29T18:46:02Z",
+      "side": 1,
+      "message": "Which location will be used ?",
+      "revId": "a08523d01ee4d443c44e16dfaec0d6c43b1a89c2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
