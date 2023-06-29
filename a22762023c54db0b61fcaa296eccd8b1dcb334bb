@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f22f26b6_6e6016b3",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/ActiveDeviceManagerTest.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 432,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2023-06-29T08:46:35Z",
+      "side": 1,
+      "message": "Could you split each test cases into each test method?\n\nAlso, could you also test the timeout-related behaviors (mixed with normal connections) that are added in the latest patch?",
+      "range": {
+        "startLine": 406,
+        "startChar": 0,
+        "endLine": 432,
+        "endChar": 47
+      },
+      "revId": "a22762023c54db0b61fcaa296eccd8b1dcb334bb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
