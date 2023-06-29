@@ -46,6 +46,30 @@
       },
       "revId": "05a519be3cb4c158337d5e3cfa24c164cb806c25",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c4341c1d_c6a04f91",
+        "filename": "android/app/src/com/android/bluetooth/bas/BatteryStateMachine.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 259,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-06-29T06:32:16Z",
+      "side": 1,
+      "message": "thanks for reminding!",
+      "parentUuid": "8abbc3eb_f46f66b6",
+      "range": {
+        "startLine": 259,
+        "startChar": 20,
+        "endLine": 259,
+        "endChar": 40
+      },
+      "revId": "05a519be3cb4c158337d5e3cfa24c164cb806c25",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
