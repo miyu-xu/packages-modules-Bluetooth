@@ -46,6 +46,30 @@
       },
       "revId": "a6949ad5e54b38e2e3de2ded8521506bfa67607f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "15267e9d_a5bdd19b",
+        "filename": "service/tests/src/com/android/server/bluetooth/BluetoothManagerServiceTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-06-29T14:02:53Z",
+      "side": 1,
+      "message": "That sounds like it could be a separate CL.",
+      "parentUuid": "218d33a6_4b5ae06b",
+      "range": {
+        "startLine": 143,
+        "startChar": 7,
+        "endLine": 143,
+        "endChar": 23
+      },
+      "revId": "a6949ad5e54b38e2e3de2ded8521506bfa67607f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
