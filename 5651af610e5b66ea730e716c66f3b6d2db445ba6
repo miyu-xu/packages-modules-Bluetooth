@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f67813e6_2d4261d0",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2023-06-29T17:41:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "927026ed_1944bfbc",
+      "range": {
+        "startLine": 10,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 0
+      },
+      "revId": "5651af610e5b66ea730e716c66f3b6d2db445ba6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6ef1ca3a_b81f817e",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-06-29T17:07:04Z",
       "side": 1,
       "message": "This cannot be a init_flag as there is no longer a possibility to push a non-boolean flag.\n\n(I know there are other flags here but they are in a bad position now)",
+      "range": {
+        "startLine": 60,
+        "startChar": 0,
+        "endLine": 60,
+        "endChar": 40
+      },
+      "revId": "5651af610e5b66ea730e716c66f3b6d2db445ba6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "16f90db2_d48fa405",
+        "filename": "system/gd/rust/shim/src/init_flags.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2023-06-29T17:41:53Z",
+      "side": 1,
+      "message": "This change was prepared as a stop gap solution for Android U, (or QPR1 if that is not possible).\nWe did know that the configuration flags are currently not planned to be supported with the stable trunk. However there is a real need for such a feature. It is possible that configuration flags would be supported eventually.\nIf it does not get the support, this flag will face the same end as other such flags.",
+      "parentUuid": "6ef1ca3a_b81f817e",
       "range": {
         "startLine": 60,
         "startChar": 0,
