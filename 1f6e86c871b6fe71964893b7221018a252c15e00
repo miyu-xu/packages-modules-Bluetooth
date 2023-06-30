@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c5e4eaa2_966b8e71",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-06-30T21:12:27Z",
+      "side": 1,
+      "message": "We don\u0027t have a way to recover from a breaking change to the GATT cache, so this test needs to stay enabled.  We need to fix the code, but until we do, we need to at least realize when the code breaks.",
+      "revId": "1f6e86c871b6fe71964893b7221018a252c15e00",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
