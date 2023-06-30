@@ -74,6 +74,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "09c4652c_81f3b128",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-06-30T23:29:33Z",
+      "side": 1,
+      "message": "mma -j32 is sufficient (chatted offline), because we are using that to decide how to generate QA tasks.",
+      "parentUuid": "00454059_6063afdc",
+      "range": {
+        "startLine": 10,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 19
+      },
+      "revId": "4972192f7ff62952fa0aeb687be659394f31aa9e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "ad4b0617_22ebc41b",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 1
@@ -120,6 +144,24 @@
       "side": 1,
       "message": "Thanks for pointing this out.  It\u0027s interesting because it\u0027s hard to believe that removing a few lines of unused Bluetooth code could have affected the boot time this much.  I\u0027m re-running the presubmit to see if it\u0027s consistent.",
       "parentUuid": "b958af69_64b995d9",
+      "revId": "4972192f7ff62952fa0aeb687be659394f31aa9e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b54e3a77_a6f82ed2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-06-30T23:29:33Z",
+      "side": 1,
+      "message": "I won\u0027t merge this CL or any in this set without making sure the crystalball test passes.  Thanks.",
+      "parentUuid": "f69d92e8_41bb71a9",
       "revId": "4972192f7ff62952fa0aeb687be659394f31aa9e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
