@@ -813,6 +813,13 @@ cc_test {
     },
 }
 
+filegroup {
+    name: "LeAudioMockIsoManagerBadDependency",
+    srcs: [
+        "le_audio/mock_iso_manager.cc",
+    ],
+}
+
 cc_test {
     name: "bluetooth_test_broadcaster_state_machine",
     test_suites: ["device-tests"],

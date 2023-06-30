@@ -1638,6 +1638,7 @@ cc_test {
         "BluetoothGeneratedPackets_h",
     ],
     srcs: [
+        ":LeAudioMockIsoManagerBadDependency",
         ":TestCommonLogMsg",
         ":TestCommonMockFunctions",
         ":TestMockBta",
@@ -1879,6 +1880,7 @@ cc_test {
         "BluetoothGeneratedPackets_h",
     ],
     srcs: [
+        ":LeAudioMockIsoManagerBadDependency",
         ":OsiCompatSources",
         ":TestCommonLogMsg",
         ":TestCommonMainHandler",
