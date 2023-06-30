@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "28350f31_2b604e36",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2023-06-30T01:36:01Z",
+      "side": 1,
+      "message": "Hi Kihong, I think it seems better for `downgradeScanModeFromMaxDuty` just to return false when `client.stats \u003d\u003d null`.\n\nThe downgrade will be reverted by `revertDowngradeScanModeFromMaxDuty` and it checks if the client was downgraded through `isDowngradedScanClient`. If client.stats \u003d\u003d null, isDowngradedScanClient will return false, then revertDowngradeScanModeFromMaxDuty() would not revert the original scan mode back even after connecting state is cleared.\n\nWe may be more interested in which condition makes `client.stats \u003d\u003d null`.",
+      "parentUuid": "5be461b5_6035f683",
+      "revId": "de3f22de2a1022133f6f9ad25c657437e8d4d30e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f93b5e27_e02af3c7",
         "filename": "android/app/src/com/android/bluetooth/gatt/ScanManager.java",
         "patchSetId": 1
