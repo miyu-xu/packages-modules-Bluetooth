@@ -37,6 +37,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "efeee86d_d7a6fd82",
+        "filename": "system/common/message_loop_thread.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-06-30T23:31:54Z",
+      "side": 1,
+      "message": "You\u0027re correct.  This makes it obvious that I\u0027m breaking the rules and including things from GD in Fluoride.  Hopefully in the near future, we can combine the two common directories, and this can go away.",
+      "parentUuid": "8ad8183f_58538690",
+      "revId": "a08523d01ee4d443c44e16dfaec0d6c43b1a89c2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6582e7e8_6de47858",
         "filename": "system/common/message_loop_thread.h",
         "patchSetId": 4
@@ -48,6 +66,24 @@
       "writtenOn": "2023-06-29T18:46:02Z",
       "side": 1,
       "message": "Which location will be used ?",
+      "revId": "a08523d01ee4d443c44e16dfaec0d6c43b1a89c2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "56d8576a_7de52014",
+        "filename": "system/common/message_loop_thread.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-06-30T23:31:54Z",
+      "side": 1,
+      "message": "FROM_HERE in the implementation.",
+      "parentUuid": "6582e7e8_6de47858",
       "revId": "a08523d01ee4d443c44e16dfaec0d6c43b1a89c2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
