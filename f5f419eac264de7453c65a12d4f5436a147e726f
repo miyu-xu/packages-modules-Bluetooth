@@ -1,5 +1,23 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "04b9b86f_8c055df2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-06-30T11:08:10Z",
+      "side": 1,
+      "message": "Marking it for bypass because it was already verified in whole set. Individual patch presubmits failed, but it\u0027s not revelant.",
+      "revId": "f5f419eac264de7453c65a12d4f5436a147e726f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
