@@ -358,6 +358,9 @@ filegroup {
 
 filegroup {
     name: "TestMockStackBtm",
+    exclude_srcs: [
+        "mock/mock_stack_btm_iso.cc",
+    ],
     srcs: [
         "mock/mock_stack_btm*.cc",
     ],
