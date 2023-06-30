@@ -1,4 +1,5 @@
 use clap::{Arg, ArgAction, Command};
+use groups::controllers;
 use std::io::Write;
 
 mod engine;
@@ -60,6 +61,7 @@ fn main() {
     let mut engine = RuleEngine::new();
     engine.add_rule_group("Collisions".into(), collisions::get_collisions_group());
     engine.add_rule_group("Connections".into(), connections::get_connections_group());
+    engine.add_rule_group("Controllers".into(), controllers::get_controllers_group());
     engine.add_rule_group("Informational".into(), informational::get_informational_group());
 
     // Decide where to write output.
