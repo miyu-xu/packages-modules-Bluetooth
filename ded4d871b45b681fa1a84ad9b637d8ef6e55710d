@@ -3,6 +3,236 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "166ba6d4_cf543af6",
+        "filename": "framework/tests/metrics/device/AndroidManifest.xml",
+        "patchSetId": 16
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-06-30T18:34:55Z",
+      "side": 1,
+      "message": "Why 21 ?\nBluetooth min sdk supported is 33. I am not sure it is important but why do we want to support lower version in the metric test  ?",
+      "range": {
+        "startLine": 4,
+        "startChar": 0,
+        "endLine": 4,
+        "endChar": 73
+      },
+      "revId": "ded4d871b45b681fa1a84ad9b637d8ef6e55710d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e973f08d_877f974b",
+        "filename": "framework/tests/metrics/device/android/bluetooth/BluetoothMetricsHelperTest.kt",
+        "patchSetId": 16
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-06-30T18:34:55Z",
+      "side": 1,
+      "message": "Can you use lateinit ?\nIt should allow removing the Nullable",
+      "range": {
+        "startLine": 57,
+        "startChar": 63,
+        "endLine": 57,
+        "endChar": 72
+      },
+      "revId": "ded4d871b45b681fa1a84ad9b637d8ef6e55710d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fe112f8a_e54be1a3",
+        "filename": "framework/tests/metrics/device/android/bluetooth/BluetoothMetricsHelperTest.kt",
+        "patchSetId": 16
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-06-30T18:34:55Z",
+      "side": 1,
+      "message": "```suggestion\n        HostGrpc.newBlockingStub(channel)factoryReset(Empty.getDefaultInstance())\n```\n\nDo we need the intermediate value ?",
+      "range": {
+        "startLine": 84,
+        "startChar": 8,
+        "endLine": 85,
+        "endChar": 53
+      },
+      "revId": "ded4d871b45b681fa1a84ad9b637d8ef6e55710d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2efa954d_73ee4c58",
+        "filename": "framework/tests/metrics/device/android/bluetooth/BluetoothMetricsHelperTest.kt",
+        "patchSetId": 16
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-06-30T18:34:55Z",
+      "side": 1,
+      "message": "Naive question as I am not sure about this at all:\n`channel` and `mChannel` are created using the same command. Can\u0027t you reuse it ?",
+      "range": {
+        "startLine": 91,
+        "startChar": 8,
+        "endLine": 91,
+        "endChar": 16
+      },
+      "revId": "ded4d871b45b681fa1a84ad9b637d8ef6e55710d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "616e686b_ea605b90",
+        "filename": "framework/tests/metrics/device/android/bluetooth/BluetoothMetricsHelperTest.kt",
+        "patchSetId": 16
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-06-30T18:34:55Z",
+      "side": 1,
+      "message": "```suggestion\n        assertThat(connectResponse!!.hasConnection()).isTrue()\n```\nWe know for sure that it is not null. Should we enforce it with `!!` instead ?",
+      "range": {
+        "startLine": 129,
+        "startChar": 34,
+        "endLine": 129,
+        "endChar": 35
+      },
+      "revId": "ded4d871b45b681fa1a84ad9b637d8ef6e55710d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dbd7077f_0a92489d",
+        "filename": "framework/tests/metrics/host/Android.bp",
+        "patchSetId": 16
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-06-30T18:34:55Z",
+      "side": 1,
+      "message": "Should it be added to the TEST_MAPPING ?\n\nI am not sure if host test are automatically run or not at presubmit",
+      "range": {
+        "startLine": 4,
+        "startChar": 11,
+        "endLine": 4,
+        "endChar": 32
+      },
+      "revId": "ded4d871b45b681fa1a84ad9b637d8ef6e55710d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "73365746_d126f146",
+        "filename": "framework/tests/metrics/host/Android.bp",
+        "patchSetId": 16
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-06-30T18:34:55Z",
+      "side": 1,
+      "message": "nit: So far there is no java, I wouldn\u0027t mind if there was not this line in the bp.\nThat would add more incentive to keep theses test in kotlin.",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 20
+      },
+      "revId": "ded4d871b45b681fa1a84ad9b637d8ef6e55710d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "71d8312d_a01a4eea",
+        "filename": "framework/tests/metrics/host/AndroidTest.xml",
+        "patchSetId": 16
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-06-30T18:34:55Z",
+      "side": 1,
+      "message": "where is cryptography needed ?",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 61
+      },
+      "revId": "ded4d871b45b681fa1a84ad9b637d8ef6e55710d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f5991ccd_dd4e3673",
+        "filename": "framework/tests/metrics/host/AndroidTest.xml",
+        "patchSetId": 16
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-06-30T18:34:55Z",
+      "side": 1,
+      "message": "Do you really need to toggle the bluetooth off then on ?\n\nSince this is host test I would expect you do not need to do any of this. But if you only need the bluetooth to be on, I think you should be able to only do the enable + wait for ON",
+      "range": {
+        "startLine": 29,
+        "startChar": 7,
+        "endLine": 32,
+        "endChar": 91
+      },
+      "revId": "ded4d871b45b681fa1a84ad9b637d8ef6e55710d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6b82b34f_e18ed06f",
+        "filename": "framework/tests/metrics/host/android/bluetooth/MetricsTest.kt",
+        "patchSetId": 16
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-06-30T18:34:55Z",
+      "side": 1,
+      "message": "Shouldn\u0027t it be clean in shutdown ? (maybe in both if you want to ensure the test start in a clean state)",
+      "range": {
+        "startLine": 42,
+        "startChar": 8,
+        "endLine": 43,
+        "endChar": 45
+      },
+      "revId": "ded4d871b45b681fa1a84ad9b637d8ef6e55710d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "bc7b28ef_c6ac3637",
         "filename": "framework/tests/metrics/host/android/bluetooth/MetricsTest.kt",
         "patchSetId": 16
