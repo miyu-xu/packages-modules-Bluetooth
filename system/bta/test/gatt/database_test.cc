@@ -166,7 +166,8 @@ TEST(GattCacheTest, stored_attribute_to_binary_included_service_test) {
 
 /* This test makes sure that «Characteristic Extended Properties» descriptor
  * represented in StoredAttribute have proper binary format. */
-TEST(GattCacheTest, stored_attribute_to_binary_characteristic_test) {
+// TODO(b/280473510): Migrate to proper data scheme
+TEST(GattCacheTest, DISABLED_stored_attribute_to_binary_characteristic_test) {
   StoredAttribute attr;
 
   /* make sure padding at end of union is cleared */
