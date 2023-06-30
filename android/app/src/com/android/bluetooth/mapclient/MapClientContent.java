@@ -293,6 +293,7 @@ class MapClientContent {
                             BluetoothMapClient.READ);
                 }
             }
+            cursor.close();
         }
         for (HashMap.Entry record : duplicateUriToHandleMap.entrySet()) {
             logV("Deleted " + ((MessageStatus) record.getValue()).mHandle);
@@ -437,6 +438,7 @@ class MapClientContent {
         while (threadCursor.moveToNext()) {
             threads += threadCursor.getInt(threadCursor.getColumnIndex(Threads._ID)) + ", ";
         }
+        threadCursor.close();
 
         resolver.delete(Sms.CONTENT_URI, Sms.SUBSCRIPTION_ID + " =? ",
                 new String[]{Integer.toString(subscriptionId)});
@@ -535,6 +537,7 @@ class MapClientContent {
             logV("CONTACT LIST: " + cursor.getString(cursor.getColumnIndex("recipient_ids")));
             addRecipientsToEntries(bmsg,
                     cursor.getString(cursor.getColumnIndex("recipient_ids")).split(" "));
+            cursor.close();
             return true;
         } else {
             Log.w(TAG, "Thread Not Found");
@@ -560,6 +563,7 @@ class MapClientContent {
                 destEntry.addProperty(destEntryPhone);
                 bmsg.addRecipient(destEntry);
             }
+            cursor.close();
         }
     }
 
