@@ -31,13 +31,18 @@
 #include "btm_iso_api.h"
 #include "common/time_util.h"
 #include "device/include/controller.h"
+#include "gd/common/contextual_callback.h"
+#include "hci/hci_layer.h"
+#include "hci/hci_packets.h"
 #include "hci/include/hci_layer.h"
 #include "internal_include/stack_config.h"
+#include "main/shim/entry.h"
 #include "main/shim/hci_layer.h"
 #include "osi/include/allocator.h"
 #include "osi/include/log.h"
 #include "stack/include/bt_hdr.h"
 #include "stack/include/btm_log_history.h"
+#include "stack/include/btu.h"
 #include "stack/include/hci_error_code.h"
 #include "stack/include/hcidefs.h"
 
@@ -96,10 +101,48 @@ struct iso_impl {
   iso_impl() {
     iso_credits_ = controller_get_interface()->get_iso_buffer_count();
     iso_buffer_size_ = controller_get_interface()->get_iso_data_size();
+    // TODO: Abstract away some of these details with templates
+    common::Callback<void(bluetooth::hci::LeMetaEventView)> bound =
+        common::Bind(&iso_impl::handle_incoming_event, base::Unretained(this));
+    auto callback_on_main =
+        common::ContextualCallback<void(bluetooth::hci::LeMetaEventView)>(
+            std::move(bound), get_main_thread());
+    hci_ = bluetooth::shim::GetHciLayer()->GetLeIsoInterface(
+        std::move(callback_on_main));
     iso_impl_initialized_ = true;
   }
 
   ~iso_impl() { iso_impl_initialized_ = false; }
+
+  void handle_incoming_event(bluetooth::hci::LeMetaEventView event) {
+    auto event_code = event.GetSubeventCode();
+    switch (event_code) {
+      case bluetooth::hci::SubeventCode::CIS_ESTABLISHED:
+        process_cis_est_pkt(event);
+        break;
+      case bluetooth::hci::SubeventCode::CIS_REQUEST:
+        LOG_INFO("Unhandled event (%s) received",
+                 bluetooth::hci::SubeventCodeText(event_code).c_str());
+        break;
+      case bluetooth::hci::SubeventCode::CREATE_BIG_COMPLETE:
+        process_create_big_cmpl_pkt(event);
+        break;
+      case bluetooth::hci::SubeventCode::TERMINATE_BIG_COMPLETE:
+        process_terminate_big_cmpl_pkt(event);
+        break;
+      case bluetooth::hci::SubeventCode::BIG_SYNC_ESTABLISHED:
+        LOG_INFO("Unhandled event (%s) received",
+                 bluetooth::hci::SubeventCodeText(event_code).c_str());
+        break;
+      case bluetooth::hci::SubeventCode::BIG_SYNC_LOST:
+        LOG_INFO("Unhandled event (%s) received",
+                 bluetooth::hci::SubeventCodeText(event_code).c_str());
+        break;
+      default:
+        LOG_ERROR("Unexpected event (%s) received",
+                  bluetooth::hci::SubeventCodeText(event_code).c_str());
+    }
+  }
 
   void handle_register_cis_callbacks(CigCallbacks* callbacks) {
     LOG_ASSERT(callbacks != nullptr) << "Invalid CIG callbacks";
@@ -609,14 +652,15 @@ struct iso_impl {
     hci->transmit_downward(packet->event, packet);
   }
 
-  void process_cis_est_pkt(uint8_t len, uint8_t* data) {
+  void process_cis_est_pkt(bluetooth::hci::LeMetaEventView meta) {
     cis_establish_cmpl_evt evt;
+    auto event = bluetooth::hci::LeCisEstablishedView::Create(meta);
 
-    LOG_ASSERT(len == 28) << "Invalid packet length: " << +len;
+    LOG_ASSERT(event.IsValid()) << "Invalid packet";
     LOG_ASSERT(cig_callbacks_ != nullptr) << "Invalid CIG callbacks";
 
-    STREAM_TO_UINT8(evt.status, data);
-    STREAM_TO_UINT16(evt.cis_conn_hdl, data);
+    evt.status = static_cast<uint8_t>(event.GetStatus());
+    evt.cis_conn_hdl = event.GetConnectionHandle();
 
     auto cis = GetCisIfKnown(evt.cis_conn_hdl);
     LOG_ASSERT(cis != nullptr) << "No such cis: " << +evt.cis_conn_hdl;
@@ -629,20 +673,20 @@ struct iso_impl {
 
     cis->sync_info.first_sync_ts = bluetooth::common::time_get_os_boottime_us();
 
-    STREAM_TO_UINT24(evt.cig_sync_delay, data);
-    STREAM_TO_UINT24(evt.cis_sync_delay, data);
-    STREAM_TO_UINT24(evt.trans_lat_mtos, data);
-    STREAM_TO_UINT24(evt.trans_lat_stom, data);
-    STREAM_TO_UINT8(evt.phy_mtos, data);
-    STREAM_TO_UINT8(evt.phy_stom, data);
-    STREAM_TO_UINT8(evt.nse, data);
-    STREAM_TO_UINT8(evt.bn_mtos, data);
-    STREAM_TO_UINT8(evt.bn_stom, data);
-    STREAM_TO_UINT8(evt.ft_mtos, data);
-    STREAM_TO_UINT8(evt.ft_stom, data);
-    STREAM_TO_UINT16(evt.max_pdu_mtos, data);
-    STREAM_TO_UINT16(evt.max_pdu_stom, data);
-    STREAM_TO_UINT16(evt.iso_itv, data);
+    evt.cig_sync_delay = event.GetCigSyncDelay();
+    evt.cis_sync_delay = event.GetCisSyncDelay();
+    evt.trans_lat_mtos = event.GetTransportLatencyMToS();
+    evt.trans_lat_stom = event.GetTransportLatencySToM();
+    evt.phy_mtos = static_cast<uint8_t>(event.GetPhyMToS());
+    evt.phy_stom = static_cast<uint8_t>(event.GetPhySToM());
+    evt.nse = event.GetNse();
+    evt.bn_mtos = event.GetBnMToS();
+    evt.bn_stom = event.GetBnSToM();
+    evt.ft_mtos = event.GetFtMToS();
+    evt.ft_stom = event.GetFtSToM();
+    evt.max_pdu_mtos = event.GetMaxPduMToS();
+    evt.max_pdu_stom = event.GetMaxPduSToM();
+    evt.iso_itv = event.GetIsoInterval();
 
     if (evt.status == HCI_SUCCESS) {
       cis->state_flags |= kStateFlagIsConnected;
@@ -740,35 +784,29 @@ struct iso_impl {
     }
   }
 
-  void process_create_big_cmpl_pkt(uint8_t len, uint8_t* data) {
+  void process_create_big_cmpl_pkt(bluetooth::hci::LeMetaEventView meta) {
     struct big_create_cmpl_evt evt;
 
-    LOG_ASSERT(len >= 18) << "Invalid packet length: " << +len;
+    auto event = bluetooth::hci::LeCreateBigCompleteView::Create(meta);
+    LOG_ASSERT(event.IsValid()) << "Invalid packet";
     LOG_ASSERT(big_callbacks_ != nullptr) << "Invalid BIG callbacks";
 
-    STREAM_TO_UINT8(evt.status, data);
-    STREAM_TO_UINT8(evt.big_id, data);
-    STREAM_TO_UINT24(evt.big_sync_delay, data);
-    STREAM_TO_UINT24(evt.transport_latency_big, data);
-    STREAM_TO_UINT8(evt.phy, data);
-    STREAM_TO_UINT8(evt.nse, data);
-    STREAM_TO_UINT8(evt.bn, data);
-    STREAM_TO_UINT8(evt.pto, data);
-    STREAM_TO_UINT8(evt.irc, data);
-    STREAM_TO_UINT16(evt.max_pdu, data);
-    STREAM_TO_UINT16(evt.iso_interval, data);
+    evt.status = static_cast<uint8_t>(event.GetStatus());
+    evt.big_id = event.GetBigHandle();
+    evt.big_sync_delay = event.GetBigSyncDelay();
+    evt.transport_latency_big = event.GetTransportLatencyBig();
+    evt.phy = static_cast<uint8_t>(event.GetPhy());
+    evt.nse = event.GetNse();
+    evt.bn = event.GetBn();
+    evt.pto = event.GetPto();
+    evt.irc = event.GetIrc();
+    evt.max_pdu = event.GetMaxPdu();
+    evt.iso_interval = event.GetIsoInterval();
 
-    uint8_t num_bis;
-    STREAM_TO_UINT8(num_bis, data);
-
-    LOG_ASSERT(num_bis != 0) << "Bis count is 0";
-    LOG_ASSERT(len == (18 + num_bis * sizeof(uint16_t)))
-        << "Invalid packet length: " << len << ". Number of bis: " << +num_bis;
-
+    auto handles = event.GetConnectionHandle();
     uint32_t ts = bluetooth::common::time_get_os_boottime_us();
-    for (auto i = 0; i < num_bis; ++i) {
-      uint16_t conn_handle;
-      STREAM_TO_UINT16(conn_handle, data);
+    for (size_t i = 0; i < handles.size(); ++i) {
+      uint16_t conn_handle = handles[i];
       evt.conn_handles.push_back(conn_handle);
       LOG_INFO(" received BIS conn_hdl %d", +conn_handle);
 
@@ -794,14 +832,15 @@ struct iso_impl {
     }
   }
 
-  void process_terminate_big_cmpl_pkt(uint8_t len, uint8_t* data) {
+  void process_terminate_big_cmpl_pkt(bluetooth::hci::LeMetaEventView meta) {
     struct big_terminate_cmpl_evt evt;
 
-    LOG_ASSERT(len == 2) << "Invalid packet length: " << +len;
+    auto event = bluetooth::hci::LeTerminateBigCompleteView::Create(meta);
+    LOG_ASSERT(event.IsValid()) << "Invalid packet";
     LOG_ASSERT(big_callbacks_ != nullptr) << "Invalid BIG callbacks";
 
-    STREAM_TO_UINT8(evt.big_id, data);
-    STREAM_TO_UINT8(evt.reason, data);
+    evt.big_id = event.GetBigHandle();
+    evt.reason = static_cast<uint8_t>(event.GetReason());
 
     bool is_known_handle = false;
     auto bis_it = conn_hdl_to_bis_map_.cbegin();
@@ -848,31 +887,6 @@ struct iso_impl {
     LOG_ASSERT(IsBigKnown(big_id)) << "No such big: " << +big_id;
 
     btsnd_hcic_term_big(big_id, reason);
-  }
-
-  void on_iso_event(uint8_t code, uint8_t* packet, uint16_t packet_len) {
-    switch (code) {
-      case HCI_BLE_CIS_EST_EVT:
-        process_cis_est_pkt(packet_len, packet);
-        break;
-      case HCI_BLE_CREATE_BIG_CPL_EVT:
-        process_create_big_cmpl_pkt(packet_len, packet);
-        break;
-      case HCI_BLE_TERM_BIG_CPL_EVT:
-        process_terminate_big_cmpl_pkt(packet_len, packet);
-        break;
-      case HCI_BLE_CIS_REQ_EVT:
-        /* Not supported */
-        break;
-      case HCI_BLE_BIG_SYNC_EST_EVT:
-        /* Not supported */
-        break;
-      case HCI_BLE_BIG_SYNC_LOST_EVT:
-        /* Not supported */
-        break;
-      default:
-        LOG_ERROR("Unhandled event code %d", +code);
-    }
   }
 
   void handle_iso_data(BT_HDR* p_msg) {
@@ -1051,6 +1065,7 @@ struct iso_impl {
   BigCallbacks* big_callbacks_ = nullptr;
   std::mutex on_iso_traffic_active_callbacks_list_mutex_;
   std::list<void (*)(bool)> on_iso_traffic_active_callbacks_list_;
+  bluetooth::hci::LeIsoInterface* hci_ = nullptr;
 };
 
 }  // namespace iso_manager

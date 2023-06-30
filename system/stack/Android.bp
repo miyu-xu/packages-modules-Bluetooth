@@ -956,6 +956,9 @@ cc_test {
         "packages/modules/Bluetooth/system/stack/include",
         "packages/modules/Bluetooth/system/stack/l2cap",
     ],
+    generated_headers: [
+        "BluetoothGeneratedPackets_h",
+    ],
     srcs: [
         ":TestCommonMockFunctions",
         ":TestMockRustFfi",
@@ -1228,6 +1231,9 @@ cc_test {
         "packages/modules/Bluetooth/system/stack/eatt",
         "packages/modules/Bluetooth/system/stack/include",
     ],
+    generated_headers: [
+        "BluetoothGeneratedPackets_h",
+    ],
     srcs: crypto_toolbox_srcs + [
         ":LegacyStackSdp",
         ":TestCommonLogMsg",
@@ -1290,8 +1296,13 @@ cc_test {
         "packages/modules/Bluetooth/system",
         "packages/modules/Bluetooth/system/gd",
     ],
+    generated_headers: [
+        "BluetoothGeneratedDumpsysDataSchema_h",
+        "BluetoothGeneratedPackets_h",
+    ],
     srcs: [
         ":TestCommonStackConfig",
+        ":TestMockMainShimEntry",
         "btm/btm_iso.cc",
         "test/btm_iso_test.cc",
         "test/common/mock_controller.cc",
@@ -1301,6 +1312,7 @@ cc_test {
     static_libs: [
         "libbt-common",
         "libchrome",
+        "libflatbuffers-cpp",
         "libgmock",
         "liblog",
         "libosi",
@@ -1959,6 +1971,10 @@ cc_test {
         "packages/modules/Bluetooth/system/gd",
         "packages/modules/Bluetooth/system/internal_include",
         "packages/modules/Bluetooth/system/stack/btm",
+    ],
+    generated_headers: [
+        "BluetoothGeneratedDumpsysDataSchema_h",
+        "BluetoothGeneratedPackets_h",
     ],
     srcs: [
         ":LegacyStackSdp",

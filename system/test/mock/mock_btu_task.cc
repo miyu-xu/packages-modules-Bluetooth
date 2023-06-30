@@ -34,7 +34,6 @@
 #include "bta/sys/bta_sys.h"
 #include "btcore/include/module.h"
 #include "btif/include/btif_common.h"
-#include "btm_iso_api.h"
 #include "common/message_loop_thread.h"
 #include "osi/include/log.h"
 #include "osi/include/osi.h"

@@ -23,6 +23,7 @@
 #include <vector>
 
 #include "btm_iso_api_types.h"
+#include "hci/hci_packets.h"
 
 namespace bluetooth {
 namespace hci {
@@ -220,13 +221,9 @@ class IsoManager {
   /**
    * Handle CIS and BIG related HCI events
    *
-   * @param sub_code ble subcode for the HCI event
-   * @param params raw packet buffer for the event. The ownership of params is
-   * not being transferred
-   * @param length event packet buffer length
+   * @param event valid LeMetaEventView of the received event.
    */
-  virtual void HandleHciEvent(uint8_t sub_code, uint8_t* params,
-                              uint16_t length);
+  virtual void HandleHciEvent(bluetooth::hci::LeMetaEventView event);
 
   /**
    * Starts the IsoManager module

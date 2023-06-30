@@ -41,6 +41,7 @@
 #include "gd/common/init_flags.h"
 #include "gd/hci/hci_layer.h"
 #include "gd/packet/raw_builder.h"
+#include "hci/hci_packets.h"
 #include "main/shim/hci_layer.h"
 #include "main/shim/shim.h"
 #include "osi/include/allocator.h"
@@ -49,12 +50,12 @@
 #include "stack/include/ble_acl_interface.h"
 #include "stack/include/ble_hci_link_interface.h"
 #include "stack/include/bt_hdr.h"
-#include "stack/include/btm_iso_api.h"
 #include "stack/include/btu.h"
 #include "stack/include/dev_hci_link_interface.h"
 #include "stack/include/gatt_api.h"
 #include "stack/include/hci_error_code.h"
 #include "stack/include/hci_evt_length.h"
+#include "stack/include/hcimsgs.h"
 #include "stack/include/inq_hci_link_interface.h"
 #include "stack/include/l2cap_hci_link_interface.h"
 #include "stack/include/sco_hci_link_interface.h"
@@ -64,7 +65,6 @@
 #include "types/raw_address.h"
 
 using base::Location;
-using bluetooth::hci::IsoManager;
 
 bool BTM_BLE_IS_RESOLVE_BDA(const RawAddress& x);              // TODO remove
 void BTA_sys_signal_hw_error();                                // TODO remove
@@ -357,16 +357,6 @@ void btu_hcif_process_event(UNUSED_ATTR uint8_t controller_id,
 
         case HCI_BLE_PERIODIC_ADV_SYNC_LOST_EVT:
           btm_ble_process_periodic_adv_sync_lost_evt(ble_evt_len, p);
-          break;
-
-        case HCI_BLE_CIS_EST_EVT:
-        case HCI_BLE_CREATE_BIG_CPL_EVT:
-        case HCI_BLE_TERM_BIG_CPL_EVT:
-        case HCI_BLE_CIS_REQ_EVT:
-        case HCI_BLE_BIG_SYNC_EST_EVT:
-        case HCI_BLE_BIG_SYNC_LOST_EVT:
-          IsoManager::GetInstance()->HandleHciEvent(ble_sub_code, p,
-                                                    ble_evt_len);
           break;
 
         case HCI_LE_PERIODIC_ADV_SYNC_TRANSFERE_RECEIVED_EVT:
