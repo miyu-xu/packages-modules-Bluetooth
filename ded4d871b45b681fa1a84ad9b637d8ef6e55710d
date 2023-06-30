@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bc7b28ef_c6ac3637",
+        "filename": "framework/tests/metrics/host/android/bluetooth/MetricsTest.kt",
+        "patchSetId": 16
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1581454
+      },
+      "writtenOn": "2023-06-30T17:34:59Z",
+      "side": 1,
+      "message": "Maybe test link layer connection event too?",
+      "revId": "ded4d871b45b681fa1a84ad9b637d8ef6e55710d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
