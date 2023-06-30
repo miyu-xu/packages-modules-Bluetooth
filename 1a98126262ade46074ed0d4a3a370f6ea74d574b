@@ -46,6 +46,30 @@
       },
       "revId": "1a98126262ade46074ed0d4a3a370f6ea74d574b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3f35642a_4377afbc",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1890456
+      },
+      "writtenOn": "2023-06-30T18:16:53Z",
+      "side": 1,
+      "message": "But `m libbt-sbc-decoder` succeeds even with the change.\nI try `mm libbt-sbc-decoder` and it works.",
+      "parentUuid": "1f9176db_8243fc81",
+      "range": {
+        "startLine": 0,
+        "startChar": 0,
+        "endLine": 0,
+        "endChar": 0
+      },
+      "revId": "1a98126262ade46074ed0d4a3a370f6ea74d574b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
