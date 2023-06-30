@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b70005b1_88fd8075",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 16
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2023-06-30T18:59:27Z",
+      "side": 1,
+      "message": "@qiaoccolato@google.com, some lines are copied from Bumble Test, so I am not sure about the answer as well. Could you help us to clarify?",
+      "revId": "ded4d871b45b681fa1a84ad9b637d8ef6e55710d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "166ba6d4_cf543af6",
@@ -14,6 +31,30 @@
       "writtenOn": "2023-06-30T18:34:55Z",
       "side": 1,
       "message": "Why 21 ?\nBluetooth min sdk supported is 33. I am not sure it is important but why do we want to support lower version in the metric test  ?",
+      "range": {
+        "startLine": 4,
+        "startChar": 0,
+        "endLine": 4,
+        "endChar": 73
+      },
+      "revId": "ded4d871b45b681fa1a84ad9b637d8ef6e55710d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8d54490e_e3927518",
+        "filename": "framework/tests/metrics/device/AndroidManifest.xml",
+        "patchSetId": 16
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2023-06-30T18:59:27Z",
+      "side": 1,
+      "message": "In `packages/modules/Bluetooth/framework/tests/bumble/AndroidManifest.xml` we use the same version, but I guess we can use 33 or current. Is there any reason?",
+      "parentUuid": "166ba6d4_cf543af6",
       "range": {
         "startLine": 4,
         "startChar": 0,
@@ -95,6 +136,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "722321de_2161de63",
+        "filename": "framework/tests/metrics/device/android/bluetooth/BluetoothMetricsHelperTest.kt",
+        "patchSetId": 16
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2023-06-30T18:59:27Z",
+      "side": 1,
+      "message": "(Sorry I am also not very familiar because they are copied from BumbleTest)\nIt seems we want to make sure the previous instances are shutdown and then start a new channel?",
+      "parentUuid": "2efa954d_73ee4c58",
+      "range": {
+        "startLine": 91,
+        "startChar": 8,
+        "endLine": 91,
+        "endChar": 16
+      },
+      "revId": "ded4d871b45b681fa1a84ad9b637d8ef6e55710d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "616e686b_ea605b90",
         "filename": "framework/tests/metrics/device/android/bluetooth/BluetoothMetricsHelperTest.kt",
         "patchSetId": 16
@@ -129,6 +194,30 @@
       "writtenOn": "2023-06-30T18:34:55Z",
       "side": 1,
       "message": "Should it be added to the TEST_MAPPING ?\n\nI am not sure if host test are automatically run or not at presubmit",
+      "range": {
+        "startLine": 4,
+        "startChar": 11,
+        "endLine": 4,
+        "endChar": 32
+      },
+      "revId": "ded4d871b45b681fa1a84ad9b637d8ef6e55710d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "74adbbcc_5d44772a",
+        "filename": "framework/tests/metrics/host/Android.bp",
+        "patchSetId": 16
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2023-06-30T18:59:27Z",
+      "side": 1,
+      "message": "Not for now. As Qiao mentioned we still have some issues on presubmit, so we decide to start TEST_MAPPING when the problem get solved.",
+      "parentUuid": "dbd7077f_0a92489d",
       "range": {
         "startLine": 4,
         "startChar": 11,
@@ -221,6 +310,30 @@
       "writtenOn": "2023-06-30T18:34:55Z",
       "side": 1,
       "message": "Shouldn\u0027t it be clean in shutdown ? (maybe in both if you want to ensure the test start in a clean state)",
+      "range": {
+        "startLine": 42,
+        "startChar": 8,
+        "endLine": 43,
+        "endChar": 45
+      },
+      "revId": "ded4d871b45b681fa1a84ad9b637d8ef6e55710d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0aa876f1_c39a8c4e",
+        "filename": "framework/tests/metrics/host/android/bluetooth/MetricsTest.kt",
+        "patchSetId": 16
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2023-06-30T18:59:27Z",
+      "side": 1,
+      "message": "It\u0027s a convention in CTS(though this is not CTS), and I believe it can reduce potential flakyness in the future.",
+      "parentUuid": "6b82b34f_e18ed06f",
       "range": {
         "startLine": 42,
         "startChar": 8,
