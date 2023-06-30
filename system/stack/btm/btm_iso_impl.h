@@ -161,8 +161,8 @@ struct iso_impl {
     on_iso_traffic_active_callbacks_list_.push_back(callback);
   }
 
-  void on_set_cig_params(uint8_t cig_id, uint32_t sdu_itv_mtos, uint8_t* stream,
-                         uint16_t len) {
+  void on_set_cig_params(bool create, uint32_t sdu_itv_mtos,
+                         bluetooth::hci::CommandCompleteView complete) {
     uint8_t cis_cnt;
     uint16_t conn_handle;
     cig_create_cmpl_evt evt;
@@ -173,14 +173,15 @@ struct iso_impl {
     }
 
     LOG_ASSERT(cig_callbacks_ != nullptr) << "Invalid CIG callbacks";
-    LOG_ASSERT(len >= 3) << "Invalid packet length: " << +len;
+    auto event =
+        bluetooth::hci::LeSetCigParametersCompleteView::Create(complete);
+    LOG_ASSERT(event.IsValid()) << "Invalid packet";
 
-    STREAM_TO_UINT8(evt.status, stream);
-    STREAM_TO_UINT8(evt.cig_id, stream);
-    STREAM_TO_UINT8(cis_cnt, stream);
+    evt.status = static_cast<uint8_t>(event.GetStatus());
+    evt.cig_id = event.GetCigId();
 
-    uint8_t evt_code = IsCigKnown(cig_id) ? kIsoEventCigOnReconfigureCmpl
-                                          : kIsoEventCigOnCreateCmpl;
+    uint8_t evt_code =
+        create ? kIsoEventCigOnCreateCmpl : kIsoEventCigOnReconfigureCmpl;
 
     BTM_LogHistory(
         kBtmLogTag, RawAddress::kEmpty, "CIG Create complete",
@@ -189,9 +190,6 @@ struct iso_impl {
             hci_status_code_text((tHCI_STATUS)(evt.status)).c_str()));
 
     if (evt.status == HCI_SUCCESS) {
-      LOG_ASSERT(len >= (3) + (cis_cnt * sizeof(uint16_t)))
-          << "Invalid CIS count: " << +cis_cnt;
-
       /* Remove entries for the reconfigured CIG */
       if (evt_code == kIsoEventCigOnReconfigureCmpl) {
         auto cis_it = conn_hdl_to_cis_map_.cbegin();
@@ -203,14 +201,15 @@ struct iso_impl {
         }
       }
 
+      auto handles = event.GetConnectionHandle();
+      cis_cnt = handles.size();
       evt.conn_handles.reserve(cis_cnt);
       for (int i = 0; i < cis_cnt; i++) {
-        STREAM_TO_UINT16(conn_handle, stream);
-
+        conn_handle = handles[i];
         evt.conn_handles.push_back(conn_handle);
 
         auto cis = std::unique_ptr<iso_cis>(new iso_cis());
-        cis->cig_id = cig_id;
+        cis->cig_id = evt.cig_id;
         cis->sdu_itv = sdu_itv_mtos;
         cis->sync_info = {.first_sync_ts = 0, .seq_nb = 0};
         cis->used_credits = 0;
@@ -235,13 +234,34 @@ struct iso_impl {
     LOG_ASSERT(!IsCigKnown(cig_id))
         << "Invalid cig - already exists: " << +cig_id;
 
-    btsnd_hcic_set_cig_params(
-        cig_id, cig_params.sdu_itv_mtos, cig_params.sdu_itv_stom,
-        cig_params.sca, cig_params.packing, cig_params.framing,
-        cig_params.max_trans_lat_stom, cig_params.max_trans_lat_mtos,
-        cig_params.cis_cfgs.size(), cig_params.cis_cfgs.data(),
-        base::BindOnce(&iso_impl::on_set_cig_params, base::Unretained(this),
-                       cig_id, cig_params.sdu_itv_mtos));
+    std::vector<bluetooth::hci::CisParametersConfig> configs;
+    for (const auto& cfg : cig_params.cis_cfgs) {
+      bluetooth::hci::CisParametersConfig config;
+      config.cis_id_ = cfg.cis_id;
+      config.max_sdu_m_to_s_ = cfg.max_sdu_size_mtos;
+      config.max_sdu_s_to_m_ = cfg.max_sdu_size_stom;
+      config.phy_m_to_s_ = cfg.phy_mtos;
+      config.phy_s_to_m_ = cfg.phy_stom;
+      config.rtn_m_to_s_ = cfg.rtn_mtos;
+      config.rtn_s_to_m_ = cfg.rtn_stom;
+      configs.push_back(config);
+    }
+    common::OnceCallback<void(bluetooth::hci::CommandCompleteView)> callback =
+        common::BindOnce(&iso_impl::on_set_cig_params, base::Unretained(this),
+                         true /* create */, cig_params.sdu_itv_mtos);
+    auto callback_on_main = common::ContextualOnceCallback<void(
+        bluetooth::hci::CommandCompleteView)>(std::move(callback),
+                                              get_main_thread());
+
+    hci_->EnqueueCommand(
+        bluetooth::hci::LeSetCigParametersBuilder::Create(
+            cig_id, cig_params.sdu_itv_mtos, cig_params.sdu_itv_stom,
+            static_cast<bluetooth::hci::ClockAccuracy>(cig_params.sca),
+            static_cast<bluetooth::hci::Packing>(cig_params.packing),
+            static_cast<bluetooth::hci::Enable>(cig_params.framing),
+            cig_params.max_trans_lat_stom, cig_params.max_trans_lat_mtos,
+            configs),
+        std::move(callback_on_main));
 
     BTM_LogHistory(
         kBtmLogTag, RawAddress::kEmpty, "CIG Create",
@@ -253,13 +273,34 @@ struct iso_impl {
                        struct iso_manager::cig_create_params cig_params) {
     LOG_ASSERT(IsCigKnown(cig_id)) << "No such cig: " << +cig_id;
 
-    btsnd_hcic_set_cig_params(
-        cig_id, cig_params.sdu_itv_mtos, cig_params.sdu_itv_stom,
-        cig_params.sca, cig_params.packing, cig_params.framing,
-        cig_params.max_trans_lat_stom, cig_params.max_trans_lat_mtos,
-        cig_params.cis_cfgs.size(), cig_params.cis_cfgs.data(),
-        base::BindOnce(&iso_impl::on_set_cig_params, base::Unretained(this),
-                       cig_id, cig_params.sdu_itv_mtos));
+    std::vector<bluetooth::hci::CisParametersConfig> configs;
+    for (const auto& cfg : cig_params.cis_cfgs) {
+      bluetooth::hci::CisParametersConfig config;
+      config.cis_id_ = cfg.cis_id;
+      config.max_sdu_m_to_s_ = cfg.max_sdu_size_mtos;
+      config.max_sdu_s_to_m_ = cfg.max_sdu_size_stom;
+      config.phy_m_to_s_ = cfg.phy_mtos;
+      config.phy_s_to_m_ = cfg.phy_stom;
+      config.rtn_m_to_s_ = cfg.rtn_mtos;
+      config.rtn_s_to_m_ = cfg.rtn_stom;
+      configs.push_back(config);
+    }
+    common::OnceCallback<void(bluetooth::hci::CommandCompleteView)> callback =
+        common::BindOnce(&iso_impl::on_set_cig_params, base::Unretained(this),
+                         false /* !create (reconfigure) */,
+                         cig_params.sdu_itv_mtos);
+    auto callback_on_main = common::ContextualOnceCallback<void(
+        bluetooth::hci::CommandCompleteView)>(std::move(callback),
+                                              get_main_thread());
+    hci_->EnqueueCommand(
+        bluetooth::hci::LeSetCigParametersBuilder::Create(
+            cig_id, cig_params.sdu_itv_mtos, cig_params.sdu_itv_stom,
+            static_cast<bluetooth::hci::ClockAccuracy>(cig_params.sca),
+            static_cast<bluetooth::hci::Packing>(cig_params.packing),
+            static_cast<bluetooth::hci::Enable>(cig_params.framing),
+            cig_params.max_trans_lat_stom, cig_params.max_trans_lat_mtos,
+            configs),
+        std::move(callback_on_main));
   }
 
   void on_remove_cig(uint8_t* stream, uint16_t len) {
