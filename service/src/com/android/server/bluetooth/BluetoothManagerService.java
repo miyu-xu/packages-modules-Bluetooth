@@ -82,6 +82,7 @@ import android.util.Log;
 import android.util.proto.ProtoOutputStream;
 
 import com.android.bluetooth.BluetoothStatsLog;
+import com.android.bluetooth.Flags;
 import com.android.internal.annotations.GuardedBy;
 import com.android.internal.annotations.VisibleForTesting;
 import com.android.modules.utils.SynchronousResultReceiver;
@@ -735,8 +736,10 @@ class BluetoothManagerService {
                             this, looper, mContext, mBluetoothNotificationManager);
         }
 
-        mBluetoothSatelliteModeListener =
-                new BluetoothSatelliteModeListener(this, looper, mContext);
+        if (!Flags.useNewSatelliteMode()) {
+            mBluetoothSatelliteModeListener =
+                    new BluetoothSatelliteModeListener(this, looper, mContext);
+        }
     }
 
     IBluetoothManager.Stub getBinder() {

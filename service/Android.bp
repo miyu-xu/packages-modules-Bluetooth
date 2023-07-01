@@ -78,6 +78,7 @@ java_library {
     ],
 
     static_libs: [
+        "aconfig_bluetooth_flags_lib",
         "androidx.annotation_annotation",
         "androidx.appcompat_appcompat",
         "bluetooth-manager-service-proto-java-gen",
