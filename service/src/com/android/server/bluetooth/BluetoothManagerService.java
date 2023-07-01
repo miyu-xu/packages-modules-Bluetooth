@@ -70,7 +70,6 @@ import android.os.SystemClock;
 import android.os.SystemProperties;
 import android.os.UserHandle;
 import android.os.UserManager;
-import android.provider.DeviceConfig;
 import android.provider.Settings;
 import android.provider.Settings.SettingNotFoundException;
 import android.sysprop.BluetoothProperties;
@@ -78,6 +77,7 @@ import android.util.Log;
 import android.util.proto.ProtoOutputStream;
 
 import com.android.bluetooth.BluetoothStatsLog;
+import com.android.bluetooth.flags.FeatureFlags;
 import com.android.internal.annotations.GuardedBy;
 import com.android.internal.annotations.VisibleForTesting;
 import com.android.server.BluetoothManagerServiceDumpProto;
@@ -210,6 +210,8 @@ class BluetoothManagerService {
 
     private final ReentrantReadWriteLock mAdapterLock = new ReentrantReadWriteLock();
 
+    private final FeatureFlags mFeatureFlags;
+
     @GuardedBy("mAdapterLock")
     private AdapterBinder mAdapter = null;
 
@@ -221,13 +223,6 @@ class BluetoothManagerService {
 
     // TODO(b/289584302): remove BluetoothSatelliteModeListener once use_new_satellite_mode ship
     private BluetoothSatelliteModeListener mBluetoothSatelliteModeListener;
-
-    // TODO(b/289584302): Use aconfig flag when available on AOSP
-    private static final boolean USE_NEW_SATELLITE_MODE =
-            DeviceConfig.getBoolean(
-                    DeviceConfig.NAMESPACE_BLUETOOTH,
-                    "com.android.bluetooth.use_new_satellite_mode",
-                    false);
 
     // used inside handler thread
     private boolean mQuietEnable = false;
@@ -651,9 +646,11 @@ class BluetoothManagerService {
                 }
             };
 
-    BluetoothManagerService(@NonNull Context context, @NonNull Looper looper) {
+    BluetoothManagerService(
+            @NonNull Context context, @NonNull Looper looper, @NonNull FeatureFlags featureFlags) {
         mContext = requireNonNull(context, "Context cannot be null");
         mLooper = requireNonNull(looper, "Looper cannot be null");
+        mFeatureFlags = requireNonNull(featureFlags, "Feature Flags cannot be null");
 
         mUserManager =
                 requireNonNull(
@@ -734,7 +731,8 @@ class BluetoothManagerService {
                 new BluetoothAirplaneModeListener(
                         this, mLooper, mContext, mBluetoothNotificationManager);
 
-        if (!USE_NEW_SATELLITE_MODE) {
+        if (!mFeatureFlags.useNewSatelliteMode()) {
+            // Only instantiate the listener on legacy code path.
             mBluetoothSatelliteModeListener =
                     new BluetoothSatelliteModeListener(this, mLooper, mContext);
         }
@@ -751,7 +749,7 @@ class BluetoothManagerService {
 
     /** Returns true if satellite mode is turned on. */
     private boolean isSatelliteModeOn() {
-        if (USE_NEW_SATELLITE_MODE) {
+        if (mFeatureFlags.useNewSatelliteMode()) {
             return SatelliteModeListener.isOn();
         }
         return mBluetoothSatelliteModeListener.isSatelliteModeOn();
@@ -1432,7 +1430,7 @@ class BluetoothManagerService {
             Log.d(TAG, "Bluetooth boot completed");
         }
 
-        if (USE_NEW_SATELLITE_MODE) {
+        if (mFeatureFlags.useNewSatelliteMode()) {
             SatelliteModeListener.initialize(
                     mLooper, mContentResolver, this::onSatelliteModeChanged);
         }

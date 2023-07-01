@@ -61,6 +61,8 @@ import android.provider.Settings;
 import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.runner.AndroidJUnit4;
 
+import com.android.bluetooth.flags.FeatureFlags;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -90,6 +92,7 @@ public class BluetoothManagerServiceTest {
 
     @Mock IBluetooth mAdapterService;
     @Mock AdapterBinder mAdapterBinder;
+    @Mock FeatureFlags mFeatureFlags;
 
     TestLooper mLooper;
 
@@ -145,7 +148,7 @@ public class BluetoothManagerServiceTest {
 
         mLooper = new TestLooper();
 
-        mManagerService = new BluetoothManagerService(mContext, mLooper.getLooper());
+        mManagerService = new BluetoothManagerService(mContext, mLooper.getLooper(), mFeatureFlags);
         mManagerService.registerAdapter(mManagerCallback);
     }
 
