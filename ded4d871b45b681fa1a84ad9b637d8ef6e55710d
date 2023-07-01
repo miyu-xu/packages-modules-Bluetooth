@@ -67,6 +67,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2147bb3d_1c80fd92",
+        "filename": "framework/tests/metrics/device/AndroidManifest.xml",
+        "patchSetId": 16
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-07-01T01:29:50Z",
+      "side": 1,
+      "message": "Since the bp is targeting current,  I expect this line can be removed completely ?",
+      "parentUuid": "8d54490e_e3927518",
+      "range": {
+        "startLine": 4,
+        "startChar": 0,
+        "endLine": 4,
+        "endChar": 73
+      },
+      "revId": "ded4d871b45b681fa1a84ad9b637d8ef6e55710d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e973f08d_877f974b",
         "filename": "framework/tests/metrics/device/android/bluetooth/BluetoothMetricsHelperTest.kt",
         "patchSetId": 16
@@ -160,6 +184,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5b7ce0c0_d86dd002",
+        "filename": "framework/tests/metrics/device/android/bluetooth/BluetoothMetricsHelperTest.kt",
+        "patchSetId": 16
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-07-01T01:29:50Z",
+      "side": 1,
+      "message": "@qiaoccolato@google.com to help answer here",
+      "parentUuid": "722321de_2161de63",
+      "range": {
+        "startLine": 91,
+        "startChar": 8,
+        "endLine": 91,
+        "endChar": 16
+      },
+      "revId": "ded4d871b45b681fa1a84ad9b637d8ef6e55710d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "616e686b_ea605b90",
         "filename": "framework/tests/metrics/device/android/bluetooth/BluetoothMetricsHelperTest.kt",
         "patchSetId": 16
@@ -218,6 +266,30 @@
       "side": 1,
       "message": "Not for now. As Qiao mentioned we still have some issues on presubmit, so we decide to start TEST_MAPPING when the problem get solved.",
       "parentUuid": "dbd7077f_0a92489d",
+      "range": {
+        "startLine": 4,
+        "startChar": 11,
+        "endLine": 4,
+        "endChar": 32
+      },
+      "revId": "ded4d871b45b681fa1a84ad9b637d8ef6e55710d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9424c3b7_296d2fc4",
+        "filename": "framework/tests/metrics/host/Android.bp",
+        "patchSetId": 16
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-07-01T01:29:50Z",
+      "side": 1,
+      "message": "So when will this test be run ? in postsubmit ?\nIf the test is not run, why do we want to merge it now ? should we delay the merge ?",
+      "parentUuid": "74adbbcc_5d44772a",
       "range": {
         "startLine": 4,
         "startChar": 11,
