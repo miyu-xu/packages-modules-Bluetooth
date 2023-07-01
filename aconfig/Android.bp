@@ -1,0 +1,24 @@
+package {
+    default_applicable_licenses: ["Android-Apache-2.0"],
+    default_visibility: ["//visibility:private"],
+}
+
+aconfig_declarations {
+    name: "aconfig_bluetooth_system_server_flags",
+    package: "com.android.server.bluetooth",
+    srcs: [
+        "system_service.aconfig",
+    ],
+}
+
+java_aconfig_library {
+    name: "aconfig_bluetooth_system_server_flags_lib",
+    aconfig_declarations: "aconfig_bluetooth_system_server_flags",
+    visibility: [
+        "//packages/modules/Bluetooth/service:__subpackages__",
+    ],
+    apex_available: [
+        "com.android.btservices",
+    ],
+    min_sdk_version: "Tiramisu",
+}
