@@ -74,7 +74,6 @@ import android.os.RemoteException;
 import android.os.SystemClock;
 import android.os.UserHandle;
 import android.os.UserManager;
-import android.provider.DeviceConfig;
 import android.provider.Settings;
 import android.provider.Settings.SettingNotFoundException;
 import android.sysprop.BluetoothProperties;
@@ -82,6 +81,7 @@ import android.util.Log;
 import android.util.proto.ProtoOutputStream;
 
 import com.android.bluetooth.BluetoothStatsLog;
+import com.android.bluetooth.Flags;
 import com.android.internal.annotations.GuardedBy;
 import com.android.internal.annotations.VisibleForTesting;
 import com.android.server.BluetoothManagerServiceDumpProto;
@@ -224,11 +224,7 @@ class BluetoothManagerService {
     private BluetoothSatelliteModeListener mBluetoothSatelliteModeListener;
 
     // TODO(b/289584302): Use aconfig flag when available on AOSP
-    private static final boolean USE_NEW_SATELLITE_MODE =
-            DeviceConfig.getBoolean(
-                    DeviceConfig.NAMESPACE_BLUETOOTH,
-                    "com.android.bluetooth.use_new_satellite_mode",
-                    false);
+    private static final boolean USE_NEW_SATELLITE_MODE = Flags.useNewSatelliteMode();
 
     // used inside handler thread
     private boolean mQuietEnable = false;
