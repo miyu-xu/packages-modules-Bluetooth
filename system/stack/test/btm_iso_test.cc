@@ -19,6 +19,7 @@
 #include <gtest/gtest.h>
 
 #include "btm_iso_api.h"
+#include "hci/hci_layer_mock.h"
 #include "hci/hci_packets.h"
 #include "hci/include/hci_layer.h"
 #include "main/shim/shim.h"
@@ -29,6 +30,7 @@
 #include "stack/include/bt_hdr.h"
 #include "stack/include/hci_error_code.h"
 #include "stack/include/hcidefs.h"
+#include "test/mock/mock_main_shim_entry.h"
 #include "test/mock/mock_main_shim_hci_layer.h"
 
 using bluetooth::hci::IsoManager;
@@ -149,6 +151,7 @@ class IsoManagerTest : public Test {
   void SetUp() override {
     bluetooth::shim::SetMockIsoInterface(&iso_interface_);
     hcic::SetMockHcicInterface(&hcic_interface_);
+    bluetooth::hci::testing::mock_hci_layer_ = &mock_hci_;
     controller::SetMockControllerInterface(&controller_interface_);
 
     big_callbacks_.reset(new MockBigCallbacks());
@@ -331,6 +334,8 @@ class IsoManagerTest : public Test {
   bluetooth::shim::MockIsoInterface iso_interface_;
   hcic::MockHcicInterface hcic_interface_;
   controller::MockControllerInterface controller_interface_;
+
+  bluetooth::hci::testing::MockHciLayer mock_hci_;
 
   std::unique_ptr<MockBigCallbacks> big_callbacks_;
   std::unique_ptr<MockCigCallbacks> cig_callbacks_;
