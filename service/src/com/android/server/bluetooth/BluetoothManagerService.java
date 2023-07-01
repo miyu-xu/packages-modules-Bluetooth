@@ -210,8 +210,6 @@ class BluetoothManagerService {
 
     private final BluetoothAirplaneModeListener mBluetoothAirplaneModeListener;
 
-    private BluetoothNotificationManager mBluetoothNotificationManager;
-
     // TODO(b/289584302): remove BluetoothSatelliteModeListener once use_new_satellite_mode ship
     private BluetoothSatelliteModeListener mBluetoothSatelliteModeListener;
 
@@ -659,8 +657,6 @@ class BluetoothManagerService {
         // Observe BLE scan only mode settings change.
         registerForBleScanModeChange();
 
-        mBluetoothNotificationManager = new BluetoothNotificationManager(mContext);
-
         // Disable ASHA if BLE is not supported, overriding any system property
         if (!isBleSupported(mContext)) {
             mIsHearingAidProfileSupported = false;
@@ -721,9 +717,10 @@ class BluetoothManagerService {
             mEnableExternal = true;
         }
 
-        mBluetoothAirplaneModeListener =
-                new BluetoothAirplaneModeListener(
-                        this, mLooper, mContext, mBluetoothNotificationManager);
+        mHandler.post(
+                () ->
+                        AirplaneModeListener.initialize(
+                                mLooper, mContentResolver, this::onSatelliteModeChanged));
 
         if (!useNewSatelliteMode) {
             mBluetoothSatelliteModeListener =
@@ -2235,8 +2232,8 @@ class BluetoothManagerService {
                         Log.d(TAG, "MESSAGE_USER_SWITCHED");
                     }
                     mHandler.removeMessages(MESSAGE_USER_SWITCHED);
-                    mBluetoothNotificationManager.createNotificationChannels();
                     UserHandle userTo = (UserHandle) msg.obj;
+                    AirplaneModeListener.setCurrentUser(userTo);
 
                     /* disable and enable BT when detect a user switch */
                     if (mAdapter != null && mState.oneOf(STATE_ON)) {
