@@ -44,6 +44,7 @@ public class BluetoothNotificationManager {
     private static final String APM_NOTIFICATION_GROUP = "apm_notification_group";
     private static final String HELP_PAGE_URL =
             "https://support.google.com/pixelphone/answer/12639358";
+    public static final int NOTE_BT_APM_NOTIFICATION = SystemMessage.NOTE_BT_APM_NOTIFICATION;
 
     private final Context mContext;
     private NotificationManager mNotificationManager;

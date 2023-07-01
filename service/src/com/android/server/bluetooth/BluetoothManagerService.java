@@ -80,6 +80,7 @@ import com.android.bluetooth.BluetoothStatsLog;
 import com.android.internal.annotations.GuardedBy;
 import com.android.internal.annotations.VisibleForTesting;
 import com.android.server.BluetoothManagerServiceDumpProto;
+import com.android.server.bluetooth.airplane.AirplaneModeListener;
 import com.android.server.bluetooth.satellite.SatelliteModeListener;
 
 import kotlin.Unit;
@@ -208,9 +209,18 @@ class BluetoothManagerService {
 
     private BluetoothModeChangeHelper mBluetoothModeChangeHelper;
 
-    private final BluetoothAirplaneModeListener mBluetoothAirplaneModeListener;
+    // TODO(b/TODO): remove BluetoothAirplaneModeListener once use_new_airplane_mode ship
+    private BluetoothAirplaneModeListener mBluetoothAirplaneModeListener;
 
+    // TODO(b/TODO): remove BluetoothNotificationManager once use_new_airplane_mode ship
     private BluetoothNotificationManager mBluetoothNotificationManager;
+
+    // TODO(b/TODO): Use aconfig flag when available on AOSP
+    private static final boolean USE_NEW_AIRPLANE_MODE =
+            DeviceConfig.getBoolean(
+                    DeviceConfig.NAMESPACE_BLUETOOTH,
+                    "com.android.bluetooth.use_new_airplane_mode",
+                    false);
 
     // TODO(b/289584302): remove BluetoothSatelliteModeListener once use_new_satellite_mode ship
     private BluetoothSatelliteModeListener mBluetoothSatelliteModeListener;
@@ -437,7 +447,7 @@ class BluetoothManagerService {
     private static final Object ON_SWITCH_USER_TOKEN = new Object();
 
     @RequiresPermission(android.Manifest.permission.BLUETOOTH_PRIVILEGED)
-    void onAirplaneModeChanged(boolean isAirplaneModeOn) {
+    Unit onAirplaneModeChanged(boolean isAirplaneModeOn) {
         mHandler.postDelayed(
                 () ->
                         delayModeChangedIfNeeded(
@@ -446,6 +456,7 @@ class BluetoothManagerService {
                                 "onAirplaneModeChanged"),
                 ON_AIRPLANE_MODE_CHANGED_TOKEN,
                 0);
+        return Unit.INSTANCE;
     }
 
     // TODO(b/289584302): Update to private once use_new_satellite_mode is enabled
@@ -662,7 +673,9 @@ class BluetoothManagerService {
         // Observe BLE scan only mode settings change.
         registerForBleScanModeChange();
 
-        mBluetoothNotificationManager = new BluetoothNotificationManager(mContext);
+        if (!USE_NEW_AIRPLANE_MODE) {
+            mBluetoothNotificationManager = new BluetoothNotificationManager(mContext);
+        }
 
         // Disable ASHA if BLE is not supported, overriding any system property
         if (!isBleSupported(mContext)) {
@@ -724,9 +737,11 @@ class BluetoothManagerService {
             mEnableExternal = true;
         }
 
-        mBluetoothAirplaneModeListener =
-                new BluetoothAirplaneModeListener(
-                        this, mLooper, mContext, mBluetoothNotificationManager);
+        if (!USE_NEW_AIRPLANE_MODE) {
+            mBluetoothAirplaneModeListener =
+                    new BluetoothAirplaneModeListener(
+                            this, mLooper, mContext, mBluetoothNotificationManager);
+        }
 
         if (!USE_NEW_SATELLITE_MODE) {
             mBluetoothSatelliteModeListener =
@@ -740,6 +755,9 @@ class BluetoothManagerService {
 
     /** Returns true if airplane mode is currently on */
     private boolean isAirplaneModeOn() {
+        if (USE_NEW_AIRPLANE_MODE) {
+            return AirplaneModeListener.isOn();
+        }
         return mBluetoothAirplaneModeListener.isAirplaneModeOn();
     }
 
@@ -1428,6 +1446,11 @@ class BluetoothManagerService {
         if (USE_NEW_SATELLITE_MODE) {
             SatelliteModeListener.initialize(
                     mLooper, mContentResolver, this::onSatelliteModeChanged);
+        }
+
+        if (USE_NEW_AIRPLANE_MODE) {
+            AirplaneModeListener.initialize(
+                    mLooper, mContentResolver, mState, this::onAirplaneModeChanged);
         }
 
         final boolean isBluetoothDisallowed = isBluetoothDisallowed();
@@ -2236,8 +2259,12 @@ class BluetoothManagerService {
                         Log.d(TAG, "MESSAGE_USER_SWITCHED");
                     }
                     mHandler.removeMessages(MESSAGE_USER_SWITCHED);
-                    mBluetoothNotificationManager.createNotificationChannels();
                     UserHandle userTo = (UserHandle) msg.obj;
+                    if (USE_NEW_AIRPLANE_MODE) {
+                        // AirplaneModeListener.setCurrentUser(userTo);
+                    } else {
+                        mBluetoothNotificationManager.createNotificationChannels();
+                    }
 
                     /* disable and enable BT when detect a user switch */
                     if (mAdapter != null && mState.oneOf(STATE_ON)) {
