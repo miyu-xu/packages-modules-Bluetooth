@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "52dcce86_9f068cab",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-07-01T01:40:06Z",
+      "side": 1,
+      "message": "This cannot be merged for now since we are automerging in branch that does not yet support aconfig",
+      "revId": "81bfebdd8498a218369e8fa92c93ece5b7cf482b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
