@@ -1847,21 +1847,27 @@ public class ScanManager {
         return false;
     }
 
+    private void updateScreenState() {
+        if (isScreenOn()) {
+            sendMessage(MSG_SCREEN_ON, null);
+        } else {
+            sendMessage(MSG_SCREEN_OFF, null);
+        }
+    }
+
     private final DisplayManager.DisplayListener mDisplayListener =
             new DisplayManager.DisplayListener() {
                 @Override
                 public void onDisplayAdded(int displayId) {}
 
                 @Override
-                public void onDisplayRemoved(int displayId) {}
+                public void onDisplayRemoved(int displayId) {
+                    updateScreenState();
+                }
 
                 @Override
                 public void onDisplayChanged(int displayId) {
-                    if (isScreenOn()) {
-                        sendMessage(MSG_SCREEN_ON, null);
-                    } else {
-                        sendMessage(MSG_SCREEN_OFF, null);
-                    }
+                    updateScreenState();
                 }
             };
 
