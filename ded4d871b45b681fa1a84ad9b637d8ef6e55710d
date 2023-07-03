@@ -206,6 +206,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "35b78417_0a145704",
+        "filename": "framework/tests/metrics/device/android/bluetooth/BluetoothMetricsHelperTest.kt",
+        "patchSetId": 16
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1986325
+      },
+      "writtenOn": "2023-07-03T14:37:45Z",
+      "side": 1,
+      "message": "no cannot reuse. factory reset will break the channel connection and a CANCEL will be sent to context a bit later. have to create a new one for all successive operations",
+      "parentUuid": "5b7ce0c0_d86dd002",
+      "range": {
+        "startLine": 91,
+        "startChar": 8,
+        "endLine": 91,
+        "endChar": 16
+      },
+      "revId": "ded4d871b45b681fa1a84ad9b637d8ef6e55710d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "616e686b_ea605b90",
