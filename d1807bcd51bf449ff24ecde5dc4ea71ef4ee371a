@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bc0c420e_4c3b0a19",
+        "filename": "android/app/src/com/android/bluetooth/pbapclient/PbapClientStateMachine.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2023-07-03T00:03:31Z",
+      "side": 1,
+      "message": "This will eventually make NPE in Disconnecting.enter() at L275. \nHow about also moving this into the if statement?",
+      "range": {
+        "startLine": 183,
+        "startChar": 12,
+        "endLine": 183,
+        "endChar": 69
+      },
+      "revId": "d1807bcd51bf449ff24ecde5dc4ea71ef4ee371a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
