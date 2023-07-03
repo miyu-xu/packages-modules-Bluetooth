@@ -22,6 +22,30 @@
       },
       "revId": "d1807bcd51bf449ff24ecde5dc4ea71ef4ee371a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "af8c6780_d4104977",
+        "filename": "android/app/src/com/android/bluetooth/pbapclient/PbapClientStateMachine.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2023-07-03T00:11:23Z",
+      "side": 1,
+      "message": "Correction: how about checking `mConnectionHandler !\u003d null` in many places?",
+      "parentUuid": "bc0c420e_4c3b0a19",
+      "range": {
+        "startLine": 183,
+        "startChar": 12,
+        "endLine": 183,
+        "endChar": 69
+      },
+      "revId": "d1807bcd51bf449ff24ecde5dc4ea71ef4ee371a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
