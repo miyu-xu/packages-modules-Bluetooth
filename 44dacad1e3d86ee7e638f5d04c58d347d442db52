@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7819c2a7_78917e3c",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/ActiveDeviceManagerTest.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 381,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2023-07-03T08:06:32Z",
+      "side": 1,
+      "message": "Seems a different comment - why should we active A2dp again?",
+      "range": {
+        "startLine": 381,
+        "startChar": 8,
+        "endLine": 381,
+        "endChar": 78
+      },
+      "revId": "44dacad1e3d86ee7e638f5d04c58d347d442db52",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a94542f1_6de9e9c6",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/ActiveDeviceManagerTest.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 526,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2023-07-03T08:06:32Z",
+      "side": 1,
+      "message": "P",
+      "range": {
+        "startLine": 526,
+        "startChar": 30,
+        "endLine": 526,
+        "endChar": 31
+      },
+      "revId": "44dacad1e3d86ee7e638f5d04c58d347d442db52",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
