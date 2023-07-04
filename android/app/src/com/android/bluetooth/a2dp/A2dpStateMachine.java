@@ -60,6 +60,7 @@ import android.util.Log;
 
 import com.android.bluetooth.BluetoothStatsLog;
 import com.android.bluetooth.Utils;
+import com.android.bluetooth.btservice.AdapterService;
 import com.android.bluetooth.btservice.MetricsLogger;
 import com.android.bluetooth.btservice.ProfileService;
 import com.android.internal.annotations.VisibleForTesting;
@@ -95,6 +96,7 @@ final class A2dpStateMachine extends StateMachine {
     private int mLastConnectionState = -1;
 
     private A2dpService mA2dpService;
+    private AdapterService mAdapterService;
     private A2dpNativeInterface mA2dpNativeInterface;
     @VisibleForTesting
     boolean mA2dpOffloadEnabled = false;
@@ -109,6 +111,7 @@ final class A2dpStateMachine extends StateMachine {
         mDevice = device;
         mA2dpService = a2dpService;
         mA2dpNativeInterface = a2dpNativeInterface;
+        mAdapterService = AdapterService.getAdapterService();
 
         mDisconnected = new Disconnected();
         mConnecting = new Connecting();
@@ -736,6 +739,9 @@ final class A2dpStateMachine extends StateMachine {
         intent.addFlags(Intent.FLAG_RECEIVER_REGISTERED_ONLY_BEFORE_BOOT
                         | Intent.FLAG_RECEIVER_INCLUDE_BACKGROUND);
         mA2dpService.connectionStateChanged(mDevice, prevState, newState);
+        mAdapterService
+                .getActiveDeviceManager()
+                .a2dpConnectionStateChanged(mDevice, prevState, newState);
         Utils.sendBroadcast(mA2dpService, intent, BLUETOOTH_CONNECT,
                 Utils.getTempAllowlistBroadcastOptions());
     }
