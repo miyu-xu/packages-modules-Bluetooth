@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0c7ff90c_b373ae56",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 25
+      },
+      "lineNbr": 931,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-07-04T05:09:40Z",
+      "side": 1,
+      "message": "nit: `GattService.class.getName()`",
+      "range": {
+        "startLine": 931,
+        "startChar": 29,
+        "endLine": 931,
+        "endChar": 69
+      },
+      "revId": "9e44fc8cca16a706d2db5eb0594573733496a020",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
