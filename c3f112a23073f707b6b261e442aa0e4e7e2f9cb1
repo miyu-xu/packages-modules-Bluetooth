@@ -16,6 +16,23 @@
       "message": "Hi Christine, Jack. I had a look at b/274729779. I couldn\u0027t reproduce it since I don\u0027t have a Motorola, but looked at the bug report and proposed solution. It seems like ScanManger only updates screen state when `onDisplayChanged` is called, but `onDisplayRemoved` is only called in the case of this bug, and the expected behavior is ScanManger entering screen off mode when display is removed.\n\nAfter checking the logs, the solution seemed reasonable if this is the actual expected behavior. Therefore I created a CL that contains the proposed solution in the bug report. Please let me know if this solution looks good or if I should go in another direction :)",
       "revId": "c3f112a23073f707b6b261e442aa0e4e7e2f9cb1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "54194c90_fa17143d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2023-07-04T05:19:40Z",
+      "side": 1,
+      "message": "Oops sorry I didn\u0027t look at b/277111946 before writing this CL. Please feel free to ignore this CL until expectations around supporting multi-device experiences are set.",
+      "revId": "c3f112a23073f707b6b261e442aa0e4e7e2f9cb1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
