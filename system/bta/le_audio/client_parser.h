@@ -230,16 +230,12 @@ constexpr uint16_t kAcsPacDiscoverRspMinLen = 1;
 constexpr uint16_t kAudioLocationsRspMinLen = 4;
 
 constexpr uint16_t kAseAudioAvailRspMinLen = 4;
-struct acs_available_audio_contexts {
-  types::AudioContexts snk_avail_cont;
-  types::AudioContexts src_avail_cont;
-};
+typedef types::BidirectionalPair<types::AudioContexts>
+    acs_available_audio_contexts;
 
 constexpr uint16_t kAseAudioSuppContRspMinLen = 4;
-struct acs_supported_audio_contexts {
-  types::AudioContexts snk_supp_cont;
-  types::AudioContexts src_supp_cont;
-};
+typedef types::BidirectionalPair<types::AudioContexts>
+    acs_supported_audio_contexts;
 
 int ParseSinglePac(std::vector<struct types::acs_ac_record>& pac_recs,
                    uint16_t len, const uint8_t* value);
@@ -247,9 +243,9 @@ bool ParsePacs(std::vector<struct types::acs_ac_record>& pac_recs, uint16_t len,
                const uint8_t* value);
 bool ParseAudioLocations(types::AudioLocations& audio_locations, uint16_t len,
                          const uint8_t* value);
-bool ParseAvailableAudioContexts(struct acs_available_audio_contexts& rsp,
+bool ParseAvailableAudioContexts(acs_available_audio_contexts& rsp,
                                  uint16_t len, const uint8_t* value);
-bool ParseSupportedAudioContexts(struct acs_supported_audio_contexts& rsp,
+bool ParseSupportedAudioContexts(acs_supported_audio_contexts& rsp,
                                  uint16_t len, const uint8_t* value);
 }  // namespace pacs
 
