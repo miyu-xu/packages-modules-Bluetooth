@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "019b57f0_7defec30",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2023-07-05T04:13:29Z",
+      "side": 1,
+      "message": "Hi Archie, could you provide the first round of review?",
+      "revId": "df94e8af27c81f8aa43ee8bcecb79b2863412a72",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
