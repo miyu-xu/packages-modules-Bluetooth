@@ -56,6 +56,29 @@
       },
       "revId": "df94e8af27c81f8aa43ee8bcecb79b2863412a72",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d5858eb2_46862a1a",
+        "filename": "floss/hcidoc/src/groups/controllers.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-07-05T04:24:07Z",
+      "side": 1,
+      "message": "Maybe name it HardwareErrorRule?",
+      "range": {
+        "startLine": 22,
+        "startChar": 7,
+        "endLine": 22,
+        "endChar": 21
+      },
+      "revId": "df94e8af27c81f8aa43ee8bcecb79b2863412a72",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
