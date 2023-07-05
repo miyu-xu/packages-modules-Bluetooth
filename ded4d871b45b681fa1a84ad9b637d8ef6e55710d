@@ -89,6 +89,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1ada6205_634fa3d8",
+        "filename": "framework/tests/metrics/device/AndroidManifest.xml",
+        "patchSetId": 16
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2023-07-05T04:27:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2147bb3d_1c80fd92",
+      "range": {
+        "startLine": 4,
+        "startChar": 0,
+        "endLine": 4,
+        "endChar": 73
+      },
+      "revId": "ded4d871b45b681fa1a84ad9b637d8ef6e55710d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e973f08d_877f974b",
@@ -112,6 +136,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2e16ed82_22a9358d",
+        "filename": "framework/tests/metrics/device/android/bluetooth/BluetoothMetricsHelperTest.kt",
+        "patchSetId": 16
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2023-07-05T04:27:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e973f08d_877f974b",
+      "range": {
+        "startLine": 57,
+        "startChar": 63,
+        "endLine": 57,
+        "endChar": 72
+      },
+      "revId": "ded4d871b45b681fa1a84ad9b637d8ef6e55710d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fe112f8a_e54be1a3",
@@ -125,6 +173,30 @@
       "writtenOn": "2023-06-30T18:34:55Z",
       "side": 1,
       "message": "```suggestion\n        HostGrpc.newBlockingStub(channel)factoryReset(Empty.getDefaultInstance())\n```\n\nDo we need the intermediate value ?",
+      "range": {
+        "startLine": 84,
+        "startChar": 8,
+        "endLine": 85,
+        "endChar": 53
+      },
+      "revId": "ded4d871b45b681fa1a84ad9b637d8ef6e55710d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cf1b8e4d_d3fcee03",
+        "filename": "framework/tests/metrics/device/android/bluetooth/BluetoothMetricsHelperTest.kt",
+        "patchSetId": 16
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2023-07-05T04:27:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fe112f8a_e54be1a3",
       "range": {
         "startLine": 84,
         "startChar": 8,
@@ -253,6 +325,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "21207d72_eafdc5d9",
+        "filename": "framework/tests/metrics/device/android/bluetooth/BluetoothMetricsHelperTest.kt",
+        "patchSetId": 16
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2023-07-05T04:27:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "616e686b_ea605b90",
+      "range": {
+        "startLine": 129,
+        "startChar": 34,
+        "endLine": 129,
+        "endChar": 35
+      },
+      "revId": "ded4d871b45b681fa1a84ad9b637d8ef6e55710d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "dbd7077f_0a92489d",
@@ -326,6 +422,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a6bf00ad_79cbe6b5",
+        "filename": "framework/tests/metrics/host/Android.bp",
+        "patchSetId": 16
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2023-07-05T04:27:21Z",
+      "side": 1,
+      "message": "Not yet, but when the infra issue is resolved we will add it to test mapping. For now, we would like to introduce more tests for metrics as we are refactoring many of them, and we don\u0027t want to block the progress, so I think the best solution now is to run them manually.",
+      "parentUuid": "9424c3b7_296d2fc4",
+      "range": {
+        "startLine": 4,
+        "startChar": 11,
+        "endLine": 4,
+        "endChar": 32
+      },
+      "revId": "ded4d871b45b681fa1a84ad9b637d8ef6e55710d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "73365746_d126f146",
         "filename": "framework/tests/metrics/host/Android.bp",
         "patchSetId": 16
@@ -337,6 +457,30 @@
       "writtenOn": "2023-06-30T18:34:55Z",
       "side": 1,
       "message": "nit: So far there is no java, I wouldn\u0027t mind if there was not this line in the bp.\nThat would add more incentive to keep theses test in kotlin.",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 20
+      },
+      "revId": "ded4d871b45b681fa1a84ad9b637d8ef6e55710d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "90c4c37e_c0b49a69",
+        "filename": "framework/tests/metrics/host/Android.bp",
+        "patchSetId": 16
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2023-07-05T04:27:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "73365746_d126f146",
       "range": {
         "startLine": 7,
         "startChar": 0,
@@ -370,6 +514,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "007b4cf4_bc44a19d",
+        "filename": "framework/tests/metrics/host/AndroidTest.xml",
+        "patchSetId": 16
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2023-07-05T04:27:21Z",
+      "side": 1,
+      "message": "Bumble",
+      "parentUuid": "71d8312d_a01a4eea",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 61
+      },
+      "revId": "ded4d871b45b681fa1a84ad9b637d8ef6e55710d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f5991ccd_dd4e3673",
@@ -383,6 +551,30 @@
       "writtenOn": "2023-06-30T18:34:55Z",
       "side": 1,
       "message": "Do you really need to toggle the bluetooth off then on ?\n\nSince this is host test I would expect you do not need to do any of this. But if you only need the bluetooth to be on, I think you should be able to only do the enable + wait for ON",
+      "range": {
+        "startLine": 29,
+        "startChar": 7,
+        "endLine": 32,
+        "endChar": 91
+      },
+      "revId": "ded4d871b45b681fa1a84ad9b637d8ef6e55710d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1dd6c286_53cacae8",
+        "filename": "framework/tests/metrics/host/AndroidTest.xml",
+        "patchSetId": 16
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2023-07-05T04:27:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f5991ccd_dd4e3673",
       "range": {
         "startLine": 29,
         "startChar": 7,

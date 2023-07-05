@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fa2abdec_49096882",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 17
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2023-07-05T04:27:21Z",
+      "side": 1,
+      "message": "Note: All Bumble tests cannot be run now. Won\u0027t merge until problem solved.",
+      "revId": "ea321e0d6786271e1b8a9f47af02d4a5c15ed34d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
