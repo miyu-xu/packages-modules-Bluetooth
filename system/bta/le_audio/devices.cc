@@ -129,9 +129,10 @@ bool LeAudioDeviceGroup::IsAnyDeviceConnected(void) {
   return (NumOfConnected() != 0);
 }
 
-int LeAudioDeviceGroup::Size(void) { return leAudioDevices_.size(); }
+int LeAudioDeviceGroup::Size(void) const { return leAudioDevices_.size(); }
 
-int LeAudioDeviceGroup::NumOfConnected(types::LeAudioContextType context_type) {
+int LeAudioDeviceGroup::NumOfConnectedDevicesSupportingContext(
+    types::LeAudioContextType context_type) const {
   if (leAudioDevices_.empty()) return 0;
 
   bool check_context_type = (context_type != LeAudioContextType::RFU);
@@ -141,15 +142,38 @@ int LeAudioDeviceGroup::NumOfConnected(types::LeAudioContextType context_type) {
   return std::count_if(
       leAudioDevices_.begin(), leAudioDevices_.end(),
       [type_set, check_context_type](auto& iter) {
-        if (iter.expired()) return false;
-        if (iter.lock()->conn_id_ == GATT_INVALID_CONN_ID) return false;
-        if (iter.lock()->GetConnectionState() != DeviceConnectState::CONNECTED)
-          return false;
-
-        if (!check_context_type) return true;
-
-        return iter.lock()->GetAvailableContexts().test_any(type_set);
+        auto dev = iter.lock();
+        if (dev) {
+          if (dev->conn_id_ == GATT_INVALID_CONN_ID) return false;
+          if (dev->GetConnectionState() != DeviceConnectState::CONNECTED)
+            return false;
+          if (!check_context_type) return true;
+          return dev->GetSupportedContexts().test_any(type_set);
+        }
+        return false;
       });
+}
+
+int LeAudioDeviceGroup::NumOfConnected() const {
+  if (leAudioDevices_.empty()) {
+    return 0;
+  }
+
+  /* return number of connected devices from the set*/
+  int res = std::count_if(
+      leAudioDevices_.begin(), leAudioDevices_.end(), [](auto& iter) {
+        auto dev = iter.lock();
+
+        if (dev) {
+          if (dev->conn_id_ == GATT_INVALID_CONN_ID) return false;
+          if (dev->GetConnectionState() != DeviceConnectState::CONNECTED)
+            return false;
+        } else {
+          return false;
+        }
+        return true;
+      });
+  return res;
 }
 
 void LeAudioDeviceGroup::ClearSinksFromConfiguration(void) {
@@ -264,6 +288,17 @@ bool LeAudioDeviceGroup::Activate(LeAudioContextType context_type) {
   return is_activate;
 }
 
+AudioContexts LeAudioDeviceGroup::GetSupportedContexts(int direction) const {
+  AudioContexts context;
+  for (auto& device : leAudioDevices_) {
+    auto shared_dev = device.lock();
+    if (shared_dev) {
+      context |= shared_dev->GetSupportedContexts(direction);
+    }
+  }
+  return context;
+}
+
 LeAudioDevice* LeAudioDeviceGroup::GetFirstDevice(void) {
   auto iter = std::find_if(leAudioDevices_.begin(), leAudioDevices_.end(),
                            [](auto& iter) { return !iter.expired(); });
@@ -273,7 +308,7 @@ LeAudioDevice* LeAudioDeviceGroup::GetFirstDevice(void) {
   return (iter->lock()).get();
 }
 
-LeAudioDevice* LeAudioDeviceGroup::GetFirstDeviceWithActiveContext(
+LeAudioDevice* LeAudioDeviceGroup::GetFirstDeviceWithAvailableContext(
     types::LeAudioContextType context_type) {
   auto iter = std::find_if(
       leAudioDevices_.begin(), leAudioDevices_.end(),
@@ -308,7 +343,7 @@ LeAudioDevice* LeAudioDeviceGroup::GetNextDevice(LeAudioDevice* leAudioDevice) {
   return (iter->lock()).get();
 }
 
-LeAudioDevice* LeAudioDeviceGroup::GetNextDeviceWithActiveContext(
+LeAudioDevice* LeAudioDeviceGroup::GetNextDeviceWithAvailableContext(
     LeAudioDevice* leAudioDevice, types::LeAudioContextType context_type) {
   auto iter = std::find_if(leAudioDevices_.begin(), leAudioDevices_.end(),
                            [&leAudioDevice](auto& d) {
@@ -776,89 +811,55 @@ uint16_t LeAudioDeviceGroup::GetRemoteDelay(uint8_t direction) {
   return remote_delay_ms;
 }
 
-bool LeAudioDeviceGroup::UpdateAudioSetConfigurationCache(void) {
-  LOG_DEBUG(" group id: %d, available contexts: %s", group_id_,
-            group_available_contexts_.to_string().c_str());
-  return UpdateAudioSetConfigurationCache(group_available_contexts_);
+bool LeAudioDeviceGroup::UpdateAudioContextAvailability(void) {
+  LOG_DEBUG(
+      " group id: %d, available contexts.sink: %s, available contexts.source: "
+      "%s",
+      group_id_, group_available_contexts_.sink.to_string().c_str(),
+      group_available_contexts_.source.to_string().c_str());
+  auto old_contexts = GetAvailableContexts();
+  SetAvailableContexts(GetLatestAvailableContexts());
+  return old_contexts != GetAvailableContexts();
 }
 
-/* Returns true if support for any type in the whole group has changed,
- * otherwise false. */
 bool LeAudioDeviceGroup::UpdateAudioSetConfigurationCache(
-    AudioContexts update_contexts) {
-  auto new_contexts = AudioContexts();
-  bool active_contexts_has_been_modified = false;
-
-  if (update_contexts.none()) {
-    LOG_DEBUG("No context updated");
-    return false;
-  }
-
-  LOG_DEBUG("Updated context: %s", update_contexts.to_string().c_str());
-
-  for (LeAudioContextType ctx_type : types::kLeAudioContextAllTypesArray) {
-    LOG_DEBUG("Checking context: %s", ToHexString(ctx_type).c_str());
-
-    if (!update_contexts.test(ctx_type)) {
-      LOG_DEBUG("%s config availability not updated for ",
-                ToHexString(ctx_type).c_str());
-      /* Fill context bitset for possible returned value if updated */
-      if (available_context_to_configuration_map.count(ctx_type) > 0)
-        new_contexts.set(ctx_type);
-
-      continue;
-    }
-
-    auto new_conf = FindFirstSupportedConfiguration(ctx_type);
-
-    bool ctx_previously_not_supported =
-        (available_context_to_configuration_map.count(ctx_type) == 0 ||
-         available_context_to_configuration_map[ctx_type] == nullptr);
-    /* Check if support for context type has changed */
-    if (ctx_previously_not_supported) {
-      /* Current configuration for context type is empty */
-      if (new_conf == nullptr) {
-        /* Configuration remains empty */
-        continue;
-      } else {
-        /* Configuration changes from empty to some */
-        new_contexts.set(ctx_type);
-        active_contexts_has_been_modified = true;
-      }
-    } else {
-      /* Current configuration for context type is not empty */
-      if (new_conf == nullptr) {
-        /* Configuration changed to empty */
-        new_contexts.unset(ctx_type);
-        active_contexts_has_been_modified = true;
-      } else if (new_conf != available_context_to_configuration_map[ctx_type]) {
-        /* Configuration changed to any other */
-        new_contexts.set(ctx_type);
-        active_contexts_has_been_modified = true;
-      } else {
-        /* Configuration is the same */
-        new_contexts.set(ctx_type);
-        continue;
-      }
-    }
-
-    LOG_INFO(
-        "%s(%s), %s -> %s", types::contextTypeToStr(ctx_type).c_str(),
-        ToHexString(ctx_type).c_str(),
-        (ctx_previously_not_supported
-             ? "empty"
-             : available_context_to_configuration_map[ctx_type]->name.c_str()),
-        (new_conf != nullptr ? new_conf->name.c_str() : "empty"));
-
+    LeAudioContextType ctx_type) {
+  const le_audio::set_configurations::AudioSetConfiguration* new_conf =
+      FindFirstSupportedConfiguration(ctx_type);
+  auto update = (new_conf != available_context_to_configuration_map[ctx_type]);
+  if (update) {
     available_context_to_configuration_map[ctx_type] = new_conf;
   }
+  LOG_DEBUG("%s config: %s -> %s", update ? "new" : "keep",
+            ToHexString(ctx_type).c_str(),
+            (new_conf ? new_conf->name.c_str() : "(none)"));
+  return update;
+}
 
-  /* Some contexts have changed, return new available context bitset */
-  if (active_contexts_has_been_modified) {
-    SetAvailableContexts(new_contexts);
+bool LeAudioDeviceGroup::UpdateAudioSetConfigurationCache() {
+  bool updated = false;
+  // TODO: Optimize: instead of calling this for all contexts, consider marking
+  //       individual contexts for invalidation and recompute only one config,
+  //       once it is fetched for configuration.
+  for (auto ctx_type : types::kLeAudioContextAllTypesArray) {
+    updated |= UpdateAudioSetConfigurationCache(ctx_type);
   }
+  return updated;
+}
 
-  return active_contexts_has_been_modified;
+types::BidirectionalPair<types::AudioContexts>
+LeAudioDeviceGroup::GetLatestAvailableContexts() const {
+  types::BidirectionalPair<types::AudioContexts> contexts;
+  for (const auto& device : leAudioDevices_) {
+    auto shared_ptr = device.lock();
+    if (shared_ptr) {
+      contexts.sink |=
+          shared_ptr->GetAvailableContexts(types::kLeAudioDirectionSink);
+      contexts.source |=
+          shared_ptr->GetAvailableContexts(types::kLeAudioDirectionSource);
+    }
+  }
+  return contexts;
 }
 
 bool LeAudioDeviceGroup::ReloadAudioLocations(void) {
@@ -1305,11 +1306,19 @@ bool LeAudioDeviceGroup::IsConfigurationSupported(
     const set_configurations::AudioSetConfiguration* audio_set_conf,
     types::LeAudioContextType context_type,
     types::LeAudioConfigurationStrategy required_snk_strategy) {
-  if (!set_configurations::check_if_may_cover_scenario(
-          audio_set_conf, NumOfConnected(context_type))) {
+  /* When at least one device supports the configuration context, configure
+   * for these devices only. Otherwise configure for all devices - we will
+   * not put this context into the metadata if not supported.
+   */
+  auto num_of_connected = NumOfConnectedDevicesSupportingContext(context_type);
+  if (num_of_connected == 0) {
+    num_of_connected = NumOfConnected();
+  }
+  if (!set_configurations::check_if_may_cover_scenario(audio_set_conf,
+                                                       num_of_connected)) {
     LOG_DEBUG(" cannot cover scenario  %s, num. of connected: %d",
               bluetooth::common::ToString(context_type).c_str(),
-              +NumOfConnected(context_type));
+              +num_of_connected);
     return false;
   }
 
@@ -1345,9 +1354,9 @@ bool LeAudioDeviceGroup::IsConfigurationSupported(
       return false;
     }
 
-    for (auto* device = GetFirstDeviceWithActiveContext(context_type);
+    for (auto* device = GetFirstDevice();
          device != nullptr && required_device_cnt > 0;
-         device = GetNextDeviceWithActiveContext(device, context_type)) {
+         device = GetNextDevice(device)) {
       /* Skip if device has ASE configured in this direction already */
 
       if (device->ases_.empty()) continue;
@@ -1661,9 +1670,18 @@ bool LeAudioDeviceGroup::ConfigureAses(
     types::LeAudioContextType context_type,
     const types::BidirectionalPair<AudioContexts>& metadata_context_types,
     const types::BidirectionalPair<std::vector<uint8_t>>& ccid_lists) {
-  if (!set_configurations::check_if_may_cover_scenario(
-          audio_set_conf, NumOfConnected(context_type)))
+  /* When at least one device supports the configuration context, configure
+   * for these devices only. Otherwise configure for all devices - we will
+   * not put this context into the metadata if not supported.
+   */
+  auto num_of_connected = NumOfConnectedDevicesSupportingContext(context_type);
+  if (num_of_connected == 0) {
+    num_of_connected = NumOfConnected();
+  }
+  if (!set_configurations::check_if_may_cover_scenario(audio_set_conf,
+                                                       num_of_connected)) {
     return false;
+  }
 
   bool reuse_cis_id =
       GetState() == AseState::BTA_LE_AUDIO_ASE_STATE_CODEC_CONFIGURED;
@@ -1699,27 +1717,42 @@ bool LeAudioDeviceGroup::ConfigureAses(
         required_device_cnt, ent.ase_cnt, max_required_ase_per_dev,
         (int)strategy);
 
-    for (auto* device = GetFirstDeviceWithActiveContext(context_type);
-         device != nullptr && required_device_cnt > 0;
-         device = GetNextDeviceWithActiveContext(device, context_type)) {
+    auto configuration_closure = [&](LeAudioDevice* dev) -> void {
       /* For the moment, we configure only connected devices and when it is
-       * ready to stream i.e. All ASEs are discovered and device is reported as
+       * ready to stream i.e. All ASEs are discovered and dev is reported as
        * connected
        */
-      if (device->GetConnectionState() != DeviceConnectState::CONNECTED) {
+      if (dev->GetConnectionState() != DeviceConnectState::CONNECTED) {
         LOG_WARN(
             "Device %s, in the state %s",
-            ADDRESS_TO_LOGGABLE_CSTR(device->address_),
-            bluetooth::common::ToString(device->GetConnectionState()).c_str());
-        continue;
+            ADDRESS_TO_LOGGABLE_CSTR(dev->address_),
+            bluetooth::common::ToString(dev->GetConnectionState()).c_str());
+        return;
       }
 
-      if (!device->ConfigureAses(
-              ent, context_type, &active_ase_num, group_audio_locations_memo,
-              metadata_context_types, ccid_lists, reuse_cis_id))
-        continue;
+      if (!dev->ConfigureAses(ent, context_type, &active_ase_num,
+                              group_audio_locations_memo,
+                              metadata_context_types, ccid_lists, reuse_cis_id))
+        return;
 
       required_device_cnt--;
+    };
+
+    // First use the devices claiming proper support
+    for (auto* device = GetFirstDeviceWithAvailableContext(context_type);
+         device != nullptr && required_device_cnt > 0;
+         device = GetNextDeviceWithAvailableContext(device, context_type)) {
+      configuration_closure(device);
+    }
+    // In case some devices do not support this scenario - us them anyway if
+    // they are required for the scenario - we will not put this context into
+    // their metadata anyway
+    if (required_device_cnt > 0) {
+      for (auto* device = GetFirstDevice();
+           device != nullptr && required_device_cnt > 0;
+           device = GetNextDevice(device)) {
+        configuration_closure(device);
+      }
     }
 
     if (required_device_cnt > 0) {
@@ -2158,9 +2191,13 @@ LeAudioDeviceGroup::FindFirstSupportedConfiguration(
             bluetooth::common::ToString(context_type).c_str(),
             +NumOfConnected());
 
+  auto num_of_connected = NumOfConnectedDevicesSupportingContext(context_type);
+  if (num_of_connected == 0) {
+    num_of_connected = NumOfConnected();
+  }
   /* Filter out device set for all scenarios */
   if (!set_configurations::check_if_may_cover_scenario(confs,
-                                                       NumOfConnected())) {
+                                                       num_of_connected)) {
     LOG_DEBUG(", group is unable to cover scenario");
     return nullptr;
   }
@@ -2226,6 +2263,8 @@ void LeAudioDeviceGroup::PrintDebugState(void) {
             << ", target state: "
             << bluetooth::common::ToString(GetTargetState())
             << ", cig state: " << bluetooth::common::ToString(cig_state_)
+            << ", \n group supported contexts: "
+            << bluetooth::common::ToString(GetSupportedContexts())
             << ", \n group available contexts: "
             << bluetooth::common::ToString(GetAvailableContexts())
             << ", \n configuration context type: "
@@ -2282,6 +2321,7 @@ void LeAudioDeviceGroup::Dump(int fd, int active_group_id) {
          << "      state: " << GetState()
          << ",\ttarget state: " << GetTargetState()
          << ",\tcig state: " << cig_state_ << "\n"
+         << "      group supported contexts: " << GetSupportedContexts() << "\n"
          << "      group available contexts: " << GetAvailableContexts() << "\n"
          << "      configuration context type: "
          << bluetooth::common::ToString(GetConfigurationContextType()).c_str()
@@ -2776,12 +2816,6 @@ uint8_t LeAudioDevice::GetPhyBitmask(void) {
   return phy_bitfield;
 }
 
-void LeAudioDevice::SetSupportedContexts(AudioContexts snk_contexts,
-                                         AudioContexts src_contexts) {
-  supp_contexts_.sink = snk_contexts;
-  supp_contexts_.source = src_contexts;
-}
-
 void LeAudioDevice::PrintDebugState(void) {
   std::stringstream debug_str;
 
@@ -2907,23 +2941,23 @@ void LeAudioDevice::DisconnectAcl(void) {
 }
 
 /* Returns XOR of updated sink and source bitset context types */
-AudioContexts LeAudioDevice::SetAvailableContexts(AudioContexts snk_contexts,
-                                                  AudioContexts src_contexts) {
+AudioContexts LeAudioDevice::SetAvailableContexts(
+    types::BidirectionalPair<types::AudioContexts> contexts) {
   AudioContexts updated_contexts;
 
-  updated_contexts = snk_contexts ^ avail_contexts_.sink;
-  updated_contexts |= src_contexts ^ avail_contexts_.source;
+  updated_contexts = contexts.sink ^ avail_contexts_.sink;
+  updated_contexts |= contexts.source ^ avail_contexts_.source;
 
   LOG_DEBUG(
       "\n\t avail_contexts_.sink: %s \n\t avail_contexts_.source: %s  \n\t "
-      "snk_contexts: %s \n\t src_contexts: %s \n\t updated_contexts: %s",
+      "contexts.sink: %s \n\t contexts.source: %s \n\t updated_contexts: %s",
       avail_contexts_.sink.to_string().c_str(),
       avail_contexts_.source.to_string().c_str(),
-      snk_contexts.to_string().c_str(), src_contexts.to_string().c_str(),
+      contexts.sink.to_string().c_str(), contexts.source.to_string().c_str(),
       updated_contexts.to_string().c_str());
 
-  avail_contexts_.sink = snk_contexts;
-  avail_contexts_.source = src_contexts;
+  avail_contexts_.sink = contexts.sink;
+  avail_contexts_.source = contexts.source;
 
   return updated_contexts;
 }

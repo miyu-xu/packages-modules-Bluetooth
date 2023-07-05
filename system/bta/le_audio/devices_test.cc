@@ -511,10 +511,12 @@ class LeAudioAseConfigurationTest : public Test {
       device->ases_.push_back(ase);
     }
 
-    device->SetSupportedContexts(AudioContexts(kLeAudioContextAllTypes),
-                                 AudioContexts(kLeAudioContextAllTypes));
-    device->SetAvailableContexts(AudioContexts(kLeAudioContextAllTypes),
-                                 AudioContexts(kLeAudioContextAllTypes));
+    device->SetSupportedContexts(
+        {.sink = AudioContexts(kLeAudioContextAllTypes),
+         .source = AudioContexts(kLeAudioContextAllTypes)});
+    device->SetAvailableContexts(
+        {.sink = AudioContexts(kLeAudioContextAllTypes),
+         .source = AudioContexts(kLeAudioContextAllTypes)});
     device->snk_audio_locations_ =
         ::le_audio::codec_spec_conf::kLeAudioLocationFrontLeft |
         ::le_audio::codec_spec_conf::kLeAudioLocationFrontRight;
@@ -610,7 +612,9 @@ class LeAudioAseConfigurationTest : public Test {
         .source = AudioContexts(context_type)};
 
     /* Stimulate update of available context map */
-    group_->UpdateAudioSetConfigurationCache(AudioContexts(context_type));
+    group_->UpdateAudioContextAvailability();
+    group_->UpdateAudioSetConfigurationCache();
+
     ASSERT_EQ(success_expected,
               group_->Configure(context_type, group_audio_locations));
 
@@ -701,7 +705,8 @@ class LeAudioAseConfigurationTest : public Test {
           .source = AudioContexts(context_type)};
 
       /* Stimulate update of available context map */
-      group_->UpdateAudioSetConfigurationCache(AudioContexts(context_type));
+      group_->UpdateAudioContextAvailability();
+      group_->UpdateAudioSetConfigurationCache();
       auto configuration_result =
           group_->Configure(context_type, group_audio_locations);
 
@@ -821,8 +826,8 @@ class LeAudioAseConfigurationTest : public Test {
             }
 
             /* Stimulate update of available context map */
-            group_->UpdateAudioSetConfigurationCache(
-                AudioContexts(context_type));
+            group_->UpdateAudioContextAvailability();
+            group_->UpdateAudioSetConfigurationCache();
             BidirectionalPair<AudioContexts> group_audio_locations = {
                 .sink = AudioContexts(context_type),
                 .source = AudioContexts(context_type)};
@@ -932,10 +937,13 @@ TEST_F(LeAudioAseConfigurationTest, test_context_update) {
   auto remote_src_supp_contexts = AudioContexts(
       LeAudioContextType::CONVERSATIONAL | LeAudioContextType::UNSPECIFIED);
 
-  left->SetSupportedContexts(remote_snk_supp_contexts,
-                             remote_src_supp_contexts);
-  right->SetSupportedContexts(remote_snk_supp_contexts,
-                              remote_src_supp_contexts);
+  left->SetSupportedContexts(
+      {.sink = remote_snk_supp_contexts, .source = remote_src_supp_contexts});
+
+  auto right_bud_only_context = LeAudioContextType::ALERTS;
+  right->SetSupportedContexts(
+      {.sink = remote_snk_supp_contexts | right_bud_only_context,
+       .source = remote_src_supp_contexts | right_bud_only_context});
 
   /* ...but UNSPECIFIED and SOUNDEFFECTS are unavailable */
   auto remote_snk_avail_contexts = AudioContexts(
@@ -943,26 +951,22 @@ TEST_F(LeAudioAseConfigurationTest, test_context_update) {
   auto remote_src_avail_contexts =
       AudioContexts(LeAudioContextType::CONVERSATIONAL);
 
-  left->SetAvailableContexts(remote_snk_avail_contexts,
-                             remote_src_avail_contexts);
+  left->SetAvailableContexts(
+      {.sink = remote_snk_avail_contexts, .source = remote_src_avail_contexts});
   ASSERT_EQ(left->GetAvailableContexts(),
             remote_snk_avail_contexts | remote_src_avail_contexts);
 
-  // Just for fun let's add one more context to the right earbud
-  auto right_bud_only_context = LeAudioContextType::ALERTS;
+  // Make an additional context available on the right earbud sink
   right->SetAvailableContexts(
-      remote_snk_avail_contexts | right_bud_only_context,
-      remote_src_avail_contexts);
+      {.sink = remote_snk_avail_contexts | right_bud_only_context,
+       .source = remote_src_avail_contexts});
   ASSERT_EQ(right->GetAvailableContexts(), remote_snk_avail_contexts |
                                                remote_src_avail_contexts |
                                                right_bud_only_context);
 
-  /* Initialize configuration cache - for the left earbud */
-  group_->UpdateAudioSetConfigurationCache(left->GetAvailableContexts());
-  ASSERT_EQ(group_->GetAvailableContexts(), left->GetAvailableContexts());
-
   /* Now add the right earbud contexts - mind the extra context on that bud */
-  group_->UpdateAudioSetConfigurationCache(right->GetAvailableContexts());
+  group_->UpdateAudioContextAvailability();
+  group_->UpdateAudioSetConfigurationCache();
   ASSERT_NE(group_->GetAvailableContexts(), left->GetAvailableContexts());
   ASSERT_EQ(group_->GetAvailableContexts(),
             left->GetAvailableContexts() | right->GetAvailableContexts());
@@ -970,9 +974,12 @@ TEST_F(LeAudioAseConfigurationTest, test_context_update) {
   /* Since no device is being added or removed from the group this should not
    * change the configuration set.
    */
-  group_->UpdateAudioSetConfigurationCache();
+  group_->UpdateAudioContextAvailability();
   ASSERT_EQ(group_->GetAvailableContexts(),
             left->GetAvailableContexts() | right->GetAvailableContexts());
+
+  /* Need to regenerate configuration cache */
+  group_->UpdateAudioSetConfigurationCache();
 
   /* MEDIA Available on remote sink direction only */
   ASSERT_TRUE(group_
@@ -998,27 +1005,39 @@ TEST_F(LeAudioAseConfigurationTest, test_context_update) {
                       ::le_audio::types::kLeAudioDirectionSource)
                   .has_value());
 
-  /* UNSPECIFIED Unavailable */
-  ASSERT_FALSE(group_
-                   ->GetCodecConfigurationByDirection(
-                       LeAudioContextType::UNSPECIFIED,
-                       ::le_audio::types::kLeAudioDirectionSink)
-                   .has_value());
+  /* UNSPECIFIED Unavailable yet supported */
+  ASSERT_TRUE(group_
+                  ->GetCodecConfigurationByDirection(
+                      LeAudioContextType::UNSPECIFIED,
+                      ::le_audio::types::kLeAudioDirectionSink)
+                  .has_value());
   ASSERT_FALSE(group_
                    ->GetCodecConfigurationByDirection(
                        LeAudioContextType::UNSPECIFIED,
                        ::le_audio::types::kLeAudioDirectionSource)
                    .has_value());
 
-  /* SOUNDEFFECTS Unavailable */
+  /* SOUNDEFFECTS Unavailable yet supported on sink only */
+  ASSERT_TRUE(group_
+                  ->GetCodecConfigurationByDirection(
+                      LeAudioContextType::SOUNDEFFECTS,
+                      ::le_audio::types::kLeAudioDirectionSink)
+                  .has_value());
   ASSERT_FALSE(group_
                    ->GetCodecConfigurationByDirection(
                        LeAudioContextType::SOUNDEFFECTS,
-                       ::le_audio::types::kLeAudioDirectionSink)
+                       ::le_audio::types::kLeAudioDirectionSource)
                    .has_value());
+
+  /* INSTRUCTIONAL Unavailable and not supported but scenario is supported */
+  ASSERT_TRUE(group_
+                  ->GetCodecConfigurationByDirection(
+                      LeAudioContextType::INSTRUCTIONAL,
+                      ::le_audio::types::kLeAudioDirectionSink)
+                  .has_value());
   ASSERT_FALSE(group_
                    ->GetCodecConfigurationByDirection(
-                       LeAudioContextType::SOUNDEFFECTS,
+                       LeAudioContextType::INSTRUCTIONAL,
                        ::le_audio::types::kLeAudioDirectionSource)
                    .has_value());
 
@@ -1044,19 +1063,27 @@ TEST_F(LeAudioAseConfigurationTest, test_context_update) {
   ASSERT_TRUE(
       group_->IsAudioSetConfigurationAvailable(LeAudioContextType::ALERTS));
 
-  /* Block the ALERTS context */
+  /* Turn off the ALERTS context */
   right->SetAvailableContexts(
-      right->GetAvailableContexts(::le_audio::types::kLeAudioDirectionSink) &
-          ~AudioContexts(LeAudioContextType::ALERTS),
-      right->GetAvailableContexts(::le_audio::types::kLeAudioDirectionSource));
-  group_->UpdateAudioSetConfigurationCache(group_->GetAvailableContexts());
+      {.sink = right->GetAvailableContexts(
+                   ::le_audio::types::kLeAudioDirectionSink) &
+               ~AudioContexts(LeAudioContextType::ALERTS),
+       .source = right->GetAvailableContexts(
+           ::le_audio::types::kLeAudioDirectionSource)});
+
+  /* Right one was changed but the config exist, just not available */
+  group_->UpdateAudioContextAvailability();
   ASSERT_EQ(group_->GetAvailableContexts(),
             left->GetAvailableContexts() | right->GetAvailableContexts());
-  ASSERT_FALSE(group_
-                   ->GetCodecConfigurationByDirection(
-                       LeAudioContextType::ALERTS,
-                       ::le_audio::types::kLeAudioDirectionSink)
-                   .has_value());
+  ASSERT_FALSE(group_->GetAvailableContexts().test(LeAudioContextType::ALERTS));
+
+  /* Regenerate configuration cache */
+  group_->UpdateAudioSetConfigurationCache();
+  ASSERT_TRUE(group_
+                  ->GetCodecConfigurationByDirection(
+                      LeAudioContextType::ALERTS,
+                      ::le_audio::types::kLeAudioDirectionSink)
+                  .has_value());
   ASSERT_FALSE(
       group_->IsAudioSetConfigurationAvailable(LeAudioContextType::ALERTS));
 }
@@ -1121,7 +1148,7 @@ TEST_F(LeAudioAseConfigurationTest, test_bounded_headphones_ringtone) {
                             direction_to_verify);
 }
 
-TEST_F(LeAudioAseConfigurationTest, test_bounded_headphones_conversional) {
+TEST_F(LeAudioAseConfigurationTest, test_bounded_headphones_conversational) {
   LeAudioDevice* bounded_headphones = AddTestDevice(2, 0);
   TestGroupAseConfigurationData data({bounded_headphones,
                                       kLeAudioCodecLC3ChannelCountTwoChannel,
@@ -1172,7 +1199,7 @@ TEST_F(LeAudioAseConfigurationTest,
   TestGroupAseConfiguration(LeAudioContextType::RINGTONE, &data, 1);
 }
 
-TEST_F(LeAudioAseConfigurationTest, test_bounded_headset_conversional) {
+TEST_F(LeAudioAseConfigurationTest, test_bounded_headset_conversational) {
   LeAudioDevice* bounded_headset = AddTestDevice(2, 1);
   TestGroupAseConfigurationData data(
       {bounded_headset, kLeAudioCodecLC3ChannelCountTwoChannel,
@@ -1215,7 +1242,7 @@ TEST_F(LeAudioAseConfigurationTest, test_earbuds_ringtone) {
   TestGroupAseConfiguration(LeAudioContextType::RINGTONE, data, 2);
 }
 
-TEST_F(LeAudioAseConfigurationTest, test_earbuds_conversional) {
+TEST_F(LeAudioAseConfigurationTest, test_earbuds_conversational) {
   LeAudioDevice* left = AddTestDevice(1, 1);
   LeAudioDevice* right = AddTestDevice(1, 1);
   TestGroupAseConfigurationData data[] = {
@@ -1289,7 +1316,7 @@ TEST_F(LeAudioAseConfigurationTest, test_handsfree_stereo_ringtone) {
   TestGroupAseConfiguration(LeAudioContextType::RINGTONE, &data, 1);
 }
 
-TEST_F(LeAudioAseConfigurationTest, test_handsfree_mono_conversional) {
+TEST_F(LeAudioAseConfigurationTest, test_handsfree_mono_conversational) {
   LeAudioDevice* handsfree = AddTestDevice(1, 1);
   TestGroupAseConfigurationData data(
       {handsfree, kLeAudioCodecLC3ChannelCountSingleChannel,
@@ -1304,7 +1331,7 @@ TEST_F(LeAudioAseConfigurationTest, test_handsfree_mono_conversional) {
   TestGroupAseConfiguration(LeAudioContextType::CONVERSATIONAL, &data, 1);
 }
 
-TEST_F(LeAudioAseConfigurationTest, test_handsfree_stereo_conversional) {
+TEST_F(LeAudioAseConfigurationTest, test_handsfree_stereo_conversational) {
   LeAudioDevice* handsfree = AddTestDevice(1, 1);
   TestGroupAseConfigurationData data(
       {handsfree,
@@ -1315,7 +1342,7 @@ TEST_F(LeAudioAseConfigurationTest, test_handsfree_stereo_conversional) {
   TestGroupAseConfiguration(LeAudioContextType::CONVERSATIONAL, &data, 1);
 }
 
-TEST_F(LeAudioAseConfigurationTest, test_handsfree_full_cached_conversional) {
+TEST_F(LeAudioAseConfigurationTest, test_handsfree_full_cached_conversational) {
   LeAudioDevice* handsfree = AddTestDevice(0, 0, 1, 1);
   TestGroupAseConfigurationData data(
       {handsfree,
@@ -1327,7 +1354,7 @@ TEST_F(LeAudioAseConfigurationTest, test_handsfree_full_cached_conversional) {
 }
 
 TEST_F(LeAudioAseConfigurationTest,
-       test_handsfree_partial_cached_conversional) {
+       test_handsfree_partial_cached_conversational) {
   LeAudioDevice* handsfree = AddTestDevice(1, 0, 0, 1);
   TestGroupAseConfigurationData data(
       {handsfree,
@@ -1358,7 +1385,7 @@ TEST_F(LeAudioAseConfigurationTest, test_lc3_config_ringtone) {
   TestLc3CodecConfig(LeAudioContextType::RINGTONE);
 }
 
-TEST_F(LeAudioAseConfigurationTest, test_lc3_config_conversional) {
+TEST_F(LeAudioAseConfigurationTest, test_lc3_config_conversational) {
   AddTestDevice(1, 1);
 
   TestLc3CodecConfig(LeAudioContextType::CONVERSATIONAL);
