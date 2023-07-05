@@ -164,6 +164,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b91ee9c1_27d9f3dc",
+        "filename": "floss/hcidoc/src/groups/controllers.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-07-05T08:26:52Z",
+      "side": 1,
+      "message": "Hmm, I think we should have a separate rule for that (but the same rulegroup). However I don\u0027t 100% understand the segmentation between the terms though.",
+      "parentUuid": "f933a2ea_8ec38700",
+      "range": {
+        "startLine": 22,
+        "startChar": 7,
+        "endLine": 22,
+        "endChar": 21
+      },
+      "revId": "df94e8af27c81f8aa43ee8bcecb79b2863412a72",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cd77533d_79abc36d",
