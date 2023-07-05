@@ -96,6 +96,23 @@
       },
       "revId": "df94e8af27c81f8aa43ee8bcecb79b2863412a72",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cd77533d_79abc36d",
+        "filename": "floss/hcidoc/src/main.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-07-05T04:26:11Z",
+      "side": 1,
+      "message": "Follow the other groups, put this in line 10 instead.",
+      "revId": "df94e8af27c81f8aa43ee8bcecb79b2863412a72",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
