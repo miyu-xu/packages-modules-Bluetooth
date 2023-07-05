@@ -20,6 +20,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "12c1901e_cfae122b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2023-07-05T08:07:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f07794a4_e2cf4f30",
+      "revId": "df94e8af27c81f8aa43ee8bcecb79b2863412a72",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "019b57f0_7defec30",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 1
@@ -75,6 +93,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1882068f_c54732b1",
+        "filename": "floss/hcidoc/src/groups/controllers.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2023-07-05T08:07:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "478f67c7_b52a3d08",
+      "range": {
+        "startLine": 11,
+        "startChar": 4,
+        "endLine": 11,
+        "endChar": 18
+      },
+      "revId": "df94e8af27c81f8aa43ee8bcecb79b2863412a72",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d5858eb2_46862a1a",
@@ -98,6 +140,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f933a2ea_8ec38700",
+        "filename": "floss/hcidoc/src/groups/controllers.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2023-07-05T08:07:47Z",
+      "side": 1,
+      "message": "Acked. But I was thinking this can report other controller rules like crash dump or controller reset.",
+      "parentUuid": "d5858eb2_46862a1a",
+      "range": {
+        "startLine": 22,
+        "startChar": 7,
+        "endLine": 22,
+        "endChar": 21
+      },
+      "revId": "df94e8af27c81f8aa43ee8bcecb79b2863412a72",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cd77533d_79abc36d",
@@ -111,6 +177,24 @@
       "writtenOn": "2023-07-05T04:26:11Z",
       "side": 1,
       "message": "Follow the other groups, put this in line 10 instead.",
+      "revId": "df94e8af27c81f8aa43ee8bcecb79b2863412a72",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3b5502aa_7c38d614",
+        "filename": "floss/hcidoc/src/main.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2023-07-05T08:07:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cd77533d_79abc36d",
       "revId": "df94e8af27c81f8aa43ee8bcecb79b2863412a72",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
