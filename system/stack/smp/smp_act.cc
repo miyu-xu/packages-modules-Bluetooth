@@ -837,9 +837,12 @@ void smp_br_process_pairing_command(tSMP_CB* p_cb, tSMP_INT_DATA* p_data) {
   tBTM_SEC_DEV_REC* p_dev_rec = btm_find_dev(p_cb->pairing_bda);
 
   SMP_TRACE_DEBUG("%s", __func__);
-  /* rejecting BR pairing request over non-SC BR link */
-  if (!p_dev_rec->new_encryption_key_is_p256 &&
-      p_cb->role == HCI_ROLE_PERIPHERAL) {
+  /* Reject CTKD if either the link key is not p-256 based, or
+     CTKD will downgrade the existing LTK */
+  if ((!p_dev_rec->is_link_key_p256() && p_cb->role == HCI_ROLE_PERIPHERAL) ||
+      (p_dev_rec->is_le_link_key_known() &&
+       p_dev_rec->is_le_link_key_authenticated() &&
+       !p_dev_rec->is_link_key_authenticated())) {
     tSMP_INT_DATA smp_int_data;
     smp_int_data.status = SMP_XTRANS_DERIVE_NOT_ALLOW;
     smp_br_state_machine_event(p_cb, SMP_BR_AUTH_CMPL_EVT, &smp_int_data);
@@ -880,7 +883,6 @@ void smp_br_process_pairing_command(tSMP_CB* p_cb, tSMP_INT_DATA* p_data) {
   p_cb->local_r_key = p_cb->peer_r_key;
 
   if (p_cb->role == HCI_ROLE_PERIPHERAL) {
-    p_dev_rec->new_encryption_key_is_p256 = false;
     /* shortcut to skip Security Grant step */
     p_cb->cb_evt = SMP_BR_KEYS_REQ_EVT;
   } else {
