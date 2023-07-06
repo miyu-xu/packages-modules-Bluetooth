@@ -1,0 +1,106 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6e0f4263_f16f791e",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 799,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2023-07-06T20:11:46Z",
+      "side": 1,
+      "message": "Should this be a debug! instead? How often do we expect to receive an unactionable command?",
+      "revId": "5470a8d4966f3588e64bf587eee36c15dc5490fa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7183b3cf_e061a7fa",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 1012,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2023-07-06T20:11:46Z",
+      "side": 1,
+      "message": "Can you create a unit test for this function?",
+      "revId": "5470a8d4966f3588e64bf587eee36c15dc5490fa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "67bbb8f3_3a987cde",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 1059,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2023-07-06T20:11:46Z",
+      "side": 1,
+      "message": "Simplify to `if args.next() \u003d\u003d None`?",
+      "revId": "5470a8d4966f3588e64bf587eee36c15dc5490fa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d44109c7_ff7765d2",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 1076,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2023-07-06T20:11:46Z",
+      "side": 1,
+      "message": "why not parse this as u32?",
+      "revId": "5470a8d4966f3588e64bf587eee36c15dc5490fa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d240823b_b0c7898c",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 1077,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2023-07-06T20:11:46Z",
+      "side": 1,
+      "message": "nit: `Ok(battery) \u003d\u003e battery * 10,`\nThen deleted line 1082",
+      "revId": "5470a8d4966f3588e64bf587eee36c15dc5490fa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d9b0980b_53ff201e",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 1094,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2023-07-06T20:11:46Z",
+      "side": 1,
+      "message": "Did you mean to fill this in?",
+      "revId": "5470a8d4966f3588e64bf587eee36c15dc5490fa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
