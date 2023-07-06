@@ -1,0 +1,37 @@
+From 47ea404ffda3a6be805e12dda5690799a17a44d4 Mon Sep 17 00:00:00 2001
+From: Naval saini <saini@codeaurora.org>
+Date: Thu, 20 May 2021 12:56:08 +0530
+Subject: [PATCH] AAC_ABR: Update SoC if ABR is enabled
+
+Update peak bandwidth as 0 if ABR is enabled
+else static bitrate will be sent.
+
+CRs-Fixed: 2950252
+Change-Id: I31cbde3d8ba38a0dc413c7f12328a7b8eb7cc010
+---
+ btif/src/btif_a2dp_source.cc | 9 ++++++++-
+ 1 file changed, 8 insertions(+), 1 deletion(-)
+
+diff --git a/btif/src/btif_a2dp_source.cc b/btif/src/btif_a2dp_source.cc
+index 9442de5..e672c89 100644
+--- a/btif/src/btif_a2dp_source.cc
++++ b/btif/src/btif_a2dp_source.cc
+@@ -575,7 +575,14 @@ bt_status_t btif_a2dp_source_setup_codec(tBTA_AV_HNDL hndl) {
+ 
+     } else if (codec_config.codec_type == BTAV_A2DP_CODEC_INDEX_SOURCE_AAC) {
+       if (btif_av_is_split_a2dp_enabled()) {
+-        flow_spec.peak_bandwidth = (165*1000)/8; /* bytes/second */
++        char prop_value[PROPERTY_VALUE_MAX] = "false";
++        property_get("persist.vendor.qcom.bluetooth.aac_abr_support", prop_value, "false");
++        ALOGE("%s: AAC ABR support : %s", __func__, prop_value);
++        if (!strcmp(prop_value, "true")) {
++          flow_spec.peak_bandwidth = 0;//ABR enabled
++        } else {
++          flow_spec.peak_bandwidth = (165*1000)/8; /* bytes/second */
++        }
+       } else {
+         flow_spec.peak_bandwidth = (320*1000)/8; /* bytes/second */
+       }
+-- 
+2.7.4
+
