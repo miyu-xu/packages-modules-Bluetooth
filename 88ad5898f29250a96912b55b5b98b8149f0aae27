@@ -33,6 +33,23 @@
       "message": "Hi Michael, can I get a stamp on this? Thanks!",
       "revId": "88ad5898f29250a96912b55b5b98b8149f0aae27",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "000d3fe7_e4b18e15",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2023-07-06T08:38:11Z",
+      "side": 1,
+      "message": "Owner stamp.",
+      "revId": "88ad5898f29250a96912b55b5b98b8149f0aae27",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
