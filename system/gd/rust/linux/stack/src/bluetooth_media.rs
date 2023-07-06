@@ -702,6 +702,27 @@ impl BluetoothMedia {
         }
     }
 
+    fn dispatch_uhid_events(&mut self, event: Vec<u8>) {
+        // only report Id 1 is supported
+        if event[0] != 1 {
+            return;
+        }
+
+        if event[1] == 1 {
+            if self.phone_state.state != CallState::Incoming {
+                self.incoming_call("".into());
+            }
+        } else if event[1] == 2 {
+            if self.phone_state.state == CallState::Incoming {
+                self.answer_call();
+            }
+        } else {
+            if self.phone_state.state != CallState::Idle {
+                self.hangup_call();
+            }
+        }
+    }
+
     pub fn dispatch_hfp_callbacks(&mut self, cb: HfpCallbacks) {
         match cb {
             HfpCallbacks::ConnectionState(state, addr) => {
