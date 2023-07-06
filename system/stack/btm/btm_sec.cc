@@ -3418,32 +3418,29 @@ void btm_sec_encrypt_change(uint16_t handle, tHCI_STATUS status,
     p_dev_rec->enc_key_size = 16;
   }
 
-  LOG_DEBUG("in new_encr_key_256 is %d", p_dev_rec->new_encryption_key_is_p256);
-
   if ((status == HCI_SUCCESS) && encr_enable &&
       (p_dev_rec->hci_handle == handle)) {
-    /* if BR key is temporary no need for LE LTK derivation */
-    bool derive_ltk = true;
+    /* Find if link key is temporary */
+    bool temp_lk = false;
     if (p_dev_rec->rmt_auth_req == BTM_AUTH_SP_NO &&
         btm_cb.devcb.loc_auth_req == BTM_AUTH_SP_NO) {
-      derive_ltk = false;
-      BTM_TRACE_DEBUG("%s: BR key is temporary, skip derivation of LE LTK",
-                      __func__);
+      temp_lk = true;
+      LOG_DEBUG("BR key is temporary, skip derivation of LE LTK");
     }
+
     tHCI_ROLE role = HCI_ROLE_UNKNOWN;
     BTM_GetRole(p_dev_rec->bd_addr, &role);
-    if (p_dev_rec->new_encryption_key_is_p256) {
-      if (btm_sec_use_smp_br_chnl(p_dev_rec) && role == HCI_ROLE_CENTRAL &&
-          /* if LE key is not known, do deriving */
-          (!(p_dev_rec->sec_flags & BTM_SEC_LE_LINK_KEY_KNOWN) ||
-           /* or BR key is higher security than existing LE keys */
-           (!(p_dev_rec->sec_flags & BTM_SEC_LE_LINK_KEY_AUTHED) &&
-            (p_dev_rec->sec_flags & BTM_SEC_LINK_KEY_AUTHED))) &&
-          derive_ltk) {
-        /* BR/EDR is encrypted with LK that can be used to derive LE LTK */
-        p_dev_rec->new_encryption_key_is_p256 = false;
 
-        BTM_TRACE_DEBUG("%s start SM over BR/EDR", __func__);
+    /* Is CTKD possible? */
+    if (p_dev_rec->is_link_key_p256() && btm_sec_use_smp_br_chnl(p_dev_rec) &&
+        role == HCI_ROLE_CENTRAL) {
+      /* Should we do CTKD?
+         1. Link should not be temporary
+         2. If an LTK already exists, CTKD should not downgrade it */
+      if (!temp_lk && (!p_dev_rec->is_le_link_key_known() ||
+                       (!p_dev_rec->is_le_link_key_authenticated() &&
+                        p_dev_rec->is_link_key_authenticated()))) {
+        LOG_DEBUG("Start SMP over BR/EDR");
         SMP_BR_PairWith(p_dev_rec->bd_addr);
       }
     }
@@ -4022,13 +4019,6 @@ void btm_sec_link_key_notification(const RawAddress& p_bda,
       (*btm_cb.api.p_link_key_callback)(
           p_bda, p_dev_rec->dev_class, p_dev_rec->sec_bd_name, link_key,
           p_dev_rec->link_key_type, true /* is_ctkd */);
-    }
-  } else {
-    if ((p_dev_rec->link_key_type == BTM_LKEY_TYPE_UNAUTH_COMB_P_256) ||
-        (p_dev_rec->link_key_type == BTM_LKEY_TYPE_AUTH_COMB_P_256)) {
-      p_dev_rec->new_encryption_key_is_p256 = true;
-      BTM_TRACE_DEBUG("%s set new_encr_key_256 to %d", __func__,
-                      p_dev_rec->new_encryption_key_is_p256);
     }
   }
 
