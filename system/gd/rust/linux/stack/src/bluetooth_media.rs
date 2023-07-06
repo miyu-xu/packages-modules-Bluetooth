@@ -28,6 +28,7 @@ use std::sync::Arc;
 use std::sync::Mutex;
 
 use tokio::sync::mpsc::Sender;
+use tokio::sync::OnceCell;
 use tokio::task::JoinHandle;
 use tokio::time::{sleep, Duration, Instant};
 
@@ -40,6 +41,7 @@ use crate::callbacks::Callbacks;
 use crate::uuid;
 use crate::uuid::Profile;
 use crate::{Message, RPCProxy};
+use featured::{Feature, PlatformFeatures};
 
 // The timeout we have to wait for all supported profiles to connect after we
 // receive the first profile connected event. The host shall disconnect the
@@ -60,6 +62,8 @@ const CONNECT_AS_INITIATOR_TIMEOUT_SEC: u64 = 5;
 /// The list of profiles we consider as audio profiles for media.
 const MEDIA_AUDIO_PROFILES: &[uuid::Profile] =
     &[uuid::Profile::A2dpSink, uuid::Profile::Hfp, uuid::Profile::AvrcpController];
+
+const WEBHID_FEATURE: &str = "CrOSLateBootBluetoothTelephony";
 
 pub trait IBluetoothMedia {
     ///
@@ -255,6 +259,14 @@ enum DeviceConnectionStates {
     Disconnecting,         // Working towards disconnection of each connected profile
 }
 
+// Protects Feature access with a mutex.
+struct FeatureWrapper {
+    feature: Mutex<featured::Feature>,
+}
+// FeatureWrapper is thread safe because its content is protected by a Mutex.
+unsafe impl Send for FeatureWrapper {}
+unsafe impl Sync for FeatureWrapper {}
+
 pub struct BluetoothMedia {
     intf: Arc<Mutex<BluetoothInterface>>,
     battery_provider_manager: Arc<Mutex<Box<BatteryProviderManager>>>,
@@ -287,6 +299,8 @@ pub struct BluetoothMedia {
     phone_ops_enabled: bool,
     memory_dialing_number: Option<String>,
     last_dialing_number: Option<String>,
+    feature: OnceCell<FeatureWrapper>,
+    platform_features: Arc<PlatformFeatures>,
 }
 
 impl BluetoothMedia {
@@ -299,7 +313,8 @@ impl BluetoothMedia {
             .lock()
             .unwrap()
             .register_battery_provider(Box::new(BatteryProviderCallback::new()));
-        BluetoothMedia {
+        let platform_features = PlatformFeatures::get().expect("Unable to create client");
+        let bluetooth_media = BluetoothMedia {
             intf,
             battery_provider_manager,
             battery_provider_id,
@@ -334,7 +349,14 @@ impl BluetoothMedia {
             phone_ops_enabled: false,
             memory_dialing_number: None,
             last_dialing_number: None,
+            feature: OnceCell::new(),
+            platform_features,
+        };
+        let feature = Feature::new(WEBHID_FEATURE, false).expect("Unable to create feature");
+        if bluetooth_media.feature.set(FeatureWrapper { feature: Mutex::new(feature) }).is_err() {
+            log::error!("Fail to set feature {}", WEBHID_FEATURE);
         }
+        bluetooth_media
     }
 
     fn is_profile_connected(&self, addr: &RawAddress, profile: &uuid::Profile) -> bool {
