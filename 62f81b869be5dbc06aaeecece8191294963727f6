@@ -16,6 +16,24 @@
       "message": "As we discussed in person, let\u0027s add a new error code as macro in smp_status.h and use the macro here, instead of a hardcoded value.",
       "revId": "62f81b869be5dbc06aaeecece8191294963727f6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9c265334_b70a9520",
+        "filename": "system/stack/smp/smp_utils.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 332,
+      "author": {
+        "id": 1938031
+      },
+      "writtenOn": "2023-07-06T23:10:06Z",
+      "side": 1,
+      "message": "Added the hard coded value",
+      "parentUuid": "25e99f31_c93d464d",
+      "revId": "62f81b869be5dbc06aaeecece8191294963727f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
