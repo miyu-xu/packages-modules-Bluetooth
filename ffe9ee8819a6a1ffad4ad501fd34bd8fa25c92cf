@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d48d689f_a1123f41",
+        "filename": "system/gd/rust/linux/client/src/main.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2023-07-06T21:03:33Z",
+      "side": 1,
+      "message": "nit: can you initialize with an empty vec to match style above?",
+      "revId": "ffe9ee8819a6a1ffad4ad501fd34bd8fa25c92cf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8d3395da_e646ddc9",
+        "filename": "system/gd/rust/linux/client/src/main.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 352,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2023-07-06T21:03:33Z",
+      "side": 1,
+      "message": "Is media the only command that has a callback we need to wait for? Can you add a little more context here for me?",
+      "revId": "ffe9ee8819a6a1ffad4ad501fd34bd8fa25c92cf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0348a5ab_7b34519c",
+        "filename": "system/gd/rust/linux/client/src/main.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 413,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2023-07-06T21:03:33Z",
+      "side": 1,
+      "message": "What if the callback is never received? Should we have a timeout?",
+      "revId": "ffe9ee8819a6a1ffad4ad501fd34bd8fa25c92cf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
