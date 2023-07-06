@@ -955,6 +955,7 @@ impl BluetoothMedia {
 
                 debug!("[{}]: Start SCO call due to ATA", DisplayAddress(&addr));
                 self.start_sco_call_impl(addr.to_string(), false, HfpCodecCapability::NONE);
+                self.uhid_send_hook_switch_status(&addr, true);
             }
             HfpCallbacks::HangupCall(addr) => {
                 if !self.hangup_call_impl() {
@@ -962,6 +963,7 @@ impl BluetoothMedia {
                     return;
                 }
                 self.phone_state_change("".into());
+                self.uhid_send_hook_switch_status(&addr, false);
 
                 // Try resume the A2DP stream (per MPS v1.0) on rejecting an incoming call or an
                 // outgoing call is rejected.
@@ -1116,6 +1118,25 @@ impl BluetoothMedia {
         } else {
             debug!("[{}]: WebHID destroy: not a UHID device", DisplayAddress(&addr));
         }
+    }
+
+    fn uhid_send_hook_switch_status(&mut self, addr: &RawAddress, status: bool) {
+        if !self.phone_ops_enabled {
+            return;
+        }
+        if let Some(uhid) = self.uhid.get_mut(addr) {
+            let data: [u8; 2] = [UHID_ID, status.into()];
+            debug!("[{}]: WebHID: Send 'Hook Switch': {}", DisplayAddress(&addr), status);
+            match uhid.write(&data) {
+                Err(e) => log::error!(
+                    "[{}]: WebHID: Fail to send 'Hook Switch={}' to uhid: {}",
+                    DisplayAddress(&addr),
+                    status,
+                    e
+                ),
+                Ok(_) => (),
+            };
+        };
     }
 
     fn notify_critical_profile_disconnected(&mut self, addr: RawAddress) {
