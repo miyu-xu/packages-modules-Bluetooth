@@ -16,6 +16,24 @@
       "message": "Because `SetActiveDevice` calls `BTA_AgSetActiveDevice`, which calls `bta_ag_api_set_active_device`. \nIn `bta_ag_api_set_active_device`, it ignores all zero address and triggers an error log, so I am not sure whether current fix is the one solving the issue.   \n\n\nIf current CL is the fix, maybe we should add an `if` in `BTA_AgSetActiveDevice`\n```\nif (active_device_addr.IsEmpty()){\n  do_in_main_thread(FROM_HERE, base::BindOnce(\u0026bta_clear_active_device));\n} else {\n...\n}\n```\nand in `bta_clear_active_device`, add a debug level log message",
       "revId": "fe0c7e63b1ce88c5bf46f1bf2c7dee26f07361d6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "168b07f6_a4f15074",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1985260
+      },
+      "writtenOn": "2023-07-06T08:38:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b1cd3158_840782db",
+      "revId": "fe0c7e63b1ce88c5bf46f1bf2c7dee26f07361d6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
