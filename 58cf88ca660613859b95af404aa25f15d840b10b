@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "453c8d52_7bff2233",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2023-07-06T03:07:58Z",
+      "side": 1,
+      "message": "This fix will also handle b/286761846#comment6.",
+      "revId": "58cf88ca660613859b95af404aa25f15d840b10b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5d52ed7c_be71fb48",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 239,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2023-07-06T03:07:58Z",
+      "side": 1,
+      "message": "minor) onA2dpConnectionStateChanged?",
+      "range": {
+        "startLine": 239,
+        "startChar": 16,
+        "endLine": 239,
+        "endChar": 42
+      },
+      "revId": "58cf88ca660613859b95af404aa25f15d840b10b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c5fd7e8c_8750a6d9",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2023-07-06T03:07:58Z",
+      "side": 1,
+      "message": "ditto",
+      "revId": "58cf88ca660613859b95af404aa25f15d840b10b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
