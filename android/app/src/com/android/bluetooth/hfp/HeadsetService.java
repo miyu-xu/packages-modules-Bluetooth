@@ -1989,6 +1989,9 @@ public class HeadsetService extends ProfileService {
                 setActiveDevice(null);
             }
         }
+        mAdapterService
+                .getActiveDeviceManager()
+                .hfpConnectionStateChanged(device, fromState, toState);
     }
 
     /**
@@ -2114,6 +2117,7 @@ public class HeadsetService extends ProfileService {
 
     private void broadcastActiveDevice(BluetoothDevice device) {
         logD("broadcastActiveDevice: " + device);
+        mAdapterService.getActiveDeviceManager().hfpActiveStateChanged(device);
         BluetoothStatsLog.write(BluetoothStatsLog.BLUETOOTH_ACTIVE_DEVICE_CHANGED,
                 BluetoothProfile.HEADSET, mAdapterService.obfuscateAddress(device),
                 mAdapterService.getMetricId(device));
