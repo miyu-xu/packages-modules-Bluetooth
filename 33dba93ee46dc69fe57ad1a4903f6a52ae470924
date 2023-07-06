@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "af52f6ed_c8b6c4ee",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-07-06T17:32:39Z",
+      "side": 1,
+      "message": "LGTM",
+      "revId": "33dba93ee46dc69fe57ad1a4903f6a52ae470924",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e294f1a0_0afc043d",
+        "filename": "android/app/src/com/android/bluetooth/a2dp/A2dpStateMachine.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 744,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-07-06T17:32:39Z",
+      "side": 1,
+      "message": "Should we move this into `mA2dpService.connectionStateChanged` ?\nSo the stateMachine doesn\u0027t need to know about adapterService and a2dp dependency ?",
+      "range": {
+        "startLine": 742,
+        "startChar": 8,
+        "endLine": 744,
+        "endChar": 74
+      },
+      "revId": "33dba93ee46dc69fe57ad1a4903f6a52ae470924",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "77e58b57_e8b59ec4",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 239,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-07-06T17:32:39Z",
+      "side": 1,
+      "message": "Ah, this is sad. I wish we didn\u0027t need to put that public but I don\u0027t see another way around",
+      "range": {
+        "startLine": 239,
+        "startChar": 4,
+        "endLine": 239,
+        "endChar": 10
+      },
+      "revId": "33dba93ee46dc69fe57ad1a4903f6a52ae470924",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b34b37be_957aa045",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 253,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-07-06T17:32:39Z",
+      "side": 1,
+      "message": "Good !",
+      "range": {
+        "startLine": 253,
+        "startChar": 0,
+        "endLine": 253,
+        "endChar": 67
+      },
+      "revId": "33dba93ee46dc69fe57ad1a4903f6a52ae470924",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
