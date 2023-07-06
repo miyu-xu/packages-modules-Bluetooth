@@ -333,6 +333,10 @@ public class HeadsetStateMachine extends StateMachine {
         void broadcastConnectionState(BluetoothDevice device, int fromState, int toState) {
             stateLogD("broadcastConnectionState " + device + ": " + fromState + "->" + toState);
             mHeadsetService.onConnectionStateChangedFromStateMachine(device, fromState, toState);
+
+            mAdapterService
+                    .getActiveDeviceManager()
+                    .hfpConnectionStateChanged(device, fromState, toState);
             Intent intent = new Intent(BluetoothHeadset.ACTION_CONNECTION_STATE_CHANGED);
             intent.putExtra(BluetoothProfile.EXTRA_PREVIOUS_STATE, fromState);
             intent.putExtra(BluetoothProfile.EXTRA_STATE, toState);
@@ -353,6 +357,9 @@ public class HeadsetStateMachine extends StateMachine {
                             : BluetoothHfpProtoEnums.SCO_CODEC_CVSD,
                     mAdapterService.getMetricId(device));
             mHeadsetService.onAudioStateChangedFromStateMachine(device, fromState, toState);
+            mAdapterService
+                    .getActiveDeviceManager()
+                    .hfpActiveStateChanged(device, fromState, toState);
             Intent intent = new Intent(BluetoothHeadset.ACTION_AUDIO_STATE_CHANGED);
             intent.putExtra(BluetoothProfile.EXTRA_PREVIOUS_STATE, fromState);
             intent.putExtra(BluetoothProfile.EXTRA_STATE, toState);
