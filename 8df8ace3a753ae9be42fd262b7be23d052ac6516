@@ -16,6 +16,24 @@
       "message": "Hi Eric, I guess based on previous offline discussion as well as the status updated in the bug, the issue is longer reproducible, maybe we can abandon the CL?",
       "revId": "8df8ace3a753ae9be42fd262b7be23d052ac6516",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ff6e57fd_4b9c42b9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1985260
+      },
+      "writtenOn": "2023-07-06T09:11:06Z",
+      "side": 1,
+      "message": "As we discussed offline, this is a protection in HFP because we only want 1 sco connection due to bt spec.",
+      "parentUuid": "c16457ad_c58e55d8",
+      "revId": "8df8ace3a753ae9be42fd262b7be23d052ac6516",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
