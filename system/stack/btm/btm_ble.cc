@@ -1554,6 +1554,7 @@ tBTM_STATUS btm_ble_start_encrypt(const RawAddress& bda, bool use_stk,
 void btm_ble_link_encrypted(const RawAddress& bd_addr, uint8_t encr_enable) {
   tBTM_SEC_DEV_REC* p_dev_rec = btm_find_dev(bd_addr);
   bool enc_cback;
+  uint8_t remote_lmp_version = 0;
 
   if (!p_dev_rec) {
     BTM_TRACE_WARNING(
@@ -1589,9 +1590,16 @@ void btm_ble_link_encrypted(const RawAddress& bd_addr, uint8_t encr_enable) {
   }
 
   if (encr_enable) {
-    /* Link is encrypted, start EATT */
-    bluetooth::eatt::EattExtension::GetInstance()->Connect(
-        p_dev_rec->ble.pseudo_addr);
+    if (!BTM_ReadRemoteVersion(p_dev_rec->ble.pseudo_addr, &remote_lmp_version,
+                               nullptr, nullptr)) {
+      LOG_WARN("BLE Unable to determine remote version, remote_lmp_version:%hu",
+               remote_lmp_version);
+    }
+    if (remote_lmp_version && remote_lmp_version >= HCI_PROTO_VERSION_5_2) {
+      /* Link is encrypted, start EATT if remote LMP version 5.2 or greater */
+      bluetooth::eatt::EattExtension::GetInstance()->Connect(
+          p_dev_rec->ble.pseudo_addr);
+    }
   }
 
   /* to notify GATT to send data if any request is pending */
