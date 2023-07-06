@@ -24,6 +24,7 @@ use itertools::Itertools;
 use log::{debug, info, warn};
 use std::collections::{HashMap, HashSet};
 use std::convert::{TryFrom, TryInto};
+use std::fs::File;
 use std::sync::Arc;
 use std::sync::Mutex;
 
@@ -31,6 +32,8 @@ use tokio::sync::mpsc::Sender;
 use tokio::sync::OnceCell;
 use tokio::task::JoinHandle;
 use tokio::time::{sleep, Duration, Instant};
+
+use uhid_virt::{Bus, CreateParams, UHIDDevice};
 
 use crate::battery_manager::{Battery, BatterySet};
 use crate::battery_provider_manager::{
@@ -41,7 +44,7 @@ use crate::callbacks::Callbacks;
 use crate::uuid;
 use crate::uuid::Profile;
 use crate::{Message, RPCProxy};
-use featured::{Feature, PlatformFeatures};
+use featured::{CheckFeature, Feature, PlatformFeatures};
 
 // The timeout we have to wait for all supported profiles to connect after we
 // receive the first profile connected event. The host shall disconnect the
@@ -64,6 +67,36 @@ const MEDIA_AUDIO_PROFILES: &[uuid::Profile] =
     &[uuid::Profile::A2dpSink, uuid::Profile::Hfp, uuid::Profile::AvrcpController];
 
 const WEBHID_FEATURE: &str = "CrOSLateBootBluetoothTelephony";
+
+const RDESC: [u8; 51] = [
+    0x05, 0x0B, // Usage Page (Telephony)
+    0xA1, 0x01, // Collection (Application)
+    0xA1, 0x02, //   Collection (Logical)
+    0x85, 0x01, //     Report ID (1)
+    0x05, 0x08, //     Usage Page (LEDs)
+    0x15, 0x00, //     Logical Minimum (0)
+    0x25, 0x01, //     Logical Maximum (1)
+    0x75, 0x01, //     Report Size (1)
+    0x95, 0x01, //     Report Count (1)
+    0x09, 0x18, //     Usage (Ring)
+    0x81, 0x02, //     Output
+    0x75, 0x01, //     Report Size (1)
+    0x95, 0x01, //     Report Count (1)
+    0x09, 0x17, //     Usage (Off-Hook)
+    0x91, 0x02, //     Output
+    0xC0, //   End Collection
+    0xA1, 0x02, //   Collection (Logical)
+    0x85, 0x01, //     Report ID (2)
+    0x05, 0x0B, //     Usage Page (Telephony)
+    0x15, 0x00, //     Logical Minimum (0)
+    0x25, 0x01, //     Logical Maximum (1)
+    0x75, 0x01, //     Report Size (1)
+    0x95, 0x01, //     Report Count (1)
+    0x09, 0x20, //     Usage (Hook Switch)
+    0x81, 0x22, //     Input
+    0xC0, //   End Collection
+    0xC0, // End Collection
+];
 
 pub trait IBluetoothMedia {
     ///
@@ -301,6 +334,7 @@ pub struct BluetoothMedia {
     last_dialing_number: Option<String>,
     feature: OnceCell<FeatureWrapper>,
     platform_features: Arc<PlatformFeatures>,
+    uhid: Option<UHIDDevice<File>>,
 }
 
 impl BluetoothMedia {
@@ -351,6 +385,7 @@ impl BluetoothMedia {
             last_dialing_number: None,
             feature: OnceCell::new(),
             platform_features,
+            uhid: None,
         };
         let feature = Feature::new(WEBHID_FEATURE, false).expect("Unable to create feature");
         if bluetooth_media.feature.set(FeatureWrapper { feature: Mutex::new(feature) }).is_err() {
@@ -704,9 +739,46 @@ impl BluetoothMedia {
                                 HfpCodecCapability::NONE,
                             );
                         }
+
+                        if let Some(feature_wrapper) = self.feature.get() {
+                            if self.platform_features.is_feature_enabled_blocking(
+                                &feature_wrapper.feature.lock().unwrap(),
+                            ) {
+                                let adapter_addr = match &self.adapter {
+                                    Some(adapter) => {
+                                        adapter.lock().unwrap().get_address().to_lowercase()
+                                    }
+                                    _ => "".to_string(),
+                                };
+                                let rd_data = RDESC.to_vec();
+                                let create_params = CreateParams {
+                                    name: self.adapter_get_remote_name(addr),
+                                    phys: adapter_addr,
+                                    uniq: DisplayAddress(&addr).to_string(),
+                                    bus: Bus::BLUETOOTH,
+                                    vendor: 0,
+                                    product: 0,
+                                    version: 0,
+                                    country: 0,
+                                    rd_data,
+                                };
+                                match UHIDDevice::create(create_params) {
+                                    Err(e) => log::error!("Fail to create uhid {}", e),
+                                    Ok(d) => self.uhid = Some(d),
+                                };
+                            };
+                        } else {
+                            debug!("{} feature is not initialized", WEBHID_FEATURE);
+                        };
                     }
                     BthfConnectionState::Disconnected => {
                         info!("[{}]: hfp disconnected.", DisplayAddress(&addr));
+                        if let Some(uhid) = &mut self.uhid {
+                            match uhid.destroy() {
+                                Err(e) => log::error!("Fail to destroy uhid {}", e),
+                                Ok(_) => self.uhid = None,
+                            };
+                        };
                         self.hfp_states.remove(&addr);
                         self.hfp_cap.remove(&addr);
                         self.hfp_audio_state.remove(&addr);
