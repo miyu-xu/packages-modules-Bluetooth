@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e770695d_c39f06da",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 675,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-07-06T17:37:14Z",
+      "side": 1,
+      "message": "This is a behavior change.\nI think this should be moved in a separate CL.",
+      "range": {
+        "startLine": 670,
+        "startChar": 12,
+        "endLine": 675,
+        "endChar": 13
+      },
+      "revId": "f2fce4186d3e4ee2ed5dc587a44ba6760431ecf4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e100083a_f6ef5a27",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 339,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-07-06T17:37:14Z",
+      "side": 1,
+      "message": "Same as for a2dp, I am wondering if this should be moved to the headsetService directly.\nWhat do you think?",
+      "range": {
+        "startLine": 337,
+        "startChar": 12,
+        "endLine": 339,
+        "endChar": 75
+      },
+      "revId": "f2fce4186d3e4ee2ed5dc587a44ba6760431ecf4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ad3edd55_fe6e4ce6",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/hfp/HeadsetStateMachineTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-07-06T17:37:14Z",
+      "side": 1,
+      "message": "nit:\n\n```suggestion\n        // Get an active device manager\n```\n\nBut the comment may be removed completly",
+      "range": {
+        "startLine": 115,
+        "startChar": 15,
+        "endLine": 115,
+        "endChar": 16
+      },
+      "revId": "f2fce4186d3e4ee2ed5dc587a44ba6760431ecf4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
