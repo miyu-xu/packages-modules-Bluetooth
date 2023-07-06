@@ -1063,6 +1063,26 @@ public class HeadsetServiceTest {
     }
 
     @Test
+    public void testGetFallbackCandidates_afterDeactivateActiveDevice_DoesNotHaveDeactivatedOne() {
+        BluetoothDevice deviceA = TestUtils.getTestDevice(mAdapter, 0);
+        BluetoothDevice deviceB = TestUtils.getTestDevice(mAdapter, 1);
+        when(mDatabaseManager.getCustomMeta(any(BluetoothDevice.class), any(Integer.class)))
+                .thenReturn(null);
+
+        // Two connected device
+        addConnectedDeviceHelper(deviceA);
+        addConnectedDeviceHelper(deviceB);
+        Assert.assertTrue(
+                mHeadsetService.getFallbackCandidates(mDatabaseManager).contains(deviceA));
+        Assert.assertTrue(
+                mHeadsetService.getFallbackCandidates(mDatabaseManager).contains(deviceB));
+
+        deactivateDeviceByRemote(deviceB);
+        Assert.assertFalse(
+                mHeadsetService.getFallbackCandidates(mDatabaseManager).contains(deviceB));
+    }
+
+    @Test
     public void testConnectDeviceNotAllowedInbandRingPolicy_InbandRingStatus() {
         when(mDatabaseManager.getProfileConnectionPolicy(any(BluetoothDevice.class),
                 eq(BluetoothProfile.HEADSET)))
@@ -1116,6 +1136,15 @@ public class HeadsetServiceTest {
         Assert.assertEquals(BluetoothProfile.STATE_CONNECTED,
                 mHeadsetService.getConnectionState(device));
         Assert.assertTrue(mHeadsetService.getConnectedDevices().contains(device));
+        mHeadsetService.setActiveDevice(mCurrentDevice);
+    }
+
+    private void deactivateDeviceByRemote(BluetoothDevice device) {
+        mHeadsetService.onAudioStateChangedFromStateMachine(
+                device,
+                BluetoothHeadset.STATE_AUDIO_CONNECTED,
+                BluetoothHeadset.STATE_AUDIO_DISCONNECTED,
+                true);
     }
 
     /*
@@ -1133,5 +1162,4 @@ public class HeadsetServiceTest {
                 .thenReturn(priority);
         Assert.assertEquals(expected, mHeadsetService.okToAcceptConnection(device, false));
     }
-
 }
