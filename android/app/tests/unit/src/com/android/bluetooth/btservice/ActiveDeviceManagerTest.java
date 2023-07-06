@@ -1206,7 +1206,7 @@ public class ActiveDeviceManagerTest {
         mDeviceConnectionStack.add(device);
         mMostRecentDevice = device;
 
-        mActiveDeviceManager.hfpActiveStateChanged(device);
+        mActiveDeviceManager.hfpActiveStateChanged(device, false);
     }
 
     /**
