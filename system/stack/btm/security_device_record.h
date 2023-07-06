@@ -447,11 +447,7 @@ struct tBTM_SEC_DEV_REC {
   bool is_device_type_has_ble() const {
     return device_type & BT_DEVICE_TYPE_BLE;
   }
-  bool new_encryption_key_is_p256; /* Set to true when the newly generated LK
-                                   ** is generated from P-256.
-                                   ** Link encrypted with such LK can be used
-                                   ** for SM over BR/EDR.
-                                   */
+
   tBTM_BOND_TYPE bond_type; /* peering bond type */
   bool is_bond_type_unknown() const { return bond_type == BOND_TYPE_UNKNOWN; }
   bool is_bond_type_persistent() const {
@@ -459,6 +455,11 @@ struct tBTM_SEC_DEV_REC {
   }
   bool is_bond_type_temporary() const {
     return bond_type == BOND_TYPE_TEMPORARY;
+  }
+
+  bool is_link_key_p256() const {
+    return (link_key_type == BTM_LKEY_TYPE_UNAUTH_COMB_P_256 ||
+            link_key_type == BTM_LKEY_TYPE_AUTH_COMB_P_256);
   }
 
   tBTM_SEC_BLE ble;
