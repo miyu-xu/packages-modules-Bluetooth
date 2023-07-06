@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "827168ad_82b69938",
+        "filename": "system/stack/include/smp_status.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2023-07-06T23:20:25Z",
+      "side": 1,
+      "message": "Can we use some adjective or verb form in align with other errors?\ne.g.,  `SMP_USER_CANCELLED`?",
+      "range": {
+        "startLine": 95,
+        "startChar": 21,
+        "endLine": 95,
+        "endChar": 42
+      },
+      "revId": "ddc8ca3c805c821b9a0aad29b93fd6994c64f1b3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
