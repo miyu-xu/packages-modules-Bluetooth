@@ -132,6 +132,7 @@ public class HeadsetStateMachine extends StateMachine {
     private final AudioDisconnecting mAudioDisconnecting = new AudioDisconnecting();
     private HeadsetStateBase mPrevState;
     private HeadsetStateBase mCurrentState;
+    private boolean mDisconnectedByRemote;
 
     // Run time dependencies
     private final HeadsetService mHeadsetService;
@@ -352,7 +353,8 @@ public class HeadsetStateMachine extends StateMachine {
                     mHasWbsEnabled ? BluetoothHfpProtoEnums.SCO_CODEC_MSBC
                             : BluetoothHfpProtoEnums.SCO_CODEC_CVSD,
                     mAdapterService.getMetricId(device));
-            mHeadsetService.onAudioStateChangedFromStateMachine(device, fromState, toState);
+            mHeadsetService.onAudioStateChangedFromStateMachine(
+                    device, fromState, toState, mDisconnectedByRemote);
             Intent intent = new Intent(BluetoothHeadset.ACTION_AUDIO_STATE_CHANGED);
             intent.putExtra(BluetoothProfile.EXTRA_PREVIOUS_STATE, fromState);
             intent.putExtra(BluetoothProfile.EXTRA_STATE, toState);
@@ -1430,10 +1432,12 @@ public class HeadsetStateMachine extends StateMachine {
             switch (state) {
                 case HeadsetHalConstants.AUDIO_STATE_DISCONNECTED:
                     stateLogI("processAudioEvent: audio disconnected by remote");
+                    mDisconnectedByRemote = true;
                     transitionTo(mConnected);
                     break;
                 case HeadsetHalConstants.AUDIO_STATE_DISCONNECTING:
                     stateLogI("processAudioEvent: audio being disconnected by remote");
+                    mDisconnectedByRemote = true;
                     transitionTo(mAudioDisconnecting);
                     break;
                 default:

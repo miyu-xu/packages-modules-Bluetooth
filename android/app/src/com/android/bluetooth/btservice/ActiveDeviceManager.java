@@ -261,8 +261,8 @@ public class ActiveDeviceManager {
      *
      * @param device The device currently activated. {@code null} if no A2DP device activated
      */
-    public void hfpActiveStateChanged(BluetoothDevice device) {
-        mHandler.post(() -> handleHfpActiveDeviceChanged(device));
+    public void hfpActiveStateChanged(BluetoothDevice device, boolean findFallbackDevice) {
+        mHandler.post(() -> handleHfpActiveDeviceChanged(device, findFallbackDevice));
     }
 
     private void handleAdapterStateChanged(int currentState) {
@@ -658,12 +658,13 @@ public class ActiveDeviceManager {
      *
      * @param device is the device that was connected to A2DP
      */
-    private void handleHfpActiveDeviceChanged(BluetoothDevice device) {
+    private void handleHfpActiveDeviceChanged(BluetoothDevice device, boolean findFallbackDevice) {
         synchronized (mLock) {
             if (DBG) {
                 Log.d(TAG, "handleHfpActiveDeviceChanged: " + device
                         + ", mHfpActiveDevice=" + mHfpActiveDevice);
             }
+
             if (!Objects.equals(mHfpActiveDevice, device)) {
                 if (device != null) {
                     setHearingAidActiveDevice(null, true);
@@ -710,6 +711,8 @@ public class ActiveDeviceManager {
                             mClassicDeviceToBeActivated,
                             A2DP_HFP_SYNC_CONNECTION_TIMEOUT_MS);
                 }
+            } else if (findFallbackDevice) {
+                setFallbackDeviceActiveLocked();
             }
         }
     }

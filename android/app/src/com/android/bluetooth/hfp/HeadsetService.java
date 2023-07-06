@@ -124,6 +124,8 @@ public class HeadsetService extends ProfileService {
 
     private int mMaxHeadsetConnections = 1;
     private BluetoothDevice mActiveDevice;
+    // TODO (b/290885204): Locate fallback device logic in ActiveDeviceManager
+    private BluetoothDevice mBlockedFallbackDevice;
     private AdapterService mAdapterService;
     private DatabaseManager mDatabaseManager;
     private HandlerThread mStateMachinesThread;
@@ -1994,6 +1996,7 @@ public class HeadsetService extends ProfileService {
             int toState) {
         if (fromState != BluetoothProfile.STATE_CONNECTED
                 && toState == BluetoothProfile.STATE_CONNECTED) {
+            mBlockedFallbackDevice = null;
             updateInbandRinging(device, true);
             MetricsLogger.logProfileConnectionEvent(BluetoothMetricsProto.ProfileId.HEADSET);
         }
@@ -2091,13 +2094,12 @@ public class HeadsetService extends ProfileService {
      */
     @VisibleForTesting
     @RequiresPermission(android.Manifest.permission.MODIFY_PHONE_STATE)
-    public void onAudioStateChangedFromStateMachine(BluetoothDevice device, int fromState,
-            int toState) {
+    public void onAudioStateChangedFromStateMachine(
+            BluetoothDevice device, int fromState, int toState, boolean findFallbackDevice) {
         synchronized (mStateMachines) {
             if (toState == BluetoothHeadset.STATE_AUDIO_DISCONNECTED) {
                 if (fromState != BluetoothHeadset.STATE_AUDIO_DISCONNECTED) {
-                    if (mActiveDevice != null && !mActiveDevice.equals(device)
-                            && shouldPersistAudio()) {
+                    if (!Objects.equals(mActiveDevice, device) && shouldPersistAudio()) {
                         int connectStatus = connectAudio(mActiveDevice);
                         if (connectStatus != BluetoothStatusCodes.SUCCESS) {
                             Log.w(TAG, "onAudioStateChangedFromStateMachine, failed to connect"
@@ -2105,6 +2107,9 @@ public class HeadsetService extends ProfileService {
                                     + ", after " + device + " is disconnected from SCO due to"
                                     + " status code " + connectStatus);
                         }
+                    } else if (Objects.equals(mActiveDevice, device) && findFallbackDevice) {
+                        mBlockedFallbackDevice = device;
+                        broadcastActiveDevice(null, true);
                     }
                 }
                 if (mVoiceRecognitionStarted) {
@@ -2131,8 +2136,13 @@ public class HeadsetService extends ProfileService {
     }
 
     private void broadcastActiveDevice(BluetoothDevice device) {
+        broadcastActiveDevice(device, false);
+        mBlockedFallbackDevice = null;
+    }
+
+    private void broadcastActiveDevice(BluetoothDevice device, boolean findFallbackDevice) {
         logD("broadcastActiveDevice: " + device);
-        mAdapterService.getActiveDeviceManager().hfpActiveStateChanged(device);
+        mAdapterService.getActiveDeviceManager().hfpActiveStateChanged(device, findFallbackDevice);
         BluetoothStatsLog.write(BluetoothStatsLog.BLUETOOTH_ACTIVE_DEVICE_CHANGED,
                 BluetoothProfile.HEADSET, mAdapterService.obfuscateAddress(device),
                 mAdapterService.getMetricId(device));
@@ -2272,11 +2282,12 @@ public class HeadsetService extends ProfileService {
             byte[] deviceType = dbManager.getCustomMeta(device,
                     BluetoothDevice.METADATA_DEVICE_TYPE);
             BluetoothClass deviceClass = device.getBluetoothClass();
-            if ((deviceClass != null
-                    && deviceClass.getMajorDeviceClass()
-                    == BluetoothClass.Device.WEARABLE_WRIST_WATCH)
+            if (device.equals(mBlockedFallbackDevice)
+                    || (deviceClass != null
+                            && deviceClass.getMajorDeviceClass()
+                                    == BluetoothClass.Device.WEARABLE_WRIST_WATCH)
                     || (deviceType != null
-                    && BluetoothDevice.DEVICE_TYPE_WATCH.equals(new String(deviceType)))) {
+                            && BluetoothDevice.DEVICE_TYPE_WATCH.equals(new String(deviceType)))) {
                 uninterestedCandidates.add(device);
             }
         }
