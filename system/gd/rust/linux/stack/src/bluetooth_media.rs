@@ -25,12 +25,15 @@ use itertools::Itertools;
 use log::{debug, info, warn};
 use std::collections::{HashMap, HashSet};
 use std::convert::{TryFrom, TryInto};
+use std::fs::File;
 use std::sync::Arc;
 use std::sync::Mutex;
 
 use tokio::sync::mpsc::Sender;
 use tokio::task::JoinHandle;
 use tokio::time::{sleep, Duration, Instant};
+
+use uhid_virt::{Bus, CreateParams, UHIDDevice};
 
 use crate::battery_manager::{Battery, BatterySet};
 use crate::battery_provider_manager::{
@@ -61,6 +64,37 @@ const CONNECT_AS_INITIATOR_TIMEOUT_SEC: u64 = 5;
 /// The list of profiles we consider as audio profiles for media.
 const MEDIA_AUDIO_PROFILES: &[uuid::Profile] =
     &[uuid::Profile::A2dpSink, uuid::Profile::Hfp, uuid::Profile::AvrcpController];
+
+const UHID_ID: u8 = 1;
+
+const RDESC: [u8; 51] = [
+    0x05, 0x0B, // Usage Page (Telephony)
+    0x09, 0x05, // Usage (Headset)
+    0xA1, 0x01, // Collection (Application)
+    0x85, UHID_ID, //   Report ID (1)
+    0x05, 0x0B, //   Usage Page (Telephony)
+    0x15, 0x00, //   Logical Minimum (0)
+    0x25, 0x01, //   Logical Maximum (1)
+    0x09, 0x20, //   Usage (Hook Switch)
+    0x75, 0x01, //   Report Size (1)
+    0x95, 0x01, //   Report Count (1)
+    0x81, 0x23, //   Input
+    0x75, 0x01, //   Report Size (1)
+    0x95, 0x07, //   Report Count (7)
+    0x81, 0x01, //   Input
+    0x05, 0x08, //   Usage Page (LEDs)
+    0x15, 0x00, //   Logical Minimum (0)
+    0x25, 0x01, //   Logical Maximum (1)
+    0x09, 0x18, //   Usage (Ring)
+    0x09, 0x17, //   Usage (Off-Hook)
+    0x75, 0x01, //   Report Size (1)
+    0x95, 0x02, //   Report Count (2)
+    0x91, 0x22, //   Output
+    0x75, 0x01, //   Report Size (1)
+    0x95, 0x06, //   Report Count (6)
+    0x91, 0x01, //   Output
+    0xC0, // End Collection
+];
 
 pub trait IBluetoothMedia {
     ///
@@ -290,6 +324,7 @@ pub struct BluetoothMedia {
     phone_ops_enabled: bool,
     memory_dialing_number: Option<String>,
     last_dialing_number: Option<String>,
+    uhid: HashMap<RawAddress, UHIDDevice<File>>,
 }
 
 impl BluetoothMedia {
@@ -337,6 +372,7 @@ impl BluetoothMedia {
             phone_ops_enabled: false,
             memory_dialing_number: None,
             last_dialing_number: None,
+            uhid: HashMap::new(),
         }
     }
 
@@ -685,9 +721,12 @@ impl BluetoothMedia {
                                 HfpCodecCapability::NONE,
                             );
                         }
+
+                        self.uhid_create(addr);
                     }
                     BthfConnectionState::Disconnected => {
                         info!("[{}]: hfp disconnected.", DisplayAddress(&addr));
+                        self.uhid_destroy(&addr);
                         self.hfp_states.remove(&addr);
                         self.hfp_cap.remove(&addr);
                         self.hfp_audio_state.remove(&addr);
@@ -1020,6 +1059,63 @@ impl BluetoothMedia {
 
     pub fn remove_callback(&mut self, id: u32) -> bool {
         self.callbacks.lock().unwrap().remove_callback(id)
+    }
+
+    fn uhid_create(&mut self, addr: RawAddress) {
+        debug!(
+            "[{}]: WebHID create: PhoneOpsEnabled {}",
+            DisplayAddress(&addr),
+            self.phone_ops_enabled,
+        );
+        if !self.phone_ops_enabled {
+            return;
+        }
+        if self.uhid.contains_key(&addr) {
+            warn!("[{}]: WebHID create: UHID entry already created", DisplayAddress(&addr));
+            return;
+        }
+        let adapter_addr = match &self.adapter {
+            Some(adapter) => adapter.lock().unwrap().get_address().to_lowercase(),
+            _ => "".to_string(),
+        };
+        let rd_data = RDESC.to_vec();
+        let create_params = CreateParams {
+            name: self.adapter_get_remote_name(addr),
+            phys: adapter_addr,
+            uniq: addr.to_string(),
+            bus: Bus::BLUETOOTH,
+            vendor: 0,
+            product: 0,
+            version: 0,
+            country: 0,
+            rd_data,
+        };
+        match UHIDDevice::create(create_params) {
+            Err(e) => {
+                log::error!("[{}]: WebHID create: Fail to create uhid {}", DisplayAddress(&addr), e)
+            }
+            Ok(d) => {
+                self.uhid.insert(addr, d);
+                ()
+            }
+        };
+    }
+
+    fn uhid_destroy(&mut self, addr: &RawAddress) {
+        if let Some(uhid) = self.uhid.get_mut(addr) {
+            debug!("[{}]: WebHID destroy", DisplayAddress(&addr));
+            match uhid.destroy() {
+                Err(e) => log::error!(
+                    "[{}]: WebHID destroy: Fail to destroy uhid {}",
+                    DisplayAddress(&addr),
+                    e
+                ),
+                Ok(_) => (),
+            };
+            self.uhid.remove(addr);
+        } else {
+            debug!("[{}]: WebHID destroy: not a UHID device", DisplayAddress(&addr));
+        }
     }
 
     fn notify_critical_profile_disconnected(&mut self, addr: RawAddress) {
