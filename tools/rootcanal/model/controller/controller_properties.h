@@ -117,7 +117,7 @@ struct ControllerProperties {
   uint16_t total_num_sco_data_packets{10};
 
   // LE Buffer Size (Vol 4, Part E § 7.8.2).
-  uint16_t le_acl_data_packet_length{27};
+  uint16_t le_acl_data_packet_length{251};
   uint16_t iso_data_packet_length{1021};
   uint8_t total_num_le_acl_data_packets{20};
   uint8_t total_num_iso_data_packets{12};
