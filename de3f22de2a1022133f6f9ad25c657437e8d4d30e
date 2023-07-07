@@ -99,6 +99,30 @@
       },
       "revId": "de3f22de2a1022133f6f9ad25c657437e8d4d30e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cf73777f_74342653",
+        "filename": "android/app/src/com/android/bluetooth/gatt/ScanManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 835,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2023-07-07T09:58:16Z",
+      "side": 1,
+      "message": "I investigated the setting of `client.stats` during scanning to see what actually happens. Not sure if this is the problem but sharing my observations:\n\n`ScanClient` is initialized and its `stats` is set in [GattService.startScan()](https://source.corp.google.com/h/googleplex-android/platform/superproject/main/+/refs/heads/main:packages/modules/Bluetooth/android/app/src/com/android/bluetooth/gatt/GattService.java;l\u003d3231;drc\u003d03eff19f4c7dcffd6a77c60e4ac126035499d1a9?q\u003dgattService\u0026sq\u003drepo:%22googleplex-android%2Fplatform%2Fsuperproject%2Fmain%22%20branch:%22main%22), and it is set when `GattService.mScannerMap.getAppScanStatsById()` returns non null (it is null else wise). \n\n`GattService.mScannerMap` is a contextMap of registered scanners during the scan process, and `mScannerMap.getAppScanStatsById()` searches in the map based on id. However, in the scanning process, it seems that scanners get registered into that map using [`mScannerMap.add(uuid, ...)`](https://source.corp.google.com/h/googleplex-android/platform/superproject/main/+/main:packages/modules/Bluetooth/android/app/src/com/android/bluetooth/gatt/GattService.java;l\u003d3162;bpv\u003d1;bpt\u003d0), which uses uuid instead of id, and then scanners should be retrieved with `mScannerMap.getByUuid()`. This happens within the function [GattService.registerScanner](https://source.corp.google.com/h/googleplex-android/platform/superproject/main/+/main:packages/modules/Bluetooth/android/app/src/com/android/bluetooth/gatt/GattService.java;l\u003d3162;bpv\u003d1;bpt\u003d0), which is called in the process after calling `BluetoothLeScanner.startScan()`.\n\nSo I\u0027m suspecting this mismatch of adding scanners with uuid and retrieving with id maybe the reason for `client.stats` not being assigned and ending up as null. I\u0027ll try to look through the actual logs to see if this is actually the case and update.",
+      "parentUuid": "449d0e48_0f2cc7e7",
+      "range": {
+        "startLine": 835,
+        "startChar": 54,
+        "endLine": 835,
+        "endChar": 69
+      },
+      "revId": "de3f22de2a1022133f6f9ad25c657437e8d4d30e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
