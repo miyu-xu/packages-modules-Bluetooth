@@ -1013,6 +1013,12 @@ void smp_proc_pairing_cmpl(tSMP_CB* p_cb) {
 
   smp_reset_control_value(p_cb);
 
+  if (p_cb->status != SMP_SUCCESS && p_cb->smp_over_br &&
+      !(p_cb->flags & SMP_PAIR_FLAGS_WE_STARTED_DD)) {
+    LOG_INFO("Remote initiated CTKD over BR/EDR failed; ignore");
+    return;
+  }
+
   if (p_callback) (*p_callback)(SMP_COMPLT_EVT, pairing_bda, &evt_data);
 }
 
