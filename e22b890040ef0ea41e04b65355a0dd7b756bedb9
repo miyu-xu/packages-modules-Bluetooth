@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f913cd25_b76089e0",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-07-07T16:00:34Z",
+      "side": 1,
+      "message": "Is it once by device ? once by connection ?\n\nHas it been tested ? because there is no test case in BluetoothInstrumentationTests for this",
+      "range": {
+        "startLine": 7,
+        "startChar": 31,
+        "endLine": 7,
+        "endChar": 35
+      },
+      "revId": "e22b890040ef0ea41e04b65355a0dd7b756bedb9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
