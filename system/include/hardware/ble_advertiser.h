@@ -26,6 +26,9 @@
 #include "bt_common_types.h"
 #include "bt_gatt_types.h"
 
+constexpr uint8_t kAdvertiserClientIdJni = 0xff;
+constexpr uint8_t kAdvertiserClientIdLeAudio = 0x0;
+
 struct AdvertiseParameters {
   uint16_t advertising_event_properties;
   uint32_t min_interval;
@@ -121,7 +124,7 @@ class BleAdvertiserInterface {
    * |reg_id| is the callback id assigned from upper layer
    */
   virtual void StartAdvertisingSet(
-      int reg_id, IdTxPowerStatusCallback register_cb,
+      uint8_t client_id, int reg_id, IdTxPowerStatusCallback register_cb,
       AdvertiseParameters params, std::vector<uint8_t> advertise_data,
       std::vector<uint8_t> scan_response_data,
       PeriodicAdvertisingParameters periodic_params,
@@ -140,6 +143,8 @@ class BleAdvertiserInterface {
                                             bool include_adi,
                                             StatusCallback cb) = 0;
   virtual void RegisterCallbacks(AdvertisingCallbacks* callbacks) = 0;
+  virtual void RegisterCallbacksNative(AdvertisingCallbacks* callbacks,
+                                       uint8_t client_id) = 0;
 };
 
 #endif /* ANDROID_INCLUDE_BLE_ADVERTISER_H */
