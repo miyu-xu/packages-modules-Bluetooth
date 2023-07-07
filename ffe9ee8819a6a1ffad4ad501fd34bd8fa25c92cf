@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2ca7a829_5d081847",
+        "filename": "system/gd/rust/linux/client/src/main.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2023-07-07T13:06:18Z",
+      "side": 1,
+      "message": "The `client_commands_with_callbacks` field is initialized with the value of the `client_commands_with_callbacks` parameter. Using Rust field init shorthand is used here to avoid repetition looks good here.",
+      "parentUuid": "d48d689f_a1123f41",
+      "revId": "ffe9ee8819a6a1ffad4ad501fd34bd8fa25c92cf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8d3395da_e646ddc9",
         "filename": "system/gd/rust/linux/client/src/main.rs",
         "patchSetId": 1
