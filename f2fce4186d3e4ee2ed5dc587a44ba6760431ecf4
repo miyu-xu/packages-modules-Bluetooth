@@ -95,6 +95,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "949ed008_e7749c9c",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 339,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-07-07T05:16:59Z",
+      "side": 1,
+      "message": "Done. (I found my mistake on notifying the active device change.)",
+      "parentUuid": "f72dd7d0_78d00bd9",
+      "range": {
+        "startLine": 337,
+        "startChar": 12,
+        "endLine": 339,
+        "endChar": 75
+      },
+      "revId": "f2fce4186d3e4ee2ed5dc587a44ba6760431ecf4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ad3edd55_fe6e4ce6",
