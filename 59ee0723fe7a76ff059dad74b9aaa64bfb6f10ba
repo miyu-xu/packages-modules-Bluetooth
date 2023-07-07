@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "65113e13_6cb408aa",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-07-07T17:13:24Z",
+      "side": 1,
+      "message": "Why this bug ? Is doesn\u0027t look related",
+      "range": {
+        "startLine": 10,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 14
+      },
+      "revId": "59ee0723fe7a76ff059dad74b9aaa64bfb6f10ba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "cd09e016_30eecc5a",
         "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
         "patchSetId": 4
