@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "489ddac4_e92586ec",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1064003
+      },
+      "writtenOn": "2023-07-07T20:45:15Z",
+      "side": 1,
+      "message": "A better fix is actually aosp/2652379, I\u0027ll add you to that review David, thanks (and sorry for the churn, but that might fix the other related issue w/ the R8 update).",
+      "revId": "435c5cab515c754cb9e151c2a99eb943c67ea6a9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
