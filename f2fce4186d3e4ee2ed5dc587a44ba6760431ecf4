@@ -49,6 +49,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f72dd7d0_78d00bd9",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 339,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-07-07T01:37:04Z",
+      "side": 1,
+      "message": "I think both connection and audio state changes should be handled in the same way.\n\nDo you want me to move 1) both of them to the HeadsetService, 2) only this, or 3) not to move both?",
+      "parentUuid": "e100083a_f6ef5a27",
+      "range": {
+        "startLine": 337,
+        "startChar": 12,
+        "endLine": 339,
+        "endChar": 75
+      },
+      "revId": "f2fce4186d3e4ee2ed5dc587a44ba6760431ecf4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ad3edd55_fe6e4ce6",
         "filename": "android/app/tests/unit/src/com/android/bluetooth/hfp/HeadsetStateMachineTest.java",
         "patchSetId": 1
