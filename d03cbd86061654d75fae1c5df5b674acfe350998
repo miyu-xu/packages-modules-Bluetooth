@@ -16,6 +16,24 @@
       "message": "+@khim, can you confirm this doesn\u0027t break render script for native bridge?",
       "revId": "d03cbd86061654d75fae1c5df5b674acfe350998",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "936faea1_63d8e77b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1069991
+      },
+      "writtenOn": "2023-07-07T19:56:12Z",
+      "side": 1,
+      "message": "This shouldn\u0027t affect RenderScript, these libraries were enabled indirectly when I attempted to build libRS.so for native_bridge.\n\nThe timing is unfortunate, though, since tests are not all enabled on main, but if libRS.so can still be built after that change in the configuration where it\u0027s enabled then this change should be safe.",
+      "parentUuid": "2d5e28ed_6f3d34a8",
+      "revId": "d03cbd86061654d75fae1c5df5b674acfe350998",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
