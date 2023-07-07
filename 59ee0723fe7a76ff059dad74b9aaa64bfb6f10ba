@@ -1,5 +1,29 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cd09e016_30eecc5a",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 239,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-07-07T16:53:00Z",
+      "side": 1,
+      "message": "`fropmState`\nLooks like a typo.\nCan you fix it in follow-up ? (you can put it in the HFP one if you want)",
+      "range": {
+        "startLine": 239,
+        "startChar": 71,
+        "endLine": 239,
+        "endChar": 81
+      },
+      "revId": "59ee0723fe7a76ff059dad74b9aaa64bfb6f10ba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
