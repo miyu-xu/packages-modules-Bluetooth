@@ -1,5 +1,23 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2d5e28ed_6f3d34a8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1069898
+      },
+      "writtenOn": "2023-07-07T19:39:52Z",
+      "side": 1,
+      "message": "+@khim, can you confirm this doesn\u0027t break render script for native bridge?",
+      "revId": "d03cbd86061654d75fae1c5df5b674acfe350998",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
