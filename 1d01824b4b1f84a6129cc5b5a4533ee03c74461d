@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f1f8d830_0541236a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1064003
+      },
+      "writtenOn": "2023-07-07T20:45:57Z",
+      "side": 1,
+      "message": "We may end up making this a global keep to avoid future issues, but for now this resolves what I was seeing w/ R8 full mode.",
+      "revId": "1d01824b4b1f84a6129cc5b5a4533ee03c74461d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
