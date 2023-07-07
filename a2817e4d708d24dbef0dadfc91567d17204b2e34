@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6f459a9f_f442b90d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-07-07T16:55:11Z",
+      "side": 1,
+      "message": "It looks like the presubmit failure are due to this CL:\n```\njava.lang.NullPointerException: Attempt to invoke virtual method \u0027void com.android.bluetooth.btservice.ActiveDeviceManager.hfpConnectionStateChanged(android.bluetooth.BluetoothDevice, int, int)\u0027 on a null object reference\n\tat com.android.bluetooth.hfp.HeadsetService.onConnectionStateChangedFromStateMachine(HeadsetService.java:2009)\n\tat com.android.bluetooth.hfp.HeadsetServiceTest.testConnectAudio_connectTwoAudioChannelsShouldFail(HeadsetServiceTest.java:563)\n```",
+      "revId": "a2817e4d708d24dbef0dadfc91567d17204b2e34",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
