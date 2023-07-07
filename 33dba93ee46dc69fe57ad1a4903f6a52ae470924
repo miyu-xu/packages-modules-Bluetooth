@@ -43,6 +43,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "9eb68490_bc91c8f5",
+        "filename": "android/app/src/com/android/bluetooth/a2dp/A2dpStateMachine.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 744,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-07-07T00:58:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e294f1a0_0afc043d",
+      "range": {
+        "startLine": 742,
+        "startChar": 8,
+        "endLine": 744,
+        "endChar": 74
+      },
+      "revId": "33dba93ee46dc69fe57ad1a4903f6a52ae470924",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "77e58b57_e8b59ec4",
         "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
         "patchSetId": 3
