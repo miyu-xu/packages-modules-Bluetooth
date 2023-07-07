@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b17b0d5a_03737087",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 675,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-07-07T01:55:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e770695d_c39f06da",
+      "range": {
+        "startLine": 670,
+        "startChar": 12,
+        "endLine": 675,
+        "endChar": 13
+      },
+      "revId": "f2fce4186d3e4ee2ed5dc587a44ba6760431ecf4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e100083a_f6ef5a27",
@@ -84,6 +108,30 @@
       "writtenOn": "2023-07-06T17:37:14Z",
       "side": 1,
       "message": "nit:\n\n```suggestion\n        // Get an active device manager\n```\n\nBut the comment may be removed completly",
+      "range": {
+        "startLine": 115,
+        "startChar": 15,
+        "endLine": 115,
+        "endChar": 16
+      },
+      "revId": "f2fce4186d3e4ee2ed5dc587a44ba6760431ecf4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1f6d21f1_c953f808",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/hfp/HeadsetStateMachineTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-07-07T01:55:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ad3edd55_fe6e4ce6",
       "range": {
         "startLine": 115,
         "startChar": 15,
