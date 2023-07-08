@@ -343,6 +343,9 @@ val Connection.address: String
 val Connection.transport: Int
     get() = InternalConnectionRef.parseFrom(this.cookie.value).transport
 
+fun Any.toBluetoothDevice(adapter: BluetoothAdapter): BluetoothDevice =
+    adapter.getRemoteDevice(InternalConnectionRef.parseFrom(this.value).address.decodeAsMacAddressToString())
+
 fun BluetoothDevice.toByteString() =
     ByteString.copyFrom(MacAddress.fromString(this.address).toByteArray())!!
 
