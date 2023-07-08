@@ -93,14 +93,14 @@ class A2dpSink(val context: Context) : A2DPImplBase(), Closeable {
                 }
             }
 
-            val sink = Sink.newBuilder().setConnection(request.connection).build()
+            val sink = Sink.newBuilder().setCookie(request.connection.cookie.value).build()
             WaitSinkResponse.newBuilder().setSink(sink).build()
         }
     }
 
     override fun close(request: CloseRequest, responseObserver: StreamObserver<CloseResponse>) {
         grpcUnary<CloseResponse>(scope, responseObserver) {
-            val device = request.sink.connection.toBluetoothDevice(bluetoothAdapter)
+            val device = request.sink.cookie.toBluetoothDevice(bluetoothAdapter)
             Log.i(TAG, "close: device=$device")
             if (bluetoothA2dpSink.getConnectionState(device) != BluetoothProfile.STATE_CONNECTED) {
                 throw RuntimeException("Device is not connected, cannot close")
