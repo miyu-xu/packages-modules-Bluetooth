@@ -1344,6 +1344,7 @@ impl IBluetoothMediaCallback for MediaCallback {
         &mut self,
         active: bool,
         wbs: bool,
+        swb: bool,
         total_num_decoded_frames: i32,
         pkt_loss_ratio: f64,
         begin_ts: u64,
@@ -1351,7 +1352,7 @@ impl IBluetoothMediaCallback for MediaCallback {
         pkt_status_in_hex: String,
         pkt_status_in_binary: String,
     ) {
-        let wbs_dump = if active && wbs {
+        let dump = if active && (wbs || swb) {
             let mut to_split_binary = pkt_status_in_binary.clone();
             let mut wrapped_binary = String::new();
             while to_split_binary.len() > BINARY_PACKET_STATUS_WRAP {
@@ -1363,7 +1364,7 @@ impl IBluetoothMediaCallback for MediaCallback {
             wrapped_binary.push_str(&to_split_binary);
 
             format!(
-                "\n--------WBS packet loss--------\n\
+                "\n--------{} packet loss--------\n\
                    Decoded Packets: {}, Packet Loss Ratio: {} \n\
                    {} [begin]\n\
                    {} [end]\n\
@@ -1371,6 +1372,7 @@ impl IBluetoothMediaCallback for MediaCallback {
                    {}\n\
                    In binary format:\n\
                    {}",
+                if wbs { "WBS" } else { "SWB" },
                 total_num_decoded_frames,
                 pkt_loss_ratio,
                 timestamp_to_string(begin_ts),
@@ -1388,8 +1390,14 @@ impl IBluetoothMediaCallback for MediaCallback {
              {}
              ",
             if active { "active" } else { "inactive" },
-            if wbs { "mSBC" } else { "CVSD" },
-            wbs_dump
+            if wbs {
+                "mSBC"
+            } else if swb {
+                "LC3"
+            } else {
+                "CVSD"
+            },
+            dump
         );
     }
 }
