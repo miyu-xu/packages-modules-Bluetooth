@@ -82,6 +82,7 @@ impl IBluetoothMediaCallback for BluetoothMediaCallbackDBus {
         &mut self,
         active: bool,
         wbs: bool,
+        swb: bool,
         total_num_decoded_frames: i32,
         pkt_loss_ratio: f64,
         begin_ts: u64,

@@ -172,6 +172,7 @@ pub trait IBluetoothMediaCallback: RPCProxy {
         &mut self,
         active: bool,
         wbs: bool,
+        swb: bool,
         total_num_decoded_frames: i32,
         pkt_loss_ratio: f64,
         begin_ts: u64,
@@ -949,6 +950,7 @@ impl BluetoothMedia {
             HfpCallbacks::DebugDump(
                 active,
                 wbs,
+                swb,
                 total_num_decoded_frames,
                 pkt_loss_ratio,
                 begin_ts,
@@ -956,8 +958,8 @@ impl BluetoothMedia {
                 pkt_status_in_hex,
                 pkt_status_in_binary,
             ) => {
-                debug!("[HFP] DebugDump: active:{} wbs:{}", active, wbs);
-                if wbs {
+                debug!("[HFP] DebugDump: active:{} wbs:{} swb:{}", active, wbs, swb);
+                if wbs || swb {
                     debug!(
                         "total_num_decoded_frames:{} pkt_loss_ratio:{}",
                         total_num_decoded_frames, pkt_loss_ratio
@@ -972,6 +974,7 @@ impl BluetoothMedia {
                     callback.on_hfp_debug_dump(
                         active,
                         wbs,
+                        swb,
                         total_num_decoded_frames,
                         pkt_loss_ratio,
                         begin_ts,

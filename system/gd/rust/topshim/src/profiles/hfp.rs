@@ -177,6 +177,7 @@ pub mod ffi {
         fn hfp_debug_dump_callback(
             active: bool,
             wbs: bool,
+            swb: bool,
             total_num_decoded_frames: i32,
             pkt_loss_ratio: f64,
             begin_ts: u64,
@@ -219,7 +220,7 @@ pub enum HfpCallbacks {
     HangupCall(RawAddress),
     DialCall(String, RawAddress),
     CallHold(CallHoldCommand, RawAddress),
-    DebugDump(bool, bool, i32, f64, u64, u64, String, String),
+    DebugDump(bool, bool, bool, i32, f64, u64, u64, String, String),
 }
 
 pub struct HfpCallbacksDispatcher {
@@ -291,7 +292,7 @@ cb_variant!(
 cb_variant!(
     HfpCb,
     hfp_debug_dump_callback -> HfpCallbacks::DebugDump,
-    bool, bool, i32, f64, u64, u64, String, String);
+    bool, bool, bool, i32, f64, u64, u64, String, String);
 
 pub struct Hfp {
     internal: cxx::UniquePtr<ffi::HfpIntf>,
