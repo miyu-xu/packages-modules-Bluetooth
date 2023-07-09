@@ -109,6 +109,7 @@ static headset::bthf_call_state_t from_rust_call_state(rusty::CallState state) {
 static void debug_dump_cb(
     bool active,
     bool wbs,
+    bool swb,
     int total_num_decoded_frames,
     double packet_loss_ratio,
     uint64_t begin_ts,
@@ -118,6 +119,7 @@ static void debug_dump_cb(
   rusty::hfp_debug_dump_callback(
       active,
       wbs,
+      swb,
       total_num_decoded_frames,
       packet_loss_ratio,
       begin_ts,
@@ -250,6 +252,7 @@ class DBusHeadsetCallbacks : public headset::Callbacks {
   void DebugDumpCallback(
       bool active,
       bool wbs,
+      bool swb,
       int total_num_decoded_frames,
       double packet_loss_ratio,
       uint64_t begin_ts,
@@ -269,6 +272,7 @@ class DBusHeadsetCallbacks : public headset::Callbacks {
     topshim::rust::internal::debug_dump_cb(
         active,
         wbs,
+        swb,
         total_num_decoded_frames,
         packet_loss_ratio,
         begin_ts,
