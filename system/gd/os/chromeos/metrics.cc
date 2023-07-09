@@ -85,7 +85,7 @@ void LogMetricA2dpAudioOverrunEvent(
       .Record();
 }
 
-void LogMetricHfpPacketLossStats(
+void LogMetricHfpWbsPacketLossStats(
     const Address& address, int num_decoded_frames, double packet_loss_ratio) {
   std::string boot_id;
   std::string addr_string;
@@ -95,13 +95,37 @@ void LogMetricHfpPacketLossStats(
   addr_string = address.ToString();
 
   LOG_DEBUG(
-      "HfpPacketLoss: %s, %s, %d, %f",
+      "HfpWbsPacketLoss: %s, %s, %d, %f",
       boot_id.c_str(),
       addr_string.c_str(),
       num_decoded_frames,
       packet_loss_ratio);
 
-  ::metrics::structured::events::bluetooth::BluetoothHfpPacketLoss()
+  ::metrics::structured::events::bluetooth::BluetoothHfpWbsPacketLoss()
+      .SetBootId(boot_id)
+      .SetDeviceId(addr_string)
+      .SetDecodedFrames(num_decoded_frames)
+      .SetPacketLossRatio(packet_loss_ratio)
+      .Record();
+}
+
+void LogMetricHfpSwbPacketLossStats(
+    const Address& address, int num_decoded_frames, double packet_loss_ratio) {
+  std::string boot_id;
+  std::string addr_string;
+
+  if (!metrics::GetBootId(&boot_id)) return;
+
+  addr_string = address.ToString();
+
+  LOG_DEBUG(
+      "HfpSwbPacketLoss: %s, %s, %d, %f",
+      boot_id.c_str(),
+      addr_string.c_str(),
+      num_decoded_frames,
+      packet_loss_ratio);
+
+  ::metrics::structured::events::bluetooth::BluetoothHfpSwbPacketLoss()
       .SetBootId(boot_id)
       .SetDeviceId(addr_string)
       .SetDecodedFrames(num_decoded_frames)

@@ -55,7 +55,8 @@ struct LogMetricLinkLayerConnectionEvent LogMetricLinkLayerConnectionEvent;
 struct LogMetricA2dpAudioUnderrunEvent LogMetricA2dpAudioUnderrunEvent;
 struct LogMetricA2dpAudioOverrunEvent LogMetricA2dpAudioOverrunEvent;
 struct LogMetricA2dpPlaybackEvent LogMetricA2dpPlaybackEvent;
-struct LogMetricHfpPacketLossStats LogMetricHfpPacketLossStats;
+struct LogMetricHfpWbsPacketLossStats LogMetricHfpWbsPacketLossStats;
+struct LogMetricHfpSwbPacketLossStats LogMetricHfpSwbPacketLossStats;
 struct LogMetricReadRssiResult LogMetricReadRssiResult;
 struct LogMetricReadFailedContactCounterResult
     LogMetricReadFailedContactCounterResult;
@@ -104,11 +105,18 @@ void bluetooth::shim::LogMetricA2dpPlaybackEvent(const RawAddress& raw_address,
   test::mock::main_shim_metrics_api::LogMetricA2dpPlaybackEvent(
       raw_address, playback_state, audio_coding_mode);
 }
-void bluetooth::shim::LogMetricHfpPacketLossStats(const RawAddress& raw_address,
-                                                  int num_decoded_frames,
-                                                  double packet_loss_ratio) {
+void bluetooth::shim::LogMetricHfpWbsPacketLossStats(
+    const RawAddress& raw_address, int num_decoded_frames,
+    double packet_loss_ratio) {
   inc_func_call_count(__func__);
-  test::mock::main_shim_metrics_api::LogMetricHfpPacketLossStats(
+  test::mock::main_shim_metrics_api::LogMetricHfpWbsPacketLossStats(
+      raw_address, num_decoded_frames, packet_loss_ratio);
+}
+void bluetooth::shim::LogMetricHfpSwbPacketLossStats(
+    const RawAddress& raw_address, int num_decoded_frames,
+    double packet_loss_ratio) {
+  inc_func_call_count(__func__);
+  test::mock::main_shim_metrics_api::LogMetricHfpSwbPacketLossStats(
       raw_address, num_decoded_frames, packet_loss_ratio);
 }
 void bluetooth::shim::LogMetricReadRssiResult(const RawAddress& raw_address,
