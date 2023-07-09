@@ -1244,21 +1244,27 @@ void btm_sco_on_disconnected(uint16_t hci_handle, tHCI_REASON reason) {
           p_sco->esco.setup.transmit_coding_format.coding_format));
 
   if (p_sco->is_inband()) {
-    if (p_sco->is_swb()) {
-      /* TODO: log PLC stats */
-      bluetooth::audio::sco::swb::cleanup();
-    } else if (p_sco->is_wbs()) {
+    if (p_sco->is_wbs() || p_sco->is_swb()) {
       int num_decoded_frames;
       double packet_loss_ratio;
-      if (bluetooth::audio::sco::wbs::fill_plc_stats(&num_decoded_frames,
-                                                     &packet_loss_ratio)) {
-        log_hfp_audio_packet_loss_stats(bd_addr, num_decoded_frames,
-                                        packet_loss_ratio);
+
+      auto fill_plc_stats = p_sco->is_swb()
+                                ? bluetooth::audio::sco::swb::fill_plc_stats
+                                : bluetooth::audio::sco::wbs::fill_plc_stats;
+
+      if (fill_plc_stats(&num_decoded_frames, &packet_loss_ratio)) {
+        auto log_stats = p_sco->is_swb() ? log_hfp_swb_audio_packet_loss_stats
+                                         : log_hfp_wbs_audio_packet_loss_stats;
+
+        log_stats(bd_addr, num_decoded_frames, packet_loss_ratio);
       } else {
         LOG_WARN("Failed to get the packet loss stats");
       }
 
-      bluetooth::audio::sco::wbs::cleanup();
+      auto cleanup = p_sco->is_swb() ? bluetooth::audio::sco::swb::cleanup
+                                     : bluetooth::audio::sco::wbs::cleanup;
+
+      cleanup();
     }
 
     bluetooth::audio::sco::cleanup();

@@ -56,7 +56,10 @@ void LogMetricA2dpAudioOverrunEvent(
     int num_dropped_encoded_frames,
     int num_dropped_encoded_bytes) {}
 
-void LogMetricHfpPacketLossStats(
+void LogMetricHfpWbsPacketLossStats(
+    const Address& address, int num_decoded_frames, double packet_loss_ratio) {}
+
+void LogMetricHfpSwbPacketLossStats(
     const Address& address, int num_decoded_frames, double packet_loss_ratio) {}
 
 void LogMetricReadRssiResult(const Address& address, uint16_t handle, uint32_t cmd_status, int8_t rssi) {}

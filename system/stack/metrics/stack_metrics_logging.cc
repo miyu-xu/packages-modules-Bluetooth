@@ -74,9 +74,16 @@ void log_counter_metrics(android::bluetooth::CodePathCounterKeyEnum key,
   bluetooth::shim::CountCounterMetrics(key, value);
 }
 
-void log_hfp_audio_packet_loss_stats(const RawAddress& address,
-                                     int num_decoded_frames,
-                                     double packet_loss_ratio) {
-  bluetooth::shim::LogMetricHfpPacketLossStats(address, num_decoded_frames,
-                                               packet_loss_ratio);
+void log_hfp_wbs_audio_packet_loss_stats(const RawAddress& address,
+                                         int num_decoded_frames,
+                                         double packet_loss_ratio) {
+  bluetooth::shim::LogMetricHfpWbsPacketLossStats(address, num_decoded_frames,
+                                                  packet_loss_ratio);
+}
+
+void log_hfp_swb_audio_packet_loss_stats(const RawAddress& address,
+                                         int num_decoded_frames,
+                                         double packet_loss_ratio) {
+  bluetooth::shim::LogMetricHfpSwbPacketLossStats(address, num_decoded_frames,
+                                                  packet_loss_ratio);
 }

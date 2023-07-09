@@ -88,15 +88,26 @@ void LogMetricA2dpPlaybackEvent(const RawAddress& raw_address,
                                 int playback_state, int audio_coding_mode);
 
 /**
- * Log HFP audio capture packet loss statistics
+ * Log HFP WBS audio capture packet loss statistics
  *
  * @param address HFP device associated with this stats
  * @param num_decoded_frames number of decoded frames
  * @param packet_loss_ratio ratio of packet loss frames
  */
-void LogMetricHfpPacketLossStats(const RawAddress& address,
-                                 int num_decoded_frames,
-                                 double packet_loss_ratio);
+void LogMetricHfpWbsPacketLossStats(const RawAddress& address,
+                                    int num_decoded_frames,
+                                    double packet_loss_ratio);
+
+/**
+ * Log HFP SWB audio capture packet loss statistics
+ *
+ * @param address HFP device associated with this stats
+ * @param num_decoded_frames number of decoded frames
+ * @param packet_loss_ratio ratio of packet loss frames
+ */
+void LogMetricHfpSwbPacketLossStats(const RawAddress& address,
+                                    int num_decoded_frames,
+                                    double packet_loss_ratio);
 
 /**
  * Log read RSSI result
