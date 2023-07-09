@@ -11,6 +11,7 @@ use crate::ClientContext;
 use crate::{console_red, console_yellow, print_error, print_info};
 use bt_topshim::btif::{BtBondState, BtPropertyType, BtSspVariant, BtStatus, Uuid128Bit};
 use bt_topshim::profiles::gatt::{AdvertisingStatus, GattStatus, LePhy};
+use bt_topshim::profiles::hfp::HfpCodecCapability;
 use bt_topshim::profiles::sdp::BtSdpRecord;
 use btstack::bluetooth::{
     BluetoothDevice, IBluetooth, IBluetoothCallback, IBluetoothConnectionCallback,
@@ -1343,7 +1344,7 @@ impl IBluetoothMediaCallback for MediaCallback {
     fn on_hfp_debug_dump(
         &mut self,
         active: bool,
-        wbs: bool,
+        codec_type: HfpCodecCapability,
         total_num_decoded_frames: i32,
         pkt_loss_ratio: f64,
         begin_ts: u64,
@@ -1351,46 +1352,58 @@ impl IBluetoothMediaCallback for MediaCallback {
         pkt_status_in_hex: String,
         pkt_status_in_binary: String,
     ) {
-        let wbs_dump = if active && wbs {
-            let mut to_split_binary = pkt_status_in_binary.clone();
-            let mut wrapped_binary = String::new();
-            while to_split_binary.len() > BINARY_PACKET_STATUS_WRAP {
-                let remaining = to_split_binary.split_off(BINARY_PACKET_STATUS_WRAP);
+        // Invoke run_callback so that the callback can be handled through
+        // ForegroundActions::RunCallback in main.rs.
+        self.context.lock().unwrap().run_callback(Box::new(move |_context| {
+            let is_wbs = codec_type == HfpCodecCapability::MSBC;
+            let is_swb = codec_type == HfpCodecCapability::LC3;
+            let dump = if active && (is_wbs || is_swb) {
+                let mut to_split_binary = pkt_status_in_binary.clone();
+                let mut wrapped_binary = String::new();
+                while to_split_binary.len() > BINARY_PACKET_STATUS_WRAP {
+                    let remaining = to_split_binary.split_off(BINARY_PACKET_STATUS_WRAP);
+                    wrapped_binary.push_str(&to_split_binary);
+                    wrapped_binary.push('\n');
+                    to_split_binary = remaining;
+                }
                 wrapped_binary.push_str(&to_split_binary);
-                wrapped_binary.push('\n');
-                to_split_binary = remaining;
-            }
-            wrapped_binary.push_str(&to_split_binary);
+                format!(
+                    "\n--------{} packet loss--------\n\
+                       Decoded Packets: {}, Packet Loss Ratio: {} \n\
+                       {} [begin]\n\
+                       {} [end]\n\
+                       In Hex format:\n\
+                       {}\n\
+                       In binary format:\n\
+                       {}",
+                    if is_wbs { "WBS" } else { "SWB" },
+                    total_num_decoded_frames,
+                    pkt_loss_ratio,
+                    timestamp_to_string(begin_ts),
+                    timestamp_to_string(end_ts),
+                    pkt_status_in_hex,
+                    wrapped_binary
+                )
+            } else {
+                "".to_string()
+            };
 
-            format!(
-                "\n--------WBS packet loss--------\n\
-                   Decoded Packets: {}, Packet Loss Ratio: {} \n\
-                   {} [begin]\n\
-                   {} [end]\n\
-                   In Hex format:\n\
-                   {}\n\
-                   In binary format:\n\
-                   {}",
-                total_num_decoded_frames,
-                pkt_loss_ratio,
-                timestamp_to_string(begin_ts),
-                timestamp_to_string(end_ts),
-                pkt_status_in_hex,
-                wrapped_binary
-            )
-        } else {
-            "".to_string()
-        };
-
-        print_info!(
-            "\n--------HFP debug dump---------\n\
-             HFP SCO: {}, Codec: {}\
-             {}
-             ",
-            if active { "active" } else { "inactive" },
-            if wbs { "mSBC" } else { "CVSD" },
-            wbs_dump
-        );
+            print_info!(
+                "\n--------HFP debug dump---------\n\
+                     HFP SCO: {}, Codec: {}\
+                     {}
+                     ",
+                if active { "active" } else { "inactive" },
+                if wbs {
+                    "mSBC"
+                } else if swb {
+                    "LC3"
+                } else {
+                    "CVSD"
+                },
+                dump
+            );
+        }));
     }
 }
 
