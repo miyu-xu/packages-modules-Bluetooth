@@ -20,18 +20,13 @@ package {
 android_test {
     name: "ServiceBluetoothTests",
 
-    // Linking source to test the working copy, not the on-device copy.
-    // Use 'pre-jarjar' so that we can reference symbols before renaming.
-    // Then apply the same common jarjar_rules
-    defaults: ["service-bluetooth-pre-jarjar"],
-    jarjar_rules: ":bluetooth-jarjar-rules",
-
     srcs: [
         "src/**/*.java",
         "src/**/*.kt",
     ],
 
     static_libs: [
+        "service-bluetooth",
         "androidx.test.rules",
         "frameworks-base-testutils",
         "kotlinx_coroutines_test",
@@ -46,7 +41,9 @@ android_test {
         "android.test.base",
         "android.test.mock",
         "android.test.runner",
+        "framework-bluetooth.impl",
     ],
+
     jni_libs: [
         // these are needed for Extended Mockito
         "libdexmakerjvmtiagent",

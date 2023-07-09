@@ -29,7 +29,7 @@ import android.os.UserHandle;
 import android.service.notification.StatusBarNotification;
 import android.util.Log;
 
-import com.android.internal.messages.nano.SystemMessageProto.SystemMessage;
+import com.android.internal.messages.SystemMessageProto.SystemMessage;
 
 import java.util.ArrayList;
 import java.util.List;

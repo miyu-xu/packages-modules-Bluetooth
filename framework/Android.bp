@@ -72,6 +72,7 @@ java_sdk_library {
         "//packages/modules/Bluetooth/android/pandora/server",
         "//packages/modules/Bluetooth/framework/tests/bumble",
         "//packages/modules/Bluetooth/service",
+        "//packages/modules/Bluetooth/service/tests",
         "//packages/modules/Connectivity/nearby/tests/multidevices/clients/test_support/fastpair_provider",
         "//packages/services/Car/car-builtin-lib",
         // TODO(240720385)
