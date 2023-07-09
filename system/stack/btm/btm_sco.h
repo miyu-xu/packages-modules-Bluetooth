@@ -179,6 +179,11 @@ size_t encode(int16_t* data, size_t len);
  */
 size_t dequeue_packet(const uint8_t** output);
 
+/* Get LC3 packets' status record.
+ * Returns:
+ *      Pointer to the record struct, nullptr if not valid.
+ */
+tBTM_SCO_PKT_STATUS* get_pkt_status();
 }  // namespace bluetooth::audio::sco::swb
 
 #ifndef CASE_RETURN_TEXT

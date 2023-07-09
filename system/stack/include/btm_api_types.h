@@ -220,13 +220,13 @@ typedef void(tBTM_ESCO_CBACK)(tBTM_ESCO_EVT event, tBTM_ESCO_EVT_DATA* p_data);
  * SCO Types for Debugging and Testing
  **************************/
 
-/* Define the structure for the WBS packet status dump.  */
+/* Define the structure for the WBS/SWB packet status dump.  */
 typedef struct {
   uint64_t begin_ts_raw_us;
   uint64_t end_ts_raw_us;
   std::string status_in_hex;
   std::string status_in_binary;
-} tBTM_SCO_MSBC_PKT_STATUS_DATA;
+} tBTM_SCO_PKT_STATUS_DATA;
 
 /* Returned by BTM_GetScoDebugDump */
 typedef struct {
@@ -234,7 +234,7 @@ typedef struct {
   tBTM_SCO_CODEC_TYPE codec_type;
   int total_num_decoded_frames;
   double pkt_loss_ratio;
-  tBTM_SCO_MSBC_PKT_STATUS_DATA latest_msbc_data;
+  tBTM_SCO_PKT_STATUS_DATA latest_data;
 } tBTM_SCO_DEBUG_DUMP;
 
 /*****************************************************************************
