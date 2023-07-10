@@ -199,7 +199,8 @@ public class ScanManager {
             mActivityManager.addOnUidImportanceListener(mUidImportanceListener,
                     FOREGROUND_IMPORTANCE_CUTOFF);
         }
-        IntentFilter locationIntentFilter = new IntentFilter(LocationManager.MODE_CHANGED_ACTION);
+        IntentFilter locationIntentFilter =
+                new IntentFilter(LocationManager.MODE_CHANGED_ACTION);
         locationIntentFilter.setPriority(IntentFilter.SYSTEM_HIGH_PRIORITY);
         mService.registerReceiver(mLocationReceiver, locationIntentFilter);
         mService.registerReceiver(mBluetoothConnectionReceiver,
@@ -1883,7 +1884,8 @@ public class ScanManager {
                 @Override
                 public void onReceive(Context context, Intent intent) {
                     String action = intent.getAction();
-                    if (LocationManager.MODE_CHANGED_ACTION.equals(action)) {
+                    if (mLocationManager != null
+                            && LocationManager.MODE_CHANGED_ACTION.equals(action)) {
                         final boolean locationEnabled = mLocationManager.isLocationEnabled();
                         if (locationEnabled) {
                             sendMessage(MSG_RESUME_SCANS, null);
