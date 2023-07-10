@@ -241,6 +241,14 @@ impl InformationalRule {
         self.handles.remove(&handle);
     }
 
+    fn report_reset(&mut self, ts: NaiveDateTime) {
+        // report_connection_end removes the entries from the map, so store all the keys first.
+        let handles: Vec<ConnectionHandle> = self.handles.keys().cloned().collect();
+        for handle in handles {
+            self.report_connection_end(handle, ts);
+        }
+    }
+
     fn process_gap_data(&mut self, address: &Address, data: &GapData) {
         match data.data_type {
             GapDataType::CompleteLocalName | GapDataType::ShortenedLocalName => {
@@ -365,6 +373,10 @@ impl Rule for InformationalRule {
             },
 
             PacketChild::HciCommand(cmd) => match cmd.specialize() {
+                CommandChild::Reset(_cmd) => {
+                    self.report_reset(packet.ts);
+                }
+
                 CommandChild::AclCommand(cmd) => match cmd.specialize() {
                     AclCommandChild::ConnectionManagementCommand(cmd) => match cmd.specialize() {
                         ConnectionManagementCommandChild::CreateConnection(cmd) => {
