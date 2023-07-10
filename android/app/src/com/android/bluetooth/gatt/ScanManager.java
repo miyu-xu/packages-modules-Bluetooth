@@ -199,9 +199,11 @@ public class ScanManager {
             mActivityManager.addOnUidImportanceListener(mUidImportanceListener,
                     FOREGROUND_IMPORTANCE_CUTOFF);
         }
-        IntentFilter locationIntentFilter = new IntentFilter(LocationManager.MODE_CHANGED_ACTION);
-        locationIntentFilter.setPriority(IntentFilter.SYSTEM_HIGH_PRIORITY);
-        mService.registerReceiver(mLocationReceiver, locationIntentFilter);
+        if (mLocationManager != null) {
+            IntentFilter locationIntentFilter = new IntentFilter(LocationManager.MODE_CHANGED_ACTION);
+            locationIntentFilter.setPriority(IntentFilter.SYSTEM_HIGH_PRIORITY);
+            mService.registerReceiver(mLocationReceiver, locationIntentFilter);
+        }
         mService.registerReceiver(mBluetoothConnectionReceiver,
                 getBluetoothConnectionIntentFilter());
     }
