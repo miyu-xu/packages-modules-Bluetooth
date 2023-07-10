@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c726231b_e47df194",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-07-10T10:57:19Z",
+      "side": 1,
+      "message": "Looks good. Maybe let\u0027s create bug for that.",
+      "revId": "1929693533f6ca6cd7ea5448ddeda15154499ec1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
