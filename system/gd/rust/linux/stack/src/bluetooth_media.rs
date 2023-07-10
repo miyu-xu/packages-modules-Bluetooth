@@ -25,7 +25,6 @@ use itertools::Itertools;
 use log::{debug, info, warn};
 use std::collections::{HashMap, HashSet};
 use std::convert::{TryFrom, TryInto};
-use std::fs::File;
 use std::sync::Arc;
 use std::sync::Mutex;
 
@@ -33,14 +32,13 @@ use tokio::sync::mpsc::Sender;
 use tokio::task::JoinHandle;
 use tokio::time::{sleep, Duration, Instant};
 
-use uhid_virt::{Bus, CreateParams, UHIDDevice};
-
 use crate::battery_manager::{Battery, BatterySet};
 use crate::battery_provider_manager::{
     BatteryProviderManager, IBatteryProviderCallback, IBatteryProviderManager,
 };
 use crate::bluetooth::{Bluetooth, BluetoothDevice, IBluetooth};
 use crate::callbacks::Callbacks;
+use crate::uhid_hfp::{UHidHfp, UHID_ID, UHID_OUTPUT_OFF_HOOK, UHID_OUTPUT_RING};
 use crate::uuid;
 use crate::uuid::Profile;
 use crate::{Message, RPCProxy};
@@ -64,37 +62,6 @@ const CONNECT_AS_INITIATOR_TIMEOUT_SEC: u64 = 5;
 /// The list of profiles we consider as audio profiles for media.
 const MEDIA_AUDIO_PROFILES: &[uuid::Profile] =
     &[uuid::Profile::A2dpSink, uuid::Profile::Hfp, uuid::Profile::AvrcpController];
-
-const UHID_ID: u8 = 1;
-
-const RDESC: [u8; 51] = [
-    0x05, 0x0B, // Usage Page (Telephony)
-    0x09, 0x05, // Usage (Headset)
-    0xA1, 0x01, // Collection (Application)
-    0x85, UHID_ID, //   Report ID (1)
-    0x05, 0x0B, //   Usage Page (Telephony)
-    0x15, 0x00, //   Logical Minimum (0)
-    0x25, 0x01, //   Logical Maximum (1)
-    0x09, 0x20, //   Usage (Hook Switch)
-    0x75, 0x01, //   Report Size (1)
-    0x95, 0x01, //   Report Count (1)
-    0x81, 0x23, //   Input
-    0x75, 0x01, //   Report Size (1)
-    0x95, 0x07, //   Report Count (7)
-    0x81, 0x01, //   Input
-    0x05, 0x08, //   Usage Page (LEDs)
-    0x15, 0x00, //   Logical Minimum (0)
-    0x25, 0x01, //   Logical Maximum (1)
-    0x09, 0x18, //   Usage (Ring)
-    0x09, 0x17, //   Usage (Off-Hook)
-    0x75, 0x01, //   Report Size (1)
-    0x95, 0x02, //   Report Count (2)
-    0x91, 0x22, //   Output
-    0x75, 0x01, //   Report Size (1)
-    0x95, 0x06, //   Report Count (6)
-    0x91, 0x01, //   Output
-    0xC0, // End Collection
-];
 
 pub trait IBluetoothMedia {
     ///
@@ -324,7 +291,7 @@ pub struct BluetoothMedia {
     phone_ops_enabled: bool,
     memory_dialing_number: Option<String>,
     last_dialing_number: Option<String>,
-    uhid: HashMap<RawAddress, UHIDDevice<File>>,
+    uhid: HashMap<RawAddress, UHidHfp>,
 }
 
 impl BluetoothMedia {
@@ -1080,27 +1047,15 @@ impl BluetoothMedia {
             Some(adapter) => adapter.lock().unwrap().get_address().to_lowercase(),
             _ => "".to_string(),
         };
-        let rd_data = RDESC.to_vec();
-        let create_params = CreateParams {
-            name: self.adapter_get_remote_name(addr),
-            phys: adapter_addr,
-            uniq: addr.to_string(),
-            bus: Bus::BLUETOOTH,
-            vendor: 0,
-            product: 0,
-            version: 0,
-            country: 0,
-            rd_data,
-        };
-        match UHIDDevice::create(create_params) {
-            Err(e) => {
-                log::error!("[{}]: WebHID create: Fail to create uhid {}", DisplayAddress(&addr), e)
-            }
-            Ok(d) => {
-                self.uhid.insert(addr, d);
-                ()
-            }
-        };
+        self.uhid.insert(
+            addr,
+            UHidHfp::create(
+                adapter_addr,
+                addr.to_string(),
+                self.adapter_get_remote_name(addr),
+                self.tx.clone(),
+            ),
+        );
     }
 
     fn uhid_destroy(&mut self, addr: &RawAddress) {
@@ -1125,9 +1080,8 @@ impl BluetoothMedia {
             return;
         }
         if let Some(uhid) = self.uhid.get_mut(addr) {
-            let data: [u8; 2] = [UHID_ID, status.into()];
             debug!("[{}]: WebHID: Send 'Hook Switch': {}", DisplayAddress(&addr), status);
-            match uhid.write(&data) {
+            match uhid.send_input(status) {
                 Err(e) => log::error!(
                     "[{}]: WebHID: Fail to send 'Hook Switch={}' to uhid: {}",
                     DisplayAddress(&addr),
@@ -1137,6 +1091,37 @@ impl BluetoothMedia {
                 Ok(_) => (),
             };
         };
+    }
+
+    pub fn dispatch_uhid_hfp_output_callback(&mut self, address: String, id: u8, data: u8) {
+        let addr = match RawAddress::from_string(address.clone()) {
+            None => {
+                warn!("WebHID: Invalid device address for dispatch_uhid_hfp_output_callback");
+                return;
+            }
+            Some(addr) => addr,
+        };
+
+        debug!(
+            "[{}]: WebHID: Received output report: id {}, data {}",
+            DisplayAddress(&addr),
+            id,
+            data
+        );
+
+        if id == UHID_ID {
+            if data == 0 {
+                self.hangup_call();
+            } else if data == UHID_OUTPUT_RING {
+                self.incoming_call("".into());
+            } else if data == UHID_OUTPUT_OFF_HOOK {
+                if self.phone_state.num_active > 0 {
+                    return;
+                }
+                self.dialing_call("".into());
+                self.answer_call();
+            }
+        }
     }
 
     fn notify_critical_profile_disconnected(&mut self, addr: RawAddress) {
