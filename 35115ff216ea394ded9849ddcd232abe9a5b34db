@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7f0f50a8_45f12af4",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 21
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-07-10T22:50:03Z",
+      "side": 1,
+      "message": "nit: Set up is the verb Setup is a noun.",
+      "range": {
+        "startLine": 9,
+        "startChar": 2,
+        "endLine": 9,
+        "endChar": 7
+      },
+      "revId": "35115ff216ea394ded9849ddcd232abe9a5b34db",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "edee3cf1_efd498ad",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 226,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-07-10T22:50:03Z",
+      "side": 1,
+      "message": "nit: a config flag ?\n\nOr is aconfig something else?",
+      "range": {
+        "startLine": 226,
+        "startChar": 30,
+        "endLine": 226,
+        "endChar": 37
+      },
+      "revId": "35115ff216ea394ded9849ddcd232abe9a5b34db",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
