@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "68de7ba4_ec3f0ffa",
+        "filename": "system/gd/hal/hci_hal_android_hidl.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 425,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-07-10T23:13:57Z",
+      "side": 1,
+      "message": "nit: I think the end of this message makes it\u0027s a bit confusing, wdyt about only putting `The Bluetooth HAL died` ?",
+      "range": {
+        "startLine": 425,
+        "startChar": 39,
+        "endLine": 425,
+        "endChar": 86
+      },
+      "revId": "2c4c40c7c84ebab8e9a44e0c296e36815eb1e324",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
