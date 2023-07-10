@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0ca3be43_fb955a00",
+        "filename": "floss/hcidoc/src/groups/connections.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-07-10T21:02:44Z",
+      "side": 0,
+      "message": "Thanks for this clean-up!",
+      "revId": "774ea19e35f15200c00aee5a2c995273d9683d5a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
