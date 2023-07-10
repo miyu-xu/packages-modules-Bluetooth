@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "40655b2f_9f5cb8f6",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-07-10T02:10:10Z",
+      "side": 1,
+      "message": "My mistakes.\nIt should be b/289879962.",
+      "parentUuid": "65113e13_6cb408aa",
+      "range": {
+        "startLine": 10,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 14
+      },
+      "revId": "59ee0723fe7a76ff059dad74b9aaa64bfb6f10ba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cd09e016_30eecc5a",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-07-07T16:53:00Z",
       "side": 1,
       "message": "`fropmState`\nLooks like a typo.\nCan you fix it in follow-up ? (you can put it in the HFP one if you want)",
+      "range": {
+        "startLine": 239,
+        "startChar": 71,
+        "endLine": 239,
+        "endChar": 81
+      },
+      "revId": "59ee0723fe7a76ff059dad74b9aaa64bfb6f10ba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bd760de7_68125470",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 239,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-07-10T02:10:10Z",
+      "side": 1,
+      "message": "Will fix in another CL.",
+      "parentUuid": "cd09e016_30eecc5a",
       "range": {
         "startLine": 239,
         "startChar": 71,
