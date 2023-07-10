@@ -16,6 +16,23 @@
       "message": "Can we also verify this patch works with OOB pairing with LE only devices?",
       "revId": "7ecd3e6344b761ffc8d626798e77c516e8c4ca8c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a03a95d7_5e78c0f4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2023-07-10T07:24:35Z",
+      "side": 1,
+      "message": "On reconnection-CTKD, does it report bond state changed? If so, does it make BondStateMachine re-entering BONDED state and wait for SDP complete?",
+      "revId": "7ecd3e6344b761ffc8d626798e77c516e8c4ca8c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
