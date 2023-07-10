@@ -80,6 +80,8 @@ import android.sysprop.BluetoothProperties;
 import android.util.Log;
 import android.util.proto.ProtoOutputStream;
 
+import androidx.annotation.MainThread;
+
 import com.android.bluetooth.BluetoothStatsLog;
 import com.android.internal.annotations.GuardedBy;
 import com.android.internal.annotations.VisibleForTesting;
@@ -103,6 +105,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.TimeoutException;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
+@MainThread
 class BluetoothManagerService {
     private static final String TAG = "BluetoothManagerService";
     private static final boolean DBG = true;
