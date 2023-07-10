@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4effd4dc_ad9f6a05",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-07-10T23:15:07Z",
+      "side": 1,
+      "message": "We can be aware of that with the `Intent.ACTION_SHUTDOWN`\n\nDo you think it\u0027s worth it to listen to it ?",
+      "range": {
+        "startLine": 10,
+        "startChar": 21,
+        "endLine": 10,
+        "endChar": 36
+      },
+      "revId": "2c4c40c7c84ebab8e9a44e0c296e36815eb1e324",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "68de7ba4_ec3f0ffa",
         "filename": "system/gd/hal/hci_hal_android_hidl.cc",
         "patchSetId": 1
