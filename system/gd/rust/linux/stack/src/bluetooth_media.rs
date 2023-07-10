@@ -33,7 +33,7 @@ use tokio::sync::OnceCell;
 use tokio::task::JoinHandle;
 use tokio::time::{sleep, Duration, Instant};
 
-use uhid_virt::{Bus, CreateParams, UHIDDevice};
+use uhid_virt::{Bus, CreateParams, OutputEvent, UHIDDevice};
 
 use crate::battery_manager::{Battery, BatterySet};
 use crate::battery_provider_manager::{
@@ -334,7 +334,7 @@ pub struct BluetoothMedia {
     last_dialing_number: Option<String>,
     feature: OnceCell<FeatureWrapper>,
     platform_features: Arc<PlatformFeatures>,
-    uhid: Option<UHIDDevice<File>>,
+    uhid: Option<Arc<Mutex<UHIDDevice<File>>>>,
 }
 
 impl BluetoothMedia {
@@ -764,7 +764,12 @@ impl BluetoothMedia {
                                 };
                                 match UHIDDevice::create(create_params) {
                                     Err(e) => log::error!("Fail to create uhid {}", e),
-                                    Ok(d) => self.uhid = Some(d),
+                                    Ok(d) => {
+                                        let tx = self.tx.clone();
+                                        let uhid = Arc::new(Mutex::new(d));
+                                        self.uhid = Some(uhid.clone());
+                                        uhid_loop(uhid, tx);
+                                    }
                                 };
                             };
                         } else {
@@ -774,7 +779,7 @@ impl BluetoothMedia {
                     BthfConnectionState::Disconnected => {
                         info!("[{}]: hfp disconnected.", DisplayAddress(&addr));
                         if let Some(uhid) = &mut self.uhid {
-                            match uhid.destroy() {
+                            match uhid.clone().lock().unwrap().destroy() {
                                 Err(e) => log::error!("Fail to destroy uhid {}", e),
                                 Ok(_) => self.uhid = None,
                             };
@@ -1092,7 +1097,7 @@ impl BluetoothMedia {
             {
                 if let Some(uhid) = &mut self.uhid {
                     let data: [u8; 2] = [2, status.into()];
-                    match uhid.write(&data) {
+                    match uhid.lock().unwrap().write(&data) {
                         Err(e) => {
                             log::error!("Fail to send 'Hook Switch={}' to uhid {}", status, e)
                         }
@@ -1103,6 +1108,25 @@ impl BluetoothMedia {
         } else {
             debug!("{} feature is not initialized", WEBHID_FEATURE);
         };
+    }
+
+    pub fn dispatch_uhid_output_events(&mut self, id: u8, data: u8) {
+        // only report Id 1 is supported
+        if id == 1 {
+            if data == 1 {
+                if self.phone_state.state != CallState::Incoming {
+                    self.incoming_call("".into());
+                }
+            } else if data == 2 {
+                if self.phone_state.state == CallState::Incoming {
+                    self.answer_call();
+                }
+            } else {
+                if self.phone_state.state != CallState::Idle {
+                    self.hangup_call();
+                }
+            }
+        }
     }
 
     fn notify_critical_profile_disconnected(&mut self, addr: RawAddress) {
@@ -1842,6 +1866,28 @@ fn get_hfp_dispatcher(tx: Sender<Message>) -> HfpCallbacksDispatcher {
             });
         }),
     }
+}
+
+fn uhid_loop(uhid: Arc<Mutex<UHIDDevice<File>>>, tx: Sender<Message>) {
+    tokio::task::spawn_blocking(move || loop {
+        match uhid.lock().unwrap().read() {
+            Ok(m) => {
+                match m {
+                    OutputEvent::Output { data } => {
+                        let txl = tx.clone();
+                        tokio::spawn(async move {
+                            txl.send(Message::UhidOutput(data[0], data[1])).await.ok();
+                        });
+                    }
+                    _ => (),
+                };
+            }
+            Err(_) => {
+                log::error!("Read error");
+                return;
+            }
+        };
+    });
 }
 
 impl IBluetoothMedia for BluetoothMedia {

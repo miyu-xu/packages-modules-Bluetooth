@@ -147,6 +147,8 @@ pub enum Message {
     QaGetHidReport(String, BthhReportType, u8),
     QaSetHidReport(String, BthhReportType, String),
     QaSendHidData(String, String),
+
+    UhidOutput(u8, u8),
 }
 
 /// Represents suspend mode of a module.
@@ -418,6 +420,9 @@ impl Stack {
                 Message::QaSendHidData(addr, data) => {
                     let status = bluetooth.lock().unwrap().send_hid_data_internal(addr, data);
                     bluetooth_qa.lock().unwrap().on_send_hid_data_completed(status);
+                }
+                Message::UhidOutput(id, data) => {
+                    bluetooth_media.lock().unwrap().dispatch_uhid_output_events(id, data);
                 }
             }
         }
