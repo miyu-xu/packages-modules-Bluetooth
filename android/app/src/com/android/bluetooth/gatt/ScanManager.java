@@ -1883,7 +1883,8 @@ public class ScanManager {
                 @Override
                 public void onReceive(Context context, Intent intent) {
                     String action = intent.getAction();
-                    if (LocationManager.MODE_CHANGED_ACTION.equals(action)) {
+                    if (mLocationManager != null
+                            && LocationManager.MODE_CHANGED_ACTION.equals(action)) {
                         final boolean locationEnabled = mLocationManager.isLocationEnabled();
                         if (locationEnabled) {
                             sendMessage(MSG_RESUME_SCANS, null);
