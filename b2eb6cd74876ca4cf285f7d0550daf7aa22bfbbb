@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "360b80be_cdfbcd9c",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1377,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-07-11T21:21:44Z",
+      "side": 1,
+      "message": "nit: we may put this before broadcastActiveDevice",
+      "range": {
+        "startLine": 1377,
+        "startChar": 12,
+        "endLine": 1377,
+        "endChar": 51
+      },
+      "revId": "b2eb6cd74876ca4cf285f7d0550daf7aa22bfbbb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
