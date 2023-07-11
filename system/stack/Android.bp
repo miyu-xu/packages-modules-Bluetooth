@@ -471,7 +471,7 @@ cc_fuzz {
         ":TestMockStackL2cap",
         ":TestMockStackMetrics",
         "fuzzers/smp_fuzzer.cc",
-        "smp/smp_*.cc",
+        "smp/*.cc",
     ],
     static_libs: [
         "libgmock",
