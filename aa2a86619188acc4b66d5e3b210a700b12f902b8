@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8e92ec96_03ca9991",
+        "filename": "system/stack/btm/btm_ble.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1603,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-07-11T21:48:05Z",
+      "side": 1,
+      "message": "Encryption will still happen with current patch if BTM_ReadRemoteVersion failed which IMO should be OK (at least, I don\u0027t see why we would skip encryption in that case). We will skip connecting EATT if remote version unknown though. \n\nif ```(remote_lmp_version``` part was added to conform to existing pattern in codebase: https://source.corp.google.com/search?q\u003dremote_lmp_version\u0026sq\u003drepo:googleplex-android%2Fplatform%2Fsuperproject%2Fmain%20b:main\n\nSeems the intention there is to avoid null pointer dereference.\n\nSee same log link for similar log pattern which was added in aosp/1491244.\n\nCan accept the suggestion if you feel strongly about it (FWIW generally would agree with your assessment as ideally wouldn\u0027t set pointer to null if val not available), but prefer to match existing pattern since not very familiar with this logic and this would avoid NPE if \u0026remote_lmp_version is modified to null for any reason. \n\nPLMK your thoughts. Thanks!",
+      "parentUuid": "6655b50a_cca35492",
+      "range": {
+        "startLine": 1592,
+        "startChar": 2,
+        "endLine": 1603,
+        "endChar": 3
+      },
+      "revId": "aa2a86619188acc4b66d5e3b210a700b12f902b8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d385050a_c4b88f99",
         "filename": "system/stack/include/hcidefs.h",
         "patchSetId": 4
@@ -37,6 +61,30 @@
       "writtenOn": "2023-07-11T21:13:09Z",
       "side": 1,
       "message": "@mylesgw@google.com\nIs this defined in the PDL ? Can we somehow use these definition instead ?\n(that may be outside of the scope of this CL)",
+      "range": {
+        "startLine": 33,
+        "startChar": 8,
+        "endLine": 33,
+        "endChar": 29
+      },
+      "revId": "aa2a86619188acc4b66d5e3b210a700b12f902b8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d972c525_00d76551",
+        "filename": "system/stack/include/hcidefs.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-07-11T21:48:05Z",
+      "side": 1,
+      "message": "Happy to update the patch if it is available elsewhere already, but otherwise can look at addressing in followup CL with guidance.",
+      "parentUuid": "d385050a_c4b88f99",
       "range": {
         "startLine": 33,
         "startChar": 8,
