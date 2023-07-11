@@ -693,8 +693,7 @@ void bta_ag_codec_negotiate(tBTA_AG_SCB* p_scb) {
     /* Change the power mode to Active until SCO open is completed. */
     bta_sys_busy(BTA_ID_AG, p_scb->app_id, p_scb->peer_addr);
 
-    if (bluetooth::common::init_flags::aptx_voice_is_enabled() &&
-        get_aptx_swb_codec_status() &&
+    if (get_aptx_swb_codec_status() &&
         (p_scb->peer_codecs & BTA_AG_SCO_SWB_SETTINGS_Q0_MASK)) {
       if (p_scb->is_swb_codec == false) {
         p_scb->sco_codec = BTA_AG_SCO_SWB_SETTINGS_Q0;
