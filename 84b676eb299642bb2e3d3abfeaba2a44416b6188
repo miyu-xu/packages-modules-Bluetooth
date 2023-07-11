@@ -34,6 +34,24 @@
       "parentUuid": "f77c9add_309b0651",
       "revId": "84b676eb299642bb2e3d3abfeaba2a44416b6188",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "43f717aa_582b01d6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2023-07-11T16:59:48Z",
+      "side": 1,
+      "message": "Just noticed that SSP is mandatory since at least core spec v4.2. Android 14 CDD requires BT controllers to support at least core spec v5.0. So the \"else\" block in btm_sec_dev_reset() should just abort and not change the security mode.\n\nOriginal change here looks good.",
+      "parentUuid": "80e07e21_65eda032",
+      "revId": "84b676eb299642bb2e3d3abfeaba2a44416b6188",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
