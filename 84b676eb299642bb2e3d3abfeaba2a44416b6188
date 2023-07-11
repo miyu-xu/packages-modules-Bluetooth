@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f77c9add_309b0651",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2023-07-11T16:12:19Z",
+      "side": 1,
+      "message": "btm_sec_dev_reset() can change the security_mode after the chip is reset. That change will not reflect in SMP.",
+      "revId": "84b676eb299642bb2e3d3abfeaba2a44416b6188",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
