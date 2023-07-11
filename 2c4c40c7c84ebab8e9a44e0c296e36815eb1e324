@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c7c4fe62_6ffd39d0",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-07-11T22:25:05Z",
+      "side": 1,
+      "message": "I don\u0027t know if there\u0027s a contract for how long after ACTION_SHUTDOWN things start getting killed.",
+      "parentUuid": "82123521_3e2035f1",
+      "range": {
+        "startLine": 10,
+        "startChar": 21,
+        "endLine": 10,
+        "endChar": 36
+      },
+      "revId": "2c4c40c7c84ebab8e9a44e0c296e36815eb1e324",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "68de7ba4_ec3f0ffa",
         "filename": "system/gd/hal/hci_hal_android_hidl.cc",
         "patchSetId": 1
