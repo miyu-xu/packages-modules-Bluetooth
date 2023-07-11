@@ -74,6 +74,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "97f8b498_1848e415",
+        "filename": "system/stack/btm/btm_ble.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1603,
+      "author": {
+        "id": 1003366
+      },
+      "writtenOn": "2023-07-11T23:33:37Z",
+      "side": 1,
+      "message": "My 2 cents:\nEncryption has happened when the code reaches here.\nWe should do EATT connection only if the remote version \u003e\u003d 5.2.\nIf version is unknown, skip the eatt. \nif (remote_lmp_version !\u003d 0 \u0026\u0026 remote_lmp_version \u003e\u003d HCI_PROTO_VERSION_5_2) {\nfeels more explicit",
+      "parentUuid": "badac569_79d0b25c",
+      "range": {
+        "startLine": 1592,
+        "startChar": 2,
+        "endLine": 1603,
+        "endChar": 3
+      },
+      "revId": "aa2a86619188acc4b66d5e3b210a700b12f902b8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d385050a_c4b88f99",
         "filename": "system/stack/include/hcidefs.h",
         "patchSetId": 4
