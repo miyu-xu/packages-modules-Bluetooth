@@ -15,3 +15,11 @@ per-file PREUPLOAD.cfg,TEST_MAPPING,*.bp,*.xml=file:/OWNERS_build
 # - *.gn is for GN build rules
 # - Cargo.toml is for Rust build rules
 per-file build.py,*.gn,Cargo.toml=file:/OWNERS_chromeos
+
+# pairing and privacy area
+per-file system/stack/smp/*=file:/OWNERS_pairing_priv
+per-file system/stack/crypto_toolbox/*=file:/OWNERS_pairing_priv
+per-file system/bta/dm/(bta_dm_act.*,bta_dm_api*}=file:/OWNERS_pairing_priv
+per-file system/stack/btm/{*sec*,btm_client_interface.*}=file:/OWNERS_pairing_priv
+per-file system/btif/src{btif_sock_l2cap.*,btif_dm.*,btif_sock_rfc.*}=file:/OWNERS_pairing_priv
+per-file system/gd/security/*=file:/OWNERS_pairing_priv
