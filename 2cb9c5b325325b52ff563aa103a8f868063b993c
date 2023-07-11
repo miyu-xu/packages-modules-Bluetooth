@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "cbbca770_541b7bd1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-07-11T23:34:55Z",
+      "side": 1,
+      "message": "It would be nice to have a little explanation here like:\nEncryption change events can happen on an encrypted link when there\u0027s a security upgrade or  a key changes.",
+      "revId": "2cb9c5b325325b52ff563aa103a8f868063b993c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3a59fabe_5e570ff8",
         "filename": "/COMMIT_MSG",
         "patchSetId": 1
@@ -14,6 +31,23 @@
       "writtenOn": "2023-07-11T23:30:48Z",
       "side": 1,
       "message": "nit: Add `Bug: 286194253`",
+      "revId": "2cb9c5b325325b52ff563aa103a8f868063b993c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "151d06ee_424fc7e2",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-07-11T23:34:55Z",
+      "side": 1,
+      "message": "nit: \nBug: 286194253\n\nThen it will be a link for us :)",
       "revId": "2cb9c5b325325b52ff563aa103a8f868063b993c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
