@@ -183,13 +183,6 @@ public class ActiveDeviceManager {
             }
 
             switch (action) {
-                case BluetoothHearingAid.ACTION_CONNECTION_STATE_CHANGED:
-                    if (currentState == BluetoothProfile.STATE_CONNECTED) {
-                        mHandler.post(() -> handleHearingAidConnected(device));
-                    } else if (previousState == BluetoothProfile.STATE_CONNECTED) {
-                        mHandler.post(() -> handleHearingAidDisconnected(device));
-                    }
-                    break;
                 case BluetoothLeAudio.ACTION_LE_AUDIO_CONNECTION_STATE_CHANGED:
                     if (currentState == BluetoothProfile.STATE_CONNECTED) {
                         mHandler.post(() -> handleLeAudioConnected(device));
@@ -204,9 +197,6 @@ public class ActiveDeviceManager {
                         mHandler.post(() -> handleHapDisconnected(device));
                     }
                     break;
-                case BluetoothHearingAid.ACTION_ACTIVE_DEVICE_CHANGED:
-                    mHandler.post(() -> handleHearingAidActiveDeviceChanged(device));
-                    break;
                 case BluetoothLeAudio.ACTION_LE_AUDIO_ACTIVE_DEVICE_CHANGED:
                     mHandler.post(() -> handleLeAudioActiveDeviceChanged(device));
                     break;
@@ -218,7 +208,7 @@ public class ActiveDeviceManager {
     };
 
     /**
-     * Called when A2DP connection state changed by A2dpStateMachine
+     * Called when A2DP connection state changed by A2dpService
      *
      * @param device The device of which connection state was changed
      * @param fromState The previous connection state of the device
@@ -263,6 +253,31 @@ public class ActiveDeviceManager {
      */
     public void hfpActiveStateChanged(BluetoothDevice device) {
         mHandler.post(() -> handleHfpActiveDeviceChanged(device));
+    }
+
+    /**
+     * Called when HearingAid connection state changed by HeadsetService
+     *
+     * @param device The device of which connection state was changed
+     * @param prevState The previous connection state of the device
+     * @param newState The new connection state of the device
+     */
+    public void hearingAidConnectionStateChanged(
+            BluetoothDevice device, int prevState, int newState) {
+        if (newState == BluetoothProfile.STATE_CONNECTED) {
+            mHandler.post(() -> handleHearingAidConnected(device));
+        } else if (prevState == BluetoothProfile.STATE_CONNECTED) {
+            mHandler.post(() -> handleHearingAidDisconnected(device));
+        }
+    }
+
+    /**
+     * Called when HearingAid active state changed by HeadsetService
+     *
+     * @param device The device currently activated. {@code null} if no A2DP device activated
+     */
+    public void hearingAidActiveStateChanged(BluetoothDevice device) {
+        mHandler.post(() -> handleHearingAidActiveDeviceChanged(device));
     }
 
     private void handleAdapterStateChanged(int currentState) {
