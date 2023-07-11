@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6655b50a_cca35492",
+        "filename": "system/stack/btm/btm_ble.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1603,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-07-11T21:13:09Z",
+      "side": 1,
+      "message": "```suggestion\n  if (encr_enable) {\n    if (!BTM_ReadRemoteVersion(p_dev_rec-\u003eble.pseudo_addr, \u0026remote_lmp_version,\n                               nullptr, nullptr)) {\n      LOG_WARN(\"BLE Unable to determine remote version\");\n    } else if (remote_lmp_version \u003e\u003d HCI_PROTO_VERSION_5_2) {\n      /* Link is encrypted, start EATT if remote LMP version 5.2 or greater */\n      bluetooth::eatt::EattExtension::GetInstance()-\u003eConnect(\n          p_dev_rec-\u003eble.pseudo_addr);\n    }\n  }\n```\nI suppose that we don\u0027t want to encrypt if the `BTM_ReadRemoteVersion` has failed.\nWhat do you think of using else if instead ?\n\nI also removed the `if (remote_lmp_version` part of it as it already checked by the `\u003e\u003d` next to it\n\nI also removed the log of `remote_lmp_version` since it\u0027s value is `0` on `BTM_ReadRemoteVersion` failure.",
+      "range": {
+        "startLine": 1592,
+        "startChar": 2,
+        "endLine": 1603,
+        "endChar": 3
+      },
+      "revId": "aa2a86619188acc4b66d5e3b210a700b12f902b8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d385050a_c4b88f99",
+        "filename": "system/stack/include/hcidefs.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-07-11T21:13:09Z",
+      "side": 1,
+      "message": "@mylesgw@google.com\nIs this defined in the PDL ? Can we somehow use these definition instead ?\n(that may be outside of the scope of this CL)",
+      "range": {
+        "startLine": 33,
+        "startChar": 8,
+        "endLine": 33,
+        "endChar": 29
+      },
+      "revId": "aa2a86619188acc4b66d5e3b210a700b12f902b8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
