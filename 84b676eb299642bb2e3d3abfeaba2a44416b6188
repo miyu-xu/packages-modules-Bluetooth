@@ -16,6 +16,24 @@
       "message": "btm_sec_dev_reset() can change the security_mode after the chip is reset. That change will not reflect in SMP.",
       "revId": "84b676eb299642bb2e3d3abfeaba2a44416b6188",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "80e07e21_65eda032",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2023-07-11T16:23:57Z",
+      "side": 1,
+      "message": "Yeah, you are right.\n\nDo you think it makes sense to add an API (e.g., SMP_Confi) in SMP to support updating config of SMP and call it in btm whenever there is some change in btm_sec?",
+      "parentUuid": "f77c9add_309b0651",
+      "revId": "84b676eb299642bb2e3d3abfeaba2a44416b6188",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
