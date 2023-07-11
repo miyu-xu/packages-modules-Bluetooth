@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "922c0d23_dc4da5c6",
+        "filename": "floss/pandora/server/host.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-07-11T23:11:15Z",
+      "side": 1,
+      "message": "Docstrings for this class -- what is it and what does it do?",
+      "revId": "cba68e9009865b9945ea52b2185792b74cae98a1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3936a88f_416117f2",
+        "filename": "floss/pandora/server/security.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-07-11T23:11:15Z",
+      "side": 1,
+      "message": "Docstrings please",
+      "revId": "cba68e9009865b9945ea52b2185792b74cae98a1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
