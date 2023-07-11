@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "badac569_79d0b25c",
+        "filename": "system/stack/btm/btm_ble.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1603,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-07-11T22:22:20Z",
+      "side": 1,
+      "message": "\u003e Encryption will still happen with current patch if `BTM_ReadRemoteVersion` failed which \n\nIt will not since `remote_lmp_version` is 0 and the encryption is only done when remote_lmp_version is `\u003e\u003d 5.2`. Do you meant to code this instead:\n\n```suggestion\n  if (encr_enable) {\n    if (!BTM_ReadRemoteVersion(p_dev_rec-\u003eble.pseudo_addr, \u0026remote_lmp_version,\n                               nullptr, nullptr)) {\n      LOG_WARN(\"BLE Unable to determine remote version\");\n    }\n    if (remote_lmp_version \u003d\u003d 0 || remote_lmp_version \u003e\u003d HCI_PROTO_VERSION_5_2) {\n      /* Link is encrypted, start EATT if remote LMP \u003e\u003d version 5.2 or if  BTM_ReadRemoteVersion failed */\n      bluetooth::eatt::EattExtension::GetInstance()-\u003eConnect(\n          p_dev_rec-\u003eble.pseudo_addr);\n    }\n  }\n```\n\n\n\u003e `if (remote_lmp_version` part was added to conform to existing pattern in \nSeems the intention there is to avoid null pointer dereference.\n\nSince it is not a pointer but an int, we are fine to remove it. There is no NPE here\n\nI looked at the other place and they are checking it before because their default value (0) is a passing value for their check ( like `remote_lmp_version \u0026\u0026 remote_lmp_version \u003c HCI_PROTO_VERSION_4_2`).\nBut in this case, `0` is not a passing value.\n\nIf you want to keep checking the value for being initialized, we can add a `!\u003d 0`... But I have no strong opinion on this last part.",
+      "parentUuid": "8e92ec96_03ca9991",
+      "range": {
+        "startLine": 1592,
+        "startChar": 2,
+        "endLine": 1603,
+        "endChar": 3
+      },
+      "revId": "aa2a86619188acc4b66d5e3b210a700b12f902b8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d385050a_c4b88f99",
         "filename": "system/stack/include/hcidefs.h",
         "patchSetId": 4
