@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "98922456_62e97c2a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2023-07-11T17:19:05Z",
+      "side": 1,
+      "message": "Could it be possible to add a test, maybe in btif_rc_test?",
+      "revId": "2286b3281c7405fedd4619aa29e92bc6dc6531f4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
