@@ -403,6 +403,16 @@ tBTM_STATUS btm_sec_l2cap_access_req(const RawAddress& bd_addr, uint16_t psm,
                                      tBTM_SEC_CALLBACK* p_callback,
                                      void* p_ref_data);
 
+/*******************************************************************************
+ *
+ * Function         BTM_GetInitialSecurityMode
+ *
+ * Description      This function is called to retrieve the configured
+ *                  security mode.
+ *
+ ******************************************************************************/
+uint8_t BTM_GetSecurityMode();
+
 // Allow enforcing security by specific requirement (from shim layer).
 tBTM_STATUS btm_sec_l2cap_access_req_by_requirement(
     const RawAddress& bd_addr, uint16_t security_required, bool is_originator,
