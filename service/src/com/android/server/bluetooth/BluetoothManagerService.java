@@ -1434,7 +1434,7 @@ class BluetoothManagerService {
                                 + ", not in supported profiles list");
                 return false;
             }
-            ProfileServiceConnections psc = mProfileServices.get(bluetoothProfile);
+            ProfileServiceConnections psc = mProfileServices.get(Integer.valueOf(bluetoothProfile));
             if (psc == null) {
                 if (DBG) {
                     Log.d(
@@ -1448,7 +1448,7 @@ class BluetoothManagerService {
                     return false;
                 }
 
-                mProfileServices.put(bluetoothProfile, psc);
+                mProfileServices.put(new Integer(bluetoothProfile), psc);
             }
         }
 
@@ -1463,7 +1463,8 @@ class BluetoothManagerService {
     void unbindBluetoothProfileService(
             int bluetoothProfile, IBluetoothProfileServiceConnection proxy) {
         synchronized (mProfileServices) {
-            ProfileServiceConnections psc = mProfileServices.get(bluetoothProfile);
+            Integer profile = new Integer(bluetoothProfile);
+            ProfileServiceConnections psc = mProfileServices.get(profile);
             if (psc == null) {
                 return;
             }
@@ -1476,7 +1477,7 @@ class BluetoothManagerService {
                     Log.e(TAG, "Unable to unbind service with intent: " + psc.mIntent, e);
                 }
                 if (!mUnbindingAll) {
-                    mProfileServices.remove(bluetoothProfile);
+                    mProfileServices.remove(profile);
                 }
             }
         }
