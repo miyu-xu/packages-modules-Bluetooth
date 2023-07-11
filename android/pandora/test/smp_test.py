@@ -103,10 +103,12 @@ class SmpTest(base_test.BaseTestClass):  # type: ignore[misc]
         assert_equal(secure.result_variant(), 'success')
         assert_equal(wait_security.result_variant(), 'success')
 
-        await asyncio.gather(
-            self.ref.aio.host.Disconnect(connection=ref_dut),
-            self.dut.aio.host.WaitDisconnection(connection=dut_ref),
-        )
+        # TODO: b/286081956 Android disconnection is flaky and might timeout
+        # await asyncio.gather(
+        #     self.ref.aio.host.Disconnect(connection=ref_dut),
+        #     self.dut.aio.host.WaitDisconnection(connection=dut_ref),
+        # )
+        await self.ref.aio.host.Disconnect(connection=ref_dut)
         return ref
 
     @asynchronous
