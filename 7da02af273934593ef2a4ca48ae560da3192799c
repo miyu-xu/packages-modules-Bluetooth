@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b739e1f5_ad71192d",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1304,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-07-12T07:31:57Z",
+      "side": 1,
+      "message": "Shouldn\u0027t this be renamed to IsAudioSetConfigurationSupported()?",
+      "range": {
+        "startLine": 1304,
+        "startChar": 25,
+        "endLine": 1304,
+        "endChar": 49
+      },
+      "revId": "7da02af273934593ef2a4ca48ae560da3192799c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
