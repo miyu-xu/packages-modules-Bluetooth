@@ -51,6 +51,24 @@
       "parentUuid": "271d287b_9602fe9b",
       "revId": "7ecd3e6344b761ffc8d626798e77c516e8c4ca8c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bc777528_29960114",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-07-12T18:04:31Z",
+      "side": 1,
+      "message": "Whoops, my mistake - I missed the CTKD note in commit message and the exact methods being modified here. \n\nThanks for the correction.\n\nThis CL LGTM.",
+      "parentUuid": "eab8e874_f6232ef8",
+      "revId": "7ecd3e6344b761ffc8d626798e77c516e8c4ca8c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
