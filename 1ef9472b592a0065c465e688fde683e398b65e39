@@ -1,0 +1,256 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7810bfe1_cc84660b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-07-12T19:01:18Z",
+      "side": 1,
+      "message": "what other context you have in mind?\nImho if LIVE is Supported but not Available we should not use headset for recording.\n\nSame applies to all other context. If given context is in the Supported context it means remote device is aware of such context and if remote what us to use it, then it should be in Available context.\n\nIf remote has UNSPECIFIED in the Available context then we can fallback to that context whenever Context Android wants to use is not in the Supported list.",
+      "range": {
+        "startLine": 11,
+        "startChar": 47,
+        "endLine": 15,
+        "endChar": 40
+      },
+      "revId": "1ef9472b592a0065c465e688fde683e398b65e39",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "076b3784_30ab59c9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-07-12T19:01:18Z",
+      "side": 1,
+      "message": "Looks good.",
+      "revId": "1ef9472b592a0065c465e688fde683e398b65e39",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a373c219_d8ea3ac7",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 4432,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-07-12T19:01:18Z",
+      "side": 1,
+      "message": "Please fix this ERROR reported by Common Typos: Common typo found: \"checkign\" -- should it be \"checking\"?\n\nAnalyzer Description: Linter for catching common typos motivated by go/todo-fail and go/lol-codesearch. Shared with google3 common typos library go/common-typos.\nOwner: ayeaye-team@google.com\n\nCommon typo found: \"checkign\" -- should it be \"checking\"?\nNote: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.",
+      "range": {
+        "startLine": 4432,
+        "startChar": 66,
+        "endLine": 4432,
+        "endChar": 74
+      },
+      "revId": "1ef9472b592a0065c465e688fde683e398b65e39",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6f15a41d_2b2062da",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 4433,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-07-12T19:01:18Z",
+      "side": 1,
+      "message": "Please fix this ERROR reported by Common Typos: Common typo found: \"availablity\" -- should it be \"availability\"?\n\nAnalyzer Description: Linter for catching common typos motivated by go/todo-fail and go/lol-codesearch. Shared with google3 common typos library go/common-typos.\nOwner: ayeaye-team@google.com\n\nCommon typo found: \"availablity\" -- should it be \"availability\"?\nNote: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.",
+      "range": {
+        "startLine": 4433,
+        "startChar": 25,
+        "endLine": 4433,
+        "endChar": 36
+      },
+      "revId": "1ef9472b592a0065c465e688fde683e398b65e39",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d98dbe5c_e125e442",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 4437,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-07-12T19:01:18Z",
+      "side": 1,
+      "message": "this `contexts_pairs` represents what exactly?",
+      "range": {
+        "startLine": 4437,
+        "startChar": 40,
+        "endLine": 4437,
+        "endChar": 53
+      },
+      "revId": "1ef9472b592a0065c465e688fde683e398b65e39",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "06110d76_70424532",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 4443,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-07-12T19:01:18Z",
+      "side": 1,
+      "message": "this `contexts_pair` is available context or supported context or maybe `local_contexts_type`?",
+      "range": {
+        "startLine": 4440,
+        "startChar": 6,
+        "endLine": 4443,
+        "endChar": 75
+      },
+      "revId": "1ef9472b592a0065c465e688fde683e398b65e39",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "92192547_e6f6a861",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 4472,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-07-12T19:01:18Z",
+      "side": 1,
+      "message": "ok so `contexts_pair` seems to be `local_contexts_pair` we want to set for the group, correct?",
+      "range": {
+        "startLine": 4471,
+        "startChar": 5,
+        "endLine": 4472,
+        "endChar": 65
+      },
+      "revId": "1ef9472b592a0065c465e688fde683e398b65e39",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9d2c3cc3_d16fcd19",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 4473,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-07-12T19:01:18Z",
+      "side": 1,
+      "message": "would it make sense to print here  ( before calling continue)` contexts_pair.get_ref(dir)` and  `group_available_contexts`?",
+      "revId": "1ef9472b592a0065c465e688fde683e398b65e39",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2c8b6a5f_d838123d",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 4520,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-07-12T19:01:18Z",
+      "side": 1,
+      "message": "ah so `contexts_pair`  is `in` and `out` parameter.\nCan we make it clear that it is like it, or maybe just make this function return context pairs?",
+      "range": {
+        "startLine": 4520,
+        "startChar": 4,
+        "endLine": 4520,
+        "endChar": 17
+      },
+      "revId": "1ef9472b592a0065c465e688fde683e398b65e39",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f6d815b6_a9b6688e",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 4784,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-07-12T19:01:18Z",
+      "side": 1,
+      "message": "Please fix this ERROR reported by Common Typos: Common typo found: \"mutliple\" -- should it be \"multiple\"?\n\nAnalyzer Description: Linter for catching common typos motivated by go/todo-fail and go/lol-codesearch. Shared with google3 common typos library go/common-typos.\nOwner: ayeaye-team@google.com\n\nCommon typo found: \"mutliple\" -- should it be \"multiple\"?\nNote: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.",
+      "range": {
+        "startLine": 4784,
+        "startChar": 41,
+        "endLine": 4784,
+        "endChar": 49
+      },
+      "revId": "1ef9472b592a0065c465e688fde683e398b65e39",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "edf9e6c2_bef47cbe",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-07-12T19:01:18Z",
+      "side": 1,
+      "message": "what about this?\n\n`return NumOfConnectedDevicesSupportingContext(LeAudioContextType::RFU);`",
+      "revId": "1ef9472b592a0065c465e688fde683e398b65e39",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4023bb8f_3377062d",
+        "filename": "system/bta/le_audio/le_audio_utils.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-07-12T19:01:18Z",
+      "side": 1,
+      "message": "left over.",
+      "revId": "1ef9472b592a0065c465e688fde683e398b65e39",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
