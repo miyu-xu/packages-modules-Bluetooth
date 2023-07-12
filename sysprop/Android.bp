@@ -9,6 +9,7 @@ sysprop_library {
         "a2dp.sysprop",
         "avrcp.sysprop",
         "bta.sysprop",
+        "config.sysprop",
         "hfp.sysprop",
         "pan.sysprop",
     ],

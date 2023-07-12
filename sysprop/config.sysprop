@@ -1,0 +1,12 @@
+module: "android.sysprop.bluetooth.Config"
+owner: Platform
+
+prop {
+    api_name: "default_log_level"
+    type: Enum
+    enum_values: "FATAL|ERROR|WARN|INFO|DEBUG|VERBOSE"
+    scope: Internal
+    access: Readonly
+    prop_name: "log.tag.bluetooth_native.default_log_level"
+}
+

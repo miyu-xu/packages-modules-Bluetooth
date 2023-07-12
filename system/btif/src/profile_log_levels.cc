@@ -17,6 +17,7 @@
 #define LOG_TAG "bt_bte"
 
 #include <base/logging.h>
+#include <config.sysprop.h>
 #include <stdarg.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -127,20 +128,39 @@ static uint8_t BTU_SetTraceLevel(uint8_t new_level) {
   return btu_trace_level;
 }
 
+static uint8_t GetDefaultLogLevel() {
+  using namespace android::sysprop::bluetooth;
+
+  static Config::default_log_level_values default_log_level_value =
+      Config::default_log_level().value_or(
+          Config::default_log_level_values::WARN);
+
+  switch (default_log_level_value) {
+    case Config::default_log_level_values::FATAL:
+      return LOG_TAG_FATAL;
+    case Config::default_log_level_values::ERROR:
+      return LOG_TAG_ERROR;
+    case Config::default_log_level_values::WARN:
+      return LOG_TAG_WARN;
+    case Config::default_log_level_values::INFO:
+      return LOG_TAG_INFO;
+    case Config::default_log_level_values::DEBUG:
+      return LOG_TAG_DEBUG;
+    case Config::default_log_level_values::VERBOSE:
+      return LOG_TAG_VERBOSE;
+  }
+}
+
 void load_levels_from_config(const config_t* config) {
   CHECK(config != NULL);
 
   for (tBTTRC_FUNC_MAP* functions = &bttrc_set_level_map[0];
        functions->trc_name; ++functions) {
+    functions->trace_level = GetDefaultLogLevel();
     int value = config_get_int(*config, CONFIG_DEFAULT_SECTION,
                                functions->trc_name, -1);
     if (value != -1) {
       functions->trace_level = value;
-    }
-    if (bluetooth::common::InitFlags::GetDefaultLogLevel() >= LOG_TAG_VERBOSE) {
-      LOG_INFO("Enable logging for %s because all debug logs are enabled",
-               functions->trc_name);
-      functions->trace_level = BT_TRACE_LEVEL_VERBOSE;
     }
     LOG_INFO("BTE_InitTraceLevels -- %s : Level %d", functions->trc_name,
              functions->trace_level);
