@@ -40,10 +40,6 @@ class InitFlags final {
     return init_flags::get_log_level_for_tag(tag);
   }
 
-  inline static int GetDefaultLogLevel() {
-    return init_flags::get_default_log_level();
-  }
-
   inline static bool IsDeviceIotConfigLoggingEnabled() {
     return init_flags::device_iot_config_logging_is_enabled();
   }
