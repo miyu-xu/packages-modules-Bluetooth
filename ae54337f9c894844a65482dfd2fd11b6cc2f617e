@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "642de3e0_385174a3",
+        "filename": "tools/rootcanal/rust/src/lmp/procedure/secure_simple_pairing.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 694,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-07-12T23:58:32Z",
+      "side": 1,
+      "message": "nit: `1..PASSKEY_ENTRY_REPEAT_NUMBER`",
+      "range": {
+        "startLine": 694,
+        "startChar": 21,
+        "endLine": 694,
+        "endChar": 55
+      },
+      "revId": "ae54337f9c894844a65482dfd2fd11b6cc2f617e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
