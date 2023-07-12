@@ -33,6 +33,24 @@
       "message": "On reconnection-CTKD, does it report bond state changed? If so, does it make BondStateMachine re-entering BONDED state and wait for SDP complete?",
       "revId": "7ecd3e6344b761ffc8d626798e77c516e8c4ca8c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "eab8e874_f6232ef8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2023-07-12T17:50:12Z",
+      "side": 1,
+      "message": "This is BR/EDR to LE CTKD. It does not involve LE-only devices.",
+      "parentUuid": "271d287b_9602fe9b",
+      "revId": "7ecd3e6344b761ffc8d626798e77c516e8c4ca8c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
