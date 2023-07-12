@@ -198,9 +198,9 @@ public class ScanManagerTest {
         TestUtils.waitForLooperToBeIdle(mHandler.getLooper());
     }
 
-    private ScanClient createScanClient(int id, boolean isFiltered, int scanMode,
-            boolean isBatch, boolean isAutoBatch) {
-        List<ScanFilter> scanFilterList = createScanFilterList(isFiltered);
+    private ScanClient createScanClient(int id, boolean isFiltered, boolean isEmptyFilter,
+            int scanMode, boolean isBatch, boolean isAutoBatch) {
+        List<ScanFilter> scanFilterList = createScanFilterList(isFiltered, isEmptyFilter);
         ScanSettings scanSettings = createScanSettings(scanMode, isBatch, isAutoBatch);
 
         ScanClient client = new ScanClient(id, scanSettings, scanFilterList);
@@ -213,11 +213,19 @@ public class ScanManagerTest {
         return createScanClient(id, isFiltered, scanMode, false, false);
     }
 
-    private List<ScanFilter> createScanFilterList(boolean isFiltered) {
+    private ScanClient createScanClient(int id, boolean isFiltered, boolean isEmptyFilter, int scanMode) {
+        return createScanClient(id, isFiltered, isEmptyFilter, scanMode, false, false);
+    }
+
+    private List<ScanFilter> createScanFilterList(boolean isFiltered, isEmptyFilter) {
         List<ScanFilter> scanFilterList = null;
         if (isFiltered) {
             scanFilterList = new ArrayList<>();
-            scanFilterList.add(new ScanFilter.Builder().setDeviceName("TestName").build());
+	    if (isEmptyFilter) {
+                scanFilterList.add(new ScanFilter.Builder().build());
+            } else {
+                scanFilterList.add(new ScanFilter.Builder().setDeviceName("TestName").build());
+            }
         }
         return scanFilterList;
     }
@@ -336,6 +344,37 @@ public class ScanManagerTest {
             assertThat(client.settings.getScanMode()).isEqualTo(expectedScanMode);
         }
     }
+
+    @Test
+    public void testScreenOffStartEmptyFilterScan() {
+        // Set filtered scan flag
+        final boolean isFiltered = true;
+        final boolean isEmptyFilter = true;
+        // Set scan mode map {original scan mode (ScanMode) : expected scan mode (expectedScanMode)}
+        SparseIntArray scanModeMap = new SparseIntArray();
+        scanModeMap.put(SCAN_MODE_LOW_POWER, SCAN_MODE_SCREEN_OFF);
+        scanModeMap.put(SCAN_MODE_BALANCED, SCAN_MODE_SCREEN_OFF_BALANCED);
+        scanModeMap.put(SCAN_MODE_LOW_LATENCY, SCAN_MODE_LOW_LATENCY);
+        scanModeMap.put(SCAN_MODE_AMBIENT_DISCOVERY, SCAN_MODE_SCREEN_OFF_BALANCED);
+
+        for (int i = 0; i < scanModeMap.size(); i++) {
+            int ScanMode = scanModeMap.keyAt(i);
+            int expectedScanMode = scanModeMap.get(ScanMode);
+            Log.d(TAG, "ScanMode: " + String.valueOf(ScanMode)
+                    + " expectedScanMode: " + String.valueOf(expectedScanMode));
+
+            // Turn off screen
+            sendMessageWaitForProcessed(createScreenOnOffMessage(false));
+            // Create scan client
+            ScanClient client = createScanClient(i, isFiltered, isEmptyFilter, ScanMode);
+            // Start scan
+            sendMessageWaitForProcessed(createStartStopScanMessage(true, client));
+            assertThat(mScanManager.getRegularScanQueue().contains(client)).isFalse();
+            assertThat(mScanManager.getSuspendedScanQueue().contains(client)).isTrue();
+            assertThat(client.settings.getScanMode()).isEqualTo(expectedScanMode);
+        }
+    }
+
 
     @Test
     public void testScreenOnStartUnfilteredScan() {
