@@ -33,6 +33,23 @@
       "message": "check out ag/23780485",
       "revId": "cd307b24748205c96377d7c1090bf9d616a7961a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a446f00f_fee8b9ed",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-07-12T22:24:49Z",
+      "side": 1,
+      "message": "Should we remove this property and enable this behavior for Android as well ?",
+      "revId": "cd307b24748205c96377d7c1090bf9d616a7961a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
