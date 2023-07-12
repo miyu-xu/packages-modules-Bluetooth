@@ -22,6 +22,30 @@
       },
       "revId": "72639c4e3ce3b67f69b41e04cd82b346545b4d22",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2df71408_b7eeb4a9",
+        "filename": "android/pandora/test/smp_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1937985
+      },
+      "writtenOn": "2023-07-12T16:31:50Z",
+      "side": 1,
+      "message": "They already are android specific tests",
+      "parentUuid": "a60b6f73_fb6641d8",
+      "range": {
+        "startLine": 111,
+        "startChar": 8,
+        "endLine": 111,
+        "endChar": 62
+      },
+      "revId": "72639c4e3ce3b67f69b41e04cd82b346545b4d22",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
