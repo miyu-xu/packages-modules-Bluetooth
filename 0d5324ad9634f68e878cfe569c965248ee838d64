@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1aaa7afd_367c4949",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2023-07-12T20:06:09Z",
+      "side": 1,
+      "message": "Basically completely rewritten so marked all as \"Done\"",
+      "revId": "0d5324ad9634f68e878cfe569c965248ee838d64",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
