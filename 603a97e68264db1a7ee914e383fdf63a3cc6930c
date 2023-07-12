@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cdd91730_125aa759",
+        "filename": "system/audio_hal_interface/fuzzer/OWNERS",
+        "patchSetId": 2
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-07-12T17:17:06Z",
+      "side": 1,
+      "message": "Could you create a owners file in the root like `OWNERS_fuzzers` and include it ?\n\n```\nfile:/OWNERS_fuzzers\n```",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 2,
+        "endChar": 15
+      },
+      "revId": "603a97e68264db1a7ee914e383fdf63a3cc6930c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
