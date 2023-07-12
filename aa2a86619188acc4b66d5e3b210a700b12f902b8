@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7d0362fd_0cab631f",
+        "filename": "system/stack/btm/btm_ble.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1557,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-07-12T00:19:54Z",
+      "side": 1,
+      "message": "nit: Can we move this to line 1592 to keep it close to the usage?",
+      "range": {
+        "startLine": 1557,
+        "startChar": 0,
+        "endLine": 1557,
+        "endChar": 33
+      },
+      "revId": "aa2a86619188acc4b66d5e3b210a700b12f902b8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6655b50a_cca35492",
         "filename": "system/stack/btm/btm_ble.cc",
         "patchSetId": 4
