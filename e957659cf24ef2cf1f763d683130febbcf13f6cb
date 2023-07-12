@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4083a025_f319b66c",
+        "filename": "system/stack/btm/OWNERS",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-07-12T17:14:47Z",
+      "side": 1,
+      "message": "Could you create a owners file for your area like `OWNERS_pairing` and reference it here with a\n```suggestion\nper-file *sec*\u003dfile:/OWNERS_pairing\n```\n\nAnd use\n```\nfile:/OWNERS_pairing\n```\nin the two other OWNERS file in this CL ?",
+      "revId": "e957659cf24ef2cf1f763d683130febbcf13f6cb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
