@@ -22,6 +22,30 @@
       },
       "revId": "0ab4a7275b7b49ba2493740b16ba5fb4254933ad",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c46b4870_20e6aa35",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 2254,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-07-12T08:21:49Z",
+      "side": 1,
+      "message": "Fixed in other CL. aosp/2652214",
+      "parentUuid": "ed4cb25d_9116c413",
+      "range": {
+        "startLine": 2254,
+        "startChar": 23,
+        "endLine": 2254,
+        "endChar": 45
+      },
+      "revId": "0ab4a7275b7b49ba2493740b16ba5fb4254933ad",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
