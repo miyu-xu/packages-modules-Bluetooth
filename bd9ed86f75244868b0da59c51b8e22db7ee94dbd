@@ -22,6 +22,30 @@
       },
       "revId": "bd9ed86f75244868b0da59c51b8e22db7ee94dbd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "77a2d957_929958c7",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-07-12T22:15:29Z",
+      "side": 1,
+      "message": "Gentle ping",
+      "parentUuid": "7a251628_eae366cc",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 41
+      },
+      "revId": "bd9ed86f75244868b0da59c51b8e22db7ee94dbd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
