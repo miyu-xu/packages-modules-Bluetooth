@@ -399,6 +399,9 @@ static void event_shut_down_stack(ProfileStopCallback stopProfiles) {
 
   get_btm_client_interface().lifecycle.btm_free();
 
+  LOG_INFO("%s Gd shim module disabled", __func__);
+  module_shut_down(get_local_module(GD_SHIM_MODULE));
+
   hack_future = future_new();
   do_in_jni_thread(FROM_HERE, base::Bind(event_signal_stack_down, nullptr));
   future_await(hack_future);
@@ -435,8 +438,6 @@ static void event_clean_up_stack(std::promise<void> promise,
   module_clean_up(get_local_module(DEVICE_IOT_CONFIG_MODULE));
 
   module_clean_up(get_local_module(OSI_MODULE));
-  LOG_INFO("%s Gd shim module disabled", __func__);
-  module_shut_down(get_local_module(GD_SHIM_MODULE));
 
   main_thread_shut_down();
 
