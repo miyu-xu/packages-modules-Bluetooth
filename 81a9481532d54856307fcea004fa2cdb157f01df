@@ -16,6 +16,24 @@
       "message": "isn\u0027t already in line 279?",
       "revId": "81a9481532d54856307fcea004fa2cdb157f01df",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8f7dd23e_0433a219",
+        "filename": "system/bta/le_audio/audio_set_scenarios.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 285,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2023-07-12T12:42:17Z",
+      "side": 1,
+      "message": "Sorry, should be OneChan...",
+      "parentUuid": "d719879a_34fe09d1",
+      "revId": "81a9481532d54856307fcea004fa2cdb157f01df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
