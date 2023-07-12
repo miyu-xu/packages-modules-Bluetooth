@@ -141,6 +141,30 @@
       },
       "revId": "aa2a86619188acc4b66d5e3b210a700b12f902b8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "25ced342_b1851b79",
+        "filename": "system/stack/include/hcidefs.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-07-12T00:05:57Z",
+      "side": 1,
+      "message": "PDL isn\u0027t available here, yet.  When it is, we will use this. (copied from hci_packets.pdl)\n\nenum HciVersion : 8 {\n  V_1_0B \u003d 0x00,\n  V_1_1 \u003d 0x01,\n  V_1_2 \u003d 0x02,\n  V_2_0 \u003d 0x03, //  + EDR\n  V_2_1 \u003d 0x04, //  + EDR\n  V_3_0 \u003d 0x05, //  + HS\n  V_4_0 \u003d 0x06,\n  V_4_1 \u003d 0x07,\n  V_4_2 \u003d 0x08,\n  V_5_0 \u003d 0x09,\n  V_5_1 \u003d 0x0a,\n  V_5_2 \u003d 0x0b,\n  V_5_3 \u003d 0x0c,\n}",
+      "parentUuid": "d972c525_00d76551",
+      "range": {
+        "startLine": 33,
+        "startChar": 8,
+        "endLine": 33,
+        "endChar": 29
+      },
+      "revId": "aa2a86619188acc4b66d5e3b210a700b12f902b8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
