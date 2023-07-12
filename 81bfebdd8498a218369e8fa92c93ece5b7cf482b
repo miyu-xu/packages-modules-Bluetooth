@@ -33,6 +33,24 @@
       "message": "Do we really want to have one aconfig place for the entire Bluetooth repository?\nSome features that require modifications in both android/app/ and system/ might benefit from this but I\u0027m worried about the potential conflicts between branches if everything is in one place.",
       "revId": "81bfebdd8498a218369e8fa92c93ece5b7cf482b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "daadd85e_dd20fd02",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-07-12T17:45:46Z",
+      "side": 1,
+      "message": "\u003e Do we really want to have one aconfig place for the entire Bluetooth repository?\n\nI really think we want that yes\n\n\u003e I\u0027m worried about the potential conflicts between branches\n\nWith Trunk stable there will be no branches... So no conflict 😊\nIf you are worried about the conflict between two feature, this is unlikely to be the case as we will add `aconfig` files for different area / different features (Yet to be exactly determined — For example I would like not to use com.android.bluetooth inside the system server, but that is not available for now)",
+      "parentUuid": "7306321a_318855fd",
+      "revId": "81bfebdd8498a218369e8fa92c93ece5b7cf482b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
