@@ -451,9 +451,11 @@ final class BondStateMachine extends StateMachine {
                 mAdapterService.getMetricId(device));
         BluetoothClass deviceClass = device.getBluetoothClass();
         int classOfDevice = deviceClass == null ? 0 : deviceClass.getClassOfDevice();
-        BluetoothStatsLog.write(BluetoothStatsLog.BLUETOOTH_CLASS_OF_DEVICE_REPORTED,
-                mAdapterService.obfuscateAddress(device), classOfDevice,
-                mAdapterService.getMetricId(device));
+        if (classOfDevice != 0) {
+          BluetoothStatsLog.write(BluetoothStatsLog.BLUETOOTH_CLASS_OF_DEVICE_REPORTED,
+                  mAdapterService.obfuscateAddress(device), classOfDevice,
+                  mAdapterService.getMetricId(device));
+        }
         mAdapterProperties.onBondStateChanged(device, newState);
 
         if (!isTriggerFromDelayMessage && newState == BluetoothDevice.BOND_BONDED
