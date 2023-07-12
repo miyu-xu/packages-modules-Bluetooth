@@ -51,6 +51,24 @@
       "parentUuid": "7306321a_318855fd",
       "revId": "81bfebdd8498a218369e8fa92c93ece5b7cf482b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "49053780_f088346a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2023-07-12T17:55:44Z",
+      "side": 1,
+      "message": "I was thinking about AOSP and internal branches for conflict.\n\nAdding different aconfig per area/profile would be a good alternative 😊",
+      "parentUuid": "daadd85e_dd20fd02",
+      "revId": "81bfebdd8498a218369e8fa92c93ece5b7cf482b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
