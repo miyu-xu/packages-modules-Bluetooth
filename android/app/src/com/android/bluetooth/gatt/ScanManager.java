@@ -488,13 +488,35 @@ public class ScanManager {
         }
 
         private boolean requiresScreenOn(ScanClient client) {
-            boolean isFiltered = (client.filters != null) && !client.filters.isEmpty();
+            boolean isFiltered = isFilteredScan(client);
             return !mScanNative.isOpportunisticScanClient(client) && !isFiltered;
         }
 
         private boolean requiresLocationOn(ScanClient client) {
-            boolean isFiltered = (client.filters != null) && !client.filters.isEmpty();
+            boolean isFiltered = isFilteredScan(client);
             return !client.hasDisavowedLocation && !isFiltered;
+        }
+
+        private boolean isFilteredScan(ScanClient client) {
+            if (client == null) {
+                return false;
+            }
+
+            if ((client.filters != null) && !client.filters.isEmpty()) {
+                for (ScanFilter filter : client.filters) {
+                    // Only when client's filters is NOT empty and all fields are NOT empty,
+                    // then it's a filtered scan
+                    if (!filter.isAllFieldsEmpty()) {
+                        return true;
+                    }
+                }
+
+                // Not find any valid filter in client's filter list
+                return false;
+            } else {
+                // client.filters is null or client.filters is empty
+                return false;
+            }
         }
 
         @RequiresPermission(android.Manifest.permission.BLUETOOTH_SCAN)
