@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ba807e0a_a67aa766",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-07-12T15:56:07Z",
+      "side": 0,
+      "message": "Not yet 😊 but I do not mind since this is the next CL",
+      "range": {
+        "startLine": 75,
+        "startChar": 0,
+        "endLine": 75,
+        "endChar": 75
+      },
+      "revId": "35390b9624a6e9ccce90269d04a33903b181c36f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
