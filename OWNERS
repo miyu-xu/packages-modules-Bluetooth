@@ -23,3 +23,12 @@ per-file system/bta/dm/(bta_dm_act.*,bta_dm_api*}=file:/OWNERS_pairing_privacy
 per-file system/stack/btm/{*sec*,btm_client_interface.*}=file:/OWNERS_pairing_privacy
 per-file system/btif/src{btif_sock_l2cap.*,btif_dm.*,btif_sock_rfc.*}=file:/OWNERS_pairing_privacy
 per-file system/gd/security/*=file:/OWNERS_pairing_privacy
+
+# fuzzers
+per-file system/audio_hal_interface/fuzzer/*=file:/OWNERS_fuzzers
+per-file system/btcore/fuzzer/*=file:/OWNERS_fuzzers
+per-file system/embdrv/g722/fuzzer/*=file:/OWNERS_fuzzers
+per-file system/gd/l2cap/fuzz/*=file:/OWNERS_fuzzers
+per-file system/stack/fuzzers/*=file:/OWNERS_fuzzers
+per-file system/stack/test/fuzzers/*=file:/OWNERS_fuzzers
+per-file system/gd/fuzz/*,system/gd/fuzz/*fuzz*=file:/OWNERS_fuzzers
