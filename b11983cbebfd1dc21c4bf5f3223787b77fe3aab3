@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d5e72263_3853522b",
+        "filename": "system/include/hardware/ble_advertiser.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-07-12T23:32:12Z",
+      "side": 1,
+      "message": "Prefer a different value that isn\u0027t a default value.\n\nThis looks unused, though.  Remove?",
+      "range": {
+        "startLine": 30,
+        "startChar": 47,
+        "endLine": 30,
+        "endChar": 50
+      },
+      "revId": "b11983cbebfd1dc21c4bf5f3223787b77fe3aab3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
