@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ba26603b_e1f941fc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1131148
+      },
+      "writtenOn": "2023-07-12T15:47:34Z",
+      "side": 1,
+      "message": "Could this change be applied to `git_tm-qpr-dev`, where the phone build is coming from?",
+      "revId": "b07018a207cdadeb9eda29c604404ffa3ff77d63",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e4dd540f_6a5cabc6",
+        "filename": "tools/rootcanal/test/LL/scan_collision.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1131148
+      },
+      "writtenOn": "2023-07-12T15:47:34Z",
+      "side": 1,
+      "message": "nit (in multiple places): does Python have the same line-length style guidelines?",
+      "range": {
+        "startLine": 45,
+        "startChar": 100,
+        "endLine": 45,
+        "endChar": 115
+      },
+      "revId": "b07018a207cdadeb9eda29c604404ffa3ff77d63",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
