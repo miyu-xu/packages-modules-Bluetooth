@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "31c0c11f_2cd2d08e",
+        "filename": "android/app/src/com/android/bluetooth/gatt/ScanManager.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 1887,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-07-12T17:39:01Z",
+      "side": 1,
+      "message": "Have we determined why mLocationManager is null in the failing test runs? \n\nIt is initialized in the constructor so perhaps we are just missing something in test setup somewhere. Especially if passes locally.",
+      "range": {
+        "startLine": 1886,
+        "startChar": 24,
+        "endLine": 1887,
+        "endChar": 30
+      },
+      "revId": "63a2dd72659b482048669109d2f9030c07ec0b6d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
