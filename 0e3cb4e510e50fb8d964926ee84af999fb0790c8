@@ -45,6 +45,29 @@
       },
       "revId": "0e3cb4e510e50fb8d964926ee84af999fb0790c8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bebbe3fe_9097ffd6",
+        "filename": "system/bta/le_audio/le_audio_types.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 540,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-07-12T21:14:59Z",
+      "side": 1,
+      "message": "does this distinction of bidirectional vs remote source vs remote sink come from spec, or is it your interpretation of spec ?",
+      "range": {
+        "startLine": 528,
+        "startChar": 1,
+        "endLine": 540,
+        "endChar": 39
+      },
+      "revId": "0e3cb4e510e50fb8d964926ee84af999fb0790c8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
