@@ -57,6 +57,30 @@
       },
       "revId": "b07018a207cdadeb9eda29c604404ffa3ff77d63",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1dea452b_8b124a46",
+        "filename": "tools/rootcanal/test/LL/scan_collision.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-07-12T16:05:32Z",
+      "side": 1,
+      "message": "Yes, but the line length is set at 120 in the format file.",
+      "parentUuid": "e4dd540f_6a5cabc6",
+      "range": {
+        "startLine": 45,
+        "startChar": 100,
+        "endLine": 45,
+        "endChar": 115
+      },
+      "revId": "b07018a207cdadeb9eda29c604404ffa3ff77d63",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
