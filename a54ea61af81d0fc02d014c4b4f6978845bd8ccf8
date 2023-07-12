@@ -1,0 +1,107 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0fff2f31_9c823d6e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-07-12T08:07:12Z",
+      "side": 1,
+      "message": "looks good, minor comments.",
+      "revId": "a54ea61af81d0fc02d014c4b4f6978845bd8ccf8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0a51ff6b_46fe5e5f",
+        "filename": "system/bta/le_audio/le_audio_client_test.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 5066,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-07-12T08:07:12Z",
+      "side": 1,
+      "message": "Please fix this ERROR reported by Common Typos: Common typo found: \"UNSPECIFED\" -- should it be \"UNSPECIFIED\"?\n\nAnalyzer Description: Linter for catching common typos motivated by go/todo-fail and go/lol-codesearch. Shared with google3 common typos library go/common-typos.\nOwner: ayeaye-team@google.com\n\nCommon typo found: \"UNSPECIFED\" -- should it be \"UNSPECIFIED\"?\nNote: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.",
+      "range": {
+        "startLine": 5066,
+        "startChar": 6,
+        "endLine": 5066,
+        "endChar": 16
+      },
+      "revId": "a54ea61af81d0fc02d014c4b4f6978845bd8ccf8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d7f8ecb7_e67de520",
+        "filename": "system/bta/le_audio/le_audio_client_test.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 5491,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-07-12T08:07:12Z",
+      "side": 1,
+      "message": "Please fix this ERROR reported by Common Typos: Common typo found: \"UNSPECIFED\" -- should it be \"UNSPECIFIED\"?\n\nAnalyzer Description: Linter for catching common typos motivated by go/todo-fail and go/lol-codesearch. Shared with google3 common typos library go/common-typos.\nOwner: ayeaye-team@google.com\n\nCommon typo found: \"UNSPECIFED\" -- should it be \"UNSPECIFIED\"?\nNote: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.",
+      "range": {
+        "startLine": 5491,
+        "startChar": 21,
+        "endLine": 5491,
+        "endChar": 31
+      },
+      "revId": "a54ea61af81d0fc02d014c4b4f6978845bd8ccf8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0508577d_000fecd9",
+        "filename": "system/bta/le_audio/le_audio_client_test.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 5496,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-07-12T08:07:12Z",
+      "side": 1,
+      "message": "could you please add comment here explaining what is a goal of this test.\n\nI guess something like \"Check if Unspecified context type will be used when Android wants to stream audio with context type not supported by remote device but in the same time remote device has Unspecified context in the available context types\"",
+      "revId": "a54ea61af81d0fc02d014c4b4f6978845bd8ccf8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d95c85ed_5dfa00b1",
+        "filename": "system/bta/le_audio/le_audio_types.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 537,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-07-12T08:07:12Z",
+      "side": 1,
+      "message": "this is kind of special - why it is here?",
+      "range": {
+        "startLine": 537,
+        "startChar": 4,
+        "endLine": 537,
+        "endChar": 36
+      },
+      "revId": "a54ea61af81d0fc02d014c4b4f6978845bd8ccf8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
