@@ -118,6 +118,30 @@
       },
       "revId": "4cbbe4b63c822c8159b8687b57df9950eac30a55",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ae8df761_a2ea9a11",
+        "filename": "OWNERS",
+        "patchSetId": 3
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-07-13T00:49:50Z",
+      "side": 1,
+      "message": "Looking a bit more at the documentation\n\nhttps://android-review.googlesource.com/plugins/code-owners/Documentation/backend-find-owners.html#per-file\n\n\u003e NOTE: It is discouraged to use path expressions that explicitly name subdirectories such as my-subdir/* as they will break when the subdirectory gets renamed/moved. Instead prefer to define these code owners in my-subdir/OWNERS so that the code owners for the subdirectory stay intact when the subdirectory gets renamed/moved.",
+      "parentUuid": "808a90be_1f580980",
+      "range": {
+        "startLine": 28,
+        "startChar": 0,
+        "endLine": 34,
+        "endChar": 68
+      },
+      "revId": "4cbbe4b63c822c8159b8687b57df9950eac30a55",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
