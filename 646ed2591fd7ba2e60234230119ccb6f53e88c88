@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2df00a9c_32d1b77a",
+        "filename": "android/app/src/com/android/bluetooth/tbs/TbsService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-07-13T16:17:10Z",
+      "side": 1,
+      "message": "unnecessary empty line.",
+      "revId": "646ed2591fd7ba2e60234230119ccb6f53e88c88",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
