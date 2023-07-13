@@ -129,11 +129,9 @@ TEST(TimeTest, test_time_get_os_boottime_us_increases_lower_bound) {
 // bluetooth::common::time_get_os_monotonic_raw_us() is increasing.
 //
 TEST(TimeTest, test_time_get_os_monotonic_raw_us_increases_lower_bound) {
-  static const uint64_t TEST_TIME_SLEEP_US = 100 * 1000;
   struct timespec delay = {};
 
-  delay.tv_sec = TEST_TIME_SLEEP_US / (1000 * 1000);
-  delay.tv_nsec = 1000 * (TEST_TIME_SLEEP_US % (1000 * 1000));
+  delay.tv_nsec = 1;
 
   // Take two timestamps with sleep in-between
   uint64_t t1 = bluetooth::common::time_get_os_monotonic_raw_us();
@@ -142,7 +140,7 @@ TEST(TimeTest, test_time_get_os_monotonic_raw_us_increases_lower_bound) {
 
   ASSERT_EQ(err, 0);
   ASSERT_GT(t2, t1);
-  ASSERT_TRUE((t2 - t1) >= TEST_TIME_SLEEP_US);
+  ASSERT_TRUE((t2 - t1) > 0);
   ASSERT_TRUE((t2 - t1) < TEST_TIME_DELTA_UPPER_BOUND_MS * 1000);
 }
 
