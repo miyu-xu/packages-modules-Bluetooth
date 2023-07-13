@@ -367,7 +367,9 @@ public final class BluetoothLeBroadcastMetadata implements Parcelable {
         out.writeBoolean(mIsEncrypted);
         if (mBroadcastCode != null) {
             out.writeInt(mBroadcastCode.length);
-            out.writeByteArray(mBroadcastCode);
+            if (mBroadcastCode.length >= 0) {
+                out.writeByteArray(mBroadcastCode);
+            }
         } else {
             // -1 indicates missing broadcast code
             out.writeInt(-1);
