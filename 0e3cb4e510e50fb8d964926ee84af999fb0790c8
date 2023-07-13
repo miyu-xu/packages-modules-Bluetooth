@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "74b10dcb_74683517",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-07-13T07:09:04Z",
+      "side": 1,
+      "message": "This patch was already verified together with parent patches",
+      "revId": "0e3cb4e510e50fb8d964926ee84af999fb0790c8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5cc53e86_14d7fb5d",
