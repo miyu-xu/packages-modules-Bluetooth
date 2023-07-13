@@ -266,6 +266,7 @@ public class AdapterServiceRestartTest {
         when(mMockContext.getSharedPreferences(anyString(), anyInt()))
                 .thenReturn(InstrumentationRegistry.getTargetContext()
                         .getSharedPreferences("AdapterServiceTestPrefs", Context.MODE_PRIVATE));
+        when(mMockContext.getUser()).thenReturn(UserHandle.SYSTEM);
 
         when(mMockContext.getAttributionSource()).thenReturn(mAttributionSource);
         doAnswer(invocation -> {
