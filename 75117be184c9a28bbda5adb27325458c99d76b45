@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "daec0374_776d3d29",
+        "filename": "OWNERS",
+        "patchSetId": 2
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-07-13T00:12:56Z",
+      "side": 1,
+      "message": "nit: I think I prefer that we drop an ONWERS file in this directory instead like you where doing before.",
+      "revId": "75117be184c9a28bbda5adb27325458c99d76b45",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "87c91de0_cefffe08",
         "filename": "OWNERS_pairing_priv",
         "patchSetId": 2
