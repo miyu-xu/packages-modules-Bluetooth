@@ -22,6 +22,30 @@
       },
       "revId": "c093cc9122ebaec6d592c469fa0d152b0552ac58",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a6efb510_3ac1b56d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-07-13T21:43:20Z",
+      "side": 1,
+      "message": "Short hand for InvisAlign 2.0",
+      "parentUuid": "713ac16f_32a58c79",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 3
+      },
+      "revId": "c093cc9122ebaec6d592c469fa0d152b0552ac58",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
