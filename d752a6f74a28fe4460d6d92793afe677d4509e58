@@ -66,6 +66,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "31efc96f_5a75d7e9",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/gatt/ScanManagerTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 220,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-07-13T18:10:27Z",
+      "side": 1,
+      "message": "This does not compile, there is a type parameter missing",
+      "range": {
+        "startLine": 220,
+        "startChar": 70,
+        "endLine": 220,
+        "endChar": 83
+      },
+      "revId": "d752a6f74a28fe4460d6d92793afe677d4509e58",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "82d9fb79_09e6e1ee",
         "filename": "android/app/tests/unit/src/com/android/bluetooth/gatt/ScanManagerTest.java",
         "patchSetId": 3
