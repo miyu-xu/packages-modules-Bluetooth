@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "973bdb25_ddd54d26",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1797,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-07-13T20:12:05Z",
+      "side": 1,
+      "message": "From https://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/system/include/hardware/bluetooth.h;l\u003d638, it seems like we should be calling cleanup() first and then disable.\n\nThere may be a race here on SIGTERM where we immediately exit when disable completes but before cleanup is done. This needs a review from the core team.",
+      "revId": "782a3d7bfa5c9ffa00d76bc1f127331d395f30ce",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
