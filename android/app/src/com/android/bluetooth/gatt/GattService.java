@@ -56,6 +56,7 @@ import android.bluetooth.le.ScanSettings;
 import android.companion.AssociationInfo;
 import android.companion.CompanionDeviceManager;
 import android.content.AttributionSource;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.pm.PackageManager.PackageInfoFlags;
@@ -187,16 +188,15 @@ public class GattService extends ProfileService {
             UUID.fromString("00001846-0000-1000-8000-00805F9B34FB"), // CSIS
     };
 
-    /**
-     * Example raw beacons captured from a Blue Charm BC011
-     */
-    private static final String[] TEST_MODE_BEACONS = new String[] {
-            "020106",
-            "0201060303AAFE1716AAFE10EE01626C7565636861726D626561636F6E730009168020691E0EFE13551109426C7565436861726D5F313639363835000000",
-            "0201060303AAFE1716AAFE00EE626C7565636861726D31000000000001000009168020691E0EFE13551109426C7565436861726D5F313639363835000000",
-            "0201060303AAFE1116AAFE20000BF017000008874803FB93540916802069080EFE13551109426C7565436861726D5F313639363835000000000000000000",
-            "0201061AFF4C000215426C7565436861726D426561636F6E730EFE1355C509168020691E0EFE13551109426C7565436861726D5F31363936383500000000",
-    };
+    /** Example raw beacons captured from a Blue Charm BC011 */
+    private static final String[] TEST_MODE_BEACONS =
+            new String[] {
+                "020106",
+                "0201060303AAFE1716AAFE10EE01626C7565636861726D626561636F6E730009168020691E0EFE13551109426C7565436861726D5F313639363835000000",
+                "0201060303AAFE1716AAFE00EE626C7565636861726D31000000000001000009168020691E0EFE13551109426C7565436861726D5F313639363835000000",
+                "0201060303AAFE1116AAFE20000BF017000008874803FB93540916802069080EFE13551109426C7565436861726D5F313639363835000000000000000000",
+                "0201061AFF4C000215426C7565436861726D426561636F6E730EFE1355C509168020691E0EFE13551109426C7565436861726D5F31363936383500000000",
+            };
 
     /**
      * Keep the arguments passed in for the PendingIntent.
@@ -294,6 +294,11 @@ public class GattService extends ProfileService {
     private String mExposureNotificationPackage;
     private Handler mTestModeHandler;
     private final Object mTestModeLock = new Object();
+
+    public GattService(Context ctx) {
+        attachBaseContext(ctx);
+        onCreate();
+    }
 
     public static boolean isEnabled() {
         return BluetoothProperties.isProfileGattEnabled().orElse(true);
@@ -606,34 +611,6 @@ public class GattService extends ProfileService {
             }
             Log.e(TAG, "getService() - Service requested, but not available!");
             return null;
-        }
-
-        @Override
-        public void startService() {
-            GattService service = mService;
-            if (service == null) {
-                Log.e(TAG, "startService: Service is null");
-                return;
-            }
-            if (!Utils.checkConnectPermissionForDataDelivery(
-                    service, null, "GattService startService")) {
-                return;
-            }
-            service.doStart();
-        }
-
-        @Override
-        public void stopService() {
-            GattService service = mService;
-            if (service == null) {
-                Log.e(TAG, "stopService: Service is null");
-                return;
-            }
-            if (!Utils.checkConnectPermissionForDataDelivery(
-                    service, null, "GattService stopService")) {
-                return;
-            }
-            service.doStop();
         }
 
         @Override
@@ -1772,15 +1749,6 @@ public class GattService extends ProfileService {
                 return;
             }
             service.disconnectAll(attributionSource);
-        }
-
-        @Override
-        public void unregAll(AttributionSource attributionSource) {
-            GattService service = getService();
-            if (service == null) {
-                return;
-            }
-            service.unregAll(attributionSource);
         }
 
         @Override
@@ -3431,7 +3399,7 @@ public class GattService extends ProfileService {
     }
 
     @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)
-    void unregAll(AttributionSource attributionSource) {
+    public void unregAll(AttributionSource attributionSource) {
         for (Integer appId : mClientMap.getAllAppsIds()) {
             if (DBG) {
                 Log.d(TAG, "unreg:" + appId);
