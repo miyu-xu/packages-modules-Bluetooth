@@ -295,7 +295,7 @@ public abstract class ProfileService extends Service {
                 android.Manifest.permission.MANAGE_USERS,
                 android.Manifest.permission.INTERACT_ACROSS_USERS
             })
-    protected void doStart() {
+    public void doStart() {
         Log.v(mName, "doStart");
         if (mAdapter == null) {
             Log.w(mName, "Can't start profile service: device does not have BT");
@@ -321,7 +321,7 @@ public abstract class ProfileService extends Service {
         mAdapterService.onProfileServiceStateChanged(this, BluetoothAdapter.STATE_ON);
     }
 
-    protected void doStop() {
+    public void doStop() {
         Log.v(mName, "doStop");
         if (mAdapterService == null || mAdapterService.isStartedProfile(mName)) {
             Log.w(mName, "Unexpectedly do Stop, don't stop.");
