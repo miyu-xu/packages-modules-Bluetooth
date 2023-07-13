@@ -220,7 +220,6 @@ cc_library_static {
         "btm/btm_ble_bgconn.cc",
         "btm/btm_ble_cont_energy.cc",
         "btm/btm_ble_gap.cc",
-        "btm/btm_ble_multi_adv.cc",
         "btm/btm_ble_privacy.cc",
         "btm/btm_ble_scanner.cc",
         "btm/btm_client_interface.cc",
@@ -847,7 +846,6 @@ cc_test {
     ],
     srcs: [
         ":TestMockDevice",
-        "btm/btm_ble_multi_adv.cc",
         "test/ble_advertiser_test.cc",
     ],
     shared_libs: [
@@ -1445,7 +1443,6 @@ cc_test {
         "btm/btm_ble_bgconn.cc",
         "btm/btm_ble_cont_energy.cc",
         "btm/btm_ble_gap.cc",
-        "btm/btm_ble_multi_adv.cc",
         "btm/btm_ble_privacy.cc",
         "btm/btm_ble_scanner.cc",
         "btm/btm_client_interface.cc",
