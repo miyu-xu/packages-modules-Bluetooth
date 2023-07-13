@@ -53,6 +53,7 @@ import androidx.test.runner.AndroidJUnit4;
 
 import com.android.bluetooth.TestUtils;
 import com.android.bluetooth.Utils;
+import com.android.bluetooth.btservice.ActiveDeviceManager;
 import com.android.bluetooth.btservice.AdapterService;
 import com.android.bluetooth.btservice.ServiceFactory;
 import com.android.bluetooth.btservice.storage.DatabaseManager;
@@ -86,8 +87,7 @@ public class HapClientTest {
     private final String mFlagDexmarker = System.getProperty("dexmaker.share_classloader", "false");
 
     private static final int TIMEOUT_MS = 1000;
-    @Rule
-    public final ServiceTestRule mServiceRule = new ServiceTestRule();
+    @Rule public final ServiceTestRule mServiceRule = new ServiceTestRule();
     private BluetoothAdapter mAdapter;
     private BluetoothDevice mDevice;
     private BluetoothDevice mDevice2;
@@ -99,20 +99,14 @@ public class HapClientTest {
     private HasIntentReceiver mHasIntentReceiver;
     private HashMap<BluetoothDevice, LinkedBlockingQueue<Intent>> mIntentQueue;
 
-    @Mock
-    private AdapterService mAdapterService;
-    @Mock
-    private DatabaseManager mDatabaseManager;
-    @Mock
-    private HapClientNativeInterface mNativeInterface;
-    @Mock
-    private ServiceFactory mServiceFactory;
-    @Mock
-    private CsipSetCoordinatorService mCsipService;
-    @Mock
-    private IBluetoothHapClientCallback mCallback;
-    @Mock
-    private Binder mBinder;
+    @Mock private AdapterService mAdapterService;
+    @Mock private ActiveDeviceManager mActiveDeviceManager;
+    @Mock private DatabaseManager mDatabaseManager;
+    @Mock private HapClientNativeInterface mNativeInterface;
+    @Mock private ServiceFactory mServiceFactory;
+    @Mock private CsipSetCoordinatorService mCsipService;
+    @Mock private IBluetoothHapClientCallback mCallback;
+    @Mock private Binder mBinder;
 
     @Before
     public void setUp() throws Exception {
@@ -131,6 +125,7 @@ public class HapClientTest {
         HapClientStateMachine.sConnectTimeoutMs = TIMEOUT_MS;
 
         TestUtils.setAdapterService(mAdapterService);
+        doReturn(mActiveDeviceManager).when(mAdapterService).getActiveDeviceManager();
         doReturn(mDatabaseManager).when(mAdapterService).getDatabase();
         doReturn(true, false).when(mAdapterService).isStartedProfile(anyString());
 
