@@ -22,6 +22,30 @@
       },
       "revId": "91f47477fdb709135da30ea142e4409df8fdcb28",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b527366a_8fa97973",
+        "filename": "system/stack/btu/btu_hcif.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 1355,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-07-13T16:57:51Z",
+      "side": 1,
+      "message": "Yes.  \"Use PDL builders for HCI commands\" makes that change.  The shim layer requires the parameter on the callback, so until we get rid of that, we need to keep this around.",
+      "parentUuid": "0423fa4b_bcc0d651",
+      "range": {
+        "startLine": 1355,
+        "startChar": 40,
+        "endLine": 1355,
+        "endChar": 44
+      },
+      "revId": "91f47477fdb709135da30ea142e4409df8fdcb28",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
