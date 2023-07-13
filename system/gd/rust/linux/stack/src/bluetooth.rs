@@ -1793,7 +1793,9 @@ impl IBluetooth for Bluetooth {
     }
 
     fn disable(&mut self) -> bool {
-        self.intf.lock().unwrap().disable() == 0
+        let success = self.intf.lock().unwrap().disable() == 0;
+        self.intf.lock().unwrap().cleanup();
+        success
     }
 
     fn get_address(&self) -> String {
