@@ -2222,6 +2222,7 @@ public class LeAudioService extends ProfileService {
                 return;
             }
             removeStateMachine(device);
+            removeAuthorizationInfoForRelatedProfiles(device);
         }
     }
 
@@ -2309,6 +2310,7 @@ public class LeAudioService extends ProfileService {
                 Log.d(TAG, device + " is unbond. Remove state machine");
             }
             removeStateMachine(device);
+            removeAuthorizationInfoForRelatedProfiles(device);
         }
 
         if (!isScannerNeeded()) {
@@ -2661,6 +2663,18 @@ public class LeAudioService extends ProfileService {
         }
     }
 
+    void removeAuthorizationInfoForRelatedProfiles(BluetoothDevice device) {
+        McpService mcpService = getMcpService();
+        if (mcpService != null) {
+            mcpService.removeDeviceAuthorizationInfo(device);
+        }
+
+        TbsService tbsService = getTbsService();
+        if (tbsService != null) {
+            tbsService.removeDeviceAuthorizationInfo(device);
+        }
+    }
+
     /**
      * This function is called when the framework registers a callback with the service for this
      * first time. This is used as an indication that Bluetooth has been enabled.
@@ -2817,6 +2831,7 @@ public class LeAudioService extends ProfileService {
         }
 
         setAuthorizationForRelatedProfiles(device, false);
+        removeAuthorizationInfoForRelatedProfiles(device);
     }
 
     private void notifyGroupNodeRemoved(BluetoothDevice device, int groupId) {
