@@ -22,6 +22,30 @@
       },
       "revId": "603a97e68264db1a7ee914e383fdf63a3cc6930c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6a032ffa_6e3527b2",
+        "filename": "system/audio_hal_interface/fuzzer/OWNERS",
+        "patchSetId": 2
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2023-07-13T00:08:05Z",
+      "side": 1,
+      "message": "updated",
+      "parentUuid": "cdd91730_125aa759",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 2,
+        "endChar": 15
+      },
+      "revId": "603a97e68264db1a7ee914e383fdf63a3cc6930c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
