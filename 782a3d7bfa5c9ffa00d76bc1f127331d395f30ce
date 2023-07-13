@@ -34,6 +34,24 @@
       "parentUuid": "973bdb25_ddd54d26",
       "revId": "782a3d7bfa5c9ffa00d76bc1f127331d395f30ce",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "73e044c5_1ddad75a",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1797,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-07-13T21:16:41Z",
+      "side": 1,
+      "message": "The life cycle is supposed to be init-\u003eenable-\u003edisable-\u003ecleanup.  I can see how that comment is hard to parse.",
+      "parentUuid": "da70fa58_475e1629",
+      "revId": "782a3d7bfa5c9ffa00d76bc1f127331d395f30ce",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
