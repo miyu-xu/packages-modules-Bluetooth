@@ -22,6 +22,30 @@
       },
       "revId": "4cbbe4b63c822c8159b8687b57df9950eac30a55",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1a4a1d55_aa4030f0",
+        "filename": "OWNERS",
+        "patchSetId": 3
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2023-07-13T00:23:19Z",
+      "side": 1,
+      "message": "I prefer this. as this allows us to look at which files are in some area from a single place, the previous approach makes it a lot harder to figure out",
+      "parentUuid": "52cd9bd7_ca6717e4",
+      "range": {
+        "startLine": 28,
+        "startChar": 0,
+        "endLine": 34,
+        "endChar": 68
+      },
+      "revId": "4cbbe4b63c822c8159b8687b57df9950eac30a55",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
