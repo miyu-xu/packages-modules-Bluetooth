@@ -46,6 +46,30 @@
       },
       "revId": "4cbbe4b63c822c8159b8687b57df9950eac30a55",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9439232c_adb25f11",
+        "filename": "OWNERS",
+        "patchSetId": 3
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-07-13T00:27:29Z",
+      "side": 1,
+      "message": "The `per-file` syntax is mostly used and useful to define ownership based on a glob or on a file name recursively (in the current directory and all its subdirectories).\n\nI would prefer that we use OWNERS files in the normal way when possible (when we define ownership for a whole directory).\n\n\u003e the previous approach makes it a lot harder to figure out\n\nIsn\u0027t just searching for `OWNERS_fuzzers` in the whole tree enough to get this information ?",
+      "parentUuid": "1a4a1d55_aa4030f0",
+      "range": {
+        "startLine": 28,
+        "startChar": 0,
+        "endLine": 34,
+        "endChar": 68
+      },
+      "revId": "4cbbe4b63c822c8159b8687b57df9950eac30a55",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
