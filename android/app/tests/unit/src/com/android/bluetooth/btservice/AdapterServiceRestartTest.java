@@ -168,7 +168,7 @@ public class AdapterServiceRestartTest {
             Looper.prepare();
         }
         Assert.assertNotNull(Looper.myLooper());
-        AdapterService adapterService = new AdapterService();
+        AdapterService adapterService = new AdapterService(Looper.myLooper());
         adapterService.initNative(false /* is_restricted */, false /* is_common_criteria_mode */,
                 0 /* config_compare_result */, new String[0], false, "");
         adapterService.cleanupNative();
@@ -197,7 +197,7 @@ public class AdapterServiceRestartTest {
                 .adoptShellPermissionIdentity();
 
         androidx.test.platform.app.InstrumentationRegistry.getInstrumentation().runOnMainSync(
-                () -> mAdapterService = new AdapterService());
+                () -> mAdapterService = new AdapterService(Looper.myLooper()));
         mServiceBinder = new AdapterService.AdapterServiceBinder(mAdapterService);
         mMockPackageManager = mock(PackageManager.class);
         when(mMockPackageManager.getPermissionInfo(any(), anyInt()))
@@ -266,6 +266,7 @@ public class AdapterServiceRestartTest {
         when(mMockContext.getSharedPreferences(anyString(), anyInt()))
                 .thenReturn(InstrumentationRegistry.getTargetContext()
                         .getSharedPreferences("AdapterServiceTestPrefs", Context.MODE_PRIVATE));
+        when(mMockContext.getUser()).thenReturn(UserHandle.SYSTEM);
 
         when(mMockContext.getAttributionSource()).thenReturn(mAttributionSource);
         doAnswer(invocation -> {
