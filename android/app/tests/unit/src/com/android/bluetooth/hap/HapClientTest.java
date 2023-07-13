@@ -53,6 +53,7 @@ import androidx.test.runner.AndroidJUnit4;
 
 import com.android.bluetooth.TestUtils;
 import com.android.bluetooth.Utils;
+import com.android.bluetooth.btservice.ActiveDeviceManager;
 import com.android.bluetooth.btservice.AdapterService;
 import com.android.bluetooth.btservice.ServiceFactory;
 import com.android.bluetooth.btservice.storage.DatabaseManager;
@@ -101,8 +102,8 @@ public class HapClientTest {
 
     @Mock
     private AdapterService mAdapterService;
-    @Mock
-    private DatabaseManager mDatabaseManager;
+    @Mock private ActiveDeviceManager mActiveDeviceManager;
+    @Mock private DatabaseManager mDatabaseManager;
     @Mock
     private HapClientNativeInterface mNativeInterface;
     @Mock
@@ -131,6 +132,7 @@ public class HapClientTest {
         HapClientStateMachine.sConnectTimeoutMs = TIMEOUT_MS;
 
         TestUtils.setAdapterService(mAdapterService);
+        doReturn(mActiveDeviceManager).when(mAdapterService).getActiveDeviceManager();
         doReturn(mDatabaseManager).when(mAdapterService).getDatabase();
         doReturn(true, false).when(mAdapterService).isStartedProfile(anyString());
 
