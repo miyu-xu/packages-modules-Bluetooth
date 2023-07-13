@@ -16,6 +16,24 @@
       "message": "Could you create a owners file for your area like `OWNERS_pairing` and reference it here with a\n```suggestion\nper-file *sec*\u003dfile:/OWNERS_pairing\n```\n\nAnd use\n```\nfile:/OWNERS_pairing\n```\nin the two other OWNERS file in this CL ?",
       "revId": "e957659cf24ef2cf1f763d683130febbcf13f6cb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7605e632_0ae7f75b",
+        "filename": "system/stack/btm/OWNERS",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2023-07-13T00:08:21Z",
+      "side": 1,
+      "message": "updated",
+      "parentUuid": "4083a025_f319b66c",
+      "revId": "e957659cf24ef2cf1f763d683130febbcf13f6cb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
