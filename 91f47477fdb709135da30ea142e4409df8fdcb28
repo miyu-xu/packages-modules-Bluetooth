@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0423fa4b_bcc0d651",
+        "filename": "system/stack/btu/btu_hcif.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 1355,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-07-13T00:36:08Z",
+      "side": 1,
+      "message": "Is there plan to remove the parameter there too ? (in a follow-up ?)",
+      "range": {
+        "startLine": 1355,
+        "startChar": 40,
+        "endLine": 1355,
+        "endChar": 44
+      },
+      "revId": "91f47477fdb709135da30ea142e4409df8fdcb28",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
