@@ -142,6 +142,30 @@
       },
       "revId": "4cbbe4b63c822c8159b8687b57df9950eac30a55",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e98822fd_9ba8b563",
+        "filename": "OWNERS",
+        "patchSetId": 3
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-07-13T00:52:03Z",
+      "side": 1,
+      "message": "\u003e This seems similar to the pairing and privacy section immediately above, though, so in the absence of a documented policy I don\u0027t see an argument for blocking it on this basis.\n\nThis is coming from the parent CL that is not merged where I put the same comment.",
+      "parentUuid": "ae8df761_a2ea9a11",
+      "range": {
+        "startLine": 28,
+        "startChar": 0,
+        "endLine": 34,
+        "endChar": 68
+      },
+      "revId": "4cbbe4b63c822c8159b8687b57df9950eac30a55",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
