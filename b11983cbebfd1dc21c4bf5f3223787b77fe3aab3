@@ -70,6 +70,30 @@
       },
       "revId": "b11983cbebfd1dc21c4bf5f3223787b77fe3aab3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f92ff48d_eac6de2e",
+        "filename": "system/include/hardware/ble_advertiser.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-07-13T20:36:12Z",
+      "side": 1,
+      "message": "Isn\u0027t the client ID the same as the registered ID? Could these values conflict with other registrations from Java layer?",
+      "parentUuid": "191b9289_7819d8ef",
+      "range": {
+        "startLine": 30,
+        "startChar": 47,
+        "endLine": 30,
+        "endChar": 50
+      },
+      "revId": "b11983cbebfd1dc21c4bf5f3223787b77fe3aab3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
