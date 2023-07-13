@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "87c91de0_cefffe08",
+        "filename": "OWNERS_pairing_priv",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-07-13T00:11:04Z",
+      "side": 1,
+      "message": "nit: Use the full name in the file `OWNERS_pairing_privacy` ?",
+      "revId": "75117be184c9a28bbda5adb27325458c99d76b45",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

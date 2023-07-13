@@ -34,6 +34,24 @@
       "parentUuid": "4083a025_f319b66c",
       "revId": "e957659cf24ef2cf1f763d683130febbcf13f6cb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e0e536a6_22fe12f4",
+        "filename": "system/stack/btm/OWNERS",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-07-13T00:11:04Z",
+      "side": 1,
+      "message": "Thanks !",
+      "parentUuid": "7605e632_0ae7f75b",
+      "revId": "e957659cf24ef2cf1f763d683130febbcf13f6cb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
