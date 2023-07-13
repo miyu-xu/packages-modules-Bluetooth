@@ -62,6 +62,29 @@
       },
       "revId": "d752a6f74a28fe4460d6d92793afe677d4509e58",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "82d9fb79_09e6e1ee",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/gatt/ScanManagerTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-07-13T17:39:31Z",
+      "side": 1,
+      "message": "nit: there is a tab here\nhave you run the format tool before uploading the change ?",
+      "range": {
+        "startLine": 224,
+        "startChar": 0,
+        "endLine": 224,
+        "endChar": 1
+      },
+      "revId": "d752a6f74a28fe4460d6d92793afe677d4509e58",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
