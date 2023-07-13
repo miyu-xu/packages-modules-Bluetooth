@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3feecc51_87102786",
+        "filename": "android/app/src/com/android/bluetooth/gatt/ScanManager.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 509,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-07-13T20:26:40Z",
+      "side": 1,
+      "message": "nit: Why not just return true here and avoid the break? Then can return false in line 513 and don\u0027t have to declare an object for this.\n\nThis would save a few lines and be just as readable IMO.",
+      "range": {
+        "startLine": 509,
+        "startChar": 20,
+        "endLine": 509,
+        "endChar": 49
+      },
+      "revId": "a3a19d4852a3d8ac2d80cebe52f9a52c0bbc91d5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
