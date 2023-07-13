@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "52cd9bd7_ca6717e4",
+        "filename": "OWNERS",
+        "patchSetId": 3
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-07-13T00:12:08Z",
+      "side": 1,
+      "message": "nit: I think we prefer to drop an OWNERS file in those directories like you where doing before.",
+      "range": {
+        "startLine": 28,
+        "startChar": 0,
+        "endLine": 34,
+        "endChar": 68
+      },
+      "revId": "4cbbe4b63c822c8159b8687b57df9950eac30a55",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
