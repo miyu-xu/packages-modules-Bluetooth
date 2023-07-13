@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6fc0e919_1b2b21ef",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-07-13T22:01:48Z",
+      "side": 1,
+      "message": "If you add another test line, the test validation warning will go away.\n\nTest: emerge-brya floss and confirm forget persists after BT off\nTest: mma -j32",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 18,
+        "endChar": 4
+      },
+      "revId": "782a3d7bfa5c9ffa00d76bc1f127331d395f30ce",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "973bdb25_ddd54d26",
         "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
         "patchSetId": 1
