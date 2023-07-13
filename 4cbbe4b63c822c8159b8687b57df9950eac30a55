@@ -70,6 +70,30 @@
       },
       "revId": "4cbbe4b63c822c8159b8687b57df9950eac30a55",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3ce3b185_7798f326",
+        "filename": "OWNERS",
+        "patchSetId": 3
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1960897
+      },
+      "writtenOn": "2023-07-13T00:37:00Z",
+      "side": 1,
+      "message": "I can see arguments either way here, as we\u0027re dealing with many small directories, and I don\u0027t have a strong opinion on which is preferable.  This seems similar to the pairing and privacy section immediately above, though, so in the absence of a documented policy I don\u0027t see an argument for blocking it on this basis.",
+      "parentUuid": "9439232c_adb25f11",
+      "range": {
+        "startLine": 28,
+        "startChar": 0,
+        "endLine": 34,
+        "endChar": 68
+      },
+      "revId": "4cbbe4b63c822c8159b8687b57df9950eac30a55",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
