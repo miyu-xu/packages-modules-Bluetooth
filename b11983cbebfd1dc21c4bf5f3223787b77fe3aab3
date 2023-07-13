@@ -94,6 +94,30 @@
       },
       "revId": "b11983cbebfd1dc21c4bf5f3223787b77fe3aab3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f691408a_dc5d1d7e",
+        "filename": "system/include/hardware/ble_advertiser.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-07-13T22:12:39Z",
+      "side": 1,
+      "message": "client id is the new field added by this cl. so the native client will register the callbacks with its client id + register id. the java path will continue to use their java\u0027s client id, so to avoid the conflict. I will update the description to clarify this.\n\ndiscussed offline, will update this to 0x1. mark as resolved.",
+      "parentUuid": "f92ff48d_eac6de2e",
+      "range": {
+        "startLine": 30,
+        "startChar": 47,
+        "endLine": 30,
+        "endChar": 50
+      },
+      "revId": "b11983cbebfd1dc21c4bf5f3223787b77fe3aab3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
