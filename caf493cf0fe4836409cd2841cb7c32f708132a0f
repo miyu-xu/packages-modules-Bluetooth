@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "691a7b6a_12fde629",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 6286,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-07-13T23:52:13Z",
+      "side": 1,
+      "message": "Create a getter instead of using `onBind`.\n\nWhile reading this CL, I asked myself if onBind was recreating the binder on each call (because Service only call onBind once and cache the value), based on that I think the confusion can be avoided if we create a getter.",
+      "range": {
+        "startLine": 6286,
+        "startChar": 60,
+        "endLine": 6286,
+        "endChar": 72
+      },
+      "revId": "caf493cf0fe4836409cd2841cb7c32f708132a0f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
