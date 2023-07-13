@@ -22,6 +22,30 @@
       },
       "revId": "a3a19d4852a3d8ac2d80cebe52f9a52c0bbc91d5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ac03c61f_7821820c",
+        "filename": "android/app/src/com/android/bluetooth/gatt/ScanManager.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 509,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-07-13T21:06:15Z",
+      "side": 1,
+      "message": "I put the exact opposite comment a few patchset ago, since there was comment to explain the behavior, I thought having a variable would make thing obvious.\n\nI do not have strong opinion for one or another",
+      "parentUuid": "3feecc51_87102786",
+      "range": {
+        "startLine": 509,
+        "startChar": 20,
+        "endLine": 509,
+        "endChar": 49
+      },
+      "revId": "a3a19d4852a3d8ac2d80cebe52f9a52c0bbc91d5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
