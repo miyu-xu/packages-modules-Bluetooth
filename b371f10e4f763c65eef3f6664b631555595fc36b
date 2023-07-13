@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "17b81521_7d76bcd1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-07-13T23:40:11Z",
+      "side": 1,
+      "message": "It looks like this breaks the floss build.  Is floss still using multi_adv ?",
+      "revId": "b371f10e4f763c65eef3f6664b631555595fc36b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
