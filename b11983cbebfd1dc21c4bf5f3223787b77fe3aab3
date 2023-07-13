@@ -46,6 +46,30 @@
       },
       "revId": "b11983cbebfd1dc21c4bf5f3223787b77fe3aab3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "191b9289_7819d8ef",
+        "filename": "system/include/hardware/ble_advertiser.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-07-13T18:09:00Z",
+      "side": 1,
+      "message": "I\u0027d rather no one uses 0.\n\nYou could add the LeAudio value in the CL that uses it.",
+      "parentUuid": "024044e7_c729a0aa",
+      "range": {
+        "startLine": 30,
+        "startChar": 47,
+        "endLine": 30,
+        "endChar": 50
+      },
+      "revId": "b11983cbebfd1dc21c4bf5f3223787b77fe3aab3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
