@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4fbef768_4670bd54",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1282799
+      },
+      "writtenOn": "2023-07-13T11:58:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ec4bb1d5_cf19518a",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 18,
+        "endChar": 1
+      },
+      "revId": "767bc971b9c5615cb8b0ee4456c398064a4e4984",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1f08a075_41fd8adb",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "910211c4_206b5dee",
+        "filename": "android/app/src/com/android/bluetooth/gatt/ScanManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 504,
+      "author": {
+        "id": 1282799
+      },
+      "writtenOn": "2023-07-13T11:58:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1f08a075_41fd8adb",
+      "range": {
+        "startLine": 501,
+        "startChar": 0,
+        "endLine": 504,
+        "endChar": 0
+      },
+      "revId": "767bc971b9c5615cb8b0ee4456c398064a4e4984",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "96d8e7c6_c281baac",
@@ -60,6 +108,30 @@
       "writtenOn": "2023-07-12T16:15:19Z",
       "side": 1,
       "message": "This CL is adding comment to explain the return reason, this could have been avoid by having the return closer to its condition (or with a variable properly named)\nI would have inverse the condition to make an early return.\n\n\n```suggestion\n            if ((client.filters \u003d\u003d null) || client.filters.isEmpty()) {\n                return false;\n            }\n\n            boolean atLeastOneValidFilter \u003d false;\n            for (ScanFilter filter : client.filters) {\n                // A valid filter need at least one field not empty\n                if (!filter.isAllFieldsEmpty()) {\n                    atLeastOneValidFilter \u003d true;\n                    break;\n                }\n            }\n            return atLeastOneValidFilter;\n```\n\n\nEven here, I am not sure we should check for `client.filters.isEmpty()` as this is redundant with the for loop.\n\n\nLet me know what you think",
+      "range": {
+        "startLine": 505,
+        "startChar": 12,
+        "endLine": 519,
+        "endChar": 13
+      },
+      "revId": "767bc971b9c5615cb8b0ee4456c398064a4e4984",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "75df628b_f384fbbb",
+        "filename": "android/app/src/com/android/bluetooth/gatt/ScanManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 519,
+      "author": {
+        "id": 1282799
+      },
+      "writtenOn": "2023-07-13T11:58:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "96d8e7c6_c281baac",
       "range": {
         "startLine": 505,
         "startChar": 12,
