@@ -46,6 +46,30 @@
       },
       "revId": "a3a19d4852a3d8ac2d80cebe52f9a52c0bbc91d5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "81baab88_edf0523b",
+        "filename": "android/app/src/com/android/bluetooth/gatt/ScanManager.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 509,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-07-13T21:17:37Z",
+      "side": 1,
+      "message": "Ah, sorry William, didn\u0027t see that comment. Differences in opinion here I guess :)  \n\nFWIW I think is obvious even without a comment there that it is checking if the filter fields are empty. Prefer cleaner code even with a comment. \n\nHowever, since this was previously suggested by you and this is fairly minor I\u0027ll go ahead and resolve this and approve. It is at least cleaner here than in initial patch.",
+      "parentUuid": "ac03c61f_7821820c",
+      "range": {
+        "startLine": 509,
+        "startChar": 20,
+        "endLine": 509,
+        "endChar": 49
+      },
+      "revId": "a3a19d4852a3d8ac2d80cebe52f9a52c0bbc91d5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
