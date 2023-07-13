@@ -199,6 +199,11 @@ public class McpService extends ProfileService {
         setDeviceAuthorized(device, false);
     }
 
+    public void removeDeviceAuthorizationInfo(BluetoothDevice device) {
+        Log.i(TAG, "\temoveDeviceAuthorizationInfo(): device: " + device);
+        mDeviceAuthorizations.remove(device);
+    }
+
     public void setDeviceAuthorized(BluetoothDevice device, boolean isAuthorized) {
         Log.i(TAG, "\tsetDeviceAuthorized(): device: " + device + ", isAuthorized: "
                 + isAuthorized);

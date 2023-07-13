@@ -149,6 +149,11 @@ public class TbsService extends ProfileService {
         setDeviceAuthorized(device, false);
     }
 
+
+    public void removeDeviceAuthorizationInfo(BluetoothDevice device) {
+        Log.i(TAG, "removeDeviceAuthorizationInfo(): device: " + device);
+    }
+
     /**
      * Sets device authorization for TBS.
      *

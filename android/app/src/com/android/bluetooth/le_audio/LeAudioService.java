@@ -2207,6 +2207,7 @@ public class LeAudioService extends ProfileService {
                 return;
             }
             removeStateMachine(device);
+            removeAuthorizationInfoForRelatedProfiles(device);
         }
     }
 
@@ -2643,6 +2644,18 @@ public class LeAudioService extends ProfileService {
         TbsService tbsService = getTbsService();
         if (tbsService != null) {
             tbsService.setDeviceAuthorized(device, authorize);
+        }
+    }
+
+    void removeAuthorizationInfoForRelatedProfiles(BluetoothDevice device) {
+        McpService mcpService = getMcpService();
+        if (mcpService != null) {
+            mcpService.removeDeviceAuthorizationInfo(device);
+        }
+
+        TbsService tbsService = getTbsService();
+        if (tbsService != null) {
+            tbsService.removeDeviceAuthorizationInfo(device);
         }
     }
 
