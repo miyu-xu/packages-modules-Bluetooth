@@ -16,6 +16,24 @@
       "message": "From https://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/system/include/hardware/bluetooth.h;l\u003d638, it seems like we should be calling cleanup() first and then disable.\n\nThere may be a race here on SIGTERM where we immediately exit when disable completes but before cleanup is done. This needs a review from the core team.",
       "revId": "782a3d7bfa5c9ffa00d76bc1f127331d395f30ce",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "da70fa58_475e1629",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1797,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2023-07-13T20:20:53Z",
+      "side": 1,
+      "message": "stack_manager cleanup calls shutdown (disable) if hasn\u0027t already been called so I think it makes sense to call cleanup afterwards (https://source.corp.google.com/h/googleplex-android/platform/superproject/main/+/refs/heads/main:packages/modules/Bluetooth/system/btif/src/stack_manager.cc;l\u003d424;drc\u003d7c67a9536cbb94bc83c8f5d515751c39dd6d4d8b;bpv\u003d0;bpt\u003d1) \n\nAdding Myles to help review",
+      "parentUuid": "973bdb25_ddd54d26",
+      "revId": "782a3d7bfa5c9ffa00d76bc1f127331d395f30ce",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
