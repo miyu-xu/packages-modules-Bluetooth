@@ -22,6 +22,30 @@
       },
       "revId": "b11983cbebfd1dc21c4bf5f3223787b77fe3aab3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "024044e7_c729a0aa",
+        "filename": "system/include/hardware/ble_advertiser.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-07-13T17:58:40Z",
+      "side": 1,
+      "message": "kAdvertiserClientIdLeAudio will be used by the LeAudio client, I will submit another CL to use this. maybe I can let Jni use the default 0, and native client leAudio starts with 1 if that makes more sense.\n\nconstexpr uint8_t kAdvertiserClientIdJni \u003d 0x0;\nconstexpr uint8_t kAdvertiserClientIdLeAudio \u003d 0x1;",
+      "parentUuid": "d5e72263_3853522b",
+      "range": {
+        "startLine": 30,
+        "startChar": 47,
+        "endLine": 30,
+        "endChar": 50
+      },
+      "revId": "b11983cbebfd1dc21c4bf5f3223787b77fe3aab3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
