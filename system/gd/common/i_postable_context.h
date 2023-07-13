@@ -16,7 +16,7 @@
 
 #pragma once
 
-#include <base/bind.h>
+#include "bind_helpers.h"
 
 namespace bluetooth {
 namespace common {
