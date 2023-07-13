@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a67b30ee_38dea9fd",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2023-07-13T23:30:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6fc0e919_1b2b21ef",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 18,
+        "endChar": 4
+      },
+      "revId": "782a3d7bfa5c9ffa00d76bc1f127331d395f30ce",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "973bdb25_ddd54d26",
@@ -73,6 +97,24 @@
       "side": 1,
       "message": "The life cycle is supposed to be init-\u003eenable-\u003edisable-\u003ecleanup.  I can see how that comment is hard to parse.",
       "parentUuid": "da70fa58_475e1629",
+      "revId": "782a3d7bfa5c9ffa00d76bc1f127331d395f30ce",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c19b7a50_2afb4735",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1797,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2023-07-13T23:30:09Z",
+      "side": 1,
+      "message": "Thanks for confirming!",
+      "parentUuid": "73e044c5_1ddad75a",
       "revId": "782a3d7bfa5c9ffa00d76bc1f127331d395f30ce",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
