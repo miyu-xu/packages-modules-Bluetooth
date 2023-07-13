@@ -22,6 +22,30 @@
       },
       "revId": "63a2dd72659b482048669109d2f9030c07ec0b6d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a80c11a7_4b8edc28",
+        "filename": "android/app/src/com/android/bluetooth/gatt/ScanManager.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 1887,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2023-07-13T08:21:05Z",
+      "side": 1,
+      "message": "Yes, I updated the reason in the bug why the receiver is not unregistered (b/289600846).\n\nI\u0027ll upload a new patch set that corrects the GattServiceTest settings.",
+      "parentUuid": "31c0c11f_2cd2d08e",
+      "range": {
+        "startLine": 1886,
+        "startChar": 24,
+        "endLine": 1887,
+        "endChar": 30
+      },
+      "revId": "63a2dd72659b482048669109d2f9030c07ec0b6d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
