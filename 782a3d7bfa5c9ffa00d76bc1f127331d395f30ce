@@ -135,6 +135,24 @@
       "parentUuid": "c19b7a50_2afb4735",
       "revId": "782a3d7bfa5c9ffa00d76bc1f127331d395f30ce",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b1ca6f45_7d60f0e4",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1797,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-07-14T17:50:30Z",
+      "side": 1,
+      "message": "Where\u0027s the corresponding call to init?",
+      "parentUuid": "c19b7a50_2afb4735",
+      "revId": "782a3d7bfa5c9ffa00d76bc1f127331d395f30ce",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
