@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c5c3d9b5_7eb33dfd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-07-14T19:01:24Z",
+      "side": 1,
+      "message": "Here is the bug for the bypass b/291306676",
+      "revId": "393921aabc5d14972894ec70dc6c382c677fbe19",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
