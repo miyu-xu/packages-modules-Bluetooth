@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5b958690_2a36b501",
+        "filename": "system/gd/rust/linux/client/src/dbus_iface.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 2511,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2023-07-14T23:25:28Z",
+      "side": 1,
+      "message": "Instead of allowing arbitrary sample_rate and bitwidth, what do you think to define the supported configurations?",
+      "range": {
+        "startLine": 2509,
+        "startChar": 0,
+        "endLine": 2511,
+        "endChar": 29
+      },
+      "revId": "faafa9c31f6b49f6e0d34e8bc999cba5b15f8ce5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5e744b48_43e28679",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 2143,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2023-07-14T23:25:28Z",
+      "side": 1,
+      "message": "Should we also check the self.a2dp_states.get(\u0026addr) like hfp here?",
+      "revId": "faafa9c31f6b49f6e0d34e8bc999cba5b15f8ce5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
