@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9283d27e_aa355e41",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2023-07-14T23:12:55Z",
+      "side": 1,
+      "message": "+2 % NIT.",
+      "revId": "503065835333c36c46a9da48478f5e8608d99ae5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4ac9196c_a0d63b82",
+        "filename": "system/stack/btm/btm_sco.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1248,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2023-07-14T23:12:55Z",
+      "side": 1,
+      "message": "Can be addressed in a separate CL. The existing interface (is_wbs and is_swb) conveys a false implication that both may be true at the same time.\n\nWe may replace the interface to be an enum for limited supported cases such as inband_cvsd, inband_msbc, outband_msbc, etc,...",
+      "range": {
+        "startLine": 1248,
+        "startChar": 8,
+        "endLine": 1248,
+        "endChar": 42
+      },
+      "revId": "503065835333c36c46a9da48478f5e8608d99ae5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "89a8adf2_7b42f226",
+        "filename": "system/stack/btm/btm_sco.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1254,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2023-07-14T23:12:55Z",
+      "side": 1,
+      "message": "NIT: Move this to 1267 before cleanup. AOSP prefers to declare variable just before its usage.",
+      "range": {
+        "startLine": 1253,
+        "startChar": 0,
+        "endLine": 1254,
+        "endChar": 75
+      },
+      "revId": "503065835333c36c46a9da48478f5e8608d99ae5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c556a771_fc0ed27c",
+        "filename": "system/stack/btm/btm_sco.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1257,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2023-07-14T23:12:55Z",
+      "side": 1,
+      "message": "NIT: move into the following `if`.",
+      "range": {
+        "startLine": 1256,
+        "startChar": 6,
+        "endLine": 1257,
+        "endChar": 61
+      },
+      "revId": "503065835333c36c46a9da48478f5e8608d99ae5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
