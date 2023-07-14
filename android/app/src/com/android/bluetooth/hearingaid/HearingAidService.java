@@ -47,6 +47,7 @@ import android.util.Log;
 import com.android.bluetooth.BluetoothMetricsProto;
 import com.android.bluetooth.BluetoothStatsLog;
 import com.android.bluetooth.Utils;
+import com.android.bluetooth.btservice.ActiveDeviceManager;
 import com.android.bluetooth.btservice.AdapterService;
 import com.android.bluetooth.btservice.MetricsLogger;
 import com.android.bluetooth.btservice.ProfileService;
@@ -155,9 +156,6 @@ public class HearingAidService extends ProfileService {
         filter.addAction(BluetoothDevice.ACTION_BOND_STATE_CHANGED);
         mBondStateChangedReceiver = new BondStateChangedReceiver();
         registerReceiver(mBondStateChangedReceiver, filter);
-        filter = new IntentFilter();
-        filter.setPriority(IntentFilter.SYSTEM_HIGH_PRIORITY);
-        filter.addAction(BluetoothHearingAid.ACTION_CONNECTION_STATE_CHANGED);
 
         // Mark service as started
         setHearingAidService(this);
@@ -733,6 +731,7 @@ public class HearingAidService extends ProfileService {
     }
 
     private void notifyActiveDeviceChanged() {
+        mAdapterService.getActiveDeviceManager().hearingAidActiveStateChanged(mActiveDevice);
         Intent intent = new Intent(BluetoothHearingAid.ACTION_ACTIVE_DEVICE_CHANGED);
         intent.putExtra(BluetoothDevice.EXTRA_DEVICE, mActiveDevice);
         intent.addFlags(Intent.FLAG_RECEIVER_REGISTERED_ONLY_BEFORE_BOOT
@@ -963,6 +962,10 @@ public class HearingAidService extends ProfileService {
                 }
                 removeStateMachine(device);
             }
+        }
+        ActiveDeviceManager adManager = mAdapterService.getActiveDeviceManager();
+        if (adManager != null) {
+            adManager.hearingAidConnectionStateChanged(device, fromState, toState);
         }
     }
 
