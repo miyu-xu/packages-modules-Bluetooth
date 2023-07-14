@@ -52,6 +52,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "62e3a28f_2550bec9",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 810,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2023-07-14T19:57:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e6b07190_161db036",
+      "revId": "0d5324ad9634f68e878cfe569c965248ee838d64",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3ee66cb4_dbbed1df",
@@ -65,6 +83,24 @@
       "writtenOn": "2023-07-14T15:46:09Z",
       "side": 1,
       "message": "Just make this a `String`",
+      "revId": "0d5324ad9634f68e878cfe569c965248ee838d64",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "731f0c3e_c65a72e4",
+        "filename": "system/gd/rust/linux/utils/src/at_command_parser.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2023-07-14T19:57:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3ee66cb4_dbbed1df",
       "revId": "0d5324ad9634f68e878cfe569c965248ee838d64",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
