@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e0fe58d5_e3708592",
+        "filename": "system/main/shim/le_advertising_manager.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 355,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-07-14T19:02:52Z",
+      "side": 1,
+      "message": "There is only one `do_in_main_thread` in this file, called for the `RegisterAdvertiser`\n\nAre you sure it is ok to do it ? on which thread OnAdvertisingEnabled is running ? aren\u0027t we already on main thread ?",
+      "range": {
+        "startLine": 355,
+        "startChar": 0,
+        "endLine": 355,
+        "endChar": 24
+      },
+      "revId": "bc4fa9ae18a9149dac4e3bc18bbc4fc2972b0bfa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
