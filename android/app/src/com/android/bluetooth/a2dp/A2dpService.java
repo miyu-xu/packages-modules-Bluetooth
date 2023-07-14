@@ -54,6 +54,7 @@ import android.util.Log;
 import com.android.bluetooth.BluetoothMetricsProto;
 import com.android.bluetooth.BluetoothStatsLog;
 import com.android.bluetooth.Utils;
+import com.android.bluetooth.btservice.ActiveDeviceManager;
 import com.android.bluetooth.btservice.AdapterService;
 import com.android.bluetooth.btservice.MetricsLogger;
 import com.android.bluetooth.btservice.ProfileService;
@@ -1071,7 +1072,10 @@ public class A2dpService extends ProfileService {
         intent.putExtra(BluetoothDevice.EXTRA_DEVICE, device);
         intent.addFlags(Intent.FLAG_RECEIVER_REGISTERED_ONLY_BEFORE_BOOT
                         | Intent.FLAG_RECEIVER_INCLUDE_BACKGROUND);
-        mAdapterService.getActiveDeviceManager().a2dpActiveStateChanged(device);
+        ActiveDeviceManager adManager = mAdapterService.getActiveDeviceManager();
+        if (adManager != null) {
+            adManager.a2dpActiveStateChanged(device);
+        }
         Utils.sendBroadcast(this, intent, BLUETOOTH_CONNECT,
                 Utils.getTempAllowlistBroadcastOptions());
     }
@@ -1259,9 +1263,10 @@ public class A2dpService extends ProfileService {
                 removeStateMachine(device);
             }
         }
-        mAdapterService
-                .getActiveDeviceManager()
-                .a2dpConnectionStateChanged(device, fromState, toState);
+        ActiveDeviceManager adManager = mAdapterService.getActiveDeviceManager();
+        if (adManager != null) {
+            adManager.a2dpConnectionStateChanged(device, fromState, toState);
+        }
     }
 
     /**
