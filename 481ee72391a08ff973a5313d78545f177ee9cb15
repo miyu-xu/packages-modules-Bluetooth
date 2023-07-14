@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "10ddbfad_5109f528",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-07-14T18:59:20Z",
+      "side": 1,
+      "message": "it sound like moving LeAudio to gd advertising is not a trivial change. Have you considered flagging it and ramping up the experiment before making the change ?",
+      "range": {
+        "startLine": 8,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 79
+      },
+      "revId": "481ee72391a08ff973a5313d78545f177ee9cb15",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b70766dc_fd16d398",
+        "filename": "system/btif/src/btif_ble_advertiser.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-07-14T18:59:20Z",
+      "side": 1,
+      "message": "I would remove this as well (in follow-up to not bloat this already huge CL)\n\nThat way you can remove this file entirely",
+      "range": {
+        "startLine": 25,
+        "startChar": 24,
+        "endLine": 25,
+        "endChar": 51
+      },
+      "revId": "481ee72391a08ff973a5313d78545f177ee9cb15",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
