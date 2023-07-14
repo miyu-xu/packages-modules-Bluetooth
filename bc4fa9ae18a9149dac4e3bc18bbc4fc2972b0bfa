@@ -70,6 +70,30 @@
       },
       "revId": "bc4fa9ae18a9149dac4e3bc18bbc4fc2972b0bfa",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f9a58cf7_a027d4b7",
+        "filename": "system/main/shim/le_advertising_manager.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 355,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-07-14T22:16:08Z",
+      "side": 1,
+      "message": "The shim normally bridges GD to main_thread.\n\nFor advertising, it goes from GD to jni\n\nBut for LE Audio, I think it\u0027s right to go to main thread.\n\nAny ideas for how to prove that it\u0027s correct?",
+      "parentUuid": "d33c0a49_2dbdf057",
+      "range": {
+        "startLine": 355,
+        "startChar": 0,
+        "endLine": 355,
+        "endChar": 24
+      },
+      "revId": "bc4fa9ae18a9149dac4e3bc18bbc4fc2972b0bfa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
