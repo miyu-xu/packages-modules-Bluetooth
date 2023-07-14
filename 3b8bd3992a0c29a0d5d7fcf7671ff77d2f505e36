@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "db5ddd20_7141d992",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-07-14T18:16:16Z",
+      "side": 1,
+      "message": "I think the null check is not the optimal solution and I do not like it\n\nI think we should now when is the activeDeviceManager created and understand how it is possible for a2dp|hfp|hearing_aid to make call to it before its creation or after its deletion as this sound like this is the issue",
+      "revId": "3b8bd3992a0c29a0d5d7fcf7671ff77d2f505e36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
