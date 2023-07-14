@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ff1a8a7d_0a544343",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-07-14T20:52:36Z",
+      "side": 1,
+      "message": "Yes. If it\u0027s already under a disabled flag it is fine.\nThanks for checking",
+      "parentUuid": "83ddf7b6_7fde9577",
+      "range": {
+        "startLine": 8,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 79
+      },
+      "revId": "481ee72391a08ff973a5313d78545f177ee9cb15",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b70766dc_fd16d398",
@@ -85,6 +109,30 @@
       "side": 1,
       "message": "good point, i will consider another cl to remove this wrapper function later, since it\u0027s still being used in some btif files.",
       "parentUuid": "b70766dc_fd16d398",
+      "range": {
+        "startLine": 25,
+        "startChar": 24,
+        "endLine": 25,
+        "endChar": 51
+      },
+      "revId": "481ee72391a08ff973a5313d78545f177ee9cb15",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3b265b5a_5ce4fac8",
+        "filename": "system/btif/src/btif_ble_advertiser.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-07-14T20:52:36Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "461e526b_f1332ee8",
       "range": {
         "startLine": 25,
         "startChar": 24,
