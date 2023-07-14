@@ -38,7 +38,7 @@ final class AvrcpVersion {
     public int minor;
 
     public static AvrcpVersion getCurrentSystemPropertiesValue() {
-        String version = SystemProperties.get(AVRCP_VERSION_PROPERTY);
+        String version = SystemProperties.get(AVRCP_VERSION_PROPERTY, AVRCP_VERSION_1_6_STRING);
         switch (version) {
             case AVRCP_VERSION_1_3_STRING:
                 return AVRCP_VERSION_1_3;
