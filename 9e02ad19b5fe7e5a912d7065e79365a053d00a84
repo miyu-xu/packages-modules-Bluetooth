@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "40c83dcb_63744ead",
+        "filename": "system/bta/le_audio/broadcaster/broadcaster.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 873,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-07-14T18:51:53Z",
+      "side": 1,
+      "message": "Should there be a warning/error/abort here to let you know that it got called?",
+      "range": {
+        "startLine": 873,
+        "startChar": 6,
+        "endLine": 873,
+        "endChar": 23
+      },
+      "revId": "9e02ad19b5fe7e5a912d7065e79365a053d00a84",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
