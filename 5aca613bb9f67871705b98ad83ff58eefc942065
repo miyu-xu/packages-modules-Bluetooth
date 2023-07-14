@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3737064c_971cf9a0",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 24
+      },
+      "lineNbr": 1511,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-07-14T18:41:50Z",
+      "side": 1,
+      "message": "Wait for submission.\nI would like aosp/2654490 to go in and to remove this post",
+      "range": {
+        "startLine": 1508,
+        "startChar": 12,
+        "endLine": 1511,
+        "endChar": 94
+      },
+      "revId": "5aca613bb9f67871705b98ad83ff58eefc942065",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
