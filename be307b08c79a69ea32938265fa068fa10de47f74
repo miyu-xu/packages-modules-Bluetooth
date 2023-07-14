@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "281684b0_a6027eeb",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1985170
+      },
+      "writtenOn": "2023-07-14T18:07:55Z",
+      "side": 1,
+      "message": "Has the maximum no. of characters changed in the commit msg?",
+      "revId": "be307b08c79a69ea32938265fa068fa10de47f74",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
