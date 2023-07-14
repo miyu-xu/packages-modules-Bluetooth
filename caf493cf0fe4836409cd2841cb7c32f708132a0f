@@ -22,6 +22,30 @@
       },
       "revId": "caf493cf0fe4836409cd2841cb7c32f708132a0f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a0bdcf3a_26e8f301",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 6286,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-07-14T00:23:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "691a7b6a_12fde629",
+      "range": {
+        "startLine": 6286,
+        "startChar": 60,
+        "endLine": 6286,
+        "endChar": 72
+      },
+      "revId": "caf493cf0fe4836409cd2841cb7c32f708132a0f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
