@@ -724,7 +724,7 @@ public class ActiveDeviceManager {
             final HearingAidService hearingAidService = mFactory.getHearingAidService();
             if (hearingAidService != null) {
                 long hiSyncId = hearingAidService.getHiSyncId(device);
-                if (getHearingAidActiveHiSyncIdLocked() == hiSyncId) {
+                if (getHearingAidActiveHiSyncIdLocked() == hiSyncId && hidSyncId != BluetoothHearingAid.HI_SYNC_ID_INVALID) {
                     mHearingAidActiveDevices.add(device);
                 } else {
                     mHearingAidActiveDevices.clear();
