@@ -75,8 +75,7 @@ bool hfp_lc3_decoder_decode_packet(const uint8_t* i_buf, int16_t* o_buf,
   ASSERT(rc == 0 || rc == 1);
 
   if (rc == 1) {
-    LOG_WARN("%s: PLC conducted", __func__);
-    /* TODO(b/269970706): change this to debug log */
+    LOG_DEBUG("%s: PLC conducted", __func__);
   }
 
   return !rc;
