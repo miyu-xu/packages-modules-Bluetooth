@@ -16,6 +16,24 @@
       "message": "It looks like this breaks the floss build.  Is floss still using multi_adv ?",
       "revId": "b371f10e4f763c65eef3f6664b631555595fc36b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "07c08b4f_c103ae25",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-07-14T01:10:36Z",
+      "side": 1,
+      "message": "the error shows it\u0027s only needed by some unit test \u0027net_test_stack_multi_adv\u0027, should we remove this test if multi_adv is gone?",
+      "parentUuid": "17b81521_7d76bcd1",
+      "revId": "b371f10e4f763c65eef3f6664b631555595fc36b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
