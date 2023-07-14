@@ -48,7 +48,6 @@ class Server(context: Context) {
                 security,
                 Host(context, security, this),
                 L2cap(context),
-                MediaPlayer(context),
                 Rfcomm(context),
                 SecurityStorage(context),
                 AndroidInternal(context),
