@@ -54,6 +54,7 @@ import com.android.bluetooth.BluetoothMetricsProto;
 import com.android.bluetooth.BluetoothStatsLog;
 import com.android.bluetooth.Utils;
 import com.android.bluetooth.a2dp.A2dpService;
+import com.android.bluetooth.btservice.ActiveDeviceManager;
 import com.android.bluetooth.btservice.AdapterService;
 import com.android.bluetooth.btservice.MetricsLogger;
 import com.android.bluetooth.btservice.ProfileService;
@@ -2004,9 +2005,10 @@ public class HeadsetService extends ProfileService {
                 setActiveDevice(null);
             }
         }
-        mAdapterService
-                .getActiveDeviceManager()
-                .hfpConnectionStateChanged(device, fromState, toState);
+        ActiveDeviceManager adManager = mAdapterService.getActiveDeviceManager();
+        if (adManager != null) {
+            adManager.hfpConnectionStateChanged(device, fromState, toState);
+        }
     }
 
     /**
@@ -2132,7 +2134,11 @@ public class HeadsetService extends ProfileService {
 
     private void broadcastActiveDevice(BluetoothDevice device) {
         logD("broadcastActiveDevice: " + device);
-        mAdapterService.getActiveDeviceManager().hfpActiveStateChanged(device);
+        ActiveDeviceManager adManager = mAdapterService.getActiveDeviceManager();
+        if (adManager != null) {
+            adManager.hfpActiveStateChanged(device);
+        }
+
         BluetoothStatsLog.write(BluetoothStatsLog.BLUETOOTH_ACTIVE_DEVICE_CHANGED,
                 BluetoothProfile.HEADSET, mAdapterService.obfuscateAddress(device),
                 mAdapterService.getMetricId(device));
