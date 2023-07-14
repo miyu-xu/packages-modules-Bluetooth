@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "13670714_f2d80818",
+        "filename": "system/gd/rust/linux/client/src/main.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 1963846
+      },
+      "writtenOn": "2023-07-14T03:37:40Z",
+      "side": 1,
+      "message": "Acknowledged. Since a few other fields such as `dbus_connection`, `dbus_crossroads`, etc. above also use the field init shorthand, I think this also matches the style above. Thanks.",
+      "parentUuid": "2ca7a829_5d081847",
+      "revId": "ffe9ee8819a6a1ffad4ad501fd34bd8fa25c92cf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8d3395da_e646ddc9",
@@ -53,6 +71,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6f489481_f51dcde2",
+        "filename": "system/gd/rust/linux/client/src/main.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 352,
+      "author": {
+        "id": 1963846
+      },
+      "writtenOn": "2023-07-14T03:37:40Z",
+      "side": 1,
+      "message": "Acknowledged. The \"media\" is the first command that we are supporting its callback. \n\nAs can be seen in system/gd/rust/linux/client/src/callbacks.rs in this patch, every such callback will require a bit refactoring by calling `run_callback()`. I think this can be done on demand. The \"media\" is the 1st command that we have to use the command mode for dumping some information.\n\nIt is also worth noting that many other commands had better to run in the interactive mode instead of in the command mode. The command mode is only good for a command that dumps some information and exits. If a user wants to discover, pair, and do more things, it is not proper to use the command mode.",
+      "parentUuid": "8d3395da_e646ddc9",
+      "revId": "ffe9ee8819a6a1ffad4ad501fd34bd8fa25c92cf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0348a5ab_7b34519c",
@@ -66,6 +102,24 @@
       "writtenOn": "2023-07-06T21:03:33Z",
       "side": 1,
       "message": "What if the callback is never received? Should we have a timeout?",
+      "revId": "ffe9ee8819a6a1ffad4ad501fd34bd8fa25c92cf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "06328643_0bc7b0a7",
+        "filename": "system/gd/rust/linux/client/src/main.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 413,
+      "author": {
+        "id": 1963846
+      },
+      "writtenOn": "2023-07-14T03:37:40Z",
+      "side": 1,
+      "message": "Good point! Add the timeout command argument so that a user can choose to run a command with or without a timeout.",
+      "parentUuid": "0348a5ab_7b34519c",
       "revId": "ffe9ee8819a6a1ffad4ad501fd34bd8fa25c92cf",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
