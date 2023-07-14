@@ -94,6 +94,30 @@
       },
       "revId": "bc4fa9ae18a9149dac4e3bc18bbc4fc2972b0bfa",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "05ee67bd_01c1d8ac",
+        "filename": "system/main/shim/le_advertising_manager.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 355,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-07-14T22:21:12Z",
+      "side": 1,
+      "message": "yes, I double checked this with some log prints 😊. LEA is on main thread, and the shim le_advertising_manager here is on bt_stack_manage.",
+      "parentUuid": "f9a58cf7_a027d4b7",
+      "range": {
+        "startLine": 355,
+        "startChar": 0,
+        "endLine": 355,
+        "endChar": 24
+      },
+      "revId": "bc4fa9ae18a9149dac4e3bc18bbc4fc2972b0bfa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
