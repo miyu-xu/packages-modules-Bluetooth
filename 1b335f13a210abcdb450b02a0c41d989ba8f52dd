@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "035d165a_c4e2219f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-07-14T07:29:12Z",
+      "side": 1,
+      "message": "Please fix the build errors e.g. `ld.lld: error: undefined symbol: BleAdvertisingManager::CleanUp()`",
+      "revId": "1b335f13a210abcdb450b02a0c41d989ba8f52dd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
