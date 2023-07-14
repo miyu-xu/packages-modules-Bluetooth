@@ -16,6 +16,57 @@
       "message": "Basically completely rewritten so marked all as \"Done\"",
       "revId": "0d5324ad9634f68e878cfe569c965248ee838d64",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "022c26fa_b4d2cd14",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2023-07-14T15:46:09Z",
+      "side": 1,
+      "message": "Just one more small comment. Thanks for the refactor and unit tests! I like having it contained in a util file.",
+      "revId": "0d5324ad9634f68e878cfe569c965248ee838d64",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e6b07190_161db036",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 810,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2023-07-14T15:46:09Z",
+      "side": 1,
+      "message": "If this is the only place that you use `AtCommandVendor` and `at_command.vendor`, does it make more sense that `at_command.vendor` is just a string? That way this file doesn\u0027t need to know anything about `AtCommandVendor` and can just take the value from this field.",
+      "revId": "0d5324ad9634f68e878cfe569c965248ee838d64",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3ee66cb4_dbbed1df",
+        "filename": "system/gd/rust/linux/utils/src/at_command_parser.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2023-07-14T15:46:09Z",
+      "side": 1,
+      "message": "Just make this a `String`",
+      "revId": "0d5324ad9634f68e878cfe569c965248ee838d64",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
