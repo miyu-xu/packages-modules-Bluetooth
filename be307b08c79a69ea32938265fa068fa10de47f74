@@ -16,6 +16,24 @@
       "message": "Has the maximum no. of characters changed in the commit msg?",
       "revId": "be307b08c79a69ea32938265fa068fa10de47f74",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d032f39d_bcbac8c9",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1985170
+      },
+      "writtenOn": "2023-07-14T18:10:10Z",
+      "side": 1,
+      "message": "Looks like 76 is the new(?) default\nhttps://g3doc.corp.google.com/company/teams/android/developing/change/commit-change.md?cl\u003dhead#body",
+      "parentUuid": "281684b0_a6027eeb",
+      "revId": "be307b08c79a69ea32938265fa068fa10de47f74",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
