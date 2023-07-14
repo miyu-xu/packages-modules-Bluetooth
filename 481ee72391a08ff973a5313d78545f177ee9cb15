@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "83ddf7b6_7fde9577",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-07-14T20:49:47Z",
+      "side": 1,
+      "message": "Actually the entire LEA broadcast feature is by default disabled by system properties and it\u0027s under development for V release at this moment. So I think we should be good here?",
+      "parentUuid": "10ddbfad_5109f528",
+      "range": {
+        "startLine": 8,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 79
+      },
+      "revId": "481ee72391a08ff973a5313d78545f177ee9cb15",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b70766dc_fd16d398",
         "filename": "system/btif/src/btif_ble_advertiser.cc",
         "patchSetId": 6
@@ -37,6 +61,30 @@
       "writtenOn": "2023-07-14T18:59:20Z",
       "side": 1,
       "message": "I would remove this as well (in follow-up to not bloat this already huge CL)\n\nThat way you can remove this file entirely",
+      "range": {
+        "startLine": 25,
+        "startChar": 24,
+        "endLine": 25,
+        "endChar": 51
+      },
+      "revId": "481ee72391a08ff973a5313d78545f177ee9cb15",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "461e526b_f1332ee8",
+        "filename": "system/btif/src/btif_ble_advertiser.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-07-14T20:49:47Z",
+      "side": 1,
+      "message": "good point, i will consider another cl to remove this wrapper function later, since it\u0027s still being used in some btif files.",
+      "parentUuid": "b70766dc_fd16d398",
       "range": {
         "startLine": 25,
         "startChar": 24,
