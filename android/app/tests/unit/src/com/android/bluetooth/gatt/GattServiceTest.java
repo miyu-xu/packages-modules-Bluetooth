@@ -25,28 +25,24 @@ import static org.mockito.Mockito.verify;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothGatt;
-import android.bluetooth.BluetoothGattService;
 import android.bluetooth.BluetoothProfile;
 import android.bluetooth.BluetoothStatusCodes;
 import android.bluetooth.IBluetoothGattCallback;
-import android.bluetooth.IBluetoothGattServerCallback;
 import android.bluetooth.le.AdvertiseData;
 import android.bluetooth.le.AdvertisingSetParameters;
 import android.bluetooth.le.DistanceMeasurementMethod;
 import android.bluetooth.le.DistanceMeasurementParams;
-import android.bluetooth.le.IAdvertisingSetCallback;
 import android.bluetooth.le.IDistanceMeasurementCallback;
 import android.bluetooth.le.IPeriodicAdvertisingCallback;
 import android.bluetooth.le.IScannerCallback;
 import android.bluetooth.le.PeriodicAdvertisingParameters;
-import android.bluetooth.le.ScanFilter;
 import android.bluetooth.le.ScanResult;
 import android.bluetooth.le.ScanSettings;
 import android.content.AttributionSource;
 import android.content.Context;
 import android.content.res.Resources;
+import android.location.LocationManager;
 import android.os.Binder;
-import android.os.ParcelUuid;
 import android.os.RemoteException;
 import android.os.WorkSource;
 
@@ -55,14 +51,12 @@ import androidx.test.filters.SmallTest;
 import androidx.test.rule.ServiceTestRule;
 import androidx.test.runner.AndroidJUnit4;
 
-import com.android.bluetooth.R;
 import com.android.bluetooth.TestUtils;
 import com.android.bluetooth.btservice.AdapterService;
 import com.android.bluetooth.btservice.CompanionManager;
 
 import org.junit.After;
 import org.junit.Assert;
-import org.junit.Assume;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Rule;
@@ -96,6 +90,8 @@ public class GattServiceTest {
     @Mock private GattService.ScannerMap mScannerMap;
     @Mock private GattService.ScannerMap.App mApp;
     @Mock private GattService.PendingIntentInfo mPiInfo;
+    @Mock private LocationManager mLocationManager;
+    @Mock private PeriodicScanManager mPeriodicScanManager;
     @Mock private ScanManager mScanManager;
     @Mock private Set<String> mReliableQueue;
     @Mock private GattService.ServerMap mServerMap;
@@ -134,6 +130,10 @@ public class GattServiceTest {
         when(mAdapterService.getSharedPreferences(anyString(), anyInt()))
                 .thenReturn(InstrumentationRegistry.getTargetContext()
                         .getSharedPreferences("GattServiceTestPrefs", Context.MODE_PRIVATE));
+        when(mAdapterService.getSystemService(Context.LOCATION_SERVICE))
+                .thenReturn(mLocationManager);
+        when(mAdapterService.getSystemServiceName(LocationManager.class))
+                .thenReturn(Context.LOCATION_SERVICE);
 
         mBtCompanionManager = new CompanionManager(mAdapterService, null);
         doReturn(mBtCompanionManager).when(mAdapterService).getCompanionManager();
@@ -144,6 +144,7 @@ public class GattServiceTest {
 
         mService.mClientMap = mClientMap;
         mService.mScannerMap = mScannerMap;
+        mService.mPeriodicScanManager = mPeriodicScanManager;
         mService.mScanManager = mScanManager;
         mService.mReliableQueue = mReliableQueue;
         mService.mServerMap = mServerMap;
@@ -179,6 +180,10 @@ public class GattServiceTest {
             reset(mAdapterService);
             TestUtils.setAdapterService(mAdapterService);
             doReturn(true).when(mAdapterService).isStartedProfile(anyString());
+            when(mAdapterService.getSystemService(Context.LOCATION_SERVICE))
+                    .thenReturn(mLocationManager);
+            when(mAdapterService.getSystemServiceName(LocationManager.class))
+                    .thenReturn(Context.LOCATION_SERVICE);
             TestUtils.startService(mServiceRule, GattService.class);
             mService = GattService.getGattService();
             Assert.assertNotNull(mService);
