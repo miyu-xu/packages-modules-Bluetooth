@@ -45,7 +45,6 @@
 #include "stack/include/acl_hci_link_interface.h"
 #include "stack/include/btm_status.h"
 #include "stack/include/l2cap_security_interface.h"
-#include "stack/smp/smp_int.h"
 #include "types/raw_address.h"
 
 #ifndef UNUSED_ATTR
