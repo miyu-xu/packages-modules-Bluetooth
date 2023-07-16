@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "34535854_0931fca7",
+        "filename": "system/bta/le_audio/broadcaster/broadcaster.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 873,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-07-16T23:03:29Z",
+      "side": 1,
+      "message": "nit:\nFYI, the LOG_xxx macro are already logging the func.\nThese log will write the func twice.",
+      "parentUuid": "da6f3017_c0204fd0",
+      "range": {
+        "startLine": 873,
+        "startChar": 6,
+        "endLine": 873,
+        "endChar": 23
+      },
+      "revId": "9e02ad19b5fe7e5a912d7065e79365a053d00a84",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9db3529c_e7405b38",
