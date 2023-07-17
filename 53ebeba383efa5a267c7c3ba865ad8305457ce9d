@@ -16,6 +16,24 @@
       "message": "Another test line like this:\n\nTest: mma -j32\n\nwill silence the test warning.",
       "revId": "53ebeba383efa5a267c7c3ba865ad8305457ce9d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0c8f12e5_039ceed3",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2023-07-17T18:03:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4511a203_0888e466",
+      "revId": "53ebeba383efa5a267c7c3ba865ad8305457ce9d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
