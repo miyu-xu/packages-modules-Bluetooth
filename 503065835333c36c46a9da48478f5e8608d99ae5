@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4084ed35_987cab28",
+        "filename": "system/stack/btm/btm_sco.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1248,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2023-07-17T10:17:17Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "4ac9196c_a0d63b82",
+      "range": {
+        "startLine": 1248,
+        "startChar": 8,
+        "endLine": 1248,
+        "endChar": 42
+      },
+      "revId": "503065835333c36c46a9da48478f5e8608d99ae5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "89a8adf2_7b42f226",
@@ -64,6 +88,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d8f65d0e_88893350",
+        "filename": "system/stack/btm/btm_sco.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1254,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2023-07-17T10:17:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "89a8adf2_7b42f226",
+      "range": {
+        "startLine": 1253,
+        "startChar": 0,
+        "endLine": 1254,
+        "endChar": 75
+      },
+      "revId": "503065835333c36c46a9da48478f5e8608d99ae5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c556a771_fc0ed27c",
@@ -77,6 +125,30 @@
       "writtenOn": "2023-07-14T23:12:55Z",
       "side": 1,
       "message": "NIT: move into the following `if`.",
+      "range": {
+        "startLine": 1256,
+        "startChar": 6,
+        "endLine": 1257,
+        "endChar": 61
+      },
+      "revId": "503065835333c36c46a9da48478f5e8608d99ae5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "57634f68_63d64028",
+        "filename": "system/stack/btm/btm_sco.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1257,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2023-07-17T10:17:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c556a771_fc0ed27c",
       "range": {
         "startLine": 1256,
         "startChar": 6,
