@@ -142,6 +142,30 @@
       },
       "revId": "bc4fa9ae18a9149dac4e3bc18bbc4fc2972b0bfa",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8a71e2db_1f63af4f",
+        "filename": "system/main/shim/le_advertising_manager.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 355,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-07-17T18:13:17Z",
+      "side": 1,
+      "message": "i assume the original question has been resolved by the above explanation. we can have a separate discussion around the thread topic, and have follow-up CLs if needed.",
+      "parentUuid": "713a227d_68e08fea",
+      "range": {
+        "startLine": 355,
+        "startChar": 0,
+        "endLine": 355,
+        "endChar": 24
+      },
+      "revId": "bc4fa9ae18a9149dac4e3bc18bbc4fc2972b0bfa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
