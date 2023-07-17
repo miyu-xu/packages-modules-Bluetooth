@@ -1582,7 +1582,7 @@ bt_status_t HeadsetInterface::DebugDump() {
   CHECK_BTHF_INIT();
   tBTM_SCO_DEBUG_DUMP debug_dump = BTM_GetScoDebugDump();
   bt_hf_callbacks->DebugDumpCallback(
-      debug_dump.is_active, debug_dump.is_wbs,
+      debug_dump.is_active, debug_dump.codec_type,
       debug_dump.total_num_decoded_frames, debug_dump.pkt_loss_ratio,
       debug_dump.latest_msbc_data.begin_ts_raw_us,
       debug_dump.latest_msbc_data.end_ts_raw_us,
