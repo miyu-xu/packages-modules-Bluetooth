@@ -34,6 +34,24 @@
       "parentUuid": "281684b0_a6027eeb",
       "revId": "be307b08c79a69ea32938265fa068fa10de47f74",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5a501baa_a2acff7e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1985170
+      },
+      "writtenOn": "2023-07-17T17:48:58Z",
+      "side": 1,
+      "message": "Updated commit msg length to 76 in rev3",
+      "parentUuid": "d032f39d_bcbac8c9",
+      "revId": "be307b08c79a69ea32938265fa068fa10de47f74",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
