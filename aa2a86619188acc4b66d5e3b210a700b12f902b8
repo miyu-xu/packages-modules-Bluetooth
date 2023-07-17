@@ -169,6 +169,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f5862822_cebc3c5e",
+        "filename": "system/stack/btm/btm_ble.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1603,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-07-17T19:33:38Z",
+      "side": 1,
+      "message": "Just want to make sure I understand correctly the code:\n\nIf version is unknown, what is the expected return value of `BTM_ReadRemoteVersion` ?\nIf it return false when the version is unknown, then we will never be in the `else` case.\n\nAlso, do you want to add log when we are no calling the Eatt.connect ?",
+      "parentUuid": "b70d2744_a42910d8",
+      "range": {
+        "startLine": 1592,
+        "startChar": 2,
+        "endLine": 1603,
+        "endChar": 3
+      },
+      "revId": "aa2a86619188acc4b66d5e3b210a700b12f902b8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d385050a_c4b88f99",
         "filename": "system/stack/include/hcidefs.h",
         "patchSetId": 4
