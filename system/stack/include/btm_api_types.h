@@ -231,7 +231,7 @@ typedef struct {
 /* Returned by BTM_GetScoDebugDump */
 typedef struct {
   bool is_active;
-  bool is_wbs;
+  tBTM_SCO_CODEC_TYPE codec_type;
   int total_num_decoded_frames;
   double pkt_loss_ratio;
   tBTM_SCO_MSBC_PKT_STATUS_DATA latest_msbc_data;

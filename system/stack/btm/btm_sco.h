@@ -240,11 +240,17 @@ typedef struct {
   bool is_inband() const {
     return esco.setup.input_data_path == ESCO_DATA_PATH_HCI;
   }
-  bool is_wbs() const {
-    return esco.setup.coding_format == ESCO_CODING_FORMAT_MSBC;
-  }
-  bool is_swb() const {
-    return esco.setup.coding_format == ESCO_CODING_FORMAT_LC3;
+  tBTM_SCO_CODEC_TYPE get_codec_type() const {
+    switch (esco.setup.coding_format) {
+      case ESCO_CODING_FORMAT_CVSD:
+        return BTM_SCO_CODEC_CVSD;
+      case ESCO_CODING_FORMAT_MSBC:
+        return BTM_SCO_CODEC_MSBC;
+      case ESCO_CODING_FORMAT_LC3:
+        return BTM_SCO_CODEC_LC3;
+      default:
+        return BTM_SCO_CODEC_NONE;
+    }
   }
   uint16_t Handle() const { return hci_handle; }
 
