@@ -304,6 +304,10 @@ class LeAudioClientImpl : public LeAudioClient {
   void ReconfigureAfterVbcClose() {
     LOG_DEBUG("VBC close timeout");
 
+    if (IsInVoipCall()) {
+      SetInVoipCall(false);
+    }
+
     auto group = aseGroups_.FindById(active_group_id_);
     if (!group) {
       LOG_ERROR("Invalid group: %d", active_group_id_);
@@ -917,11 +921,18 @@ class LeAudioClientImpl : public LeAudioClient {
       remote_contexts.source.clear();
     }
 
+    /* Do not put the TBS CCID when not using Telecom for the VoIP calls. */
+    auto ccid_contexts = remote_contexts;
+    if (IsInVoipCall() && !IsInCall()) {
+      ccid_contexts.sink.unset(LeAudioContextType::CONVERSATIONAL);
+      ccid_contexts.source.unset(LeAudioContextType::CONVERSATIONAL);
+    }
+
     BidirectionalPair<std::vector<uint8_t>> ccids = {
         .sink = ContentControlIdKeeper::GetInstance()->GetAllCcids(
-            remote_contexts.sink),
+            ccid_contexts.sink),
         .source = ContentControlIdKeeper::GetInstance()->GetAllCcids(
-            remote_contexts.source)};
+            ccid_contexts.source)};
     if (group->IsPendingConfiguration()) {
       return groupStateMachine_->ConfigureStream(
           group, configuration_context_type_, remote_contexts, ccids);
@@ -1036,6 +1047,15 @@ class LeAudioClientImpl : public LeAudioClient {
     LOG_DEBUG("in_call: %d", in_call);
     in_call_ = in_call;
   }
+
+  bool IsInCall() override { return in_call_; }
+
+  void SetInVoipCall(bool in_call) override {
+    LOG_DEBUG("in_voip_call: %d", in_call);
+    in_voip_call_ = in_call;
+  }
+
+  bool IsInVoipCall() override { return in_voip_call_; }
 
   void SendAudioProfilePreferences(
       const int group_id, bool is_output_preference_le_audio,
@@ -2943,7 +2963,20 @@ class LeAudioClientImpl : public LeAudioClient {
       return;
     }
 
-    if (!groupStateMachine_->AttachToStream(group, leAudioDevice)) {
+    /* Do not put the TBS CCID when not using Telecom for the VoIP calls. */
+    auto ccid_contexts = group->GetMetadataContexts();
+    if (IsInVoipCall() && !IsInCall()) {
+      ccid_contexts.sink.unset(LeAudioContextType::CONVERSATIONAL);
+      ccid_contexts.source.unset(LeAudioContextType::CONVERSATIONAL);
+    }
+    BidirectionalPair<std::vector<uint8_t>> ccids = {
+        .sink = ContentControlIdKeeper::GetInstance()->GetAllCcids(
+            ccid_contexts.sink),
+        .source = ContentControlIdKeeper::GetInstance()->GetAllCcids(
+            ccid_contexts.source)};
+
+    if (!groupStateMachine_->AttachToStream(group, leAudioDevice,
+                                            std::move(ccids))) {
       LOG_WARN("Could not add device %s to the group %d streaming. ",
                ADDRESS_TO_LOGGABLE_CSTR(leAudioDevice->address_),
                group->group_id_);
@@ -3898,7 +3931,7 @@ class LeAudioClientImpl : public LeAudioClient {
     }
 
     /* Check if the device resume is expected */
-    if (!group->GetCachedCodecConfigurationByDirection(
+    if (!group->GetCodecConfigurationByDirection(
             configuration_context_type_,
             le_audio::types::kLeAudioDirectionSink)) {
       LOG(ERROR) << __func__ << ", invalid resume request for context type: "
@@ -4324,7 +4357,7 @@ class LeAudioClientImpl : public LeAudioClient {
               bluetooth::common::ToString(available_remote_contexts).c_str(),
               bluetooth::common::ToString(configuration_context_type_).c_str());
 
-    if (in_call_) {
+    if (IsInCall()) {
       LOG_DEBUG(" In Call preference used.");
       return LeAudioContextType::CONVERSATIONAL;
     }
@@ -4336,10 +4369,10 @@ class LeAudioClientImpl : public LeAudioClient {
       LeAudioContextType context_priority_list[] = {
           /* Highest priority first */
           LeAudioContextType::CONVERSATIONAL,
-          /* Skip the RINGTONE to avoid reconfigurations when adjusting
-           * call volume slider while not in a call.
-           * LeAudioContextType::RINGTONE,
+          /* Handling RINGTONE will cause the ringtone volume slider to trigger
+           * reconfiguration. This will be fixed in b/283349711.
            */
+          LeAudioContextType::RINGTONE,
           LeAudioContextType::LIVE,
           LeAudioContextType::VOICEASSISTANTS,
           LeAudioContextType::GAME,
@@ -4600,11 +4633,23 @@ class LeAudioClientImpl : public LeAudioClient {
 
   BidirectionalPair<AudioContexts> DirectionalRealignMetadataAudioContexts(
       LeAudioDeviceGroup* group, int remote_direction) {
+    // Inject conversational when ringtone is played - this is required for all
+    // the VoIP applications which are not using the telecom API.
+    if ((remote_direction == le_audio::types::kLeAudioDirectionSink) &&
+        local_metadata_context_types_.source.test(
+            LeAudioContextType::RINGTONE)) {
+      SetInVoipCall(true);
+    } else if (in_voip_call_) {
+      SetInVoipCall(false);
+    }
+
     /* Make sure we have CONVERSATIONAL when in a call and it is not mixed
      * with any other bidirectional context
      */
-    if (in_call_) {
-      LOG_DEBUG(" In Call preference used.");
+    if (IsInCall() || IsInVoipCall()) {
+      LOG_DEBUG(" In Call preference used: %s, voip call: %s",
+                (IsInCall() ? "true" : "false"),
+                (IsInVoipCall() ? "true" : "false"));
       local_metadata_context_types_.sink.unset_all(kLeAudioContextAllBidir);
       local_metadata_context_types_.source.unset_all(kLeAudioContextAllBidir);
       local_metadata_context_types_.sink.set(
@@ -5135,11 +5180,13 @@ class LeAudioClientImpl : public LeAudioClient {
                                false)) {
       return;
     }
+
     /* If group is inactive, phone is in call and Group is not having CIS
      * connected, notify upper layer about it, so it can decide to create SCO if
      * it is in the handover case
      */
-    if (in_call_ && active_group_id_ == bluetooth::groups::kGroupUnknown) {
+    if ((IsInCall() || IsInVoipCall()) &&
+        active_group_id_ == bluetooth::groups::kGroupUnknown) {
       callbacks_->OnGroupStatus(group_id, GroupStatus::TURNED_IDLE_DURING_CALL);
     }
   }
@@ -5313,6 +5360,7 @@ class LeAudioClientImpl : public LeAudioClient {
   AudioState audio_sender_state_;
   /* Keep in call state. */
   bool in_call_;
+  bool in_voip_call_;
 
   /* Reconnection mode */
   tBTM_BLE_CONN_TYPE reconnection_mode_;
