@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5aa3738d_3d66df22",
+        "filename": "system/stack/btm/btm_ble.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1557,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-07-17T19:10:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7d0362fd_0cab631f",
+      "range": {
+        "startLine": 1557,
+        "startChar": 0,
+        "endLine": 1557,
+        "endChar": 33
+      },
+      "revId": "aa2a86619188acc4b66d5e3b210a700b12f902b8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6655b50a_cca35492",
@@ -109,6 +133,30 @@
       "side": 1,
       "message": "My 2 cents:\nEncryption has happened when the code reaches here.\nWe should do EATT connection only if the remote version \u003e\u003d 5.2.\nIf version is unknown, skip the eatt. \nif (remote_lmp_version !\u003d 0 \u0026\u0026 remote_lmp_version \u003e\u003d HCI_PROTO_VERSION_5_2) {\nfeels more explicit",
       "parentUuid": "badac569_79d0b25c",
+      "range": {
+        "startLine": 1592,
+        "startChar": 2,
+        "endLine": 1603,
+        "endChar": 3
+      },
+      "revId": "aa2a86619188acc4b66d5e3b210a700b12f902b8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b70d2744_a42910d8",
+        "filename": "system/stack/btm/btm_ble.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1603,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-07-17T19:10:42Z",
+      "side": 1,
+      "message": "To clarify, yes, either way once we reach this code encryption has been completed. \n\n@William, updated taking your input for comment and version \u003d\u003d 0 check. Myles pinged me as well asking if we should connect EATT if version unknown. \n\nThought on this a bit more and agree to connect EATT if version unknown. As long as remote provides correct version info this workaround will still work for the legacy devices (all of which I\u0027ve seen thus far do report version info correctly). \n\nWe can always change this part in follow-up CL if we observe problems with it, but it seems this approach is most aligned currently. \n\nResolving but please feel free to reopen if further discussion needed.",
+      "parentUuid": "97f8b498_1848e415",
       "range": {
         "startLine": 1592,
         "startChar": 2,
