@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4511a203_0888e466",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-07-17T18:01:57Z",
+      "side": 1,
+      "message": "Another test line like this:\n\nTest: mma -j32\n\nwill silence the test warning.",
+      "revId": "53ebeba383efa5a267c7c3ba865ad8305457ce9d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
