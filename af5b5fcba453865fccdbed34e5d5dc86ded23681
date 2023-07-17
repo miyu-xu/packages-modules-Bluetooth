@@ -16,6 +16,23 @@
       "message": "packages/modules/Bluetooth/android/app/tests/unit/src/com/android/bluetooth/gatt/ScanManagerTest.java:902: error: no suitable method found for createScanClient(int,boolean,int,boolean,boolean)\nScanClient client \u003d createScanClient(i, isFiltered, ScanMode, isBatch, isAutoBatch);\n^\nmethod ScanManagerTest.createScanClient(int,boolean,boolean,int,boolean,boolean) is not applicable",
       "revId": "af5b5fcba453865fccdbed34e5d5dc86ded23681",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fa36d83c_18521295",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-07-17T17:46:48Z",
+      "side": 1,
+      "message": "They are build faillure related to the modified constructor in test:\n```\npackages/modules/Bluetooth/android/app/tests/unit/src/com/android/bluetooth/gatt/ScanManagerTest.java:939: error: no suitable method found for createScanClient(int,boolean,int,boolean,boolean)\nScanClient client \u003d createScanClient(i, isFiltered, ScanMode, isBatch, isAutoBatch);\n^\n```\nand more, all `createScanClient` need to be checked",
+      "revId": "af5b5fcba453865fccdbed34e5d5dc86ded23681",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
