@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "74740760_7f74b0a9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 2023831
+      },
+      "writtenOn": "2023-07-17T10:13:46Z",
+      "side": 1,
+      "message": "repo download platform/packages/modules/Bluetooth 26517872651787: Floss: extend |debug_dump| for SWB | https://android-review.googlesource.com/c/platform/packages/modules/Bluetooth/+/2651787",
+      "revId": "06275bbac9ec4b34f85797de054cf58af6864af3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
