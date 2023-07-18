@@ -127,6 +127,7 @@ public class LeAudioService extends ProfileService {
     private BluetoothDevice mExposedActiveDevice;
     private LeAudioCodecConfig mLeAudioCodecConfig;
     private final Object mGroupLock = new Object();
+    private BluetoothLeBroadcastSettings mPendingBroadcastSettings;
     ServiceFactory mServiceFactory = new ServiceFactory();
 
     LeAudioNativeInterface mLeAudioNativeInterface;
@@ -351,6 +352,8 @@ public class LeAudioService extends ProfileService {
             Log.w(TAG, "stop() called before start()");
             return true;
         }
+
+        mPendingBroadcastSettings = null;
 
         mHandler.removeCallbacks(this::init);
         removeActiveDevice(false);
@@ -820,6 +823,15 @@ public class LeAudioService extends ProfileService {
     public void createBroadcast(BluetoothLeBroadcastSettings broadcastSettings) {
         if (mLeAudioBroadcasterNativeInterface == null) {
             Log.w(TAG, "Native interface not available.");
+            return;
+        }
+
+        if (getActiveGroupId() != LE_AUDIO_GROUP_ID_INVALID) {
+            /* Broadcast would be created once unicast group became inactive */
+            Log.i(TAG, "Unicast group active, set pending Broadcast and deactivate Unicast group");
+            mPendingBroadcastSettings = broadcastSettings;
+            removeActiveDevice(true);
+
             return;
         }
 
@@ -2013,6 +2025,11 @@ public class LeAudioService extends ProfileService {
                 }
                 case LeAudioStackEvent.GROUP_STATUS_INACTIVE: {
                     handleGroupTransitToInactive(groupId, false);
+
+                    if (mPendingBroadcastSettings != null) {
+                        createBroadcast(mPendingBroadcastSettings);
+                        mPendingBroadcastSettings = null;
+                    }
                     break;
                 }
                 case LeAudioStackEvent.GROUP_STATUS_TURNED_IDLE_DURING_CALL: {
