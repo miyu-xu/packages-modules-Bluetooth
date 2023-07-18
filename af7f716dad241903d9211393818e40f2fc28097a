@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ea9acb33_22e315b8",
+        "filename": "system/stack/btm/btm_scn.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-07-18T15:38:17Z",
+      "side": 1,
+      "message": "I find this name confusing, wdyt about renaming this into something like `btm_next_index`",
+      "range": {
+        "startLine": 38,
+        "startChar": 23,
+        "endLine": 38,
+        "endChar": 42
+      },
+      "revId": "af7f716dad241903d9211393818e40f2fc28097a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "defb9d5b_cb51038e",
+        "filename": "system/stack/btm/btm_scn.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-07-18T15:38:17Z",
+      "side": 1,
+      "message": "```suggestion\n  for (uint8_t i \u003d 0; i \u003c PORT_MAX_RFC_PORTS - 2; i++) {\n      uint8_t idx \u003d btm_cb.btm_available_index + i;\n      if (idx \u003e (PORT_MAX_RFC_PORTS - 2)) {\n          idx -\u003d (PORT_MAX_RFC_PORTS - 2);\n      }\n      if (!btm_cb.btm_scn[idx]) {\n          btm_cb.btm_scn[idx] \u003d true;\n          btm_cb.btm_available_index \u003d (idx + 1);\n          return (idx + 1);\n      }\n  }\n```\n\n?",
+      "range": {
+        "startLine": 38,
+        "startChar": 0,
+        "endLine": 53,
+        "endChar": 46
+      },
+      "revId": "af7f716dad241903d9211393818e40f2fc28097a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
