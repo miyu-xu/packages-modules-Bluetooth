@@ -163,13 +163,14 @@ public class BluetoothMapService extends ProfileService {
             BluetoothUuid.MAP, BluetoothUuid.MNS,
     };
 
-    public static boolean isEnabled() {
-        return BluetoothProperties.isProfileMapServerEnabled().orElse(false);
-    }
-
-    public BluetoothMapService() {
+    BluetoothMapService(Context ctx) {
+        super(ctx);
         mState = BluetoothMap.STATE_DISCONNECTED;
         BluetoothMap.invalidateBluetoothGetConnectionStateCache();
+    }
+
+    public static boolean isEnabled() {
+        return BluetoothProperties.isProfileMapServerEnabled().orElse(false);
     }
 
     private synchronized void closeService() {
