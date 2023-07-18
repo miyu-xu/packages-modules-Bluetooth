@@ -101,10 +101,7 @@ public class HearingAidService extends ProfileService {
 
     private final ServiceFactory mFactory = new ServiceFactory();
 
-    HearingAidService() {}
-
-    @VisibleForTesting
-    HearingAidService(Context ctx) {
+    public HearingAidService(Context ctx) {
         super(ctx);
     }
 
