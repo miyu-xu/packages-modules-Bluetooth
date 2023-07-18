@@ -442,6 +442,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "07c580d8_c19ef202",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2023-07-18T12:33:07Z",
+      "side": 1,
+      "message": "...oh, my bad this function can either take contexts or no contexts and then it does not do the filtering. We don\u0027t need more functions so let\u0027s leave it as is.",
+      "parentUuid": "b8b1d6fe_2bea1496",
+      "revId": "1ef9472b592a0065c465e688fde683e398b65e39",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4023bb8f_3377062d",
         "filename": "system/bta/le_audio/le_audio_utils.cc",
         "patchSetId": 8
