@@ -16,6 +16,24 @@
       "message": "A better fix is actually aosp/2652379, I\u0027ll add you to that review David, thanks (and sorry for the churn, but that might fix the other related issue w/ the R8 update).",
       "revId": "435c5cab515c754cb9e151c2a99eb943c67ea6a9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6f2ad113_0e1d8833",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1064003
+      },
+      "writtenOn": "2023-07-18T22:50:22Z",
+      "side": 1,
+      "message": "Looks like that one solves most of the failures, but not quite all of them (https://screenshot.googleplex.com/7BzFDiuP3AaueSo). For now I\u0027m going to move forward with this change while I figure out a more maintainable way of supporting mocking with optimized targets.  Some related discussion @ aosp/2652381.",
+      "parentUuid": "489ddac4_e92586ec",
+      "revId": "435c5cab515c754cb9e151c2a99eb943c67ea6a9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
