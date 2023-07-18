@@ -67,6 +67,10 @@ public class MapClientService extends ProfileService {
     @VisibleForTesting
     MapBroadcastReceiver mMapReceiver;
 
+    public MapClientService(Context ctx) {
+        super(ctx);
+    }
+
     public static boolean isEnabled() {
         return BluetoothProperties.isProfileMapClientEnabled().orElse(false);
     }

@@ -95,6 +95,10 @@ public class HapClientService extends ProfileService {
     @VisibleForTesting
     ServiceFactory mFactory = new ServiceFactory();
 
+    public HapClientService(Context ctx) {
+        super(ctx);
+    }
+
     public static boolean isEnabled() {
         return BluetoothProperties.isProfileHapClientEnabled().orElse(false);
     }

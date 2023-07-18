@@ -16,15 +16,15 @@
 
 package com.android.bluetooth.btservice;
 
-import static android.Manifest.permission.BLUETOOTH_CONNECT;
 
 import static java.util.Objects.requireNonNull;
 
 import android.annotation.RequiresPermission;
 import android.annotation.SuppressLint;
-import android.app.Service;
 import android.bluetooth.BluetoothAdapter;
 import android.content.ComponentName;
+import android.content.Context;
+import android.content.ContextWrapper;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.IBinder;
@@ -32,10 +32,8 @@ import android.util.Log;
 
 import com.android.bluetooth.BluetoothMetricsProto;
 
-/**
- * Base class for a background service that runs a Bluetooth profile
- */
-public abstract class ProfileService extends Service {
+/** Base class for a background service that runs a Bluetooth profile */
+public abstract class ProfileService extends ContextWrapper {
     private static final boolean DBG = false;
 
     public static final String BLUETOOTH_PERM =
@@ -50,9 +48,6 @@ public abstract class ProfileService extends Service {
         void cleanup();
     }
 
-    //Profile services will not be automatically restarted.
-    //They must be explicitly restarted by AdapterService
-    private static final int PROFILE_SERVICE_MODE = Service.START_NOT_STICKY;
     private BluetoothAdapter mAdapter;
     private IProfileServiceBinder mBinder;
     private final String mName;
@@ -82,8 +77,6 @@ public abstract class ProfileService extends Service {
     /**
      * Called in {@link #onCreate()} to init basic stuff in this service
      */
-    // Suppressed since this is called from framework
-    @SuppressLint("AndroidFrameworkRequiresPermission")
     protected void create() {}
 
     /**
@@ -91,8 +84,6 @@ public abstract class ProfileService extends Service {
      *
      * @return True in successful condition, False otherwise
      */
-    // Suppressed since this is called from framework
-    @SuppressLint("AndroidFrameworkRequiresPermission")
     protected abstract boolean start();
 
     /**
@@ -100,101 +91,34 @@ public abstract class ProfileService extends Service {
      *
      * @return True in successful condition, False otherwise
      */
-    // Suppressed since this is called from framework
-    @SuppressLint("AndroidFrameworkRequiresPermission")
     protected abstract boolean stop();
 
     /**
      * Called in {@link #onDestroy()} when this object is completely discarded
      */
-    // Suppressed since this is called from framework
-    @SuppressLint("AndroidFrameworkRequiresPermission")
     protected void cleanup() {}
 
     /**
      * @param testModeEnabled if the profile should enter or exit a testing mode
      */
-    // Suppressed since this is called from framework
-    @SuppressLint("AndroidFrameworkRequiresPermission")
     protected void setTestModeEnabled(boolean testModeEnabled) {
         mTestModeEnabled = testModeEnabled;
     }
 
-    protected ProfileService() {
+    public ProfileService(Context ctx) {
+        super(ctx);
         mName = getName();
-    }
-
-    @Override
-    // Suppressed since this is called from framework
-    @SuppressLint("AndroidFrameworkRequiresPermission")
-    public void onCreate() {
         if (DBG) {
-            Log.d(mName, "onCreate");
+            Log.d(mName, "Service created");
         }
-        super.onCreate();
         mAdapter = BluetoothAdapter.getDefaultAdapter();
         mBinder = initBinder();
         create();
     }
 
-    @Override
-    // Suppressed since this is called from framework
-    @SuppressLint("AndroidFrameworkRequiresPermission")
-    public int onStartCommand(Intent intent, int flags, int startId) {
-        if (DBG) {
-            Log.d(mName, "onStartCommand()");
-        }
-
-        if (checkCallingOrSelfPermission(BLUETOOTH_CONNECT)
-                != PackageManager.PERMISSION_GRANTED) {
-            Log.e(mName, "Permission denied!");
-            return PROFILE_SERVICE_MODE;
-        }
-
-        if (intent == null) {
-            Log.d(mName, "onStartCommand ignoring null intent.");
-            return PROFILE_SERVICE_MODE;
-        }
-
-        String action = intent.getStringExtra(AdapterService.EXTRA_ACTION);
-        if (AdapterService.ACTION_SERVICE_STATE_CHANGED.equals(action)) {
-            int state = intent.getIntExtra(BluetoothAdapter.EXTRA_STATE, BluetoothAdapter.ERROR);
-            if (state == BluetoothAdapter.STATE_OFF) {
-                doStop();
-            } else if (state == BluetoothAdapter.STATE_ON) {
-                doStart();
-            }
-        }
-        return PROFILE_SERVICE_MODE;
-    }
-
-    @Override
-    // Suppressed since this is called from framework
-    @SuppressLint("AndroidFrameworkRequiresPermission")
-    public IBinder onBind(Intent intent) {
-        if (DBG) {
-            Log.d(mName, "onBind");
-        }
-        if (mAdapter != null && mBinder == null) {
-            // initBinder returned null, you can't bind
-            throw new UnsupportedOperationException("Cannot bind to " + mName);
-        }
-        return mBinder;
-    }
-
     IBinder getBinder() {
         requireNonNull(mBinder, "Binder is null. onCreate need to be called first");
         return mBinder;
-    }
-
-    @Override
-    // Suppressed since this is called from framework
-    @SuppressLint("AndroidFrameworkRequiresPermission")
-    public boolean onUnbind(Intent intent) {
-        if (DBG) {
-            Log.d(mName, "onUnbind");
-        }
-        return super.onUnbind(intent);
     }
 
     /**
@@ -283,19 +207,20 @@ public abstract class ProfileService extends Service {
         sb.append("\n");
     }
 
-    @Override
-    // Suppressed since this is called from framework
-    @SuppressLint("AndroidFrameworkRequiresPermission")
-    public void onDestroy() {
-        Log.v(mName, "onDestroy");
-        cleanup();
-        if (mBinder != null) {
-            mBinder.cleanup();
-            mBinder = null;
-        }
-        mAdapter = null;
-        super.onDestroy();
-    }
+    // TODO cleanup
+    // @Override
+    // // Suppressed since this is called from framework
+    // @SuppressLint("AndroidFrameworkRequiresPermission")
+    // public void onDestroy() {
+    //     Log.v(mName, "onDestroy");
+    //     cleanup();
+    //     if (mBinder != null) {
+    //         mBinder.cleanup();
+    //         mBinder = null;
+    //     }
+    //     mAdapter = null;
+    //     super.onDestroy();
+    // }
 
     @RequiresPermission(
             anyOf = {
@@ -348,6 +273,9 @@ public abstract class ProfileService extends Service {
         if (mAdapterService != null) {
             mAdapterService.removeProfile(this);
         }
-        stopSelf();
+        if (mBinder != null) {
+            mBinder.cleanup();
+            mBinder = null;
+        }
     }
 }

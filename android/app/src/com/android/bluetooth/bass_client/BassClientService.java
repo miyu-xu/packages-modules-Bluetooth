@@ -117,6 +117,10 @@ public class BassClientService extends ProfileService {
     @VisibleForTesting
     ServiceFactory mServiceFactory = new ServiceFactory();
 
+    public BassClientService(Context ctx) {
+        super(ctx);
+    }
+
     public static boolean isEnabled() {
         return BluetoothProperties.isProfileBapBroadcastAssistEnabled().orElse(false);
     }
@@ -361,12 +365,6 @@ public class BassClientService extends ProfileService {
             mPendingGroupOp.clear();
         }
         return true;
-    }
-
-    @Override
-    public boolean onUnbind(Intent intent) {
-        Log.d(TAG, "Need to unregister app");
-        return super.onUnbind(intent);
     }
 
     BluetoothDevice getDeviceForSyncHandle(int syncHandle) {
