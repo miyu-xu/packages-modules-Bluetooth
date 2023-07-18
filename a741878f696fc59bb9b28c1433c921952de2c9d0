@@ -52,6 +52,23 @@
       "parentUuid": "f3da8df4_db78bdee",
       "revId": "a741878f696fc59bb9b28c1433c921952de2c9d0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "317bc040_47ab05c2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2023-07-18T15:05:52Z",
+      "side": 1,
+      "message": "The design doc looks a WIP one. I would really appreciate it if you could take some time to complete the design doc before submitting the patch for reviewing. This will help us to understand your proposed changes better. Thank you.",
+      "revId": "a741878f696fc59bb9b28c1433c921952de2c9d0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
