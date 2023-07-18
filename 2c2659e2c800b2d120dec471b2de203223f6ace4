@@ -22,6 +22,30 @@
       },
       "revId": "2c2659e2c800b2d120dec471b2de203223f6ace4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9725b261_c719b573",
+        "filename": "system/stack/btm/btm_ble.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 1605,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-07-18T01:11:22Z",
+      "side": 1,
+      "message": "There\u0027s already logging when EATT is connected, so IMO this wouldn\u0027t be necessary as should be possible to tell from existing logs if it is not connected.",
+      "parentUuid": "bccddd1c_99cc08af",
+      "range": {
+        "startLine": 1599,
+        "startChar": 5,
+        "endLine": 1605,
+        "endChar": 5
+      },
+      "revId": "2c2659e2c800b2d120dec471b2de203223f6ace4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
