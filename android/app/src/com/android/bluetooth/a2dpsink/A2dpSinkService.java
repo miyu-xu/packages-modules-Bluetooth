@@ -22,6 +22,7 @@ import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothProfile;
 import android.bluetooth.IBluetoothA2dpSink;
 import android.content.AttributionSource;
+import android.content.Context;
 import android.media.AudioManager;
 import android.sysprop.BluetoothProperties;
 import android.util.Log;
@@ -63,6 +64,10 @@ public class A2dpSinkService extends ProfileService {
     private static A2dpSinkService sService;
 
     A2dpSinkNativeInterface mNativeInterface;
+
+    A2dpSinkService(Context ctx) {
+        super(ctx);
+    }
 
     public static boolean isEnabled() {
         return BluetoothProperties.isProfileA2dpSinkEnabled().orElse(false);
@@ -127,8 +132,6 @@ public class A2dpSinkService extends ProfileService {
         sService = service;
     }
 
-
-    public A2dpSinkService() {}
 
     /**
      * Set the device that should be allowed to actively stream

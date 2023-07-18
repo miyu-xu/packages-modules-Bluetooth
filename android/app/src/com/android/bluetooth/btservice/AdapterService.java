@@ -156,6 +156,7 @@ import java.io.FileDescriptor;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.lang.reflect.InvocationTargetException;
 import java.time.Duration;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
@@ -192,7 +193,7 @@ public class AdapterService extends Service {
     private long mEnergyUsedTotalVoltAmpSecMicro;
     private final SparseArray<UidTraffic> mUidTraffic = new SparseArray<>();
 
-    private final ArrayList<String> mStartedProfiles = new ArrayList<>();
+    private final Map<String, ProfileService> mStartedProfiles = new HashMap<>();
     private final ArrayList<ProfileService> mRegisteredProfiles = new ArrayList<>();
     private final ArrayList<ProfileService> mRunningProfiles = new ArrayList<>();
     private HashSet<String> mLeAudioAllowDevices = new HashSet<>();
@@ -416,7 +417,7 @@ public class AdapterService extends Service {
      * @return true if the service is started expectedly, false otherwise.
      */
     public boolean isStartedProfile(String serviceSampleName) {
-        return mStartedProfiles.contains(serviceSampleName);
+        return mStartedProfiles.containsKey(serviceSampleName);
     }
 
     private static final int MESSAGE_PROFILE_SERVICE_STATE_CHANGED = 1;
@@ -928,9 +929,10 @@ public class AdapterService extends Service {
     }
 
     private void startGattProfileService() {
-        mStartedProfiles.add(GattService.class.getSimpleName());
-
         mGattService = new GattService(this);
+
+        mStartedProfiles.put(GattService.class.getSimpleName(), mGattService);
+
         ((ProfileService) mGattService).doStart();
     }
 
@@ -1290,14 +1292,32 @@ public class AdapterService extends Service {
 
     private void setProfileServiceState(Class service, int state) {
         if (state == BluetoothAdapter.STATE_ON) {
-            mStartedProfiles.add(service.getSimpleName());
+            ProfileService profileService;
+            try {
+                profileService =
+                        (ProfileService)
+                                service.getDeclaredConstructor(Context.class).newInstance(this);
+            } catch (InvocationTargetException
+                    | InstantiationException
+                    | IllegalAccessException
+                    | NoSuchMethodException e) {
+                Log.wtf(TAG, "Failed to call constructor for " + service.getSimpleName(), e);
+                return;
+            }
+            mStartedProfiles.put(service.getSimpleName(), profileService);
+            profileService.doStart();
         } else if (state == BluetoothAdapter.STATE_OFF) {
-            mStartedProfiles.remove(service.getSimpleName());
+            ProfileService profileService = mStartedProfiles.remove(service.getSimpleName());
+            if (profileService != null) {
+                profileService.doStop();
+            } else {
+                Log.e(
+                        TAG,
+                        "setProfileServiceState("
+                                + service.getSimpleName()
+                                + ", STATE_OFF): profile is already stopped");
+            }
         }
-        Intent intent = new Intent(this, service);
-        intent.putExtra(EXTRA_ACTION, ACTION_SERVICE_STATE_CHANGED);
-        intent.putExtra(BluetoothAdapter.EXTRA_STATE, state);
-        startService(intent);
     }
 
     private void setAllProfileServiceStates(Class[] services, int state) {

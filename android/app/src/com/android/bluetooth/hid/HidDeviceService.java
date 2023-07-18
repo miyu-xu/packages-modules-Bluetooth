@@ -28,6 +28,7 @@ import android.bluetooth.BluetoothProfile;
 import android.bluetooth.IBluetoothHidDevice;
 import android.bluetooth.IBluetoothHidDeviceCallback;
 import android.content.AttributionSource;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Binder;
 import android.os.Handler;
@@ -85,6 +86,10 @@ public class HidDeviceService extends ProfileService {
     private ActivityManager mActivityManager;
 
     private HidDeviceServiceHandler mHandler;
+
+    HidDeviceService(Context ctx) {
+        super(ctx);
+    }
 
     public static boolean isEnabled() {
         return BluetoothProperties.isProfileHidDeviceEnabled().orElse(false);
@@ -264,6 +269,7 @@ public class HidDeviceService extends ProfileService {
         }
 
         public void cleanup() {
+            mService.unregisterApp();
             mService = null;
         }
     }
@@ -805,13 +811,6 @@ public class HidDeviceService extends ProfileService {
                 getAttributionSource(),
                 AdapterService.ACTIVITY_ATTRIBUTION_NO_ACTIVE_DEVICE_ADDRESS);
         return true;
-    }
-
-    @Override
-    public boolean onUnbind(Intent intent) {
-        Log.d(TAG, "Need to unregister app");
-        unregisterApp();
-        return super.onUnbind(intent);
     }
 
     /**

@@ -68,6 +68,10 @@ public class BatteryService extends ProfileService {
 
     private BroadcastReceiver mBondStateChangedReceiver;
 
+    BatteryService(Context ctx) {
+        super(ctx);
+    }
+
     public static boolean isEnabled() {
         return BluetoothProperties.isProfileBasClientEnabled().orElse(false);
     }
