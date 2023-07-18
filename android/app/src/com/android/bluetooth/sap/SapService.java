@@ -3,7 +3,6 @@ package com.android.bluetooth.sap;
 import static android.Manifest.permission.BLUETOOTH_CONNECT;
 
 import android.annotation.RequiresPermission;
-import android.annotation.TargetApi;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.bluetooth.BluetoothAdapter;
@@ -19,7 +18,6 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.os.Build;
 import android.os.Handler;
 import android.os.Message;
 import android.os.ParcelUuid;
@@ -109,13 +107,15 @@ public class SapService extends ProfileService {
             BluetoothUuid.SAP,
     };
 
-    public static boolean isEnabled() {
-        return BluetoothProperties.isProfileSapServerEnabled().orElse(false);
-    }
+    SapService(Context ctx) {
+        super(ctx);
 
-    public SapService() {
         mState = BluetoothSap.STATE_DISCONNECTED;
         BluetoothSap.invalidateBluetoothGetConnectionStateCache();
+    }
+
+    public static boolean isEnabled() {
+        return BluetoothProperties.isProfileSapServerEnabled().orElse(false);
     }
 
     /***
