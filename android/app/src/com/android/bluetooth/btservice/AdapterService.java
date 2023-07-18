@@ -34,6 +34,8 @@ import static com.android.bluetooth.Utils.hasBluetoothPrivilegedPermission;
 import static com.android.bluetooth.Utils.isDualModeAudioEnabled;
 import static com.android.bluetooth.Utils.isPackageNameAccurate;
 
+import static java.util.Objects.requireNonNull;
+
 import android.annotation.NonNull;
 import android.annotation.Nullable;
 import android.annotation.RequiresPermission;
@@ -165,7 +167,6 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Set;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
@@ -591,6 +592,10 @@ public class AdapterService extends Service {
         }
     }
 
+    final @NonNull <T> T getNonNullSystemService(@NonNull Class<T> clazz) {
+        return requireNonNull(getSystemService(clazz), clazz.getSimpleName() + " cannot be null");
+    }
+
     @Override
     @RequiresPermission(
             allOf = {
@@ -612,6 +617,14 @@ public class AdapterService extends Service {
         initMetricsLogger();
         debugLog("onCreate()");
         mDeviceConfigListener.start();
+
+        mUserManager = getNonNullSystemService(UserManager.class);
+        mAppOps = getNonNullSystemService(AppOpsManager.class);
+        mAlarmManager = getNonNullSystemService(AlarmManager.class);
+        mPowerManager = getNonNullSystemService(PowerManager.class);
+        mBatteryStatsManager = getNonNullSystemService(BatteryStatsManager.class);
+        mCompanionDeviceManager = getNonNullSystemService(CompanionDeviceManager.class);
+
         mRemoteDevices = new RemoteDevices(this, mLooper);
         mRemoteDevices.init();
         clearDiscoveringPackages();
@@ -630,29 +643,28 @@ public class AdapterService extends Service {
         // Android TV doesn't show consent dialogs for just works and encryption only le pairing
         boolean isAtvDevice = getApplicationContext().getPackageManager().hasSystemFeature(
                 PackageManager.FEATURE_LEANBACK_ONLY);
-        mUserManager = getSystemService(UserManager.class);
-        initNative(mUserManager.isGuestUser(), isCommonCriteriaMode(), configCompareResult,
-                getInitFlags(), isAtvDevice, getApplicationInfo().dataDir);
+        initNative(
+                mUserManager.isGuestUser(),
+                isCommonCriteriaMode(),
+                configCompareResult,
+                getInitFlags(),
+                isAtvDevice,
+                getApplicationInfo().dataDir);
         mNativeAvailable = true;
         mPreferredAudioProfilesCallbacks =
                 new RemoteCallbackList<IBluetoothPreferredAudioProfilesCallback>();
         mBluetoothQualityReportReadyCallbacks =
                 new RemoteCallbackList<IBluetoothQualityReportReadyCallback>();
         mCallbacks = new RemoteCallbackList<IBluetoothCallback>();
-        mAppOps = getSystemService(AppOpsManager.class);
-        //Load the name and address
+        // Load the name and address
         getAdapterPropertyNative(AbstractionLayer.BT_PROPERTY_BDADDR);
         getAdapterPropertyNative(AbstractionLayer.BT_PROPERTY_BDNAME);
         getAdapterPropertyNative(AbstractionLayer.BT_PROPERTY_CLASS_OF_DEVICE);
-        mAlarmManager = getSystemService(AlarmManager.class);
-        mPowerManager = getSystemService(PowerManager.class);
-        mBatteryStatsManager = getSystemService(BatteryStatsManager.class);
-        mCompanionDeviceManager = getSystemService(CompanionDeviceManager.class);
 
         mBluetoothKeystoreService.initJni();
 
         mBluetoothQualityReportNativeInterface =
-                Objects.requireNonNull(
+                requireNonNull(
                         BluetoothQualityReportNativeInterface.getInstance(),
                         "BluetoothQualityReportNativeInterface cannot be null when BQR starts");
         mBluetoothQualityReportNativeInterface.init();
@@ -4554,8 +4566,8 @@ public class AdapterService extends Service {
             if (!callerIsSystemOrActiveOrManagedUser(service, TAG, "setPreferredAudioProfiles")) {
                 return BluetoothStatusCodes.ERROR_BLUETOOTH_NOT_ALLOWED;
             }
-            Objects.requireNonNull(device);
-            Objects.requireNonNull(modeToProfileBundle);
+            requireNonNull(device);
+            requireNonNull(modeToProfileBundle);
             if (!BluetoothAdapter.checkBluetoothAddress(device.getAddress())) {
                 throw new IllegalArgumentException("device cannot have an invalid address");
             }
@@ -4589,7 +4601,7 @@ public class AdapterService extends Service {
             if (!callerIsSystemOrActiveOrManagedUser(service, TAG, "getPreferredAudioProfiles")) {
                 return Bundle.EMPTY;
             }
-            Objects.requireNonNull(device);
+            requireNonNull(device);
             if (!BluetoothAdapter.checkBluetoothAddress(device.getAddress())) {
                 throw new IllegalArgumentException("device cannot have an invalid address");
             }
@@ -4605,8 +4617,10 @@ public class AdapterService extends Service {
         }
 
         @Override
-        public void notifyActiveDeviceChangeApplied(BluetoothDevice device,
-                AttributionSource source, SynchronousResultReceiver receiver) {
+        public void notifyActiveDeviceChangeApplied(
+                BluetoothDevice device,
+                AttributionSource source,
+                SynchronousResultReceiver receiver) {
             try {
                 receiver.send(notifyActiveDeviceChangeApplied(device, source));
             } catch (RuntimeException e) {
@@ -4623,7 +4637,7 @@ public class AdapterService extends Service {
             if (!callerIsSystem(TAG, "setPreferredAudioProfiles")) {
                 return BluetoothStatusCodes.ERROR_BLUETOOTH_NOT_ALLOWED;
             }
-            Objects.requireNonNull(device);
+            requireNonNull(device);
             if (!BluetoothAdapter.checkBluetoothAddress(device.getAddress())) {
                 throw new IllegalArgumentException("device cannot have an invalid address");
             }
@@ -4641,7 +4655,8 @@ public class AdapterService extends Service {
         @Override
         public void registerPreferredAudioProfilesChangedCallback(
                 IBluetoothPreferredAudioProfilesCallback callback,
-                AttributionSource attributionSource, SynchronousResultReceiver receiver) {
+                AttributionSource attributionSource,
+                SynchronousResultReceiver receiver) {
             try {
                 receiver.send(registerPreferredAudioProfilesChangedCallback(callback,
                         attributionSource));
@@ -4649,10 +4664,12 @@ public class AdapterService extends Service {
                 receiver.propagateException(e);
             }
         }
-        @RequiresPermission(allOf = {
-                android.Manifest.permission.BLUETOOTH_CONNECT,
-                android.Manifest.permission.BLUETOOTH_PRIVILEGED,
-        })
+
+        @RequiresPermission(
+                allOf = {
+                    android.Manifest.permission.BLUETOOTH_CONNECT,
+                    android.Manifest.permission.BLUETOOTH_PRIVILEGED,
+                })
         private int registerPreferredAudioProfilesChangedCallback(
                 IBluetoothPreferredAudioProfilesCallback callback, AttributionSource source) {
             AdapterService service = getService();
@@ -4663,7 +4680,7 @@ public class AdapterService extends Service {
                     "registerPreferredAudioProfilesChangedCallback")) {
                 return BluetoothStatusCodes.ERROR_BLUETOOTH_NOT_ALLOWED;
             }
-            Objects.requireNonNull(callback);
+            requireNonNull(callback);
             if (!Utils.checkConnectPermissionForDataDelivery(service, source, TAG)) {
                 return BluetoothStatusCodes.ERROR_MISSING_BLUETOOTH_CONNECT_PERMISSION;
             }
@@ -4689,29 +4706,33 @@ public class AdapterService extends Service {
                 receiver.propagateException(e);
             }
         }
-        @RequiresPermission(allOf = {
-                android.Manifest.permission.BLUETOOTH_CONNECT,
-                android.Manifest.permission.BLUETOOTH_PRIVILEGED,
-        })
+
+        @RequiresPermission(
+                allOf = {
+                    android.Manifest.permission.BLUETOOTH_CONNECT,
+                    android.Manifest.permission.BLUETOOTH_PRIVILEGED,
+                })
         private int unregisterPreferredAudioProfilesChangedCallback(
                 IBluetoothPreferredAudioProfilesCallback callback, AttributionSource source) {
             AdapterService service = getService();
             if (service == null) {
                 return BluetoothStatusCodes.ERROR_BLUETOOTH_NOT_ENABLED;
             }
-            if (!callerIsSystemOrActiveOrManagedUser(service, TAG,
-                    "unregisterPreferredAudioProfilesChangedCallback")) {
+            if (!callerIsSystemOrActiveOrManagedUser(
+                    service, TAG, "unregisterPreferredAudioProfilesChangedCallback")) {
                 return BluetoothStatusCodes.ERROR_BLUETOOTH_NOT_ALLOWED;
             }
-            Objects.requireNonNull(callback);
+            requireNonNull(callback);
             if (!Utils.checkConnectPermissionForDataDelivery(service, source, TAG)) {
                 return BluetoothStatusCodes.ERROR_MISSING_BLUETOOTH_CONNECT_PERMISSION;
             }
             enforceBluetoothPrivilegedPermission(service);
 
             if (!service.mPreferredAudioProfilesCallbacks.unregister(callback)) {
-                Log.e(TAG, "unregisterPreferredAudioProfilesChangedCallback: callback was never "
-                        + "registered");
+                Log.e(
+                        TAG,
+                        "unregisterPreferredAudioProfilesChangedCallback: callback was never "
+                                + "registered");
                 return BluetoothStatusCodes.ERROR_CALLBACK_NOT_REGISTERED;
             }
             return BluetoothStatusCodes.SUCCESS;
@@ -4729,21 +4750,22 @@ public class AdapterService extends Service {
             }
         }
 
-        @RequiresPermission(allOf = {
-                android.Manifest.permission.BLUETOOTH_CONNECT,
-                android.Manifest.permission.BLUETOOTH_PRIVILEGED,
-        })
+        @RequiresPermission(
+                allOf = {
+                    android.Manifest.permission.BLUETOOTH_CONNECT,
+                    android.Manifest.permission.BLUETOOTH_PRIVILEGED,
+                })
         private int registerBluetoothQualityReportReadyCallback(
                 IBluetoothQualityReportReadyCallback callback, AttributionSource source) {
             AdapterService service = getService();
             if (service == null) {
                 return BluetoothStatusCodes.ERROR_BLUETOOTH_NOT_ENABLED;
             }
-            if (!callerIsSystemOrActiveOrManagedUser(service, TAG,
-                    "registerBluetoothQualityReportReadyCallback")) {
+            if (!callerIsSystemOrActiveOrManagedUser(
+                    service, TAG, "registerBluetoothQualityReportReadyCallback")) {
                 return BluetoothStatusCodes.ERROR_BLUETOOTH_NOT_ALLOWED;
             }
-            Objects.requireNonNull(callback);
+            requireNonNull(callback);
             if (!Utils.checkConnectPermissionForDataDelivery(service, source, TAG)) {
                 return BluetoothStatusCodes.ERROR_MISSING_BLUETOOTH_CONNECT_PERMISSION;
             }
@@ -4756,10 +4778,11 @@ public class AdapterService extends Service {
         @Override
         public void unregisterBluetoothQualityReportReadyCallback(
                 IBluetoothQualityReportReadyCallback callback,
-                AttributionSource attributionSource, SynchronousResultReceiver receiver) {
+                AttributionSource attributionSource,
+                SynchronousResultReceiver receiver) {
             try {
-                receiver.send(unregisterBluetoothQualityReportReadyCallback(callback,
-                        attributionSource));
+                receiver.send(
+                        unregisterBluetoothQualityReportReadyCallback(callback, attributionSource));
             } catch (RuntimeException e) {
                 receiver.propagateException(e);
             }
@@ -4778,7 +4801,7 @@ public class AdapterService extends Service {
                     "unregisterBluetoothQualityReportReadyCallback")) {
                 return BluetoothStatusCodes.ERROR_BLUETOOTH_NOT_ALLOWED;
             }
-            Objects.requireNonNull(callback);
+            requireNonNull(callback);
             if (!Utils.checkConnectPermissionForDataDelivery(service, source, TAG)) {
                 return BluetoothStatusCodes.ERROR_MISSING_BLUETOOTH_CONNECT_PERMISSION;
             }
@@ -4807,10 +4830,11 @@ public class AdapterService extends Service {
                 AttributionSource attributionSource) {
             AdapterService service = getService();
             if (service == null
-                    || !callerIsSystemOrActiveOrManagedUser(service, TAG,
-                            "getOffloadedTransportDiscoveryDataScanSupported")
+                    || !callerIsSystemOrActiveOrManagedUser(
+                            service, TAG, "getOffloadedTransportDiscoveryDataScanSupported")
                     || !Utils.checkScanPermissionForDataDelivery(
-                            service, attributionSource,
+                            service,
+                            attributionSource,
                             "getOffloadedTransportDiscoveryDataScanSupported")) {
                 return BluetoothStatusCodes.ERROR_MISSING_BLUETOOTH_SCAN_PERMISSION;
             }
@@ -4852,7 +4876,8 @@ public class AdapterService extends Service {
      * @return a Bundle containing the preferred audio profiles for the device
      */
     public Bundle getPreferredAudioProfiles(BluetoothDevice device) {
-        if (!isDualModeAudioEnabled() || mLeAudioService == null
+        if (!isDualModeAudioEnabled()
+                || mLeAudioService == null
                 || !isDualModeAudioSinkDevice(device)) {
             return Bundle.EMPTY;
         }
@@ -6695,7 +6720,7 @@ public class AdapterService extends Service {
     };
 
     private boolean isCommonCriteriaMode() {
-        return getSystemService(DevicePolicyManager.class).isCommonCriteriaModeEnabled(null);
+        return getNonNullSystemService(DevicePolicyManager.class).isCommonCriteriaModeEnabled(null);
     }
 
     @SuppressLint("AndroidFrameworkRequiresPermission")
@@ -6745,6 +6770,7 @@ public class AdapterService extends Service {
 
     @GuardedBy("mDeviceConfigLock")
     private int mScanQuotaCount = DeviceConfigListener.DEFAULT_SCAN_QUOTA_COUNT;
+
     @GuardedBy("mDeviceConfigLock")
     private long mScanQuotaWindowMillis = DeviceConfigListener.DEFAULT_SCAN_QUOTA_WINDOW_MILLIS;
     @GuardedBy("mDeviceConfigLock")
@@ -6788,9 +6814,7 @@ public class AdapterService extends Service {
         }
     }
 
-    /**
-     * Returns scan quota count.
-     */
+    /** Returns scan quota count. */
     public int getScanQuotaCount() {
         synchronized (mDeviceConfigLock) {
             return mScanQuotaCount;
