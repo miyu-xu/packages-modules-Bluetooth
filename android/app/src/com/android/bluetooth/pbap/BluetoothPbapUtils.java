@@ -257,7 +257,7 @@ class BluetoothPbapUtils {
         }
     }
 
-    static void loadAllContacts(Context context, Handler handler) {
+    static boolean loadAllContacts(Context context, Handler handler) {
         if (V) {
             Log.v(TAG, "Loading Contacts ...");
         }
@@ -266,9 +266,9 @@ class BluetoothPbapUtils {
         sTotalContacts = fetchAndSetContacts(context, handler, projection, null, null, true);
         if (sTotalContacts < 0) {
             sTotalContacts = 0;
-            return;
+            return false;
         }
-        handler.sendMessage(handler.obtainMessage(BluetoothPbapService.CONTACTS_LOADED));
+        return true;
     }
 
     static void updateSecondaryVersionCounter(Context context, Handler handler) {
