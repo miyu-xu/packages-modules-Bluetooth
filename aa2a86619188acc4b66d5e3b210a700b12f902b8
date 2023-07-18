@@ -193,6 +193,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "15abe142_cccdddc5",
+        "filename": "system/stack/btm/btm_ble.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1603,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-07-18T00:01:50Z",
+      "side": 1,
+      "message": "If ACL not connected or version info invalid, BTM_ReadRemoteVersion will be false.\n\nOther failures to get remote version would cause BTM_ReadRemoteVersion to return true, but remote_lmp_version would be unset. \n\nThat\u0027s a good point though, updated logic based on your inputs, PTAL.",
+      "parentUuid": "f5862822_cebc3c5e",
+      "range": {
+        "startLine": 1592,
+        "startChar": 2,
+        "endLine": 1603,
+        "endChar": 3
+      },
+      "revId": "aa2a86619188acc4b66d5e3b210a700b12f902b8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d385050a_c4b88f99",
         "filename": "system/stack/include/hcidefs.h",
         "patchSetId": 4
