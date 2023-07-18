@@ -34,6 +34,24 @@
       "parentUuid": "faf02117_28126f03",
       "revId": "4c315648f762f4c0adc19b67628fe7f4c7251d22",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d7737815_1c20f6a6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-07-18T22:01:58Z",
+      "side": 1,
+      "message": "Update are traditionally released around September. I guess this will be the same",
+      "parentUuid": "f6ef27e5_626fb310",
+      "revId": "4c315648f762f4c0adc19b67628fe7f4c7251d22",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
