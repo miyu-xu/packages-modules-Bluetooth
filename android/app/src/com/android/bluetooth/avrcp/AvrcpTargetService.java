@@ -105,6 +105,10 @@ public class AvrcpTargetService extends ProfileService {
 
     private static AvrcpTargetService sInstance = null;
 
+    AvrcpTargetService(Context ctx) {
+        super(ctx);
+    }
+
     public static boolean isEnabled() {
         return BluetoothProperties.isProfileAvrcpTargetEnabled().orElse(false);
     }

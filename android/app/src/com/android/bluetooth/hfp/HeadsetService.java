@@ -151,6 +151,10 @@ public class HeadsetService extends ProfileService {
 
     private final ServiceFactory mFactory = new ServiceFactory();
 
+    HeadsetService(Context ctx) {
+        super(ctx);
+    }
+
     public static boolean isEnabled() {
         return BluetoothProperties.isProfileHfpAgEnabled().orElse(false);
     }

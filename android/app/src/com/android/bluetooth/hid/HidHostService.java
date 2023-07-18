@@ -27,6 +27,7 @@ import android.bluetooth.BluetoothProfile;
 import android.bluetooth.BluetoothUuid;
 import android.bluetooth.IBluetoothHidHost;
 import android.content.AttributionSource;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -87,6 +88,10 @@ public class HidHostService extends ProfileService {
 
     static {
         classInitNative();
+    }
+
+    HidHostService(Context ctx) {
+        super(ctx);
     }
 
     public static boolean isEnabled() {

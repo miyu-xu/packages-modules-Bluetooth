@@ -23,6 +23,7 @@ import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothProfile;
 import android.bluetooth.IBluetoothAvrcpController;
 import android.content.AttributionSource;
+import android.content.Context;
 import android.content.Intent;
 import android.media.AudioManager;
 import android.support.v4.media.MediaBrowserCompat.MediaItem;
@@ -143,6 +144,10 @@ public class AvrcpControllerService extends ProfileService {
 
     static {
         classInitNative();
+    }
+
+    AvrcpControllerService(Context ctx) {
+        super(ctx);
     }
 
     public static boolean isEnabled() {

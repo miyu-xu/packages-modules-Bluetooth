@@ -116,6 +116,10 @@ public class A2dpService extends ProfileService {
 
     private BroadcastReceiver mBondStateChangedReceiver;
 
+    A2dpService(Context ctx) {
+        super(ctx);
+    }
+
     public static boolean isEnabled() {
         return BluetoothProperties.isProfileA2dpSourceEnabled().orElse(false);
     }

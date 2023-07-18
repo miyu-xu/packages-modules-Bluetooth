@@ -201,6 +201,10 @@ public class BluetoothOppService extends ProfileService implements IObexConnecti
      */
     private BluetoothOppObexServerSession mServerSession;
 
+    BluetoothOppService(Context ctx) {
+        super(ctx);
+    }
+
     public static boolean isEnabled() {
         return BluetoothProperties.isProfileOppEnabled().orElse(false);
     }

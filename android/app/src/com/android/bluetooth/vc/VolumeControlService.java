@@ -199,6 +199,10 @@ public class VolumeControlService extends ProfileService {
     @VisibleForTesting
     ServiceFactory mFactory = new ServiceFactory();
 
+    VolumeControlService(Context ctx) {
+        super(ctx);
+    }
+
     public static boolean isEnabled() {
         return BluetoothProperties.isProfileVcpControllerEnabled().orElse(false);
     }
