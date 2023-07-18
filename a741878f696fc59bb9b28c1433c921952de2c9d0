@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b10f8722_80657d09",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2023-07-18T12:25:51Z",
+      "side": 1,
+      "message": "To generate pandora, pandora_experimental code:\npython3 -m grpc_tools.protoc \\\n    -I${AOSP}/packages/modules/Bluetooth/upstream/pandora/interfaces \\\n    -I${AOSP}/external/pandora/bt-test-interfaces \\\n    -I${AOSP}/external/protobuf/src \\\n    --plugin\u003dprotoc-gen-grpc\u003d${AOSP}/external/pandora/bt-test-interfaces/python/_build/protoc-gen-custom_grpc \\\n    --python_out\u003d${GENDIR}/pandora_experimental \\\n    --grpc_out\u003d${GENDIR}/pandora_experimental \\\n    ${AOSP}/packages/modules/Bluetooth/upstream/pandora/interfaces/pandora_experimental/*\n\nIf meets the error:\n    Dict[str, list[Tuple[str, str]]],\nTypeError: \u0027type\u0027 object is not subscriptable\n\nmodeify Dict[str, list[Tuple[str, str]]], from the file protoc-gen-custom_grpc\nto      Dict[str, List[Tuple[str, str]]]",
+      "revId": "a741878f696fc59bb9b28c1433c921952de2c9d0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
