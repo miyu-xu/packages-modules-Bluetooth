@@ -1159,7 +1159,6 @@ class LeAudioClientImpl : public LeAudioClient {
       ClientAudioInterfaceRelease();
 
       GroupStop(group_id_to_close);
-      callbacks_->OnGroupStatus(group_id_to_close, GroupStatus::INACTIVE);
       return;
     }
 
@@ -5275,6 +5274,14 @@ class LeAudioClientImpl : public LeAudioClient {
           NotifyUpperLayerGroupTurnedIdleDuringCall(group->group_id_);
           HandlePendingDeviceRemove(group);
           HandlePendingDeviceDisconnection(group);
+        }
+
+        /* Released HAL clients and IDLE state of group indicates that the
+         * become INACTIVE
+         */
+        if (le_audio_source_hal_client_ == nullptr &&
+            le_audio_sink_hal_client_ == nullptr) {
+          callbacks_->OnGroupStatus(group_id, GroupStatus::INACTIVE);
         }
         break;
       }
