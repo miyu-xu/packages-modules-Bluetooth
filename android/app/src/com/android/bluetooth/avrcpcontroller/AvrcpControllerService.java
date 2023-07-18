@@ -145,6 +145,10 @@ public class AvrcpControllerService extends ProfileService {
         onCreate();
     }
 
+    public AvrcpControllerService(Context ctx) {
+        super(ctx);
+    }
+
     public static boolean isEnabled() {
         return BluetoothProperties.isProfileAvrcpControllerEnabled().orElse(false);
     }
