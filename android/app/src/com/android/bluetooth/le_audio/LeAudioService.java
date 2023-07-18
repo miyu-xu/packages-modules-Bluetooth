@@ -218,6 +218,10 @@ public class LeAudioService extends ProfileService {
     private final Map<Integer, BluetoothLeBroadcastMetadata> mBroadcastMetadataList =
             new HashMap<>();
 
+    LeAudioService(Context ctx) {
+        super(ctx);
+    }
+
     @Override
     protected IProfileServiceBinder initBinder() {
         return new BluetoothLeAudioBinder(this);

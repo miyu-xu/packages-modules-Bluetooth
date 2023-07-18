@@ -22,6 +22,7 @@ import android.bluetooth.BluetoothLeCall;
 import android.bluetooth.BluetoothProfile;
 import android.bluetooth.IBluetoothLeCallControl;
 import android.bluetooth.IBluetoothLeCallControlCallback;
+import android.content.Context;
 import android.content.AttributionSource;
 import android.os.ParcelUuid;
 import android.os.RemoteException;
@@ -49,6 +50,10 @@ public class TbsService extends ProfileService {
     private Map<BluetoothDevice, Integer> mDeviceAuthorizations = new HashMap<>();
 
     private final TbsGeneric mTbsGeneric = new TbsGeneric();
+
+    TbsService(Context ctx) {
+        super(ctx);
+    }
 
     public static boolean isEnabled() {
         return BluetoothProperties.isProfileCcpServerEnabled().orElse(false);

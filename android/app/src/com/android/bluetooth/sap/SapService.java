@@ -109,13 +109,15 @@ public class SapService extends ProfileService {
             BluetoothUuid.SAP,
     };
 
-    public static boolean isEnabled() {
-        return BluetoothProperties.isProfileSapServerEnabled().orElse(false);
-    }
+    SapService(Context ctx) {
+        super(ctx);
 
-    public SapService() {
         mState = BluetoothSap.STATE_DISCONNECTED;
         BluetoothSap.invalidateBluetoothGetConnectionStateCache();
+    }
+
+    public static boolean isEnabled() {
+        return BluetoothProperties.isProfileSapServerEnabled().orElse(false);
     }
 
     /***

@@ -171,8 +171,6 @@ public class BluetoothPbapService extends ProfileService implements IObexConnect
 
     private int mSdpHandle = -1;
 
-    protected Context mContext;
-
     private PbapHandler mSessionStatusHandler;
     private HandlerThread mHandlerThread;
     @VisibleForTesting
@@ -197,6 +195,10 @@ public class BluetoothPbapService extends ProfileService implements IObexConnect
     private static NotificationManager sNotificationManager;
 
     private static boolean sIsPseDynamicVersionUpgradeEnabled;
+
+    BluetoothPbapService(Context ctx) {
+        super(ctx);
+    }
 
     public static boolean isEnabled() {
         return BluetoothProperties.isProfilePbapServerEnabled().orElse(false);
@@ -478,7 +480,7 @@ public class BluetoothPbapService extends ProfileService implements IObexConnect
                     }
                     createSdpRecord();
                     // fetch Pbap Params to check if significant change has happened to Database
-                    BluetoothPbapUtils.fetchPbapParams(mContext);
+                    BluetoothPbapUtils.fetchPbapParams(BluetoothPbapService.this);
                     break;
                 case USER_TIMEOUT:
                     Intent intent = new Intent(BluetoothDevice.ACTION_CONNECTION_ACCESS_CANCEL);
@@ -695,7 +697,6 @@ public class BluetoothPbapService extends ProfileService implements IObexConnect
         // Enable owned Activity component
         setComponentAvailable(PBAP_ACTIVITY, true);
 
-        mContext = this;
         mContactsLoaded = false;
         mHandlerThread = new HandlerThread("PbapHandlerThread");
         mHandlerThread.start();
@@ -980,8 +981,7 @@ public class BluetoothPbapService extends ProfileService implements IObexConnect
             Runnable r = new Runnable() {
                 @Override
                 public void run() {
-                    BluetoothPbapUtils.loadAllContacts(mContext,
-                            mSessionStatusHandler);
+                    BluetoothPbapUtils.loadAllContacts(BluetoothPbapService.this, mSessionStatusHandler);
                     mThreadLoadContacts = null;
                 }
             };
@@ -995,8 +995,7 @@ public class BluetoothPbapService extends ProfileService implements IObexConnect
             Runnable r = new Runnable() {
                 @Override
                 public void run() {
-                    BluetoothPbapUtils.updateSecondaryVersionCounter(mContext,
-                            mSessionStatusHandler);
+                    BluetoothPbapUtils.updateSecondaryVersionCounter(BluetoothPbapService.this, mSessionStatusHandler);
                     mThreadUpdateSecVersionCounter = null;
                 }
             };

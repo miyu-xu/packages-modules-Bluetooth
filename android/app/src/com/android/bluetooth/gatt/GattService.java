@@ -296,8 +296,7 @@ public class GattService extends ProfileService {
     private final Object mTestModeLock = new Object();
 
     public GattService(Context ctx) {
-        attachBaseContext(ctx);
-        onCreate();
+        super(ctx);
     }
 
     public static boolean isEnabled() {
@@ -506,14 +505,6 @@ public class GattService extends ProfileService {
     private boolean isHandleRestricted(int connId, int handle) {
         Set<Integer> restrictedHandles = mRestrictedHandles.get(connId);
         return restrictedHandles != null && restrictedHandles.contains(handle);
-    }
-
-    @Override
-    public int onStartCommand(Intent intent, int flags, int startId) {
-        if (GattDebugUtils.handleDebugAction(this, intent)) {
-            return Service.START_NOT_STICKY;
-        }
-        return super.onStartCommand(intent, flags, startId);
     }
 
     /**

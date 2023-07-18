@@ -20,6 +20,7 @@ package com.android.bluetooth.mcp;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothProfile;
 import android.bluetooth.IBluetoothMcpServiceManager;
+import android.content.Context;
 import android.content.AttributionSource;
 import android.os.Handler;
 import android.os.Looper;
@@ -52,6 +53,10 @@ public class McpService extends ProfileService {
     private MediaControlProfile mGmcs;
     private Map<BluetoothDevice, Integer> mDeviceAuthorizations = new HashMap<>();
     private Handler mHandler = new Handler(Looper.getMainLooper());
+
+    McpService(Context ctx) {
+        super(ctx);
+    }
 
     public static boolean isEnabled() {
         return BluetoothProperties.isProfileMcpServerEnabled().orElse(false);
