@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bccddd1c_99cc08af",
+        "filename": "system/stack/btm/btm_ble.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 1605,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-07-18T01:02:06Z",
+      "side": 1,
+      "message": "nit:\n```suggestion\n    if (remote_lmp_version \u003d\u003d 0 ||\n        remote_lmp_version \u003e\u003d HCI_PROTO_VERSION_5_2) {\n      /* Link is encrypted, start EATT if remote LMP version is unknown, or 5.2\n       * or greater */\n      bluetooth::eatt::EattExtension::GetInstance()-\u003eConnect(\n          p_dev_rec-\u003eble.pseudo_addr);\n    } else {\n      LOG_DEBUG(\"EATT not started: lmp_version\u003d%#x\", remote_lmp_version);\n    }\n```\n\n\nIs a `else { log }` useful ?\nFeel free to discard if you think not (or to raise to WARN)",
+      "range": {
+        "startLine": 1599,
+        "startChar": 5,
+        "endLine": 1605,
+        "endChar": 5
+      },
+      "revId": "2c2659e2c800b2d120dec471b2de203223f6ace4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
