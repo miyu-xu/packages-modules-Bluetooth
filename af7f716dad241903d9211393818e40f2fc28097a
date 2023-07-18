@@ -45,6 +45,30 @@
       },
       "revId": "af7f716dad241903d9211393818e40f2fc28097a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aee490a9_0defbc13",
+        "filename": "system/stack/btm/btm_scn.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2023-07-18T23:42:11Z",
+      "side": 1,
+      "message": "uint8_t scn \u003d 0;\nuint8_t idx \u003d btm_cb.scn_recent_idx;\n\ndo {\n  idx++;\n  if (idx \u003e\u003d PORT_MAX_RFC_PORTS) {\n    idx \u003d 1; // Index 0 is reserved for hfp\n  }\n\n  if (!btm_cb.btm_scn[idx]) {\n    btm_cb.btm_scn[idx] \u003d true;\n    btm_cb.scn_recent_idx \u003d idx;\n    scn \u003d idx + 1;\n    break;\n  }\n} while (idx !\u003d btm_cb.scn_recent_index);\n\nreturn scn;\n\nThis clarifies the relationship between scn and index. It is robust against the changes in PORT_MAX_RFC_PORTS. Easy to adapt to changes in reserved indexes.",
+      "parentUuid": "defb9d5b_cb51038e",
+      "range": {
+        "startLine": 38,
+        "startChar": 0,
+        "endLine": 53,
+        "endChar": 46
+      },
+      "revId": "af7f716dad241903d9211393818e40f2fc28097a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
