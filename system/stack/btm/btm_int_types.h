@@ -365,7 +365,9 @@ typedef struct tBTM_CB {
         kBtmLogHistoryBufferSize);
     CHECK(history_ != nullptr);
     history_->Push(std::string("Initialized btm history"));
-    btm_available_index = 1;
+    // Available SCN is between [2, PORT_MAX_RFC_PORTS).
+    // 1 isn't included here since it is reserved for HFP.
+    next_available_scn = 2;
   }
 
   void Free() {
@@ -396,14 +398,14 @@ typedef struct tBTM_CB {
   friend bool BTM_TryAllocateSCN(uint8_t scn);
   friend bool BTM_FreeSCN(uint8_t scn);
   uint8_t btm_scn[RFCOMM_MAX_SCN];
-  uint8_t btm_available_index;
+  uint8_t next_available_scn;
 
   // give access to private method for test:
   friend class BtmAllocateSCNTest;
   FRIEND_TEST(BtmAllocateSCNTest, can_allocate_all_scns);
   FRIEND_TEST(BtmAllocateSCNTest, only_last_scn_available);
-  FRIEND_TEST(BtmAllocateSCNTest, scn_available_after_available_index);
-  FRIEND_TEST(BtmAllocateSCNTest, scn_available_before_available_index);
+  FRIEND_TEST(BtmAllocateSCNTest, scn_available_after_available_scn);
+  FRIEND_TEST(BtmAllocateSCNTest, scn_available_before_available_scn);
   FRIEND_TEST(BtmAllocateSCNTest, no_scn_available);
 } tBTM_CB;
 

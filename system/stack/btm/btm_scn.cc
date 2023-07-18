@@ -28,36 +28,30 @@ extern tBTM_CB btm_cb;
  *
  * Description      Look through the Server Channel Numbers for a free one.
  *
- * Returns          Allocated SCN number or 0 if none.
+ * Returns          Allocated SCN number (range of [2,PORT_MAX_RFC_PORTS) (1 is
+ *                  reserved for HFP)) or 0 if none.
  *
  ******************************************************************************/
 uint8_t BTM_AllocateSCN(void) {
   BTM_TRACE_DEBUG("BTM_AllocateSCN");
 
-  // SCN can be allocated in the range of [1, RFCOMM_MAX_SCN]
-  // btm_scn uses indexes 0 to RFCOMM_MAX_SCN-1 to track RFC ports
-  for (uint8_t i = btm_cb.btm_available_index; i < RFCOMM_MAX_SCN; ++i) {
-    if (!btm_cb.btm_scn[i]) {
-      btm_cb.btm_scn[i] = true;
-      btm_cb.btm_available_index = (i + 1);
-      return (i + 1);  // allocated scn is index + 1
+  uint8_t scn = btm_cb.next_available_scn;
+  do {
+    uint8_t scn_idx = scn - 1;
+    if (!btm_cb.btm_scn[scn_idx]) {
+      btm_cb.btm_scn[scn_idx] = true;
+      btm_cb.next_available_scn = scn + 1;
+      return scn;
     }
-  }
+    scn++;
 
-  // In order to avoid OOB, btm_available_index must be no more than
-  // RFCOMM_MAX_SCN.
-  btm_cb.btm_available_index =
-      std::min(btm_cb.btm_available_index, (uint8_t)(RFCOMM_MAX_SCN));
-
-  // Start from index 1 because index 0 (scn 1) is reserved for HFP
-  // If there's no empty SCN from _last_index to BTM_MAX_SCN.
-  for (uint8_t i = 1; i < btm_cb.btm_available_index; ++i) {
-    if (!btm_cb.btm_scn[i]) {
-      btm_cb.btm_scn[i] = true;
-      btm_cb.btm_available_index = (i + 1);
-      return (i + 1);  // allocated scn is index + 1
+    // SCN can be allocated in the range of [1, PORT_MAX_RFC_PORTS).
+    if (scn >= PORT_MAX_RFC_PORTS) {
+      // stack reserves scn 1 for HFP, HSP we still do the
+      // correct way. Hence, we start cycling from scn 2.
+      scn = 2;
     }
-  }
+  } while (scn != btm_cb.next_available_scn);
 
   return (0); /* No free ports */
 }
