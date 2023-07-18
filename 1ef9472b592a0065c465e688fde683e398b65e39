@@ -64,6 +64,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8d83cd24_fb8ff632",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 4432,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2023-07-18T12:23:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a373c219_d8ea3ac7",
+      "range": {
+        "startLine": 4432,
+        "startChar": 66,
+        "endLine": 4432,
+        "endChar": 74
+      },
+      "revId": "1ef9472b592a0065c465e688fde683e398b65e39",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6f15a41d_2b2062da",
@@ -77,6 +101,30 @@
       "writtenOn": "2023-07-12T19:01:18Z",
       "side": 1,
       "message": "Please fix this ERROR reported by Common Typos: Common typo found: \"availablity\" -- should it be \"availability\"?\n\nAnalyzer Description: Linter for catching common typos motivated by go/todo-fail and go/lol-codesearch. Shared with google3 common typos library go/common-typos.\nOwner: ayeaye-team@google.com\n\nCommon typo found: \"availablity\" -- should it be \"availability\"?\nNote: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.",
+      "range": {
+        "startLine": 4433,
+        "startChar": 25,
+        "endLine": 4433,
+        "endChar": 36
+      },
+      "revId": "1ef9472b592a0065c465e688fde683e398b65e39",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "aec945b6_1170e8a9",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 4433,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2023-07-18T12:23:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6f15a41d_2b2062da",
       "range": {
         "startLine": 4433,
         "startChar": 25,
@@ -112,6 +160,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "99471cf1_fd821a80",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 4437,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2023-07-18T12:23:37Z",
+      "side": 1,
+      "message": "Since the function is named `ApplyRemoteMetadataAudioContextPolicy`, it means that `contexts_pair` is an audio context type for the remote device metadata.",
+      "parentUuid": "d98dbe5c_e125e442",
+      "range": {
+        "startLine": 4437,
+        "startChar": 40,
+        "endLine": 4437,
+        "endChar": 53
+      },
+      "revId": "1ef9472b592a0065c465e688fde683e398b65e39",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "06110d76_70424532",
         "filename": "system/bta/le_audio/client.cc",
         "patchSetId": 8
@@ -123,6 +195,30 @@
       "writtenOn": "2023-07-12T19:01:18Z",
       "side": 1,
       "message": "this `contexts_pair` is available context or supported context or maybe `local_contexts_type`?",
+      "range": {
+        "startLine": 4440,
+        "startChar": 6,
+        "endLine": 4443,
+        "endChar": 75
+      },
+      "revId": "1ef9472b592a0065c465e688fde683e398b65e39",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c71626ab_a264e7a1",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 4443,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2023-07-18T12:23:37Z",
+      "side": 1,
+      "message": "none of these. This is the remote device context type, used to either enable the ASE or update the metadata.",
+      "parentUuid": "06110d76_70424532",
       "range": {
         "startLine": 4440,
         "startChar": 6,
@@ -158,6 +254,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "69043e9c_0ccc35ee",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 4472,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2023-07-18T12:23:37Z",
+      "side": 1,
+      "message": "No. This is the remote device metadata that is about to be used for enabling the stream or metadata update procedure. It is derived from the local metadata in `DirectionalRealignMetadataAudioContexts()`, which based on the local metadata, returns the remote device contexts pair - this is where, the local sink context is set as a remote device source context, then contexts are aligned for both directions when bidirectional scenarios are used. This was the initial remote contexts pair generation.\n\nThen this function processes the remote device contexts further by applying the additional context mixing policy and the UNSPECIFIED context policy.",
+      "parentUuid": "92192547_e6f6a861",
+      "range": {
+        "startLine": 4471,
+        "startChar": 5,
+        "endLine": 4472,
+        "endChar": 65
+      },
+      "revId": "1ef9472b592a0065c465e688fde683e398b65e39",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9d2c3cc3_d16fcd19",
         "filename": "system/bta/le_audio/client.cc",
         "patchSetId": 8
@@ -169,6 +289,24 @@
       "writtenOn": "2023-07-12T19:01:18Z",
       "side": 1,
       "message": "would it make sense to print here  ( before calling continue)` contexts_pair.get_ref(dir)` and  `group_available_contexts`?",
+      "revId": "1ef9472b592a0065c465e688fde683e398b65e39",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b5a4ce70_a75dc1c9",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 4473,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2023-07-18T12:23:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9d2c3cc3_d16fcd19",
       "revId": "1ef9472b592a0065c465e688fde683e398b65e39",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -186,6 +324,30 @@
       "writtenOn": "2023-07-12T19:01:18Z",
       "side": 1,
       "message": "ah so `contexts_pair`  is `in` and `out` parameter.\nCan we make it clear that it is like it, or maybe just make this function return context pairs?",
+      "range": {
+        "startLine": 4520,
+        "startChar": 4,
+        "endLine": 4520,
+        "endChar": 17
+      },
+      "revId": "1ef9472b592a0065c465e688fde683e398b65e39",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "466ce653_b4418845",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 4520,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2023-07-18T12:23:37Z",
+      "side": 1,
+      "message": "Yeap, this is just a filter applied to the context pair as part of the process.\nSure it could get the context reference as an argument, then it wouldn\u0027t have to return a value, but this was used like this in the past, so nothing has changed here I think.",
+      "parentUuid": "2c8b6a5f_d838123d",
       "range": {
         "startLine": 4520,
         "startChar": 4,
@@ -219,6 +381,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f248df30_b7e492e1",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 4784,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2023-07-18T12:23:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f6d815b6_a9b6688e",
+      "range": {
+        "startLine": 4784,
+        "startChar": 41,
+        "endLine": 4784,
+        "endChar": 49
+      },
+      "revId": "1ef9472b592a0065c465e688fde683e398b65e39",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "edf9e6c2_bef47cbe",
@@ -238,6 +424,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b8b1d6fe_2bea1496",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2023-07-18T12:23:37Z",
+      "side": 1,
+      "message": "It is not used therefore was removed. This is to allow in future to configure for local contexts which are not supported by the remote device, and use UNSPCIFIED context with them, while still being able to select the proper locally provided configuration (.json file) if it happens to be supported on the remote device.",
+      "parentUuid": "edf9e6c2_bef47cbe",
+      "revId": "1ef9472b592a0065c465e688fde683e398b65e39",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4023bb8f_3377062d",
         "filename": "system/bta/le_audio/le_audio_utils.cc",
         "patchSetId": 8
@@ -249,6 +453,24 @@
       "writtenOn": "2023-07-12T19:01:18Z",
       "side": 1,
       "message": "left over.",
+      "revId": "1ef9472b592a0065c465e688fde683e398b65e39",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "513bda53_fe1d7f91",
+        "filename": "system/bta/le_audio/le_audio_utils.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2023-07-18T12:23:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4023bb8f_3377062d",
       "revId": "1ef9472b592a0065c465e688fde683e398b65e39",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
