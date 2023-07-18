@@ -46,6 +46,29 @@
       },
       "revId": "aa4edc15d4f1c2e83b5e3e907a28b7dab0a8fad3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "876a9546_7ac03eb8",
+        "filename": "system/stack/btm/btm_scn.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-07-18T22:40:20Z",
+      "side": 1,
+      "message": "(uint8_t)(PORT_MAX_RFC_PORTS - 1) ?\n\nOtherwise, the -1 will make this all an int.",
+      "range": {
+        "startLine": 52,
+        "startChar": 52,
+        "endLine": 52,
+        "endChar": 74
+      },
+      "revId": "aa4edc15d4f1c2e83b5e3e907a28b7dab0a8fad3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
