@@ -19,7 +19,6 @@ package com.android.bluetooth.hfp;
 import static org.mockito.Mockito.any;
 import static org.mockito.Mockito.anyBoolean;
 import static org.mockito.Mockito.anyInt;
-import static org.mockito.Mockito.anyString;
 import static org.mockito.Mockito.doAnswer;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.doReturn;
@@ -129,7 +128,7 @@ public class HeadsetServiceTest {
         doReturn(mActiveDeviceManager).when(mAdapterService).getActiveDeviceManager();
         doReturn(mSilenceDeviceManager).when(mAdapterService).getSilenceDeviceManager();
         doReturn(mDatabaseManager).when(mAdapterService).getDatabase();
-        doReturn(true, false).when(mAdapterService).isStartedProfile(anyString());
+        doReturn(true, false).when(mAdapterService).isStartedProfile(anyInt());
         doReturn(mRemoteDevices).when(mAdapterService).getRemoteDevices();
         doAnswer(invocation -> {
             Set<BluetoothDevice> keys = mStateMachines.keySet();

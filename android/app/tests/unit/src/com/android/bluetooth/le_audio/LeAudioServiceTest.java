@@ -22,7 +22,6 @@ import static com.google.common.truth.Truth.assertWithMessage;
 
 import static org.mockito.Mockito.any;
 import static org.mockito.Mockito.anyInt;
-import static org.mockito.Mockito.anyString;
 import static org.mockito.Mockito.doAnswer;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.doReturn;
@@ -185,7 +184,7 @@ public class LeAudioServiceTest {
                 .getRemoteUuids(any(BluetoothDevice.class));
         doReturn(mActiveDeviceManager).when(mAdapterService).getActiveDeviceManager();
         doReturn(mDatabaseManager).when(mAdapterService).getDatabase();
-        doReturn(true, false).when(mAdapterService).isStartedProfile(anyString());
+        doReturn(true, false).when(mAdapterService).isStartedProfile(anyInt());
 
         BluetoothManager manager = mTargetContext.getSystemService(BluetoothManager.class);
         assertThat(manager).isNotNull();

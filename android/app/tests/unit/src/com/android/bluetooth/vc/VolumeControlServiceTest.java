@@ -110,7 +110,7 @@ public class VolumeControlServiceTest {
 
         TestUtils.setAdapterService(mAdapterService);
         doReturn(mDatabaseManager).when(mAdapterService).getDatabase();
-        doReturn(true, false).when(mAdapterService).isStartedProfile(anyString());
+        doReturn(true, false).when(mAdapterService).isStartedProfile(anyInt());
 
         mAdapter = BluetoothAdapter.getDefaultAdapter();
         mAttributionSource = mAdapter.getAttributionSource();

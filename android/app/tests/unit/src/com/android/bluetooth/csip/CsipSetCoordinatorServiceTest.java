@@ -99,7 +99,7 @@ public class CsipSetCoordinatorServiceTest {
 
         TestUtils.setAdapterService(mAdapterService);
         doReturn(mDatabaseManager).when(mAdapterService).getDatabase();
-        doReturn(true, false).when(mAdapterService).isStartedProfile(anyString());
+        doReturn(true, false).when(mAdapterService).isStartedProfile(anyInt());
 
         mAdapter = BluetoothAdapter.getDefaultAdapter();
 

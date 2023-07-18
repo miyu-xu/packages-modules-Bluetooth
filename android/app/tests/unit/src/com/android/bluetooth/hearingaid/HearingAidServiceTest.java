@@ -17,7 +17,7 @@
 package com.android.bluetooth.hearingaid;
 
 import static org.mockito.Mockito.any;
-import static org.mockito.Mockito.anyString;
+import static org.mockito.Mockito.anyInt;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.eq;
 import static org.mockito.Mockito.reset;
@@ -101,7 +101,7 @@ public class HearingAidServiceTest {
         TestUtils.setAdapterService(mAdapterService);
         doReturn(mActiveDeviceManager).when(mAdapterService).getActiveDeviceManager();
         doReturn(mDatabaseManager).when(mAdapterService).getDatabase();
-        doReturn(true, false).when(mAdapterService).isStartedProfile(anyString());
+        doReturn(true, false).when(mAdapterService).isStartedProfile(anyInt());
 
         mAdapter = BluetoothAdapter.getDefaultAdapter();
         HearingAidNativeInterface.setInstance(mNativeInterface);

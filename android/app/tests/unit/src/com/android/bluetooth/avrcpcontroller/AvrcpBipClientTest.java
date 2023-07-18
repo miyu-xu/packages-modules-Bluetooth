@@ -19,7 +19,7 @@ package com.android.bluetooth.avrcpcontroller;
 import static com.google.common.truth.Truth.assertThat;
 
 import static org.junit.Assert.assertThrows;
-import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.doReturn;
 
 import android.bluetooth.BluetoothAdapter;
@@ -66,7 +66,7 @@ public class AvrcpBipClientTest {
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
         TestUtils.setAdapterService(mAdapterService);
-        doReturn(true, false).when(mAdapterService).isStartedProfile(anyString());
+        doReturn(true, false).when(mAdapterService).isStartedProfile(anyInt());
         AvrcpControllerNativeInterface.setInstance(mNativeInterface);
         TestUtils.startService(mServiceRule, AvrcpControllerService.class);
         mService = AvrcpControllerService.getAvrcpControllerService();

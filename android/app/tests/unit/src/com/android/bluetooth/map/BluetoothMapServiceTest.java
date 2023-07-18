@@ -23,7 +23,6 @@ import static com.google.common.truth.Truth.assertThat;
 
 import static org.mockito.Mockito.any;
 import static org.mockito.Mockito.anyInt;
-import static org.mockito.Mockito.anyString;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.eq;
 import static org.mockito.Mockito.spy;
@@ -47,7 +46,6 @@ import com.android.bluetooth.btservice.AdapterService;
 import com.android.bluetooth.btservice.storage.DatabaseManager;
 
 import org.junit.After;
-import org.junit.Assume;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -74,7 +72,7 @@ public class BluetoothMapServiceTest {
         MockitoAnnotations.initMocks(this);
         TestUtils.setAdapterService(mAdapterService);
         doReturn(mDatabaseManager).when(mAdapterService).getDatabase();
-        doReturn(true, false).when(mAdapterService).isStartedProfile(anyString());
+        doReturn(true, false).when(mAdapterService).isStartedProfile(anyInt());
         TestUtils.startService(mServiceRule, BluetoothMapService.class);
         mService = BluetoothMapService.getBluetoothMapService();
         assertThat(mService).isNotNull();

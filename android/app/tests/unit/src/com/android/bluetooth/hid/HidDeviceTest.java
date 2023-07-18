@@ -35,14 +35,12 @@ import androidx.test.filters.MediumTest;
 import androidx.test.rule.ServiceTestRule;
 import androidx.test.runner.AndroidJUnit4;
 
-import com.android.bluetooth.R;
 import com.android.bluetooth.TestUtils;
 import com.android.bluetooth.btservice.AdapterService;
 import com.android.bluetooth.btservice.storage.DatabaseManager;
 
 import org.junit.After;
 import org.junit.Assert;
-import org.junit.Assume;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -109,7 +107,7 @@ public class HidDeviceTest {
         MockitoAnnotations.initMocks(this);
         TestUtils.setAdapterService(mAdapterService);
         doReturn(mDatabaseManager).when(mAdapterService).getDatabase();
-        doReturn(true, false).when(mAdapterService).isStartedProfile(anyString());
+        doReturn(true, false).when(mAdapterService).isStartedProfile(anyInt());
         setHidDeviceNativeInterfaceInstance(mHidDeviceNativeInterface);
         // This line must be called to make sure relevant objects are initialized properly
         mAdapter = BluetoothAdapter.getDefaultAdapter();

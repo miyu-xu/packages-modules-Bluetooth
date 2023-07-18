@@ -16,17 +16,20 @@
 
 package android.bluetooth;
 
+import static android.bluetooth.BluetoothUtils.getSyncTimeout;
+
 import android.annotation.SuppressLint;
-import android.content.ComponentName;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Looper;
 import android.os.Message;
 import android.os.RemoteException;
 import android.util.CloseGuard;
-import android.util.Log;
+
+import com.android.modules.utils.SynchronousResultReceiver;
 
 import java.util.Objects;
+import java.util.concurrent.TimeoutException;
 
 /**
  * Connector for Bluetooth profile proxies to bind manager service and profile services
@@ -47,43 +50,6 @@ public final class BluetoothProfileConnector extends Handler {
 
     private static final int MESSAGE_SERVICE_CONNECTED = 100;
     private static final int MESSAGE_SERVICE_DISCONNECTED = 101;
-
-    private final IBluetoothStateChangeCallback mBluetoothStateChangeCallback =
-            new IBluetoothStateChangeCallback.Stub() {
-        public void onBluetoothStateChange(boolean up) {
-            if (up) {
-                doBind();
-            } else {
-                doUnbind();
-            }
-        }
-    };
-
-    private final IBluetoothProfileServiceConnection mConnection =
-            new IBluetoothProfileServiceConnection.Stub() {
-                @Override
-                public void onServiceConnected(ComponentName className, IBinder service) {
-                    Log.d(
-                            TAG,
-                            "Proxy object connected for "
-                                    + BluetoothProfile.getProfileName(mProfileId));
-                    mProfileProxy.onServiceConnected(service);
-                    sendEmptyMessage(MESSAGE_SERVICE_CONNECTED);
-                }
-
-                @Override
-                public void onServiceDisconnected(ComponentName className) {
-                    Log.d(
-                            TAG,
-                            "Proxy object disconnected for "
-                                    + BluetoothProfile.getProfileName(mProfileId));
-                    boolean bound = mBound;
-                    doUnbind();
-                    if (bound) {
-                        sendEmptyMessage(MESSAGE_SERVICE_DISCONNECTED);
-                    }
-                }
-            };
 
     /** @hide */
     public BluetoothProfileConnector(
@@ -109,69 +75,40 @@ public final class BluetoothProfileConnector extends Handler {
     @Override
     public void finalize() {
         mCloseGuard.warnIfOpen();
-        doUnbind();
+        onBluetoothOff();
     }
 
-    private void doBind() {
-        synchronized (mConnection) {
-            if (!mBound) {
-                Log.d(
-                        TAG,
-                        "Binding service "
-                                + BluetoothProfile.getProfileName(mProfileId)
-                                + " for "
-                                + mPackageName);
-                mCloseGuard.open("doUnbind");
-                try {
-                    mBluetoothManager.bindBluetoothProfileService(mProfileId, mConnection);
-                    mBound = true;
-                } catch (RemoteException re) {
-                    Log.e(
-                            TAG,
-                            "Failed to bind service. "
-                                    + BluetoothProfile.getProfileName(mProfileId),
-                            re);
-                }
+    void onBluetoothOn(IBluetooth bluetooth, boolean maybeOff) {
+        if (bluetooth == null) return;
+        try {
+            final SynchronousResultReceiver<IBinder> recv = SynchronousResultReceiver.get();
+            bluetooth.getProfile(mProfileId, recv);
+            IBinder binder = recv.awaitResultNoInterrupt(getSyncTimeout()).getValue(null);
+
+            // TODO: remove
+            if (!maybeOff && binder == null) {
+                throw new IllegalStateException();
             }
+
+            if (binder != null) {
+                mProfileProxy.onServiceConnected(binder);
+                sendEmptyMessage(MESSAGE_SERVICE_CONNECTED);
+            }
+            mCloseGuard.open("doUnbind");
+        } catch (RemoteException | TimeoutException e) {
+            throw new RuntimeException(e);
         }
     }
 
-    private void doUnbind() {
-        synchronized (mConnection) {
-            if (mBound) {
-                Log.d(
-                        TAG,
-                        "Unbinding service "
-                                + BluetoothProfile.getProfileName(mProfileId)
-                                + " for "
-                                + mPackageName);
-                mCloseGuard.close();
-                try {
-                    mBluetoothManager.unbindBluetoothProfileService(mProfileId, mConnection);
-                    mBound = false;
-                } catch (RemoteException re) {
-                    Log.e(
-                            TAG,
-                            "Unable to unbind service "
-                                    + BluetoothProfile.getProfileName(mProfileId),
-                            re);
-                } finally {
-                    mProfileProxy.onServiceDisconnected();
-                }
-            }
-        }
+    void onBluetoothOff() {
+        mCloseGuard.close();
+        sendEmptyMessage(MESSAGE_SERVICE_DISCONNECTED);
     }
 
     /** @hide */
     public void connect(String packageName, BluetoothProfile.ServiceListener listener) {
         mPackageName = packageName;
         mServiceListener = listener;
-
-        try {
-            mBluetoothManager.registerStateChangeCallback(mBluetoothStateChangeCallback);
-        } catch (RemoteException re) {
-            Log.e(TAG, "Failed to register state change callback.", re);
-        }
     }
 
     /** @hide */
@@ -181,11 +118,7 @@ public final class BluetoothProfileConnector extends Handler {
             mServiceListener = null;
             listener.onServiceDisconnected(mProfileId);
         }
-        try {
-            mBluetoothManager.unregisterStateChangeCallback(mBluetoothStateChangeCallback);
-        } catch (RemoteException re) {
-            Log.e(TAG, "Failed to unregister state change callback", re);
-        }
+        onBluetoothOff();
     }
 
     @Override

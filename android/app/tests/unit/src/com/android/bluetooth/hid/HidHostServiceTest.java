@@ -60,7 +60,7 @@ public class HidHostServiceTest {
         MockitoAnnotations.initMocks(this);
         TestUtils.setAdapterService(mAdapterService);
         when(mAdapterService.getDatabase()).thenReturn(mDatabaseManager);
-        when(mAdapterService.isStartedProfile(anyString())).thenReturn(true);
+        when(mAdapterService.isStartedProfile(anyInt())).thenReturn(true);
         HidHostNativeInterface.setInstance(mNativeInterface);
         TestUtils.startService(mServiceRule, HidHostService.class);
         mService = HidHostService.getHidHostService();
@@ -75,7 +75,7 @@ public class HidHostServiceTest {
 
     @After
     public void tearDown() throws Exception {
-        when(mAdapterService.isStartedProfile(anyString())).thenReturn(false);
+        when(mAdapterService.isStartedProfile(anyInt())).thenReturn(false);
         TestUtils.stopService(mServiceRule, HidHostService.class);
         HidHostNativeInterface.setInstance(null);
         mService = HidHostService.getHidHostService();

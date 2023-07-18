@@ -29,13 +29,11 @@ import androidx.test.filters.MediumTest;
 import androidx.test.rule.ServiceTestRule;
 import androidx.test.runner.AndroidJUnit4;
 
-import com.android.bluetooth.R;
 import com.android.bluetooth.TestUtils;
 import com.android.bluetooth.btservice.AdapterService;
 
 import org.junit.After;
 import org.junit.Assert;
-import org.junit.Assume;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -72,7 +70,7 @@ public class McpServiceTest {
 
         mAdapter = BluetoothAdapter.getDefaultAdapter();
 
-        doReturn(true).when(mAdapterService).isStartedProfile(anyString());
+        doReturn(true).when(mAdapterService).isStartedProfile(anyInt());
         McpService.setMediaControlProfileForTesting(mMediaControlProfile);
         TestUtils.startService(mServiceRule, McpService.class);
         mMcpService = McpService.getMcpService();
@@ -85,7 +83,7 @@ public class McpServiceTest {
             return;
         }
 
-        doReturn(false).when(mAdapterService).isStartedProfile(anyString());
+        doReturn(false).when(mAdapterService).isStartedProfile(anyInt());
         TestUtils.stopService(mServiceRule, McpService.class);
         mMcpService = McpService.getMcpService();
         Assert.assertNull(mMcpService);

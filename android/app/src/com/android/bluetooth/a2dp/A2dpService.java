@@ -125,17 +125,17 @@ public class A2dpService extends ProfileService {
     private final AudioManagerAudioDeviceCallback mAudioManagerAudioDeviceCallback =
             new AudioManagerAudioDeviceCallback();
 
-    A2dpService() {
+    public A2dpService(Context ctx) {
+        super(ctx);
         mNativeInterface = requireNonNull(A2dpNativeInterface.getInstance());
         mFeatureFlags = new FeatureFlagsImpl();
     }
 
     @VisibleForTesting
     A2dpService(Context ctx, A2dpNativeInterface nativeInterface, FeatureFlags featureFlags) {
-        attachBaseContext(ctx);
+        super(ctx);
         mNativeInterface = requireNonNull(nativeInterface);
         mFeatureFlags = featureFlags;
-        onCreate();
     }
 
     public static boolean isEnabled() {
