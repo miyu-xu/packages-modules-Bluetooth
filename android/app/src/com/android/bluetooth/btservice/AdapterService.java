@@ -271,6 +271,14 @@ public class AdapterService extends Service {
 
     private static AdapterService sAdapterService;
 
+    // Keep a constructor for ActivityThread.handleCreateService
+    AdapterService() {}
+
+    @VisibleForTesting
+    AdapterService(Looper looper) {
+        mLooper = looper;
+    }
+
     public static synchronized AdapterService getAdapterService() {
         return sAdapterService;
     }
@@ -420,6 +428,10 @@ public class AdapterService extends Service {
     private static final int MESSAGE_ON_PROFILE_SERVICE_UNBIND = 6;
 
     class AdapterServiceHandler extends Handler {
+        AdapterServiceHandler(Looper looper) {
+            super(looper);
+        }
+
         @Override
         public void handleMessage(Message msg) {
             verboseLog("handleMessage() - Message: " + msg.what);
@@ -548,7 +560,8 @@ public class AdapterService extends Service {
         }
     }
 
-    private final AdapterServiceHandler mHandler = new AdapterServiceHandler();
+    private Looper mLooper;
+    private AdapterServiceHandler mHandler;
 
     /**
      * Stores information about requests made to the audio framework arising from calls to
@@ -592,16 +605,20 @@ public class AdapterService extends Service {
     })
     public void onCreate() {
         super.onCreate();
+        if (mLooper == null) {
+            mLooper = Looper.getMainLooper();
+        }
+        mHandler = new AdapterServiceHandler(mLooper);
         initMetricsLogger();
         debugLog("onCreate()");
         mDeviceConfigListener.start();
-        mRemoteDevices = new RemoteDevices(this, Looper.getMainLooper());
+        mRemoteDevices = new RemoteDevices(this, mLooper);
         mRemoteDevices.init();
         clearDiscoveringPackages();
         mBinder = new AdapterServiceBinder(this);
         mAdapter = BluetoothAdapter.getDefaultAdapter();
         mAdapterProperties = new AdapterProperties(this);
-        mAdapterStateMachine = AdapterState.make(this);
+        mAdapterStateMachine = new AdapterState(this, mLooper);
         mJniCallbacks = new JniCallbacks(this, mAdapterProperties);
         mBluetoothKeystoreService = new BluetoothKeystoreService(isCommonCriteriaMode());
         mBluetoothKeystoreService.start();
@@ -669,8 +686,7 @@ public class AdapterService extends Service {
         mActiveDeviceManager = new ActiveDeviceManager(this, new ServiceFactory());
         mActiveDeviceManager.start();
 
-        mSilenceDeviceManager = new SilenceDeviceManager(this, new ServiceFactory(),
-                Looper.getMainLooper());
+        mSilenceDeviceManager = new SilenceDeviceManager(this, new ServiceFactory(), mLooper);
         mSilenceDeviceManager.start();
 
         mBtCompanionManager = new CompanionManager(this, new ServiceFactory());
@@ -690,10 +706,10 @@ public class AdapterService extends Service {
         new AsyncTask<Void, Void, Void>() {
             @Override
             protected Void doInBackground(Void... params) {
-                getSharedPreferences(PHONEBOOK_ACCESS_PERMISSION_PREFERENCE_FILE,
-                        Context.MODE_PRIVATE);
-                getSharedPreferences(MESSAGE_ACCESS_PERMISSION_PREFERENCE_FILE,
-                        Context.MODE_PRIVATE);
+                getSharedPreferences(
+                        PHONEBOOK_ACCESS_PERMISSION_PREFERENCE_FILE, Context.MODE_PRIVATE);
+                getSharedPreferences(
+                        MESSAGE_ACCESS_PERMISSION_PREFERENCE_FILE, Context.MODE_PRIVATE);
                 getSharedPreferences(SIM_ACCESS_PERMISSION_PREFERENCE_FILE, Context.MODE_PRIVATE);
                 return null;
             }
