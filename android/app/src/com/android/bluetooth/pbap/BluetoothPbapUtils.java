@@ -268,7 +268,7 @@ class BluetoothPbapUtils {
             sTotalContacts = 0;
             return;
         }
-        handler.sendMessage(handler.obtainMessage(BluetoothPbapService.CONTACTS_LOADED));
+        handler.sendEmptyMessage(BluetoothPbapService.CONTACTS_LOADED);
     }
 
     static void updateSecondaryVersionCounter(Context context, Handler handler) {

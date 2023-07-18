@@ -721,10 +721,9 @@ public class BluetoothPbapService extends ProfileService implements IObexConnect
 
         setBluetoothPbapService(this);
 
-        mSessionStatusHandler.sendMessage(
-                mSessionStatusHandler.obtainMessage(GET_LOCAL_TELEPHONY_DETAILS));
-        mSessionStatusHandler.sendMessage(mSessionStatusHandler.obtainMessage(LOAD_CONTACTS));
-        mSessionStatusHandler.sendMessage(mSessionStatusHandler.obtainMessage(START_LISTENER));
+        mSessionStatusHandler.sendEmptyMessage(GET_LOCAL_TELEPHONY_DETAILS);
+        mSessionStatusHandler.sendEmptyMessage(LOAD_CONTACTS);
+        mSessionStatusHandler.sendEmptyMessage(START_LISTENER);
 
         AdapterService adapterService = AdapterService.getAdapterService();
         if (adapterService != null) {
@@ -742,7 +741,11 @@ public class BluetoothPbapService extends ProfileService implements IObexConnect
         }
         setBluetoothPbapService(null);
         if (mSessionStatusHandler != null) {
-            mSessionStatusHandler.obtainMessage(SHUTDOWN).sendToTarget();
+            // Remove init messages if the profile was start-stop too quickly to be initialized
+            mSessionStatusHandler.removeMessages(GET_LOCAL_TELEPHONY_DETAILS);
+            mSessionStatusHandler.removeMessages(LOAD_CONTACTS);
+            mSessionStatusHandler.removeMessages(START_LISTENER);
+            mSessionStatusHandler.sendEmptyMessage(SHUTDOWN);
         }
         if (mHandlerThread != null) {
             mHandlerThread.quitSafely();
@@ -938,8 +941,7 @@ public class BluetoothPbapService extends ProfileService implements IObexConnect
             }
             /* In case car kit time out and try to use HFP for phonebook
              * access, while UI still there waiting for user to confirm */
-            Message msg = mSessionStatusHandler.obtainMessage(BluetoothPbapService.USER_TIMEOUT,
-                    stateMachine);
+            Message msg = mSessionStatusHandler.obtainMessage(USER_TIMEOUT, stateMachine);
             mSessionStatusHandler.sendMessageDelayed(msg, USER_CONFIRM_TIMEOUT_VALUE);
             /* We will continue the process when we receive
              * BluetoothDevice.ACTION_CONNECTION_ACCESS_REPLY from Settings app. */
@@ -969,7 +971,7 @@ public class BluetoothPbapService extends ProfileService implements IObexConnect
             mPbapStateMachineMap.clear();
         }
 
-        mSessionStatusHandler.sendMessage(mSessionStatusHandler.obtainMessage(START_LISTENER));
+        mSessionStatusHandler.sendEmptyMessage(START_LISTENER);
     }
 
     private void loadAllContacts() {
