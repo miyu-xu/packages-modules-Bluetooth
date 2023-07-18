@@ -26,6 +26,7 @@ import android.bluetooth.BluetoothUuid;
 import android.bluetooth.IBluetoothMapClient;
 import android.bluetooth.SdpMasRecord;
 import android.content.AttributionSource;
+import android.content.Context;
 import android.net.Uri;
 import android.os.Handler;
 import android.os.Looper;
@@ -65,6 +66,10 @@ public class MapClientService extends ProfileService {
     private static MapClientService sMapClientService;
     @VisibleForTesting
     private Handler mHandler;
+
+    public MapClientService(Context ctx) {
+        super(ctx);
+    }
 
     public static boolean isEnabled() {
         return BluetoothProperties.isProfileMapClientEnabled().orElse(false);

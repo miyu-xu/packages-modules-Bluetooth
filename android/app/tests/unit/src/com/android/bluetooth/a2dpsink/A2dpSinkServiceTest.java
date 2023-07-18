@@ -95,7 +95,7 @@ public class A2dpSinkServiceTest {
         doReturn(true).when(mDatabaseManager).setProfileConnectionPolicy(any(), anyInt(), anyInt());
 
         doReturn(mDatabaseManager).when(mAdapterService).getDatabase();
-        doReturn(true, false).when(mAdapterService).isStartedProfile(anyString());
+        doReturn(true, false).when(mAdapterService).isStartedProfile(anyInt());
         doReturn(bondedDevices).when(mAdapterService).getBondedDevices();
         doReturn(1).when(mAdapterService).getMaxConnectedAudioDevices();
 

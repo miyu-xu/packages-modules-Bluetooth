@@ -3701,6 +3701,8 @@ public final class BluetoothAdapter {
         mProfileConnectors.put(profileProxy, connector);
         connector.connect(context.getPackageName(), listener);
 
+        connector.onBluetoothOn(mService, true);
+
         return true;
     }
 
@@ -3809,6 +3811,46 @@ public final class BluetoothAdapter {
                         }
                     }
                 }
+
+                public void onBluetoothOn() {
+                    if (DBG) {
+                        Log.d(TAG, "onBluetoothOn");
+                    }
+
+                    synchronized (sServiceLock) {
+                        for (IBluetoothManagerCallback cb : sProxyServiceStateCallbacks.keySet()) {
+                            try {
+                                if (cb != null) {
+                                    cb.onBluetoothOn();
+                                } else {
+                                    Log.d(TAG, "onBluetoothOn: cb is null!");
+                                }
+                            } catch (Exception e) {
+                                Log.e(TAG, "", e);
+                            }
+                        }
+                    }
+                }
+
+                public void onBluetoothOff() {
+                    if (DBG) {
+                        Log.d(TAG, "onBluetoothOff");
+                    }
+
+                    synchronized (sServiceLock) {
+                        for (IBluetoothManagerCallback cb : sProxyServiceStateCallbacks.keySet()) {
+                            try {
+                                if (cb != null) {
+                                    cb.onBluetoothOff();
+                                } else {
+                                    Log.d(TAG, "onBluetoothOff: cb is null!");
+                                }
+                            } catch (Exception e) {
+                                Log.e(TAG, "", e);
+                            }
+                        }
+                    }
+                }
             };
 
     private final IBluetoothManagerCallback mManagerCallback =
@@ -3825,33 +3867,46 @@ public final class BluetoothAdapter {
                     }
                     try {
                         synchronized (mMetadataListeners) {
-                            mMetadataListeners.forEach((device, pair) -> {
-                                try {
-                                    final SynchronousResultReceiver recv =
-                                        SynchronousResultReceiver.get();
-                                    mService.registerMetadataListener(mBluetoothMetadataListener,
-                                            device, mAttributionSource, recv);
-                                    recv.awaitResultNoInterrupt(getSyncTimeout()).getValue(null);
-                                } catch (RemoteException | TimeoutException e) {
-                                    Log.e(TAG, "Failed to register metadata listener", e);
-                                    Log.e(TAG, e.toString() + "\n"
-                                            + Log.getStackTraceString(new Throwable()));
-                                }
-                            });
+                            mMetadataListeners.forEach(
+                                    (device, pair) -> {
+                                        try {
+                                            final SynchronousResultReceiver recv =
+                                                    SynchronousResultReceiver.get();
+                                            mService.registerMetadataListener(
+                                                    mBluetoothMetadataListener,
+                                                    device,
+                                                    mAttributionSource,
+                                                    recv);
+                                            recv.awaitResultNoInterrupt(getSyncTimeout())
+                                                    .getValue(null);
+                                        } catch (RemoteException | TimeoutException e) {
+                                            Log.e(TAG, "Failed to register metadata listener", e);
+                                            Log.e(
+                                                    TAG,
+                                                    e.toString()
+                                                            + "\n"
+                                                            + Log.getStackTraceString(
+                                                                    new Throwable()));
+                                        }
+                                    });
                         }
                         synchronized (mAudioProfilesChangedCallbackExecutorMap) {
                             if (!mAudioProfilesChangedCallbackExecutorMap.isEmpty()) {
                                 try {
                                     final SynchronousResultReceiver recv =
-                                        SynchronousResultReceiver.get();
+                                            SynchronousResultReceiver.get();
                                     mService.registerPreferredAudioProfilesChangedCallback(
                                             mPreferredAudioProfilesChangedCallback,
-                                            mAttributionSource, recv);
-                                    recv.awaitResultNoInterrupt(getSyncTimeout()).getValue(
-                                            BluetoothStatusCodes.ERROR_UNKNOWN);
+                                            mAttributionSource,
+                                            recv);
+                                    recv.awaitResultNoInterrupt(getSyncTimeout())
+                                            .getValue(BluetoothStatusCodes.ERROR_UNKNOWN);
                                 } catch (RemoteException | TimeoutException e) {
-                                    Log.e(TAG, "onBluetoothServiceUp: Failed to register bluetooth"
-                                            + "connection callback", e);
+                                    Log.e(
+                                            TAG,
+                                            "onBluetoothServiceUp: Failed to register bluetooth"
+                                                    + "connection callback",
+                                            e);
                                 }
                             }
                         }
@@ -3859,15 +3914,19 @@ public final class BluetoothAdapter {
                             if (!mBluetoothQualityReportReadyCallbackExecutorMap.isEmpty()) {
                                 try {
                                     final SynchronousResultReceiver recv =
-                                        SynchronousResultReceiver.get();
+                                            SynchronousResultReceiver.get();
                                     mService.registerBluetoothQualityReportReadyCallback(
                                             mBluetoothQualityReportReadyCallback,
-                                            mAttributionSource, recv);
-                                    recv.awaitResultNoInterrupt(getSyncTimeout()).getValue(
-                                            BluetoothStatusCodes.ERROR_UNKNOWN);
+                                            mAttributionSource,
+                                            recv);
+                                    recv.awaitResultNoInterrupt(getSyncTimeout())
+                                            .getValue(BluetoothStatusCodes.ERROR_UNKNOWN);
                                 } catch (RemoteException | TimeoutException e) {
-                                    Log.e(TAG, "onBluetoothServiceUp: Failed to register bluetooth"
-                                            + "quality report callback", e);
+                                    Log.e(
+                                            TAG,
+                                            "onBluetoothServiceUp: Failed to register bluetooth"
+                                                    + "quality report callback",
+                                            e);
                                 }
                             }
                         }
@@ -3877,13 +3936,14 @@ public final class BluetoothAdapter {
                                     final SynchronousResultReceiver recv =
                                             SynchronousResultReceiver.get();
                                     mService.registerBluetoothConnectionCallback(
-                                            mConnectionCallback,
-                                            mAttributionSource, recv);
-                                    recv.awaitResultNoInterrupt(getSyncTimeout())
-                                            .getValue(null);
+                                            mConnectionCallback, mAttributionSource, recv);
+                                    recv.awaitResultNoInterrupt(getSyncTimeout()).getValue(null);
                                 } catch (RemoteException | TimeoutException e) {
-                                    Log.e(TAG, "onBluetoothServiceUp: Failed to register "
-                                            + "bluetooth connection callback", e);
+                                    Log.e(
+                                            TAG,
+                                            "onBluetoothServiceUp: Failed to register "
+                                                    + "bluetooth connection callback",
+                                            e);
                                 }
                             }
                         }
@@ -3907,6 +3967,18 @@ public final class BluetoothAdapter {
                         }
                     } finally {
                         mServiceLock.writeLock().unlock();
+                    }
+                }
+
+                public void onBluetoothOn() {
+                    for (BluetoothProfileConnector connector : mProfileConnectors.values()) {
+                        connector.onBluetoothOn(mService, false);
+                    }
+                }
+
+                public void onBluetoothOff() {
+                    for (BluetoothProfileConnector connector : mProfileConnectors.values()) {
+                        connector.onBluetoothOff();
                     }
                 }
             };
@@ -4077,68 +4149,6 @@ public final class BluetoothAdapter {
             } finally {
                 mServiceLock.readLock().unlock();
             }
-        }
-    }
-
-    /**
-     * Enable control of the Bluetooth Adapter for a single application.
-     *
-     * <p>Some applications need to use Bluetooth for short periods of time to
-     * transfer data but don't want all the associated implications like
-     * automatic connection to headsets etc.
-     *
-     * <p> Multiple applications can call this. This is reference counted and
-     * Bluetooth disabled only when no one else is using it. There will be no UI
-     * shown to the user while bluetooth is being enabled. Any user action will
-     * override this call. For example, if user wants Bluetooth on and the last
-     * user of this API wanted to disable Bluetooth, Bluetooth will not be
-     * turned off.
-     *
-     * <p> This API is only meant to be used by internal applications. Third
-     * party applications but use {@link #enable} and {@link #disable} APIs.
-     *
-     * <p> If this API returns true, it means the callback will be called.
-     * The callback will be called with the current state of Bluetooth.
-     * If the state is not what was requested, an internal error would be the
-     * reason. If Bluetooth is already on and if this function is called to turn
-     * it on, the api will return true and a callback will be called.
-     *
-     * @param on True for on, false for off.
-     * @param callback The callback to notify changes to the state.
-     * @hide
-     */
-    @RequiresLegacyBluetoothPermission
-    @RequiresBluetoothConnectPermission
-    @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)
-    @SuppressLint("AndroidFrameworkRequiresPermission")
-    public boolean changeApplicationBluetoothState(boolean on,
-            BluetoothStateChangeCallback callback) {
-        return false;
-    }
-
-    /**
-     * @hide
-     */
-    public interface BluetoothStateChangeCallback {
-        /**
-         * @hide
-         */
-        void onBluetoothStateChange(boolean on);
-    }
-
-    /**
-     * @hide
-     */
-    public class StateChangeCallbackWrapper extends IBluetoothStateChangeCallback.Stub {
-        private BluetoothStateChangeCallback mCallback;
-
-        StateChangeCallbackWrapper(BluetoothStateChangeCallback callback) {
-            mCallback = callback;
-        }
-
-        @Override
-        public void onBluetoothStateChange(boolean on) {
-            mCallback.onBluetoothStateChange(on);
         }
     }
 

@@ -20,6 +20,7 @@ import static com.android.bluetooth.opp.BluetoothOppService.WHERE_INVISIBLE_UNCO
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.ArgumentMatchers.isNull;
+import static org.mockito.Mockito.anyInt;
 import static org.mockito.Mockito.anyString;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.doReturn;
@@ -80,7 +81,7 @@ public class BluetoothOppServiceTest {
 
         TestUtils.setAdapterService(mAdapterService);
         mIsAdapterServiceSet = true;
-        doReturn(true, false).when(mAdapterService).isStartedProfile(anyString());
+        doReturn(true, false).when(mAdapterService).isStartedProfile(anyInt());
         TestUtils.startService(mServiceRule, BluetoothOppService.class);
         mIsBluetoothOppServiceStarted = true;
         mService = BluetoothOppService.getBluetoothOppService();

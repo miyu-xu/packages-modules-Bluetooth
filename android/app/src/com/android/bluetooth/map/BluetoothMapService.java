@@ -168,7 +168,8 @@ public class BluetoothMapService extends ProfileService {
         return BluetoothProperties.isProfileMapServerEnabled().orElse(false);
     }
 
-    public BluetoothMapService() {
+    public BluetoothMapService(Context ctx) {
+        super(ctx);
         mState = BluetoothMap.STATE_DISCONNECTED;
         BluetoothMap.invalidateBluetoothGetConnectionStateCache();
     }

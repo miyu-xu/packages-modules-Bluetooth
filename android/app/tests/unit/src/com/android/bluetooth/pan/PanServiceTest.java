@@ -21,7 +21,7 @@ import static android.net.TetheringManager.TETHER_ERROR_SERVICE_UNAVAIL;
 
 import static com.google.common.truth.Truth.assertThat;
 
-import static org.mockito.Mockito.anyString;
+import static org.mockito.Mockito.anyInt;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.when;
 
@@ -70,7 +70,7 @@ public class PanServiceTest {
         MockitoAnnotations.initMocks(this);
         TestUtils.setAdapterService(mAdapterService);
         doReturn(mDatabaseManager).when(mAdapterService).getDatabase();
-        doReturn(true, false).when(mAdapterService).isStartedProfile(anyString());
+        doReturn(true, false).when(mAdapterService).isStartedProfile(anyInt());
         PanNativeInterface.setInstance(mNativeInterface);
         TestUtils.startService(mServiceRule, PanService.class);
         mService = PanService.getPanService();

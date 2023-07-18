@@ -84,7 +84,7 @@ public class A2dpSinkStreamHandlerTest {
             Looper.prepare();
         }
         TestUtils.setAdapterService(mAdapterService);
-        doReturn(true, false).when(mAdapterService).isStartedProfile(anyString());
+        doReturn(true, false).when(mAdapterService).isStartedProfile(anyInt());
         AvrcpControllerNativeInterface.setInstance(mMockAvrcpControllerNativeInterface);
         TestUtils.startService(mServiceRule, AvrcpControllerService.class);
         final Intent bluetoothBrowserMediaServiceStartIntent =

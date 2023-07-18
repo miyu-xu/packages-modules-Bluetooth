@@ -120,6 +120,10 @@ public class PbapClientService extends ProfileService {
         }
     };
 
+    public PbapClientService(Context ctx) {
+        super(ctx);
+    }
+
     public static boolean isEnabled() {
         return BluetoothProperties.isProfilePbapClientEnabled().orElse(false);
     }

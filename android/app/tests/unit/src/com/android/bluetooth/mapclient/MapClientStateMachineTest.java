@@ -152,7 +152,7 @@ public class MapClientStateMachineTest {
         mMockContentProvider = new MockSmsContentProvider();
         mMockContentResolver = new MockContentResolver();
         when(mAdapterService.getDatabase()).thenReturn(mDatabaseManager);
-        doReturn(true, false).when(mAdapterService).isStartedProfile(anyString());
+        doReturn(true, false).when(mAdapterService).isStartedProfile(anyInt());
         TestUtils.startService(mServiceRule, MapClientService.class);
         mIsMapClientServiceStarted = true;
         mMockContentResolver.addProvider("sms", mMockContentProvider);

@@ -176,7 +176,7 @@ public class LeAudioBroadcastServiceTest {
 
         TestUtils.setAdapterService(mAdapterService);
         doReturn(mDatabaseManager).when(mAdapterService).getDatabase();
-        doReturn(true, false).when(mAdapterService).isStartedProfile(anyString());
+        doReturn(true, false).when(mAdapterService).isStartedProfile(anyInt());
         doReturn(true).when(mAdapterService).isLeAudioBroadcastSourceSupported();
         doReturn((long)(1 << BluetoothProfile.LE_AUDIO_BROADCAST) | (1 << BluetoothProfile.LE_AUDIO))
                 .when(mAdapterService).getSupportedProfilesBitMask();

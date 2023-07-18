@@ -27,7 +27,6 @@ import android.annotation.SuppressLint;
 import android.app.ActivityManager;
 import android.app.AppOpsManager;
 import android.app.PendingIntent;
-import android.app.Service;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothGatt;
@@ -300,8 +299,7 @@ public class GattService extends ProfileService {
     private final Object mTestModeLock = new Object();
 
     public GattService(Context ctx) {
-        attachBaseContext(ctx);
-        onCreate();
+        super(ctx);
     }
 
     public static boolean isEnabled() {
@@ -492,14 +490,6 @@ public class GattService extends ProfileService {
     private boolean isHandleRestricted(int connId, int handle) {
         Set<Integer> restrictedHandles = mRestrictedHandles.get(connId);
         return restrictedHandles != null && restrictedHandles.contains(handle);
-    }
-
-    @Override
-    public int onStartCommand(Intent intent, int flags, int startId) {
-        if (GattDebugUtils.handleDebugAction(this, intent)) {
-            return Service.START_NOT_STICKY;
-        }
-        return super.onStartCommand(intent, flags, startId);
     }
 
     /** Notify Scan manager of bluetooth profile connection state changes */
