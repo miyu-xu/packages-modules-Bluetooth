@@ -234,6 +234,15 @@ public class LeAudioService extends ProfileService {
     private final AudioManagerAudioDeviceCallback mAudioManagerAudioDeviceCallback =
             new AudioManagerAudioDeviceCallback();
 
+    private final Map<Integer, Integer> mBroadcastStateMap = new HashMap<>();
+    private final Map<Integer, Boolean> mBroadcastsPlaybackMap = new HashMap<>();
+    private final Map<Integer, BluetoothLeBroadcastMetadata> mBroadcastMetadataList =
+            new HashMap<>();
+
+    public LeAudioService(Context ctx) {
+        super(ctx);
+    }
+
     @Override
     protected IProfileServiceBinder initBinder() {
         return new BluetoothLeAudioBinder(this);

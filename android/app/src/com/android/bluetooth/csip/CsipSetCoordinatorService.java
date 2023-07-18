@@ -112,6 +112,10 @@ public class CsipSetCoordinatorService extends ProfileService {
 
     private BroadcastReceiver mBondStateChangedReceiver;
 
+    public CsipSetCoordinatorService(Context ctx) {
+        super(ctx);
+    }
+
     public static boolean isEnabled() {
         return BluetoothProperties.isProfileCsipSetCoordinatorEnabled().orElse(false);
     }

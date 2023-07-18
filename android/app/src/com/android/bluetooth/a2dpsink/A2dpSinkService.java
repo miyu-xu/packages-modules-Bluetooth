@@ -83,6 +83,10 @@ public class A2dpSinkService extends ProfileService {
         onCreate();
     }
 
+    public A2dpSinkService(Context ctx) {
+        super(ctx);
+    }
+
     public static boolean isEnabled() {
         return BluetoothProperties.isProfileA2dpSinkEnabled().orElse(false);
     }

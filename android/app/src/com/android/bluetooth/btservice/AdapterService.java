@@ -112,6 +112,8 @@ import com.android.bluetooth.R;
 import com.android.bluetooth.Utils;
 import com.android.bluetooth.a2dp.A2dpService;
 import com.android.bluetooth.a2dpsink.A2dpSinkService;
+import com.android.bluetooth.avrcp.AvrcpTargetService;
+import com.android.bluetooth.avrcpcontroller.AvrcpControllerService;
 import com.android.bluetooth.bas.BatteryService;
 import com.android.bluetooth.bass_client.BassClientService;
 import com.android.bluetooth.btservice.InteropUtil.InteropFeature;
@@ -133,11 +135,14 @@ import com.android.bluetooth.hid.HidHostService;
 import com.android.bluetooth.le_audio.LeAudioService;
 import com.android.bluetooth.map.BluetoothMapService;
 import com.android.bluetooth.mapclient.MapClientService;
+import com.android.bluetooth.mcp.McpService;
+import com.android.bluetooth.opp.BluetoothOppService;
 import com.android.bluetooth.pan.PanService;
 import com.android.bluetooth.pbap.BluetoothPbapService;
 import com.android.bluetooth.pbapclient.PbapClientService;
 import com.android.bluetooth.sap.SapService;
 import com.android.bluetooth.sdp.SdpManager;
+import com.android.bluetooth.tbs.TbsService;
 import com.android.bluetooth.telephony.BluetoothInCallService;
 import com.android.bluetooth.vc.VolumeControlService;
 import com.android.internal.annotations.GuardedBy;
@@ -168,6 +173,7 @@ import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.Executor;
+import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.regex.Pattern;
 
@@ -190,7 +196,7 @@ public class AdapterService extends Service {
     private long mEnergyUsedTotalVoltAmpSecMicro;
     private final SparseArray<UidTraffic> mUidTraffic = new SparseArray<>();
 
-    private final ArrayList<String> mStartedProfiles = new ArrayList<>();
+    private final Map<String, ProfileService> mStartedProfiles = new HashMap<>();
     private final ArrayList<ProfileService> mRegisteredProfiles = new ArrayList<>();
     private final ArrayList<ProfileService> mRunningProfiles = new ArrayList<>();
     private HashSet<String> mLeAudioAllowDevices = new HashSet<>();
@@ -421,7 +427,7 @@ public class AdapterService extends Service {
      * @return true if the service is started expectedly, false otherwise.
      */
     public boolean isStartedProfile(String serviceSampleName) {
-        return mStartedProfiles.contains(serviceSampleName);
+        return mStartedProfiles.containsKey(serviceSampleName);
     }
 
     private static final int MESSAGE_PROFILE_SERVICE_STATE_CHANGED = 1;
@@ -986,9 +992,10 @@ public class AdapterService extends Service {
     }
 
     private void startGattProfileService() {
-        mStartedProfiles.add(GattService.class.getSimpleName());
-
         mGattService = new GattService(this);
+
+        mStartedProfiles.put(GattService.class.getSimpleName(), mGattService);
+
         ((ProfileService) mGattService).doStart();
     }
 
@@ -1369,16 +1376,52 @@ public class AdapterService extends Service {
         BluetoothSap.invalidateBluetoothGetConnectionStateCache();
     }
 
+    // TODO Fix Config.java to remove the need for this Map
+    private static final Map<Class, Function<Context, ProfileService>> CLASS_TO_CONSTRUCTORS =
+            Map.ofEntries(
+                    Map.entry(A2dpService.class, A2dpService::new),
+                    Map.entry(A2dpSinkService.class, A2dpSinkService::new),
+                    Map.entry(AvrcpTargetService.class, AvrcpTargetService::new),
+                    Map.entry(AvrcpControllerService.class, AvrcpControllerService::new),
+                    Map.entry(BassClientService.class, BassClientService::new),
+                    Map.entry(BatteryService.class, BatteryService::new),
+                    Map.entry(CsipSetCoordinatorService.class, CsipSetCoordinatorService::new),
+                    Map.entry(HapClientService.class, HapClientService::new),
+                    Map.entry(HeadsetService.class, HeadsetService::new),
+                    Map.entry(HeadsetClientService.class, HeadsetClientService::new),
+                    Map.entry(HearingAidService.class, HearingAidService::new),
+                    Map.entry(HidDeviceService.class, HidDeviceService::new),
+                    Map.entry(HidHostService.class, HidHostService::new),
+                    Map.entry(GattService.class, GattService::new),
+                    Map.entry(LeAudioService.class, LeAudioService::new),
+                    Map.entry(TbsService.class, TbsService::new),
+                    Map.entry(BluetoothMapService.class, BluetoothMapService::new),
+                    Map.entry(MapClientService.class, MapClientService::new),
+                    Map.entry(McpService.class, McpService::new),
+                    Map.entry(BluetoothOppService.class, BluetoothOppService::new),
+                    Map.entry(PanService.class, PanService::new),
+                    Map.entry(BluetoothPbapService.class, BluetoothPbapService::new),
+                    Map.entry(PbapClientService.class, PbapClientService::new),
+                    Map.entry(SapService.class, SapService::new),
+                    Map.entry(VolumeControlService.class, VolumeControlService::new));
+
     private void setProfileServiceState(Class service, int state) {
         if (state == BluetoothAdapter.STATE_ON) {
-            mStartedProfiles.add(service.getSimpleName());
+            ProfileService profileService = CLASS_TO_CONSTRUCTORS.get(service).apply(this);
+            mStartedProfiles.put(service.getSimpleName(), profileService);
+            profileService.doStart();
         } else if (state == BluetoothAdapter.STATE_OFF) {
-            mStartedProfiles.remove(service.getSimpleName());
+            ProfileService profileService = mStartedProfiles.remove(service.getSimpleName());
+            if (profileService != null) {
+                profileService.doStop();
+            } else {
+                Log.e(
+                        TAG,
+                        "setProfileServiceState("
+                                + service.getSimpleName()
+                                + ", STATE_OFF): profile is already stopped");
+            }
         }
-        Intent intent = new Intent(this, service);
-        intent.putExtra(EXTRA_ACTION, ACTION_SERVICE_STATE_CHANGED);
-        intent.putExtra(BluetoothAdapter.EXTRA_STATE, state);
-        startService(intent);
     }
 
     private void setAllProfileServiceStates(Class[] services, int state) {
