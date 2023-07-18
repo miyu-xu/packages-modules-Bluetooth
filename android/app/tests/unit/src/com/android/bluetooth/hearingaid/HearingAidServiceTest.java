@@ -97,7 +97,6 @@ public class HearingAidServiceTest {
         TestUtils.setAdapterService(mAdapterService);
         doReturn(mActiveDeviceManager).when(mAdapterService).getActiveDeviceManager();
         doReturn(mDatabaseManager).when(mAdapterService).getDatabase();
-        doReturn(true, false).when(mAdapterService).isStartedProfile(anyString());
 
         mAdapter = BluetoothAdapter.getDefaultAdapter();
         HearingAidNativeInterface.setInstance(mNativeInterface);
