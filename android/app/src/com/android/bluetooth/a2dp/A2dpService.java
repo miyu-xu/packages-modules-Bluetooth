@@ -119,15 +119,15 @@ public class A2dpService extends ProfileService {
 
     private BroadcastReceiver mBondStateChangedReceiver;
 
-    A2dpService() {
+    public A2dpService(Context ctx) {
+        super(ctx);
         mNativeInterface = requireNonNull(A2dpNativeInterface.getInstance());
     }
 
     @VisibleForTesting
     A2dpService(Context ctx, A2dpNativeInterface nativeInterface) {
-        attachBaseContext(ctx);
+        super(ctx);
         mNativeInterface = requireNonNull(nativeInterface);
-        onCreate();
     }
 
     public static boolean isEnabled() {

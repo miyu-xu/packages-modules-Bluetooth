@@ -72,15 +72,15 @@ public class A2dpSinkService extends ProfileService {
     private AdapterService mAdapterService;
     private DatabaseManager mDatabaseManager;
 
-    A2dpSinkService() {
+    public A2dpSinkService(Context ctx) {
+        super(ctx);
         mNativeInterface = requireNonNull(A2dpSinkNativeInterface.getInstance());
     }
 
     @VisibleForTesting
     A2dpSinkService(Context ctx, A2dpSinkNativeInterface nativeInterface) {
-        attachBaseContext(ctx);
+        super(ctx);
         mNativeInterface = requireNonNull(nativeInterface);
-        onCreate();
     }
 
     public static boolean isEnabled() {

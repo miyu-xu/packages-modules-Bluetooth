@@ -134,15 +134,15 @@ public class AvrcpControllerService extends ProfileService {
         }
     }
 
-    AvrcpControllerService() {
-        mNativeInterface = AvrcpControllerNativeInterface.getInstance();
+    public AvrcpControllerService(Context ctx) {
+        super(ctx);
+        mNativeInterface = requireNonNull(AvrcpControllerNativeInterface.getInstance());
     }
 
     @VisibleForTesting
     AvrcpControllerService(Context ctx, AvrcpControllerNativeInterface nativeInterface) {
-        attachBaseContext(ctx);
+        super(ctx);
         mNativeInterface = requireNonNull(nativeInterface);
-        onCreate();
     }
 
     public static boolean isEnabled() {
