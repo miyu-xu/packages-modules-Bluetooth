@@ -272,6 +272,7 @@ import java.util.Objects;
                 mWorkSourceUtil.getUids(), mWorkSourceUtil.getTags(),
                 BluetoothStatsLog.BLE_SCAN_STATE_CHANGED__STATE__ON,
                 scan.isFilterScan, scan.isBackgroundScan, scan.isOpportunisticScan);
+        recordScanAppCountMetricsStart(scan);
 
         mOngoingScans.put(scannerId, scan);
     }
@@ -338,6 +339,50 @@ import java.util.Objects;
                 mWorkSourceUtil.getUids(), mWorkSourceUtil.getTags(),
                 BluetoothStatsLog.BLE_SCAN_STATE_CHANGED__STATE__OFF,
                 scan.isFilterScan, scan.isBackgroundScan, scan.isOpportunisticScan);
+        recordScanAppCountMetricsStop(scan);
+    }
+
+    private void recordScanAppCountMetricsStart(LastScan scan) {
+        MetricsLogger.getInstance().cacheCount(BluetoothProtoEnums.LE_SCAN_COUNT_TOTAL_ENABLE, 1);
+        if (scan.isAutoBatchScan) {
+            MetricsLogger.getInstance()
+                    .cacheCount(BluetoothProtoEnums.LE_SCAN_COUNT_AUTO_BATCH_ENABLE, 1);
+        } else if (scan.isBatchScan) {
+            MetricsLogger.getInstance()
+                    .cacheCount(BluetoothProtoEnums.LE_SCAN_COUNT_BATCH_ENABLE, 1);
+        } else {
+            if (scan.isFilterScan) {
+                MetricsLogger.getInstance()
+                        .cacheCount(BluetoothProtoEnums.LE_SCAN_COUNT_FILTERED_ENABLE, 1);
+            } else {
+                MetricsLogger.getInstance()
+                        .cacheCount(BluetoothProtoEnums.LE_SCAN_COUNT_UNFILTERED_ENABLE, 1);
+            }
+        }
+    }
+
+    private void recordScanAppCountMetricsStop(LastScan scan) {
+        MetricsLogger.getInstance().cacheCount(BluetoothProtoEnums.LE_SCAN_COUNT_TOTAL_DISABLE, 1);
+        if (scan.isAutoBatchScan) {
+            MetricsLogger.getInstance()
+                    .cacheCount(BluetoothProtoEnums.LE_SCAN_COUNT_AUTO_BATCH_DISABLE, 1);
+        } else if (scan.isBatchScan) {
+            MetricsLogger.getInstance()
+                    .cacheCount(BluetoothProtoEnums.LE_SCAN_COUNT_BATCH_DISABLE, 1);
+        } else {
+            if (scan.isFilterScan) {
+                MetricsLogger.getInstance()
+                        .cacheCount(BluetoothProtoEnums.LE_SCAN_COUNT_FILTERED_DISABLE, 1);
+            } else {
+                MetricsLogger.getInstance()
+                        .cacheCount(BluetoothProtoEnums.LE_SCAN_COUNT_UNFILTERED_DISABLE, 1);
+            }
+        }
+    }
+
+    synchronized void recordScanTimeoutCountMetrics() {
+        MetricsLogger.getInstance()
+                .cacheCount(BluetoothProtoEnums.LE_SCAN_ABUSE_COUNT_SCAN_TIMEOUT, 1);
     }
 
     static void initScanRadioState() {
@@ -435,6 +480,34 @@ import java.util.Objects;
             } else {
                 MetricsLogger.getInstance().cacheCount(
                         BluetoothProtoEnums.LE_SCAN_RESULTS_COUNT_REGULAR_SCREEN_OFF, 1);
+            }
+        }
+    }
+
+    static void recordBatchScanRadioResultCount(int numRecords) {
+        synchronized (sLock) {
+            MetricsLogger.getInstance()
+                    .cacheCount(BluetoothProtoEnums.LE_SCAN_RESULTS_COUNT_BATCH_BUNDLE, 1);
+            MetricsLogger.getInstance()
+                    .cacheCount(BluetoothProtoEnums.LE_SCAN_RESULTS_COUNT_BATCH, numRecords);
+            if (sIsScreenOn) {
+                MetricsLogger.getInstance()
+                        .cacheCount(
+                                BluetoothProtoEnums.LE_SCAN_RESULTS_COUNT_BATCH_BUNDLE_SCREEN_ON,
+                                1);
+                MetricsLogger.getInstance()
+                        .cacheCount(
+                                BluetoothProtoEnums.LE_SCAN_RESULTS_COUNT_BATCH_SCREEN_ON,
+                                numRecords);
+            } else {
+                MetricsLogger.getInstance()
+                        .cacheCount(
+                                BluetoothProtoEnums.LE_SCAN_RESULTS_COUNT_BATCH_BUNDLE_SCREEN_OFF,
+                                1);
+                MetricsLogger.getInstance()
+                        .cacheCount(
+                                BluetoothProtoEnums.LE_SCAN_RESULTS_COUNT_BATCH_SCREEN_OFF,
+                                numRecords);
             }
         }
     }
