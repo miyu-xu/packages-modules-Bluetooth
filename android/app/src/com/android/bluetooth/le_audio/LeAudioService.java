@@ -269,6 +269,10 @@ public class LeAudioService extends ProfileService {
     private final AudioManagerAudioDeviceCallback mAudioManagerAudioDeviceCallback =
             new AudioManagerAudioDeviceCallback();
 
+    public LeAudioService(Context ctx) {
+        super(ctx);
+    }
+
     @Override
     protected IProfileServiceBinder initBinder() {
         return new BluetoothLeAudioBinder(this);
