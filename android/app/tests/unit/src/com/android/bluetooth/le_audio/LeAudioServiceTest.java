@@ -49,6 +49,8 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.media.AudioManager;
 import android.media.BluetoothProfileConnectionInfo;
+import android.os.Handler;
+import android.os.Looper;
 import android.os.ParcelUuid;
 
 import androidx.test.InstrumentationRegistry;
@@ -87,6 +89,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.TimeoutException;
+import java.util.concurrent.FutureTask;
 
 @MediumTest
 @RunWith(AndroidJUnit4.class)
@@ -128,8 +131,6 @@ public class LeAudioServiceTest {
     @Mock private CsipSetCoordinatorService mCsipSetCoordinatorService;
     @Spy private LeAudioObjectsFactory mObjectsFactory = LeAudioObjectsFactory.getInstance();
     @Spy private ServiceFactory mServiceFactory = new ServiceFactory();
-
-    @Rule public final ServiceTestRule mServiceRule = new ServiceTestRule();
 
     private static final BluetoothLeAudioCodecConfig LC3_16KHZ_CONFIG =
             new BluetoothLeAudioCodecConfig.Builder()
@@ -185,7 +186,6 @@ public class LeAudioServiceTest {
                 .getRemoteUuids(any(BluetoothDevice.class));
         doReturn(mActiveDeviceManager).when(mAdapterService).getActiveDeviceManager();
         doReturn(mDatabaseManager).when(mAdapterService).getDatabase();
-        doReturn(true, false).when(mAdapterService).isStartedProfile(anyString());
 
         BluetoothManager manager = mTargetContext.getSystemService(BluetoothManager.class);
         assertThat(manager).isNotNull();
@@ -271,14 +271,15 @@ public class LeAudioServiceTest {
         LeAudioNativeInterface.setInstance(null);
     }
 
-    private void startService() throws TimeoutException {
-        TestUtils.startService(mServiceRule, LeAudioService.class);
-        mService = LeAudioService.getLeAudioService();
-        assertThat(mService).isNotNull();
+    private void startService() throws Exception {
+        mService = new LeAudioService(mTargetContext);
+        FutureTask task = new FutureTask(mService::doStart, null);
+        new Handler(Looper.getMainLooper()).post(task);
+        task.get();
     }
 
     private void stopService() throws TimeoutException {
-        TestUtils.stopService(mServiceRule, LeAudioService.class);
+        mService.doStop();
         mService = LeAudioService.getLeAudioService();
         assertThat(mService).isNull();
     }

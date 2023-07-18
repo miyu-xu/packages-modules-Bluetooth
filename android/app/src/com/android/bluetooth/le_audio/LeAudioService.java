@@ -48,6 +48,7 @@ import android.bluetooth.le.ScanFilter;
 import android.bluetooth.le.ScanResult;
 import android.bluetooth.le.ScanSettings;
 import android.content.AttributionSource;
+import android.content.Context;
 import android.content.Intent;
 import android.media.AudioDeviceCallback;
 import android.media.AudioDeviceInfo;
@@ -253,6 +254,10 @@ public class LeAudioService extends ProfileService {
     private Handler mHandler = new Handler(Looper.getMainLooper());
     private final AudioManagerAudioDeviceCallback mAudioManagerAudioDeviceCallback =
             new AudioManagerAudioDeviceCallback();
+
+    public LeAudioService(Context ctx) {
+        super(ctx);
+    }
 
     @Override
     protected IProfileServiceBinder initBinder() {
