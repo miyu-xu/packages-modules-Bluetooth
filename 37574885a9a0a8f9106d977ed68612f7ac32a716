@@ -16,6 +16,24 @@
       "message": "We should not allow profiles to be able to remove the bond. Nevertheless, the base code on which this change builds on, has been removed.\n\nBug: 264516467\nChange-Id: If751f10b46aa5889629f64dc0199caefc831d5ed",
       "revId": "37574885a9a0a8f9106d977ed68612f7ac32a716",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "415d0930_e581b30c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1965943
+      },
+      "writtenOn": "2023-07-18T02:19:45Z",
+      "side": 1,
+      "message": "ok, we will abandon this CL firstly.",
+      "parentUuid": "62a22a67_fc12de72",
+      "revId": "37574885a9a0a8f9106d977ed68612f7ac32a716",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
