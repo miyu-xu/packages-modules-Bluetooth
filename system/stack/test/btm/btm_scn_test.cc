@@ -31,7 +31,7 @@ class BtmAllocateSCNTest : public Test {
  public:
  protected:
   void SetUp() override {
-    btm_cb.btm_available_index = 1;
+    btm_cb.next_available_scn = 2;
     for (int i = 0; i < PORT_MAX_RFC_PORTS; i++) {
       btm_cb.btm_scn[i] = false;
     }
@@ -46,23 +46,23 @@ TEST_F(BtmAllocateSCNTest, all_scn_available) {
                       // which is reserved)
 }
 
-TEST_F(BtmAllocateSCNTest, scn_available_after_available_index) {
-  btm_cb.btm_available_index = 5;
-  uint8_t occupied_idx[] = {1, 2, 3, 4, 5, 6, 7};
-  for (uint8_t idx : occupied_idx) {
-    btm_cb.btm_scn[idx] = true;
+TEST_F(BtmAllocateSCNTest, scn_available_after_available_scn) {
+  btm_cb.next_available_scn = 5;
+  uint8_t occupied_scn[] = {2, 3, 4, 5, 6, 7, 8};
+  for (uint8_t scn : occupied_scn) {
+    btm_cb.btm_scn[scn - 1] = true;
   }
 
   uint8_t scn = BTM_AllocateSCN();
-  ASSERT_EQ(scn, 9);  // All indexes up to 7 are occupied; hence index 8 i.e.
-                      // scn 9 should return
+  ASSERT_EQ(scn, 9);  // All scn up to 8 are occupied; hence scn 9
+                      // should return
 }
 
-TEST_F(BtmAllocateSCNTest, scn_available_before_available_index) {
-  btm_cb.btm_available_index = 28;
-  uint8_t occupied_idx[] = {26, 27, 28, 29};
-  for (uint8_t idx : occupied_idx) {
-    btm_cb.btm_scn[idx] = true;
+TEST_F(BtmAllocateSCNTest, scn_available_before_available_scn) {
+  btm_cb.next_available_scn = 28;
+  uint8_t occupied_scn[] = {26, 27, 28, 29, 30};
+  for (uint8_t scn : occupied_scn) {
+    btm_cb.btm_scn[scn - 1] = true;
   }
 
   uint8_t scn = BTM_AllocateSCN();
@@ -71,10 +71,10 @@ TEST_F(BtmAllocateSCNTest, scn_available_before_available_index) {
 }
 
 TEST_F(BtmAllocateSCNTest, no_scn_available) {
-  btm_cb.btm_available_index = 2;
-  for (int i = 1; i < PORT_MAX_RFC_PORTS - 1;
-       i++) {  // Fill all relevants SCN indexes (1 to 29)
-    btm_cb.btm_scn[i] = true;
+  btm_cb.next_available_scn = 2;
+  // Fill all relevants SCN (2 to 30).
+  for (uint8_t scn = 2; scn < PORT_MAX_RFC_PORTS; scn++) {
+    btm_cb.btm_scn[scn - 1] = true;
   }
 
   uint8_t scn = BTM_AllocateSCN();
