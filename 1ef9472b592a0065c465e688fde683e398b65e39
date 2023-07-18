@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "bd2521d9_d119f282",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2023-07-18T13:39:31Z",
+      "side": 1,
+      "message": "I had `unavailable and unsupported` in mind. But `unsupported` should suffice, since there should be no unsupported yet available contexts.",
+      "parentUuid": "7810bfe1_cc84660b",
+      "range": {
+        "startLine": 11,
+        "startChar": 47,
+        "endLine": 15,
+        "endChar": 40
+      },
+      "revId": "1ef9472b592a0065c465e688fde683e398b65e39",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "076b3784_30ab59c9",
