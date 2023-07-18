@@ -16,6 +16,24 @@
       "message": "This flag was added in Mar 24 with aosp/2504241.\n\nThe first build released is udc-dev and this is part of a U-Beta 1.\nAre you confident this is enough or do you want to wait for U being fully released ?\n\n(It looks fine to me but want to make sure you are aware of this)",
       "revId": "4c315648f762f4c0adc19b67628fe7f4c7251d22",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f6ef27e5_626fb310",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2023-07-18T22:00:04Z",
+      "side": 1,
+      "message": "When will U be fully released?\n\nOn ChromeOS side, it\u0027s started to hit stable (114).",
+      "parentUuid": "faf02117_28126f03",
+      "revId": "4c315648f762f4c0adc19b67628fe7f4c7251d22",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
