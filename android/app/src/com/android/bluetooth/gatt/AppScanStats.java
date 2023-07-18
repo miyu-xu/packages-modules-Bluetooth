@@ -439,6 +439,34 @@ import java.util.Objects;
         }
     }
 
+    static void recordBatchScanRadioResultCount(int numRecords) {
+        synchronized (sLock) {
+            MetricsLogger.getInstance()
+                    .cacheCount(BluetoothProtoEnums.LE_SCAN_RESULTS_COUNT_BATCH_BUNDLE, 1);
+            MetricsLogger.getInstance()
+                    .cacheCount(BluetoothProtoEnums.LE_SCAN_RESULTS_COUNT_BATCH, numRecords);
+            if (sIsScreenOn) {
+                MetricsLogger.getInstance()
+                        .cacheCount(
+                                BluetoothProtoEnums.LE_SCAN_RESULTS_COUNT_BATCH_BUNDLE_SCREEN_ON,
+                                1);
+                MetricsLogger.getInstance()
+                        .cacheCount(
+                                BluetoothProtoEnums.LE_SCAN_RESULTS_COUNT_BATCH_SCREEN_ON,
+                                numRecords);
+            } else {
+                MetricsLogger.getInstance()
+                        .cacheCount(
+                                BluetoothProtoEnums.LE_SCAN_RESULTS_COUNT_BATCH_BUNDLE_SCREEN_OFF,
+                                1);
+                MetricsLogger.getInstance()
+                        .cacheCount(
+                                BluetoothProtoEnums.LE_SCAN_RESULTS_COUNT_BATCH_SCREEN_OFF,
+                                numRecords);
+            }
+        }
+    }
+
     static void setScreenState(boolean isScreenOn) {
         synchronized (sLock) {
             if (sIsScreenOn == isScreenOn) {
