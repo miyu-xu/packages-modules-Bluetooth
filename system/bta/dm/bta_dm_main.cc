@@ -231,7 +231,7 @@ bool bta_dm_search_sm_execute(const BT_HDR_RIGID* p_msg) {
   return true;
 }
 
-extern TimestampedStringCircularBuffer gatt_history_;
+extern TimestampedStringCircularBuffer disc_gatt_history_;
 #define DUMPSYS_TAG "shim::legacy::bta::dm"
 void DumpsysBtaDm(int fd) {
   LOG_DUMPSYS_TITLE(fd, DUMPSYS_TAG);
@@ -243,7 +243,7 @@ void DumpsysBtaDm(int fd) {
   }
   LOG_DUMPSYS(fd, " current bta_dm_search_state:%s",
               bta_dm_state_text(bta_dm_search_get_state()).c_str());
-  auto gatt_history = gatt_history_.Pull();
+  auto gatt_history = disc_gatt_history_.Pull();
   LOG_DUMPSYS(fd, " last %zu gatt history entries", gatt_history.size());
   for (const auto& it : gatt_history) {
     LOG_DUMPSYS(fd, "   %s %s", EpochMillisToString(it.timestamp).c_str(),
