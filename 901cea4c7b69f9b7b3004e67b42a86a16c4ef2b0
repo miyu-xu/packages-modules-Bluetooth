@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c3f33379_df893a93",
+        "filename": "android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 751,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-07-19T02:29:44Z",
+      "side": 1,
+      "message": "Sending message to a handler on a dead thread happens after after this.\nBy 1) setting mSessionStatusHandler to null and 2) preventing the recursive send of messages inside of PbapHandler after mHandlerThread quits could fix the issue.",
+      "range": {
+        "startLine": 751,
+        "startChar": 27,
+        "endLine": 751,
+        "endChar": 37
+      },
+      "revId": "901cea4c7b69f9b7b3004e67b42a86a16c4ef2b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
