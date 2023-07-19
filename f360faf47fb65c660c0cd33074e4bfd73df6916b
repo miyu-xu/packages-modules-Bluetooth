@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8e42abdd_e071c3da",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-07-19T21:55:06Z",
+      "side": 1,
+      "message": "It looks like I really badly scope the consequence of this change.\nThanks for your feedback, they are really good.\n\nI do not have time to investigate all of them now so I am downgrading this CL as a WIP and will investigate later.\nFYI I encounter these issue while tackling the AdapterServiceTest to actually start/stop some profile in fast way.",
+      "parentUuid": "fdaa5657_876bbeee",
+      "revId": "f360faf47fb65c660c0cd33074e4bfd73df6916b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9b669ac4_268334dd",
         "filename": "android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java",
         "patchSetId": 3
