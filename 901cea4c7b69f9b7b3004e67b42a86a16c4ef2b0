@@ -70,6 +70,29 @@
       },
       "revId": "901cea4c7b69f9b7b3004e67b42a86a16c4ef2b0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5f29e398_f5bddbef",
+        "filename": "android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 982,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-07-19T09:17:01Z",
+      "side": 1,
+      "message": "This would take some time, so if it is running on the same thread, it would block the PbapHandler.\n\nAnd updateSecondaryVersion() also has the same pattern.",
+      "range": {
+        "startLine": 982,
+        "startChar": 39,
+        "endLine": 982,
+        "endChar": 54
+      },
+      "revId": "901cea4c7b69f9b7b3004e67b42a86a16c4ef2b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

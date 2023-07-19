@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fdaa5657_876bbeee",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-07-19T09:17:01Z",
+      "side": 1,
+      "message": "I\u0027m Okay with patch set 1 since it mitigates the issue w/o regression at least.",
+      "revId": "f360faf47fb65c660c0cd33074e4bfd73df6916b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9b669ac4_268334dd",
+        "filename": "android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 321,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-07-19T09:17:01Z",
+      "side": 1,
+      "message": "This also has chance to call mSessionStatusHandler.sendMessage().",
+      "range": {
+        "startLine": 321,
+        "startChar": 24,
+        "endLine": 321,
+        "endChar": 41
+      },
+      "revId": "f360faf47fb65c660c0cd33074e4bfd73df6916b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c4d20742_abce77ad",
+        "filename": "android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 330,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-07-19T09:17:01Z",
+      "side": 1,
+      "message": "This also has chance to call mSessionStatusHandler.sendMessage().",
+      "range": {
+        "startLine": 330,
+        "startChar": 12,
+        "endLine": 330,
+        "endChar": 23
+      },
+      "revId": "f360faf47fb65c660c0cd33074e4bfd73df6916b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
