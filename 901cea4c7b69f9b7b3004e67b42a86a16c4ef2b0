@@ -22,6 +22,30 @@
       },
       "revId": "901cea4c7b69f9b7b3004e67b42a86a16c4ef2b0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b27a9895_4b40a1c8",
+        "filename": "android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 751,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-07-19T03:25:57Z",
+      "side": 1,
+      "message": "\u003e 1) setting mSessionStatusHandler to null \n\nIf mSessionStatusHandler is set to null then we need to add a null check there and everywhere else. I would like to avoid creating this pattern as someone some day will not check for it being null\n\n\u003e 2) preventing the recursive send of messages\n\nThe message sent is `CONTACTS_LOADED` from PbapUtils.loadAllContacts. that is called from a local new thread created in pbapservice.loadAllContacts, that is called from the handlerThread after having a LOAD_CONTACTS msg post on it at init.\nWould you be ok if I:\n1/ remove the `mThreadLoadContacts \u003d new Thread(r);` in loadAllContacts\n2/ remove the `handler.sendEmptyMessage(CONTACTS_LOADED);` in pbapUtils to directly process the message\n?\n\n----\n\nI was also thinking of doing `mHandlerThread.quit` instead of the `.quitSafely`, to not process msg on the thread (I do think that this can be done additionally to reducing thread jump as mentioned above)\n\n\n---\n\nTo go one step further, it would be great to rely on a looper and not on a HandlerThread, to be able for test to provided a TestLooper",
+      "parentUuid": "c3f33379_df893a93",
+      "range": {
+        "startLine": 751,
+        "startChar": 27,
+        "endLine": 751,
+        "endChar": 37
+      },
+      "revId": "901cea4c7b69f9b7b3004e67b42a86a16c4ef2b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
