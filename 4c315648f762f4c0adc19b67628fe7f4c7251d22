@@ -52,6 +52,24 @@
       "parentUuid": "f6ef27e5_626fb310",
       "revId": "4c315648f762f4c0adc19b67628fe7f4c7251d22",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7553184a_5a5a9d24",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2023-07-19T14:40:48Z",
+      "side": 1,
+      "message": "Ok. Well I think it\u0027s a low risk change and we\u0027ve seen no problems on the ChromeOS side. Happy to wait to remove it or happy to do it now.",
+      "parentUuid": "d7737815_1c20f6a6",
+      "revId": "4c315648f762f4c0adc19b67628fe7f4c7251d22",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
