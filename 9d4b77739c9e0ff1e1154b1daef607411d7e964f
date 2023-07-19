@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c6841d16_aad596cd",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2023-07-19T18:10:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b896c25f_12a6ad6e",
+      "revId": "9d4b77739c9e0ff1e1154b1daef607411d7e964f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "eedaa533_40bb316d",
@@ -31,6 +49,24 @@
       "writtenOn": "2023-07-19T17:38:55Z",
       "side": 1,
       "message": "I would just delete the comment + define altogether. If someone goes looking for it later, they can see it in the commit history.",
+      "revId": "9d4b77739c9e0ff1e1154b1daef607411d7e964f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d48c2aa3_c6df3721",
+        "filename": "system/BUILD.gn",
+        "patchSetId": 4
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2023-07-19T18:10:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "eedaa533_40bb316d",
       "revId": "9d4b77739c9e0ff1e1154b1daef607411d7e964f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
