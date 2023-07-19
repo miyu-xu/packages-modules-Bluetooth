@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "43d6a186_62845f85",
+        "filename": "system/stack/test/btm/btm_scn_test.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-07-19T04:03:57Z",
+      "side": 1,
+      "message": "Please fix this ERROR reported by Common Typos: Common typo found: \"upto\" -- should it be \"up to\"?",
+      "range": {
+        "startLine": 57,
+        "startChar": 37,
+        "endLine": 57,
+        "endChar": 41
+      },
+      "revId": "aaeee06568b266810b009eae7d1836bf44d44f3f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4734ec3f_93e1491c",
+        "filename": "system/stack/test/btm/btm_scn_test.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-07-19T04:03:57Z",
+      "side": 1,
+      "message": "naive question:\nDoes that mean that `btm_cb.btm_scn[0]` is never used ?",
+      "range": {
+        "startLine": 77,
+        "startChar": 4,
+        "endLine": 77,
+        "endChar": 21
+      },
+      "revId": "aaeee06568b266810b009eae7d1836bf44d44f3f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
