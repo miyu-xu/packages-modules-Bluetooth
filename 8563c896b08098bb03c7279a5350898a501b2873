@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e69e0b7f_82d160f3",
+        "filename": "system/bta/hh/bta_hh_le.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 2006,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2023-07-19T23:35:25Z",
+      "side": 1,
+      "message": "Function name is already logged with this logging function. No need to log the function name separately.",
+      "revId": "8563c896b08098bb03c7279a5350898a501b2873",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
