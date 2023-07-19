@@ -45,6 +45,7 @@ import android.util.Log;
 import com.android.bluetooth.BluetoothStatsLog;
 import com.android.bluetooth.Utils;
 import com.android.bluetooth.btservice.AdapterService;
+import com.android.bluetooth.btservice.InteropUtil;
 import com.android.bluetooth.btservice.ProfileService;
 import com.android.bluetooth.btservice.storage.DatabaseManager;
 import com.android.internal.annotations.VisibleForTesting;
@@ -2326,6 +2327,13 @@ public class HeadsetStateMachine extends StateMachine {
         mSystemInterface.getHeadsetPhoneState().listenForPhoneState(mDevice, events);
     }
 
+    boolean isConnectedDeviceBlacklistedforIncomingCall() {
+        boolean matched = InteropUtil.interopMatchAddrOrName(
+            InteropUtil.InteropFeature.INTEROP_HFP_FAKE_INCOMING_CALL_INDICATOR,
+            mDevice.getAddress());
+        Log.w(TAG, "IOT: INTEROP_HFP_FAKE_INCOMING_CALL_INDICATOR ");
+        return matched;
+    }
     @Override
     protected void log(String msg) {
         if (DBG) {
