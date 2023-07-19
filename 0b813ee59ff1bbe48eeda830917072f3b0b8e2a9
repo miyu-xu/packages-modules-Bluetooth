@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d18d38c4_fdf90d74",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-07-19T00:49:02Z",
+      "side": 1,
+      "message": "Just being transparent,\nI apply the format tool then I edit back some log message to make them more readable by adding parentheses",
+      "revId": "0b813ee59ff1bbe48eeda830917072f3b0b8e2a9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
