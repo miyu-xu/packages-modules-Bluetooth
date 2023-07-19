@@ -191,7 +191,7 @@ static uint64_t get_DisableDelayTimerInMs() {
 #endif
 }
 
-TimestampedStringCircularBuffer gatt_history_{50};
+TimestampedStringCircularBuffer disc_gatt_history_{50};
 
 namespace {
 
