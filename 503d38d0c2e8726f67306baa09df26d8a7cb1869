@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "739505ed_f2ac19b3",
+        "filename": "system/btif/Android.bp",
+        "patchSetId": 18
+      },
+      "lineNbr": 569,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-07-19T16:31:34Z",
+      "side": 1,
+      "message": "This test already depend on MockOsi. since you are adding code to the lib osi, you want to add the mock of it too.\n\nBy doing so, you shouldn\u0027t need to modify the bp files anymore",
+      "range": {
+        "startLine": 569,
+        "startChar": 10,
+        "endLine": 569,
+        "endChar": 21
+      },
+      "revId": "503d38d0c2e8726f67306baa09df26d8a7cb1869",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ce07c12f_65b60412",
+        "filename": "system/stack/btm/btm_inq.cc",
+        "patchSetId": 18
+      },
+      "lineNbr": 273,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-07-19T16:31:34Z",
+      "side": 1,
+      "message": "```suggestion\n  power_telemetry::GetInstance()-\u003eLogInqScanDetails(inq_mode !\u003d BTM_NON_DISCOVERABLE);\n```",
+      "range": {
+        "startLine": 269,
+        "startChar": 1,
+        "endLine": 273,
+        "endChar": 3
+      },
+      "revId": "503d38d0c2e8726f67306baa09df26d8a7cb1869",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "75bacec8_b903f377",
+        "filename": "system/stack/l2cap/l2c_csm.cc",
+        "patchSetId": 18
+      },
+      "lineNbr": 1394,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-07-19T16:31:34Z",
+      "side": 1,
+      "message": "```suggestion\n        const int channel_type \u003d p_ccb-\u003ep_rcb-\u003epsm \u003d\u003d BT_PSM_RFCOMM ? CHANNEL_TYPE_RFCOMM : CHANNEL_TYPE_L2CAP;\n        power_telemetry::GetInstance()-\u003eLogRxBytes(\n            channel_type, p_ccb-\u003elocal_cid, p_ccb-\u003eremote_id,\n            p_ccb-\u003ep_lcb-\u003eremote_bd_addr, package_len);\n```\n\nSame below",
+      "range": {
+        "startLine": 1386,
+        "startChar": 8,
+        "endLine": 1394,
+        "endChar": 9
+      },
+      "revId": "503d38d0c2e8726f67306baa09df26d8a7cb1869",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
