@@ -973,6 +973,7 @@ public class BluetoothInCallService extends InCallService {
 
     private String getClccMapKey(BluetoothCall call) {
         if (mCallInfo.isNullCall(call) || call.getHandle() == null) {
+            Log.w(TAG, "getClccMapKey: , call is null or empty");
             return "";
         }
         Uri handle = call.getHandle();
@@ -982,6 +983,7 @@ public class BluetoothInCallService extends InCallService {
         } else {
             key = handle.toString();
         }
+        Log.d(TAG, "getClccMapKey: " + key);
         return key;
     }
 
