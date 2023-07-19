@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cecdd805_7e327033",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2023-07-19T20:41:27Z",
+      "side": 1,
+      "message": "Thank u for the follow-up. LGTM % some minor comments.",
+      "revId": "78a66deacbf1cc9dbf421ce47f1178523bfed58e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ca13e4b0_0193f5bd",
+        "filename": "system/gd/os/metrics.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2023-07-19T20:41:27Z",
+      "side": 1,
+      "message": "I think there shouldn\u0027t be CVSD here?",
+      "range": {
+        "startLine": 130,
+        "startChar": 47,
+        "endLine": 130,
+        "endChar": 55
+      },
+      "revId": "78a66deacbf1cc9dbf421ce47f1178523bfed58e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1ac0227c_1b558c19",
+        "filename": "system/stack/btm/btm_sco.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 319,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2023-07-19T20:41:27Z",
+      "side": 1,
+      "message": "Move this to btm_api_types as a inline _text helper?",
+      "range": {
+        "startLine": 310,
+        "startChar": 0,
+        "endLine": 319,
+        "endChar": 5
+      },
+      "revId": "78a66deacbf1cc9dbf421ce47f1178523bfed58e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "15c6b40c_15d39de2",
+        "filename": "system/stack/btm/btm_sco.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1021,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2023-07-19T20:41:27Z",
+      "side": 1,
+      "message": "How about making it a check for codec_type !\u003d MSBC \u0026\u0026 !\u003d LC3 to LOG_ERROR and early return?",
+      "range": {
+        "startLine": 1020,
+        "startChar": 8,
+        "endLine": 1021,
+        "endChar": 46
+      },
+      "revId": "78a66deacbf1cc9dbf421ce47f1178523bfed58e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
