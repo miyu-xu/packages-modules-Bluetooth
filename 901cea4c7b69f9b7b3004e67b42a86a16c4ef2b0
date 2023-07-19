@@ -46,6 +46,30 @@
       },
       "revId": "901cea4c7b69f9b7b3004e67b42a86a16c4ef2b0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f7193f57_5e763853",
+        "filename": "android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 751,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-07-19T04:53:27Z",
+      "side": 1,
+      "message": "I uploaded a new patchset to change the threading of this message.\nThere are some failure case that still have a recursive msg, that look a bit too far fetched to sanitize that too.\n\n\nI kept the removal of message at stop as I think it is good to have them here too if the message hasn\u0027t start to be process.\n\nPlease let me know what you think of this.",
+      "parentUuid": "b27a9895_4b40a1c8",
+      "range": {
+        "startLine": 751,
+        "startChar": 27,
+        "endLine": 751,
+        "endChar": 37
+      },
+      "revId": "901cea4c7b69f9b7b3004e67b42a86a16c4ef2b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
