@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c30c88f6_d2e72c5e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-07-19T00:52:59Z",
+      "side": 1,
+      "message": "This change allow to change the `new AdapterService()` to take a Looper in parameter (One that came from a TestLooper for example)\n\nThis should allow more reliable testing",
+      "revId": "9b553d63bf68785eb8794fa10385824bb3505fda",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
