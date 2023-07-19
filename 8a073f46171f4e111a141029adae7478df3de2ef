@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "03d5c3f3_ec784703",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-07-19T20:35:25Z",
+      "side": 1,
+      "message": "This is needed to fix current issue but I think a more deep work need to be tackled down with sysprop in general in the stack.",
+      "revId": "8a073f46171f4e111a141029adae7478df3de2ef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
