@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c53a71d4_b9f7ebc9",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/mockable/MediaPlayerWrapperFactory.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-07-19T20:29:14Z",
+      "side": 1,
+      "message": "This is for testing only",
+      "range": {
+        "startLine": 41,
+        "startChar": 59,
+        "endLine": 41,
+        "endChar": 83
+      },
+      "revId": "6a62fe4e22762390eadf68c5bfab8cf27c37839d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
