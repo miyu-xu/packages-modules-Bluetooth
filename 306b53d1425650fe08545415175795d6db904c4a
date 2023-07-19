@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "173b041d_8a3d2ac5",
+        "filename": "floss/pandora/server/host.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2023-07-19T05:16:09Z",
+      "side": 1,
+      "message": "The functionality of FactorReset and Reset was unclear until I reviewed the information at https://github.com/google/bt-test-interfaces/blob/main/pandora/host.proto. Could you enhance their descriptions in the public interfaces for better understanding? It may be beneficial to reference the original protobuf definitions in the class comments for reference.",
+      "range": {
+        "startLine": 32,
+        "startChar": 14,
+        "endLine": 32,
+        "endChar": 19
+      },
+      "revId": "306b53d1425650fe08545415175795d6db904c4a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "576e55c9_3d3d0b44",
+        "filename": "floss/pandora/server/security.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2023-07-19T05:16:09Z",
+      "side": 1,
+      "message": "How about adding a reference to security.proto here?",
+      "range": {
+        "startLine": 27,
+        "startChar": 7,
+        "endLine": 27,
+        "endChar": 69
+      },
+      "revId": "306b53d1425650fe08545415175795d6db904c4a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
