@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4a3b22d7_8cf21b4c",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/bass_client/BassClientStateMachineTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1144,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-07-19T23:53:25Z",
+      "side": 0,
+      "message": "is this check failing with current code base? and we\u0027re removing this because notifySourceRemoveFailed only needs to be checked with REMOVE_BCAST_SOURCE?",
+      "revId": "946d26285d8ef533be414e6c1c95dd2e91386334",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
