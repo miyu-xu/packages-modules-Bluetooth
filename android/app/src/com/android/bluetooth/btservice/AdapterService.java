@@ -420,12 +420,12 @@ public class AdapterService extends Service {
         return mStartedProfiles.contains(serviceSampleName);
     }
 
-    private static final int MESSAGE_PROFILE_SERVICE_STATE_CHANGED = 1;
-    private static final int MESSAGE_PROFILE_SERVICE_REGISTERED = 2;
-    private static final int MESSAGE_PROFILE_SERVICE_UNREGISTERED = 3;
-    private static final int MESSAGE_PREFERRED_AUDIO_PROFILES_AUDIO_FRAMEWORK_TIMEOUT = 4;
-    private static final int MESSAGE_ON_PROFILE_SERVICE_BIND = 5;
-    private static final int MESSAGE_ON_PROFILE_SERVICE_UNBIND = 6;
+    @VisibleForTesting static final int MESSAGE_PROFILE_SERVICE_STATE_CHANGED = 1;
+    @VisibleForTesting static final int MESSAGE_PROFILE_SERVICE_REGISTERED = 2;
+    @VisibleForTesting static final int MESSAGE_PROFILE_SERVICE_UNREGISTERED = 3;
+    static final int MESSAGE_PREFERRED_AUDIO_PROFILES_AUDIO_FRAMEWORK_TIMEOUT = 4;
+    static final int MESSAGE_ON_PROFILE_SERVICE_BIND = 5;
+    static final int MESSAGE_ON_PROFILE_SERVICE_UNBIND = 6;
 
     class AdapterServiceHandler extends Handler {
         AdapterServiceHandler(Looper looper) {
