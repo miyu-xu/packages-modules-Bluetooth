@@ -15,6 +15,7 @@ cc_fuzz {
         "fuzz_alarm.cc",
     ],
     shared_libs: [
+        ":BluetoothOsSources_host",
         "libcrypto",
         "libcutils",
         "liblog",
