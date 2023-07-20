@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c20a798f_de7b7bbd",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-07-20T17:46:46Z",
+      "side": 1,
+      "message": "Could we check this in the code as well ? Only respecting this value if we are not on a phone ?",
+      "range": {
+        "startLine": 7,
+        "startChar": 106,
+        "endLine": 7,
+        "endChar": 180
+      },
+      "revId": "5bd2333b137ca974fffda897d4cd37e7826f6f65",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
