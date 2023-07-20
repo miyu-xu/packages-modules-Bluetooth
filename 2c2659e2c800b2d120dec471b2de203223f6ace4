@@ -3,6 +3,52 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0c69a291_e844054b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-07-20T02:45:52Z",
+      "side": 1,
+      "message": "The peer LMP version isn\u0027t the same as the version of the specification implemented by the peer host.\n\nFor example you can implement 5.2 feature on the host on top of a 5.0 controller (The LMP version would be 5.2 in this case).\n\nSo I don\u0027t think that we want to do this check and only limit EATT for peripherals with a LMP version \u003e\u003d 5.2 as EATT is a host feature, not a controller feature.",
+      "range": {
+        "startLine": 11,
+        "startChar": 42,
+        "endLine": 11,
+        "endChar": 60
+      },
+      "revId": "2c2659e2c800b2d120dec471b2de203223f6ace4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5c880aff_62be674b",
+        "filename": "system/stack/btm/btm_ble.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 1592,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-07-20T02:45:52Z",
+      "side": 1,
+      "message": "nit: `remote_ll_version`.\n\nLMP is for BR/EDR, in LE you are reading the Link Layer version with the `Read Remote Version Information command`",
+      "range": {
+        "startLine": 1592,
+        "startChar": 12,
+        "endLine": 1592,
+        "endChar": 30
+      },
+      "revId": "2c2659e2c800b2d120dec471b2de203223f6ace4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "bccddd1c_99cc08af",
         "filename": "system/stack/btm/btm_ble.cc",
         "patchSetId": 6
