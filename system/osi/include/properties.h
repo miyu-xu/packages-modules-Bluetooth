@@ -57,3 +57,8 @@ bool osi_property_get_bool(const char* key, bool default_value);
 // uint32_t. If the property is not set, then the |default_value| is used.
 std::vector<uint32_t> osi_property_get_uintlist(
     const char* key, std::vector<uint32_t> default_value);
+
+// Helper function that returns the value of |key| coerced into a vector of
+// strings. If the property is not set, then the |default_value| is used.
+std::vector<std::string> osi_property_get_stringlist(
+    const char* key, std::vector<std::string> default_value);
