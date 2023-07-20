@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "20f563d5_daaa5b03",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-07-20T02:49:39Z",
+      "side": 1,
+      "message": "\u003e For example you can implement 5.2 feature on the host on top of a 5.0 controller (The LMP version would be 5.2 in this case).\n\n(The LMP version would be 5.0 in this case)*",
+      "parentUuid": "0c69a291_e844054b",
+      "range": {
+        "startLine": 11,
+        "startChar": 42,
+        "endLine": 11,
+        "endChar": 60
+      },
+      "revId": "2c2659e2c800b2d120dec471b2de203223f6ace4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "49ae8632_84b67eb0",
         "filename": "/COMMIT_MSG",
         "patchSetId": 6
