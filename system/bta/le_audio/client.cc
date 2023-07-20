@@ -3579,7 +3579,7 @@ class LeAudioClientImpl : public LeAudioClient {
     }
   }
 
-  void Cleanup(base::Callback<void()> cleanupCb) {
+  void Cleanup() {
     StopVbcCloseTimeout();
     if (alarm_is_scheduled(suspend_timeout_)) alarm_cancel(suspend_timeout_);
 
@@ -3592,8 +3592,6 @@ class LeAudioClientImpl : public LeAudioClient {
     aseGroups_.Cleanup();
     leAudioDevices_.Cleanup(gatt_if_);
     if (gatt_if_) BTA_GATTC_AppDeregister(gatt_if_);
-
-    std::move(cleanupCb).Run();
 
     if (leAudioHealthStatus_) {
       leAudioHealthStatus_->Cleanup();
@@ -5656,7 +5654,7 @@ void LeAudioClient::DebugDump(int fd) {
   dprintf(fd, "\n");
 }
 
-void LeAudioClient::Cleanup(base::Callback<void()> cleanupCb) {
+void LeAudioClient::Cleanup(void) {
   std::scoped_lock<std::mutex> lock(instance_mutex);
   if (!instance) {
     LOG(ERROR) << "Not initialized";
@@ -5665,7 +5663,7 @@ void LeAudioClient::Cleanup(base::Callback<void()> cleanupCb) {
 
   LeAudioClientImpl* ptr = instance;
   instance = nullptr;
-  ptr->Cleanup(cleanupCb);
+  ptr->Cleanup();
   delete ptr;
   ptr = nullptr;
 
