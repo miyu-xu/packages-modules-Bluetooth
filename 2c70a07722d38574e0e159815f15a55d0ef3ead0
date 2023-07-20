@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f8a57130_6fc2709a",
+        "filename": "system/stack/l2cap/l2c_api.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 1239,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2023-07-20T21:24:51Z",
+      "side": 1,
+      "message": "nit : can we make it a single line comment instead",
+      "range": {
+        "startLine": 1239,
+        "startChar": 0,
+        "endLine": 1239,
+        "endChar": 47
+      },
+      "revId": "2c70a07722d38574e0e159815f15a55d0ef3ead0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
