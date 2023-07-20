@@ -1743,6 +1743,7 @@ cc_test {
     srcs: [
         ":BluetoothLogRedactionSources",
         ":TestCommonMockFunctions",
+        ":TestFakeOsi",
         ":TestMockStackBtm",
         ":TestMockStackL2cap",
         ":TestMockStackMetrics",
@@ -1768,7 +1769,6 @@ cc_test {
         "libevent",
         "libgmock",
         "liblog",
-        "libosi",
         "libprotobuf-cpp-lite",
     ],
     shared_libs: [
