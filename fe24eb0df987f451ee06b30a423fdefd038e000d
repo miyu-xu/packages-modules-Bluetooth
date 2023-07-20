@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "24a0b1e4_2f10c405",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/bass_client/BassClientStateMachineTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 462,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-07-20T07:04:45Z",
+      "side": 1,
+      "message": "NIT: I\u0027m not sure what linter did here, but the previous version was way more readable.",
+      "range": {
+        "startLine": 461,
+        "startChar": 20,
+        "endLine": 462,
+        "endChar": 32
+      },
+      "revId": "fe24eb0df987f451ee06b30a423fdefd038e000d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
