@@ -33,6 +33,24 @@
       "message": "should we reset mPendingBroadcastSettings \u003d null in the retry?",
       "revId": "3f2d14742a064d25929b354ddc772537a16c94e1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7c6c72cf_a2340926",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 835,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-07-20T00:55:27Z",
+      "side": 1,
+      "message": "and service cleanup?",
+      "parentUuid": "13291aad_98f6490a",
+      "revId": "3f2d14742a064d25929b354ddc772537a16c94e1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
