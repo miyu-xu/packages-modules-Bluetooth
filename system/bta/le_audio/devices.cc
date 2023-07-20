@@ -1586,6 +1586,8 @@ bool LeAudioDevice::ConfigureAses(
   for (; needed_ase && ase; needed_ase--) {
     ase->active = true;
     ase->configured_for_context_type = context_type;
+    ase->is_codec_transparent = ent.is_codec_transparent;
+    ase->data_path_id = ent.data_path_id;
     active_ases++;
 
     /* In case of late connect, we could be here for STREAMING ase.

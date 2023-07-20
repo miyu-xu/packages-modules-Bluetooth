@@ -280,12 +280,27 @@ struct AudioSetConfigurationProviderJson {
             ? static_cast<types::LeAudioConfigurationStrategy>(strategy_int)
             : types::LeAudioConfigurationStrategy::RFU;
 
-    return SetConfiguration(
+    auto config = SetConfiguration(
         flat_subconfig->direction(), flat_subconfig->device_cnt(),
         flat_subconfig->ase_cnt(),
         CodecCapabilitySettingFromFlat(flat_subconfig->codec_id(),
                                        flat_subconfig->codec_configuration()),
         qos, strategy);
+
+    // TODO: Migrate the `data_path_id` and `is_codec_transparent` to the
+    // external configuration source (currently it's the .json file, but in
+    // future this could be an external vendor module called over the AIDL
+    // interface).
+    if (CodecManager::GetInstance()->GetCodecLocation() ==
+        types::CodecLocation::ADSP) {
+      config.is_codec_transparent = true;
+      config.data_path_id =
+          bluetooth::hci::iso_manager::kIsoDataPathPlatformDefault;
+    } else {
+      config.is_codec_transparent = true;
+      config.data_path_id = bluetooth::hci::iso_manager::kIsoDataPathHci;
+    }
+    return config;
   }
 
   static uint8_t ValidateTargetLatency(int flat_target_latency) {
