@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6a2664ee_3beb4b4c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-07-20T19:01:24Z",
+      "side": 1,
+      "message": "LMP or LL version tells what version of Bluetooth LMP or LL specification is supported. \n\nWhile it would be better to check feature bit support, some legacy devices do not respond well to supported EATT feature requests or respond as expected (with error response) when EATT connected. This is a common way to do an IOP fix in these scenarios, and seems to be the best path we have for at least one of the misbehaving devices that bug was filed for.",
+      "parentUuid": "20f563d5_daaa5b03",
+      "range": {
+        "startLine": 11,
+        "startChar": 42,
+        "endLine": 11,
+        "endChar": 60
+      },
+      "revId": "2c2659e2c800b2d120dec471b2de203223f6ace4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "49ae8632_84b67eb0",
@@ -71,6 +95,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "df06b5a4_15b06d51",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-07-20T19:01:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "49ae8632_84b67eb0",
+      "range": {
+        "startLine": 15,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 38
+      },
+      "revId": "2c2659e2c800b2d120dec471b2de203223f6ace4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5c880aff_62be674b",
@@ -84,6 +132,30 @@
       "writtenOn": "2023-07-20T02:45:52Z",
       "side": 1,
       "message": "nit: `remote_ll_version`.\n\nLMP is for BR/EDR, in LE you are reading the Link Layer version with the `Read Remote Version Information command`",
+      "range": {
+        "startLine": 1592,
+        "startChar": 12,
+        "endLine": 1592,
+        "endChar": 30
+      },
+      "revId": "2c2659e2c800b2d120dec471b2de203223f6ace4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9ab2fff6_38b15049",
+        "filename": "system/stack/btm/btm_ble.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 1592,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-07-20T19:01:24Z",
+      "side": 1,
+      "message": "Ack - can address in follow up CL",
+      "parentUuid": "5c880aff_62be674b",
       "range": {
         "startLine": 1592,
         "startChar": 12,
