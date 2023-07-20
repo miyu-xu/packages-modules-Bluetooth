@@ -1521,6 +1521,7 @@ cc_test {
     ],
     srcs: crypto_toolbox_srcs + [
         ":TestCommonMockFunctions",
+        ":TestFakeOsi",
         ":TestMockStackBtm",
         ":TestMockStackL2cap",
         ":TestMockStackMetrics",
@@ -1540,7 +1541,6 @@ cc_test {
         "libevent",
         "libgmock",
         "liblog",
-        "libosi",
         "libprotobuf-cpp-lite",
     ],
     shared_libs: [
