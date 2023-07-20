@@ -88,6 +88,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a53e726e_fe1d2ec7",
+        "filename": "system/stack/btm/btm_sco.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 319,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2023-07-20T11:38:08Z",
+      "side": 1,
+      "message": "That\u0027s a very good place to put this, thanks!",
+      "parentUuid": "1ac0227c_1b558c19",
+      "range": {
+        "startLine": 310,
+        "startChar": 0,
+        "endLine": 319,
+        "endChar": 5
+      },
+      "revId": "78a66deacbf1cc9dbf421ce47f1178523bfed58e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "15c6b40c_15d39de2",
@@ -101,6 +125,30 @@
       "writtenOn": "2023-07-19T20:41:27Z",
       "side": 1,
       "message": "How about making it a check for codec_type !\u003d MSBC \u0026\u0026 !\u003d LC3 to LOG_ERROR and early return?",
+      "range": {
+        "startLine": 1020,
+        "startChar": 8,
+        "endLine": 1021,
+        "endChar": 46
+      },
+      "revId": "78a66deacbf1cc9dbf421ce47f1178523bfed58e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "357a02c5_5787e62f",
+        "filename": "system/stack/btm/btm_sco.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1021,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2023-07-20T11:38:08Z",
+      "side": 1,
+      "message": "Do you mean to assert that CVSD is always offloaded? I think the code path allows CVSD to be inband since without `offload_enabled` it works.",
+      "parentUuid": "15c6b40c_15d39de2",
       "range": {
         "startLine": 1020,
         "startChar": 8,
