@@ -15,6 +15,7 @@ cc_fuzz {
         "fuzz_alarm.cc",
     ],
     shared_libs: [
+        "libbluetooth_gd_fuzzing",
         "libcrypto",
         "libcutils",
         "liblog",
