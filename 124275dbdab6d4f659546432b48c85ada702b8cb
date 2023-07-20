@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2cc0f45a_090da904",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 4641,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-07-20T17:14:24Z",
+      "side": 1,
+      "message": "Would this also work for outgoing calls?",
+      "revId": "124275dbdab6d4f659546432b48c85ada702b8cb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
