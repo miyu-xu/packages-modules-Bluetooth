@@ -474,8 +474,14 @@ pub async fn initiate(ctx: &impl Context) -> Result<(), ()> {
                         }
                         .build(),
                     );
-                    // TODO: handle error
-                    ctx.receive_lmp_packet::<lmp::SimplePairingConfirm>().await
+                    ctx.receive_lmp_packet::<lmp::SimplePairingConfirm>().await;
+                    match ctx
+                        .receive_lmp_packet::<Either<lmp::SimplePairingConfirm, lmp::PasskeyFailed>>()
+                        .await
+                    {
+                        Either::Left(confirm) => confirm,
+                        Either::Right(_) => Err(())?,
+                    }
                 };
                 send_commitment(ctx, confirm).await;
                 for _ in 1..PASSKEY_ENTRY_REPEAT_NUMBER {
@@ -694,9 +700,15 @@ pub async fn respond(ctx: &impl Context, request: lmp::IoCapabilityReq) -> Resul
             }
             AuthenticationMethod::PasskeyEntry => {
                 let confirm = if responder.io_capability == hci::IoCapability::KeyboardOnly {
-                    // TODO: handle error
-                    let _user_passkey = user_passkey_request(ctx).await;
-                    ctx.receive_lmp_packet::<lmp::SimplePairingConfirm>().await
+                    let user_passkey = user_passkey_request(ctx).await;
+                    let confirm = ctx.receive_lmp_packet::<lmp::SimplePairingConfirm>().await;
+                    if user_passkey.is_err() {
+                        ctx.send_lmp_packet(
+                            lmp::PasskeyFailedBuilder { transaction_id: 0 }.build(),
+                        );
+                        user_passkey?;
+                    }
+                    confirm
                 } else {
                     ctx.send_hci_event(
                         hci::UserPasskeyNotificationBuilder {
