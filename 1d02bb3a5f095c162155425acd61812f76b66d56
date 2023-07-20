@@ -1,5 +1,29 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "51519f77_c53f9340",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 598,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-07-20T19:00:09Z",
+      "side": 1,
+      "message": "Here should be `HEADSET`for HFP",
+      "range": {
+        "startLine": 598,
+        "startChar": 41,
+        "endLine": 598,
+        "endChar": 45
+      },
+      "revId": "1d02bb3a5f095c162155425acd61812f76b66d56",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
