@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9a44be85_e68f007c",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 601,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-07-20T00:53:06Z",
+      "side": 1,
+      "message": "nit: maybe this is out of the scope of this change, but this is also unnecessary duplicated print IMO. we might also consider to do something with this later.",
+      "revId": "c7fcca8b4718c9f215ec94442c3309cb10b649a9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "37ccc926_c9b588ce",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 619,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-07-20T00:53:06Z",
+      "side": 1,
+      "message": "nit: same as above.",
+      "revId": "c7fcca8b4718c9f215ec94442c3309cb10b649a9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
