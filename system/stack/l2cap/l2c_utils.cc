@@ -2728,8 +2728,7 @@ void l2cu_no_dynamic_ccbs(tL2C_LCB* p_lcb) {
   // this should happen throughout on U (i.e. for classic transport + other
   // fixed channels too)
   if (p_lcb->p_fixed_ccbs[L2CAP_ATT_CID - L2CAP_FIRST_FIXED_CHNL] != NULL) {
-    if (bluetooth::common::init_flags::finite_att_timeout_is_enabled() &&
-        !p_lcb->with_active_local_clients) {
+    if (!p_lcb->with_active_local_clients) {
       return;
     }
   }
