@@ -1,0 +1,487 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0209784a_22968a05",
+        "filename": "system/osi/src/stack_power_telemetry.cc",
+        "patchSetId": 20
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-07-20T18:05:02Z",
+      "side": 1,
+      "message": "can we return a reference instead ?",
+      "range": {
+        "startLine": 45,
+        "startChar": 31,
+        "endLine": 45,
+        "endChar": 32
+      },
+      "revId": "b898d0f8189e00e5a4011faf0fa5eba5bdce45e0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b899ed67_acea43dc",
+        "filename": "system/osi/src/stack_power_telemetry.cc",
+        "patchSetId": 20
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-07-20T18:05:02Z",
+      "side": 1,
+      "message": "Can\u0027t we modify the back() element in place ? without pop / push",
+      "range": {
+        "startLine": 97,
+        "startChar": 4,
+        "endLine": 100,
+        "endChar": 40
+      },
+      "revId": "b898d0f8189e00e5a4011faf0fa5eba5bdce45e0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "df2740de_72ede08c",
+        "filename": "system/osi/src/stack_power_telemetry.cc",
+        "patchSetId": 20
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-07-20T18:05:02Z",
+      "side": 1,
+      "message": "This is almost the same as `LogScoLinkDetails`.\nthe only difference is pushing the details on `acl_link_map` or on `sco_link_map`. + some more code around `sniff_activity_map`\n\nCan we factorize code to only do thing once",
+      "range": {
+        "startLine": 130,
+        "startChar": 38,
+        "endLine": 130,
+        "endChar": 55
+      },
+      "revId": "b898d0f8189e00e5a4011faf0fa5eba5bdce45e0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "90087bee_e8ae8122",
+        "filename": "system/osi/src/stack_power_telemetry.cc",
+        "patchSetId": 20
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-07-20T18:05:02Z",
+      "side": 1,
+      "message": "Would it helps to take a reference and guarantee that you do not have a nullptr here ? (and remove all check in the method)",
+      "range": {
+        "startLine": 131,
+        "startChar": 21,
+        "endLine": 131,
+        "endChar": 45
+      },
+      "revId": "b898d0f8189e00e5a4011faf0fa5eba5bdce45e0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c3d4a67c_d2067aec",
+        "filename": "system/osi/src/stack_power_telemetry.cc",
+        "patchSetId": 20
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-07-20T18:05:02Z",
+      "side": 1,
+      "message": "```suggestion\n  if (ldc.acl_link_map.count(handle) !\u003d 0) {\n    link_details \u003d ldc.acl_link_map[handle];\n  } else {\n    link_details \u003d {}\n  }\n```",
+      "range": {
+        "startLine": 136,
+        "startChar": 0,
+        "endLine": 139,
+        "endChar": 0
+      },
+      "revId": "b898d0f8189e00e5a4011faf0fa5eba5bdce45e0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2e636c60_46e6096e",
+        "filename": "system/osi/src/stack_power_telemetry.cc",
+        "patchSetId": 20
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-07-20T18:05:02Z",
+      "side": 1,
+      "message": "Remove comment or un-comment ?\n\nif `LogTxPower_cb` is not use, remove the cb and associated code too",
+      "range": {
+        "startLine": 163,
+        "startChar": 4,
+        "endLine": 163,
+        "endChar": 67
+      },
+      "revId": "b898d0f8189e00e5a4011faf0fa5eba5bdce45e0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5ad0b6c5_7f31d23a",
+        "filename": "system/osi/src/stack_power_telemetry.cc",
+        "patchSetId": 20
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-07-20T18:05:02Z",
+      "side": 1,
+      "message": "if you don\u0027t pass in the if, you are leaving this method with uninitialized field.\nEither `connected_ts` or `disconnected_ts` will not be initialized, and `tx_power_level` is not initialized neither\n\nThis could help\n```\n  LinkDetails link_details \u003d {};\n```\n\nor\n\n\n```suggestion\n  LogDataContainer\u0026 ldc \u003d GetCurrentLogDataContainer();\n  LinkDetails link_details;\n  if (ldc.sco_link_map.count(handle) !\u003d 0) {\n    link_details \u003d ldc.sco_link_map[handle];\n  } else {\n    link_details \u003d {\n      .bdaddr \u003d bdaddr,\n      .handle \u003d handle,\n    };\n  }\n```",
+      "range": {
+        "startLine": 174,
+        "startChar": 0,
+        "endLine": 181,
+        "endChar": 3
+      },
+      "revId": "b898d0f8189e00e5a4011faf0fa5eba5bdce45e0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8305a7c2_9a57010e",
+        "filename": "system/osi/src/stack_power_telemetry.cc",
+        "patchSetId": 20
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-07-20T18:05:02Z",
+      "side": 1,
+      "message": "We could not check twice `is_connected`\n\n```suggestion\n  if (is_connected \u003d\u003d false \u0026\u0026 ldc.sco_link_map.count(handle) !\u003d 0) {\n    link_details.disconnected_ts \u003d GetCurrentTimeString();\n    ldc.sco_link_list.push_back(link_details);\n    ldc.sco_link_map.erase(handle);\n  } else if (is_connected \u003d\u003d true) {\n    link_details.connected_ts \u003d GetCurrentTimeString()\n    ldc.sco_link_map[handle] \u003d link_details;\n  }\n```\n\nAlso is this case possible:\n```\nif (is_connected \u003d\u003d false \u0026\u0026 ldc.sco_link_map.count(handle) \u003d\u003d 0) {\n```\n\nAnd if so does that mean there is a gap in the code somewhere ?",
+      "range": {
+        "startLine": 183,
+        "startChar": 0,
+        "endLine": 191,
+        "endChar": 3
+      },
+      "revId": "b898d0f8189e00e5a4011faf0fa5eba5bdce45e0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a58aae53_4c8535ea",
+        "filename": "system/osi/src/stack_power_telemetry.cc",
+        "patchSetId": 20
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-07-20T18:05:02Z",
+      "side": 1,
+      "message": "you may want to pass as reference to avoid an extra copy when calling the method ? (well... the bdaddr is really small so not sure if it\u0027s really better but it will keep homogeneity)",
+      "range": {
+        "startLine": 210,
+        "startChar": 66,
+        "endLine": 210,
+        "endChar": 72
+      },
+      "revId": "b898d0f8189e00e5a4011faf0fa5eba5bdce45e0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "80337074_6b78aa70",
+        "filename": "system/osi/src/stack_power_telemetry.cc",
+        "patchSetId": 20
+      },
+      "lineNbr": 246,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-07-20T18:05:02Z",
+      "side": 1,
+      "message": "```suggestion\n  if ((l2c_rx_bytes_ !\u003d 0) || (l2c_tx_bytes_ !\u003d 0)) {\n    ldc.l2c_data \u003d {\n      .tx_bytes \u003d l2c_tx_bytes_,\n      .rx_bytes \u003d l2c_rx_bytes_,\n    };\n```",
+      "range": {
+        "startLine": 244,
+        "startChar": 53,
+        "endLine": 246,
+        "endChar": 42
+      },
+      "revId": "b898d0f8189e00e5a4011faf0fa5eba5bdce45e0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8d308c3f_0f5fdea4",
+        "filename": "system/osi/src/stack_power_telemetry.cc",
+        "patchSetId": 20
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-07-20T18:05:02Z",
+      "side": 1,
+      "message": "```suggestion\n    ldc.rfc_data \u003d {\n      .tx_bytes \u003d rfc_tx_bytes_,\n      .rx_bytes \u003d rfc_rx_bytes_,\n    };\n```",
+      "range": {
+        "startLine": 251,
+        "startChar": 0,
+        "endLine": 252,
+        "endChar": 42
+      },
+      "revId": "b898d0f8189e00e5a4011faf0fa5eba5bdce45e0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e259b3a5_382fdb71",
+        "filename": "system/osi/src/stack_power_telemetry.cc",
+        "patchSetId": 20
+      },
+      "lineNbr": 270,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-07-20T18:05:02Z",
+      "side": 1,
+      "message": "It looks like you want to initialize the whole structure\nCan we use the brace pattern initialization instead ?\n```suggestion\n    ldc.acl_pkt_ds \u003d {\n      .tx_pkt_count \u003d acl_tx_pkt_,\n      .tx_total_bytes \u003d acl_tx_len_,\n      .rx_pkt_count \u003d acl_rx_pkt_,\n      .rx_total_bytes \u003d acl_rx_len_,\n    };\n```",
+      "range": {
+        "startLine": 267,
+        "startChar": 1,
+        "endLine": 270,
+        "endChar": 48
+      },
+      "revId": "b898d0f8189e00e5a4011faf0fa5eba5bdce45e0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d4a2b142_df94815c",
+        "filename": "system/osi/src/stack_power_telemetry.cc",
+        "patchSetId": 20
+      },
+      "lineNbr": 276,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-07-20T18:05:02Z",
+      "side": 1,
+      "message": "There are field unused in `hci_cmd_evt_ds`. Is it ok ?\n\n```suggestion\n    ldc.hci_cmd_evt_ds \u003d {\n      .tx_pkt_count \u003d cmd_count_,\n      .rx_pkt_count \u003d event_count_,\n    };\n```",
+      "range": {
+        "startLine": 275,
+        "startChar": 4,
+        "endLine": 276,
+        "endChar": 51
+      },
+      "revId": "b898d0f8189e00e5a4011faf0fa5eba5bdce45e0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9b3bf79e_e7601845",
+        "filename": "system/osi/src/stack_power_telemetry.cc",
+        "patchSetId": 20
+      },
+      "lineNbr": 295,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-07-20T18:05:02Z",
+      "side": 1,
+      "message": "Should we remove the empty method ?",
+      "range": {
+        "startLine": 295,
+        "startChar": 0,
+        "endLine": 295,
+        "endChar": 55
+      },
+      "revId": "b898d0f8189e00e5a4011faf0fa5eba5bdce45e0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "00a5f735_9240642f",
+        "filename": "system/osi/src/stack_power_telemetry.cc",
+        "patchSetId": 20
+      },
+      "lineNbr": 325,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-07-20T18:05:02Z",
+      "side": 1,
+      "message": "Is this no-op ?\n\nI do not understand what you are trying to do by removing the last element and adding it back.",
+      "range": {
+        "startLine": 323,
+        "startChar": 4,
+        "endLine": 325,
+        "endChar": 45
+      },
+      "revId": "b898d0f8189e00e5a4011faf0fa5eba5bdce45e0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9190d923_17ac41b3",
+        "filename": "system/osi/src/stack_power_telemetry.cc",
+        "patchSetId": 20
+      },
+      "lineNbr": 332,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-07-20T18:05:02Z",
+      "side": 1,
+      "message": "```suggestion\n                                                          RawAddress\u0026 bdaddr,\n```",
+      "range": {
+        "startLine": 332,
+        "startChar": 0,
+        "endLine": 332,
+        "endChar": 76
+      },
+      "revId": "b898d0f8189e00e5a4011faf0fa5eba5bdce45e0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9a7a6cac_69f74638",
+        "filename": "system/osi/src/stack_power_telemetry.cc",
+        "patchSetId": 20
+      },
+      "lineNbr": 343,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-07-20T18:05:02Z",
+      "side": 1,
+      "message": "I would prefer a brace initialization to avoid any left over un-initialized memory:\n```suggestion\n  ChannelDetails channel_details \u003d {\n    .src_id \u003d src_id,\n    .dst_id \u003d dst_id,\n    .state \u003d STATE_CONNECTED,\n    .channel_type \u003d channel_type,\n    .conn_time_stamp \u003d GetCurrentTimeString(),\n    .psm \u003d psm,\n  }\n```",
+      "range": {
+        "startLine": 337,
+        "startChar": 2,
+        "endLine": 343,
+        "endChar": 28
+      },
+      "revId": "b898d0f8189e00e5a4011faf0fa5eba5bdce45e0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cd6fed93_890c1330",
+        "filename": "system/osi/src/stack_power_telemetry.cc",
+        "patchSetId": 20
+      },
+      "lineNbr": 348,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-07-20T18:05:02Z",
+      "side": 1,
+      "message": "I think you can directly create the list and skip the variable (not sure what the exact correct syntax is) \n\n```suggestion\n    ldc.channel_map.insert(std::pair\u003cRawAddress, std::list\u003cChannelDetails\u003e\u003e(\n        bdaddr, { channel_details }));\n```",
+      "range": {
+        "startLine": 346,
+        "startChar": 4,
+        "endLine": 348,
+        "endChar": 39
+      },
+      "revId": "b898d0f8189e00e5a4011faf0fa5eba5bdce45e0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4151f3d8_757388f4",
+        "filename": "system/osi/src/stack_power_telemetry.cc",
+        "patchSetId": 20
+      },
+      "lineNbr": 352,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-07-20T18:05:02Z",
+      "side": 1,
+      "message": "Isn\u0027t this enough :  ?\n\n```suggestion\n    ldc.channel_map[bdaddr].push_back(channel_details);\n```",
+      "range": {
+        "startLine": 350,
+        "startChar": 4,
+        "endLine": 352,
+        "endChar": 51
+      },
+      "revId": "b898d0f8189e00e5a4011faf0fa5eba5bdce45e0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b7988190_28da8258",
+        "filename": "system/osi/src/stack_power_telemetry.cc",
+        "patchSetId": 20
+      },
+      "lineNbr": 408,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-07-20T18:05:02Z",
+      "side": 1,
+      "message": "Since you are making an early return in the if, the else is not needed and we can gain an indentation level\n```suggestion\n    if (ldc.channel_map.count(bdaddr) \u003d\u003d 0) {\n      return;\n    }\n    \n    channel_details_list \u003d ldc.channel_map[bdaddr];\n    for (itr \u003d channel_details_list.begin();\n         itr !\u003d channel_details_list.end(); itr++) {\n      if (itr-\u003esrc_id \u003d\u003d src_id \u0026\u0026 itr-\u003edst_id \u003d\u003d dst_id \u0026\u0026\n          itr-\u003echannel_type \u003d\u003d channel_type) {\n        itr-\u003etx_bytes +\u003d num_bytes;\n        itr-\u003elast_tx_time_stamp \u003d GetCurrentTimeString();\n        ldc.channel_map[bdaddr] \u003d channel_details_list;\n        break;\n      }\n    }\n```\n\nSame in other block",
+      "range": {
+        "startLine": 394,
+        "startChar": 5,
+        "endLine": 408,
+        "endChar": 5
+      },
+      "revId": "b898d0f8189e00e5a4011faf0fa5eba5bdce45e0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6640d215_de3f0993",
+        "filename": "system/osi/src/stack_power_telemetry.cc",
+        "patchSetId": 20
+      },
+      "lineNbr": 411,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-07-20T18:05:02Z",
+      "side": 1,
+      "message": "```suggestion\n  if (channel_type \u003d\u003d CHANNEL_TYPE_RFCOMM) {\n```\n\nThe RFCOMM comment is redundant",
+      "range": {
+        "startLine": 410,
+        "startChar": 0,
+        "endLine": 411,
+        "endChar": 3
+      },
+      "revId": "b898d0f8189e00e5a4011faf0fa5eba5bdce45e0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
