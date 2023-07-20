@@ -113,7 +113,7 @@ std::string Dumpsys::impl::PrintAsJson(std::string* dumpsys_data) const {
   }
 
   std::string jsongen;
-  flatbuffers::GenerateText(parser, dumpsys_data->data(), &jsongen);
+  flatbuffers::GenText(parser, dumpsys_data->data(), &jsongen);
   return jsongen;
 }
 
