@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3951f133_a2498cbf",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-07-20T18:13:30Z",
+      "side": 1,
+      "message": "Can you change the test to be :\n```\nTest: m Bluetooth\n```\n\ninstead of N/A\n\nI understand there is no much of a thing to test here, since there is no test trying to do a timeout.\nI you know how to add one, please do so and ensure the error message received is the correct one. (but I understand that negative test are not a priority)",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 9
+      },
+      "revId": "ee63ac8b16ec7e904a7f45500293904e601d79d3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4686263c_6127d3ad",
+        "filename": "system/include/hardware/bluetooth.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-07-20T18:13:30Z",
+      "side": 1,
+      "message": "Should it be added here as well ?\n```suggestion\n    case BT_STATUS_WAKELOCK_ERROR:\n      return std::string(\"wakelock_error\");\n    case BT_STATUS_TIMEOUT:\n      return std::string(\"timeout_error\");\n```",
+      "range": {
+        "startLine": 142,
+        "startChar": 0,
+        "endLine": 143,
+        "endChar": 43
+      },
+      "revId": "ee63ac8b16ec7e904a7f45500293904e601d79d3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
