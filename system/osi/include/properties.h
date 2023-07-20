@@ -19,6 +19,7 @@
 #pragma once
 
 #include <cstdint>
+#include <string>
 #include <vector>
 
 #ifndef PROPERTY_VALUE_MAX
@@ -55,5 +56,15 @@ bool osi_property_get_bool(const char* key, bool default_value);
 
 // Helper function that returns the value of |key| coerced into a vector of
 // uint32_t. If the property is not set, then the |default_value| is used.
+<<<<<<< PATCH SET (990c59 Add "bluetooth.core.gap.le.privacy.wakeup_for_rotation" flag)
+std::vector<uint32_t> osi_property_get_uintlist(
+    const char* key, std::vector<uint32_t> default_value);
+
+// Helper function that returns the value of |key| coerced into a vector of
+// strings. If the property is not set, then the |default_value| is used.
+std::vector<std::string> osi_property_get_stringlist(
+    const char* key, std::vector<std::string> default_value);
+=======
 std::vector<uint32_t> osi_property_get_uintlist(const char* key,
                                                 std::vector<uint32_t> default_value);
+>>>>>>> BASE      (0b5887 Merge "Bass: Broadcast resync helper" into main)

@@ -16,12 +16,26 @@
 
 #include <fcntl.h>
 #include <fuzzer/FuzzedDataProvider.h>
+<<<<<<< PATCH SET (990c59 Add "bluetooth.core.gap.le.privacy.wakeup_for_rotation" flag)
+
+#include <optional>
+#include <string>
+=======
+>>>>>>> BASE      (0b5887 Merge "Bass: Broadcast resync helper" into main)
 
 #include "common/message_loop_thread.h"
 #include "osi/include/alarm.h"
 
 using base::Closure;
 using bluetooth::common::MessageLoopThread;
+
+namespace bluetooth {
+namespace os {
+std::optional<std::string> GetSystemProperty(const std::string& property) {
+  return std::nullopt;
+}
+}  // namespace os
+}  // namespace bluetooth
 
 #define MAX_CONCURRENT_ALARMS 25
 #define MAX_BUFFER_LEN 4096
