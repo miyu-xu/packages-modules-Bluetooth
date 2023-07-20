@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "32ac70f9_fdb99eb8",
+        "filename": "system/stack/test/btm/btm_scn_test.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2023-07-20T20:41:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "43d6a186_62845f85",
+      "range": {
+        "startLine": 57,
+        "startChar": 37,
+        "endLine": 57,
+        "endChar": 41
+      },
+      "revId": "aaeee06568b266810b009eae7d1836bf44d44f3f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4734ec3f_93e1491c",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-07-19T04:03:57Z",
       "side": 1,
       "message": "naive question:\nDoes that mean that `btm_cb.btm_scn[0]` is never used ?",
+      "range": {
+        "startLine": 77,
+        "startChar": 4,
+        "endLine": 77,
+        "endChar": 21
+      },
+      "revId": "aaeee06568b266810b009eae7d1836bf44d44f3f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "afa88b4f_645e3a76",
+        "filename": "system/stack/test/btm/btm_scn_test.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2023-07-20T20:41:00Z",
+      "side": 1,
+      "message": "It is reserved for HFP. So It isn\u0027t available for use via these interfaces. However, when HFP uses RFCOMM it does make it true or false (we can have only 1 active HFP connect",
+      "parentUuid": "4734ec3f_93e1491c",
       "range": {
         "startLine": 77,
         "startChar": 4,
