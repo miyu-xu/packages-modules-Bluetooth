@@ -116,6 +116,30 @@
       },
       "revId": "af7f716dad241903d9211393818e40f2fc28097a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "033f8044_c6d769f9",
+        "filename": "system/stack/btm/btm_scn.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-07-20T21:12:17Z",
+      "side": 1,
+      "message": "I agree that the `-2` is strange, but it\u0027s the behavior of this code (we skip the 0 and the last scn index, hence the -2).\n\nI don\u0027t really like the `do/while` and find it hard to read especially understanding when the loop will end.\n\nI was kinda preferring the old code with the two loops better.",
+      "parentUuid": "06612ce6_2871a109",
+      "range": {
+        "startLine": 38,
+        "startChar": 0,
+        "endLine": 53,
+        "endChar": 46
+      },
+      "revId": "af7f716dad241903d9211393818e40f2fc28097a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
