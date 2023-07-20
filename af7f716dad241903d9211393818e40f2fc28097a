@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5080c959_4b218547",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-07-20T20:58:51Z",
+      "side": 1,
+      "message": "Looks like this \"complicated loop\" is a consequence of aosp/2499376.\nAny plan to fix the  race condition instead ?",
+      "range": {
+        "startLine": 7,
+        "startChar": 59,
+        "endLine": 7,
+        "endChar": 87
+      },
+      "revId": "af7f716dad241903d9211393818e40f2fc28097a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ea9acb33_22e315b8",
         "filename": "system/stack/btm/btm_scn.cc",
         "patchSetId": 2
@@ -61,6 +84,30 @@
       "side": 1,
       "message": "uint8_t scn \u003d 0;\nuint8_t idx \u003d btm_cb.scn_recent_idx;\n\ndo {\n  idx++;\n  if (idx \u003e\u003d PORT_MAX_RFC_PORTS) {\n    idx \u003d 1; // Index 0 is reserved for hfp\n  }\n\n  if (!btm_cb.btm_scn[idx]) {\n    btm_cb.btm_scn[idx] \u003d true;\n    btm_cb.scn_recent_idx \u003d idx;\n    scn \u003d idx + 1;\n    break;\n  }\n} while (idx !\u003d btm_cb.scn_recent_index);\n\nreturn scn;\n\nThis clarifies the relationship between scn and index. It is robust against the changes in PORT_MAX_RFC_PORTS. Easy to adapt to changes in reserved indexes.",
       "parentUuid": "defb9d5b_cb51038e",
+      "range": {
+        "startLine": 38,
+        "startChar": 0,
+        "endLine": 53,
+        "endChar": 46
+      },
+      "revId": "af7f716dad241903d9211393818e40f2fc28097a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "06612ce6_2871a109",
+        "filename": "system/stack/btm/btm_scn.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-07-20T20:58:51Z",
+      "side": 1,
+      "message": "Between the two I prefer Himanshu alternative,\nI think it is a bit cleaner (the -2 in David proposition is really weird)\n\nI would even tweak it a bit to not break and to make it obvious that the 0 is returned when there is no scn available\n\n\n```suggestion\n  uint8_t idx \u003d btm_cb.scn_last_idx;\n  do {\n    idx++;\n    if (idx \u003e\u003d PORT_MAX_RFC_PORTS) {\n      idx \u003d 1; // Index 0 is reserved for hfp\n    }\n  } while (idx !\u003d btm_cb.btm_available_index \u0026\u0026 btm_cb.btm_scn[idx]);\n  \n  if (btm_cb.btm_scn[idx]) {\n      return 0; // No scn available\n  }\n  \n  btm_cb.btm_scn[idx] \u003d true;\n  btm_cb.scn_last_idx \u003d idx;\n  return (idx + 1); // +1 to move from an array base index to a number\n```\n\nthe `do ... while` can also be a for loop, but somehow i find it confusing\n```\n  for (idx \u003d btm_cb.scn_last_idx + 1;\n       idx !\u003d btm_cb.btm_available_index \u0026\u0026 btm_cb.btm_scn[idx];\n       ++idx) {\n    if (idx \u003e\u003d PORT_MAX_RFC_PORTS) {\n      idx \u003d 1; // Index 0 is reserved for hfp\n    }\n  }\n```",
+      "parentUuid": "aee490a9_0defbc13",
       "range": {
         "startLine": 38,
         "startChar": 0,
