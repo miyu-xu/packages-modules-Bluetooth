@@ -181,6 +181,30 @@
       },
       "revId": "78a66deacbf1cc9dbf421ce47f1178523bfed58e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "52602117_c6d2f29b",
+        "filename": "system/stack/btm/btm_sco.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1021,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2023-07-20T17:13:13Z",
+      "side": 1,
+      "message": "Oh. Totally missed the CVSD case while reviewing the code. Thank you for the correction.",
+      "parentUuid": "357a02c5_5787e62f",
+      "range": {
+        "startLine": 1020,
+        "startChar": 8,
+        "endLine": 1021,
+        "endChar": 46
+      },
+      "revId": "78a66deacbf1cc9dbf421ce47f1178523bfed58e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
