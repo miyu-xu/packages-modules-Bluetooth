@@ -18,8 +18,6 @@
 
 #define LOG_TAG "bt_osi_alarm"
 
-#include "osi/include/alarm.h"
-
 #include <base/cancelable_callback.h>
 #include <bluetooth/log.h>
 #include <fcntl.h>
@@ -30,12 +28,15 @@
 #include <string.h>
 #include <time.h>
 
+#include <algorithm>
 #include <mutex>
 
+#include "osi/include/alarm.h"
 #include "os/log.h"
 #include "osi/include/allocator.h"
 #include "osi/include/fixed_queue.h"
 #include "osi/include/list.h"
+#include "osi/include/properties.h"
 #include "osi/include/thread.h"
 #include "osi/include/wakelock.h"
 #include "osi/semaphore.h"
@@ -48,6 +49,15 @@ using namespace bluetooth;
 // Callback and timer threads should run at RT priority in order to ensure they
 // meet audio deadlines.  Use this priority for all audio/timer related thread.
 static const int THREAD_RT_PRIORITY = 1;
+
+#ifndef PROPERTY_BLE_PRIVACY_WAKEUP
+#define PROPERTY_BLE_PRIVACY_WAKEUP \
+  "bluetooth.core.gap.le.privacy.wakeup_for_rotation"
+#endif
+
+#ifndef PROPERTY_BUILD_CHARACTERISTICS
+#define PROPERTY_BUILD_CHARACTERISTICS "ro.build.characteristics"
+#endif
 
 typedef struct {
   size_t count;
@@ -144,6 +154,7 @@ static void update_scheduling_stats(alarm_stats_t* stats, uint64_t now_ms, uint6
 // Registers |queue| for processing alarm callbacks on |thread|.
 // |queue| may not be NULL. |thread| may not be NULL.
 static void alarm_register_processing_queue(fixed_queue_t* queue, thread_t* thread);
+static bool is_mobile_device(void);
 
 static void update_stat(stat_t* stat, uint64_t delta_ms) {
   if (stat->max_ms < delta_ms) {
@@ -305,6 +316,21 @@ void alarm_cleanup(void) {
   alarms = NULL;
 }
 
+// Mobile form factors such as phones, vehicles, watches, etc. have a different
+// privacy/security model from non-mobile devices like TVs or other embedded or fixed devices,
+// so we distinguish them.
+static bool is_mobile_device(void) {
+  std::vector<std::string> chrs =
+      osi_property_get_stringlist(PROPERTY_BUILD_CHARACTERISTICS,
+                                  /*default=*/std::vector<std::string>());
+
+  // The only non-mobile Android device at the moment is a TV.
+  if (std::find(chrs.begin(), chrs.end(), "tv") != chrs.end()) {
+    return false;
+  }
+  return true;
+}
+
 static bool lazy_initialize(void) {
   log::assert_that(alarms == NULL, "assert failed: alarms == NULL");
 
@@ -312,6 +338,17 @@ static bool lazy_initialize(void) {
   // the |timer| variable is valid ourselves.
   bool timer_initialized = false;
   bool wakeup_timer_initialized = false;
+  bool wakeup_enabled = true;
+  [[maybe_unused]] bool mobile_device = is_mobile_device();
+
+  // Only allow non-mobile devices to override wakeup. Mobile devices need to
+  // wakeup to perform RPA rollovers for privacy reasons. Non-mobile devices benefit from
+  // power savings by not waking, and their presence/power state can be inferred by means
+  // other than Bluetooth.
+  if (!mobile_device) {
+    wakeup_enabled =
+        osi_property_get_bool(PROPERTY_BLE_PRIVACY_WAKEUP, /*default=*/true);
+  }
 
   std::lock_guard<std::mutex> lock(alarms_mutex);
 
@@ -326,8 +363,16 @@ static bool lazy_initialize(void) {
   }
   timer_initialized = true;
 
-  if (!timer_create_internal(CLOCK_BOOTTIME_ALARM, &wakeup_timer)) {
+  // CLOCK_BOOTTIME_ALARM causes the CPU to wake for RPA rollovers, which can
+  // cause excess power consumption.
+  if (!wakeup_enabled ||
+      !timer_create_internal(CLOCK_BOOTTIME_ALARM, &wakeup_timer)) {
+    log::warn(
+        "%s wakeup_timer will not fire during CPU suspend. wakeup_enabled=%d",
+        __func__, wakeup_enabled);
     if (!timer_create_internal(CLOCK_BOOTTIME, &wakeup_timer)) {
+      log::error("%s unable to create wakeup_timer: %s", __func__,
+                strerror(errno));
       goto error;
     }
   }

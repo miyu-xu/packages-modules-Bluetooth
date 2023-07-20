@@ -16,12 +16,22 @@
 
 #include <fcntl.h>
 #include <fuzzer/FuzzedDataProvider.h>
+#include <optional>
+#include <string>
 
 #include "common/message_loop_thread.h"
 #include "osi/include/alarm.h"
 
 using base::Closure;
 using bluetooth::common::MessageLoopThread;
+
+namespace bluetooth {
+namespace os {
+std::optional<std::string> GetSystemProperty(const std::string& property) {
+  return std::nullopt;
+}
+}  // namespace os
+}  // namespace bluetooth
 
 #define MAX_CONCURRENT_ALARMS 25
 #define MAX_BUFFER_LEN 4096
