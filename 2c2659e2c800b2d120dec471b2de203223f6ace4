@@ -98,6 +98,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6c5389aa_f3ff399c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-07-20T23:09:32Z",
+      "side": 1,
+      "message": "Here\u0027s a couple examples of similar logic:\n\nhttps://source.corp.google.com/h/googleplex-android/platform/superproject/main/+/main:packages/modules/Bluetooth/system/stack/smp/smp_act.cc;l\u003d185?q\u003dBTM_ReadRemoteVersion\u0026sq\u003drepo:googleplex-android%2Fplatform%2Fsuperproject%2Fmain%20b:main\n\nhttps://source.corp.google.com/h/googleplex-android/platform/superproject/main/+/main:packages/modules/Bluetooth/system/bta/gatt/bta_gattc_cache.cc;l\u003d178?q\u003dBTM_ReadRemoteVersion\u0026sq\u003drepo:googleplex-android%2Fplatform%2Fsuperproject%2Fmain%20b:main\u0026start\u003d11\n\nAre you aware of any devices that this would impact?\n\nI can change the logic to connect EATT if version not known (this was how it was initially), but can\u0027t think of any other way to solve this. PLMK if you have other ideas.",
+      "parentUuid": "206cc247_6e158523",
+      "range": {
+        "startLine": 11,
+        "startChar": 42,
+        "endLine": 11,
+        "endChar": 60
+      },
+      "revId": "2c2659e2c800b2d120dec471b2de203223f6ace4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "49ae8632_84b67eb0",
         "filename": "/COMMIT_MSG",
         "patchSetId": 6
