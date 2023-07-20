@@ -74,6 +74,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "206cc247_6e158523",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-07-20T19:32:42Z",
+      "side": 1,
+      "message": "What makes you say that it\u0027s a common way to do an IOP fix in these scenarios ?\n\nBecause this change, also prevent devices implementing EATT to use EATT if they happen to have a controller older than 5.2.",
+      "parentUuid": "6a2664ee_3beb4b4c",
+      "range": {
+        "startLine": 11,
+        "startChar": 42,
+        "endLine": 11,
+        "endChar": 60
+      },
+      "revId": "2c2659e2c800b2d120dec471b2de203223f6ace4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "49ae8632_84b67eb0",
         "filename": "/COMMIT_MSG",
         "patchSetId": 6
