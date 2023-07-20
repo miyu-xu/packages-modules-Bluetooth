@@ -16,6 +16,24 @@
       "message": "Could it be possible to add a test, maybe in btif_rc_test?",
       "revId": "2286b3281c7405fedd4619aa29e92bc6dc6531f4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "42066f6a_c4ef4294",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1983105
+      },
+      "writtenOn": "2023-07-20T01:44:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "98922456_62e97c2a",
+      "revId": "2286b3281c7405fedd4619aa29e92bc6dc6531f4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
