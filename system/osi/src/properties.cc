@@ -100,3 +100,28 @@ std::vector<uint32_t> osi_property_get_uintlist(
 
   return list;
 }
+
+std::vector<std::string> osi_property_get_stringlist(
+    const char* key, const std::vector<std::string> default_value) {
+  std::optional<std::string> result = bluetooth::os::GetSystemProperty(key);
+  if (!result || result->empty() || result->size() > PROPERTY_VALUE_MAX) {
+    return default_value;
+  }
+
+  std::vector<std::string> list;
+  for (size_t i = 0; i < result->size(); i++) {
+    // Build a string of all the chars until the next comma or end of the
+    // string is reached.
+    std::string value;
+    while ((*result)[i] != ',' && i < result->size()) {
+      char c = (*result)[i];
+      value += c;
+      i++;
+    }
+
+    // grab value
+    list.push_back(value);
+  }
+
+  return list;
+}

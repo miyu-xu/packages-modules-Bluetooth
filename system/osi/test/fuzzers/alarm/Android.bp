@@ -9,7 +9,10 @@ package {
 
 cc_fuzz {
     name: "libosi_fuzz_alarm",
-    defaults: ["libosi_fuzz_defaults"],
+    defaults: [
+        "libosi_fuzz_defaults",
+        "libbluetooth_gd_defaults",
+    ],
     host_supported: false,
     srcs: [
         "fuzz_alarm.cc",
