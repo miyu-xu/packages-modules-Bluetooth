@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "923a4d7a_8ec151a7",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-07-20T05:58:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d6393d90_c4ae0fdf",
+      "range": {
+        "startLine": 7,
+        "startChar": 4,
+        "endLine": 7,
+        "endChar": 14
+      },
+      "revId": "2d3a2deebb87090f2e86b708e4edf3cf52ff86c9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3a05ab91_29237717",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-07-20T05:31:29Z",
       "side": 1,
       "message": "Is it not guaranteed that `exit()` is called after `enter()`?",
+      "range": {
+        "startLine": 227,
+        "startChar": 8,
+        "endLine": 227,
+        "endChar": 28
+      },
+      "revId": "2d3a2deebb87090f2e86b708e4edf3cf52ff86c9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8f895518_f89ed987",
+        "filename": "android/app/src/com/android/bluetooth/pbapclient/PbapClientStateMachine.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-07-20T05:58:12Z",
+      "side": 1,
+      "message": "No, it is not guaranteed.\n\nIn case PbapClientStateMachine.start() -\u003e doQuit().\n\nhttps://source.corp.google.com/h/googleplex-android/platform/superproject/main/+/refs/heads/main:frameworks/libs/modules-utils/java/com/android/internal/util/StateMachine.java;l\u003d1264;drc\u003da5c5d48351fe8255d6afe9ce9362d35404663066?q\u003dstatemachine.java\u0026sq\u003drepo:%22googleplex-android%2Fplatform%2Fsuperproject%2Fmain%22%20branch:%22main%22",
+      "parentUuid": "3a05ab91_29237717",
       "range": {
         "startLine": 227,
         "startChar": 8,
