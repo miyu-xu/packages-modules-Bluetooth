@@ -26,6 +26,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "49ae8632_84b67eb0",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-07-20T02:46:51Z",
+      "side": 1,
+      "message": "Can you fill go/bt-testing-exemption for this CL ?",
+      "range": {
+        "startLine": 15,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 38
+      },
+      "revId": "2c2659e2c800b2d120dec471b2de203223f6ace4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5c880aff_62be674b",
         "filename": "system/stack/btm/btm_ble.cc",
         "patchSetId": 6
