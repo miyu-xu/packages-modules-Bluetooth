@@ -43,6 +43,7 @@
 #include "osi/include/list.h"
 #include "osi/include/log.h"
 #include "osi/include/osi.h"
+#include "osi/include/properties.h"
 #include "osi/include/thread.h"
 #include "osi/include/wakelock.h"
 #include "osi/semaphore.h"
@@ -54,6 +55,10 @@ using base::CancelableClosure;
 // Callback and timer threads should run at RT priority in order to ensure they
 // meet audio deadlines.  Use this priority for all audio/timer related thread.
 static const int THREAD_RT_PRIORITY = 1;
+
+#ifndef PROPERTY_BLE_PRIVACY_WAKEUP
+#define PROPERTY_BLE_PRIVACY_WAKEUP "bluetooth.core.gap.le.privacy.wakeup"
+#endif
 
 typedef struct {
   size_t count;
@@ -312,6 +317,8 @@ static bool lazy_initialize(void) {
   // the |timer| variable is valid ourselves.
   bool timer_initialized = false;
   bool wakeup_timer_initialized = false;
+  bool wakeup_enabled =
+      osi_property_get_bool(PROPERTY_BLE_PRIVACY_WAKEUP, /*default=*/true);
 
   std::lock_guard<std::mutex> lock(alarms_mutex);
 
@@ -324,8 +331,13 @@ static bool lazy_initialize(void) {
   if (!timer_create_internal(CLOCK_ID, &timer)) goto error;
   timer_initialized = true;
 
-  if (!timer_create_internal(CLOCK_BOOTTIME_ALARM, &wakeup_timer)) {
+  // CLOCK_BOOTTIME_ALARM causes the CPU to wake for RPA rollovers, which can cause
+  // excess power consumption.
+  if (!wakeup_enabled || !timer_create_internal(CLOCK_BOOTTIME_ALARM, &wakeup_timer)) {
+    LOG_WARNING("%s wakeup_timer will not fire during CPU suspend. wakeup_enabled=%d",
+      __func__, wakeup_enabled);
     if (!timer_create_internal(CLOCK_BOOTTIME, &wakeup_timer)) {
+      LOG_ERROR("%s unable to create wakeup_timer: %s", __func__, strerror(errno));
       goto error;
     }
   }
