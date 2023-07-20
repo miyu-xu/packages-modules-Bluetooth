@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "564a12fd_5ca69480",
+        "filename": "system/osi/include/stack_power_telemetry.h",
+        "patchSetId": 19
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2023-07-20T07:23:50Z",
+      "side": 1,
+      "message": "C++ constants name should be k+Mixed case like `kAclPacketTx`\nhttps://engdoc.corp.google.com/eng/doc/devguide/cpp/styleguide.md?cl\u003dhead#Constant_Names\n\nAlso, ACK_PKT_TX/RX misses a readability - by reading the context, other people may not understand what the meaning.",
+      "range": {
+        "startLine": 16,
+        "startChar": 18,
+        "endLine": 16,
+        "endChar": 28
+      },
+      "revId": "63d26559016ef6dcd772d692460dbfc4f4e11ca4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d4a1421a_7646ec8a",
+        "filename": "system/osi/include/stack_power_telemetry.h",
+        "patchSetId": 19
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2023-07-20T07:23:50Z",
+      "side": 1,
+      "message": "Move these declaration to `namespace power_telemetry` or source files.",
+      "range": {
+        "startLine": 19,
+        "startChar": 18,
+        "endLine": 19,
+        "endChar": 36
+      },
+      "revId": "63d26559016ef6dcd772d692460dbfc4f4e11ca4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "83fa81c2_f0fee570",
+        "filename": "system/osi/include/stack_power_telemetry.h",
+        "patchSetId": 19
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2023-07-20T07:23:50Z",
+      "side": 1,
+      "message": "For time-related objects, please add a time unit postfix(as you are using int64_t type)",
+      "range": {
+        "startLine": 100,
+        "startChar": 10,
+        "endLine": 100,
+        "endChar": 24
+      },
+      "revId": "63d26559016ef6dcd772d692460dbfc4f4e11ca4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "09dd94a5_532f1dac",
+        "filename": "system/osi/include/stack_power_telemetry.h",
+        "patchSetId": 19
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2023-07-20T07:23:50Z",
+      "side": 1,
+      "message": "What does `ds` mean here?",
+      "range": {
+        "startLine": 122,
+        "startChar": 14,
+        "endLine": 122,
+        "endChar": 21
+      },
+      "revId": "63d26559016ef6dcd772d692460dbfc4f4e11ca4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9f8e9e7e_a4e40f35",
+        "filename": "system/osi/src/stack_power_telemetry.cc",
+        "patchSetId": 19
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2023-07-20T07:23:50Z",
+      "side": 1,
+      "message": "Doesn\u0027t `strftime` or `std::put_time` achieve this?",
+      "range": {
+        "startLine": 16,
+        "startChar": 12,
+        "endLine": 16,
+        "endChar": 25
+      },
+      "revId": "63d26559016ef6dcd772d692460dbfc4f4e11ca4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4ba62354_1651c2f8",
+        "filename": "system/osi/src/stack_power_telemetry.cc",
+        "patchSetId": 19
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2023-07-20T07:23:50Z",
+      "side": 1,
+      "message": "Though memory is quite cheap today, storing an unified `time_t` or chrono time point is more memory efficient, and their types help you reduce ambiguity.",
+      "range": {
+        "startLine": 141,
+        "startChar": 35,
+        "endLine": 141,
+        "endChar": 55
+      },
+      "revId": "63d26559016ef6dcd772d692460dbfc4f4e11ca4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e7980001_9efc5c87",
+        "filename": "system/osi/src/stack_power_telemetry.cc",
+        "patchSetId": 19
+      },
+      "lineNbr": 378,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2023-07-20T07:23:50Z",
+      "side": 1,
+      "message": "nit:\n```\nfor (auto\u0026 channel_detail : ldc.channel_map[bdaddr]) {\n      if (channel_detail.src_id \u003d\u003d src_id \u0026\u0026 channel_detail.dst_id \u003d\u003d dst_id \u0026\u0026\n          channel_detail.channel_type \u003d\u003d channel_type) {\n        channel_detail.state \u003d STATE_DISCONNECTED;\n        channel_detail.disconn_time_stamp \u003d GetCurrentTimeString();\n        break;\n      }\n}\n```\nReduced additional copy and iterator. Similar to other blocks.",
+      "range": {
+        "startLine": 369,
+        "startChar": 4,
+        "endLine": 378,
+        "endChar": 5
+      },
+      "revId": "63d26559016ef6dcd772d692460dbfc4f4e11ca4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
