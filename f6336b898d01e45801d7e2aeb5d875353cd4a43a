@@ -16,6 +16,75 @@
       "message": "PTAL",
       "revId": "f6336b898d01e45801d7e2aeb5d875353cd4a43a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a723e6d1_eab6cbfb",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2023-07-20T07:41:39Z",
+      "side": 1,
+      "message": "What does \u0027blocked\u0027 mean? (Blocked from / by what)",
+      "range": {
+        "startLine": 128,
+        "startChar": 28,
+        "endLine": 128,
+        "endChar": 51
+      },
+      "revId": "f6336b898d01e45801d7e2aeb5d875353cd4a43a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "04b614a7_4ae50eca",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 2102,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2023-07-20T07:41:39Z",
+      "side": 1,
+      "message": "The case `mActiveDevice \u003d\u003d null \u0026\u0026 device !\u003d null` is added - which is different from previous code. Is this okay?",
+      "range": {
+        "startLine": 2102,
+        "startChar": 25,
+        "endLine": 2102,
+        "endChar": 62
+      },
+      "revId": "f6336b898d01e45801d7e2aeb5d875353cd4a43a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5bf3cad9_0bb2dd1c",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 2285,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2023-07-20T07:41:39Z",
+      "side": 1,
+      "message": "How about mUninterestedFallbackDevice?",
+      "range": {
+        "startLine": 2285,
+        "startChar": 30,
+        "endLine": 2285,
+        "endChar": 52
+      },
+      "revId": "f6336b898d01e45801d7e2aeb5d875353cd4a43a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
