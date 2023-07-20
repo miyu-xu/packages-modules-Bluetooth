@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c5af2b7d_df720ca4",
+        "filename": "system/btif/Android.bp",
+        "patchSetId": 18
+      },
+      "lineNbr": 569,
+      "author": {
+        "id": 1985260
+      },
+      "writtenOn": "2023-07-20T06:33:05Z",
+      "side": 1,
+      "message": "Acknowledged and Done",
+      "parentUuid": "739505ed_f2ac19b3",
+      "range": {
+        "startLine": 569,
+        "startChar": 10,
+        "endLine": 569,
+        "endChar": 21
+      },
+      "revId": "503d38d0c2e8726f67306baa09df26d8a7cb1869",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ce07c12f_65b60412",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f2ce2151_9f592ae1",
+        "filename": "system/stack/btm/btm_inq.cc",
+        "patchSetId": 18
+      },
+      "lineNbr": 273,
+      "author": {
+        "id": 1985260
+      },
+      "writtenOn": "2023-07-20T06:33:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ce07c12f_65b60412",
+      "range": {
+        "startLine": 269,
+        "startChar": 1,
+        "endLine": 273,
+        "endChar": 3
+      },
+      "revId": "503d38d0c2e8726f67306baa09df26d8a7cb1869",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "75bacec8_b903f377",
@@ -60,6 +108,30 @@
       "writtenOn": "2023-07-19T16:31:34Z",
       "side": 1,
       "message": "```suggestion\n        const int channel_type \u003d p_ccb-\u003ep_rcb-\u003epsm \u003d\u003d BT_PSM_RFCOMM ? CHANNEL_TYPE_RFCOMM : CHANNEL_TYPE_L2CAP;\n        power_telemetry::GetInstance()-\u003eLogRxBytes(\n            channel_type, p_ccb-\u003elocal_cid, p_ccb-\u003eremote_id,\n            p_ccb-\u003ep_lcb-\u003eremote_bd_addr, package_len);\n```\n\nSame below",
+      "range": {
+        "startLine": 1386,
+        "startChar": 8,
+        "endLine": 1394,
+        "endChar": 9
+      },
+      "revId": "503d38d0c2e8726f67306baa09df26d8a7cb1869",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c41f8e17_9848e487",
+        "filename": "system/stack/l2cap/l2c_csm.cc",
+        "patchSetId": 18
+      },
+      "lineNbr": 1394,
+      "author": {
+        "id": 1985260
+      },
+      "writtenOn": "2023-07-20T06:33:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "75bacec8_b903f377",
       "range": {
         "startLine": 1386,
         "startChar": 8,
