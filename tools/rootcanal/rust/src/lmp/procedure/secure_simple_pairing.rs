@@ -964,7 +964,6 @@ mod tests {
     }
 
     #[test]
-    #[should_panic] // TODO: make the test pass
     fn passkey_entry_initiator_failure_on_responding_side() {
         let context = TestContext::new();
         let procedure = initiate;
@@ -973,7 +972,6 @@ mod tests {
     }
 
     #[test]
-    #[should_panic] // TODO: make the test pass
     fn passkey_entry_responder_failure_on_responding_side() {
         let context = TestContext::new();
         let procedure = respond;
