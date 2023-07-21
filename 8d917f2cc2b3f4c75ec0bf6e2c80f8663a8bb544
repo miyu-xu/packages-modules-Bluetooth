@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "60f17a28_25179f25",
+        "filename": "system/bta/le_audio/le_audio_set_configuration_provider_json.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 302,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2023-07-21T17:56:06Z",
+      "side": 1,
+      "message": "We already have `HOST`, `ADSP` and `CONTROLLER` defined so we should handle all three here.",
+      "range": {
+        "startLine": 302,
+        "startChar": 4,
+        "endLine": 302,
+        "endChar": 5
+      },
+      "revId": "8d917f2cc2b3f4c75ec0bf6e2c80f8663a8bb544",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
