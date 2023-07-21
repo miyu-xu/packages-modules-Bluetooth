@@ -69,6 +69,30 @@
       },
       "revId": "5ceefec5c825e02bfc927806da8660b1619d07ac",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1a3700c2_b4307f4d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-07-21T20:53:23Z",
+      "side": 1,
+      "message": "It seems ``` m aosp_raven-userdebug ``` will start build but will fail.\n\nMostly intended shorthand for full platform build (i.e. envsetup, lunch, m).\n\nUpdated to a more clear target.",
+      "parentUuid": "fa58bd68_41c7decc",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 28
+      },
+      "revId": "5ceefec5c825e02bfc927806da8660b1619d07ac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
