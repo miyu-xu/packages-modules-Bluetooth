@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4faea037_fd510bb1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-07-21T21:03:50Z",
+      "side": 1,
+      "message": "I do not think that is what was intended.\n\nPutting `m foo` here only means that this is a build change, which it is not.\nThe CL that added the feature was mentioning `Test: atest pts-bot?`\nWhich is a bit more correct because it assume this behavior should be covered by the `pts-bot`, while the `?` is saying that he had no ideas if indeed it was covered or not.\n\nSo what you want here is `Test: None` and fill an exemption on why this cannot be tested",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 30
+      },
+      "revId": "0b9a278176e507fb7932398e0d0a1e558aa6a27e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
