@@ -2326,6 +2326,14 @@ public class HeadsetStateMachine extends StateMachine {
         mSystemInterface.getHeadsetPhoneState().listenForPhoneState(mDevice, events);
     }
 
+
+	 boolean isDeviceBlacklistedForSendingCallIndsBackToBack() {
+        boolean matched = InteropUtil.interopMatchAddrOrName(
+            InteropUtil.InteropFeature.INTEROP_HFP_SEND_CALL_INDICATORS_BACK_TO_BACK,
+            mDevice.getAddress());
+        Log.w(TAG, "IOT: INTEROP_HFP_SEND_CALL_INDICATORS_BACK_TO_BACK");
+        return matched;
+    }
     @Override
     protected void log(String msg) {
         if (DBG) {
