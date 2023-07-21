@@ -45,6 +45,30 @@
       },
       "revId": "5ceefec5c825e02bfc927806da8660b1619d07ac",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fa58bd68_41c7decc",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-07-21T20:40:39Z",
+      "side": 1,
+      "message": "Discussed offline with Christine, TIL that `m aosp_raven-userdebug` is a valid command if you don\u0027t run `launch`",
+      "parentUuid": "be16a805_04622190",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 28
+      },
+      "revId": "5ceefec5c825e02bfc927806da8660b1619d07ac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
