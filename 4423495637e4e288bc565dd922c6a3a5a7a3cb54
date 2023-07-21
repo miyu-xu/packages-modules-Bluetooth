@@ -16,6 +16,24 @@
       "message": "I don\u0027t understand the description. Is this is what you mean here?\n\"If a second connect request is received for a peripheral device before the previous request for the same device is concluded, it is treated as successful. This may clear the timer tracking the original connection attempt. Thus the original connection attempt is never abandoned. If the peripheral device is not available, the connection attempt never really concludes.\"",
       "revId": "4423495637e4e288bc565dd922c6a3a5a7a3cb54",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7b33484a_fda0453d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1965943
+      },
+      "writtenOn": "2023-07-21T01:21:33Z",
+      "side": 1,
+      "message": "Yes, you are right.",
+      "parentUuid": "167d8dc8_d4e6c345",
+      "revId": "4423495637e4e288bc565dd922c6a3a5a7a3cb54",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
