@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "167aedec_87ed9808",
+        "filename": "android/app/src/com/android/bluetooth/gatt/AppScanStats.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 487,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-07-21T20:18:56Z",
+      "side": 1,
+      "message": "why this method has a synchronized but recordScanAppCountMetricsStop or recordScanAppCountMetricsStart doesn\u0027t ?\n\nIs this just for `sIsScreenOn` or is there something else ? (do we need to lock for metrics interraction for example ?)",
+      "range": {
+        "startLine": 487,
+        "startChar": 16,
+        "endLine": 487,
+        "endChar": 47
+      },
+      "revId": "b5ec1c1454270ebdb08d4a2750e7f1567f96c8b1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "eadeb504_6d13418b",
         "filename": "android/app/src/com/android/bluetooth/gatt/AppScanStats.java",
         "patchSetId": 2
@@ -38,6 +61,30 @@
       "side": 1,
       "message": "The instance of MetricsLogger could be substituted by setInstanceForTesting() in unit test cases. I feel better to receive the instance every time.",
       "parentUuid": "eadeb504_6d13418b",
+      "range": {
+        "startLine": 489,
+        "startChar": 12,
+        "endLine": 489,
+        "endChar": 39
+      },
+      "revId": "b5ec1c1454270ebdb08d4a2750e7f1567f96c8b1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "28db242b_319aa7ff",
+        "filename": "android/app/src/com/android/bluetooth/gatt/AppScanStats.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 489,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-07-21T20:18:56Z",
+      "side": 1,
+      "message": "It should not be changed while you are inside `recordBatchScanRadioResultCount`, and if it was I would expect the test to fail.\n\nTo be clear, my comment was not about a static instance of MetricsLogger, just a local variable that you set at the beginning of the method to not have to repeat the call again and again\n\nLike this:\n```\nstatic void recordBatchScanRadioResultCount(int numRecords) {\n        synchronized (sLock) {\n            MetricsLogger logger \u003d MetricsLogger.getInstance()\n            logger.cacheCount(BluetoothProtoEnums.LE_SCAN_RESULTS_COUNT_BATCH_BUNDLE, 1);\n            logger.cacheCount(BluetoothProtoEnums.LE_SCAN_RESULTS_COUNT_BATCH, numRecords);\n            if (sIsScreenOn) {\n                logger.cacheCount(\n                                BluetoothProtoEnums.LE_SCAN_RESULTS_COUNT_BATCH_BUNDLE_SCREEN_ON,\n                                1);\n                logger.cacheCount(\n                                BluetoothProtoEnums.LE_SCAN_RESULTS_COUNT_BATCH_SCREEN_ON,\n                                numRecords);\n            } else {\n                logger.cacheCount(\n                                BluetoothProtoEnums.LE_SCAN_RESULTS_COUNT_BATCH_BUNDLE_SCREEN_OFF,\n                                1);\n                logger.cacheCount(\n                                BluetoothProtoEnums.LE_SCAN_RESULTS_COUNT_BATCH_SCREEN_OFF,\n                                numRecords);\n            }\n        }\n    }\n```",
+      "parentUuid": "847cb96a_091d9497",
       "range": {
         "startLine": 489,
         "startChar": 12,
