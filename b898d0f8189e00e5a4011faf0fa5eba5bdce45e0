@@ -49,6 +49,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "300e69c5_a995d74e",
+        "filename": "system/osi/src/stack_power_telemetry.cc",
+        "patchSetId": 20
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2023-07-21T06:40:33Z",
+      "side": 1,
+      "message": "```\n  if (started) {\n    ldc.adv_list.emplace_back(AdvDetails{.start_time_stamp \u003d GetCurrentTimeString()});\n  } else {\n    if (ldc.adv_list.empty()) {\n      LOG_WARN(\"Empty advList. Skip LogBleAdvDetails.\");\n      return;\n    }\n    ldc.adv_list.back().end_time_stamp \u003d GetCurrentTimeString();\n  }\n```",
+      "parentUuid": "b899ed67_acea43dc",
+      "range": {
+        "startLine": 97,
+        "startChar": 4,
+        "endLine": 100,
+        "endChar": 40
+      },
+      "revId": "b898d0f8189e00e5a4011faf0fa5eba5bdce45e0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "df2740de_72ede08c",
         "filename": "system/osi/src/stack_power_telemetry.cc",
         "patchSetId": 20
