@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "313dd31b_2170d910",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1380243
+      },
+      "writtenOn": "2023-07-21T17:36:45Z",
+      "side": 1,
+      "message": "What is this test trying to do with these pointers? I\u0027ve refactored to make it a bit clearer what\u0027s going on, but it still doesn\u0027t make much sense.",
+      "revId": "0e9c9081e7dbf1332b049467fa60a99373ee67ff",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
