@@ -22,6 +22,30 @@
       },
       "revId": "0b9a278176e507fb7932398e0d0a1e558aa6a27e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9c6fedba_6bad3b5b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-07-21T21:07:24Z",
+      "side": 1,
+      "message": "As this CL removes a flag, IMO it doesn\u0027t require specific testing.",
+      "parentUuid": "4faea037_fd510bb1",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 30
+      },
+      "revId": "0b9a278176e507fb7932398e0d0a1e558aa6a27e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
