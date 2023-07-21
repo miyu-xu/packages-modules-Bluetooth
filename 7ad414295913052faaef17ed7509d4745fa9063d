@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "79771af7_a7ae7861",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2023-07-21T00:58:33Z",
+      "side": 1,
+      "message": "Is changing the default value the only way to enable it? Can we enable the bluetooth.sco.swb_supported property on a specific board?",
+      "revId": "7ad414295913052faaef17ed7509d4745fa9063d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
