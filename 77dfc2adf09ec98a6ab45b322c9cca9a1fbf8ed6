@@ -16,6 +16,24 @@
       "message": "Hi Sungsoo, please try some abtd run if avatar is passing to be sure we are not breaking avatar. Thanks 😊",
       "revId": "77dfc2adf09ec98a6ab45b322c9cca9a1fbf8ed6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7a081e78_c3014bfc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-07-21T03:15:36Z",
+      "side": 1,
+      "message": "What is the ab command to run avatar tests ?\nI started one with `atest avatar` is it ok ?",
+      "parentUuid": "c5d08af9_58f129f9",
+      "revId": "77dfc2adf09ec98a6ab45b322c9cca9a1fbf8ed6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
