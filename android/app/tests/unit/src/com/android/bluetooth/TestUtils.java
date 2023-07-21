@@ -15,7 +15,6 @@
  */
 package com.android.bluetooth;
 
-import static com.google.common.truth.Truth.assertThat;
 import static com.google.common.truth.Truth.assertWithMessage;
 
 import static org.mockito.ArgumentMatchers.eq;
@@ -41,6 +40,9 @@ import com.android.bluetooth.btservice.AdapterService;
 import com.android.bluetooth.btservice.ProfileService;
 
 import org.junit.Assert;
+import org.junit.rules.TestRule;
+import org.junit.runner.Description;
+import org.junit.runners.model.Statement;
 import org.mockito.ArgumentCaptor;
 import org.mockito.internal.util.MockUtil;
 
@@ -410,6 +412,9 @@ public class TestUtils {
         sSystemScreenOffTimeout =
                 device.executeShellCommand("settings get system screen_off_timeout");
         device.executeShellCommand("settings put system screen_off_timeout 30000");
+
+        // Back to home screen, in case some dialog/activity is in front
+        UiDevice.getInstance(InstrumentationRegistry.getInstrumentation()).pressHome();
     }
 
     public static void tearDownUiTest() throws Exception {
@@ -425,6 +430,49 @@ public class TestUtils {
         // restore screen_off_timeout
         device.executeShellCommand("settings put system screen_off_timeout "
                 + sSystemScreenOffTimeout);
+    }
+
+    public static class RetryTestRule implements TestRule {
+        private int retryCount = 3;
+
+        public RetryTestRule() {
+            this(3);
+        }
+
+        public RetryTestRule(int retryCount) {
+            this.retryCount = retryCount;
+        }
+
+        public Statement apply(Statement base, Description description) {
+            return statement(base, description);
+        }
+
+        private Statement statement(final Statement base, final Description description) {
+            return new Statement() {
+                @Override
+                public void evaluate() throws Throwable {
+                    Throwable caughtThrowable = null;
+
+                    // implement retry logic here
+                    for (int i = 0; i < retryCount; i++) {
+                        try {
+                            base.evaluate();
+                            return;
+                        } catch (Throwable t) {
+                            caughtThrowable = t;
+                            System.err.println(
+                                    description.getDisplayName() + ": run " + (i + 1) + " failed");
+                        }
+                    }
+                    System.err.println(
+                            description.getDisplayName()
+                                    + ": giving up after "
+                                    + retryCount
+                                    + " failures");
+                    throw caughtThrowable;
+                }
+            };
+        }
     }
 
     /**
