@@ -43,7 +43,7 @@ class L2cap(val context: Context) : L2CAPImplBase(), Closeable {
 
     init {
         // Init the CoroutineScope
-        scope = CoroutineScope(Dispatchers.Default.limitedParallelism(1))
+        scope = CoroutineScope(Dispatchers.Default)
     }
 
     override fun close() {

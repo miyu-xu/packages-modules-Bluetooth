@@ -82,7 +82,7 @@ fun shell(cmd: String): String {
  * @return cold flow.
  */
 @kotlinx.coroutines.ExperimentalCoroutinesApi
-fun intentFlow(context: Context, intentFilter: IntentFilter, scope: CoroutineScope) = callbackFlow {
+fun intentFlow(context: Context, intentFilter: IntentFilter) = callbackFlow {
     val broadcastReceiver: BroadcastReceiver =
         object : BroadcastReceiver() {
             override fun onReceive(context: Context, intent: Intent) {
@@ -94,9 +94,7 @@ fun intentFlow(context: Context, intentFilter: IntentFilter, scope: CoroutineSco
                     waitedAclConnection.remove(intent.getBluetoothDeviceExtra())
                     waitedAclDisconnection.add(intent.getBluetoothDeviceExtra())
                 }
-                scope.launch {
-                    trySendBlocking(intent)
-                }
+                trySendBlocking(intent)
             }
         }
     context.registerReceiver(broadcastReceiver, intentFilter)
