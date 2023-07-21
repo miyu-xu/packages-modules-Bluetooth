@@ -46,6 +46,30 @@
       },
       "revId": "0b9a278176e507fb7932398e0d0a1e558aa6a27e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "94377995_ab6045d6",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-07-21T21:09:27Z",
+      "side": 1,
+      "message": "Ack, my comment would have been more appropriate on the initial CL but I cannot go back in time 😊",
+      "parentUuid": "9c6fedba_6bad3b5b",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 30
+      },
+      "revId": "0b9a278176e507fb7932398e0d0a1e558aa6a27e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
