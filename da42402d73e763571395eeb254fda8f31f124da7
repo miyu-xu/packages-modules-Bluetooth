@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "22f4cf96_04354bac",
+        "filename": "system/bta/le_audio/codec_manager.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2023-07-21T17:52:14Z",
+      "side": 1,
+      "message": "Ooops, for the disabled offloader we will exit at line #80 and this will not be called but should. Eventually we want to move the configuration provider logic into the Codec Manager, since these configurations are depend either on software platform or hw offloader codec capabilities.",
+      "range": {
+        "startLine": 99,
+        "startChar": 4,
+        "endLine": 99,
+        "endChar": 58
+      },
+      "revId": "da42402d73e763571395eeb254fda8f31f124da7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
