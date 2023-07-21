@@ -16,6 +16,24 @@
       "message": "Would this also work for outgoing calls?",
       "revId": "124275dbdab6d4f659546432b48c85ada702b8cb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "412725e6_0530ecec",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 4641,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2023-07-21T17:45:22Z",
+      "side": 1,
+      "message": "No. From my observations for outgoing calls we go straight to CONVERSATIONAL when the call is originated, since the microphone is opened right from the start. And this seem to work fine. Only for the incoming calls, the microphone is opened after we accept the call and we get the RINGTONE first.",
+      "parentUuid": "2cc0f45a_090da904",
+      "revId": "124275dbdab6d4f659546432b48c85ada702b8cb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
