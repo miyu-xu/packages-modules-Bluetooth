@@ -22,6 +22,30 @@
       },
       "revId": "b5ec1c1454270ebdb08d4a2750e7f1567f96c8b1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "847cb96a_091d9497",
+        "filename": "android/app/src/com/android/bluetooth/gatt/AppScanStats.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 489,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2023-07-21T17:35:02Z",
+      "side": 1,
+      "message": "The instance of MetricsLogger could be substituted by setInstanceForTesting() in unit test cases. I feel better to receive the instance every time.",
+      "parentUuid": "eadeb504_6d13418b",
+      "range": {
+        "startLine": 489,
+        "startChar": 12,
+        "endLine": 489,
+        "endChar": 39
+      },
+      "revId": "b5ec1c1454270ebdb08d4a2750e7f1567f96c8b1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
