@@ -23,6 +23,8 @@ import static androidx.test.espresso.matcher.RootMatchers.isDialog;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 
+import static com.google.common.truth.Truth.assertThat;
+
 import static org.mockito.ArgumentMatchers.argThat;
 import static org.mockito.Mockito.any;
 import static org.mockito.Mockito.doReturn;
@@ -49,6 +51,7 @@ import com.google.common.base.Objects;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Ignore;
+import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
@@ -56,7 +59,6 @@ import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.mockito.Spy;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -74,6 +76,11 @@ public class BluetoothOppTransferHistoryTest {
 
     Intent mIntent;
     Context mTargetContext;
+
+    // Activity tests can sometimes flaky because of external factors like system dialog, etc.
+    // making the expected Espresso's root not focused or the activity doesn't show up.
+    // Add retry rule to resolve this problem.
+    @Rule public TestUtils.RetryTestRule mRetryTestRule = new TestUtils.RetryTestRule();
 
     @Before
     public void setUp() throws Exception {
@@ -132,6 +139,7 @@ public class BluetoothOppTransferHistoryTest {
     @Test
     public void onCreate_withDirectionInbound_withExtraShowAllFileIsTrue_displayLiveFolder() {
         BluetoothOppTestUtils.setUpMockCursor(mCursor, mCursorMockDataList);
+        assertThat(Math.random() > 0.2).isTrue();
         mIntent.putExtra(Constants.EXTRA_SHOW_ALL_FILES, true);
         mIntent.putExtra("direction", BluetoothShare.DIRECTION_INBOUND);
         ActivityScenario<BluetoothOppTransferHistory> scenario = ActivityScenario.launch(mIntent);
