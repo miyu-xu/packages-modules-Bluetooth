@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dd3d9961_2abd3a46",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 22
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1956321
+      },
+      "writtenOn": "2023-07-21T14:50:56Z",
+      "side": 1,
+      "message": "I spent time investigating the windows failure, and I am able to reproduce the error on my local window machine.\n\nIt seems the generated `link_layer_packets.h` file needs to forward declare the class which is a friend of a the class before the class is defined, so that it has a well defined scope.\n\nI verified that it\u0027s built successfully by modifying `link_layer_packets.h` to forward declaring all the friend classes of `LinkLayerPacketView` first.\n\n I assume we need to update `link_layer_packets.pdl` or update the PDL generator. I am not sure how to update the generated `link_layer_packets.h` file. If you need help developing on Windows, please feel free to reach out to me.\n\nReference\nhttps://stackoverflow.com/questions/34376316/vs2015-update-1-bug-or-bad-c-why-cant-a-friend-class-access-its-friends-pr",
+      "revId": "28f66edc0af772812d9d87d76ea9eed10a1ef813",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
