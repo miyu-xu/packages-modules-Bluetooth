@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "be481ee8_287d9b60",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-07-21T14:15:34Z",
+      "side": 1,
+      "message": "```\npackages/modules/Bluetooth/android/app/src/com/android/bluetooth/bass_client/BassClientService.java:1678: error: [ArrayToString] Calling toString on an array does not provide useful information\n                            + state.getBadCode()\n                                              ^\n    (see https://errorprone.info/bugpattern/ArrayToString)\n  Did you mean \u0027+ Arrays.toString(state.getBadCode())\u0027?\n  ```",
+      "revId": "09f96b3d866c83d06963e0e9c4b53f63cc84d960",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
