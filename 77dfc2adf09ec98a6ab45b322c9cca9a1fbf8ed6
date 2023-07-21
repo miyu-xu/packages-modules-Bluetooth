@@ -52,6 +52,24 @@
       "parentUuid": "7a081e78_c3014bfc",
       "revId": "77dfc2adf09ec98a6ab45b322c9cca9a1fbf8ed6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "48102ddc_03d6b00e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-07-21T20:08:24Z",
+      "side": 1,
+      "message": "Looks like the ab run started has failed because it cannot start avatar testing:\nhttps://android-build.corp.google.com/test_investigate/?invocationId\u003dI69500010180399958\u0026testResultId\u003dTR37928806182203295\u0026redirect\u003dhttp://fusion2/f8bcb231-ac96-4b3d-8af8-9f50771b9286",
+      "parentUuid": "8b5b632d_4c4a0a77",
+      "revId": "77dfc2adf09ec98a6ab45b322c9cca9a1fbf8ed6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
