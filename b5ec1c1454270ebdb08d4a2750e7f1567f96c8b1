@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eadeb504_6d13418b",
+        "filename": "android/app/src/com/android/bluetooth/gatt/AppScanStats.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 489,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-07-21T00:55:35Z",
+      "side": 1,
+      "message": "Would it be cleaner to store a local instance of the `MetricsLogger.getInstance()` ?",
+      "range": {
+        "startLine": 489,
+        "startChar": 12,
+        "endLine": 489,
+        "endChar": 39
+      },
+      "revId": "b5ec1c1454270ebdb08d4a2750e7f1567f96c8b1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
