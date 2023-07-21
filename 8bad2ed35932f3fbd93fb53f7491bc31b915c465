@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e3f78a36_4feb9eb6",
+        "filename": "system/stack/l2cap/l2c_api.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 1326,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2023-07-21T17:27:46Z",
+      "side": 1,
+      "message": "We can check the connecting state in the l2cu_initialize_fixed_ccb() before cancelling the timer. That would ensure that the current request is not outright rejected and the previous request is not forgotten. If the ACL gets established the both requests would succeed.\nCurrent change will always reject the second channel connect request if the ACL connection request was pending.\nWhat do you think about that?",
+      "revId": "8bad2ed35932f3fbd93fb53f7491bc31b915c465",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
