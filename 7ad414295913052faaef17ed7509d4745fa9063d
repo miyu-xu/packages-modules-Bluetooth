@@ -16,6 +16,23 @@
       "message": "Is changing the default value the only way to enable it? Can we enable the bluetooth.sco.swb_supported property on a specific board?",
       "revId": "7ad414295913052faaef17ed7509d4745fa9063d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "37c8fe01_22c39d73",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2023-07-21T03:22:19Z",
+      "side": 1,
+      "message": "Let\u0027s do this and move the control to Chrome flag only. thanks.",
+      "revId": "7ad414295913052faaef17ed7509d4745fa9063d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
