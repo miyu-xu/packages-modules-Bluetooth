@@ -3,6 +3,40 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "85b43235_e6d778e0",
+        "filename": "system/stack/btm/btm_int_types.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-07-22T01:15:06Z",
+      "side": 1,
+      "message": "I guess this must be included for GTEST_FRIEND to work in production code",
+      "revId": "aaeee06568b266810b009eae7d1836bf44d44f3f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "94db9161_12ee2bcf",
+        "filename": "system/stack/btm/btm_int_types.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 406,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-07-22T01:15:06Z",
+      "side": 1,
+      "message": "Good to see you got FRIENDs working",
+      "revId": "aaeee06568b266810b009eae7d1836bf44d44f3f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "85d69a8c_6a683cd7",
         "filename": "system/stack/btm/btm_scn.cc",
         "patchSetId": 4
