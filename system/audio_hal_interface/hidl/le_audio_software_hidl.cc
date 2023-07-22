@@ -175,8 +175,22 @@ void LeAudioTransport::MetadataChanged(
     LOG(WARNING) << ", invalid number of metadata changed tracks";
     return;
   }
+  std::vector<playback_track_metadata_v7> tracks_vec;
+  tracks_vec.reserve(track_count);
+  for (size_t i = 0; i < track_count; i++) {
+    tracks_vec.push_back({
+        .base =
+            {
+                .gain = source_metadata.tracks[i].gain,
+                .content_type = source_metadata.tracks[i].content_type,
+                .usage = source_metadata.tracks[i].usage,
+            },
+    });
+  }
+  const source_metadata_v7_t source_metadata_v7 = {
+      .track_count = tracks_vec.size(), .tracks = tracks_vec.data()};
 
-  stream_cb_.on_metadata_update_(source_metadata);
+  stream_cb_.on_metadata_update_(source_metadata_v7);
 }
 
 void LeAudioTransport::ResetPresentationPosition() {
