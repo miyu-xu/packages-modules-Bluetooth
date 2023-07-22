@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "896e570f_5925825e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 2026099
+      },
+      "writtenOn": "2023-07-22T08:07:43Z",
+      "side": 1,
+      "message": "get off my shit",
+      "revId": "c568ea85b99758804ac01b5c66a557655e0a6f0c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
