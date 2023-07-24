@@ -34,6 +34,24 @@
       "parentUuid": "e3f78a36_4feb9eb6",
       "revId": "8bad2ed35932f3fbd93fb53f7491bc31b915c465",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5ea11187_03623db1",
+        "filename": "system/stack/l2cap/l2c_api.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 1326,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2023-07-24T16:29:06Z",
+      "side": 1,
+      "message": "With the current patch, if GATT and SMP request connection before ACL was established, the second request will be rejected.",
+      "parentUuid": "3b63c336_cded1699",
+      "revId": "8bad2ed35932f3fbd93fb53f7491bc31b915c465",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
