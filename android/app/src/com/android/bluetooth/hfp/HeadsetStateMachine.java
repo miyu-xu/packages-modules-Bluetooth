@@ -2326,6 +2326,15 @@ public class HeadsetStateMachine extends StateMachine {
         mSystemInterface.getHeadsetPhoneState().listenForPhoneState(mDevice, events);
     }
 
+
+    boolean isConnectedDeviceBlacklistedforRetrySco() {
+       boolean matched = InteropUtil.interopMatchAddrOrName(
+           InteropUtil.InteropFeature.INTEROP_RETRY_SCO_AFTER_REMOTE_REJECT_SCO,
+           mDevice.getAddress());
+	   Log.w(TAG, "IOT: INTEROP_RETRY_SCO_AFTER_REMOTE_REJECT_SCO");
+       return matched;
+    }
+
     @Override
     protected void log(String msg) {
         if (DBG) {
