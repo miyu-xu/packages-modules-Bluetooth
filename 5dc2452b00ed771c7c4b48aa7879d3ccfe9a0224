@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "865b8308_abfbc747",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-07-24T23:32:28Z",
+      "side": 1,
+      "message": "This is a large change (1k lines) -- can you give some guidance on how to review? There\u0027s a lot of new code in `common.py` -- would appreciate some pointers on call flow so I can follow along",
+      "revId": "5dc2452b00ed771c7c4b48aa7879d3ccfe9a0224",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "643ae77f_6a5d35c2",
+        "filename": "floss/pandora/floss/utils.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 345,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-07-24T23:32:28Z",
+      "side": 1,
+      "message": "Prefer to use string format to improve readability\n```\n# Format\n\"{}:{}:{}:{}:{}:{}\".format(address[:2], address[2:4], ...)\n```",
+      "revId": "5dc2452b00ed771c7c4b48aa7879d3ccfe9a0224",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5e00ab68_32abf42c",
+        "filename": "floss/pandora/floss/utils.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 386,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-07-24T23:32:28Z",
+      "side": 1,
+      "message": "Recommend putting these into a uuid helper class or methods with `from_uuid16` and `from_uuid32` within (static methods if class). I think these will be re-used in the future.",
+      "revId": "5dc2452b00ed771c7c4b48aa7879d3ccfe9a0224",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c2925d82_e585d434",
+        "filename": "floss/pandora/floss/utils.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 421,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-07-24T23:32:28Z",
+      "side": 1,
+      "message": "What is this `0x00e0` value? Please use a constant and document it.",
+      "revId": "5dc2452b00ed771c7c4b48aa7879d3ccfe9a0224",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
