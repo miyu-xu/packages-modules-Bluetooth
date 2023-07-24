@@ -122,6 +122,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ff8a177d_5824ee55",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-07-24T16:43:49Z",
+      "side": 1,
+      "message": "\u003e Are you aware of any devices that this would impact?\n\nNot explicitly 😞\n\nWe are adding a workaround for an IOP issue, for that we are introducing a behavior that we want to use only for a subset of all Bluetooth devices.\n\nWe cannot target precisely this subset (As we would need to explicitly target a specific Host stack implementation version and we don\u0027t have this information).\nSo instead we are trying to find a superset that encapsulate the population where the issue was found.\n\nWe don\u0027t want this superset to be too big as this means enabling this workaround for devices that don\u0027t have the issue, potentially forcing those devices to create an IOP for us, which would be very bad as it means that those correctly working devices will depend on our IOP workaround.\n\nMy issue here is that our superset is too big as `5.1` is a version that is scheduled for deprecation in 2029 and so designs can still be certified with a 5.1 Controller and might want to use EATT.\n\nI think we should reduce our superset here, a non exhaustive list of what we can use to target devices:\n- Try to read their DID records.\n- Associate this condition with a manufacturer ID.\n- Reduce the version that we target.\n- Any other identifier that we could find.\n\nHowever this mostly requires having the device in hand to look at those, and this might not be the case here. Looking at the bug it seems that the target device controller implements Bluetooth 4.2. So one step here could be to use this instead, even if IMO this is still too big, but is better.\n\nBTW reading the bug, I feel that this IOP should be done inside GATT when we try to read the `SERVER SUPPORTED FEATURES`. As any code that will try to read this attribute is likely to trigger this IOP.\n\nAlso on a side note, I think we should use the IOP database to implement this change as it would make it clearer that this is an IOP. And also it would be good if we document into the code for which devices we encountered this IOP.\n\n\u003e Here\u0027s a couple examples of similar logic:\n\nInteresting, thanks for sharing.\n\nThe GATT robust caching seems not great, but IMO less risky than here, as robust caching is mostly an optimisation and we are just disabling it and I don\u0027t see how the peer could do an IOP with us to circumvent that.\n\nAnd the SMP one is targeting a withdrawn specification version 4.1 to use a weaker security procedure, looking at the associated bug it\u0027s not perfect either but at least the population cannot grow here.\n\n(The path just under that look for 4.2, just disable a different link key derivation function, so it has very little impact.)",
+      "parentUuid": "6c5389aa_f3ff399c",
+      "range": {
+        "startLine": 11,
+        "startChar": 42,
+        "endLine": 11,
+        "endChar": 60
+      },
+      "revId": "2c2659e2c800b2d120dec471b2de203223f6ace4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "49ae8632_84b67eb0",
         "filename": "/COMMIT_MSG",
         "patchSetId": 6
