@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d12523ac_045c7c97",
+        "filename": "system/stack/btm/hfp_lc3_decoder.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1587936
+      },
+      "writtenOn": "2023-07-24T13:20:40Z",
+      "side": 1,
+      "message": "This change seems unrelated, perhaps it would be best to put into a separate commit?",
+      "range": {
+        "startLine": 78,
+        "startChar": 3,
+        "endLine": 78,
+        "endChar": 45
+      },
+      "revId": "8d01547353a8b51ae1a6563fce5d3e4c0f25a537",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
