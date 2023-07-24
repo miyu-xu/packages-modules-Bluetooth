@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "58fcbbfb_70ee376d",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-07-24T18:33:10Z",
+      "side": 1,
+      "message": "What do you think about creating a new interface just for distance measurement, so that we can keep all the events and commands together?",
+      "range": {
+        "startLine": 46,
+        "startChar": 0,
+        "endLine": 46,
+        "endChar": 31
+      },
+      "revId": "3036fe78e3614e8b1ac7e4672fedebbfc7f05327",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "474dd4b7_b8ab140a",
         "filename": "system/gd/hci/distance_measurement_manager.cc",
         "patchSetId": 1
