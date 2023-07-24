@@ -56,6 +56,30 @@
       },
       "revId": "7ad414295913052faaef17ed7509d4745fa9063d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c3ecc001_ebd41029",
+        "filename": "system/stack/btm/btm_sco_hfp_hal_linux.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 317,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2023-07-24T03:16:49Z",
+      "side": 1,
+      "message": "Was thinking of the possible need to disable this (whether for testing or per-board config), but at second thought we could find another way.",
+      "parentUuid": "6f692ac2_42fb26f3",
+      "range": {
+        "startLine": 317,
+        "startChar": 36,
+        "endLine": 317,
+        "endChar": 63
+      },
+      "revId": "7ad414295913052faaef17ed7509d4745fa9063d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
