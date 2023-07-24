@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0a99daea_03b61fae",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/AdapterServiceTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 641,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-07-24T17:06:48Z",
+      "side": 1,
+      "message": "nit: fires (4 other places)",
+      "range": {
+        "startLine": 641,
+        "startChar": 70,
+        "endLine": 641,
+        "endChar": 74
+      },
+      "revId": "9fb8647301d10fdc2bcd56bc2337a39a41f8d169",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6d6703c4_e3a8aed8",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/AdapterServiceTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 645,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-07-24T17:06:48Z",
+      "side": 1,
+      "message": "nit: send",
+      "revId": "9fb8647301d10fdc2bcd56bc2337a39a41f8d169",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
