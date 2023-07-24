@@ -92,6 +92,24 @@
       "parentUuid": "b6eaf946_c68f5463",
       "revId": "d06423bb5d1621de6bffed5593209096db6fdcb5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "54ef2b81_2446b4ff",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/avrcpcontroller/BrowseNodeTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 1985170
+      },
+      "writtenOn": "2023-07-24T20:04:23Z",
+      "side": 1,
+      "message": "👍",
+      "parentUuid": "f64872b5_8babf460",
+      "revId": "d06423bb5d1621de6bffed5593209096db6fdcb5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
