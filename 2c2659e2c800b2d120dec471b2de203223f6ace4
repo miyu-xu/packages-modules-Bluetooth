@@ -210,6 +210,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "af297355_9fb46e82",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1003366
+      },
+      "writtenOn": "2023-07-24T22:44:24Z",
+      "side": 1,
+      "message": "The main problem is not whether we should check for EATT, but rather WHEN EATT should be attempted.\nIn the current bt stack version, it\u0027s the first packet right after the \"Encryption Change\" packet, before any of the SMP key change packets.\nI don\u0027t think this is the correct timing. \nAs we observe in Android 12 and iOS behavior, the correct sequence is to allow the SMP key change to finish after \"Encryption Change\", then do other ATT packets.\n\nIt\u0027s in theory possible to implement the EATT host feature on 5.0 LMP controller. But I believe in today\u0027s market people tend to have higher LMP controller version without the optional features...\nIs it safe enough to check LMP \u003e\u003d 5.0 to attemp EATT?",
+      "parentUuid": "99390424_89fa4611",
+      "revId": "2c2659e2c800b2d120dec471b2de203223f6ace4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5c880aff_62be674b",
         "filename": "system/stack/btm/btm_ble.cc",
         "patchSetId": 6
