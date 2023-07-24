@@ -43,6 +43,9 @@ struct DistanceMeasurementManager::impl {
     hci_layer_->RegisterLeEventHandler(
         hci::SubeventCode::TRANSMIT_POWER_REPORTING,
         handler_->BindOn(this, &impl::on_transmit_power_reporting));
+    hci_layer_->EnqueueCommand(
+        LeCsReadLocalSupportedCapabilitiesBuilder::Create(),
+        handler_->BindOnceOn(this, &impl::on_cs_read_local_supported_capabilities));
   }
 
   void stop() {
@@ -133,6 +136,23 @@ struct DistanceMeasurementManager::impl {
     rssi_trackers[address].alarm->Schedule(
         common::BindOnce(&impl::read_rssi_regularly, common::Unretained(this), address, frequency),
         std::chrono::milliseconds(rssi_trackers[address].frequency));
+  }
+
+  void on_cs_read_local_supported_capabilities(CommandCompleteView view) {
+    auto complete_view = LeCsReadLocalSupportedCapabilitiesCompleteView::Create(view);
+    if (!complete_view.IsValid()) {
+      LOG_WARN("Invalid LeCsReadLocalSupportedCapabilitiesComplete event");
+      // TODO handle invalid event
+      return;
+    } else if (complete_view.GetStatus() != ErrorCode::SUCCESS) {
+      std::string error_code = ErrorCodeText(complete_view.GetStatus());
+      LOG_WARN(
+          "Received LeCsReadLocalSupportedCapabilitiesComplete with error code %s",
+          error_code.c_str());
+      // TODO handle error status
+      return;
+    }
+    cs_subfeature_supported_ = complete_view.GetOptionalSubfeaturesSupported();
   }
 
   void on_read_remote_transmit_power_level_status(Address address, CommandStatusView view) {
@@ -284,6 +304,7 @@ struct DistanceMeasurementManager::impl {
   hci::AclManager* acl_manager_;
   std::unordered_map<Address, RSSITracker> rssi_trackers;
   DistanceMeasurementCallbacks* distance_measurement_callbacks_;
+  CsOptionalSubfeaturesSupported cs_subfeature_supported_;
 };
 
 DistanceMeasurementManager::DistanceMeasurementManager() {
