@@ -24,6 +24,7 @@
 #include "module.h"
 #include "os/handler.h"
 #include "os/log.h"
+#include "os/system_properties.h"
 
 namespace bluetooth {
 namespace hci {
@@ -43,6 +44,10 @@ struct DistanceMeasurementManager::impl {
     hci_layer_->RegisterLeEventHandler(
         hci::SubeventCode::TRANSMIT_POWER_REPORTING,
         handler_->BindOn(this, &impl::on_transmit_power_reporting));
+    hci_layer_->RegisterLeEventHandler(
+        hci::SubeventCode::LE_CS_READ_REMOTE_SUPPORTED_CAPABILITIES_COMPLETE,
+        handler_->BindOn(this, &impl::on_cs_read_remote_supported_capabilities_complete));
+
     hci_layer_->EnqueueCommand(
         LeCsReadLocalSupportedCapabilitiesBuilder::Create(),
         handler_->BindOnceOn(this, &impl::on_cs_read_local_supported_capabilities));
@@ -63,7 +68,7 @@ struct DistanceMeasurementManager::impl {
 
     // Remove this check if we support any connection less method
     if (connection_handle == kIllegalConnectionHandle) {
-      LOG_WARN("Can not find any LE connection");
+      LOG_WARN("Can't find any LE connection for %s", ADDRESS_TO_LOGGABLE_CSTR(address));
       distance_measurement_callbacks_->OnDistanceMeasurementStartFail(
           address, REASON_NO_LE_CONNECTION, method);
       return;
@@ -87,6 +92,42 @@ struct DistanceMeasurementManager::impl {
           rssi_trackers[address].frequency = frequency;
         }
       } break;
+      case METHOD_CS: {
+        start_distance_measurement_with_cs(address, connection_handle, frequency);
+      } break;
+    }
+  }
+
+  void start_distance_measurement_with_cs(
+      const Address& cs_remote_address, uint16_t connection_handle, uint16_t frequency) {
+    LOG_INFO(
+        "connection_handle: %d, address: %s",
+        connection_handle,
+        ADDRESS_TO_LOGGABLE_CSTR(cs_remote_address));
+    if (cs_trackers_.find(connection_handle) == cs_trackers_.end()) {
+      // Create a cs tracker with role initiator
+      cs_trackers_[connection_handle].address = cs_remote_address;
+      cs_trackers_[connection_handle].connection_handle = connection_handle;
+      // TODO check ROLE via CS config
+      cs_trackers_[connection_handle].role = CsRole::INITIATOR;
+    }
+
+    if (!cs_trackers_[connection_handle].setup_complete) {
+      cs_trackers_[connection_handle].frequency = frequency;
+      hci_layer_->EnqueueCommand(
+          LeCsReadRemoteSupportedCapabilitiesBuilder::Create(connection_handle),
+          handler_->BindOnceOn(
+              this, &impl::check_command_status<LeCsReadRemoteSupportedCapabilitiesStatusView>));
+    } else if (cs_trackers_[connection_handle].frequency != frequency) {
+      send_le_cs_create_config(connection_handle);
+    } else {
+      hci_layer_->EnqueueCommand(
+          LeCsProcedureEnableBuilder::Create(
+              connection_handle,
+              0x01,  // procedure_enable
+              0x01   // config_id
+              ),
+          handler_->BindOnceOn(this, &impl::check_command_status<LeCsProcedureEnableStatusView>));
     }
   }
 
@@ -108,7 +149,57 @@ struct DistanceMeasurementManager::impl {
           rssi_trackers.erase(address);
         }
       } break;
+      case METHOD_CS: {
+        // TODO
+      } break;
     }
+  }
+
+  void send_le_cs_create_config(uint16_t connection_handle) {
+    // TODO remove testing properties
+    uint8_t main_mode_type = os::GetSystemPropertyUint32("bluetooth.core.cs.main_mode_type", 0x02);
+    uint8_t sub_mode_type = os::GetSystemPropertyUint32("bluetooth.core.cs.sub_mode_type", 0xFF);
+    uint8_t rtt_type = os::GetSystemPropertyUint32("bluetooth.core.cs.rtt_type", 0x00);
+    uint8_t role = os::GetSystemPropertyUint32("bluetooth.core.cs.config_role", 0x00);
+    std::array<uint8_t, 10> channel_map;
+    LOG_INFO(
+        "main_mode_type %d, sub_mode_type %d", (uint16_t)main_mode_type, (uint16_t)sub_mode_type);
+    auto map_string = os::GetSystemProperty("bluetooth.core.cs.channel_map");
+    if (!map_string.has_value()) {
+      map_string = "1FFFFFFFFFFFFC7FFFFC";
+    } else if (map_string->size() != 20) {
+      LOG_INFO("Invalid length %d", (uint16_t)map_string->size());
+      map_string = "1FFFFFFFFFFFFC7FFFFC";
+    }
+    LOG_INFO("Channel map %s", map_string->c_str());
+    for (uint8_t i = 0; i < map_string->size(); i += 2) {
+      std::string substring(map_string->substr(i, 2));
+      uint16_t index = (map_string->size() - 2 - i) / 2;
+      channel_map[index] = strtol(substring.c_str(), NULL, 16);
+    }
+
+    hci_layer_->EnqueueCommand(
+        LeCsCreateConfigBuilder::Create(
+            connection_handle,
+            0x01,  // config_id
+            0x01,  // create_context
+            main_mode_type,
+            sub_mode_type,
+            0x02,      // main_mode_min_steps
+            0x05,      // main_mode_max_steps
+            0x00,      // main_mode_repetition
+            0x03,      // mode_0_steps
+            role,      // role
+            rtt_type,  // rtt_type (0 - RTT AA Only)
+            0x01,      // cs_sync_phy
+            channel_map,
+            0x01,  // channel_map_repetition
+            0x00,  // channel_selection_type
+            0x00,  // ch3c_shape
+            0x03,  // ch3c_jump
+            0x00   // companion_signal_enable
+            ),
+        handler_->BindOnceOn(this, &impl::check_command_status<LeCsCreateConfigStatusView>));
   }
 
   void read_rssi_regularly(const Address& address, uint16_t frequency) {
@@ -153,6 +244,32 @@ struct DistanceMeasurementManager::impl {
       return;
     }
     cs_subfeature_supported_ = complete_view.GetOptionalSubfeaturesSupported();
+  }
+
+  void on_cs_read_remote_supported_capabilities_complete(LeMetaEventView event) {
+    if (!event.IsValid()) {
+      LOG_INFO("Get invalid LeMetaEventView");
+      return;
+    }
+    auto event_view = LeCsReadRemoteSupportedCapabilitiesCompleteView::Create(event);
+    if (!event_view.IsValid()) {
+      LOG_INFO("Get invalid LeCsReadRemoteSupportedCapabilitiesCompleteView");
+      return;
+    }
+    uint16_t connection_handle = event_view.GetConnectionHandle();
+
+    if (cs_trackers_.find(connection_handle) == cs_trackers_.end()) {
+      // Create a cs tracker with role reflector
+      cs_trackers_[connection_handle].connection_handle = connection_handle;
+      // TODO check ROLE via CS config
+      cs_trackers_[connection_handle].role = CsRole::REFLECTOR;
+    }
+
+    if (event_view.GetOptionalSubfeaturesSupported().phase_based_ranging_ == 0x01) {
+      cs_trackers_[connection_handle].remote_support_phase_based_ranging = true;
+    }
+    // TODO
+    // send_le_cs_set_default_settings(event_view.GetConnectionHandle());
   }
 
   void on_read_remote_transmit_power_level_status(Address address, CommandStatusView view) {
@@ -291,6 +408,20 @@ struct DistanceMeasurementManager::impl {
     }
   }
 
+  template <class View>
+  void check_command_status(CommandStatusView view) {
+    auto status_view = View::Create(view);
+    if (!status_view.IsValid()) {
+      LOG_WARN("Get invalid command status event");
+      return;
+    } else if (status_view.GetStatus() != ErrorCode::SUCCESS) {
+      LOG_INFO(
+          "Got a Command status %s, status %s",
+          OpCodeText(view.GetCommandOpCode()).c_str(),
+          ErrorCodeText(status_view.GetStatus()).c_str());
+    }
+  }
+
   struct RSSITracker {
     uint16_t handle;
     uint16_t frequency;
@@ -299,10 +430,26 @@ struct DistanceMeasurementManager::impl {
     std::unique_ptr<os::Alarm> alarm;
   };
 
+  struct CsTracker {
+    Address address;
+    uint16_t connection_handle;
+    uint16_t frequency;
+    uint16_t local_counter;
+    uint16_t remote_counter;
+    CsRole role;
+    bool setup_complete = false;
+    bool config_set = false;
+    uint8_t main_mode_type;
+    uint8_t sub_mode_type;
+    CsRttType rtt_type;
+    bool remote_support_phase_based_ranging = false;
+  };
+
   os::Handler* handler_;
   hci::HciLayer* hci_layer_;
   hci::AclManager* acl_manager_;
   std::unordered_map<Address, RSSITracker> rssi_trackers;
+  std::unordered_map<uint16_t, CsTracker> cs_trackers_;
   DistanceMeasurementCallbacks* distance_measurement_callbacks_;
   CsOptionalSubfeaturesSupported cs_subfeature_supported_;
 };
