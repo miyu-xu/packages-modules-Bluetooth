@@ -52,6 +52,24 @@
       "parentUuid": "3b63c336_cded1699",
       "revId": "8bad2ed35932f3fbd93fb53f7491bc31b915c465",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c7086fce_b5228ab0",
+        "filename": "system/stack/l2cap/l2c_api.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 1326,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2023-07-24T23:33:04Z",
+      "side": 1,
+      "message": "I agree with Himanshu here. This creates a race condition where a L2CAP Fixed channel request could be denied even when we eventually do get a link setup. Ideally we should not be canceling the alarm for lcb from l2cap but since we do that when initializing a CCB we should atleast check the link state before doing so. \n\nCan we get a test case (preferably automated) to reproduce this issue more sustainably and try out multiple fixes with it?",
+      "parentUuid": "5ea11187_03623db1",
+      "revId": "8bad2ed35932f3fbd93fb53f7491bc31b915c465",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
