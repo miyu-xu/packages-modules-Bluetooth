@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3c47ae1b_02ad21c1",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/AdapterServiceTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 588,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-07-24T17:08:34Z",
+      "side": 1,
+      "message": "I don\u0027t expect it to be discoverable here...",
+      "range": {
+        "startLine": 588,
+        "startChar": 41,
+        "endLine": 588,
+        "endChar": 75
+      },
+      "revId": "371d679dd4e5b60665e5242f786d0fd8e47b4a12",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
