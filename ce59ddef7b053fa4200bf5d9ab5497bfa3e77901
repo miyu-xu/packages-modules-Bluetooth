@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5347e5e3_43506b16",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2023-07-24T23:09:45Z",
+      "side": 1,
+      "message": "The fix doesn\u0027t seem to work for me. This is how I tested it --\n1. Connected BT headset to the phone and played audio.\n2. Observe audio plays on the headset.\n3. Connect wired earphones. \n4. Audio plays on the earphone(wired).\n5. Disconnect wired earphones.\n6. Expected audio to play on the BT headset but audio was playing from the phone speaker.\n\nShouldn\u0027t the fix ensure the audio is being played from the BT headphone?",
+      "revId": "ce59ddef7b053fa4200bf5d9ab5497bfa3e77901",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
