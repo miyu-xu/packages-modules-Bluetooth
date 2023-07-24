@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "54e9c584_4abe89ab",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-07-24T17:02:10Z",
+      "side": 1,
+      "message": "nit: Remove binder tests from AdapterServiceTest\n\n?",
+      "range": {
+        "startLine": 6,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 50
+      },
+      "revId": "d2f5f7362c4f4a84555a9e3977f002ec1cd15f57",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
