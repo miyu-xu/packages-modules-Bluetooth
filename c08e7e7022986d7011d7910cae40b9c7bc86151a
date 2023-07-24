@@ -93,6 +93,30 @@
       },
       "revId": "c08e7e7022986d7011d7910cae40b9c7bc86151a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2f80d349_b43afcf5",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 277,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-07-24T16:37:23Z",
+      "side": 1,
+      "message": "Consistency is not the highest goal when you\u0027re making the code new and shiny :)",
+      "parentUuid": "5f965bad_ad90e253",
+      "range": {
+        "startLine": 277,
+        "startChar": 5,
+        "endLine": 277,
+        "endChar": 22
+      },
+      "revId": "c08e7e7022986d7011d7910cae40b9c7bc86151a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
