@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b41ecc9f_9d1c0e1e",
+        "filename": "android/app/src/com/android/bluetooth/avrcpcontroller/BrowseTree.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 340,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2023-07-24T20:24:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a5bf159_91f9fb72",
+      "range": {
+        "startLine": 340,
+        "startChar": 33,
+        "endLine": 340,
+        "endChar": 45
+      },
+      "revId": "d06423bb5d1621de6bffed5593209096db6fdcb5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cb236a42_85fdfd88",
@@ -55,6 +79,24 @@
       "side": 1,
       "message": "Both `toMediaItem()` and `getDescription()` *cannot* return null. Looking at our code, we never set, but technically _can_ have, a null `AvrcpItem` for a `BrowseNode`. Other parts of this file are written as if `mAvrcpItem` can\u0027t be null though, so its systemic.\n\nPerhaps an `Objects.requireNonNull()` in the constructor that takes _any_ `AvrcpItem` is an easy fix. I can add that while I play with a treeString test",
       "parentUuid": "cb236a42_85fdfd88",
+      "revId": "d06423bb5d1621de6bffed5593209096db6fdcb5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f8832d71_467a0e1d",
+        "filename": "android/app/src/com/android/bluetooth/avrcpcontroller/BrowseTree.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 353,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2023-07-24T20:24:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "900a867a_e4f3eccc",
       "revId": "d06423bb5d1621de6bffed5593209096db6fdcb5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -108,6 +150,24 @@
       "side": 1,
       "message": "👍",
       "parentUuid": "f64872b5_8babf460",
+      "revId": "d06423bb5d1621de6bffed5593209096db6fdcb5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a534af12_4dfb13c3",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/avrcpcontroller/BrowseNodeTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2023-07-24T20:24:04Z",
+      "side": 1,
+      "message": "I did suck it up and update the tests 😊",
+      "parentUuid": "54ef2b81_2446b4ff",
       "revId": "d06423bb5d1621de6bffed5593209096db6fdcb5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
