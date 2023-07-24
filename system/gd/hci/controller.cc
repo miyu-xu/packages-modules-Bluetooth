@@ -1042,6 +1042,20 @@ struct Controller::impl {
         return true;
       case OpCode::NONE:
         return false;
+      case OpCode::LE_CS_READ_LOCAL_SUPPORTED_CAPABILITIES:
+      case OpCode::LE_CS_READ_REMOTE_SUPPORTED_CAPABILITIES:
+      case OpCode::LE_CS_SECURITY_ENABLE:
+      case OpCode::LE_CS_SET_DEFAULT_SETTINGS:
+      case OpCode::LE_CS_CREATE_CONFIG:
+      case OpCode::LE_CS_REMOVE_CONFIG:
+      case OpCode::LE_CS_SET_CHANNEL_CLASSIFICATION:
+      case OpCode::LE_CS_PROCEDURE_ENABLE:
+      case OpCode::LE_CS_TEST:
+      case OpCode::LE_CS_TEST_END:
+      case OpCode::LE_CS_SET_PROCEDURE_PARAMETERS:
+      case OpCode::LE_CS_WRITE_REMOTE_SUPPORTED_CAPABILITIES:
+        // TODO add to OP_CODE_MAPPING list
+        return false;
     }
     return false;
   }
