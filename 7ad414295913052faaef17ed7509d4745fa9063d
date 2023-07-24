@@ -80,6 +80,30 @@
       },
       "revId": "7ad414295913052faaef17ed7509d4745fa9063d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "76f03a8f_524db171",
+        "filename": "system/stack/btm/btm_sco_hfp_hal_linux.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 317,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2023-07-24T08:00:04Z",
+      "side": 1,
+      "message": "Let\u0027s make the kill switch on CRAS config then(board level). Thanks!",
+      "parentUuid": "c3ecc001_ebd41029",
+      "range": {
+        "startLine": 317,
+        "startChar": 36,
+        "endLine": 317,
+        "endChar": 63
+      },
+      "revId": "7ad414295913052faaef17ed7509d4745fa9063d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
