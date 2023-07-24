@@ -22,6 +22,30 @@
       },
       "revId": "371d679dd4e5b60665e5242f786d0fd8e47b4a12",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "170c68c9_6f6b8273",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/AdapterServiceTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 588,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-07-24T17:38:12Z",
+      "side": 1,
+      "message": "I\u0027ll update this in follow-up CL, and will make sure it works on all target.\nThat allow me to submit this change and remove flakiness asap.\n\nAlso if there is a target that expect SCAN_MODE_CONNECTABLE_DISCOVERABLE, I would like the \"flaky fix\" to not be reverted",
+      "parentUuid": "3c47ae1b_02ad21c1",
+      "range": {
+        "startLine": 588,
+        "startChar": 41,
+        "endLine": 588,
+        "endChar": 75
+      },
+      "revId": "371d679dd4e5b60665e5242f786d0fd8e47b4a12",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
