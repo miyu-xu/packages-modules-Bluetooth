@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "26e96e9b_a56d9d51",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/AdapterServiceFactoryResetTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 414,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-07-24T16:26:02Z",
+      "side": 1,
+      "message": "I know this isn\u0027t part of this CL, but this looks odd. (Either the scan mode isn\u0027t important, or we should know which one to assert.)",
+      "range": {
+        "startLine": 414,
+        "startChar": 8,
+        "endLine": 414,
+        "endChar": 18
+      },
+      "revId": "d81ee96206cfbdc502d0ba9f4391319ba28d11ba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
