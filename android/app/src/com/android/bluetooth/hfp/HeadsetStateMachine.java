@@ -2326,6 +2326,15 @@ public class HeadsetStateMachine extends StateMachine {
         mSystemInterface.getHeadsetPhoneState().listenForPhoneState(mDevice, events);
     }
 
+
+    boolean isSCONeededImmediatelyAfterSLC() {
+        boolean matched = InteropUtil.interopMatchAddrOrName(
+            InteropUtil.InteropFeature.INTEROP_SETUP_SCO_WITH_NO_DELAY_AFTER_SLC_DURING_CALL,
+            mDevice.getAddress());
+        Log.w(TAG, "IOT: INTEROP_SETUP_SCO_WITH_NO_DELAY_AFTER_SLC_DURING_CALL");
+        return matched;
+    }
+
     @Override
     protected void log(String msg) {
         if (DBG) {
