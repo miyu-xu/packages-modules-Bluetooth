@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "241aabb9_75064d5c",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/AdapterServiceFactoryResetTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 307,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-07-24T17:04:00Z",
+      "side": 0,
+      "message": "Did you mean to have this logical change?\n\nNot On !\u003d Off",
+      "range": {
+        "startLine": 307,
+        "startChar": 47,
+        "endLine": 307,
+        "endChar": 59
+      },
+      "revId": "d2f5f7362c4f4a84555a9e3977f002ec1cd15f57",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
