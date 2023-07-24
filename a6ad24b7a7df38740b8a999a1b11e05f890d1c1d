@@ -22,6 +22,30 @@
       },
       "revId": "a6ad24b7a7df38740b8a999a1b11e05f890d1c1d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0c150703_655a90c0",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppTransferHistoryTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2023-07-24T04:42:19Z",
+      "side": 1,
+      "message": "sorry my bad, it was using it to test the flakiness",
+      "parentUuid": "67cd075d_0bfca834",
+      "range": {
+        "startLine": 142,
+        "startChar": 8,
+        "endLine": 142,
+        "endChar": 49
+      },
+      "revId": "a6ad24b7a7df38740b8a999a1b11e05f890d1c1d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
