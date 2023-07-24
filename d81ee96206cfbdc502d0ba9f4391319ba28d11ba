@@ -22,6 +22,30 @@
       },
       "revId": "d81ee96206cfbdc502d0ba9f4391319ba28d11ba",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8aa6b3cd_85d1dcbd",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/AdapterServiceFactoryResetTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 414,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-07-24T16:35:58Z",
+      "side": 1,
+      "message": "This is deleted in follow-up CL as this was a flaky part.\nI instead created a dedicated test that is currently checking the same two conditions, but I can refine it to only one value in follow-up, you are right",
+      "parentUuid": "26e96e9b_a56d9d51",
+      "range": {
+        "startLine": 414,
+        "startChar": 8,
+        "endLine": 414,
+        "endChar": 18
+      },
+      "revId": "d81ee96206cfbdc502d0ba9f4391319ba28d11ba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
