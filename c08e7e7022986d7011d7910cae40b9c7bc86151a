@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8657ed69_b1cafb76",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-07-24T16:29:58Z",
+      "side": 1,
+      "message": "nit:\nAdd a constructor with a TestLooper parameter\nPass in a Looper for testing\nAllow creation with a TestLooper",
+      "range": {
+        "startLine": 7,
+        "startChar": 16,
+        "endLine": 7,
+        "endChar": 52
+      },
+      "revId": "c08e7e7022986d7011d7910cae40b9c7bc86151a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "670b4501_9e33264d",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 277,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-07-24T16:29:58Z",
+      "side": 1,
+      "message": "nit: I thought this was deprecated.",
+      "range": {
+        "startLine": 277,
+        "startChar": 5,
+        "endLine": 277,
+        "endChar": 22
+      },
+      "revId": "c08e7e7022986d7011d7910cae40b9c7bc86151a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
