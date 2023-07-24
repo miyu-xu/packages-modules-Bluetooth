@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8fb80f26_25040e08",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-07-24T21:27:56Z",
+      "side": 1,
+      "message": "I would re-write this commit to clearly separate between what\u0027s been simply copied vs what has been changed.\n\ni.e.\n\n```\nCopied the following clients and utils from autotest_lib:\n...\n\nChanges made afterwards:\n* Merged utils into single file.\n* Linted using Google Python style.\n...\n```",
+      "revId": "f035842755aede5421a971e3fd87df058fed4766",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "be4c572f_37e7a312",
+        "filename": "floss/pandora/floss/utils.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-07-24T21:27:56Z",
+      "side": 1,
+      "message": "Please fix this WARNING reported by Check Contents: time.sleep should never be used in tests or production code - prefer event driven systems.\n\nAnalyzer Description: Validates that changes do not have prohibited expressions in them.\nOwner: ayeaye-team@google.com\n\ntime.sleep should never be used in tests or production code - prefer event driven systems.\n\n\n-----\n\nAI here is to leave a TODO in the code to fix this via event system. We probably should replace this function entirely and return an event to the caller (like a promise) once the required event occurs.",
+      "range": {
+        "startLine": 70,
+        "startChar": 8,
+        "endLine": 70,
+        "endChar": 18
+      },
+      "revId": "f035842755aede5421a971e3fd87df058fed4766",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
