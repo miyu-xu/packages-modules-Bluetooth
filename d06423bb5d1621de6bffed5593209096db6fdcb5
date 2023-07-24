@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cb236a42_85fdfd88",
+        "filename": "android/app/src/com/android/bluetooth/avrcpcontroller/BrowseTree.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 353,
+      "author": {
+        "id": 1985170
+      },
+      "writtenOn": "2023-07-24T18:27:22Z",
+      "side": 1,
+      "message": "can any of the getters (for MediaItem \u0026 Description) return null here resulting in NPE?",
+      "revId": "d06423bb5d1621de6bffed5593209096db6fdcb5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b6eaf946_c68f5463",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/avrcpcontroller/BrowseNodeTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 1985170
+      },
+      "writtenOn": "2023-07-24T18:27:22Z",
+      "side": 1,
+      "message": "nit: should it also include any additional check other than null check?",
+      "revId": "d06423bb5d1621de6bffed5593209096db6fdcb5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
