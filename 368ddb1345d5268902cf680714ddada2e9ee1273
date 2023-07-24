@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d01ba19a_f235dc3e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-07-24T18:30:55Z",
+      "side": 1,
+      "message": "Thanks for using PDL!  In general, I\u0027d like it to be a little more specific.  I stopped adding comments at this point because I think there are enough to show the general direction.",
+      "revId": "368ddb1345d5268902cf680714ddada2e9ee1273",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8864af38_64df1ead",
@@ -14,6 +31,407 @@
       "writtenOn": "2023-07-24T17:20:43Z",
       "side": 1,
       "message": "nit: These should be in order F5, F6...FB,FC",
+      "revId": "368ddb1345d5268902cf680714ddada2e9ee1273",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4f5e51de_31432703",
+        "filename": "system/gd/hci/hci_packets.pdl",
+        "patchSetId": 3
+      },
+      "lineNbr": 4872,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-07-24T18:30:55Z",
+      "side": 1,
+      "message": "companion_signal ?",
+      "revId": "368ddb1345d5268902cf680714ddada2e9ee1273",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cdf540be_44871fce",
+        "filename": "system/gd/hci/hci_packets.pdl",
+        "patchSetId": 3
+      },
+      "lineNbr": 4882,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-07-24T18:30:55Z",
+      "side": 1,
+      "message": "max_consecutive_procedures_supported (to match spec)",
+      "range": {
+        "startLine": 4882,
+        "startChar": 2,
+        "endLine": 4882,
+        "endChar": 26
+      },
+      "revId": "368ddb1345d5268902cf680714ddada2e9ee1273",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "14e56fde_5e74a356",
+        "filename": "system/gd/hci/hci_packets.pdl",
+        "patchSetId": 3
+      },
+      "lineNbr": 4885,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-07-24T18:30:55Z",
+      "side": 1,
+      "message": "Should this be one bit per field (or a struct like CsOptionalSubfeaturesSupported)?\n\nroles_supported_initator : 1,\nroles_supported_reflector : 1,\n_reserved_ : 6,\n\nSame question for optional_modes_supported and rtt_capability",
+      "range": {
+        "startLine": 4885,
+        "startChar": 20,
+        "endLine": 4885,
+        "endChar": 21
+      },
+      "revId": "368ddb1345d5268902cf680714ddada2e9ee1273",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "587334d3_cff48041",
+        "filename": "system/gd/hci/hci_packets.pdl",
+        "patchSetId": 3
+      },
+      "lineNbr": 4891,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-07-24T18:30:55Z",
+      "side": 1,
+      "message": "missing three fields here:\noptional_nadm_sounding_capability\noptional_nadm_random_capability\noptional_cs_sync_phys_supported",
+      "revId": "368ddb1345d5268902cf680714ddada2e9ee1273",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ee1c242a_863f5daf",
+        "filename": "system/gd/hci/hci_packets.pdl",
+        "patchSetId": 3
+      },
+      "lineNbr": 4901,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-07-24T18:30:55Z",
+      "side": 1,
+      "message": "connection_handle: 12,\n_reserved_ : 4,\n\n(Connection handles only have 12 meaningful bits)",
+      "range": {
+        "startLine": 4901,
+        "startChar": 2,
+        "endLine": 4901,
+        "endChar": 19
+      },
+      "revId": "368ddb1345d5268902cf680714ddada2e9ee1273",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bb40475b_99a8e2b8",
+        "filename": "system/gd/hci/hci_packets.pdl",
+        "patchSetId": 3
+      },
+      "lineNbr": 4906,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-07-24T18:30:55Z",
+      "side": 1,
+      "message": "WriteCachedRemoteSupportedCapabilities command is missing",
+      "revId": "368ddb1345d5268902cf680714ddada2e9ee1273",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3b924693_1831eadc",
+        "filename": "system/gd/hci/hci_packets.pdl",
+        "patchSetId": 3
+      },
+      "lineNbr": 4917,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-07-24T18:30:55Z",
+      "side": 1,
+      "message": "enum?\n\nANTENNA_1 \u003d 0x01,\nANTENNA_2 \u003d 0x02,\nANTENNA_3 \u003d 0x03,\nANTENNA_4 \u003d 0x04,\nANTENNAS_IN_ORDER \u003d 0xFE,\nNO_RECOMMENDATION \u003d 0xFF,",
+      "revId": "368ddb1345d5268902cf680714ddada2e9ee1273",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ed43194e_48c41bb9",
+        "filename": "system/gd/hci/hci_packets.pdl",
+        "patchSetId": 3
+      },
+      "lineNbr": 4925,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-07-24T18:30:55Z",
+      "side": 1,
+      "message": "missing ReadRemoteFaeTable command and WriteCachedRemoteFaeTable command",
+      "revId": "368ddb1345d5268902cf680714ddada2e9ee1273",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9fbfa0e3_e3bddbb5",
+        "filename": "system/gd/hci/hci_packets.pdl",
+        "patchSetId": 3
+      },
+      "lineNbr": 4928,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-07-24T18:30:55Z",
+      "side": 1,
+      "message": "0-3 maybe restrict the bits?\nconfig_id : 2,\n_reserved_ : 6,",
+      "range": {
+        "startLine": 4928,
+        "startChar": 14,
+        "endLine": 4928,
+        "endChar": 15
+      },
+      "revId": "368ddb1345d5268902cf680714ddada2e9ee1273",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "87c2539c_20ffdad3",
+        "filename": "system/gd/hci/hci_packets.pdl",
+        "patchSetId": 3
+      },
+      "lineNbr": 4929,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-07-24T18:30:55Z",
+      "side": 1,
+      "message": "One-bit setting or enum?\n\ncreate_context_using_configuration_procedure : Enable,\n\n?",
+      "range": {
+        "startLine": 4929,
+        "startChar": 19,
+        "endLine": 4929,
+        "endChar": 20
+      },
+      "revId": "368ddb1345d5268902cf680714ddada2e9ee1273",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5c41d978_5b09843d",
+        "filename": "system/gd/hci/hci_packets.pdl",
+        "patchSetId": 3
+      },
+      "lineNbr": 4930,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-07-24T18:30:55Z",
+      "side": 1,
+      "message": "enum?\n\nMODE_1 \u003d 1\nMODE_2 \u003d 2\nMODE_3 \u003d 3",
+      "range": {
+        "startLine": 4930,
+        "startChar": 19,
+        "endLine": 4930,
+        "endChar": 20
+      },
+      "revId": "368ddb1345d5268902cf680714ddada2e9ee1273",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8b54b201_0b8d2ef3",
+        "filename": "system/gd/hci/hci_packets.pdl",
+        "patchSetId": 3
+      },
+      "lineNbr": 4934,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-07-24T18:30:55Z",
+      "side": 1,
+      "message": "main_mode_repetition : 2,\n_reserved_ : 6,\n\nSame for the next line",
+      "range": {
+        "startLine": 4934,
+        "startChar": 25,
+        "endLine": 4934,
+        "endChar": 26
+      },
+      "revId": "368ddb1345d5268902cf680714ddada2e9ee1273",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "25db7a90_84a8e1a8",
+        "filename": "system/gd/hci/hci_packets.pdl",
+        "patchSetId": 3
+      },
+      "lineNbr": 4936,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-07-24T18:30:55Z",
+      "side": 1,
+      "message": "role_reflector : 1,\n_reserved_ : 7,",
+      "range": {
+        "startLine": 4936,
+        "startChar": 9,
+        "endLine": 4936,
+        "endChar": 10
+      },
+      "revId": "368ddb1345d5268902cf680714ddada2e9ee1273",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d97d4ee8_a78d91b2",
+        "filename": "system/gd/hci/hci_packets.pdl",
+        "patchSetId": 3
+      },
+      "lineNbr": 4937,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-07-24T18:30:55Z",
+      "side": 1,
+      "message": "enum?",
+      "range": {
+        "startLine": 4937,
+        "startChar": 13,
+        "endLine": 4937,
+        "endChar": 14
+      },
+      "revId": "368ddb1345d5268902cf680714ddada2e9ee1273",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1a25a182_f897cef2",
+        "filename": "system/gd/hci/hci_packets.pdl",
+        "patchSetId": 3
+      },
+      "lineNbr": 4938,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-07-24T18:30:55Z",
+      "side": 1,
+      "message": "enum?\n\nToo bad PhyType won\u0027t work because it includes CODED",
+      "range": {
+        "startLine": 4938,
+        "startChar": 16,
+        "endLine": 4938,
+        "endChar": 17
+      },
+      "revId": "368ddb1345d5268902cf680714ddada2e9ee1273",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1c0dd754_f1881840",
+        "filename": "system/gd/hci/hci_packets.pdl",
+        "patchSetId": 3
+      },
+      "lineNbr": 4941,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-07-24T18:30:55Z",
+      "side": 1,
+      "message": "channel_selection_type_3c : Enable, ?",
+      "range": {
+        "startLine": 4941,
+        "startChar": 27,
+        "endLine": 4941,
+        "endChar": 28
+      },
+      "revId": "368ddb1345d5268902cf680714ddada2e9ee1273",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a178db8d_9bca7a1a",
+        "filename": "system/gd/hci/hci_packets.pdl",
+        "patchSetId": 3
+      },
+      "lineNbr": 4942,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-07-24T18:30:55Z",
+      "side": 1,
+      "message": "enum",
+      "range": {
+        "startLine": 4942,
+        "startChar": 15,
+        "endLine": 4942,
+        "endChar": 16
+      },
+      "revId": "368ddb1345d5268902cf680714ddada2e9ee1273",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "26e215be_5a92c743",
+        "filename": "system/gd/hci/hci_packets.pdl",
+        "patchSetId": 3
+      },
+      "lineNbr": 4944,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-07-24T18:30:55Z",
+      "side": 1,
+      "message": "Enable",
+      "range": {
+        "startLine": 4944,
+        "startChar": 28,
+        "endLine": 4944,
+        "endChar": 29
+      },
+      "revId": "368ddb1345d5268902cf680714ddada2e9ee1273",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0ffe758a_c53c2e7d",
+        "filename": "system/gd/hci/hci_packets.pdl",
+        "patchSetId": 3
+      },
+      "lineNbr": 5021,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-07-24T18:30:55Z",
+      "side": 1,
+      "message": "Put after SetChannelClassifciation",
       "revId": "368ddb1345d5268902cf680714ddada2e9ee1273",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
