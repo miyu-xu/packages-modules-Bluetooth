@@ -22,6 +22,30 @@
       },
       "revId": "d2f5f7362c4f4a84555a9e3977f002ec1cd15f57",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "27a97390_43b6b01d",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/AdapterServiceFactoryResetTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 307,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-07-24T17:31:35Z",
+      "side": 0,
+      "message": "Yes, it is intended as this is what is really being tested",
+      "parentUuid": "241aabb9_75064d5c",
+      "range": {
+        "startLine": 307,
+        "startChar": 47,
+        "endLine": 307,
+        "endChar": 59
+      },
+      "revId": "d2f5f7362c4f4a84555a9e3977f002ec1cd15f57",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
