@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8864af38_64df1ead",
+        "filename": "system/gd/hci/hci_packets.pdl",
+        "patchSetId": 3
+      },
+      "lineNbr": 894,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-07-24T17:20:43Z",
+      "side": 1,
+      "message": "nit: These should be in order F5, F6...FB,FC",
+      "revId": "368ddb1345d5268902cf680714ddada2e9ee1273",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
