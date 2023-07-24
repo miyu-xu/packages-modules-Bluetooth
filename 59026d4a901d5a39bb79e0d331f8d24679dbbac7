@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1c7ddc0c_5b3b0b63",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1581454
+      },
+      "writtenOn": "2023-07-24T17:14:09Z",
+      "side": 1,
+      "message": "Metrics part lgtm. Need another expert on code logic",
+      "revId": "59026d4a901d5a39bb79e0d331f8d24679dbbac7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
