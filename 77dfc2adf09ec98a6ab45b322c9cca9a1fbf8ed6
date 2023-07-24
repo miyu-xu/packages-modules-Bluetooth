@@ -70,6 +70,24 @@
       "parentUuid": "8b5b632d_4c4a0a77",
       "revId": "77dfc2adf09ec98a6ab45b322c9cca9a1fbf8ed6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c534daee_687c5f77",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-07-24T02:14:29Z",
+      "side": 1,
+      "message": "Passed.\navatar run --mobly-std-log  --include-filter\u003dAshaTest\n\nDoes the avatar test have no failure on TOT?\nI could see some failures last week w/o this CL.",
+      "parentUuid": "48102ddc_03d6b00e",
+      "revId": "77dfc2adf09ec98a6ab45b322c9cca9a1fbf8ed6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
