@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3a5bf159_91f9fb72",
+        "filename": "android/app/src/com/android/bluetooth/avrcpcontroller/BrowseTree.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 340,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2023-07-24T18:43:14Z",
+      "side": 1,
+      "message": "Note to self: Add test",
+      "range": {
+        "startLine": 340,
+        "startChar": 33,
+        "endLine": 340,
+        "endChar": 45
+      },
+      "revId": "d06423bb5d1621de6bffed5593209096db6fdcb5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "cb236a42_85fdfd88",
         "filename": "android/app/src/com/android/bluetooth/avrcpcontroller/BrowseTree.java",
         "patchSetId": 2
@@ -20,6 +43,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "900a867a_e4f3eccc",
+        "filename": "android/app/src/com/android/bluetooth/avrcpcontroller/BrowseTree.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 353,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2023-07-24T18:43:14Z",
+      "side": 1,
+      "message": "Both `toMediaItem()` and `getDescription()` *cannot* return null. Looking at our code, we never set, but technically _can_ have, a null `AvrcpItem` for a `BrowseNode`. Other parts of this file are written as if `mAvrcpItem` can\u0027t be null though, so its systemic.\n\nPerhaps an `Objects.requireNonNull()` in the constructor that takes _any_ `AvrcpItem` is an easy fix. I can add that while I play with a treeString test",
+      "parentUuid": "cb236a42_85fdfd88",
+      "revId": "d06423bb5d1621de6bffed5593209096db6fdcb5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b6eaf946_c68f5463",
         "filename": "android/app/tests/unit/src/com/android/bluetooth/avrcpcontroller/BrowseNodeTest.java",
         "patchSetId": 2
@@ -31,6 +72,24 @@
       "writtenOn": "2023-07-24T18:27:22Z",
       "side": 1,
       "message": "nit: should it also include any additional check other than null check?",
+      "revId": "d06423bb5d1621de6bffed5593209096db6fdcb5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f64872b5_8babf460",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/avrcpcontroller/BrowseNodeTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2023-07-24T18:43:14Z",
+      "side": 1,
+      "message": "My personal stance on unit testing `toString()` is that its a pointless test. Some packages have annotations to remove this from code coverage results. BT does not.\n\nAsserting the format of the output string is more or less testing the implementation and would need to change every time we make subtle changes to the output format.\n\nChecking that it\u0027s at least not null gives us coverage, makes sure there\u0027s _something_, but doesn\u0027t require asserting the output format. I suppose I should change the test name at least if I follow through on this.\n\nIf you feel strongly, I\u0027m happy to assert the actual format though. I don\u0027t plan on updating it anytime soon and its a small task anyways.",
+      "parentUuid": "b6eaf946_c68f5463",
       "revId": "d06423bb5d1621de6bffed5593209096db6fdcb5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
