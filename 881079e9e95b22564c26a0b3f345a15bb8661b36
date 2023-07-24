@@ -1,0 +1,257 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5253bf41_37d42a7b",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-07-24T16:12:34Z",
+      "side": 1,
+      "message": "please add bug number for TODO and use the same bug number if the TODO is the same",
+      "range": {
+        "startLine": 111,
+        "startChar": 0,
+        "endLine": 111,
+        "endChar": 38
+      },
+      "revId": "881079e9e95b22564c26a0b3f345a15bb8661b36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ddaa57c0_120402ec",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-07-24T16:12:34Z",
+      "side": 1,
+      "message": "Could this be defined as enums in PDL?",
+      "range": {
+        "startLine": 127,
+        "startChar": 0,
+        "endLine": 128,
+        "endChar": 33
+      },
+      "revId": "881079e9e95b22564c26a0b3f345a15bb8661b36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cfb33a99_1b9a7a4c",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-07-24T16:12:34Z",
+      "side": 1,
+      "message": "Could you elaborate on the TODO here and attach a bug number if possible?",
+      "range": {
+        "startLine": 153,
+        "startChar": 8,
+        "endLine": 153,
+        "endChar": 15
+      },
+      "revId": "881079e9e95b22564c26a0b3f345a15bb8661b36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "24688e1b_95b8e2c0",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-07-24T16:12:34Z",
+      "side": 1,
+      "message": "Could you attach a bug number?",
+      "range": {
+        "startLine": 159,
+        "startChar": 0,
+        "endLine": 159,
+        "endChar": 37
+      },
+      "revId": "881079e9e95b22564c26a0b3f345a15bb8661b36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7ee4867b_10835a02",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-07-24T16:12:34Z",
+      "side": 1,
+      "message": "@Roopa on our policy for system properties",
+      "range": {
+        "startLine": 160,
+        "startChar": 58,
+        "endLine": 160,
+        "endChar": 90
+      },
+      "revId": "881079e9e95b22564c26a0b3f345a15bb8661b36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "742d67df_328aac4a",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-07-24T16:12:34Z",
+      "side": 1,
+      "message": "Could these constants be defined?",
+      "range": {
+        "startLine": 161,
+        "startChar": 91,
+        "endLine": 161,
+        "endChar": 95
+      },
+      "revId": "881079e9e95b22564c26a0b3f345a15bb8661b36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7489fc04_f7cc17ab",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-07-24T16:12:34Z",
+      "side": 1,
+      "message": "this is a magic number, could you elaborate on how this is defined? maybe as a constant?",
+      "range": {
+        "startLine": 169,
+        "startChar": 20,
+        "endLine": 169,
+        "endChar": 41
+      },
+      "revId": "881079e9e95b22564c26a0b3f345a15bb8661b36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "288e77fb_c5a140ca",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-07-24T16:12:34Z",
+      "side": 1,
+      "message": "are you trying to parse a hex string into a byte array? \n\nIn this case, please use\n\npackages/modules/Bluetooth/system/gd/common/strings.h\n\ncommon::FromHexString() should be able to help",
+      "range": {
+        "startLine": 174,
+        "startChar": 4,
+        "endLine": 180,
+        "endChar": 0
+      },
+      "revId": "881079e9e95b22564c26a0b3f345a15bb8661b36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "734f54a5_1637ef13",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-07-24T16:12:34Z",
+      "side": 1,
+      "message": "again, I think these should be defined in PDL",
+      "range": {
+        "startLine": 188,
+        "startChar": 0,
+        "endLine": 191,
+        "endChar": 38
+      },
+      "revId": "881079e9e95b22564c26a0b3f345a15bb8661b36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b47a800e_f43d853d",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 264,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-07-24T16:12:34Z",
+      "side": 1,
+      "message": "please add bug number for TODO",
+      "range": {
+        "startLine": 264,
+        "startChar": 9,
+        "endLine": 264,
+        "endChar": 13
+      },
+      "revId": "881079e9e95b22564c26a0b3f345a15bb8661b36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0b467416_d5a3fc85",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 271,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-07-24T16:12:34Z",
+      "side": 1,
+      "message": "add bug number for TODO",
+      "range": {
+        "startLine": 271,
+        "startChar": 0,
+        "endLine": 271,
+        "endChar": 11
+      },
+      "revId": "881079e9e95b22564c26a0b3f345a15bb8661b36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
