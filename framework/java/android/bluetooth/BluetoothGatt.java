@@ -1482,6 +1482,11 @@ public final class BluetoothGatt implements BluetoothProfile {
                 } catch (InterruptedException e) {
                 }
             }
+            if (requestStatus != BluetoothStatusCodes.SUCCESS) {
+                synchronized (mDeviceBusyLock) {
+                    mDeviceBusy = false;
+                }
+            }
         } catch (TimeoutException e) {
             Log.e(TAG, "", e);
             synchronized (mDeviceBusyLock) {
