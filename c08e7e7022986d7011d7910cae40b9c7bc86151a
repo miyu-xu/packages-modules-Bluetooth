@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "91c540e6_2a8d0ecc",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-07-24T16:33:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8657ed69_b1cafb76",
+      "range": {
+        "startLine": 7,
+        "startChar": 16,
+        "endLine": 7,
+        "endChar": 52
+      },
+      "revId": "c08e7e7022986d7011d7910cae40b9c7bc86151a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "670b4501_9e33264d",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-07-24T16:29:58Z",
       "side": 1,
       "message": "nit: I thought this was deprecated.",
+      "range": {
+        "startLine": 277,
+        "startChar": 5,
+        "endLine": 277,
+        "endChar": 22
+      },
+      "revId": "c08e7e7022986d7011d7910cae40b9c7bc86151a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5f965bad_ad90e253",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 277,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-07-24T16:33:38Z",
+      "side": 1,
+      "message": "I got no warning adding it, but you are right, I saw in some place a warning saying it is deprecated. I am not sure in what context.\n\nI will keep it for now, as it make explicit that this constructor is only called during test, and to keep consistency with how all our code is written.",
+      "parentUuid": "670b4501_9e33264d",
       "range": {
         "startLine": 277,
         "startChar": 5,
