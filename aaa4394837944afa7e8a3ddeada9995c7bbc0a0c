@@ -81,6 +81,30 @@
       },
       "revId": "aaa4394837944afa7e8a3ddeada9995c7bbc0a0c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "94d1e3dd_dc2682a8",
+        "filename": "tools/rootcanal/rust/src/lmp/procedure/secure_simple_pairing.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 725,
+      "author": {
+        "id": 1937985
+      },
+      "writtenOn": "2023-07-25T18:13:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "50ef8dd5_8e10999f",
+      "range": {
+        "startLine": 719,
+        "startChar": 0,
+        "endLine": 725,
+        "endChar": 17
+      },
+      "revId": "aaa4394837944afa7e8a3ddeada9995c7bbc0a0c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
