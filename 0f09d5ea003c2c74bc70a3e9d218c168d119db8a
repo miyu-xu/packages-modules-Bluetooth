@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fcb02c07_622482e5",
+        "filename": "system/bta/dm/bta_dm_main.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 246,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-07-25T22:32:29Z",
+      "side": 1,
+      "message": "I feel like there should be somewhere we\u0027re adding data to the history.",
+      "range": {
+        "startLine": 246,
+        "startChar": 22,
+        "endLine": 246,
+        "endChar": 40
+      },
+      "revId": "0f09d5ea003c2c74bc70a3e9d218c168d119db8a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
