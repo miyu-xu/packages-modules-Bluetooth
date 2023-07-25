@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f5281459_166fecc1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-07-25T23:05:32Z",
+      "side": 1,
+      "message": "Bypassing lint as test validation as been manually perfomed by the QA, cf b/289460863#comment47",
+      "revId": "4c18407beece5902c5184682b24df3b8ca27c5b4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
