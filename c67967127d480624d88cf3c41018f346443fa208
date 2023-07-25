@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6e1e0d8a_2479b6a8",
+        "filename": "system/audio_hal_interface/le_audio_software_host.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2023-07-25T02:03:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0463304c_958199d6",
+      "revId": "c67967127d480624d88cf3c41018f346443fa208",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "590c2e31_7ba75297",
@@ -31,6 +49,24 @@
       "writtenOn": "2023-07-11T22:51:27Z",
       "side": 1,
       "message": "Do you maybe have an old version of libchrome locally? This should not be necessary anymore.\n\nTry building with `./floss/build/build-in-container.py` (see the README there on how to build the docker image necessary for that script).",
+      "revId": "c67967127d480624d88cf3c41018f346443fa208",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3d71cab0_ec2294a4",
+        "filename": "system/include/bind.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2023-07-25T02:03:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "590c2e31_7ba75297",
       "revId": "c67967127d480624d88cf3c41018f346443fa208",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
