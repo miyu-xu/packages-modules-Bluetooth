@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "30848e29_bb3247b9",
+        "filename": "floss/pandora/floss/utils.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 425,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2023-07-25T04:41:01Z",
+      "side": 1,
+      "message": "please also check if the data has included manufacture id or it\u0027s only for data part. If it\u0027s data only and the manufacture ID is hard coded, it\u0027ll nice to leave a comment here.",
+      "range": {
+        "startLine": 424,
+        "startChar": 0,
+        "endLine": 425,
+        "endChar": 89
+      },
+      "revId": "27f8937788386396401a6c8471691d807e985080",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
