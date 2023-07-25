@@ -34,6 +34,24 @@
       "parentUuid": "4a3b22d7_8cf21b4c",
       "revId": "946d26285d8ef533be414e6c1c95dd2e91386334",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c9d99598_3e0cd107",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/bass_client/BassClientStateMachineTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1144,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-07-25T21:38:03Z",
+      "side": 0,
+      "message": "thanks, it seems to me this was a bug where assistant used to consider only external source case and rely on PA to retrieve some info. since you\u0027ve fixed it by aosp/2664903, it makes sense to correct this test case.",
+      "parentUuid": "a8887ff8_caabecca",
+      "revId": "946d26285d8ef533be414e6c1c95dd2e91386334",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
