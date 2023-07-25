@@ -234,6 +234,7 @@ class LeAdvertisingManagerFacadeService : public LeAdvertisingManagerFacade::Ser
     pending_advertiser_id_ = std::promise<AdvertiserId>();
     auto future = pending_advertiser_id_->get_future();
     le_advertising_manager_->ExtendedCreateAdvertiser(
+        0xff,
         0,
         config,
         common::Bind(&LeAdvertiser::ScanCallback, common::Unretained(&le_advertiser)),
@@ -266,6 +267,7 @@ class LeAdvertisingManagerFacadeService : public LeAdvertisingManagerFacade::Ser
     pending_advertiser_id_ = std::promise<AdvertiserId>();
     auto future = pending_advertiser_id_->get_future();
     le_advertising_manager_->ExtendedCreateAdvertiser(
+        0xff,
         0,
         config,
         common::Bind(&LeAdvertiser::ScanCallback, common::Unretained(&le_advertiser)),
