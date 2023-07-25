@@ -22,6 +22,30 @@
       },
       "revId": "27f8937788386396401a6c8471691d807e985080",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9f9861b2_71e11ff4",
+        "filename": "floss/pandora/floss/utils.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 425,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2023-07-25T04:53:23Z",
+      "side": 1,
+      "message": "This file mostly follows android\u0027s pandora server implementation.\nhost interface from android:\nhttps://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/android/pandora/server/src/Host.kt?q\u003dhost.kt\n\nFor us now the only user is PTS-bot. PTS-bot use mmi2grpc interface to call the\nBLuetooth test server.\nmmi2grpc:\nhttps://cs.android.com/android/platform/superproject/+/main:packages/modules/Bluetooth/android/pandora/mmi2grpc/mmi2grpc/\n\nmore info for PTS-bot:\nhttps://docs.google.com/document/d/1TDRiiCpetikQIAP13J8uT_eXGwcpFnclyav_z5J3OUo/edit?resourcekey\u003d0-uUqq2xn_KfsVvW_6apo_9A#heading\u003dh.ljddzha3fj7\n\nThe original interface descriptions in https://cs.android.com/android/platform/superproject/+/master:external/pandora/bt-test-interfaces/pandora/host.proto?q\u003dhost.proto may be not clear enough so I decide\nto align with android if anything is not clear.\n\nFor example:\n\"Manufacturer Specific Data\" in advertising data type is composed with:\n\nCompany Identifier Code | manufacturer specific data.\n\nIn android\u0027s implementation, manufacturer_data is the second part of the \"Manufacturer Specific Data\" according to: https://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/android/pandora/server/src/Host.kt;l\u003d562?q\u003dhost.kt. And this is unclear\nif we only look at the proto file. May be the better way is to discuss with android team to improve the proto definition in the future.",
+      "parentUuid": "30848e29_bb3247b9",
+      "range": {
+        "startLine": 424,
+        "startChar": 0,
+        "endLine": 425,
+        "endChar": 89
+      },
+      "revId": "27f8937788386396401a6c8471691d807e985080",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
