@@ -38,6 +38,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "135a83e7_cf703e8a",
+        "filename": "floss/pandora/floss/adapter_client.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2023-07-25T04:29:34Z",
+      "side": 1,
+      "message": "nit: if we can just use QA_INTERFACE, is it possible for us to stop using QA_LEGACY_INTERFACE here?",
+      "range": {
+        "startLine": 120,
+        "startChar": 3,
+        "endLine": 120,
+        "endChar": 67
+      },
+      "revId": "f035842755aede5421a971e3fd87df058fed4766",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "be4c572f_37e7a312",
         "filename": "floss/pandora/floss/utils.py",
         "patchSetId": 5
