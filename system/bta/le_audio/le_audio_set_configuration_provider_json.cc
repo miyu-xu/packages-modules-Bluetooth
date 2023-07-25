@@ -19,6 +19,7 @@
 #include <string>
 #include <string_view>
 
+#include "audio_hal_client/audio_hal_client.h"
 #include "audio_set_configurations_generated.h"
 #include "audio_set_scenarios_generated.h"
 #include "codec_manager.h"
@@ -27,6 +28,7 @@
 #include "le_audio_set_configuration_provider.h"
 #include "osi/include/log.h"
 #include "osi/include/osi.h"
+#include "osi/include/properties.h"
 
 using le_audio::set_configurations::AudioSetConfiguration;
 using le_audio::set_configurations::AudioSetConfigurations;
@@ -69,6 +71,8 @@ struct AudioSetConfigurationProviderJson {
   static constexpr auto kDefaultScenario = "Media";
 
   AudioSetConfigurationProviderJson() {
+    dual_32k_bidirection_supported_ = osi_property_get_bool(
+        "persist.bluetooth.leaudio_dual_32k_bidirection.supported", true);
     ASSERT_LOG(LoadContent(kLeAudioSetConfigs, kLeAudioSetScenarios),
                ": Unable to load le audio set configuration files.");
   }
@@ -157,6 +161,9 @@ struct AudioSetConfigurationProviderJson {
   /* Maps of context types to a set of configuration structs */
   std::map<::le_audio::types::LeAudioContextType, AudioSetConfigurations>
       context_configurations_;
+
+  /* property to check if bidirection 32k dual mic is supported or not */
+  bool dual_32k_bidirection_supported_;
 
   static const bluetooth::le_audio::CodecSpecificConfiguration*
   LookupCodecSpecificParam(
@@ -375,15 +382,22 @@ struct AudioSetConfigurationProviderJson {
     }
 
     std::vector<SetConfiguration> subconfigs;
+
+    bool one_cis_per_device_32k_sink = false;
+    bool one_cis_per_device_32k_source = false;
+    bool two_cis_per_device_32k_sink = false;
+    bool two_cis_per_device_32k_source = false;
+
     if (codec_cfg != nullptr && codec_cfg->subconfigurations()) {
       /* Load subconfigurations */
       for (auto subconfig : *codec_cfg->subconfigurations()) {
         if (subconfig->direction() == le_audio::types::kLeAudioDirectionSink) {
-          subconfigs.push_back(
-              SetConfigurationFromFlatSubconfig(subconfig, qos_sink));
+          processSubconfig(*subconfig, qos_sink, one_cis_per_device_32k_sink,
+                           two_cis_per_device_32k_sink, subconfigs);
         } else {
-          subconfigs.push_back(
-              SetConfigurationFromFlatSubconfig(subconfig, qos_source));
+          processSubconfig(*subconfig, qos_source,
+                           one_cis_per_device_32k_source,
+                           two_cis_per_device_32k_source, subconfigs);
         }
       }
     } else {
@@ -396,7 +410,34 @@ struct AudioSetConfigurationProviderJson {
       }
     }
 
+    if (!dual_32k_bidirection_supported_) {
+      if ((one_cis_per_device_32k_sink && one_cis_per_device_32k_source) ||
+          (two_cis_per_device_32k_sink && two_cis_per_device_32k_source)) {
+        return AudioSetConfiguration({flat_cfg->name()->c_str(), {}});
+      }
+    }
+
     return AudioSetConfiguration({flat_cfg->name()->c_str(), subconfigs});
+  }
+
+  void processSubconfig(
+      const bluetooth::le_audio::AudioSetSubConfiguration& subconfig,
+      const QosConfigSetting& qos_setting, bool& one_cis_per_device,
+      bool& two_cis_per_device, std::vector<SetConfiguration>& subconfigs) {
+    subconfigs.push_back(
+        SetConfigurationFromFlatSubconfig(&subconfig, qos_setting));
+
+    if (subconfigs.back().codec.GetConfigSamplingFrequency() <
+        le_audio::LeAudioCodecConfiguration::kSampleRate32000) {
+      return;
+    }
+
+    if (subconfigs.back().device_cnt == 2 && subconfigs.back().ase_cnt == 2) {
+      one_cis_per_device |= true;
+    }
+    if (subconfigs.back().device_cnt == 1 && subconfigs.back().ase_cnt == 2) {
+      two_cis_per_device |= true;
+    }
   }
 
   bool LoadConfigurationsFromFiles(const char* schema_file,
