@@ -52,6 +52,24 @@
       "parentUuid": "6ff49b98_c35e1d2a",
       "revId": "0e9c9081e7dbf1332b049467fa60a99373ee67ff",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "85677f2f_6f8a1a7f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1890456
+      },
+      "writtenOn": "2023-07-25T18:23:43Z",
+      "side": 1,
+      "message": "If I remember correctly, it is a bit hard to compare value, so we compare pointer address to make sure the functions work.",
+      "parentUuid": "df453997_c9d2fa09",
+      "revId": "0e9c9081e7dbf1332b049467fa60a99373ee67ff",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
