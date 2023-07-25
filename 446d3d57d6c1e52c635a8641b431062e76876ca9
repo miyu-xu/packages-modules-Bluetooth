@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f45f55e5_a815fc3e",
+        "filename": "system/bta/test/bta_sdp_test.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-07-25T22:30:37Z",
+      "side": 1,
+      "message": "nit: Why not inside the test body?",
+      "range": {
+        "startLine": 94,
+        "startChar": 0,
+        "endLine": 94,
+        "endChar": 29
+      },
+      "revId": "446d3d57d6c1e52c635a8641b431062e76876ca9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
