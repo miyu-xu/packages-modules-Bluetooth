@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "89653f48_78c13daf",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2023-07-25T22:09:00Z",
+      "side": 1,
+      "message": "Can you explain what this means?",
+      "range": {
+        "startLine": 10,
+        "startChar": 0,
+        "endLine": 14,
+        "endChar": 0
+      },
+      "revId": "f5730c785b20069e00da06931bccacad7fbcff09",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "406501da_30f82618",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2023-07-25T22:09:00Z",
+      "side": 1,
+      "message": "I don\u0027t think setting it LST_CONNECTING from here should be the right way to address this. I would ideally avoid the l2cap layer controlling the link state much.",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 52
+      },
+      "revId": "f5730c785b20069e00da06931bccacad7fbcff09",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
