@@ -685,6 +685,29 @@ ErrorCode LinkLayerController::LeAddDeviceToResolvingList(
          entry.peer_identity_address == peer_identity_address) ||
         entry.peer_irk == peer_irk) {
       INFO(id_, "device is already present in the resolving list");
+      for (unsigned long int i = 0; i < le_resolving_list_.size(); i++) {
+        INFO("Device {}", i);
+        auto entry = le_resolving_list_.at(i);
+        INFO("PeerAddressType: {}", entry.peer_identity_address_type);
+        INFO("Address: {}", entry.peer_identity_address);
+        std::string peer_irk;
+        for (const auto byte : entry.peer_irk) {
+          peer_irk += fmt::format("{:02x}", byte);
+        }
+        INFO("Peer Irk: {}", peer_irk);
+        std::string local_irk;
+        for (const auto byte : entry.local_irk) {
+          local_irk += fmt::format("{:02x}", byte);
+        }
+        INFO("Local Irk: {}", local_irk);
+        INFO("Privacy Mode: {}", entry.privacy_mode);
+        if (entry.local_resolvable_address.has_value()) {
+          INFO("Local Resolvable Address: {}", *entry.local_resolvable_address);
+        }
+        if (entry.peer_resolvable_address.has_value()) {
+          INFO("Peer Resolvable Address: {}", *entry.peer_resolvable_address);
+        }
+      }
       return ErrorCode::INVALID_HCI_COMMAND_PARAMETERS;
     }
   }
