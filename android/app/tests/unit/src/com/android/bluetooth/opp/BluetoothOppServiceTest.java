@@ -49,7 +49,6 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-
 @MediumTest
 @RunWith(AndroidJUnit4.class)
 public class BluetoothOppServiceTest {
@@ -90,7 +89,9 @@ public class BluetoothOppServiceTest {
         // Since the update thread is not run (we mocked it), it will not clean itself on interrupt
         // (normally, the service will wait for the update thread to clean itself after
         // being interrupted). We clean it manually here
-        mService.mUpdateThread = null;
+        if (mService != null) {
+            mService.mUpdateThread = null;
+        }
         BluetoothMethodProxy.setInstanceForTesting(null);
         TestUtils.stopService(mServiceRule, BluetoothOppService.class);
         TestUtils.clearAdapterService(mAdapterService);
@@ -188,4 +189,3 @@ public class BluetoothOppServiceTest {
                         any());
     }
 }
-
