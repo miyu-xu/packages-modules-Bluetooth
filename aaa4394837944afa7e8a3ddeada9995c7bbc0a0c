@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "52534ee1_02a69c67",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1937985
+      },
+      "writtenOn": "2023-07-25T18:09:10Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "b9cb7680_a14dd0a3",
+      "revId": "aaa4394837944afa7e8a3ddeada9995c7bbc0a0c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7b14b0cf_989a84bd",
@@ -31,6 +49,30 @@
       "writtenOn": "2023-07-25T16:22:08Z",
       "side": 1,
       "message": "Formatting looks weird?",
+      "range": {
+        "startLine": 719,
+        "startChar": 0,
+        "endLine": 725,
+        "endChar": 17
+      },
+      "revId": "aaa4394837944afa7e8a3ddeada9995c7bbc0a0c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "50ef8dd5_8e10999f",
+        "filename": "tools/rootcanal/rust/src/lmp/procedure/secure_simple_pairing.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 725,
+      "author": {
+        "id": 1937985
+      },
+      "writtenOn": "2023-07-25T18:09:10Z",
+      "side": 1,
+      "message": "`cargo fmt` actually leave it like this 😮 let me fix it manually",
+      "parentUuid": "7b14b0cf_989a84bd",
       "range": {
         "startLine": 719,
         "startChar": 0,
