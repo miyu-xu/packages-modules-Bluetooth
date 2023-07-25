@@ -70,6 +70,30 @@
       },
       "revId": "6675b0de3d2e1c84aaba046c0789ed1d7c9a7c5d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0f8ac156_d1aca829",
+        "filename": "system/stack/btm/btm_sco.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 257,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-07-25T16:21:47Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "b6649e9f_8e56fb99",
+      "range": {
+        "startLine": 257,
+        "startChar": 15,
+        "endLine": 257,
+        "endChar": 33
+      },
+      "revId": "6675b0de3d2e1c84aaba046c0789ed1d7c9a7c5d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
