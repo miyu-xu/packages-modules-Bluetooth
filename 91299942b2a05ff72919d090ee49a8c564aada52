@@ -16,6 +16,24 @@
       "message": "remove this empty line",
       "revId": "91299942b2a05ff72919d090ee49a8c564aada52",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "74a54fa6_06d1bc3e",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppTransferHistoryTest.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2023-07-25T06:27:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da65841c_89e257de",
+      "revId": "91299942b2a05ff72919d090ee49a8c564aada52",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
