@@ -573,9 +573,10 @@ struct LeAdvertisingManager::impl : public bluetooth::hci::LeAddressManagerCallb
               id,
               advertising_sets_[id].current_address));
 
-      // but we only rotate if the AdvertiserAddressType is non-public (since static random
-      // addresses don't rotate)
-      if (advertising_sets_[id].address_type != AdvertiserAddressType::PUBLIC) {
+      // but we only rotate if the AdvertiserAddressType is non-public
+      // or non-nrpa(since static random addresses don't rotate)
+      if (advertising_sets_[id].address_type != AdvertiserAddressType::PUBLIC &&
+          advertising_sets_[id].address_type != AdvertiserAddressType::NONRESOLVABLE_RANDOM) {
         // start timer for random address
         advertising_sets_[id].address_rotation_alarm = std::make_unique<os::Alarm>(module_handler_);
         advertising_sets_[id].address_rotation_alarm->Schedule(
