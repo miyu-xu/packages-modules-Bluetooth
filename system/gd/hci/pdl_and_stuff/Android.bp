@@ -1,0 +1,119 @@
+cc_library_headers {
+    name: "pdl_and_stuff_headers",
+    export_include_dirs: [
+        "include",
+    ],
+    generated_headers: [
+        "BluetoothGeneratedPackets_h",
+    ],
+    export_generated_headers: [
+        "BluetoothGeneratedPackets_h",
+    ],
+    host_supported: true,
+}
+
+cc_library_static {
+    name: "pdl_and_stuff",
+    srcs: [
+        "address.cc",
+        "class_of_device.cc",
+    ],
+    header_libs: [
+        "pdl_and_stuff_headers",
+    ],
+    export_header_lib_headers: [
+        "pdl_and_stuff_headers",
+    ],
+
+    // TODO remove this
+    // directly add the common library + the os library as a dependency that export their header_libs
+    include_dirs: [
+        "packages/modules/Bluetooth/system/gd",
+    ],
+    host_supported: true,
+}
+
+cc_library_headers {
+    name: "hci_pdl_header",
+    export_include_dirs: [
+        "include",
+    ],
+    generated_headers: [
+        "BluetoothGeneratedPacketsHci_h",
+    ],
+    export_generated_headers: [
+        "BluetoothGeneratedPacketsHci_h",
+    ],
+    host_supported: true,
+}
+
+cc_library_static {
+    name: "hci_pdl",
+    // srcs: [
+    //     "address.cc",
+    //     "class_of_device.cc",
+    // ],
+    header_libs: [
+        "hci_pdl_header",
+    ],
+    export_header_lib_headers: [
+        "hci_pdl_header",
+    ],
+
+    // TODO remove this
+    // directly add the common library + the os library as a dependency that export their header_libs
+    include_dirs: [
+        "packages/modules/Bluetooth/system/gd",
+    ],
+    host_supported: true,
+}
+
+cc_library_headers {
+    name: "l2cap_pdl_header",
+    export_include_dirs: [
+        "include",
+    ],
+    generated_headers: [
+        "BluetoothGeneratedPacketsL2cap_h",
+    ],
+    export_generated_headers: [
+        "BluetoothGeneratedPacketsL2cap_h",
+    ],
+    host_supported: true,
+}
+
+cc_library_static {
+    name: "l2cap_pdl",
+    header_libs: [
+        "l2cap_pdl_header",
+    ],
+    export_header_lib_headers: [
+        "l2cap_pdl_header",
+    ],
+    host_supported: true,
+}
+
+cc_library_headers {
+    name: "smp_pdl_header",
+    export_include_dirs: [
+        "include",
+    ],
+    generated_headers: [
+        "BluetoothGeneratedPacketsSmp_h",
+    ],
+    export_generated_headers: [
+        "BluetoothGeneratedPacketsSmp_h",
+    ],
+    host_supported: true,
+}
+
+cc_library_static {
+    name: "smp_pdl",
+    header_libs: [
+        "smp_pdl_header",
+    ],
+    export_header_lib_headers: [
+        "smp_pdl_header",
+    ],
+    host_supported: true,
+}
