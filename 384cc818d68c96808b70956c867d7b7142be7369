@@ -16,6 +16,24 @@
       "message": "This looks good. Can you add logs of the before and after of the PTS test to make sure this fix is sufficient to make the test pass?",
       "revId": "384cc818d68c96808b70956c867d7b7142be7369",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "af889ae1_b0f57350",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2023-07-25T22:15:59Z",
+      "side": 1,
+      "message": "This looks good. Can you add logs of the before and after of the PTS test to make sure this fix is sufficient to make the test pass?\n\n(re-commenting since the above was sent as a resolved comment)",
+      "parentUuid": "d4ffd1a2_4fd6ee3f",
+      "revId": "384cc818d68c96808b70956c867d7b7142be7369",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
