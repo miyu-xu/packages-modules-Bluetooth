@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fa17370e_3aea9e20",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 8
+      },
+      "lineNbr": 2152,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2023-07-25T07:05:18Z",
+      "side": 1,
+      "message": "I haven\u0027t read the code for a while. Could the `caps` has two elements of the same codec_type but with different rate/bits?\nIf we\u0027re not sure about that, then better not early return in below if clauses.",
+      "range": {
+        "startLine": 2152,
+        "startChar": 22,
+        "endLine": 2152,
+        "endChar": 34
+      },
+      "revId": "0d1d0ff444677e753f143b9f000675af7837d043",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0541fcb1_9f8baeb6",
+        "filename": "system/gd/rust/topshim/src/profiles/a2dp.rs",
+        "patchSetId": 8
+      },
+      "lineNbr": 410,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2023-07-25T07:05:18Z",
+      "side": 1,
+      "message": "Is this still used somewhere?",
+      "range": {
+        "startLine": 410,
+        "startChar": 11,
+        "endLine": 410,
+        "endChar": 27
+      },
+      "revId": "0d1d0ff444677e753f143b9f000675af7837d043",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
