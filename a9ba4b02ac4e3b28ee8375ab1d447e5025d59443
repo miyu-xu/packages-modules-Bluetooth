@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d60a4739_10e5e7a8",
+        "filename": "system/gd/hci/hci_layer_unittest.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-07-25T20:12:27Z",
+      "side": 1,
+      "message": "The name should follow the death naming scheme:\ngo/gunitadvanced#death-test-naming",
+      "range": {
+        "startLine": 157,
+        "startChar": 7,
+        "endLine": 157,
+        "endChar": 19
+      },
+      "revId": "a9ba4b02ac4e3b28ee8375ab1d447e5025d59443",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
