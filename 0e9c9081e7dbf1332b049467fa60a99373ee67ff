@@ -34,6 +34,24 @@
       "parentUuid": "313dd31b_2170d910",
       "revId": "0e9c9081e7dbf1332b049467fa60a99373ee67ff",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "df453997_c9d2fa09",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1380243
+      },
+      "writtenOn": "2023-07-25T14:41:35Z",
+      "side": 1,
+      "message": "Then why is it taking pointers to pointers on the stack, and converting them to strings and back?",
+      "parentUuid": "6ff49b98_c35e1d2a",
+      "revId": "0e9c9081e7dbf1332b049467fa60a99373ee67ff",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
