@@ -17,6 +17,32 @@ filegroup {
 }
 
 filegroup {
+    name: "BluetoothHciSources2",
+    srcs: [
+        "acl_manager.cc",
+        "acl_manager/acl_connection.cc",
+        "acl_manager/acl_fragmenter.cc",
+        "acl_manager/acl_scheduler.cc",
+        "acl_manager/classic_acl_connection.cc",
+        "acl_manager/le_acl_connection.cc",
+        "acl_manager/round_robin_scheduler.cc",
+        "controller.cc",
+        "distance_measurement_manager.cc",
+        "hci_layer.cc",
+        "hci_metrics_logging.cc",
+        "le_address_manager.cc",
+        "le_advertising_manager.cc",
+        "le_scanning_manager.cc",
+        "le_scanning_reassembler.cc",
+        "link_key.cc",
+        "msft.cc",
+        "remote_name_request.cc",
+        "uuid.cc",
+        "vendor_specific_event_manager.cc",
+    ],
+}
+
+filegroup {
     name: "BluetoothHciSources",
     srcs: [
         ":BluetoothHciPacketSources",
@@ -101,12 +127,5 @@ filegroup {
         "fuzz/fuzz_hci_layer.cc",
         "fuzz/hci_layer_fuzz_client.cc",
         "fuzz/status_vs_complete_commands.cc",
-    ],
-}
-
-filegroup {
-    name: "BluetoothHciPackets",
-    srcs: [
-        "hci_packets.pdl",
     ],
 }

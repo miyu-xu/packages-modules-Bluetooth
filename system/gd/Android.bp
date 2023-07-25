@@ -93,6 +93,95 @@ cc_defaults {
 }
 
 cc_defaults {
+    name: "libbluetooth_gd_defaults2",
+    defaults: [
+        "gd_defaults",
+    ],
+    host_supported: true,
+    target: {
+        linux: {
+            srcs: [
+                ":BluetoothBtaaSources_linux_generic",
+                ":BluetoothOsSources_linux_generic",
+            ],
+        },
+        host: {
+            srcs: [
+                ":BluetoothBtaaSources_host",
+                ":BluetoothHalSources_hci_host",
+                ":BluetoothOsSources_host",
+            ],
+        },
+        android: {
+            srcs: [
+                ":BluetoothBtaaSources_android",
+                ":BluetoothHalSources_hci_android_hidl",
+                ":BluetoothOsSources_android",
+            ],
+            shared_libs: [
+                "android.hardware.bluetooth@1.0",
+                "android.hardware.bluetooth@1.1",
+                "android.system.suspend-V1-ndk",
+                "android.system.suspend.control-V1-ndk",
+                "libbinder_ndk",
+                "libcutils",
+                "libhidlbase",
+                "libstatslog_bt",
+                "libutils",
+            ],
+            whole_static_libs: [
+                "android.hardware.bluetooth-V1-ndk",
+            ],
+        },
+    },
+    srcs: [
+        ":BluetoothAttSources",
+        ":BluetoothCommonSources",
+        ":BluetoothCryptoToolboxSources",
+        ":BluetoothDumpsysSources",
+        ":BluetoothHalSources",
+        ":BluetoothHciSources2",
+        ":BluetoothIsoSources",
+        ":BluetoothL2capSources",
+        ":BluetoothLogRedactionSources",
+        ":BluetoothMetricsSources",
+        ":BluetoothNeighborSources",
+        ":BluetoothOsSources",
+        ":BluetoothPacketSources",
+        ":BluetoothSecuritySources",
+        ":BluetoothShimSources",
+        ":BluetoothStorageSources",
+        ":BluetoothSyspropsSources",
+        "module.cc",
+        "stack_manager.cc",
+    ],
+    generated_headers: [
+        "BluetoothGeneratedBundlerSchema_h_bfbs",
+        "BluetoothGeneratedDumpsysDataSchema_h",
+    ],
+    shared_libs: [
+        "libcrypto",
+        "libflatbuffers-cpp",
+    ],
+    whole_static_libs: [
+        "libc++fs",
+    ],
+    static_libs: [
+        "libbluetooth-dumpsys",
+        "libbluetooth-protos",
+        "libbluetooth_rust_interop",
+        "libbt-platform-protos-lite",
+        "libbt_shim_bridge",
+        "libbt_shim_ffi",
+    ],
+    include_dirs: [
+        "packages/modules/Bluetooth/system/include",
+        "packages/modules/Bluetooth/system/types",
+    ],
+    export_static_lib_headers: ["libbluetooth_rust_interop"],
+}
+
+cc_defaults {
     name: "libbluetooth_gd_defaults",
     defaults: [
         "gd_defaults",
@@ -212,7 +301,7 @@ cc_library {
 cc_library {
     name: "libbluetooth_gd_unit_tests",
     defaults: [
-        "libbluetooth_gd_defaults",
+        "libbluetooth_gd_defaults2",
     ],
     srcs: [
         ":BluetoothOsSources_fake_timer",
@@ -220,7 +309,12 @@ cc_library {
     cflags: [
         "-DUSE_FAKE_TIMERS",
     ],
-    static_libs: ["libchrome"],
+    static_libs: [
+        "hci_pdl",
+        "l2cap_pdl",
+        "libchrome",
+        "smp_pdl",
+    ],
 }
 
 cc_binary {
@@ -554,32 +648,6 @@ filegroup {
     ],
 }
 
-genrule {
-    name: "BluetoothGeneratedPackets_h",
-    tools: [
-        "bluetooth_packetgen",
-    ],
-    cmd: "$(location bluetooth_packetgen) --fuzzing --testing --include=packages/modules/Bluetooth/system/gd --out=$(genDir) $(in)",
-    srcs: [
-        "hci/hci_packets.pdl",
-        "l2cap/l2cap_packets.pdl",
-        "security/smp_packets.pdl",
-    ],
-    out: [
-        "hci/hci_packets.h",
-        "l2cap/l2cap_packets.h",
-        "security/smp_packets.h",
-    ],
-    visibility: ["//visibility:public"],
-}
-
-genrule {
-    name: "BluetoothGeneratedPackets_rust",
-    defaults: ["pdl_rust_generator_defaults"],
-    srcs: ["hci/hci_packets.pdl"],
-    out: ["hci/hci_packets.rs"],
-}
-
 rust_library {
     name: "libbt_packets",
     defaults: ["gd_rust_defaults"],
@@ -681,42 +749,6 @@ genrule {
         "init_flags_generated.h",
         "l2cap_classic_module_generated.h",
         "wakelock_manager_generated.h",
-    ],
-}
-
-genrule {
-    name: "BluetoothGeneratedPackets_python3_cc",
-    tools: [
-        "bluetooth_packetgen",
-    ],
-    cmd: "$(location bluetooth_packetgen) --include=packages/modules/Bluetooth/system/gd --out=$(genDir) --num_shards=10 $(in)",
-    srcs: [
-        "l2cap/l2cap_packets.pdl",
-        "security/smp_packets.pdl",
-    ],
-    out: [
-        "l2cap/l2cap_packets_python3.cc",
-        "l2cap/l2cap_packets_python3_shard_0.cc",
-        "l2cap/l2cap_packets_python3_shard_1.cc",
-        "l2cap/l2cap_packets_python3_shard_2.cc",
-        "l2cap/l2cap_packets_python3_shard_3.cc",
-        "l2cap/l2cap_packets_python3_shard_4.cc",
-        "l2cap/l2cap_packets_python3_shard_5.cc",
-        "l2cap/l2cap_packets_python3_shard_6.cc",
-        "l2cap/l2cap_packets_python3_shard_7.cc",
-        "l2cap/l2cap_packets_python3_shard_8.cc",
-        "l2cap/l2cap_packets_python3_shard_9.cc",
-        "security/smp_packets_python3.cc",
-        "security/smp_packets_python3_shard_0.cc",
-        "security/smp_packets_python3_shard_1.cc",
-        "security/smp_packets_python3_shard_2.cc",
-        "security/smp_packets_python3_shard_3.cc",
-        "security/smp_packets_python3_shard_4.cc",
-        "security/smp_packets_python3_shard_5.cc",
-        "security/smp_packets_python3_shard_6.cc",
-        "security/smp_packets_python3_shard_7.cc",
-        "security/smp_packets_python3_shard_8.cc",
-        "security/smp_packets_python3_shard_9.cc",
     ],
 }
 
