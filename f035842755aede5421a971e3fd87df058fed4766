@@ -83,6 +83,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8b57fe65_35c430f8",
+        "filename": "floss/pandora/floss/adapter_client.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2023-07-25T04:58:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8303c1e6_ca4e1be8",
+      "range": {
+        "startLine": 120,
+        "startChar": 3,
+        "endLine": 120,
+        "endChar": 67
+      },
+      "revId": "f035842755aede5421a971e3fd87df058fed4766",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "be4c572f_37e7a312",
