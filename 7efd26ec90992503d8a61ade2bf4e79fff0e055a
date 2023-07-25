@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "89b8c0cc_3e7a5b8a",
+        "filename": "system/audio_bluetooth_hw/device_port_proxy.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 593,
+      "author": {
+        "id": 1150374
+      },
+      "writtenOn": "2023-07-25T19:14:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c28fc394_cc7bbba2",
+      "range": {
+        "startLine": 593,
+        "startChar": 2,
+        "endLine": 593,
+        "endChar": 9
+      },
+      "revId": "7efd26ec90992503d8a61ade2bf4e79fff0e055a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "709892c2_16eed08d",
@@ -54,6 +78,30 @@
       "writtenOn": "2023-07-25T16:56:18Z",
       "side": 1,
       "message": "This is already logged above (line 587), please remove.",
+      "range": {
+        "startLine": 594,
+        "startChar": 0,
+        "endLine": 595,
+        "endChar": 43
+      },
+      "revId": "7efd26ec90992503d8a61ade2bf4e79fff0e055a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "092359a0_8ed09eb6",
+        "filename": "system/audio_bluetooth_hw/device_port_proxy.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 595,
+      "author": {
+        "id": 1150374
+      },
+      "writtenOn": "2023-07-25T19:14:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "709892c2_16eed08d",
       "range": {
         "startLine": 594,
         "startChar": 0,
@@ -87,6 +135,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9e45b9ec_1b3eb525",
+        "filename": "system/audio_bluetooth_hw/device_port_proxy.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 631,
+      "author": {
+        "id": 1150374
+      },
+      "writtenOn": "2023-07-25T19:14:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "aea212c4_caa538ca",
+      "range": {
+        "startLine": 628,
+        "startChar": 0,
+        "endLine": 631,
+        "endChar": 43
+      },
+      "revId": "7efd26ec90992503d8a61ade2bf4e79fff0e055a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "56d50e35_aa77c1b5",
@@ -100,6 +172,30 @@
       "writtenOn": "2023-07-25T16:56:18Z",
       "side": 1,
       "message": "`VERBOSE`",
+      "range": {
+        "startLine": 639,
+        "startChar": 8,
+        "endLine": 639,
+        "endChar": 12
+      },
+      "revId": "7efd26ec90992503d8a61ade2bf4e79fff0e055a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0959d0c1_74920832",
+        "filename": "system/audio_bluetooth_hw/device_port_proxy.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 639,
+      "author": {
+        "id": 1150374
+      },
+      "writtenOn": "2023-07-25T19:14:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "56d50e35_aa77c1b5",
       "range": {
         "startLine": 639,
         "startChar": 8,
