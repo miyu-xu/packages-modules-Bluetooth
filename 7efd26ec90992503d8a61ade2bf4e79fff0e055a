@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8f7d986a_48b156b8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1042638
+      },
+      "writtenOn": "2023-07-25T16:56:18Z",
+      "side": 1,
+      "message": "Upon a fresh look, noticed a couple of things.",
+      "revId": "7efd26ec90992503d8a61ade2bf4e79fff0e055a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c28fc394_cc7bbba2",
+        "filename": "system/audio_bluetooth_hw/device_port_proxy.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 593,
+      "author": {
+        "id": 1042638
+      },
+      "writtenOn": "2023-07-25T16:56:18Z",
+      "side": 1,
+      "message": "`const`",
+      "range": {
+        "startLine": 593,
+        "startChar": 2,
+        "endLine": 593,
+        "endChar": 9
+      },
+      "revId": "7efd26ec90992503d8a61ade2bf4e79fff0e055a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "709892c2_16eed08d",
+        "filename": "system/audio_bluetooth_hw/device_port_proxy.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 595,
+      "author": {
+        "id": 1042638
+      },
+      "writtenOn": "2023-07-25T16:56:18Z",
+      "side": 1,
+      "message": "This is already logged above (line 587), please remove.",
+      "range": {
+        "startLine": 594,
+        "startChar": 0,
+        "endLine": 595,
+        "endChar": 43
+      },
+      "revId": "7efd26ec90992503d8a61ade2bf4e79fff0e055a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aea212c4_caa538ca",
+        "filename": "system/audio_bluetooth_hw/device_port_proxy.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 631,
+      "author": {
+        "id": 1042638
+      },
+      "writtenOn": "2023-07-25T16:56:18Z",
+      "side": 1,
+      "message": "Same here: `const` and remove the log.",
+      "range": {
+        "startLine": 628,
+        "startChar": 0,
+        "endLine": 631,
+        "endChar": 43
+      },
+      "revId": "7efd26ec90992503d8a61ade2bf4e79fff0e055a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "56d50e35_aa77c1b5",
+        "filename": "system/audio_bluetooth_hw/device_port_proxy.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 639,
+      "author": {
+        "id": 1042638
+      },
+      "writtenOn": "2023-07-25T16:56:18Z",
+      "side": 1,
+      "message": "`VERBOSE`",
+      "range": {
+        "startLine": 639,
+        "startChar": 8,
+        "endLine": 639,
+        "endChar": 12
+      },
+      "revId": "7efd26ec90992503d8a61ade2bf4e79fff0e055a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
