@@ -53,7 +53,7 @@ import java.util.Objects;
  * A profile service that connects to the Battery service (BAS) of BLE devices
  */
 public class BatteryService extends ProfileService {
-    private static final boolean DBG = false;
+    private static final boolean DBG = Log.isLoggable(TAG, Log.DEBUG);
     private static final String TAG = "BatteryService";
 
     // Timeout for state machine thread join, to prevent potential ANR.
