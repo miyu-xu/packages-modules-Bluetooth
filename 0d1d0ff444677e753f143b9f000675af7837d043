@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7e46a1e6_cfd92cd1",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 8
+      },
+      "lineNbr": 2152,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2023-07-25T07:49:04Z",
+      "side": 1,
+      "message": "This is updated by [`btif_av_report_source_codec_state`](https://cs.android.com/android/platform/superproject/main/+/refs/heads/main:packages/modules/Bluetooth/system/btif/src/btif_av.cc;drc\u003d3d4951806618b5119ec60a12d80c026bf7ae4153;l\u003d3005), which is a copy of `codecs_selectable_capabilities` which instantiates each config at most once per [enumerating](https://cs.android.com/android/platform/superproject/main/+/refs/heads/main:packages/modules/Bluetooth/system/stack/a2dp/a2dp_codec_config.cc;drc\u003d3d4951806618b5119ec60a12d80c026bf7ae4153;l\u003d607) each [codec index](https://cs.android.com/android/platform/superproject/main/+/refs/heads/main:packages/modules/Bluetooth/system/stack/a2dp/a2dp_codec_config.cc;drc\u003d3d4951806618b5119ec60a12d80c026bf7ae4153;l\u003d974) so bijection is guaranteed (and each cap is a bitmask).",
+      "parentUuid": "fa17370e_3aea9e20",
+      "range": {
+        "startLine": 2152,
+        "startChar": 22,
+        "endLine": 2152,
+        "endChar": 34
+      },
+      "revId": "0d1d0ff444677e753f143b9f000675af7837d043",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0541fcb1_9f8baeb6",
         "filename": "system/gd/rust/topshim/src/profiles/a2dp.rs",
         "patchSetId": 8
@@ -37,6 +61,30 @@
       "writtenOn": "2023-07-25T07:05:18Z",
       "side": 1,
       "message": "Is this still used somewhere?",
+      "range": {
+        "startLine": 410,
+        "startChar": 11,
+        "endLine": 410,
+        "endChar": 27
+      },
+      "revId": "0d1d0ff444677e753f143b9f000675af7837d043",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "482982be_21501f1b",
+        "filename": "system/gd/rust/topshim/src/profiles/a2dp.rs",
+        "patchSetId": 8
+      },
+      "lineNbr": 410,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2023-07-25T07:49:04Z",
+      "side": 1,
+      "message": "Yes, that can be removed, thanks!",
+      "parentUuid": "0541fcb1_9f8baeb6",
       "range": {
         "startLine": 410,
         "startChar": 11,
