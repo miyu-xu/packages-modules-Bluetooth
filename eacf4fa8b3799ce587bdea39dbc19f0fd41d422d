@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f628d78e_2e1ad55d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1937985
+      },
+      "writtenOn": "2023-07-25T18:07:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "44d13b49_0dc1020c",
+      "range": {
+        "startLine": 6,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 35
+      },
+      "revId": "eacf4fa8b3799ce587bdea39dbc19f0fd41d422d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "971e4176_55a33d4f",
@@ -41,6 +65,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b9aafcc3_a0853b4c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1937985
+      },
+      "writtenOn": "2023-07-25T18:07:41Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "971e4176_55a33d4f",
+      "revId": "eacf4fa8b3799ce587bdea39dbc19f0fd41d422d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "09d6720f_366911f9",
@@ -54,6 +96,30 @@
       "writtenOn": "2023-07-25T16:17:16Z",
       "side": 1,
       "message": "This is not refactoring; it is a semantic change",
+      "range": {
+        "startLine": 435,
+        "startChar": 16,
+        "endLine": 436,
+        "endChar": 52
+      },
+      "revId": "eacf4fa8b3799ce587bdea39dbc19f0fd41d422d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "63bcf982_e62e88b3",
+        "filename": "tools/rootcanal/rust/src/lmp/procedure/secure_simple_pairing.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 436,
+      "author": {
+        "id": 1937985
+      },
+      "writtenOn": "2023-07-25T18:07:41Z",
+      "side": 1,
+      "message": "I don\u0027t think so 🤔\n`send_commitment(ctx, true)` is equivalent to this",
+      "parentUuid": "09d6720f_366911f9",
       "range": {
         "startLine": 435,
         "startChar": 16,
