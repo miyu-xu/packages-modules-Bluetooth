@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b63bca3b_6997c6a7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2023-07-25T05:07:42Z",
+      "side": 1,
+      "message": "Attached the pts GAP test logs for reference:\nhttps://drive.google.com/corp/drive/folders/1Qz8n5bijOLOs_KGRiWonzQS84C3XqZEv",
+      "revId": "cac9485dcbc445573d663a8052d48741939b48fe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
