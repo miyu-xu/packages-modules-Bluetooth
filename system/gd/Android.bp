@@ -158,14 +158,16 @@ cc_defaults {
     generated_headers: [
         "BluetoothGeneratedBundlerSchema_h_bfbs",
         "BluetoothGeneratedDumpsysDataSchema_h",
-        "BluetoothGeneratedPackets_h",
     ],
     shared_libs: [
         "libcrypto",
         "libflatbuffers-cpp",
     ],
     whole_static_libs: [
+        "hci_pdl",
+        "l2cap_pdl",
         "libc++fs",
+        "smp_pdl",
     ],
     static_libs: [
         "libbluetooth-dumpsys",
@@ -220,7 +222,9 @@ cc_library {
     cflags: [
         "-DUSE_FAKE_TIMERS",
     ],
-    static_libs: ["libchrome"],
+    static_libs: [
+        "libchrome",
+    ],
 }
 
 cc_binary {
@@ -554,32 +558,6 @@ filegroup {
     ],
 }
 
-genrule {
-    name: "BluetoothGeneratedPackets_h",
-    tools: [
-        "bluetooth_packetgen",
-    ],
-    cmd: "$(location bluetooth_packetgen) --fuzzing --testing --include=packages/modules/Bluetooth/system/gd --out=$(genDir) $(in)",
-    srcs: [
-        "hci/hci_packets.pdl",
-        "l2cap/l2cap_packets.pdl",
-        "security/smp_packets.pdl",
-    ],
-    out: [
-        "hci/hci_packets.h",
-        "l2cap/l2cap_packets.h",
-        "security/smp_packets.h",
-    ],
-    visibility: ["//visibility:public"],
-}
-
-genrule {
-    name: "BluetoothGeneratedPackets_rust",
-    defaults: ["pdl_rust_generator_defaults"],
-    srcs: ["hci/hci_packets.pdl"],
-    out: ["hci/hci_packets.rs"],
-}
-
 rust_library {
     name: "libbt_packets",
     defaults: ["gd_rust_defaults"],
@@ -681,42 +659,6 @@ genrule {
         "init_flags_generated.h",
         "l2cap_classic_module_generated.h",
         "wakelock_manager_generated.h",
-    ],
-}
-
-genrule {
-    name: "BluetoothGeneratedPackets_python3_cc",
-    tools: [
-        "bluetooth_packetgen",
-    ],
-    cmd: "$(location bluetooth_packetgen) --include=packages/modules/Bluetooth/system/gd --out=$(genDir) --num_shards=10 $(in)",
-    srcs: [
-        "l2cap/l2cap_packets.pdl",
-        "security/smp_packets.pdl",
-    ],
-    out: [
-        "l2cap/l2cap_packets_python3.cc",
-        "l2cap/l2cap_packets_python3_shard_0.cc",
-        "l2cap/l2cap_packets_python3_shard_1.cc",
-        "l2cap/l2cap_packets_python3_shard_2.cc",
-        "l2cap/l2cap_packets_python3_shard_3.cc",
-        "l2cap/l2cap_packets_python3_shard_4.cc",
-        "l2cap/l2cap_packets_python3_shard_5.cc",
-        "l2cap/l2cap_packets_python3_shard_6.cc",
-        "l2cap/l2cap_packets_python3_shard_7.cc",
-        "l2cap/l2cap_packets_python3_shard_8.cc",
-        "l2cap/l2cap_packets_python3_shard_9.cc",
-        "security/smp_packets_python3.cc",
-        "security/smp_packets_python3_shard_0.cc",
-        "security/smp_packets_python3_shard_1.cc",
-        "security/smp_packets_python3_shard_2.cc",
-        "security/smp_packets_python3_shard_3.cc",
-        "security/smp_packets_python3_shard_4.cc",
-        "security/smp_packets_python3_shard_5.cc",
-        "security/smp_packets_python3_shard_6.cc",
-        "security/smp_packets_python3_shard_7.cc",
-        "security/smp_packets_python3_shard_8.cc",
-        "security/smp_packets_python3_shard_9.cc",
     ],
 }
 
