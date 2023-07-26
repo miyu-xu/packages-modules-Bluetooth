@@ -27,7 +27,8 @@ import android.content.Context
 import android.util.Log
 import java.util.UUID
 import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.launch
 
 class GattServerManager(
     bluetoothManager: BluetoothManager,
@@ -37,7 +38,7 @@ class GattServerManager(
     val TAG = "PandoraGattServerManager"
 
     val services = mutableMapOf<UUID, BluetoothGattService>()
-    val newServiceFlow = MutableSharedFlow<BluetoothGattService>(extraBufferCapacity = 8)
+    var serviceChannel: Channel<BluetoothGattService>? = null
     var negociatedMtu = -1
 
     val callback =
@@ -45,7 +46,7 @@ class GattServerManager(
             override fun onServiceAdded(status: Int, service: BluetoothGattService) {
                 Log.i(TAG, "onServiceAdded status=$status")
                 check(status == BluetoothGatt.GATT_SUCCESS)
-                check(newServiceFlow.tryEmit(service))
+                globalScope.launch { serviceChannel?.send(service) }
             }
             override fun onMtuChanged(device: BluetoothDevice, mtu: Int) {
                 Log.i(TAG, "onMtuChanged mtu=$mtu")

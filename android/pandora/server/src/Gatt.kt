@@ -31,9 +31,8 @@ import java.io.Closeable
 import java.util.UUID
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.async
 import kotlinx.coroutines.cancel
-import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.SharingStarted
@@ -276,23 +275,31 @@ class Gatt(private val context: Context) : GATTImplBase(), Closeable {
                 service.addCharacteristic(characteristic)
             }
 
-            val fullService = coroutineScope {
-                val firstService = mScope.async { serverManager.newServiceFlow.first() }
+            try {
+                serverManager.serviceChannel = Channel<BluetoothGattService>(Channel.CONFLATED)
                 serverManager.server.addService(service)
-                firstService.await()
+                val addedService: BluetoothGattService = serverManager.serviceChannel!!.receive()
+                RegisterServiceResponse.newBuilder()
+                    .setService(
+                        GattService.newBuilder()
+                            .setHandle(addedService.instanceId)
+                            .setType(addedService.type)
+                            .setUuid(addedService.uuid.toString().uppercase())
+                            .addAllIncludedServices(
+                                generateServicesList(service.includedServices, 1)
+                            )
+                            .addAllCharacteristics(
+                                generateCharacteristicsList(service.characteristics)
+                            )
+                            .build()
+                    )
+                    .build()
+            } catch (e: Throwable) {
+                throw e
+            } finally {
+                serverManager.serviceChannel!!.close()
+                serverManager.serviceChannel = null
             }
-
-            RegisterServiceResponse.newBuilder()
-                .setService(
-                    GattService.newBuilder()
-                        .setHandle(fullService.instanceId)
-                        .setType(fullService.type)
-                        .setUuid(fullService.uuid.toString().uppercase())
-                        .addAllIncludedServices(generateServicesList(service.includedServices, 1))
-                        .addAllCharacteristics(generateCharacteristicsList(service.characteristics))
-                        .build()
-                )
-                .build()
         }
     }
 
