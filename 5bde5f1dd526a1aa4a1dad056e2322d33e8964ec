@@ -70,6 +70,30 @@
       },
       "revId": "5bde5f1dd526a1aa4a1dad056e2322d33e8964ec",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bf425822_e041a933",
+        "filename": "system/stack/l2cap/l2c_csm.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1965943
+      },
+      "writtenOn": "2023-07-26T01:16:57Z",
+      "side": 1,
+      "message": "@aritrasen, the reset code is added for no pL2CA_CreditBasedConnectInd_Cb for ecoc",
+      "parentUuid": "d0074491_e3e000aa",
+      "range": {
+        "startLine": 117,
+        "startChar": 6,
+        "endLine": 121,
+        "endChar": 7
+      },
+      "revId": "5bde5f1dd526a1aa4a1dad056e2322d33e8964ec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
