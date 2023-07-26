@@ -118,6 +118,30 @@
       },
       "revId": "5bde5f1dd526a1aa4a1dad056e2322d33e8964ec",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a1f7d879_55c26399",
+        "filename": "system/stack/l2cap/l2c_csm.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2023-07-26T16:31:41Z",
+      "side": 1,
+      "message": "@tzupengwang@google.com never mind. I see the difference. \n\nAs suggested by @aritrasen@google.com, can we add explanation for the part that calls `pL2CA_CreditBasedConnectInd_Cb`? \n\nBTW, is `pL2CA_CreditBasedConnectInd_Cb` related to NP in PTS test? if no, can we separate this change into 2? I would suggest address 1 issue in one change to make the changes easier to be ported to different branhces",
+      "parentUuid": "de98e3bc_58bb3e9e",
+      "range": {
+        "startLine": 117,
+        "startChar": 6,
+        "endLine": 121,
+        "endChar": 7
+      },
+      "revId": "5bde5f1dd526a1aa4a1dad056e2322d33e8964ec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
