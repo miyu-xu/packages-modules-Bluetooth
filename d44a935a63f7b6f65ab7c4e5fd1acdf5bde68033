@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d9bc4955_83f0cb95",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-07-26T18:04:13Z",
+      "side": 1,
+      "message": "overall lgtm",
+      "revId": "d44a935a63f7b6f65ab7c4e5fd1acdf5bde68033",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9ada71b3_73730428",
+        "filename": "floss/pandora/server/host.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-07-26T18:04:13Z",
+      "side": 1,
+      "message": "Since `server` doesn\u0027t have a type, docstring here describing it would be useful.",
+      "revId": "d44a935a63f7b6f65ab7c4e5fd1acdf5bde68033",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
