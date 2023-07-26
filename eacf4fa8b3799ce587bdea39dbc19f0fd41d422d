@@ -128,6 +128,30 @@
       },
       "revId": "eacf4fa8b3799ce587bdea39dbc19f0fd41d422d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b1946dea_3c2fcb98",
+        "filename": "tools/rootcanal/rust/src/lmp/procedure/secure_simple_pairing.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 436,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-07-26T07:30:58Z",
+      "side": 1,
+      "message": "You are right, I missed a line",
+      "parentUuid": "63bcf982_e62e88b3",
+      "range": {
+        "startLine": 435,
+        "startChar": 16,
+        "endLine": 436,
+        "endChar": 52
+      },
+      "revId": "eacf4fa8b3799ce587bdea39dbc19f0fd41d422d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

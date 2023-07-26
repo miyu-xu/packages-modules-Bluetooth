@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f8667b3c_5a47b149",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-07-26T07:30:58Z",
+      "side": 1,
+      "message": "Looking good but you did not make it easy to review 😄",
+      "revId": "f01ca7e96cf3dec41e251d93a59e999f8e4d59b4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
