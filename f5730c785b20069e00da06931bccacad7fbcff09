@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4b7cc820_e48f8740",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1965943
+      },
+      "writtenOn": "2023-07-26T05:22:22Z",
+      "side": 1,
+      "message": "Can you understand by the following info:\n\n[Log]\n\nsee attachment logcat.txt\n10-29 16:45:41.620 3604 3651 E bt_l2cap: l2c_link_hci_disc_comp: no p_lcb !! -\u003e issue first happens here\n10-29 16:45:41.620 3604 3651 D bt_hci : btu_hcif_disconnection_comp_evt: p_dev_rec-\u003ebd_addr\u003ds, transport\u003d-1717402928\n10-29 16:45:41.621 3604 3651 D bt_hci : btu_hcif_disconnection_comp_evt: yuwenjie call btm_acl_removed -\u003e add remove acl operation\n10-29 16:45:41.621 3604 3651 D bt_btm : btm_acl_removed\n10-29 16:45:41.621 3604 3651 D bt_btm : btm_bda_to_acl found\n10-29 16:45:41.733 3604 3651 I bt_btm : btm_ble_start_auto_conn -\u003e can start auto connection now\n10-29 16:45:41.733 3604 3651 I bt_btm : btm_ble_connected\n10-29 16:45:41.733 3604 3651 V bt_stack: [VERBOSE1:btm_ble.cc(1940)] btm_ble_connected Security Manager: handle:512 enc_mode:0000 bda: 0c:e2:00:1e:4d:8f RName: p_dev_rec:0xa9f4bf58\nWhen disconnect too fast and link_state is still DISCONNECTED, in release_ccb, only lcb released, ACL link will not be removed.\n\nThe state changed from DISCONNECTED to CONNECTED in Connect flow\n\nbtm_read_remote_version_complete\nl2cble_notify_le_connection\np_lcb-\u003elink_state \u003d LST_CONNECTED;\nDisconnection flow\n\ngatts app cancel connection\ngatt_cancel_open\ngatt_disconnect\nL2CA_CancelBleConnectReq\nl2cu_release_lcb\nl2cu_release_ccb. https://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/system/stack/l2cap/l2c_utils.cc;l\u003d1601;drc\u003d42b9fe08ebc4c2b10f582525550e51af7c0c73cd -\u003e p_lcb-\u003elink_state \u003d\u003d LST_CONNECTED is false, so not release ACL link\nIf app disconnect before btm_read_remote_version_complete received, ACL link will not be remove will happen. And when this case happen, l2c_link_hci_disc_comp will have no lcb if disconnect by remote, then auto connection will fail since last ACL exists.",
+      "parentUuid": "89653f48_78c13daf",
+      "range": {
+        "startLine": 10,
+        "startChar": 0,
+        "endLine": 14,
+        "endChar": 0
+      },
+      "revId": "f5730c785b20069e00da06931bccacad7fbcff09",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "406501da_30f82618",
