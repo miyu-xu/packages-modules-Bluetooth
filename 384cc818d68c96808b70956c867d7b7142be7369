@@ -52,6 +52,24 @@
       "parentUuid": "af889ae1_b0f57350",
       "revId": "384cc818d68c96808b70956c867d7b7142be7369",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "19e60d1d_7dc26f60",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1965943
+      },
+      "writtenOn": "2023-07-26T13:01:38Z",
+      "side": 1,
+      "message": "https://partnerissuetracker.corp.google.com/issues/249615821#comment6 the PTS pass logs after patch applied has been attached.",
+      "parentUuid": "9d9a95f3_d89d81c5",
+      "revId": "384cc818d68c96808b70956c867d7b7142be7369",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
