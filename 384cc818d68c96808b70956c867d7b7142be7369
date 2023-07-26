@@ -34,6 +34,24 @@
       "parentUuid": "d4ffd1a2_4fd6ee3f",
       "revId": "384cc818d68c96808b70956c867d7b7142be7369",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9d9a95f3_d89d81c5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1965943
+      },
+      "writtenOn": "2023-07-26T01:13:14Z",
+      "side": 1,
+      "message": "The logs before modification of PTS test already attached in https://partnerissuetracker.corp.google.com/issues/249615821, we will supply the logs after modification of PTS test.",
+      "parentUuid": "af889ae1_b0f57350",
+      "revId": "384cc818d68c96808b70956c867d7b7142be7369",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
