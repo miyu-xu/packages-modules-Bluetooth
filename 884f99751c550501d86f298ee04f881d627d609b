@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3e0e5635_cfdb34d5",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-07-26T07:50:23Z",
+      "side": 1,
+      "message": "Please document here the changes applied to the tests",
+      "revId": "884f99751c550501d86f298ee04f881d627d609b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "56e43c5c_f1444542",
+        "filename": "tools/rootcanal/rust/test/SP/BV-16-C.in",
+        "patchSetId": 5
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-07-26T07:50:23Z",
+      "side": 1,
+      "message": "can you document where the test diverges from the LMP.TS specification ? \nAlso it looks to me that you are changing the spec to a different test; it might be more appropriate to rename it to something else rather than SP/BV-16-C which it is no longer implementing",
+      "range": {
+        "startLine": 26,
+        "startChar": 37,
+        "endLine": 26,
+        "endChar": 48
+      },
+      "revId": "884f99751c550501d86f298ee04f881d627d609b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
