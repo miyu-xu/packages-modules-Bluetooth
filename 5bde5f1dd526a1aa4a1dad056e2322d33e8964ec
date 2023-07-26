@@ -94,6 +94,30 @@
       },
       "revId": "5bde5f1dd526a1aa4a1dad056e2322d33e8964ec",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "de98e3bc_58bb3e9e",
+        "filename": "system/stack/l2cap/l2c_csm.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1565064
+      },
+      "writtenOn": "2023-07-26T13:35:21Z",
+      "side": 1,
+      "message": "@phui, ag/ is not visible to vendors. Consider uploading to the AOSP gerrit?",
+      "parentUuid": "bf425822_e041a933",
+      "range": {
+        "startLine": 117,
+        "startChar": 6,
+        "endLine": 121,
+        "endChar": 7
+      },
+      "revId": "5bde5f1dd526a1aa4a1dad056e2322d33e8964ec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
