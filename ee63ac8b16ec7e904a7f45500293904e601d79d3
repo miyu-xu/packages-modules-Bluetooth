@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d18b605c_17b9ecda",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2023-07-26T19:14:12Z",
+      "side": 1,
+      "message": "Unfortunately I do not think we are well set up for performing such a test here. We do have integration testing that might be able to handle it. At present though, we do not actually use this value directly as we only check for \"not success\" in all of our flows so this is informational in case we need it later.",
+      "parentUuid": "3951f133_a2498cbf",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 9
+      },
+      "revId": "ee63ac8b16ec7e904a7f45500293904e601d79d3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4686263c_6127d3ad",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-07-20T18:13:30Z",
       "side": 1,
       "message": "Should it be added here as well ?\n```suggestion\n    case BT_STATUS_WAKELOCK_ERROR:\n      return std::string(\"wakelock_error\");\n    case BT_STATUS_TIMEOUT:\n      return std::string(\"timeout_error\");\n```",
+      "range": {
+        "startLine": 142,
+        "startChar": 0,
+        "endLine": 143,
+        "endChar": 43
+      },
+      "revId": "ee63ac8b16ec7e904a7f45500293904e601d79d3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "08a5ec06_4695c64b",
+        "filename": "system/include/hardware/bluetooth.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2023-07-26T19:14:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4686263c_6127d3ad",
       "range": {
         "startLine": 142,
         "startChar": 0,
