@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a5af977f_49b92b53",
+        "filename": "system/bta/le_audio/le_audio_set_configuration_provider_json.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 387,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2023-07-26T19:22:00Z",
+      "side": 1,
+      "message": "Could you please have the clear naming to point out it\u0027s for the dual devices?",
+      "range": {
+        "startLine": 386,
+        "startChar": 0,
+        "endLine": 387,
+        "endChar": 47
+      },
+      "revId": "8fe21f284b74dc51f8ddbaae2f7553a66576df87",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
