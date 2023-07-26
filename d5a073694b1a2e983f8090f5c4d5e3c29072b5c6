@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5c92019e_d1d7290e",
+        "filename": "floss/hcidoc/src/groups/informational.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 410,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-07-26T17:26:54Z",
+      "side": 1,
+      "message": "I wouldn\u0027t mind an `eprintln!` or something similar here so that we can correct our assumption in the future if this does start showing up",
+      "revId": "d5a073694b1a2e983f8090f5c4d5e3c29072b5c6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cbb115ca_6a7465b4",
+        "filename": "floss/hcidoc/src/groups/informational.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 458,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-07-26T17:26:54Z",
+      "side": 1,
+      "message": "is this called anywhere? Can\u0027t find it via ctrl+f here",
+      "revId": "d5a073694b1a2e983f8090f5c4d5e3c29072b5c6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
