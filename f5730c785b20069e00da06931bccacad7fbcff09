@@ -69,6 +69,30 @@
       },
       "revId": "f5730c785b20069e00da06931bccacad7fbcff09",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "25054966_13150f1c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1965943
+      },
+      "writtenOn": "2023-07-26T05:23:01Z",
+      "side": 1,
+      "message": "Could you help share your advice?",
+      "parentUuid": "406501da_30f82618",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 52
+      },
+      "revId": "f5730c785b20069e00da06931bccacad7fbcff09",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
