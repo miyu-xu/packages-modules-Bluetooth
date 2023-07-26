@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e8b0894e_c62c49de",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 8
+      },
+      "lineNbr": 2152,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2023-07-26T02:33:44Z",
+      "side": 1,
+      "message": "ah these are bitmasks! thanks for reminding",
+      "parentUuid": "7e46a1e6_cfd92cd1",
+      "range": {
+        "startLine": 2152,
+        "startChar": 22,
+        "endLine": 2152,
+        "endChar": 34
+      },
+      "revId": "0d1d0ff444677e753f143b9f000675af7837d043",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0541fcb1_9f8baeb6",
         "filename": "system/gd/rust/topshim/src/profiles/a2dp.rs",
         "patchSetId": 8
